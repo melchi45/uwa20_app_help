@@ -1,0 +1,134 @@
+.clip-card-slider {
+  width: 100%;
+  top: 50%;
+  &>div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    white-space: nowrap;
+    overflow: auto;
+  }
+  .clip-card {
+    text-align: center;
+    display: inline-table;
+		.card-content-title, .card-line {
+			height: 100%;
+		}
+    .card-content-title {
+      color: black;
+      font-size: 11px;
+      vertical-align: middle;
+    }
+    .card-line {
+      position: relative;
+      border-top: 1px solid @timeline-border-color;
+      margin: 0;
+      margin-bottom: 22px;
+      margin-top: 11px;
+      width: 100%;
+      height: 100%;
+      &:after {
+        .make-circle(6px);
+        background-color: @timeline-border-color;
+        left: 50%;
+        top: 50%;
+        bottom: 0;
+        margin-top: -3px;
+        margin-left: -3px;
+      }
+    }
+    .card-content-outer {
+      position: relative;
+      display: inline-table;
+      .check {
+        left: 7px;
+        bottom: 7px;
+      }
+      .card-content-inner {
+        color: white;
+        width: 130px;
+        height: 150px;
+        overflow: hidden;
+        border: 1px solid #dbdbdb;
+        .text-shadow('-1px -1px 0 rgba(0,0,0,0.4), 1px -1px 0 rgba(0,0,0,0.4), -1px 1px 0 rgba(0,0,0,0.4), 1px 1px 0 rgba(0,0,0,0.4)');
+        .line-break {
+          display: block;
+        }
+        .tui {
+          font-size: 46px;
+          margin: 10% 0;
+        }
+        .card-text1 {
+          font-size: 18px;
+        }
+        .card-text2 {
+          font-size: 14px;
+        }
+        .card-text3 {
+          font-size: 18px;
+        }
+      }
+    }
+    +.card-clip-content .card-content-outer {
+      border-right: 0;
+    }
+    .line-break {
+      display: block;
+    }
+    .tui {
+      font-size: 40px;
+      margin: 10% 0;
+    }
+    .card-text {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .card-text1 {
+      font-size: 16px;
+    }
+    .card-text2 {
+      font-size: 12px;
+    }
+    .card-text3 {
+      font-size: 16px;
+    }
+    &:not(:first-child) {
+      .card-content-outer .card-content-inner {
+        border-left: 0;
+      }
+    }
+  }
+  @media all and (orientation:portrait) {
+    height: 100%;
+    padding-top: 55px;
+    top:0;
+    .translate3d(0,0,0);
+    .clip-card {
+      display: block;
+      .card-content-title, .card-line, .card-content-outer {
+        display: inline-table;
+        vertical-align: middle;
+      }
+      .card-line {
+        width: 1px;
+        height: 100%;
+        border-right: 1px solid @timeline-border-color;
+        margin: 0;
+        margin-left: 22px;
+        margin-right: 22px;
+        
+      }
+      .card-content-outer {
+        .card-content-inner {
+          width: 230px;
+        }
+      }
+      &:not(:first-child) {
+        .card-content-outer .card-content-inner {
+          border-left: 1px solid #dbdbdb;
+          border-top: 0;
+        }
+      }
+    }
+  }
+}

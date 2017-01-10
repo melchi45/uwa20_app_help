@@ -1,0 +1,21 @@
+<div class="modal-header modal-setup">
+    <h3 class="applyColor">{{ title | translate }}</h3>
+</div>
+<div class="modal-body modal-setup pc-n-hm-alert-body"> 
+    <h5>
+        <p class="pc-n-hm-modal-message">
+            {{ message | translate }}
+	   </p>
+    </h5>
+    <span 
+    	class="{{iconClass}} pc-n-hm-modal-icon">
+	</span>      
+</div>
+<div class="modal-footer modal-setup pc-n-hm-modal-footer modal-setup">
+    <button 
+    class="btn btn-primary" 
+    type="button" 
+    ng-click="ok()">
+    	{{ 'lang_ok' | translate }}
+	</button>
+</div>

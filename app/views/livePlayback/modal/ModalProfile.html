@@ -1,0 +1,59 @@
+﻿<div class="modal-body ua-modal-body">
+  <ul>
+    <li ng-repeat="profile in profileList" class="popup-profile-list">
+      <label>
+        <input type="radio" ng-model="selected.Name" ng-value="profile.Name" ng-click="selectProfile(profile)" />
+      </label>
+      <span class="profile-name" ng-click="collapsed=!collapsed">
+        {{profile.Name}} {{profile.IsDigitalPTZProfile ? '(DPTZ)':''}}
+        <span class="profile-detail-button">
+          <i ng-show="collapsed" class="tui tui-top"></i>
+          <i ng-show="!collapsed" class="tui tui-down"></i>
+       </span>
+      </span>
+      <div class="profile-description" ng-show="collapsed">
+        <p ng-show="profile.H264.BitrateControlType=='CBR'">
+          {{'lang_profile' | translate}}: {{profile.Name}}<br>
+          {{'lang_resolution' | translate}}: {{profile.Resolution}}<br>
+          {{'lang_codec' | translate}}: {{profile.EncodingType}}<br>
+          {{'lang_framerate' | translate}}: {{profile.FrameRate}}<br>
+          {{'lang_compression' | translate}}: {{profile.CompressionLevel}}<br>
+          {{'lang_targetBitrate' | translate}}: {{profile.Bitrate}} Kbps, {{profile.H264.BitrateControlType}}
+        </p>
+        <p ng-show="profile.H264.BitrateControlType=='VBR'">
+          {{'lang_profile' | translate}}: {{profile.Name}}<br>
+          {{'lang_resolution' | translate}}: {{profile.Resolution}}<br>
+          {{'lang_codec' | translate}}: {{profile.EncodingType}}<br>
+          {{'lang_framerate' | translate}}: {{profile.FrameRate}}<br>
+          {{'lang_compression' | translate}}: {{profile.CompressionLevel}}<br>
+          {{'lang_max_bitrate' | translate}}: {{profile.Bitrate}} Kbps, {{profile.H264.BitrateControlType}}
+        </p>
+        <p ng-show="profile.H265.BitrateControlType=='CBR'">
+          {{'lang_profile' | translate}}: {{profile.Name}}<br>
+          {{'lang_resolution' | translate}}: {{profile.Resolution}}<br>
+          {{'lang_codec' | translate}}: {{profile.EncodingType}}<br>
+          {{'lang_framerate' | translate}}: {{profile.FrameRate}}<br>
+          {{'lang_compression' | translate}}: {{profile.CompressionLevel}}<br>
+          {{'lang_targetBitrate' | translate}}: {{profile.Bitrate}} Kbps, {{profile.H265.BitrateControlType}}
+        </p>
+        <p ng-show="profile.H265.BitrateControlType=='VBR'">
+          {{'lang_profile' | translate}}: {{profile.Name}}<br>
+          {{'lang_resolution' | translate}}: {{profile.Resolution}}<br>
+          {{'lang_codec' | translate}}: {{profile.EncodingType}}<br>
+          {{'lang_framerate' | translate}}: {{profile.FrameRate}}<br>
+          {{'lang_compression' | translate}}: {{profile.CompressionLevel}}<br>
+          {{'lang_max_bitrate' | translate}}: {{profile.Bitrate}} Kbps, {{profile.H265.BitrateControlType}}
+        </p>        
+        <p ng-show="profile.EncodingType=='MJPEG'">
+          {{'lang_profile' | translate}}: {{profile.Name}}<br>
+          {{'lang_resolution' | translate}}: {{profile.Resolution}}<br>
+          {{'lang_codec' | translate}}: {{profile.EncodingType}}<br>
+          {{'lang_framerate' | translate}}: {{profile.FrameRate}}<br>
+          {{'lang_compression' | translate}}: {{profile.CompressionLevel}}<br>
+          {{'lang_max_bitrate' | translate}}: {{profile.Bitrate}} Kbps
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="modal-bottom-bar"></div>

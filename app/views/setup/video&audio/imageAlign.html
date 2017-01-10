@@ -1,0 +1,80 @@
+<div class="wrapper wrapper-content" ng-show='pageLoaded'>
+    <div class="row">
+        <wn5-setup-main-title
+            data-title="lang_imagealignment">
+        </wn5-setup-main-title>    
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="m-t-md"></div>
+                    <div class="form-group setup-border-box-padding">
+                        <div align="center">
+                            <sketchbook videoinfo='videoinfo'></sketchbook>
+                        </div>
+                    </div>
+                    <div id="wisenet-multi_imager-image_align">
+                        <div id="wisenet-multi_imager-image_align-item">
+                            <div id="wisenet-multi_imager-image_align-pannel">
+                                <div id="wisenet-multi_imager-image_align-pannel-xaxis">
+                                    <div 
+                                        class="pannel-button-wrapper"
+                                        ng-repeat="btn in pannelButtons.xAxis track by $index">
+                                        <button
+                                            type="button"
+                                            ng-click="btn.clickCallback()"
+                                            class="btn btn-primary {{btn.btnCls}}">
+                                            <span 
+                                                ng-repeat="cls in btn.iconCls track by $index"
+                                                class="{{cls}}">
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="wisenet-multi_imager-image_align-pannel-yaxis">
+                                    <div 
+                                        class="pannel-button-wrapper"
+                                        ng-repeat="btn in pannelButtons.yAxis track by $index">
+                                        <button
+                                            type="button"
+                                            ng-click="btn.clickCallback()"
+                                            class="btn btn-primary {{btn.btnCls}}">
+                                            <span 
+                                                ng-repeat="cls in btn.iconCls track by $index"
+                                                class="{{cls}}">
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="wisenet-multi_imager-image_align-item">
+                            <div class="btn-group">
+                                <button 
+                                    type="button" 
+                                    ng-repeat="num in sensorIds track by $index"
+                                    ng-click="selectSensorId(num)"
+                                    ng-class="{'selected-sensor': selectedSensorId === num}"
+                                    class="btn btn-primary">
+                                    {{num + 1}}
+                                </button>
+                            </div>
+                            <div id="wisenet-multi_imager-image_align-resetall">
+                                <button 
+                                    type="button"
+                                    ng-click="resetAll()"
+                                    class="btn btn-primary">
+                                    <span class="tui tui-ch-playback-reset"></span>
+                                    {{ 'lang_resetAll' | translate }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="confirm-button-area">
+                        <button type="button" class="btn btn-black" ng-click="view()">{{ 'lang_cancel' | translate }}</button>
+                        <button type="button" class="btn btn-orange" ng-click="submit()">{{ 'lang_apply' | translate }}</button>
+                    </div>   -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<ul id="channel-all-view">
+  <uib-carousel no-wrap="false">
+    <uib-slide ng-repeat="channels in Allchannel">
+      <li ng-repeat="channel in channels track by $index" ng-style="channel.style" class="channel-view" ng-class="{'selected' : channel.id == selectedChannelId}" ng-click="select(channel.id)">
+        <canvas ng-show="channel.name.length >= 0">
+        </canvas>
+        <div class="middle-center">
+          <p style="display:none;">{{ $index }}</p>
+          <p class="name">{{channel['name']}}</p>
+          <p ng-show="channel.name.length >= 0">{{channel['eventCount']}} EVENT</p>
+        <div>
+      </li>
+    </uib-slide>
+  </uib-carousel>
+</ul>
+

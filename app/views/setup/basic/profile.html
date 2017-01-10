@@ -1,0 +1,449 @@
+<div id="profilepage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <form name="profileForm" method="get" class="form-horizontal">
+        <wn5-setup-main-title 
+            data-title="lang_menu_videoprofile">
+        </wn5-setup-main-title>
+        <div ng-show="Channels.length > 1">
+            <div class="form-group">
+                <div>
+                    <div class="wn5-setup-section-article-heading">Channel</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-model="$parent.ch" ng-options="Channels.indexOf(ch) as ch+1  for ch in Channels" ng-change="channelSelect()"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="PTZModeSupport" class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_select_ptz_mode' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <label class="col-lg-4 control-label">{{'lang_external_PTZ' | translate}}
+                        <input type="radio" class="radio" name="PTZMode" ng-model="PtzMode.Mode" ng-value="PTZModeOptions[0]" ng-click="setPTZMode()">
+                    </label>
+                    <label class="col-lg-4 control-label">{{'lang_digital_PTZ' | translate}}
+                        <input type="radio" class="radio" name="PTZMode" ng-model="PtzMode.Mode" ng-value="PTZModeOptions[1]" ng-click="setPTZMode()">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div ng-show="SensorCaptureSize" class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_megamode' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <label class="col-lg-4 control-label" ng-show="SensorCaptureSize.indexOf('2M') !== -1">
+                        <input type="radio" value="2M" ng-model="VideoSources.SensorCaptureSize" ng-change="changeResolutionMode('2M')"></input> <span>{{ 'lang_2mega' | translate }}</span>
+                    </label>
+                    <label class="col-lg-4 control-label" ng-show="SensorCaptureSize.indexOf('3M') !== -1">
+                        <input type="radio" value="3M" ng-model="VideoSources.SensorCaptureSize" ng-change="changeResolutionMode('3M')"></input> <span>{{ 'lang_3mega' | translate }}</span>
+                    </label>
+                    <label class="col-lg-4 control-label" ng-show="SensorCaptureSize.indexOf('4M') !== -1">
+                        <input type="radio" value="4M" ng-model="VideoSources.SensorCaptureSize" ng-change="changeResolutionMode('4M')"></input> <span>{{ 'lang_4mega' | translate }}</span>
+                    </label>
+                    <label class="col-lg-4 control-label" ng-show="SensorCaptureSize.indexOf('8M') !== -1">
+                        <input type="radio" value="8M" ng-model="VideoSources.SensorCaptureSize" ng-change="changeResolutionMode('8M')"></input> <span>{{ 'lang_8mega' | translate }}</span>
+                    </label>
+                    <label class="col-lg-4 control-label" ng-show="SensorCaptureSize.indexOf('9M') !== -1">
+                        <input type="radio" value="9M" ng-model="VideoSources.SensorCaptureSize" ng-change="changeResolutionMode('9M')"></input> <span>{{ 'lang_9mega' | translate }}</span>
+                    </label>
+                    <label class="col-lg-4 control-label" ng-show="SensorCaptureSize.indexOf('12M') !== -1">
+                        <input type="radio" value="12M" ng-model="VideoSources.SensorCaptureSize" ng-change="changeResolutionMode('12M')"></input> <span>{{ 'lang_12mega' | translate }}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div ng-show="ConnectionPolicySupport" class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_rtpconnection' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <input type="checkbox" ng-model="ProfileSessionPolicy" ng-click="setConnectionPolicy()"> 
+                    <label>{{ 'lang_rtpconnection_disconnect' | translate }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_menu_videoprofile' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <button type="button" class="btn btn-primary btn-margin-right" ng-click="addProfile()" ng-disabled="!EnableAddButton">{{ 'lang_add' | translate }}</button>
+                        <button type="button" class="btn btn-primary" ng-click="deleteProfile()" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].IsFixedProfile">{{ 'lang_delete' | translate }}</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <table class="table table-bordered wn5-setup-table" style="text-align:center;" width="100%">
+                            <thead>
+                                <tr>
+                                    <th width="10%"></th>
+                                    <th width="40%" style="text-align:center">{{ 'lang_name' | translate }}</th>
+                                    <th width="30%" style="text-align:center">{{ 'lang_codec' | translate }}</th>
+                                    <th width="30%" style="text-align:center">{{ 'lang_type' | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr 
+                                    ng-repeat="profile in VideoProfiles[ch].Profiles"
+                                    ng-class="{'wn5-setup-table-active': selectedProfile === $index }">
+                                    <td>
+                                        <input type="radio" name="profileButton" ng-model="$parent.selectedProfile" ng-value="$index" ng-change="handleProfileChange()"></input>
+                                    </td>
+                                    <td>{{ profile.Name }}</td>
+                                    <td>{{ profile.EncodingType | videoCodec }}</td>
+                                    <td>{{ profile.Type }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_name' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input name="ProfileName" type="text" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].Name" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].IsFixedProfile" maxlength="{{MaxProfileName}}" required ng-pattern-restrict="{{AlphaNumericStr}}">
+                    </div>
+                </div>
+                <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].EncodingType !== undefined">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_codec' | translate }}</div>
+                    <div class="wn5-setup-section-article-content" ng-if="FisheyeLens === false"> <!-- BOX / PTZ model code -->
+                        <select class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].EncodingType" ng-options="option.Value as option.Text for option in EncodingTypes" ng-change="selectResolutionList(true,true)" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].IsFixedProfile"></select>
+                    </div>
+                    <div class="wn5-setup-section-article-content" ng-if="FisheyeLens === true"> <!-- Fish-Eye Model model code -->
+                        <select class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].EncodingType" ng-options="option.Value as option.Text for option in EncodingTypesByProfile" ng-change="selectResolutionList(true,true)" ng-disabled="isCodecChangeSupported() === false"></select>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="viewModeIndex !== undefined">
+                    <div ng-if="FisheyeLens === true" class="wn5-setup-section-article-heading">{{ 'lang_fisheyeViewType' | translate }} </div>
+                    <div ng-if="FisheyeLens === false" class="wn5-setup-section-article-heading"> View Type </div>
+                    <div class="wn5-setup-section-article-content">
+                        <div ng-class="RadioClassSm">
+                            <input type="radio" class="radio" ng-model="VideoProfiles[ch].Profiles[selectedProfile].ViewModeIndex" ng-value="0" ng-disabled="VideoProfiles[ch].Profiles[
+                            selectedProfile].IsFixedProfile" ng-change="handleViewModeChange()">
+                                <label ng-if="FisheyeLens === true"> {{ 'lang_fisheyeView' | translate }} </label>
+                                <label ng-if="FisheyeLens === false"> Overview </label>
+                            </input>
+                        </div>
+                        <div ng-class="RadioClassSm">
+                            <input type="radio" class="radio" ng-model="VideoProfiles[ch].Profiles[selectedProfile].ViewModeIndex" ng-value="1" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].IsFixedProfile" ng-change="handleViewModeChange()">
+                                <label ng-if="FisheyeLens === true">  {{ 'lang_dewarpView' | translate }} </label>
+                                <label ng-if="FisheyeLens === false"> Half View </label>
+                            </input>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="viewModeIndex !== undefined" ng-show="VideoProfiles[ch].Profiles[selectedProfile].ViewModeIndex !== 0">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_views' | translate }}</div>
+                    <div class="wn5-setup-section-article-content" ng-if="FisheyeLens === true">
+                        <select class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].ViewModeType"  ng-change="handleViewModeChange()">
+                        <option ng-selected="VideoProfiles[ch].Profiles[selectedProfile].ViewModeType === option" value={{option}} ng-repeat="option in selectedCameraPosition.ViewModes"> {{ getTranslatedOption(option) }}
+                        </select>
+                    </div>
+                    <div class="wn5-setup-section-article-content" ng-if="FisheyeLens === false">
+                        <select class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].ViewModeType"  ng-change="handleViewModeChange()">
+                        <option ng-selected="VideoProfiles[ch].Profiles[selectedProfile].ViewModeType === option" value={{option}} ng-repeat="option in profileDewarpViewModeType"> {{ getTranslatedOption(option) }}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_profileType' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div ng-show="VideoProfilePolicies[ch].DefaultProfile != undefined">
+                            <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].DefaultProfile" ng-change="setProfileType('Default', VideoProfiles[ch].Profiles[selectedProfile].Profile)" >
+                            <label>  {{ 'lang_defaultProfile' | translate }}</label>
+                            </input>
+                        </div>
+                        <div ng-show="VideoProfilePolicies[ch].EventProfile != undefined && VideoProfiles[ch].Profiles[selectedProfile].EncodingType == 'MJPEG'">
+                            <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].EventProfile" ng-checked="VideoProfilePolicies[ch].EventProfile == VideoProfiles[ch].Profiles[selectedProfile].Profile" ng-change="setProfileType('Event', VideoProfiles[ch].Profiles[selectedProfile].Profile)">
+                            <label>  {{ 'lang_emailFtpProfile' | translate }}</label>
+                            </input>
+                        </div>
+                        <div ng-show="VideoProfilePolicies[ch].RecordProfile != undefined">
+                            <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].RecordProfile"  ng-change="setProfileType('Record', VideoProfiles[ch].Profiles[selectedProfile].Profile)">
+                            <label>  {{ 'lang_recordProfile' | translate }}</label>
+                            </input>
+                        </div>
+                        <!-- Fishe Eye DPTZ enabled by default for all profiles which are QUAD view mode  -->
+                        <div ng-if="FisheyeLens === false">
+                            <div ng-show="DigitalPtzSupported && isDptzSupportedProfile(selectedProfile)">
+                                <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].IsDigitalPTZProfile"  ng-change="setProfileType('IsDigitalPTZ', VideoProfiles[ch].Profiles[selectedProfile].Profile)">
+                                <label>  {{ 'lang_digital_ptz_profile' | translate }}</label>
+                                </input>
+                            </div>
+                        </div>
+                        <div ng-show="VideoProfilePolicies[ch].NetworkProfile != undefined">
+                            <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].NetworkProfile" ng-checked="VideoProfilePolicies[ch].NetworkProfile == VideoProfiles[ch].Profiles[selectedProfile].Profile" ng-change="setProfileType('Network', VideoProfiles[ch].Profiles[selectedProfile].Profile)">
+                            <label>  Network Profile</label>
+                            </input>
+                        </div>
+                        <div ng-show="VideoProfilePolicies[ch].LiveProfile != undefined">
+                            <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].LiveProfile" ng-checked="VideoProfilePolicies[ch].LiveProfile == VideoProfiles[ch].Profiles[selectedProfile].Profile" ng-change="setProfileType('Live', VideoProfiles[ch].Profiles[selectedProfile].Profile)">
+                            <label>Live Profile</label>
+                            </input>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].AudioInputEnable != undefined">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_audioIn' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].AudioInputEnable">
+    						<label>{{ 'lang_enable' | translate }}</label>
+                        </input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_atcmode' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].ATCMode != undefined">
+                            <!-- <div class="wn5-setup-section-article-heading">{{ 'lang_atcmode' | translate }}</div> -->
+                            <div class="wn5-setup-section-article-content">
+                              <select name="ATCMode" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].ATCMode" ng-options="option.Value as option.Text | translate disable when isAtcOptionDisabled(option) for option in ATCModeOptions" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].RecordProfile || (VideoProfiles[ch].Profiles[selectedProfile].IsDigitalPTZProfile && FisheyeLens == false)" ng-change="setATCMode()"></select>
+
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].ATCSensitivity != undefined">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_sensitivity' | translate }}</div>
+                            <div class="wn5-setup-section-article-content">
+                                <select name="ATCSensitivity" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].ATCSensitivity" ng-options="option.Value as option.Text | translate for option in ATCSensitivityOptions" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].RecordProfile || VideoProfiles[ch].Profiles[selectedProfile].ATCMode == 'Disabled' || VideoProfiles[ch].Profiles[selectedProfile].ATCTrigger == 'Event'"></select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="ATCLimitRange.Min != undefined">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_Limit' | translate }}</div>
+                            <div class="wn5-setup-section-article-content">
+                                <input name="ATCLimit" class="form-control" type="text" ng-model="VideoProfiles[ch].Profiles[selectedProfile].ATCLimit" maxlength="{{ATCLimitRange.Max.toString().length}}" ng-disabled=" VideoProfiles[ch].Profiles[selectedProfile].RecordProfile || VideoProfiles[ch].Profiles[selectedProfile].ATCMode == 'Disabled' || VideoProfiles[ch].Profiles[selectedProfile].ATCTrigger == 'Event'" required ng-pattern-restrict="{{OnlyNumStr}}">
+                                <!-- <label class="col-sub-label">% ({{ ATCLimitRange.Min }} ~ {{ ATCLimitRange.Max }})</label> -->
+                                <span>% ({{ ATCLimitRange.Min }} ~ {{ ATCLimitRange.Max }})</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="cropSupport === true" class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_cropencoding' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-heading">
+                    <input 
+                        type="checkbox" 
+                        ng-model="VideoProfiles[ch].Profiles[selectedProfile].CropEncodingEnable" 
+                        ng-change="changeCropStatus()"
+                        ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].IsDigitalPTZProfile">
+                    <label>{{ 'lang_enable' | translate }}</label>
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <button 
+                        type="button"  
+                        class="btn btn-primary" 
+                        ng-disabled="!VideoProfiles[ch].Profiles[selectedProfile].CropEncodingEnable || VideoProfiles[ch].Profiles[selectedProfile].IsDigitalPTZProfile" 
+                        ng-click="setCropArea()">
+                        {{ 'lang_setArea' | translate }}
+                    </button>
+                </div>
+                <!-- <div class="wn5-setup-section-article-heading">{{ 'lang_enable' | translate }}</div>
+                <div class="wn5-setup-section-article-content">
+                    <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].CropEncodingEnable" ng-change="changeCropStatus()">
+                    </input>
+                    <button type="button"  class="btn btn-primary" ng-disabled="!VideoProfiles[ch].Profiles[selectedProfile].CropEncodingEnable" ng-click="setCropArea()">{{ 'lang_setArea' | translate }}
+                    </button>
+                </div> -->
+            </div>
+        </div>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_profileSetting' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_resolution' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select name="Resolution" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].Resolution" ng-change="selectResolutionList(true)" ng-options="option.Value as option.Text disable when cropEncodingSupport(option.Text) for option in ResoltionList">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].FrameRate != undefined">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_framerate' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select name="FrameRate" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].FrameRate" ng-options="n for n in FrameRateList" ng-change="selectGOVLength(true)"></select>
+                        <span> fps </span>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].CompressionLevel != undefined && compressionRange.min != compressionRange.max">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_compression' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select name="CompressionLevel" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].CompressionLevel" ng-options="option.Value as option.Text for option in CompressionLevelList" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].BitrateControlType == 'CBR'"></select>
+                    </div>
+                </div>
+                <div class="form-group use-margin-top" ng-show="BitRateRange != undefined">
+                    <div class="wn5-setup-section-article-heading" ng-show="VideoProfiles[ch].Profiles[selectedProfile].BitrateControlType === undefined || VideoProfiles[ch].Profiles[selectedProfile].BitrateControlType === 'VBR' || VideoProfiles[ch].Profiles[selectedProfile].EncodingType === 'MJPEG'">{{ 'lang_max_bitrate' | translate }}</div>
+                    <div class="wn5-setup-section-article-heading" ng-show="VideoProfiles[ch].Profiles[selectedProfile].BitrateControlType === 'CBR' && VideoProfiles[ch].Profiles[selectedProfile].EncodingType !== 'MJPEG'">{{ 'lang_targetBitrate' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input name="Bitrate" type="text" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].Bitrate" maxlength="{{ BitRateRange.Max.toString().length }}" ng-disabled="DigitalPtzSupported && VideoProfiles[ch].Profiles[selectedProfile].IsDigitalPTZProfile && FisheyeLens === false" required ng-pattern-restrict="{{OnlyNumStr}}">
+                        <!-- <label class="col-sub-label">kbps ({{ BitRateRange.Min }} ~ {{ BitRateRange.Max }})</label> -->
+                        <span>kbps ({{ BitRateRange.Min }} ~ {{ BitRateRange.Max }})</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="form-group">
+            <button type="button" class="button button-background-none btn-wide" ng-model="showAdvancedMenu" ng-click="advacedMenu()">
+              {{ showAdvancedLabel | translate }}<i ng-class="showAdvancedMenu == true ? 'tui-top' :'tui-down'" class="tui"></i>
+              <hr class="wn5-setup-hr" ng-hide="showAdvancedMenu == true">
+            </button>
+        </div> -->
+        <!-- <div ng-show="showAdvancedMenu"> -->
+            <div ng-show="VideoProfiles[ch].Profiles[selectedProfile].EncodingType != 'MJPEG'"
+                class="wn5-setup-section">
+                <hr class="wn5-setup-hr">
+                <div class="wn5-setup-section-heading">
+                    <h3>{{ 'lang_advanced' | translate }}</h3>
+                </div>
+                <div ng-if="VideoProfiles[ch].Profiles[selectedProfile].EncodingType != 'MJPEG'"
+                    class="wn5-setup-section-article">
+                    <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].BitrateControlType != undefined">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_bitrateControl' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <select name="BitrateControlType" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].BitrateControlType" ng-options="n for n in BitrateControlOptions" ng-change="selectBitRate(true)"  ng-disabled="DisableBitrateSelection"></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].PriorityType != undefined">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_encodePriority' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <select name="PriorityType" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].PriorityType" ng-options="option.Value as option.Text | translate for option in PriorityOptions" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].BitrateControlType == 'VBR' || (VideoProfiles[ch].Profiles[selectedProfile].BitrateControlType == 'CBR' && VideoProfiles[ch].Profiles[selectedProfile].ATCMode !== 'Disabled')"></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="GOVLengthRange != undefined">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_govlength' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input name="GOVLength" type="text" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].GOVLength" ng-change="selectDynamicGOVLength(true)" maxLength="{{ GOVLengthRange.Max.toString().length }}" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].FrameRate == 1 || VideoProfiles[ch].Profiles[selectedProfile].RecordProfile" required ng-pattern-restrict="{{OnlyNumStr}}">
+
+                            <!-- <label for="GOVLength" class="control-label col-sub-label" ng-hide="VideoProfiles[ch].Profiles[selectedProfile].FrameRate == 1 || VideoProfiles[ch].Profiles[selectedProfile].RecordProfile"> ({{ GOVLengthRange.Min }} ~ {{ GOVLengthRange.Max }})</label> -->
+                            <span ng-hide="VideoProfiles[ch].Profiles[selectedProfile].FrameRate == 1 || VideoProfiles[ch].Profiles[selectedProfile].RecordProfile"> ({{ GOVLengthRange.Min }} ~ {{ GOVLengthRange.Max }})</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].EncoderProfile != undefined && VideoProfiles[ch].Profiles[selectedProfile].EncodingType != 'H265'">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_profile' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <select name="EncoderProfileType" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].EncoderProfile" ng-change="adjustEntropyEncoding()">
+                            <option ng-selected="VideoProfiles[ch].Profiles[selectedProfile].EncoderProfile === option" value={{option}} ng-repeat="option in EncoderProfileOptions" ng-disabled="!isSupportedProfile(option)"> {{ option }}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group use-margin-top" ng-show="VideoProfiles[ch].Profiles[selectedProfile].EntropyCoding != undefined">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_entropyCoding' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <select name="EntropyCoding" class="form-control" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].RecordProfile || VideoProfiles[ch].Profiles[selectedProfile].EncoderProfile == 'BaseLine'" ng-model="VideoProfiles[ch].Profiles[selectedProfile].EntropyCoding" ng-options="n for n in EntropyCodingOptions" ></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].SmartCodecEnable != undefined">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_smartcodec' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <select name="SmartCodecEnable" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].SmartCodecEnable" ng-options="option.Value as option.Text | translate for option in SmartCodecEnableOptions" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].BitrateControlType == 'VBR'"></select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="DynamicGovSupported && VideoProfiles[ch].Profiles[selectedProfile].EncodingType !== 'MJPEG'">
+                        <div class="wn5-setup-section-article-heading">{{'lang_dynamicGOV'| translate}}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].DynamicGOVEnable" ng-disabled=" !isDynamicGovSupported()">
+                            {{'lang_enable' | translate}}
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="DynamicGovSupported && GOVLengthRange != undefined">
+                        <div class="wn5-setup-section-article-content wn5-setup-section-article-heading-offset">
+                            <input name="DynamicGOVLength" type="text" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].DynamicGOVLength" maxLength="{{ DynamicGovRange.Max.toString().length }}" ng-disabled="!isDynamicGovSupported() || !VideoProfiles[ch].Profiles[selectedProfile].DynamicGOVEnable" required ng-pattern-restrict="{{OnlyNumStr}}">
+                            <!-- <label for="GOVLength" class="control-label col-sub-label"  ng-hide="VideoProfiles[ch].Profiles[selectedProfile].FrameRate == 1 || VideoProfiles[ch].Profiles[selectedProfile].RecordProfile"> ({{ DynamicGovRange.Min }} ~ {{ DynamicGovRange.Max }}) </label> -->
+                            <span ng-hide="VideoProfiles[ch].Profiles[selectedProfile].FrameRate == 1 || VideoProfiles[ch].Profiles[selectedProfile].RecordProfile"> ({{ DynamicGovRange.Min }} ~ {{ DynamicGovRange.Max }}) </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].EncodingType !== 'MJPEG'">
+                        <div class="wn5-setup-section-article-heading">{{'lang_dynamicFPS'| translate}}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input 
+                                type="checkbox" 
+                                ng-model="VideoProfiles[ch].Profiles[selectedProfile].DynamicFPSEnable" 
+                                ng-disabled=" !isDynamicFPSSupported()">
+                            {{'lang_enable' | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="VideoProfiles[ch].Profiles[selectedProfile].EncodingType == 'MJPEG'" class="wn5-setup-section">
+                <hr class="wn5-setup-hr">
+                <div class="wn5-setup-section-heading">
+                    <h3>{{ 'lang_advanced' | translate }}</h3>
+                </div>
+
+                <div ng-if="VideoProfiles[ch].Profiles[selectedProfile].EncodingType == 'MJPEG'"
+                    class="wn5-setup-section-article">
+                    <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].PriorityType != undefined">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_encodePriority' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <select 
+                                name="PriorityType" 
+                                class="form-control" 
+                                ng-model="VideoProfiles[ch].Profiles[selectedProfile].PriorityType" 
+                                ng-options="option.Value as option.Text | translate for option in PriorityOptions">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="wn5-setup-hr">
+
+            <div 
+                class="wn5-setup-section"
+                ng-show="VideoProfiles[ch].Profiles[selectedProfile].RTPMulticastEnable != undefined">
+                <div class="wn5-setup-section-heading">
+                    <h3>{{ 'lang_multicast' | translate }}</h3>
+                </div>
+                
+                <div class="wn5-setup-section-article">
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_multicast' | translate }} (RTSP)</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input name="RTPMulticastEnable" type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].RTPMulticastEnable">
+                            <label>{{ 'lang_enable' | translate }}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_IPAddress' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input name="RTPMulticastAddress" type="text" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].RTPMulticastAddress" required maxlength={{MaxIPV4Len}} ng-trim="true" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].RTPMulticastEnable == false" ng-pattern-restrict="{{IPv4PatternStr}}">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="RTPMulticastPortRange != undefined">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_port' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input name="RTPMulticastPort" type="text" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].RTPMulticastPort" maxlength="{{ RTPMulticastPortRange.max.toString().length }}" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].RTPMulticastEnable == false" required ng-pattern-restrict="{{OnlyNumStr}}">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="RTPMulticastTTLRange != undefined">
+                        <div class="wn5-setup-section-article-heading"> TTL </div>
+                        <div class="wn5-setup-section-article-content">
+                            <input name="RTPMulticastTTL" type="text" class="form-control" ng-model="VideoProfiles[ch].Profiles[selectedProfile].RTPMulticastTTL" maxlength="{{ RTPMulticastTTLRange.max.toString().length }}" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].RTPMulticastEnable == false" required ng-pattern-restrict="{{OnlyNumStr}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+        <hr class="wn5-setup-hr">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>

@@ -1,0 +1,173 @@
+<h1 class="wn5-setup-main-title">Storage</h1>
+<div class="wn5-setup-section">
+    <p>You can select a device to capture a camera image and set the recording conditions. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Storage action setup</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Selecting a recording device and selecting <strong class="UI">[On]</strong> allows you to change the setting for the relevant device.</p>
+            <p>If data is being recorded on the device, &lsquo;Recording&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. When &lsquo;Error&rsquo; is displayed in <strong class="UI">[Status]</strong>, check if the recording device is connected properly. When <strong class="UI">[On]</strong> is set for an SD card and NAS at the same time, NAS is processed by priority.</p>
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">SD</strong>: You can set whether or not to use an SD card. When an SD card is recognized, the free space, total capacity and status are displayed. To format the SD card, click the <strong class="UI">[Format]</strong> button. </li>
+                <li><strong class="UI">NAS</strong>: You can set whether or not to use NAS (Network Attached Storage). When a connection to NAS is established, the free space, total capacity and status are displayed. To format the default folder on NAS, click the <strong class="UI">[Format]</strong> button. </li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Record profile</h3>
+            <p>The name of the video profile which will be used for recording is displayed. The profile set as &lsquo;Record profile&rsquo; from <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profile type]</strong></a> is displayed. </p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Normal recording</h3>
+			<p>This sets for normal recording with no event.</p>
+            <ul>
+        
+                    <li><strong class="UI">None</strong>: No camera image is recorded.</li>
+                    <li><strong class="UI">I-Frame</strong>: Records I-Frame only for normal recording.</li>
+                    <li><strong class="UI">Full frame</strong>: Records full frame normal recording.</li>
+                </ul>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Event recording</h3>
+            <p>Sets the recording type when an event occurs. </p>
+            <ul>
+                <li><strong class="UI">I-Frame</strong>: Records only I-Frame when an event occurs.</li>
+                <li><strong class="UI">Full frame</strong>: Records full frame when an event occurs.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Pre event duration</h3>
+            <p>Sets the image recording time before an event occurs. An image can be recorded at 1 second, 3 seconds and 5 seconds prior to the occurrence of an event.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Post event duration</h3>
+            <p>Sets the image recording time span after an event. An image can be recorded for 5 seconds, 10 seconds, 30 seconds, 60 seconds or 120 seconds after the occurrence of an event.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Record file type</h3>
+            <p>Sets the file format for recording an image. When the file recording format is changed, the existing data will be erased.</p>
+            <ul>
+                <li><strong class="UI">STW</strong>: This is the unique file type for Hanwha Techwin.</li>
+                <li><strong class="UI">AVI</strong>: This is an AVI file.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Overwrite</h3>
+            <p>Sets whether or not to use the overwrite function of an SD card or NAS. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying &lsquo;Full&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Auto delete</h3>
+            <p>Sets whether or not to use the auto delete function. The most recent data for the set number of days is kept and the rest will be deleted. The number of auto delete days can be set from 1 to 180. The <strong class="UI">[Auto delete]</strong> function is activated only when <strong class="UI">[Enable]</strong> is set for <strong class="UI">[Overwrite]</strong>. </p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>When &lsquo;Error&rsquo; is displayed in <strong class="UI"> [Status]</strong> in the device list, check whether the recording device is connected properly, whether the file system of the recording device is damaged or not, and whether the recording device is physically damaged. If the &lsquo;Error&rsquo; message persists after checking the recording device, format or replace the device.</li>
+                <li>Recording may not be possible due to temporary network disconnection when NAS is used, so it is recommended to use an SD card also.</li>
+                <li>When resolution, bit rate and frame rate are set at high, the amount of image data also increases. If the amount of data increases, a frame skip may occur even if set to full frame. When a frame skip occurs, an image is recorded at a minimum rate of one image per second. </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>SD File System</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>This menu is displayed only when <strong class="UI">[SD card]</strong> is selected in the<strong class="UI">[Device]</strong> column of <strong class="UI">[Storage action setup]</strong>, allowing you to select the file system on the SD card. SD cards support VFAT and EXT4 file systems, so select the file system according to the SD card of the camera you are using. If the file system of the SD card is EXT4, Windows OS can recognize it only when a separate application is installed. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>Type</h3>
+            <p>Select either VFAT or EXT4 for the file system of the SD card. When the setting is changed, all existing data will be formatted. Be sure to back up data before changing the setting. </p>
+        </div>
+		<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+                <li>High Endurance SD Cards are recommended. For detailed information, refer to the Hanwha Techwin website.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>NAS connection setup</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>This menu is displayed only when <strong class="UI">[NAS]</strong> is selected in the<strong class="UI">[Device]</strong> column of <strong class="UI">[Storage action setup]</strong> and the NAS access information is entered. Enter NAS information and click the <strong class="UI">[Test]</strong> button to see if the connection to NAS is established. If a connection is made, a &lsquo;Success&rsquo; message is displayed. If a connection is not made, a &lsquo;Failure&rsquo; message is displayed.</p>
+        </div>
+    
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>IP address</h3>
+            <p>Enter the NAS IP address. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ID</h3>
+            <p>Enter the ID for the account registered on NAS.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Password</h3>
+            <p>Enter the password for the account registered on NAS. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Default folder</h3>
+            <p>Designate the default folder where NAS will record image data. </p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>If a failure message is displayed when you test after entering NAS information, check the following items:</li>
+                <ul>
+                    <li>Check if the IP address, ID, password, and default NAS folder are entered correctly.</li>
+                    <li>Check if the IP address type of NAS and the IP address type of the camera are identical. (e.g.: The default value of NAS and the camera is 255.255.255.0. If the IP address is 192.168.20.32, the NAS IP address should be between 192.168.20.1 and 192.168.20.255.)</li>
+                    <li>For the NAS default folder, only one folder should be used in one camera, with no duplication.</li>
+                    <li>Check if the device is recommended NAS equipment. Refer to &lsquo;Recommended NAS specifications&rsquo; in the user&apos;s manual.</li>
+                </ul>
+                <li>If <strong class="UI">[Off]</strong> is set for <strong class="UI">[Overwrite]</strong> in the storage setup for NAS and the free space for NAS is less than 1%, images will be recorded on the SD card.</li>
+                <li>If an SD card which was used in another camera is inserted while data is being recorded on NAS, images may not be recorded.</li>
+                <li>If the NAS setup is changed while data is being recorded on NAS, the change will not apply immediately.</li>
+                <li>If NAS equipment is removed or the network connection is terminated while data is being recorded on NAS, the NAS recording action may be terminated.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Normal record schedule</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can set the time to record an image on the recording device.  </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>Always</h3>
+            <p>Always records an image on the recording device.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Only scheduled time </h3>
+            <p>Records an image only at the scheduled time. The date from Sunday to Saturday, based on the current camera time, is displayed on the time table shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time for event action settings by clicking or dragging on the time table with the mouse. The set event activation time is executed repeatedly on the relevant weekday and time.</p>
+			<p>You can change the time view unit by clicking the <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> or <strong class="UI">[1 h]</strong> button. When you click the <strong class="UI">[Reset]</strong> button, all set event activation times will be deleted. To confirm or change the camera time, refer to <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date &amp; Time]</strong>.</p>
+        </div>
+
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

@@ -1,0 +1,38 @@
+<div class="modal-header modal-setup">
+    <h3 class="applyColor">{{ title | translate }}</h3>
+</div>
+<div class="modal-body modal-setup pc-n-hm-alert-body-ruleguide">
+	<h1>{{ 'lang_msg_rule_guide_title' | translate }}</h1>
+	<ol>
+		<li>
+			{{ 'lang_msg_rule_guide_ruleonoff' | translate }}
+			&nbsp;:&nbsp;
+			{{ 'lang_msg_rule_guide_ruleonoff_description' | translate }}
+		</li>
+		<li>
+			{{ 'lang_msg_rule_guide_linemove' | translate }}
+			&nbsp;:&nbsp;
+			{{ 'lang_msg_rule_guide_linemove_description' | translate }}
+		</li>
+		<li>
+			{{ 'lang_msg_rule_guide_pointmove' | translate }}
+			&nbsp;:&nbsp;
+			{{ 'lang_msg_rule_guide_pointmove_description' | translate }}
+		</li>
+		<li>
+			<strong>
+				{{ 'lang_msg_rule_guide_arrowinout' | translate }}
+				&nbsp;:&nbsp;
+				{{ 'lang_msg_rule_guide_arrowinout_description' | translate }}
+			</strong>
+		</li>
+	</ol>
+	<figure>
+		<img src="./base/images/setup/popup_counting.png">
+	</figure>
+</div>
+<div class="modal-footer modal-setup pc-n-hm-modal-footer modal-setup">
+    <button class="btn btn-primary" type="button" ng-click="ok()">
+    	{{ 'lang_ok' | translate }}
+    </button>
+</div>

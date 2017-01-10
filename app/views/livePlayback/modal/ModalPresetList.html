@@ -1,0 +1,21 @@
+﻿<div class="modal-body modal-list ua-modal-body">
+  <button class="button button-border-active button-menu" ng-click="select(homeAction())" ng-show="homeEnabled">
+    <i class="tui tui-ch-live-preset-home"></i>
+  </button>
+  <button class="button button-border-active button-menu" ng-click="addAction()" ng-show="addingEnabled">
+    <i class="tui tui-ch-live-zoomin"></i>
+  </button>
+  <ul>
+    <li ng-repeat="item in ModalList" class="modal-live-list-ctrl">
+      <a ng-click="select(item.action(item.value))">
+        {{item.value}} : {{item.name}}
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="button-groups"  ng-show="buttonCount > 0">
+  <button class="button button-background-active" type="button" ng-click="ok()" ng-show="buttonCount > 0">
+    {{ 'lang_ok' | translate }}
+  </button>
+</div>
+<div class="modal-bottom-bar"></div>

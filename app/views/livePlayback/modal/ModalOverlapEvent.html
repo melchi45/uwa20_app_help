@@ -1,0 +1,54 @@
+<div class="modal-body ua-modal-body" id="overlay-events">
+  <div class="event-list"> 
+    <span ng-switch on="connectedService">
+      <span ng-switch-when='MOBILE_B2C'>
+      </span>
+      <span ng-switch-default>
+        <div ng-if="showOverlap">
+          <div ng-repeat="overlap in overlapList" class="overlap-search-container">
+            <label>
+              <input type="radio" name="overlap" ng-model="selected.overlap" ng-value="overlap" ng-disabled="!overlap.enable">
+              <span class="overlap-title">{{overlap.name | translate}} {{$index + 1}}</span>
+            </label>
+          </div>
+          <div class="separate-line"></div>
+        </div>
+      </span>
+    </span>
+    
+    <div>
+      <span ng-switch on="connectedService">
+        <span ng-switch-when="MOBILE_B2C"></span>
+        <span ng-switch-default>
+          <label class="wmf-checkbox">
+            <input type="checkbox" id="allEvent" ng-model="allEventSearch.selected" ng-click="selectAllEvent($event)">
+            <p class="checked-icon checked-icon-search"></p>
+            <span class="title">{{allEventSearch.name | translate}}</span>
+          </label>
+        </span>
+      </span>
+    </div>
+    
+   <div ng-repeat="event in eventList">
+      <span ng-switch on="connectedService">
+        <span ng-switch-when="MOBILE_B2C">
+          <label>
+            <input type="radio" name="event" ng-model="selected.event" ng-value="event" ng-disabled="!event.enable">
+            <span class="title">{{event.name | translate}}</span>
+          </label>
+        </span>
+        <span ng-switch-default>
+          <label class="wmf-checkbox">
+            <input type="checkbox" ng-model="event.selected" value="{{event.event}}" ng-click="selectEachEvent($event)">
+            <p class="checked-icon checked-icon-search"></p>
+            <span class="event-title" ng-class="{'available-check-event':event.enable}">{{event.name | translate}} </span>
+          </label>
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="button-groups">
+  <button class="button button-background-active" type="button" kind-touch-tap="ok">{{"lang_ok" | translate }}</button>
+</div>
+<div class="modal-bottom-bar"></div>

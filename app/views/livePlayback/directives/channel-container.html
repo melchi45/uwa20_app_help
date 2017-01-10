@@ -1,0 +1,15 @@
+<div class="channel-container" ng-class="{'transparent' : isTransParent}">
+  <channel_player class="channel-content" display="displayInfo"></channel_player>
+  <!--<kind_stream class="channel-content" kindplayer="playdata" display="displayInfo" ng-class="{'none' : isTransParent}"></kind_stream>-->
+  <div class="select-box control-box " ng-if="enableGoto">
+    <button class="tui-button-circle">
+      <i class="tui tui-check"></i>
+    </button>
+  </div>
+  <div 
+    id="playbox" 
+    class="play-box control-box" 
+    ng-show="enablePlayback"
+    ng-class="{'wisenet-playbox': isPc}">
+  </div>
+</div>

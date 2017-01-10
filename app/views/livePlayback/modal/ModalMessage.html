@@ -1,0 +1,18 @@
+﻿<div class="modal-body ua-modal-body" ng-hide="isHtml">
+  {{ data.message | translate}}
+</div>
+<div class="modal-body" ng-show="isHtml">
+  <div ng-bind-html="deliberatelyTrustDangerousSnippet()">
+  </div>
+</div>
+<div class="button-groups" ng-show="data.buttonCount > 0">
+  <button class="button button-background-active" type="button" ng-click="ok()"
+    ng-class="{'buttons': data.buttonCount > 1, 'modal-button-active-timeline': modalMessagePlaybackflag}">
+    {{"lang_ok" | translate}}
+  </button>
+  <button class="button button-background-active" type="button" ng-click="cancel()" ng-show="data.buttonCount > 1"
+    ng-class="{'buttons': data.buttonCount > 1, 'modal-button-active-timeline': modalMessagePlaybackflag}">
+    {{"lang_cancel" | translate}}
+  </button>
+</div>
+<div class="modal-bottom-bar" ng-class="checkPlayback()"></div>

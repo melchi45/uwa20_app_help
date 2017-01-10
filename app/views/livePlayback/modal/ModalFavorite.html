@@ -1,0 +1,31 @@
+﻿<div ng-switch="favoriteStep" class="modal-body modal-list ua-modal-body">
+  <input type="text" ng-model="favoriteNote"
+    placeholder="Please type your note" ng-switch-when="input" />
+  <div class="popup-message" ng-switch-when="message">
+    이미 등록된 Favorite입니다. 갱신하시겠습니까?
+  </div>
+  <div ng-switch-when="option">
+    <div>
+      <label class="radio">
+        <input type="radio" name="save-option">
+        <span class="icon"></span>
+        <span class="title">오래된 Favorite 1개 삭제 후 저장</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="save-option">
+        <span class="icon"></span>
+        <span class="title">모든 Favorite 삭제 후 저장</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="save-option">
+        <span class="icon"></span>
+        <span class="title">취소</span>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="button-groups">
+  <button class="button button-background-active buttons" type="button" ng-click="ok()">OK</button>
+  <button class="button button-background-active buttons" type="button" ng-click="cancel()">Cancel</button>
+</div>
+<div class="modal-bottom-bar"></div>

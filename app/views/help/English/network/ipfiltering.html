@@ -1,0 +1,101 @@
+<h1 class="wn5-setup-main-title">IP filtering</h1>
+<div class="wn5-setup-section">
+	<p>You can prepare an IP address list to allow or reject the connection for a specific IP. IP addresses are managed separately between IPv4 and IPv6. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>Filtering type</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+	    	<p><strong class="UI">[Deny registered IP]</strong> and <strong class="UI">[Allow registered IP]</strong> filtering conditions apply to all registered IP addresses.</p>
+		    <ul>
+		        <li><strong class="UI">Deny registered IP</strong>: Denies access for a registered IP.  </li>
+		        <li><strong class="UI">Allow registered IP</strong>: Allows access for a registered IP</li>
+		    </ul>
+		</div>
+
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+			<ul>
+				<li>When an access-authorized IP is registered, the IP currently connected to the camera should also be registered. Especially, when <strong class="UI">[Enable]</strong> is selected for <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[IP &amp; Port]</strong>&gt;<a class="wn5-online-help-link" href="../basic/ipPort.html#IPv6" ng-href="#/help/basic_ipPort?#IPv6"><strong class="UI">[IPv6 setup]</strong></a>, all IPv4 and IPv6 addresses of the IP addresses currently connected should be added. </li>
+		        <li>A currently-connected IP address cannot be registered as <strong class="UI">[Deny registered IP]</strong>.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv4</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>This is the address list for IPv4 types; an IP address can be added or deleted. Up to 10 IP addresses can be entered. </p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Adding an IPv4 address</h4>
+			<ol>
+				<li>Click the <strong class="UI">[Add]</strong> button. A field where an IPv4 address can be entered will be created.</li>
+				<li>Enter the IP and Prefix information. The filtering range for the entered information will be displayed. </li>
+				<li>Filtering for the relevant range is possible only after the <strong class="UI">[Use]</strong> box is checked. </li>
+				<li>Clicking the <strong class="UI">[Apply]</strong> button at the bottom of the page will save all information added to the list.</li>
+			</ol>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Deleting an IPv4 address</h4>
+			<ol>
+				<li>Select an IPv4 address you wish to delete.</li>
+				<li>Click the <strong class="UI">[Delete]</strong> button.</li>
+				<li>Click the <strong class="UI">[OK]</strong> button on the delete confirm window. The IPv4 address will be deleted.</li>
+			</ol>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+			<ul>
+				<li>Addresses from 224.0.0.0 to 239.255.255.254, which are used for multicast, are not available.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv6</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>This is the address list for IPv6 types; an IP address can be added or deleted. Up to 10 IP addresses can be entered.</p>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Adding an IPv6 address</h4>
+			<ol>
+			<li>Click the <strong class="UI">[Add]</strong> button. A field where an IPv6 address can be entered will be created.</li>
+			<li>Enter the IP and Prefix information. The filtering range for the entered information will be displayed. </li>
+			<li>Filtering for the relevant range is possible only after the <strong class="UI">[Use]</strong> box is checked. </li>
+			<li>Clicking the <strong class="UI">[Apply]</strong> button at the bottom of the page will save all information added to the list.</li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Deleting an IPv6 address</h4>
+			<ol>
+			<li>Select an IPv6 address you wish to delete.</li>
+			<li>Click the <strong class="UI">[Delete]</strong> button.</li>
+			<li>Click the <strong class="UI">[OK]</strong> button on the delete confirm window. The IPv6 address will be deleted.</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+
+
+<hr class="wn5-setup-hr">

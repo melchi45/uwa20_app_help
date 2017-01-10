@@ -1,0 +1,75 @@
+.form-horizontal .control-label{
+   text-align:left !important;
+}
+
+.navbaricon_padding{
+    padding-top:18px;
+}
+
+.form-horizontal .control-label
+{
+    position: relative;
+
+}
+/** Show disabled drop down box items in grey color */
+
+/*css style for IE*/
+option[disabled='disabled']::-ms-value {
+    background-color: lightGray;
+    opacity:1;
+}
+/*Specific to chrome and firefox*/
+option[disabled='disabled'] {
+    background-color: lightGray;
+    opacity:1;
+}
+
+select option:disabled {
+     background-color: lightGray;
+    opacity:1;
+}
+
+/* It is added due to wrong drawing in Video Setup for privacy area */
+.setup-wrapper,
+#videosetuppage,
+.modal,
+.modal *:not(input, textarea) {
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+.preset-selectbox {float: right; width: 60%;}
+
+.order-btn {
+    float: right;
+    width: 14px;
+    height: 28px;
+}
+
+.order-btn i {
+    float: left;
+}
+
+#setup-border-box {
+    position: absolute;
+    left: -3px;
+    top: -3px;
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+    display: none;
+}
+
+.setup-border-box-padding {
+    padding-bottom: 3px;
+}
+
+.wn5-setup-wrapper #setup-border-box {
+    display: block;
+}
+
+#dptzsetuppage .preset-btn-group {
+    text-align: right;
+    width: 62.5%;
+}

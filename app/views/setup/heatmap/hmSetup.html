@@ -1,0 +1,43 @@
+<div class="wrapper wrapper-content">
+    <wn5-setup-main-title
+        data-title="lang_setup">
+    </wn5-setup-main-title>
+    <hr class="wn5-setup-hr">
+    
+    <div class="wn5-setup-section form-group">
+        <div class="wn5-setup-section-heading">
+            <label>
+                {{ 'lang_heatmap' | translate }}
+            </label>
+        </div>
+
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <div class="pc-n-hm-section-no-margin">
+                    <input type="checkbox" ng-checked="useHeatmap" ng-model="useHeatmap">
+                    <label>{{ "lang_enable" | translate }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    pcSetupReport Directive uses its parent scope.
+    scope.pcSetupReport of pcSetupReport Directive is used in parent Controller.
+    -->
+    <pc-setup-report page-type="hm"></pc-setup-report>
+
+    <hr class="wn5-setup-hr">
+
+    <div class="pc-n-hm-delete-data">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+
+        <!-- 
+        pcCameraManagement Directive uses its parent scope.
+        scope.pcCameraManagement of pcCameraManagement Directive is used in parent Controller.
+        -->
+        <pc-camera-management page-type="hm"></pc-camera-management>
+    </div>
+</div>

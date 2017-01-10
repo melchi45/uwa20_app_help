@@ -1,0 +1,12 @@
+﻿<div class="modal-body modal-list ua-modal-body">
+      <ul>
+        <li ng-repeat="preset in presetList" class="popup-profile-list">
+          <label>
+            <input type="radio" value="{{preset.Preset}}" ng-model="selectedPreset" name="preset_group" 
+            ng-click="selectPreset(preset.Preset)" />
+            {{ preset.Name }}
+          </label>
+        </li>
+      </ul>
+</div>
+<div class="modal-bottom-bar"></div>

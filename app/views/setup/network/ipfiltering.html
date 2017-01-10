@@ -1,0 +1,157 @@
+<div class="wrapper wrapper-content" ng-if='pageLoaded'>
+    <form name="ipfilteringForm" method="get" class="form-horizontal" novalidate>
+        <wn5-setup-main-title
+            data-title="lang_menu_ipfilter">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3> {{'lang_filteringType'| translate}} </h3>
+            </div>
+            <div class="wn5-setup-section-article form-group" ng-show="data.DeviceType === 'NWC'">
+                <div class="wn5-setup-section-article-heading">{{'lang_filteringType'| translate}}</div>
+                <div class="wn5-setup-section-article-content">
+                    <label class="col-lg-5 field-radio-wrapper control-label">
+                        <input type="radio" ng-model="data.AccessType" value="Deny"> <span>{{ 'lang_deny'| translate}}</span>
+                    </label> &nbsp;&nbsp;
+                    <label class="col-lg-5 field-radio-wrapper control-label">
+                        <input type="radio" ng-model="data.AccessType" value="Allow"> <span>{{'lang_allow'| translate}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>IPv4</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group" ng-show="data.DeviceType === 'NVR'">
+                    <label class="wn5-setup-section-article-heading">{{'lang_filteringType'| translate}}</label>
+                    <div class="wn5-setup-section-article-content">
+                        <label class="col-lg-3 control-label">
+                            <input type="radio" ng-model="data.AccessTypeIPv4" value="Deny"> <span>{{'lang_deny'| translate}}</span>
+                        </label>
+                        <label class="col-lg-3 control-label">
+                            <input type="radio" ng-model="data.AccessTypeIPv4" value="Allow"> <span>{{'lang_allow'| translate}}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <button type="button" class="btn btn-primary btn-margin-right" data-ng-disabled="addCheck4()" ng-click="addFilter4()">{{ 'lang_add' | translate }}</button>
+                        <button type="button" class="btn btn-primary" ng-click="deleteFilter4(selected4)">{{ 'lang_delete' | translate }}</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <table class="table table-bordered table-editor wn5-setup-table" style="text-align:center">
+                            <thead>
+                                <tr>
+                                    <th width="10%"></th>
+                                    <th style="text-align:center" width="10%">{{ 'lang_wisestream_table_use' | translate }}</th>
+                                    <th style="text-align:center" width="25%">IP</th>
+                                    <th style="text-align:center" width="20%">{{ 'lang_prefix' | translate }}</th>
+                                    <th style="text-align:center" width="35%">{{ 'lang_filteringRange' | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr 
+                                ng-repeat="filter4 in FilterIPv4"
+                                ng-class="{'wn5-setup-table-active': data.selected4 === filter4.ind }">
+                                    <td>
+                                        <input type="radio" ng-model="data.selected4" ng-value="filter4.ind"></input>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" ng-model="filter4.Enable" ng-model-onblur ng-change="updateIPv4(data.selected4)" ng-disabled="data.selected4 != filter4.ind || !editCheck4()">
+                                        <td>
+                                            <ng-form name="Filer4Form">
+                                                <input type="text" class="form-control" name="IPv4FilterAddress" ng-model="filter4.Address" ng-model-onblur ng-change="updateIPv4(data.selected4)" ng-disabled="data.selected4 != filter4.ind || !editCheck4()" required maxlength={{MaxIPV4Len}} ng-pattern-restrict="{{IPv4PatternStr}}" ng-trim="true">
+                                            </ng-form>
+                                        </td>
+                                        <td>
+                                            <ng-form name="Filer4FormMask">
+                                                <input type="text" class="form-control" name="IPv4FilterMask" ng-model="filter4.Mask" ng-model-onblur ng-change="updateIPv4(data.selected4)" ng-disabled="data.selected4 != filter4.ind" required maxlength="{{MaskRangeIPv4Strlen}}"  ng-pattern-restrict="{{OnlyNumStr}}">
+                                            </ng-form>
+                                        </td>
+                                        <td>
+                                            <div class="ipfiltering-wrapper"><span class="range-text">{{filter4.Range}}</span></div>
+                                        </td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>IPv6</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group" ng-show="data.DeviceType === 'NVR'">
+                    <label class="col-lg-2 control-label">{{'lang_filteringType'| translate}}</label>
+                    <label class="col-lg-1 control-label">
+                        <input type="radio" ng-model="data.AccessTypeIPv6" value="Deny"> {{'lang_deny'| translate}}</button>
+                    </label> &nbsp;&nbsp;
+                    <label class="col-lg-1 control-label">
+                        <input type="radio" ng-model="data.AccessTypeIPv6" value="Allow"> {{'lang_allow'| translate}}</button>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <button type="button" class="btn btn-primary btn-margin-right" data-ng-disabled="addCheck6()" ng-click="addFilter6()">{{ 'lang_add' | translate }}</button>
+                        <button type="button" class="btn btn-primary" ng-click="deleteFilter6(selected6)">{{ 'lang_delete' | translate }}</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <table class="table table-bordered table-editor wn5-setup-table" style="text-align:center">
+                            <thead>
+                                <tr>
+                                    <th width="10%"></th>
+                                    <th style="text-align:center" width="10%">{{ 'lang_wisestream_table_use' | translate }}</th>
+                                    <th style="text-align:center" width="25%">IP</th>
+                                    <th style="text-align:center" width="20%">{{ 'lang_prefix' | translate }}</th>
+                                    <th style="text-align:center" width="35%">{{ 'lang_filteringRange' | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr 
+                                    ng-repeat="filter6 in FilterIPv6"
+                                    ng-class="{'wn5-setup-table-active': data.selected6 === filter6.ind }">
+                                    <td>
+                                        <input type="radio" ng-model="data.selected6" ng-value="filter6.ind"></input>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" ng-model="filter6.Enable" ng-model-onblur ng-change="updateIPv6(data.selected6)" ng-disabled="data.selected6 != filter6.ind || !editCheck6() ">
+                                    </td>
+                                    <td>
+                                        <ng-form name="Filer6Form">
+                                            <input type="text" class="form-control" name="IPv6FilterAddress" ng-model="filter6.Address" ng-model-onblur ng-change="updateIPv6(data.selected6)" ng-disabled="data.selected6 != filter6.ind || !editCheck6()" required maxlength={{MaxIPV6Len}} ng-pattern-restrict="{{IPv6PatternStr}}" ng-trim="true">
+                                        </ng-form>
+                                    </td>
+                                    <td>
+                                        <ng-form name="Filer6FormMask">
+                                            <input type="text" class="form-control" name="IPv6FilterMask" ng-model="filter6.Mask" ng-model-onblur ng-change="updateIPv6(data.selected6)" ng-disabled="data.selected6 != filter6.ind" required maxlength="{{MaskRangeIPv6Strlen}}"  ng-pattern-restrict="{{OnlyNumStr}}">
+                                        </ng-form>
+                                    </td>
+                                    <td>
+                                        <div class="ipfiltering-wrapper"><span class="range-text">{{filter6.Range}}</span></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="wn5-setup-hr">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>

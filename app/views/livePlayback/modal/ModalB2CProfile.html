@@ -1,0 +1,11 @@
+﻿<div class="modal-body modal-list ua-modal-body">
+   <ul>
+    <li ng-repeat="profile in profileList" class="popup-profile-list">
+      <label>
+        <input type="radio" value="{{profile}}" ng-model="data.currentProfile" name="b2c_profile_group" ng-click="selectProfile(profile)" />
+        <span class="radio-text-position">{{ profile }}</span>
+      </label>
+    </li>
+  </ul>
+</div>
+<div class="modal-bottom-bar"></div>

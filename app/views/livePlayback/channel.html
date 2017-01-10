@@ -1,0 +1,19 @@
+<live-playback-common></live-playback-common>
+
+<div 
+  id="cm_bottom-menu" 
+  class="cm_live-bottom-menu"
+  ng-class="{ 
+    'cm_full-menu' : domControls.visibilityFullScreen,
+    'cm_show-menu' : channelSetFunctions['show']}">
+  <!--
+  Live 페이지의 하단 아이콘들
+  -->
+  <live-icon-list></live-icon-list>
+  <!--
+  하단 버튼을 눌렀을 때 나오는 패널 영역
+  -->
+  <live-menu-content></live-menu-content>
+
+<div class="channels-view" ng-class="{'transparent' : isTransParent}" ng-switch on="connectedService"
+ng-show="domControls.visibilityFullStreaming" kind-touch-pinch="pinchEvent">

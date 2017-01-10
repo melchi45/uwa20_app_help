@@ -1,0 +1,77 @@
+<h1 class="wn5-setup-main-title">802.1x</h1>
+<div class="wn5-setup-section">
+	<p>可以选择连接至网络时是否使用 802.1x 协议，并安装证书。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h3 >IEEE 802.1x 设置</h3>
+	</div>
+
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+		    <h3>IEEE 802.1x </h3>
+		    <p>IEEE 802.1x 属于 IEEE 802.1 网络协议组的一部分，是有关基于端口的网络接入控制 (PNAC) 的 IEEE 标准。IEEE 802.1x 主要用于加强无线 LAN (Wi-Fi) 环境的安全性。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>EAP 类型 </h3>
+		    <p>EAP（可扩展认证协议）是一种应用于无线网络和点对点协议的认证方式，可用于轻松扩展。LEAP 是一种安全性较为薄弱的认证方式，因此，建议仅在无法使用 EAP-TLS 的环境中使用。</p>
+		    <ul>
+		        <li><strong class="UI">EAP-TLS</strong>：EAP-TLS（传输层协议）是一种基于客户端证书和服务器的交互认证；建立连接后，为确保安全，需使用动态的 WEP 密钥。</li>
+		        <li><strong class="UI">LEAP</strong>：LEAP（轻型扩展验证协议）不需要使用证书，只需要动态的 WEP 密钥，因此，应使用安全等级较高的密码。  </li>
+		    </ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>EAPOL 版本 </h3>
+		    <p>选择<strong class="UI">[1]</strong>或<strong class="UI">[2]</strong>作为网络交换器中所用的 <strong class="UI">[EAPOL]</strong>（在局域网之上的可扩展认证协议）版本。</p>
+	    </div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>ID</h3>
+		    <p>在<strong class="UI">[EAP-TLS]</strong>输入客户端证书 ID，在<strong class="UI">[LEAP]</strong>输入用户 ID。</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>密码</h3>
+		    <p>在<strong class="UI">[EAP-TLS]</strong>输入客户端私钥，在<strong class="UI">[LEAP]</strong>输入用户密码。如果<strong class="UI">[EAP-TLS]</strong>中使用的是未加密的密钥，则无需进行此操作。 </p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+			<ul>
+				<li>如果联网设备不支持 802.1x，即使将 802.1x 设置为<strong class="UI">[使用]</strong>，也无法执行正常操作。</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h3 >证书</h3>
+	</div>
+	<div class="wn5-setup-section-article">
+
+		<div class="wn5-setup-section-article-content">
+			<p>仅当使用<strong class="UI">[EAP-TLS]</strong>时，才需要证书。可以安装或删除相关证书和密钥。</p>
+			<ul>
+				<li><strong class="UI">CA 证书</strong>：如果 CA 证书包含一个公开密钥，则选择该项。</li>
+				<li><strong class="UI">客户端证书</strong>：如果 CA 证书包含一个客户端验证密钥，则选择该项。</li>
+				<li><strong class="UI">客户端私钥</strong>：如果 CA 证书包含一个客户端私钥，则选择该项。 </li>
+			</ul>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>安装证书</h4>
+			<ol>
+				<li><strong class="UI">单击[...]</strong>按钮，选择一个证书或密钥，然后单击<strong class="UI">[打开]</strong>按钮。</li>
+				<li>单击<strong class="UI">[安装]</strong>按钮。完成证书安装时，将显示一条&ldquo;已安装&rdquo;的信息。 </li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>删除证书</h4>
+			<p>单击已安装的证书或密钥旁边的<strong class="UI">[删除]</strong>按钮。将证书或密钥删除后，将显示一条&ldquo;不可用&rdquo;的信息。</p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">

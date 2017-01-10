@@ -1,0 +1,282 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+@import "make-webkit";
+@import "controls/button-extends";
+@import "scroll";
+@import "make-circle";
+@import "varable";
+@import "default";
+@import "controls/datepicker";
+@import "controls/ui-slider";
+@import "controls/radio";
+@import "controls/checkbox";
+@import "controls/toggle-button";
+@import "controls/button";
+@import "controls/timeline";
+@import "controls/modal";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+input,
+button,
+select,
+textarea {
+  font-family: "NotoSans";
+}
+
+body {
+  font-family: "NotoSans";
+  overflow: hidden;
+  font-size: 12px;
+  min-width: 400px;
+  color: #000;
+  -ms-overflow-style: scrollbar;
+
+  /* It is added in wrapper.js, when page of "/uni/channel" is loaded. */
+  /* 68(Video Top Margin) + 35(Toggle Playback) + 85(Playback) + 10(Bottom Margin)= 198px */
+  &.wisenet-desktop-body {
+    overflow-y: auto;
+    /* 56.25vw is video size, 188px is margin. */
+    /* ~"" is escape. ref. http://lesscss.org/functions/#string-functions-escape */
+    min-height: calc(~"56.25vw + 198px");
+
+    @media(min-width: 1001px){
+       /* 198px + 1100 * 56.25(Video Radio) */
+      min-height: 816px;
+    }
+
+    @media(min-width: 1601px){
+       /* 198px + 1300 * 56.25(Video Radio) */
+      min-height: 929px;
+    }
+  }
+
+  &.kind-responsive-live {
+    min-width: @kind-responsive-live-min-width;
+  }
+
+  &.kind-responsive-playback {
+    min-width: @kind-responsive-playback-min-width;
+  }
+  
+  &.kind-responsive-setup {
+    min-width: @kind-responsive-setup-min-width;
+  }
+}
+.nav-hover() {
+  background-color: @color-button-selected;
+  color: #fff !important;
+  i {
+    color: #fff !important;
+  }
+}
+.side-nav-wrapper {
+  @width-left-padding: 15px;
+  list-style: none;
+  position: absolute;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  overflow-y: auto;
+  z-index: 1;
+  border-right: 1px solid @color-button-selected;
+  -webkit-transition: -webkit-transform @animation-timing-function @animation-time-side-nav;
+  -moz-transition: -moz-transform @animation-timing-function @animation-time-side-nav;
+  -ms-transition: -ms-transform @animation-timing-function @animation-time-side-nav;
+  -o-transition: -o-transform @animation-timing-function @animation-time-side-nav;
+  transition: transform @animation-timing-function @animation-time-side-nav;
+  .translate(-100%);
+  width: @width-side-nav;
+  .sid-nav-inner {
+    height: 100%;
+  }
+  nav {
+    height: 100%;
+    #side-menu{
+      margin-top: 50px;
+    }
+    dl, > ul {
+      height: 100%;
+      margin: 0;
+      position: relative;
+      dt, > li {
+        padding-bottom: 7px;
+        a, a:hover {
+          font-weight: 700;
+          font-size: @wn5-gui-title-s;
+          color: @font-color;
+          width: 100%;
+          display: block;
+          padding: 10px @wn5-gui-tree-1depth-padding-left 10px @wn5-gui-tree-1depth-padding-right;
+
+          span {
+            margin-left: @wn5-gui-tree-1depth-text-margin-left;
+          }
+          i {
+            color: @font-color;
+            font-size: 17px;
+            vertical-align: text-top;
+          }
+          &.on {
+            .nav-hover()
+          }
+          &.default-cursor {
+            cursor: default;
+          }
+        }
+        &.separate
+        {
+          @gap: 11px;
+          padding-bottom: @gap;
+          &:after {
+            content: " ";
+            width: auto;
+            height: 1px;
+            background-color: #d8dde8;
+            display: block;
+            margin-top: @gap;
+          }
+        }
+      }
+    }
+  }
+}
+
+.wisenet-nav {
+  > li {
+    > a:active {
+      .nav-hover()
+    }
+  }
+}
+
+.nav-toggle {
+  z-index: @zindex-top;
+  &.is-loading {
+    z-index: @zindex-top * 1000 !important;
+  }
+  &.overlay {
+    z-index: @zindex-top * 1000;
+    display: initial !important;
+    i {
+      color: white !important;
+    }
+    &:active {
+      span.icon-bar {
+        background-color: #ff9832 !important;
+      }
+    }
+  }
+}
+
+.main {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: @background-color-main;
+  .nav-toggle {
+    span.icon-bar {
+      background-color: @color-button-font;
+      width: 13px;
+      &+span.icon-bar{
+        margin-top: 2px;
+      }
+    }
+  }
+  &>div {
+    height: 100%;
+    overflow: hidden;
+  }
+  #block-main {
+    background-color: #000;
+    &.visible {
+      .transition(all linear @animation-time-side-nav);
+      opacity: 0.2;
+    }
+  }
+}
+.transparent {
+  background-color: rgba(0,0,0,0) !important;
+}
+.none {
+  display: none !important;
+}
+channel_player.channel-content.none {
+  display: none !important;
+}
+channel_player.full-screen object,
+channel_player.full-screen img{
+  display: block;
+}
+.separate-line {
+  margin: 15px 0;
+  content: " ";
+  width: auto;
+  height: 1px;
+  background-color: #d8dde8;
+  display: block;
+}
+
+channels-wrapper canvas {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  cursor: default;
+}
+.live-slider-width{
+  display: inline-block;
+  width: 200px; 
+}
+.tampering-slider .live-slider-width{
+  width: 400px; 
+}
+.video-display-none{
+  display: none !important; 
+}
+#livevideo{
+  width: 100%;
+  height: 100%;
+  object-fit: initial;
+}
+#video-container{
+  overflow: hidden;
+}
+
+.fc-time-grid-event.fc-short .fc-time span {
+    display: inline;
+}
+
+.fc-time-grid-event.fc-short .fc-time:before {
+    content: normal;
+}  
+
+.fc-time-grid-event.fc-short .fc-time:after {
+    content: normal;
+}
+
+@import "pages/login";
+@import "pages/channel";
+@import "pages/channel-all";
+@import "pages/channels-wrapper";
+@import "pages/popup-message";
+@import "pages/full-camera";
+@import "pages/event";
+@import "loading-bar";
+@import "setup/setup.less";

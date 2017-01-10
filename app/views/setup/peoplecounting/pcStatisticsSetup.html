@@ -1,0 +1,399 @@
+<div class="wrapper wrapper-content ng-hide" ng-show="pageLoaded">
+    <wn5-setup-main-title
+        data-title="lang_search">
+    </wn5-setup-main-title>
+    <hr class="wn5-setup-hr">
+    <form name="prodinfoForm" method="get" class="form-horizontal" novalidate>
+        <!-- Statistics Start -->
+        <section id="pc-realtime"
+            class="pc-n-hm-section">
+            <section 
+                id="pc-realtime-live"
+                ng-hide="realTimeSection.dropDownState">
+                <figure 
+                    class="pc-realtime-video">
+                    <svg 
+                        width="640" 
+                        height="480" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        id="pc-realtime-live-svg"></svg>
+
+                    <kind_stream class="channel-content" kindplayer="playerdata"></kind_stream>
+                </figure>
+                <p class="wn5-gui-body-large">{{'lang_pc_hm_data_init_rule' | translate}} {{'lang_msg_init_rule_but_delete_all_data' | translate}}</p>
+            </section>
+
+            <section 
+                id="pc-setup-counting"
+                class="pc-n-hm-section"
+                ng-hide="realTimeSection.dropDownState || realTimeSection.isDisabledAllRule">
+
+                <!-- <div class="pc-n-hm-grid-2">
+                    <h2 class="pc-n-hm-heading-lv2">
+                        {{ lang.realTime.counting.title | translate }}
+                    </h2>
+                </div> -->
+                <!-- Counting Table Start -->
+                <div class="pc-setup-counting-table">
+                    <table class="pc-n-hm-table table-bordered text-center wn5-setup-table">
+                        <colgroup>
+                            <col class="pc-n-hm-per-10">
+                            <col class="pc-n-hm-per-50">
+                            <col class="pc-n-hm-per-20">
+                            <col class="pc-n-hm-per-20">
+                        </colgroup>
+                        <thead>
+                            <tr class="active">
+                                <th class="text-center">
+                                    {{ lang.realTime.counting.no | translate }} 
+                                </th>
+                                <th class="text-center">
+                                    {{ lang.realTime.counting.ruleName | translate }}
+                                </th>
+                                <th class="text-center">
+                                    {{ lang.realTime.counting.in | translate }}
+                                </th>
+                                <th class="text-center">
+                                    {{ lang.realTime.counting.out | translate }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in realTimeSection.counting.todayRuleData track by $index">
+                                <td>{{item.lineIndex}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.inCount}}</td>
+                                <td>{{item.outCount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Counting Table End -->
+            </section>
+        </section>
+        <!--
+        Graph Section should not have "overflow:hidden" due to nvD3 UI.
+        -->
+        <section id="pc-realtime-graph"
+            class="pc-graph-fix-tooltip"
+            ng-hide="realTimeSection.dropDownState || realTimeSection.isDisabledAllRule">
+            
+            <!-- <h2 class="pc-n-hm-heading-lv2">
+                {{ lang.realTime.graph.title | translate }}
+            </h2> -->
+
+            <figure class="pc-realtime-graph-today">
+                <figcaption class="pc-n-hm-heading-lv3">
+                    {{ lang.realTime.graph.today | translate }}
+                </figcaption>
+                <nvd3 
+                    options="graphSection.today.options" 
+                    data="graphSection.today.data" 
+                    api="graphSection.today.api" 
+                    config="graphSection.chartConfig"></nvd3>
+            </figure>
+
+            <figure class="pc-realtime-graph-week">
+                <figcaption class="pc-n-hm-heading-lv3">
+                    {{ lang.realTime.graph.week | translate }}
+                </figcaption>
+                <nvd3 
+                    options="graphSection.week.options" 
+                    data="graphSection.week.data" 
+                    api="graphSection.week.api"
+                    config="graphSection.chartConfig"></nvd3>
+            </figure>
+        </section>  
+
+        <!-- Dialog Start -->
+        <article class="pc-statistics-dialog"
+            ng-hide="realTimeSection.dropDownState || !realTimeSection.isDisabledAllRule">
+            <div class="pc-statistics-dialog-title">
+                <p>
+                    <span class="tui tui-wn5-toolbar-status"></span>
+                    <span ng-hide="realTimeSection.isPeopleCountDisabled">
+                        {{lang.realTime.undefined.title | translate}}
+                    </span>
+                    <span ng-show="realTimeSection.isPeopleCountDisabled">
+                        {{lang.realTime.peopleCountDisalbed | translate}}
+                    </span>
+                </p>
+                <div class="text-center">
+                    <button 
+                        class="btn btn-primary" 
+                        type="button"
+                        ng-click="realTimeSection.goToSetup()">
+                        {{ lang.realTime.undefined.setup | translate }}
+                    </button>
+                </div>
+            </div>
+        </article>
+        <!-- Dialog Start -->
+
+        <!-- Statistics End -->
+
+        <hr class="wn5-setup-hr">
+        <section class="wn5-setup-section">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ lang.conditions.title | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <pc-conditions-date-form></pc-conditions-date-form>
+                <div class="form-group" id="pc-search-rule">
+                    <div class="wn5-setup-section-article-heading">
+                        {{ lang.conditions.rule.title | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <table class="pc-n-hm-table table-bordered wn5-setup-table">
+                            <colgroup>
+                                <col class="pc-n-hm-per-30">
+                                <col class="pc-n-hm-per-10">
+                                <col class="pc-n-hm-per-30">
+                                <col class="pc-n-hm-per-30">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th colspan="2"></th>
+                                    <th class="text-center">{{ lang.conditions.rule.firstRule | translate }}</th>
+                                    <th class="text-center">{{ lang.conditions.rule.secondRule | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat-start="item in conditionsSection.rule track by $index">
+                                    <td rowspan="2" class="text-center">
+                                        {{item.name}}
+                                    </td>
+                                    <td class="text-center">{{ lang.conditions.rule.in | translate }}</td>
+                                    <td>
+                                        <input 
+                                            type="checkbox" 
+                                            ng-if="item.rulesName[0]"
+                                            id="rule_in_0"
+                                            name="{{item.isMaster === true ? 'master' : 'slave'}}_{{item.rulesName[0]}}_in"
+                                            checked>
+                                        <label for="rule_in_0">
+                                            {{item.rulesName[0]}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input 
+                                            type="checkbox" 
+                                            ng-if="item.rulesName[1]"
+                                            id="rule_in_1"
+                                            name="{{item.isMaster === true ? 'master' : 'slave'}}_{{item.rulesName[1]}}_in"
+                                            checked>
+                                        <label for="rule_in_1">
+                                            {{item.rulesName[1]}}
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat-end>
+                                    <td class="text-center">{{ lang.conditions.rule.out | translate }}</td>
+                                    <td>
+                                        <input 
+                                            type="checkbox" 
+                                            ng-if="item.rulesName[0]" 
+                                            id="rule_out_0"
+                                            name="{{item.isMaster === true ? 'master' : 'slave'}}_{{item.rulesName[0]}}_out"
+                                            checked>
+                                        <label for="rule_out_0">
+                                            {{item.rulesName[0]}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input 
+                                            type="checkbox" 
+                                            ng-if="item.rulesName[1]"
+                                            id="rule_out_1"
+                                            name="{{item.isMaster === true ? 'master' : 'slave'}}_{{item.rulesName[1]}}_out"
+                                            checked>
+                                        <label for="rule_out_1">
+                                            {{item.rulesName[1]}}
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pc-conditions-buttons wn5-setup-common-button">
+                <button 
+                    class="btn btn-black" 
+                    type="button" 
+                    ng-disabled="realTimeSection.isDisabledAllRule"
+                    ng-click="conditionsSection.getResults()">
+                    {{ lang.conditions.rule.search | translate }}
+                    </button>
+            </div>
+            <div
+                ng-class="{'pc-n-hm-hr-pc-calender-active': pcConditionsDateForm.showFromCalender || pcConditionsDateForm.showToCalender}"
+                ng-hide="resultSection.noResults">
+                &nbsp;
+            </div>
+        </section>
+        <!-- <section class="pc-conditions"> -->
+            <!-- <h3 class="applyColor">{{ lang.conditions.title | translate }}</h3> -->
+            
+
+            <!-- 
+            pcConditionsDateForm Directive uses its parent scope.
+            scope.pcConditionsDateForm of pcConditionsDateForm Directive is used in parent Controller.
+            -->
+            <!-- <pc-conditions-date-form></pc-conditions-date-form> -->
+
+            <!-- Rule Start -->
+            <!-- <div class="form-group pc-conditions-rule">
+                <div class="wn5-setup-section-article-heading">
+                    <label>{{ lang.conditions.rule.title | translate }}</label>
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <table class="pc-n-hm-table table-bordered wn5-setup-table">
+                        <colgroup>
+                            <col class="pc-n-hm-per-30">
+                            <col class="pc-n-hm-per-10">
+                            <col class="pc-n-hm-per-30">
+                            <col class="pc-n-hm-per-30">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th colspan="2"></th>
+                                <th class="text-center">{{ lang.conditions.rule.firstRule | translate }}</th>
+                                <th class="text-center">{{ lang.conditions.rule.secondRule | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat-start="item in conditionsSection.rule track by $index">
+                                <td rowspan="2" class="text-center">
+                                    {{item.name}}
+                                </td>
+                                <td class="text-center">{{ lang.conditions.rule.in | translate }}</td>
+                                <td>
+                                    <input 
+                                        type="checkbox" 
+                                        ng-if="item.rulesName[0]"
+                                        id="rule_in_0"
+                                        name="{{item.isMaster === true ? 'master' : 'slave'}}_{{item.rulesName[0]}}_in"
+                                        checked>
+                                    <label for="rule_in_0">
+                                        {{item.rulesName[0]}}
+                                    </label>
+                                </td>
+                                <td>
+                                    <input 
+                                        type="checkbox" 
+                                        ng-if="item.rulesName[1]"
+                                        id="rule_in_1"
+                                        name="{{item.isMaster === true ? 'master' : 'slave'}}_{{item.rulesName[1]}}_in"
+                                        checked>
+                                    <label for="rule_in_1">
+                                        {{item.rulesName[1]}}
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr ng-repeat-end>
+                                <td class="text-center">{{ lang.conditions.rule.out | translate }}</td>
+                                <td>
+                                    <input 
+                                        type="checkbox" 
+                                        ng-if="item.rulesName[0]" 
+                                        id="rule_out_0"
+                                        name="{{item.isMaster === true ? 'master' : 'slave'}}_{{item.rulesName[0]}}_out"
+                                        checked>
+                                    <label for="rule_out_0">
+                                        {{item.rulesName[0]}}
+                                    </label>
+                                </td>
+                                <td>
+                                    <input 
+                                        type="checkbox" 
+                                        ng-if="item.rulesName[1]"
+                                        id="rule_out_1"
+                                        name="{{item.isMaster === true ? 'master' : 'slave'}}_{{item.rulesName[1]}}_out"
+                                        checked>
+                                    <label for="rule_out_1">
+                                        {{item.rulesName[1]}}
+                                    </label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> -->
+            <!-- Rule End -->
+        <!-- </section> -->
+
+        <section id="pc-results"
+            ng-show="resultSection.showResults">
+            <h3 class="applyColor">{{ lang.results.title | translate }}</h3>
+            <hr class="wn5-setup-hr">
+
+            <article 
+                class="pc-statistics-dialog"
+                ng-show="resultSection.noResults">
+                <p 
+                    class="pc-statistics-dialog-title">
+                    {{lang.results.noResults | translate}}
+                </p>
+            </article>
+
+            <figure 
+                class="pc-results-graph pc-graph-fix-tooltip"
+                ng-hide="resultSection.noResults">
+                <!-- <figcaption class="pc-n-hm-heading-lv2">
+                    {{ lang.results.graph.title | translate }}
+                </figcaption> -->
+                <nvd3 
+                    options="graphSection.result.options" 
+                    data="graphSection.result.data" 
+                    api="graphSection.result.api"
+                    config="graphSection.chartConfig"></nvd3>
+            </figure>
+
+            <!-- <h2 
+                class="pc-n-hm-heading-lv2"
+                ng-hide="resultSection.noResults">
+                {{ lang.results.table.title | translate }}
+            </h2> -->
+            <div 
+                class="table-wrapper"
+                ng-hide="resultSection.noResults">
+                <table class="pc-n-hm-table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center">{{ lang.results.table.camera | translate }}</th>
+                            <th class="text-center pc-results-table-rule">{{ lang.conditions.rule.title | translate }}</th>
+                            <th 
+                                ng-repeat="timeData in resultSection.tableData.timeTable track by $index"
+                                class="text-center">
+                                {{timeData}}
+                            </th>
+                            <th class="text-center">{{ lang.results.table.sum | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ruleData in resultSection.tableData.rules track by $index">
+                            <td 
+                                ng-if="$index === 0"
+                                rowspan="{{resultSection.tableData.rules.length}}">
+                                {{resultSection.tableData.cameraName}}
+                            </td>
+                            <td ng-repeat="rule in ruleData track by $index">{{rule}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center pc-conditions-buttons wn5-setup-common-button">
+                <button 
+                    class="btn btn-black" 
+                    type="button" 
+                    ng-disabled="!resultSection.showResults || realTimeSection.isDisabledAllRule || resultSection.noResults"
+                    ng-click="conditionsSection.getReport()">
+                    {{ lang.conditions.rule.report | translate }}
+                </button>
+            </div>
+        </section>
+    </form>
+</div>

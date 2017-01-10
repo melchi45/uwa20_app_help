@@ -1,0 +1,93 @@
+<header id="cm_nav" ng-class="{'cm_live-nav': globalNavigationBar.isPlayback !== true}">
+    <div class="cm_row">
+        <h1 id="cm_logo">
+            <a ng-click=" globalNavigationBar.goToLive()">
+                <img 
+                    alt="{{'lang_live' | translate}}"
+                    title="{{'lang_live' | translate}}"
+                    class="cm_logo_lg"
+                    src="base/images/wisenet_logo.svg">
+                <img 
+                    alt="{{'lang_live' | translate}}"
+                    title="{{'lang_live' | translate}}"
+                    class="cm_logo_sm"
+                    src="base/images/wisenet_logo_sm.svg">
+            </a>
+        </h1>
+        <ul class="cm_menu">
+            <li 
+                title="{{'lang_live' | translate}}"
+                class="cm_live"
+                ng-class="{'cm_active': globalNavigationBar.isLive === true}">
+                <a ng-click=" globalNavigationBar.goToLive()">
+                    <i class="tui tui-wn5-top-live"></i>
+                </a>
+            </li>
+            <li 
+                title="{{'lang_top_playback' | translate}}"
+                class="cm_playback"
+                ng-if="globalNavigationBar.isAdmin"
+                ng-class="{'cm_active': globalNavigationBar.isPlayback === true}">
+                <a ng-click="globalNavigationBar.goToPlayback()">
+                    <i class="tui tui-wn5-top-playback"></i>
+                </a>
+            </li>
+            <li 
+                title="{{'lang_top_setup' | translate}}"
+                class="cm_setup"
+                ng-if="globalNavigationBar.isAdmin"
+                ng-class="{'cm_active': globalNavigationBar.isSetup === true}">
+                <a href="#/setup/basic_videoProfile">
+                    <i class="tui tui-wn5-top-setup"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="cm_right">
+            <div id="fpsdiv" style="display: none;">
+                <input type="text" ng-model="globalNavigationBar.fpsFrameNum" ng-pattern-restrict="^[0-9]*$">
+                <button type="button" class="btn btn-orange ng-binding" ng-click="changeFpsFrame()">OK</button>
+                <button type="button" class="btn btn-orange ng-binding" ng-click="closeFpsMeter()">CLOSE</button>
+                <span class="cm_devicename" id="span-fps">Average fps : 0 </span>
+                <span class="cm_devicename" id="count-fps">Count fps : 1000 </span>
+            </div>
+            <span class="cm_devicename" ng-click="toggleFpsMeter()">
+                {{globalNavigationBar.deviceModelName}}
+            </span>
+            <ul>
+                <li ng-show="!notInstalledPlugin && !globalNavigationBar.isSetup && supportPlugin">
+                    <button class="cm_plugin-btn cm_active" ng-click="setPlugin()" title="{{ 'lang_plugin' | translate}}">
+                        <span>{{ "lang_plugin" | translate}}</span>
+                        <span class="cm_plugin-icon">
+                            <span></span>
+                        </span>
+                    </button>
+                </li>
+                <li ng-show="notInstalledPlugin && !globalNavigationBar.isSetup && supportPlugin" title="{{ 'lang_plugin_download' | translate}}">
+                    <a ng-href="{{DownloadPathPlugin}}">
+                        <i class="tui tui-wn5-download"></i>
+                        <span>{{ "lang_plugin" | translate}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="globalNavigationBar.isSetup ? OnLogout() : logout()" style="cursor: default;">
+                        <i class="tui tui-wn5-login"></i>
+                        <span ng-hide="globalNavigationBar.isSetup">
+                            {{showLoginAccountID}}
+                        </span>
+                        <span ng-show="globalNavigationBar.isSetup">
+                            {{userName}}
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="openOnlineHelp()">
+                        <i class="tui tui-wn5-help"></i>
+                        <span>
+                            {{'lang_help'|translate}}
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

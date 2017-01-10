@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="img-src data: *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../base/images/wisenet_icon.ico" rel="shortcut icon" type="image/x-icon">
+    <title>Wisenet WEBVIEWER</title>
+
+    <script>
+        /**
+         * AngluarJs does not support the IE 8 or lower than version 8.
+         * So it should be redirect to Root URL.
+         */
+         try {
+            (function ieDetection(){
+                var documentUrl = document.URL;
+                //Mobile Detection
+                if (documentUrl.indexOf("http://") === -1 && documentUrl.indexOf("https://") === -1) {
+                    return;
+                }
+
+                var userAgent = window.navigator.userAgent;
+                var msie = userAgent.indexOf('MSIE ');
+                var trident = userAgent.indexOf('Trident/');
+                var rv = userAgent.indexOf('rv:');
+                var version = false;
+                var VERSION_LIMIT = 10;
+
+                if (msie > 0) {
+                    version = parseInt(userAgent.substring(msie + 5, userAgent.indexOf('.', msie)), 10);
+                }else if (trident > 0) {
+                    version = parseInt(userAgent.substring(rv + 3, userAgent.indexOf('.', rv)), 10);
+                }
+
+                if(version <= VERSION_LIMIT && version !== false){
+                    location.href = 'views/login/compatible.htm';
+                }
+            })();
+        }catch(e){
+            console.error("IE Detection Error in index.html", e);
+        }
+    </script>
+
+        <!-- build:css ../../styles/libraries.css -->
+    <link href="../../base/kind/base_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../base/kind/base_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../base/kind/base_components/jquery-ui/jquery-ui.css" rel="stylesheet">
+    <link href="../../base/kind/base_components/nvd3/build/nv.d3.min.css" rel="stylesheet">
+    <link href="../../base/kind/base_components/fullcalendar/fullcalendar.min.css" rel="stylesheet">
+        <!-- endbuild -->
+    
+        <!-- build:css ../../styles/customs.css -->
+    <link href="../../base/kind/common_modules/kind_client_cm_strm-display/display.css" rel="stylesheet">
+    <link href="../../base/external-modules/vis/vis.css" rel="stylesheet">
+    <link href="../../styles/fonts/notosans.css" rel="stylesheet">
+    <link href="../../styles/fonts/Techwin-Universal-Icon/icons.css" rel="stylesheet">
+    <link href="../../styles/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+    <link href="../../styles/plugins/rzslider/rzslider.min.css" rel="stylesheet">
+    <link href="../../styles/plugins/datapicker/angular-datapicker.css" rel="stylesheet">
+    <link href="../../styles/setup/setup.css" rel="stylesheet">
+    <link href="../../styles/setup/cameraSetup.css" rel="stylesheet">
+    <link href="../../styles/setup/eventSchedule.css" rel="stylesheet">
+    <link href="../../styles/setup/ptz.css" rel="stylesheet">
+    <link href="../../styles/animate.css" rel="stylesheet">
+    <link href="../../styles/style.css" id="loadBefore" rel="stylesheet">
+    <link href="../../styles/common.css" rel="stylesheet">
+    <link href="../../styles/app.css" rel="stylesheet">
+    <link href="../../styles/page-common.css" rel="stylesheet">
+        <!-- endbuild -->
+    <link href="../../styles/less/app.less" rel="stylesheet/less">
+</head>
+
+<body>
+    <div ui-view ng-controller="onlineHelpWrapperCtrl" id="wn5-online-help-wrapper"></div>
+
+    <!-- build:js ../../scripts/base_component.js -->
+    <script src="../../base/kind/base_components/jquery/jquery.js"></script>
+    <script src="../../base/kind/base_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../../base/kind/base_components/jquery-ui/jquery.ui.touch-punch.min.js"></script>
+    <script src="../../base/kind/base_components/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../../base/kind/base_components/angular/angular.js"></script>
+    <script src="../../base/kind/base_components/angular-ios9-uiwebview-patch/angular-ios9-uiwebview-patch.js"></script>
+    <script src="../../base/kind/base_components/angular-mocks/angular-mocks.js"></script>
+    <script src="../../base/kind/base_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="../../base/kind/base_components/angular-translate/angular-translate.min.js"></script>
+    <script src="../../base/kind/base_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script src="../../base/kind/base_components/ui-router/angular-ui-router.min.js"></script>
+    <script src="../../base/kind/base_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../base/kind/base_components/fullcalendar/moment.min.js"></script>
+    <script src="../../base/kind/base_components/fullcalendar/fullcalendar.min.js"></script>
+    <!-- ui-bootstrap-tpls-0.14.3 is modified due to Datepicker Issue, so that is renamed. -->
+    <script src="../../base/kind/base_components/angular-bootstrap/ui-bootstrap-tpls-0.14.3-custom.js"></script>
+    <script src="../../base/kind/base_components/angular-animate/angular-animate.js"></script>
+    <script src="../../base/kind/base_components/angular-touch/angular-touch.min.js"></script>
+    <script src="../../base/kind/base_components/bower-angular-cookies-master/angular-cookies.js"></script>
+    <script src="../../base/kind/base_components/datapicker/angular-datepicker.js"></script>
+    <script src="../../base/kind/base_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="../../base/kind/base_components/hammer.js/hammer.js"></script>
+    <script src="../../base/kind/base_components/rzslider/rzslider.min.js"></script>
+    <script src="../../base/kind/base_components/ng-pattern-restrict/ng-pattern-restrict.min.js"></script>
+    <script src="../../base/kind/base_components/d3/d3.min.js"></script>
+    <script src="../../base/kind/base_components/nvd3/build/nv.d3.min.js"></script>
+    <script src="../../base/kind/base_components/angular-nvd3/dist/angular-nvd3.min.js"></script>
+    <!-- endbuild -->
+    <script src="../../base/kind/base_components/less/dist/less.js"></script>
+
+    <!-- build:js ../../scripts/online_help.js -->
+    <script src="../../scripts/controllers/help/onlineHelpCtrl.js"></script>
+    <!-- endbuild -->
+    <script>
+        angular.bootstrap(document, ['wn5OnlineHelp']);
+    </script>
+</body>
+</html>

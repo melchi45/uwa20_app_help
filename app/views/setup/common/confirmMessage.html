@@ -1,0 +1,12 @@
+<form name="confirmForm" method="get" class="form-horizontal" novalidate>
+    <div class="modal-header modal-setup">
+        <h3 class="applyColor">{{ 'lang_Confirm' | translate }}</h3>
+    </div>
+    <div class="modal-body modal-setup" style="text-align:center">        
+        <h5>{{ confirmMessage | translate }}</h5>        
+    </div>
+    <div class="modal-footer modal-setup" style="text-align:center">        
+        <button type="button" class="btn btn-primary" type="button" ng-click="ok()">{{ 'lang_ok' | translate }}</button>
+        <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>        
+    </div>
+</form>

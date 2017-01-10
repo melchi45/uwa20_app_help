@@ -1,0 +1,41 @@
+<h1 class="wn5-setup-main-title">이벤트 설정</h1>
+<div class="wn5-setup-section">
+    <p>카메라가 지원하는 이벤트와 이벤트 동작을 한 곳에서 관리할 수 있습니다. 현재 페이지에서 이벤트 동작 설정값을 변경하면 각 이벤트별 상세 설정 페이지의 동작 설정값도 동일하게 변경됩니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>이벤트 목록</h2> 
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+                <li><strong class="UI">사용</strong>: <strong class="UI">[사용]</strong> 컬럼에서 체크박스를 선택하면 선택한 이벤트만 동작합니다.</li>
+                <li><strong class="UI">타입</strong>: <strong class="UI">[타입]</strong> 컬럼에서 이벤트 이름을 선택하면 해당 이벤트 상세 설정 페이지로 이동합니다.</li>
+                <li><strong class="UI">이벤트 동작</strong>: 이벤트가 발생할 때 카메라가 어떤 이벤트 동작을 수행할 지 설정합니다.
+                        </li>
+                        <ul>
+                            <li><strong class="UI">FTP</strong>: 영상 화면을 캡처하여 FTP 서버로 전송하려면 <strong class="UI">[FTP]</strong> 컬럼의 체크 박스를 선택합니다. &nbsp;FTP에 대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/이메일]</strong></a>에서 할 수 있습니다. </li>
+                            <li><strong class="UI">이메일</strong>: 영상 화면을 캡처하여 이메일로 전송하려면 <strong class="UI">[이메일]</strong> 컬럼의 체크 박스를 선택합니다.
+							이메일에 대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/이메일]</strong></a>에서 할 수 있습니다.            </li>
+                            <li><strong class="UI">저장</strong>: 영상을 저장하려면 <strong class="UI">[저장]</strong> 컬럼의 체크 박스를 선택합니다.
+							저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.            </li>
+                            <li><strong class="UI">알람 출력</strong>: 이벤트가 발생했을 때 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다. </li>
+                        </ul>
+                <li ng-if="PresetAction"><strong class="UI">프리셋 이동</strong>: 카메라가 지정한 PTZ 프리셋 위치로 이동합니다.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+            <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+                <li>카메라가 지원하는 알람 개수에 따라 알람 출력 컬럼이 다르게 표시됩니다. 예를 들어 출력되는 알람이 2개라면 ‘알람 출력1’ ‘알람 출력2’ 컬럼이 표시되고, 이벤트별로 알람 출력을 설정할 수 있습니다.  </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

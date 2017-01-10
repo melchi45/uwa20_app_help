@@ -1,0 +1,93 @@
+<div class="wrapper wrapper-content" ng-if="pageLoaded">
+    <form class="form-horizontal" method="get" name="evtSetupForm" novalidate="">
+        <wn5-setup-main-title
+            data-title="lang_menu_eventsetup">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>
+                    {{ 'lang_eventList' | translate }}
+                </h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <table class="table table-bordered table-editor wn5-setup-table" width="100%">
+                        <thead>
+                            <tr bgcolor="#f2f2f2" height="35">
+                                <th class="text-center">
+                                    {{ 'lang_use' | translate }}
+                                </th>
+                                <th class="text-center">
+                                    {{ 'lang_type' | translate }}
+                                </th>
+                                <th ng-show="ftpActionSupported" class="text-center">
+                                    FTP
+                                </th>
+                                <th ng-show="smtpActionSupported" class="text-center">
+                                    {{ 'lang_email' | translate }}
+                                </th>
+                                <th ng-show="recordActionSupported" class="text-center">
+                                    {{ 'lang_record' | translate }}
+                                </th>
+                                <th ng-repeat="n in getAlarmOutArray" ng-show="alarmActionSupported[n]" class="text-center">
+                                    {{ 'lang_alarmOutput' | translate }} {{n + 1}}
+                                </th>
+                                <th ng-show="presetActionSupported" class="text-center">
+                                    {{ 'lang_gotoPreset' | translate }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr height="50" ng-repeat="Rule in EventRules | orderBy: 'EventOrder' track by Rule.RuleIndex" ng-show="isSupportedEventSource(Rule)">
+                                <td class="text-center" width="8%">
+                                    <input ng-model="Rule.Enable" type="checkbox"/>
+                                </td>
+                                <td class="event-type-td" width="28%">
+                                    <a class="event-setup-link" ng-click="sourceSelected(Rule.EventSource)" ng-href="">
+                                        <i class="tui tui-wn5-toolbar-play" style="border: none;"></i>
+                                        {{ getTranslatedOption(changeNaming(Rule.EventSource))}} {{Rule.Index}}
+                                    </a>
+                                </td>
+                                <td ng-show="ftpActionSupported" class="text-center" width="8%">
+                                    <div ng-show="Rule.ftpActionSupported">
+                                        <input ng-model="Rule.FtpEnable" type="checkbox">
+                                        </input>
+                                    </div>
+                                </td>
+                                <td ng-show="smtpActionSupported" class="text-center" width="8%">
+                                    <div ng-show="Rule.smtpActionSupported">
+                                        <input ng-model="Rule.SmtpEnable" type="checkbox">
+                                        </input>
+                                    </div>
+                                </td>
+                                <td ng-show="recordActionSupported" class="text-center" width="8%">
+                                    <div ng-show="Rule.recordActionSupported">
+                                        <input ng-model="Rule.RecordEnable" type="checkbox">
+                                        </input>
+                                    </div>
+                                </td>
+                                <td ng-repeat="a in getAlarmOutArray" class="text-center" width="15%">
+                                    <select class="form-control" ng-model="Rule.AlarmOutputs[a].Duration" ng-options="Duration as getTranslatedOption(Duration) for Duration in AlarmoutDurationOptions" ng-show="Rule.alarmActionSupported">
+                                    </select>
+                                </td>
+                                <td ng-show="presetActionSupported" class="text-center" width="20%">
+                                    <div ng-show="Rule.presetActionSupported">
+                                        <select class="form-control" ng-model="Rule.PresetNumber" ng-options="Preset as getTranslatedOption(Preset) for Preset in PresetOptions">
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr class="wn5-setup-hr">
+
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>

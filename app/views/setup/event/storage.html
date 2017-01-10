@@ -1,0 +1,428 @@
+<div class="wrapper wrapper-content" id="storagepage" ng-show="pageLoaded" style="display:none">
+    <form class="form-horizontal" method="get" name="storageForm" novalidate="">
+        <wn5-setup-main-title
+            data-title="lang_menu_storage">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>
+                    {{ 'lang_storageActionSetup' | translate }}
+                </h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <table class="table table-bordered table-editor wn5-setup-table" style="text-align:center">
+                            <thead>
+                                <tr>
+                                    <th>
+                                    </th>
+                                    <th style="text-align:center">
+                                        {{ 'lang_device' | translate}}
+                                    </th>
+                                    <th style="text-align:center">
+                                        {{ 'lang_record' | translate}}
+                                    </th>
+                                    <th style="text-align:center">
+                                        {{ 'lang_freeSize' | translate}}
+                                    </th>
+                                    <th style="text-align:center">
+                                        {{ 'lang_totalSize' | translate}}
+                                    </th>
+                                    <th style="text-align:center">
+                                        {{ 'lang_status' | translate}}
+                                    </th>
+                                    <th>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr 
+                                    ng-repeat="Storage in Storageinfo.Storages"
+                                    ng-class="{'wn5-setup-table-active': selected === $index }">
+                                    <td>
+                                        <input ng-change="OnStorageSelection($index)" ng-model="$parent.selected" ng-value="$index" type="radio">
+                                        </input>
+                                    </td>
+                                    <td>
+                                        <!-- <label style="text-align:center"> -->
+                                        <div ng-if="Storage.Type === 'SD'">
+                                            {{ 'lang_SDCard' | translate }}
+                                        </div>
+                                        <div ng-if="Storage.Type !== 'SD'">
+                                            {{Storage.Type}}
+                                        </div>
+                                        <!-- </label> -->
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <select class="form-control" ng-change="OnStorageEnable(Storage.Enable)" ng-disabled="$parent.selected != $index" ng-model="Storage.Enable" style="text-align:center">
+                                                <option ng-repeat="Enable in RecordEnableOptions track by Enable" ng-selected="Storage.Enable == Enable" value="{{Enable}}">
+                                                    {{getTranslatedOption(Enable)}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <!-- <label ng-disabled="$parent.selected != $index" style="text-align:center"> -->
+                                            {{Storage.UsedSpace}}
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <!-- <label ng-disabled="$parent.selected != $index" style="text-align:center"> -->
+                                            {{Storage.TotalSpace}}
+                                        <!-- </label> -->
+                                    </td>
+                                    <td>
+                                        <span ng-disabled="$parent.selected != $index" ng-show="Storage.Status === 'None'" style="text-align:center">
+                                            {{getTranslatedOption(Storage.Status)}}
+                                        </span>
+                                        <span ng-disabled="$parent.selected != $index" ng-show="Storage.Status === 'Recording'|| Storage.Status === 'Formatting' || Storage.Status === 'Lock' || Storage.Status === 'Full' || Storage.Status === 'Ready'" style="color:blue">
+                                            {{getTranslatedOption(Storage.Status)}}
+                                        </span>
+                                        <span ng-disabled="$parent.selected != $index" ng-show="Storage.Status === 'Error'" style="color:red">
+                                            {{getTranslatedOption(Storage.Status)}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary" ng-click="OnStorageFormat($index)" ng-disabled="$parent.selected != $index || GetFormatButtonStatus($index)" style="text-align:center" type="button">
+                                            {{ 'lang_format' | translate }}
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_recordProfile' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        {{RecordProfileName}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_normal_recording' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-disabled="Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordGeneralInfo[Channel].NormalMode">
+                            <option ng-repeat="NormalMode in RecNormalModeOptions" ng-selected="RecordGeneralInfo[Channel].NormalMode == NormalMode" value="{{NormalMode}}">
+                                {{NormalMode == 'Full'?getTranslatedOption('FullFrame'):NormalMode == 'Off'?getTranslatedOption('None'):getTranslatedOption(NormalMode)}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_event_recording' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-disabled="Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordGeneralInfo[Channel].EventMode">
+                            <option ng-repeat="EventMode in RecEventModeOptions" ng-selected="RecordGeneralInfo[Channel].EventMode == EventMode" value="{{EventMode}}">
+                                {{EventMode == 'Full'?getTranslatedOption('FullFrame'):getTranslatedOption(EventMode)}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_preEventDuration' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-disabled="Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordGeneralInfo[Channel].PreEventDuration">
+                            <option ng-repeat="PreEventDuration in RecPreEventDurationOptions" ng-selected="RecordGeneralInfo[Channel].PreEventDuration == PreEventDuration" value="{{PreEventDuration}}">
+                                {{ PreEventDuration.split('s')[0]}} {{'lang_seconds' | translate }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_postEventDuration' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-disabled="Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordGeneralInfo[Channel].PostEventDuration">
+                            <option ng-repeat="PostEventDuration in RecPostEventDurationOptions" ng-selected="RecordGeneralInfo[Channel].PostEventDuration == PostEventDuration" value="{{PostEventDuration}}">
+                                {{ PostEventDuration.split('s')[0]}} {{'lang_seconds' | translate }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_recordFileType' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-disabled="(Storageinfo.Storages[SelectedStorage].Enable === 'Off') || (pageData.Storageinfo.Storages[SelectedStorage].Enable === 'Off')" ng-model="RecordGeneralInfo[Channel].RecordedVideoFileType" ng-options="FileType for FileType in RecVideoFileTypeOptions track by FileType" type="text">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_overwrite' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <label>
+                             <input ng-disabled="Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordStorageInfo.OverWrite" type="checkbox">
+                            {{'lang_enable' | translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content wn5-setup-section-article-heading-offset">
+                        <div class="wn5-setup-preview-table-col-3">
+                            <input ng-disabled="(!RecordStorageInfo.OverWrite) || (Storageinfo.Storages[SelectedStorage].Enable === 'Off')" ng-model="RecordStorageInfo.AutoDeleteEnable" type="checkbox">
+                            {{'lang_autoDelete' | translate}}
+                        </div>
+                        <span>{{ 'lang_days' | translate }}</span>
+                        <input class="form-control wn5-setup-section-article-content-unit-small" maxlength="{{AutoDeleteDayOptions.max.toString().length}}" name="AutoDeleteDays" ng-disabled="!RecordStorageInfo.AutoDeleteEnable || !RecordStorageInfo.OverWrite || Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordStorageInfo.AutoDeleteDays" ng-pattern-restrict="{{ OnlyNumStr}}" type="text" style="width: 50px;">
+                        <span>
+                            (1 ~ 180)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="Storageinfo.Storages[SelectedStorage].Type === 'SD'" class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>
+                    {{ 'lang_SDfileSystem' | translate }}
+                </h3>
+            </div>
+            <div class="wn5-setup-section-article form-group">
+                <div class="wn5-setup-section-article-heading" style="text-align:left">
+                    {{ 'lang_evenlang_storage_type' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <select class="form-control" ng-disabled="(Storageinfo.Storages[SelectedStorage].Enable === 'Off') || (pageData.Storageinfo.Storages[SelectedStorage].Enable === 'Off')" ng-model="Storageinfo.Storages[SelectedStorage].FileSystem" ng-options="FileSystem for FileSystem in FileSystemTypeOptions track by FileSystem" type="text">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div ng-show="Storageinfo.Storages[SelectedStorage].Type === 'NAS'" class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>
+                    {{ 'lang_nasConnectionSetup' | translate }}
+                    &nbsp;
+                    <span 
+                        ng-show="NASTestStatus === 'Connecting' || NASTestStatus === 'Fail' || NASTestStatus === 'Success'"
+                        style="color:red;">
+                        {{getTranslatedOption(NASTestStatus)}}
+                    </span>
+                </h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_IPAddress' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <input class="form-control" maxlength="{{NASIPMaxLen}}" name="NASIP" ng-disabled="!(Storageinfo.Storages[SelectedStorage].Status === 'None')" ng-model="Storageinfo.Storages[SelectedStorage].NASConfig.NASIP" ng-pattern-restrict="{{IPv4PatternStr}}" type="text">
+                        </input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_ID' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <input class="form-control" maxlength="{{NASUserIDMaxLen}}" name="NASUserID" ng-disabled="!(Storageinfo.Storages[SelectedStorage].Status === 'None')" ng-model="Storageinfo.Storages[SelectedStorage].NASConfig.NASUserID" ng-pattern-restrict="{{NASUserIDPattern}}" type="text">
+                        </input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_password' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <input autocomplete="new-password" class="form-control" maxlength="{{NASPasswordMaxLen}}" name="NASPassword" ng-change="nasPasswordInit(SelectedStorage)" ng-click="nasPasswordInit(SelectedStorage)" ng-disabled="!(Storageinfo.Storages[SelectedStorage].Status === 'None')" ng-model="Storageinfo.Storages[SelectedStorage].NASConfig.NASPasswordNew" ng-pattern-restrict="{{NASPasswordPattern}}" type="password">
+                        </input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">
+                        {{ 'lang_defaultFolder' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <input class="form-control" maxlength="{{DefaultFolderMaxLen}}" name="DefaultFolder" ng-disabled="!(Storageinfo.Storages[SelectedStorage].Status === 'None')" ng-model="Storageinfo.Storages[SelectedStorage].NASConfig.DefaultFolder" ng-pattern-restrict="{{NASFolderPattern}}" type="text">
+                        </input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content wn5-setup-section-article-heading-offset">
+                        <button class="btn btn-primary" ng-click="OnNASTest()" ng-disabled="!(Storageinfo.Storages[SelectedStorage].Status === 'None')" type="button">
+                            {{ 'lang_test' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>
+                    {{ 'lang_normalRecordSetup' | translate }}
+                </h3>
+            </div>
+            <div class="wn5-setup-section-article form-group">
+                <div class="wn5-setup-section-article-content">
+                    <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
+                        <input class="radio" name="Activate" ng-model="RecordSchedule[0].Activate" ng-value="Activate" type="radio">
+                        <div ng-if="Activate === 'Scheduled'">
+                        {{ 'lang_recording_only_schedule
+' | translate }}
+                        </div>
+                        <div ng-if="Activate === 'Always'">
+                            {{ 'lang_recording_always
+' | translate }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--                         <div ng-if="RecordSchedule[0].Activate === ActivateOptions[0]" ng-show="false">
+            <table border="1" id="ScheduleTable" style="text-align:center" width="100%">
+                <div align="right">
+                    <button class="btn btn-primary" ng-click="clearAll()" type="button">
+                        {{ 'lang_clear' | translate }}
+                    </button>
+                </div>
+                <thead>
+                    <tr bgcolor="#f2f2f2" height="35">
+                        <th width="100">
+                        </th>
+                        <th ng-repeat="n in getHourArray" style="text-align:center;color:DarkGray" width="50">
+                            {{n}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr height="40" ng-repeat="Day in WeekDays">
+                        <th bgcolor="#f2f2f2" style="text-align:center;color:DarkGray">
+                            {{ Day | translate}}
+                        </th>
+                        <td ng-class="setColor(Day, n, true)" ng-repeat="n in getHourArray">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="RecordSchedule[0].Activate === ActivateOptions[1]">
+            <table border="1" drag-select="" drag-select-ids="RecordSchedule[Channel].ScheduleIds" id="ScheduleTable" open-time-setup="open" style="text-align:center" width="100%">
+                <div align="right">
+                    <button class="btn btn-primary" ng-click="clearAll()" type="button">
+                        {{ 'lang_clear' | translate }}
+                    </button>
+                </div>
+                <thead>
+                    <tr bgcolor="#e6e6e6" height="35">
+                        <th width="100">
+                        </th>
+                        <th ng-repeat="n in getHourArray" style="text-align:center;color:DimGray" width="50">
+                            {{n}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr height="40" ng-repeat="Day in WeekDays">
+                        <th bgcolor="#e6e6e6" style="text-align:center;color:DimGray">
+                            {{ Day | translate}}
+                        </th>
+                        <td data-placement="bottom" id="{{Day}}.{{n}}" ng-class="setColor(Day, n)" ng-mouseleave="mouseLeave()" ng-mouseover="mouseOver(Day, n)" ng-repeat="n in getHourArray" title="{{getTooltipMessage()}}">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="labelMinutesHour" ng-show="EventRule.ScheduleType==='Scheduled'" style="float:right; margin-top:5px;">
+            <table border="0" cellpadding="0" cellspacing="0" style="text-align:right" width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a class="setMinite scheduleColorInfo">
+                            </a>
+                            <span style="color:black;font-size:12px">
+                                {{ 'lang_minutes' | translate }}
+                            </span>
+                        </td>
+                        <td>
+                            <a class="setHour scheduleColorInfo">
+                            </a>
+                            <span style="color:black;font-size:12px">
+                                {{ 'lang_Hour' | translate }}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+
+        <scheduler></scheduler>
+        
+        <hr class="wn5-setup-hr">
+
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view(0)">
+        </wn5-setup-common-button>
+    </form>
+</div>
+<!--script type="text/ng-template" id="modalrecordPopup.html">
+    <div class="modal-header modal-setup">
+        <h3>{{ SelectedDay | translate}}</h3>
+    </div>
+    <div class="modal-body modal-setup">
+        <div class="form-group">
+            <label class="col-lg-1 control-label">{{ 'lang_from' | translate }}</label>
+            <div class="col-sm-2">
+                <select class="form-control" ng-model="SelectedHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-disabled="true"></select>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" ng-model="SelectedFromMinute" ng-options="Minute for Minute in MinuteOptions track by Minute"></select>
+            </div>
+            <label class="col-lg-1 control-label">{{ 'lang_to' | translate }}</label>
+            <div class="col-sm-2">
+                <select class="form-control" ng-model="SelectedHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-disabled="true"></select>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" ng-model="SelectedToMinute" ng-options="Minute for Minute in MinuteOptions track by Minute"></select>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal-footer modal-setup" style="text-align:center">
+        <button type="button" class="btn btn-primary" type="button" ng-click="ok()">{{ 'lang_ok' | translate }}</button>
+        <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>
+        <button type="button" class="btn btn-warning" type="button" ng-click="delete()">{{ 'lang_delete' | translate }}</button>
+    </div>
+</script-->
+<script id="modalContent.html" type="text/ng-template">
+    <div class="modal-header modal-setup">
+        <h4 class="modal-title">Message Box</h3>
+    </div>
+    <div class="modal-body modal-setup">
+        <label class="control-label" style="text-align:center">{{ DialogMessage }}</label>
+    </div>
+    <div class="modal-footer modal-setup" style="text-align:center">
+        <button type="button" class="btn btn-primary" type="button" ng-click="ok()">{{ 'lang_ok' | translate }}</button>
+        <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button </div>
+</script>
+<script id="confirmMessage.html" type="text/ng-template">
+    <form name="scheduleForm" method="get" class="form-horizontal" novalidate>
+    <div class="modal-header modal-setup">
+    <h3>{{ 'lang_Confirm' | translate }}</h3>
+    </div>
+    <div class="modal-body modal-setup" style="text-align:center">
+    <h5>{{ confirmMessage | translate }}</h5>
+    </div>
+    <div class="modal-footer modal-setup" style="text-align:center">
+    <button type="button" class="btn btn-primary" type="button" ng-click="ok()">{{ 'lang_ok' | translate }}</button>
+    <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>
+    </div>
+    </form>
+</script>

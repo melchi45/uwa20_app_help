@@ -1,0 +1,167 @@
+<div class="wrapper wrapper-content" ng-if="pageLoaded">
+    <wn5-setup-main-title 
+        data-title="lang_menu_facedetection">
+    </wn5-setup-main-title>
+
+    <div class="wn5-setup-section">
+        <hr class="wn5-setup-hr">
+        <div class="wn5-gui-body-large">
+            <input type="checkbox" name="Enable" ng-model="FD.Enable" ng-change="submit(true)">
+            <label>{{ 'lang_enable_feature_face_detection' | translate }}</label>
+        </div>
+    </div>
+
+    <div class="wn5-setup-tab">
+        <ul class="wn5-setup-tab-list use-margin-top">
+            <li ng-repeat="tab in tabs"
+                class="wn5-setup-tab-item">
+                <button 
+                    ng-class="{'active': activeTab.title === tab.title }"
+                    ng-click="changeType(tab)" 
+                    type="button">
+                    {{tab.lang | translate}}
+                </button>
+            </li>
+        </ul>
+        <div 
+            class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
+            <sketchbook 
+                class="wn5-setup-preview-video"
+                coordinates="coordinates" 
+                flag="flag" 
+                sketchinfo="sketchinfo" 
+                videoinfo="videoinfo">
+            </sketchbook>
+
+            <div class="wn5-setup-preview-table">
+                <div class="form-group"
+                    ng-if="activeTab.title === tabs[1].title">
+                    <div class="wn5-setup-preview-heading">
+                        {{'lang_area'|translate}}
+                    </div>
+                    <div class="wn5-setup-preview-content">
+                        <button 
+                            type="button"
+                            ng-click="selectColumn($index)"
+                            ng-class="{'wn5-btn-hover': detectionArea.isEnable === true, 'wn5-btn-active': detectionArea.isSelected === true && detectionArea.isEnable === true}"
+                            ng-disabled="detectionArea.isEnable === undefined"
+                            class="btn wn5-btn btn-margin-right wn5-btn-small-square"
+                            ng-repeat="detectionArea in detectionAreas track by $index">
+                            {{$index + 1}}
+                        </button>
+                    </div>
+                </div>
+                <!-- <article>
+                    <header>
+                        <h3>
+                            {{ 'lang_detection_resullang_overlay' | translate }}
+                        </h3>
+                    </header>
+                    <section>
+                        <input ng-model="FD.MarkDetectedFaces" type="checkbox">
+                        <label>
+                            {{ 'lang_enable' | translate }}
+                        </label>
+                    </section>
+                </article> -->
+                <div
+                    class="form-group"
+                    ng-if="activeTab.title === tabs[0].title">
+                    <div class="wn5-setup-preview-heading">{{ 'lang_sensitivity' | translate }}</div>
+                    <div class="wn5-setup-preview-content" class="slider-fields">
+                        <div style="width: 100%; max-width: 300px;">
+                            <live_slider live-slider-property="SensitivitySliderProperty" live-slider-model="SensitivitySliderModel"></live_slider>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h3>
+                {{ 'lang_eventActionSetup' | translate }}
+            </h3>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="form-group" ng-if="EventActions.indexOf('FTP') !== -1">
+                <div class="wn5-setup-section-article-heading">
+                    FTP
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <input ng-model="EventRule.FtpEnable" type="checkbox"/>
+                    <label>{{'lang_enable' | translate}}</label>
+                </div>
+            </div>
+            <div class="form-group" ng-if="EventActions.indexOf('SMTP') !== -1">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_email' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <input ng-model="EventRule.SmtpEnable" type="checkbox"/>
+                    <label>{{'lang_enable' | translate}}</label>
+                </div>
+            </div>
+            <div class="form-group" ng-if="EventActions.indexOf('Record') !== -1">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_record' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <input ng-model="EventRule.RecordEnable" type="checkbox"/>
+                    <label>{{'lang_enable' | translate}}</label>
+                </div>
+            </div>
+            <div class="form-group" ng-if="EventActions.indexOf('AlarmOutput') !== -1" ng-repeat="n in getAlarmOutArray">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_alarmOutput' | translate }} {{n + 1}}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <select class="form-control" ng-model="EventRule.AlarmOutputs[n].Duration">
+                        <option ng-repeat="Duration in AlarmoutDurationOptions" ng-selected="EventRule.AlarmOutputs[n].Duration == Duration" value="{{Duration}}">
+                            {{getTranslatedOption(Duration)}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" ng-if="EventActions.indexOf('GoToPreset') !== -1">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_gotoPreset' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <select class="form-control" ng-model="EventRule.PresetNumber">
+                        <option ng-repeat="Preset in PresetOptions" ng-selected="EventRule.PresetNumber == Preset" value="{{Preset}}">
+                            {{getTranslatedOption(Preset)}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h3>
+                {{ 'lang_activation_time' | translate }}
+            </h3>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
+                    {{getTranslatedOption(Activate)}}
+                    <input name="Activate" ng-model="EventRule.ScheduleType" ng-value="Activate" type="radio" class="radio">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <scheduler></scheduler>
+
+    <hr class="wn5-setup-hr">
+    <wn5-setup-common-button
+        data-submit-click="submit()"
+        data-cancel-click="view(0)">
+    </wn5-setup-common-button>
+</div>

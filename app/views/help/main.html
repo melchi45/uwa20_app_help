@@ -1,0 +1,54 @@
+<div id="wn5-online-help-header">
+    <figure id="wn5-online-help-brand">
+        <img 
+            alt="Wisenet"
+            src="../../base/images/tmp_wisenet_logo.png">
+    </figure>
+    <h1 id="wn5-online-help-title">{{langOnlineHelp}}</h1>
+</div>
+<div id="wn5-online-help-container">
+	<div class="side-nav-wrapper">
+		<nav>
+			<ul id="side-menu" class="nav metismenu">
+				<li ng-repeat="menu in menuData" ng-class="activeCheck('{{menu.stateName}}')">
+					<a ui-sref="{{menu.stateName}}" ng-if="menu.childs.length === 0">
+						<i class="{{ menu.iconClass }}" style="margin-left: 8px; margin-right: 0px;"></i>
+						<span class="nav-label">{{ menu.title }}</span>
+						<span class="fa arrow" ng-if="menu.childs.length > 0"></span>
+					</a>
+					<a ng-if="menu.childs.length > 0">
+						<i class="{{ menu.iconClass }}" style="margin-left: 8px; margin-right: 0px;"></i>
+						<span class="nav-label">{{ menu.title }}</span>
+						<span class="fa arrow" ng-if="menu.childs.length > 0"></span>
+					</a>
+					<ul class="nav nav-second-level" ng-class="activeCheck('{{menu.stateName}}')" ng-if="menu.childs.length > 0">
+						<li ui-sref-active="active" ng-repeat="sub in menu.childs" ng-class="{active: $state.is('{{menu.stateName}}')}">
+							<a ui-sref="{{sub.stateName}}">
+								<i 
+									ng-if="sub.iconClass !== undefined"
+									class="{{ sub.iconClass }}" 
+									style="margin-left: 8px; margin-right: 0px;"></i>
+								{{ sub.title }}
+								<span class="fa arrow" ng-if="sub.childs.length > 0"></span>
+							</a>
+
+							<ul class="nav nav-third-level"  ng-class="activeCheck('{{sub.stateName}}')" ng-if="sub.childs.length > 0" >
+								<li ui-sref-active="active" ng-repeat="sub2 in sub.childs" ng-class="{active: $state.is('{{sub.stateName}}')}">
+									<a ui-sref="{{sub2.stateName}}">{{ sub2.title }}</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div
+        class="main setup-wrapper wn5-setup-wrapper" 
+        id="setup-main">
+        <div 
+        	class="wrapper wrapper-content"
+        	ui-view>
+        </div>
+	</div>
+</div>

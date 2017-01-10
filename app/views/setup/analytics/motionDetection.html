@@ -1,0 +1,375 @@
+<div id="imagepage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <form name="audioForm" method="get" class="form-horizontal" novalidate>
+        <wn5-setup-main-title
+            data-title="lang_menu_motiondetection">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section" style="margin-bottom: 15px;">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-gui-body-large">
+                <input 
+                    type="checkbox" 
+                    name="Enable"
+                    ng-model="MotionDetection.MotionDetectionEnable"
+                    ng-click="submitEnable()">
+                <label>{{ 'lang_enable_feature_motion_detection' | translate }}</label>
+            </div>
+        </div>
+        
+        <div class="wn5-setup-tab">
+            <ul class="wn5-setup-tab-list use-margin-top">
+                <li 
+                    class="wn5-setup-tab-item"
+                    ng-repeat="tab in tabs">
+                    <button
+                        ng-click="changeMotionDetectionType(tab)"
+                        ng-class="{'active': activeTab.title == tab.title}"
+                        type="button">
+                        {{getTranslatedOption(tab.name)}}
+                    </button>
+                </li>
+            </ul>
+            <div class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
+                <sketchbook 
+                    class="wn5-setup-preview-video" 
+                    sketchinfo='sketchinfo' 
+                    videoinfo='videoinfo' 
+                    coordinates='coordinates'>
+                </sketchbook>
+
+                <div class="wn5-setup-preview-table">
+                    <div 
+                        class="form-group"
+                        ng-if="activeTab.title == 'Include'">
+                        <div class="wn5-setup-preview-heading">
+                            {{'lang_area'|translate}}
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <button 
+                                type="button"
+                                ng-click="selectTableColumn(includeThing.ROI, $event)"
+                                ng-class="{'wn5-btn-hover': includeThing.Coordinates.length > 0, 
+                                           'wn5-btn-active': isSelectedIncludeIndex === includeThing.ROI && includeThing.Coordinates.length > 0}"
+                                ng-disabled="includeThing.Mode !== 'Inside'"
+                                class="btn wn5-btn btn-margin-right wn5-btn-small-square"
+                                ng-repeat = "includeThing in selectInclude track by $index">
+                                {{$index + 1}}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="activeTab.title == 'Include'">
+                        <div class="wn5-setup-preview-heading">{{ 'lang_level_of_detection' | translate }}</div>
+                        <div class="wn5-setup-section-article-content livechart">
+                            <live_chart 
+                                id="md-line-chart" 
+                                live-chart-options="MDv2ChartOptions">
+                            </live_chart>
+                        </div>
+                    </div>
+
+                    <div 
+                        class="form-group" 
+                        ng-if="activeTab.title == 'Include'">
+                        <div class="wn5-setup-preview-heading">{{ 'lang_sensitivity' | translate }}</div>
+                        <div class="wn5-setup-preview-content slider-fields">
+                            <div style="width: 100%; max-width: 300px;">
+                                <live_slider
+                                    live-slider-property="SensitivitySliderProperty"
+                                    live-slider-model="SensitivitySliderModel">
+                                </live_slider>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div 
+                        class="form-group"
+                        ng-if="activeTab.title == 'Exclude'">
+                        <div class="wn5-setup-preview-heading">
+                            {{'lang_area'|translate}}
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <button 
+                                type="button"
+                                ng-click="selectTableColumn(excludeThing.ROI - 8, $event)"
+                                ng-class="{'wn5-btn-hover': excludeThing.Coordinates.length > 0, 
+                                           'wn5-btn-active': isSelectedExcludeIndex === excludeThing.ROI - 8 && excludeThing.Coordinates.length > 0}"
+                                ng-disabled="excludeThing.Mode !== 'Outside'"
+                                class="btn wn5-btn btn-margin-right wn5-btn-small-square"
+                                ng-repeat = "excludeThing in selectExclude track by $index">
+                                {{$index + 1}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 100%; float:left; margin: 10px 0;" ng-if="activeTab.title == 'Include'">                    
+                    <div 
+                        class="wn5-setup-section" 
+                        ng-if="activeTab.title == 'Include'">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_Handover' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <div 
+                                ng-class="RadioClassSm" 
+                                ng-repeat="Enable in HandoverEnableOptions">
+                                <!--
+                                <input type="radio" name="Enable" ng-model="Handover[presetTypeData.SelectedPreset].HandoverList[data.HandoverAreaIndex].Enable" ng-value="Enable" ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList == undefined || Handover[presetTypeData.SelectedPreset].HandoverList.length == 0'>{{getTranslatedOption(Enable)}}
+                                -->
+                                <!--
+                                <input 
+                                    type="radio" 
+                                    name="Enable" 
+                                    ng-model="Handover[presetTypeData.SelectedPreset].HandoverList[(findHandoverIndex()!==-1)?findHandoverIndex():0].Enable"
+                                    ng-value="Enable"
+                                    ng-disabled='isOccupied() === 0'>
+                                    {{getTranslatedOption(Enable)}}
+                                -->
+                                <input 
+                                    type="radio" 
+                                    name="Enable" 
+                                    ng-model="$parent.handoverEnDisable" 
+                                    ng-change="changeHandoverEnDisable()"
+                                    ng-value="Enable" 
+                                    ng-disabled='isOccupied() === 0'>
+                                    {{getTranslatedOption(Enable)}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div 
+                        class="wn5-setup-section" 
+                        ng-if="activeTab.title == 'Include'">
+                        <div class="wn5-setup-section-article-heading">
+                            <label>{{ 'lang_ReceiverCamera' | translate }}</label>
+                        </div>
+                        <div class="wn5-setup-section-article-content text-right">
+                            <!--
+                            <button type="button" class="btn btn-primary" ng-click="addHandover()" ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[data.HandoverAreaIndex].UserList.length >= HandoverUserMax || isSelectedIncludeIndex === "0"'>{{ 'lang_add' | translate }}</button>
+                            <button type="button" class="btn btn-primary" ng-click="removeHandover()" ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[data.HandoverAreaIndex].UserList.length === 0 || isSelectedIncludeIndex === "0"'>{{ 'lang_delete' | translate }}</button>
+
+                            <button 
+                                type="button" 
+                                class="btn btn-primary" 
+                                ng-click="removeHandover()" 
+                                ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[isSelectedIncludeIndex-1].UserList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[isSelectedIncludeIndex-1].UserList.length === undefined'>
+                                {{ 'lang_delete' | translate }}
+                            </button>                                    
+                            -->
+                            <button 
+                                type="button" 
+                                class="btn btn-primary btn-margin-right" 
+                                ng-click="addHandover()" 
+                                ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList[findHandoverIndex()].UserList.length >= HandoverUserMax || isOccupied() === 0'>
+                                {{ 'lang_add' | translate }}
+                            </button>
+                            <button 
+                                type="button" 
+                                class="btn btn-primary" 
+                                ng-click="removeHandover()" 
+                                ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList[findHandoverIndex()].UserList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[findHandoverIndex()].UserList.length === undefined'>
+                                {{ 'lang_delete' | translate }}
+                            </button>                                    
+                        </div>
+                    </div>
+                    <div class="table-wrapper form-group" style="margin-top: 10px;">
+                        <table cellspacing="0" cellpadding="1" border="1" width="100%" class="table table-bordered wn5-setup-table">
+                            <thead>
+                                <th width="10%" height="40" style="text-align:center">
+                                    <!--
+                                    <input type="checkbox" id="CheckAllId" ng-click='SelectAll()' ng-model="Handover[presetTypeData.SelectedPreset].HandoverList[data.HandoverAreaIndex].CheckAll" ng-disabled='!Handover[presetTypeData.SelectedPreset].HandoverList.length'>
+                                    -->
+                                    <input 
+                                        type="checkbox" 
+                                        id="CheckAllId" 
+                                        ng-click='SelectAll()' 
+                                        ng-model="Handover[presetTypeData.SelectedPreset].HandoverList[isSelectedIncludeIndex-1].CheckAll" 
+                                        ng-disabled='!Handover[presetTypeData.SelectedPreset].HandoverList.length'>
+                                </th>
+                                <th width="10%" height="40" style="text-align:center">{{ 'lang_num' | translate }}</th>
+                                <th width="10%" height="40" style="text-align:center">{{ 'lang_IPType' | translate }}</th>
+                                <th width="20%" height="40" style="text-align:center">{{ 'lang_IPAddress' | translate }}</th>
+                                <th width="10%" height="40" style="text-align:center">{{ 'lang_port' | translate }}</th>
+                                <th width="15%" height="40" style="text-align:center">{{ 'lang_menu_user' | translate }}</th>
+                                <th width="15%" height="40" style="text-align:center">{{ 'lang_password' | translate }}</th>
+                                <th width="10%" height="40" style="text-align:center">{{ 'lang_presetNo' | translate }}</th>
+                            </thead>
+                            <tbody ng-repeat="handoverItem in Handover[presetTypeData.SelectedPreset].HandoverList | filter: { ROIIndex: isSelectedIncludeIndex }">
+
+                                <!--<tr ng-repeat="UserList in Handover[presetTypeData.SelectedPreset].HandoverList[data.HandoverAreaIndex].UserList">-->
+                                <tr ng-repeat="UserList in handoverItem.UserList">
+                                    <td 
+                                        width="10%" 
+                                        style="text-align:center">
+                                        <input 
+                                            type="checkbox" 
+                                            ng-model="UserList.SelectedHandoverIndex" 
+                                            ng-click='OnSelectCamera()'>
+                                    </td>
+                                    <td 
+                                        width="10%" 
+                                        style="text-align:center">
+                                        {{$index+1}}
+                                    </td>
+                                    <td 
+                                        width="10%" 
+                                        style="text-align:center">
+                                        <select 
+                                            class="form-control" 
+                                            ng-model="UserList.IPType">
+                                            <option 
+                                                ng-selected="UserList.IPType == Type" 
+                                                value={{Type}} 
+                                                ng-repeat="Type in IPTypes">
+                                                {{getTranslatedOption(Type)}}
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td width="20%" style="text-align:center" ng-if="UserList.IPType == IPTypes[0]">
+                                        <input 
+                                            type="text" 
+                                            style="text-align:center" 
+                                            class="form-control" 
+                                            name="Ipv4Add" 
+                                            ng-model="UserList.IPV4Address" 
+                                            ng-pattern-restrict="{{IPv4PatternStr}}" 
+                                            required 
+                                            maxlength="{{MaxIPV4Len}}"  
+                                            ng-trim="true">
+                                    </td>
+                                    <td width="20%" style="text-align:center" ng-if="UserList.IPType == IPTypes[1]">
+                                        <input 
+                                        type="text" 
+                                        style="text-align:center" 
+                                        class="form-control" 
+                                        name="Ipv6Add" 
+                                        ng-model="UserList.IPV6Address" 
+                                        ng-pattern-restrict="{{IPv6PatternStr}}" 
+                                        required 
+                                        maxlength="{{MaxIPV6Len}}"
+                                        ng-trim="true">
+                                    </td>
+                                    <td width="10%" style="text-align:center">
+                                         <input 
+                                            type="text" 
+                                            style="text-align:center" 
+                                            class="form-control" 
+                                            name="Port" 
+                                            ng-model="UserList.Port" 
+                                            maxlength="{{ HttpMaxPort.toString().length }}" 
+                                            ng-pattern-restrict="{{OnlyNumStr}}" 
+                                            required>
+                                    </td>
+                                    <td width="15%" style="text-align:center">
+                                        <input 
+                                            type="text" 
+                                            style="text-align:center" 
+                                            class="form-control" 
+                                            name="md_Username" 
+                                            ng-model="UserList.Username" 
+                                            required 
+                                            minlength="{{HandoverUserMinLen}}" 
+                                            maxlength="{{HandoverUserMaxLen}}" 
+                                            ng-pattern-restrict="{{FriendlyNameCharSetExpandedStr2}}">
+                                    </td>
+                                    <td width="15%" style="text-align:center">
+                                        <input 
+                                            type="password" 
+                                            style="text-align:center" 
+                                            class="form-control" 
+                                            name="md_Password" 
+                                            ng-model="UserList.Password" 
+                                            required 
+                                            minlength="{{HandoverPwdMinLen}}"
+                                            maxlength="{{HandoverPwdMaxLen}}"
+                                            ng-pattern-restrict="{{FriendlyNameCharSetExpandedStr2}}">
+                                    </td>
+                                    <td width="10%" style="text-align:center">
+                                        <input 
+                                            type="text" 
+                                            style="text-align:center" 
+                                            class="form-control" 
+                                            name="PresetNumber" 
+                                            ng-model="UserList.PresetNumber" 
+                                            required 
+                                            ng-pattern-restrict="{{OnlyNumStr}}">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section" style="margin-top: 20px;">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_eventActionSetup' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+
+                <div class="form-group" ng-if="EventActions.indexOf('FTP') !== -1">
+                    <div class="wn5-setup-section-article-heading">FTP</div>
+                    <div class="wn5-setup-section-article-content"><input type="checkbox" ng-model="EventRule.FtpEnable"><label>{{'lang_enable' | translate}}</label></div>
+                </div>
+
+                <div class="form-group" ng-if="EventActions.indexOf('SMTP') !== -1">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_email' | translate }}</div>
+                    <div class="wn5-setup-section-article-content"><input type="checkbox" ng-model="EventRule.SmtpEnable"><label>{{'lang_enable' | translate}}</label></div>
+                </div>
+
+                <div class="form-group" ng-if="EventActions.indexOf('Record') !== -1">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_record' | translate }}</div>
+                    <div class="wn5-setup-section-article-content"><input type="checkbox" ng-model="EventRule.RecordEnable"><label>{{'lang_enable' | translate}}</label></div>
+                </div>
+
+                <div class="form-group" ng-repeat="n in getAlarmOutArray" ng-if="EventActions.indexOf('AlarmOutput') !== -1">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_alarmOutput' | translate }} {{n + 1}}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-model="EventRule.AlarmOutputs[n].Duration"><option ng-selected="EventRule.AlarmOutputs[n].Duration == Duration" value={{Duration}} ng-repeat="Duration in AlarmoutDurationOptions">{{getTranslatedOption(Duration)}}</option></select>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="EventActions.indexOf('GoToPreset') !== -1">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_gotoPreset' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-model="EventRule.PresetNumber">
+                            <option ng-selected="EventRule.PresetNumber == Preset" value={{Preset}} ng-repeat="Preset in PresetOptions">
+                                {{getTranslatedOption(Preset)}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_activation_time' | translate }}</h3>
+            </div>
+
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <div 
+                            ng-class="RadioClassLg" 
+                            ng-repeat="Activate in ActivateOptions">
+                            {{getTranslatedOption(Activate)}}
+                            <input 
+                                type="radio" 
+                                class="radio" 
+                                name="Activate" 
+                                ng-model="$parent.EventRule.ScheduleType" 
+                                ng-value="Activate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <scheduler></scheduler>
+        <hr class="wn5-setup-hr">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view(0)">
+        </wn5-setup-common-button>
+    </form>
+</div>

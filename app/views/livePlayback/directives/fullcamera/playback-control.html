@@ -1,0 +1,29 @@
+<!-- Step icon left -->
+<button 
+				data-ng-disabled="disableStepIcon || disableButton" 
+				class="button-background-none button-preEvent playback-first"
+				kind-touch-tap="playback.stepBackward">
+  <span class="sr-only">go start</span>
+  <i class="tui tui-play-back"></i> 
+</button>        
+<button class="button-background-none button-play horizon-center"
+  kind-touch-tap="playback.play"
+  ng-hide="playback.isPlay" data-ng-disabled="disableButton">
+  <span class="sr-only">play</span>
+  <i class="tui tui-ch-playback-play"></i>
+</button>
+<button class="button-background-none button-pause horizon-center"
+  kind-touch-tap="playback.pause"
+  ng-show="playback.isPlay" data-ng-disabled="disableButton">
+  <span class="sr-only">pause</span>
+  <i class="tui tui-ch-playback-stop"></i>
+</button> 
+<!-- Step icon right -->
+<button  
+				data-ng-disabled="disableStepIcon || disableButton"
+				class="button-background-none button-preEvent playback-last"
+				kind-touch-tap="playback.stepForward">
+  <span class="sr-only">go last</span>
+  <i class="tui tui-play-front"></i>
+</button>          
+</span>

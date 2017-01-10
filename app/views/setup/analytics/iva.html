@@ -1,0 +1,464 @@
+<div class="wrapper wrapper-content" ng-if="pageLoaded">
+    <wn5-setup-main-title
+        data-title="lang_Intelligent_Video_Analytics">
+    </wn5-setup-main-title>
+    <div class="wn5-setup-section">
+        <hr class="wn5-setup-hr">
+        <div class="wn5-gui-body-large">
+            <input type="checkbox" name="Enable" ng-model="$parent.IntelligentVideoEnable" ng-change="submit(true)">
+            <label>{{ 'lang_enable_feature_enable_IVA' | translate }}</label>
+        </div>
+    </div>
+    
+    <div class="wn5-setup-tab">
+        <ul class="wn5-setup-tab-list use-margin-top">
+            <li
+                class="wn5-setup-tab-item"
+                ng-repeat="tab in tabs">
+                <button 
+                    ng-click="changeCurrentTab(tab)"
+                    ng-class="{'active': activeTab === tab}"
+                    type="button">
+                    <div ng-if="tab.title === 'Virtual Line'">
+                        {{ 'lang_virtual_line' | translate }}
+                    </div>
+                    <div ng-if="tab.title === 'Virtual Area'">
+                        {{ 'lang_virtual_area' | translate }}
+                    </div>
+                    <div ng-if="tab.title === 'Excluded Area'">
+                        {{ 'lang_excluded_area' | translate }}
+                    </div>
+                    <div ng-if="tab.title === 'Common'">
+                        {{ 'lang_common' | translate }}
+                    </div>
+                </button>
+            </li>
+        </ul>
+
+        <div class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
+            <sketchbook class="wn5-setup-preview-video" coordinates="coordinates" flag="flag" sketchinfo="sketchinfo" videoinfo="videoinfo">
+            </sketchbook>
+            <div class="wn5-setup-preview-table">
+                <div 
+                    class="form-group"
+                    ng-if="activeTab.title !== 'Common'">
+                    <div class="wn5-setup-preview-heading" ng-if="activeTab.title === 'Virtual Line'">
+                        {{ 'lang_line' | translate }}
+                    </div>
+                    <div class="wn5-setup-preview-heading" ng-if="activeTab.title === 'Virtual Area' || activeTab.title === 'Excluded Area'">
+                        {{ 'lang_area' | translate }}
+                    </div>
+                    <div class="wn5-setup-preview-content">
+                        <button 
+                            type="button"
+                            ng-click="selectColumn($index)"
+                            ng-class="{'wn5-btn-hover': setData.isEnabled === true, 'wn5-btn-active': setData.isSelected === true && setData.isEnabled === true}"
+                            ng-disabled="setData.isEnabled === null"
+                            class="btn wn5-btn btn-margin-right wn5-btn-small-square"
+                            ng-repeat="setData in currentTableData track by $index">
+                            {{$index + 1}}
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="activeTab.title === 'Virtual Line'"
+                    class="form-group">
+                    <div class="wn5-setup-preview-heading">
+                        {{'lang_categories' | translate}}
+                    </div>
+                    <div class="wn5-setup-preview-content">
+                        <div>
+                            <input 
+                                ng-click="changeVirtualLineMode()"
+                                ng-model="virtualLineMode.passing" 
+                                type="checkbox" 
+                                ng-disabled="virtualLineMode.passing === null">
+                            <label>
+                                {{'lang_passing' | translate}}
+                            </label>
+                        </div>
+                        <div>
+                            <div class="col-xs-4">{{'lang_direction' | translate}}</div>
+                            <div class="col-xs-8">
+                                <div>
+                                    <input name="virtual-line-mode"
+                                        ng-click="changeVirtualLineMode('right')"
+                                        ng-model="virtualLineMode.currentDirection" 
+                                        type="radio" 
+                                        ng-disabled="virtualLineMode.right === null || virtualLineMode.passing === false"
+                                        value="right">
+                                    <label>A <i class="glyphicon glyphicon-arrow-right"></i> B</label>
+                                </div>
+                                <div>
+                                    <input name="virtual-line-mode" id='virtual-line-mode'
+                                        ng-click="changeVirtualLineMode('left')"
+                                        ng-model="virtualLineMode.currentDirection" 
+                                        type="radio" 
+                                        ng-disabled="virtualLineMode.left === null || virtualLineMode.passing === false" value="left">
+                                    <label>A <i class="glyphicon glyphicon-arrow-left"></i> B</label>
+                                </div>
+                                <div>
+                                    <input name="virtual-line-mode" id='virtual-line-mode'
+                                        ng-click="changeVirtualLineMode('both')"
+                                        ng-model="virtualLineMode.currentDirection" 
+                                        type="radio"
+                                        ng-disabled="virtualLineMode.both === null || virtualLineMode.passing === false" value="both" >
+                                    <label>A <i class="glyphicon glyphicon-resize-horizontal" style="font-weight:bold"></i> B</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div 
+                    ng-show="activeTab.title === 'Virtual Area'"
+                    class="form-group">
+                    <div class="wn5-setup-preview-heading">
+                        {{'lang_categories' | translate}}
+                    </div>
+                    <div class="wn5-setup-preview-content">
+                        <div class="form-group">
+                            <input 
+                                ng-click="changeVirtualAreaMode()"
+                                ng-model="virtualAreaMode.instrusion" 
+                                type="checkbox" 
+                                ng-disabled="virtualAreaMode.instrusion === null">
+                            <label>
+                                {{'lang_intrusion' | translate}}
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input 
+                                ng-click="changeVirtualAreaMode()"
+                                ng-model="virtualAreaMode.enter" 
+                                type="checkbox" 
+                                ng-disabled="virtualAreaMode.enter === null">
+                            <label>
+                                {{'lang_enter' | translate}}
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input 
+                                ng-click="changeVirtualAreaMode()"
+                                ng-model="virtualAreaMode.exit" 
+                                type="checkbox" 
+                                ng-disabled="virtualAreaMode.exit === null">
+                            <label>
+                                {{'lang_exiting' | translate}}
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input 
+                                ng-click="changeVirtualAreaMode()"
+                                ng-model="virtualAreaMode.appearDisappear" 
+                                type="checkbox" 
+                                ng-disabled="virtualAreaMode.appearDisappear === null">
+                            <label>
+                                {{'lang_appearing_disappearing' | translate}}
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-4" style="padding-right:5px;">{{ 'lang_minimum_duration' | translate }} ({{ 'lang_sec' | translate }})</div>
+                            <div class="slider-fields col-xs-8">
+                                <live_slider live-slider-property="sliderOptions" live-slider-model="aSliderModel"></live_slider>
+                            </div>
+                        </div>
+                        <div class="form-group" style="width: 100%; float:left;">
+                            <input 
+                                ng-click="changeVirtualAreaMode()"
+                                ng-model="virtualAreaMode.loitering" 
+                                type="checkbox" 
+                                ng-disabled="virtualAreaMode.loitering === null">
+                            <label>
+                                {{'lang_loitering' | translate}}
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-4" style="padding-right:5px;">{{'lang_minimum_duration' | translate}} ({{ 'lang_sec' | translate }})</div>
+                            <div class="col-xs-8 slider-fields">
+                                <live_slider live-slider-property="sliderOptions" live-slider-model="lSliderModel"></live_slider>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="activeTab.title === 'Common'">
+                    <div class="wn5-setup-preview-heading">{{ 'lang_sensitivity' | translate }}</div>
+                    <div class="wn5-setup-preview-content slider-fields">
+                        <div style="width: 100%; max-width: 300px;">
+                            <live_slider live-slider-property="ivaDurationSliderProperty" live-slider-model="ivaDurationSliderModel"></live_slider>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="iva-setup-tab-size" ng-show="activeTab.title === 'Common'">
+                    <div class="wn5-setup-preview-heading">{{ 'lang_size' | translate }}</div>
+                    <div class="wn5-setup-preview-content">
+                        <div class="iva-setup-tab-size-wrap form-group">
+                            <div class="iva-setup-tab-size-wrap-heading">
+                                <span style="display: inline-block; width: 8px; height: 8px; background-color: #86b5f6; border: 2px solid #3184f9;"></span>
+                                {{ 'lang_minimumSize' | translate }}
+                            </div>
+                            <div class="iva-setup-tab-size-wrap-content">
+                                <div class="iva-setup-tab-size-input">
+                                    <input 
+                                        wn5-add-spin-button 
+                                        type="text" 
+                                        readonly
+                                        class="form-control" 
+                                        ng-model="VA[presetTypeData.SelectedPreset].MinWidth" 
+                                        ng-change="sizeCoordinateChange(0)" 
+                                        add-spin-button-flag="0"
+                                        min="{{minWidthLimit}}"
+                                        max="{{VA[presetTypeData.SelectedPreset].MaxWidth}}">
+                                </div>
+                                <div class="iva-setup-tab-size-text">X</div>
+                                <div class="iva-setup-tab-size-input">
+                                    <input 
+                                        wn5-add-spin-button 
+                                        type="text" 
+                                        readonly
+                                        class="form-control" 
+                                    ng-model="VA[presetTypeData.SelectedPreset].MinHeight" 
+                                        ng-change="sizeCoordinateChange(0)" 
+                                        add-spin-button-flag="0"
+                                        min="{{minHeightLimit}}" 
+                                        max="{{VA[presetTypeData.SelectedPreset].MaxHeight}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="iva-setup-tab-size-wrap form-group">
+                            <div class="iva-setup-tab-size-wrap-heading">
+                                <span style="display: inline-block; width: 8px; height: 8px; background-color: #e78581; border: 2px solid #ce534d;"></span>
+                                {{ 'lang_maximumSize' | translate }}
+                            </div>
+                            <div class="iva-setup-tab-size-wrap-content">
+                                <div class="iva-setup-tab-size-input">
+                                    <input 
+                                        wn5-add-spin-button 
+                                        type="text" 
+                                        readonly
+                                        class="form-control" 
+                                        ng-model="VA[presetTypeData.SelectedPreset].MaxWidth" 
+                                        ng-change="sizeCoordinateChange(1)" 
+                                        add-spin-button-flag="1"
+                                        min="{{VA[presetTypeData.SelectedPreset].MinWidth}}" 
+                                        max="{{maxWidthLimit}}">
+                                </div>
+                                <div class="iva-setup-tab-size-text">X</div>
+                                <div class="iva-setup-tab-size-input">
+                                    <input 
+                                        wn5-add-spin-button 
+                                        type="text" 
+                                        readonly
+                                        class="form-control" 
+                                        ng-model="VA[presetTypeData.SelectedPreset].MaxHeight" 
+                                        ng-change="sizeCoordinateChange(1)" 
+                                        add-spin-button-flag="1"
+                                        min="{{VA[presetTypeData.SelectedPreset].MinHeight}}" 
+                                        max="{{maxHeightLimit}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PTZ Control -->
+            <div class="ptz-control_box ptz-control_ptz-menu-width" style="margin-left: 0px;" ng-if="isPTZModel">
+                <ptz-control ptzinfo="ptzinfo">
+                </ptz-control>
+            </div>
+            <!-- <h3>
+                {{ 'lang_configuration' | translate }}
+            </h3>
+            <div class="hr-line-dashed">
+            </div> -->
+            <div class="form-group" ng-if="isPTZModel">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_type' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <div class="field-radio-wrapper" ng-repeat="Type in PresetTypes">
+                        <input class="radio" id="{{Type}}" name="Type" ng-change="onPresetTypeChange(Type)" ng-disabled="Type == 'Preset' && !PresetNameValueOptions.length" ng-model="presetTypeData.SelectedPresetType" ng-value="{{PresetTypes.indexOf(Type)}}" type="radio">
+                            <label for="{{Type}}">
+                                {{getTranslatedOption(Type)}}
+                            </label>
+                            <div class="preset-selectbox" ng-if="Type == 'Preset' && presetTypeData.SelectedPresetType && PresetNameValueOptions.length">
+                                <select class="form-control" ng-change="onPresetChange(presetTypeData.PresetIndex)" ng-model="presetTypeData.PresetIndex" ng-options="PresetNameValueOptions.indexOf(Option) as Option for Option in PresetNameValueOptions">
+                                </select>
+                            </div>
+                        </input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //PTZ Control End -->
+
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h3>
+                {{ 'lang_eventActionSetup' | translate }}
+            </h3>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="form-group" ng-if="EventActions.indexOf('FTP') !== -1">
+                <div class="wn5-setup-section-article-heading">
+                    FTP
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <input ng-model="EventRule.FtpEnable" type="checkbox">
+                        <label>
+                            {{'lang_enable' | translate}}
+                        </label>
+                    </input>
+                </div>
+            </div>
+            <div class="form-group" ng-if="EventActions.indexOf('SMTP') !== -1">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_email' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <input ng-model="EventRule.SmtpEnable" type="checkbox">
+                        <label>
+                            {{'lang_enable' | translate}}
+                        </label>
+                    </input>
+                </div>
+            </div>
+            <div class="form-group" ng-if="EventActions.indexOf('Record') !== -1">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_record' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <input ng-model="EventRule.RecordEnable" type="checkbox">
+                        <label>
+                            {{'lang_enable' | translate}}
+                        </label>
+                    </input>
+                </div>
+            </div>
+            <div class="form-group" ng-if="EventActions.indexOf('AlarmOutput') !== -1" ng-repeat="n in getAlarmOutArray">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_alarmOutput' | translate }} {{n + 1}}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <select class="form-control" ng-model="EventRule.AlarmOutputs[n].Duration">
+                        <option ng-repeat="Duration in AlarmoutDurationOptions" ng-selected="EventRule.AlarmOutputs[n].Duration == Duration" value="{{Duration}}">
+                            {{getTranslatedOption(Duration)}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" ng-if="EventActions.indexOf('GoToPreset') !== -1">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_gotoPreset' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <select class="form-control" ng-model="EventRule.PresetNumber">
+                        <option ng-repeat="Preset in PresetOptions" ng-selected="EventRule.PresetNumber == Preset" value="{{Preset}}">
+                            {{getTranslatedOption(Preset)}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wn5-setup-section">
+        <hr class="wn5-setup-hr">
+        <div class="wn5-setup-section-heading">
+            <h3>
+                {{ 'lang_activation_time' | translate }}
+            </h3>
+        </div>
+        <div class="wn5-setup-section-article form-group">
+            <div class="wn5-setup-section-article-content">
+                <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
+                    {{getTranslatedOption(Activate)}}
+                    <input class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate" type="radio">
+                    </input>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--                         <div ng-if="EventRule.ScheduleType === ActivateOptions[0]" ng-show="false">
+            <table border="1" id="ScheduleTable" style="text-align:center" width="100%">
+                <div align="right">
+                    <button class="btn btn-primary" ng-click="clearAll()" type="button">
+                        {{ 'lang_clear' | translate }}
+                    </button>
+                </div>
+                <thead>
+                    <tr bgcolor="#f2f2f2" height="35">
+                        <th width="100">
+                        </th>
+                        <th ng-repeat="n in getHourArray" style="text-align:center;color:DarkGray" width="50">
+                            {{n}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr height="40" ng-repeat="Day in WeekDays">
+                        <th bgcolor="#f2f2f2" style="text-align:center;color:DarkGray">
+                            {{ Day | translate}}
+                        </th>
+                        <td ng-class="setColor(Day, n, true)" ng-repeat="n in getHourArray">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="EventRule.ScheduleType === ActivateOptions[1]">
+            <table border="1" drag-select="" drag-select-ids="EventRule.ScheduleIds" id="ScheduleTable" open-time-setup="open" style="text-align:center" width="100%">
+                <div align="right">
+                    <button class="btn btn-primary" ng-click="clearAll()" type="button">
+                        {{ 'lang_clear' | translate }}
+                    </button>
+                </div>
+                <thead>
+                    <tr bgcolor="#e6e6e6" height="35">
+                        <th width="100">
+                        </th>
+                        <th ng-repeat="n in getHourArray" style="text-align:center;color:DimGray" width="50">
+                            {{n}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr height="40" ng-repeat="Day in WeekDays">
+                        <th bgcolor="#e6e6e6" style="text-align:center;color:DimGray">
+                            {{ Day | translate}}
+                        </th>
+                        <td data-placement="bottom" id="{{Day}}.{{n}}" ng-class="setColor(Day, n)" ng-mouseleave="mouseLeave()" ng-mouseover="mouseOver(Day, n)" ng-repeat="n in getHourArray" title="{{getTooltipMessage()}}">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="labelMinutesHour" ng-show="EventRule.ScheduleType==='Scheduled'" style="float:right; margin-top:5px;">
+            <table border="0" cellpadding="0" cellspacing="0" style="text-align:right" width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a class="setMinite scheduleColorInfo">
+                            </a>
+                            <span style="color:black;font-size:12px">
+                                {{ 'lang_minutes' | translate }}
+                            </span>
+                        </td>
+                        <td>
+                            <a class="setHour scheduleColorInfo">
+                            </a>
+                            <span style="color:black;font-size:12px">
+                                {{ 'lang_Hour' | translate }}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+
+    <scheduler></scheduler>
+    <hr class="wn5-setup-hr">
+    <wn5-setup-common-button
+        data-submit-click="submit()"
+        data-cancel-click="view(0)">
+    </wn5-setup-common-button>
+</div>

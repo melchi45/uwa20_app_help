@@ -1,0 +1,15 @@
+﻿<div class="modal-body modal-list ua-modal-body">
+ <ul>
+   <li ng-repeat="item in ModalList" class="modal-live-list-ctrl">
+     <a class="" ng-click="select(item.action(item.value))">
+       {{item.name}}
+     </a>
+   </li>
+ </ul>
+</div>
+<div class="button-groups"  ng-show="buttonCount > 0">
+  <button class="button button-background-active" type="button" ng-click="ok()">
+   {{ 'lang_ok' | translate }}
+  </button>
+</div>
+<div class="modal-bottom-bar" ng-class="checkPlayback()"></div>

@@ -1,0 +1,49 @@
+@min-width: 480px;
+.add-device-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.add-device {
+  padding-left:15px;
+  padding-right:20px;
+  min-height: 400px;
+  @media(min-width: @min-width) {
+    min-height: 300px;
+  }
+
+  .ad-row {
+    float: none;
+    width: 100%;
+    margin-bottom: 10px;
+    clear: both;
+    @media(min-width: @min-width) {
+      //width: 50%;
+      //float: left;
+      //clear: none;
+    }
+    label.ad-col {
+      float: left;
+      padding-right: 10px;
+      width: 100px;
+      height: 36px;
+      line-height: 36px;
+    }
+    div.ad-col {
+      width: auto;
+      overflow:hidden;
+      .login-input {
+        width: 100%;
+        min-width: 100% !important;
+        margin:0;
+      }
+      button {
+        text-align: center;
+      }
+    }
+  }
+}

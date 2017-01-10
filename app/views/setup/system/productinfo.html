@@ -1,0 +1,88 @@
+<div id="prodinfopage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <form name="prodinfoForm" method="get" class="form-horizontal" novalidate>
+        <wn5-setup-main-title
+            data-title="lang_menu_proinfo">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_menu_proinfo' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_model' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="Model" ng-model="Model" ng-disabled="true">
+                    </div>
+                </div>
+                <div class="form-group" ng-if="DeviceType == 'NVR'">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_firmwareVersion' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="FirmwareVersion" ng-model="FirmwareVersion" ng-disabled="true">
+                    </div>
+                </div>
+              <!--  <div class="form-group" ng-if="DeviceType == 'NWC'">
+                    <label class="col-lg-2 control-label">{{ 'lang_currenlang_isp_version' | translate }}</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="ISPVersion" ng-model="ISPVersion" ng-disabled="true">
+                    </div>
+                 </div>-->
+                <div class="form-group" ng-if="DeviceType == 'NVR'">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_MiconVersion' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="MicomVersion" ng-model="MicomVersion" ng-disabled="true">
+                    </div>
+                </div>
+                <div class="form-group" ng-if="DeviceType == 'NWC'">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_serialNumber' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="Serial" ng-model="Serial" ng-disabled="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_deviceName' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="DeviceName" ng-model="Info.DeviceName" ng-disabled="false" required ng-minlength="DeviceNameRange.Min" ng-pattern-restrict="{{DeviceNameRange.PatternStr}}" >
+                    </div>
+
+                </div>
+                <div class="form-group" ng-if="DeviceType == 'NWC'">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_location' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="Location" ng-model="Info.Location" ng-disabled="false" required ng-minlength="DeviceNameRange.Min" ng-maxlength="DeviceLocationRange.Max" maxlength="{{DeviceLocationRange.Max}}"  ng-pattern-restrict="{{DeviceLocationRange.PatternStr}}">
+                    </div>
+
+                </div>
+                <div class="form-group" ng-if="DeviceType == 'NWC'">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_description' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="Description" ng-model="Info.Description" ng-disabled="false" required ng-minlength="DeviceDescriptionRange.Min" ng-maxlength="DeviceDescriptionRange.Max" maxlength="{{DeviceDescriptionRange.Max}}" ng-pattern-restrict="{{DeviceDescriptionRange.PatternStr}}">
+                    </div>
+
+                </div>
+                <div class="form-group" ng-if="DeviceType == 'NWC'">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_memo' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="Memo" ng-model="Info.Memo" required ng-minlength="MemoRange.Min" ng-maxlength="MemoRange.Max" maxlength="{{MemoRange.Max}}" ng-pattern-restrict="{{MemoRange.PatternStr}}">
+                    </div>
+                </div>
+                <div class="form-group" ng-if="showLanguage === true">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_language' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select 
+                                class="form-control" 
+                                ng-model="systemLanguage.currentLanguage" 
+                                ng-selected="systemLanguage.currentLanguage === option" 
+                                ng-options="option for option in systemLanguage.supportedLanguages">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="wn5-setup-hr">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>

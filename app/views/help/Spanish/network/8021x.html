@@ -1,0 +1,77 @@
+<h1 class="wn5-setup-main-title">802.1x</h1>
+<div class="wn5-setup-section">
+	<p>Puede seleccionar si desea utilizar o no el protocolo 802.1x cuando se conecta a una red, e instalar los certificados. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h3 >Ajuste de IEEE 802.1x</h3>
+	</div>
+
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+		    <h3>IEEE 802.1x </h3>
+		    <p>IEEE 802.1x es una parte del grupo de protocolo de red llamado IEEE 802.1 y es el est&aacute;ndar IEEE respecto del control de acceso de red basado en puerto (PNAC). IEEE 802.1x se usa principalmente para el refuerzo de la seguridad en un entorno de LAN inal&aacute;mbrica (Wi-Fi).</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>Tipo EAP </h3>
+		    <p>EAP (Extensible Authentication Protocol) es un modo de autenticaci&oacute;n regulada en redes inal&aacute;mbricas y protocolos punto a punto, y est&aacute; dise&ntilde;ado para una f&aacute;cil extensi&oacute;n. El modo LEAP es un modo de autenticaci&oacute;n de seguridad vulnerable, por lo que s&oacute;lo se recomienda para entornos en los que EAP-TLS no se pueda utilizar.</p>
+		    <ul>
+		        <li><strong class="UI">EAP-TLS</strong>: EAP-TLS (Transport Layer Security) lleva a cabo una autenticaci&oacute;n mutua que requiere un certificado del cliente con el servidor; una clave WEP din&aacute;mica se utiliza por seguridad despu&eacute;s de que se realiza la conexi&oacute;n.</li>
+		        <li><strong class="UI">LEAP</strong>: LEAP (protocolo de autenticaci&oacute;n extensible ligero) no requiere certificados y s&oacute;lo utiliza una clave WEP din&aacute;mica, por lo que debe utilizarse una contrase&ntilde;a segura.  </li>
+		    </ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>Versi&oacute;n de EAPOL </h3>
+		    <p>Seleccione <strong class="UI">[1]</strong> o <strong class="UI">[2]</strong> para la versi&oacute;n de <strong class="UI">[EAPOL]</strong> (EAP sobre LANs) que se utiliza en el conmutador de red.</p>
+	    </div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>ID</h3>
+		    <p>Introduzca el ID de certificado de cliente para <strong class="UI">[EAP-TLS]</strong> y el ID de usuario para <strong class="UI">[LEAP]</strong>.</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>Contrase&ntilde;a</h3>
+		    <p>Introduzca la clave privada del cliente para <strong class="UI">[EAP-TLS]</strong> y la contrase&ntilde;a de usuario para <strong class="UI">[LEAP]</strong>. Esto no es necesario si la clave no cifrada se utiliza en <strong class="UI">[EAP-TLS]</strong>. </p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+			<ul>
+				<li>Si el equipo de red conectado no es compatible con 802.1x, podr&iacute;a no funcionar correctamente, incluso si <strong class="UI">[Uso]</strong> est&aacute;n configurado para 802.1x.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h3 >Certificados</h3>
+	</div>
+	<div class="wn5-setup-section-article">
+
+		<div class="wn5-setup-section-article-content">
+			<p>Los certificados son necesarios s&oacute;lo cuando se utiliza <strong class="UI">[EAP-TLS]</strong>. Puede instalar o eliminar los certificados y claves relevantes.</p>
+			<ul>
+				<li><strong class="UI">Certificados CA</strong>: Seleccione si los certificados CA incluyen una clave abierta.</li>
+				<li><strong class="UI">Certificado de cliente</strong>: Seleccione si los certificados CA incluyen una clave de autenticaci&oacute;n de cliente.</li>
+				<li><strong class="UI">Clave privada de cliente</strong>: Seleccione si los certificados CA incluyen una clave privada del cliente. </li>
+			</ul>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Instalaci&oacute;n de un certificado</h4>
+			<ol>
+				<li><strong class="UI">Haga clic en el bot&oacute;n [...]</strong>, seleccione un certificado o clave y haga clic en el bot&oacute;n <strong class="UI">[Abrir]</strong>.</li>
+				<li>Haga clic en el bot&oacute;n <strong class="UI">[Instalar]</strong>. Cuando se haya completado la instalaci&oacute;n del certificado, aparece un mensaje que dice &apos;Instalado&apos;. </li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Eliminaci&oacute;n de un certificado</h4>
+			<p>Haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong> situado junto al certificado o clave instalada. Cuando se elimina un certificado o una clave, se muestra un mensaje que dice &apos;No disponible&apos;.</p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">

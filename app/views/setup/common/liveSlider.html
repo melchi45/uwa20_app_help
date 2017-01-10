@@ -1,0 +1,34 @@
+<div class="cm_slider_wrap" 
+	ng-class="{'horizontal':liveSliderProperty.vertical === false,'vertical':liveSliderProperty.vertical === true}" >
+	<i ng-class="{
+		'tui tui-wn5-add cm_left' : liveSliderProperty.vertical,
+		'tui tui-wn5-minus cm_right' : !liveSliderProperty.vertical,
+		'cm_slider-disabled' : liveSliderProperty.disabled
+	}"></i>
+	<div class="cm_slider">
+		<div></div>
+	</div>
+	<i ng-class="{
+		'tui tui-wn5-add cm_left' : !liveSliderProperty.vertical,
+		'tui tui-wn5-minus cm_right' : liveSliderProperty.vertical,
+		'cm_slider-disabled' : liveSliderProperty.disabled
+	}"></i>
+</div>
+<div
+	class="input-align" 
+	ng-class="{'live-slider-vertical-input': liveSliderProperty.vertical, 'live-slider-horizontal-input': !liveSliderProperty.vertical}" 
+	ng-if="liveSliderProperty.showInputBox"
+	>
+	<input 
+		type="text"
+		class="form-control"
+		required style="text-align:center"
+		ng-value="liveSliderModel[modelName]"
+		ng-model="ThreshValue"
+		ng-pattern-restrict="{{levelPattern}}"
+		maxlength="{{maxLength}}"
+		ng-blur="InputBox_onBlurEventHandler()"
+		ng-change="InputBox_onChangeEventHandler()"
+		ng-disabled="liveSliderProperty.disabled"
+		>
+</div>

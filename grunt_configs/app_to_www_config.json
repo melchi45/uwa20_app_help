@@ -1,0 +1,7 @@
+[
+	"kind/common_modules/**",
+	"views/**",
+	"*.html",
+	"*.js",
+	"plugin/**"
+]

@@ -1,0 +1,57 @@
+<!-- Navigation bar(Header) -->
+<global-navigation-bar></global-navigation-bar>
+
+<!-- Full Screen -->
+<mi-full-camera ng-show="MI_openFullScreen"></mi-full-camera>
+<full-camera
+  visibility="domControls.visibilityFullScreen"
+  enable-playback="{{domControls.enablePlayback}}"
+  profile-info="domControls.profileInfo"
+  toggle-nav-overlay="toggleOverlay(val)" 
+  play-playback="playPlayback(command)"
+  play-speed="playSpeed"
+  playback-control="playbackController" 
+  set-play-speed="setPlaySpeed(speed)" 
+  set-timeline-view="setTimelineView(timelineView)" 
+  is-loading="isLoading">
+</full-camera>
+
+<!-- Video -->
+<div id="cm_video" ng-class="{'cm_fullscreen' : domControls.visibilityFullScreen}">
+  <pixel-count ng-if="checkPlugin()"  ng-show="channelBasicFunctions.pixelCount"></pixel-count>
+  <div 
+       ng-hide="(domControls.visibilityFullScreen || domControls.visibilityFullStreaming)" 
+       class="channels-view wisenet-channel cm_wisenet-channel" 
+       ng-class="{'transparent' : isTransParent}">
+      <div 
+        ng-repeat="n in [0]" 
+        class="channels" 
+        ng-class="{
+          'show': channelPlace[n] == 'show', 
+          'hide': domControls.chanelViewCnt == 1, 
+          'transparent' : isTransParent}">
+        <channels-wrapper
+            ng-if="n == 0"
+            is-show="channelPlace[n]"
+            class="channels-wrapper-pc"
+            ng-class="{'transparent' : isTransParent}"
+            layout="{{channelLayout}}"
+            zoom-mode="domControls.zoomMode"
+            open-full-screen="directivCallbacks.openFullScreen(event, info)"
+            height="domControls.height[n]"
+            playerdata="domControls.playerdata"
+            play-playback="playPlayback(command)"
+            channel-position-info-callback="channelPositionInfoCallback(info)"
+            request-selected-channel="requestSelectedChannel(info)">
+        </channels-wrapper>
+      </div>
+      <p id="gesture-hint" class="horizon-center"
+        ng-if="domControls.enablePlayback"
+        ng-class="{'playback-mode':domControls.enablePlayback}"
+        ng-show="domControls.isPhone">
+        <span class="sr-only">
+            {{ "lang_on" | translate }}&#47;{{ "lang_off" | translate }} {{ "lang_top_playback" | translate }}
+        </span>
+      </p>
+  </div>
+</div>

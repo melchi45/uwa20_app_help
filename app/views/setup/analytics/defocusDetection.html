@@ -1,0 +1,166 @@
+<div class="wrapper wrapper-content" ng-if='pageLoaded'>
+    <form name="defocusDetectForm" method="get" class="form-horizontal" novalidate>
+        <wn5-setup-main-title
+            data-title="lang_defocus_detection">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-gui-body-large">
+                <input type="checkbox" name="Enable" ng-model="DefocusDetect.Enable" ng-change="submitEnable()">
+                <label>{{ 'lang_enable_feature_defocus_detection' | translate }}</label>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section">
+            <sketchbook 
+                class="wn5-setup-preview-video"
+                videoinfo='videoinfo'></sketchbook>
+
+            <div class="wn5-setup-preview">
+                <div class="form-group">
+                    <div class="wn5-setup-preview-heading">{{ 'lang_level_of_detection' | translate }}</div>
+                    <div class="wn5-setup-section-article-content livechart">
+                        <live_chart id="defocus-line-chart" live-chart-options="DefocusChartOptions"></live_chart>
+                    </div>
+                </div>
+                <!-- Sensitivity -->
+                <div class="form-group">
+                    <div class="wn5-setup-preview-heading">{{ 'lang_sensitivity' | translate }}</div>
+                    <div class="wn5-setup-preview-content slider-fields">
+                        <div style="width: 100%; max-width: 300px;">
+                            <live_slider live-slider-property="DefocusDetectSensitivitySliderProperty" live-slider-model="DefocusDetectSensitivitySliderModel"></live_slider>
+                        </div>
+                    </div>
+                </div>
+                <!-- Duration -->
+                <div class="form-group">
+                    <div class="wn5-setup-preview-heading">{{ 'lang_minimum_duration' | translate }} ({{ 'lang_sec' | translate }})</div>
+                    <div class="wn5-setup-preview-content slider-fields">
+                        <div style="width: 100%; max-width: 300px;">
+                            <live_slider live-slider-property="DefocusDetectDurationSliderProperty" live-slider-model="DefocusDetectDurationSliderModel"></live_slider>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_duration' | translate }}</div>
+                    <div ng-class="SliderClass" class=" slider-fields">
+                        <i class="fa fa-minus-square" style="font-size:20px; cursor:pointer; float:none;" ng-click="DecreaseDuration()"></i>
+                        <rzslider rz-slider-model="DefocusDetect.Duration" rz-slider-options="DefocusDetectDurationSlider"></rzslider>
+                        <i class="fa fa-plus-square" style="font-size:20px; cursor:pointer; float:none;" ng-click="IncreaseDuration()"></i>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_eventActionSetup' | translate }}</h3>
+            </div>
+
+            <div class="wn5-setup-section-article">
+                <div class="form-group" ng-if="EventActions.indexOf('FTP') !== -1">
+                    <div class="wn5-setup-section-article-heading">FTP</div>
+                    <div class="wn5-setup-section-article-content"><input type="checkbox" ng-model="EventRule.FtpEnable"><label>{{'lang_enable' | translate}}</label></div>
+                </div>
+                <div class="form-group" ng-if="EventActions.indexOf('SMTP') !== -1">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_email' | translate }}</div>
+                    <div class="wn5-setup-section-article-content"><input type="checkbox" ng-model="EventRule.SmtpEnable"><label>{{'lang_enable' | translate}}</label></div>
+                </div>
+                <div class="form-group" ng-if="EventActions.indexOf('Record') !== -1">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_record' | translate }}</div>
+                    <div class="wn5-setup-section-article-content"><input type="checkbox" ng-model="EventRule.RecordEnable"><label>{{'lang_enable' | translate}}</label></div>
+                </div>
+                <div class="form-group" ng-repeat="n in getAlarmOutArray" ng-if="EventActions.indexOf('AlarmOutput') !== -1">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_alarmOutput' | translate }} {{n + 1}}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-model="EventRule.AlarmOutputs[n].Duration"><option ng-selected="EventRule.AlarmOutputs[n].Duration == Duration" value={{Duration}} ng-repeat="Duration in AlarmoutDurationOptions">{{getTranslatedOption(Duration)}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="EventActions.indexOf('GoToPreset') !== -1">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_gotoPreset' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-model="EventRule.PresetNumber"><option ng-selected="EventRule.PresetNumber == Preset" value={{Preset}} ng-repeat="Preset in PresetOptions">{{getTranslatedOption(Preset)}}</option></select>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="DefocusDetect.hasOwnProperty('AutoSimpleFocus')">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_simpleFocus' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" name="SimpleFocusEnable" ng-model="DefocusDetect.AutoSimpleFocus" ng-click="SimpleFocusClickEventHandler()">
+                        <label>{{'lang_enable'|translate}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_activation_time' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article form-group">
+                <div class="wn5-setup-section-article-content">
+                    <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">{{getTranslatedOption(Activate)}}<input type="radio" class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate"></div>
+                </div>
+            </div>
+        </div>
+<!--                         <div ng-if="EventRule.ScheduleType === ActivateOptions[0]" ng-show="false">
+            <table border='1' width='100%' style="text-align:center" id="ScheduleTable">
+                <div align="right">
+                    <button type="button" class="btn btn-primary" ng-click="clearAll()">{{ 'lang_clear' | translate }}</button>
+                </div>
+                <thead>
+                    <tr height='35' bgcolor="#f2f2f2">
+                        <th width="100"></th>
+                        <th width="50" ng-repeat="n in getHourArray" style="text-align:center;color:DarkGray">{{n}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr height ="40" ng-repeat="Day in WeekDays">
+                        <th bgcolor="#f2f2f2" style="text-align:center;color:DarkGray">{{ Day | translate}}</th>
+                        <td ng-repeat="n in getHourArray" ng-class="setColor(Day, n, true)"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="EventRule.ScheduleType === ActivateOptions[1]">
+            <table drag-select drag-select-ids="EventRule.ScheduleIds" border='1' width='100%' style="text-align:center" id="ScheduleTable" open-time-setup="open">
+                <div align="right">
+                    <button type="button" class="btn btn-primary" ng-click="clearAll()">{{ 'lang_clear' | translate }}</button>
+                </div>
+                <thead>
+                    <tr height='35' bgcolor="#e6e6e6">
+                        <th width="100"></th>
+                        <th width="50" ng-repeat="n in getHourArray" style="text-align:center;color:DimGray">{{n}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr height ="40" ng-repeat="Day in WeekDays">
+                        <th bgcolor="#e6e6e6" style="text-align:center;color:DimGray">{{ Day | translate}}</th>
+                        <td ng-repeat="n in getHourArray" id="{{Day}}.{{n}}" ng-class="setColor(Day, n)" ng-mouseover="mouseOver(Day, n)" ng-mouseleave="mouseLeave()" data-placement="bottom" title={{getTooltipMessage()}}></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="labelMinutesHour" style="float:right; margin-top:5px;" ng-show="EventRule.ScheduleType==='Scheduled'">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%" style="text-align:right">
+                <tbody>
+                    <tr>
+                        <td> <a class="setMinite scheduleColorInfo"></a><span style="color:black;font-size:12px">{{ 'lang_minutes' | translate }}</span>&nbsp;&nbsp; </td>
+                        <td> <a class="setHour scheduleColorInfo"></a><span style="color:black;font-size:12px">{{ 'lang_Hour' | translate }}</span> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+
+        <scheduler></scheduler>
+        <hr class="wn5-setup-hr">
+
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view(0)">
+        </wn5-setup-common-button>
+    </form>
+</div>

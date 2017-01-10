@@ -1,0 +1,13 @@
+<div class="modal-body ua-modal-body">
+  <ul>
+    <li ng-repeat="viewMode in viewModeList" class="popup-profile-list" ng-click="selectViewMode(viewMode.name)" >
+      <div class="wisenet-viewmode">
+        <input type="radio" ng-checked="viewMode.selected" name="viewMode">
+				<span class="profile-name" ng-class="{ selected: viewMode.selected }">
+					{{viewMode.title}}
+				</span>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="modal-bottom-bar"></div>

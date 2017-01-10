@@ -1,0 +1,82 @@
+<h1 class="wn5-setup-main-title">QoS</h1>
+<div class="wn5-setup-section">
+	<p>QoS（服务质量）功能可设置网络过载时数据传输的优先级，并根据设定的优先级别确保数据传输的质量。可在 IPv4 或 IPv6 输入 QoS IP 地址。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。 </p>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv4</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>可在 IPv4 添加或删除 QoS IP 地址。对于前缀而言，默认值为 32，对于 DSCP 而言，默认值为 63。 </p>
+			<ul>
+				<li><strong class="UI">前缀</strong>：此项可设置 IP 范围，在 IPv4 中，其值可设置为 1 至 32。 </li>
+				<li><strong class="UI">DSCP</strong>：QoS 优先级别为 DSCP（差分服务代码点）。DSCP 值可设置为 0 至 63；越接近 0，优先级越低。</li>
+			</ul>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+			<ul>
+				<li>无法提供多播所用的 224.0.0.0 至 239.255.255.254 地址。 </li>
+			</ul>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>添加 IPv4 地址</h4>
+			<ol>
+			<li>单击<strong class="UI">[添加]</strong>按钮。将创建一个字段，可在该字段中输入 IPv4 地址。</li>
+			<li>输入 IP、前缀和 DSCP 信息。将显示所输入信息的过滤范围。 </li>
+			<li>仅当勾选<strong class="UI">[使用]</strong>复选框时，才能过滤相关范围。 </li>
+			<li>在页面底部单击<strong class="UI">[应用]</strong>按钮，可保存列表中所添加的所有信息。</li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>删除 IPv4 地址</h4>
+			<ol>
+			<li>选择希望删除的 IPv4 地址。</li>
+			<li>单击<strong class="UI">[删除]</strong>按钮。</li>
+			<li>单击删除确认窗口中的<strong class="UI">[确认]</strong>按钮。IPv4 地址将被删除。</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv6</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>可在 IPv6 添加或删除 QoS IP 地址。对于前缀而言，默认值为 128，对于 DSCP 而言，默认值为 63。</p>
+			<ul>
+				<li><strong class="UI">前缀</strong>：此项可设置 IP 范围，在 IPv6 中，可设置为 1 至 128。</li>
+				<li><strong class="UI">DSCP</strong>：QoS 优先级别为 DSCP（差分服务代码点）。DSCP 值可设置为 0 至 63；越接近 0，优先级越低。 </li>
+			</ul>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>添加 IPv6 地址</h4>
+			<ol>
+				<li>单击<strong class="UI">[添加]</strong>按钮。将创建一个字段，可在该字段中输入 IPv6 地址。</li>
+				<li>输入 IP、前缀和 DSCP 信息。将显示所输入信息的过滤范围。 </li>
+				<li>仅当勾选<strong class="UI">[使用]</strong>复选框时，才能过滤相关范围。 </li>
+				<li>在页面底部单击<strong class="UI">[应用]</strong>按钮，可保存列表中所添加的所有信息。</li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>删除 IPv6 地址</h4>
+			<ol>
+				<li>选择希望删除的 IPv6 地址。</li>
+				<li>单击<strong class="UI">[删除]</strong>按钮。</li>
+				<li>单击删除确认窗口中的<strong class="UI">[确认]</strong>按钮。IPv6 地址将被删除。</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">

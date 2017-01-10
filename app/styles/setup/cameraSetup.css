@@ -1,0 +1,87 @@
+/** Setup > Audio & Video > Camera Setup > Image Preset - Start */
+
+.imagepreset-defineFocus {
+    background:#54c0ff !important;
+}
+.imagepreset-motionFocus {
+    background:#ffa52f !important;
+}
+.imagepreset-reduceNoise {
+    background:#5eec5f !important;
+}
+.imagepreset-brightVideo {
+    background:#923ee6 !important;
+}
+.imagepreset-motionFocus-reduceNoise {
+    background:#ef5ca8 !important;
+}
+.imagepreset-motionFocus-brightVideo {
+    background:#ffff77 !important;
+}
+
+.imagepreset-vividVideo {
+    background:#e00001 !important;
+}
+
+.imagepreset-userPreset {
+    background:#3464ff !important;
+}
+
+#scheduleColor {
+    margin-top: 10px;
+}
+
+#scheduleColor .scheduleColorWrapper {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#scheduleColor .scheduleColorWrapper > div {
+    width: 25%;
+    float: left;
+}
+
+#scheduleColor .scheduleColorWrapper > div > a {
+    float: left;
+}
+
+#scheduleColor .scheduleColorWrapper > div > span {
+    width: calc(100% - 30px);
+    float: right;
+    line-height: 14px;
+    padding-bottom: 3px;
+}
+
+.scheduleColorInfo
+{
+    display:inline-block;
+    width:20px;
+    height:20px;
+    vertical-align:middle;
+    font-weight:bold;
+    margin-right:3px;
+}
+
+.imagePresetSchedule {margin: 0;padding: 0; width : 100% !important;}
+.imagePresetSchedule ul {clear: left;margin: 0;padding: 0;list-style-type: none;}
+.imagePresetSchedule ul.scheduleColor {height:40px;}
+.imagePresetSchedule ul li {text-align: center;float: left;display: inline-block;margin: 0;padding: 0;}
+.imagePresetSchedule ul li.scheduleTime {border-top: 1px solid #000; border-bottom: 1px solid #000; border-right: 1px solid #808080;height:27px;line-height: 27px;}
+.imagePresetSchedule ul li.scheduleTime:first-child {border-left: 1px solid #000;}
+.imagePresetSchedule ul li.scheduleTime:last-child {border-right: 1px solid #000;}
+.imagePresetSchedule ul li.scheduleColorList {height:40px;border-bottom: 1px solid #000;}
+.imagePresetSchedule ul li.scheduleColorList.firstChild {border-left: 1px solid #000;}
+.imagePresetSchedule ul li.scheduleColorList.lastChild {border-right: 1px solid #000;}
+
+/** Setup > Audio & Video > Camera Setup > Image Preset - End */
+.ir_led_time {
+    min-width: 66px;
+    width: 41%;
+    float: left;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+span.ir_led_span{
+    float: left;
+}

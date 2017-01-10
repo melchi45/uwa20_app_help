@@ -1,0 +1,21 @@
+<live-playback-common></live-playback-common>
+
+  <!--
+  Playback 메뉴를 클릭했을 때 나오는 하단 영역
+  -->
+  <playback-page
+    visibility-full-screen="domControls.visibilityFullScreen"
+    change-view-mode="domControls.changeViewMode()" 
+    view-mode="viewMode" 
+    view-mode-title="viewModeTitle" 
+    view-mode-icon="viewModeIcon" 
+    enable-playback="domControls.enablePlayback" 
+    play-playback="playPlayback(command)" 
+    set-play-speed="setPlaySpeed(speed)" 
+    select-backup-time="selectBackupTime()"
+    timeline-controller="timelineController"
+    page-controller="pageController">
+  </playback-page>
+
+<div class="channels-view" ng-class="{'transparent' : isTransParent}" ng-switch on="connectedService"
+ng-show="domControls.visibilityFullStreaming" kind-touch-pinch="pinchEvent">

@@ -1,0 +1,84 @@
+<div id="cm_date-control">
+
+  <div class="cm_col cm_margin10">
+    <button
+      type="button" 
+      kind-touch-tap="goPrevDay"
+      class="cm_str-button cm_date-button-l">
+      <i class="tui tui-left"></i>
+    </button>
+    <button 
+      type="button" 
+      class="cm_str-button"
+      kind-touch-tap="visibleSearchPopup">
+      <i class="tui tui-wn5-toolbar-calendar cm_icon-x15"></i>
+      <span>{{currentDate}}</span>
+    </button>
+    <button
+      type="button" 
+      ng-hide="timelineMode === 'backup'"
+      kind-touch-tap="goNextDay"
+      class="cm_str-button cm_date-button-r">
+      <i class="tui tui-right"></i>
+    </button>
+  </div>
+
+  <div class="cm_col cm_margin10 cm_timeboxes">
+    <input 
+      type="text" 
+      maxlength="2" 
+      class="cm_textbox"
+      data-ng-disabled='blockTimeInput'
+      ng-keypress="onKeyDown($event)"
+      ng-pattern-restrict="{{control.timeValidation.pattern.hour}}"
+      ng-blur="control.timeValidation.blur($event)"
+      ng-focus="control.timeValidation.focus($event)"
+      ng-model="playingTime.hours">
+    :
+    <input 
+      type="text" 
+      maxlength="2" 
+      class="cm_textbox"
+      data-ng-disabled='blockTimeInput'
+      ng-keypress="onKeyDown($event)" 
+      ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
+      ng-blur="control.timeValidation.blur($event)"
+      ng-focus="control.timeValidation.focus($event)"
+      ng-model="playingTime.minutes">
+    :
+    <input 
+      type="text" 
+      maxlength="2" 
+      class="cm_textbox" 
+      data-ng-disabled='blockTimeInput'
+      ng-keypress="onKeyDown($event)"
+      ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
+      ng-blur="control.timeValidation.blur($event)"
+      ng-focus="control.timeValidation.focus($event)"
+      ng-model="playingTime.seconds">
+  </div>
+
+  <div class="cm_col cm_margin10">
+    <button 
+      type="button" 
+      ng-hide="timelineMode === 'backup'"
+      class="cm_str-button"
+      kind-touch-tap="goToday"
+      title="{{'lang_today' | translate}}">
+      {{'lang_today' | translate}}
+    </button>
+  </div>
+
+  <div class="cm_col" style="margin-left: 30px;">
+    <button 
+      class="cm_str-button"
+      kind-touch-tap="playbackBackup"
+      title="{{ 'lang_backup' | translate}}"
+      data-ng-disabled="disableBackupIcon"
+      ng-class="{'cm_disabled' : disableBackupIcon}">
+      <i class="tui tui-wn5-download cm_icon-x15"></i>
+      <span>{{ 'lang_backup' | translate}}</span>
+    </button>
+  </div>
+
+</div>

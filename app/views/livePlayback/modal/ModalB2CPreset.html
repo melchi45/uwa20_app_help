@@ -1,0 +1,52 @@
+﻿<span ng-switch="popupStatus">
+  <span ng-switch-when="setup">
+    <div class="modal-body ua-modal-body">
+      <ul>
+        <li ng-repeat="preset in presetList" class="popup-profile-list">
+          <label>
+            <input type="radio" value="{{preset}}" ng-click="select(preset)" name="preset_group"/>
+            {{ preset.Name }}
+          </label>
+        </li>
+      </ul>
+    </div>
+      <div class="button-groups">
+      <button class="button button-background-active three-buttons" type="button" kind-touch-tap="selectPreset">
+        {{ 'lang_gotoPreset' | translate }}
+      </button>
+      <button class="button button-background-active three-buttons" type="button" kind-touch-tap="addPreset">
+        {{ 'lang_setPreset' | translate }}
+      </button>
+      <button class="button button-background-active three-buttons" type="button" kind-touch-tap="removePreset">
+        {{ 'lang_remove' | translate }}
+      </button>
+    </div>
+  </span>
+
+  <span ng-switch-when="input">
+    <div class="modal-body ua-modal-body">
+      Insert Preset Name <br/><br/>
+      <input type="text" placeholder="Preset Name" ng-model="data.PresetName"/>
+      <br/>
+    </div>
+    <div class="button-groups">
+      <button type="button" class="button button-background-active" kind-touch-tap="ok" ng-class="{'buttons': true}">
+        {{ 'lang_ok' | translate }}
+      </button>
+      <button type="button" class="button button-background-active" kind-touch-tap="cancel" ng-class="{'buttons': true}">
+        {{ 'lang_cancel' | translate }}
+      </button>
+    </div>
+  </span>
+</span>
+
+<div class="modal-bottom-bar"></div>
+
+<loading-bar is-loading="isLoading"></loading-bar>
+<!-- <div class="block loading-bar" ng-class="{'visible':isLoading}">
+ <div class="spinner middle-center">
+   <div class="bounce1"></div>
+   <div class="bounce2"></div>
+   <div class="bounce3"></div>
+ </div>
+</div> -->

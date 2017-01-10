@@ -1,0 +1,98 @@
+<div id="presetpage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <wn5-setup-main-title
+        data-title="lang_presetSetup">
+    </wn5-setup-main-title>
+    <div class="form-group setup-border-box-padding">
+        <div align="center">
+            <sketchbook videoinfo='videoinfo'></sketchbook>
+        </div>
+    </div>
+
+    <div class="form-group"></div>
+
+    <!-- PTZ Control -->
+    <div class="ptz-control_box ptz-control_ptz-menu-width">
+        <ptz-control ptzinfo='ptzinfo'></ptz-control>
+    </div>
+    <!-- //PTZ Control End -->
+
+    <form name="ptzLastPositionForm" ng-if="LastPositionAttr.RememberLastPosition !== undefined" method="get" class="form-horizontal" novalidate>
+        <hr class="wn5-setup-hr">
+        <div class="wn5-setup-section">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_lastPosition' | translate }}</h3> 
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_lastPosition' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="LastPosition.RememberLastPosition" />
+                        {{'lang_enable' | translate}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" ng-model="LastPosition.RememberLastPositionDuration" maxlength="{{LastPositionAttr.DurLen}}" required ng-pattern-restrict="{{OnlyNumStr}}"/>
+                        <label class="col-lg-2 control-label" style="text-align:left">({{LastPositionAttr.RememberLastPositionDuration.minValue}}~{{LastPositionAttr.RememberLastPositionDuration.maxValue}} {{ 'lang_sec' | translate }})</label>
+                        <button type="button" class="btn btn-primary" ng-click="setLastPosition()">{{ 'lang_set' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form name="ptzForm" method="get" class="form-horizontal" novalidate>
+        <hr class="wn5-setup-hr">
+        <div class="wn5-setup-section">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_presetSetup' | translate }}</h3> 
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <button type="button" class="btn btn-primary" ng-click="remove()">{{ 'lang_remove' | translate }}</button>
+                    </div>
+                </div>
+                <div class="table-wrapper form-group">
+                    <table class="table table-bordered table-editor wn5-setup-table">
+                        <thead>
+                            <tr>
+                                <th width="7%" height="40" class="text-center"><input type="checkbox" ng-model="PTZPreset.checkAll" ng-click="checkAll()"></th>
+                                <th width="8%" height="40" class="text-center">{{ 'lang_num' | translate }}</th>
+                                <th width="20%" height="40" class="text-center">{{ 'lang_name' | translate }}</th>
+                                <th width="15%" height="40" class="text-center">{{ 'lang_afteraction' | translate }}</th>
+                                <th width="15%" height="40" class="text-center">{{ 'lang_trackingTime' | translate }}</th>
+                                <th width="10%" height="40" class="text-center">{{ 'lang_menu_camera' | translate }}</th>
+                                <th width="10%" height="40" class="text-center">{{ 'lang_menu_videoanalytics' | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <tr ng-repeat="Preset in PTZPresets"> 
+                                <td width="7%" class="text-center"><input type="checkbox" ng-model="Preset.SelectedPreset" ng-click="presetCheckbox()"></td>
+                                <td width="8%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Preset}}</a></td>
+                                <td width="20%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Name}}</a></td>
+                                <td width="15%" class="text-center">
+                                    <input type="text" class="form-control preset-input presetAfterActionInput" value="{{getTranslatedOption(Preset.AfterAction)}}" readonly ng-mouseover="openAfterActionSelect($index,true)" ng-keyup="openAfterActionSelect($index,true)" ng-click="openAfterActionSelect($index,true)">
+                                    <input type="hidden" ng-model="Preset.AfterAction">
+                                </td>
+                                <td width="15%" class="text-center">
+                                    <input type="text" class="form-control preset-input presetAfterActionTrackingTimeInput" value="{{getTranslatedOption(Preset.AfterActionTrackingTime)}}" readonly ng-mouseover="openTrackingTimeSelect($index,true)" ng-keyup="openTrackingTimeSelect($index,true)" ng-click="openTrackingTimeSelect($index,true)">
+                                    <input type="hidden" ng-model="Preset.AfterActionTrackingTime">
+                                </td>
+                                <td width="10%" class="text-center"><i class="fa fa-chevron-circle-right" style="font-size:20px;;cursor: pointer;" ng-click="onSelectedImage(0, Preset.Preset)"></i>&nbsp;&nbsp;</td>                                                                                                                                       
+                                <td width="10%" class="text-center"><i class="fa fa-chevron-circle-right" style="font-size:20px;;cursor: pointer;" ng-click="onSelectedImage(1, Preset.Preset)"></i>&nbsp;&nbsp;</td>                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <hr calss="wn5-setup-hr">            
+
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>

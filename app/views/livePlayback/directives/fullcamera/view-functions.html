@@ -1,0 +1,46 @@
+<div id="digital-zoom-navigation" ng-show="digitalZoom.visibility">
+  <div class="digital-zoom-navigation-wrapper">
+    <div class="wrap">
+      <div id="digital-zoom-area" ng-style="digitalZoom.areaStyle">
+      </div>
+      <p>x{{digitalZoom.level}}</p>
+    </div>
+  </div>
+</div>
+
+<div id="ptz-mode" ng-show="ptzControl.ptzMenuVisibility">
+  <button class="button button-border-active button-menu top-menu top-menu-right-2nd"
+    ng-mousedown="stopPropagation()"
+    ng-click="ptzControl.closePTZMode()"
+    ng-show="ptzControl.ptzMenuVisibility">
+    <i class="tui tui-close"></i>
+  </button>    
+</div>
+
+<div class="vertical-middle horizon-center" ng-show="ptzControl.ptzMenuVisibility">
+  <button class="button-background-none ptz-menu-tooltip" ng-show="ptzControl.isPlay" ng-click="ptzControl.stopSequence()">
+    <span class="sr-only">pause</span>
+    <i class="tui tui-ch-playback-stop"></i>
+  </button>
+</div>
+
+<div id="ptz-mode" class="ptz-menu-bottom" ng-show="ptzControl.ptzMenuVisibility">
+  <uib-carousel no-wrap="ptzControl.functionSlide.option.nowrap" class="controller-area" ng-mousedown="stopPropagation()">
+    <uib-slide ng-repeat="slides in ptzControl.functionSlide.slides">
+      <div class="live-detail-menu-container">
+        <button class="button-background-none detail-button-bottom live-detail-tooltip" 
+          ng-style="ptzControl.functionSlide.style" ng-repeat="ptzBottom in slides" 
+          ng-mousedown="ptzBottom.action()" ng-mouseup="ptzBottom.afterAction()" ng-if="ptzBottom.show">
+            <span>{{ptzBottom.label}}</span>
+            <i class="tui {{ptzBottom.class}}"
+               ng-class="{'{{ptzBottom.DzoomSelect}}':ptzKeepDzoom, '{{ptzBottom.AzoomSelect}}':ptzKeepAzoom}">
+            </i>
+        </button>
+      </div>
+    </uib-slide>    
+  </uib-carousel>  
+</div>
+
+<div ng-show="ptzControl.ptzAreaZoomMode">
+  <canvas id="areaCanvas" style="position:absolute;z-index:1000"></canvas>
+</div>

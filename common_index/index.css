@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Verdana';
+}
+
+img {
+    border: 0;
+    outline: 0;   
+}
+
+body, html {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#wrap {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 40%;
+}
+
+#ie-lower-version {
+    display: none;
+    width: 576px;
+    margin: 228px auto 0;
+}
+
+#ie-lower-version .brand {
+    overflow: hidden;
+    text-align: center;
+}
+
+#ie-lower-version .buttons {
+    margin-top: 60px;
+    text-align: center;
+}
+
+#ie-lower-version .buttons button {
+    cursor: pointer;
+    line-height: 32px;
+    border: solid 1px #ff9832;
+    background: none;
+}
+
+#ie-lower-version .buttons .confirm-button {
+    margin-left: 12px;
+    margin-top: 30px;
+    width: 177px;
+    height: 34px;
+    color: #fff;
+    background: #ff9832;
+}
+
+#ie-lower-version span {
+    margin-left: 10px;
+    float: left;
+}
+
+#ie-lower-version .dialog {
+    margin-top: 100px;
+    font-size: 14px;
+    color: #8e8e8e;
+}
+
+#ie-lower-version .other-browser {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #8e8e8e;
+}
+
+#ie-lower-version .other-browser ul {
+    margin-right: 20px;
+    float: right;
+}
+
+#ie-lower-version .other-browser li {
+    list-style: none;
+    float: left;
+}
+
+#ie-lower-version .other-browser li.mg {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#ie-lower-version .footer {
+    border-top: solid 1px #f9ad81;
+    margin-top: 166px;
+    padding-top: 13px;
+}
+
+#ie-lower-version .footer p {
+    margin-left: 42px;
+    font-size: 12px;
+    color: #8e8e8e;
+    float: left;
+}
+
+#ie-lower-version .footer ul {
+    margin-right: 42px;
+    float: right;
+}
+
+#ie-lower-version .footer li {
+    list-style: none;
+    float: left;
+}
+
+#ie-lower-version .footer li.mg {
+    margin-right: 19px;
+}
+
+#button-group {
+    width: 620px;
+    margin:0 auto;
+}
+
+#button-group button {
+    cursor: pointer;
+    float: left;
+    width: 300px;
+    height: 80px;
+    border: solid 1px #ddd;
+    outline: none;
+}
+
+#old-plugin {
+    color: #fff;
+    background: #1b2029;
+}
+
+#old-plugin:hover {
+    background: #2b313e;
+    color: #54afff;
+}
+
+#old-plugin:active {
+    background: #0b75d4;
+    color: #fff;
+}
+
+#non-plugin,
+#new-plugin {
+    background: #fff;
+    color: #3b3b3b;
+    margin-left: 20px;
+}
+
+#non-plugin:hover,
+#new-plugin:hover {
+    color: #ff9832;
+}
+
+#non-plugin:active,
+#new-plugin:active {
+    background-color: #ff9832;
+    color: #fff;
+}
+
+
+@media all and (max-width: 640px){
+    #wrap {
+        top: 25%;
+    }
+    #button-group {
+        width: 90%;
+        padding: 0 5%;
+    }    
+    
+    #button-group button {
+        width: 100%;
+        height: 80px;
+        margin: 15px 0 0 0;
+    }
+}

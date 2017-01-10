@@ -1,0 +1,47 @@
+<div ng-cloak="" ng-controller="layoutCtrl">
+    <global-navigation-bar is-setup="true" ng-if="!isDisableSideNav()"></global-navigation-bar>
+    <div class="side-nav-wrapper setup-wrapper" ng-class="{'nav-opened': navOpened}" ng-if="!isDisableSideNav()" style="border-right: 1px solid #c9c9c9;">
+        <div class="sid-nav-inner">
+            <nav>
+                <dl>
+                    <dt id="setup-menu" ng-include="'views/setup/common/navigation.html'">
+                    </dt>
+                </dl>
+            </nav>
+        </div>
+    </div>
+    <div 
+        class="main setup-wrapper wn5-setup-wrapper" 
+        id="setup-main" 
+        ng-class="{'nav-opened': navOpened}">
+        <p id="setup-menu-title" ng-if="!isDisableSideNav()">
+            <span ng-repeat="name in getMenuPath() track by $index">
+                <span ng-hide="$index == 0">
+                    >
+                </span>
+                {{ name | translate }}
+            </span>
+        </p>
+        <div ui-view="">
+        </div>
+        <button class="nav-toggle button button-border-active button-menu top-menu top-menu-left" ng-click="toggleNav(true)" ng-if="!isDisableSideNav()" type="button">
+            <span class="sr-only">
+                Toggle navigation
+            </span>
+            <i class="tui tui-menu">
+            </i>
+        </button>
+        <div class="block loading-bar" ng-class="{'visible':isLoading}">
+            <div class="spinner middle-center">
+                <div class="bounce1">
+                </div>
+                <div class="bounce2">
+                </div>
+                <div class="bounce3">
+                </div>
+            </div>
+        </div>
+        <div class="block" id="block-main" ng-class="{'visible' : navOpened}" ng-click="toggleNav(false)">
+        </div>
+    </div>
+</div>

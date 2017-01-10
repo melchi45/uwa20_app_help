@@ -1,0 +1,77 @@
+<h1 class="wn5-setup-main-title">802.1x</h1>
+<div class="wn5-setup-section">
+	<p>You can select whether or not to use the 802.1x protocol when connecting to a network, and install the certificates. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h3 >IEEE 802.1x Setup</h3>
+	</div>
+
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+		    <h3>IEEE 802.1x </h3>
+		    <p>IEEE 802.1x is a part of the network protocol group called IEEE 802.1 and is the IEEE standard regarding port-based Network Access Control (PNAC). IEEE 802.1x is mainly used for reinforcing security in a wireless LAN (Wi-Fi) environment.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>EAP Type </h3>
+		    <p>EAP (Extensible Authentication Protocol) is an authentication mode regulated in wireless networks and Point-to-Point protocols, and is designed for easy extension. The LEAP mode is a security-vulnerable authentication mode, so is recommended only for environments where EAP-TLS cannot be used.</p>
+		    <ul>
+		        <li><strong class="UI">EAP-TLS</strong>: EAP-TLS (Transport Layer Security) carries out mutual authentication that requires a client certificate with the server; a dynamic WEP key is used for security after connection is made.</li>
+		        <li><strong class="UI">LEAP</strong>: LEAP (Lightweight Extensible Authentication Protocol) does not require certificates and uses only a dynamic WEP key, so a strong password should be used.  </li>
+		    </ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>EAPOL version </h3>
+		    <p>Select <strong class="UI">[1]</strong> or <strong class="UI">[2]</strong> for the version of the <strong class="UI">[EAPOL]</strong> (EAP over LANs) used in the network switch.</p>
+	    </div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>ID</h3>
+		    <p>Enter the client certificate ID for <strong class="UI">[EAP-TLS]</strong> and the user ID for <strong class="UI">[LEAP]</strong>.</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>Password</h3>
+		    <p>Enter the client private key for <strong class="UI">[EAP-TLS]</strong> and the user password for <strong class="UI">[LEAP]</strong>. This is not necessary if an unencrypted key is used in <strong class="UI">[EAP-TLS]</strong>. </p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+			<ul>
+				<li>If the connected network equipment does not support 802.1x, it may not operate properly even if <strong class="UI">[Use]</strong> is set for 802.1x.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h3 >Certificates</h3>
+	</div>
+	<div class="wn5-setup-section-article">
+
+		<div class="wn5-setup-section-article-content">
+			<p>Certificates are necessary only when <strong class="UI">[EAP-TLS]</strong> is used. You can install or delete the relevant certificates and keys.</p>
+			<ul>
+				<li><strong class="UI">CA certificates</strong>: Select if CA certificates include an open key.</li>
+				<li><strong class="UI">Client certificate</strong>: Select if CA certificates include a client authentication key.</li>
+				<li><strong class="UI">Client private key</strong>: Select if CA certificates include a client private key. </li>
+			</ul>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Installing a Certificate</h4>
+			<ol>
+				<li><strong class="UI">Click the [...]</strong> button, select a certificate or key and then click the <strong class="UI">[Open]</strong> button.</li>
+				<li>Click the <strong class="UI">[Install]</strong> button. When certificate installation is complete, a message saying &lsquo;Installed&rsquo; is displayed. </li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Deleting a Certificate</h4>
+			<p>Click the <strong class="UI">[Delete]</strong> button beside the installed certificate or key. When a certificate or key is deleted, a message saying &lsquo;Not available&rsquo; is displayed.</p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">

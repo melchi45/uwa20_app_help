@@ -1,0 +1,17 @@
+[
+	"app/scripts/config/",
+	"app/scripts/controllers/common/",
+	"app/scripts/controllers/livePlayback/",
+	"app/scripts/controllers/login/",
+	"app/scripts/directives/",
+	"app/scripts/directives/fullcamera/",
+	"app/scripts/init/",
+	"app/scripts/models/login/",
+	"app/scripts/models/playback/",
+	"app/scripts/services/common/",
+	"app/scripts/services/DzoomPTZ/",
+	"app/scripts/services/iPOLiS_Mobile/",
+	"app/scripts/services/playbackClass/",
+	"app/scripts/services/plugin/",
+	"app/scripts/utils/"
+]

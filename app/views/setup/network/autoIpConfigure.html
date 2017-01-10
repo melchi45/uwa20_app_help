@@ -1,0 +1,83 @@
+<div class="wrapper wrapper-content" ng-if='pageLoaded'>
+    <form name="autoIpConfigForm" method="get" class="form-horizontal" novalidate>
+        <wn5-setup-main-title
+            data-title="lang_menu_autoipconfig">
+        </wn5-setup-main-title>                              
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_menu_zeroconfig' | translate }}
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red">{{zeroConfStatus}}</span>
+                </h3>                        
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_autoConfig' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="ZeroConf[0].Enable"> <span>{{ 'lang_enable' | translate }}</span>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-left: 15px;">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_IPAddress' | translate }}</div>
+                    <div class="wn5-setup-section-article-content" style="padding-left: 27px;">
+                        <input type="text" class="form-control" ng-model="ZeroConf[0].IPAddress" ng-disabled="true">
+                    </div>
+                </div>
+                <div class="form-group" style="padding-left: 15px;">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_subnetMask' | translate }}</div>
+                    <div class="wn5-setup-section-article-content" style="padding-left: 27px;">
+                        <input type="text" class="form-control" ng-model="ZeroConf[0].SubnetMask" ng-disabled="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_menu_upnp' | translate }}</h3> 
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_menu_upnp' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="UpnpDiscovery[0].Enable"> <span>{{ 'lang_enable' | translate }}</span>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-left: 15px;">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_friendlyName' | translate }}</div>
+                    <div class="wn5-setup-section-article-content" style="padding-left: 27px;">
+                        <input type="text" class="form-control" name="UpnpFriendlyName" ng-model="UpnpDiscovery[0].FriendlyName" ng-disabled="!UpnpDiscovery[0].Enable" required minlength={{UpnpFriendlyNameMinLength}} maxlength={{UpnpFriendlyNameMaxLength}} ng-pattern-restrict="{{UpnpDiscoveryPattern}}" ng-trim="false">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_menu_bonjour' | translate }}</h3> 
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_menu_bonjour' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="Bonjour.Enable"> <span>{{ 'lang_enable' | translate }}</span>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-left: 15px;">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_friendlyName' | translate }}</div>
+                    <div class="wn5-setup-section-article-content" style="padding-left: 27px;">
+                        <input type="text" class="form-control" name="BonjourFriendlyName" ng-model="Bonjour.FriendlyName" ng-disabled="!Bonjour.Enable" required minlength={{BonjourFriendlyNameMinLength}} maxlength={{BonjourFriendlyNameMaxLength}} ng-pattern-restrict="{{BonjourPattern}}" ng-trim="false">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="wn5-setup-hr">
+
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>

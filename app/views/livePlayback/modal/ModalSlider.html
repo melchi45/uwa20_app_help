@@ -1,0 +1,25 @@
+﻿<div ng-switch="favoriteStep" class="modal-body ua-modal-body">
+  {{message}}  
+  <div class="slider-container">
+    <div class="speaker-mic-on-off-icon">
+      <i id="on-off" ng-show="isSpeaker" ng-click="onOff()" ng-class="isSpeakerOn ? 'tui tui-speaker' : 'tui tui-speaker-mute' "></i>
+      <i id="on-off" ng-show="!isSpeaker" ng-click="onOff()" ng-class="isMicOn ? 'tui tui-mic' : 'tui tui-mic-mute' "></i>
+    </div>
+    <div class="slider-position" ui-slider="slider.options" step="1"
+      use-decimals ng-model="slider.data">
+      <div class="time-sections" ng-style="slider.sectionStyle">
+        <span ng-repeat="time in slider.timeSections" class="time-section-container"
+          ng-style="slider.getCellStyle($index, slider.timeSections.length)">
+          <span class="sr-only">{{time}}</span>
+          <div class="time-section"></div>
+        </span>
+      </div>
+      <div class="time-text" ng-class="getModalSlideBar()">
+        <span ng-repeat="time in slider.timeSections"
+          ng-style="slider.getCellStyle($index, mikeSlider.timeSections.length)">{{time}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-class="getModalBottomBar()"></div>

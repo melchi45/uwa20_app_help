@@ -1,0 +1,28 @@
+<div class="modal-body ua-modal-body" id="overlay-events">
+	<span ng-if="checkboxAll">
+		<label class="wmf-checkbox" >
+			<input type="checkbox" ng-model="all.selected" ng-change="selectAll(all.selected)">
+			<p class="checked-icon checked-icon-search"></p>
+			<span class="event-title">
+				All
+			</span>
+		</label>
+	</span>
+	<div ng-repeat="item in checklist" >
+		<span>
+			<label class="wmf-checkbox">
+				<input type="checkbox" ng-model="item.selected" ng-change="selectCam(item.selected)">
+				<p class="checked-icon checked-icon-search"></p>
+				<span class="event-title">
+					{{item.name}}
+				</span>
+			</label>
+		</span>
+	</div>
+
+</div>
+<div class="button-groups" >
+	<button class="button button-background-active" type="button" ng-click="ok()">
+		OK
+	</button>
+</div>
