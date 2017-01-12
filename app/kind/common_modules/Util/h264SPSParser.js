@@ -331,7 +331,7 @@ function H264SPSParser() {
         "0" + spsMap.get("profile_compatibility").toString(16) : spsMap.get("profile_compatibility").toString(16);
       var level_idc = spsMap.get("level_idc").toString(16);
 
-      console.log("getCodecInfo = " + (profile_idc + profile_compatibility + level_idc));
+      //console.log("getCodecInfo = " + (profile_idc + profile_compatibility + level_idc));
       return profile_idc + profile_compatibility + level_idc;
 
     }

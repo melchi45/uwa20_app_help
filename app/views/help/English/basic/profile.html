@@ -14,7 +14,7 @@
             <p>After profile properties have been changed, you can set whether to output an image with the previous profile or with the changed profile. </p>
             <p>When <strong class="UI">[Keep connection 
 when profile properties are changed]</strong> is selected, the image is outputted according to the previous profile properties even if the profile properties have been changed; when the web viewer is reconnected, the image is outputted with the changed profile. <strong class="UI">[Keep connection 
-when profile properties are changed]</strong> is not selected, the image is outputted with the changed profile immediately when the profile properties are changed. While the profile is being changed, an orange color will appear on the edge of the live view of the <a class="wn5-online-help-link" href="../Monitoring.html" ng-href="#/help/monitoring">[Monitoring]</a> page.</p>
+when profile properties are changed]</strong> is not selected, the image is outputted with the changed profile immediately when the profile properties are changed. While the profile is being changed, an orange color will appear on the edge of the live view of the [Monitoring] page.</p>
         </div>
     </div>
 </div>
@@ -120,14 +120,14 @@ when profile properties are changed]</strong> is not selected, the image is outp
                 <li><strong class="UI">Default profile</strong>: This is the default profile applied for streaming a live camera image. &lsquo;Default&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>: This video profile is used for sending the captured screen of an image when an event is created. &lsquo;Event&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The E-mail/FTP profile option will appear only when MJPEG is set for the codec.</li>
                 <li><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card or NAS. &lsquo;Record&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
-                <li><strong class="UI">DPTZ profile</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The DPTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
+                <li><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
                 
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="audioin"></a>Audio in </h3>
             <p>When the camera has an internal microphone or an external microphone is connected, you can set external sounds to be inputted in the image.</p>
-            <p>To use the <a class="wn5-online-help-link" href="../Monitoring.html#mic" ng-href="#/help/monitoring?#mic">Microphone</a> and <a class="wn5-online-help-link" href="../Monitoring.html#speaker"  ng-href="#/help/monitoring?#speaker">Speaker</a> functions on the monitoring page, <strong class="UI">[Enable]</strong> should be selected for <strong class="UI">[Audio in]</strong>.</p>
+            <p>To use the Microphone and Speaker functions on the monitoring page, <strong class="UI">[Enable]</strong> should be selected for <strong class="UI">[Audio in]</strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -199,14 +199,15 @@ when profile properties are changed]</strong> is not selected, the image is outp
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
 
 			<ul>
-				<li>High resolution is not supported by Chrome, Edge or Firefox web browsers. High resolution images can be streamed in Internet Explorer and Safari after installation of a plugin. To install the plugin, click the {Icon} button on the top right of the <a class="wn5-online-help-link" href="../Monitoring.html" ng-href="#/help/monitoring"><strong class="UI">[Monitoring]</strong></a> page or the <a class="wn5-online-help-link" href="../Playback.html" ng-href="#/help/playback"><strong class="UI">[Playback]</strong></a> page. </li>
+				<li>고해상도 영상을 문제없이 스트림하려면, Chrome을 이용하여 웹뷰어에 접속하는 것을 권장합니다.</li>
+				<li>High resolution is not supported by Chrome, Edge or Firefox web browsers. High resolution images can be streamed in Internet Explorer and Safari after installation of a plugin. To install the plugin, click the {Icon} button on the top right of the <strong class="UI">[Monitoring]</strong> page or the <strong class="UI">[Playback]</strong> page. </li>
 			</ul>
 		</div>
 		
             
         <div class="wn5-setup-section-article-content">
             <h3>Frame rate </h3>
-            <p>Set the number of frames per second. The range of frame rates available varies according to the frame rate value selected from <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Camera setup]</strong> &gt; <a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
+            <p>Set the number of frames per second. The range of frame rates available varies according to the frame rate value selected from <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Camera setup]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
         </div>
         
 		<div class="wn5-setup-section-article-content">
@@ -241,7 +242,10 @@ when profile properties are changed]</strong> is not selected, the image is outp
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Encoding priority</h3>
-            <p>Set the priority between frame rate and image quality if the amount of image data exceeds the target bitrate. If <strong class="UI">[Frame rate]</strong> is set as the high priority, the maximum frame rate is secured, but the image quality may be lowered. On the other hand, when <strong class="UI">[Compression]</strong> is set as the high priority, the image quality is secured, but some frames my be omitted, so that the image may be disconnected or seem unnatural. <strong class="UI">[Encoding priority]</strong> is activated only when <strong class="UI">[CBR]</strong> is set for <strong class="UI">[Bitrate control]</strong>.</p>
+            <p>Set the priority between frame rate and image quality if the amount of image data exceeds the target bitrate. </p>
+			<p>프로파일의 [코덱]을 [H.264]나 [H.265]로 선택한 경우, [프레임 레이트]와 [압축] 중 선택할 수 있습니다. If <strong class="UI">[Frame rate]</strong> is set as the high priority, the maximum frame rate is secured, but the image quality may be lowered. On the other hand, when <strong class="UI">[Compression]</strong> is set as the high priority, the image quality is secured, but some frames my be omitted, so that the image may be disconnected or seem unnatural. 프로파일 [코덱]을 [H.264]나 [H.265]로 선택한 경우, <strong class="UI">[Encoding priority]</strong> is activated only when <strong class="UI">[CBR]</strong> is set for <strong class="UI">[Bitrate control]</strong>.</p>
+			
+			<p>프로파일의 <strong class="UI">[코덱]</strong>이 <strong class="UI">[MJPEG]</strong>인 경우 <strong class="UI">[프레임 레이트]</strong>와 <strong class="UI">[비트 레이트]</strong> 중에 선택할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">    
             <h3><a class="wn5-online-help-link" name="GOV"></a>GOV length  </h3>
@@ -264,7 +268,7 @@ when profile properties are changed]</strong> is not selected, the image is outp
             <h3><a class="wn5-online-help-link" name="smartcodec"></a>Smart codec </h3>
             <p>Set whether or not to use smart codec. Smart codec is a unique technology of Hanwha Techwin that reduces the compression rate for an area of interest to the user (to output in high quality), while it increases the compression rate for other areas, (to output in normal quality), thereby reducing the data size of the image as a whole. Smart codec is activated only when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[CBR]</strong>.</p>
           
-            <p>The area for smart codec can be set from <strong class="UI">[Video &amp; Audio]</strong> &gt; <a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[Smart codec]</strong></a>. </p>
+            <p>The area for smart codec can be set from <strong class="UI">[Video &amp; Audio]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[Smart codec]</strong></a>. </p>
         </div>
             
         <div class="wn5-setup-section-article-content">
@@ -274,6 +278,11 @@ when profile properties are changed]</strong> is not selected, the image is outp
             <ul>
                 <li>Enter the maximum GOV length to apply when there is no motion in the image. The range of input value is displayed next to <strong class="UI">[GOV length]</strong>. The input value in <strong class="UI">[GOV length]</strong> becomes the minimum value, while the maximum value is 480; it varies according to the <strong class="UI">[Frame rate]</strong> in <strong class="UI">[Profile properties]</strong>.</li>
             </ul>
+        </div>
+		<div class="wn5-setup-section-article-content">
+            <h3>Dynamic FPS</h3>
+            <p>Contents!!!!!!</p>
+            
         </div>
     </div>
 </div>
@@ -293,11 +302,11 @@ when profile properties are changed]</strong> is not selected, the image is outp
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>IP address</h3>
-            <p>Enter an IPv4 address that can be connected from the IPv4 network. The range of multicast RTSP ports is from 1024 to 65535. (The 3702 port however, cannot be used.)</p>
+            <p>Enter an IPv4 address that can be connected from the IPv4 network. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Port</h3>
-            <p>Set the port that controls sending of the image.</p>
+            <p>Set the port that controls sending of the image. The range of multicast RTSP ports is from 1024 to 65535. (The 3702 port however, cannot be used.)</p>
         </div>
 
         <div class="wn5-setup-section-article-content">

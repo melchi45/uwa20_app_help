@@ -6,7 +6,6 @@ kindFramework
 	function($rootScope, LoggingService, kindStreamInterface, UniversialManagerService, 
     ConnectionSettingService, Attributes, ModalManagerService, $translate, CAMERA_STATUS, 
     EventNotificationService, AccountService, $q, SunapiClient, $timeout){
-    var Live4NVRProfile = "Live4NVR";
     var NonPluginProfile = "PLUGINFREE";
     var NonPluginResolution = "1920x1080";
     var NonPluginResolution_Multi = "1536x676";
@@ -206,34 +205,6 @@ kindFramework
       return deferred.promise;
     };
 
-    var waitLive4NVRProfile = function () {
-      var deferred = $q.defer();
-      var isExistLive4NVR = false;
-      $timeout(function () {
-        SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
-          function (response) {
-            var ProfileList = response.data.VideoProfiles[0].Profiles;
-            UniversialManagerService.setProfileList(ProfileList);
-            for (var i = 0; i < ProfileList.length; i++) {
-              if (ProfileList[i].Name === Live4NVRProfile) {
-                deferred.resolve(ProfileList[i].Profile - 1);
-                isExistLive4NVR = true;
-                $rootScope.$emit('changeLoadingBar', false);
-                break;
-              }
-            }
-            if(!isExistLive4NVR){
-              waitLive4NVRProfile();
-            }
-          },
-          function (errorData) {
-            $rootScope.$emit('changeLoadingBar', false);
-            ModalManagerService.open('message', { 'buttonCount': 0, 'message': errorData } );
-          },'', true);
-      },500);
-      return deferred.promise;
-    }; 
-
     var sunapiErrorFunc = function(errorData) {
       if (errorData === "Duplicate Value In List") {
           var list = UniversialManagerService.getProfileList();
@@ -344,20 +315,6 @@ kindFramework
       return deferred.promise;
     }
 
-    function revertLiveNVRDefaultProfile(_profileIndex) {
-      var deferred = $q.defer();
-      ModalManagerService.open('message', { 'buttonCount': 0, 'message': 'Change Live4NVR Resolution' } );
-      var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=update&EncodingType=H264&Resolution=" + NonPluginResolution + "&Profile=" + (_profileIndex + 1);
-      SunapiClient.get(sunapiURI, '',
-        function (response) {
-          waitLive4NVRProfile().then( function(_profileNumber){ deferred.resolve(_profileNumber); });
-        },
-        function (errorData) {
-          sunapiErrorFunc(errorData);
-      },'', true);
-      return deferred.promise;          
-    }
-
     function gcd(a, b) {
       return (b === 0) ? a : gcd(b, a % b);
     }    
@@ -421,18 +378,16 @@ kindFramework
         ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_msg_not_profile_auth" } );
       } else {
         if (CurrentProfile !== undefined) {
-          //if (CurrentProfile.Name !== NonPluginProfile && CurrentProfile.Name !== Live4NVRProfile) {
-            changePluginFlag = true;
-            $rootScope.$emit('changeLoadingBar', true);
-            ModalManagerService.open('message', { 'buttonCount': 1, 'message': $translate.instant('lang_videoplaydifficult') + $translate.instant('lang_defaultprofileapplied') } );
-            createPLUGINFREEProfile().then(
-              function(data) {
-                liveStatusCallback(996, data);
-                changePluginFlag = false;
-              },
-              function (error) { console.log("createPLUGINFREEProfile::error = " + error); }
-            );
-          //}
+          changePluginFlag = true;
+          $rootScope.$emit('changeLoadingBar', true);
+          ModalManagerService.open('message', { 'buttonCount': 1, 'message': $translate.instant('lang_videoplaydifficult') + $translate.instant('lang_defaultprofileapplied') } );
+          createPLUGINFREEProfile().then(
+            function(data) {
+              liveStatusCallback(996, data);
+              changePluginFlag = false;
+            },
+            function (error) { console.log("createPLUGINFREEProfile::error = " + error); }
+          );
         } else {
           ModalManagerService.open('message', { 'buttonCount': 1, 'message': $translate.instant('lang_msg_invalidValue') } );
         }
@@ -485,21 +440,6 @@ kindFramework
                     function(){ deferred.reject(); }
                   );
                 }
-              }
-              break;
-            }
-            else if(ProfileList[ProfileIndex].Name === Live4NVRProfile)
-            {
-              var Resolution = ProfileList[ProfileIndex].Resolution.split('x');
-              var size = Resolution[0] * Resolution[1];
-
-              if (size <= 1920 * 1080) {
-                deferred.resolve(ProfileIndex);
-              } else {
-                revertLiveNVRDefaultProfile(ProfileIndex).then(
-                  function(){ deferred.resolve(ProfileIndex); },
-                  function(){ deferred.reject(); }
-                );
               }
               break;
             }

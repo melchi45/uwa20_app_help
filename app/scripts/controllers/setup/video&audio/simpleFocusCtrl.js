@@ -184,15 +184,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             }, 500);
         } else {
             getAttributes().finally(function(){
-                try{
-                    Attributes.getAttributeSection().then(function(){
-                        console.log("Attributes.getAttributeSection()");
-                        mAttr = Attributes.get();
-                        view();
-                    });
-                }catch(e){
-                    view();
-                }
+                view();
             });
         }
     })();

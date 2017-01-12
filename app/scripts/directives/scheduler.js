@@ -26,6 +26,7 @@ kindFramework
             var deleting = false;
             var prevEventObjs = null;
             var initializing = false;
+            var currentUnit = '30';
 
             // eventObjs = setEventSources();
 
@@ -35,7 +36,7 @@ kindFramework
                     var obj = convertIdToDate(ScheduleIds[i]);//console.info(ScheduleIds[i]);console.info(obj);
                     eventArray[i] = angular.copy(obj);
                     eventIdArray.push(eventCount - 1);
-                } 
+                }
                 eventObjs = angular.copy(eventArray);//console.info(eventArray);
                 if(initializing) {
                     initializing = false;
@@ -56,7 +57,7 @@ kindFramework
                         scheduleIds.push(angular.copy(result));
                     } else {
                         for(var k = 0; k < result.length; k++) {
-                            var element = angular.copy(result[k]); 
+                            var element = angular.copy(result[k]);
                             scheduleIds.push(angular.copy(element));
                         }
                     }
@@ -215,7 +216,7 @@ kindFramework
                     }
                     if(moment(tStart).format('YYYY-MM-DD') === moment(eventItem.start).format('YYYY-MM-DD')) { // only on the same day
                         if(eventItem !== null && typeof eventItem !== 'undefined') {
-                            if(moment(tStart).format('YYYY-MM-DDTHH:mm') === moment(eventItem.start).format('YYYY-MM-DDTHH:mm')) {   
+                            if(moment(tStart).format('YYYY-MM-DDTHH:mm') === moment(eventItem.start).format('YYYY-MM-DDTHH:mm')) {
                                 if(moment(tEnd).format('YYYY-MM-DDTHH:mm') >= moment(eventItem.end).format('YYYY-MM-DDTHH:mm')) {
                                    // ========
                                    // --------
@@ -252,7 +253,7 @@ kindFramework
                                                 }
                                             // }
                                         }
-                                    } else { 
+                                    } else {
                                         // ===========
                                         //     ----
                                         eventMerged = true;
@@ -354,9 +355,8 @@ kindFramework
                         color: '#FF7C00',
                         title: '',
                     };
-                    $('#calendar').fullCalendar('renderEvent', eventData, true);//console.info('added event : ');console.info(moment(eventData.start).format('YYYY-MM-DDTHH:mm'));console.info(moment(eventData.end).format('YYYY-MM-DDTHH:mm'));
-                    // $('#calendar').fullCalendar('addEventSource', eventData);
-                    // $('#calendar').fullCalendar('refetchEvents');
+                
+                    $('#calendar').fullCalendar('renderEvent', eventData, true);
                 }
                 // console.info('end of mergeTheSelected ====================== ');
                 merging = false;
@@ -381,9 +381,144 @@ kindFramework
                         return removingItem;
                     }
                 }
+
                 merging = false;
                 // console.info('end of mergeTheResized ====================== ');
                 return null;
+            }
+
+            function checkFromToMin(start, end, id) {
+                var target;
+                var tEventObjs = angular.copy(eventObjs);
+                if(id !== undefined) { // drop & resize
+                    // if(moment(start).format('YYYY-MM-DDTHH') !== moment(end).format('YYYY-MM-DDTHH')) { // on the different day
+                        for(var i = 0; i < tEventObjs.length; i++) {
+                            var result = true;
+                            target = tEventObjs[i];
+                            if(target.id !== id) {
+                                // except between
+                                if(moment(target.start).format('YYYY-MM-DDTHH:mm') === moment(end).format('YYYY-MM-DDTHH:mm')) { // merging case
+                                    return true;
+                                } else if(moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) { // merging case
+                                    return true;
+                                } else { // not merging case so check existing event
+                                    if(moment(target.start).format('YYYY-MM-DDTHH') === moment(end).format('YYYY-MM-DDTHH')
+                                    || moment(target.start).format('YYYY-MM-DDTHH') === moment(start).format('YYYY-MM-DDTHH')
+                                    || moment(target.end).format('YYYY-MM-DDTHH') === moment(end).format('YYYY-MM-DDTHH')
+                                    || moment(target.end).format('YYYY-MM-DDTHH') === moment(start).format('YYYY-MM-DDTHH')) {
+                                        if(moment(target.start).format('YYYY-MM-DDTHH') === moment(start).format('YYYY-MM-DDTHH')) {
+                                            return false;
+                                        }
+                                        if(moment(target.end).format('mm') !== '00') {
+                                            return false;
+                                        }
+                                        if(moment(end).format('mm') === '00') {
+                                            return true;
+                                        }
+                                        if(moment(start).format('mm') === '00') {
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        return true;
+                    // } else { // on the same day
+                    //     return true;
+                    // }
+                } else { // select
+                    if(moment(start).format('YYYY-MM-DDTHH') === moment(end).format('YYYY-MM-DDTHH')) { // on the same hour
+                        // find existing event in the same hour
+                        for(var i = 0; i < tEventObjs.length; i++) {
+                            target = tEventObjs[i];
+                            if(moment(target.start).format('YYYY-MM-DDTHH:mm') === moment(end).format('YYYY-MM-DDTHH:mm')) {
+                                // merged
+                                return true;
+                            } else if(moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) {
+                                //merged
+                                return true;
+                            } else {
+                            // not merged
+                                if(moment(target.start).format('YYYY-MM-DDTHH') === moment(end).format('YYYY-MM-DDTHH')
+                                    || moment(target.start).format('YYYY-MM-DDTHH') === moment(start).format('YYYY-MM-DDTHH')
+                                    || moment(target.end).format('YYYY-MM-DDTHH') === moment(end).format('YYYY-MM-DDTHH')
+                                    || moment(target.end).format('YYYY-MM-DDTHH') === moment(start).format('YYYY-MM-DDTHH')) {
+                                    if(moment(target.start).format('YYYY-MM-DDTHH') === moment(start).format('YYYY-MM-DDTHH')) {
+                                        return false;
+                                    }
+                                    if(moment(target.end).format('mm') !== '00') {
+                                        return false;
+                                    }
+                                    if(moment(end).format('mm') === '00') {
+                                        return true;
+                                    }
+                                    if(moment(start).format('mm') === '00') {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                        return true;
+                    } else { // on the different hour
+                        var sSuccess = false;
+                        var eSuccess = false;
+                        for(var i = 0; i < tEventObjs.length; i++) {
+                            target = tEventObjs[i];
+                            if(moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) {
+                                // merged
+                                sSuccess = true;
+                            }
+                            if(moment(target.start).format('YYYY-MM-DDTHH:mm') === moment(end).format('YYYY-MM-DDTHH:mm')) {
+                                // merged
+                                eSuccess = true;
+                            }
+                        }
+                        if(sSuccess && eSuccess) {
+                            return true;
+                        } else {
+                            if(!sSuccess) {
+                                for(var i = 0; i < tEventObjs.length; i++) {
+                                    target = tEventObjs[i];
+                                    if(moment(target.start).format('YYYY-MM-DDTHH') === moment(start).format('YYYY-MM-DDTHH')
+                                        || moment(target.end).format('YYYY-MM-DDTHH') === moment(start).format('YYYY-MM-DDTHH')) {
+                                        if(moment(target.end).format('mm') === '00') {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                        if(moment(end).format('mm') === '00') {
+                                            return true;
+                                        }
+                                        if(moment(start).format('mm') === '00') {
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                            if(!eSuccess) {
+                                var result = false;
+                                for(var i = 0; i < tEventObjs.length; i++) {
+                                    target = tEventObjs[i];
+                                    if(moment(target.start).format('YYYY-MM-DDTHH') === moment(end).format('YYYY-MM-DDTHH')
+                                        || moment(target.end).format('YYYY-MM-DDTHH') === moment(end).format('YYYY-MM-DDTHH')) {
+                                        if(moment(end).format('mm') === '00') {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                        if(moment(end).format('mm') === '00') {
+                                            return true;
+                                        }
+                                        if(moment(start).format('mm') === '00') {
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                            return true;
+                        }
+                    }
+                }
             }
 
             function removeEvent(source) {
@@ -396,7 +531,7 @@ kindFramework
             }
 
             function createCalendar() {
-                
+
                 $('#calendar').fullCalendar({
                     contentHeight: function(){
                         $('#calendar .fc-scroller').css({
@@ -410,6 +545,7 @@ kindFramework
                             text: '1 ' + $translate.instant('lang_minute'),
                             click: function() {
                                 $('#calendar').fullCalendar('option','slotDuration','00:01:00');
+                                currentUnit = '1';
                             }
                         },
                         customSlotDuration2: {
@@ -417,6 +553,7 @@ kindFramework
                             text: '30 ' + $translate.instant('lang_minute'),
                             click: function() {
                                 $('#calendar').fullCalendar('option','slotDuration','00:30:00');
+                                currentUnit = '30';
                             }
                         },
                         customSlotDuration3: {
@@ -424,6 +561,7 @@ kindFramework
                             text: '1 ' + $translate.instant('lang_hour'),
                             click: function() {
                                 $('#calendar').fullCalendar('option','slotDuration','00:60:00');
+                                currentUnit = '60';
                             }
                         },
                         clearAll: {
@@ -458,14 +596,14 @@ kindFramework
                     eventOverlap: false,
                     defaultView: 'agendaWeek',
                     defaultDate: defaultDate,
-                    
+
                     // --------------------- Agenda Options -------------------
                     allDaySlot: false, // Determines if the "all-day" slot is displayed at the top of the calendar.
                     // allDayText: 'All Day', // The text titling the "all-day" slot at the top of the calendar.
                     slotDuration: curDuration, // The frequency for displaying time slots.
                     slotLabelFormat: 'HH:mm',
                     slotEventOverlap: false, // Determines if timed events in agenda view should visually overlap.
-                    // slotLabelInterval: 
+                    // slotLabelInterval:
                     scrollTime: '00:00:00',
                     dragScroll: true,
                     displayEventTime: true, // Whether or not to display the text for an event's time.
@@ -475,12 +613,12 @@ kindFramework
                     editable: true,
                     dayNames: ['','','','','','',''],
                     dayNamesShort:['','','','','','',''],
-                    
+
                     eventLimit: true, // allow "more" link when too many events
                     eventColor: '#FF7C00',
                     selectConstraint:{ // limit selectable to one day.
-                      start: '00:00', 
-                      end: '24:00', 
+                      start: '00:00',
+                      end: '24:00',
                     },
                     eventConstraint :{
                         start: '00:00',
@@ -489,7 +627,16 @@ kindFramework
                     selectOverlap: false,
                     events: eventObjs,
                     select: function(start, end, jsEvent, view, resource) {
-                        mergeTheSelected(start, end);
+                        if(currentUnit === '60') {
+                            mergeTheSelected(start, end);
+                        } else {
+                            var result = checkFromToMin(start, end);
+                            if(result === true) {
+                                mergeTheSelected(start, end);
+                            } else if(result === false) {
+                                $('#calendar').fullCalendar('unselect');
+                            }
+                        }
                     },
                     eventAfterAllRender: function(view) {
                         if(!initialRendered) {
@@ -524,21 +671,49 @@ kindFramework
                     },
                     eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) { // Triggered when dragging stops and the event has moved to a different day/time.
                         // when finish dragging and dropping selected cells.
-                        var merged = mergeTheDropped(event.start, event.end);
-                        if(merged !== false) {
-                            removeEvent(event);
-                            if(merged !== true) {
-                                removeEvent(merged);
+                        if(currentUnit === '60') {
+                            var merged = mergeTheDropped(event.start, event.end);
+                            if(merged !== false) {
+                                removeEvent(event);
+                                if(merged !== true) {
+                                    removeEvent(merged);
+                                }
                             }
-                        }
+                        } else {
+                            var result = checkFromToMin(event.start, event.end, event.id);
+                            if(result === true) {
+                                var merged = mergeTheDropped(event.start, event.end);
+                                if(merged !== false) {
+                                    removeEvent(event);
+                                    if(merged !== true) {
+                                        removeEvent(merged);
+                                    }
+                                }
+                            } else if(result === false) {
+                                revertFunc();
+                            }
+                        } 
                     },
                     eventResize: function(event, delta, revertFunc, jsEvent, ui, view) { // Triggered when resizing stops and the event has changed in duration.
                     // eventResizeStop: function(event, jsEvent, ui, view){
                         // console.info('eventResize :: ');console.info(moment(event.start).format('YYYY-MM-DDTHH:mm'));console.info(moment(event.end).format('YYYY-MM-DDTHH:mm'));
-                        resized = true;
-                        var removingItem = mergeTheResized(event);
-                        if(removingItem !== null) {
-                            removeEvent(removingItem);
+                        if(currentUnit === '60') {
+                            resized = true;
+                            var removingItem = mergeTheResized(event);
+                            if(removingItem !== null) {
+                                removeEvent(removingItem);
+                            }
+                        } else {
+                            var result = checkFromToMin(event.start, event.end, event.id);
+                            if(result === true) {
+                                resized = true;
+                                var removingItem = mergeTheResized(event);
+                                if(removingItem !== null) {
+                                    removeEvent(removingItem);
+                                }
+                            } else if(result === false) {
+                                revertFunc();
+                            }
                         }
                     }
                 });
@@ -577,7 +752,7 @@ kindFramework
                 deleting = false;
             }
 
-            function setMinusOneMin(data, type) { // minus 1 from endMinute in case of hour so BE set time from 0 ~ 59 
+            function setMinusOneMin(data, type) { // minus 1 from endMinute in case of hour so BE set time from 0 ~ 59
                 var result;
                 if(type === 'string') {
                     var item = data;
@@ -1203,7 +1378,7 @@ kindFramework
                 if(prevEventObjs !== null){
                     for(var i = 0; i < prevEventObjs.length; i++) {
                         $('#calendar').fullCalendar('renderEvent', prevEventObjs[i], true);
-                    }   
+                    }
                 }
                 mergeTheInitial();
             }, scope);

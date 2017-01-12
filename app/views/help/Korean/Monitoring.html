@@ -1,8 +1,8 @@
+﻿
 <h1 class="wn5-setup-main-title">모니터링 화면</h1>
 <div class="wn5-setup-section">
     <p>카메라가 촬영 중인 모니터링 영상을 확인하고, 화면 캡처, 알람 출력, 마이크 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 모니터링 화면이 나타납니다. </p>
 </div>
-
 <div class="wn5-setup-section">
     <div class="wn5-online-help-list">
     <p>상단의 버튼을 클릭하여 모니터링 화면과 녹화 재생 화면, 설정 화면으로 이동할 수 있습니다.</p>
@@ -10,20 +10,20 @@
             <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
             <li><span class="tui tui-wn5-top-live"></span>(모니터링): 카메라가 촬영 중인 모니터링 화면을 확인하고 다양한 카메라 기능을 제어할 수 있습니다.</li>
             <li><span class="tui tui-wn5-top-playback"></span>(녹화 재생): SD 카드 또는 NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.  </li>
-            <li><span class="tui tui-wn5-top-setup"></span>(설정): 웹뷰어 설정을 변경할 수 있습니다.  </li>
+            <li><span class="tui tui-wn5-top-setup"></span>(설정): 카메라의 상세 설정을 변경할 수 있습니다.  </li>
         </ul>
     </div>
 
 		<div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
-				<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, Plugin을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. Plugin을 설치하려면 오른쪽 상단의 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li>
+				<li>Chrome으로 웹뷰어에 접속하면 녹화 재생 화면의 기능을 가장 안정적으로 사용할 수 있습니다.</li>
+				<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li>
 			</ul>
     
         </div>
 </div>
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>모니터링 아이콘</h2>
@@ -41,21 +41,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td width="235">
-                            <p><span class="tui tui-wn5-toolbar-ptz"></span><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">(PTZ)</a></p>
-                            <p>&nbsp;</p>
-                        </td>
-                        <td width="235">
-                            <p>카메라의 Pan/Tilt/Zoom 동작을 디지털로 제어할 수 있습니다.
-                현재 모니터링 화면에 적용된 비디오 프로파일이 디지털 PTZ를 지원하는 경우에만 작동합니다. 디지털 PTZ 제어 프로파일로 변경하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<a class="wn5-online-help-link" href="basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[프로파일 타입]</strong></a>에서 <strong class="UI">[DPTZ 프로파일]</strong>을 선택합니다. </p>
-                            <p>&nbsp;</p>
-                        </td>
-                    </tr>
+
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
-                            <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">(비디오 설정)</a></p>
+                            <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">비디오 설정</a></p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -63,10 +53,22 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+					<tr>
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p>카메라의 팬/틸트/줌 동작을 디지털로 제어할 수 있습니다.
+                현재 모니터링 화면에 적용된 비디오 프로파일이 디지털 PTZ를 지원하는 경우에만 작동합니다. 디지털 PTZ 제어 프로파일로 변경하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택합니다. </p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-status"></span></p>
-                            <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">(상태)</a></p>
+                            <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">상태</a></p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -77,7 +79,7 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
-                            <p>(전체 화면)</p>
+                            <p>전체 화면</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -101,7 +103,7 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-capture"></span></p>
-                            <p>(캡처)</p>
+                            <p>캡처</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -112,7 +114,7 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
-                            <p>(저장)</p>
+                            <p>저장</p>
                         </td>
                         <td width="235">
                             <p>모니터링 화면을 수동으로 녹화하여 PC에 저장할 수 있습니다. 저장 버튼을 클릭하여 녹화를 시작하고, 다시 한번 더 클릭하면 녹화가 멈춥니다. 녹화 파일은 .avi의 형식으로 저장할 수 있고, 브라우저에 따라 브라우저 기본 저장 경로에 저장되거나 다른 이름 저장 창에서 파일 경로를 설정할 수 있습니다.</p>
@@ -122,7 +124,7 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-pixel"></span></p>
-                            <p>(픽셀 카운트)</p>
+                            <p>픽셀 카운트</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -133,29 +135,29 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
-                            <p><a class="wn5-online-help-link" name="mic"></a>(마이크)</p>
+                            <p><a class="wn5-online-help-link" name="mic"></a>마이크</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>마이크 기능을 사용할 수 있습니다. 마이크 기능을 사용하려면 해당 프로파일에 <strong class="UI">[오디오 입력]</strong> 기능이 활성화되어 있어야 합니다. 비디오 입력 기능을 활성화하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<a class="wn5-online-help-link" href="basic/profile.html#audioin" ng-href="#/help/basic_videoProfile?#audioin"><strong class="UI">[오디오 입력]</strong></a>에서 <strong class="UI">[사용함]</strong>을 선택합니다.</p>
+                            <p>마이크 기능을 사용할 수 있습니다. 마이크 기능을 사용하려면 해당 프로파일에 <strong class="UI">[오디오 입력]</strong> 기능이 활성화되어 있어야 합니다. 비디오 입력 기능을 활성화하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[오디오 입력]</strong>에서 <strong class="UI">[사용함]</strong>을 선택합니다.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
-                            <p>(알람 출력)</p>
+                            <p>알람 출력</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>원하는 알람 출력 번호를 클릭하면 이미 설정한 대로 알람을 출력합니다. 알람은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a> 페이지에서 설정할 수 있습니다. 알람 출력 개수는 카메라마다 다릅니다.</p>
+                            <p>원하는 알람 출력 번호를 클릭하면 이미 설정한 대로 알람을 출력합니다. 알람은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[이벤트]</strong>&gt;<strong class="UI">[알람 출력]</strong> 페이지에서 설정할 수 있습니다. 알람 출력 개수는 카메라마다 다릅니다.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
-                            <p><a class="wn5-online-help-link" name="speaker"></a>(스피커)</p>
+                            <p><a class="wn5-online-help-link" name="speaker"></a>스피커</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -169,40 +171,6 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>카메라의 팬, 틸트, 확대/축소 동작을 제어하거나 디지털 자동 추적 기능을 사용할 수 있습니다. 메인 화면의 하단에 있는 <span class="tui tui-wn5-toolbar-ptz"></span> 버튼을 클릭하면 하단에 Zoom과 Pan&amp;Tilt를 변경할 수 있는 화면이 나타납니다. PTZ를 사용하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<a class="wn5-online-help-link" href="basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[프로파일 타입]</strong></a>에서 <strong class="UI">[DPTZ 프로파일]</strong>을 선택해야 합니다. DPTZ 프로파일은 H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습니다.</p>
-        </div>
-
-        <div class="wn5-setup-section-article-content">
-            <h3>확대/축소하기</h3>
-            <p>Zoom 영역에서 <strong class="UI">[+]</strong> 버튼을 클릭하면 화면이 확대되고 <strong class="UI">[-]</strong> 버튼을 클릭하면 화면이 축소됩니다.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>팬/틸트 동작 제어하기</h3>
-            <p> Pan&amp;Tilt 영역에서 <span class="tui tui-wn5-ptz-handle"></span> 버튼을 클릭하여 카메라의 방향을 이동하고 초점을 조절합니다.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>프리셋 이동하기</h3>
-            <p>프리셋 목록에서 원하는 프리셋을 선택한 후 <strong class="UI">[재생]</strong> 버튼을 클릭하면 원하는 프리셋 위치로 이동합니다. 프리셋 목록은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="ptz/dptzSetup.html#preset" ng-href="#/help/ptzSetup_dptzSetup?#preset"><strong class="UI">[프리셋]</strong></a> 탭에서 추가하거나 변경할 수 있습니다.</p>
-        <div class="wn5-setup-section-article-content">
-        </div>
-            <h3>그룹 동작하기</h3>
-            <p><strong class="UI">[그룹]</strong>에서 원하는 그룹을 선택한 후 <strong class="UI">[재생]</strong> 버튼을 클릭하면 설정한 그룹 동작이 작동합니다. 그룹 목록은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="ptz/dptzSetup.html#group" ng-href="#/help/ptzSetup_dptzSetup?#group"><strong class="UI">[그룹]</strong></a> 탭에서 추가하거나 변경할 수 있습니다.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>디지털 자동 추적</h3>
-                     
-            <p>모니터링 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>(자동 추적) 버튼을 클릭하면 디지털 자동 추적 기능이 실행됩니다. 다시 한번 더 <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(자동 추적) 버튼을 클릭하면 추적 기능이 중지됩니다. 디지털 자동 추적 기능을 사용하는 중에 PTZ 기능을 조작하면 추적 기능은 자동으로 중지됩니다.</p>
-        </div>
-        </div>
-    </div>
-</div>
 
 
 <hr class="wn5-setup-hr">
@@ -221,6 +189,42 @@
         </div>
     </div>
 </div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>카메라의 팬/틸트/줌 동작을 제어하거나 디지털 자동 추적 기능을 사용할 수 있습니다. 메인 화면의 하단에 있는 <span class="tui tui-wn5-toolbar-ptz"></span> 버튼을 클릭하면 하단에 팬/틸트/줌을 변경할 수 있는 화면이 나타납니다. PTZ를 사용하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택해야 합니다. 디지털 PTZ 프로파일은 H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습니다.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>줌 동작 제어하기</h3>
+            <p>줌 영역에서 <strong class="UI">[+]</strong> 버튼을 클릭하면 화면이 확대되고 <strong class="UI">[-]</strong> 버튼을 클릭하면 화면이 축소됩니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>팬/틸트 동작 제어하기</h3>
+            <p> 팬/틸트 영역에서 <span class="tui tui-wn5-ptz-handle"></span> 버튼을 클릭하여 카메라의 방향을 이동하고 초점을 조절합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>프리셋 이동하기</h3>
+            <p>프리셋 목록에서 원하는 프리셋을 선택한 후 <strong class="UI">[재생]</strong> 버튼을 클릭하면 원하는 프리셋 위치로 이동합니다. 프리셋 목록은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[프리셋]</strong> 탭에서 추가하거나 변경할 수 있습니다.</p>
+        <div class="wn5-setup-section-article-content">
+        </div>
+            <h3>그룹 동작하기</h3>
+            <p><strong class="UI">[그룹]</strong>에서 원하는 그룹을 선택한 후 <strong class="UI">[재생]</strong> 버튼을 클릭하면 설정한 그룹 동작이 작동합니다. 그룹 목록은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[그룹]</strong> 탭에서 추가하거나 변경할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>디지털 자동 추적</h3>
+                     
+            <p>모니터링 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>(자동 추적) 버튼을 클릭하면 디지털 자동 추적 기능이 실행됩니다. 다시 한번 더 <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(자동 추적) 버튼을 클릭하면 추적 기능이 중지됩니다. 디지털 자동 추적 기능을 사용하는 중에 PTZ 기능을 조작하면 추적 기능은 자동으로 중지됩니다.</p>
+        </div>
+        </div>
+    </div>
+</div>
+
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">

@@ -8,7 +8,7 @@
     <p>You can move to the monitoring screen, playback screen or setup screen by clicking the buttons at the top.</p>
         <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><span class="tui tui-wn5-top-live"></span>(Monitoring): Check the monitoring screen to view what is being captured by the camera and control a variety of camera features.</li>
             <li><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card or NAS.  </li>
-            <li><span class="tui tui-wn5-top-setup"></span>(Setup): Change the web viewer settings.  </li>
+            <li><span class="tui tui-wn5-top-setup"></span>(Setup): Change the camera settings.  </li>
         </ul>
     </div>
 
@@ -39,20 +39,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td width="235">
-                            <p><span class="tui tui-wn5-toolbar-ptz"></span><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">(PTZ)</a></p>
-                            <p>&nbsp;</p>
-                        </td>
-                        <td width="235">
-                            <p>You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the video profile applied to the current monitoring screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[DPTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<a class="wn5-online-help-link" href="basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profile type]</strong></a>. </p>
-                            <p>&nbsp;</p>
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
-                            <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">(Video settings)</a></p>
+                            <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">Video settings</a></p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -60,10 +51,23 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+					
+					<tr>
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p>You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the video profile applied to the current monitoring screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>. </p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+					
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-status"></span></p>
-                            <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">(Status)</a></p>
+                            <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">Status</a></p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -74,7 +78,7 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
-                            <p>(Full screen)</p>
+                            <p>Full screen</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -97,7 +101,7 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-capture"></span></p>
-                            <p>(Capture)</p>
+                            <p>Capture</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -108,7 +112,7 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
-                            <p>(Record)</p>
+                            <p>Record</p>
                         </td>
                         <td width="235">
                             <p>You can record and save the monitoring screen to a PC. Click the Record button to start recording; click the button again to stop recording. Recorded files are saved in .avi format and can be saved in the default path of the browser or a file path can be set in the &lsquo;Save as&rsquo; window.</p>
@@ -118,7 +122,7 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-pixel"></span></p>
-                            <p>(Pixel count)</p>
+                            <p>Pixel count</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -129,29 +133,29 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
-                            <p><a class="wn5-online-help-link" name="mic"></a>(Microphone)</p>
+                            <p><a class="wn5-online-help-link" name="mic"></a>Microphone</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Use the microphone function. To use the microphone function, the <strong class="UI">[Audio in]</strong> function should be activated for the relevant profile. To activate the video input function, select <strong class="UI">[Enable]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<a class="wn5-online-help-link" href="basic/profile.html#audioin" ng-href="#/help/basic_videoProfile?#audioin"><strong class="UI">[Audio in]</strong></a>.</p>
+                            <p>Use the microphone function. To use the microphone function, the <strong class="UI">[Audio in]</strong> function should be activated for the relevant profile. To activate the video input function, select <strong class="UI">[Enable]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Audio in]</strong>.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
-                            <p>(Alarm output)</p>
+                            <p>Alarm output</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>When you click a desired alarm output number, the alarm will be outputted as previously set. The alarm can be set from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a> page. The number of alarm outputs varies depending on the camera.</p>
+                            <p>When you click a desired alarm output number, the alarm will be outputted as previously set. The alarm can be set from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm output]</strong> page. The number of alarm outputs varies depending on the camera.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
-                            <p><a class="wn5-online-help-link" name="speaker"></a>(Speaker)</p>
+                            <p><a class="wn5-online-help-link" name="speaker"></a>Speaker</p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -165,46 +169,13 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>You can control the pan, tilt, zoom in/zoom out motions of the camera or use the digital auto tracking function. When you click the <span class="tui tui-wn5-toolbar-ptz"></span> button at the bottom of the main screen, the screen where Zoom and Pan &amp; Tilt can be changed will appear at the bottom. To use PTZ, <strong class="UI">[DPTZ Profile]</strong> should be selected from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<a class="wn5-online-help-link" href="basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profile type]</strong></a>. DPTZ can be applied only to profiles that use H.264 and H.265 codecs.</p>
-        </div>
 
-        <div class="wn5-setup-section-article-content">
-            <h3>Zooming in/out</h3>
-            <p>When you click the <strong class="UI">[+]</strong> button in the zoom area, the screen will zoom in and when you click the <strong class="UI">[-]</strong> button, the screen will zoom out.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Controlling pan/tilt motions</h3>
-            <p> Move the camera direction and adjust the focus by clicking the <span class="tui tui-wn5-ptz-handle"></span> button in the Pan &amp; Tilt area.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Moving a preset</h3>
-            <p>When you select a desired preset from the preset list and click the <strong class="UI">[Playback]</strong> button, it will move to the desired preset location. The preset list can be added to or changed from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="ptz/dptzSetup.html#preset" ng-href="#/help/ptzSetup_dptzSetup?#preset"><strong class="UI">[Preset]</strong></a> tab.</p>
-        <div class="wn5-setup-section-article-content">
-        </div>
-            <h3>Operating a group motion</h3>
-            <p>When you select a desired group from <strong class="UI">[Group]</strong> and click the <strong class="UI">[Playback]</strong> button, the preset group motion will operate. The group list can be added to or changed from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="ptz/dptzSetup.html#group" ng-href="#/help/ptzSetup_dptzSetup?#group"><strong class="UI">[Group]</strong></a> tab.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Auto tracking</h3>
-                     
-            <p>A moving object or person can be tracked automatically on the monitoring screen. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>When you click the (Auto tracking) button, the auto tracking function will be executed. When you click the <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(Auto tracking) button again, the tracking function will stop. If you operate the PTZ function while using the auto tracking function, the auto tracking function will stop.</p>
-        </div>
-        </div>
-    </div>
-</div>
 
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="settings"></a>Setup</h2>
+        <h2><a class="wn5-online-help-link" name="settings"></a>Video setup</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -214,6 +185,41 @@
         <div class="wn5-setup-section-article-content">
             <h3>Display </h3>
             <p>Set the contrast, brightness, sharpness and color level of the monitoring screen; when you enter the setting, it will be applied to the monitoring screen immediately.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can control the pan/tilt/zoom motions of the camera or use the digital auto tracking function. When you click the <span class="tui tui-wn5-toolbar-ptz"></span> button at the bottom of the main screen, the screen where pan/tilt/zoom can be changed will appear at the bottom. To use PTZ, <strong class="UI">[Digital PTZ Profile]</strong> should be selected from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H.265 codecs.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Controlling zoom motions</h3>
+            <p>When you click the <strong class="UI">[+]</strong> button in the zoom area, the screen will zoom in and when you click the <strong class="UI">[-]</strong> button, the screen will zoom out.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Controlling pan/tilt motions</h3>
+            <p> Move the camera direction and adjust the focus by clicking the <span class="tui tui-wn5-ptz-handle"></span> button in the Pan &amp; Tilt area.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Moving a preset</h3>
+            <p>When you select a desired preset from the preset list and click the <strong class="UI">[Playback]</strong> button, it will move to the desired preset location. The preset list can be added to or changed from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab.</p>
+        <div class="wn5-setup-section-article-content">
+        </div>
+            <h3>Operating a group motion</h3>
+            <p>When you select a desired group from <strong class="UI">[Group]</strong> and click the <strong class="UI">[Playback]</strong> button, the preset group motion will operate. The group list can be added to or changed from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Group]</strong> tab.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Auto tracking</h3>
+                     
+            <p>A moving object or person can be tracked automatically on the monitoring screen. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>When you click the (Auto tracking) button, the auto tracking function will be executed. When you click the <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(Auto tracking) button again, the tracking function will stop. If you operate the PTZ function while using the auto tracking function, the auto tracking function will stop.</p>
+        </div>
         </div>
     </div>
 </div>

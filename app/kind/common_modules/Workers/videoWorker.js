@@ -186,6 +186,9 @@ function receiveMessage(event) {
       } else if( message.data === 'playbackSeek') {
         if (videoRtpSessionsArray[videoCHID] !== undefined){
           videoRtpSessionsArray[videoCHID].clearBuffer();
+          if (videoRtpSessionsArray[videoCHID].setInitSegment !== undefined) {
+          	videoRtpSessionsArray[videoCHID].setInitSegment();
+          }
         }
       } else if( message.data === 'findIFrame') {
         if (videoRtpSessionsArray[videoCHID] !== undefined){

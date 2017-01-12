@@ -262,15 +262,7 @@ kindFramework.directive('liveMenuContent', function(
 		                wait();
 		            }, 500);
 		        } else {
-		            try{
-		                Attributes.getAttributeSection().then(function(){
-		                    console.log("Attributes.getAttributeSection()");
-		                    mAttr = Attributes.get();
-		                    view();
-		                });
-		            }catch(e){
-		                view();
-		            }
+                    view();
 		        }
 			})();
 		}

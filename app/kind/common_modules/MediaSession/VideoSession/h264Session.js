@@ -8,22 +8,20 @@ var H264Session = function () {
 	playback = false,
 	limitResolution = false,
 	inputBuffer = new Uint8Array(size_1M),
-	//    stepLength = 0,
-	//    stepBuffer = new Uint8Array(size_1M),
 	PREFIX = new Uint8Array(4),
 	SPSParser = new H264SPSParser(),
 	curSize = 0,
 	preInfo = null,
+	preCodecInfo = null,
 	decoder = null,
 	NumDecodedFrame = 0,
 	SumDecodingTime =0,
 	gopTime = 0,
 	privDecodingTime = 0,
-    privIRtpTime = 0,
+	privIRtpTime = 0,
 	diffTime = 0,
-    rtpDiffTime = 0,
-    // firstDiffTime = 0,
-    frameDiffTime = 0,
+	rtpDiffTime = 0,
+	frameDiffTime = 0,
 	needDropCnt,
 	criticalTime = 0,
 	changeModeFlag = false,
@@ -44,8 +42,7 @@ var H264Session = function () {
 	playbackVideoTagTempSample = {};
 
 	//initial segment test
-	var
-	sps_segment,
+	var sps_segment,
 	pps_segment,
 	initalSegmentFlag = false,
 	initalMediaFrameFlag = false,
@@ -79,17 +76,6 @@ var H264Session = function () {
 		return buffer1;
 	};
 
-	/*  var setMediaSegment = function (buffer1, buffer2) {
-	if ((inputSegLength + buffer2.length) > buffer1.length) {
-	buffer1 = new Uint8Array(buffer1.length + size_1M);
-	}
-
-	buffer1.set(buffer2, inputSegLength);
-	inputSegLength += buffer2.length;
-
-	return buffer1;
-}; */
-
 	function Constructor() {
 		decoder = H264Decoder(); //new H264Decoder();
 	}
@@ -101,57 +87,55 @@ var H264Session = function () {
 			decodeMode = mode;
 			decoder.setIsFirstFrame(false);
 			this.videoBufferList = new VideoBufferList();
-            this.firstDiffTime = 0;
+			this.firstDiffTime = 0;
 		},
 		SendRtpData: function (rtspInterleaved, rtpHeader, rtpPayload, isBackup) {
-			// var beforeDepacketizing = Date.now();
 			var HEADER = rtpHeader,
-              PAYLOAD = null,
-              channelId = rtspInterleaved[1],
-              pktTime = {},
-              extensionHeaderLen = 0,
-              PaddingSize = 0,
-              data = {};
+			PAYLOAD = null,
+			channelId = rtspInterleaved[1],
+			pktTime = {},
+			extensionHeaderLen = 0,
+			PaddingSize = 0,
+			data = {};
 
 			if ((rtpHeader[0] & 0x20) === 0x20) {
-			  PaddingSize = rtpPayload[rtpPayload.length - 1];
-			  console.log("H264Session::PaddingSize - " + PaddingSize);
+				PaddingSize = rtpPayload[rtpPayload.length - 1];
+				console.log("H264Session::PaddingSize - " + PaddingSize);
 			}
 
 			if ((rtpHeader[0] & 0x10) === 0x10) {
 				extensionHeaderLen = ((rtpPayload[2] << 8 | rtpPayload[3]) * 4) + 4;
 
 				if (rtpPayload[0] == '0xAB' && rtpPayload[1] == '0xAD') {
-				  var startHeader = 4,
-                    NTPmsw = new Uint8Array(new ArrayBuffer(4)),
-                    NTPlsw = new Uint8Array(new ArrayBuffer(4)),
-                    gmt = new Uint8Array(new ArrayBuffer(2)),
-                    fsynctime = {'seconds': null, 'useconds': null},
-                    microseconds;
+					var startHeader = 4,
+					NTPmsw = new Uint8Array(new ArrayBuffer(4)),
+					NTPlsw = new Uint8Array(new ArrayBuffer(4)),
+					gmt = new Uint8Array(new ArrayBuffer(2)),
+					fsynctime = {'seconds': null, 'useconds': null},
+					microseconds;
 
-                  NTPmsw.set(rtpPayload.subarray(startHeader, startHeader + 4), 0);
-                  startHeader += 4;
-                  NTPlsw.set(rtpPayload.subarray(startHeader, startHeader + 4), 0);
-                  startHeader += 6;
-                  gmt.set(rtpPayload.subarray(startHeader, startHeader + 2), 0);
+					NTPmsw.set(rtpPayload.subarray(startHeader, startHeader + 4), 0);
+					startHeader += 4;
+					NTPlsw.set(rtpPayload.subarray(startHeader, startHeader + 4), 0);
+					startHeader += 6;
+					gmt.set(rtpPayload.subarray(startHeader, startHeader + 2), 0);
 
-                  microseconds = (this.ntohl(NTPlsw) / 0xffffffff) * 1000;
-                  fsynctime.seconds = ((this.ntohl(NTPmsw) - 0x83AA7E80) >>> 0);
-                  fsynctime.useconds = microseconds;
-                  gmt = (((gmt[0] << 8) | gmt[1]) << 16) >> 16;
+					microseconds = (this.ntohl(NTPlsw) / 0xffffffff) * 1000;
+					fsynctime.seconds = ((this.ntohl(NTPmsw) - 0x83AA7E80) >>> 0);
+					fsynctime.useconds = microseconds;
+					gmt = (((gmt[0] << 8) | gmt[1]) << 16) >> 16;
 
-                  timeData = {
-                    timestamp: fsynctime.seconds,
-                    timestamp_usec: fsynctime.useconds,
-                    timezone: gmt
-                  };
+					timeData = {
+						timestamp: fsynctime.seconds,
+						timestamp_usec: fsynctime.useconds,
+						timezone: gmt
+					};
 
 					if((this.getFramerate() === 0 || this.getFramerate() === undefined) && (this.GetTimeStamp() != null || this.GetTimeStamp() !== undefined)){
 						this.setFramerate(Math.round(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
 						console.log("H264Session::frameRate = " + this.getFramerate());
 					}
 					this.SetTimeStamp(timeData);
-					//this.rtpTimestampCbFunc(timeData);
 					playback = true;
 				} else {
 					playback = false;
@@ -160,10 +144,7 @@ var H264Session = function () {
 			}
 
 			PAYLOAD = rtpPayload.subarray(extensionHeaderLen, rtpPayload.length - PaddingSize);
-			// rtpTimeStamp = new Uint8Array(new ArrayBuffer(4));
-			// rtpTimeStamp.set(rtpHeader.subarray(4, 8), 0);
-			// rtpTimeStamp = this.ntohl(rtpTimeStamp);
-            rtpTimeStamp = this.ntohl(rtpHeader.subarray(4, 8));
+			rtpTimeStamp = this.ntohl(rtpHeader.subarray(4, 8));
 
 			var nal_type = (PAYLOAD[0] & 0x1f);
 			if (nal_type === 0) {
@@ -171,19 +152,12 @@ var H264Session = function () {
 				errorcheck = true;
 			}
 			switch (nal_type) {
-			default:
-			  inputBuffer = setBuffer(inputBuffer, PREFIX);
-			  inputBuffer = setBuffer(inputBuffer, PAYLOAD);
-				/* if (decodeMode == "canvas") {
-			inputBuffer = setBuffer(inputBuffer, PREFIX);
-			inputBuffer = setBuffer(inputBuffer, PAYLOAD);
-		} else {
-			segmentBuffer = setMediaSegment(segmentBuffer, PREFIX);
-			segmentBuffer = setMediaSegment(segmentBuffer, PAYLOAD);
-		} */
+				default:
+				inputBuffer = setBuffer(inputBuffer, PREFIX);
+				inputBuffer = setBuffer(inputBuffer, PAYLOAD);
 				break;
 				// Fragmentation unit(FU)
-			case 28:
+				case 28:
 				var start_bit = ((PAYLOAD[1] & 0x80) === 0x80),
 				end_bit = ((PAYLOAD[1] & 0x40) === 0x40),
 				fu_type = PAYLOAD[1] & 0x1f,
@@ -197,38 +171,19 @@ var H264Session = function () {
 				} else {
 					inputBuffer = setBuffer(inputBuffer, PAYLOAD.subarray(payload_start_index, PAYLOAD.length));
 				}
-				/*   if (start_bit == true && end_bit == false) {
-			var new_nal_header = new Uint8Array(1);
-			new_nal_header[0] = (PAYLOAD[0] & 0x60 | fu_type);
-
-			if (decodeMode == "canvas") {
-			inputBuffer = setBuffer(inputBuffer, PREFIX);
-			inputBuffer = setBuffer(inputBuffer, new_nal_header);
-			inputBuffer = setBuffer(inputBuffer, PAYLOAD.subarray(payload_start_index, PAYLOAD.length));
-			} else {
-			segmentBuffer = setMediaSegment(segmentBuffer, PREFIX);
-			segmentBuffer = setMediaSegment(segmentBuffer, new_nal_header);
-			segmentBuffer = setMediaSegment(segmentBuffer, PAYLOAD.subarray(payload_start_index, PAYLOAD.length));
-			}
-		} else {
-			if (decodeMode == "canvas") {
-			inputBuffer = setBuffer(inputBuffer, PAYLOAD.subarray(payload_start_index, PAYLOAD.length));
-			} else {
-			segmentBuffer = setMediaSegment(segmentBuffer, PAYLOAD.subarray(payload_start_index, PAYLOAD.length));
-			}
-		} */
 				break;
 				//SPS
-			case 7:
+				case 7:
 				SPSParser.parse(PAYLOAD);
 				var sizeInfo = SPSParser.getSizeInfo();
 				curSize = sizeInfo.decodeSize;
 
 				//Make initial segment whenever resolution is changed
-				if (preInfo == null || preInfo.width !== sizeInfo.width){
+				if (preInfo === null || preCodecInfo === null || preInfo.width !== sizeInfo.width || preInfo.height !== sizeInfo.height || preCodecInfo !== SPSParser.getCodecInfo()) {
 					initalSegmentFlag = false;
 					preInfo = sizeInfo;
-                    decoder.setIsFirstFrame(false);
+					preCodecInfo = SPSParser.getCodecInfo();
+					decoder.setIsFirstFrame(false);
 				}
 
 				width_segment = sizeInfo.width;
@@ -241,61 +196,47 @@ var H264Session = function () {
 				sps_segment = PAYLOAD;
 				break;
 				//PPS
-			case 8:
+				case 8:
 				inputBuffer = setBuffer(inputBuffer, PREFIX);
 				inputBuffer = setBuffer(inputBuffer, PAYLOAD);
 				pps_segment = PAYLOAD;
 				break;
 				//SEI
-			case 6:
+				case 6:
 				break;
 			}
 
 			//check marker bit
 			if ((HEADER[1] & 0x80) == 0x80) {
-				// var DepacketizingTime = Date.now() - beforeDepacketizing;
 				var inputBufferSub=inputBuffer.subarray(0, inputLength);
-				// var frameType = (inputBufferSub[4] == 0x67) ? 'I' : 'P';
 				var frameType='';
 				if (inputBufferSub[4] == 0x67) {
 					frameType = 'I';
-                    // gopTime = Date.now();
-                    // diffTime = 0;
-                    // criticalTime = 0;
-                    // privDecodingTime = 0;
-                    //  console.log("H264Session:: this.getGovLength() = " + this.getGovLength() + " this.getFramerate() = " + this.getFramerate());
-                    if(this.firstDiffTime == 0){
-                        this.firstDiffTime =  (Date.now() - (rtpTimeStamp / 90).toFixed(0));
-                        needDropCnt = 0;
-                        // console.log("H264Session:: this.getGovLength() = " + this.getGovLength() + " this.firstDiffTime() = " + this.firstDiffTime);
+					if(this.firstDiffTime == 0){
+						this.firstDiffTime =  (Date.now() - (rtpTimeStamp / 90).toFixed(0));
+						needDropCnt = 0;
 					} else {
-                        // rtpDiffTime = (rtpTimeStamp / 90).toFixed(0) - privIRtpTime;
-                        // frameDiffTime = rtpDiffTime/this.getGovLength();
-                        frameDiffTime = Math.round(((rtpTimeStamp / 90).toFixed(0) - privIRtpTime) / this.getGovLength());
-                        privIRtpTime = (rtpTimeStamp / 90).toFixed(0);
-                        needDropCnt =  (Date.now() - privIRtpTime) - this.firstDiffTime;
-                        if(needDropCnt > 5000){
-                            if(playback === false)
-                            {
-                                data.error = {
-                                    errorCode: "997",
-                                    description: "Delay time is too long",
-                                    place: "h264Session.js"
-                                };
-                                console.log("h264Session::Delay time is too long 997 error ");
-                                return data;
-                            }
-                        }
-                        needDropCnt = (needDropCnt > 0) ? Math.round(needDropCnt/frameDiffTime) : 0;
+						frameDiffTime = Math.round(((rtpTimeStamp / 90).toFixed(0) - privIRtpTime) / this.getGovLength());
+						privIRtpTime = (rtpTimeStamp / 90).toFixed(0);
+						needDropCnt =  (Date.now() - privIRtpTime) - this.firstDiffTime;
+						if(needDropCnt > 5000){
+							if(playback === false)
+							{
+								data.error = {
+									errorCode: "997",
+									description: "Delay time is too long",
+									place: "h264Session.js"
+								};
+								console.log("h264Session::Delay time is too long 997 error ");
+								return data;
+							}
+						}
+						needDropCnt = (needDropCnt > 0) ? Math.round(needDropCnt/frameDiffTime) : 0;
 					}
-                    // console.log("H264Session:: needDropCnt = " + needDropCnt);
-                } else {
+				} else {
 					frameType = 'P';
-					// diffTime = Date.now() - gopTime;
-					// criticalTime = ((this.getGovLength()-1) *1000)/this.getFramerate();// - privDecodingTime;
 				}
 
-				//        console.log("frame type check ", + inputBufferSub[0] + "," + inputBufferSub[1] + "," + inputBufferSub[2] + "," + inputBufferSub[3] + "," + inputBufferSub[4] + "," + inputBufferSub[5] + "," + inputBufferSub[6] + "," + inputBufferSub[7]);
 				//var inputSegBufferSub;
 				if (isBackup && changeModeFlag == false) {
 					data.backupData = {
@@ -332,39 +273,7 @@ var H264Session = function () {
 					decodedData.frameData = null;
 
 					if( isBackup !== true || playback !== true) {
-						//             if (this.dropCheck(frameType)) {
-						//               if (iFrameNum > 1) {
-						//                 decodedData.frameData = decoder.decode(inputBufferSub);
-						//               }
-						// //              decodedData.frameData = decoder.decode(inputBufferSub);
-						//               if (decodedData.frameData.decodingTime !== undefined) {
-						//
-						//                 NumDecodedFrame++;
-						//                 SumDecodingTime = SumDecodingTime + decodedData.frameData.decodingTime+ DepacketizingTime;
-						//
-						//                 if (SumDecodingTime > 1000){
-						//                   var diff = this.getFramerate() - NumDecodedFrame;
-						//                   if (diff > 0) {
-						//                     data.throughPut = this.setThroughPut(NumDecodedFrame);
-						//                   }
-						//                   NumDecodedFrame = 0;
-						//                   SumDecodingTime = 0;
-						//                 }
-						//               }
-						//             } else {
-						//               //decodedData.dropPercent = this.getDropPercent();
-						//               decodedData.dropCount = this.getDropCount();
-						//             }
-// 						if( diffTime <= criticalTime ) {
-// 							decodedData.frameData = decoder.decode(inputBufferSub);
-// //							privDecodingTime = decodedData.frameData.decodingTime;
-// 						} else {
-// 							console.log("H264Session:: diffTime = " + diffTime + " criticalTime = " + criticalTime );
-// 						}
-
-						// if (this.isDrop(frameType, needDropCnt)) {
-                            decodedData.frameData = decoder.decode(inputBufferSub);
-                        // }
+						decodedData.frameData = decoder.decode(inputBufferSub);
 					}
 
 					decodedData.timeStamp = null;
@@ -396,9 +305,6 @@ var H264Session = function () {
 					} else {
 						decodedData.initSegmentData = null;
 					}
-
-					//inputSegBufferSub = segmentBuffer.subarray(0, inputSegLength);
-					//frameType = (inputSegBufferSub[4] == 0x67) ? 'I' : 'P';
 					if (frameType === 'I'){
 						var h264parameterLength = sps_segment.length + pps_segment.length + 8;
 						inputSegBufferSub = inputBufferSub.subarray(h264parameterLength, inputBufferSub.length);
@@ -433,8 +339,6 @@ var H264Session = function () {
 								playbackVideoTagTempFrame = new Uint8Array(inputSegBufferSub);
 								playbackVideoTagTempSample = sample;
 								initalMediaFrameFlag = false;
-								// inputLength =0;
-								//console.log("First media segment, FrameTime is ", sample.frame_time_stamp);
 							} else if (initalMediaFrameFlag == false) {
 								var preFrameTime = playbackVideoTagTempSample.frame_time_stamp;
 								var curFrameTime = sample.frame_time_stamp;
@@ -447,7 +351,6 @@ var H264Session = function () {
 								mediaCounter++;
 								playbackVideoTagTempFrame = new Uint8Array(inputSegBufferSub);
 								playbackVideoTagTempSample = sample;
-								// inputLength =0;
 							}
 						}
 						timeData = (timeData.timestamp == null ? GetTimeStamp() : timeData);
@@ -485,10 +388,10 @@ var H264Session = function () {
 				return data;
 			}
 		},
-	freeBufferIdx: function(bufferIdx){
+		freeBufferIdx: function(bufferIdx){
 			decoder.freeBuffer(bufferIdx);
 		},
-	bufferingRtpData: function(rtspInterleaved, rtpHeader, rtpPayload) {
+		bufferingRtpData: function(rtspInterleaved, rtpHeader, rtpPayload) {
 			if (decodeMode === "video") {
 				decodeMode = "canvas";
 			}
@@ -549,7 +452,7 @@ var H264Session = function () {
 			var nal_type = (PAYLOAD[0] & 0x1f);
 
 			switch (nal_type) {
-			default:
+				default:
 				if (decodeMode == "canvas") {
 					inputBuffer = setBuffer(inputBuffer, PREFIX);
 					inputBuffer = setBuffer(inputBuffer, PAYLOAD);
@@ -559,7 +462,7 @@ var H264Session = function () {
 				}
 				break;
 				// Fragmentation unit(FU)
-			case 28:
+				case 28:
 				var start_bit = ((PAYLOAD[1] & 0x80) === 0x80),
 				end_bit = ((PAYLOAD[1] & 0x40) === 0x40),
 				fu_type = PAYLOAD[1] & 0x1f,
@@ -587,7 +490,7 @@ var H264Session = function () {
 				}
 				break;
 				//SPS
-			case 7:
+				case 7:
 				SPSParser.parse(PAYLOAD);
 				var sizeInfo = SPSParser.getSizeInfo();
 				curSize = sizeInfo.decodeSize;
@@ -608,13 +511,13 @@ var H264Session = function () {
 				sps_segment = PAYLOAD;
 				break;
 				//PPS
-			case 8:
+				case 8:
 				inputBuffer = setBuffer(inputBuffer, PREFIX);
 				inputBuffer = setBuffer(inputBuffer, PAYLOAD);
 				pps_segment = PAYLOAD;
 				break;
 				//SEI
-			case 6:
+				case 6:
 				break;
 			}
 			//      console.log((HEADER[1] & 0x80) == 0x80);
@@ -656,7 +559,7 @@ var H264Session = function () {
 				inputLength = 0;
 			}
 		},
-	stepForward: function(){
+		stepForward: function(){
 			if(this.videoBufferList !== null) {
 				//        console.log("streamDrawer::drawFrame stepValue = FORWARD, videoBufferList.length = " + videoBufferList._length + ", FrameNum = " + videoBufferList.getCurIdx());
 				var bufferNode;
@@ -667,7 +570,6 @@ var H264Session = function () {
 						return false;
 					} else {
 						var data = {};
-//						console.log("stepForward:: buffer.length " + bufferNode.buffer.length);
 						this.SetTimeStamp(bufferNode.timeStamp);
 						data.frameData = decoder.decode(bufferNode.buffer);
 						data.timeStamp = bufferNode.timeStamp;
@@ -678,9 +580,8 @@ var H264Session = function () {
 				}
 			}
 		},
-	stepBackward: function(){
+		stepBackward: function(){
 			if(this.videoBufferList !== null) {
-				//        console.log("stepBackward stepValue = BACKWARD, videoBufferList.length = " + videoBufferList._length + ", FrameNum = " + videoBufferList.getCurIdx());
 				var bufferNode;
 				var prevINode = this.videoBufferList.getCurIdx() - 1;
 				while (prevINode > 0) {
@@ -696,7 +597,6 @@ var H264Session = function () {
 					return false;
 				} else {
 					var data = {};
-//					console.log("stepBackward:: buffer.length " + bufferNode.buffer.length);
 					this.SetTimeStamp(bufferNode.timeStamp);
 					data.frameData = decoder.decode(bufferNode.buffer);
 					data.timeStamp = bufferNode.timeStamp;
@@ -704,26 +604,26 @@ var H264Session = function () {
 				}
 			}
 		},
-    findIFrame: function() {
-		if(this.videoBufferList !== null) {
-            //        console.log("streamDrawer::drawFrame stepValue = FORWARD, videoBufferList.length = " + videoBufferList._length + ", FrameNum = " + videoBufferList.getCurIdx());
-            var bufferNode = this.videoBufferList.findIFrame();
-            if (bufferNode === null || bufferNode === undefined) {
-            	return false;
-            } else {
-            	var data = {};
-//						console.log("stepForward:: buffer.length " + bufferNode.buffer.length);
-                this.SetTimeStamp(bufferNode.timeStamp);
-                data.frameData = decoder.decode(bufferNode.buffer);
-                data.timeStamp = bufferNode.timeStamp;
-                return data;
-            }
-        }
-    },
-	setInitSegment: function() {
+		findIFrame: function() {
+			if(this.videoBufferList !== null) {
+				var bufferNode = this.videoBufferList.findIFrame();
+				if (bufferNode === null || bufferNode === undefined) {
+					return false;
+				} else {
+					var data = {};
+					this.SetTimeStamp(bufferNode.timeStamp);
+					data.frameData = decoder.decode(bufferNode.buffer);
+					data.timeStamp = bufferNode.timeStamp;
+					return data;
+				}
+			}
+		},
+		setInitSegment: function() {
 			initalSegmentFlag = false;
+			preInfo = null;
+			preCodecInfo = null;
 		}
 	});
 
-	return new Constructor();
+return new Constructor();
 };

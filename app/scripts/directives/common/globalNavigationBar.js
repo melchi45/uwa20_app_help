@@ -355,10 +355,10 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                     console.error(e);
                 }
 
-                sessionStorage.supportMenu = JSON.stringify(supportMenu.data);
-                sessionStorage.supportRoute = JSON.stringify(supportRoute);
-                sessionStorage.supportFeatures = JSON.stringify(supportFeatures);
-                sessionStorage.langOnlineHelp = $translate.instant('lang_online_help');
+                localStorage.supportMenu = JSON.stringify(supportMenu.data);
+                localStorage.supportRoute = JSON.stringify(supportRoute);
+                localStorage.supportFeatures = JSON.stringify(supportFeatures);
+                localStorage.langOnlineHelp = $translate.instant('lang_online_help');
 
                 setTimeout(function(){
                     window.open(helpUrl, "_blank", "resizable=yes,width=" + ONLINE_HELP_CONFIG.WIDTH + ",height=" + ONLINE_HELP_CONFIG.HEIGHT);

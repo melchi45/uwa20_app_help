@@ -52,7 +52,7 @@ kindFramework
                         if(retryStatus){
                             try{
                                 retryStatus = false;
-                                xmlHttp.open( "POST", "../../home/pw_change.cgi?checkpwd="+encodeURIComponent('check'), true); // false for synchronous request
+                                xmlHttp.open( "POST", "../home/setup/pw_change.cgi?checkpwd="+encodeURIComponent('check'), true); // false for synchronous request
                                 xmlHttp.send( null );
                             }catch(e){
 

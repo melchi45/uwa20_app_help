@@ -6091,20 +6091,9 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 wait();
             }, 500);
         } else {
-            var promise = getAttributes();
-            promise.then(
-                    function () {
-                        try {
-                            Attributes.getAttributeSection().then(function () {
-                                mAttr = Attributes.get();
-                                view();
-                            });
-                        } catch (e) {
-                            view();
-                        }
-                    }
-            );
 
+            var promise = getAttributes();
+            promise.then(function () { view();});
         }
     })();
 

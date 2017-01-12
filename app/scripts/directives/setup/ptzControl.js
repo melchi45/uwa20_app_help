@@ -430,7 +430,9 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
 
 		    scope.ptzControlZoom = function(value){
                 if(value=='Stop'){
-                    ptzStop();
+                    if (UniversialManagerService.getDigitalPTZ() !== CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING) {
+                        ptzStop();
+                    }
                 }else{
                     sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True&Zoom=" + value;
                     if(scope.showPTZControlFisheyeDPTZ === true)

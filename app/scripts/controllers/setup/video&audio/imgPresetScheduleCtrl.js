@@ -58,13 +58,13 @@ kindFramework.controller('imgPresetScheduleCtrl', function ($scope, $uibModalIns
             var baseStartTime = new Date(2000, 1, 1, schedule.SelectedFromHour, schedule.SelectedFromMinute, 0).valueOf();
             var baseEndTime = new Date(2000, 1, 1, schedule.SelectedToHour, schedule.SelectedToMinute, 0).valueOf();
 
-            if (baseStartTime >= baseEndTime) {
-                COMMONUtils.ShowError("lang_msg_invalid_time");
+            //if (baseStartTime >= baseEndTime) {
+            if (baseStartTime > baseEndTime) {
+                COMMONUtils.ShowError("lang_msg_invalid_activation_time");
                 return false;
             }
 
             for (j = i + 1; j < $scope.ImagePreset.Schedules.length; j++) {
-
                 temp = $scope.ImagePreset.Schedules[j];
                 var compareStartTime = new Date(2000, 1, 1, temp.SelectedFromHour, temp.SelectedFromMinute, 0).valueOf();
                 var compareEndTime = new Date(2000, 1, 1, temp.SelectedToHour, temp.SelectedToMinute, 0).valueOf();
@@ -73,7 +73,6 @@ kindFramework.controller('imgPresetScheduleCtrl', function ($scope, $uibModalIns
                 if (temp.Mode === 'Off') {
                     continue;
                 }
-
                 if ((baseStartTime <= compareStartTime && compareStartTime <= baseEndTime) || (baseStartTime <= compareEndTime && compareEndTime <= baseEndTime)) {
                     COMMONUtils.ShowError('lang_msg_preset_duplicate');
                     return false;

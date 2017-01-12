@@ -1,4 +1,4 @@
-/* global sessionStorage setTimeout */
+/* global localStorage setTimeout */
 "use strict";
 var wn5OnlineHelp = angular.module(
 	'wn5OnlineHelp',
@@ -11,12 +11,12 @@ wn5OnlineHelp
     .config(function($stateProvider, $urlRouterProvider){
     	var supportRoute = null;
     	try{
-			if(!("supportRoute" in sessionStorage)){
+			if(!("supportRoute" in localStorage)){
 				alert("Wrong Access");
 				window.close();
 				return;
 			}else{
-				supportRoute = JSON.parse(sessionStorage.supportRoute);	
+				supportRoute = JSON.parse(localStorage.supportRoute);	
 			}
 
 			for(var i = 0, ii = supportRoute.length; i < ii; i++){
@@ -52,10 +52,10 @@ wn5OnlineHelp
 		var supportMenu = null;
 		var supportFeatures = null;
 
-		if("supportMenu" in sessionStorage){
-			supportMenu = JSON.parse(sessionStorage.supportMenu);
-			supportFeatures = JSON.parse(sessionStorage.supportFeatures);
-			$scope.langOnlineHelp = sessionStorage.langOnlineHelp;
+		if("supportMenu" in localStorage){
+			supportMenu = JSON.parse(localStorage.supportMenu);
+			supportFeatures = JSON.parse(localStorage.supportFeatures);
+			$scope.langOnlineHelp = localStorage.langOnlineHelp;
 		}else{
 			return;
 		}

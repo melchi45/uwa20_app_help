@@ -17,6 +17,8 @@ function VideoMediaSource() {
   var bufferEventListenerArray = null;
   var videoEventListenerArray = null;
   var mediaSourceEventListenerArray = null;
+  var isPlaying = false;
+  var isPause = true;
 
   function Constructor() { }
 
@@ -46,7 +48,7 @@ function VideoMediaSource() {
     videoEventListenerArray.push({'type':'seeking', 'function':videoUpdating.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'error', 'function':onError.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'progress', 'function':onProgress.bind(videoTag, mediaSource)});
-    // videoEventListenerArray.push({'type':'pause', 'function':onPause.bind(videoTag, mediaSource)});    
+    videoEventListenerArray.push({'type':'pause', 'function':onPause.bind(videoTag, mediaSource)});    
     // videoEventListenerArray.push({'type':'loadstart', 'function':onLoadstart.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'abort', 'function':onAbort.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'emptied', 'function':onEmptied.bind(videoTag, mediaSource)});
@@ -55,7 +57,7 @@ function VideoMediaSource() {
     // videoEventListenerArray.push({'type':'loadeddata', 'function':onLoadeddata.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'canplay', 'function':videoPlay.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'canplaythrough', 'function':videoPlay.bind(videoTag, mediaSource)});
-    // videoEventListenerArray.push({'type':'playing', 'function':onPlaying.bind(videoTag, mediaSource)});
+    videoEventListenerArray.push({'type':'playing', 'function':onPlaying.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'waiting', 'function':onWaiting.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'seeked', 'function':onSeeked.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'ended', 'function':onEnded.bind(videoTag, mediaSource)});    
@@ -75,7 +77,7 @@ function VideoMediaSource() {
   function AddMediaSourceEventListener(mediaSource) {
     mediaSourceEventListenerArray = new Array();
     mediaSourceEventListenerArray.push({'type':'sourceopen', 'function': onSourceOpen.bind(this, videoElement)});
-    // mediaSourceEventListenerArray.push({'type':'error', 'function': onSourceError.bind(this, videoElement)});
+    mediaSourceEventListenerArray.push({'type':'error', 'function': onSourceError.bind(this, videoElement)});
     // mediaSourceEventListenerArray.push({'type':'sourceended', 'function': onSourceEnded.bind(this, videoElement)});
     // mediaSourceEventListenerArray.push({'type':'sourceclose', 'function': onSourceClose.bind(this, videoElement)});
 
@@ -103,7 +105,6 @@ function VideoMediaSource() {
   }
 
   function appendInitSegment() {
-    console.log("videoMediaSource::appendInitSegment start");
     if (mediaSource == null || mediaSource.readyState == "ended") {
       mediaSource = new MediaSource();
       AddMediaSourceEventListener(mediaSource);      
@@ -112,6 +113,7 @@ function VideoMediaSource() {
       return;
     }
 
+    console.log("videoMediaSource::appendInitSegment start");
     if (mediaSource.sourceBuffers.length === 0) {
       mediaSource.duration = 0;
 
@@ -129,7 +131,7 @@ function VideoMediaSource() {
     }
 
     sourceBuffer.appendBuffer(initSegment);
-    console.log("videoMediaSource::appendInitSegment end");
+    console.log("videoMediaSource::appendInitSegment end, codecInfo = " + codecInfo);
   }
 
   function appendNextMediaSegment(mediaData) {
@@ -148,7 +150,9 @@ function VideoMediaSource() {
     if (browserType != "firefox" && browserType != "safari") {
       if (videoElement.paused) {
         videoSizeCallback();
-        videoElement.play();
+        if (!isPlaying) {
+          videoElement.play();
+        }
       }
     }
   }
@@ -159,7 +163,7 @@ function VideoMediaSource() {
     var duration = parseInt(mediaSource.duration, 10);
     var currentTime = videoElement.currentTime;
     var delay = (playbackFlag == true ? 2 : 
-      browserType === "chrome" ? 0 : 2);
+      browserType === "chrome" ? 0.2 : 2);
     var diffDuration = duration - currentTime;
 
     if (diffDuration >= (1.2 + delay)) {
@@ -177,7 +181,9 @@ function VideoMediaSource() {
       
       if (videoElement.paused) {
         videoSizeCallback();
-        videoElement.play();
+        if (!isPlaying) {
+          videoElement.play();
+        }
       }
     }
   }
@@ -207,7 +213,10 @@ function VideoMediaSource() {
     videoElement.pause();
   }
   function onProgress(mediaSource, e) { console.log("videoMediaSource::onProgress"); }
-  function onPause(mediaSource, e) { console.log("videoMediaSource::onPause"); }  
+  function onPause(mediaSource, e) { 
+    isPlaying = false;
+    isPause = true;
+  }
   function onSeeking(mediaSource, e) { console.log("videoMediaSource::onSeeking"); }
   function onLoadstart(mediaSource, e) { console.log("videoMediaSource::onLoadstart"); }
   function onAbort(mediaSource, e) { console.log("videoMediaSource::onAbort"); }
@@ -217,10 +226,15 @@ function VideoMediaSource() {
   function onLoadeddata(mediaSource, e) { console.log("videoMediaSource::onLoadeddata"); }
   function onCanplay(mediaSource, e) { console.log("videoMediaSource::onCanplay"); }
   function onCanplaythrough(mediaSource, e) { console.log("videoMediaSource::onCanplaythrough"); }
-  function onPlaying(mediaSource, e) { console.log("videoMediaSource::onPlaying"); }
-  function onWaiting(mediaSource, e) {
+  function onPlaying(mediaSource, e) { 
+    isPlaying = true;
+    isPause = false;
+  }
+  function onWaiting(e) {
     if (!videoElement.paused && mediaSource !== null) {
-      videoElement.pause();
+      if (!isPause) {
+        videoElement.pause();
+      }
     }
   }
   function onSeeked(mediaSource, e) { console.log("videoMediaSource::onSeeked"); }
@@ -300,7 +314,9 @@ function VideoMediaSource() {
   	},
   	pause: function() {
   	  if (!videoElement.paused) {
-  	    videoElement.pause();
+        if (!isPause) {
+          videoElement.pause();
+        }
   	  }
     },
     setPlaybackFlag: function(value) {
@@ -310,7 +326,9 @@ function VideoMediaSource() {
       removeEventListener();
 
       if (!videoElement.paused) {
-        videoElement.pause();
+        if (!isPause) {
+          videoElement.pause();
+        }
       }
     }
   };

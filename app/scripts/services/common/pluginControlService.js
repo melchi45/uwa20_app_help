@@ -23,6 +23,13 @@ kindFramework
     var playbackMode = 1;
     var liveStatusCallback = null;
 
+    var windowEvent = window.attachEvent || window.addEventListener,
+        beforeUnloadEvt = window.attachEvent ? 'onbeforeunload' : 'beforeunload'; 
+
+    windowEvent(beforeUnloadEvt, function(e) {
+      _self.stopStreaming();
+    });
+
     this.startPluginStreaming = function(pluginObj, _ip, _port, _profile, _id, _password, statusCallback) {
       pluginElement = pluginObj;
       rtspIP = _ip;
@@ -244,6 +251,9 @@ kindFramework
 
     this.closePlaybackSession = function(){
       if( pluginElement !== null && pluginElement !== undefined) {
+        if(UniversialManagerService.isSpeakerOn()){
+          pluginElement.StopAudio();
+        }
         pluginElement.CloseStream();
         timelineCallback = null;
         playbackCallback = null;

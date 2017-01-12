@@ -159,6 +159,45 @@ kindFramework.directive('channelPlayer',
                 }
             }
 
+            function deleteStreamElement(_plugin) {
+              if(_plugin === true)
+              {
+                switch(BrowserService.BrowserDetect)
+                {
+                  case BrowserService.BROWSER_TYPES.IE:
+                  case BrowserService.BROWSER_TYPES.SAFARI:
+                      elem.empty();
+                      break;
+                  case BrowserService.BROWSER_TYPES.CHROME:
+                  case BrowserService.BROWSER_TYPES.EDGE:
+                  case BrowserService.BROWSER_TYPES.FIREFOX:
+                  /* jshint ignore:start */
+                  default :
+                  /* jshint ignore:end */
+                      return null;
+                }
+              } else {
+                  switch(BrowserService.BrowserDetect)
+                  {
+                    case BrowserService.BROWSER_TYPES.IE:
+                        elem.empty();
+                        break;
+                    case BrowserService.BROWSER_TYPES.SAFARI:
+                    case BrowserService.BROWSER_TYPES.CHROME:
+                    case BrowserService.BROWSER_TYPES.EDGE:
+                    case BrowserService.BROWSER_TYPES.FIREFOX:
+                    /* jshint ignore:start */
+                    default :
+                    /* jshint ignore:end */
+                      angular.element(elem.find('kind_stream')).remove();
+                      if( scope.child.$destroy !== undefined ) {
+                        scope.child.$destroy();
+                      }
+                        break;
+                  }
+              }
+            }
+
             function stopStreaming(_channelPlayerElement) {
               MJPEGPollingControlService.stopStreaming(_channelPlayerElement);
               PluginControlService.stopStreaming();
@@ -1052,7 +1091,7 @@ kindFramework.directive('channelPlayer',
                 //5. Stream Element Check
                 if(StreamElementDetect(pluginMode, elem) === false)
                 {
-                  elem.empty();
+                  deleteStreamElement(pluginMode);
                   createStreamElement(pluginMode);
                 }
 

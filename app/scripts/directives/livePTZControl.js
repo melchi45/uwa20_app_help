@@ -62,7 +62,9 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}
 
 					if (value === 'stop') {
-						ptzStop();
+						if (UniversialManagerService.getDigitalPTZ() !== scope.dptzMode.DIGITAL_AUTO_TRACKING) {
+							ptzStop();
+						}
 					} else {
 						if (isJogUpdating === false) {
 							sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True";

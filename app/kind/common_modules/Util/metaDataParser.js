@@ -151,23 +151,17 @@ function MetaDataParser(callback) {
             }
             if(messageXml[a].nodeName == "tt:Data"){
               value = messageXml[a].childNodes[0].getAttribute("Value");
+              if(eventName === "SoundClassification"){
+                eventId = messageXml[a].childNodes[2].getAttribute("Value");
+              }
             }
           }
 
           if(value !== null || value !== undefined){
-            if(eventName === "SoundClassification"){
-              var soundClassificationType = "Scream, Gunshot, Explosion, Crashing glass";
-              if(soundClassificationType.indexOf(value) === -1){
-                value = "false";
-              }else{
-                value = "true";
-              }
+            if(value == "inactive" || value == "false"){
+              value = "false";
             }else{
-              if(value == "inactive" || value == "false"){
-                value = "false";
-              }else{
-                value = "true";
-              }              
+              value = "true";
             }
           }
 

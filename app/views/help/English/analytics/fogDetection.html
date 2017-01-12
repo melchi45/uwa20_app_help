@@ -13,22 +13,46 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
-            <h3>Enable  </h3>
-            <p>To use fog detection, select <strong class="UI">[Enable]</strong>. </p>
+            <h3>Enable Fog detection</h3>
+            <p>To use fog detection, select <strong class="UI">[Enable Fog detection]</strong>. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Level of detection  </h3>
             <p>This sets the standard level of fog detection. A fog detection event is created when fog beyond the set level is detected.</p>
             <p>When fog is detected, a graph showing the level of fog detection will appear, and when a fog detection event is created, the graph color will change. </p>
         </div>
+		
+		<div class="wn5-setup-section-article-content">
+            <h3>Sensitivity</h3>
+            <p>민감도를 높게 설정할수록 감지 레벨의 그래프가 민감하게 반응합니다.</p>
+        </div>
+		
+		
         <div class="wn5-setup-section-article-content">
             <h3>Minimum duration (s)    </h3>
             <p>This sets the minimum time between detecting fog and creating an event. A fog detection event is created when fog is detected beyond the minimum duration.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Use defog  </h3>
-            <p>The screen is corrected automatically according to the fog level. To execute defog, select <strong class="UI">[Enable]</strong>. </p>
+		
+		        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+                <li>안개 감지에 대한 알람 발생 후 다시 안개 감지에 대한 알람을 받기 위해서는 최소 한번 안정 상태로 돌아가야 합니다. 안개 제거 동작으로 인해 영상 개선은 안정 상태로 인식되지 않습니다. 안정 상태로 돌아가는 경우는 다음과 같을 수 있습니다.</li>
+				<ul>
+				<li>[안개 감지 사용]을 체크 해제한 경우</li>
+				<li>안개 또는 연기가 사라져 영상 식별이 가능한 수준이 된 경우</li></ul>
+                
+				<li>다음과 같은 경우 안개 감지 성능이 저하되거나 오동작이 발생할 수 있습니다.</li>
+					<ul>
+					<li>배경이 단조로운 감시 환경과 야간, 저조도 환경</li>
+					<li>급격한 조명 변화 (예시: 실내 전등 소등)</li>
+					<li>렌즈 가려짐 또는 화면의 대부분을 차지하는 큰 물체 등장</li>
+					<li>카메라 위치 변경 등으로 인한 포커스 대상 변경</li></ul>
+				
+            </ul>
         </div>
+		
+
     </div>
 </div>
 
@@ -43,20 +67,26 @@
                 <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
             </ul>
             <h3>FTP</h3>
-            <p>To save an image on an FTP server when a fog detection event is created, select <strong class="UI">[Use]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+            <p>To save an image on an FTP server when a fog detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>E-mail</h3>
-            <p>To send an image by e-mail when a fog detection event is created, select <strong class="UI">[Use]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+            <p>To send an image by e-mail when a fog detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Record</h3>
-            <p>To save an image on an SD card or NAS when a fog detection event is created, select <strong class="UI">[Use]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p>To save an image on an SD card or NAS when a fog detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Alarm output</h3>
             <p>It is possible to set an alarm output number for a specific alarm when a fog detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
+		
+		<div class="wn5-setup-section-article-content">
+            <h3>Use defog  </h3>
+            <p>The screen is corrected automatically according to the fog level. To execute defog, select <strong class="UI">[Enable]</strong>. </p>
+        </div>
+		
     </div>
 </div>
 

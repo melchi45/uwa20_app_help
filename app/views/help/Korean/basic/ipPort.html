@@ -12,7 +12,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>IPv4의 속성인 IP 타입, MAC 주소, IP 주소, 서브넷 마스크, 게이트웨이, DNS 정보를 확인하거나 변경할 수 있습니다.</p>
+			<p>IPv4 방식을 사용하여 네트워크 통신을 사용하는 경우에 사용할 속성인 IP 타입, MAC 주소, IP 주소, 서브넷 마스크, 게이트웨이, DNS 정보를 확인하거나 변경할 수 있습니다.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>IP 타입</h3>
@@ -44,6 +44,11 @@
 			<h3>DNS1/DNS2</h3>
 			<p>DNS (Domain Name Service) 서버의 주소가 표시됩니다.</p>
 		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>호스트 이름</h3>
+			<p>호스트 이름을 불러오기 위한 ONVIF GetHostname 명령에 사용되는 이름입니다. 첫 문자는 알파벳이어야 하며 알파벳과 숫자만 입력할 수 있습니다. 또한 최대 16자까지 입력할 수 있습니다. 카메라 장비 이름이 기본값으로 입력돼 있으며, 필수 입력 값이 아니므로 값을 설정하지 않아도 됩니다.</p>
+		</div>		
+		
 		<div class="wn5-setup-section-article-content">		
 			<h3>ID</h3>
 			<p><strong class="UI">[IP 타입]</strong>을 <strong class="UI">[PPPoE]</strong>로 설정했을 때 표시됩니다. 접속할 ID를 입력합니다.</p>
@@ -64,7 +69,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>IPv6는 IPv4보다 데이터 처리속도, 동시데이터 처리 용량, 인터넷 주소 체계 등을 확장한 차세대 인터넷 주소 체계입니다. IPv6를 사용하려면 <strong class="UI">[사용함]</strong>을 선택합니다. IP 타입, IP 주소, Prefix, 게이트웨이를 설정할 수 있습니다. IP 인스톨러에서 카메라 모델을 선택하면 IPv4나 IPv6 주소 중 선택할 수 있으며 웹 브라우저에 IPv6 주소를 직접 입력하여 접속할 수 있습니다.</p>
+			<p>IPv6는 IPv4보다 데이터 처리속도, 동시데이터 처리 용량, 인터넷 주소 체계 등을 확장한 차세대 인터넷 주소 체계입니다. IPv6를 사용하려면 <strong class="UI">[사용]</strong>을 선택합니다. IP 타입, IP 주소, Prefix, 게이트웨이를 설정할 수 있습니다. IP 인스톨러에서 카메라 모델을 선택하면 IPv4나 IPv6 주소 중 선택할 수 있으며 웹 브라우저에 IPv6 주소를 직접 입력하여 접속할 수 있습니다.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>IP 타입</h3>
@@ -98,7 +103,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>포트는 시스템에서 데이터를 보내고 받는 데 사용하는 위치를 말합니다. <strong class="UI">[포트]</strong> 탭을 클릭하여 해당 항목들을 설정한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 영상정보 복원 금지를 위해 HTTPS, RTSP 사용을 권장합니다.</p>
+			<p>포트는 시스템에서 데이터를 보내고 받는 데 사용하는 위치를 말합니다. <strong class="UI">[포트]</strong> 탭을 클릭하여 해당 항목들을 설정한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 영상 보안 강화를 위해 HTTPS, RTSP 사용을 권장합니다.</p>
 		</div>
 
 		<div class="wn5-setup-section-article-content">
@@ -108,7 +113,7 @@
 
 		<div class="wn5-setup-section-article-content">
 			<h3>HTTPS</h3>
-			<p>HTTP 보다 보안이 강화된 버전입니다. SSL에서 HTTPS 모드 설정 시 사용할 수 있으며, 초깃값은 443(TCP)입니다. 설정가능한 범위는 1024~65535입니다. 보안 정책상 Safari 및 Google Chrome 브라우저에서는 HTTPS 포트를 65535로 설정하여 접속할 수 없습니다. </p>
+			<p>HTTP 보다 보안이 강화된 버전입니다. SSL에서 HTTPS 모드 설정 시 사용할 수 있으며, 초깃값은 443(TCP)입니다. 설정 가능한 범위는 1024~65535입니다. 보안 정책상 Safari 및 Google Chrome 브라우저에서는 HTTPS 포트를 65535로 설정하여 접속할 수 없습니다. </p>
 		</div>
 
 		<div class="wn5-setup-section-article-content">
@@ -117,14 +122,11 @@
 		</div>
 
 		<div class="wn5-setup-section-article-content">
-			<h3>타임아웃</h3>
-			<p>타임아웃을 사용하려면 <strong class="UI">[사용함]</strong>을 선택합니다. RTSP 방식으로 연결했을 때 일정시간 동안 응답이 없으면 포트 연결을 재설정합니다.</p>
+			<h3>타임 아웃</h3>
+			<p>타임 아웃을 사용하려면 <strong class="UI">[사용]</strong>을 선택합니다. RTSP 방식으로 연결했을 때 일정시간 동안 응답이 없으면 포트 연결을 재설정합니다.</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content">
-			<h3>장치 포트</h3>
-			<p>한화 프로토콜로서 영상을 전송하기 위해 포트를 설정할 수 있습니다.</p>
-		</div>
+
 	</div>
 </div>
 <hr class="wn5-setup-hr">

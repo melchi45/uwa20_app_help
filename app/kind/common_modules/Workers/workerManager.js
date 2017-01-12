@@ -303,6 +303,9 @@ function WorkerManager() {
         break;
       case 'codecInfo':
         codecInfo = message.data;
+        if (videoMS !== null) {
+          videoMS.setCodecInfo(codecInfo);
+        }
         break;
       case 'stepPlay':{
         switch (message.data) {
@@ -440,6 +443,7 @@ function WorkerManager() {
         }
         fileMaker = null;
         backupWorker = null;
+        backupCallback = null;
         break;
   	}
   }
@@ -495,9 +499,9 @@ function WorkerManager() {
 
     if (videoMS === null) {
       videoMS = VideoMediaSource();
+      videoMS.setCodecInfo(codecInfo);
       videoMS.setInitSegmentFunc(GetInitializationSegment);
       videoMS.setVideoSizeCallback(videoSizeCallback);
-      videoMS.setCodecInfo(codecInfo);
       videoMS.init(videoElem);
     } else {
       var element = videoMS.getVideoElement();

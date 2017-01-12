@@ -284,15 +284,7 @@ kindFramework.directive('liveIconList', function(
 		                wait();
 		            }, 500);
 		        } else {
-		            try{
-		                Attributes.getAttributeSection().then(function(){
-		                    console.log("Attributes.getAttributeSection()");
-		                    mAttr = Attributes.get();
-		                    loadedAttr();
-		                });
-		            }catch(e){
-		                loadedAttr();
-		            }
+                    loadedAttr();
 		        }
 			}
 		}

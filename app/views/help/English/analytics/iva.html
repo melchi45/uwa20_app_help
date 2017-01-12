@@ -6,13 +6,13 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>IVA</h2>
+        <h2>IVA (Intelligent Video Analytics)</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
-            <h3>Enable </h3>
-            <p>To use the IVA event, select <strong class="UI">[Enable]</strong>. You can set the virtual line, virtual area and exclude area simply by setting <strong class="UI">[Enable]</strong> for the IVA event and clicking the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
+            <h3>Enable IVA</h3>
+            <p>To use the IVA event, select <strong class="UI">[Enable IVA]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Virtual line</h3>
@@ -26,8 +26,8 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <h5>Area</h5>
-            <p>When a virtual line is added, the color of the number buttons in <strong class="UI">[Area]</strong> will change. When you disable a virtual line by clicking the number buttons, the relevant virtual line will not be displayed on the preview screen. When you click the number buttons again, the virtual line will reappear.</p>
+            <h5>Line</h5>
+            <p>When a virtual line is added, the color of the number buttons in <strong class="UI">[Line]</strong> will change. When you disable a virtual line by clicking the number buttons, the relevant virtual line will not be displayed on the preview screen. When you click the number buttons again, the virtual line will reappear.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>Categories</h5>
@@ -58,13 +58,13 @@
                 <li><strong class="UI">Intrusion</strong>: When an object moves inside the set area, an event will be created.</li>
                 <li><strong class="UI">Enter</strong>: When an object enters the area set by the user, an event will be created.</li>
                 <li><strong class="UI">Exit</strong>: When a moving object exits the area set by the user, an event will be created.</li>
-                <li><strong class="UI">Appear (disappear)</strong>: When an object which does not exist inside the area designated by the user appears inside the area without passing the area line and remains for a certain period of time, or if an object which exists inside the area disappears, an event will be created.</li>
+                <li><strong class="UI">Appear (Disappear)</strong>: When an object which does not exist inside the area designated by the user appears inside the area without passing the area line and remains for a certain period of time, or if an object which exists inside the area disappears, an event will be created.</li>
                 <ul>
-                    <li><strong class="UI">Minimum duration</strong>: This sets the minimum timeframe for an object to be detected as appearing (disappearing). When an object which exists in the detection area for the set time disappears, it is detected as disappearing, and when an object which does not exist appears for the set amount of time, it is detected as appearing.</li>
+                    <li><strong class="UI">Minimum duration (s)</strong>: This sets the minimum timeframe for an object to be detected as appearing (disappearing). When an object which exists in the detection area for the set time disappears, it is detected as disappearing, and when an object which does not exist appears for the set amount of time, it is detected as appearing.</li>
                 </ul>
                 <li><strong class="UI">Loitering</strong>: When a loitering object in the set detection area is detected, an event will be created.</li>
                 <ul>
-                    <li><strong class="UI">Minimum duration</strong>: This sets the minimum length of time for a loitering object to be detected and an event created. When an object which loiters longer than the set time is detected, an event will be created.</li>
+                    <li><strong class="UI">Minimum duration (s)</strong>: This sets the minimum length of time for a loitering object to be detected and an event created. When an object which loiters longer than the set time is detected, an event will be created.</li>
                 </ul>
             </ul>
         </div>
@@ -113,15 +113,15 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>FTP</h3>
-            <p>To save an image on an FTP server when an IVA event is created, select <strong class="UI">[Use]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+            <p>To save an image on an FTP server when an IVA event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>E-mail</h3>
-            <p>To send an image by e-mail when an IVA event occurs, select <strong class="UI">[Use]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+            <p>To send an image by e-mail when an IVA event occurs, select <strong class="UI">[Enable]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Record</h3>
-            <p>To save an image on an SD card or NAS when an IVA event is created, select <strong class="UI">[Use]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p>To save an image on an SD card or NAS when an IVA event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Alarm output</h3>

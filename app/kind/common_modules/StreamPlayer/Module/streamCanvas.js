@@ -37,9 +37,10 @@ kindStreamModule.directive('kindStream', [
 					kindStreamInterface.setIspreview(false);
 					kindStreamInterface.changeStreamInfo(tmpKindPlayer);
 					kindStreamInterface.destroyPlayer();
+					watchKindPlayer();
 				});
 
-				scope.$watch('kindplayer', function(newValue, oldValue) {
+				var watchKindPlayer = scope.$watch('kindplayer', function(newValue, oldValue) {
 					if (newValue === undefined || newValue === null || isPhone)
 						return;
 

@@ -66,7 +66,7 @@ kindFramework.controller('dnScheduleCtrl', function ($scope, $uibModalInstance, 
                     document.getElementById('selectedToMinute').focus();
                 }
             }
-            COMMONUtils.ShowError("lang_msg_invalid_time");
+            COMMONUtils.ShowError("lang_msg_invalid_activation_time");
             return false;
         }
         return true;
@@ -164,7 +164,7 @@ kindFramework.controller('heaterScheduleCtrl', function ($scope, $uibModalInstan
         var compareEndTime = new Date(2000, 1, 1, $scope.SelectedToHour, $scope.SelectedToMinute, 0).valueOf();
 
         if (compareEndTime <= compareStartTime) {
-            COMMONUtils.ShowError("lang_msg_invalid_time");
+            COMMONUtils.ShowError("lang_msg_invalid_activation_time");
             return false;
         }
 

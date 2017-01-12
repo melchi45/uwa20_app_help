@@ -717,6 +717,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             $scope.selectEncoderSettings(false);
             if(isCodecChange){
                 $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].PriorityType = "Bitrate";
+                $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = 6144;
             }
         } else {
             if(isAdjustBitRate === false){
@@ -726,6 +727,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             }
             if(isCodecChange){
                 $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].PriorityType = "FrameRate";
+                $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = 5120;
             }
         }
 
