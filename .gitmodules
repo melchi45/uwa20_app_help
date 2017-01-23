@@ -1,3 +1,6 @@
 [submodule "languages"]
 	path = languages
 	url = ssh://ctf1.stw.net:29418/uwa_base
+[submodule "app/external-lib"]
+	path = app/external-lib
+	url = ssh://ctf1.stw.net:29418/uwa_lib
