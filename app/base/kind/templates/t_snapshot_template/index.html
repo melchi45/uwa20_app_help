@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>{{title}}</title>
+
+    
+
+    
+    
+    <!-- build:css styles/libraries.css -->
+    <link rel="stylesheet" href="kind/base_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="kind/base_components/jquery-ui/jquery-ui.min.css">
+    <!-- endbuild -->
+    
+    <!-- build:css styles/customs.css -->
+    <link rel="stylesheet" href="styles/snapshot_common.css">
+    <!-- endbuild -->
+</head>
+<body>
+    <div data-ng-view data-ng-controller="WrapperCtrl"></div>
+
+    <script src="cordova.js"></script>
+    
+    <!-- build:js scripts/base_components.js -->
+    <script src="kind/base_components/jquery/jquery.js"></script>
+    <script src="kind/base_components/angular/angular.js"></script>
+    <script src="kind/base_components/angular-route/angular-route.js"></script>
+    <script src="kind/base_components/angular-mocks/angular-mocks.js"></script>
+    <script src="kind/base_components/jquery-ui/jquery-ui.min.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:js scripts/common_modules.js-->
+    <script src="kind/common_modules/cm_external_if_sunapi/sunapi.js"></script>
+    <script src="kind/common_modules/cm_external_if_sunapi/sunapi_parser.js"></script>
+<!--    <script src="kind/common_modules/cm_external_if_sunapi/profile_parser.js"></script>-->
+    <script src="kind/common_modules/cm_external_if_sunapi/profile_controller.js"></script>
+    <!-- endbuild-->
+    
+    
+    <!-- build:js scripts/bases.js -->
+    <script src="scripts/t_snapshot_kind.js"></script>
+    <script src="scripts/config/t_snapshot_config.js"></script>
+    <script src="scripts/controllers/t_snapshot_wrapper.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:js scripts/customs.js -->
+    <script src="scripts/controllers/snapshot_controller.js"></script>
+    <script src="scripts/services/t_snapshot_service.js"></script>
+    <script src="scripts/directives/snapshot.js"></script>
+    
+    
+    <!-- endbuild -->
+    
+    <!-- build:js scripts/kind_components.js -->
+    <script src="kind/rich_components/rest_client/rest_client.js"></script>
+    <script src="kind/rich_components/rest_client/rest_client.config.js"></script>
+    <!-- endbuild -->
+
+	<!-- build:js scripts/init.js -->
+	<script src="scripts/init/t_snapshot_init.js"></script>
+	<!-- endbuild -->
+</body>
+</html>

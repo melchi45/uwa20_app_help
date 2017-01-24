@@ -1,0 +1,54 @@
+<div class="container">
+    <article>
+        <div class="col-lg-7">
+            <h2>Snapshot Viewer</h2>
+            <section id="snapshot-view-wrap" >
+                <snapshot data="snapshotData"></snapshot>
+            </section>
+            
+            
+        </div>
+        <div class="col-lg-4 ">
+
+            <div id="listWrap" class="col-xs-12" >
+                <h2>Snapshot Form</h2>
+                <section id="snapshot-section-info-wrap">
+                    <div id="snapshotTabs">
+                        <ul>
+                            <li class="col-xs-12"><a href="#snapshotForm" class="col-xs-12">Form</a></li>
+                        </ul>
+                        <div id="snapshotForm">
+                            <form method="post" name="snapshotInputForm" novalidate>
+                                <div class="form-group">
+                                    <label for="streamingInfo">Camera Ip</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="Camera Ip..." ng-model="cameraUrl"  ng-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="streamingInfo">Camera account</label>
+                                    <div>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" placeholder="id" ng-model="cameraId" ng-required="true">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="password" class="form-control" placeholder="password" ng-model="cameraPassword" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="col-sm-12">
+                                        <input type="submit" ng-click="clickAddList()" class="btn btn-primary form-control" value="Show Snapshot" ng-disabled="snapshotInputForm.$invalid">
+                                    </p>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+        </div>
+    </article>
+</div>

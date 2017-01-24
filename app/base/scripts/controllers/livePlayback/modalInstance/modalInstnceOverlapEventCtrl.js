@@ -1,0 +1,299 @@
+'use strict';
+kindFramework.controller('modalInstnceOverlapEventCtrl',
+  ['$scope', '$rootScope', '$uibModalInstance', 'data','CAMERA_TYPE', 'PlaybackInterface',
+  'SearchDataModel', 'UniversialManagerService',
+  function ($scope, $rootScope, $uibModalInstance, data, CAMERA_TYPE, PlaybackInterface,
+  SearchDataModel, UniversialManagerService) {
+    var pad = function(x){
+      x *= 1;
+      return ( x<10? "0"+x : x );
+    };
+    $scope.buttonCount = typeof (data.buttonCount) === "undefined" ? 0 : data.buttonCount;
+    var optionServiceType = ['WEB_SSM', 'WEB_IPOLIS', 'MOBILE_B2C', 'MOBILE_B2B'];
+    $scope.connectedService = optionServiceType[UniversialManagerService.getServiceType()];
+    var selectedEvent = null;
+    $scope.eventList = data.eventList;
+    var playbackInterfaceService = PlaybackInterface;
+    
+    /*
+    * data.recordedDate is selected day (in ModalInstnceSearchCtrl.js )
+    * default value is today.
+    */
+    $scope.recordedDate = (data.recordedDate === null || data.recordedDate === undefined)? new Date() : data.recordedDate;
+
+    var year = $scope.recordedDate.getFullYear();
+    var month = pad($scope.recordedDate.getMonth()+1);
+    var date = pad($scope.recordedDate.getDate());
+    var idList;
+    var maxOverlapIDListLength = 1;
+    var searchData = new SearchDataModel();
+    
+      /*
+      * Set flag all event with every items are checked or not. 
+      * Only for checkbox B2B Web
+      * @name : flagAllEventOrNot
+      */      
+      var flagAllEventOrNot = function(){
+        var cntCheckedItem = 0;
+        angular.forEach($scope.eventList, function(item){
+          if(item.selected === true){
+            cntCheckedItem++;
+          }
+        });
+        if(cntCheckedItem === $scope.eventList.length){
+          $scope.allEventSearch.selected = true;
+        } else {
+          $scope.allEventSearch.selected = false;
+        }
+      };
+
+
+    if(isPhone && CAMERA_TYPE === 'b2c'){
+    }else{
+      $scope.allEventSearch = {name:"lang_resetAll", event:"All", selected:false,  enable:true};
+      flagAllEventOrNot();
+    }
+
+    $scope.overlapList = [
+        {name: "lang_overlapped_section", enable:false, id:0},
+        {name: "lang_overlapped_section", enable:false, id:1},
+      ];
+
+    $scope.selected = {
+      event : null,
+      overlap : $scope.overlapList[0]
+    };
+
+    var showOverlap = function(value) {
+      if( isPhone ) {
+        $scope.showOverlap = value;
+      } 
+      else {
+        $scope.showOverlap = true;
+      }
+    };
+
+    showOverlap(false);
+    playbackInterfaceService.getOverlappedId(year,month,date)
+    .then(function(value){
+      idList = value.OverlappedIDList;
+      console.log('OverlappedIDList ::', idList);
+      if(idList === null) {
+        showOverlap(false);
+      } else {
+        if(idList.length > 1) {
+          showOverlap(true);
+        } else {
+          showOverlap(false);
+        }
+        if(isPhone) {
+          for(var i = 0 ; i < idList.length ; i++) {
+            if(i > maxOverlapIDListLength) break;
+            $scope.overlapList[i].id = idList[i];
+            $scope.overlapList[i].enable = true;
+          }
+          if( typeof(data.overlapList) !== 'undefined' && data.overlapList !== null) {
+            for(var i=0 ; i<$scope.overlapList.length ; i++) {
+              if($scope.overlapList[i].id === data.overlapList) {
+                $scope.selected.overlap = $scope.overlapList[i];
+                break;
+              }
+            }
+          }
+        } else {
+          for (var index = 0; index < idList.length ; index++) {
+            var id = idList[index];
+            if( id > maxOverlapIDListLength ) continue;
+            $scope.overlapList[id].enable = true;
+            $scope.overlapList[id].id = id;
+          }
+          if( typeof(data.overlapList) !== 'undefined' && data.overlapList !== null) {
+            $scope.selected.overlap = $scope.overlapList[data.overlapList];  
+          }
+        }
+      }
+    },function(){
+    });
+
+    /*
+    * Make select all item with 'All event' check action.
+    * Only for checkbox B2B Web
+    * It works as toggle(check or uncheck all)
+    * @name : selectAllEvent
+    */
+    $scope.selectAllEvent = function($event){
+      var checkbox = $event.target;
+      angular.forEach($scope.eventList, function(item){
+        item.selected = checkbox.checked;
+      });
+    };
+    
+    /*
+    * Make Checked and show checked icon.
+    * If each it is checked all item, All event is checked.
+    * Only for checkbox B2B Web
+    * @name : selectEachEvent
+    */
+    $scope.selectEachEvent = function($event){
+      var checkbox = $event.target;
+      var cntCheckedItem = 0;
+      if(checkbox.checked === false){
+        $scope.allEventSearch.selected = false;
+        document.getElementById('allEvent').checked = false;
+      }
+      angular.forEach($scope.eventList, function(item){
+        if(item.selected === true){
+          cntCheckedItem++;
+        }
+      });
+      if(cntCheckedItem === $scope.eventList.length){
+        document.getElementById('allEvent').checked = true;
+      }      
+    };
+
+    /*
+    * after receiving getEventStatus() results, update selected item based on updated eventList.
+    */
+    var updateEventSelected = function() {
+      if( data.selectedEvent === null ) {
+        setDefaultEventItem();
+      } else {
+        // for( var i=0 ; i< data.selectedEvent.length; i++) {
+          if( data.selectedEvent[0] === 'All') {
+            angular.forEach($scope.eventList, function(item){
+              item.selected = true;
+            });
+            $scope.allEventSearch.selected = true;
+          } else {
+            // for( var i=0 ; i< data.selectedEvent.length; i++) {
+              selectPreviousValue();
+            // }
+          }
+      }
+      //To set default value.
+      if( typeof($scope.allEventSearch) === 'undefined') {
+        searchData.setEventTypeList($scope.selected.event===null? null : [$scope.selected.event.event]);
+      } else {
+        if( searchData.getEventTypeList() === null ) {
+          searchData.setEventTypeList(['All']);
+        }
+      }
+    };
+
+    /*
+    * If no previous selected item, then set default value.
+    * @name : setDefaultEventItem.
+    */
+    var setDefaultEventItem = function() {
+      if(typeof($scope.allEventSearch) !== 'undefined') {
+        //$scope.allEventSearch.selected = true;
+        flagAllEventOrNot();
+      }
+      else {
+        var index = 0;
+        for( index =0 ; index< $scope.eventList.length; index++) {
+          if( $scope.eventList[index].enable === true) {  //if disabled, then change default value
+            $scope.selected.event = $scope.eventList[index];
+            break;
+          }
+        }
+        if( index === $scope.eventList.length) {
+          $scope.selected.event = $scope.eventList[0];
+        }
+      }
+    };
+
+    /**
+    * make to 'selected = true' matching with prevList items.
+    * @name : selectPreviousValue
+    * @param : prevList is element of data.selectedEvent
+    */
+    var selectPreviousValue = function() {
+      for( var i=0 ; i< data.selectedEvent.length; i++) {
+        var prevList = data.selectedEvent[i];
+        for( var j =0 ; j< $scope.eventList.length; j++) {
+          if($scope.eventList[j].event !== prevList) {
+            continue;
+          }
+          $scope.selected.event = null;
+          if( $scope.eventList[j].enable === true) {
+            if( typeof($scope.eventList[j].selected) !== 'undefined') { // checkbox case( multiple selection)
+              $scope.eventList[j].selected = true;
+              $scope.selected.event = $scope.eventList[j];
+            }
+            else { // radio button case ( 1 selection )
+              $scope.selected.event = $scope.eventList[j];
+              break;
+            }
+          }
+        }
+      }
+      if( $scope.selected.event === null ) {
+        setDefaultEventItem();
+      }
+    };
+
+    updateEventSelected();
+
+    // if( typeof(data.overlapList) !== 'undefined' && data.overlapList !== null) {
+    //   $scope.selected.overlap = $scope.overlapList[data.overlapList]; 
+    // }
+
+    $scope.ok = function() {
+      var selectedEventList = [];
+      /*
+      * if allEventSearch is undefined, then b2b or b2c case. 
+      * App just select 1 event type, so just push selected item.
+      */
+      if( typeof($scope.allEventSearch) === 'undefined') {
+        selectedEventList.push($scope.selected.event.event);
+      }
+      else {
+        /*
+        * If All is selected, then just push "All" to selectedEventList
+        * no need to push other event list 
+        * If 'All' event type is selected, then set to 'timeSearch' (playing continuous)
+        * else, set to 'eventSearch' (just playing selected item)
+        */
+        if( $scope.allEventSearch.selected === true) {
+          selectedEventList.push($scope.allEventSearch.event);
+          searchData.setPlaybackType('timeSearch');
+        }
+        else{
+          searchData.setPlaybackType('eventSearch');
+          for( var i=0 ; i< $scope.eventList.length; i++) {
+            if( $scope.eventList[i].selected) {
+              selectedEventList.push($scope.eventList[i].event);
+            }
+          }
+        }
+      }
+
+      if(selectedEventList.length > 0) {
+        /*
+        *save overlap Id & selectedEventList
+        */
+        if($scope.selected.overlap.enable) {
+          searchData.setOverlapId($scope.selected.overlap.id);
+        } else {
+          searchData.setOverlapId(null);
+        }
+        searchData.setEventTypeList(selectedEventList);
+        console.log('selected overlap id:: ', $scope.selected.overlap.enable? $scope.selected.overlap.id: null)
+        data = {
+          'selectedOverlap' : $scope.selected.overlap.enable? $scope.selected.overlap.id: null,
+          'selectedEvent' : selectedEventList
+        };
+        $uibModalInstance.close(data);
+        playbackInterfaceService = null;
+      } else {
+        $uibModalInstance.dismiss('no event selected');
+      }
+    };
+    
+    $rootScope.$saveOn('allpopupclose', function(event) {
+      $uibModalInstance.dismiss('cancel');
+      playbackInterfaceService = null;
+    }, $scope);
+
+}]);

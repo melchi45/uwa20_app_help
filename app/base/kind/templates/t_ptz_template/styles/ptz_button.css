@@ -1,0 +1,53 @@
+.ptz-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    float: left;
+}
+
+.ptz-wrap > ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+.ptz-wrap > ul > li {
+    position: absolute;
+    list-style: none;
+}
+
+.ptz-wrap > ul > li > img {
+    cursor: pointer;
+}
+
+.ptz-wrap > ul > li[data-type="up"] {
+    width: 100%;
+    text-align: center;
+    top: 3%;
+}
+
+.ptz-wrap > ul > li[data-type="right"] {
+    top: 50%;
+    right: 3%;
+}
+
+.ptz-wrap > ul > li[data-type="right"] * {
+    margin-top: -100%;   
+}
+
+
+.ptz-wrap > ul > li[data-type="left"] {
+    top: 50%;
+    left: 3%;
+}
+
+.ptz-wrap > ul > li[data-type="left"] * {
+    margin-top: -100%;   
+}
+
+
+
+.ptz-wrap > ul > li[data-type="down"] {
+    width: 100%;
+    text-align: center;
+    bottom: 3%;
+}

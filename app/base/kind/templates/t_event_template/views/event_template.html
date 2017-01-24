@@ -1,0 +1,69 @@
+<div class="container">
+    <article>
+        <div class="col-lg-7">
+            <h2>Event List</h2>
+            <section id="section-video-wrap" >
+                <div class="gridStyle content-with-scroll-y" ui-grid="eventListOptions"></div>
+            </section>
+        </div>
+        <div class="col-lg-4 ">
+            <div id="listWrap">
+                <h2></h2>
+                <section id="section-info-wrap">
+                    <div id="tabs">
+                        <ul>
+                            <li class="col-xs-12"><a href="#form" class="col-xs-12">Form</a>
+                            </li>
+                        </ul>
+                        <div id="form">
+                            <form method="post" name="inputForm">
+                                <div class="form-group">
+                                    <label for="streamingInfo">Camera Ip</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" ng-model="cameraIp" class="form-control " placeholder="Camera Ip" ng-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="streamingInfo">Account</label>
+                                    <div>
+                                        <div class="col-sm-6">
+                                            <input type="text" ng-model="cameraId" class="form-control" placeholder="id" ng-required="true">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="password" ng-model="cameraPassword" class="form-control" placeholder="password" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="streamingInfo">Time Setting</label>
+                                    <div >
+                                        <div class="col-sm-6">
+                                            <input type="text" ng-model="startTime" id="startTime" class="form-control" placeholder="Start Time" ng-required="true">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" ng-model="endTime" id="endTime" class="form-control" placeholder="Etart Time" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="streamingInfo">recording type</label>
+                                    <div class="col-sm-12">
+                                        <select ng-model="type" ng-required="true" ng-options="o for o in types track by o">
+                                            <option value="">select type</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="col-sm-12">
+                                        <input type="submit" ng-click="clickEventList()" class="btn btn-primary form-control" value="get event list" ng-disabled="inputForm.$invalid">
+                                    </p>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </article>
+</div>
