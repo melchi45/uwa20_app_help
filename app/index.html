@@ -46,16 +46,16 @@
     </script>
 
         <!-- build:css styles/libraries.css -->
-    <link href="base/kind/base_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="base/kind/base_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="base/kind/base_components/jquery-ui/jquery-ui.css" rel="stylesheet">
-    <link href="base/kind/base_components/nvd3/build/nv.d3.min.css" rel="stylesheet">
-    <link href="base/kind/base_components/fullcalendar/fullcalendar.min.css" rel="stylesheet">
+    <link href="external-lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="external-lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="external-lib/jquery-ui/jquery-ui.css" rel="stylesheet">
+    <link href="external-lib/nvd3/build/nv.d3.min.css" rel="stylesheet">
+    <link href="external-lib/fullcalendar/fullcalendar.min.css" rel="stylesheet">
         <!-- endbuild -->
     
         <!-- build:css styles/customs.css -->
     <link href="base/kind/common_modules/kind_client_cm_strm-display/display.css" rel="stylesheet">
-    <link href="base/external-modules/vis/vis.css" rel="stylesheet">
+    
     <link href="styles/fonts/notosans.css" rel="stylesheet">
     <link href="styles/fonts/Techwin-Universal-Icon/icons.css" rel="stylesheet">
     <link href="styles/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
@@ -70,6 +70,8 @@
     <link href="styles/common.css" rel="stylesheet">
     <link href="styles/app.css" rel="stylesheet">
     <link href="styles/page-common.css" rel="stylesheet">
+
+    <link href="external-lib/vis/vis.css" rel="stylesheet">
         <!-- endbuild -->
     <link href="styles/less/app.less" rel="stylesheet/less">
 </head>
@@ -78,35 +80,35 @@
     <div ui-view ng-controller="WrapperCtrl" class="wrap"></div>
 
     <!-- build:js scripts/base_component.js -->
-    <script src="base/kind/base_components/jquery/jquery.js"></script>
-    <script src="base/kind/base_components/jquery-ui/jquery-ui.min.js"></script>
-    <script src="base/kind/base_components/jquery-ui/jquery.ui.touch-punch.min.js"></script>
-    <script src="base/kind/base_components/metisMenu/jquery.metisMenu.js"></script>
-    <script src="base/kind/base_components/angular/angular.js"></script>
-    <script src="base/kind/base_components/angular-ios9-uiwebview-patch/angular-ios9-uiwebview-patch.js"></script>
-    <script src="base/kind/base_components/angular-mocks/angular-mocks.js"></script>
-    <script src="base/kind/base_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="base/kind/base_components/angular-translate/angular-translate.min.js"></script>
-    <script src="base/kind/base_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
-    <script src="base/kind/base_components/ui-router/angular-ui-router.min.js"></script>
-    <script src="base/kind/base_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="base/kind/base_components/fullcalendar/moment.min.js"></script>
-    <script src="base/kind/base_components/fullcalendar/fullcalendar.min.js"></script>
+    <script src="external-lib/jquery/jquery.js"></script>
+    <script src="external-lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="external-lib/jquery-ui/jquery.ui.touch-punch.min.js"></script>
+    <script src="external-lib/metisMenu/jquery.metisMenu.js"></script>
+    <script src="external-lib/angular/angular.js"></script>
+    <script src="external-lib/angular-ios9-uiwebview-patch/angular-ios9-uiwebview-patch.js"></script>
+    <script src="external-lib/angular-mocks/angular-mocks.js"></script>
+    <script src="external-lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="external-lib/angular-translate/angular-translate.min.js"></script>
+    <script src="external-lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script src="external-lib/ui-router/angular-ui-router.min.js"></script>
+    <script src="external-lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="external-lib/fullcalendar/moment.min.js"></script>
+    <script src="external-lib/fullcalendar/fullcalendar.min.js"></script>
     <!-- ui-bootstrap-tpls-0.14.3 is modified due to Datepicker Issue, so that is renamed. -->
-    <script src="base/kind/base_components/angular-bootstrap/ui-bootstrap-tpls-0.14.3-custom.js"></script>
-    <script src="base/kind/base_components/angular-animate/angular-animate.js"></script>
-    <script src="base/kind/base_components/angular-touch/angular-touch.min.js"></script>
-    <script src="base/kind/base_components/bower-angular-cookies-master/angular-cookies.js"></script>
-    <script src="base/kind/base_components/datapicker/angular-datepicker.js"></script>
-    <script src="base/kind/base_components/oclazyload/dist/ocLazyLoad.min.js"></script>
-    <script src="base/kind/base_components/hammer.js/hammer.js"></script>
-    <script src="base/kind/base_components/rzslider/rzslider.min.js"></script>
-    <script src="base/kind/base_components/ng-pattern-restrict/ng-pattern-restrict.min.js"></script>
-    <script src="base/kind/base_components/d3/d3.min.js"></script>
-    <script src="base/kind/base_components/nvd3/build/nv.d3.min.js"></script>
-    <script src="base/kind/base_components/angular-nvd3/dist/angular-nvd3.min.js"></script>
+    <script src="external-lib/angular-bootstrap/ui-bootstrap-tpls-0.14.3-custom.js"></script>
+    <script src="external-lib/angular-animate/angular-animate.js"></script>
+    <script src="external-lib/angular-touch/angular-touch.min.js"></script>
+    <script src="external-lib/bower-angular-cookies-master/angular-cookies.js"></script>
+    <script src="external-lib/datapicker/angular-datepicker.js"></script>
+    <script src="external-lib/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="external-lib/hammer.js/hammer.js"></script>
+    <script src="external-lib/rzslider/rzslider.min.js"></script>
+    <script src="external-lib/ng-pattern-restrict/ng-pattern-restrict.min.js"></script>
+    <script src="external-lib/d3/d3.min.js"></script>
+    <script src="external-lib/nvd3/build/nv.d3.min.js"></script>
+    <script src="external-lib/angular-nvd3/dist/angular-nvd3.min.js"></script>
     <!-- endbuild -->
-    <script src="base/kind/base_components/less/dist/less.js"></script>
+    <script src="external-lib/less/dist/less.js"></script>
 
     <!-- build:js scripts/kind_components.js -->
 
@@ -126,25 +128,30 @@
     <script src="/kind/common_modules/StreamPlayer/Player/streamManager.js"></script>
     <script src="/kind/common_modules/StreamPlayer/Player/streamPlayer.js"></script>
 
-    <script src="/kind/common_modules/Util/three.js"></script>
+    <script src="/external-lib/util/three.js"></script>
+    <script src="/external-lib/util/FileSaver.js"></script>
+    <script src="/external-lib/util/rgbCanvas.js"></script>
+    <script src="/external-lib/util/fpsCounter.js"></script>
+    <script src="/external-lib/util/sylvester.js"></script>
+    <script src="/external-lib/util/glUtils.js"></script>
+    <script src="/external-lib/util/crypto.js"></script>
     <!-- <script src="/kind/common_modules/Util/fishEye3D.js"></script> -->
     <script src="/kind/common_modules/Util/fishEye3D_multi.js"></script>
     <script src="/kind/common_modules/Util/mp4GeneratorTemp.js"></script>
-    <script src="/kind/common_modules/Util/FileSaver.js"></script>
-    <script src="/kind/common_modules/Util/sylvester.js"></script>
+    
+    
     <script src="/kind/common_modules/Util/audioUtil.js"></script>
-    <script src="/kind/common_modules/Util/crypto.js"></script>
     <script src="/kind/common_modules/Util/digestGenerator.js"></script>
     <script src="/kind/common_modules/Util/displayFactory.js"></script>
     <script src="/kind/common_modules/Util/displayDirective.js"></script>
-    <script src="/kind/common_modules/Util/glUtils.js"></script>
+    
     <script src="/kind/common_modules/Util/metaDataParser.js"></script>
-    <script src="/kind/common_modules/Util/rgbCanvas.js"></script>
+    
     <script src="/kind/common_modules/Util/sunapi.js"></script>
     <script src="/kind/common_modules/Util/sunapiParser.js"></script>
     <script src="/kind/common_modules/Util/profileController.js"></script>
     <script src="/kind/common_modules/Util/util.js"></script>
-    <script src="/kind/common_modules/Util/fpsCounter.js"></script>
+    
     <script src="/kind/common_modules/Util/videoDigitalPTZ.js"></script>
 
     <script src="/kind/common_modules/AudioRenderer/audioPlayer.js"></script>
@@ -178,12 +185,12 @@
 
 <!-- #### Commonly Used Files -->
 
+    <script src="external-lib/vis/vis.js"></script>
+    <script src="external-lib/slider/slider.js"></script>
+    <script src="external-lib/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="external-lib/util/md5.js"></script>
+
     <script src="plugin/pluginModel.js"></script>
-
-    <script src="base/external-modules/vis/vis.js"></script>
-    <script src="base/external-modules/slider/slider.js"></script>
-    <script src="base/external-modules/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
-
     <script src="base/scripts/config/monkey_patch.js"></script>
     <script src="scripts/config/route_config.js"></script>
     <script src="base/scripts/config/camera_option.js"></script>
@@ -237,8 +244,8 @@
     <script src="scripts/services/common/mjpegPollingControlService.js"></script>
     <script src="scripts/services/common/EventNotificationService.js"></script>
     
-    <script src="base/scripts/utils/md5.js"></script>
-    <script src="base/scripts/utils/aes.js"></script>
+    
+    <script src="external-lib/util/aes.js"></script>
     <script src="base/scripts/utils/xmlParser.js"></script>
     <script src="base/scripts/utils/commonUtils.js"></script>
     <script src="base/scripts/utils/cameraSpec.js"></script>
