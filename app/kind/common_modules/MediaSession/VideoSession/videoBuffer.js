@@ -83,7 +83,7 @@ function VideoBufferList() {
     },
     setBufferFullCallback: function (callback) {
       bufferFullCallback = callback;
-      console.log("setBufferFullCallback MAX_LENGTH is " + MAX_LENGTH );
+      // console.log("setBufferFullCallback MAX_LENGTH is " + MAX_LENGTH );
     },
     searchTimestamp: function (frameTimestamp) {
 //      console.log("searchTimestamp frameTimestamp = " + frameTimestamp.timestamp + " frameTimestamp usec = " + frameTimestamp.timestamp_usec);
@@ -108,7 +108,7 @@ function VideoBufferList() {
         currentNode = null;
       } else {
         this.curIdx = count;
-        console.log("searchTimestamp curIdx = " + this.curIdx + " currentNode.timeStamp.timestamp = " + currentNode.timeStamp.timestamp + " currentNode.timestamp_usec = " + currentNode.timeStamp.timestamp_usec + " frameTimestamp = " + frameTimestamp.timestamp + " frameTimestamp usec = " + frameTimestamp.timestamp_usec);
+        // console.log("searchTimestamp curIdx = " + this.curIdx + " currentNode.timeStamp.timestamp = " + currentNode.timeStamp.timestamp + " currentNode.timestamp_usec = " + currentNode.timeStamp.timestamp_usec + " frameTimestamp = " + frameTimestamp.timestamp + " frameTimestamp usec = " + frameTimestamp.timestamp_usec);
       }
 
       return currentNode;
@@ -146,7 +146,7 @@ function VideoBufferList() {
         currentNode = null;
       } else {
         this.curIdx = count;
-        console.log('findIFrame curIdx ' + this.curIdx + ' count ' + count + ' _length ' + this._length);
+        // console.log('findIFrame curIdx ' + this.curIdx + ' count ' + count + ' _length ' + this._length);
       }
 
       return currentNode;

@@ -29,8 +29,8 @@ kindFramework
             //hostName: '192.168.123.53',
             //hostName: '192.168.123.44',             // 2M
             //hostName: '192.168.75.213',                 // 2M
-            hostName: '192.168.123.168',                // 5M
-            //hostName: '192.168.123.88',
+            hostName: '192.168.123.9',                // 5M
+            // hostName: '192.168.123.88',
             port: 80,
             protocol: 'http',
             rtspIp:'',

@@ -101,6 +101,9 @@ function VideoBackup() {
 			aviIndexEntry.chid = '00dc';
 
 			var rate = (1000/videoFrame.framerate).toFixed(1);
+			if( typeof rate === 'string'){
+				rate *= 1;
+			}
 
 			if( file_info.video_init === undefined || file_info.video_init === false ) {
 				this.initHeader(videoFrame);

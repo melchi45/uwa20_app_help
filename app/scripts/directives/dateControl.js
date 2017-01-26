@@ -36,6 +36,8 @@ kindFramework.directive('dateControl', ['$rootScope','TimelineService','SearchDa
         var searchData = new SearchDataModel();
         var playData = new PlayDataModel();
         var PLAY_CMD = PLAYBACK_TYPE.playCommand;
+        moment.tz.add("Africa/Abidjan|LMT GMT|g.8 0|01|-2ldXH.Q|48e5");
+        moment.tz.setDefault("Africa/Abidjan");
         var showDateString = function(dateObj) {
           scope.currentDate = dateObj.getFullYear()+"-"+pad(dateObj.getMonth()+1)+"-"+pad(dateObj.getDate());
         };
@@ -50,11 +52,13 @@ kindFramework.directive('dateControl', ['$rootScope','TimelineService','SearchDa
           }
           var startTime = (current.startTime).split(":");
           var endTime = (current.endTime).split(":");
-          var startWindow = new Date( current.date.getFullYear(), current.date.getMonth(), current.date.getDate(),
-            startTime[0],startTime[1], startTime[2]);
-          var endWindow = new Date( current.date.getFullYear(), current.date.getMonth(), current.date.getDate(),
-            endTime[0], endTime[1], endTime[2]);
-          searchData.setSelectedDate(startWindow);
+          var startWindow = moment.parseZone(
+            current.date.getFullYear()+'-'+pad(current.date.getMonth()+1)+'-'+pad(current.date.getDate())+
+            ' '+pad(startTime[0])+':'+pad(startTime[1])+':'+pad(startTime[2])+"+00:00");
+          var endWindow = moment.parseZone(
+            current.date.getFullYear()+'-'+pad(current.date.getMonth()+1)+'-'+pad(current.date.getDate())+
+            ' '+pad(endTime[0])+':'+pad(endTime[1])+':'+pad(endTime[2])+"+00:00");
+          searchData.setSelectedDate(current.date);
           timelineCtrl.changeTimelineView(startWindow, endWindow);
           timelineCtrl.clearTimeline();
           var searchInfo = {
@@ -76,9 +80,9 @@ kindFramework.directive('dateControl', ['$rootScope','TimelineService','SearchDa
 
 
         scope.control.changePlayingTime = function(hours, minutes, seconds){
-          scope.playingTime.hours = hours;
-          scope.playingTime.minutes = minutes;
-          scope.playingTime.seconds = seconds;
+          scope.playingTime.hours = pad(hours);
+          scope.playingTime.minutes = pad(minutes);
+          scope.playingTime.seconds = pad(seconds);
         };
 
         scope.control.changeCurrnetDate = function(current){
@@ -97,24 +101,13 @@ kindFramework.directive('dateControl', ['$rootScope','TimelineService','SearchDa
 
           var startTime = (current.startTime).split(":");
           var endTime = (current.endTime).split(":");
-          var startWindow = new Date(
-            current.date.getFullYear(), 
-            current.date.getMonth(), 
-            current.date.getDate(),
-            startTime[0],
-            startTime[1], 
-            startTime[2]
-          );
-          var endWindow = new Date( 
-            current.date.getFullYear(), 
-            current.date.getMonth(), 
-            current.date.getDate(),
-            endTime[0], 
-            endTime[1], 
-            endTime[2]
-          );
-
-          searchData.setSelectedDate(startWindow);
+          var startWindow = moment.parseZone(
+            current.date.getFullYear()+'-'+pad(current.date.getMonth()+1)+'-'+pad(current.date.getDate())+
+            ' '+pad(startTime[0])+':'+pad(startTime[1])+':'+pad(startTime[2])+'+00:00');
+          var endWindow = moment.parseZone(
+            current.date.getFullYear()+'-'+pad(current.date.getMonth()+1)+'-'+pad(current.date.getDate())+
+            ' '+pad(endTime[0])+':'+pad(endTime[1])+':'+pad(endTime[2])+'+00:00');
+          searchData.setSelectedDate(current.date);
           timelineCtrl.changeTimelineView(startWindow, endWindow);
 
           var searchInfo = {
@@ -211,9 +204,9 @@ kindFramework.directive('dateControl', ['$rootScope','TimelineService','SearchDa
 
         $rootScope.$saveOn('updateTimebar', function(event, timePosition) {
           $timeout(function() {
-            scope.playingTime.hours = pad(timePosition.getHours());
-            scope.playingTime.minutes = pad(timePosition.getMinutes());
-            scope.playingTime.seconds = pad(timePosition.getSeconds());
+            scope.playingTime.hours = pad(timePosition.hours);
+            scope.playingTime.minutes = pad(timePosition.minutes);
+            scope.playingTime.seconds = pad(timePosition.seconds);
           });
         }, scope);
 

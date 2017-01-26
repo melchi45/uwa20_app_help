@@ -4,12 +4,12 @@ kindFramework.factory('PluginModel', function() {
         NPAPI : {
             Name : 'Hanwha Techwin HTWisenetViewer Plugin',
             Description : 'HTWisenetViewer plugin',
-            Version: 144,
+            Version: 148,
             Path: 'plugin/HTWWisenetViewer.pkg'
         },
         ActiveX: {
             Name: 'Wisenet_ACTIVEX.wisenet_activexCtrl.1',
-            Version: 144,
+            Version: 148,
             Path: 'plugin/HTWWisenetViewer.exe'
         }
     };

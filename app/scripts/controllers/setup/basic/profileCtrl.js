@@ -850,12 +850,16 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                 profile.IsDigitalPTZProfile = false;
                 LogManager.debug("Reset IsDigitalPTZProfile ");
             }
+            if (profile.RecordProfile === true){
+                profile.Bitrate = 6144;
+            }
         }
 
         /**Reset H265 Encoder profile, since it supports only Main */
         if (profile.EncodingType === 'H265')
         {
             profile.EncoderProfile = 'Main';
+            profile.EntropyCoding = 'CABAC';
         }
     }
 
@@ -925,8 +929,6 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                         defaultBitrate = GenResoltionList[resolCnt].DefaultVBRTargetBitrate;
                     }
 
-
-
                     if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined) {
                         $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate;
                     } else {
@@ -936,6 +938,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                     }
 
                 } else {
+
                     if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].RecordProfile) {
                         if (RecResoltionList[resolCnt].MaxCBRTargetBitrate !== undefined) {
                             maxBitrate = RecResoltionList[resolCnt].MaxCBRTargetBitrate;
@@ -943,7 +946,6 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                         if (RecResoltionList[resolCnt].MinCBRTargetBitrate !== undefined) {
                             minBitrate = RecResoltionList[resolCnt].MinCBRTargetBitrate;
                         }
-
                         if (RecResoltionList[resolCnt].DefaultCBRTargetBitrate !== undefined) {
                             defaultBitrate = RecResoltionList[resolCnt].DefaultCBRTargetBitrate;
                         }
@@ -1753,6 +1755,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                 profile.H264 = {};
             } else if (profile.EncodingType === 'H265') {
                 profile.EncoderProfile = 'Main';
+                profile.EntropyCoding = "CABAC";
                 profile.H265 = {};
             }
         }

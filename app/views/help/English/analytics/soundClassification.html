@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Sound classification</h1>
+﻿<h1 class="wn5-setup-main-title">Sound classification</h1>
 <div class="wn5-setup-section">
     <p>The type of sound detected while the camera is capturing an image can be classified and created as a sound classification event. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the sound classification event applies to <strong class="UI">[Sound classification]</strong> on the <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong> </a> pages equally.</p>
 </div>
@@ -24,20 +24,28 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>Noise reduction  </h3>
-            <p>To use the noise removal filter, select <strong class="UI">[Enable]</strong>.</p>
+            <p>To use the noise removal filter, select <strong class="UI">[Enable]</strong>. If the noise from the surrounding environments is higher than 55dB~65dB, use <strong class="UI">[Noise reduction]</strong>. Using the noise reduction function according to environments reduces original sound so that the sound classification performance may deteriorate, or a malfunction may occur. If the noise reduction filter is used in a quiet environment, the sound classification performance may deteriorate.</p>
         </div>
         <!--<div class="wn5-setup-section-article-content">
             <h3>Sensitivity  </h3>
             <p>This sets the sound sensitivity. A higher sensitivity enables the detection of a quieter sound.</p>
         </div> -->
+		
+		<div class="wn5-setup-section-article-content">
+            <h3>Level of classification</h3>
+            <p>Sets the level of audio energy to classify the sound. The level value of input audio energy is drawn on the area while being renewed periodically from right to left. The sound classification applies only to audio over the set level. In other words, it is classified as the sound source only when the energy of the audio input is higher than the reference line. If the reference line is lowered, there is more target data for the sound classification, and a higher possibility of false detections. If the reference line rises, there are less target data for the sound classification and a higher probability of missing detections. Set it properly according to the surrounding noise level.</p>
+            
+        </div>
+		
+		
         <div class="wn5-setup-section-article-content">
             <h3>Categories  </h3>
             <p>This detects the type of sound and creates an event. The type of sound to detect can be selected and can be selected repeatedly.</p>
             <ul>
-                <li><strong class="UI">Scream</strong>: This detects a scream and creates an event.</li>
-                <li><strong class="UI">Gunshot</strong>: Detects a gunshot and creates an event.</li>
+                <li><strong class="UI">Scream</strong>: Detects a sudden loud sound, including a scream or shout made by a person such as an adult male, female, or child, and creates an event.</li>
+                <li><strong class="UI">Gunshot</strong>: Detects a gunshot that does not occur repeatedly and creates an event.</li>
                 <li><strong class="UI">Explosion</strong>: Detects an explosion and creates an event.</li>
-                <li><strong class="UI">Crashing glass</strong>: Detects the sound of breaking glass and creates an event.  </li>
+                <li><strong class="UI">Crashing glass</strong>: Detects the sound of breaking glass and creates an event.</li>
             </ul>
         </div>
 		
@@ -45,21 +53,24 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
-                <li><strong class="UI">[오디오 및 비디오]</strong>&gt;<strong class="UI">[오디오 설정]</strong>&gt;<strong class="UI">[오디오 입력]</strong>에서 <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[소스]</a></strong> 옵션을 <strong class="UI">[라인]</strong>으로 설정한 경우 음원 분류 기능이 작동하지 않습니다.</li>
-				<li><strong class="UI">[오디오&비디오]</strong>><strong class="UI">[오디오 설정]</strong>에서 오디오 입력 게인을 4~6 사이 설정을 권장합니다. </li>
-				<li><strong class="UI">[오디오&비디오]</strong>><strong class="UI">[오디오 설정]</strong>에서 오디오 입력 소스를 외부 마이크로 설정하였을 경우 마이크 권장 사양은 다음과 같습니다.</li>
+               
+				<li>If <strong class="UI">[Line]</strong> is set for <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[Source]</a></strong> in <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[Audio setup]</strong>&gt;<strong class="UI">[Audio in]</strong>, the sound classification function does not operate.</li>
+				
+				<li>It is recommended to set a number between 4 and 6 for <strong class="UI">[Gain]</strong> in <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[Audio setup]</strong>&gt;<strong class="UI">[Audio in]</strong>.</li>
+				
+				<li>If <strong class="UI">[External microphone]</strong> is set for <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[Source]</a></strong> in <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[Audio setup]</strong>&gt;<strong class="UI">[Audio in]</strong>, the recommended specifications of the microphone are as follows. </li>
 				<ul>
-					<li>주파수 범위 : 40 ~ 16,000Hz</li>
-					<li>임피던스 : 1,500 Ω</li>
-					<li>감도 :  -40±3 dB (7.1~14.1 mV) </li>
+					<li>Frequency range: 40 ~ 16,000Hz</li>
+					<li>Impedance: 1,500 Ω</li>
+					<li>Sensitivity:  -40±3 dB (7.1~14.1 mV) </li>
 				</ul>
                 
-				<li>다음과 같은 경우 음원 분류 성능이 저하되거나 오동작이 발생할 수 있습니다.</li>
+				<li>In any of the following cases, the sound classification performance may deteriorate or a malfunction may occur. </li>
 				<ul>
-					<li>총소리에는 단발성 총 소리만 범주에 포함시키므로 기관총 소리처럼 연속으로 나는 경우</li>
-					<li>잡음과 목표 음원이 구분이 안될 정도로 큰 경우</li>
-					<li>2개 이상 다른 음원이 동시에 입력으로 들어오는 경우 </li>
-					<li>카메라 위치 변경 등으로 인한 포커스 대상 변경</li>
+					<li>When repeated gunshots occur, such as the sound of machine gun, only one time gunshot is included in the category for the gunshot </li>
+					<li>When the sound is too large, so that noise and the target sound cannot be distinguished </li>
+					<li>When two or more different sounds are inputted at the same time </li>
+					<li>When the object of focus has changed due to camera position change</li>
 					</ul>
             </ul>
         </div>	
@@ -91,6 +102,13 @@
             <h3>Alarm output</h3>
             <p>It is possible to set the alarm output number for a specific alarm when a sound classification event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
+		
+		<div class="wn5-setup-section-article-content" ng-if="PresetAction">
+		<h3>Goto preset</h3>
+            <p>You can change the settings for the camera view position to switch to a preset number (which was set in advance), in case a sound classification event occurs. Camera presets can be set in <strong class="UI">[Preset]</strong> from <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[External PTZ]</a></strong>.</p>
+		</div>
+
+		
     </div>
 </div>
 

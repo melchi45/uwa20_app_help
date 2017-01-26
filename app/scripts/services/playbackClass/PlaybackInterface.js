@@ -26,6 +26,7 @@ kindFramework
     var support_audio_analysis = false;
     var self = this;
     var openErrorPopup = false;
+    var defaultSpeed = 1;
 		var pad = function(x){
 			x *= 1;
 			return x<10? "0"+x : x;
@@ -200,6 +201,8 @@ kindFramework
 			$rootScope.$emit("channelPlayer:command", "resume", this.playbackInfo);
 		};
 		PlaybackInterface.stop = function() {
+			playData.setDefautPlaySpeed();
+			workerManager.playbackSpeed(defaultSpeed);
 			$rootScope.$emit('changeLoadingBar', false);
 			$rootScope.$emit("channelPlayer:command", "close");
 		};

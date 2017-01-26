@@ -158,6 +158,7 @@ kindFramework
                 changeSpeakerStatus(false);
               }
               workerManager.initVideo(false);
+              workerManager.playbackSpeed(1);
             };
           }
 
@@ -216,6 +217,8 @@ kindFramework
               if( newVal === PLAY_CMD.STOP ) {
                 scope.disableSpeedIcon = true;
                 scope.disableStepIcon = true;
+              } else if( newVal === PLAY_CMD.PAUSE ) {
+                scope.disableSpeedIcon = true;
               }
             }
           });

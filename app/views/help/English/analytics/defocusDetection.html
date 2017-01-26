@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Defocus detection</h1>
+﻿<h1 class="wn5-setup-main-title">Defocus detection</h1>
 
 <div class="wn5-setup-section">
     <p>A defocus detection event can be created when defocus of the camera lens is detected. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the defocus detection event applies to <strong class="UI">[Defocus detection]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> page equally.</p>
@@ -24,7 +24,7 @@
 		
 		<div class="wn5-setup-section-article-content">
             <h3>Sensitivity</h3>
-            <p>민감도를 높게 설정할수록 감지 레벨의 그래프가 민감하게 반응합니다.</p>
+            <p>Higher sensitivity results in a more sensitive response of the detection level graph.</p>
         </div>
 		
         <div class="wn5-setup-section-article-content">
@@ -37,17 +37,17 @@
  
             <ul>
                 <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
-                <li>디포커스 감지에 대한 알람 발생 후 다시 디포커스 감지에 대한 알람을 받기 위해서는 최소 한번 안정 상태로 돌아가야 합니다. 안정 상태로 돌아가는 경우는 다음과 같을 수 있습니다.
+                <li>In order to receive an alarm indicating defocus detection after it has occurred previously, the status must return to the stable status at least once. Instances of returning to the stable status are as follows.
 					<ul>
-					<li>[디포커스 감지 사용]을 체크 해제 한 경우</li>
-					<li>심플 포커스가 동작하여 영상 식별이 가능한 수준이 된 경우</li>
-					<li>영상 내 물체가 포커스가 잘 맞는 위치로 이동하여 식별이 가능한 수준이 된 경우</li></ul>
-                <li>다음과 같은 경우 포커스 감지 성능이 저하되거나 오동작이 발생할 수 있습니다.
+					<li>When <strong class="UI">[Enable Defocus detection]</strong> is deselected</li>
+					<li>When simple focus operates so that an image can be distinguishable</li>
+					<li>When an object in the image moves to a defocus position so that it can be distinguishable</li></ul>
+					<li>In any of the following cases, the defocus detection performance may deteriorate, or a malfunction may occur.
 					<ul>
-					<li>배경이 단조로운 감시 환경과 야간, 저조도 환경</li>
-					<li>급격한 조명 변화 (예시: 실내 전등 소등)</li>
-					<li>렌즈 가려짐 또는 화면의 대부분을 차지하는 큰 물체 등장</li>
-					<li>카메라 위치 변경 등으로 인한 포커스 대상 변경</li></ul>
+					<li>Monitoring an environment with a monotonous background, at night time, and/or in a low light environment</li>
+					<li>Sudden illumination change (e.g. an indoor light is turned off)</li>
+					<li>Blocked lens or appearance of a large object which covers the most of the screen </li>
+					<li>The object of focus is changed due a change of the camera position</li></ul>
 				</li>
             </ul>
         </div>
@@ -81,6 +81,11 @@
             <h3>Alarm output</h3>
             <p>It is possible to set the alarm output number for a specific alarm when a defocus detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
+		
+		<div class="wn5-setup-section-article-content" ng-if="PresetAction">
+		<h3>Goto preset</h3>
+            <p>You can change the settings for the camera view position to switch to a preset number (which was set in advance), in case a defocus detection event occurs. Camera presets can be set in <strong class="UI">[Preset]</strong> from <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[External PTZ]</a></strong>.</p>
+		</div>
 		
 		<div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
             <h3>Simple Focus</h3>

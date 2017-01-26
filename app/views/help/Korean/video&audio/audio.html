@@ -21,7 +21,7 @@
 			<h3>소스</h3>
 			<p>오디오 입력 방식을 선택합니다.</p>
 			<ul>
-				<li><strong class="UI">내장 마이크</strong>: 카메라에 포함된 내장 마이크입니다.</li>
+				<li ng-if="InternalMic"><strong class="UI">내장 마이크</strong>: 카메라에 포함된 내장 마이크입니다.</li>
 				<li><strong class="UI">외부 마이크</strong>: 카메라에 외부 마이크를 연결하여 사용합니다. <strong class="UI">[외부 마이크 전원 활성화]</strong>를 선택하면 외부 마이크의 전원이 공급되지 않을 경우에 카메라에서 외부 마이크에 전원을 공급합니다.</li>
 				<li><strong class="UI">라인</strong>: 케이블을 통해 음향기기와 연결합니다. 예를 들어 MP3 플레이어 같은 음향 기기와 카메라를 케이블을 통해 연결한 뒤 MP3 플레이어에 녹음된 오디오를 카메라에 입력할 때 선택합니다.</li>
 			</ul>

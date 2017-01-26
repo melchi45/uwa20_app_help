@@ -18,7 +18,7 @@
 		<div class="wn5-setup-section-article-content"><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><h3>Source</h3>
 			<p>Select an alarm input type.</p>
 			<ul>
-				<li><strong class="UI">Internal microphone</strong>: This is the internal microphone included with the camera.</li>
+				<li ng-if="InternalMic"><strong class="UI">Internal microphone</strong>: This is the internal microphone included with the camera.</li>
 				<li><strong class="UI">External microphone</strong>: An external microphone can be connected to the camera and used instead of the internal microphone. When you select <strong class="UI">[Apply power to Ext. Mic.]</strong>, the camera supplies power to an external microphone.</li>
 				<li><strong class="UI">Line</strong>: Connect to sound equipment through a cable. For example, connect sound equipment such as an MP3 player and a camera through a cable, and select the MP3 player when you input recorded audio from it into the camera.</li>
 			</ul>
@@ -34,7 +34,7 @@
 		</div>
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-			<ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>The AAC codec is not supported by Firefox even if the codec has been set in the audio setup page.</li>
+			<ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>When an image is streamed through Firefox or Edge, the AAC codec is not supported even if the desired codec has been set in the audio setup page.</li>
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">

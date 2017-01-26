@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Alarm input</h1>
+﻿<h1 class="wn5-setup-main-title">Alarm input</h1>
 
 <div class="wn5-setup-section">
     <p>When an alarm is inputted, an alarm input event can be created. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the alarm input event applies to <strong class="UI">[Alarm input]</strong> in <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
@@ -34,8 +34,8 @@
             <h4>Type  </h4>
             <p>Select the alarm input type.</p>
             <ul>
-                <li><strong class="UI">N.O. (Normal Open) Normal Open</strong>: The alarm input sensor is open by default; when it is closed, an alarm input event is created.</li>
-                <li><strong class="UI">N.C. (Normal Close) Normal Open</strong>: The alarm input sensor is closed by default and when it is open, an alarm input event is created.</li>
+                <li><strong class="UI">N.O. (Normal Open)</strong>: The alarm input sensor is open by default; when it is closed, an alarm input event is created.</li>
+                <li><strong class="UI">N.C. (Normal Close)</strong>: The alarm input sensor is closed by default and when it is open, an alarm input event is created.</li>
             </ul>
         </div>
     </div>
@@ -68,6 +68,11 @@
             <h4>Alarm output</h4>
             <p>You can set the alarm output for a specific alarm number when an alarm input event is created. After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
+		<div class="wn5-setup-section-article-content" ng-if="PresetAction">
+            <h4>Goto preset</h4>
+            <p>You can change the settings for the camera view position to switch to a preset number (which was set in advance), in case an alarm input event occurs. Camera presets can be set in <strong class="UI">[Preset]</strong> from <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[External PTZ]</a></strong>.</p>
+        </div>
+		
     </div>
 </div>
 

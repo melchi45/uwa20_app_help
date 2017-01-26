@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Face detection</h1>
+﻿<h1 class="wn5-setup-main-title">Face detection</h1>
 
 <div class="wn5-setup-section">
     <p>A face detection event can be created when a face is detected within the area designated by the user while the camera is capturing an image. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on face detection events applies to <strong class="UI">[Face detection]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> page equally.</p>
@@ -18,7 +18,7 @@
         <div class="wn5-online-help-action">
             <h3>Area</h3>
 			<h5>Setting an area</h5>
-            <p>The whole screen, outside the face detection area set by the user, is set as the face exclude area. The minimum face detection size is displayed as a circle in the detection area. Any face which is larger than the circle is detected in the detection area.</p>
+            <p>Of the whole screen, a area selected by the user can be set as the area. The minimum face detection size is displayed as a circle in the detection area. Any face which is larger than the circle is detected in the detection area.</p>
 			<h5>Changing an area</h5>
             <p>You can change the size of the detection area by clicking the bottom right corner of the set area and dragging the relevant area with the mouse. </p>
 
@@ -32,7 +32,7 @@
         <div class="wn5-online-help-action">
             <h3>Exclude area</h3>
 			<h5>Setting an exclude area</h5>
-            <p>The whole screen is set as the detection area while the area designated by the user is set as the exclude area. When you select 4 corners of the image with the mouse, the area is set as the exclude area and the color of the number buttons on <strong class="UI">[Area]</strong> changes. Up to 8 exclude areas can be set.</p>
+            <p>Of the whole screen, a area selected by the user can be set as the exclude area. When you select 4 corners of the image with the mouse, the area is set as the exclude area and the color of the number buttons on <strong class="UI">[Area]</strong> changes. Up to 8 exclude areas can be set.</p>
 			<h5>Changing an exclude area</h5>
             <p>You can change the size of the exclude area by clicking the corner of the current exclude area and dragging the relevant area with the mouse. </p>
 			<h5>Deleting an exclude area</h5>
@@ -82,6 +82,13 @@
             <h3>Alarm output</h3>
             <p>It is possible to set an alarm output number for a specific alarm when a face detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
+		
+		<div class="wn5-setup-section-article-content" ng-if="PresetAction">
+		<h3>Goto preset</h3>
+            <p>You can change the settings for the camera view position to switch to a preset number (which was set in advance), in case a face detection event occurs. Camera presets can be set in <strong class="UI">[Preset]</strong> from <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[External PTZ]</a></strong>.</p>
+		</div>
+
+		
     </div>
 </div>
 

@@ -116,7 +116,7 @@ var H265Session = function () {
 //            console.log("H265Session:: framerate = " + parseInt(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
 //            this.setFramerate(parseInt(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
             this.setFramerate(Math.round(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
-            console.log("H265Session::frameRate = " + this.getFramerate());
+            // console.log("H265Session::frameRate = " + this.getFramerate());
           }
           this.SetTimeStamp(timeData);
           //this.rtpTimestampCbFunc(timeData);
@@ -352,7 +352,7 @@ var H265Session = function () {
 //          this.SetTimeStamp(timeData);
           //this.rtpTimestampCbFunc(timeData);
 
-          console.log("H265Session::timestamp = " + fsynctime.seconds +" "+ fsynctime.useconds);
+          // console.log("H265Session::timestamp = " + fsynctime.seconds +" "+ fsynctime.useconds);
           playback = true;
         }
       }
@@ -397,7 +397,7 @@ var H265Session = function () {
           if (playback) {
             var limitSize = 1280 * 720;
             limitResolution = false;
-            console.log("h265 resolution in sps = width : " + resolution.width + ", height : " + resolution.height);
+            // console.log("h265 resolution in sps = width : " + resolution.width + ", height : " + resolution.height);
             if (curSize > limitSize) {
               limitResolution = true;
             }

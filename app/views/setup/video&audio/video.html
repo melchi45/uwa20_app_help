@@ -9,7 +9,8 @@
                 <input 
                     type="checkbox" 
                     name="Enable"
-                    ng-model="PrivacyMask[SelectedChannel].Enable">
+                    ng-model="PrivacyMask[SelectedChannel].Enable" 
+                    ng-change="setVideoSetupEnable()">
                 <label>{{ 'lang_enable_feature_privacy_area' | translate }}</label>
             </div>
         </div>

@@ -11,8 +11,9 @@ function VideoMediaSource() {
   var timeStampCallback = null;
   var videoSizeCallback = null;
   var browserType = null;
-  var speedFlag = false;
-  var videoTimeStamp = null;
+  var speedValue = 1;
+  var receiveTimeStamp = {timestamp:0, timestamp_usec:0, timezone:0};
+  var preVideoTimeStamp = null;
   var playbackFlag = false;
   var bufferEventListenerArray = null;
   var videoEventListenerArray = null;
@@ -61,7 +62,7 @@ function VideoMediaSource() {
     videoEventListenerArray.push({'type':'waiting', 'function':onWaiting.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'seeked', 'function':onSeeked.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'ended', 'function':onEnded.bind(videoTag, mediaSource)});    
-    videoEventListenerArray.push({'type':'timeupdate', 'function':onTimeupdate.bind(videoTag, mediaSource)});
+    videoEventListenerArray.push({'type':'timeupdate', 'function':onTimeupdate.bind(videoTag)});
     // videoEventListenerArray.push({'type':'play', 'function':onPlay.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'ratechange', 'function':onRatechange.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'resize', 'function':onResize.bind(videoTag, mediaSource)});
@@ -162,9 +163,12 @@ function VideoMediaSource() {
 
     var duration = parseInt(mediaSource.duration, 10);
     var currentTime = videoElement.currentTime;
-    var delay = (playbackFlag == true ? 2 : 
-      browserType === "chrome" ? 0.2 : 2);
+    var delay = (browserType === "chrome" ? 0.2 : 2);
     var diffDuration = duration - currentTime;
+
+    if (playbackFlag === true) {
+      delay = (browserType === "chrome" ? 2 : 4);
+    }
 
     if (diffDuration >= (1.2 + delay)) {
       if (playbackFlag === false) {
@@ -210,7 +214,15 @@ function VideoMediaSource() {
   function onDurationchange(mediaSource, e) { console.log("videoMediaSource::onDurationchange"); }
   function onError(mediaSource, e) { 
     console.log("videoMediaSource::onError", e);
-    videoElement.pause();
+    if (!videoElement.paused) {
+      if (!isPause) {
+        videoElement.pause();
+      }
+    }
+
+    if (browserType === 'safari') {
+      workerManager.initVideo(false);
+    }
   }
   function onProgress(mediaSource, e) { console.log("videoMediaSource::onProgress"); }
   function onPause(mediaSource, e) { 
@@ -239,9 +251,20 @@ function VideoMediaSource() {
   }
   function onSeeked(mediaSource, e) { console.log("videoMediaSource::onSeeked"); }
   function onEnded(mediaSource, e) { console.log("videoMediaSource::onEnded"); }
-  function onTimeupdate(mediaSource, e) {
+  function onTimeupdate(e) {
+    var duration = parseInt(mediaSource.duration, 10);
+    var currentTime =  parseInt(videoElement.currentTime, 10);
+    var calcTimeStamp = receiveTimeStamp.timestamp - (speedValue * (duration - currentTime + (speedValue !== 1 ? 1 : 0)));
+    var sendTimeStamp = {timestamp:calcTimeStamp, timestamp_usec:0, timezone:receiveTimeStamp.timezone};
+
     if (!videoElement.paused) {
-      workerManager.timeStamp(videoTimeStamp);
+      if (preVideoTimeStamp === null) {
+        preVideoTimeStamp = sendTimeStamp;
+      } else if ((preVideoTimeStamp.timestamp <= sendTimeStamp.timestamp && speedValue >= 1) ||
+          (preVideoTimeStamp.timestamp > sendTimeStamp.timestamp && speedValue < 1)) {
+        workerManager.timeStamp(sendTimeStamp);
+        preVideoTimeStamp = sendTimeStamp;
+      }
     }
   }
   function onPlay(mediaSource, e) { console.log("videoMediaSource::onPlay"); }
@@ -307,10 +330,10 @@ function VideoMediaSource() {
       return playbackTimeStamp;
     },
     setSpeedPlay: function(value) {
-      speedFlag = value;
+      speedValue = value;
     },
-  	setvideoTimeStamp: function(timestamp){
-  	  videoTimeStamp = timestamp;	
+  	setvideoTimeStamp: function(timestamp) {
+      receiveTimeStamp = timestamp;
   	},
   	pause: function() {
   	  if (!videoElement.paused) {
@@ -321,6 +344,9 @@ function VideoMediaSource() {
     },
     setPlaybackFlag: function(value) {
       playbackFlag = value;
+    },
+    setTimeStampInit: function() {
+      preVideoTimeStamp = null;
     },
     close: function() {
       removeEventListener();

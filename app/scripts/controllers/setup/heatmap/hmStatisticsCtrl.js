@@ -291,7 +291,7 @@ kindFramework.controller('HMStatisticsCtrl', function (
 	 * @param options {Object} view, controller, iconClass, title, message, data
 	 * @return Promise {Promise}
 	 */
-	function openAlert (options){
+	function openAlert(options){
 		if(asyncInterrupt){
 			return;
 		}
@@ -387,27 +387,31 @@ kindFramework.controller('HMStatisticsCtrl', function (
 			console.error("Getting Maxinum Resolution of Video is Wrong!");
 		}
 
+		var failCallback = function(errorData){
+			$scope.pageLoaded = true;
+			console.error(errorData);
+		};
+
 		setImageSize();
 
 		HMStatisticsModel.deviceInfo().then(
 			function(successData){
 				$scope.deviceName = successData.DeviceName;
 				$scope.Model = successData.Model;
-			},
-			function(failData){
-				console.log(failData);
-			}
-		);
 
-		HMStatisticsModel.getReportInfo().then(
-			function(responseData){
-				$scope.useHeatmap = responseData.Enable;
-				$scope.conditionsSection.startSearch(true);
-			}, 
-			function(failData){
-				console.log(failData);
-			}
-		);
+				HMStatisticsModel.getReportInfo().then(
+					function(responseData){
+						$scope.useHeatmap = responseData.Enable;
+						$scope.pcConditionsDateForm.init(function(){
+							$scope.conditionsSection.startSearch(true);	
+
+							$timeout(function(){
+								$scope.pageLoaded = true;	
+							});
+						}, failCallback)
+					}, failCallback
+				);
+			}, failCallback);
 	};
 
 	/* Destroy Area Start
@@ -424,13 +428,6 @@ kindFramework.controller('HMStatisticsCtrl', function (
 
 	function view(){
 		$scope.init();
-
-		$scope.pageLoaded = true;
-		pcSetupService.connectPreview(function(playerdata){
-			$timeout(function(){
-				$scope.playerdata = playerdata;
-			});
-		});
 	}
 
 	$scope.view = view;

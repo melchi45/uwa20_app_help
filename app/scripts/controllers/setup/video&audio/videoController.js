@@ -553,6 +553,46 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         $uibModalStack.dismissAll();
     });
 
+    $scope.setVideoSetupEnable = function () {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'views/setup/common/confirmMessage.html',
+            controller: 'confirmMessageCtrl',
+            size: 'sm',
+            resolve: {
+                Message: function ()
+                {
+                    return 'lang_apply_question';
+                }
+            }
+        });
+
+        modalInstance.result.then(
+            function (){
+                var setData = {};
+
+                if (pageData.PrivacyMask[$scope.SelectedChannel].Enable !== $scope.PrivacyMask[$scope.SelectedChannel].Enable)
+                {
+                    setData.Enable = $scope.PrivacyMask[$scope.SelectedChannel].Enable;
+                }
+
+                return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=set', setData,
+                    function (response)
+                    {
+                        pageData.PrivacyMask[$scope.SelectedChannel].Enable = $scope.PrivacyMask[$scope.SelectedChannel].Enable;
+                    },
+                    function (errorData)
+                    {
+                        $scope.PrivacyMask[$scope.SelectedChannel].Enable = angular.copy(pageData.PrivacyMask[$scope.SelectedChannel].Enable);
+                        console.log(errorData);
+                    }, '', true);
+            },
+            function ()
+            {
+                $scope.PrivacyMask[$scope.SelectedChannel].Enable = angular.copy(pageData.PrivacyMask[$scope.SelectedChannel].Enable);
+            }
+        );
+    };
+
     function view() {
         getAttributes();
 

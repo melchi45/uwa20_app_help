@@ -1,6 +1,7 @@
 /* global sessionStorage */
 kindFramework.controller('PCSetupCtrl', 
 	function (
+		$rootScope,
 		$scope, 
 		$timeout, 
 		$interval,
@@ -17,7 +18,9 @@ kindFramework.controller('PCSetupCtrl',
 
 		ConnectionSettingService, 
 		Attributes,
-		COMMONUtils
+		COMMONUtils,
+		SunapiClient,
+		sketchbookService
 		){
 	"use strict";
 
@@ -33,39 +36,43 @@ kindFramework.controller('PCSetupCtrl',
 	//Playerdata for Video
 	$scope.playerdata = null;
 
+	$scope.coordinates = [];
+	$scope.sketchinfo = {};
+
 	/* Counting Start
 	----------------------------------------------*/
 
 	function changeModeToArrow(mode){
-		return mode === "LeftToRightIn" ? "in" : "out";
+		return mode === "LeftToRightIn" ? 0 : 1;
 	}
 
 	function changeArrowToMode(arrow){
- 		return arrow === "in" ? "LeftToRightIn" : "RightToLeftIn";
+ 		return arrow === 'L' ? "LeftToRightIn" : "RightToLeftIn";
 	}
 
 	function setMaxResolution(){
         return pcSetupService.setMaxResolution(mAttr.EventSourceOptions);
 	}
 
-	function setRealTimeSize(){
-		var defaultResolution = pcSetupService.getDefaultResolution();
-		var liveSvg = document.getElementById("pc-realtime-live-svg");
-		var calibrationCanvas = document.getElementById("pc-realtime-calibration");
-		// var roundRuleGuide = document.getElementById("pc-round-rule-guide");
+	// function setRealTimeSize(){
+	// 	var defaultResolution = pcSetupService.getDefaultResolution();
+	// 	var liveSvg = document.getElementById("pc-realtime-live-svg");
+	// 	var calibrationCanvas = document.getElementById("pc-realtime-calibration");
+	// 	// var roundRuleGuide = document.getElementById("pc-round-rule-guide");
 
-		liveSvg.setAttributeNS(null, 'width', defaultResolution.width);
-		liveSvg.setAttributeNS(null, 'height', defaultResolution.height);
+	// 	liveSvg.setAttributeNS(null, 'width', defaultResolution.width);
+	// 	liveSvg.setAttributeNS(null, 'height', defaultResolution.height);
 
-		calibrationCanvas.setAttribute('width', defaultResolution.width);
-		calibrationCanvas.setAttribute('height', defaultResolution.height);
+	// 	calibrationCanvas.setAttribute('width', defaultResolution.width);
+	// 	calibrationCanvas.setAttribute('height', defaultResolution.height);
 		
-		// var roundSize = Math.ceil(defaultResolution.height * 0.7) + 'px';
-		// roundRuleGuide.style.width = roundSize;
-		// roundRuleGuide.style.height = roundSize;
+	// 	// var roundSize = Math.ceil(defaultResolution.height * 0.7) + 'px';
+	// 	// roundRuleGuide.style.width = roundSize;
+	// 	// roundRuleGuide.style.height = roundSize;
 
-		document.querySelector('.pc-realtime-video').style.height = defaultResolution.height + 'px';
-	}
+	// 	document.querySelector('.pc-realtime-video').style.height = defaultResolution.height + 'px';
+	// }
+	var calibrationData = {};
 
 	$scope.init = function(){
 
@@ -81,7 +88,7 @@ kindFramework.controller('PCSetupCtrl',
 			console.error("Getting Maxinum Resolution of Video is Wrong!");
 		}
 
-		setRealTimeSize();
+		// setRealTimeSize();
 
 		var getRuleInfo = pcSetupModel.getRuleInfo();
 
@@ -119,34 +126,7 @@ kindFramework.controller('PCSetupCtrl',
 				var self = data.Lines[i];
 				var inCount = self.Enable === true ? self.InCount : '';
 				var outCount = self.Enable === true ? self.OutCount : '';
-				var changedAxis = [];
 				var lineOptions = {};
-
-				//If Coordinates is Default.
-				if(self.Coordinates[0].x === 10 && self.Coordinates[1].x === 40){
-					changedAxis = [
-						{
-							x: 40,
-							y: 40 * (i + 1)
-						},
-
-						{
-							x: 160,
-							y: 40 * (i + 1)
-						}
-					];
-				}else{
-					changedAxis = pcSetupModel.changeResolution([
-						{
-							x: parseFloat(self.Coordinates[0].x),
-							y: parseFloat(self.Coordinates[0].y)
-						},
-						{
-							x: parseFloat(self.Coordinates[1].x),
-							y: parseFloat(self.Coordinates[1].y)
-						}
-					], 1);	
-				}
 
 				todayRuleData.push({
 					index: self.LineIndex,
@@ -163,29 +143,22 @@ kindFramework.controller('PCSetupCtrl',
 				});
 
 				lineOptions = {
-					lineStrokeWidth: 5,
-					circleRadius: 8,
-					x1: changedAxis[0].x,
-					y1: changedAxis[0].y,
-					x2: changedAxis[1].x,
-					y2: changedAxis[1].y,
+					x1: self.Coordinates[0].x,
+					y1: self.Coordinates[0].y,
+					x2: self.Coordinates[1].x,
+					y2: self.Coordinates[1].y,
 					textInCircle: self.LineIndex,
-					useArrow: true,
-					arrow: changeModeToArrow(self.Mode),
-					useEvent: true,
-					useCursor: true
+					arrow: self.Mode,
+					enable: self.Enable
 				};
 
-				if(self.Enable){
-					$scope.linePainterController.create(self.LineIndex - 1, lineOptions);
-				}else{
-					$scope.linePainterController.addBackupData(self.LineIndex - 1, lineOptions);
-				}
+				$scope.countingRuleSection.updateLine(self.LineIndex - 1, lineOptions);
 			}
 
 			//Set Line of Counting Rule in Table
 			$scope.countingSection.setTodayRuleData(todayRuleData);
 			$scope.countingRuleSection.setData(countingRuleData);
+			$scope.countingRuleSection.checkAllStatus();
 
 			//set peoplecount enable
 			$scope.countingRuleSection.peopleCountingEnable = data.Enable;
@@ -193,46 +166,33 @@ kindFramework.controller('PCSetupCtrl',
 			//set Calibration Box
 			var calibration = data.ObjectSizeCoordinate;
 			var defaultResolution = pcSetupService.getDefaultResolution();
+			var maxResolution = pcSetupService.getMaxResolution();
 			var defaultCalibarationSize = defaultResolution.height * 0.08;
+			var calibrationMinSize = 0;
+			var calibrationMaxSize = 0;
 
-			if(
-				calibration[0].x === 0 &&
-				calibration[0].y === 0 &&
-				calibration[1].x === 120 &&
-				calibration[1].y === 120
-				){
-				calibration[0].x = 0;
-				calibration[0].y = 0;
-				calibration[1].x = defaultCalibarationSize;
-				calibration[1].y = defaultCalibarationSize;
+			if(defaultResolution.height > defaultResolution.width){
+				calibrationMaxSize = maxResolution.height * 0.5;
+				calibrationMinSize = maxResolution.width * 0.03;
 			}else{
-				calibration = pcSetupModel.changeResolution([
-					{
-						x: calibration[0].x,
-						y: calibration[0].y
-					},
-					{
-						x: calibration[1].x,
-						y: calibration[1].y
-					}
-				], 1);
+				calibrationMaxSize = maxResolution.width * 0.5;
+				calibrationMinSize = maxResolution.height * 0.03;
 			}
 
-			var calibrationData = {};
+			//Calibration 좌표 설정
+			$scope.calibrationSection.data = {
+				x1: calibration[0].x,
+				y1: calibration[0].y,
+				x2: calibration[1].x,
+				y2: calibration[1].y,
+				minSize: calibrationMinSize,
+				maxSize: calibrationMaxSize,
+			};
 
-			if($scope.rectanglePainterController.isSet === true){
-				calibrationData = $scope.rectanglePainterController.rectangleObject.getAxis()[0];
-			}else{
-				calibrationData = {
-					x1: calibration[0].x,
-					y1: calibration[0].y,
-					x2: calibration[1].x,
-					y2: calibration[1].y
-				};
+			//Exclude Area 임의 설정
+			for(var i = 0; i < 4; i++){
+				$scope.excludeAreaSection.update(i, {points: []});
 			}
-
-			$scope.rectanglePainterController.setBackupData(calibrationData);
-			$scope.rectanglePainterController.create();
 
 			//Start Polling for counting
 			if(data.Enable === true && haveRule === true){
@@ -256,6 +216,9 @@ kindFramework.controller('PCSetupCtrl',
 				console.error(e);
 			}
 
+			//Default Setting
+			var activedTab = $scope.currentTapStatus.indexOf(true);
+			$scope.changeTabStatus(activedTab);
 		}, function(){
 			$scope.countingSection.setUndefinedRule();
 		});
@@ -266,106 +229,7 @@ kindFramework.controller('PCSetupCtrl',
 	$scope.openFTPEmail = function() {
     	$state.go('^.event_ftpemail');
     };
-
-    $scope.rectanglePainterController = {
-		setPainter: function(){
-			//reset 
-			if($scope.rectanglePainterController.painter !== null){
-				$scope.rectanglePainterController.painter.unbindEvent();	
-			}
-
-			$scope.rectanglePainterController.painter = new PCRectanglePainter(document.getElementById("pc-realtime-calibration"));
-		},
-		isSet: false,
-		painter: null,
-		rectangleObject: null,
-		backupData: {},
-		getState: function(){
-			return $scope.rectanglePainterController.isSet;
-		},
-		setBackupData: function(data){
-			$scope.rectanglePainterController.backupData = data;
-		},
-		bindEvent: function(){
-			$scope.rectanglePainterController.painter.bindEvent();
-		},
-		unbindEvent: function(){
-			$scope.rectanglePainterController.painter.unbindEvent();
-		},
-		create: function(options){
-			if($scope.rectanglePainterController.painter !== null){
-				$scope.rectanglePainterController.painter.clear();
-			}
-			$scope.rectanglePainterController.setPainter();
-
-			if($scope.rectanglePainterController.backupData === {}){
-				//Draw Default
-				var defaultResolution = pcSetupService.getDefaultResolution();
-				var defaultCalibarationSize = defaultResolution.height * 0.08;
-
-				options = {
-					x1: 0,
-					y1: 0,
-					x2: defaultCalibarationSize,
-					y2: defaultCalibarationSize
-				};
-			}else{
-				options = $scope.rectanglePainterController.backupData;
-			}
-
-			options.backgroundColor = 'rgba(251, 140, 0, 0.45)';
-			options.lineColor = 'rgb(251, 140, 0)';
-			options.lineWidth = 6;
-
-			$scope.rectanglePainterController.rectangleObject = $scope.rectanglePainterController.painter.create(options);
-			$scope.rectanglePainterController.isSet = true;
-		}
-    };
     
-	$scope.linePainterController = {
-		setPainter: function(){	
-			$scope.linePainterController.painter = new PCLinePainter(document.getElementById("pc-realtime-live-svg"));
-		},
-		painter: null,
-		lineObject: [null, null],
-		backupData: [null, null],
-		add: function(index, data){
-			$scope.linePainterController.lineObject[index] = data;
-		},
-		addBackupData: function(index, data){
-			$scope.linePainterController.backupData[index] = data;
-		},
-		remove: function(index){
-			var lineObject = $scope.linePainterController.lineObject[index];
-			$scope.linePainterController.backupData[index] = lineObject.getData();
-			lineObject.remove();
-			$scope.linePainterController.lineObject[index] = null;
-		},
-		destroy: function(){
-			var lineObject = $scope.linePainterController.lineObject;
-			if(lineObject.length > 0){
-				for(var i = 0, len = lineObject.length; i < len; i++){
-					if(lineObject[i] !== null){
-						lineObject[i].destroy();	
-					}
-				}
-			}
-		},
-		create: function(index, lineOptions){
-			if($scope.linePainterController.painter === null){
-				$scope.linePainterController.setPainter();
-			}
-
-			//If line is created already, return.
-			if($scope.linePainterController.lineObject[index] !== null){
-				return;
-			}
-
-			var lineObject = $scope.linePainterController.painter.createLine(lineOptions);
-			$scope.linePainterController.add(index, lineObject);
-		}
-	};
-
 	$scope.countingSection = {
 		todayRuleData: [],
 		setTodayRuleData: function(data){
@@ -416,55 +280,50 @@ kindFramework.controller('PCSetupCtrl',
 	/* Counting Rule Start
 	----------------------------------------------*/
 	$scope.countingRuleSection = {
+		lineObject: [null, null],
+		updateLine: function(index, data){
+			$scope.countingRuleSection.lineObject[index] = data;
+		},
 		data: [],
 		regExp: pcSetupService.regExp.getAlphaNum(),
 		setData: function(data){
 			$scope.countingRuleSection.data = data;
 		},
+		allEnableStatus: false,
 		peopleCountingEnable: false,
-		changeUseState: function(index){
-			if($scope.countingRuleSection.data[index] === undefined){
-				$scope.countingRuleSection.data[index] = {
-					use: false,
-					name: '',
-					index: index + 1
-				};
+		enableStatusAll: function(){
+			for(var i = 0, ii = $scope.countingRuleSection.data.length; i < ii; i++){
+				$scope.countingRuleSection.data[i].use = $scope.countingRuleSection.allEnableStatus;
+				$scope.countingRuleSection.changeUseState(i);
+			}
+		},
+		checkAllStatus: function(){
+			var isOk = true;
+			for(var i = 0, ii = $scope.countingRuleSection.data.length; i < ii; i++){
+				if($scope.countingRuleSection.data[i].use === false){
+					isOk = false;
+				}
 			}
 
+			$scope.countingRuleSection.allEnableStatus = isOk;
+		},
+		changeUseState: function(index, isCheckingAllStatus){
 			if($scope.countingRuleSection.data[index].use === true){
-				$scope.countingRuleSection.data[index].use = false;
+				$scope.countingRuleSection.lineObject[index].enable = true;
 
-				$scope.linePainterController.remove(index);
-			}else{
-				$scope.countingRuleSection.data[index].use = true;
-
-				//Default 생성
-				var backupData = $scope.linePainterController.backupData[index];
-
-				if(backupData === null){
-					backupData = {
-						lineStrokeWidth: 5,
-						circleRadius: 8,
-						x1: 100,
-						y1: 100 * (index + 1),
-						x2: 500,
-						y2: 100 * (index + 1),
-						textInCircle: index + 1,
-						useArrow: true,
-						arrow: "in",
-						useEvent: true,
-						useCursor: true
-					};
+				//데이터가 있고 Disable로 되있을 때
+				if($scope.coordinates[index].isSet === false){
+					$scope.changeTabStatus(0);
 				}else{
-					backupData.lineStrokeWidth = 5;
-					backupData.circleRadius = 8;
-					backupData.textInCircle = index + 1;
-					backupData.useArrow = true;
-					backupData.useEvent = true;
-					backupData.useCursor = true;
+					sketchbookService.showGeometry(index);	
 				}
+			}else{
+				$scope.countingRuleSection.lineObject[index].enable = false;
+				sketchbookService.hideGeometry(index);
+			}
 
-				$scope.linePainterController.create(index, backupData);
+			if(isCheckingAllStatus){
+				$scope.countingRuleSection.checkAllStatus();
 			}
 		},
 		openRuleGuide: function(){
@@ -482,15 +341,17 @@ kindFramework.controller('PCSetupCtrl',
 	/* Collapse Start
 	----------------------------------------------*/
 
-	$scope.currentTapStatus = [true, false];
+	//
+	$scope.currentTapStatus = [true, false, false];
 	$scope.changeTabStatus = function(value){
-		if(value === 1 && $scope.rectanglePainterController.getState() === false){
-			$scope.rectanglePainterController.create();
-		}else{
-			$timeout(function () {
-		        $scope.$broadcast('rzSliderForceRender');
-		    }, 100);
-		}
+		var flag = '';
+		// if(value === 1 && $scope.rectanglePainterController.getState() === false){
+		// 	$scope.rectanglePainterController.create();
+		// }else{
+		// 	$timeout(function () {
+		//         $scope.$broadcast('rzSliderForceRender');
+		//     }, 100);
+		// }
 
 		for(var i = 0, len = $scope.currentTapStatus.length; i < len; i++){
 			if(i === value){
@@ -499,7 +360,115 @@ kindFramework.controller('PCSetupCtrl',
 				$scope.currentTapStatus[i] = false;
 			}
 		}
+
+		//Configuration
+		if($scope.currentTapStatus[0] === true){
+			flag = 'line';
+		}else if($scope.currentTapStatus[1] === true){
+			flag = 'area';
+		}else if($scope.currentTapStatus[2] === true){
+			flag = 'calibration';
+		}
+
+		$scope.sketchinfo = getSketchinfo(flag);
+
+
+		//초기에 Camera Height 로 설정되어 있을 시 영역 드래그 종료
+		if($scope.currentTapStatus[2] === true 
+			&& $scope.calibrationSection.calibrationMode === $scope.calibrationSection.calibrationModeOptions[0]){
+			setTimeout(function(){
+				sketchbookService.stopEvent();	
+			});
+		}
 	};
+
+	function getSketchinfo(flag){
+		var sketchinfo = {
+			shape: 1,
+			modalId: "./views/setup/common/confirmMessage.html"
+		};
+		$scope.coordinates = [];
+		var data = null;
+        
+        //Exclude Area
+        if(flag === "area") {
+        	for(var i = 0, ii = $scope.excludeAreaSection.data.length; i < ii; i++){
+        		var self = $scope.excludeAreaSection.data[i];
+        		var isEmpty = self.points.length === 0;
+        		var coordinatesInfo = {
+        			isSet: !isEmpty,
+        			enable: !isEmpty,
+        			points: self.points
+        		};
+
+        		$scope.coordinates.push(coordinatesInfo);
+        	}
+
+        	sketchinfo.workType = 'fdArea';
+        	sketchinfo.maxNumber = 4;
+        	sketchinfo.color = 1;
+        //Configuration
+        }else if(flag === "line") {
+        	for(var i = 0, ii = $scope.countingRuleSection.lineObject.length; i < ii; i++){
+        		var self = $scope.countingRuleSection.lineObject[i];
+        		var coordinatesInfo = {
+        			isSet: self.enable,
+        			enable: self.enable,
+        			points: [],
+        			direction: null
+        		};
+
+        		if(self !== null){
+        			coordinatesInfo.points[0] = [self.x1, self.y1];
+        			coordinatesInfo.points[1] = [self.x2, self.y2];
+        			coordinatesInfo.direction = changeModeToArrow(self.arrow);
+        			coordinatesInfo.textInCircle = self.textInCircle;
+        		}
+
+        		$scope.coordinates.push(coordinatesInfo);
+        	}
+
+        	sketchinfo.workType = 'peoplecount';
+        	sketchinfo.maxNumber = 2;
+        	sketchinfo.maxArrow = 'R';
+        	sketchinfo.color = 0;
+        	sketchinfo.minLineLength = 120;
+        //Calibration
+        } else if(flag === "calibration") {
+        	data = $scope.calibrationSection.data;
+            $scope.coordinates = [
+            	{
+        			isSet: true,
+        			enable: true,
+            		points: [
+	            		[data.x1,data.y1],
+	            		[data.x1,data.y2],
+	            		[data.x2,data.y2],
+	            		[data.x2,data.y1]
+            		]
+            	}
+            ];
+
+        	sketchinfo.workType = 'calibration';
+        	sketchinfo.maxNumber = 1;
+            /**
+            최대 사이즈는 영상의 가로, 세로 중 큰쪽의 50%,
+            최소 사이즈는 영상의 가로, 세로 중 작은 쪽의 3%
+            */
+            sketchinfo.minSize = {
+            	width: data.minSize,
+            	height: data.minSize
+            };
+            sketchinfo.maxSize = {
+            	width: data.maxSize,
+            	height: data.maxSize
+            };
+
+            console.log(sketchinfo);
+        }
+
+        return angular.copy(sketchinfo);
+    }
 
 	function getSliderColor() {
         if ($scope.calibrationSection.calibrationMode === "CameraHeight") {
@@ -509,7 +478,30 @@ kindFramework.controller('PCSetupCtrl',
         }
     }
 
+    $scope.excludeAreaSection = {
+    	data: [],
+    	update: function(index, data){
+    		$scope.excludeAreaSection.data[index] = data;
+    	},
+    	updatePoints: function(index, points){
+    		$scope.excludeAreaSection.data[index].points = points;
+    	},
+    	select: function(index){
+    		for(var i = 0, ii = $scope.excludeAreaSection.data.length; i < ii; i++){
+    			$scope.excludeAreaSection.data[i].isSelected = i === index;
+    		}
+
+    		sketchbookService.activeShape(index);
+    	}
+    };
+
 	$scope.calibrationSection = {
+		data: {
+			x1: 0,
+			y1: 0,
+			x2: 0,
+			y2: 0
+		},
 		ratio: 100,
 		cameraHeight: {
 			data: 0
@@ -543,11 +535,11 @@ kindFramework.controller('PCSetupCtrl',
 			if(section.calibrationMode === section.calibrationModeOptions[0]){
 				section.cameraHeightOptions.disabled = false;
 				section.iconStyle.color = '';
-				$scope.rectanglePainterController.unbindEvent();
+				sketchbookService.stopEvent();
 			}else{
 				section.cameraHeightOptions.disabled = true;
 				section.iconStyle.color = getSliderColor();
-				$scope.rectanglePainterController.bindEvent();
+				sketchbookService.startEvent();
 			}
 		},
 		setCalibratoinHeight: function(height){
@@ -585,28 +577,70 @@ kindFramework.controller('PCSetupCtrl',
 			section.cameraHeightOptions.floor = min / $scope.calibrationSection.ratio;
 			section.cameraHeightOptions.ceil = max / $scope.calibrationSection.ratio;
 			section.calibrationModeOptions = options;
-			section.changeCalibrationMode();
 		}
 	};
 
-	$scope.addSlaveCamera = function(){
-        pcModalService.openAlert({
-        	title: $scope.lang.modal.failAddingSlave,
-        	message: $scope.lang.modal.failAddingSlaveMessage
-        }).then(function(){
-        	console.log("Ok");
-        }, function(){
-        	console.log("cancel");
-        });
-	};
 
 	/* Collapse End
 	----------------------------------------------*/
 
+	$rootScope.$saveOn('<app/scripts/directives>::<updateCoordinates>', function(obj, args) {
+        var modifiedIndex = args[0];
+        var modifiedType = args[1]; //생성: create, 삭제: delete
+        var modifiedPoints = args[2];
+        var modifiedDirection = args[3];
+        var vaLinesIndex = null;
+        var vaAreaIndex = null;
+
+        // console.log("updateCoordinates", modifiedIndex, modifiedType, modifiedPoints, modifiedDirection);
+
+        var coordinates = [];
+        var mode = [];
+
+        if($scope.currentTapStatus[0] === true){ //Configuration
+        	switch(modifiedType){
+        		case "mouseup":
+        			$scope.countingRuleSection.updateLine(modifiedIndex, {
+        				x1: modifiedPoints[0][0],
+        				y1: modifiedPoints[0][1],
+        				x2: modifiedPoints[1][0],
+        				y2: modifiedPoints[1][1],
+        				textInCircle: modifiedIndex + 1,
+        				arrow: changeArrowToMode(modifiedDirection),
+        				enable: true
+        			});
+        		break;
+        	}
+        }else if($scope.currentTapStatus[1] === true){ //Exclude area
+        	switch(modifiedType){
+        		case 'create':
+        			$scope.excludeAreaSection.update(modifiedIndex, {
+        				points: modifiedPoints,
+        				isEnable: true,
+        				isSelected: false
+        			});
+        		break;
+        		case 'mouseup':
+        			$scope.excludeAreaSection.updatePoints(modifiedIndex, modifiedPoints);
+        		break;
+        	}
+
+        	if(modifiedType !== "delete"){
+        		sketchbookService.activeShape(modifiedIndex);
+        	}
+
+        	$timeout(function(){});
+        }else if($scope.currentTapStatus[2] === true){ //Calibration
+        	$scope.calibrationSection.data.x1 = modifiedPoints[0][0];
+        	$scope.calibrationSection.data.y1 = modifiedPoints[0][1];
+        	$scope.calibrationSection.data.x2 = modifiedPoints[2][0];
+        	$scope.calibrationSection.data.y2 = modifiedPoints[2][1];
+        }
+    }, $scope);
+
 	/* Destroy Area Start
 	------------------------------------------ */
 	$scope.$on("$destroy", function(){
-		$scope.linePainterController.destroy();
 		pcModalService.close();
 		$scope.countingSection.polling.stop();
 		asyncInterrupt = true;
@@ -615,17 +649,16 @@ kindFramework.controller('PCSetupCtrl',
 	------------------------------------------ */
 
 	function view(){
-		$scope.init().then(function(){
-			$scope.pageLoaded = true;	
+		var failCallback = function(errorData){
+			alert(errorData);
+			$scope.pageLoaded = true;
+		};
 
-			pcSetupService.connectPreview(function(playerdata){
-				$timeout(function(){
-					$scope.playerdata = playerdata;
-				});
-			});
-		}, function(errorData){
-			console.log(errorData);
-		});
+		showVideo().then(function(){
+			$scope.init().then(function(){
+				$scope.pageLoaded = true;
+			}, failCallback);
+		}, failCallback);
 	}
 
 	function setValidation(){
@@ -661,11 +694,11 @@ kindFramework.controller('PCSetupCtrl',
 		return isOk;
 	}
 
-	function set(){
+	function set(needRefresh){
 		$scope.countingSection.polling.stop();
 
 		var countRuleSectionData = $scope.countingRuleSection.data;
-		var linePainterData = $scope.linePainterController.lineObject;
+		var linePainterData = $scope.countingRuleSection.lineObject;
 
 		var requestData = {};
 
@@ -673,33 +706,26 @@ kindFramework.controller('PCSetupCtrl',
 			console.log(errorData);
 		};
 
+		requestData.Enable = $scope.countingRuleSection.peopleCountingEnable;
+
 		for(var i = 0, len = countRuleSectionData.length; i < len ; i++){
 			var ruleInfo = $scope.countingRuleSection.data[i];
 			if(linePainterData[i] !== null){
-				var linePainterItemData = linePainterData[i].getData();
-				var changedAxis = pcSetupModel.changeResolution([
-						{
-							x: linePainterItemData.x1,
-							y: linePainterItemData.y1
-						},
-						{
-							x: linePainterItemData.x2,
-							y: linePainterItemData.y2
-						}
-					], 0);
+				var linePainterItemData = linePainterData[i];
 
 				var coordinates = [
-					changedAxis[0].x,
-					changedAxis[0].y,
-					changedAxis[1].x,
-					changedAxis[1].y
+					linePainterItemData.x1,
+					linePainterItemData.y1,
+					linePainterItemData.x2,
+					linePainterItemData.y2
 				];
 
 				requestData['Line.' + ruleInfo.index + '.Name'] = ruleInfo.name;
 				requestData['Line.' + ruleInfo.index + '.Coordinate'] = coordinates.join(',');
 
-				requestData['Line.' + ruleInfo.index + '.Mode'] = changeArrowToMode(linePainterItemData.arrow);
+				requestData['Line.' + ruleInfo.index + '.Mode'] = linePainterItemData.arrow;
 			}
+
 			requestData['Line.' + ruleInfo.index + '.Enable'] = ruleInfo.use;
 		}
 
@@ -708,29 +734,18 @@ kindFramework.controller('PCSetupCtrl',
 		// requestData['Enable'] = $scope.peopleCountingEnable;
 
 		//set Calibaration box
-		if($scope.rectanglePainterController.getState()){
-			var currentCalibration = $scope.rectanglePainterController.rectangleObject.getAxis()[0];
-			var changedAxis = pcSetupModel.changeResolution([
-				{
-					x: currentCalibration.x1,
-					y: currentCalibration.y1
-				},
-				{
-					x: currentCalibration.x2,
-					y: currentCalibration.y2
-				}
-			], 0);
+		var calibrationData = $scope.calibrationSection.data;
+		requestData.ObjectSizeCoordinate = [
+			calibrationData.x1,
+			calibrationData.y1,
+			calibrationData.x2,
+			calibrationData.y2
+		].join(',');
 
-			requestData.ObjectSizeCoordinate = changedAxis[0].x + "," + changedAxis[0].y + ',' + changedAxis[1].x + "," + changedAxis[1].y;	
+		requestData.CalibrationMode = $scope.calibrationSection.calibrationMode;
+		if($scope.calibrationSection.calibrationMode === $scope.calibrationSection.calibrationModeOptions[0]){
+			requestData.CameraHeight = $scope.calibrationSection.getCalibrationHeight();	
 		}
-
-		if("calibrationSection" in $scope){
-			requestData.CalibrationMode = $scope.calibrationSection.calibrationMode;
-			if($scope.calibrationSection.calibrationMode === $scope.calibrationSection.calibrationModeOptions[0]){
-				requestData.CameraHeight = $scope.calibrationSection.getCalibrationHeight();	
-			}
-		}
-
 
 		pcSetupModel
 			.setRuleInfo(requestData)
@@ -739,19 +754,81 @@ kindFramework.controller('PCSetupCtrl',
 					.pcSetupReport
 					.setReport()
 					.then(function(){
-						$timeout($scope.init);
+						$timeout(function(){
+							if(needRefresh){
+								view();
+							}else{
+								$scope.init();
+							}
+						});
 					}, failCallback);
 			}, failCallback);
 	}
 
-	$scope.submit = function(){
+	$scope.submitEnable = function(){
+		var modalInstance = $uibModal.open({
+	        templateUrl: 'views/setup/common/confirmMessage.html',
+	        controller: 'confirmMessageCtrl',
+	        size: 'sm',
+	        resolve: {
+	            Message: function() {
+	                return 'lang_apply_question';
+	            }
+	        }
+	    });
+	    modalInstance.result.then(function() {
+	        pcSetupModel
+				.setRuleInfo({
+					Enable: $scope.countingRuleSection.peopleCountingEnable
+				})
+				.then(function(successData){
+					$timeout($scope.init);
+				}, function(errorData){
+					console.error(errorData);
+				});
+	    }, function(){
+	    	$scope.countingRuleSection.peopleCountingEnable = !$scope.countingRuleSection.peopleCountingEnable;
+	    });
+	};
+
+	$scope.submit = function(needRefresh){
 		if(setValidation()){
 			if($scope.pcSetupReport.validate()){
-				COMMONUtils.ApplyConfirmation(set);		
+				COMMONUtils.ApplyConfirmation(function(){
+					set(needRefresh);
+				});		
 			}
 		}
 	};
 	$scope.view = view;
+
+	function showVideo() {
+        var getData = {};
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
+            var viewerWidth = 640;
+            var viewerHeight = 360;
+            var maxWidth = mAttr.MaxROICoordinateX;
+            var maxHeight = mAttr.MaxROICoordinateY;
+            var rotate = response.data.Flip[0].Rotate;
+            var flip = response.data.Flip[0].VerticalFlipEnable;
+            var mirror = response.data.Flip[0].HorizontalFlipEnable;
+            var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
+            $scope.videoinfo = {
+                width: viewerWidth,
+                height: viewerHeight,
+                maxWidth: maxWidth,
+                maxHeight: maxHeight,
+                flip: flip,
+                mirror: mirror,
+                support_ptz: false,
+                rotate: rotate,
+                adjust: adjust,
+                currentPage: 'PeopleCount'
+            };
+        }, function(errorData) {
+            console.log(errorData);
+        }, '', true);
+    }
 
 	(function wait(){
         if (!mAttr.Ready) {

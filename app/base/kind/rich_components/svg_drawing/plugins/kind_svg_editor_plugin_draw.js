@@ -9,6 +9,9 @@ KindSVGEditor.addPlugin('draw', function(options){
 	var hoverAllImage = './base/images/setup/btn_all_over.png';
 	var pressAllImage =  './base/images/setup/btn_all_press.png';
 
+	var plusImage = './base/images/plus.svg';
+	var minusImage = './base/images/minus.svg';
+
 	var imageWidth = 25;
 	var imageHeight = 33;
 
@@ -40,8 +43,9 @@ KindSVGEditor.addPlugin('draw', function(options){
 	 * useArrow {Boolean} use arrow or not
 	 * arrow {String} Default Arrow of Line
 	 */
-	var color = options.color === undefined ? '#cccccc' : options.color;
-	var selectedColor = options.selectedColor === undefined ? '#aaa' : options.selectedColor;
+	var fillColor = options.fillColor === undefined ? '#cccccc' : options.fillColor;
+	var lineColor = options.lineColor === undefined ? '#cccccc' : options.lineColor;
+	var pointColor = options.pointColor === undefined ? '#cccccc' : options.pointColor;
 	var points = options.points === undefined ? [[0,0],[100,100]] : options.points;
 	var lineStrokeWidth = options.lineStrokeWidth === undefined ? 3 : options.lineStrokeWidth;
 	var circleRadius = options.circleRadius === undefined ? 5 : options.circleRadius;
@@ -66,6 +70,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 	var initCenter = options.initCenter === undefined ? false : options.initCenter;
 	var mirror = options.mirror === undefined ? false : options.mirror;
 	var flip = options.flip === undefined ? false : options.flip;
+	var notUseAutoChangeOfArrow = options.notUseAutoChangeOfArrow === undefined ? false : options.notUseAutoChangeOfArrow;
 	//For WN5 Face Detection
 	/**
 	wiseFaceDetection.strokeWidth
@@ -223,28 +228,28 @@ KindSVGEditor.addPlugin('draw', function(options){
 		var iconText = null;
 		var icon = null;
 		var timer = null;
-		var width = 15;
+		var width = 16;
 		var delay = 300;
 		var isMinus = false;
 		var clickEventHandler = null;
 
-		this.createIcon = function(txt){
-			if(txt === '-'){
-				isMinus = true;
-			}
+		/**
+		iconType이 False: Minuse, True: Plus
+		*/
+		this.createIcon = function(iconType){
+			var src = iconType ? plusImage : minusImage;
 
 			if(icon === null){
 				icon = elemCtrl.createRect(width, width);
-				iconText = elemCtrl.createText(txt);
+				iconText = elemCtrl.createImage(src, width, width)[0];
+				// iconText = elemCtrl.createText(txt);
 				
-				elemCtrl.setAttr(icon, 'fill', selectedColor);	
-				elemCtrl.setAttr(iconText, 'fill', '#ffffff');
+				elemCtrl.setAttr(icon, 'fill', '#000000');	
+				// elemCtrl.setAttr(iconText, 'fill', '#ffffff');
 
 				icon.style.opacity = 0;
 				icon.style.transition = 'opacity ' + delay + 'ms ease';
 				iconText.style.opacity = 0;
-				iconText.style.fontSize = isMinus ? '20px' : '14px';
-				// iconText.style.fontWeight = 'bold';
 				iconText.style.transition = 'opacity ' + delay + 'ms ease';
 
 				if(clickEventHandler !== null){
@@ -266,13 +271,10 @@ KindSVGEditor.addPlugin('draw', function(options){
 		};
 
 		this.changePosition = function(x, y){
-			var iconTextX = isMinus ? x - 3 : x - 4;
-			var iconTextY = isMinus ? y + 6 : y + 5;
-
 			elemCtrl.setAttr(icon, 'x', x - width/2);
 			elemCtrl.setAttr(icon, 'y', y - width/2);
-			elemCtrl.setAttr(iconText, 'x', iconTextX);
-			elemCtrl.setAttr(iconText, 'y', iconTextY);
+			elemCtrl.setAttr(iconText, 'x', x - width/2);
+			elemCtrl.setAttr(iconText, 'y', y - width/2);
 		};
 
 		this.show = function(){			
@@ -316,7 +318,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 		var iconHelper = new IconHelper();
 		var hideOpacity = '0.5';
 
-		iconHelper.createIcon('+');
+		iconHelper.createIcon(true);
 
 		function backupPoints(){
 			tempArrForDragChecking = LineInformation.getAll().points;
@@ -357,11 +359,11 @@ KindSVGEditor.addPlugin('draw', function(options){
 		}
 
 		function setDefaultColor(lineElement){
-			elemCtrl.setAttr(lineElement, 'stroke', color);
+			elemCtrl.setAttr(lineElement, 'stroke', lineColor);
 		}
 
 		function setSelectColor(lineElement){
-			elemCtrl.setAttr(lineElement, 'stroke', selectedColor);
+			elemCtrl.setAttr(lineElement, 'stroke', lineColor);
 		}
 
 		function hide(lineElement){
@@ -442,13 +444,18 @@ KindSVGEditor.addPlugin('draw', function(options){
 			var rightAxis = null;
 
 			//선택 되었을 때만 사용가능
-			if(LineInformation.isAllSelected === false) return;
+			if(LineInformation.isAllSelected === false){
+				console.log("LineInformation.isAllSelected === false return");
+				return;
+			}
 
 			if(isPointsChanged() === false){
+				console.log("isPointsChanged() === false return");
 				return;
 			}
 
 			if(pointsLength >= maxPoint){
+				console.log("pointsLength >= maxPoint return");
 				return;
 			}
 
@@ -524,7 +531,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 		iconHelper.onClick(function(event){
 			removeCircle.call({circleIndex: hoveredPointIndex}, event);
 		});
-		iconHelper.createIcon('-');
+		iconHelper.createIcon(false);
 
 		function addCircle(radius, useCircleEvent, useCircleCursor){
 			var newCircle = elemCtrl.createRect(radius * 2, radius * 2);
@@ -650,11 +657,12 @@ KindSVGEditor.addPlugin('draw', function(options){
 		}
 
 		function setDefaultColor(circleElement){
-			elemCtrl.setAttr(circleElement, "fill", color);
+
+			elemCtrl.setAttr(circleElement, "fill", pointColor);
 		}
 
 		function setSelectColor(circleElement){
-			elemCtrl.setAttr(circleElement, "fill", selectedColor);
+			elemCtrl.setAttr(circleElement, "fill", pointColor);
 		}
 
 		function hide(circleElement){
@@ -761,7 +769,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 		function setDefaultColor(){
 			if(fill === true){
-				polygon.style.fill = color;
+				polygon.style.fill = fillColor;
 				polygon.style.opacity = fillOpacity;
 			}
 		}
@@ -967,9 +975,11 @@ KindSVGEditor.addPlugin('draw', function(options){
 			elemCtrl.setAttr(arrowImage, 'x', xAxis);
 			elemCtrl.setAttr(arrowImage, 'y', yAxis);
 
-			if(Math.abs(angle) > 90){
-				degree = degree === 90 ? 270 : 90;
-				textAngle -= 180;
+			if(notUseAutoChangeOfArrow !== true){
+				if(Math.abs(angle) > 90){
+					degree = degree === 90 ? 270 : 90;
+					textAngle -= 180;
+				}	
 			}
 
 			changeArrowGuideText(xAxis, yAxis, textAngle);
@@ -1326,7 +1336,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 					circleHelper.addCircle(radius);	
 				}else{
 					//Circle을 작게 그려서 안보이게 함.
-					circleHelper.addCircle(lineStrokeWidth / 2, false, false);
+					circleHelper.addCircle(0, false, false);
 				}
 			}else{
 				circleHelper.addCircle(radius);	
@@ -2114,7 +2124,10 @@ KindSVGEditor.addPlugin('draw', function(options){
 		validateAxis: LineInformation.validateAxis,
 		validateStabilization: validateStabilization,
 		validateIntersection: validateIntersection,
-		validateMinimumAngle: validateMinimumAngle
+		validateMinimumAngle: validateMinimumAngle,
+
+		stopEvent: unbindEvent,
+		startEvent: bindEvent
 	};
 
 	return drawObj;

@@ -291,7 +291,11 @@ kindFramework.controller('ipPortCtrl', function ($scope, $timeout, $uibModal, $t
             setData.IPv4Address = pageData.NetworkInterfaces[index].IPv4Address = $scope.NetworkInterfaces[index].IPv4Address;
             setData.IPv4Gateway = pageData.NetworkInterfaces[index].IPv4Gateway = $scope.NetworkInterfaces[index].IPv4Gateway;
             setData.IPv4SubnetMask = pageData.NetworkInterfaces[index].IPv4SubnetMask = $scope.NetworkInterfaces[index].IPv4SubnetMask;
-            setData.HostName = pageData.NetworkInterfaces[index].HostName = $scope.NetworkInterfaces[index].HostName;
+            if($scope.NetworkInterfaces[index].HostName.length === 0){
+                setData.HostName = pageData.NetworkInterfaces[index].HostName;
+            } else {
+                setData.HostName = pageData.NetworkInterfaces[index].HostName = $scope.NetworkInterfaces[index].HostName;
+            }
       }
       else if ($scope.NetworkInterfaces[index].IPv4Type === 'PPPoE' )
       {

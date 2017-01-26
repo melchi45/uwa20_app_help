@@ -143,30 +143,30 @@ function receiveMessage(event) {
     }
     break;
 	case 'backup':
-	  console.log("vodeo worker receive backup command");
+	  // console.log("vodeo worker receive backup command");
 	  if( message.data.command === 'start') {
-		console.log("....................backup Start command receive");
-		isBackupCommand = true;
-		sendMessage('audioBackup', 'start');
+			console.log("....................backup Start command receive");
+			isBackupCommand = true;
+			sendMessage('audioBackup', 'start');
 	  } else if( message.data.command === 'stop' ) {
-		console.log("..................backup Stop command receive");
-		//to sync audioWorker & videoWorker end time.
-		sendMessage('audioBackup', 'stop');
-		isBackupCommand = false;
-      }
+			console.log("..................backup Stop command receive");
+			//to sync audioWorker & videoWorker end time.
+			sendMessage('audioBackup', 'stop');
+			isBackupCommand = false;
+    }
 	  break;
     case 'stepPlay':
       var ret =true;
-      console.log("stepPlay videoCHID " + videoCHID);
+      // console.log("stepPlay videoCHID " + videoCHID);
       if (videoRtpSessionsArray[videoCHID] !== undefined) {
 	  }
 	  if( message.direction === 'forward') {
-	    console.log("stepPlay Start forward receive");
+	    // console.log("stepPlay Start forward receive");
 	    isStepPlay = true;
         isForward = true;
         ret = videoRtpSessionsArray[videoCHID].stepForward();
 	  } else if( message.direction === 'backward' ) {
-	    console.log("stepPlay Start backward receive");
+	    // console.log("stepPlay Start backward receive");
 	    isStepPlay = true;
         isForward = false;
         ret = videoRtpSessionsArray[videoCHID].stepBackward();
@@ -221,7 +221,7 @@ function receiveMessage(event) {
 	  }
 	  break;
 	case 'speed':
-      console.log("speed::fps = " + message.data);
+      // console.log("speed::fps = " + message.data);
       break;
 	default:
       break;

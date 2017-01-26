@@ -43,6 +43,9 @@ kindFramework.controller('PCStatisticsCtrl',
 	//Playerdata for Video
 	$scope.playerdata = null;
 
+	$scope.coordinates = [];
+	$scope.sketchinfo = {};
+
 	/* RealTime Area Start 
 	------------------------------------------ */
 	$scope.realTimeSection = {
@@ -128,10 +131,6 @@ kindFramework.controller('PCStatisticsCtrl',
 
 	function setRealTimeSize(){
 		var defaultResolution = pcSetupService.getDefaultResolution();
-		var liveSvg = document.getElementById("pc-realtime-live-svg");
-
-		liveSvg.setAttributeNS(null, 'width', defaultResolution.width);
-		liveSvg.setAttributeNS(null, 'height', defaultResolution.height);
 
 		document.querySelector('.pc-realtime-video').style.height = defaultResolution.height + 'px';
 	}
@@ -289,23 +288,11 @@ kindFramework.controller('PCStatisticsCtrl',
 			}
 
 			//Draw Line of Counting Rule in Video
-			var linePainter = new PCLinePainter(document.getElementById("pc-realtime-live-svg"));
 
 			for(var i = 0, len = data.Lines.length; i < len; i++){
 				var self = data.Lines[i];
 				var inCount = self.Enable === true ? self.InCount : '';
 				var outCount = self.Enable === true ? self.OutCount : '';
-				var changedAxis = pcSetupModel.changeResolution([
-					{
-						x: parseFloat(self.Coordinates[0].x),
-						y: parseFloat(self.Coordinates[0].y)
-					},
-					{
-						x: parseFloat(self.Coordinates[1].x),
-						y: parseFloat(self.Coordinates[1].y)
-					}
-				], 1);
-
 
 				todayRuleData.push({
 					lineIndex: self.LineIndex,
@@ -316,16 +303,28 @@ kindFramework.controller('PCStatisticsCtrl',
 				});	
 
 				if(self.Enable === true){
-					linePainter.createLine({
-						x1: changedAxis[0].x,
-						y1: changedAxis[0].y,
-						x2: changedAxis[1].x,
-						y2: changedAxis[1].y,
-						textInCircle: self.LineIndex,
-						lineStrokeWidth: 5,
-						circleRadius: 8,
-					});
+					$scope.coordinates.push({
+	        			isSet: true,
+	        			enable: true,
+	            		points: [
+		            		[self.Coordinates[0].x, self.Coordinates[0].y],
+		            		[self.Coordinates[1].x, self.Coordinates[1].y],
+	            		],
+	            		direction: self.arrow === "LeftToRightIn" ? 0 : 1,
+	            		textInCircle: self.LineIndex + 1
+	            	});
 				}
+			}
+
+			if($scope.coordinates.length > 0){
+				$scope.sketchinfo = {
+					workType: 'peoplecount',
+		        	maxNumber: 2,
+		        	maxArrow: 'R',
+		        	color: 0,
+		        	useEvent: false,
+		        	minLineLength: 120
+				};
 			}
 
 			//Set Line of Counting Rule in Table
@@ -1126,20 +1125,8 @@ kindFramework.controller('PCStatisticsCtrl',
 				$scope.graphSection.resizeHandle();	
 			}, 100);
 		}
-		$scope.init().then(function(){
-			$scope.pageLoaded = true;
 
-			pcSetupService.connectPreview(function(playerdata){
-				$timeout(function(){
-					$scope.playerdata = playerdata;
-				});
-			});
-			/*
-			because Chart is broken, 
-			resizeing have to run after DOM Rendering.
-			*/
-			resizeGraph();
-		}, function(errorData){
+		function errorCallback(errorData){
 			//When search is cancel
 			if(errorData === pcSetupModel.getInterruptMessage()){
 				return;
@@ -1148,8 +1135,51 @@ kindFramework.controller('PCStatisticsCtrl',
 				resizeGraph();
 				console.log(errorData);	
 			}
+		}
+
+		setTimeout(function(){
+			$scope.pcConditionsDateForm.init(function(){
+				showVideo().then(function(){
+					$scope.init().then(function(){
+						$scope.pageLoaded = true;
+						/*
+						because Chart is broken, 
+						resizeing have to run after DOM Rendering.
+						*/
+						resizeGraph();
+					}, errorCallback);
+				}, errorCallback);
+			}, errorCallback);
 		});
 	}
+
+	function showVideo() {
+        var getData = {};
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
+            var viewerWidth = 640;
+            var viewerHeight = 360;
+            var maxWidth = mAttr.MaxROICoordinateX;
+            var maxHeight = mAttr.MaxROICoordinateY;
+            var rotate = response.data.Flip[0].Rotate;
+            var flip = response.data.Flip[0].VerticalFlipEnable;
+            var mirror = response.data.Flip[0].HorizontalFlipEnable;
+            var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
+            $scope.videoinfo = {
+                width: viewerWidth,
+                height: viewerHeight,
+                maxWidth: maxWidth,
+                maxHeight: maxHeight,
+                flip: flip,
+                mirror: mirror,
+                support_ptz: false,
+                rotate: rotate,
+                adjust: adjust,
+                currentPage: 'PeopleCount'
+            };
+        }, function(errorData) {
+            console.log(errorData);
+        }, '', true);
+    }
 
 	/*function set(){
 

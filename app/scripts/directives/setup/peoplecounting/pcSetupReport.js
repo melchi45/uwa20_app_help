@@ -12,6 +12,7 @@ kindFramework.directive('pcSetupReport', function(PcSetupReportModel, pcModalSer
 			var lang = pcSetupReportModel.getLang();
 
 			var $parentScope = attrs.pageType === "hm" ? scope : scope.$parent;
+			// var $parentScope = scope.$parent;
 
 			$parentScope.pcSetupReport = {
 				lang: lang.report,
@@ -66,8 +67,6 @@ kindFramework.directive('pcSetupReport', function(PcSetupReportModel, pcModalSer
 
 					if(attrs.pageType === "hm"){
 						Enable = $parentScope.useHeatmap;
-					}else{
-						Enable = $parentScope.countingRuleSection.peopleCountingEnable;
 					}
 
 					//Report setting -> Scheduler setting
@@ -109,8 +108,6 @@ kindFramework.directive('pcSetupReport', function(PcSetupReportModel, pcModalSer
 						function(responseData){
 							if(attrs.pageType === "hm"){
 								$parentScope.useHeatmap = responseData.Enable;
-							}else{
-								$parentScope.peopleCountingEnable = responseData.Enable;
 							}
 							$parentScope.pcSetupReport.use = responseData.ReportEnable;
 							$parentScope.pcSetupReport.fileName.name = responseData.ReportFilename;

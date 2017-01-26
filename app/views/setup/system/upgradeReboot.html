@@ -73,7 +73,7 @@
             <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-content">
                     <div>
-                        <button type="button" class="btn btn-primary btn-margin-right" ng-disabled="IsFWUpdating || IsRestoreRunning" ng-click="backupConfig()">{{ 'lang_backup' | translate }}</button>
+                        <button type="button" class="btn btn-primary btn-margin-right" ng-disabled="IsFWUpdating || IsRestoreRunning" ng-click="backupConfig()">{{ 'lang_btn_backup' | translate }}</button>
                         <label for="confFile"><span class="btn btn-primary" ng-disabled="IsFWUpdating || IsRestoreRunning">{{ 'lang_restore' | translate }}</span></label>
                         <input style="display: none; position: relative;" id="confFile" class="form-control" type="file" name="confFile" base-sixty-four-input ng-disabled="IsFWUpdating || IsRestoreRunning" ng-model-instant accept=".bin,.dat"  onchange="angular.element(this).scope().setConfigFile(this)">
                     </div>

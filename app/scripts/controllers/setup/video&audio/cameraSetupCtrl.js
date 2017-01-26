@@ -5685,7 +5685,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                             var china = new RegExp("[^a-zA-Z0-9-.\u4E00-\u9FFF\u2FF0-\u2FFF\u31C0-\u31EF\u3200-\u9FBF\uF900-\uFAFF]");
                             if (china.exec($scope.TitleOSD[i].OSD) !== null)
                             {
-                                COMMONUtils.ShowError("只有英国语文及中国语言支持");
+                                COMMONUtils.ShowError("仅英文及中文和特殊字符 -.支持");
                                 // alert("只有英国语文及中国语言支持");
                                 $scope.TitleOSD[i].OSD = "";
                                 retVal = false;

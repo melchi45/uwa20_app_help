@@ -12,7 +12,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>You can check or change IPv4 properties such as IP type, MAC address, IP address, subnet mask, gateway and DNS information.</p>
+			<p>You can check or change the IP type, MAC address, IP address, subnet mask, gateway, and DNS information used for the network communication using the IPv4 type.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>IP type</h3>
@@ -44,6 +44,12 @@
 			<h3>DNS1/DNS2</h3>
 			<p>The address of the DNS (Domain Name Service) server is displayed.</p>
 		</div>
+		
+		<div class="wn5-setup-section-article-content">
+			<h3>Host name</h3>
+			<p>This is displayed when <strong class="UI">[Manual]</strong> is set for <strong class="UI">[IP type]</strong>. Host name is the name to retrieve the host name which is used in ONVIF GetHostname command. The first character must be alphabetic and only alphanumeric characters can be entered. Up to 16 characters can be entered. Name of the camera is input as default; does not need to be set as it is not a required value. </p>
+		</div>
+		
 		<div class="wn5-setup-section-article-content">		
 			<h3>ID</h3>
 			<p>This is displayed when <strong class="UI">[PPPoE]</strong> is set for <strong class="UI">[IP type]</strong>. Enter the proper ID to connect.</p>
@@ -70,9 +76,11 @@
 			<h3>IP type</h3>
 			<p>Select the IP connection type. The default value is <strong class="UI">[DHCP]</strong>. If DHCP is not detected, the value will automatically be changed to the previous setting.</p>
 			<ul>
-				<li><strong class="UI">Default</strong>: The current IPv6 address is displayed. </li>
+				
 				<li><strong class="UI">DHCP</strong>: The IPv6 address assigned through DHCP is displayed.</li>
 				<li><strong class="UI">Manual</strong>: The user can enter an IPv6 address of choice.</li>
+				<li><strong class="UI">Default</strong>: The current IPv6 address is displayed. </li>
+				
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -98,7 +106,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>A port is the location used for sending and receiving data  Click <strong class="UI">[Port]</strong> tab, set the relevant items, and then click the <strong class="UI">[Apply]</strong> button at the bottom of the page. It is recommended to use HTTPS and RTSP to prevent the restoration of image information.</p>
+			<p>A port is the location used for sending and receiving data  Click <strong class="UI">[Port]</strong> tab, set the relevant items, and then click the <strong class="UI">[Apply]</strong> button at the bottom of the page. It is recommended to use HTTPS and RTSP to reinforce image security.</p>
 		</div>
 
 		<div class="wn5-setup-section-article-content">

@@ -225,34 +225,10 @@ function KindStreamPlayer(configInfo, sunapiClient) {
 
   function backward() {
     workerManager.playbackBackward();
-    // var type = profileInfo.media.type;
-
-    // if (type === 'live') {
-    //   console.log(cmd, "is invalid command in live");
-    //   return;
-    // }
-    // profileInfo.media.requestInfo.cmd = 'seek';
-    // profileInfo.media.requestInfo.scale = info.media.requestInfo.scale;
-
-    // var url = "rtsp://"+profileInfo.device.cameraIp +":554" +"/"+info.media.requestInfo.url;
-    // profileInfo.media.requestInfo.url = url;
-    // rtspClient.ControlStream(profileInfo);
   }
 
   function forward() {
     workerManager.playbackForward();
-    // var type = profileInfo.media.type;
-
-    // if (type === 'live') {
-    //   console.log(cmd, "is invalid command in live");
-    //   return;
-    // }
-    // profileInfo.media.requestInfo.cmd = 'seek';
-    // profileInfo.media.requestInfo.scale = info.media.requestInfo.scale;
-
-    // var url = "rtsp://"+profileInfo.device.cameraIp +":554" +"/"+info.media.requestInfo.url;
-    // profileInfo.media.requestInfo.url = url;
-    // rtspClient.ControlStream(profileInfo);
   }
 
   function step(info) {

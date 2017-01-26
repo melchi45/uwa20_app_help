@@ -12,7 +12,7 @@
 			svg {
 				border: 1px solid #ddd;
 				overflow: visible;
-				background-color: #fff;
+				background-color: #eee;
 			}
 
 			#wrapper {
@@ -111,15 +111,24 @@
 
 		<script>
 			var colorFactory = {
-				blue: "#3184F9",
-				darkBlue: '#0066CC',
 				red: "#CE534D",
-				darkRed: '#CC3333',
+				blue: "#3184F9",
+				includeArea: {
+					fill: '#ff6633',
+					line: '#ff6633',
+					point: '#ff6633'
+				},
+				excludeArea: {
+					fill: '#000000',
+					line: '#ffffff',
+					point: '#999999'
+				}
 			};
 			function getROIOptions(){
 				return {
-                	color: colorFactory.blue,
-	                selectedColor: colorFactory.darkBlue,
+					fillColor: colorFactory.includeArea.fill,
+					lineColor: colorFactory.includeArea.line,
+					pointColor: colorFactory.includeArea.point,
 	                lineStrokeWidth: 4,
 	                circleRadius: 5,
 	                useEvent: true,
@@ -133,8 +142,9 @@
 
 			function getLineOptions(){
 				return {
-	                color: colorFactory.blue,
-	                selectedColor: colorFactory.darkBlue,
+					fillColor: colorFactory.includeArea.fill,
+					lineColor: colorFactory.includeArea.line,
+					pointColor: colorFactory.includeArea.point,
 	                lineStrokeWidth: 4,
 	                circleRadius: 6,
 	                useEvent: true,
@@ -165,7 +175,7 @@
 				wiseFDOptions.fixedRatio = true;
 				wiseFDOptions.wiseFaceDetection = {
                     strokeWidth: 2,
-                    strokeColor: colorFactory.blue,
+                    strokeColor: colorFactory.includeArea.line,
                     fillOpacity: 0,
                     heightRatio: 4 //Wise Face Detection에 표현되는 원의 반지름 %
                 };
@@ -217,6 +227,9 @@
 				roiEditor.customEditor(roiOptions);
 				for(var i = 0, ii = defaultROIPoints.length; i < ii; i++){
 					roiOptions.points = defaultROIPoints[i];
+					roiOptions.fillColor = i === 0 ? colorFactory.includeArea.fill : colorFactory.excludeArea.fill;
+					roiOptions.pointColor = i === 0 ? colorFactory.includeArea.point : colorFactory.excludeArea.point;
+					roiOptions.lineColor = i === 0 ? colorFactory.includeArea.line : colorFactory.excludeArea.line;
 					roiObj.push(roiEditor.draw(roiOptions));
 				}
 				selectROIObj(roiObj[0]);
@@ -225,6 +238,9 @@
 				var virtualLine = document.getElementById('virtual_line');
 				var virtualLineEditor = new KindSVGEditor(virtualLine);
 				var virtualLineOptions = getLineOptions();
+				virtualLineOptions.fillColor = colorFactory.blue;
+				virtualLineOptions.lineColor = colorFactory.blue;
+				virtualLineOptions.pointColor = colorFactory.blue;
 				var virtualLineObj = [];
 				var defaultVirtualLinePoints = [
 					[
@@ -284,8 +300,9 @@
 					[854, 480],
 					[854, 0]
 				];
-				commonCalibrationOptions.color = colorFactory.red;
-				commonCalibrationOptions.selectedColor = colorFactory.darkRed;
+				commonCalibrationOptions.fillColor = colorFactory.red;
+				commonCalibrationOptions.lineColor = colorFactory.red;
+				commonCalibrationOptions.pointColor = colorFactory.red;
 				commonCalibrationEditor.draw(commonCalibrationOptions);
 				commonCalibrationOptions.points = [
 					[0, 0],
@@ -293,8 +310,9 @@
 					[100, 100],
 					[100, 0]
 				];
-				commonCalibrationOptions.color = colorFactory.blue;
-				commonCalibrationOptions.selectedColor = colorFactory.darkBlue;
+				commonCalibrationOptions.fillColor = colorFactory.blue;
+				commonCalibrationOptions.lineColor = colorFactory.blue;
+				commonCalibrationOptions.pointColor = colorFactory.blue;
 				commonCalibrationEditor.draw(commonCalibrationOptions);
 			};
 		</script>

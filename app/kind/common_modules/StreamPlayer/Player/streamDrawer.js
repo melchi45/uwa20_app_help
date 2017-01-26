@@ -112,7 +112,7 @@ function KindDrawer(id) {
    }
 
   function Constructor() {
-    console.log("streamDrawer Constructor!!");
+    // console.log("streamDrawer Constructor!!");
     drawingStrategy = 'rgb2d';
     prevCodecType = null;
 //    videoBufferList = new VideoBufferList();
@@ -378,7 +378,6 @@ function KindDrawer(id) {
     },
     setFPS: function (fps) {
       if(fps === undefined){
-        console.log('fps = undefined ' + fps);
         frameInterval = 16.7;
         maxDelay = 10 * 2;//
       } else if(fps == 0){
@@ -393,13 +392,12 @@ function KindDrawer(id) {
     },
     setThroughPut: function(throughput){
       this.throughPut = throughput;
-      //console.log('streamDrawer setThroughPut!' + throughput);
     },
     getCanvas: function () {
       return canvas;
     },
     terminate: function () {
-      console.log('streamDrawer terminate!');
+      // console.log('streamDrawer terminate!');
       startTimestamp = 0;
       frameTimestamp = null;
       if(videoBufferQueue !== null){

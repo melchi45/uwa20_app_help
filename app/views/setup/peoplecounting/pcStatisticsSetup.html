@@ -12,14 +12,12 @@
                 ng-hide="realTimeSection.dropDownState">
                 <figure 
                     class="pc-realtime-video">
-                    <svg 
-                        width="640" 
-                        height="480" 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        id="pc-realtime-live-svg"></svg>
-
-                    <kind_stream class="channel-content" kindplayer="playerdata"></kind_stream>
+                    <sketchbook 
+                        class="wn5-setup-preview-video"
+                        coordinates="coordinates" 
+                        sketchinfo="sketchinfo" 
+                        videoinfo="videoinfo">
+                    </sketchbook>
                 </figure>
                 <p class="wn5-gui-body-large">{{'lang_pc_hm_data_init_rule' | translate}} {{'lang_msg_init_rule_but_delete_all_data' | translate}}</p>
             </section>
@@ -147,23 +145,27 @@
                     <div class="wn5-setup-section-article-content">
                         <table class="pc-n-hm-table table-bordered wn5-setup-table">
                             <colgroup>
-                                <col class="pc-n-hm-per-30">
+                                <!-- <col class="pc-n-hm-per-30">
                                 <col class="pc-n-hm-per-10">
                                 <col class="pc-n-hm-per-30">
-                                <col class="pc-n-hm-per-30">
+                                <col class="pc-n-hm-per-30"> -->
+                                <col class="pc-n-hm-per-20">
+                                <col class="pc-n-hm-per-40">
+                                <col class="pc-n-hm-per-40">
                             </colgroup>
                             <thead>
                                 <tr>
-                                    <th colspan="2"></th>
-                                    <th class="text-center">{{ lang.conditions.rule.firstRule | translate }}</th>
-                                    <th class="text-center">{{ lang.conditions.rule.secondRule | translate }}</th>
+                                    <!-- <th colspan="2"></th> -->
+                                    <th></th>
+                                    <th>{{ lang.conditions.rule.firstRule | translate }}</th>
+                                    <th>{{ lang.conditions.rule.secondRule | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat-start="item in conditionsSection.rule track by $index">
-                                    <td rowspan="2" class="text-center">
+                                    <!-- <td rowspan="2" class="text-center">
                                         {{item.name}}
-                                    </td>
+                                    </td> -->
                                     <td class="text-center">{{ lang.conditions.rule.in | translate }}</td>
                                     <td>
                                         <input 
@@ -362,7 +364,7 @@
                 <table class="pc-n-hm-table table-bordered text-center">
                     <thead>
                         <tr>
-                            <th class="text-center">{{ lang.results.table.camera | translate }}</th>
+                            <!-- <th class="text-center">{{ lang.results.table.camera | translate }}</th> -->
                             <th class="text-center pc-results-table-rule">{{ lang.conditions.rule.title | translate }}</th>
                             <th 
                                 ng-repeat="timeData in resultSection.tableData.timeTable track by $index"
@@ -374,11 +376,11 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="ruleData in resultSection.tableData.rules track by $index">
-                            <td 
+                            <!-- <td 
                                 ng-if="$index === 0"
                                 rowspan="{{resultSection.tableData.rules.length}}">
                                 {{resultSection.tableData.cameraName}}
-                            </td>
+                            </td> -->
                             <td ng-repeat="rule in ruleData track by $index">{{rule}}</td>
                         </tr>
                     </tbody>

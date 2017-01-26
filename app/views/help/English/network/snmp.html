@@ -20,7 +20,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <h3>SNMP v2c  </h3>
+            <h3>SNMP v2c</h3>
             <p>To use SNMP v2c, select <strong class="UI">[Enable]</strong>. When <strong class="UI">[SNMP v2c]</strong> is selected, the Read community and Write community will be enabled.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -39,11 +39,12 @@
 <div class="wn5-setup-section">
 
     <div class="wn5-setup-section-heading">
-        <h2>SNMP v3</h2><small>(Only operates when the SSL/TLS is authenticated).</small></div>
+        <h2>SNMP v3</h2>
+		</div>
 
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-        	<p>SNMP v3 authentication has stronger security than v1 and v2c; transmission without data transformation is possible. The packet is also encrypted to block unauthorized users from accessing data. SNMP v3 can be used only if SSL/TLS is set.</p>
+        	<p>SNMP v3 authentication has stronger security than v1 and v2c; transmission without data transformation is possible. The packet is also encrypted to block unauthorized users from accessing data. <strong class="UI">[HTTPS]</strong> must be set for the <a class="wn5-online-help-link" href="ssl.html" ng-href="#/help/network_ssl"><strong class="UI">[Secure connection system]</strong></a> in order to use SNMP v3.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -53,13 +54,13 @@
 
         <div class="wn5-setup-section-article-content">
             <h3>Password</h3>
-            <p>Set the user password for SNMP v3. Passwords must be between 8 and 16 characters. The default password is weak, so changing it to a new password is highly recommended immediately after installing the product. Important Notice: users are responsible for security and other issues due to continued use of the default password.</p>
+            <p>Set the user password for SNMP v3. Passwords must be between 8 and 16 characters. The default password is weak, so changing it to a new password is highly recommended immediately after installing the product. Users are responsible for security and other issues due to continued use of the default password.</p>
         </div>
 
         <div class="wn5-online-help-info">
         	<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
         	<ul>
-        		<li>SNMP v3 can be set only when the secure connection system is in HTTPS mode.</li>
+        		
         		<li>Failure to use SNMP v3 may result in security issues.</li>
         	</ul>
         </div>
@@ -77,11 +78,11 @@
     	   <p>The SNMP Trap is a function that delivers specific events in the equipment on the network to the management system.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>SNMP Traps  </h3>
+            <h3>SNMP traps</h3>
             <p>To use SNMP Trap, select <strong class="UI">[Enable]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Community  </h3>
+            <h3>Community</h3>
             <p>Enter the name of the trap community that receives the message.</p>
         </div>
         <div class="wn5-setup-section-article-content">

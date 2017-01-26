@@ -30,7 +30,7 @@ function AudioPlayerAAC(){
 		document.body.appendChild(audio);		
 		audio.addEventListener('error', audioErrorCallback);
 
-		console.log('init AAC player Mime codec = ' + mimeCodec);
+		// console.log('init AAC player Mime codec = ' + mimeCodec);
 	}
 
 	function createMediaSource() {

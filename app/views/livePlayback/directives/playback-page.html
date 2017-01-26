@@ -91,7 +91,7 @@
             class="cm_selectbox cm_playback-speed" 
             ng-change="selectSpeedChanged()" 
             ng-model="playback.speed" 
-            data-ng-disabled="disableSpeedIcon"
+            ng-disabled="!playback.isPlay"
             ng-options="s.value as s.name for s in selectSpeedList">
           </select>
         </li>

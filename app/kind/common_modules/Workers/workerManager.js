@@ -59,7 +59,7 @@ function WorkerManager() {
   throughPutGOV = 30,
   videoTimeStamp = null,
   videoTagPlayFlag = false,
-  normalNumBox = (browser !== "chrome" ? 1 : 4),
+  normalNumBox = (browser !== "chrome" ? 10 : 4),
   speedNumBox = 1,
   speed = 1,
   numBox = normalNumBox,
@@ -107,7 +107,7 @@ function WorkerManager() {
   }
 
   function closeBackupWorker() {
-    console.log("someone want to close backup worker");
+    // console.log("someone want to close backup worker");
     var event = {
     'type' : 'backup',
     'data' : {
@@ -230,7 +230,7 @@ function WorkerManager() {
           if (videoMS !== null) {
             videoMS.setMediaSegment(mediaSegmentData);
           } else if (initSegmentFlag === false) {
-            console.log("videoMS error!! recreate videoMS");
+            console.log("workerManager::videoMS error!! recreate videoMS");
             createVideoMS();
           }
 
@@ -261,8 +261,9 @@ function WorkerManager() {
         break;
       case 'videoTimeStamp':
         videoTimeStamp = message.data;
-    		if (videoMS !== null){
-    			videoMS.setvideoTimeStamp(message.data);
+    		if (videoMS !== null && videoTimeStamp != null){
+    			//videoMS.setvideoTimeStamp(message.data);
+				videoMS.setvideoTimeStamp(videoTimeStamp);
     		}
         break;
       case 'firstFrame':
@@ -310,9 +311,11 @@ function WorkerManager() {
       case 'stepPlay':{
         switch (message.data) {
           case 'needBuffering':
+            stepFlag = true;
             stepRequestCallback("request", playbackService);
             break;
           case 'BufferFull':
+            stepFlag = false;
             stepRequestCallback("complete");
             if(modeChangeFlag){
               var message = {
@@ -347,7 +350,7 @@ function WorkerManager() {
         }
         break;
       default:
-        console.log("videoWorker onmessage data = " + message.data);
+        console.log("workerManager::videoWorker unknown data = " + message.data);
         break;
     }
   }
@@ -476,7 +479,7 @@ function WorkerManager() {
       videoMS = null;
     }
     numBox = (speedMode == false ? normalNumBox : speedNumBox);
-    speed = (speedMode == false ? 1 : speed);
+    //speed = (speedMode == false ? 1 : speed);
     mediaInfo.samples = new Array(numBox);
     initSegmentFlag = false;
     sequenseNum = 1;
@@ -503,6 +506,7 @@ function WorkerManager() {
       videoMS.setInitSegmentFunc(GetInitializationSegment);
       videoMS.setVideoSizeCallback(videoSizeCallback);
       videoMS.init(videoElem);
+      videoMS.setSpeedPlay(speed);
     } else {
       var element = videoMS.getVideoElement();
       videoMS.setInitSegment();
@@ -539,7 +543,7 @@ function WorkerManager() {
 
       fps_div.hide();
 
-      console.log("workerManager::init() : ");
+      // console.log("workerManager::init() : ");
     },
     sendFreeBufferIdx: function(bufferIdx) {
       var message = {
@@ -601,8 +605,8 @@ function WorkerManager() {
 */
       initSegmentFlag = false;
       SDPInfo = sdpInfo;
-      console.log("workerManager::sendSdpInfo()");
-      console.log(SDPInfo);
+      // console.log("workerManager::sendSdpInfo()");
+      // console.log(SDPInfo);
     },
     sendRtpData: function(rtspinterleave, rtpheader, rtpPacketArray) {
       var mediaType = rtspinterleave[1];
@@ -635,7 +639,9 @@ function WorkerManager() {
         case 'G.726-32':
         case 'G.726-40':
         case 'mpeg4-generic': {
-          if( audioWorker )audioWorker.postMessage(message);
+          if(!stepFlag){
+            if( audioWorker )audioWorker.postMessage(message);
+          }
           break;
         }
         case 'MetaData' :{
@@ -671,7 +677,7 @@ function WorkerManager() {
         case 'error':
           errorCallback  = func;
         default:
-          console.log("workerManager::setCallback type is unknown");
+          console.log("workerManager::setCallback() : type is unknown");
           break;
       }
     },
@@ -795,7 +801,7 @@ function WorkerManager() {
     },
     playbackPause: function() {
       isPaused = true;
-      console.log("workerManager::playbackPause isPaused " + isPaused);
+      // console.log("workerManager::playbackPause isPaused " + isPaused);
       if(usePlaybackDrawer){
         if (videoRenderer !== null) {
           videoRenderer.playToggle();
@@ -806,7 +812,7 @@ function WorkerManager() {
     },
     playbackResume: function() {
       isPaused = false;
-      console.log("workerManager::playbackResume isPaused " + isPaused);
+      // console.log("workerManager::playbackResume isPaused " + isPaused);
       if(usePlaybackDrawer){
         if (videoRenderer !== null) {
           videoRenderer.playToggle();
@@ -818,6 +824,7 @@ function WorkerManager() {
   	playbackSeek: function() {
       if(videoMS !== null ) {
         videoMS.pause();
+        videoMS.setTimeStampInit();
       }
       videoWorker.postMessage({'type': 'stepPlay', 'data': 'playbackSeek'});
   	},
@@ -830,7 +837,7 @@ function WorkerManager() {
     },
     playToggle: function() {
       isPaused = !isPaused;
-      console.log("workerManager::playToggle isPaused " + isPaused);
+      // console.log("workerManager::playToggle isPaused " + isPaused);
       if(usePlaybackDrawer){
         if (videoRenderer !== null) {
           videoRenderer.playToggle();
@@ -846,16 +853,14 @@ function WorkerManager() {
         }
       }
       speed = info;
-      console.log("workerManager::playbackSpeed speed = " + speed);
+      // console.log("workerManager::playbackSpeed speed = " + speed);
       if (decodeMode == "video" && videoMS !== null) {
         if (speed == 1) {
           videoMS.setSpeedPlay(false);
           initVideo(false);
         } else {
-          if (numBox != 1) {
-            videoMS.setSpeedPlay(true);
-            initVideo(true);
-          }
+          videoMS.setSpeedPlay(true);
+          initVideo(true);
         }
       }
     },
@@ -878,7 +883,7 @@ function WorkerManager() {
       }
       else if( menu === 'backupstart' ) {
         if (backupWorker) {
-          console.log("backupWorker already exists");
+          // console.log("backupWorker already exists");
         } else {
           backupWorker = new Worker('./kind/common_modules/Workers/backupWorker.js');
           backupWorker.onmessage = backupWorkerMessage;

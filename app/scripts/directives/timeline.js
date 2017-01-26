@@ -267,10 +267,8 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           var currentDate = searchData.getSelectedDate();
           var startTime = timelineView.start.split(":");
           var endTime = timelineView.end.split(":");
-          var startWindow = new Date( currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(),
-            startTime[0],startTime[1], startTime[2]);
-          var endWindow = new Date( currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(),
-            endTime[0], endTime[1], endTime[2]);
+          var startWindow = moment.parseZone(startTime+"+00:00");
+          var endWindow = moment.parseZone(endTime + "+00:00");
 
           timelineCtrl.changeTimelineView(startWindow, endWindow);
         };

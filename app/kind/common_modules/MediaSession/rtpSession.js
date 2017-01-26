@@ -136,7 +136,7 @@ function RtpSession() {
 			throughPutGov = 0;
 			calcGov =0;
 			currentGov =0;
-			console.log("init throughput gov !!!!");
+			// console.log("init throughput gov !!!!");
 		},
 		setThroughPut: function(value) {
 			var throughPut = value;

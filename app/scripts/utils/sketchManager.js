@@ -49,17 +49,27 @@ var SketchManager = (function() {
         brightBlue: "#C2E7FF",
         darkBlue: '#0066CC',
         green: "#99ff00",
-        white: '#FFFFFF'
+        white: '#FFFFFF',
+        includeArea: {
+            fill: '#ff6633',
+            line: '#ff6633',
+            point: '#ff6633'
+        },
+        excludeArea: {
+            fill: '#000000',
+            line: '#ffffff',
+            point: '#999999'
+        }
     };
 
     var alphaFactory = {
         disabled: {
             stroke: "0.5",
-            fill: "0.2"
+            fill: "0.4"
         },
         enabled: {
             stroke: "1",
-            fill: "0.2"
+            fill: "0.4"
         },
         metaData: "0.7"
     };
@@ -350,7 +360,7 @@ var SketchManager = (function() {
                 convertedPoint.ypos[1]
             );
 
-            if(sketchInfo.workType === "commonArea"){
+            if(sketchInfo.workType === "commonArea" || sketchInfo.workType === "calibration"){
                 if(vaEnteringAppearing !== undefined){
                     vaEnteringAppearing.updatePrevSize(index, convertedPoint.xpos[1], convertedPoint.ypos[1]);   
                 }
@@ -412,9 +422,9 @@ var SketchManager = (function() {
                     frontCanvas.addEventListener("mousemove", mdArea.mousemovePolygon, false);
                     frontCanvas.addEventListener('contextmenu', mdArea.contexmenuPolygon, false);*/
                 }
-            } else if (sketchInfo.workType === "vaEntering" || sketchInfo.workType === "vaAppearing" || sketchInfo.workType === "commonArea") {
+            } else if (sketchInfo.workType === "vaEntering" || sketchInfo.workType === "vaAppearing" || sketchInfo.workType === "commonArea" || sketchInfo.workType === "calibration") {
                 vaEnteringAppearing = new VaEnteringAppearing();
-            } else if (sketchInfo.workType === "vaPassing") {
+            } else if (sketchInfo.workType === "vaPassing" || sketchInfo.workType === "peoplecount") {
                 vaPassing = new VaPassing();
             } else if (sketchInfo.workType === "autoTracking") {
                 autoTracking = new AutoTracking();
@@ -589,9 +599,9 @@ var SketchManager = (function() {
                 }else{
                     return vaEnteringAppearing.get();    
                 }
-            } else if (sketchInfo.workType === "vaEntering" || sketchInfo.workType === "vaAppearing" || sketchInfo.workType === "commonArea") {
+            } else if (sketchInfo.workType === "vaEntering" || sketchInfo.workType === "vaAppearing" || sketchInfo.workType === "commonArea" || sketchInfo.workType === "calibration") {
                 return vaEnteringAppearing.get();
-            } else if (sketchInfo.workType === "vaPassing") {
+            } else if (sketchInfo.workType === "vaPassing" || sketchInfo.workType === "peoplecount") {
                 return vaPassing.get();
             } else if (sketchInfo.workType === "autoTracking") {
                 return autoTracking.get();
@@ -613,9 +623,9 @@ var SketchManager = (function() {
                 }else{
                     if (vaEnteringAppearing !== null) vaEnteringAppearing.set(data);
                 }
-            } else if (sketchInfo.workType === "vaEntering" || sketchInfo.workType === "vaAppearing" || sketchInfo.workType === "commonArea") {
+            } else if (sketchInfo.workType === "vaEntering" || sketchInfo.workType === "vaAppearing" || sketchInfo.workType === "commonArea" || sketchInfo.workType === "calibration") {
                 if (vaEnteringAppearing !== null) vaEnteringAppearing.set(data);
-            } else if (sketchInfo.workType === "vaPassing") {
+            } else if (sketchInfo.workType === "vaPassing" || sketchInfo.workType === "peoplecount") {
                 if (vaPassing !== null) vaPassing.set(data);
             } else if (sketchInfo.workType === "autoTracking") {
                 if (autoTracking !== null) autoTracking.set(data);
@@ -639,7 +649,7 @@ var SketchManager = (function() {
         },
         setEnableForSVG: function(index, enableOption){
             if(kindSVGCustomObj !== null){
-                if(sketchInfo.workType === "vaPassing"){
+                if(sketchInfo.workType === "vaPassing" || sketchInfo.workType === "peoplecount"){
                     vaPassing.setEnableForSVG(index, enableOption);   
                 }else{
                     vaEnteringAppearing.setEnableForSVG(index, enableOption);   
@@ -648,7 +658,7 @@ var SketchManager = (function() {
         },
         activeShape: function(index){
             if(kindSVGCustomObj !== null){
-                if(sketchInfo.workType === "vaPassing"){
+                if(sketchInfo.workType === "vaPassing" || sketchInfo.workType === "peoplecount"){
                     vaPassing.activeShape(index);
                 }else{
                     vaEnteringAppearing.activeShape(index);
@@ -670,9 +680,33 @@ var SketchManager = (function() {
         },
         changeArrow: function(index, arrow){
             if(kindSVGCustomObj !== null){
-                if(sketchInfo.workType === "vaPassing"){
+                if(sketchInfo.workType === "vaPassing" || sketchInfo.workType === "peoplecount"){
                     vaPassing.changeArrow(index, arrow);
                 }
+            }
+        },
+        stopEvent: function(){
+            if(kindSVGEditor !== null){
+                for(var i = 0, ii = svgObjs.length; i < ii; i++){
+                    svgObjs[i].stopEvent();
+                }
+            }
+        },
+        startEvent: function(){
+            if(kindSVGEditor !== null){
+                for(var i = 0, ii = svgObjs.length; i < ii; i++){
+                    svgObjs[i].startEvent();
+                }
+            }
+        },
+        hideGeometry: function(index){
+            if(kindSVGEditor !== null){
+                svgObjs[index].hide();
+            }
+        },
+        showGeometry: function(index){
+            if(kindSVGEditor !== null){
+                svgObjs[index].show();
             }
         },
         drawMetaDataAll: function(metaData, expire){
@@ -2232,14 +2266,10 @@ var SketchManager = (function() {
                 }
             }
 
-            if(sketchInfo.color === 1){
-                color = colorFactory.red;
-                selectedColor = colorFactory.darkRed;
-            }
-
             kindSvgOptions = {
-                color: color,
-                selectedColor: selectedColor,
+                fillColor: colorFactory.includeArea.fill,
+                lineColor: colorFactory.includeArea.line,
+                pointColor: colorFactory.includeArea.point,
                 lineStrokeWidth: 4,
                 circleRadius: 5,
                 useEvent: true,
@@ -2259,6 +2289,7 @@ var SketchManager = (function() {
                         if(this.lineIndex !== undefined){
                             _self.notifyUpdate(this.lineIndex, data);
 
+                            //IVA Common Area 에서만 사용
                             if(sketchInfo.workType === "commonArea"){
                                 width = data.points[2][0] - data.points[0][0];
                                 height = data.points[2][1] - data.points[0][1];
@@ -2279,6 +2310,12 @@ var SketchManager = (function() {
                     },
                 }
             };
+
+            if(sketchInfo.color === 1){
+                kindSvgOptions.fillColor = colorFactory.excludeArea.fill;
+                kindSvgOptions.lineColor = colorFactory.excludeArea.line;
+                kindSvgOptions.pointColor = colorFactory.excludeArea.point;
+            }
 
             //Common Calibration 설정할 경우 오른쪽 마우스 클릭 없어야 됨
             if(
@@ -2352,7 +2389,7 @@ var SketchManager = (function() {
             if("wiseFaceDetection" in sketchInfo){
                 kindSvgOptions.wiseFaceDetection = {
                     strokeWidth: 2,
-                    strokeColor: colorFactory.blue,
+                    strokeColor: colorFactory.includeArea.line,
                     fillOpacity: 0,
                     heightRatio: sketchInfo.wiseFDCircleHeightRatio //Wise Face Detection에 표현되는 원의 반지름 %
                 };
@@ -2370,7 +2407,7 @@ var SketchManager = (function() {
                 kindSvgOptions.mirror = sketchInfo.mirror;
             }
 
-            if(sketchInfo.workType === "commonArea"){
+            if(sketchInfo.workType === "commonArea" || sketchInfo.workType === "calibration"){
                 // kindSvgOptions.useEvent = false;
                 // kindSvgOptions.useResizeRectangle = true;
                 kindSvgOptions.notUseMoveTopLayer = true;
@@ -2428,7 +2465,7 @@ var SketchManager = (function() {
                  * 나머지 좌표값(x2,y2,x3,y3)을 구해주는 방식으로 변경하여 오차를 없애는 방식으로 수정하였다.
                  */
 
-                if(sketchInfo.workType === "commonArea"){
+                if(sketchInfo.workType === "commonArea" || sketchInfo.workType === "calibration"){
                     x1 = data.points[0][0];
                     y1 = data.points[0][1];
                     width = data.points[2][0] - x1;
@@ -2608,7 +2645,7 @@ var SketchManager = (function() {
                 var minHeight = 0;
                 var fixedMinSize = 0;
 
-                if(sketchInfo.workType === "commonArea"){
+                if(sketchInfo.workType === "commonArea" || sketchInfo.workType === "calibration"){
                     maxWidth = kindSvgOptions.maxSize.width;
                     maxHeight = kindSvgOptions.maxSize.height;
                     minWidth = kindSvgOptions.minSize.width;
@@ -2618,8 +2655,9 @@ var SketchManager = (function() {
                         kindSvgOptions.points = coordinates[i].points;
 
                         //Common Area Color
-                        kindSvgOptions.color = i === 0 ? colorFactory.blue : colorFactory.red;
-                        kindSvgOptions.selectedColor = i === 0 ? colorFactory.darkBlue : colorFactory.darkRed;
+                        kindSvgOptions.fillColor = i === 0 ? colorFactory.blue : colorFactory.red;
+                        kindSvgOptions.lineColor = i === 0 ? colorFactory.blue : colorFactory.red;
+                        kindSvgOptions.pointColor = i === 0 ? colorFactory.blue : colorFactory.red;
 
                         if(i === 1){
                             kindSvgOptions.maxSize = {
@@ -2752,8 +2790,9 @@ var SketchManager = (function() {
             /* jshint validthis: true */
             _self = this;
             kindSvgOptions = {
-                color: colorFactory.brightBlue,
-                selectedColor: colorFactory.blue,
+                fillColor: colorFactory.blue,
+                lineColor: colorFactory.blue,
+                pointColor: colorFactory.blue,
                 lineStrokeWidth: 4,
                 circleRadius: 6,
                 useEvent: true,
@@ -2797,6 +2836,22 @@ var SketchManager = (function() {
                 };
             }
 
+            //People Counting
+            if(sketchInfo.workType === "peoplecount"){
+                kindSvgOptions.arrow.max = sketchInfo.maxArrow;
+                kindSvgOptions.arrow.text = false;
+                kindSvgOptions.maxPoint = 2;
+                kindSvgOptions.notUseAutoChangeOfArrow = true;
+            }
+
+            if("useEvent" in sketchInfo){
+                kindSvgOptions.useEvent = sketchInfo.useEvent;
+                //만약에 이벤트를 사용하지 않으면 Cursor가 생성이 안되게 함.
+                if(kindSvgOptions.useEvent === false){
+                    kindSvgOptions.useCursor = false;
+                }
+            }
+
             if("minLineLength" in sketchInfo){
                 kindSvgOptions.minLineLength = convertPoint(
                     [0,0],
@@ -2806,7 +2861,10 @@ var SketchManager = (function() {
             }
 
             toggleSVGElement(true);
-            kindSVGCustomObj = kindSVGEditor.customEditor(kindSvgOptions);
+
+            if(sketchInfo.workType !== "peoplecount"){
+                kindSVGCustomObj = kindSVGEditor.customEditor(kindSvgOptions);   
+            }
         }
         constructor.prototype = {
             /*getIndex: function(){
@@ -2891,7 +2949,7 @@ var SketchManager = (function() {
                     ]);
                 }
 
-                if(!_self.checkDrawAvailable()){
+                if(!_self.checkDrawAvailable() && kindSVGCustomObj !== null){
                     kindSVGCustomObj.stop();
                 }
             },
@@ -2899,7 +2957,7 @@ var SketchManager = (function() {
                 svgObjs[index].destroy();
                 svgObjs[index] = null;
 
-                if(_self.checkDrawAvailable()){
+                if(_self.checkDrawAvailable() && kindSVGCustomObj !== null){
                     kindSVGCustomObj.start();
                 }
             },
@@ -2910,6 +2968,10 @@ var SketchManager = (function() {
 
                         kindSvgOptions.arrow.mode = direction;
                         kindSvgOptions.points = coordinates[i].points;
+
+                        if(sketchInfo.workType === "peoplecount"){
+                            kindSvgOptions.textInCircle = i + 1;
+                        }
 
                         _self.addSVGObj(kindSVGEditor.draw(kindSvgOptions), false, i);
                     }

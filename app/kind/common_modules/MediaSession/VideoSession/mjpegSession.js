@@ -549,7 +549,7 @@ var MjpegSession = function () {
 //            console.log("MJPEGSession:: framerate = " + parseInt(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
 //            this.setFramerate(parseInt(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
             this.setFramerate(Math.round(1000 / (((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
-            console.log("MJPEGSession::frameRate = " + this.getFramerate());
+            // console.log("MJPEGSession::frameRate = " + this.getFramerate());
           }
           this.SetTimeStamp(timeData);
           //this.rtpTimestampCbFunc(timeData);

@@ -89,6 +89,26 @@ kindFramework.factory('sketchbookService', function() {
             if (this.sketchManager !== undefined){
                 this.sketchManager.drawMetaDataAll.apply(this.sketchManager, arguments);
             }  
+        },
+        stopEvent: function(){
+            if (this.sketchManager !== undefined){
+                this.sketchManager.stopEvent();
+            }  
+        },
+        startEvent: function(){
+            if (this.sketchManager !== undefined){
+                this.sketchManager.startEvent();
+            }  
+        },
+        hideGeometry: function(index){
+            if (this.sketchManager !== undefined){
+                this.sketchManager.hideGeometry(index);
+            }  
+        },
+        showGeometry: function(index){
+            if (this.sketchManager !== undefined){
+                this.sketchManager.showGeometry(index);
+            }  
         }
     };
 });

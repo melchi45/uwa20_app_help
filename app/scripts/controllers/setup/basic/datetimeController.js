@@ -4,6 +4,7 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
     COMMONUtils.getResponsiveObjects($scope);
     $scope.TableElementClass = COMMONUtils.getTableElementClass(6);
     var dstUpdated = false;
+    $scope.isPCDSTOn = false;
 
     var idx = 0;
     $scope.TimeZoneList = [];
@@ -611,7 +612,22 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
         return dstOffset;
     }
 
+    Date.prototype.stdTimezoneOffset = function() {
+        var jan = new Date(this.getFullYear(), 0, 1);
+        var jul = new Date(this.getFullYear(), 6, 1);
+        return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+    }
 
+    Date.prototype.dst = function() {
+        return this.getTimezoneOffset() < this.stdTimezoneOffset();
+    }
+
+    Date.prototype.addHours= function(h){
+        var copiedDate = new Date();
+        copiedDate.setTime(this.getTime() + (h*60*60*1000)); 
+        return copiedDate;
+    }
+    
     var tick = function () {
         var isDateTimePage = false;
         var changedUrl = $location.absUrl();
@@ -633,6 +649,28 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
         if ($scope.CurrentTimeZone.StartTime !== undefined) {
             addDstOffset = getDSTOffset();
         }
+
+        // if(new Date($scope.cameratimeMillsec).dst()) {
+        //     $scope.isPCDSTOn = true;
+        //     if(dstUpdated === false) {
+        //         addDstOffset = 0;
+        //     } else {
+        //         if (pageData.DateTime.DSTEnable === true) {
+        //             addDstOffset = 3600 * 1000;
+        //         } else {
+        //             addDstOffset = -3600 * 1000;
+        //         }
+        //     }
+        //     document.getElementById("inlineCheckbox1").checked = true;
+        // } else {
+        //     $scope.isPCDSTOn = false;
+        //     if($scope.DateTime === undefined) {
+        //         document.getElementById("inlineCheckbox1").checked = pageData.DSTEnable;
+        //     } else {
+        //         document.getElementById("inlineCheckbox1").checked = $scope.DateTime.DSTEnable;
+        //     }
+        // }
+
 
         $scope.cameratimeformat = new Date($scope.cameratimeMillsec + addDstOffset);
 
@@ -673,6 +711,7 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
                 $scope.isShowedOvertimeErr = false;
             }
         }
+
         $timeout(tick, 1000);
     };
     $timeout(tick, 1000);
@@ -728,9 +767,29 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
         $scope.pctimeformat = $filter('date')(pctime, 'yyyy-MM-dd HH:mm:ss');
     });
 
-    $scope.$watch('cameratimeformat', function (unformattedDate) {
+    function checkLocalDST() {
+        if(isPCDstOn === undefined || isPCDstOn === null) {
+            $scope.cameratime = $filter('date')($scope.cameratimeformat, 'yyyy-MM-dd HH:mm:ss');
+        } else if(isPCDstOn === false) {
+            $scope.cameratime = $filter('date')($scope.cameratimeformat, 'yyyy-MM-dd HH:mm:ss');
+        } else if(isPCDstOn === true) {
+            var tTime = $filter('date')($scope.cameratimeformat, 'yyyy-MM-dd HH:mm:ss');           
+            var tTime2 = tTime.split(' ');
+            var tTime3 = tTime2[1].split(':');
+            var hh = parseInt(tTime3[0]) - 1;
+            hh += '';
+            if(hh.length === 1) {
+                hh = '0' + hh;
+            }
+            var result = tTime2[0] + ' ' + hh + ':' + tTime3[1] + ':' + tTime3[2];
+            $timeout(function(){
+              $scope.cameratime = result;
+            });
+        }
+    }
 
-        $scope.cameratime = $filter('date')(unformattedDate, 'yyyy-MM-dd HH:mm:ss');
+    $scope.$watch('cameratimeformat', function (unformattedDate) {
+         $scope.cameratime = $filter('date')(unformattedDate, 'yyyy-MM-dd HH:mm:ss');
     });
 
     $scope.$watch('cameratime', function (cameratime) {

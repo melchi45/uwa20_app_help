@@ -337,7 +337,7 @@ var WebGLCanvas = (function () {
     setMatrixUniforms.call(this);
 
     if (this.framebuffer) {
-      console.log("Bound Frame Buffer");
+      // console.log("Bound Frame Buffer");
       gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffer);
     }
   }

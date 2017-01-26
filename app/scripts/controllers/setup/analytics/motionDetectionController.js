@@ -501,7 +501,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         if(($scope.activeTab.title === title && isDefault === undefined) ||
            prevMotionDetectionEnable === "Off" ||
            prevMotionDetectionEnable === "IntelligentVideo"){
-            console.log("Return", $scope.activeTab.title, isDefault, prevMotionDetectionEnable);
+            // console.log("Return", $scope.activeTab.title, isDefault, prevMotionDetectionEnable);
             return;
         }
 
@@ -548,6 +548,22 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         getAttributes();
     }
 
+    function getFirstIncludeIndex(){
+        var index = 0; //0은 아무것도 선택이 되지 않을 때
+
+        for(var i = 0, len = $scope.selectInclude.length; i < len; i++){
+            var self = $scope.selectInclude[i];
+            if("Coordinates" in self){
+                if(self.Coordinates.length > 0){
+                    index = self.ROI;
+                    break;
+                }   
+            }
+        }
+
+        return index;
+    }
+
     /**
      * 새로 생성됬을 때나 삭제 됬을 때
      */
@@ -589,11 +605,15 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     activeShape(modifiedIndex);
                     $scope['changeSelected' + title + 'Index'](modifiedIndex + 1);
                 }else if(modifiedType === "delete"){
-                    $scope['changeSelected' + title + 'Index'](0);
                     $scope['select' + title][modifiedIndex] = {
                         Mode: undefined,
                         isEnable: false
                     };
+                    if(title === "Include"){
+                        $scope['changeSelected' + title + 'Index'](getFirstIncludeIndex());   
+                    }else{
+                        $scope['changeSelected' + title + 'Index'](0);   
+                    }
                     deleteRemovedROI().then(function(){getHandoverList();}, saveSettings);
                 }
             }else if(modifiedType === "mouseup"){
@@ -1319,7 +1339,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     ROIIndex: removedROIIndex.join(',')
                 },
                 function (response){
-                    console.log("removed");
+                    // console.log("removed");
                     deferred.resolve(removedROIIndex);
                 },
                 function (errorData){
@@ -1501,7 +1521,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                         SunapiClient.get(cmd, setData,
                         //SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=set', setData,
                         function (response){
-                            console.log("modified");
+                            // console.log("modified");
                             //console.log(" ::::: SET ENABLE END ::::: ");
                             deferred.resolve();
                         },
@@ -2041,7 +2061,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
                     pageData.Handover = angular.copy($scope.Handover);
 
-                    $scope.handoverEnDisable = ($scope.findHandoverIndex() === -1)? 'Disable' : $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[$scope.findHandoverIndex()].Enable;
+                    $scope.handoverEnDisable = ($scope.findHandoverIndex() === -1) ? 'Disable' : $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[$scope.findHandoverIndex()].Enable;
 
                     if(successCallback !== undefined){
                         successCallback();
@@ -2161,23 +2181,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
     }
 
-    function testFunction(){
-        for(var i = 0; i < $scope.selectInclude.length; i++){
-            if($scope.selectInclude[i].isEnable === true){
-                return $scope.selectInclude[i].ROI;
-            }
-        }
-        return 0;
-    }
-
- function setHandoverList(handoverlistIndex, index)
-    {
+    function setHandoverList(handoverlistIndex, index){
         //console.log(" ::::: setHandoverList START ::::: ");
         var deferred = $q.defer();
-        var testIndex = testFunction();
-        if(testIndex === 0){
-            return;
-        }
         if (typeof index == 'undefined') index = 0;
         // if(handoverlistIndex > 0){
         // handoverlistIndex--;
@@ -2191,8 +2197,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }catch(e){
             setData.ROIIndex = $scope.isSelectedIncludeIndex;
         }
-        // setData.ROIIndex = testIndex;
-        //setData.Enable = $scope.Handover[index].HandoverList[handoverlistIndex].Enable === $scope.HandoverEnableOptions[0] ? true : false;
+
         setData.Enable = ($scope.handoverEnDisable === $scope.HandoverEnableOptions[0]) ? true : false;
 
         if (index > 0){

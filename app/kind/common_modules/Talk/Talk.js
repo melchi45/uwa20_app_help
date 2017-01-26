@@ -60,7 +60,7 @@ function Talk() {
 					return;
 				}      
 			}else{
-				console.info('Audio context already defined!'); //audio_context already defined
+				// console.info('Audio context already defined!'); //audio_context already defined
 			}
 		},
 		initAudioOut: function(){

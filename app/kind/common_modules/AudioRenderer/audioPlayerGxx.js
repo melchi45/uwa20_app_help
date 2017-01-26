@@ -22,7 +22,7 @@ function AudioPlayerGxx() {
 
 	function playAudioIn(data, rtpTimestamp) {
 		var timegap = rtpTimestamp - preTimeStamp;
-		if(timegap > 100 || timegap < 0){	// under 1000ms
+		if(timegap > 200 || timegap < 0){	// under 2000ms
 			nextStartTime = 0;
 			readLength = 0;
 			bufferingFlag = true;
@@ -111,7 +111,7 @@ function AudioPlayerGxx() {
 	Constructor.prototype = inheritObject(new AudioPlayer(), {
 		audioInit: function(volume){
 			//init audio context
-			console.log("init Gxx player");
+			// console.log("init Gxx player");
 			nextStartTime = 0;
 
 			if (typeof audioContext !== "undefined") {

@@ -177,24 +177,11 @@ kindFramework.directive('channelPlayer',
                       return null;
                 }
               } else {
-                  switch(BrowserService.BrowserDetect)
-                  {
-                    case BrowserService.BROWSER_TYPES.IE:
-                        elem.empty();
-                        break;
-                    case BrowserService.BROWSER_TYPES.SAFARI:
-                    case BrowserService.BROWSER_TYPES.CHROME:
-                    case BrowserService.BROWSER_TYPES.EDGE:
-                    case BrowserService.BROWSER_TYPES.FIREFOX:
-                    /* jshint ignore:start */
-                    default :
-                    /* jshint ignore:end */
-                      angular.element(elem.find('kind_stream')).remove();
-                      if( scope.child.$destroy !== undefined ) {
-                        scope.child.$destroy();
-                      }
-                        break;
-                  }
+                angular.element(elem.find('kind_stream')).remove();
+                elem.empty();
+                if( scope.child.$destroy !== undefined ) {
+                  scope.child.$destroy();
+                }                
               }
             }
 

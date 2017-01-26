@@ -20,7 +20,7 @@
             <h3>가상선</h3>
             <p>사용자가 설정한 가상선과 방향을 기준으로 물체가 지나가는 것을 감지합니다. </p>
             <h5>가상선 설정하기  </h5>
-			<p>카메라 영상 화면의 원하는 위치에서 라인의 시작점과 끝점을 각각 클릭하면 가상선이 설정되며 <strong class="UI">[영역]</strong>의 숫자 버튼 색상이 변경됩니다. 가상선의 가운데 화살표를 클릭하면 방향을 A로부터 B 방향, B로부터 A 방향, 양방향으로 변경하거나 <strong class="UI">[카테고리]</strong>의 <strong class="UI">[방향]</strong>에서 원하는 방향을 선택할 수도 있습니다. 가상선은 최대 8개까지 설정할 수 있습니다.</p>
+			<p>카메라 영상 화면의 원하는 위치에서 라인의 시작점과 끝점을 각각 클릭하면 가상선이 설정되며 <strong class="UI">[라인]</strong>의 숫자 버튼 색상이 변경됩니다. 가상선의 가운데 화살표를 클릭하면 방향을 A로부터 B 방향, B로부터 A 방향, 양방향으로 변경하거나 <strong class="UI">[카테고리]</strong>의 <strong class="UI">[방향]</strong>에서 원하는 방향을 선택할 수도 있습니다. 가상선은 최대 8개까지 설정할 수 있습니다.</p>
             <h5>가상선 변경하기  </h5>
 			<p>설정한 가상선의 꼭지점을 움직여 가상선의 크기를 변경할 수 있습니다. 가상선을 마우스로 클릭하고 드래그하여 가상선의 위치를 변경할 수 있습니다.</p>
 			<h5>가상선 삭제하기  </h5>
@@ -148,6 +148,12 @@
             <h3>알람 출력</h3>
             <p>IVA 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다.&nbsp;알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다.</p>
+           <div class="wn5-setup-section-article" ng-if="PresetAction">
+        <div class="wn5-setup-section-article-content">
+            <h3>프리셋 이동</h3>
+                    <p>IVA 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 프리셋 번호로 이동하도록 설정할 수 있습니다. 카메라 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[디지털 PTZ]</strong></a>나 <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[외부 PTZ]</a></strong>의 <strong class="UI">[프리셋]</strong>에서
+설정할 수 있습니다.</p>
+        </div>
         </div>
     </div>
 </div>

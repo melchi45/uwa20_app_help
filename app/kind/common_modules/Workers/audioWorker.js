@@ -58,14 +58,14 @@ function receiveMessage(event) {
 	  }
 	  break;
 	case 'backup':
-      console.log("audio backupworker receive backup command");
+     // console.log("audio backupworker receive backup command");
 	  if( message.data.command === 'start') {
-		console.log("start audioBackup");
-		isBackupCommand = true;
+			console.log("start audioBackup");
+			isBackupCommand = true;
 	  } else if( message.data.command === 'stop' ) {
 	  	console.log("stop audioBackup");
-		isBackupCommand = false;
-      }
+			isBackupCommand = false;
+    }
 	  break;
 	default:
 	  break;

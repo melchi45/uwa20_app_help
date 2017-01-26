@@ -349,7 +349,11 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                         IrisFnoOptions: (cameraAttributes.IrisFnoOptions !== undefined),
                         PIrisModeOptions: (cameraAttributes.PIrisModeOptions !== undefined),
                         PIrisPosition: (cameraAttributes.PIrisPosition !== undefined),
-                        SimpleFocusAfterDayNight: (cameraAttributes.SimpleFocusAfterDayNight !== undefined)
+                        SimpleFocusAfterDayNight: (cameraAttributes.SimpleFocusAfterDayNight !== undefined),
+                        InternalMic: (cameraAttributes.AudioInSourceOptions !== undefined && cameraAttributes.AudioInSourceOptions[0] === "MIC"),
+                        FastAutoFocusDefined: (cameraAttributes.FastAutoFocusEnable !== undefined),
+                        ZoomOptionsDefined: (cameraAttributes.SimpleZoomOptions !== undefined),
+                        PTZMode: (cameraAttributes.RS485Support && cameraAttributes.isDigitalPTZ && (cameraAttributes.MaxPreset >0))
                     };
                 }catch(e){
                     console.error(e);

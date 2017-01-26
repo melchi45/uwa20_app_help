@@ -130,16 +130,16 @@ function receiveMessage(event) {
   }
   break;
 	case 'backup':
-	  console.log("vodeo worker receive backup command");
+	  // console.log("vodeo worker receive backup command");
 	  if( message.data.command === 'start') {
-		console.log("....................backup Start command receive");
-		isBackupCommand = true;
+			console.log("....................backup Start command receive");
+			isBackupCommand = true;
 	  } else if( message.data.command === 'stop' ) {
-		console.log("..................backup Stop command receive");
-		//to sync audioWorker & videoWorker end time.
-		sendMessage('audioBackup', 'stop');
-		isBackupCommand = false;
-      }
+			console.log("..................backup Stop command receive");
+			//to sync audioWorker & videoWorker end time.
+			sendMessage('audioBackup', 'stop');
+			isBackupCommand = false;
+    }
 	  break;
     case 'stepPlay':
       var ret =true;

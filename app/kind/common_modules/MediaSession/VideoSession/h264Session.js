@@ -133,7 +133,7 @@ var H264Session = function () {
 
 					if((this.getFramerate() === 0 || this.getFramerate() === undefined) && (this.GetTimeStamp() != null || this.GetTimeStamp() !== undefined)){
 						this.setFramerate(Math.round(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
-						console.log("H264Session::frameRate = " + this.getFramerate());
+						// console.log("H264Session::frameRate = " + this.getFramerate());
 					}
 					this.SetTimeStamp(timeData);
 					playback = true;
@@ -439,7 +439,7 @@ var H264Session = function () {
 
 					//          this.SetTimeStamp(timeData);
 					//this.rtpTimestampCbFunc(timeData);
-					console.log("H264Session::timestamp = " + fsynctime.seconds +" "+ fsynctime.useconds);
+					// console.log("H264Session::timestamp = " + fsynctime.seconds +" "+ fsynctime.useconds);
 					playback = true;
 				}
 			}
@@ -500,7 +500,7 @@ var H264Session = function () {
 				if (playback) {
 					var limitSize = 1280 * 720;
 					limitResolution = false;
-					console.log("h264 resolution in sps = width : " + sizeInfo.width + ", height : " + sizeInfo.height);
+					// console.log("h264 resolution in sps = width : " + sizeInfo.width + ", height : " + sizeInfo.height);
 					if (curSize > limitSize) {
 						limitResolution = true;
 					}

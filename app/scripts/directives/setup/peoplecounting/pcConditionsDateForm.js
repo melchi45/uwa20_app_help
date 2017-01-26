@@ -1,3 +1,6 @@
+/*
+해당 directive를 사용하기전에 init함수를 통해 초기설정이 필요함.
+*/
 kindFramework.directive('pcConditionsDateForm', function(PcConditionsDateFormModel, pcModalService, pcSetupService, $timeout){
 	"use strict";
 	return {
@@ -329,25 +332,36 @@ kindFramework.directive('pcConditionsDateForm', function(PcConditionsDateFormMod
 						}
 					}
 				},
-				init: function(){
-					var dateObj = cameraLocalTime.getDateObj();
-					var fullYear = dateObj.getFullYear();
-					var month = dateObj.getMonth();
-					var date = dateObj.getDate();
+				init: function(successCallback, failCallback){
+					var setDefaultData = function(){
+						var dateObj = cameraLocalTime.getDateObj();
+						var fullYear = dateObj.getFullYear();
+						var month = dateObj.getMonth();
+						var date = dateObj.getDate();
 
-					scope.pcConditionsDateForm.fromCalender = defaultDate('from');
-					scope.pcConditionsDateForm.toCalender = defaultDate('to');
+						scope.pcConditionsDateForm.fromCalender = defaultDate('from');
+						scope.pcConditionsDateForm.toCalender = defaultDate('to');
 
-					scope.pcConditionsDateForm.calenderOptions.minDate = new Date(fullYear - 1, month, date - 1);
-					scope.pcConditionsDateForm.calenderOptions.maxDate = new Date(fullYear, month, date);
+						scope.pcConditionsDateForm.calenderOptions.minDate = new Date(fullYear - 1, month, date - 1);
+						scope.pcConditionsDateForm.calenderOptions.maxDate = new Date(fullYear, month, date);
 
-					minDate = new Date(fullYear - 1, month, date - 1);
-					maxDate = new Date(fullYear, month, date);
+						minDate = new Date(fullYear - 1, month, date - 1);
+						maxDate = new Date(fullYear, month, date);
 
-					scope.pcConditionsDateForm.fromCalenderInput = changeDateFormat(scope.pcConditionsDateForm.fromCalender, true, true);
-					scope.pcConditionsDateForm.toCalenderInput = changeDateFormat(scope.pcConditionsDateForm.toCalender, true, true);
-					scope.pcConditionsDateForm.setDefaultMainSearchOptions();
-					scope.pcConditionsDateForm.setDefaultSubSearchOptions();
+						scope.pcConditionsDateForm.fromCalenderInput = changeDateFormat(scope.pcConditionsDateForm.fromCalender, true, true);
+						scope.pcConditionsDateForm.toCalenderInput = changeDateFormat(scope.pcConditionsDateForm.toCalender, true, true);
+						scope.pcConditionsDateForm.setDefaultMainSearchOptions();
+						scope.pcConditionsDateForm.setDefaultSubSearchOptions();
+					};
+
+					pcSetupService.getCameraLocalTime(function(localTime){
+		                cameraLocalTime.set(localTime);
+						setDefaultData();
+						successCallback();
+					}, function(errorData){
+						setDefaultData();
+						failCallback(errorData);
+					});
 				},
 				validate: function(){
 					var returnVal = true;
@@ -525,17 +539,6 @@ kindFramework.directive('pcConditionsDateForm', function(PcConditionsDateFormMod
 
 			closeEvent.bind();
 			element.on("$destroy", closeEvent.unbind);
-
-			pcSetupService.getCameraLocalTime(function(localTime){
-                cameraLocalTime.set(localTime);
-
-				scope.pcConditionsDateForm.init();
-			}, function(errorData){
-				console.log(errorData);
-				console.error(errorData);
-
-				scope.pcConditionsDateForm.init();
-			});
 
 			function changeDateFormat(date, useMonth, useDay){
 				var useMonth = useMonth === false ? false : true;

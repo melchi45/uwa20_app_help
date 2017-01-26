@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">IVA</h1>
+﻿<h1 class="wn5-setup-main-title">IVA</h1>
 <div class="wn5-setup-section">
     <p>An IVA event can be created when the rule for video analytics is set and a motion which satisfies the event rule condition is detected. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the IVA event applies to <strong class="UI">[IVA]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
 </div>
@@ -18,7 +18,7 @@
             <h3>Virtual line</h3>
             <p>The motion of an object is detected based on the virtual line and direction set by the user. </p>
             <h5>Setting a virtual line  </h5>
-			<p>When you click the start point and the end point of the line at each desired position on the camera image screen, the virtual line will be set and the color of the number button in <strong class="UI">[Area]</strong> will change. You can change the direction from A to B, B to A or both directions by clicking the arrow in the middle of the virtual line, or you can select a desired direction from <strong class="UI">[Direction]</strong> in <strong class="UI">[Categories]</strong>. Up to 8 virtual lines can be set.</p>
+			<p>When you click the start point and the end point of the line at each desired position on the camera image screen, the virtual line will be set and the color of the number button in <strong class="UI">[Line]</strong> will change. You can change the direction from A to B, B to A or both directions by clicking the arrow in the middle of the virtual line, or you can select a desired direction from <strong class="UI">[Direction]</strong> in <strong class="UI">[Categories]</strong>. Up to 8 virtual lines can be set.</p>
             <h5>Changing a virtual line  </h5>
 			<p>You can change the size of the virtual line by moving a corner of the set virtual line.  You can change the position of the virtual line by clicking and dragging the virtual line with the mouse.</p>
 			<h5>Deleting a virtual line  </h5>
@@ -42,8 +42,8 @@
 			<p>The user sets the virtual area and applies the image rule of intrusion, enter/exit, appear (disappear) and loitering in the relevant area to detect the motion of an object. </p>
 			<h5>Setting a virtual area  </h5>
 			<p>When you select 4 corners of an image with the mouse, it is set as the virtual area and the color of the number buttons in <strong class="UI">[Area]</strong> changes. Up to 8 virtual areas can be set and an image analysis rule can be set for each area. </p>
-			<h5>Changing a virtual area  </h5>
-            <p>You can change the size of the virtual area by moving a corner of the set virtual area. To move the set virtual area, click and drag the relevant area with the mouse. </p>
+			<h5>Changing a virtual area </h5>
+            <p>You can change the size of the virtual area by moving a corner of the set virtual area. To move the set virtual area, click and drag the relevant area with the mouse. When a corner is created after clicking a line, you can set a polygonal virtual area by moving the corner.</p>
 			<h5>Deleting a virtual area  </h5>
 			<p>To delete a virtual area, click the right mouse button at the relevant area on the screen and click the <strong class="UI">[OK]</strong> button on the delete confirm window.</p>
         </div>
@@ -68,6 +68,14 @@
                 </ul>
             </ul>
         </div>
+		
+				<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>When loitering detection is used together with other IVA event detection, the performance may deteriorate to a certain degree in comparison with separate use of loitering detection.</li>
+            </ul>
+        </div>
+		
         <div class="wn5-setup-section-article-content">
             <h3>Exclude area</h3>
             <p>This sets the exclude area where motion will not be detected when the analytics rule is applied to the virtual line and the virtual area.<h5>Setting an exclude area  </h5>When you select 4 corners of an image with the mouse, it is set as the exclude area, and the color of the number buttons in <strong class="UI">[Area]</strong> changes. Up to 8 exclude areas can be set.<br><h5>Changing an exclude area  </h5>
@@ -127,6 +135,12 @@
             <h3>Alarm output</h3>
             <p>It is possible to set the alarm output number for a specific alarm when an IVA event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
+		
+		<div class="wn5-setup-section-article-content" ng-if="PresetAction">
+		<h3>Goto preset</h3>
+            <p>You can change the settings for the camera view position to switch to a preset number (which was set in advance), in case an IVA event occurs. Camera presets can be set in <strong class="UI">[Preset]</strong> from <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[External PTZ]</a></strong>.</p>
+		</div>
+		
     </div>
 </div>
 

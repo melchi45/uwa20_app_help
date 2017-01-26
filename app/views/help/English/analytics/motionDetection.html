@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Motion detection</h1>
+﻿<h1 class="wn5-setup-main-title">Motion detection</h1>
 <div class="wn5-setup-section">
     <p>A motion detection event can be created when a motion detection area and the exclude area are set and a motion is detected from inside the area set by the user. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. </p>
     <p>The setting on the motion detection event applies to <strong class="UI">[Motion detection]</strong> on the <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
@@ -62,11 +62,11 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>Hand over</h5>
-            <p>To use the hand over, select <strong class="UI">[Enable]</strong>. When the hand over function is used, it is possible to set a specific camera to move to a specific PTZ preset position when a motion is detected in the set area. </p>
+            <p>To use the hand over, select <strong class="UI">[Enable]</strong>. When the hand over function is used, it is possible to set a specific camera to move to a specific PTZ preset position when a motion is detected in the set area. Assigns a camera for each area.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>Receiver camera</h5>
-            <p>This designates a receiver camera for each motion detection area to be linked with the area. </p>
+            <p>A receiver camera can be linked with the area.</p>
         </div>
 
         <div class="wn5-online-help-action">
@@ -96,7 +96,9 @@
         <div class="wn5-online-help-action">
             <h3>Exclude area</h3>
 			
-            <p>The whole screen is set as the motion detection area and the area designated by the user is set as the exclude area.<h5>Setting an exclude area</h5>
+            <p>The area designated by the user is set as the exclude area.
+			
+			<h5>Setting an exclude area</h5>
 			<p>When you select 4 corners of an image with the mouse, it is set as the exclude area, and the color of the number buttons in <strong class="UI">[Area]</strong> changes. Up to 8 exclude areas can be set.</p>
             <h5>Changing an exclude area</h5>
 			<p>You can change the size of an exclude area by moving a corner of the exclude area. To move an exclude area, click and drag the relevant area with the mouse. </p>
@@ -135,6 +137,12 @@
             <h3>Alarm output</h3>
             <p>It is possible to set the alarm output number for a specific alarm when a motion detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
+		
+		<div class="wn5-setup-section-article-content" ng-if="PresetAction">
+		<h3>Goto preset</h3>
+            <p>You can change the settings for the camera view position to switch to a preset number (which was set in advance), in case a motion detection event occurs. Camera presets can be set in <strong class="UI">[Preset]</strong> from <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[External PTZ]</a></strong>.</p>
+		</div>
+		
     </div>
 </div>
 

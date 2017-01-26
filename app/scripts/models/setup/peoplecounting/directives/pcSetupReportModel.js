@@ -117,7 +117,6 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 				msubmenu: msubmenu,
 				action: 'set',
 				data: {
-					Enable: Enable,
 					ReportEnable: ReportEnable,
 					ReportFilename: ReportFilename,
 					ReportFileType: ReportFileType
@@ -129,6 +128,11 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 					deferred.reject(errorData);
 				}
 			};
+
+			if(Enable !== null){
+				options.data.Enable = Enable;
+			}
+			
 			pcSetupService.requestSunapi(options);
 
 			return deferred.promise;

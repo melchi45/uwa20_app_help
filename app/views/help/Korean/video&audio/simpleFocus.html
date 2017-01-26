@@ -1,3 +1,4 @@
+﻿
 <h1 class="wn5-setup-main-title">포커스 설정</h1>
 
 <div class="wn5-setup-section">
@@ -15,21 +16,21 @@
             <ul>
             <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
             </ul>
-            <h3>포커스 초기화</h3>
+            <h3>초기화</h3>
             <p>포커스를 초기화하려면 <strong class="UI">[초기화]</strong> 버튼을 클릭합니다. 포커스가 기본 위치로 조절됩니다.</p>
         </div>
 
-        <!-- <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="FastAutoFocusDefined">
             <h3>고속 포커스 설정</h3>
-            <p>포커스가 위치할 가능 범위 내에서 포커스를 빠르게 조절합니다. <strong class="UI">[고속 포커스 설정]</strong>을 설정하려면 <strong class="UI">[사용함]</strong>을 선택합니다.</p>
-        </div> -->
+            <p>포커스가 위치할 가능 범위 내에서 포커스를 빠르게 조절합니다. <strong class="UI">[고속 포커스 설정]</strong>을 설정하려면 <strong class="UI">[사용]</strong>을 선택합니다.</p>
+        </div>
 
         <div class="wn5-setup-section-article-content">
             <h3>포커스 </h3>
             <p>화면에 제시된 포커스 버튼을 눌러 수동으로 포커스를 조절합니다. 심플 포커스로 자동 포커스 조절이 어려운 경우에 수동으로 포커스를 조절합니다. 버튼에 표시된 값은 포커스 이동 간격을 뜻합니다. 1은 포커스를 한번에 1만큼 이동하고, 10은 포커스를 10만큼 이동하고, 100은 포커스를 100만큼 이동시킵니다. ‘-‘ 값은 포커스를 가까이(near) 이동하고, ‘+’ 값은 멀리(far) 이동합니다.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ZoomOptionsDefined">
             <h3>줌 </h3>
             <p>줌 배율을 수동으로 조절합니다. 버튼에 표시된 값은 줌 이동 간격을 뜻합니다. 1은 줌을 한번에 1만큼, 10은 줌을 10만큼, 100은 줌을 100만큼 이동시킵니다. ‘-‘ 값은 줌아웃(Zoom out, wide)하고, ‘+’ 값은 줌인(Zoom in, tele)합니다.</p>
         </div>
@@ -37,15 +38,13 @@
         <div class="wn5-setup-section-article-content">
             <h3>심플 포커스</h3>
             <p>화면 위에 사용자가 지정한 위치를 기준으로 포커스를 자동으로 조절합니다. 화면 위에 마우스로 클릭하고 드래그 하여 포커스를 맞출 위치를 설정한 후, <strong class="UI">[심플 포커스]</strong> 버튼을 클릭하면 화면에 N(Near)<->F(Far)이 표시되고 사용자가 지정한 위치를 기준으로 포커스가 자동으로 조절됩니다.</p>
-            <p>&nbsp;</p>
         </div>
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
-            <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
-            <li>포커스 조절 중에 피사체에 급격한 변화(급격한 움직임, 사라짐)가 있을 경우, 포커스 조절 중에 급격한 휘도의 변화가 있을 경우, 영상의 콘트라스트가 낮은 경우, 강한 광원이 주위에 있을 경우에 심플 포커스&nbsp;기능이 제대로 작동하지 않을 수 있습니다.</li>
-
+<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+                <li>포커스 조절 중에 피사체에 급격한 변화(급격한 움직임, 사라짐)가 있을 경우, 포커스 조절 중에 급격한 휘도의 변화가 있을 경우, 영상의 콘트라스트가 낮은 경우, 강한 광원이 주위에 있을 경우에 심플 포커스&nbsp;기능이 제대로 작동하지 않을 수 있습니다.</li>
 
             </ul>
         </div>

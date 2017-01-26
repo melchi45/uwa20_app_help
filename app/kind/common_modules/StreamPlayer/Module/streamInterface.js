@@ -126,45 +126,47 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
 			function getSize(boxWidth, boxHeight){
   				var width, height;
-  				if(streamCanvas[0].id === "video-container"){
-	  				width = streamCanvas.find("video")[0].videoWidth;
-	  				height = streamCanvas.find("video")[0].videoHeight;
-  				}else{
-	  				width = parseInt(streamCanvas.attr("width"), 10);
-	  				height = parseInt(streamCanvas.attr("height"), 10);
-  				}
+  				if(streamCanvas[0]  !== undefined){
+	  				if(streamCanvas[0].id === "video-container"){
+		  				width = streamCanvas.find("video")[0].videoWidth;
+		  				height = streamCanvas.find("video")[0].videoHeight;
+	  				}else{
+		  				width = parseInt(streamCanvas.attr("width"), 10);
+		  				height = parseInt(streamCanvas.attr("height"), 10);
+	  				}
 
-  				var newWidth = width; 
-  				var newHeight = height;
-  				if(boxWidth !== undefined && boxHeight !== undefined){
-  					newWidth = boxWidth / width;
-  					newHeight = boxHeight / height;
+	  				var newWidth = width; 
+	  				var newHeight = height;
+	  				if(boxWidth !== undefined && boxHeight !== undefined){
+	  					newWidth = boxWidth / width;
+	  					newHeight = boxHeight / height;
 
-  					var min = Math.min(newWidth, newHeight);
-  					newWidth = Math.floor(width * min);
-  					newHeight = Math.floor(height * min);
+	  					var min = Math.min(newWidth, newHeight);
+	  					newWidth = Math.floor(width * min);
+	  					newHeight = Math.floor(height * min);
 
-  					if(UniversialManagerService.getRotate() === "0"){
-	  					if(newWidth < 320){
-	  						newWidth = 320;
-	  						newHeight = (320 / width) * height;
+	  					if(UniversialManagerService.getRotate() === "0"){
+		  					if(newWidth < 320){
+		  						newWidth = 320;
+		  						newHeight = (320 / width) * height;
 
-	  						container.css("overflow", "auto");
+		  						container.css("overflow", "auto");
+		  					}
+	  					}else{
+		  					if(newHeight < 320){
+		  						newHeight = 320;
+		  						newWidth = (320 / height) * width;
+
+		  						container.css("overflow", "auto");
+		  					}
 	  					}
-  					}else{
-	  					if(newHeight < 320){
-	  						newHeight = 320;
-	  						newWidth = (320 / height) * width;
+	  				}
 
-	  						container.css("overflow", "auto");
-	  					}
-  					}
+	  				return {
+						width: newWidth,
+						height: newHeight
+					}
   				}
-
-  				return {
-					width: newWidth,
-					height: newHeight
-				}
 			}
 
 	  		function setCanvasBytestRatio() {
@@ -181,12 +183,14 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		  			var wWidth = boxSize.width;
 		  			var wHeight = boxSize.height;
 					var newSize = getSize(wWidth, wHeight);
-					streamCanvas.css({
-						width: newSize.width + "px",
-						height: newSize.height + "px"
-					});
+					if(newSize !== undefined){
+						streamCanvas.css({
+							width: newSize.width + "px",
+							height: newSize.height + "px"
+						});
 
-					setPosition(newSize.width, newSize.height);
+						setPosition(newSize.width, newSize.height);
+					}
 				}
 			} //setCanvasBytestRatio
 			

@@ -22,6 +22,8 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope','Moda
 
             var init = function() {
               playData.setStatus(PLAY_CMD.STOP);
+              var currentDateObj = searchData.getSelectedDate();
+              scope.currentDate =  currentDateObj.getFullYear() + "-" + pad(currentDateObj.getMonth()+1) + "-" + pad(currentDateObj.getDate());
             };
             var newDate = new Date();
             var defaultTime = '00';
@@ -104,18 +106,18 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope','Moda
             });
             $rootScope.$saveOn("scripts/services/playbackClass/timelineService::backupTimeRange",
               function(event, item){
-                scope.startTime.hours = pad(item.start.getHours());
-                scope.startTime.minutes = pad(item.start.getMinutes());
-                scope.startTime.seconds = pad(item.start.getSeconds());
+                scope.startTime.hours = pad(item.start.hour());
+                scope.startTime.minutes = pad(item.start.minute());
+                scope.startTime.seconds = pad(item.start.second());
 
                 var endTarget = item.end;
 
-                if( item.end.getTime() - item.start.getTime() > 5*60*1000 ) {
-                  endTarget = new Date(item.start.getTime() + 5*60*1000);
+                if( item.end.valueOf() - item.start.valueOf() > 5*60*1000 ) {
+                  endTarget = moment(item.start.valueOf() + 5*60*1000);
                 }
-                scope.endTime.hours = pad(endTarget.getHours());
-                scope.endTime.minutes = pad(endTarget.getMinutes());
-                scope.endTime.seconds = pad(endTarget.getSeconds());         
+                scope.endTime.hours = pad(endTarget.hour());
+                scope.endTime.minutes = pad(endTarget.minute());
+                scope.endTime.seconds = pad(endTarget.second());         
             }, scope);
 
             scope.$on('$destroy', function() {

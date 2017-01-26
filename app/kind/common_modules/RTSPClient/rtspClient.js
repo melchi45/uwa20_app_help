@@ -397,7 +397,7 @@ var RtspClient = function () {
 
   var checkIsAvaliablePlayback = function(mode) {
     var playbackAliveCount = 0;
-    if(mode === 'backup'){
+    if(mode === 'backup' || mode === 'playback' ){
       if( checkAliveIntervalHandler === null) {
         checkAliveIntervalHandler = setInterval(function(){
           if( !isRTPRunning ) {
@@ -409,9 +409,9 @@ var RtspClient = function () {
                 description: "end of backup",
                 place: "RtspClient.js"
               });
+              console.log("RTP disconnection detect!!!");
               return;
            }
-           console.log("RTP alive counter : " + playbackAliveCount );
            playbackAliveCount++;
           }
           else {
@@ -547,8 +547,8 @@ var RtspClient = function () {
           console.log("Unknown setup SDP index");
         }
       } else if (currentState === 'Play') {
-        console.log("RTSP player respose: ");
-        console.log(rtspResponseMsg);
+        // console.log("RTSP player respose: ");
+        // console.log(rtspResponseMsg);
         SessionId = rtspResponseMsg.SessionID;
         errorCallbackFunc({
           errorCode: "200",
@@ -575,9 +575,9 @@ var RtspClient = function () {
                   description: "no rtsp response",
                   place: "RtspClient.js"
                 });
+                console.log("RTP disconnection detect!!!");
                 return;
               }
-              console.log("RTP alive counter" + aliveCounter);
               aliveCounter++;
             }
 
@@ -586,6 +586,11 @@ var RtspClient = function () {
         }
         else if( mode === 'backup' ) {
           checkIsAvaliablePlayback(mode);
+        }
+        else if( mode === 'playback' ) {
+          setTimeout(function(){
+            checkIsAvaliablePlayback(mode);
+          }, 1000);
         }
 
         currentState = 'Playing';
@@ -623,7 +628,7 @@ var RtspClient = function () {
           nextState = 'Playing';
         }
       } else {
-        console.log("2nd unknown rtsp state:", currentState);
+        // console.log("2nd unknown rtsp state:", currentState);
         errorCallbackFunc({
           errorCode: "503",
           description: "Service Unavilable",

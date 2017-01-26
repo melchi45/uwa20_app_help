@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Focus setup</h1>
+﻿<h1 class="wn5-setup-main-title">Focus setup</h1>
 
 <div class="wn5-setup-section">
     <p>The user can set the focus of the screen manually, or automatically through Simple Focus. The focus can also be reset to the default through [Initialize Focus].</p>
@@ -11,23 +11,23 @@
         <h2>Focus setup</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" >
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
-            <h3>Initialize focus</h3>
-            <p>To initialize focus, click the <strong class="UI">[Initialize]</strong> button. The focus will be adjusted to the default location.</p>
+            <h3>Reset</h3>
+            <p>To initialize focus, click the <strong class="UI">[Reset]</strong> button. The focus will be adjusted to the default location.</p>
         </div>
 
-        <!--<div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="FastAutoFocusDefined">
             <h3>Quick Focus mode</h3>
-            <p>The focus is adjusted quickly within the available range. To set <strong class="UI">[Quick Focus mode]</strong>, select <strong class="UI">[Use]</strong>.</p>
-        </div> -->
+            <p>The focus is adjusted quickly within the available range. To set <strong class="UI">[Quick Focus mode]</strong>, select <strong class="UI">[Enable]</strong>.</p>
+        </div> 
 
         <div class="wn5-setup-section-article-content">
             <h3>Focus </h3>
             <p>Click the Focus button on the screen and adjust the focus manually. If auto focus control is not possible with simple focus, control the focus manually. The value displayed on the button refers to the focus moving interval. &lsquo;1&rsquo; means moving the focus by a factor of 1, while &lsquo;10&rsquo; means moving the focus by a factor of 10; &lsquo;100&rsquo; means moving the focus by a factor of 100. &lsquo;-&lsquo;moves the focus area nearer and &lsquo;+&rsquo; moves the focus area farther away.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ZoomOptionsDefined">
             <h3>Zoom </h3>
             <p>Manually adjusts the zoom magnification. The value displayed on the button refers to the zoom moving interval. &lsquo;1&rsquo; means moving the zoom by a factor of 1, &lsquo;10&rsquo; means moving the zoom by a factor of 10, and &lsquo;100&rsquo; means moving the zoom by a factor of 100. &lsquo;-&lsquo;means zoom out (wider) and &lsquo;+&rsquo; means zoom in (closer).</p>
         </div>
