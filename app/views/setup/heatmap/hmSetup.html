@@ -31,7 +31,7 @@
             </li>
         </ul>
         <div class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
-            <div class="hm-setup-overlay-heatmap" ng-show="currentTapStatus[0] === true">
+            <div class="hm-setup-overlay-heatmap">
                 <img src="" ng-show="configurationSection.enableHeatMap">
             </div>
 
@@ -43,6 +43,33 @@
             </sketchbook>
 
             <div class="wn5-setup-preview-table">
+                <section class="form-group" ng-if="currentTapStatus[0] === true">
+                    <div class="wn5-setup-preview-heading">
+                        {{'lang_colorlevel'|translate}}
+                    </div>
+                    <div class="wn5-setup-preview-content">
+                        <div class="form-group">
+                            <input 
+                                ng-model="colorLevelSection.BackgroundColourLevel" 
+                                ng-change="colorLevelSection.changeColorTone()"
+                                ng-value="'true'"
+                                type="radio">
+                            <label>
+                                {{'lang_color' | translate}}
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input 
+                                ng-model="colorLevelSection.BackgroundColourLevel"
+                                ng-change="colorLevelSection.changeColorTone()"
+                                ng-value="'false'"
+                                type="radio">
+                            <label>
+                                {{'lang_bw' | translate}}
+                            </label>
+                        </div>
+                    </div>
+                </section>
                 <section class="form-group" ng-if="currentTapStatus[1] === true">
                     <div class="wn5-setup-preview-heading">
                         {{'lang_area'|translate}}
@@ -52,7 +79,7 @@
                             type="button"
                             ng-click="excludeAreaSection.select($index)"
                             ng-class="{'wn5-btn-hover': excludeArea.isEnable === true, 'wn5-btn-active': excludeArea.isSelected === true && excludeArea.isEnable === true}"
-                            ng-disabled="excludeArea.isEnable === undefined"
+                            ng-disabled="excludeArea.points.length === 0"
                             class="btn wn5-btn btn-margin-right wn5-btn-small-square"
                             ng-repeat="excludeArea in excludeAreaSection.data track by $index">
                             {{$index + 1}}

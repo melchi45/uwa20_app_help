@@ -128,12 +128,6 @@ kindFramework.controller('PCStatisticsCtrl',
 	function setMaxResolution(){
         return pcSetupService.setMaxResolution(mAttr.EventSourceOptions);
 	}
-
-	function setRealTimeSize(){
-		var defaultResolution = pcSetupService.getDefaultResolution();
-
-		document.querySelector('.pc-realtime-video').style.height = defaultResolution.height + 'px';
-	}
 	/* Initialize Start
 	------------------------------------------ */
 	$scope.init = function(){
@@ -147,8 +141,6 @@ kindFramework.controller('PCStatisticsCtrl',
 		if(setMaxResolution() === false){
 			console.error("Getting Maxinum Resolution of Video is Wrong!");
 		}
-		
-		setRealTimeSize();
 
 		var todayRuleData = [];
 		var todayXAxisData = [];
@@ -310,7 +302,7 @@ kindFramework.controller('PCStatisticsCtrl',
 		            		[self.Coordinates[0].x, self.Coordinates[0].y],
 		            		[self.Coordinates[1].x, self.Coordinates[1].y],
 	            		],
-	            		direction: self.arrow === "LeftToRightIn" ? 0 : 1,
+	            		direction: self.Mode === "LeftToRightIn" ? 0 : 1,
 	            		textInCircle: self.LineIndex + 1
 	            	});
 				}
@@ -503,7 +495,7 @@ kindFramework.controller('PCStatisticsCtrl',
 						            var input2 = document.createElement('input');
 						            var iframe = document.createElement('iframe');
 
-						            form.action = '/home/imagedownload.cgi';
+						            form.action = '/home/setup/imagedownload.cgi';
 						            form.method = 'POST';
 						            form.id = 'captureForm';
 
@@ -791,13 +783,12 @@ kindFramework.controller('PCStatisticsCtrl',
 	 * @refer https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
 	 */
 	function changeYAxisFormat(data){
-		/**
-		 * @date: 2016-12-22
-		 * 해당 유효성 체크는 차트 라이브러리에서
-		 * 0 데이터를 비정상적으로 0.5나 음수로 표시하여
-		 * 유효성 체크 후 변경함. 
-		 */
-		if(data < 1) data = 0;
+		function isFloat(x) {
+			return typeof(x, 'Number') && !!(x % 1);
+		}
+
+		/* tickFormat이 비정상일 때 null 처리 */
+		if(isFloat(data)) return null;
 
     	var num = data < 10 ? 1 : data < 100 ? 2 : 3;
         return d3.format('.' + num + 's')(data);
@@ -1137,20 +1128,18 @@ kindFramework.controller('PCStatisticsCtrl',
 			}
 		}
 
-		setTimeout(function(){
+		showVideo().then(function(){
 			$scope.pcConditionsDateForm.init(function(){
-				showVideo().then(function(){
-					$scope.init().then(function(){
-						$scope.pageLoaded = true;
-						/*
-						because Chart is broken, 
-						resizeing have to run after DOM Rendering.
-						*/
-						resizeGraph();
-					}, errorCallback);
+				$scope.init().then(function(){
+					$scope.pageLoaded = true;
+					/*
+					because Chart is broken, 
+					resizeing have to run after DOM Rendering.
+					*/
+					resizeGraph();
 				}, errorCallback);
 			}, errorCallback);
-		});
+		}, errorCallback);
 	}
 
 	function showVideo() {

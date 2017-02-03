@@ -18,7 +18,12 @@
                         <img src="">
                     </div>
 
-                    <kind_stream class="channel-content" kindplayer="playerdata"></kind_stream>
+                    <sketchbook 
+                        class="wn5-setup-preview-video"
+                        coordinates="coordinates" 
+                        sketchinfo="sketchinfo" 
+                        videoinfo="videoinfo">
+                    </sketchbook>
                 </figure>
                 <p class="wn5-gui-body-large">{{'lang_pc_hm_data_init_rule' | translate}} {{'lang_msg_init_rule_but_delete_all_data' | translate}}</p>
             </section>
@@ -43,10 +48,10 @@
 
         <div class="pc-n-hm-section" id="hm_conditions">
             <div class="wn5-setup-section form-group">
-                <div class="wn5-setup-section-heading">
+                <div class="wn5-setup-section-heading" style="width: 20%">
                     <h3>{{ "lang_index" | translate }}</h3>
                 </div>
-                <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article" style="width: 80%">
                     <div 
                     class="hm_row hm_index">
                         <div>
@@ -58,10 +63,10 @@
                 </div>
             </div>
             <div class="wn5-setup-section form-group">
-                <div class="wn5-setup-section-heading">
+                <div class="wn5-setup-section-heading" style="width: 20%">
                     <h3>{{ "lang_search" | translate }}</h3>
                 </div>
-                <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article" style="width: 80%">
                     <pc-conditions-date-form></pc-conditions-date-form>
                 </div>
                 <div class="text-center pc-conditions-buttons wn5-setup-common-button">

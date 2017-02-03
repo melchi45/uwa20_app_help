@@ -133,17 +133,17 @@
 		}
 	}
 
-	#pc-setup-collapse-calibration-icon {
-		width: 116px;
-		height: 99px;
-		float: left;
-		background-image:url("@{images}/setup/calibration_icon.png");
-		background-repeat: no-repeat;
-	}
-
 	.pc-setup-collapse-calibration-cameraheight {
 		padding: 10px 0;
 	}
+}
+
+#pc-setup-collapse-calibration-icon {
+	width: 116px;
+	height: 99px;
+	float: left;
+	background-image:url("@{images}/setup/calibration_icon.png");
+	background-repeat: no-repeat;
 }
 
 #pc-setup-counting-rule {
@@ -228,8 +228,7 @@
 ------------------------------------------ */
 .pc-realtime-video {
 	position: relative;
-	width: 640px;
-	background-color: #f8f8f8;
+	.clearfix();
 }
 
 #pc-realtime-calibration,

@@ -87,7 +87,6 @@ kindFramework.directive('pcSetupReport', function(PcSetupReportModel, pcModalSer
 								parseInt($parentScope.pcSetupReport.schedule.minute, 10)
 							).then(
 								function(successData){
-									console.log(successData);
 									deferred.resolve(successData);
 								},
 								function(failData){

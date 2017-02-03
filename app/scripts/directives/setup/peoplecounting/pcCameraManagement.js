@@ -118,7 +118,7 @@ kindFramework.directive('pcCameraManagement', function(
 			        }).then(function(){
 						pcCameraManagementModel.deleteData(attrs.pageType).then(
 							function(successData){
-								console.log(successData);
+            					window.location.reload(true);
 							},
 							function(failData){
 								console.log(failData);

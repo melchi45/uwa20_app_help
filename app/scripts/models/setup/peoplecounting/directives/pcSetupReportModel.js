@@ -50,11 +50,6 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 			}
 		};
 
-		//Excel cann't export in Safari browser.
-		if(detector.safari === true){
-			lang.report.extensionList.pc = ['txt'];
-		}
-
 		this.getLang = function(){
 			return lang;
 		};

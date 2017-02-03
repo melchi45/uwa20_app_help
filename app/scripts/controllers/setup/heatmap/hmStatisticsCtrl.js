@@ -10,13 +10,20 @@ kindFramework.controller('HMStatisticsCtrl', function (
 	$translate,
 	Attributes,
 	ConnectionSettingService, 
-	pcSetupService, 
-	HMStatisticsModel
+	pcSetupService,
+	SunapiClient, 
+	HMStatisticsModel,
+	COMMONUtils
 	){
 	//Playerdata for Video
 	$scope.playerdata = null;
 	$scope.pageLoaded = false;
 	$scope.checkSearching = false;
+
+    $scope.sketchinfo = {};
+    $scope.coordinates = [];
+
+    var BrowserDetect = COMMONUtils.getBrowserDetect();
 
 	var modalInstance = null;
 	var asyncInterrupt = false;
@@ -96,7 +103,7 @@ kindFramework.controller('HMStatisticsCtrl', function (
 
 	function setImageSize(){
 		var defaultResolution = pcSetupService.getDefaultResolution();
-		$(".pc-realtime-video, #hm-realtime-overimg, #hm-realtime-overimg img").css({
+		$("#hm-realtime-overimg, #hm-realtime-overimg img").css({
 			width: defaultResolution.width + "px",
 			height: defaultResolution.height + "px"
 		});
@@ -287,6 +294,111 @@ kindFramework.controller('HMStatisticsCtrl', function (
 		}
 	};
 
+	$scope.colorLevelSection = {
+        /**
+        BackgroundColourLevel 100 : Full Color 1 : Gray Color
+        */
+        BackgroundColourLevel: 'false',
+        init: function(val){
+            var enable = val === 100 ? 'true' : 'false';
+            $scope.colorLevelSection.BackgroundColourLevel = enable;
+            $scope.colorLevelSection.changeColorTone();
+        },
+        stopGrayPreview: function(){
+            return SunapiClient.get(
+                '/stw-cgi/image.cgi?msubmenu=camera&action=set&ImagePreview=Stop', 
+                {},
+                function(response){},
+                function(errorData){},
+                '', 
+                true
+            );
+        },
+        startGrayPreview: function(){
+            return SunapiClient.get(
+                '/stw-cgi/image.cgi?msubmenu=imageenhancements&action=set&Saturation=1&ImagePreview=Start', 
+                {},
+                function(response){},
+                function(errorData){},
+                '', 
+                true
+            );
+        },
+        toggleColorTone: function(status){
+            var previewVideo = $("#livecanvas");
+            var filterOption = {
+                on: {
+                    'filter': 'grayscale(100%)',
+                    '-webkit-filter': 'grayscale(100%)'
+                },
+                off: {
+                    'filter': 'grayscale(0%)',
+                    '-webkit-filter': 'grayscale(0%)'
+                }
+            };
+            /**
+            WebViewer 지원 범위인 IE11에서 CSS filter를 지원하지 않기 때문에
+            /stw-cgi/image.cgi?msubmenu=imageenhancements&action=set&Saturation=<Number>&ImagePreview=Start
+            를 통해서 Preview 영상을 변경한다.
+
+            Preview 영상을 변경한 뒤 HeatMap을 벋어났을 때 
+            /stw-cgi/image.cgi?msubmenu=camera&action=set&ImagePreview=Stop을 통해
+            Stop을 해줘야 한다.
+            */
+            var method = null;
+            var options = null;
+
+            if(BrowserDetect.isIE === true){
+                method = status === true ? "startGrayPreview" : "stopGrayPreview";
+                $scope.colorLevelSection[method]();
+            }else{
+                options = status === true ? filterOption.on : filterOption.off;
+                previewVideo.css(options);   
+            }
+        },
+        changeColorTone: function(){
+            try{
+                var enable = $scope.colorLevelSection.BackgroundColourLevel;
+                
+                if(enable === 'true'){
+                    $scope.colorLevelSection.toggleColorTone(false);
+                }else{
+                    $scope.colorLevelSection.toggleColorTone(true);
+                }
+            }catch(e){
+                console.error(e);
+            }
+        }
+    };
+
+	function showVideo() {
+        var getData = {};
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
+            var viewerWidth = 640;
+            var viewerHeight = 360;
+            var maxWidth = mAttr.MaxROICoordinateX;
+            var maxHeight = mAttr.MaxROICoordinateY;
+            var rotate = response.data.Flip[0].Rotate;
+            var flip = response.data.Flip[0].VerticalFlipEnable;
+            var mirror = response.data.Flip[0].HorizontalFlipEnable;
+            var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
+            $scope.videoinfo = {
+                width: viewerWidth,
+                height: viewerHeight,
+                maxWidth: maxWidth,
+                maxHeight: maxHeight,
+                flip: flip,
+                mirror: mirror,
+                support_ptz: false,
+                rotate: rotate,
+                adjust: adjust,
+                currentPage: 'Heatmap'
+            };
+        }, function(errorData) {
+            console.log(errorData);
+        }, '', true);
+    }
+
 	/**
 	 * @param options {Object} view, controller, iconClass, title, message, data
 	 * @return Promise {Promise}
@@ -392,7 +504,7 @@ kindFramework.controller('HMStatisticsCtrl', function (
 			console.error(errorData);
 		};
 
-		setImageSize();
+		// setImageSize();
 
 		HMStatisticsModel.deviceInfo().then(
 			function(successData){
@@ -400,15 +512,18 @@ kindFramework.controller('HMStatisticsCtrl', function (
 				$scope.Model = successData.Model;
 
 				HMStatisticsModel.getReportInfo().then(
-					function(responseData){
-						$scope.useHeatmap = responseData.Enable;
+					function(data){
+						if("BackgroundColourLevel" in data){
+                            $scope.colorLevelSection.init(data.BackgroundColourLevel);
+                        }
+						$scope.useHeatmap = data.Enable;
 						$scope.pcConditionsDateForm.init(function(){
 							$scope.conditionsSection.startSearch(true);	
 
 							$timeout(function(){
 								$scope.pageLoaded = true;	
 							});
-						}, failCallback)
+						}, failCallback);
 					}, failCallback
 				);
 			}, failCallback);
@@ -422,12 +537,31 @@ kindFramework.controller('HMStatisticsCtrl', function (
 			modalInstance.close();
 			modalInstance = null;
 		}
-	});
+        window.removeEventListener('beforeunload', stopGrayPreviewWhenUnload);
+    });
+
+    /* HeatMap Setup을 벗어 날 때 */
+    $scope.$on('$stateChangeStart',function (event, toState, toParams, fromState, fromParams) {
+        window.removeEventListener('beforeunload', stopGrayPreviewWhenUnload);
+
+        if(toState.controller !== 'HMStatisticsCtrl'){
+            stopGrayPreviewWhenUnload();
+        }
+    });
+
+    /* 브라우저가 닫힐 때, 한번만 실행하게 함 */
+    function stopGrayPreviewWhenUnload(){
+        $scope.colorLevelSection.stopGrayPreview();
+    }
+
+    if (BrowserDetect.isIE) {
+        window.addEventListener('beforeunload', stopGrayPreviewWhenUnload);
+    }
 	/* Destroy Area End
 	------------------------------------------ */
 
 	function view(){
-		$scope.init();
+		showVideo().then($scope.init, $scope.init);
 	}
 
 	$scope.view = view;

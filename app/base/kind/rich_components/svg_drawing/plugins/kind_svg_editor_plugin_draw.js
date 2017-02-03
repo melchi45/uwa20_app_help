@@ -412,13 +412,20 @@ KindSVGEditor.addPlugin('draw', function(options){
 			iconHelper.show();
 		}
 
+		function mouseUpHandler(){
+			setTimeout(function(){
+				callCustomEvent("mouseup", LineInformation.getAll());	
+			});
+		}
+
 		function bindEvent(lineElement){
 			lineElement.onmousedown = selectLine;
 
-			lineElement.onmouseup = function(){
-				setTimeout(function(){
-					callCustomEvent("mouseup", LineInformation.getAll());	
-				});
+			lineElement.onmouseup = mouseUpHandler;
+			lineElement.onmouseleave = function(){
+				if(this.isSelected === true){
+					mouseUpHandler();
+				}
 			};
 
 			lineElement.addEventListener('contextmenu', function(event){
@@ -445,17 +452,17 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 			//선택 되었을 때만 사용가능
 			if(LineInformation.isAllSelected === false){
-				console.log("LineInformation.isAllSelected === false return");
+				// console.log("LineInformation.isAllSelected === false return");
 				return;
 			}
 
 			if(isPointsChanged() === false){
-				console.log("isPointsChanged() === false return");
+				// console.log("isPointsChanged() === false return");
 				return;
 			}
 
 			if(pointsLength >= maxPoint){
-				console.log("pointsLength >= maxPoint return");
+				// console.log("pointsLength >= maxPoint return");
 				return;
 			}
 
@@ -602,16 +609,14 @@ KindSVGEditor.addPlugin('draw', function(options){
 		}
 
 		function hideDeleteIcon(){
-			hoveredPointIndex = null;
 			iconHelper.hide();
 		}
 
 		function hideDeleteIconWithDelay(){
 			clearTimeout(iconHelperTimer);
 			iconHelperTimer = setTimeout(function(){
-				hoveredPointIndex = null;
 				iconHelper.hide();
-			}, 500);
+			}, 700);
 		}
 
 		function update(){
@@ -1023,11 +1028,11 @@ KindSVGEditor.addPlugin('draw', function(options){
 					}
 				};
 
-				arrowImage.onmouseout = function(event){
+				arrowImage.onmouseleave = function(event){
 					event.stopPropagation();
 
 					if(arrowImage.isSelected === true){
-						arrowImage.onmouseup();
+						arrowImage.onmouseup(event);
 					}
 				};
 			}
@@ -1512,7 +1517,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 		var prevPoints = [];
 
-		//Change Axis
+		//포인트를 선택하여 영역을 이동 시킬 때
 		if(selectedCircleIndex !== null){
 			/*
 			Point 이동 시 좌표 유효성 체크
@@ -1639,6 +1644,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 				LineInformation.setAxis(selectedCircleIndex, xAxis, yAxis);
 			}
+		//영역을 선택하여 이동할 때
 		}else if(fill === true && selectedLineIndex !== null){
 			var startAxis = LineInformation.getAxis(selectedLineIndex);
 			var endAxisIndex = fill === true && selectedLineIndex === lines.length - 1 ? 0 : selectedLineIndex + 1;
@@ -1670,6 +1676,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 			LineInformation.setAxis(selectedLineIndex, changedX1, changedY1);
 			LineInformation.setAxis(endAxisIndex, changedX2, changedY2);
+		//선을 선택하여 이동할 때
 		}else if(fill === true || selectedLineIndex !== null){
 			var isMoveOk = false;
 
@@ -1697,10 +1704,12 @@ KindSVGEditor.addPlugin('draw', function(options){
 				}
 			}
 
-			if(
-				LineInformation.validateAllPoint(movedXAxis, movedYAxis) === false
-				){
-				return;
+			if(LineInformation.validateAllPoint(movedXAxis, 0) === false){
+				movedXAxis = 0;
+			}
+
+			if(LineInformation.validateAllPoint(0, movedYAxis) === false){
+				movedYAxis = 0;
 			}
 
 			if(isMoveOk){

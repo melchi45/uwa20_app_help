@@ -10,8 +10,13 @@ function AudioPlayerAAC(){
 			segmentBuffer = new Uint8Array();
 
 	var preTimeStamp = 0;
+	var initVideoTimeStamp = 0;
+	var videoDiffTime = null;
+
 	var bufferingFlag = false;
-	
+	var startPosArray = null;
+	var startPos = 0;
+
 	function appendBuffer(buffer1, buffer2) {
 		var tmp = new Uint8Array(buffer1.byteLength + buffer2.byteLength);
 		tmp.set(new Uint8Array(buffer1), 0);
@@ -87,7 +92,9 @@ function AudioPlayerAAC(){
 	}
 
 	function sourceUpdatedCallback() {   
-		audio.play();
+		if (audio.paused) {
+			audio.play();
+		}		
 	}
 
 	function sourceCloseCallback() {
@@ -145,17 +152,48 @@ function AudioPlayerAAC(){
 
 			if(timegap > 200 || timegap < 0){	// under 2000ms
 				segmentBuffer = new Uint8Array();
+				startPosArray = new Array();
 				bufferingFlag = true;
 				// console.log("audioBuffering :: bufferingStart AAC!!!!!!!!!!!!");
 			}
+
+			if(bufferingFlag){
+				startPosArray.push(startPos);
+				startPos += data.length;
+			}
+
 			preTimeStamp = rtpTimestamp;
 			segmentBuffer = appendBuffer(segmentBuffer, data);
 
 			if (sourceBuffer !== null && !bufferingFlag) {
 				if(!sourceBuffer.updating){ // if true, sourcebuffer is unusable
 					try {
-						sourceBuffer.appendBuffer(segmentBuffer);
+						if(startPosArray !== null){
+							if(videoDiffTime !== null){
+								// console.log("audioBuffering :: Origin Buffering Time AAC: " + startPosArray.length/16 + " sec");
+								if((parseInt(startPosArray.length/16) - parseInt(videoDiffTime)) >= 2){
+									videoDiffTime += 1;
+								}
+								startPos = parseInt(((videoDiffTime) * 16),10);
+								// console.log("audioBuffering :: Waste Buffering Time AAC: " + startPos/16 + " sec");	
+								if(startPos < startPosArray.length){
+									sourceBuffer.appendBuffer(segmentBuffer.subarray(startPosArray[startPos],segmentBuffer.length));	
+									if(sourceBuffer.buffered.length > 0){
+										audio.currentTime = sourceBuffer.buffered.end(0);
+									}
+								} else {
+									if(sourceBuffer.buffered.length > 0){
+										audio.currentTime = sourceBuffer.buffered.end(0)-0.3;
+									}
+								}
+ 							}
+						}else{
+							sourceBuffer.appendBuffer(segmentBuffer);
+						}
+
 						segmentBuffer = new Uint8Array();
+						startPosArray = null;
+						startPos = 0;
 					} catch (exception) {
 						console.error('Exception while appending : ' + exception);
 					}
@@ -185,11 +223,31 @@ function AudioPlayerAAC(){
 		terminate: function(){
 			// audio = null;
 		},
-		setBufferingFlag: function(flag){
-			bufferingFlag = flag;
+		setBufferingFlag: function(videoTime, videoStatus){
+			if(videoStatus == "init"){
+				// console.log("audioBuffering :: init time =" + videoTime);
+				initVideoTimeStamp = videoTime;
+			}else{
+				if(bufferingFlag){
+					// console.log("audioBuffering :: currentTime = " + videoTime);
+					if(videoTime === 0 || videoTime === "undefined" || videoTime === null){
+						videoDiffTime = null;
+					}else{
+						videoDiffTime = videoTime - initVideoTimeStamp;
+						initVideoTimeStamp = 0;
+					}
+					bufferingFlag = false;
+				}
+			}
 		},
 		getBufferingFlag: function(){
 			return bufferingFlag;
+		},
+		setInitVideoTimeStamp: function(time){
+			initVideoTimeStamp = time;
+		},
+		getInitVideoTimeStamp: function(){
+			return initVideoTimeStamp;
 		}
 	});
 

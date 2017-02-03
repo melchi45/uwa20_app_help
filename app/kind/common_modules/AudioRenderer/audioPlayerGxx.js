@@ -15,6 +15,8 @@ function AudioPlayerGxx() {
 	var nextStartTime = 0;
 	var isRunning = false;		
 	var preTimeStamp = 0;
+	var initVideoTimeStamp = 0;
+	var videoDiffTime = null;
 
 	var bufferingFlag = false;
 	var playBuffer = new Float32Array(80000);
@@ -22,6 +24,7 @@ function AudioPlayerGxx() {
 
 	function playAudioIn(data, rtpTimestamp) {
 		var timegap = rtpTimestamp - preTimeStamp;
+
 		if(timegap > 200 || timegap < 0){	// under 2000ms
 			nextStartTime = 0;
 			readLength = 0;
@@ -37,22 +40,30 @@ function AudioPlayerGxx() {
 
 		playBuffer = appendBufferFloat32(playBuffer, data, readLength);
 		readLength += data.length;
-		if(bufferingFlag){
-			
-		}else{
+
+		if(!bufferingFlag){
+			var startPos = 0;
 			if((readLength/data.length) > 1){
-				// console.log("audioBuffering :: chunk size G7xx: " + (readLength/data.length));	
+				if(videoDiffTime !== null){
+					startPos = (videoDiffTime) * codecInfo.samplingRate;
+					// console.log("audioBuffering :: Origin Buffering Time G7xx: " + readLength/codecInfo.samplingRate + " sec");	
+					// console.log("audioBuffering :: Waste Buffering Time G7xx: " + startPos/codecInfo.samplingRate + " sec");	
+				}
+				if(startPos >= readLength || videoDiffTime === null){
+					readLength = 0;
+					return;
+				}
 			}
 			
 			var audioBuffer = null;
 			if (/Apple Computer/.test(navigator.vendor) && /Safari/.test(navigator.userAgent)){	
-				playBuffer = Upsampling8Kto32K(playBuffer.subarray(0,readLength));
+				playBuffer = Upsampling8Kto32K(playBuffer.subarray(startPos,readLength));
 				codecInfo.samplingRate = 32000;
 				audioBuffer = audioContext.createBuffer(1, playBuffer.length, codecInfo.samplingRate);
 				audioBuffer.getChannelData(0).set(playBuffer);				
 			}else{
-				audioBuffer = audioContext.createBuffer(1, readLength, codecInfo.samplingRate);
-				audioBuffer.getChannelData(0).set(playBuffer.subarray(0,readLength));
+				audioBuffer = audioContext.createBuffer(1, (readLength-startPos), codecInfo.samplingRate);
+				audioBuffer.getChannelData(0).set(playBuffer.subarray(startPos,readLength));
 			}
 			
 			readLength = 0;
@@ -62,7 +73,7 @@ function AudioPlayerGxx() {
 			sourceNode.connect(biquadFilter);
 
 			if(!nextStartTime){
-				nextStartTime = audioContext.currentTime+audioBuffer.duration;
+				nextStartTime = audioContext.currentTime+0.1;
 			}
 
 			sourceNode.start(nextStartTime);
@@ -113,41 +124,40 @@ function AudioPlayerGxx() {
 			//init audio context
 			// console.log("init Gxx player");
 			nextStartTime = 0;
-
 			if (typeof audioContext !== "undefined") {
 				console.info('Audio context already defined!'); //audio_context already defined
 			}
 			else {
-			try {
-				window.AudioContext = window.AudioContext  ||
-				window.webkitAudioContext ||
-				window.mozAudioContext    ||
-				window.oAudioContext      ||
-				window.msAudioContext;
+				try {
+					window.AudioContext = window.AudioContext  ||
+					window.webkitAudioContext ||
+					window.mozAudioContext    ||
+					window.oAudioContext      ||
+					window.msAudioContext;
 
-				audioContext = new AudioContext();
-				audioContext.onstatechange = function() {
-					console.info('Audio Context State changed :: ' + audioContext.state);
-					if(audioContext.state === "running"){
-						isRunning = true;
-					}
-				};
+					audioContext = new AudioContext();
+					audioContext.onstatechange = function() {
+						console.info('Audio Context State changed :: ' + audioContext.state);
+						if(audioContext.state === "running"){
+							isRunning = true;
+						}
+					};
 
-				gainInNode = audioContext.createGain(); // create gain node
-				biquadFilter = audioContext.createBiquadFilter();  
-				biquadFilter.connect(gainInNode);
-				biquadFilter.type = "lowpass";
-				biquadFilter.frequency.value = 2000;
-				biquadFilter.gain.value = 40;
+					gainInNode = audioContext.createGain(); // create gain node
+					biquadFilter = audioContext.createBiquadFilter();  
+					biquadFilter.connect(gainInNode);
+					biquadFilter.type = "lowpass";
+					biquadFilter.frequency.value = 2000;
+					biquadFilter.gain.value = 40;
 
-				// Connect gain node to speakers
-				gainInNode.connect(audioContext.destination);
-				this.ControlVolumn(volume);
-				return true;
-			} catch (error) {
-				console.error("Web Audio API is not supported in this web browser! : " + error);
-				return false;
-			}
+					// Connect gain node to speakers
+					gainInNode.connect(audioContext.destination);
+					this.ControlVolumn(volume);
+					return true;
+				} catch (error) {
+					console.error("Web Audio API is not supported in this web browser! : " + error);
+					return false;
+				}
 			}
 		},		
 		Play: function() {
@@ -188,11 +198,31 @@ function AudioPlayerGxx() {
 				audioContext.close();
 			}
 		},
-		setBufferingFlag: function(flag){
-			bufferingFlag = flag;
+		setBufferingFlag: function(videoTime, videoStatus){
+			if(videoStatus == "init"){
+				// console.log("audioBuffering :: init time =" + videoTime);
+				initVideoTimeStamp = videoTime;
+			}else{
+				if(bufferingFlag){
+					// console.log("audioBuffering :: currentTime = " + videoTime);
+					if(videoTime === 0 || videoTime === "undefined" || videoTime === null){
+						videoDiffTime = null;
+					}else{
+						videoDiffTime = videoTime - initVideoTimeStamp;
+						initVideoTimeStamp = 0;
+					}
+					bufferingFlag = false;
+				}
+			}
 		},
 		getBufferingFlag: function(){
 			return bufferingFlag;
+		},
+		setInitVideoTimeStamp: function(time){
+			initVideoTimeStamp = time;
+		},
+		getInitVideoTimeStamp: function(){
+			return initVideoTimeStamp;
 		}
 	});
 

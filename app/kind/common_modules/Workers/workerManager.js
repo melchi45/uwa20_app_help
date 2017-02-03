@@ -130,6 +130,7 @@ function WorkerManager() {
 
     switch (message.type) {
       case 'canvasRender':
+        audioStart(0, "currentTime");
         if (videoInfo.codecType == "mjpeg") {
           image.setAttribute("src", "data:image/jpeg;base64," + base64ArrayBuffer(message.data));
         } else {
@@ -222,11 +223,7 @@ function WorkerManager() {
           //   mediaSegmentCount++;
           //   console.log("media Segment Count is", mediaSegmentCount);
           // }
-          if(audioRenderer !== null){
-            if(audioRenderer.getBufferingFlag()){
-              audioRenderer.setBufferingFlag(false);
-            }
-          }
+
           if (videoMS !== null) {
             videoMS.setMediaSegment(mediaSegmentData);
           } else if (initSegmentFlag === false) {
@@ -362,6 +359,7 @@ function WorkerManager() {
   }
 
   var preVolume = 0;
+  var initVideoTimeStamp = 0;
   function audioWorkerMessage(event){
     var message = event.data;
     
@@ -372,6 +370,7 @@ function WorkerManager() {
       if (audioCodec !== message.codec) {
         if(audioRenderer !== null){
           preVolume = audioRenderer.GetVolume();
+          initVideoTimeStamp = audioRenderer.getInitVideoTimeStamp();
           audioRenderer.terminate();
         }
         if (message.codec === "AAC") {
@@ -388,6 +387,7 @@ function WorkerManager() {
         }
 
         if(audioRenderer !== null){
+          audioRenderer.setInitVideoTimeStamp(initVideoTimeStamp);
           if(!audioRenderer.audioInit(preVolume)){
             audioRenderer = null;
           }
@@ -511,6 +511,13 @@ function WorkerManager() {
       var element = videoMS.getVideoElement();
       videoMS.setInitSegment();
     }
+    videoMS.setAudioStartCallback(audioStart);
+  }
+
+  function audioStart(videoTime, timeStatus){
+    if(audioRenderer !== null){
+      audioRenderer.setBufferingFlag(videoTime, timeStatus);
+    }
   }
 
 	Constructor.prototype = {
@@ -626,11 +633,6 @@ function WorkerManager() {
         case 'JPEG': {
           //console.log("workerManager::sendRtpData()");
           if( videoWorker ) videoWorker.postMessage(message);
-          if(decodeMode === "canvas" && audioRenderer !== null){
-            if(audioRenderer.getBufferingFlag()){
-              audioRenderer.setBufferingFlag(false);
-            }
-          }
           break;
         }
         case 'G.711':
@@ -696,8 +698,7 @@ function WorkerManager() {
       if (decodeMode === "video") {
         normalNumBox = (fps === 30 ? 4 : 2);
       }
-
-      initVideo(false);
+      initVideo(speed === 1 ? false : true);
     },
     setGovLength: function(gov){
       govLength = gov;
@@ -826,6 +827,8 @@ function WorkerManager() {
         videoMS.pause();
         videoMS.setTimeStampInit();
       }
+
+      initVideo(speed);
       videoWorker.postMessage({'type': 'stepPlay', 'data': 'playbackSeek'});
   	},
     videoBuffering: function() {
@@ -911,8 +914,9 @@ function WorkerManager() {
       }
     },
     timeStamp: function(time) {
-      if (timeStampCallback)
+      if (timeStampCallback && time !== null) {
         timeStampCallback(time, isPaused);
+      }
     },
     initVideo: function(speedMode) {
       initVideo(speedMode);

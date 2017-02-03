@@ -1,5 +1,7 @@
 <div class="wrapper wrapper-content" id="storagepage" ng-show="pageLoaded" style="display:none">
     <form class="form-horizontal" method="get" name="storageForm" novalidate="">
+        <fieldset class="storage-fieldset" ng-disabled='isLoading'>
+
         <wn5-setup-main-title
             data-title="lang_menu_storage">
         </wn5-setup-main-title>
@@ -57,7 +59,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <select class="form-control" ng-change="OnStorageEnable(Storage.Enable)" ng-disabled="$parent.selected != $index" ng-model="Storage.Enable" style="text-align:center">
+                                            <select class="form-control" ng-change="OnStorageEnable(Storage.Enable)" ng-disabled="$parent.selected != $index && isLoading" ng-model="Storage.Enable" style="text-align:center">
                                                 <option ng-repeat="Enable in RecordEnableOptions track by Enable" ng-selected="Storage.Enable == Enable" value="{{Enable}}">
                                                     {{getTranslatedOption(Enable)}}
                                                 </option>
@@ -75,18 +77,19 @@
                                         <!-- </label> -->
                                     </td>
                                     <td>
+                                        <img src='./base/images/loading-tp.gif' ng-show='Storage.isProcessing' width='25'></img>
                                         <span ng-disabled="$parent.selected != $index" ng-show="Storage.Status === 'None'" style="text-align:center">
                                             {{getTranslatedOption(Storage.Status)}}
                                         </span>
                                         <span ng-disabled="$parent.selected != $index" ng-show="Storage.Status === 'Recording'|| Storage.Status === 'Formatting' || Storage.Status === 'Lock' || Storage.Status === 'Full' || Storage.Status === 'Ready'" style="color:blue">
                                             {{getTranslatedOption(Storage.Status)}}
-                                        </span>
+                                        </span>                                        
                                         <span ng-disabled="$parent.selected != $index" ng-show="Storage.Status === 'Error'" style="color:red">
                                             {{getTranslatedOption(Storage.Status)}}
                                         </span>
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary" ng-click="OnStorageFormat($index)" ng-disabled="$parent.selected != $index || GetFormatButtonStatus($index)" style="text-align:center" type="button">
+                                        <button class="btn btn-primary" ng-click="OnStorageFormat($index)" ng-disabled="($parent.selected != $index || GetFormatButtonStatus($index)) && isLoading" style="text-align:center" type="button">
                                             {{ 'lang_format' | translate }}
                                         </button>
                                     </td>
@@ -370,6 +373,7 @@
             data-submit-click="submit()"
             data-cancel-click="view(0)">
         </wn5-setup-common-button>
+    </fieldset>
     </form>
 </div>
 <!--script type="text/ng-template" id="modalrecordPopup.html">

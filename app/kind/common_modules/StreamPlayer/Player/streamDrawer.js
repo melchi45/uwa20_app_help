@@ -8,6 +8,7 @@
  * @name KindDrawer
  */
 function KindDrawer(id) {
+  var STEP_MS = 17; //safari didn't accept const in "use strict"
   var Uniformity = true;
   /**
    * id of channel.
@@ -48,6 +49,8 @@ function KindDrawer(id) {
   var frameInterval, maxDelay;
   var prevCodecType;
   var resizeCallback;
+  var freeBufferCallback;
+  var bufferFullCallback;
   var startTimestamp = 0,
     frameTimestamp = null,
     preTimestamp = 0,
@@ -176,6 +179,7 @@ function KindDrawer(id) {
         bufferNode.previous = null;
         bufferNode.next = null;
         bufferNode = null;
+//        freeBufferCallback(bufferNode.bufferIdx);
         return true;
       } else {
         console.log('drawer is undefined in KindDrawer!');
@@ -288,6 +292,7 @@ function KindDrawer(id) {
      * @memberof KindDrawer
      * @name draw
      * @param {string} data.
+     * @param {number} bufferIdx.
      * @param {number} width.
      * @param {number} height.
      * @param {string} codecType.

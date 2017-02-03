@@ -4,6 +4,11 @@ kindFramework.controller('reportModalCtrl', function ($scope, $uibModalInstance,
     var pcSetupReportModel = new PcSetupReportModel();
 
     $scope.lang = pcSetupReportModel.getLang();
+
+    //Excel cann't export in Safari browser.
+    if(detector.safari === true){
+        $scope.lang.report.extensionList.pc = ['txt'];
+    }
     
     $scope.extensionList = $scope.lang.report.extensionList.pc;
     $scope.extension = $scope.extensionList[0];
