@@ -13,6 +13,7 @@ function VideoMediaSource() {
   var browserType = null;
   var speedValue = 1;
   var receiveTimeStamp = {timestamp:0, timestamp_usec:0, timezone:0};
+  var firstTimeStamp = {timestamp:0, timestamp_usec:0, timezone:0};
   var preVideoTimeStamp = null;
   var playbackFlag = false;
   var bufferEventListenerArray = null;
@@ -20,6 +21,7 @@ function VideoMediaSource() {
   var mediaSourceEventListenerArray = null;
   var isPlaying = false;
   var isPause = true;
+  var audioStartNum = 0;
 
   function Constructor() { }
 
@@ -45,8 +47,8 @@ function VideoMediaSource() {
 
   function AddVideoEventListener(videoTag) {
     videoEventListenerArray = new Array();
-    videoEventListenerArray.push({'type':'durationchange', 'function':videoUpdating.bind(videoTag, mediaSource)});
-    videoEventListenerArray.push({'type':'seeking', 'function':videoUpdating.bind(videoTag, mediaSource)});
+    videoEventListenerArray.push({'type':'durationchange', 'function':videoUpdating_ex.bind(videoTag, mediaSource)});
+    videoEventListenerArray.push({'type':'seeking', 'function':videoUpdating_ex.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'error', 'function':onError.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'progress', 'function':onProgress.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'pause', 'function':onPause.bind(videoTag, mediaSource)});    
@@ -59,7 +61,7 @@ function VideoMediaSource() {
     videoEventListenerArray.push({'type':'canplay', 'function':videoPlay.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'canplaythrough', 'function':videoPlay.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'playing', 'function':onPlaying.bind(videoTag, mediaSource)});
-    videoEventListenerArray.push({'type':'waiting', 'function':onWaiting.bind(videoTag, mediaSource)});
+    //videoEventListenerArray.push({'type':'waiting', 'function':onWaiting.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'seeked', 'function':onSeeked.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'ended', 'function':onEnded.bind(videoTag, mediaSource)});    
     videoEventListenerArray.push({'type':'timeupdate', 'function':onTimeupdate.bind(videoTag)});
@@ -158,6 +160,38 @@ function VideoMediaSource() {
     }
   }
 
+  function videoUpdating_ex(e) {
+    if (mediaSource == null) return;
+
+    if (sourceBuffer.buffered.length > 0) {
+      var startTime = sourceBuffer.buffered.start(sourceBuffer.buffered.length - 1) * 1;
+      var endTime = sourceBuffer.buffered.end(sourceBuffer.buffered.length - 1) * 1;
+      var diffTime = 0
+      var delay = 0;
+
+      if (playbackFlag === true) {
+        delay = (browserType === "chrome" ? 2 : 4);
+      } else {
+        delay = (browserType === "chrome" ? 0.2 : 2);
+      }
+
+      diffTime = (videoElement.currentTime === 0 ? endTime - startTime : endTime - (videoElement.currentTime + delay));
+
+      if (diffTime > delay) {
+        var tempCurrentTime = endTime - delay;
+        if (tempCurrentTime > startTime && tempCurrentTime < endTime) {
+          videoElement.currentTime = tempCurrentTime;
+          if (videoElement.paused) {
+            videoSizeCallback();
+            if (!isPlaying) {
+              videoElement.play();
+            }
+          }
+        }
+      }
+    }
+  }  
+
   function videoUpdating(e) {
     if (mediaSource == null) return;
 
@@ -255,15 +289,22 @@ function VideoMediaSource() {
     var duration = parseInt(mediaSource.duration, 10);
     var currentTime =  parseInt(videoElement.currentTime, 10);
     var calcTimeStamp = receiveTimeStamp.timestamp - (speedValue * (duration - currentTime + (speedValue !== 1 ? 1 : 0)));
-    var sendTimeStamp = {timestamp:calcTimeStamp, timestamp_usec:0, timezone:receiveTimeStamp.timezone};
+    var sendTimeStamp = {timestamp:calcTimeStamp, timestamp_usec:0, timezone:receiveTimeStamp.timezone};    
 
     if (!videoElement.paused) {
       if (preVideoTimeStamp === null) {
         preVideoTimeStamp = sendTimeStamp;
       } else if ((preVideoTimeStamp.timestamp <= sendTimeStamp.timestamp && speedValue >= 1) ||
           (preVideoTimeStamp.timestamp > sendTimeStamp.timestamp && speedValue < 1)) {
-        workerManager.timeStamp(sendTimeStamp);
+        if(playbackFlag){
+          workerManager.timeStamp(sendTimeStamp);
+        }
         preVideoTimeStamp = sendTimeStamp;
+        audioStartNum++;
+
+        if (audioStartNum > 4) {
+          startAudioCallback(sendTimeStamp.timestamp, "currentTime");
+        }
       }
     }
   }
@@ -326,6 +367,9 @@ function VideoMediaSource() {
     setVideoSizeCallback: function(func) {
       videoSizeCallback = func;
     },
+    setAudioStartCallback: function(func) {
+      startAudioCallback = func;
+    },
     getPlaybackTimeStamp: function() {
       return playbackTimeStamp;
     },
@@ -333,6 +377,12 @@ function VideoMediaSource() {
       speedValue = value;
     },
   	setvideoTimeStamp: function(timestamp) {
+      var seekCheck = (Math.abs(receiveTimeStamp.timestamp - timestamp.timestamp) > 3 ? true : false);
+      if (seekCheck === true) {
+        audioStartNum = 0;
+        firstTimeStamp = timestamp;
+        startAudioCallback(firstTimeStamp.timestamp, "init");
+      }
       receiveTimeStamp = timestamp;
   	},
   	pause: function() {
@@ -347,6 +397,7 @@ function VideoMediaSource() {
     },
     setTimeStampInit: function() {
       preVideoTimeStamp = null;
+      firstTimeStamp = {timestamp:0, timestamp_usec:0, timezone:0};
     },
     close: function() {
       removeEventListener();

@@ -451,7 +451,7 @@ kindFramework.constant('ROUTE_CONFIG', {
                 {
                   urlName: 'statistics',
                   name: 'lang_statistics',
-                  iconClass: 'tui tui-wn5-ptz-near',
+                  iconClass: 'tui tui-statistics',
                   childs: [
                     {
                         urlName: 'peoplecounting',

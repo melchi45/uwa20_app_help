@@ -537,6 +537,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             }
             setStorageStatus();
             pageData.Storageinfo = angular.copy($scope.Storageinfo);
+            startMonitoringStatus();
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
@@ -675,6 +676,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         if(data === 0) {
             $rootScope.$emit('resetScheduleData', true);
         }
+
         var promises = [];
         promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
@@ -796,6 +798,106 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             }
         }
     }
+
+    $scope.isLoading = false;
+    var mStopMonotoringStatus = false;
+    var monitoringTimer = null;
+    var destroyInterrupt = false;
+
+    function startMonitoringStatus()
+    {
+        (function update()
+        {
+            getCurrentStatus(function (data) {
+                if(destroyInterrupt) return;
+
+                var tStorageinfo = data;
+                if (!mStopMonotoringStatus)
+                {
+                    var isLoading = false;
+                    for (var idx = 0; idx < tStorageinfo.Storages.length; idx = idx + 1) {
+                        if (tStorageinfo.Storages[idx].Status === "") {
+                            $scope.Storageinfo.Storages[idx].Status = "None";
+                            $scope.Storageinfo.Storages[idx].isProcessing = false;
+                        } else if (tStorageinfo.Storages[idx].Status === "Normal") {
+                            $scope.Storageinfo.Storages[idx].Status = "Ready";
+                            $scope.Storageinfo.Storages[idx].isProcessing = false;
+                        } else if (tStorageinfo.Storages[idx].Status === "Active") {
+                            $scope.Storageinfo.Storages[idx].Status = "Recording";
+                            $scope.Storageinfo.Storages[idx].isProcessing = false;
+                        } else if (tStorageinfo.Storages[idx].Status === "Formatting") {
+                            $scope.Storageinfo.Storages[idx].Status = "Formatting";
+                            $scope.Storageinfo.Storages[idx].isProcessing = false;
+                            isLoading = true;
+                        } else if (tStorageinfo.Storages[idx].Status === "Wait") {
+                            $scope.Storageinfo.Storages[idx].Status = "Waiting";
+                            $scope.Storageinfo.Storages[idx].isProcessing = true;
+                            isLoading = true;
+                        } else { // Error, Full
+                            $scope.Storageinfo.Storages[idx].Status = tStorageinfo.Storages[idx].Status;
+                            $scope.Storageinfo.Storages[idx].isProcessing = false;
+                        }
+                        if(tStorageinfo.Storages[idx].Status !== "Wait") {
+                            $scope.Storageinfo.Storages[idx].TotalSpace = tStorageinfo.Storages[idx].TotalSpace;
+                            $scope.Storageinfo.Storages[idx].UsedSpace = tStorageinfo.Storages[idx].UsedSpace;
+                            var totalSize = $scope.Storageinfo.Storages[idx].TotalSpace;
+                            var freeSize = $scope.Storageinfo.Storages[idx].TotalSpace - $scope.Storageinfo.Storages[idx].UsedSpace;
+                            if (totalSize >= 1024 * 1024) {
+                                totalSize = (totalSize / 1024 / 1024).toFixed(2);
+                                $scope.Storageinfo.Storages[idx].TotalSpace = totalSize + " TB";
+                            } else if (totalSize >= 1024) {
+                                totalSize = (totalSize / 1024).toFixed(2);
+                                $scope.Storageinfo.Storages[idx].TotalSpace = totalSize + " GB";
+                            } else {
+                                $scope.Storageinfo.Storages[idx].TotalSpace = totalSize + " MB";
+                            }
+                            if (freeSize >= 1024 * 1024) {
+                                freeSize = (freeSize / 1024 / 1024).toFixed(2);
+                                $scope.Storageinfo.Storages[idx].UsedSpace = freeSize + " TB";
+                            } else if (freeSize >= 1024) {
+                                freeSize = (freeSize / 1024).toFixed(2);
+                                $scope.Storageinfo.Storages[idx].UsedSpace = freeSize + " GB";
+                            } else {
+                                $scope.Storageinfo.Storages[idx].UsedSpace = freeSize + " MB";
+                            }
+                        }
+                    }
+                    $scope.isLoading = isLoading;
+                    monitoringTimer = $timeout(update,2900);
+                }
+            });
+        })();
+    }
+
+    function stopMonitoringStatus(){
+        if(monitoringTimer !== null){
+            destroyInterrupt = true;
+            $timeout.cancel(monitoringTimer);
+        }
+    }
+
+    $scope.$on("$destroy", function(){
+        destroyInterrupt = true;
+        stopMonitoringStatus();
+    });
+
+
+    function getCurrentStatus(func)
+    {
+        var getData = {},
+        idx = 0;
+        return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData, function(response) {
+        
+            var tStorageinfo = response.data;
+        
+            func(tStorageinfo);
+        
+        }, function(errorData) {
+            console.log(errorData);
+            startMonitoringStatus();
+        }, '', true);
+    }
+
     (function wait() {
         if (!mAttr.Ready) {
             $timeout(function() {
@@ -812,71 +914,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     $scope.view = view;
     $scope.validate = validatePage;
 
-    function inArray(arr, str) {
-        for(var i = 0; i < arr.length; i++) {
-            var tArray = arr[i].split(".");
-            tArray = tArray[0] + "." + tArray[1];
-            if(tArray === str){
-                return i;
-            }
-        }
-        return false;
-    }
-
-    $scope.setColor = function(day, hour, isAlways) {
-        for (var i = 0; i < $scope.RecordSchedule[$scope.Channel].ScheduleIds.length; i++) {
-            if ($scope.RecordSchedule[$scope.Channel].ScheduleIds[i].indexOf(day + '.' + hour + '.') >= 0) {
-                if (isAlways) {
-                    return 'setMiniteFaded';
-                } else {
-                    return 'setMinite already-selected ui-selected';
-                }
-            }
-        }
-        if ($scope.RecordSchedule[$scope.Channel].ScheduleIds.indexOf(day + '.' + hour) !== -1) {
-            if (isAlways) {
-                return 'setHourFaded';
-            } else {
-                return 'setHour already-selected ui-selected';
-            }
-        }
-    };
-    $scope.mouseOver = function(day, hour) {
-        var index = inArray($scope.RecordSchedule[$scope.Channel].ScheduleIds, day + '.' + hour);
-        if(index !== false) {
-            $scope.MouseOverMessage = $scope.RecordSchedule[$scope.Channel].ScheduleIds[index].split('.');
-        }
-        // $scope.MouseOverMessage = [];
-        // for (var i = 0; i < $scope.RecordSchedule[$scope.Channel].ScheduleIds.length; i++) {
-        //     if ($scope.RecordSchedule[$scope.Channel].ScheduleIds[i].indexOf(day + '.' + hour) >= 0) {
-        //         $scope.MouseOverMessage = $scope.RecordSchedule[$scope.Channel].ScheduleIds[i].split('.');
-        //         break;
-        //     }
-        // }
-    };
-    $scope.mouseLeave = function() {
-        $scope.MouseOverMessage = [];
-    };
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-    $scope.getTooltipMessage = function() {
-        if (typeof $scope.MouseOverMessage !== 'undefined') {
-            var hr, fr, to;
-            if ($scope.MouseOverMessage.length === 2) {
-                var hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
-                var fr = '00';
-                var to = '59';
-            } else if ($scope.MouseOverMessage.length === 4) {
-                var hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
-                var fr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[2], 2);
-                var to = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[3], 2);
-            } else {
-                return;
-            }
-            return "(" + $translate.instant($scope.MouseOverMessage[0]) + ") " + hr + ":" + fr + " ~ " + hr + ":" + to;
-        }
-    };
     $scope.clearAll = function() {
         $timeout(function() {
             $scope.RecordSchedule[$scope.Channel].ScheduleIds = [];
@@ -910,60 +947,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             console.log(errorData);
         }, '', true);
     }
-    $scope.open = function(day, hour) {
-        $scope.SelectedDay = day;
-        $scope.SelectedHour = hour;
-        $scope.SelectedFromMinute = 0;
-        $scope.SelectedToMinute = 59;
-
-        var index = inArray($scope.RecordSchedule[$scope.Channel].ScheduleIds, day + '.' + hour);
-        if(index !== false) {
-            var str = $scope.RecordSchedule[$scope.Channel].ScheduleIds[index].split('.');
-
-            if (str.length === 4) {
-                $scope.SelectedFromMinute = Math.round(str[2]);
-                $scope.SelectedToMinute = Math.round(str[3]);
-            }
-        }
-        
-        // for (var i = 0; i < $scope.RecordSchedule[$scope.Channel].ScheduleIds.length; i++) {
-        //     if ($scope.RecordSchedule[$scope.Channel].ScheduleIds[i].indexOf(day + '.' + hour + '.') >= 0) {
-        //         var str = $scope.RecordSchedule[$scope.Channel].ScheduleIds[i].split('.');
-        //         if (str.length === 4) {
-        //             $scope.SelectedFromMinute = Math.round(str[2]);
-        //             $scope.SelectedToMinute = Math.round(str[3]);
-        //         }
-        //         break;
-        //     }
-        // }
-        //console.log("From: To:", $scope.SelectedFromMinute, $scope.SelectedToMinute);
-        var modalInstance = $uibModal.open({
-            size: 'lg',
-            templateUrl: 'views/setup/common/schedulePopup.html',
-            controller: 'recordScheduleCtrl',
-            resolve: {
-                SelectedDay: function() {
-                    return $scope.SelectedDay;
-                },
-                SelectedHour: function() {
-                    return $scope.SelectedHour;
-                },
-                SelectedFromMinute: function() {
-                    return $scope.SelectedFromMinute;
-                },
-                SelectedToMinute: function() {
-                    return $scope.SelectedToMinute;
-                },
-                Channel: function() {
-                    return $scope.Channel;
-                },
-                RecordSchedule: function() {
-                    return $scope.RecordSchedule;
-                }
-            }
-        });
-        modalInstance.result.then(function(selectedItem) {}, function() {});
-    };
 });
 kindFramework.controller('ModalMsgCtrl', function($scope, $uibModalInstance, Attributes, Msg) {
     "use strict";

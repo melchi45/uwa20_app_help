@@ -695,6 +695,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                         $scope.DisableBitrateSelection = true;
                     } else {
                         $scope.selectFrameRate($scope.ResoltionList[i].MaxFPS,defaultFPS, isAdjustBitRate);
+                        $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = 'VBR';
                         $scope.DisableBitrateSelection = false;
                     }
                 } else {
@@ -860,6 +861,8 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         {
             profile.EncoderProfile = 'Main';
             profile.EntropyCoding = 'CABAC';
+        } else if (profile.EncodingType === 'H264'){
+            profile.EncoderProfile = 'High';
         }
     }
 

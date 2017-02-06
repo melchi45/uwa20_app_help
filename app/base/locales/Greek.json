@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "Επιλέξτε λειτουργία PTZ",
     "lang_statistics": "Στατιστικά στοιχεία",
     "lang_peoplecounting": "Απαρίθμηση ατόμων",
+    "lang_enable_feature_people_counting": "Ενεργοποίηση Απαρίθμησης ατόμων",
+    "lang_enable_feature_heatmap": "Ενεργοποίηση Χάρτη θερμότητας",
     "lang_realtime": "Πραγματικός χρόνος",
     "lang_msg_norule": "Δεν υπάρχει καθoρισμένος κανόνας.",
     "lang_msg_addrule": "Καθορίστε έναν κανόνα στο μενού %1.",

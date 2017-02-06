@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "PTZ modunu seç",
     "lang_statistics": "İstatistikler",
     "lang_peoplecounting": "Kişi Sayma",
+    "lang_enable_feature_people_counting": "Kişi saymayı etkinleştir",
+    "lang_enable_feature_heatmap": "Isı haritasını etkinleştir",
     "lang_realtime": "Gerçek Zamanlı",
     "lang_msg_norule": "Belirlenmiş bir kural yok.",
     "lang_msg_addrule": "%1 menüsünde bir kural belirleyin.",

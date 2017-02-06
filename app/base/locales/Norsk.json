@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "Select PTZ mode",
     "lang_statistics": "Statistics",
     "lang_peoplecounting": "People Counting",
+    "lang_enable_feature_people_counting": "Aktiver telling av personer",
+    "lang_enable_feature_heatmap": "Aktiver varmekart",
     "lang_realtime": "Real Time",
     "lang_msg_norule": "There is no rule that has been established.",
     "lang_msg_addrule": "Establish a rule in the %1 menu.",

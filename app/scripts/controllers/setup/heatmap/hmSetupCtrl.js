@@ -22,6 +22,7 @@ kindFramework.controller('HMSetupCtrl', function (
 
     var asyncInterrupt = false;
     var modalInstance = null;
+    var BrowserDetect = COMMONUtils.getBrowserDetect();
 
     $scope.pageLoaded = false;
 
@@ -77,7 +78,7 @@ kindFramework.controller('HMSetupCtrl', function (
         		var isEmpty = self.points.length === 0;
         		var coordinatesInfo = {
         			isSet: !isEmpty,
-        			enable: !isEmpty,
+        			enable: self.isEnable,
         			points: self.points
         		};
 
@@ -123,21 +124,102 @@ kindFramework.controller('HMSetupCtrl', function (
         }, '', true);
     }
 
+    $scope.colorLevelSection = {
+        /**
+        BackgroundColourLevel 100 : Full Color 1 : Gray Color
+        */
+        BackgroundColourLevel: 'false',
+        init: function(val){
+            var enable = val === 100 ? 'true' : 'false';
+            $scope.colorLevelSection.BackgroundColourLevel = enable;
+            $scope.colorLevelSection.changeColorTone();
+        },
+        stopGrayPreview: function(){
+            return SunapiClient.get(
+                '/stw-cgi/image.cgi?msubmenu=camera&action=set&ImagePreview=Stop', 
+                {},
+                function(response){},
+                function(errorData){},
+                '', 
+                true
+            );
+        },
+        startGrayPreview: function(){
+            return SunapiClient.get(
+                '/stw-cgi/image.cgi?msubmenu=imageenhancements&action=set&Saturation=1&ImagePreview=Start', 
+                {},
+                function(response){},
+                function(errorData){},
+                '', 
+                true
+            );
+        },
+        toggleColorTone: function(status){
+            var previewVideo = $("#livecanvas");
+            var filterOption = {
+                on: {
+                    'filter': 'grayscale(100%)',
+                    '-webkit-filter': 'grayscale(100%)'
+                },
+                off: {
+                    'filter': 'grayscale(0%)',
+                    '-webkit-filter': 'grayscale(0%)'
+                }
+            };
+            /**
+            WebViewer 지원 범위인 IE11에서 CSS filter를 지원하지 않기 때문에
+            /stw-cgi/image.cgi?msubmenu=imageenhancements&action=set&Saturation=<Number>&ImagePreview=Start
+            를 통해서 Preview 영상을 변경한다.
+
+            Preview 영상을 변경한 뒤 HeatMap을 벋어났을 때 
+            /stw-cgi/image.cgi?msubmenu=camera&action=set&ImagePreview=Stop을 통해
+            Stop을 해줘야 한다.
+            */
+            var method = null;
+            var options = null;
+
+            if(BrowserDetect.isIE === true){
+                method = status === true ? "startGrayPreview" : "stopGrayPreview";
+                $scope.colorLevelSection[method]();
+            }else{
+                options = status === true ? filterOption.on : filterOption.off;
+                previewVideo.css(options);   
+            }
+        },
+        changeColorTone: function(){
+            try{
+                var enable = $scope.colorLevelSection.BackgroundColourLevel;
+                
+                if(enable === 'true'){
+                    $scope.colorLevelSection.toggleColorTone(false);
+                }else{
+                    $scope.colorLevelSection.toggleColorTone(true);
+                }
+            }catch(e){
+                console.error(e);
+            }
+        }
+    };
+
     $scope.excludeAreaSection = {
-    	data: [],
-    	update: function(index, data){
-    		$scope.excludeAreaSection.data[index] = data;
-    	},
-    	updatePoints: function(index, points){
-    		$scope.excludeAreaSection.data[index].points = points;
-    	},
-    	select: function(index){
-    		for(var i = 0, ii = $scope.excludeAreaSection.data.length; i < ii; i++){
-    			$scope.excludeAreaSection.data[i].isSelected = i === index;
-    		}
+        data: [],
+        backupData: [],
+        update: function(index, data){
+            $scope.excludeAreaSection.data[index] = data;
+        },
+        backup: function(){
+            $scope.excludeAreaSection.backupData = angular.copy($scope.excludeAreaSection.data);
+        },
+        updatePoints: function(index, points){
+            $scope.excludeAreaSection.data[index].points = points;
+        },
+        select: function(index){
+            for(var i = 0, ii = $scope.excludeAreaSection.data.length; i < ii; i++){
+                $scope.excludeAreaSection.data[i].isSelected = i === index;
+            }
 
             sketchbookService.activeShape(index);
-    	}
+        }
     };
 
     $scope.configurationSection = {
@@ -363,7 +445,26 @@ kindFramework.controller('HMSetupCtrl', function (
             modalInstance.close();
             modalInstance = null;
         }
+        window.removeEventListener('beforeunload', stopGrayPreviewWhenUnload);
     });
+
+    /* HeatMap Setup을 벗어 날 때 */
+    $scope.$on('$stateChangeStart',function (event, toState, toParams, fromState, fromParams) {
+        window.removeEventListener('beforeunload', stopGrayPreviewWhenUnload);
+
+        if(toState.controller !== 'HMSetupCtrl'){
+            stopGrayPreviewWhenUnload();
+        }
+    });
+
+    /* 브라우저가 닫힐 때, 한번만 실행하게 함 */
+    function stopGrayPreviewWhenUnload(){
+        $scope.colorLevelSection.stopGrayPreview();
+    }
+
+    if (BrowserDetect.isIE) {
+        window.addEventListener('beforeunload', stopGrayPreviewWhenUnload);
+    }
 
     $rootScope.$saveOn('<app/scripts/directives>::<updateCoordinates>', function(obj, args) {
         var modifiedIndex = args[0];
@@ -380,20 +481,28 @@ kindFramework.controller('HMSetupCtrl', function (
 
 		if($scope.currentTapStatus[1] === true){ //Exclude area
         	switch(modifiedType){
-        		case 'create':
-        			$scope.excludeAreaSection.update(modifiedIndex, {
-        				points: modifiedPoints,
-        				isEnable: true,
-        				isSelected: false
-        			});
-        		break;
-        		case 'mouseup':
-        			$scope.excludeAreaSection.updatePoints(modifiedIndex, modifiedPoints);
-        		break;
-        	}
+                case 'create':
+                    $scope.excludeAreaSection.update(modifiedIndex, {
+                        points: modifiedPoints,
+                        isEnable: true,
+                        isSelected: false
+                    });
+                break;
+                case 'mouseup':
+                    $scope.excludeAreaSection.updatePoints(modifiedIndex, modifiedPoints);
+                break;
+                case 'delete':
+                    $scope.excludeAreaSection.update(modifiedIndex, {
+                        points: [],
+                        isEnable: false,
+                        isSelected: false
+                    });
+                break;
+            }
 
             if(modifiedType !== "delete"){
                 sketchbookService.activeShape(modifiedIndex);
+                $scope.excludeAreaSection.select(modifiedIndex);
             }
 
         	$timeout(function(){});
@@ -404,19 +513,61 @@ kindFramework.controller('HMSetupCtrl', function (
     	$state.go('^.event_ftpemail');
     };
 
+    function failCallback(failData){
+        console.log(failData);
+    }
+
 	function view(){
+
 		showVideo().then(function(){
-            HMStatisticsModel.deviceInfo().then(
-                function(successData){
-                    $scope.deviceName = successData.DeviceName;
-                    $scope.Model = successData.Model;
+            HMStatisticsModel.deviceInfo().then(function(successData){
+                $scope.deviceName = successData.DeviceName;
+                $scope.Model = successData.Model;
 
-                    setMaxResolution();
-                    setImageSize();
+                setMaxResolution();
+                // setImageSize();
 
-                    //Exclude Area 임의 설정
-                    for(var i = 0; i < 4; i++){
-                        $scope.excludeAreaSection.update(i, {points: []});
+                //Exclude Area 임의 설정
+                HMStatisticsModel.getReportInfo().then(function(data){
+                    try{
+                        //초기화
+                        for(var i = 0; i < 4; i++){
+                            $scope.excludeAreaSection.update(i, {
+                                points: [],
+                                isEnable: false,
+                                isSelected: false
+                            });
+                        }
+
+                        if("Areas" in data){
+                            for(var i = 0, ii = data.Areas.length; i < ii; i++){
+                                var self = data.Areas[i];
+                                var coordinates = self.Coordinates;
+                                var points = [];
+
+                                for(var j = 0, jj = coordinates.length; j < jj; j++){
+                                    var jSelf = coordinates[j];
+                                    points.push([
+                                        jSelf.x,
+                                        jSelf.y
+                                    ]);
+                                }
+
+                                $scope.excludeAreaSection.update(self.Area - 1, {
+                                    points: points,
+                                    isEnable: true,
+                                    isSelected: false
+                                }); 
+                            }
+                        }
+
+                        if("BackgroundColourLevel" in data){
+                            $scope.colorLevelSection.init(data.BackgroundColourLevel);
+                        }
+
+                        $scope.excludeAreaSection.backup();
+                    }catch(e){
+                        console.error(e);
                     }
 
                     $scope.pcSetupReport.getReport();
@@ -425,18 +576,51 @@ kindFramework.controller('HMSetupCtrl', function (
                     $timeout(function(){
                         $scope.pageLoaded = true;
                     });
-                },
-                function(failData){
-                    console.log(failData);
-                }
-            );
-		}, function(errorData){
-			console.error(errorData);
-		});
+                }, failCallback);
+            }, failCallback);
+		}, failCallback);
 	}
 
 	function setReport(){
-		$scope.pcSetupReport.setReport();
+        var requestData = {};
+        var deleteAreaData = [];
+
+        var setHeatMap = function(){
+            return SunapiClient.get(
+                '/stw-cgi/eventsources.cgi?msubmenu=heatmap&action=set', 
+                requestData,
+                $scope.pcSetupReport.setReport, 
+                failCallback, '', true);
+        };
+
+        for(var i = 0, ii = $scope.excludeAreaSection.data.length; i < ii; i++){
+            var self = $scope.excludeAreaSection.data[i];
+            var backupSelf = $scope.excludeAreaSection.backupData[i];
+            //Exclude Area이기 때문에 항상 Outside로 설정
+            if(self.points.length > 0){
+                requestData['Area.' + (i + 1) + '.Type'] = 'Outside';
+                requestData['Area.' + (i + 1) + '.Coordinates'] = self.points.join(',');    
+            }else if(backupSelf.points.length > 0){
+                deleteAreaData.push(i + 1);
+            }
+        }
+
+        requestData['BackgroundColourLevel'] = $scope.colorLevelSection.BackgroundColourLevel === 'true' ? 100 : 1;
+
+        if(deleteAreaData.length > 0){
+            if(deleteAreaData.length === 4){
+                deleteAreaData = ['All'];
+            }
+            SunapiClient.get(
+                '/stw-cgi/eventsources.cgi?msubmenu=heatmap&action=remove', 
+                {
+                    AreaIndex: deleteAreaData.join(',')
+                }, 
+                setHeatMap, 
+                failCallback, '', true);
+        }else{
+            setHeatMap();
+        }
 	}
 
 	function set(){

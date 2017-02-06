@@ -4888,6 +4888,13 @@ fieldset .ui-slider:not(.ui-slider-vertical) .ui-state-default.ui-state-active {
   color: #4c4c4c;
   font-weight: bold;
 }
+.storage-fieldset[disabled="disabled"] input,
+.storage-fieldset[disabled="disabled"] select {
+  border-color: #e9e9e9 !important;
+  color: #797979 !important;
+  background-color: #f2f2f2 !important;
+  opacity: .7 !important;
+}
 rzslider {
   margin-top: 35px;
 }
@@ -5938,6 +5945,7 @@ Prefix : pc-n-hm
 #pc-realtime {
   position: relative;
   margin: 0;
+  padding-top: 10px;
   width: 100%;
   float: left;
 }
@@ -6037,15 +6045,15 @@ Prefix : pc-n-hm
   margin-left: 30px;
   margin-top: 10px;
 }
-#pc-setup-collapse-calibration #pc-setup-collapse-calibration-icon {
+#pc-setup-collapse-calibration .pc-setup-collapse-calibration-cameraheight {
+  padding: 10px 0;
+}
+#pc-setup-collapse-calibration-icon {
   width: 116px;
   height: 99px;
   float: left;
   background-image: url("../base/images/setup/calibration_icon.png");
   background-repeat: no-repeat;
-}
-#pc-setup-collapse-calibration .pc-setup-collapse-calibration-cameraheight {
-  padding: 10px 0;
 }
 #pc-setup-counting-rule .pc-n-hm-heading-lv2 {
   line-height: 29px;
@@ -6109,8 +6117,12 @@ Prefix : pc-n-hm
 ------------------------------------------ */
 .pc-realtime-video {
   position: relative;
-  width: 640px;
-  background-color: #f8f8f8;
+}
+.pc-realtime-video:after,
+.pc-realtime-video:before {
+  clear: both;
+  display: block;
+  content: ' ';
 }
 #pc-realtime-calibration,
 #pc-realtime-live-svg {
@@ -6327,9 +6339,6 @@ Prefix : pc-n-hm
 #hm-setup-camera-height-slider-meter {
   float: left;
   line-height: 39px;
-}
-div.hm_index {
-  padding-top: 20px;
 }
 div.hm_index > div {
   width: 640px;
@@ -6578,9 +6587,13 @@ div.hm_index span:last-of-type {
   top: 0;
   left: 0;
   z-index: 1;
-  width: 640px;
-  height: 640px;
   background-repeat: no-repeat;
+}
+#hm-realtime-overimg:after,
+#hm-realtime-overimg:before {
+  clear: both;
+  display: block;
+  content: ' ';
 }
 img[id^="hm-results-image-"] {
   margin-top: 20px;

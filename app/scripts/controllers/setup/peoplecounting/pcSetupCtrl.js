@@ -28,6 +28,10 @@ kindFramework.controller('PCSetupCtrl',
 
 	var mAttr = Attributes.get();
 
+	$scope.support = {
+		isFisheyeLens: mAttr.FisheyeLens
+	};
+
 	var pcSetupModel = new PcSetupModel();
 	$scope.lang = pcSetupModel.getStLang();
 
@@ -171,12 +175,23 @@ kindFramework.controller('PCSetupCtrl',
 			var calibrationMinSize = 0;
 			var calibrationMaxSize = 0;
 
+			/*
+			Calibration guide box의 최소, 최대 크기는 다음과 같고, 최소보다 작거나 최대보다 크게 설정할 수 없다
+
+			- 최소 : View 영상의 가로세로 중 짧은 길이의 10%
+			- 최대 : View 영상의 가로세로 중 긴 길이의 50%
+
+			* GUI View 영상 640x480 경우
+
+			- 최소 : 48 x 48 [pixels]
+			- 최대 : 320 x 320 [pixels]
+			*/
 			if(defaultResolution.height > defaultResolution.width){
 				calibrationMaxSize = maxResolution.height * 0.5;
-				calibrationMinSize = maxResolution.width * 0.03;
+				calibrationMinSize = maxResolution.width * 0.1;
 			}else{
 				calibrationMaxSize = maxResolution.width * 0.5;
-				calibrationMinSize = maxResolution.height * 0.03;
+				calibrationMinSize = maxResolution.height * 0.1;
 			}
 
 			//Calibration 좌표 설정
@@ -190,8 +205,41 @@ kindFramework.controller('PCSetupCtrl',
 			};
 
 			//Exclude Area 임의 설정
-			for(var i = 0; i < 4; i++){
-				$scope.excludeAreaSection.update(i, {points: []});
+			try{
+				//초기화
+				for(var i = 0; i < 4; i++){
+					$scope.excludeAreaSection.update(i, {
+						points: [],
+        				isEnable: false,
+        				isSelected: false
+					});
+				}
+
+				if("Areas" in data){
+					for(var i = 0, ii = data.Areas.length; i < ii; i++){
+						var self = data.Areas[i];
+						var coordinates = self.Coordinates;
+						var points = [];
+
+						for(var j = 0, jj = coordinates.length; j < jj; j++){
+							var jSelf = coordinates[j];
+							points.push([
+								jSelf.x,
+								jSelf.y
+							]);
+						}
+
+						$scope.excludeAreaSection.update(self.Area - 1, {
+							points: points,
+	        				isEnable: true,
+	        				isSelected: false
+						});	
+					}
+				}
+
+				$scope.excludeAreaSection.backup();
+			}catch(e){
+				console.error(e);
 			}
 
 			//Start Polling for counting
@@ -373,11 +421,11 @@ kindFramework.controller('PCSetupCtrl',
 		$scope.sketchinfo = getSketchinfo(flag);
 
 
-		//초기에 Camera Height 로 설정되어 있을 시 영역 드래그 종료
+		//초기에 Camera Height 로 설정되어 있을 시 영역 숨기기
 		if($scope.currentTapStatus[2] === true 
 			&& $scope.calibrationSection.calibrationMode === $scope.calibrationSection.calibrationModeOptions[0]){
 			setTimeout(function(){
-				sketchbookService.stopEvent();	
+				sketchbookService.hideGeometry(0);	
 			});
 		}
 	};
@@ -389,6 +437,7 @@ kindFramework.controller('PCSetupCtrl',
 		};
 		$scope.coordinates = [];
 		var data = null;
+		var convertedData = [];
         
         //Exclude Area
         if(flag === "area") {
@@ -397,7 +446,7 @@ kindFramework.controller('PCSetupCtrl',
         		var isEmpty = self.points.length === 0;
         		var coordinatesInfo = {
         			isSet: !isEmpty,
-        			enable: !isEmpty,
+        			enable: self.isEnable,
         			points: self.points
         		};
 
@@ -417,6 +466,7 @@ kindFramework.controller('PCSetupCtrl',
         			points: [],
         			direction: null
         		};
+        		var maxResolution = pcSetupService.getMaxResolution();
 
         		if(self !== null){
         			coordinatesInfo.points[0] = [self.x1, self.y1];
@@ -432,20 +482,16 @@ kindFramework.controller('PCSetupCtrl',
         	sketchinfo.maxNumber = 2;
         	sketchinfo.maxArrow = 'R';
         	sketchinfo.color = 0;
-        	sketchinfo.minLineLength = 120;
+        	sketchinfo.minLineLength = Math.ceil(120/640 * maxResolution.width);
         //Calibration
         } else if(flag === "calibration") {
         	data = $scope.calibrationSection.data;
+        	convertedData = $scope.calibrationSection.getCoordinatesForSketchbook();
             $scope.coordinates = [
             	{
         			isSet: true,
         			enable: true,
-            		points: [
-	            		[data.x1,data.y1],
-	            		[data.x1,data.y2],
-	            		[data.x2,data.y2],
-	            		[data.x2,data.y1]
-            		]
+            		points: convertedData
             	}
             ];
 
@@ -463,8 +509,6 @@ kindFramework.controller('PCSetupCtrl',
             	width: data.maxSize,
             	height: data.maxSize
             };
-
-            console.log(sketchinfo);
         }
 
         return angular.copy(sketchinfo);
@@ -480,8 +524,12 @@ kindFramework.controller('PCSetupCtrl',
 
     $scope.excludeAreaSection = {
     	data: [],
+    	backupData: [],
     	update: function(index, data){
     		$scope.excludeAreaSection.data[index] = data;
+    	},
+    	backup: function(){
+    		$scope.excludeAreaSection.backupData = angular.copy($scope.excludeAreaSection.data);
     	},
     	updatePoints: function(index, points){
     		$scope.excludeAreaSection.data[index].points = points;
@@ -535,18 +583,18 @@ kindFramework.controller('PCSetupCtrl',
 			if(section.calibrationMode === section.calibrationModeOptions[0]){
 				section.cameraHeightOptions.disabled = false;
 				section.iconStyle.color = '';
-				sketchbookService.stopEvent();
+				sketchbookService.hideGeometry(0);
 			}else{
 				section.cameraHeightOptions.disabled = true;
 				section.iconStyle.color = getSliderColor();
-				sketchbookService.startEvent();
+				sketchbookService.showGeometry(0);
 			}
 		},
 		setCalibratoinHeight: function(height){
 			$scope.calibrationSection.cameraHeight.data = height / $scope.calibrationSection.ratio;
 		},
 		getCalibrationHeight: function(){
-			return $scope.calibrationSection.cameraHeight.data * $scope.calibrationSection.ratio;
+			return Math.ceil($scope.calibrationSection.cameraHeight.data * $scope.calibrationSection.ratio);
 		},
 		upCameraHeight: function(){
 			var section = $scope.calibrationSection;
@@ -568,7 +616,71 @@ kindFramework.controller('PCSetupCtrl',
 				section.cameraHeight.data = parseFloat(section.cameraHeight.data.toFixed(1));
 			}
 		},
+		/**
+		 * 영상 모드가 Flip, Mirror, Rotate(90 or 270) 일 때
+		 * Calibration의 Coordinate인 (x1, y1) (x2, y2) 의 순서가 다르므로
+		 * Sketchbook 에서 항상 적상적으로 나올 수 있게 변경
+		 */
+		getCoordinatesForSketchbook: function(){
+			var calibrationData = $scope.calibrationSection.data;
+			var points = [[],[],[],[]];
+
+			if(calibrationData.x1 < calibrationData.x2){
+				points[0][0] = calibrationData.x1;
+				points[1][0] = calibrationData.x1;
+				points[3][0] = calibrationData.x2;
+				points[2][0] = calibrationData.x2;
+			}else{
+				points[0][0] = calibrationData.x2;
+				points[1][0] = calibrationData.x2;
+				points[3][0] = calibrationData.x1;
+				points[2][0] = calibrationData.x1;
+			}
+
+			if(calibrationData.y1 < calibrationData.y2){
+				points[0][1] = calibrationData.y1;
+				points[1][1] = calibrationData.y1;
+				points[3][1] = calibrationData.y2;
+				points[2][1] = calibrationData.y2;
+			}else{
+				points[0][1] = calibrationData.y2;
+				points[1][1] = calibrationData.y2;
+				points[3][1] = calibrationData.y1;
+				points[2][1] = calibrationData.y1;	
+			}
+
+			return points;
+		},
+		/**
+		 * Sketchbook에서 정상적인 모양으로 데이터를 넘겨주면
+		 * SUNAPI에서 받은 Calibration의 Coordinates 순서와 동일하게 변경한다.
+		 */
+		updateCoordinatesForSunapi: function(pointsFromSketchbook){
+			var calibrationData = $scope.calibrationSection.data;
+			var firstIndex = 0;
+			var secondIndex = 0;
+
+			if(calibrationData.x1 < calibrationData.x2 && calibrationData.y1 < calibrationData.y2){
+				firstIndex = 0;
+				secondIndex = 2;
+			}else if(calibrationData.x1 > calibrationData.x2 && calibrationData.y1 > calibrationData.y2){
+				firstIndex = 2;
+				secondIndex = 0;
+			}else if(calibrationData.x1 > calibrationData.x2 && calibrationData.y1 < calibrationData.y2){
+				firstIndex = 3;
+				secondIndex = 1;
+			}else if(calibrationData.x1 < calibrationData.x2 && calibrationData.y1 > calibrationData.y2){
+				firstIndex = 1;
+				secondIndex = 3;
+			}
+
+			calibrationData.x1 = pointsFromSketchbook[firstIndex][0];
+			calibrationData.y1 = pointsFromSketchbook[firstIndex][1];
+			calibrationData.x2 = pointsFromSketchbook[secondIndex][0];
+			calibrationData.y2 = pointsFromSketchbook[secondIndex][1];
+		},
 		init: function(mode, height, min, max, options){
+
 			var section = $scope.calibrationSection;
 
 			section.calibrationMode = mode;
@@ -623,18 +735,23 @@ kindFramework.controller('PCSetupCtrl',
         		case 'mouseup':
         			$scope.excludeAreaSection.updatePoints(modifiedIndex, modifiedPoints);
         		break;
+        		case 'delete':
+        			$scope.excludeAreaSection.update(modifiedIndex, {
+        				points: [],
+        				isEnable: false,
+        				isSelected: false
+        			});
+        		break;
         	}
 
         	if(modifiedType !== "delete"){
         		sketchbookService.activeShape(modifiedIndex);
+        		$scope.excludeAreaSection.select(modifiedIndex);
         	}
 
         	$timeout(function(){});
         }else if($scope.currentTapStatus[2] === true){ //Calibration
-        	$scope.calibrationSection.data.x1 = modifiedPoints[0][0];
-        	$scope.calibrationSection.data.y1 = modifiedPoints[0][1];
-        	$scope.calibrationSection.data.x2 = modifiedPoints[2][0];
-        	$scope.calibrationSection.data.y2 = modifiedPoints[2][1];
+        	$scope.calibrationSection.updateCoordinatesForSunapi(modifiedPoints);
         }
     }, $scope);
 
@@ -701,6 +818,7 @@ kindFramework.controller('PCSetupCtrl',
 		var linePainterData = $scope.countingRuleSection.lineObject;
 
 		var requestData = {};
+		var deleteAreaData = [];
 
 		var failCallback = function(errorData){
 			console.log(errorData);
@@ -710,7 +828,7 @@ kindFramework.controller('PCSetupCtrl',
 
 		for(var i = 0, len = countRuleSectionData.length; i < len ; i++){
 			var ruleInfo = $scope.countingRuleSection.data[i];
-			if(linePainterData[i] !== null){
+			if(linePainterData[i].enable === true){
 				var linePainterItemData = linePainterData[i];
 
 				var coordinates = [
@@ -727,6 +845,19 @@ kindFramework.controller('PCSetupCtrl',
 			}
 
 			requestData['Line.' + ruleInfo.index + '.Enable'] = ruleInfo.use;
+		}
+
+		//Exclude Area 저장
+		for(var i = 0, ii = $scope.excludeAreaSection.data.length; i < ii; i++){
+			var self = $scope.excludeAreaSection.data[i];
+			var backupSelf = $scope.excludeAreaSection.backupData[i];
+			//Exclude Area이기 때문에 항상 Outside로 설정
+			if(self.points.length > 0){
+				requestData['Area.' + (i + 1) + '.Type'] = 'Outside';
+				requestData['Area.' + (i + 1) + '.Coordinates'] = self.points.join(',');	
+			}else if(backupSelf.points.length > 0){
+				deleteAreaData.push(i + 1);
+			}
 		}
 
 		//set People Counting use or unuse
@@ -754,13 +885,30 @@ kindFramework.controller('PCSetupCtrl',
 					.pcSetupReport
 					.setReport()
 					.then(function(){
-						$timeout(function(){
-							if(needRefresh){
-								view();
-							}else{
-								$scope.init();
-							}
-						});
+						var refresh = function(){
+							$timeout(function(){
+								if(needRefresh){
+									view();
+								}else{
+									$scope.init();
+								}
+							});
+						};
+
+						if(deleteAreaData.length > 0){
+				            if(deleteAreaData.length === 4){
+				                deleteAreaData = ['All'];
+				            }
+							SunapiClient.get(
+								'/stw-cgi/eventsources.cgi?msubmenu=peoplecount&action=remove', 
+								{
+									AreaIndex: deleteAreaData.join(',')
+								}, 
+								refresh, 
+								failCallback, '', true);
+						}else{
+							refresh();
+						}
 					}, failCallback);
 			}, failCallback);
 	}

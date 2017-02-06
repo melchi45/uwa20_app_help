@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "选择 PTZ 模式",
     "lang_statistics": "统计",
     "lang_peoplecounting": "人数统计",
+    "lang_enable_feature_people_counting": "使能人数计数",
+    "lang_enable_feature_heatmap": "使能热图",
     "lang_realtime": "实时",
     "lang_msg_norule": "尚无已建立的规则。",
     "lang_msg_addrule": "在 %1 菜单中建立一个规则。",

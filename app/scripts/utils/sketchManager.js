@@ -42,6 +42,7 @@ var SketchManager = (function() {
     var ratio = null;
 
     var colorFactory = {
+        originalRed: '#FF0000',
         red: "#CE534D",
         brightRed: '#CE827E',
         darkRed: '#CC3333',
@@ -69,7 +70,7 @@ var SketchManager = (function() {
         },
         enabled: {
             stroke: "1",
-            fill: "0.4"
+            fill: "0.1"
         },
         metaData: "0.7"
     };
@@ -185,7 +186,7 @@ var SketchManager = (function() {
 
     function getMetaDataOptions(args){
         var context = args[0] === 0 ? fContext : bContext;
-        var color = args[1] === 0 ? colorFactory.red : colorFactory.green;
+        var color = args[1] === 0 ? colorFactory.originalRed : colorFactory.green;
         var startGlobalAlpha = alphaFactory.metaData;
 
         return {
@@ -2393,6 +2394,7 @@ var SketchManager = (function() {
                     fillOpacity: 0,
                     heightRatio: sketchInfo.wiseFDCircleHeightRatio //Wise Face Detection에 표현되는 원의 반지름 %
                 };
+                kindSvgOptions.lineStrokeWidth = 2;
             }
 
             if("initCenter" in sketchInfo){
@@ -2659,28 +2661,30 @@ var SketchManager = (function() {
                         kindSvgOptions.lineColor = i === 0 ? colorFactory.blue : colorFactory.red;
                         kindSvgOptions.pointColor = i === 0 ? colorFactory.blue : colorFactory.red;
 
-                        if(i === 1){
-                            kindSvgOptions.maxSize = {
-                                width: videoInfo.width,
-                                height: videoInfo.height
-                            };
-                            kindSvgOptions.minSize = {
-                                width: minWidth,
-                                height: minHeight
-                            };
-                        }else{
-                            kindSvgOptions.ratio = [1,1];
-                            kindSvgOptions.maxSize = {
-                                width: maxWidth,
-                                height: maxHeight
-                            };
+                        if(sketchInfo.workType === "commonArea"){
+                            if(i === 1){
+                                kindSvgOptions.maxSize = {
+                                    width: videoInfo.width,
+                                    height: videoInfo.height
+                                };
+                                kindSvgOptions.minSize = {
+                                    width: minWidth,
+                                    height: minHeight
+                                };   
+                            }else{
+                                kindSvgOptions.ratio = [1,1];
+                                kindSvgOptions.maxSize = {
+                                    width: maxWidth,
+                                    height: maxHeight
+                                };
 
-                            fixedMinSize = videoInfo.height * sketchInfo.minSizePercentage / 100;
-                            
-                            kindSvgOptions.minSize = {
-                                width: fixedMinSize,
-                                height: fixedMinSize
-                            };
+                                fixedMinSize = videoInfo.height * sketchInfo.minSizePercentage / 100;
+                                
+                                kindSvgOptions.minSize = {
+                                    width: fixedMinSize,
+                                    height: fixedMinSize
+                                };
+                            }
                         }
 
                         _self.addSVGObj(kindSVGEditor.draw(kindSvgOptions), false, i);
@@ -2816,7 +2820,9 @@ var SketchManager = (function() {
                     },
                     linecontextmenu: function(event){
                         event.preventDefault();
-                        _self.openDialog(this.lineIndex);
+                        if(sketchInfo.workType !== "peoplecount"){
+                            _self.openDialog(this.lineIndex);   
+                        }
                     }
                 },
                 arrow: {
@@ -2842,6 +2848,12 @@ var SketchManager = (function() {
                 kindSvgOptions.arrow.text = false;
                 kindSvgOptions.maxPoint = 2;
                 kindSvgOptions.notUseAutoChangeOfArrow = true;
+
+                if(sketchInfo.useEvent === false){
+                    kindSvgOptions.fillColor = colorFactory.brightBlue;
+                    kindSvgOptions.lineColor = colorFactory.brightBlue;
+                    kindSvgOptions.pointColor = colorFactory.brightBlue;
+                }
             }
 
             if("useEvent" in sketchInfo){

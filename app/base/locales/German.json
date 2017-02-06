@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "PTZ-Modus auswählen",
     "lang_statistics": "Statistiken",
     "lang_peoplecounting": "Menschenzählen",
+    "lang_enable_feature_people_counting": "Menschenzählen aktivieren",
+    "lang_enable_feature_heatmap": "Heatmap aktivieren",
     "lang_realtime": "Echtzeit",
     "lang_msg_norule": "Es wurde keine Regel, die festgelegt wurde.",
     "lang_msg_addrule": "Legen Sie eine Regel im %1-Menü fest.",

@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "Vyberte režim PTZ",
     "lang_statistics": "Statistiky",
     "lang_peoplecounting": "Počítání osoby",
+    "lang_enable_feature_people_counting": "Povolit počítání osob",
+    "lang_enable_feature_heatmap": "Povolit teplotní mapu",
     "lang_realtime": "Reálný čas",
     "lang_msg_norule": "Žádné pravidlo nebylo zavedeno.",
     "lang_msg_addrule": "Zaveďte pravidlo v nabídce %1.",

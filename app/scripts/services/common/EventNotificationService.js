@@ -15,7 +15,7 @@ kindFramework
 
   	var commonBorderCSS = "3px solid white",
   		fullscreenBorderCSS = "3px solid black",
-  		detectBorderCSS = "3px solid orange";
+  		detectBorderCSS = "3px solid red";
 
   	this.setBorderElement = function(element, currentPage){		//element type: jquery obj
   		borderElement = element;
