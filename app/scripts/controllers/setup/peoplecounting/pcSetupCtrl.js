@@ -28,6 +28,10 @@ kindFramework.controller('PCSetupCtrl',
 
 	var mAttr = Attributes.get();
 
+	$scope.support = {
+		isFisheyeLens: mAttr.FisheyeLens
+	};
+
 	var pcSetupModel = new PcSetupModel();
 	$scope.lang = pcSetupModel.getStLang();
 

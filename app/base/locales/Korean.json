@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "PTZ 모드 선택",
     "lang_statistics": "통계",
     "lang_peoplecounting": "피플 카운팅",
+    "lang_enable_feature_people_counting": "피플 카운팅 활성화",
+    "lang_enable_feature_heatmap": "히트맵 활성화",
     "lang_realtime": "실시간",
     "lang_msg_norule": "설정된 룰이 없습니다.",
     "lang_msg_addrule": "%1 메뉴에서 룰을 설정해주세요.",

@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "Selecteer PTZ-modus",
     "lang_statistics": "Statistieken",
     "lang_peoplecounting": "Aantal mensen",
+    "lang_enable_feature_people_counting": "Mensen tellen inschakelen",
+    "lang_enable_feature_heatmap": "Hittekaart inschakelen",
     "lang_realtime": "Real-time",
     "lang_msg_norule": "Er is geen regel ingesteld.",
     "lang_msg_addrule": "Stel een regel in in het menu %1.",

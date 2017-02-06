@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "Sélectionnez le mode PTZ",
     "lang_statistics": "Statistiques",
     "lang_peoplecounting": "Comptage de personnes",
+    "lang_enable_feature_people_counting": "Activer le comptage des personnes",
+    "lang_enable_feature_heatmap": "Activer la carte thermique",
     "lang_realtime": "Temps réel",
     "lang_msg_norule": "Aucune règle n'a été établie.",
     "lang_msg_addrule": "Etablissez une règle dans le menu %1",

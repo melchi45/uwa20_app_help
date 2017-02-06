@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "Выбрать режим PTZ",
     "lang_statistics": "Статистика",
     "lang_peoplecounting": "Счет людей",
+    "lang_enable_feature_people_counting": "Разрешить подсчет людей",
+    "lang_enable_feature_heatmap": "Разрешить тепловую карту",
     "lang_realtime": "Реальное время",
     "lang_msg_norule": "Нет установленного правила.",
     "lang_msg_addrule": "Установить правило в меню %1.",

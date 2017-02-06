@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "Válassza ki a PTZ módot",
     "lang_statistics": "Statisztika",
     "lang_peoplecounting": "Emberszámlálás",
+    "lang_enable_feature_people_counting": "Ember számlálás engedélyezése",
+    "lang_enable_feature_heatmap": "\r\n\tHőtérkép engedélyezése",
     "lang_realtime": "Valós idő",
     "lang_msg_norule": "Nem hoztak létre szabályt.",
     "lang_msg_addrule": "Hozzon létre egy szabályt a(z) %1 menüben.",

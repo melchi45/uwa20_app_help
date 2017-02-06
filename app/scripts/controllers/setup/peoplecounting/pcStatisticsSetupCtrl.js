@@ -788,7 +788,7 @@ kindFramework.controller('PCStatisticsCtrl',
 		}
 
 		/* tickFormat이 비정상일 때 null 처리 */
-		if(isFloat(data)) return null;
+		if(isFloat(data) || data < 0) return null;
 
     	var num = data < 10 ? 1 : data < 100 ? 2 : 3;
         return d3.format('.' + num + 's')(data);

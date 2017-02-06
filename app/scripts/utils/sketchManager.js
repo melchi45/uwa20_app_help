@@ -2820,7 +2820,9 @@ var SketchManager = (function() {
                     },
                     linecontextmenu: function(event){
                         event.preventDefault();
-                        _self.openDialog(this.lineIndex);
+                        if(sketchInfo.workType !== "peoplecount"){
+                            _self.openDialog(this.lineIndex);   
+                        }
                     }
                 },
                 arrow: {

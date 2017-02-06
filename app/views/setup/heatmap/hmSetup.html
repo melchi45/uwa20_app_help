@@ -7,7 +7,7 @@
     <div class="wn5-setup-section">
         <div class="wn5-gui-body-large">
             <input type="checkbox" ng-model="useHeatmap" ng-click="submitEnable()">
-            <label>{{ 'Enable heatmap' | translate }}</label>
+            <label>{{ 'lang_enable_feature_heatmap' | translate }}</label>
         </div>
     </div>
 
@@ -49,24 +49,26 @@
                     </div>
                     <div class="wn5-setup-preview-content">
                         <div class="form-group">
-                            <input 
-                                ng-model="colorLevelSection.BackgroundColourLevel" 
-                                ng-change="colorLevelSection.changeColorTone()"
-                                ng-value="'true'"
-                                type="radio">
-                            <label>
-                                {{'lang_color' | translate}}
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <input 
-                                ng-model="colorLevelSection.BackgroundColourLevel"
-                                ng-change="colorLevelSection.changeColorTone()"
-                                ng-value="'false'"
-                                type="radio">
-                            <label>
-                                {{'lang_bw' | translate}}
-                            </label>
+                            <div class="pc-n-hm-grid-4">
+                                <input 
+                                    ng-model="colorLevelSection.BackgroundColourLevel" 
+                                    ng-change="colorLevelSection.changeColorTone()"
+                                    ng-value="'true'"
+                                    type="radio">
+                                <label>
+                                    {{'lang_color' | translate}}
+                                </label>
+                            </div>
+                            <div class="pc-n-hm-grid-4">
+                                <input 
+                                    ng-model="colorLevelSection.BackgroundColourLevel"
+                                    ng-change="colorLevelSection.changeColorTone()"
+                                    ng-value="'false'"
+                                    type="radio">
+                                <label>
+                                    {{'lang_bw' | translate}}
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </section>

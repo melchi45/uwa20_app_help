@@ -7,7 +7,7 @@
         <hr class="wn5-setup-hr">
         <div class="wn5-gui-body-large">
             <input type="checkbox" name="Enable" ng-model="countingRuleSection.peopleCountingEnable" ng-change="submitEnable()">
-            <label>{{ 'Enable People Counting' | translate }}</label>
+            <label>{{ 'lang_enable_feature_people_counting' | translate }}</label>
         </div>
     </div>
     
@@ -117,7 +117,7 @@
                     </section>
                 </div>
                 <div ng-if="currentTapStatus[2] === true">
-                    <section class="form-group">
+                    <section class="form-group" ng-if="support.isFisheyeLens">
                         <div class="wn5-setup-preview-heading">
                             <label>
                                 <input 
@@ -147,6 +147,7 @@
                                 <input 
                                     type="radio" 
                                     name="calibration_type"
+                                    ng-if="support.isFisheyeLens"
                                     ng-change="calibrationSection.changeCalibrationMode()"
                                     ng-model="calibrationSection.calibrationMode"
                                     ng-value="calibrationSection.calibrationModeOptions[1]">

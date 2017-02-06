@@ -1071,6 +1071,8 @@
     "lang_select_ptz_mode": "Välj PTZ-läge",
     "lang_statistics": "Statistik",
     "lang_peoplecounting": "Personräknare",
+    "lang_enable_feature_people_counting": "Aktivera personräkning",
+    "lang_enable_feature_heatmap": "Aktivera Heat map",
     "lang_realtime": "Realtid",
     "lang_msg_norule": "Det finns ingen regel som har upprättats.",
     "lang_msg_addrule": "Upprätta en regel i %1-menyn.",
