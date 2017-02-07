@@ -559,27 +559,6 @@ var H264Session = function () {
 				inputLength = 0;
 			}
 		},
-		stepForward: function(){
-			if(this.videoBufferList !== null) {
-				//        console.log("streamDrawer::drawFrame stepValue = FORWARD, videoBufferList.length = " + videoBufferList._length + ", FrameNum = " + videoBufferList.getCurIdx());
-				var bufferNode;
-				var nextNode = this.videoBufferList.getCurIdx() + 1;
-				if (nextNode <= this.videoBufferList._length) {
-					bufferNode = this.videoBufferList.searchNodeAt(nextNode);
-					if (bufferNode === null || bufferNode === undefined) {
-						return false;
-					} else {
-						var data = {};
-						this.SetTimeStamp(bufferNode.timeStamp);
-						data.frameData = decoder.decode(bufferNode.buffer);
-						data.timeStamp = bufferNode.timeStamp;
-						return data;
-					}
-				} else {
-					return false;
-				}
-			}
-		},
 		stepBackward: function(){
 			if(this.videoBufferList !== null) {
 				var bufferNode;
