@@ -1074,6 +1074,7 @@
     "lang_statistics": "Statistieken",
     "lang_peoplecounting": "Aantal mensen",
     "lang_enable_feature_people_counting": "Mensen tellen inschakelen",
+    "lang_msg_not_support_function": "Functie niet ondersteund.",
     "lang_enable_feature_heatmap": "Hittekaart inschakelen",
     "lang_realtime": "Real-time",
     "lang_msg_norule": "Er is geen regel ingesteld.",

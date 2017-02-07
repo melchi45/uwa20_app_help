@@ -1074,6 +1074,7 @@
     "lang_statistics": "통계",
     "lang_peoplecounting": "피플 카운팅",
     "lang_enable_feature_people_counting": "피플 카운팅 활성화",
+    "lang_msg_not_support_function": "지원하지 않는 기능입니다",
     "lang_enable_feature_heatmap": "히트맵 활성화",
     "lang_realtime": "실시간",
     "lang_msg_norule": "설정된 룰이 없습니다.",
