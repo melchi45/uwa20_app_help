@@ -422,11 +422,11 @@ KindSVGEditor.addPlugin('draw', function(options){
 			lineElement.onmousedown = selectLine;
 
 			lineElement.onmouseup = mouseUpHandler;
-			lineElement.onmouseleave = function(){
+			lineElement.addEventListener('mouseleave', function(event){
 				if(this.isSelected === true){
 					mouseUpHandler();
 				}
-			};
+			});
 
 			lineElement.addEventListener('contextmenu', function(event){
 				callCustomEvent("linecontextmenu", event);
@@ -1426,10 +1426,12 @@ KindSVGEditor.addPlugin('draw', function(options){
 			circleHelper.update();
 		}
 
+		if(selectedLineIndex !== null){
+			callCustomEvent("mouseup", LineInformation.getAll());
+		}
+
 		resetElementStatus();
 		resetParentSvgAttr();
-
-		// callCustomEvent("mouseup", LineInformation.getAll());
 	}
 
 	// function parentSVGMouseLeaveHandle(){
