@@ -1072,6 +1072,7 @@
     "lang_statistics": "Statistiche",
     "lang_peoplecounting": "Conteggio persone",
     "lang_enable_feature_people_counting": "Abilitare il conteggio delle persone",
+    "lang_msg_not_support_function": "Funzione non supportata.",
     "lang_enable_feature_heatmap": "Abilitare la mappa termica.",
     "lang_realtime": "Tempo reale",
     "lang_msg_norule": "Non è stata stabilita alcuna regola.",

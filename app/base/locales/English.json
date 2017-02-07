@@ -1072,6 +1072,7 @@
     "lang_statistics": "Statistics",
     "lang_peoplecounting": "People Counting",
     "lang_enable_feature_people_counting": "Enable People counting",
+    "lang_msg_not_support_function": "Function not supported",
     "lang_enable_feature_heatmap": "Enable Heat map",
     "lang_realtime": "Real Time",
     "lang_msg_norule": "There is no rule that has been established.",

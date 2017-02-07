@@ -1072,6 +1072,7 @@
     "lang_statistics": "統計",
     "lang_peoplecounting": "人数カウント",
     "lang_enable_feature_people_counting": "人物カウント有効",
+    "lang_msg_not_support_function": "サポートされていない機能です。",
     "lang_enable_feature_heatmap": "ヒートマップ有効",
     "lang_realtime": "リアルタイム",
     "lang_msg_norule": "定められたルールはありません。",
