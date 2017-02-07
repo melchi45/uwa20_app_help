@@ -24,6 +24,9 @@ kindFramework.controller('HMSetupCtrl', function (
     var modalInstance = null;
     var BrowserDetect = COMMONUtils.getBrowserDetect();
 
+    $scope.support = {
+        isIE: BrowserDetect.isIE
+    };
     $scope.pageLoaded = false;
 
 	$scope.currentTapStatus = [true, false];
@@ -134,26 +137,6 @@ kindFramework.controller('HMSetupCtrl', function (
             $scope.colorLevelSection.BackgroundColourLevel = enable;
             $scope.colorLevelSection.changeColorTone();
         },
-        stopGrayPreview: function(){
-            return SunapiClient.get(
-                '/stw-cgi/image.cgi?msubmenu=camera&action=set&ImagePreview=Stop', 
-                {},
-                function(response){},
-                function(errorData){},
-                '', 
-                true
-            );
-        },
-        startGrayPreview: function(){
-            return SunapiClient.get(
-                '/stw-cgi/image.cgi?msubmenu=imageenhancements&action=set&Saturation=1&ImagePreview=Start', 
-                {},
-                function(response){},
-                function(errorData){},
-                '', 
-                true
-            );
-        },
         toggleColorTone: function(status){
             var previewVideo = $("#livecanvas");
             var filterOption = {
@@ -166,22 +149,10 @@ kindFramework.controller('HMSetupCtrl', function (
                     '-webkit-filter': 'grayscale(0%)'
                 }
             };
-            /**
-            WebViewer 지원 범위인 IE11에서 CSS filter를 지원하지 않기 때문에
-            /stw-cgi/image.cgi?msubmenu=imageenhancements&action=set&Saturation=<Number>&ImagePreview=Start
-            를 통해서 Preview 영상을 변경한다.
 
-            Preview 영상을 변경한 뒤 HeatMap을 벋어났을 때 
-            /stw-cgi/image.cgi?msubmenu=camera&action=set&ImagePreview=Stop을 통해
-            Stop을 해줘야 한다.
-            */
-            var method = null;
             var options = null;
 
-            if(BrowserDetect.isIE === true){
-                method = status === true ? "startGrayPreview" : "stopGrayPreview";
-                $scope.colorLevelSection[method]();
-            }else{
+            if(BrowserDetect.isIE !== true){
                 options = status === true ? filterOption.on : filterOption.off;
                 previewVideo.css(options);   
             }
@@ -445,26 +416,7 @@ kindFramework.controller('HMSetupCtrl', function (
             modalInstance.close();
             modalInstance = null;
         }
-        window.removeEventListener('beforeunload', stopGrayPreviewWhenUnload);
     });
-
-    /* HeatMap Setup을 벗어 날 때 */
-    $scope.$on('$stateChangeStart',function (event, toState, toParams, fromState, fromParams) {
-        window.removeEventListener('beforeunload', stopGrayPreviewWhenUnload);
-
-        if(toState.controller !== 'HMSetupCtrl'){
-            stopGrayPreviewWhenUnload();
-        }
-    });
-
-    /* 브라우저가 닫힐 때, 한번만 실행하게 함 */
-    function stopGrayPreviewWhenUnload(){
-        $scope.colorLevelSection.stopGrayPreview();
-    }
-
-    if (BrowserDetect.isIE) {
-        window.addEventListener('beforeunload', stopGrayPreviewWhenUnload);
-    }
 
     $rootScope.$saveOn('<app/scripts/directives>::<updateCoordinates>', function(obj, args) {
         var modifiedIndex = args[0];
