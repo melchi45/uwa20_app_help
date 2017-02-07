@@ -148,7 +148,7 @@ kindFramework
 	            start: startDate,
 	            end: endDate,
 	            zoomMax: 1000 * 60 * 60 * 24,
-	            zoomMin: 1000 * 60 * 5,
+	            zoomMin: 1000 * 60 * 30,
 	            min: startDate.format('YYYY-MM-DD HH:mm:ss'),
 	            max: endDate.format('YYYY-MM-DD HH:mm:ss'),
 	            margin: 0,
@@ -173,8 +173,8 @@ kindFramework
 					month:      '',
 					year:       ''	
 	        	},
-	        	minorLables : {
-					second:     'ss',
+	        	minorLabels : {
+					second:     's',
 					minute:     'HH:mm',
 					hour:       'HH:mm',
 					weekday:    'HH:mm',
