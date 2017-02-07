@@ -1074,6 +1074,7 @@
     "lang_statistics": "统计",
     "lang_peoplecounting": "人数统计",
     "lang_enable_feature_people_counting": "使能人数计数",
+    "lang_msg_not_support_function": "功能不受支持。",
     "lang_enable_feature_heatmap": "使能热图",
     "lang_realtime": "实时",
     "lang_msg_norule": "尚无已建立的规则。",

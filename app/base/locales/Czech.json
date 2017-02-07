@@ -1074,6 +1074,7 @@
     "lang_statistics": "Statistiky",
     "lang_peoplecounting": "Počítání osoby",
     "lang_enable_feature_people_counting": "Povolit počítání osob",
+    "lang_msg_not_support_function": "Funkce není podporována.",
     "lang_enable_feature_heatmap": "Povolit teplotní mapu",
     "lang_realtime": "Reálný čas",
     "lang_msg_norule": "Žádné pravidlo nebylo zavedeno.",

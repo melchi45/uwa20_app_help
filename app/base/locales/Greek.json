@@ -1074,6 +1074,7 @@
     "lang_statistics": "Στατιστικά στοιχεία",
     "lang_peoplecounting": "Απαρίθμηση ατόμων",
     "lang_enable_feature_people_counting": "Ενεργοποίηση Απαρίθμησης ατόμων",
+    "lang_msg_not_support_function": "Η λειτουργία δεν υποστηρίζεται.",
     "lang_enable_feature_heatmap": "Ενεργοποίηση Χάρτη θερμότητας",
     "lang_realtime": "Πραγματικός χρόνος",
     "lang_msg_norule": "Δεν υπάρχει καθoρισμένος κανόνας.",
