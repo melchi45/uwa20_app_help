@@ -474,6 +474,13 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         return false;
     };
 
+    $scope.getOnOffStatus = function(index) {
+        if(pageData.Storageinfo.Storages[index].Enable === 'Off') {
+            return true;
+        }
+        return false;
+    };
+
     function setStorageStatus() {
         var defer = $q.defer();
         var index = 0;
