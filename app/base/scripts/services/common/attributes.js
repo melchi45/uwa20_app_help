@@ -833,6 +833,11 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                         mAttributes.ISPVersion = response.data.ISPVersion;
                     }
 
+                    if (typeof response.data.CGIVersion !== 'undefined')
+                    {
+                        mAttributes.CGIVersion = response.data.CGIVersion;
+                    }
+
                     if (typeof response.data.TrackingVersion !== 'undefined')
                     {
                         mAttributes.TrackingVersion = response.data.TrackingVersion;
