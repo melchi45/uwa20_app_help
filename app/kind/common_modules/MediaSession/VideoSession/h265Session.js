@@ -450,6 +450,20 @@ var H265Session = function () {
           return data;
         }
       }
+    },
+    findIFrame: function() {
+      if(this.videoBufferList !== null) {
+        var bufferNode = this.videoBufferList.findIFrame();
+        if (bufferNode === null || bufferNode === undefined) {
+          return false;
+        } else {
+          var data = {};
+          this.SetTimeStamp(bufferNode.timeStamp);
+          data.frameData = decoder.decode(bufferNode.buffer);
+          data.timeStamp = bufferNode.timeStamp;
+          return data;
+        }
+      }
     }
   });
 
