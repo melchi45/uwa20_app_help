@@ -559,30 +559,6 @@ var H264Session = function () {
 				inputLength = 0;
 			}
 		},
-		stepBackward: function(){
-			if(this.videoBufferList !== null) {
-				var bufferNode;
-				var prevINode = this.videoBufferList.getCurIdx() - 1;
-				while (prevINode > 0) {
-					bufferNode = this.videoBufferList.searchNodeAt(prevINode);
-					if (bufferNode.frameType === "I" || bufferNode.codecType == "mjpeg") {
-						break;
-					} else {
-						bufferNode = null;
-						prevINode--;
-					}
-				}
-				if (bufferNode === null || bufferNode === undefined) {
-					return false;
-				} else {
-					var data = {};
-					this.SetTimeStamp(bufferNode.timeStamp);
-					data.frameData = decoder.decode(bufferNode.buffer);
-					data.timeStamp = bufferNode.timeStamp;
-					return data;
-				}
-			}
-		},
 		findIFrame: function() {
 			if(this.videoBufferList !== null) {
 				var bufferNode = this.videoBufferList.findIFrame();
