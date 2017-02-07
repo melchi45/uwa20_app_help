@@ -27,6 +27,11 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
             $scope.ISPVersion = mAttr.ISPVersion;
         }
 
+        if (mAttr.CGIVersion !== undefined)
+        {
+            $scope.CGIVersion = mAttr.CGIVersion;
+        }
+
         if (mAttr.TrackingVersion !== undefined)
         {
             $scope.TrackingVersion = mAttr.TrackingVersion;
