@@ -89,7 +89,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary" ng-click="OnStorageFormat($index)" ng-disabled="($parent.selected != $index || GetFormatButtonStatus($index)) && isLoading" style="text-align:center" type="button">
+                                        <button class="btn btn-primary" ng-click="OnStorageFormat($index)" ng-disabled="($parent.selected != $index || GetFormatButtonStatus($index)) && isLoading || getOnOffStatus($index)" style="text-align:center" type="button">
                                             {{ 'lang_format' | translate }}
                                         </button>
                                     </td>
