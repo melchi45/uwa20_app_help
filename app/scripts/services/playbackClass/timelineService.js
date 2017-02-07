@@ -148,7 +148,7 @@ kindFramework
 	            start: startDate,
 	            end: endDate,
 	            zoomMax: 1000 * 60 * 60 * 24,
-	            zoomMin: 1000 * 60,
+	            zoomMin: 1000 * 60 * 5,
 	            min: startDate.format('YYYY-MM-DD HH:mm:ss'),
 	            max: endDate.format('YYYY-MM-DD HH:mm:ss'),
 	            margin: 0,
@@ -160,9 +160,29 @@ kindFramework
 	            showCurrentTime:false,
 	            autoResize : false,
 	            moment: function(date) {
-    						return vis.moment(date).utc();
- 							},
+    				return vis.moment(date).utc();
+ 				},
 	        };
+	        options.format = {
+	        	majorLabels : {
+					second:     'HH:mm',
+					minute:     '',
+					hour:       '',
+					weekday:    '',
+					day:        '',
+					month:      '',
+					year:       ''	
+	        	},
+	        	minorLables : {
+					second:     'ss',
+					minute:     'HH:mm',
+					hour:       'HH:mm',
+					weekday:    'HH:mm',
+					day:        'HH:mm',
+					month:      'HH:mm',
+					year:       ''	        		
+	        	}
+	        }
 	        if( type === 'event') {
 	          options.format = {
 	              majorLabels: {
@@ -463,7 +483,6 @@ kindFramework
 					
 					timeline = new vis.Timeline(container, itemSet.getFullItemSet(), options);
 					timeline.addCustomTime(startDate.format(),'t1');
-					timeline.setOptions({ showMajorLabels:false});
 					searchData.setSelectedDate(convert_moment_to_Date(startDate));
 					var createInterval;
 					if( !isPhone ) {
@@ -581,9 +600,6 @@ kindFramework
 
 					var options = getTimelineOption(idVal, startDate, endDate);
 					timeline.setOptions(options);
-					timeline.setOptions({
-						showMajorLabels:false
-					});
 					itemSet.clearData();
 				};
 
