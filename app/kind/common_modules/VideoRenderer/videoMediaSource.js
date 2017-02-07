@@ -139,7 +139,7 @@ function VideoMediaSource() {
 
   function appendNextMediaSegment(mediaData) {
     if (sourceBuffer == null) return;
-  	if (mediaSource.readyState == "closed" || mediaSource.readyState == "ended" || sourceBuffer.updating) return;
+    if (mediaSource.readyState == "closed" || mediaSource.readyState == "ended" || sourceBuffer.updating) return;
       
       try {
         sourceBuffer.appendBuffer(mediaData);
@@ -166,7 +166,7 @@ function VideoMediaSource() {
     if (sourceBuffer.buffered.length > 0) {
       var startTime = sourceBuffer.buffered.start(sourceBuffer.buffered.length - 1) * 1;
       var endTime = sourceBuffer.buffered.end(sourceBuffer.buffered.length - 1) * 1;
-      var diffTime = 0
+      var diffTime = 0;
       var delay = 0;
 
       if (playbackFlag === true) {

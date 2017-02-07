@@ -45,9 +45,9 @@ function AudioPlayerGxx() {
 			var startPos = 0;
 			if((readLength/data.length) > 1){
 				if(videoDiffTime !== null){
-					startPos = (videoDiffTime) * codecInfo.samplingRate;
-					// console.log("audioBuffering :: Origin Buffering Time G7xx: " + readLength/codecInfo.samplingRate + " sec");	
-					// console.log("audioBuffering :: Waste Buffering Time G7xx: " + startPos/codecInfo.samplingRate + " sec");	
+					startPos = (videoDiffTime) * 8000;
+					// console.log("audioBuffering :: Origin Buffering Time G7xx: " + readLength/8000 + " sec");	
+					// console.log("audioBuffering :: Waste Buffering Time G7xx: " + startPos/8000 + " sec");	
 				}
 				if(startPos >= readLength || videoDiffTime === null){
 					readLength = 0;
