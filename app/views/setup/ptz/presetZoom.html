@@ -1,0 +1,64 @@
+<div id="presetzoompage" class="wrapper wrapper-content"  ng-show='pageLoaded' style="display:none">
+    <wn5-setup-main-title
+        data-title="lang_presetSetup">
+    </wn5-setup-main-title>
+    <fieldset class="preset-setup-fieldset">
+        <div class="wn5-setup-section" style="margin-top: 10px;">
+            <sketchbook class="wn5-setup-preview-video" videoinfo='videoinfo' style="margin-bottom: 10px;"></sketchbook>
+            
+            <!-- PTZ Control -->
+            <div class="ptz-control_box ptz-control_ptz-menu-width">
+                <ptz-control ptzinfo='ptzinfo'></ptz-control>
+            </div>
+            <!-- //PTZ Control End -->
+            <fieldset style="min-width:750px;">
+            <div class="wn5-setup-section-article"   style="margin-top:10px;">
+
+                <div class="form-group">                                                        
+                    <div class="wn5-setup-section-article-heading">
+                        {{ 'lang_number' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-model="CurrentPreset" style="width:100px">
+                            <option ng-selected="CurrentPreset == PresetNum" value={{PresetNum}} ng-repeat="PresetNum in PTZPresetOptionsList">{{PresetNum}}</option>
+                        </select>                        
+                        <button type="button" class="btn btn-primary" ng-disabled="false" style="text-align:left" ng-click="PresetControl()">{{ 'lang_go' | translate }}</button>
+                        <button type="button" class="btn btn-primary" ng-disabled="false" style="text-align:left" ng-click="PresetAdd()">{{ 'lang_add' | translate }}</button>
+                        <button type="button" class="btn btn-primary" ng-disabled="false" style="text-align:left" ng-click="PresetRemove()">{{ 'lang_remove' | translate }}</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_name' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input
+                                type="text"
+                                class="form-control"
+                                name="PresetName"
+                                maxlength="12"
+                                ng-model="PresetName"
+                                required ng-pattern-restrict="{{AlphaNumericStr}}"
+                                ng-maxlength="PresetNameMaxLen"
+                                maxlength="{{PresetNameMaxLen}}"
+                                style="width:100px"
+                        >
+                    </div>
+                    <div role="alert">
+                        <span class="error col-sm-2 control-label" ng-show="externalPTZForm.PresetName.$error.maxlength">Too long!</span>
+                    </div>
+                </div>
+            </div>
+        
+        </fieldset> 
+        </div>    
+    </fieldset>
+
+
+
+        <hr calss="wn5-setup-hr">            
+
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>

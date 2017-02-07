@@ -19,7 +19,9 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
             scope.showPTZControlFisheyeDPTZ = false;
             scope.showPTZControlEPTZ = false;
             scope.DATFlag = false;
-            scope.isShowPTZControl = false;
+            scope.isShowPTZControl = false;                 
+            scope.showZoomFocus = false;   
+            scope.showPTZControlBox = true;
 
             var sunapiURI, showPTZControlFlag = false;
 
@@ -32,7 +34,11 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 } else {
                     if(mAttr.PTZModel){
                         return true;
-                    }
+                    }                    
+                    else if (mAttr.ZoomOnlyModel === true)
+                    {
+                        scope.isShowPTZControl = true;
+                    }            
                     else {
                         if($state.current.name === "setup.ptzSetup_dptzSetup") {
                             SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
@@ -147,6 +153,17 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         scope.showPTZControlBLC = false;
                         scope.showPTZControlDPTZ = false;
                         scope.showPTZControlEPTZ = true;
+                        $("#ptz-control_at-selectable").unbind();
+                    }else if(ptzinfo.type ==='ZoomOnly'){
+                        scope.showPTZControl = false;
+                        scope.showPTZControlLabel = 'lang_hide';
+                        scope.showPTZControlPreset = false;
+                        scope.showPTZControlAT = false;
+                        scope.showPTZControlBLC = false;
+                        scope.showPTZControlDPTZ = false;
+                        scope.showPTZControlEPTZ = false;
+                        scope.showZoomFocus = true;
+                        scope.showPTZControlBox = false;
                         $("#ptz-control_at-selectable").unbind();
                     }else{
                         scope.showPTZControlPreset = false;
@@ -372,6 +389,64 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 }
             });
 
+            $("#ptz-control_slider-horizontal-zoom").unbind();
+            
+            $("#ptz-control_slider-horizontal-zoom").slider({
+                orientation: "horizontal",
+                min: -100,
+                max: 100,
+                value: 0,
+                revert: true,
+                slide: function(event, ui){
+                    if(ptzJogTimer === null) {
+                        makeJogTimer();
+                    }
+                    
+                    if(isJogUpdating === false) {
+                        var sliderVal = ui.value;
+                        sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True&Zoom=" + sliderVal;
+
+                        execSunapi(sunapiURI);
+                        isJogUpdating = true;
+                    }
+
+                },
+                stop: function(){
+                    $( "#ptz-control_slider-horizontal-zoom" ).slider('value', 0);
+                    ptzStop();
+                }
+            });
+            
+            
+            
+            
+            $("#ptz-control_slider-horizontal-focus").unbind();
+            
+            $("#ptz-control_slider-horizontal-focus").slider({
+                orientation: "horizontal",
+                min: -100,
+                max: 100,
+                value: 0,
+                revert: true,
+                slide: function(event, ui){
+                    if(ptzJogTimer === null) {
+                        makeJogTimer();
+                    }
+                    
+                    if(isJogUpdating === false) {
+                        var sliderVal = ui.value;
+                        sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&Focus=" + sliderVal;
+
+                        execSunapi(sunapiURI);
+                        isJogUpdating = true;
+                    }
+
+                },
+                stop: function(){
+                    $( "#ptz-control_slider-horizontal-focus" ).slider('value', 0);
+                    ptzStop();
+                }
+            });
             function makeJogTimer() {
                 ptzJogTimer = $interval(function() {
                     isJogUpdating = false;
