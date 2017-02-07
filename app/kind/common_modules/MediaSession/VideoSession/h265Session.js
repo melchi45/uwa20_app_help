@@ -426,20 +426,9 @@ var H265Session = function () {
         inputLength = 0;
       }
     },
-    stepBackward: function(){
+    findIFrame: function() {
       if(this.videoBufferList !== null) {
-        //        console.log("stepBackward stepValue = BACKWARD, videoBufferList.length = " + videoBufferList._length + ", FrameNum = " + videoBufferList.getCurIdx());
-        var bufferNode;
-        var prevINode = this.videoBufferList.getCurIdx() - 1;
-        while (prevINode > 0) {
-          bufferNode = this.videoBufferList.searchNodeAt(prevINode);
-          if (bufferNode.frameType === "I" || bufferNode.codecType == "mjpeg") {
-            break;
-          } else {
-            bufferNode = null;
-            prevINode--;
-          }
-        }
+        var bufferNode = this.videoBufferList.findIFrame();
         if (bufferNode === null || bufferNode === undefined) {
           return false;
         } else {

@@ -44,7 +44,8 @@
 
             <div class="wn5-setup-preview-table">
                 <section class="form-group" ng-if="currentTapStatus[0] === true">
-                    <div class="wn5-setup-preview-heading">
+                    <div class="wn5-setup-preview-heading"
+                        ng-class="{'wn5-gui-text-fields-disabled-text': support.isIE}">
                         {{'lang_colorlevel'|translate}}
                     </div>
                     <div class="wn5-setup-preview-content">
@@ -54,8 +55,9 @@
                                     ng-model="colorLevelSection.BackgroundColourLevel" 
                                     ng-change="colorLevelSection.changeColorTone()"
                                     ng-value="'true'"
+                                    ng-disabled="support.isIE"
                                     type="radio">
-                                <label>
+                                <label ng-class="{'wn5-gui-text-fields-disabled-text': support.isIE}">
                                     {{'lang_color' | translate}}
                                 </label>
                             </div>
@@ -64,8 +66,9 @@
                                     ng-model="colorLevelSection.BackgroundColourLevel"
                                     ng-change="colorLevelSection.changeColorTone()"
                                     ng-value="'false'"
+                                    ng-disabled="support.isIE"
                                     type="radio">
-                                <label>
+                                <label ng-class="{'wn5-gui-text-fields-disabled-text': support.isIE}">
                                     {{'lang_bw' | translate}}
                                 </label>
                             </div>

@@ -43,7 +43,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
     mAttributes.MAX_RESOL_THREE_MEGA = 3;
     mAttributes.MAX_RESOL_8_MEGA = 4;
     mAttributes.MAX_RESOL_12_MEGA = 5;
-
+    
     /************* Regular Expressions *****************/
     mAttributes.FriendlyNameCharSet = new RegExp(/^[a-zA-Z0-9-\s~!@$_-|{},./?\[\]]*$/);
     mAttributes.FriendlyNameCharSetExpanded = new RegExp(/^[a-zA-Z0-9-\s~`!@()$^_-|{};,./?\[\]]*$/);
@@ -529,7 +529,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         if (!mAttributes.ptzCgiAttrReady)
         {
 
-            if(mAttributes.PTZModel || mAttributes.ExternalPTZModel)
+            if(mAttributes.PTZModel || mAttributes.ExternalPTZModel || mAttributes.ZoomOnlyModel)
             {
                 mAttributes.MaxZoom = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzcontrol/absolute/Zoom/float');
 
@@ -831,6 +831,11 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                     if (typeof response.data.ISPVersion !== 'undefined')
                     {
                         mAttributes.ISPVersion = response.data.ISPVersion;
+                    }
+
+                    if (typeof response.data.CGIVersion !== 'undefined')
+                    {
+                        mAttributes.CGIVersion = response.data.CGIVersion;
                     }
 
                     if (typeof response.data.TrackingVersion !== 'undefined')

@@ -88,6 +88,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
       "eventSetup": "NWC",
       //PTZ Menus
       "preset": "NWC",
+      "presetZoom": "NWC",
       "sequence": "NWC",
       "ptLimit": "NWC",
       "autoTrack": "NWC",
@@ -167,6 +168,10 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         {
             retVal = mAttr.PTZModel;
         }
+        else if (menuId === "presetZoom")
+        {
+            retVal = mAttr.ZoomOnlyModel;
+        }
         else if (menuId === "logServer")
         {
             retVal = mAttr.LogServerSupport;
@@ -192,7 +197,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
             }
             else
             {
-                retVal = (mAttr.ExternalPTZModel || mAttr.PTZModel);
+                retVal = (mAttr.ExternalPTZModel || mAttr.PTZModel || mAttr.ZoomOnlyModel);
             }
         }
         else if (menuId === 'smartCodec')
