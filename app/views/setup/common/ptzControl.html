@@ -12,6 +12,58 @@
     <div ng-show="showPTZControl"> -->
 
     <div id="ptz-control">
+        <div id="ptz-control-zoomonly">
+            <div class="slider-fields live-slider-field col-xs-3" style="min-width: 200px;">
+                <h3>{{ 'lang_zoom' | translate }}</h3>
+                <div class="ptz-control_slider-box-horizontal">                    
+                    <button 
+                        class="cm_icon-button-s verticalMiddle"
+                        title="{{'lang_zoomOut' | translate}}"
+                        ng-mousedown="ptzControlZoom(-50);" 
+                        ng-mouseup="ptzControlZoom('Stop')" 
+                        ng-mouseleave="ptzControlZoom('Stop')">
+
+                        <i class="tui tui-wn5-ptz-minus" ></i>
+                    </button>                                                            
+                    <div class="ptz-control_slider-horizontal verticalMiddle" id="ptz-control_slider-horizontal-zoom"></div>
+                    <button
+                        class="cm_icon-button-s verticalMiddle"
+                        title="{{'lang_zoomInt' | translate}}"
+                        ng-mousedown="ptzControlZoom(50);" 
+                        ng-mouseup="ptzControlZoom('Stop')" 
+                        ng-mouseleave="ptzControlZoom('Stop')">
+                        <i class="tui tui-wn5-ptz-plus"></i>
+                    </button>
+                </div>
+            </div>  
+
+            <div class="slider-fields live-slider-field col-xs-3" style="min-width: 200px;">        
+
+                <h3>{{ 'lang_focus' | translate }}</h3>
+                <div class="ptz-control_slider-box-horizontal">                  
+                    <button 
+                        class="cm_icon-button-s verticalMiddle"                        
+                        title="{{'lang_zoomOut' | translate}}"
+                        ng-mousedown="clickPtzFocus('Near')" 
+                        ng-mouseup="clickPtzFocus('Stop')" 
+                        ng-mouseleave="clickPtzFocus('Stop')">
+                        <i class="tui tui-wn5-ptz-near" ></i>
+                    </button>                                                            
+                    <div class="ptz-control_slider-horizontal verticalMiddle" id="ptz-control_slider-horizontal-focus"></div>
+                    <button
+                        class="cm_icon-button-s verticalMiddle"
+                        title="{{'lang_zoomInt' | translate}}"
+                        ng-mousedown="clickPtzFocus('Far');" 
+                        ng-mouseup="clickPtzFocus('Stop')" 
+                        ng-mouseleave="clickPtzFocus('Stop')">
+                        <i class="tui tui-wn5-ptz-far"></i>
+                    </button>
+
+                    <i class="tui tui-ch-live-autofocus verticalMiddle ptz-function-btn-autofocus" ng-click="clickPtzFocus('Auto')"></i>
+                </div>
+            </div>
+        </div>
+        
         <div id="ptz-control_left-box" ng-show="showPTZControlBasicDPTZ">
             <button type="button" class="cm_icon-button-s" ng-click="clickDigitalAutoTracking()" title="{{'lang_autotracking' | translate}}">
                 <i ng-class="DATFlag ? 'tui-ch-live-ptz-tracking-auto-off' : 'tui-ch-live-ptz-tracking-auto-on'" class="tui"></i>
@@ -31,7 +83,7 @@
         </div>
         <!-- External PTZ Left Button -->
 
-        <div id="ptz-control_left-control-box">
+        <div id="ptz-control_left-control-box" ng-show="showPTZControlBox">
             <div id="ptz-control_box">
                 <div id="ptz-control_box-hline"></div>
                 <div id="ptz-control_box-vline"></div>
