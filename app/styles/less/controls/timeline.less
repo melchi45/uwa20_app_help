@@ -39,7 +39,7 @@
             height: 9px;
             position: absolute;
             left: 0;
-            top: 21px;
+            top: 0;
             border: none;
             background-color: @timeline-border-color;
           }
@@ -68,7 +68,7 @@
         display: none !important;
       }
       .vis-content {
-        top: 0px !important;
+        top: -20px !important;
         .vis-itemset {
           .vis-background {
           }
@@ -141,14 +141,16 @@
       .vis-time-axis.vis-foreground {
         overflow: inherit;
         .vis-text {
-          font-size: 12px;
+          font-size: 11px;
           color: #797979 !important;
 //          .translate(-50%, 5px);
           .translate(-50%, 1px); //add
           &.vis-major {
-            
+            top: -13px !important;
+            color: #999;
           }
           &.vis-minor {
+            top: 0 !important;
           }
           &.vis-measure {
           }
