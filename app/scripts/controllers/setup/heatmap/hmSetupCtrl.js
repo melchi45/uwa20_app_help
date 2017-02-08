@@ -24,6 +24,10 @@ kindFramework.controller('HMSetupCtrl', function (
     var modalInstance = null;
     var BrowserDetect = COMMONUtils.getBrowserDetect();
 
+    $scope.support = {
+        isIE: BrowserDetect.isIE
+    };
+
     $scope.pageLoaded = false;
 
 	$scope.currentTapStatus = [true, false];
