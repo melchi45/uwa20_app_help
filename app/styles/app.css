@@ -895,7 +895,7 @@ input[type='text'] {
   height: 9px;
   position: absolute;
   left: 0;
-  top: 21px;
+  top: 0;
   border: none;
   background-color: #d2d2d2;
 }
@@ -910,7 +910,7 @@ input[type='text'] {
   display: none !important;
 }
 .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content {
-  top: 0px !important;
+  top: -20px !important;
 }
 .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly {
   height: 40px !important;
@@ -951,7 +951,7 @@ input[type='text'] {
   overflow: inherit;
 }
 .vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text {
-  font-size: 12px;
+  font-size: 11px;
   color: #797979 !important;
   -webkit-transform: translateZ(0) translate(-50%, 1px);
   -moz-transform: translateZ(0) translate(-50%, 1px);
@@ -961,6 +961,13 @@ input[type='text'] {
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   -o-backface-visibility: hidden;
+}
+.vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text.vis-major {
+  top: -13px !important;
+  color: #999;
+}
+.vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text.vis-minor {
+  top: 0 !important;
 }
 .vis-current-time {
   display: none;
@@ -3701,6 +3708,11 @@ i.tui-ch-playback-stop {
 }
 .wn5-gui-text-orange-100 {
   color: #f37321;
+}
+.wn5-gui-text-fields-disabled-text {
+  color: #797979;
+  cursor: not-allowed;
+  opacity: .7;
 }
 .wn5-setup-main-title {
   font-size: 24px;
