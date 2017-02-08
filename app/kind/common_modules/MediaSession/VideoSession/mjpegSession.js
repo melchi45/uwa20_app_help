@@ -461,11 +461,6 @@ var MjpegSession = function () {
   var skipHeaderBytes = 0;
   var rtpTimeStamp = 0;
   var playback = false;
-  var t0 = 0;
-  var t1 = 0;
-  var timegap = 0;
-  var isSetStartTime = true;
-
   var channelId, NTPmsw, NTPlsw, startHeader, gmt, fragmentOffset, jpegStartHeader, jpegStartHeaderSize,
     fsynctime, data, payloadsize, marker, Type, ntpmsw, ntplsw;
 
@@ -484,24 +479,7 @@ var MjpegSession = function () {
       fsynctime = {};
       data = {};
       payloadsize = ((rtspInterleaved[2] << 8) + rtspInterleaved[3]) - 12; //RTP Header: 12 bytes
-      if ((rtpHeader[1] & 0x80) === 0x80) {
-        marker = 1;
-        isSetStartTime = true;
-        if (t0 != 0) {
-          t1 = Date.now();
-          timegap = t1 - t0;
-        }
-      } else {
-        marker = 0;
-        if (isSetStartTime) {
-          t0 = Date.now();
-        }
-        isSetStartTime = false;
-      }
-
-      if (timegap > 300) //frame drop in case of packetize slow more than 300ms
-        return;
-      //console.log("rtp header byte",rtpHeader[0]);
+      marker = ((rtpHeader[1] & 0x80) === 0x80 ? 1 : 0);
 
       if ((rtpHeader[0] & 0x10) === 0x10) {
         //RTP Header Extension bit set
@@ -542,17 +520,9 @@ var MjpegSession = function () {
           };
 
           if ((this.getFramerate() === 0 || this.getFramerate() === undefined) && (this.GetTimeStamp() != null || this.GetTimeStamp() !== undefined)) {
-//            console.log("MJPEGSession::GetTimeStamp = " + this.GetTimeStamp().timestamp + ' ' + this.GetTimeStamp().timestamp_usec);
-//            console.log("MJPEGSession::timestamp = " + timeData.timestamp + ' ' + timeData.timestamp_usec);
-//            console.log("MJPEGSession:: diff timestamp = " + (timeData.timestamp - this.GetTimeStamp().timestamp));
-//            console.log("MJPEGSession:: diff timestamp_usec = " + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec));
-//            console.log("MJPEGSession:: framerate = " + parseInt(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
-//            this.setFramerate(parseInt(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
             this.setFramerate(Math.round(1000 / (((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
-            // console.log("MJPEGSession::frameRate = " + this.getFramerate());
           }
           this.SetTimeStamp(timeData);
-          //this.rtpTimestampCbFunc(timeData);
         } else if (rtpPayload[0] == '0xFF' && rtpPayload[1] == '0xD8') {
           extensionHeaderLen = ((rtpPayload[2] << 8 | rtpPayload[3]) * 4) + 4; //MJPEG extensionHeader
         }
@@ -703,26 +673,7 @@ var MjpegSession = function () {
       var fsynctime = {};
       var data = {};
       var payloadsize = ((rtspInterleaved[2] << 8) + rtspInterleaved[3]) - 12; //RTP Header: 12 bytes
-      var marker;
-      if ((rtpHeader[1] & 0x80) === 0x80) {
-        marker = 1;
-        isSetStartTime = true;
-        if (t0 != 0) {
-          t1 = Date.now();
-          timegap = t1 - t0;
-        }
-      } else {
-        marker = 0;
-        if (isSetStartTime) {
-          t0 = Date.now();
-        }
-        isSetStartTime = false;
-      }
-
-      if (timegap > 300) //frame drop in case of packetize slow more than 300ms
-        return;
-
-      //console.log("rtp header byte",rtpHeader[0]);
+      var marker = ((rtpHeader[1] & 0x80) === 0x80 ? 1 : 0);
 
       if ((rtpHeader[0] & 0x10) === 0x10) {
         //RTP Header Extension bit set
