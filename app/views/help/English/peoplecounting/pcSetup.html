@@ -1,0 +1,120 @@
+﻿
+<h1 class="wn5-setup-main-title">Setup  </h1>
+<div class="wn5-setup-section">
+    <p>People Counting counts the number of people who pass a virtual line through the camera image analysis. The conditions for counting the number of people and detailed items for improving the accuracy of People Counting are set from &amp;apos;Setup’ in People Counting. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. </p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Setup</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Enable People Counting</h3>
+            <p>To use the People Counting function, select <strong class="UI">[Enable People Counting]</strong>. </p>
+        </div>
+
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Setup</h3>
+			
+            <p>Set the counting rule for counting the number of people. Up to 2 People Counting rules can be set. </p>
+            <div class="wn5-online-help-action"> 
+			<h5>Setting the counting rule</h5>
+                <p>To set the counting rule, select the check box from <strong class="UI">[Counting rule]</strong> and enter the rule name in the <strong class="UI">[Name]</strong> field. Up to 15 characters, including letters and numbers, can be entered for the rule name. The entered name is shown in <strong class="UI">[Statistics]</strong>&gt;<strong class="UI">[People Counting]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="pcStatisticsSetup.html"
+ng-href="#/help/peoplecounting_search">[Search]</a></strong>.</p>
+				</div>
+            <div class="wn5-online-help-action">
+                <h5><a name="type"></a>Setting the count type  </h5>
+                <p>The types for counting the number of people in People Counting are IN count and OUT count.</p>
+                <p>When you select the check box in <strong class="UI">[Counting rule]</strong>, the rule line will appear in the image. IN count applies to people who move in the direction of the arrow on the line and OUT count applies to people who move in the opposite direction. Clicking the arrow on the rule line changes its direction. </p>
+                <p><img src="../../base/images/setup/popup_counting.png"></p>
+            </div>
+            <div class="wn5-online-help-action">
+                <h5>Setting the rule line </h5>
+                <p>The People Counting function counts the number of people who pass the rule line. To change the position of the rule line, click the rule line shown in the image and drag it using the mouse. You can adjust the length of the line by dragging a corner located at either end of the rule line. </p>
+            </div>
+            <div class="wn5-online-help-action">
+                <h5>Activating and deactivating the People Counting rule</h5>
+                <p>To activate the counting rule, select the check box of the desired rule from <strong class="UI">[Counting rule]</strong>.</p>
+                  <p>To deactivate the counting rule, deselect the check box of the desired rule from <strong class="UI">[Counting rule]</strong>. The People Counting rule setting remains intact, so if you select the check box again, the original rule function will be re-activated. </p>
+            </div>
+            </div>
+		            </div>
+       
+        </div>
+<div class="wn5-setup-section-article-content">
+    <h3>Exclude area</h3>
+			
+            <p>Set to not count the number of people who enter an area specified by the user.</div>
+			 <div class="wn5-online-help-action">
+			<h5>Setting an exclude area</h5>
+			<p>When you select the 4 corners of an image with the mouse, the area is set as the exclude area, and the color of the number buttons in <strong class="UI">[Area]</strong> changes. Up to 4 exclude areas can be set.</p>
+            <h5>Changing an exclude area</h5>
+			<p>You can adjust the size of an exclude area by clicking and moving a corner or a line of the exclude area. To move an exclude area, click and drag the relevant area with the mouse. </p>
+			<h5>Deleting an exclude area</h5>
+			<p>To delete an exclude area, click the right mouse button at the relevant area on the screen and click the <strong class="UI">[OK]</strong> button on the delete confirm window.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h5>Area</h5>
+    <p>When you click a number button in <strong class="UI">[Area]</strong>, the relevant area will be selected in the image. The edge of the selected area will appear with a thick white line. </p>
+        </div>
+<div class="wn5-setup-section-article-content">
+    <h3><a name="calibration"></a>Calibration</h3>
+			
+            <p>Set the camera or the human height to count in order to improve the accuracy of People Counting. You can only select and apply either the camera height or the human height.
+</div>			<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+    <h5>Camera height</h5>
+        <p>Specify the actual height where the camera is installed. You can change the value by clicking + or -, or enter a numeric value for the camera height. A value can be entered between 2.5m minimum and 4.5m maximum. When the camera installation height is set, the body height of the people to count for each location will be automatically assumed based on the camera installation height. </p>
+				</div>
+		<div class="wn5-setup-section-article-content">
+    <h5>Height of subjects</h5>
+        <p>Specify the height of people to count. You can adjust the height by dragging the corner at the bottom right of the box displayed on the image screen. </p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+
+            <ul>
+                <li>The value set on [People Counting] &gt; [Calibration] applies equally to [People Counting] and [Heatmap] functions.  </li>
+                <li>The camera height or the human height set in <strong class="UI">[Statistics]</strong>&gt;<strong class="UI">[People Counting]</strong>&gt;<strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Calibration]</strong> applies equally to the Heatmap functions.  </li>
+                <li>&nbsp;</li>
+            </ul>
+		</div>
+</div>
+</div>
+
+<div class="wn5-setup-section-article-content">
+    <h4>Real-time People Counting Data</h4>
+    <p>The sum of the number of people counted in real time according to the set rule and the count type of each rule will be shown in a table. </p>
+</div>
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Report</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Enable</h3>
+            <p>To receive People Counting data periodically through e-mail and FTP, select <strong class="UI">[Enable]</strong>. </p>
+            <p>Detailed settings for FTP and e-mail can be done from <strong class="UI">[Event]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../event/ftpemail.html" ng-href="#/help/event_ftpemail">[FTP/E-mail]</a></strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Schedule</h3>
+            <p>To receive People Counting data at the same time every day, select <strong class="UI">[Daily]</strong> and choose a time. </p>
+            <p>To receive People Counting data on the same weekday and time every week, select <strong class="UI">[Weekly]</strong> and select a weekday and a time. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>File name</h3>
+            <p>Enter the file name for sending People Counting data through an FTP server or e-mail and select the file format. Up to 64 characters, including letters and numbers, can be entered for the file name.</p>
+            <hr class="wn5-setup-hr">
+        </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Delete all data</h3>
+            <p>To delete all People Counting data, click [Delete all data].</p>
+        </div>
+        </div>
+</div>
+
+<hr class="wn5-setup-hr">

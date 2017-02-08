@@ -22,7 +22,7 @@
             <div class="wn5-online-help-action"> 
 			<h5>카운팅 룰 설정하기</h5>
                 <p>카운팅 룰을 설정하려면 <strong class="UI">[카운팅 룰]</strong>에서 체크박스를 선택한 후 <strong class="UI">[이름]</strong> 필드에 룰 이름을 입력합니다. 룰 이름은 영문자와 숫자만 15자까지 입력할 수 있습니다. 입력한 이름은 <strong class="UI">[통계]</strong>&gt;<strong class="UI">[피플 카운팅]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="pcStatisticsSetup.html"
-ng-href="#/help/peoplecounting_pcStatisticsSetup.html">[검색]</a></strong>에 나타납니다.</p>
+ng-href="#/help/peoplecounting_search">[검색]</a></strong>에 나타납니다.</p>
 				</div>
             <div class="wn5-online-help-action">
                 <h5><a name="type"></a>카운트 방식 설정하기  </h5>
@@ -43,10 +43,6 @@ ng-href="#/help/peoplecounting_pcStatisticsSetup.html">[검색]</a></strong>에 
 		            </div>
        
         </div>
-        <div class="wn5-online-help-action">
-           
-        </div>
-
 <div class="wn5-setup-section-article-content">
     <h3>제외 영역</h3>
 			
@@ -68,19 +64,20 @@ ng-href="#/help/peoplecounting_pcStatisticsSetup.html">[검색]</a></strong>에 
     <h3><a name="calibration"></a>캘리브레이션</h3>
 			
             <p>피플 카운팅 정확도를 향상시키기 위해 카메라 높이나 카운트할 사람의 크기를 설정합니다. 카메라 높이나 사람의 크기 중 하나만 선택하여 적용할 수 있습니다. 
-			
-<div class="wn5-setup-section-article-content">
+</div>			<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
     <h5>카메라 높이</h5>
-    <p>실제 카메라가 설치된 높이를 지정합니다. + 나 - 표시를 클릭하여 값을 변경하거나 카메라 높이를 수치로 입력할 수 있습니다. 입력할 수 있는 값은 최소 2.5m, 최대 4.5m입니다. 카메라 높이를 설정하면 카운트할 사람의 크기를 예측하고 판단합니다. </p>
+        <p>실제 카메라가 설치된 높이를 지정합니다. + 나 - 표시를 클릭하여 값을 변경하거나 카메라 높이를 수치로 입력할 수 있습니다. 입력할 수 있는 값은 최소 2.5m, 최대 4.5m입니다. 카메라 설치 높이를 설정하면, 설치 높이를 기반으로 위치별로 카운트할 사람의 크기를 자동으로 추정합니다. </p>
+		</div>
+		<div class="wn5-setup-section-article-content">
     <h5>크기</h5>
         <p>카운트할 사람의 크기를 직접&nbsp;지정합니다. 영상 화면에&nbsp;표시된 상자의 오른쪽 하단 모서리를 마우스로 드래그하여 크기를 조절할 수 있습니다. </p>
+		</div>
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
 
             <ul>
                 <li>[피플 카운팅] &gt; [캘리브레이션]에서 설정한 값은 [피플 카운팅]과 [히트맵] 기능에 동일하게 적용됩니다.  </li>
-                <li><strong class="UI">[통계]</strong>&gt;<strong class="UI">[피플 카운팅]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../heatmap/pcSetup.html" ng-href="#/help/peoplecounting_pcSetup.html">[설정]</a></strong> &gt; <strong class="UI">[캘리브레이션]</strong>에서 설정한 카메라의 높이나 사람 크기는 히트맵 기능에 동일하게 적용됩니다.  </li>
-                <li>&nbsp;</li>
+                <li><strong class="UI">[통계]</strong>&gt;<strong class="UI">[피플 카운팅]</strong>&gt;<strong class="UI">[설정]</strong> &gt; <strong class="UI">[캘리브레이션]</strong>에서 설정한 카메라의 높이나 사람 크기는 히트맵 기능에 동일하게 적용됩니다.  </li>
             </ul>
 		</div>
 </div>
@@ -112,10 +109,12 @@ ng-href="#/help/peoplecounting_pcStatisticsSetup.html">[검색]</a></strong>에 
             <p>FTP 서버나 이메일로 피플 카운팅 데이터를 보낼&nbsp;파일 이름을 입력하고 파일 형식을 선택합니다. 파일 이름은 영문자와 숫자를 포함하여 최대 64자까지 입력할 수 있습니다.</p>
             <hr class="wn5-setup-hr">
         </div>
+		<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>모든 데이터 삭제</h3>
             <p>피플 카운팅 데이터를 모두 삭제하려면 [모든 데이터 삭제]를 클릭합니다.</p>
         </div>
+		</div>
 </div>
 
 <hr class="wn5-setup-hr">
