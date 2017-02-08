@@ -695,7 +695,11 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                         $scope.DisableBitrateSelection = true;
                     } else {
                         $scope.selectFrameRate($scope.ResoltionList[i].MaxFPS,defaultFPS, isAdjustBitRate);
-                        $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = 'VBR';
+                        if(pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined){
+                            $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType;
+                        }else{
+                            $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = 'VBR';
+                        }
                         $scope.DisableBitrateSelection = false;
                     }
                 } else {
