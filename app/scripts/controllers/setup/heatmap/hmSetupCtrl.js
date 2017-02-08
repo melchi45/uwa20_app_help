@@ -528,6 +528,10 @@ kindFramework.controller('HMSetupCtrl', function (
 
                     $timeout(function(){
                         $scope.pageLoaded = true;
+
+                        if($scope.currentTapStatus[1] === true){
+                            $scope.changeTabStatus(1);
+                        }
                     });
                 }, failCallback);
             }, failCallback);
@@ -542,7 +546,9 @@ kindFramework.controller('HMSetupCtrl', function (
             return SunapiClient.get(
                 '/stw-cgi/eventsources.cgi?msubmenu=heatmap&action=set', 
                 requestData,
-                $scope.pcSetupReport.setReport, 
+                function(){
+                    $scope.pcSetupReport.setReport().then(view, view);
+                }, 
                 failCallback, '', true);
         };
 
