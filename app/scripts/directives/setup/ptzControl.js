@@ -35,10 +35,6 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     if(mAttr.PTZModel){
                         return true;
                     }                    
-                    else if (mAttr.ZoomOnlyModel === true)
-                    {
-                        scope.isShowPTZControl = true;
-                    }            
                     else {
                         if($state.current.name === "setup.ptzSetup_dptzSetup") {
                             SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
@@ -164,6 +160,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         scope.showPTZControlEPTZ = false;
                         scope.showZoomFocus = true;
                         scope.showPTZControlBox = false;
+                        scope.isShowPTZControl = true;
                         $("#ptz-control_at-selectable").unbind();
                     }else{
                         scope.showPTZControlPreset = false;
