@@ -296,7 +296,7 @@ kindFramework.controller('HMStatisticsCtrl', function (
 
 	$scope.colorLevelSection = {
         /**
-        BackgroundColourLevel 100 : Full Color 1 : Gray Color
+        BackgroundColourLevel 100 : Full Color 0 : Gray Color
         */
         BackgroundColourLevel: 'false',
         init: function(val){

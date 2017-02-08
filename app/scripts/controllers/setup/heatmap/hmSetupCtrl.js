@@ -130,7 +130,7 @@ kindFramework.controller('HMSetupCtrl', function (
 
     $scope.colorLevelSection = {
         /**
-        BackgroundColourLevel 100 : Full Color 1 : Gray Color
+        BackgroundColourLevel 100 : Full Color 0 : Gray Color
         */
         BackgroundColourLevel: 'false',
         init: function(val){
@@ -558,7 +558,7 @@ kindFramework.controller('HMSetupCtrl', function (
             }
         }
 
-        requestData['BackgroundColourLevel'] = $scope.colorLevelSection.BackgroundColourLevel === 'true' ? 100 : 1;
+        requestData['BackgroundColourLevel'] = $scope.colorLevelSection.BackgroundColourLevel === 'true' ? 100 : 0;
 
         if(deleteAreaData.length > 0){
             if(deleteAreaData.length === 4){

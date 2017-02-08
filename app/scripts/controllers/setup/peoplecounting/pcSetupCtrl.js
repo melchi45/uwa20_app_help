@@ -252,6 +252,16 @@ kindFramework.controller('PCSetupCtrl',
 					var cameraHeight = mAttr.CameraHeight;
 					var options = mAttr.CalibrationMode;
 
+					/**
+					 * FisheyeLens가 아닌 데, Calibration Mode 가 CameraHeight 이면
+					 * CalibrationMode를 정상적으로 설정가능하게, ObjectSize로 넘겨준다.
+					 */
+					if(
+						$scope.calibrationSection.calibrationModeOptions[0] === data.CalibrationMode &&
+						!!$scope.support.isFisheyeLens === false){
+						data.CalibrationMode = $scope.calibrationSection.calibrationModeOptions[1];
+					}
+
 					$scope.calibrationSection.init(
 						data.CalibrationMode, 
 						data.CameraHeight, 
