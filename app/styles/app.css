@@ -973,13 +973,13 @@ input[type='text'] {
   display: none;
 }
 .vis-custom-time {
-  background-color: transparent;
-  z-index: 10;
+  background-color: transparent !important;
+  z-index: 5 !important;
 }
 .vis-custom-time div {
   width: 24px !important;
   height: 24px !important;
-  z-index: 1;
+  z-index: 5;
   margin-top: 28px;
   border: 2px solid #797979;
   border-radius: 50%;
