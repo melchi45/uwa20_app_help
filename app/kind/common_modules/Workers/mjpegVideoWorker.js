@@ -187,6 +187,11 @@ function receiveMessage(event) {
 		sendMessage('canvasRender', ret.frameData.data);
 	  }
 	  break;
+  case 'rtpDataArray':
+  	for (var i = 0; i < message.data.length; i++) {
+  		receiveMessage({'type':'rtpData', 'data':message.data[i]});
+  	}
+  	break;	  
 	default:
 	  break;
   }
