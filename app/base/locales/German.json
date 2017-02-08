@@ -1074,7 +1074,7 @@
     "lang_statistics": "Statistiken",
     "lang_peoplecounting": "Menschenzählen",
     "lang_enable_feature_people_counting": "Menschenzählen aktivieren",
-    "lang_msg_not_support_function": "Funktion wird nicht unterstützt.",
+    "lang_msg_preview_not_support_ie": "Internet Explorer unterstützt keine Vorschau.",
     "lang_enable_feature_heatmap": "Heatmap aktivieren",
     "lang_realtime": "Echtzeit",
     "lang_msg_norule": "Es wurde keine Regel, die festgelegt wurde.",

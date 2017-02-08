@@ -1074,7 +1074,7 @@
     "lang_statistics": "Statisztika",
     "lang_peoplecounting": "Emberszámlálás",
     "lang_enable_feature_people_counting": "Ember számlálás engedélyezése",
-    "lang_msg_not_support_function": "Funkció nem támogatott.",
+    "lang_msg_preview_not_support_ie": "Az Internet Explorer nem támogatja az előnézeteket.",
     "lang_enable_feature_heatmap": "Hőtérkép engedélyezése",
     "lang_realtime": "Valós idő",
     "lang_msg_norule": "Nem hoztak létre szabályt.",

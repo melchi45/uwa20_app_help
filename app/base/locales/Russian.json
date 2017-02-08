@@ -1074,7 +1074,7 @@
     "lang_statistics": "Статистика",
     "lang_peoplecounting": "Счет людей",
     "lang_enable_feature_people_counting": "Разрешить подсчет людей",
-    "lang_msg_not_support_function": "Функция не поддерживается.",
+    "lang_msg_preview_not_support_ie": "Для Internet Explorer предпросмотра нет.",
     "lang_enable_feature_heatmap": "Разрешить тепловую карту",
     "lang_realtime": "Реальное время",
     "lang_msg_norule": "Нет установленного правила.",

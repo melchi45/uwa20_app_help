@@ -1074,7 +1074,7 @@
     "lang_statistics": "Statistiques",
     "lang_peoplecounting": "Comptage de personnes",
     "lang_enable_feature_people_counting": "Activer le comptage des personnes",
-    "lang_msg_not_support_function": "Fonction non prise en charge.",
+    "lang_msg_preview_not_support_ie": "Internet Explorer incompatible avec les prévisualisations.",
     "lang_enable_feature_heatmap": "Activer la carte thermique",
     "lang_realtime": "Temps réel",
     "lang_msg_norule": "Aucune règle n'a été établie.",
