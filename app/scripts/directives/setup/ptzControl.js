@@ -435,9 +435,14 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     
                     if(isJogUpdating === false) {
                         var sliderVal = ui.value;
-                        sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&Focus=" + sliderVal;
-
-                        execSunapi(sunapiURI);
+                        if (sliderVal > 0)
+                        {
+                            scope.clickPtzFocus('Far');    
+                        }
+                        else if (sliderVal < 0)
+                        {
+                            scope.clickPtzFocus('Near');
+                        }                        
                         isJogUpdating = true;
                     }
 
