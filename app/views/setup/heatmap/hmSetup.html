@@ -44,8 +44,7 @@
 
             <div class="wn5-setup-preview-table">
                 <section class="form-group" ng-if="currentTapStatus[0] === true">
-                    <div class="wn5-setup-preview-heading"
-                        ng-class="{'wn5-gui-text-fields-disabled-text': support.isIE}">
+                    <div class="wn5-setup-preview-heading">
                         {{'lang_colorlevel'|translate}}
                     </div>
                     <div class="wn5-setup-preview-content">
@@ -55,9 +54,8 @@
                                     ng-model="colorLevelSection.BackgroundColourLevel" 
                                     ng-change="colorLevelSection.changeColorTone()"
                                     ng-value="'true'"
-                                    ng-disabled="support.isIE"
                                     type="radio">
-                                <label ng-class="{'wn5-gui-text-fields-disabled-text': support.isIE}">
+                                <label>
                                     {{'lang_color' | translate}}
                                 </label>
                             </div>
@@ -66,12 +64,17 @@
                                     ng-model="colorLevelSection.BackgroundColourLevel"
                                     ng-change="colorLevelSection.changeColorTone()"
                                     ng-value="'false'"
-                                    ng-disabled="support.isIE"
                                     type="radio">
-                                <label ng-class="{'wn5-gui-text-fields-disabled-text': support.isIE}">
+                                <label>
                                     {{'lang_bw' | translate}}
                                 </label>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <p class="pc-statistics-dialog-title">
+                                <span class="tui tui-wn5-toolbar-status"></span>
+                                <span>{{'lang_msg_preview_not_support_ie'|translate}}</span>
+                            </p>
                         </div>
                     </div>
                 </section>
