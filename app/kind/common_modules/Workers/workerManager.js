@@ -87,6 +87,9 @@ function WorkerManager() {
   count_spanElement = null,
   fps_div = null;
 
+  var mjpegStackCount = 0,
+    messageArray = new Array();
+
   image.onload = function() { draw(image); };
 
   var metaSession = null;
@@ -629,12 +632,27 @@ function WorkerManager() {
 
       switch (SDPInfo[idx].codecName) {
         case 'H264':
-        case 'H265':
-        case 'JPEG': {
+        case 'H265': {
           //console.log("workerManager::sendRtpData()");
           if( videoWorker ) videoWorker.postMessage(message);
           break;
         }
+        case 'JPEG':
+          messageArray.push(message);
+          if (mjpegStackCount >= 10 || (rtpheader[1] & 0x80) === 0x80) {
+            var sendMessage = {
+              'type': 'rtpDataArray', 
+              'data': messageArray
+            }
+
+            if( videoWorker ) videoWorker.postMessage(sendMessage);
+
+            messageArray = [];
+            mjpegStackCount = 0;
+          } else {
+            mjpegStackCount++;
+          }
+          break;
         case 'G.711':
         case 'G.726-16':
         case 'G.726-24':
