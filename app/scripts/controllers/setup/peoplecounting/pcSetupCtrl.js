@@ -269,7 +269,9 @@ kindFramework.controller('PCSetupCtrl',
 						cameraHeight.maxValue, 
 						options
 					);
-				}	
+				}else{
+					console.log("debug ", data.CalibrationMode);
+				}
 			}catch(e){
 				console.error(e);
 			}
@@ -579,7 +581,7 @@ kindFramework.controller('PCSetupCtrl',
         		return value + 'm';
             }
 		},
-		calibrationMode: '',
+		calibrationMode: 'ObjectSize',
 		calibrationModeOptions: [
 			'CameraHeight',
 			'ObjectSize'
@@ -882,6 +884,17 @@ kindFramework.controller('PCSetupCtrl',
 			calibrationData.x2,
 			calibrationData.y2
 		].join(',');
+
+		if($scope.calibrationSection.calibrationMode !== $scope.calibrationSection.calibrationModeOptions[1]){
+			console.log("$scope.calibrationSection.calibrationMode", $scope.calibrationSection.calibrationMode);
+
+			$scope.calibrationSection.calibrationMode = $scope.calibrationSection.calibrationModeOptions[1];
+		}
+
+		if($scope.calibrationSection.calibrationMode !== 'ObjectSize'){
+			console.log("$scope.calibrationSection.calibrationMode", $scope.calibrationSection.calibrationMode);
+			$scope.calibrationSection.calibrationMode = 'ObjectSize';
+		}
 
 		requestData.CalibrationMode = $scope.calibrationSection.calibrationMode;
 		if($scope.calibrationSection.calibrationMode === $scope.calibrationSection.calibrationModeOptions[0]){
