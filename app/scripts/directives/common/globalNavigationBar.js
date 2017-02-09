@@ -340,10 +340,10 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                         IR: (cameraAttributes.IRledModeOptions !== undefined ? true : false),
                         Heater: (cameraAttributes.AuxCommands !== undefined && cameraAttributes.AuxCommands[0] == 'HeaterOn' ? true : false),
                         
-                        LDCAuto: (cameraAttributes.LDCModeOptions.indexOf('Auto') !== -1),
+                        LDCAuto: (cameraAttributes.LDCModeOptions !== undefined && cameraAttributes.LDCModeOptions.indexOf('Auto') !== -1),
 
                         //Newly Added
-                        PresetAction: (cameraAttributes.EventActions.indexOf('GoToPreset') !== -1),
+                        PresetAction: (cameraAttributes.EventActions !== undefined && cameraAttributes.EventActions.indexOf('GoToPreset') !== -1),
                         IrisModeOptions: (cameraAttributes.IrisModeOptions !== undefined && cameraAttributes.ExternalPTZModel !== true),
                         Lens: (cameraAttributes.IrisModeOptions !== undefined && cameraAttributes.ExternalPTZModel === true),
                         IrisFnoOptions: (cameraAttributes.IrisFnoOptions !== undefined),
@@ -353,7 +353,8 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                         InternalMic: (cameraAttributes.AudioInSourceOptions !== undefined && cameraAttributes.AudioInSourceOptions[0] === "MIC"),
                         FastAutoFocusDefined: (cameraAttributes.FastAutoFocusEnable !== undefined),
                         ZoomOptionsDefined: (cameraAttributes.SimpleZoomOptions !== undefined),
-                        PTZMode: (cameraAttributes.RS485Support && cameraAttributes.isDigitalPTZ && (cameraAttributes.MaxPreset >0))
+                        PTZMode: (cameraAttributes.RS485Support && cameraAttributes.isDigitalPTZ && (cameraAttributes.MaxPreset >0)),
+                        FisheyeLens: cameraAttributes.FisheyeLens
                     };
                 }catch(e){
                     console.error(e);
