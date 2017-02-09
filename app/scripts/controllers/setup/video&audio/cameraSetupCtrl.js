@@ -257,6 +257,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         var promise = imageOptionsView();
 
         $scope.PTZModel = mAttr.PTZModel;
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
         $scope.CurrentLanguage = mAttr.CurrentLanguage;
         $scope.OSDTitleLang = '';
         if ($scope.CurrentLanguage === "Chinese")
@@ -496,6 +497,23 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 $scope.tabUI.Special = 1;
                 $scope.tabUI.Focus = 1;
             }
+        }else if($scope.ZoomOnlyModel){
+            $scope.tabMenu.Sensor = true;
+            $scope.tabMenu.SSDR = true;
+            $scope.tabMenu.WhiteBalance = true;
+            $scope.tabMenu.BackLight = true;
+            $scope.tabMenu.Exposure = true;
+            $scope.tabMenu.DayNight = true;
+            $scope.tabMenu.Special = true;
+            $scope.tabMenu.OSD = $scope.MaxOSDTitles ? true : false;
+            $scope.tabMenu.Focus = true;
+            $scope.tabMenu.Heater= $scope.HeaterSupport;
+            $scope.tabMenu.IR = $scope.IRledModeOptions !== undefined ? true : false;
+
+            $scope.tabUI.SSDR = 0;
+            $scope.tabUI.WhiteBalance = 0;
+            $scope.tabUI.Exposure = 0;
+            $scope.tabUI.Special = 0;
         }else{
             //default
             $scope.tabMenu.Sensor = true;
@@ -2403,8 +2421,10 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         initImageEnhancementSettings();
         initOverlaySettings();
         
-        if (mAttr.PTZModel == true) {
+        if (mAttr.PTZModel == true || mAttr.ZoomOnlyModel == true) {
             initFocusSettings();
+        }
+        if (mAttr.PTZModel == true) {
             initPresetImageConfig();
         }
         initIRLedSetting();
@@ -3221,7 +3241,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if (angular.equals(pageData.Focus, $scope.Focus)) {
             return;
         }
-
+		var deferred = $q.defer();
         var setData = {},
             ignoredKeys = [],
             changed = false;
@@ -3496,7 +3516,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             functionList.push(imageenhancementsSet);
         }
 
-        if (mAttr.FocusModeOptions !== undefined && mAttr.PTZModel === true) {
+        if (mAttr.FocusModeOptions !== undefined && (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true)) {
             ///stw-cgi/image.cgi?msubmenu=focus&action=set
             functionList.push(focusSet);
         }
@@ -5901,7 +5921,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             getOverlay();
         }
 
-        if (mAttr.FocusModeOptions !== undefined && mAttr.PTZModel === true) {
+        if (mAttr.FocusModeOptions !== undefined && (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true)) {
             focusView();
         }
 
