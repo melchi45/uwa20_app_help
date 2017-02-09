@@ -471,7 +471,8 @@ kindFramework.controller('HMSetupCtrl', function (
     }
 
 	function view(){
-
+        $scope.configurationSection.hide();
+        
 		showVideo().then(function(){
             HMStatisticsModel.deviceInfo().then(function(successData){
                 $scope.deviceName = successData.DeviceName;
@@ -602,7 +603,7 @@ kindFramework.controller('HMSetupCtrl', function (
 	    });
 	    modalInstance.result.then(function() {
 	 		$scope.pcSetupReport.setReport().then(function(){
-	 			view();
+	 			$timeout(view);
 	 		}, function(errorData){
 	 			console.error(errorData);
 	 		});     
