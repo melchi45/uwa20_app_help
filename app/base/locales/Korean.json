@@ -112,6 +112,7 @@
     "lang_autotracking_off": "자동 추적 끄기",
     "lang_gammavalue": "감마",
     "lang_colorlevel": "컬러 레벨",
+    "lang_background_color": "배경 컬러",
     "lang_defog": "안개 제거",
     "lang_defoglevel": "안개 제거 레벨",
     "lang_camtitleOverlay": "이름 표시",
