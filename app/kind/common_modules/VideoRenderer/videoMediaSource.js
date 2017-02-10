@@ -48,7 +48,7 @@ function VideoMediaSource() {
   function AddVideoEventListener(videoTag) {
     videoEventListenerArray = new Array();
     videoEventListenerArray.push({'type':'durationchange', 'function':videoUpdating_ex.bind(videoTag, mediaSource)});
-    videoEventListenerArray.push({'type':'seeking', 'function':videoUpdating_ex.bind(videoTag, mediaSource)});
+    //videoEventListenerArray.push({'type':'seeking', 'function':videoUpdating_ex.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'error', 'function':onError.bind(videoTag, mediaSource)});
     // videoEventListenerArray.push({'type':'progress', 'function':onProgress.bind(videoTag, mediaSource)});
     videoEventListenerArray.push({'type':'pause', 'function':onPause.bind(videoTag, mediaSource)});    
@@ -171,6 +171,9 @@ function VideoMediaSource() {
 
       if (playbackFlag === true) {
         delay = (browserType === "chrome" ? 2 : 4);
+        if (browserType === "edge") {
+          delay = 18;
+        }
       } else {
         delay = (browserType === "chrome" ? 0.2 : 2);
       }
@@ -191,40 +194,6 @@ function VideoMediaSource() {
       }
     }
   }  
-
-  function videoUpdating(e) {
-    if (mediaSource == null) return;
-
-    var duration = parseInt(mediaSource.duration, 10);
-    var currentTime = videoElement.currentTime;
-    var delay = (browserType === "chrome" ? 0.2 : 2);
-    var diffDuration = duration - currentTime;
-
-    if (playbackFlag === true) {
-      delay = (browserType === "chrome" ? 2 : 4);
-    }
-
-    if (diffDuration >= (1.2 + delay)) {
-      if (playbackFlag === false) {
-        videoElement.currentTime = duration - delay;
-      } else {
-        var startTime = sourceBuffer.buffered.start(sourceBuffer.buffered.length - 1) * 1;
-        var endTime = sourceBuffer.buffered.end(sourceBuffer.buffered.length - 1) * 1;
-        var bufferTime = (endTime - startTime) * 1;
-
-        if (bufferTime > 1.2) {
-          videoElement.currentTime = (videoElement.currentTime < 1 ? startTime + 1 : endTime - delay);
-        }
-      }
-      
-      if (videoElement.paused) {
-        videoSizeCallback();
-        if (!isPlaying) {
-          videoElement.play();
-        }
-      }
-    }
-  }
 
   //media source event
   function onSourceError(e) { 
