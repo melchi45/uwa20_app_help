@@ -729,6 +729,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 	var polygon = null;
 	var polygonHelper = (function(){
+		var isLeave = false;
 		function addPolygon(){
 			polygon = elemCtrl.createPolygon();
 			if(useEvent === true){
@@ -758,12 +759,23 @@ KindSVGEditor.addPlugin('draw', function(options){
 				callCustomEvent("polygoncontextmenu", event);
 			};
 			*/
+			polygon.onmouseup = function(){
+				isLeave = false;
+				if(customDraw === true) return;
+				update();
+			};
+			polygon.addEventListener('mouseleave', function(){
+				if(polygon.isSelected === true) {
+					isLeave = true;
+					update();
+				}
+			});
 			polygon.addEventListener('contextmenu', function(event){
 				callCustomEvent("polygoncontextmenu", event);
 			});
-			polygon.onmouseup = function(){
-				callCustomEvent("mouseup", LineInformation.getAll());
-			};
+			// polygon.onmouseup = function(){
+			// 	callCustomEvent("mouseup", LineInformation.getAll());
+			// };
 		}
 
 		function remove(){
@@ -787,6 +799,12 @@ KindSVGEditor.addPlugin('draw', function(options){
 				opacity = opacity + opacity * 0.5;
 			}
 			polygon.style.opacity = opacity;
+		}
+
+		function update(){
+			setTimeout(function(){
+				callCustomEvent("mouseup", LineInformation.getAll());
+			});
 		}
 
 		return {

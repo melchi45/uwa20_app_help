@@ -1384,6 +1384,10 @@ kind_stream{
     left: 20px;
     text-align:center
 }
+    .live-slider-vertical-input input,
+    .live-slider-horizontal-input input{
+        padding: 0 5px !important;
+    }
 
 .cm_osd-slider-wrap{
     width: 100%;
