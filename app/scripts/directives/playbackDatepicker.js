@@ -136,7 +136,13 @@ kindFramework.directive('playbackDatepicker', function() {
             };
             var showRecordingDate = function(year, month) {
                 $scope.isLoading = true;
-                playbackInterfaceService.findRecordings(year, month).then(function(results) {
+                var channelId = searchData.getChannelId();
+                var dateInfo = {
+                    'year' : year,
+                    'month' : month,
+                    'channel' : channelId
+                };
+                playbackInterfaceService.findRecordings(dateInfo).then(function(results) {
                     recordingDate = results;
                     $timeout(function() {
                         $scope.$broadcast('refreshDatepickers');

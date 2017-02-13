@@ -59,13 +59,14 @@ kindFramework
       	* When go main-playback page, this function called ( web operation differ from app)
       	* Just check sd status & show All+Overlap1 timeline.
       	* @name : preparePlayback
+      	* @param : channelId is numeric value
       	*/
-		PlaybackInterface.preparePlayback = function() {
+		PlaybackInterface.preparePlayback = function(channelId) {
 			var def = $q.defer();
 			var myObj = this;
-			this.checkSDStatus()
+			this.checkSDStatus(channelId)
 			.then(function(value) {
-            	myObj.openPlayback();
+            	myObj.openPlayback(channelId);
             	def.resolve('success');
 			}, function(sdInfo) {
 				//Please check multi language.
@@ -76,7 +77,7 @@ kindFramework
 			});
 			return def.promise;
 		};
-		PlaybackInterface.requestTimeSearch = function(type, inputDate) {
+		PlaybackInterface.requestTimeSearch = function(type, channelId) {
 			var today = searchData.getSelectedDate();
 			var year = today.getFullYear();
 			var month = pad(today.getMonth()+1);
@@ -85,9 +86,10 @@ kindFramework
 		      	month : month, 
 		      	day : date, 
 		      	id : 0, 
-		      	type : 'All'
+		      	type : type,
+		      	channel : channelId
       		};
-      		PlaybackService.getOverlappedId(year, month, date)
+      		PlaybackService.getOverlappedId(query)
       		.then(function(value){
       			var itemSet = new ItemSetModel();
       			//value.OverlappedIDList format is = {1,0} 
@@ -128,11 +130,11 @@ kindFramework
 
 	    };
 
-		PlaybackInterface.openPlayback = function(inputData) {
+		PlaybackInterface.openPlayback = function(channelId) {
 			searchData.setPlaybackType('timeSearch');
 			searchData.setWebIconStatus(true);
 			searchData.setEventTypeList(['All']);  //For default set value. (web & app different)
-			this.requestTimeSearch();
+			this.requestTimeSearch('All',channelId);
 		};
 		PlaybackInterface.refreshLivePage = function() {
 			searchData.setWebIconStatus(false);
@@ -234,9 +236,9 @@ kindFramework
 		* return date to recorded
 		* @name : findRecordings
 		*/
-		PlaybackInterface.findRecordings = function(year, month) {
+		PlaybackInterface.findRecordings = function(info) {
 			var def = $q.defer();
-			PlaybackService.findRecordingDate(year, month)
+			PlaybackService.findRecordingDate(info)
 			.then(function(results){
 				def.resolve(results);
 			}, function(error) {
