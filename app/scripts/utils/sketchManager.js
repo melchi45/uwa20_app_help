@@ -2318,10 +2318,15 @@ var SketchManager = (function() {
                 kindSvgOptions.pointColor = colorFactory.excludeArea.point;
             }
 
-            //Common Calibration 설정할 경우 오른쪽 마우스 클릭 없어야 됨
+            /**
+             * ROI 또는 Calibration의 영역을 오른쪽 마우스 클릭 시
+             * 삭제 팝업이 나오면 안되므로 분기처리한다.
+             * IVA/Common, Face Detection/Area, People Counting/Setup/Calibration Tab
+             */
             if(
-                sketchInfo.workType !== "commonArea" && //Common Area가 아니거나
-                !(sketchInfo.workType === "fdArea" && sketchInfo.color === 0) // Wise Face Detection이 아닐 때
+                sketchInfo.workType !== "commonArea" && //IVA Common
+                sketchInfo.workType !== "calibration" && //People Counting Calibration
+                !(sketchInfo.workType === "fdArea" && sketchInfo.color === 0)//Face Detection
                 ){
                 //라인 또는 폴리곤을 오른쪽 마우스를 클릭할 때 삭제 팝업이 뜸.
                 kindSvgOptions.event.linecontextmenu = function(event){

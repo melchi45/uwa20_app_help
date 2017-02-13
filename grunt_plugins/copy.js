@@ -82,7 +82,7 @@ module.exports = function(injection) {
         bootstrapFonts: {
             files: [{
                 expand: true,
-                cwd: projectStructure.bcDirPath + '/bootstrap/dist',
+                cwd: projectStructure.appDir + '/external-lib/bootstrap/dist',
                 dest: projectStructure.wwwDir,
                 src: ['fonts/**']
             }]
@@ -90,7 +90,7 @@ module.exports = function(injection) {
         fontAwesomeFonts: {
             files: [{
                 expand: true,
-                cwd: projectStructure.bcDirPath + '/font-awesome',
+                cwd: projectStructure.appDir + '/external-lib/font-awesome',
                 dest: projectStructure.wwwDir,
                 src: ['fonts/**']
             }]
@@ -98,7 +98,7 @@ module.exports = function(injection) {
         jQueryUiImage: {
             files: [{
                 expand: true,
-                cwd: projectStructure.bcDirPath + '/jquery-ui',
+                cwd: projectStructure.appDir + '/external-lib/jquery-ui',
                 dest: projectStructure.wwwDir + '/styles',
                 src: ['images/**']
             }]

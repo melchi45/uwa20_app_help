@@ -27,6 +27,7 @@ kindFramework.controller('HMSetupCtrl', function (
     $scope.support = {
         isIE: BrowserDetect.isIE
     };
+
     $scope.pageLoaded = false;
 
 	$scope.currentTapStatus = [true, false];
@@ -129,7 +130,7 @@ kindFramework.controller('HMSetupCtrl', function (
 
     $scope.colorLevelSection = {
         /**
-        BackgroundColourLevel 100 : Full Color 1 : Gray Color
+        BackgroundColourLevel 100 : Full Color 0 : Gray Color
         */
         BackgroundColourLevel: 'false',
         init: function(val){
@@ -470,7 +471,8 @@ kindFramework.controller('HMSetupCtrl', function (
     }
 
 	function view(){
-
+        $scope.configurationSection.hide();
+        
 		showVideo().then(function(){
             HMStatisticsModel.deviceInfo().then(function(successData){
                 $scope.deviceName = successData.DeviceName;
@@ -527,6 +529,10 @@ kindFramework.controller('HMSetupCtrl', function (
 
                     $timeout(function(){
                         $scope.pageLoaded = true;
+
+                        if($scope.currentTapStatus[1] === true){
+                            $scope.changeTabStatus(1);
+                        }
                     });
                 }, failCallback);
             }, failCallback);
@@ -541,7 +547,9 @@ kindFramework.controller('HMSetupCtrl', function (
             return SunapiClient.get(
                 '/stw-cgi/eventsources.cgi?msubmenu=heatmap&action=set', 
                 requestData,
-                $scope.pcSetupReport.setReport, 
+                function(){
+                    $scope.pcSetupReport.setReport().then(view, view);
+                }, 
                 failCallback, '', true);
         };
 
@@ -557,7 +565,7 @@ kindFramework.controller('HMSetupCtrl', function (
             }
         }
 
-        requestData['BackgroundColourLevel'] = $scope.colorLevelSection.BackgroundColourLevel === 'true' ? 100 : 1;
+        requestData['BackgroundColourLevel'] = $scope.colorLevelSection.BackgroundColourLevel === 'true' ? 100 : 0;
 
         if(deleteAreaData.length > 0){
             if(deleteAreaData.length === 4){
@@ -595,7 +603,7 @@ kindFramework.controller('HMSetupCtrl', function (
 	    });
 	    modalInstance.result.then(function() {
 	 		$scope.pcSetupReport.setReport().then(function(){
-	 			view();
+	 			$timeout(view);
 	 		}, function(errorData){
 	 			console.error(errorData);
 	 		});     

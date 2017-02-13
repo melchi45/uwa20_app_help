@@ -73,7 +73,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
     mAttributes.FriendlyNameCharSetStr = "^[a-zA-Z0-9- ~!@$_\\-|{},./?\\[\\]]*$";
     mAttributes.FriendlyNameCharSetNoSpaceStr = "^[a-zA-Z0-9-~!@$_\\-|{},./?\\[\\]]*$";
     mAttributes.FriendlyNameCharSetExpandedStr = "^[a-zA-Z0-9~`!@$()^ _\\-|\\[\\]{};,./?]*$";
-    mAttributes.FriendlyNameCharSetExpandedStr2 = "^[a-zA-Z0-9~*!@$()^_\\-|\\[\\]{};,./?]*$";
+    mAttributes.FriendlyNameCharSetExpandedStr2 = "^[a-zA-Z0-9~*#!%&@$()^_\\-|\\[\\]{};,./?]*$";
     mAttributes.FriendlyNameCharSetNoNewLineStr ="^[a-zA-Z0-9~`!@%&*#<>+=:'$()^ _\\-|\\[\\]{};,./?\"]*$";
     mAttributes.FriendlyNameCharSetSupportedStr ="^[\\r\\na-zA-Z0-9~`!@%&*#<>+=:'$()^ _\\-|\\[\\]{};,./?\"]*$";
     mAttributes.URLSet = "^[a-zA-Z0-9\\-.:\\[\\]{}/]*$";

@@ -248,18 +248,30 @@ kindFramework.controller('PCSetupCtrl',
 			}
 
 			try{
-				if(data.CalibrationMode){
-					var cameraHeight = mAttr.CameraHeight;
-					var options = mAttr.CalibrationMode;
+				var cameraHeight = mAttr.CameraHeight === undefined ? 
+					{
+						minValue: 0,
+						maxValue: 0
+					} : mAttr.CameraHeight;
+				var options = mAttr.CalibrationMode;
 
-					$scope.calibrationSection.init(
-						data.CalibrationMode, 
-						data.CameraHeight, 
-						cameraHeight.minValue, 
-						cameraHeight.maxValue, 
-						options
-					);
-				}	
+				/**
+				 * FisheyeLens가 아닌 데, Calibration Mode 가 CameraHeight 이면
+				 * CalibrationMode를 정상적으로 설정가능하게, ObjectSize로 넘겨준다.
+				 */
+				if(
+					'CameraHeight' === data.CalibrationMode &&
+					!!$scope.support.isFisheyeLens === false){
+					data.CalibrationMode = $scope.calibrationSection.calibrationModeOptions[1];
+				}
+
+				$scope.calibrationSection.init(
+					data.CalibrationMode, 
+					data.CameraHeight, 
+					cameraHeight.minValue, 
+					cameraHeight.maxValue, 
+					options
+				);
 			}catch(e){
 				console.error(e);
 			}
@@ -423,7 +435,7 @@ kindFramework.controller('PCSetupCtrl',
 
 		//초기에 Camera Height 로 설정되어 있을 시 영역 숨기기
 		if($scope.currentTapStatus[2] === true 
-			&& $scope.calibrationSection.calibrationMode === $scope.calibrationSection.calibrationModeOptions[0]){
+			&& $scope.calibrationSection.calibrationMode === 'CameraHeight'){
 			setTimeout(function(){
 				sketchbookService.hideGeometry(0);	
 			});
@@ -569,7 +581,7 @@ kindFramework.controller('PCSetupCtrl',
         		return value + 'm';
             }
 		},
-		calibrationMode: '',
+		calibrationMode: 'ObjectSize',
 		calibrationModeOptions: [
 			'CameraHeight',
 			'ObjectSize'
@@ -874,7 +886,8 @@ kindFramework.controller('PCSetupCtrl',
 		].join(',');
 
 		requestData.CalibrationMode = $scope.calibrationSection.calibrationMode;
-		if($scope.calibrationSection.calibrationMode === $scope.calibrationSection.calibrationModeOptions[0]){
+		
+		if($scope.calibrationSection.calibrationMode === 'CameraHeight'){
 			requestData.CameraHeight = $scope.calibrationSection.getCalibrationHeight();	
 		}
 

@@ -79,43 +79,10 @@
                     </button>
                 </div>
                 <div
-                    ng-class="{'pc-n-hm-hr-hm-calender-active': pcConditionsDateForm.showFromCalender || pcConditionsDateForm.showToCalender}"
-                    ng-hide="resultSection.view">
+                    ng-class="{'pc-n-hm-hr-hm-calender-active': pcConditionsDateForm.showFromCalender || pcConditionsDateForm.showToCalender}">
                     &nbsp;
                 </div>
             </div>
-
-            <!-- 
-            pcConditionsDateForm Directive uses its parent scope.
-            scope.pcConditionsDateForm of pcConditionsDateForm Directive is used in parent Controller.
-            -->
-            
-            <!-- TBD
-            <div class="pc-n-hm-section-no-margin form-group">
-                <div class="col-xs-2">
-                    <h2 class="pc-n-hm-heading-lv2">Rule</h2>
-                </div>
-                <div class="col-xs-10">
-                    <table class="table table-bordered" id="hm_rule_table">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label>
-                                        <input type="checkbox" name="hm_rule" value="0">{{stData.master.name}} (Master)
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr 
-                                ng-repeat="camera in stData.slaves track by $index">
-                                <td>
-                                    <label><input type="checkbox" name="hm_rule" value="{{$index+1}}"> Camera 0{{camera.name}} (Slave)</label>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            -->
         </div>
 
         <hr class="wn5-setup-hr" ng-hide="!resultSection.view">
@@ -127,7 +94,6 @@
                 id="hm-results-heatmap">
                 <figure class="hm-results-heatmap-item">
                     <img src="" id="hm-results-image-1">
-                    <figcaption class="hm-results-heatmap-figcaption" id="hm-results-label-1">{{deviceName}}</figcaption>
                 </figure>
             </div>
 

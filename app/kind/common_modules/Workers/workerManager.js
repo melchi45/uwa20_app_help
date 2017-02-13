@@ -87,6 +87,9 @@ function WorkerManager() {
   count_spanElement = null,
   fps_div = null;
 
+  var mjpegStackCount = 0,
+    messageArray = new Array();
+
   image.onload = function() { draw(image); };
 
   var metaSession = null;
@@ -173,6 +176,27 @@ function WorkerManager() {
 
         mediaInfo.samples[mediaSegmentNum++] = message.data;
         curbaseMediaDecoderTime += message.data.frame_duration;
+
+        if(mediaInfo.samples[0].frame_duration > 500 && mediaInfo.samples[0].frame_duration <= 3000){
+          numBox = 1;
+        } else{
+          switch(browser){
+            case 'firefox' : 
+            case 'edge' : 
+            case 'safari' :
+              numBox = 10;
+              break;
+            default :
+              numBox = 4;
+          }
+        }
+
+        if(preNumBox !== numBox) {
+          normalNumBox = numBox;
+          initVideo(false);
+        }
+        preNumBox = numBox;
+
         break;
      case 'videoRender':
         var tempBuffer = new Uint8Array(message.data.length + mediaFrameSize);
@@ -185,7 +209,7 @@ function WorkerManager() {
         mediaFrameData = tempBuffer;
         mediaFrameSize = mediaFrameData.length;
 
-        if (mediaSegmentNum % numBox == 0) {  
+        if (mediaSegmentNum % numBox == 0 && mediaSegmentNum !== 0) {
           if (mediaInfo.samples[0].frame_duration !== null) {
             if (sequenseNum == 1){
               mediaInfo.baseMediaDecodeTime = 0;
@@ -202,20 +226,6 @@ function WorkerManager() {
           mediaSegmentNum = 0;
           mediaFrameData = null;
           mediaFrameSize = 0;
-          
-          if(mediaInfo.samples[0].frame_duration > 500 && mediaInfo.samples[0].frame_duration <= 3000){
-            numBox = 1;
-          } else{
-            switch(browser){
-              case 'firefox' : 
-              case 'edge' : 
-              case 'safari' :
-                numBox = 10;
-                break;
-              default :
-                numBox = 4;
-            }
-          }
 
           // if(mediaSegmentCount <5) {
           //   var blob2 = new Blob([mediaSegmentData], {type: "application/octet-stream"});
@@ -230,12 +240,6 @@ function WorkerManager() {
             console.log("workerManager::videoMS error!! recreate videoMS");
             createVideoMS();
           }
-
-          if(preNumBox !== numBox) {
-            normalNumBox = numBox;
-            initVideo(false);
-          }
-          preNumBox = numBox;
         }
         break;
       case 'decodingTime':
@@ -479,7 +483,6 @@ function WorkerManager() {
       videoMS = null;
     }
     numBox = (speedMode == false ? normalNumBox : speedNumBox);
-    //speed = (speedMode == false ? 1 : speed);
     mediaInfo.samples = new Array(numBox);
     initSegmentFlag = false;
     sequenseNum = 1;
@@ -629,12 +632,27 @@ function WorkerManager() {
 
       switch (SDPInfo[idx].codecName) {
         case 'H264':
-        case 'H265':
-        case 'JPEG': {
+        case 'H265': {
           //console.log("workerManager::sendRtpData()");
           if( videoWorker ) videoWorker.postMessage(message);
           break;
         }
+        case 'JPEG':
+          messageArray.push(message);
+          if (mjpegStackCount >= 10 || (rtpheader[1] & 0x80) === 0x80) {
+            var sendMessage = {
+              'type': 'rtpDataArray', 
+              'data': messageArray
+            }
+
+            if( videoWorker ) videoWorker.postMessage(sendMessage);
+
+            messageArray = [];
+            mjpegStackCount = 0;
+          } else {
+            mjpegStackCount++;
+          }
+          break;
         case 'G.711':
         case 'G.726-16':
         case 'G.726-24':

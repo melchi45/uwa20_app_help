@@ -223,6 +223,11 @@ function receiveMessage(event) {
 	case 'speed':
       // console.log("speed::fps = " + message.data);
       break;
+  case 'rtpDataArray':
+  	for (var i = 0; i < message.data.length; i++) {
+  		receiveMessage({'type':'rtpData', 'data':message.data[i]});
+  	}
+  	break;
 	default:
       break;
   }
