@@ -4,6 +4,20 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
     var pageData = {};
+
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+
     var DetectionModes = ['Inside', 'Outside'];
     $scope.tabs = [{
         title: 'Include',
@@ -99,27 +113,28 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function prepareEventRules(eventRules) {
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
         $scope.EventRule = {};
         $scope.EventRule.FtpEnable = false;
         $scope.EventRule.SmtpEnable = false;
         $scope.EventRule.RecordEnable = false;
-        $scope.EventRule.Enable = eventRules[0].Enable;
-        $scope.EventRule.RuleIndex = eventRules[0].RuleIndex;
-        $scope.EventRule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds(eventRules[0].Schedule));
-        $scope.EventRule.ScheduleType = eventRules[0].ScheduleType;
-        if (typeof eventRules[0].EventAction !== 'undefined') {
-            if (eventRules[0].EventAction.indexOf('FTP') !== -1) {
+        $scope.EventRule.Enable = eventRules[currentChannel].Enable;
+        $scope.EventRule.RuleIndex = eventRules[currentChannel].RuleIndex;
+        $scope.EventRule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds(eventRules[currentChannel].Schedule));
+        $scope.EventRule.ScheduleType = eventRules[currentChannel].ScheduleType;
+        if (typeof eventRules[currentChannel].EventAction !== 'undefined') {
+            if (eventRules[currentChannel].EventAction.indexOf('FTP') !== -1) {
                 $scope.EventRule.FtpEnable = true;
             }
-            if (eventRules[0].EventAction.indexOf('SMTP') !== -1) {
+            if (eventRules[currentChannel].EventAction.indexOf('SMTP') !== -1) {
                 $scope.EventRule.SmtpEnable = true;
             }
-            if (eventRules[0].EventAction.indexOf('Record') !== -1) {
+            if (eventRules[currentChannel].EventAction.indexOf('Record') !== -1) {
                 $scope.EventRule.RecordEnable = true;
             }
         }
         $scope.EventRule.AlarmOutputs = [];
-        if (typeof eventRules[0].AlarmOutputs === 'undefined') {
+        if (typeof eventRules[currentChannel].AlarmOutputs === 'undefined') {
             for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
                 $scope.EventRule.AlarmOutputs[ao] = {};
                 $scope.EventRule.AlarmOutputs[ao].Duration = 'Off';
@@ -128,19 +143,19 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
                 $scope.EventRule.AlarmOutputs[ao] = {};
                 var duration = 'Off';
-                for (var j = 0; j < eventRules[0].AlarmOutputs.length; j++) {
-                    if (ao + 1 === eventRules[0].AlarmOutputs[j].AlarmOutput) {
-                        duration = eventRules[0].AlarmOutputs[j].Duration;
+                for (var j = 0; j < eventRules[currentChannel].AlarmOutputs.length; j++) {
+                    if (ao + 1 === eventRules[currentChannel].AlarmOutputs[j].AlarmOutput) {
+                        duration = eventRules[currentChannel].AlarmOutputs[j].Duration;
                         break;
                     }
                 }
                 $scope.EventRule.AlarmOutputs[ao].Duration = duration;
             }
         }
-        if (typeof eventRules[0].PresetNumber === 'undefined') {
+        if (typeof eventRules[currentChannel].PresetNumber === 'undefined') {
             $scope.EventRule.PresetNumber = 'Off';
         } else {
-            $scope.EventRule.PresetNumber = eventRules[0].PresetNumber + '';
+            $scope.EventRule.PresetNumber = eventRules[currentChannel].PresetNumber + '';
         }
         pageData.EventRule = angular.copy($scope.EventRule);
     }
@@ -376,8 +391,12 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function getFaceDetection() {
-        return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=view', {}, function(response) {
-            $scope.FD = response.data.FaceDetection[0];
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
+        return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=view', getData, function(response) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            $scope.FD = response.data.FaceDetection[currentChannel];
 
             pageData.FD = angular.copy($scope.FD);
             $scope.SensitivitySliderModel = {
@@ -398,6 +417,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     function getEventRules() {
         var getData = {};
         getData.EventSource = 'FaceDetection';
+        /*getData.Channel = $scope.channelSelectionSection.getCurrentChannel();*/
         return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=rules&action=view', getData, function(response) {
             prepareEventRules(response.data.EventRules);
         }, function(errorData) {
@@ -412,8 +432,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             DetectionAreaIndex: null
         };
         var removeIndex = [];
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
 
-        setData.Channel = 0;
+        setData.Channel = currentChannel;
         if (pageData.FD.Enable !== $scope.FD.Enable) {
             setData.Enable = $scope.FD.Enable;
         }
@@ -493,6 +514,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         }
 
         if(removeData.DetectionAreaIndex !== null){
+            removeData.Channel = currentChannel;
             queue.push({
                 url: '/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=remove', 
                 reqData: removeData
@@ -517,6 +539,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             defaultWiseFDPoints = changeOnlyEvenNumberOfWiseFD(defaultWiseFDPoints);
 
             initSetData['DetectionArea.1.Coordinate'] = defaultWiseFDPoints.join(',');
+            initSetData.Channel = currentChannel;
 
             queue.push({
                 url: '/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=set', 
@@ -539,6 +562,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
     function setEventRules() {
         var setData = {};
+        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
         setData.RuleIndex = $scope.EventRule.RuleIndex;
         setData.EventAction = "";
         if ($scope.EventRule.FtpEnable) {
@@ -732,15 +756,18 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function showVideo() {
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
             var viewerWidth = 640;
             var viewerHeight = 360;
             var maxWidth = mAttr.MaxROICoordinateX;
             var maxHeight = mAttr.MaxROICoordinateY;
-            var rotate = response.data.Flip[0].Rotate;
-            var flip = response.data.Flip[0].VerticalFlipEnable;
-            var mirror = response.data.Flip[0].HorizontalFlipEnable;
+            var rotate = response.data.Flip[currentChannel].Rotate;
+            var flip = response.data.Flip[currentChannel].VerticalFlipEnable;
+            var mirror = response.data.Flip[currentChannel].HorizontalFlipEnable;
             var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
             $scope.videoinfo = {
                 width: viewerWidth,

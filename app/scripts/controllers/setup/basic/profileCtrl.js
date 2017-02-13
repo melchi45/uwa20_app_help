@@ -695,7 +695,20 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                         $scope.DisableBitrateSelection = true;
                     } else {
                         $scope.selectFrameRate($scope.ResoltionList[i].MaxFPS,defaultFPS, isAdjustBitRate);
-                        $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = 'VBR';
+                        if(pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined){
+                            /**
+                             * MJPEG에서 H265변경 후 저장하지 않을 상태에서
+                             * Resolution 변경 시 Bitrate Control은 정의가 되있지 않기 때문에
+                             * VBR로 기본값을 설정한다.
+                             */
+                            if(pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType !== undefined){
+                                $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType;   
+                            }else{
+                                $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = 'VBR';   
+                            }
+                        }else{
+                            $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = 'VBR';
+                        }
                         $scope.DisableBitrateSelection = false;
                     }
                 } else {

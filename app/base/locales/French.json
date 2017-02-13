@@ -112,6 +112,7 @@
     "lang_autotracking_off": "Suivi automatique désactivé",
     "lang_gammavalue": "Niveau de facteur de contraste",
     "lang_colorlevel": "Niveaux des couleurs",
+    "lang_background_color": "Niveaux des couleurs",
     "lang_defog": "Dénébuliser",
     "lang_defoglevel": "Niveau de dénébulisation",
     "lang_camtitleOverlay": "Superposition de titre",

@@ -587,11 +587,11 @@ var RtspClient = function () {
         else if( mode === 'backup' ) {
           checkIsAvaliablePlayback(mode);
         }
-        else if( mode === 'playback' ) {
-          setTimeout(function(){
-            checkIsAvaliablePlayback(mode);
-          }, 1000);
-        }
+        // else if( mode === 'playback' ) {
+        //   setTimeout(function(){
+        //     checkIsAvaliablePlayback(mode);
+        //   }, 1000);
+        // }
 
         currentState = 'Playing';
       } else if (currentState === 'Playing') {
