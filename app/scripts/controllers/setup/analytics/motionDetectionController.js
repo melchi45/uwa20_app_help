@@ -838,10 +838,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 }
 
                 for(var j = 0, jj = coordinates.length; j < jj; j++){
-                    if(coordinates[j].x === 0 && coordinates[j].y === 0){
-                        continue;
-                    }
-
                     points.push([
                         coordinates[j].x, 
                         coordinates[j].y
@@ -1495,10 +1491,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                                 if(data.Mode !== undefined){
                                     if(data.Coordinates[0].toString() === "[object Object]"){
                                         for(var j = 0, jj = data.Coordinates.length; j < jj; j++){
-                                            if(data.Coordinates[j].x === 0 && data.Coordinates[j].y === 0){
-                                                continue;
-                                            }
-
                                             coor.push([
                                                 data.Coordinates[j].x,
                                                 data.Coordinates[j].y
