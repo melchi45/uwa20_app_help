@@ -125,6 +125,7 @@ kind_stream {
     width: 100%;
     padding: 0 20px;
     position: relative;
+    float: left;
 }
 
 .cm-col {
@@ -573,7 +574,7 @@ kind_stream {
         width: 100%;
         line-height: 50px;
         padding: 0;
-
+        height: 50px;
 
         // & > .cm-center {
         //     height: 50px;
@@ -1344,6 +1345,12 @@ kind_stream {
             }  // #cm-icon_list  finish
         }  // &.cm-live-bottom-menu  finish
 
+        #cm-icon-list,
+        #timeline-setting {
+            height: auto;
+
+        }
+
     }  // #cm-bottom-menu  finish
 
     #cm-icon-list {
@@ -1367,10 +1374,10 @@ kind_stream {
 
     }  // #cm-menu-content  finish
 
-    // .info-toggle {
-    //     position: absolute;
-    //     bottom: 0;
-    // }
+    .info-toggle {
+        position: absolute;
+        bottom: 0;
+   }
 
     #cm-video{
         width: 100%;

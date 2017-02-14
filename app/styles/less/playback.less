@@ -19,26 +19,26 @@
 
 	.cm-playback-block {
 		position: relative;
-		display: block;
-		margin: 0 10px;
-		float: left;
+        		display: block;
+	        margin: 0 10px;
+	        float: left;
 
-		&.cm-control-icon {
-			li {
-				// float: left;
-				display: inline;
-				margin: 0 10px;
-			}
-		}
+        &.cm-control-icon {
+	        li {
+	        	// float: left;
+	        	display: inline;
+	        	margin: 0 10px;
+	        }
+	    }
 
-		&.cm-event-section {
-			text-align: left;
-			margin-bottom: 20px;
-		}
+	    &.cm-event-section {
+	    	text-align: left;
+	    	margin-bottom: 20px;
+	    }
 
-		&.cm-datepicker-section {
-			text-align: left;
-		}
+	    &.cm-datepicker-section {
+	    	text-align: left;
+	    }
 	}
 
 	
@@ -136,42 +136,10 @@
 	    }
 	}  // .cm-playback-duplicate-items  finish
 
-	
-	.info-toggle {
-
-	}
-	
-	#timeline-setting {
-	    width: 100%;
-	    line-height: 50px;
-	    padding: 0;
-
-	    .cm-col-100, .cm-small-center {
-	        width: auto;
-	        display: inline;
-	        float: right;
-	    }
-
-	    & > .cm-center {
-	        height: 50px;
-	        display: table-cell;
-	        text-align: center;
-	        position: relative;
-	        left: 50vw;
-	        transform: translateX(-50%);
-	    }
-	}
-
-	
-	#cm-icon-list {
-		height: 100px;
-		height: 50px;
-	}
-
 
 	#cm-icon-list .cm-playback-speed {
-	        height: 30px;
-	        margin-top: 10px;
+        height: 30px;
+        margin-top: 10px;
 	}
 
 	#cm-date-control{
@@ -302,148 +270,147 @@
 	}
 
 
-
-	/////////////////////////////////////////
-	/* Playback Responsive Page Style less */
-	/////////////////////////////////////////
-
-	@media screen and (max-width:1023px) {
+}
 
 
-		.kind-responsive-playback {
+#volume-control {
+	margin: 0 20px;
+}
 
-			#cm-playback-event {
 
-				& > .cm-center {
-					width: 100%;
-				}
+/////////////////////////////////////////
+/* Playback Responsive Page Style less */
+/////////////////////////////////////////
 
-				.cm-event-list-wrap {
-			        width: 100%;
-			        margin-bottom: 20px;
-			    }
+@media screen and (max-width:1023px) {
 
+
+	.kind-responsive-playback {
+
+		#cm-playback-event {
+
+			& > .cm-center {
+				width: 100%;
 			}
+
+			.cm-event-list-wrap {
+		        width: 100%;
+		        margin-bottom: 20px;
+		    }
 
 		}
 
-
-	}
-
-
-	@media screen and (max-width:799px) {
-		.kind-responsive-playback {
-
-			#cm-playback-event {
-				& > .cm-center {
-					width: 100%;
-				}
-			}
-
-
-			#volume-control {
-				float: none;
-				// margin: 50px auto 0 auto;
-				margin: 0 10px;
-				height: 50px;
-				margin-top: 50px;
-			}
-
-			.cm-control-icon {
-				margin: 0 10px;
-
-				&.cm-list-2 li {
-					margin: 0px 5px;
-				}
-			}
-
-
-			#cm_bottom-menu.cm_full-menu {
-				#cm_menu-content {
-					height: 150px;	
-				}
-			}
-
-		}
-	}
-
-	@media screen and (max-width:654px) {
-		.kind-responsive-playback {
-
-
-			#cm-playback-datepicker {
-			    margin-top: -5px;
-
-			    .cm-playback-block {
-					&.cm-m0-5 {
-						margin: 0 3px;
-					}
-				}
-				
-				& > .cm-row > .cm-center > .cm-playback-block {
-					margin: 0 auto;
-					float: none;
-
-					&:first-child {
-						width: 100%;
-						margin: 15px 0px;
-					}
-				}
-
-				.cm-playback-button-wrap {
-					text-align: center;
-			        display: block;
-			        margin: 15px auto;
-			        clear: both;
-			        width: 100%;
-			    }
-
-			    h2 {
-			        text-align: center;
-			    }
-
-				.ua-datepicker table {
-					width: 80%;
-				}
-
-				.start-time, .end-time {
-					margin: 0;
-				}
-
-				.start-time {
-					margin-left: 5%;
-				}
-
-			}  // #cm_playback-datepicker  finish
-		}
-
-		.cm-playback-all-day label {
-			margin-left: 5%;
-		}
-
-			
-	}
-
-	@media screen and (max-width:530px) {
-		.kind-responsive-playback {
-
-			#cm-playback-event {
-
-				.cm-event-list-wrap {
-			        & > div {
-			        	width: 50%;
-			        }
-			    }
-
-			}
-
-		}
 	}
 
 
 }
 
 
-#volume-control {
-	margin: 0 20px;
+@media screen and (max-width:799px) {
+	.kind-responsive-playback {
+
+		#cm-playback-event {
+			& > .cm-center {
+				width: 100%;
+			}
+		}
+
+
+		#volume-control {
+			float: none;
+			// margin: 50px auto 0 auto;
+			margin: 0 10px;
+			height: 50px;
+			margin-top: 50px;
+		}
+
+		.cm-control-icon {
+			margin: 0 10px;
+
+			&.cm-list-2 li {
+				margin: 0px 5px;
+			}
+		}
+
+
+		#cm_bottom-menu.cm_full-menu {
+			#cm_menu-content {
+				height: 150px;	
+			}
+		}
+
+	}
+}
+
+@media screen and (max-width:654px) {
+	.kind-responsive-playback {
+
+
+		#cm-playback-datepicker {
+		    margin-top: -5px;
+
+		    .cm-playback-block {
+				&.cm-m0-5 {
+					margin: 0 3px;
+				}
+			}
+			
+			& > .cm-row > .cm-center > .cm-playback-block {
+				margin: 0 auto;
+				float: none;
+
+				&:first-child {
+					width: 100%;
+					margin: 15px 0px;
+				}
+			}
+
+			.cm-playback-button-wrap {
+				text-align: center;
+		        display: block;
+		        margin: 15px auto;
+		        clear: both;
+		        width: 100%;
+		    }
+
+		    h2 {
+		        text-align: center;
+		    }
+
+			.ua-datepicker table {
+				width: 80%;
+			}
+
+			.start-time, .end-time {
+				margin: 0;
+			}
+
+			.start-time {
+				margin-left: 5%;
+			}
+
+		}  // #cm_playback-datepicker  finish
+	}
+
+	.cm-playback-all-day label {
+		margin-left: 5%;
+	}
+
+		
+}
+
+@media screen and (max-width:530px) {
+	.kind-responsive-playback {
+
+		#cm-playback-event {
+
+			.cm-event-list-wrap {
+		        & > div {
+		        	width: 50%;
+		        }
+		    }
+
+		}
+
+	}
 }
