@@ -320,6 +320,13 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
             retVal = false;
           }
         }
+        else if(menuId === "audioSetup"){
+          if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
+            retVal = false;
+          } else {
+            retVal = true;
+          }
+        }
         else
         {
             retVal = true;
