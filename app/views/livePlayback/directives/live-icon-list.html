@@ -3,7 +3,7 @@
 
     <div class="cm_col-100">
       <div class="cm_small-center">
-        <div class="cm_col">
+        <div class="cm_col" ng-show="MaxAudioInput !== 0">
           <button 
             class="cm_icon-button-s"
             ng-click="changeSpeaker()" 
@@ -48,7 +48,7 @@
           <i class="tui {{(function.class === 'viewMode'? viewModeIcon : function.class)}}"></i>
         </button>
       </li>
-      <li>
+      <li ng-show="MaxAudioOutput !== 0">
         <button 
           class="cm_icon-button-b"
           ng-click="changeMic()" 
