@@ -26,7 +26,7 @@ kindFramework.directive('liveIconList', function(
 
         if(mAttr.MaxAudioOutput !== undefined)
         {
-            $scope.MaxAudioOutput = mAttr.MaxAudioOutput;
+            scope.MaxAudioOutput = mAttr.MaxAudioOutput;
         }        
 
     		scope.disableAlarmOutput = function() {
