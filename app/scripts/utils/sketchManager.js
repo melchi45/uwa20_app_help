@@ -1,4 +1,4 @@
-var SketchManager = (function() {
+﻿var SketchManager = (function() {
     "use strict";
     var sketchInfo = {
         workType: null, //"mdSize", "mdArea", "vaEntering", "vaPassing", "vaAppearing", "fdArea", "smartCodec", "simpleFocus", "autoTracking"
@@ -2121,6 +2121,7 @@ var SketchManager = (function() {
                                 $scope.PrivacyAreaMaxLen = mAttr.PrivacyMaskMaxLen.maxLength;
                                 $scope.PrivacyAreaPattern = "^[a-zA-Z0-9-.]*$";
                                 $scope.IsPTZ = mAttr.PTZModel;
+                                $scope.IsZoomOnly = mAttr.ZoomOnlyModel;
                                 $scope.OnOFF = [{
                                     lang: 'lang_on',
                                     value: true

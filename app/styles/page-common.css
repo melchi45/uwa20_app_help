@@ -804,6 +804,34 @@ kind_stream{
             font-size: 24px;
         }
 
+
+#live-ptz-control-zoomonly{
+    float: left;
+}
+
+#live-ptz-control-zoomonly h3{
+    text-align: left
+}
+
+#live-ptz-control-zoomonly .ui-slider-handle
+{
+    top: 13px;
+    width: 12px;
+    height: 12px;
+}
+
+#live-ptz-control-zoomonly .ui-slider-handle:hover
+{
+    top: 12px;
+}
+
+#live-ptz-control-zoomonly .ui-slider:hover .ui-state-default
+{
+    top: 12px;
+}
+
+
+
 /* bottom menu */
 
 /*Playback*/

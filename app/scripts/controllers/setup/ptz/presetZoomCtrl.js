@@ -14,9 +14,20 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
 
     function getAttributes()
     {    
+        $scope.OnlyNumStr = mAttr.OnlyNumStr;
+       
         if (mAttr.PresetNameMaxLen !== undefined) {
             $scope.PresetNameMaxLen = parseInt(mAttr.PresetNameMaxLen);
         }  
+        try {
+            $scope.LastPositionAttr = {};
+            $scope.LastPositionAttr.RememberLastPosition = mAttr.RememberLastPosition;
+            if (mAttr.RememberLastPosition !== undefined){
+                $scope.LastPositionAttr.RememberLastPositionDuration = mAttr.RememberLastPositionDuration;
+                $scope.LastPositionAttr.DurLen = String($scope.LastPositionAttr.RememberLastPositionDuration.maxValue).length;
+            }
+        } catch (e) {
+        }
     }
 
     function view()
@@ -224,6 +235,54 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
         var presetnum = parseInt(preset.substr(0, delindex));
         return presetnum;
     }
+    
+    function validationLastPosition()
+    {
+        if (Number($scope.LastPosition.RememberLastPositionDuration) > 
+            Number($scope.LastPositionAttr.RememberLastPositionDuration.maxValue)){
+            return false;
+        } 
+        return true;
+    }
+
+    function getLastPosition(){
+        var getData = {}; 
+        return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=view', getData,
+                function (response)
+                {
+                    if(response && response.data){
+                        $scope.LastPosition = response.data.PTZSettings[0];
+                        pageData.LastPosition = angular.copy($scope.LastPosition);
+                    }
+                },
+                function (errorData)
+                {
+                }, '', true);
+    }
+    $scope.setLastPosition = function(){
+        if (!angular.equals(pageData.LastPosition, $scope.LastPosition))
+        {
+            COMMONUtils.ShowConfirmation(function(){
+                if(validationLastPosition()){
+                    setPresetLastPosition();
+                }
+            }, 'lang_set_question', 'sm');
+        }
+    };
+    function setPresetLastPosition(){
+        var setData = {};
+        setData.RememberLastPosition = $scope.LastPosition.RememberLastPosition; 
+        setData.RememberLastPositionDuration = $scope.LastPosition.RememberLastPositionDuration;
+        SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set', setData,
+                function (response)
+                {
+                    pageData.LastPosition = angular.copy($scope.LastPosition);
+                },
+                function (errorData)
+                {
+                }, '', true);
+    }
+    
     
     
 $scope.view = view;

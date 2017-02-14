@@ -274,7 +274,7 @@ kindFramework.directive('liveIconList', function(
 			$timeout(wait);
 
 			function loadedAttr(){
-				scope.wisenetCameraFuntions2.ptz.show = (mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
+				scope.wisenetCameraFuntions2.ptz.show = (mAttr.ZoomOnlyModel || mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
 			}
 
 			function wait(){
