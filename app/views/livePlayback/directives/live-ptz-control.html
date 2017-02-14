@@ -1,5 +1,5 @@
 <div class="cm-center">
-  <div ng-show="currentPtzType !== ptzType.NONE" id="ptz-components" class="cm-force-center">
+  <div ng-show="currentPtzType !== ptzType.NONE" id="ptz-components">
     <div class="cm-col cm-ptz-type" ng-show="currentPtzType === ptzType.EXTERNAL_DIGITAL">
       <h2><span>Type</span></h2>
       <p class="cm-radio-wrap">
@@ -19,7 +19,7 @@
   </button>
 </p>
  -->
-    <div class="cm-col" id="cm-live-ptz-control">
+    <div id="cm-live-ptz-control">
       <div class="cm-ptz-control-left">
         <button 
           ng-if="ptzMode === 'external' || currentPtzType === ptzType.OPTICAL"
@@ -62,8 +62,8 @@
       
 
       <div id="cm-ptz-control-box">
-        <div class="cm-hline"></div>
-        <div class="cm-vline"></div>
+        <div class="cm-ptz-line horizontal"></div>
+        <div class="cm-ptz-line vertical"></div>
         <div id="cm-ptz-control-move-btn">
             <i class="tui tui-wn5-ptz-handle"></i>
         </div>
@@ -93,77 +93,82 @@
       </div>
     </div>
 
-    <div class="cm-col cm-ptz-preset">
-      <h2><span class="cm-m0-10">{{'lang_preset' | translate}}</span></h2>
-      <table class="cm-table">
-        <colgroup>
-          <col width="50">
-          <col width="180">
-        </colgroup>
-        <thead>
-          <tr>
-            <th>{{'lang_num' | translate}}</th>
-            <th>{{'lang_presetName' | translate}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in presetList">
-            <td>{{item.value}}</td>
-            <td>
-              {{item.name}}
-              <button 
-                ng-click="item.action(item.value)"
-                class="cm-icon-button-xs"
-                title="{{item.value}} : {{item.name}}"
-                style="float: right;">
-                <span class="sr-only">{{item.value}} : {{item.name}}</span>
-                <i class="tui tui-wn5-toolbar-play"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
-    <div class="cm-col" ng-if="currentPtzType !== ptzType.EXTERNAL">
-      <h2><span class="cm-m0-10">{{'lang_group' | translate}}</span></h2>
-      <table class="cm-table">
-        <colgroup>
-          <col width="50">
-          <col width="200">
-        </colgroup>
-        <thead>
-          <tr>
-            <th>{{'lang_num' | translate}}</th>
-            <th>{{'lang_group' | translate}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in groupList">
-            <td>{{item.value}}</td>
-            <td>
-              {{item.name}}
-              <button 
-                ng-click="item.stopaction(item.value)"
-                class="cm-icon-button-xs"
-                title="{{item.value}} : {{item.name}}"
-                style="float: right;">
-                <span class="sr-only">{{item.value}} : {{item.name}}</span>
-                <i class="tui tui-wn5-toolbar-pause"></i>
-              </button>
-              <button 
-                ng-click="item.startaction(item.value)"
-                class="cm-icon-button-xs"
-                title="{{item.value}} : {{item.name}}"
-                style="float: right;">
-                <span class="sr-only">{{item.value}} : {{item.name}}</span>
-                <i class="tui tui-wn5-toolbar-play"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div id="cm-ptz-tables">
+
+      <div>
+        <h2><span class="cm-m0-10">{{'lang_preset' | translate}}</span></h2>
+        <table class="cm-table">
+          <colgroup>
+            <col width="50">
+            <col width="180">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>{{'lang_num' | translate}}</th>
+              <th>{{'lang_presetName' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in presetList">
+              <td>{{item.value}}</td>
+              <td>
+                {{item.name}}
+                <button 
+                  ng-click="item.action(item.value)"
+                  class="cm-icon-button-xs"
+                  title="{{item.value}} : {{item.name}}"
+                  style="float: right;">
+                  <span class="sr-only">{{item.value}} : {{item.name}}</span>
+                  <i class="tui tui-wn5-toolbar-play"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div ng-if="currentPtzType !== ptzType.EXTERNAL">
+        <h2><span class="cm-m0-10">{{'lang_group' | translate}}</span></h2>
+        <table class="cm-table">
+          <colgroup>
+            <col width="50">
+            <col width="200">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>{{'lang_num' | translate}}</th>
+              <th>{{'lang_group' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in groupList">
+              <td>{{item.value}}</td>
+              <td>
+                {{item.name}}
+                <button 
+                  ng-click="item.stopaction(item.value)"
+                  class="cm-icon-button-xs"
+                  title="{{item.value}} : {{item.name}}"
+                  style="float: right;">
+                  <span class="sr-only">{{item.value}} : {{item.name}}</span>
+                  <i class="tui tui-wn5-toolbar-pause"></i>
+                </button>
+                <button 
+                  ng-click="item.startaction(item.value)"
+                  class="cm-icon-button-xs"
+                  title="{{item.value}} : {{item.name}}"
+                  style="float: right;">
+                  <span class="sr-only">{{item.value}} : {{item.name}}</span>
+                  <i class="tui tui-wn5-toolbar-play"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- ptz tables end -->
 
   </div>
 
