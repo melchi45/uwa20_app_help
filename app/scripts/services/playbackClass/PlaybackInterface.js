@@ -2,17 +2,16 @@
 kindFramework
 	.factory('PlaybackInterface', ['$q', '$filter', '$rootScope', '$injector','CAMERA_TYPE', 
 		 'SunapiClient', 'PlaybackService',
-		'ConnectionSettingService', 'PLAYBACK_TYPE', 'ModalManagerService', 'playbackStepService',
+		'ConnectionSettingService', 'PLAYBACK_TYPE', 'ModalManagerService',
 		'SearchDataModel', 'PlayDataModel', 'ItemSetModel', 'Attributes', '$timeout', 'UniversialManagerService', 'kindStreamInterface',
 		'BasePlaybackInterface','BACKUP_STATUS','BrowserService',
 		function($q, $filter, $rootScope, $injector, CAMERA_TYPE,
 			SunapiClient, PlaybackService, ConnectionSettingService, PLAYBACK_TYPE, ModalManagerService, 
-			playbackStepService, SearchDataModel, PlayDataModel, ItemSetModel, Attributes, $timeout, UniversialManagerService, kindStreamInterface,
+			SearchDataModel, PlayDataModel, ItemSetModel, Attributes, $timeout, UniversialManagerService, kindStreamInterface,
 			BasePlaybackInterface, BACKUP_STATUS, BrowserService) {
 			"use strict";
 
 		var PLAY_CMD = PLAYBACK_TYPE.playCommand;
-    var pbStep = playbackStepService;
     var support_alarm_input = false;
     var support_face_detection = false;
     var support_tampering_detection = false;
@@ -491,29 +490,6 @@ kindFramework
 					updateEventList();
 				}
 			})();
-    function playStepFrame(command) {
-      var pbStep = playbackStepService;
-      var data;
-      if( command === PLAY_CMD.STEPBACKWARD ) {
-        data = pbStep.getBackward();
-      } else {
-        data = pbStep.getForward();
-      }
-
-      var decodeFunc = pbStep.getDecodeFunc();
-      var timebarCallback = playData.getTimeBarPositionCallback();
-      var time = data.timeStamp;
-      var curTime = new Date(time.timestamp*1000);
-      var calculatedTime = curTime.getTime() + curTime.getTimezoneOffset()*60*1000;
-      if( typeof(time.timezone) !== 'undefined' && time.timezone !== null) {
-        calculatedTime += time.timezone*60*1000;
-      }
-      curTime.setTime(calculatedTime);
-      timebarCallback(curTime);
-      var timeString = $filter('date')(curTime, 'yyyyMMddHHmmss');
-      playData.setTimeString(timeString);
-      decodeFunc(data.frameData, "playback");
-    }
 
 		workerManager.setCallback('timeStamp', PlaybackInterface.timelineCallback);
 		workerManager.setCallback('stepRequest', PlaybackInterface.stepRequestCallback);
