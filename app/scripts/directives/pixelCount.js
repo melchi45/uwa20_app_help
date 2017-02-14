@@ -4,9 +4,9 @@ kindFramework.directive('pixelCount', function(
   return {
     restrict: 'E',
     scope: false,
-    template: "<canvas id='cm_livecanvas'></canvas>",
+    template: "<canvas id='cm-livecanvas'></canvas>",
     link: function(scope, element, attrs){
-      var cvs = $("#cm_livecanvas")[0],
+      var cvs = $("#cm-livecanvas")[0],
       ctx = null,
       rotateCheck = false;
 

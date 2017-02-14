@@ -37,7 +37,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		 		return;
 			}
 
-			pixelCanvas = $("#cm_livecanvas");
+			pixelCanvas = $("#cm-livecanvas");
 
 			if (tagType !== UniversialManagerService.getVideoMode()) {
 				tagType = UniversialManagerService.getVideoMode();
@@ -51,8 +51,8 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 			}
 
 		 	if(controlShow === undefined){
-		 		var bottomMenu = $("#cm_bottom-menu");
-		 		controlShow = bottomMenu.hasClass('cm_show-menu')? true : false;
+		 		var bottomMenu = $("#cm-bottom-menu");
+		 		controlShow = bottomMenu.hasClass('cm-show-menu')? true : false;
 		 	}
 
 		 	setContainerSize(controlShow);
@@ -103,14 +103,28 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 			$rootScope.$emit('update-dot-dptz', true);
 
 			function setContainerSize(controlShow){
-				var checkLiveSize = (window.innerWidth < 800) && ($('.cm_live-icon-list').length);
-				if(controlShow){
-					bottomMenuHeight = checkLiveSize? 350 : 250;
-				}else{
-					bottomMenuHeight = checkLiveSize? 150 : 50;
-				}
-				
-				$("#cm_video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
+				// var checkLiveSize = (window.innerWidth < 800) && ($('.cm-live-icon-list').length);
+				// if(controlShow){
+				// 	bottomMenuHeight = checkLiveSize? 350 : 250;
+                                    // }else{
+                                    //      bottomMenuHeight = checkLiveSize? 150 : 50;
+                                    // }
+
+                                    var checkType = $('.cm-live-icon-list').length;
+                                    var checkSize = window.innerWidth;
+
+                                    // 하단 메뉴 On-Off시 height 차이
+                                    if(controlShow) bottomMenuHeight = 260;
+                                    else bottomMenuHeight = 60;
+
+                                    // Default Show 상태의 메뉴 > Responsive 상태일시 2줄
+                                    if(checkSize < 800) bottomMenuHeight += 50;
+
+                                    // live page 에서는 하단의 길이가 더 김
+                                    if(checkType && checkSize < 800) bottomMenuHeight += 50;
+
+
+				$("#cm-video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
 				if( $(".full-screen img").length || $(".full-screen object").length){
 					$(".full-screen kind_stream").css({ height: "100%" });
 					$(".full-screen").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
@@ -120,7 +134,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 				}
 
 				if(UniversialManagerService.getViewMode() != 0){
-					$("#cm_video").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
+					$("#cm-video").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
 				}
 			}
 

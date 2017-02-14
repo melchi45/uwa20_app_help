@@ -1,33 +1,33 @@
-<div id="cm_date-control">
-
-  <div class="cm_col cm_margin10">
+<div id="cm-date-control">
+  <!-- PC Layout Date Select -->
+  <div class="cm-col">
     <button
       type="button" 
       kind-touch-tap="goPrevDay"
-      class="cm_str-button cm_date-button-l">
+      class="cm-str-button cm-date-button-l cm-pc">
       <i class="tui tui-left"></i>
     </button>
     <button 
       type="button" 
-      class="cm_str-button"
+      class="cm-str-button"
       kind-touch-tap="visibleSearchPopup">
-      <i class="tui tui-wn5-toolbar-calendar cm_icon-x15"></i>
+      <i class="tui tui-wn5-toolbar-calendar cm-icon-x15"></i>
       <span>{{currentDate}}</span>
     </button>
     <button
       type="button" 
       ng-hide="timelineMode === 'backup'"
       kind-touch-tap="goNextDay"
-      class="cm_str-button cm_date-button-r">
+      class="cm-str-button cm-date-button-r cm-pc">
       <i class="tui tui-right"></i>
     </button>
   </div>
 
-  <div class="cm_col cm_margin10 cm_timeboxes">
+  <div class="cm-col cm-timeboxes">
     <input 
       type="text" 
       maxlength="2" 
-      class="cm_textbox"
+      class="cm-textbox"
       data-ng-disabled='blockTimeInput'
       ng-keypress="onKeyDown($event)"
       ng-pattern-restrict="{{control.timeValidation.pattern.hour}}"
@@ -38,7 +38,7 @@
     <input 
       type="text" 
       maxlength="2" 
-      class="cm_textbox"
+      class="cm-textbox"
       data-ng-disabled='blockTimeInput'
       ng-keypress="onKeyDown($event)" 
       ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
@@ -49,7 +49,7 @@
     <input 
       type="text" 
       maxlength="2" 
-      class="cm_textbox" 
+      class="cm-textbox" 
       data-ng-disabled='blockTimeInput'
       ng-keypress="onKeyDown($event)"
       ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
@@ -58,26 +58,27 @@
       ng-model="playingTime.seconds">
   </div>
 
-  <div class="cm_col cm_margin10">
+<!-- Today 기능은 Date 세부 페이지로 이동하게 될 것임 -->
+  <div class="cm-col cm-margin10">
     <button 
       type="button" 
       ng-hide="timelineMode === 'backup'"
-      class="cm_str-button"
+      class="cm-str-button"
       kind-touch-tap="goToday"
       title="{{'lang_today' | translate}}">
       {{'lang_today' | translate}}
     </button>
   </div>
 
-  <div class="cm_col" style="margin-left: 30px;">
+  <div class="cm-col" id="backup">
     <button 
-      class="cm_str-button"
+      class="cm-str-button"
       kind-touch-tap="playbackBackup"
       title="{{ 'lang_backup' | translate}}"
       data-ng-disabled="disableBackupIcon"
-      ng-class="{'cm_disabled' : disableBackupIcon}">
-      <i class="tui tui-wn5-download cm_icon-x15"></i>
-      <span>{{ 'lang_backup' | translate}}</span>
+      ng-class="{'cm-disabled' : disableBackupIcon}">
+      <i class="tui tui-wn5-download cm-icon-x15"></i>
+      <span class="cm-pc">{{ 'lang_backup' | translate}}</span>
     </button>
   </div>
 

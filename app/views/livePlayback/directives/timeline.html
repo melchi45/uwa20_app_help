@@ -1,13 +1,13 @@
-<div class="cm_row" ng-show="timelineControl.currentTimelineMode === 'playback'" style="margin: 10px 0;">
-  <div class="cm_center">
-    <div class="cm_col cm_margin10">
+<div class="cm-row" id="timeline-setting" ng-show="timelineControl.currentTimelineMode === 'playback'">
+  <div class="cm-center">
+    <div class="cm-col">
       <button 
         type="button"
         ng-click="checkCurrentStatus()"
-        class="cm_str-button"
+        class="cm-str-button"
         title="{{selectedEvent| translate}}">
-        <i class="tui tui-wn5-toolbar-filter cm_icon-x15" style="margin-right: 5px;"></i>
-        <span>{{selectedEvent| translate}}</span>
+        <i class="tui tui-wn5-toolbar-filter cm-icon-x15"></i>
+        <span class="cm-pc">&nbsp;{{selectedEvent| translate}}</span>
       </button>
     </div>
 
@@ -20,8 +20,8 @@
   </div>
 </div>
 
-<div class="cm_row" ng-show="timelineControl.currentTimelineMode === 'backup'" style="margin: 10px 0;">
-  <div class="cm_center">
+<div class="cm-row" ng-show="timelineControl.currentTimelineMode === 'backup'" style="margin: 10px 0;">
+  <div class="cm-center">
     <playback-backup
       get-backup-date="timelineControl.getBackupDate"
       control="timelineControl"
@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<div class="cm_row" style="padding: 0;">
+<div class="cm-row cm-p010">
   <div 
     ng-show="timelineControl.currentTimelineMode === 'playback' || timelineControl.currentTimelineMode === 'backup'"
     class="timeline-container" 
@@ -42,7 +42,7 @@
 
 <div 
   ng-show="timelineControl.currentTimelineMode === 'playback'"
-  class="cm_playback-duplicate-items">
+  class="cm-playback-duplicate-items">
   <div 
     ng-repeat="item in duplicateItems" 
     ng-click="selectOneEvent(item)" 
@@ -71,20 +71,20 @@
 
 <div 
   ng-show="timelineControl.currentTimelineMode !== 'playback' && timelineControl.currentTimelineMode !== 'datepicker'"
-  class="cm_row" 
+  class="cm-row" 
   style="margin-top: 20px;">
-  <div class="cm_center">
+  <div class="cm-center">
     <button 
       ng-click="timelineControl.submit()"
       title="{{'lang_apply' | translate}}"
-      class="cm_submit-button"
+      class="cm-submit-button"
       style="margin-right: 5px;">
       {{'lang_apply' | translate}}
     </button>
     <button 
       ng-click="timelineControl.cancel()"
       title="{{'lang_cancel' | translate}}"
-      class="cm_str-button cm_cancel-button">
+      class="cm-str-button cm-cancel-button">
       {{'lang_cancel' | translate}}
     </button>
   </div>

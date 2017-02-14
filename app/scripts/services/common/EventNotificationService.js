@@ -116,9 +116,9 @@ kindFramework
             var outputElement = $('#output-' + (targetData.eventId -1))[0];
             if (outputElement !== undefined) {
               if (targetData.value == 'false') 
-                $('#output-' + (targetData.eventId -1)).removeClass('cm_on');
+                $('#output-' + (targetData.eventId -1)).removeClass('cm-on');
               else
-                $('#output-' + (targetData.eventId -1)).addClass('cm_on');
+                $('#output-' + (targetData.eventId -1)).addClass('cm-on');
             }
           default:
             if (targetData.value == 'true') {

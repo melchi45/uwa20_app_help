@@ -1,32 +1,32 @@
 <div 
-  id="cm_bottom-menu" 
+  id="cm-bottom-menu" 
   ng-class="{ 
-    'cm_full-menu' : visibilityFullScreen,
-    'cm_show-menu' : showMenuContent}">
-    <!--'cm_playback-menu' : domControls.enablePlayback -->
+    'cm-full-menu' : visibilityFullScreen,
+    'cm-show-menu' : showMenuContent}">
+    <!--'cm-playback-menu' : domControls.enablePlayback -->
 
   <!--
   Prev, Play, Next, 배속과 같은 버튼 영역
   -->
-  <div class="cm_row" id="cm_icon-list" ng-show="enablePlayback">
-    <div class="cm_center">
+  <div class="cm-row" id="cm-icon-list" ng-show="enablePlayback">
+    <div class="cm-center">
 
-      <ul class="cm_col cm_margin-rs cm_content-icon-list">
-        <li ng-class="{ 'cm_active' : showMenuContent }">
+      <ul class="info-toggle">
+        <li ng-class="{ 'cm-active' : showMenuContent }">
           <button 
-            class="cm_icon-button-b"
+            class="cm-icon-button-b"
             ng-click="toggleShowMenuContent()" 
             title="{{'lang_top_playback' | translate}}">
             <span class="sr-only">{{ 'lang_top_playback' | translate }}</span>
             <i class="tui" ng-class="showMenuContent? 'tui-down' : 'tui-top'"></i>
           </button>
-        </li>
-      </ul>
+        </li> 
+     </ul>
 
-      <ul class="cm_col cm_list-2">
+      <ul class="cm-playback-block cm-control-icon cm-list-2">
         <li>
           <button 
-            class="cm_icon-button-b"
+            class="cm-icon-button-b"
             ng-click="visibilityFullScreen? closeFullscreenButton($event) : openFullscreenButton($event)"
             title="{{'lang_fullScreen' | translate}}">
             <span class="sr-only">{{ "lang_fullScreen" | translate}}</span>
@@ -35,7 +35,7 @@
         </li>
         <li>
           <button 
-            class="cm_icon-button-b"
+            class="cm-icon-button-b"
             ng-click="changeViewMode()"
             title="{{viewModeTitle | translate}}">
             <span class="sr-only">{{viewModeTitle | translate}}</span>
@@ -44,7 +44,7 @@
         </li>
         <li>
           <button 
-            class="cm_icon-button-b"
+            class="cm-icon-button-b"
             kind-touch-tap="playback.captureScreen"
             title="{{ 'lang_capture' | translate}}">
             <span class="sr-only">{{ 'lang_capture' | translate}}</span>
@@ -53,12 +53,12 @@
         </li>
       </ul>
 
-      <div class="cm_vline"></div>
+      <div class="cm-vline"></div>
 
-      <ul class="cm_col cm_list-2">
+      <ul class="cm-playback-block cm-control-icon cm-list-2">
         <li>
           <button 
-            class="cm_icon-button-b"
+            class="cm-icon-button-b"
             title="{{ 'lang_prev' | translate}}"
             data-ng-disabled="disableStepIcon"
             kind-touch-tap="playback.stepBackward">
@@ -68,7 +68,7 @@
         </li>
         <li>
           <button 
-            class="cm_icon-button-b"
+            class="cm-icon-button-b"
             title="{{ playback.isPlay? 'lang_stop':'lang_start' | translate}}"
             kind-touch-tap="playback.isPlay? playback.pause : playback.play"
             data-ng-disabled="disableButton">
@@ -78,7 +78,7 @@
         </li>
         <li>
           <button 
-            class="cm_icon-button-b"
+            class="cm-icon-button-b"
             title="{{ 'lang_next' | translate}}"
             data-ng-disabled="disableStepIcon"
             kind-touch-tap="playback.stepForward">
@@ -88,7 +88,7 @@
         </li>
         <li>
           <select 
-            class="cm_selectbox cm_playback-speed" 
+            class="cm-selectbox cm-playback-speed" 
             ng-change="selectSpeedChanged()" 
             ng-model="playback.speed" 
             ng-disabled="!playback.isPlay"
@@ -97,25 +97,25 @@
         </li>
       </ul>
 
-      <div class="cm_vline"></div>
+      <div class="cm-vline cm-pc"></div>
 
-      <div class="cm_col">
+      <div class="cm-playback-block cm-control-icon" id="volume-control">
         <button 
-          class="cm_icon-button-s"
-          ng-class="{'cm_opacity': false}"
+          class="cm-icon-button-s"
+          ng-class="{'cm-opacity': false}"
           ng-click="playback.changeSpeaker()" 
           title="{{'lang_Speaker' | translate}}">
           <span class="sr-only">{{ 'lang_Speaker' | translate }}</span>
           <i ng-class="playback.speakerStatus == true ? 'tui tui-wn5-toolbar-sound' : 'tui tui-wn5-sound-off'"></i>
         </button>
-        <div id="cm_speaker-slider">
+        <div id="cm-speaker-slider">
           <div></div>
         </div>
       </div>
 
     </div>
   </div>
-  <div id="cm_menu-content" ng-show="enablePlayback">
+  <div id="cm-menu-content" ng-show="enablePlayback">
     <div class="camera-functions vertical-middle wisenet-camera-functions">
       <timeline control="timelineController" playback-backup="playback.backup" disable-backup-icon="disableBackupIcon">
       </timeline>

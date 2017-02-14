@@ -65,7 +65,7 @@
         </div>
         
         <div id="ptz-control_left-box" ng-show="showPTZControlBasicDPTZ">
-            <button type="button" class="cm_icon-button-s" ng-click="clickDigitalAutoTracking()" title="{{'lang_autotracking' | translate}}">
+            <button type="button" class="cm-icon-button-s" ng-click="clickDigitalAutoTracking()" title="{{'lang_autotracking' | translate}}">
                 <i ng-class="DATFlag ? 'tui-ch-live-ptz-tracking-auto-off' : 'tui-ch-live-ptz-tracking-auto-on'" class="tui"></i>
             </button>
         </div>
@@ -74,10 +74,10 @@
 
         <!-- External PTZ Left Button -->
         <div id="ptz-control_left-box" ng-show="showPTZControlEPTZ">
-            <button type="button" class="cm_icon-button-s" title="{{'lang_near' | translate}}" ng-mousedown="clickPtzFocus('Near')" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
+            <button type="button" class="cm-icon-button-s" title="{{'lang_near' | translate}}" ng-mousedown="clickPtzFocus('Near')" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
                 <i class="tui tui-wn5-ptz-near"></i>
             </button>
-            <button type="button" class="cm_icon-button-s" title="{{'lang_far' | translate}}" ng-mousedown="clickPtzFocus('Far')" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
+            <button type="button" class="cm-icon-button-s" title="{{'lang_far' | translate}}" ng-mousedown="clickPtzFocus('Far')" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
                 <i class="tui tui-wn5-ptz-far"></i>
             </button>
         </div>
@@ -95,7 +95,7 @@
 
             <div id="ptz-control_slider-box">
                 <button 
-                    class="cm_icon-button-s"
+                    class="cm-icon-button-s"
                     title="{{'lang_zoomIn' | translate}}"
                     ng-mousedown="ptzControlZoom(50);" 
                     ng-mouseup="ptzControlZoom('Stop')" 
@@ -104,7 +104,7 @@
                 </button>
                 <div id="ptz-control_slider"></div>
                 <button
-                    class="cm_icon-button-s"
+                    class="cm-icon-button-s"
                     title="{{'lang_zoomOut' | translate}}"
                     ng-mousedown="ptzControlZoom(-50);" 
                     ng-mouseup="ptzControlZoom('Stop')" 

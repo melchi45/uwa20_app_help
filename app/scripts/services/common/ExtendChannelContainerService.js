@@ -19,7 +19,7 @@ kindFramework
 		};
 
     this.setPixelCounterService = function(callbackFunc) {
-      var canvasElem = document.getElementById("cm_livecanvas");
+      var canvasElem = document.getElementById("cm-livecanvas");
       if (canvasElem !== null) {
         PixelCounterService.deleteElementEvent(canvasElem);
         PixelCounterService.setElementEvent(canvasElem);

@@ -1,12 +1,12 @@
-<div class="cm_center">
-  <div ng-show="currentPtzType !== ptzType.NONE">
-    <div class="cm_col cm_ptz-type" ng-show="currentPtzType === ptzType.EXTERNAL_DIGITAL">
+<div class="cm-center">
+  <div ng-show="currentPtzType !== ptzType.NONE" id="ptz-components" class="cm-force-center">
+    <div class="cm-col cm-ptz-type" ng-show="currentPtzType === ptzType.EXTERNAL_DIGITAL">
       <h2><span>Type</span></h2>
-      <p class="cm_radio-wrap">
+      <p class="cm-radio-wrap">
         <input type="radio" id="external-radio" ng-model="ptzMode" ng-change="modeChange('external')" value="external">
         <label for="external-radio"><span>External PTZ</span></label>
       </p>
-      <p class="cm_radio-wrap">
+      <p class="cm-radio-wrap">
           <input type="radio" id="dptz-radio" ng-model="ptzMode" ng-change="modeChange('dptz')" value="dptz">
           <label for="dptz-radio"><span>DPTZ</span></label>
       </p>
@@ -19,14 +19,14 @@
   </button>
 </p>
  -->
-    <div class="cm_col" id="cm_live-ptz-control">
-      <div class="cm_ptz-control-left">
+    <div class="cm-col" id="cm-live-ptz-control">
+      <div class="cm-ptz-control-left">
         <button 
           ng-if="ptzMode === 'external' || currentPtzType === ptzType.OPTICAL"
           ng-mousedown="ptzFocus('Near')" 
           ng-mouseup="ptzFocus('Stop')" 
           ng-mouseleave="ptzFocus('Stop')" 
-          class="cm_icon-button-s cm_near"
+          class="cm-icon-button-s cm-near"
           title="{{'lang_near' | translate}}">
           <span class="sr-only">{{ 'lang_near' | translate }}</span>
           <i class="tui tui-wn5-ptz-near"></i>
@@ -34,7 +34,7 @@
         <button 
           ng-if="ptzMode === 'dptz' || currentPtzType === ptzType.OPTICAL"
           ng-click="autoTracking()"
-          class="cm_icon-button-s cm_at"
+          class="cm-icon-button-s cm-at"
           title="{{'lang_autotracking_on' | translate}}">
           <span class="sr-only">{{ 'lang_autotracking_on' | translate }}</span>
           <i class="tui" ng-class="autoTrackingFlag === dptzMode.DIGITAL_PTZ ? 'tui-ch-live-ptz-tracking-auto-off' : 'tui-ch-live-ptz-tracking-auto-on'"></i>
@@ -44,14 +44,14 @@
           ng-mousedown="ptzFocus('Far')" 
           ng-mouseup="ptzFocus('Stop')" 
           ng-mouseleave="ptzFocus('Stop')" 
-          class="cm_icon-button-s cm_far"
+          class="cm-icon-button-s cm-far"
           title="{{'lang_far' | translate}}">
           <span class="sr-only">{{ 'lang_far' | translate }}</span>
           <i class="tui tui-wn5-ptz-far"></i>
         </button>
         <!-- 
         <button 
-          class="cm_icon-button-s cm_home"
+          class="cm-icon-button-s cm-home"
           title="{{'lang_goHomePosition' | translate}}"
           ng-show="ptzMode == 'external'">
           <span class="sr-only">{{ 'lang_goHomePosition' | translate }}</span>
@@ -59,19 +59,21 @@
         </button>
         -->
       </div>
-      <div id="cm_ptz-control-box">
-        <div class="cm_hline"></div>
-        <div class="cm_vline"></div>
-        <div id="cm_ptz-control-move-btn">
+      
+
+      <div id="cm-ptz-control-box">
+        <div class="cm-hline"></div>
+        <div class="cm-vline"></div>
+        <div id="cm-ptz-control-move-btn">
             <i class="tui tui-wn5-ptz-handle"></i>
         </div>
       </div>
-      <div class="cm_ptz-control-right">
+      <div class="cm-ptz-control-right">
         <button 
           ng-mousedown="ptzZoom('in')"
           ng-mouseup="ptzZoom('stop')"
           ng-mouseleave="ptzZoom('stop')"
-          class="cm_icon-button-s cm_zoom-in"
+          class="cm-icon-button-s cm-zoom-in"
           title="{{'lang_zoomIn' | translate}}">
           <span class="sr-only">{{ 'lang_zoomIn' | translate }}</span>
           <i class="tui tui-wn5-ptz-plus"></i>
@@ -80,20 +82,20 @@
           ng-mousedown="ptzZoom('out')"
           ng-mouseup="ptzZoom('stop')"
           ng-mouseleave="ptzZoom('stop')"
-          class="cm_icon-button-s cm_zoom-out"
+          class="cm-icon-button-s cm-zoom-out"
           title="{{'lang_zoomOut' | translate}}">
           <span class="sr-only">{{ 'lang_zoomOut' | translate }}</span>
           <i class="tui tui-wn5-ptz-minus"></i>
         </button>
-        <div id="cm_ptz-zoom-slider">
+        <div id="cm-ptz-zoom-slider">
           <div></div>
         </div>
       </div>
     </div>
 
-    <div class="cm_col">
-      <h2><span>{{'lang_preset' | translate}}</span></h2>
-      <table class="cm_table">
+    <div class="cm-col cm-ptz-preset">
+      <h2><span class="cm-m0-10">{{'lang_preset' | translate}}</span></h2>
+      <table class="cm-table">
         <colgroup>
           <col width="50">
           <col width="180">
@@ -111,7 +113,7 @@
               {{item.name}}
               <button 
                 ng-click="item.action(item.value)"
-                class="cm_icon-button-xs"
+                class="cm-icon-button-xs"
                 title="{{item.value}} : {{item.name}}"
                 style="float: right;">
                 <span class="sr-only">{{item.value}} : {{item.name}}</span>
@@ -123,9 +125,9 @@
       </table>
     </div>
 
-    <div class="cm_col" ng-if="currentPtzType !== ptzType.EXTERNAL">
-      <h2><span>{{'lang_group' | translate}}</span></h2>
-      <table class="cm_table">
+    <div class="cm-col" ng-if="currentPtzType !== ptzType.EXTERNAL">
+      <h2><span class="cm-m0-10">{{'lang_group' | translate}}</span></h2>
+      <table class="cm-table">
         <colgroup>
           <col width="50">
           <col width="200">
@@ -143,7 +145,7 @@
               {{item.name}}
               <button 
                 ng-click="item.stopaction(item.value)"
-                class="cm_icon-button-xs"
+                class="cm-icon-button-xs"
                 title="{{item.value}} : {{item.name}}"
                 style="float: right;">
                 <span class="sr-only">{{item.value}} : {{item.name}}</span>
@@ -151,7 +153,7 @@
               </button>
               <button 
                 ng-click="item.startaction(item.value)"
-                class="cm_icon-button-xs"
+                class="cm-icon-button-xs"
                 title="{{item.value}} : {{item.name}}"
                 style="float: right;">
                 <span class="sr-only">{{item.value}} : {{item.name}}</span>
