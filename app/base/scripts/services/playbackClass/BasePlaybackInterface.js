@@ -186,7 +186,7 @@ kindFramework
 				'year' : inputData.date.getFullYear(),
 				'month' : pad(inputData.date.getMonth()+1),
 				'day' : pad(inputData.date.getDate()),
-				//channelId (TODO : mijoo462.park)
+				'channel' : channelId
 			};
 			this.getOverlappedId(overlapInfo)
 			.then(function(idList){

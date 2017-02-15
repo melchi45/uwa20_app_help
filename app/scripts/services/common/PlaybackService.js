@@ -200,8 +200,7 @@ kindFramework
       var updateDate = {
         FromDate : info.year+"-"+info.month+"-"+pad(info.day)+" 00:00:00",
         ToDate : info.year+"-"+info.month+"-"+pad(info.day)+" 23:59:59",
-        // TODO : mijoo462.park : overlapped no param for channel
-        //ChannelIDList : info.channel
+        ChannelIDList : info.channel
       };
       
       var def = $q.defer();
