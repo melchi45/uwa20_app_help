@@ -290,6 +290,17 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				function init() {
 					scope.presetList = [];
 					scope.groupList = [];
+					setTabs();
+				}
+
+				function setTabs(){
+					if( $("#live-ptz-tabs").length ){
+						$("#live-ptz-tabs").tabs();
+						var tabCount = $("#live-ptz-tabs .ui-widget-header li").length;
+						if(tabCount < 5){
+							$("#live-ptz-tabs .ui-widget-header li").css("width", (100 / tabCount) + "%");
+						}
+					}
 				}
 
 				function getSettingPresetList() {
