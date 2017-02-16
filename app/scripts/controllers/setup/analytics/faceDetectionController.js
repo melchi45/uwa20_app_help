@@ -220,8 +220,12 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     function getDefaultWiseFDData(){
         var points = [];
         var definedVideoInfo = getDefinedVideoInfo();
-        var maxWidth = definedVideoInfo[2];
-        var maxHeight = definedVideoInfo[3];
+        /**
+         * 카메라에서 최대 해상도를 저장하지 못하여 보통 -1를 해서 보내지만
+         * Face Detection은 짝수만 가능하기 때문에 -2를 해서 보냄
+         */
+        var maxWidth = definedVideoInfo[2] - 2;
+        var maxHeight = definedVideoInfo[3] - 2;
 
         //Flip
         if($scope.videoinfo.flip === true && $scope.videoinfo.mirror === false){
