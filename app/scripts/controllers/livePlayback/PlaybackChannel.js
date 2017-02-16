@@ -290,6 +290,25 @@ kindFramework
       }
       UniversialManagerService.setLiveStreamStatus(false);
     };
+
+    /*
+    * get current date of camera
+    * 
+    * @function : getCurrentDate
+    */
+    function getCurrentDate() {
+      resetSetting();
+      SunapiClient.get('/stw-cgi/system.cgi?msubmenu=date&action=view', {},
+        function(response) {
+          var currentDay = response.data.LocalTime.split(" ")[0];
+          var current = new Date(currentDay);
+          current.setTime(current.getTime() + current.getTimezoneOffset()*60*1000);
+          searchData.setDefaultDate(current);
+          initializePlaybackPage();
+        },
+        function(errorDate){
+        }, '', true);      
+    }
     
     // When connect to PlaybackChannel at first,
     $scope.$on('$stateChangeSuccess', 
@@ -319,25 +338,6 @@ kindFramework
         $scope.pageController.closePlayback();
       }
     }, $scope);
-
-    /*
-    * get current date of camera
-    * 
-    * @function : getCurrentDate
-    */
-    function getCurrentDate() {
-      resetSetting();
-      SunapiClient.get('/stw-cgi/system.cgi?msubmenu=date&action=view', {},
-        function(response) {
-          var currentDay = response.data.LocalTime.split(" ")[0];
-          var current = new Date(currentDay);
-          current.setTime(current.getTime() + current.getTimezoneOffset()*60*1000);
-          searchData.setDefaultDate(current);
-          initializePlaybackPage();
-        },
-        function(errorDate){
-        }, '', true);      
-    }
 
     $rootScope.$saveOn('channelPlayer::initialized', function(event, data) {
       isChannelPlayerInit = true;
