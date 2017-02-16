@@ -38,16 +38,27 @@ kindFramework
 
         //This is for local function
 
+        /*
+        * @function : stdTimezoneoffset
+        */
         Date.prototype.stdTimezoneOffset = function() {
           var jan = new Date(this.getFullYear(), 0, 1);
           var jul = new Date(this.getFullYear(), 6, 1);
           return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
         };
 
+        /*
+        * check current date is applied dst or not
+        * @function : dst
+        */
         Date.prototype.dst = function() {
           return this.getTimezoneOffset() < this.stdTimezoneOffset();
         };
 
+        /*
+        * start dst during 1 hours new Date().getHours() values differs with 1h
+        * @function : startDst
+        */
         Date.prototype.startDst = function() {
           if( this.dst() && this.needCheckDst == true ) {
             return true;
@@ -55,6 +66,10 @@ kindFramework
           return false;
         };
 
+
+        /*
+        * @function : checkDst
+        */
         Date.prototype.checkDst = function(value) {
           Date.prototype.needCheckDst = value;
         };
@@ -62,6 +77,12 @@ kindFramework
         moment.tz.add("Africa/Abidjan|LMT GMT|g.8 0|01|-2ldXH.Q|48e5");
         moment.tz.setDefault("Africa/Abidjan");
 
+        /*
+        * applied local timezone offset
+        *
+        * @function : convert_UTCDate_to_LocalDate
+        * @param : dateObj is type of Date
+        */
         var convert_UTCDate_to_LocalDate = function(dateObj) {
           if( typeof dateObj !== 'object' && dateObj.getTime === undefined) {
             console.log('input parameter is wrong please check!');
@@ -71,6 +92,12 @@ kindFramework
           return dateObj;
         };
 
+        /*
+        * convert Date to moment object
+        *
+        * @function : convert_Date_to_moment
+        * @param : dateObj is type of Date
+        */
         var convert_Date_to_moment = function(dateObj) {
           if( typeof dateObj !== 'object' && dateObj.getTime === undefined) {
             console.log('input parameter is wrong please check!');
@@ -79,6 +106,12 @@ kindFramework
           return moment.parseZone($filter('date')(dateObj, 'yyyy-MM-dd hh:mm:ss')+'+00:00');
         };
 
+        /*
+        * convert moment to Date
+        *
+        * @function : convert_moment_to_Date
+        * @param : momentObj is type of moment
+        */
         var convert_moment_to_Date = function(momentObj){
           if( typeof momentObj !== 'object' && momentObj.zoneName === undefined ) {
             console.log('input parameter is wrong please check!');
@@ -88,6 +121,13 @@ kindFramework
           return returnValue;
         };
 
+        /*
+        * convert moment to String
+        *
+        * @function : convert_moment_to_String
+        * @param : momentObj is type of moment
+        * @return : string 
+        */
         var convert_moment_to_String = function(momentObj, isformatting){
           if( typeof momentObj !== 'object' && momentObj.zoneName === undefined ) {
             console.log('input parameter is wrong please check!');
@@ -99,6 +139,12 @@ kindFramework
           return momentObj.format();
         };
 
+        /*
+        * convert String to moment object
+        *
+        * @function : convert_String_to_moment
+        * @param : dateString is type of string
+        */
         var convert_String_to_moment = function(dateString){
           if( typeof dateString !== 'string' ) {
             console.log('input parameter is wrong please check!');
@@ -107,6 +153,12 @@ kindFramework
           return moment.parseZone(dateString+"+00:00");
         };
 
+        /*
+        * convert String to Date object
+        *
+        * @function : convert_String_to_Date
+        * @param : dateString is type of string
+        */
         var convert_String_to_Date = function(dateString) {
           if( typeof dateString !== 'string' ) {
             console.log('input parameter is wrong please check!');
@@ -116,17 +168,24 @@ kindFramework
           return returnValue;
         };
 
+        /*
+        * convert Date to String
+        *
+        * @function : convert_Date_to_String
+        * @param : dateObj is type of Date
+        *        : if isformatting is false, return default type of string
+        *        : if type value is 'rtsp', then return rtspUrlTime format 
+        */
         var convert_Date_to_String = function(dateObj, isformatting, type) {
           if( typeof dateObj !== 'object' && dateObj.getTime === undefined) {
             console.log('input parameter is wrong please check!');
             return null;
           }
           var momentObj;
-          if( dateObj.startDst()){
+          if( dateObj.startDst() ) {
             momentObj = moment.utc([dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate(), 
             dateObj.getHours()-1, dateObj.getMinutes(), dateObj.getSeconds()]);
-          }
-          else {
+          } else {
             momentObj = moment.utc([dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate(), 
             dateObj.getHours(), dateObj.getMinutes(), dateObj.getSeconds()]);
           }
@@ -139,10 +198,22 @@ kindFramework
           return momentObj.format();
         };
 
+        /*
+        * convert Date to moment.utc object
+        *
+        * @function : convert_UTCDate_to_LocalMoment
+        * @param : dateObj is type of Date
+        */
         var convert_UTCDate_to_LocalMoment = function(dateObj) {
           return moment.utc(dateObj);
         };
 
+        /*
+        * return timeline create options
+        *
+        * @function : getTimelineOption
+        * @param : startDate, endDate is type of moment
+        */
         var getTimelineOption = function(startDate, endDate) {
           var options = {
             start: startDate,
@@ -186,24 +257,15 @@ kindFramework
           return options;
         };
 
-        var checkValidTimePoint = function(time) {
-          var selectedItem = itemSet.getSelectedItem(time, direction);
-          if( selectedItem === null ) {
-            return false;
-          }
-          else {
-            return true;
-          }
-        };
-
         /*
         * timestampCallback. It is called by Plugin or RtspClient.
         * @name : getTimestamp
         * @param : time is second for utc_time.
+        *        : stepFlag is for step play
         */
         var getTimestamp = function(time, stepFlag) {
           if( time === null ) return;
-          if( stopCallback && (stepFlag == undefined || stepFlag === false)) return;
+          if( stopCallback && (stepFlag === undefined || stepFlag === false)) return;
           if(playData.getIsMultiPlayback() && searchData.getChannelId() !== time.channel_index) return;
           /*
           * If end time reached, we need to manually stop the stream.
@@ -214,10 +276,9 @@ kindFramework
           }
 
           if( timestamp !== time.timestamp ) {
-            var curTime = new Date(time.timestamp*1000);
+            var curTime;
             var deviceType = playData.getDeviceType();
             if(deviceType === 'NWC') {
-              curTime = null;
               curTime = moment.utc(time.timestamp*1000 + time.timezone*60*1000);
             }
             // console.log('timestamp :::', new Date(time.timestamp*1000), 'playbar :::', curTime);
@@ -226,6 +287,7 @@ kindFramework
               diff = curTime.valueOf() - convert_String_to_moment(endTarget).valueOf();
             }
             else {
+              var curTime = new Date(time.timestamp*1000);
               diff = curTime.getTime() - endTarget;
             }
             if( (direction > 0 && diff >= 0 ) || (direction<0 && diff <= 0 ) ) {
@@ -244,7 +306,7 @@ kindFramework
         /*
         * if no item selected, then find next item.
         * @name : findNearItem
-        * @param : time : Date object which is currently set
+        * @param : time is Date object which is currently set
         */
         var isSameId = false;
         var findNearItem = function(time) {
@@ -288,10 +350,15 @@ kindFramework
           return true;
         };
 
-        //startTime, endTime : Date obj -->dst Àû¿ë½Ã ¹Ù²ï Date
+        /*
+        * set RTSP time range
+        * 
+        * @function : setTimeRange
+        * @param : startTime, endTime is type of Date.
+        */
         var setTimeRange = function(startTime, endTime) {
           var startTimeString = convert_Date_to_String(startTime, true, 'rtsp' );
-          var endTimeString;
+          var endTimeString = null;
           if( endTime !== undefined && endTime !== null ) {
             endTimeString = convert_Date_to_String(endTime, true, 'rtsp');
           }
@@ -306,7 +373,12 @@ kindFramework
           }
         };
 
-        //timePosition is string type, endTime is Date type
+        /*
+        * set timebar position & update timeRange info
+        *
+        * @function : setTimebarPosition
+        * @param : timePosition is type of String, endTime is type of Date
+        */
         var setTimebarPosition = function(timePosition, endTime) {
           if( timeline === null ) return;
           var playbackStatus = playData.getStatus();
@@ -327,6 +399,12 @@ kindFramework
           updateTimebarData(timePosition);      	
         };
 
+        /*
+        * update selected item's info
+        *
+        * @function : updateTimebarData
+        * @param : timePosition is type of String
+        */
         var updateTimebarData = function(timePosition) {
           updateTimelineText([]);
           var localObj = convert_String_to_Date(timePosition)
@@ -355,23 +433,35 @@ kindFramework
           selectedID = selectedItem.id;  	
         };
 
+        /*
+        * show duplicated items's info
+        *
+        * @function : loadDuplicatedData
+        * @param : dupId is type of init. 
+        */
         var loadDuplicatedData = function(dupId) {
           var itemList = [];
           var duplicateItems = itemSet.getDuplicatedItems(dupId);
           for( var i=0 ; i< duplicateItems.length ; i++ ) {
             var itemInfo = {
-            'id': duplicateItems[i].id,
-            'start': duplicateItems[i].start.format("HH:mm:ss"),
-            'end': duplicateItems[i].end.format("HH:mm:ss"),
-            'eventType' : duplicateItems[i].eventType,
-            'dupId' : duplicateItems[i].dupId,
-            'selected': false
+              'id': duplicateItems[i].id,
+              'start': duplicateItems[i].start.format("HH:mm:ss"),
+              'end': duplicateItems[i].end.format("HH:mm:ss"),
+              'eventType' : duplicateItems[i].eventType,
+              'dupId' : duplicateItems[i].dupId,
+              'selected': false
             };
             itemList.push(itemInfo);
           }
           updateTimelineText(itemList);
         };
 
+        /*
+        * show items's info
+        *
+        * @function : showDataInfo
+        * @param : data is ItemSetModels's data
+        */
         var showDataInfo = function(data){
           var itemInfo = [];
           itemInfo.push({
@@ -387,6 +477,12 @@ kindFramework
         };
 
 
+        /*
+        * show items's info
+        *
+        * @function : setPlayRange
+        * @param : item is ItemSetModels's data, time is type of Date
+        */
         var setPlayRange = function(item, isDoubleClick, time) {
           var startPoint, endPoint;
           startPoint = isDoubleClick? time : item.startObj;
@@ -410,7 +506,12 @@ kindFramework
           setTimebarPosition(convert_Date_to_String(startPoint), endPoint);
         };
 
-
+        /*
+        * change timeline view
+        *
+        * @function : changeTimelineView
+        * @param : start, end is type of moment
+        */
         var changeTimelineView = this.changeTimelineView = function(start, end){
           currentWindowStart = start;
           currentWindowEnd = end;
@@ -419,6 +520,11 @@ kindFramework
           //				});
         };
 
+        /**
+        * change timeline view
+        *
+        * @function : checkTimelineMoving
+        */
         var checkTimelineMoving = function() {
           if( isPhone ) return;
           if( playData.getStatus() === PLAY_CMD.PLAY && isValidBlock === false) {
@@ -439,6 +545,7 @@ kindFramework
             }, 500);
           }
         };
+
         /**
         * create timeline
         * @name createTimeline
@@ -453,7 +560,7 @@ kindFramework
             return;
           }
           var deviceType = playData.getDeviceType();
-          var today;
+          var today = null;
           if( deviceType ==='NWC' ) {
             today = searchData.getSelectedDate();
           }
@@ -542,7 +649,7 @@ kindFramework
         * re-set timeline item between the range (currentWindowStart, currentWindowEnd)
         * this function called by timeline.js 
         * when end of pan / end of pinch
-        * @name : enableToDraw
+        * @function : enableToDraw
         */
         this.enableToDraw = function() {
           if( ignorePanEvent === true ) return;
@@ -557,7 +664,7 @@ kindFramework
 
         /*
         * delete timeline and item set
-        * @name : destroy
+        * @function : destroy
         */
         this.destroy = function() {
           itemSet.clearData();
@@ -569,9 +676,14 @@ kindFramework
           direction = 1;
         };
 
+        /*
+        * change timeline options
+        * @function : changeOptions
+        * @param : inputDate, inputEndDate is type of Date
+        */
         this.changeOptions = function(inputDate, inputEndDate){
           var deviceType = playData.getDeviceType();
-          var today;
+          var today = null;
           if( deviceType ==='NWC' ) {
             today = searchData.getSelectedDate();
           }
@@ -587,22 +699,33 @@ kindFramework
           itemSet.clearData();
         };
 
+        /*
+        * change timeline options to default
+        * @function : refreshTimelineView
+        */
         this.refreshTimelineView = function() {
           this.changeTimelineView(timeline.options.start, timeline.options.end);
         };
 
+        /*
+        * based on currentTime, get Selected item
+        * @function : getSelectedItemInfo
+        */
         var getSelectedItemInfo = function() {
           if( timeline === null ) return;
           var currentTime = convert_String_to_Date(getPosition());
           return itemSet.getSelectedItem(currentTime, direction);
         };
 
+        /*
+        * timeline click event handler
+        * @function : selectTimeline
+        */
         this.selectTimeline = function(event, properties) {
-          console.log('[timeline]onclick called');
           $rootScope.$emit(
             'app/script/services/playbackClass/timelineService.js::stepInit');
 
-          var props;
+          var props = null;
           if( typeof(event) === 'undefined' || event === null ) {
             props = properties;
           }
@@ -635,7 +758,7 @@ kindFramework
           }
 
           if( dateValidCheckFlag === true && 
-            itemSet.getSelectedItem(selectTime, direction) === null && playData.getStatus() !== PLAY_CMD.PLAY ){
+            itemSet.getSelectedItem(selectTime, direction) === null && playData.getStatus() !== PLAY_CMD.PLAY ) {
             setTimebarPosition(selectTimeString);
           } else {
             findNearItem(selectTime);
@@ -653,6 +776,10 @@ kindFramework
           }
         };
 
+        /*
+        * check current time is valid or not
+        * @function : checkCurrentTimeIsValid
+        */
         this.checkCurrentTimeIsValid = function() {
           if( timeline === null) return false;
           var currentTime = convert_String_to_Date(getPosition());
@@ -675,8 +802,12 @@ kindFramework
           }
         };
 
+        /*
+        * move timeline view
+        * @function : moveWindow
+        */
         var moveWindow = function (timeValue) {
-          var ratio;
+          var ratio = 0;
           if(direction > 0) {
             ratio = 1/4;
           } else {
@@ -808,7 +939,7 @@ kindFramework
         };
 
         var setInitialPosition = function(start, end) {
-        setTimebarPosition(start.format(), convert_moment_to_Date(end));
+          setTimebarPosition(start.format(), convert_moment_to_Date(end));
         };
         /*
         * add received item in timeline
@@ -915,8 +1046,8 @@ kindFramework
         };
 
         this.redraw = function() {
-        if( timeline === null ) return;
-        timeline.redraw();
+          if( timeline === null ) return;
+          timeline.redraw();
         };
 
         this.resetTimeRange = function() {
