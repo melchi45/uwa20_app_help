@@ -113,6 +113,16 @@
 	float:left;
 }
 
+.ptz-control_focus-box-horizontal{
+	margin: 0;
+	margin-left: 4px;
+	float:left;
+}
+
+.ptz-control_focus-box-horizontal button{
+	margin: 7px;
+}
+
 .ptz-control_slider-horizontal{
     width: 100px;    
     margin: 5px 0;
