@@ -109,6 +109,7 @@ kindFramework.directive('dateControl', ['$rootScope','TimelineService','SearchDa
             ' '+pad(endTime[0])+':'+pad(endTime[1])+':'+pad(endTime[2])+'+00:00');
           searchData.setSelectedDate(current.date);
           timelineCtrl.changeTimelineView(startWindow, endWindow);
+          var channelId = searchData.getChannelId();
 
           var searchInfo = {
             'startTime' : current.startTime,
@@ -116,6 +117,7 @@ kindFramework.directive('dateControl', ['$rootScope','TimelineService','SearchDa
             'date' : current.date,
             'eventList' : searchData.getEventTypeList(),
             'id': searchData.getOverlapId(),
+            'channel' : channelId
           };
 
           return searchInfo;

@@ -35,10 +35,10 @@ kindFramework
 					};
 				},
 
-		checkSDStatus : function() {
+		checkSDStatus : function(channelId) {
 		    var def = $q.defer();
 		    var myObj = this;
-		    PlaybackService.checkRecordStatus()
+		    PlaybackService.checkRecordStatus(channelId)
 		    .then(function(results){
 	      		myObj.sdInfo.status = true;
 		      	def.resolve(myObj.sdInfo);
@@ -90,10 +90,19 @@ kindFramework
 			var myObj = this;
 			var def = $q.defer();
 			// $rootScope.$emit('changeLoadingBar', true);
+
+			var query = {
+				year : date.getFullYear(),
+				month : pad(date.getMonth()+1),
+				day : pad(date.getDate()),
+				channel : 0
+			};
 		
-			myObj.getOverlappedId(date.getFullYear(), pad(date.getMonth()+1), pad(date.getDate()))
+			myObj.getOverlappedId(query)
 			.then(function(idList) {
-				myObj.getEventStatus(date, idList.OverlappedIDList)
+				query.overlappedId = idList.OverlappedIDList;
+				query.date = date;
+				myObj.getEventStatus(query)
 				.then(function(eventList) {
 					def.resolve(eventList);
 				}, function(error) {
@@ -106,7 +115,7 @@ kindFramework
 			});
 			return def.promise;
 		},
-		requestTimeSearch : function(type) {
+		requestTimeSearch : function(type, channelId) {
 	      var query = { year : year, 
 	      	month : month, 
 	      	day : date, 
@@ -172,7 +181,14 @@ kindFramework
 				timeInfo.endTime = '23:59:59';
 			}
 			var overlappedId = typeof(inputData.id)==='undefined' ? 0 : inputData.id;
-			this.getOverlappedId(inputData.date.getFullYear(), pad(inputData.date.getMonth()+1), pad(inputData.date.getDate()))
+			var channelId = searchData.getChannelId();
+			var overlapInfo = {
+				'year' : inputData.date.getFullYear(),
+				'month' : pad(inputData.date.getMonth()+1),
+				'day' : pad(inputData.date.getDate()),
+				'channel' : channelId
+			};
+			this.getOverlappedId(overlapInfo)
 			.then(function(idList){
 				// to check previous overlap id exits
 				var index = 0;
@@ -184,8 +200,14 @@ kindFramework
 					overlappedId = idList.OverlappedIDList[0];
 					searchData.setOverlapId(overlappedId);
 				}
-		    	PlaybackService.eventSearch(timeInfo.date+" "+timeInfo.startTime, timeInfo.date+" "+timeInfo.endTime, 
-		    														overlappedId, inputData.eventList)
+				var searchInfo = {
+					'fromTime' : timeInfo.date+" "+timeInfo.startTime,
+					'toTime' : timeInfo.date+" "+timeInfo.endTime,
+					'type' : inputData.eventList,
+					'overlappedId' : overlappedId,
+					'channel' : channelId
+				};
+		    	PlaybackService.eventSearch(searchInfo)
 		    	.then(function(results){
 		    		console.log("results.length", results.length);
 		    		if(results.length === 0){
@@ -216,12 +238,12 @@ kindFramework
 			return deferred.promise;
 		},
 
-		getOverlappedId : function(year,month,date) {
-			return PlaybackService.getOverlappedId(year,month,date);
+		getOverlappedId : function(info) {
+			return PlaybackService.getOverlappedId(info);
 		},
 
-		getEventStatus : function(date, idList) {
-			return PlaybackService.getCurrentEventStatus(date,this.eventList, idList);
+		getEventStatus : function(info) {
+			return PlaybackService.getCurrentEventStatus(info, this.eventList);
 		},
 
 		getEventName : function(event) {
@@ -238,7 +260,7 @@ kindFramework
 			}
 			return "";
 		},
-		preparePlayback : function(){},
+		preparePlayback : function(channelId){},
 		revertLivePage : function(){},
 		openPlayback : function(inputData) {},
 		penPlaybackAfterAuth : function(inputData) {return null;},
@@ -251,7 +273,7 @@ kindFramework
 		applyPlaySpeed : function(speed) {return null;},
 		startLive : function(profileInfo) {},
 		stopLive : function() {},
-		findRecordings : function(year, month){},
+		findRecordings : function(info){},
 		stepPlay : function(command){return null;},
 		backup : function(){return null;},
 	};

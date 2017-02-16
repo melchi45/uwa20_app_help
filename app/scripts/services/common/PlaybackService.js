@@ -10,13 +10,14 @@ kindFramework
       return ( x<10? "0"+x : x );
     };
 
-    var updateEventStatus = function(date, id) {
+    var updateEventStatus = function(info, index) {
           
       var updateDate ={
-        FromDate : $filter('date')(date, 'yyyy-MM-dd') +" 00:00:00",
-        ToDate : $filter('date')(date, 'yyyy-MM-dd')+" 23:59:59",
+        FromDate : $filter('date')(info.date, 'yyyy-MM-dd') +" 00:00:00",
+        ToDate : $filter('date')(info.date, 'yyyy-MM-dd')+" 23:59:59",
         Type : 'All',
-        OverlappedID : id
+        OverlappedID : info.overlappedId[index],
+        ChannelIDList : info.channel
       };
       var def = $q.defer();
       SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=timeline&action=view', updateDate,
@@ -50,20 +51,21 @@ kindFramework
     };
 
 
-    playbackService.eventSearch = function(fromTime, toTime,overlappedID, eventSelect, deviceInfo) {
+    playbackService.eventSearch = function(info) {
       var self = this;
       var def = $q.defer();
       var updateDate = {
-        FromDate : fromTime,
-        ToDate : toTime,
-        Type : eventSelect,
-        OverlappedID : overlappedID
+        FromDate : info.fromTime,
+        ToDate : info.toTime,
+        Type : info.eventSelect,
+        OverlappedID : info.overlappedId,
+        ChannelIDList : info.channel
       };
       /*
        * for multiple event list (web case), request All event results & filtering in client side.
        */
-      if( typeof(eventSelect) === 'undefined' || eventSelect === null || 
-        eventSelect.length > 1) {
+      if( typeof(info.eventSelect) === 'undefined' || info.eventSelect === null || 
+        info.eventSelect.length > 1) {
         updateDate.Type = "All";
       }
 
@@ -79,18 +81,19 @@ kindFramework
           return def.promise;
         }
         var resultData = $filter('orderBy')(response.data.TimeLineSearchResults[0].Results, 'StartTime');
-        if( typeof(eventSelect) !== 'undefined' && eventSelect !== null && eventSelect.length > 1 ) {
+        if( typeof(info.eventSelect) !== 'undefined' && info.eventSelect !== null && info.eventSelect.length > 1 ) {
           resultData = resultData.filter(function(value){
-            for( var i=0 ; i< eventSelect.length; i++) {
-              if( value.Type === eventSelect[i]) {
+            for( var i=0 ; i< info.eventSelect.length; i++) {
+              if( value.Type === info.eventSelect[i]) {
                 return true;
               }
             }
             return false;
           });
         }
-        var dateArray = fromTime.split('-');
-        var recordJson = self.generateTimelineItem(resultData, overlappedID, dateArray[0], dateArray[1], dateArray[2].substring(0,2));
+        var dateArray = info.fromTime.split('-');
+        var recordJson = self.generateTimelineItem(resultData, info.overlappedId, 
+                                                  dateArray[0], dateArray[1], dateArray[2].substring(0,2));
         if( recordJson !== null ){
           def.resolve(recordJson);
         }
@@ -116,13 +119,13 @@ kindFramework
       return null;
     };
 
-    playbackService.findRecordingDate = function(year,month){
+    playbackService.findRecordingDate = function(info){
       var today = new Date();
-      if( typeof(year) === 'undefined' ||  year === null ){
-        year = today.getFullYear();
+      if( typeof(info.year) === 'undefined' ||  info.year === null ){
+        info.year = today.getFullYear();
       }
-      if( typeof(month) === 'undefined' || month === null ){
-        month = pad(today.getMonth()+1);
+      if( typeof(info.month) === 'undefined' || info.month === null ){
+        info.month = pad(today.getMonth()+1);
       }
       
       var findResult=[];
@@ -130,8 +133,8 @@ kindFramework
       var def = $q.defer();
 
       var updateDate = {
-        Month : year +"-"+month, 
-        ChannelIDList : 0
+        Month : info.year +"-"+info.month, 
+        ChannelIDList : info.channel
       };
 
       SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=calendarsearch&action=view', updateDate,
@@ -141,8 +144,8 @@ kindFramework
           var index = -1;
           while((index = results.indexOf('1',index+1))!== -1 ){
             findResult.push({
-              year : year,
-              month : month,
+              year : info.year,
+              month : info.month,
               day : pad(index+1)
             });
           }
@@ -162,7 +165,8 @@ kindFramework
         FromDate : query.year+"-"+query.month+"-"+pad(query.day)+" 00:00:00",
         ToDate : query.year+"-"+query.month+"-"+pad(query.day)+" 23:59:59",
         OverlappedID : query.id,
-        Type : query.type
+        Type : query.type,
+        ChannelIDList : query.channel
       };
       var def = $q.defer();
       SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=timeline&action=view&OverlappedID=', 
@@ -192,10 +196,11 @@ kindFramework
       return def.promise;
     };
 
-    playbackService.getOverlappedId = function(year, month, day){
+    playbackService.getOverlappedId = function(info){
       var updateDate = {
-        FromDate : year+"-"+month+"-"+pad(day)+" 00:00:00",
-        ToDate : year+"-"+month+"-"+pad(day)+" 23:59:59"
+        FromDate : info.year+"-"+info.month+"-"+pad(info.day)+" 00:00:00",
+        ToDate : info.year+"-"+info.month+"-"+pad(info.day)+" 23:59:59",
+        ChannelIDList : info.channel
       };
       
       var def = $q.defer();
@@ -210,7 +215,9 @@ kindFramework
       return def.promise;
     };
 
-    playbackService.checkRecordStatus = function() {
+    playbackService.checkRecordStatus = function(channelId) {
+      //TODO : mijoo462.park
+      // system.cgi > storageinfo : there is no param for channelId. Please check!
       var def = $q.defer();
       SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', '',
         function (response)
@@ -242,16 +249,16 @@ kindFramework
       return def.promise;
     };
 
-    playbackService.getCurrentEventStatus = function(date, eventList, idList) {
+    playbackService.getCurrentEventStatus = function(info,eventList) {
        var def = $q.defer();
-        updateEventStatus(date, idList[0])
+        updateEventStatus(info, 0)
         .then(function(results) {
-          if( idList.length === 1 ) {
+          if( info.overlappedId.length === 1 ) {
             var resultEventList = checkEventListEnable(results, eventList);
             def.resolve(resultEventList);
             return def.promise;
           }
-          updateEventStatus(date, idList[1])
+          updateEventStatus(info, 1)
           .then(function(result) {
             var resultEventList = checkEventListEnable(results+result, eventList);
             def.resolve(resultEventList);

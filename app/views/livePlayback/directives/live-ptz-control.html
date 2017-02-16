@@ -35,6 +35,7 @@
           ng-if="ptzMode === 'dptz' || currentPtzType === ptzType.OPTICAL"
           ng-click="autoTracking()"
           class="cm_icon-button-s cm_at"
+          ng-class="{'cm_ptz-at' : currentPtzType === ptzType.OPTICAL}"
           title="{{'lang_autotracking_on' | translate}}">
           <span class="sr-only">{{ 'lang_autotracking_on' | translate }}</span>
           <i class="tui" ng-class="autoTrackingFlag === dptzMode.DIGITAL_PTZ ? 'tui-ch-live-ptz-tracking-auto-off' : 'tui-ch-live-ptz-tracking-auto-on'"></i>
@@ -48,6 +49,14 @@
           title="{{'lang_far' | translate}}">
           <span class="sr-only">{{ 'lang_far' | translate }}</span>
           <i class="tui tui-wn5-ptz-far"></i>
+        </button>
+        <button 
+          ng-if="currentPtzType === ptzType.OPTICAL"
+           ng-click="clickPtzFocus('Auto')"
+          class="cm_icon-button-s cm_home"
+          title="{{'lang_autoFocus' | translate}}">
+          <span class="sr-only">{{ 'lang_autoFocus' | translate }}</span>
+          <i class="tui tui-wn5-simple-focus"></i>
         </button>
         <!-- 
         <button 
@@ -143,77 +152,195 @@
         </div>
     </div>
       
+    <div id="live-ptz-tabs" class="cm_col">
+      <ul>
+        <li>
+          <a href="#live-ptz-preset">{{ 'lang_preset' | translate }}</a>
+        </li>
+        <li ng-if="currentPtzType === ptzType.OPTICAL">
+            <a href="#live-ptz-swing">{{ 'lang_swing' | translate }}</a>
+        </li>
+        <li ng-if="(!(currentPtzType == ptzType.EXTERNAL || currentPtzType == ptzType.ZOOMONLY)) || currentPtzType === ptzType.OPTICAL">
+          <a href="#live-ptz-group">{{ 'lang_group' | translate }}</a>
+        </li>
+        <li ng-if="currentPtzType === ptzType.OPTICAL">
+          <a href="#live-ptz-tour">{{ 'lang_tour' | translate }}</a>
+        </li>
+        <li ng-if="currentPtzType === ptzType.OPTICAL">
+          <a href="#live-ptz-trace">{{ 'lang_trace' | translate }}</a>
+        </li>
+      </ul>
 
-    <div class="cm_col">
-      <h2><span>{{'lang_preset' | translate}}</span></h2>
-      <table class="cm_table">
-        <colgroup>
-          <col width="50">
-          <col width="180">
-        </colgroup>
-        <thead>
-          <tr>
-            <th>{{'lang_num' | translate}}</th>
-            <th>{{'lang_presetName' | translate}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in presetList">
-            <td>{{item.value}}</td>
-            <td>
-              {{item.name}}
-              <button 
-                ng-click="item.action(item.value)"
-                class="cm_icon-button-xs"
-                title="{{item.value}} : {{item.name}}"
-                style="float: right;">
-                <span class="sr-only">{{item.value}} : {{item.name}}</span>
-                <i class="tui tui-wn5-toolbar-play"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <!-- Preset start -->
+      <div id="live-ptz-preset">
+        <div ng-if="currentPtzType === ptzType.OPTICAL">
+          <div>{{'lang_selectPreset' | translate}}</div>
+          <select class="form-control cm_selectbox">
+            <option value="1: Preset">1: Preset</option>
+          </select>
+          <div style="margin-top: 5px;">
+            <button type="button" class="cm_str-button" title="Go">Go</button>
+            <button type="button" class="cm_str-button" title="Stop">Stop</button>
+            <button type="button" class="cm_str-button" title="Set" style="float: right;">Set</button>
+          </div>
+        </div>
+        <table class="cm_table" ng-if="currentPtzType !== ptzType.OPTICAL">
+          <colgroup>
+            <col width="50">
+            <col width="180">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>{{'lang_num' | translate}}</th>
+              <th>{{'lang_presetName' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in presetList">
+              <td>{{item.value}}</td>
+              <td>
+                {{item.name}}
+                <button 
+                  ng-click="item.action(item.value)"
+                  class="cm_icon-button-xs"
+                  title="{{item.value}} : {{item.name}}"
+                  style="float: right;">
+                  <span class="sr-only">{{item.value}} : {{item.name}}</span>
+                  <i class="tui tui-wn5-toolbar-play"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Preset end -->
 
-    <div class="cm_col" ng-if="!(currentPtzType == ptzType.EXTERNAL || currentPtzType == ptzType.ZOOMONLY)">
-      <h2><span>{{'lang_group' | translate}}</span></h2>
-      <table class="cm_table">
-        <colgroup>
-          <col width="50">
-          <col width="200">
-        </colgroup>
-        <thead>
-          <tr>
-            <th>{{'lang_num' | translate}}</th>
-            <th>{{'lang_group' | translate}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in groupList">
-            <td>{{item.value}}</td>
-            <td>
-              {{item.name}}
-              <button 
-                ng-click="item.stopaction(item.value)"
-                class="cm_icon-button-xs"
-                title="{{item.value}} : {{item.name}}"
-                style="float: right;">
-                <span class="sr-only">{{item.value}} : {{item.name}}</span>
-                <i class="tui tui-wn5-toolbar-pause"></i>
-              </button>
-              <button 
-                ng-click="item.startaction(item.value)"
-                class="cm_icon-button-xs"
-                title="{{item.value}} : {{item.name}}"
-                style="float: right;">
-                <span class="sr-only">{{item.value}} : {{item.name}}</span>
-                <i class="tui tui-wn5-toolbar-play"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- Swing start -->
+      <div id="live-ptz-swing" ng-if="currentPtzType === ptzType.OPTICAL">
+        <div>{{'lang_swingMode' | translate}}</div>
+        <select class="form-control cm_selectbox">
+          <option value="Pan swing">Pan swing</option>
+        </select>
+        <div style="margin-top: 5px;">
+          <button type="button" class="cm_str-button" title="Go">Go</button>
+          <button type="button" class="cm_str-button" title="Stop">Stop</button>
+        </div>
+      </div>
+      <!-- Swing end -->
+
+      <!-- Group start -->
+      <div id="live-ptz-group" ng-if="(!(currentPtzType == ptzType.EXTERNAL || currentPtzType == ptzType.ZOOMONLY)) || currentPtzType === ptzType.OPTICAL">
+        <div ng-if="currentPtzType === ptzType.OPTICAL">
+          <div>{{'lang_group' | translate}}</div>
+          <select class="form-control cm_selectbox">
+            <option value="1. Group 01">1. Group 01</option>
+          </select>
+          <div style="margin-top: 5px;">
+            <button type="button" class="cm_str-button" title="Go">Go</button>
+            <button type="button" class="cm_str-button" title="Stop">Stop</button>
+          </div>
+        </div>
+        <table class="cm_table" ng-if="currentPtzType !== ptzType.OPTICAL">
+          <colgroup>
+            <col width="50">
+            <col width="200">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>{{'lang_num' | translate}}</th>
+              <th>{{'lang_group' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in groupList">
+              <td>{{item.value}}</td>
+              <td>
+                {{item.name}}
+                <button 
+                  ng-click="item.stopaction(item.value)"
+                  class="cm_icon-button-xs"
+                  title="{{item.value}} : {{item.name}}"
+                  style="float: right;">
+                  <span class="sr-only">{{item.value}} : {{item.name}}</span>
+                  <i class="tui tui-wn5-toolbar-pause"></i>
+                </button>
+                <button 
+                  ng-click="item.startaction(item.value)"
+                  class="cm_icon-button-xs"
+                  title="{{item.value}} : {{item.name}}"
+                  style="float: right;">
+                  <span class="sr-only">{{item.value}} : {{item.name}}</span>
+                  <i class="tui tui-wn5-toolbar-play"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Group end -->
+
+      <!-- Tour start -->
+      <div id="live-ptz-tour" ng-if="currentPtzType === ptzType.OPTICAL">
+        <div>{{'lang_tour' | translate}}</div>
+        <div style="margin-top: 5px; min-width: 200px;">
+          <button type="button" class="cm_str-button" title="Go">Go</button>
+          <button type="button" class="cm_str-button" title="Stop">Stop</button>
+        </div>
+      </div>
+      <!-- Tour end -->
+
+      <!-- Trace start -->
+      <div id="live-ptz-trace" ng-if="currentPtzType === ptzType.OPTICAL">
+        <div>{{'lang_traceNo' | translate}}</div>
+        <select class="form-control cm_selectbox">
+          <option value="1">1</option>
+        </select>
+        <div style="margin-top: 5px;">
+          <button type="button" class="cm_str-button" title="Go">Go</button>
+          <button type="button" class="cm_str-button" title="Stop">Stop</button>
+        </div>
+      </div>
+      <!-- Trace end -->
+    </div> <!-- live-ptz-tabs end -->
+
+    <div class="cm_col" ng-if="currentPtzType === ptzType.OPTICAL">
+      <h2><span>{{ 'lang_areaZoom' | translate }}</span></h2>
+      <div>
+        <button 
+          class="cm_icon-button-b"
+          title="{{'lang_areaZoom' | translate}}">
+          <span class="sr-only">{{ 'lang_areaZoom' | translate }}</span>
+          <i class="tui tui-ch-live-ptz-areazoom"></i>
+        </button>
+        <button 
+          class="cm_icon-button-b"
+          title="{{'lang_goto1x' | translate}}">
+          <span class="sr-only">{{ 'lang_goto1x' | translate }}</span>
+          <i class="tui tui-ch-live-ptz-areazoom-1x"></i>
+        </button>
+        <button 
+          class="cm_icon-button-b"
+          title="{{'lang_prev' | translate}}">
+          <span class="sr-only">{{ 'lang_prev' | translate }}</span>
+          <i class="tui tui-ch-live-ptz-areazoom-back"></i>
+        </button>
+        <button 
+          class="cm_icon-button-b"
+          title="{{'lang_next' | translate}}">
+          <span class="sr-only">{{ 'lang_next' | translate }}</span>
+          <i class="tui tui-ch-live-ptz-areazoom-pre"></i>
+        </button>
+      </div>
+
+      <h2 style="margin-top: 20px;"><span>{{ 'Lock - ON' | translate }}</span></h2>
+      <div>
+        <button 
+          class="cm_icon-button-s"
+          title="{{'lang_ptz_manual_lock_on' | translate}}">
+          <span class="sr-only">{{ 'lang_ptz_manual_lock_on' | translate }}</span>
+          <i class="tui tui-ch-live-ptz-tracking-auto-on"></i>
+        </button>
+      </div>
     </div>
 
   </div>

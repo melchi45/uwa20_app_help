@@ -2,17 +2,16 @@
 kindFramework
 	.factory('PlaybackInterface', ['$q', '$filter', '$rootScope', '$injector','CAMERA_TYPE', 
 		 'SunapiClient', 'PlaybackService',
-		'ConnectionSettingService', 'PLAYBACK_TYPE', 'ModalManagerService', 'playbackStepService',
+		'ConnectionSettingService', 'PLAYBACK_TYPE', 'ModalManagerService',
 		'SearchDataModel', 'PlayDataModel', 'ItemSetModel', 'Attributes', '$timeout', 'UniversialManagerService', 'kindStreamInterface',
 		'BasePlaybackInterface','BACKUP_STATUS','BrowserService',
 		function($q, $filter, $rootScope, $injector, CAMERA_TYPE,
 			SunapiClient, PlaybackService, ConnectionSettingService, PLAYBACK_TYPE, ModalManagerService, 
-			playbackStepService, SearchDataModel, PlayDataModel, ItemSetModel, Attributes, $timeout, UniversialManagerService, kindStreamInterface,
+			SearchDataModel, PlayDataModel, ItemSetModel, Attributes, $timeout, UniversialManagerService, kindStreamInterface,
 			BasePlaybackInterface, BACKUP_STATUS, BrowserService) {
 			"use strict";
 
 		var PLAY_CMD = PLAYBACK_TYPE.playCommand;
-    var pbStep = playbackStepService;
     var support_alarm_input = false;
     var support_face_detection = false;
     var support_tampering_detection = false;
@@ -59,13 +58,14 @@ kindFramework
       	* When go main-playback page, this function called ( web operation differ from app)
       	* Just check sd status & show All+Overlap1 timeline.
       	* @name : preparePlayback
+      	* @param : channelId is numeric value
       	*/
-		PlaybackInterface.preparePlayback = function() {
+		PlaybackInterface.preparePlayback = function(channelId) {
 			var def = $q.defer();
 			var myObj = this;
-			this.checkSDStatus()
+			this.checkSDStatus(channelId)
 			.then(function(value) {
-            	myObj.openPlayback();
+            	myObj.openPlayback(channelId);
             	def.resolve('success');
 			}, function(sdInfo) {
 				//Please check multi language.
@@ -76,7 +76,7 @@ kindFramework
 			});
 			return def.promise;
 		};
-		PlaybackInterface.requestTimeSearch = function(type, inputDate) {
+		PlaybackInterface.requestTimeSearch = function(type, channelId) {
 			var today = searchData.getSelectedDate();
 			var year = today.getFullYear();
 			var month = pad(today.getMonth()+1);
@@ -85,9 +85,10 @@ kindFramework
 		      	month : month, 
 		      	day : date, 
 		      	id : 0, 
-		      	type : 'All'
+		      	type : type,
+		      	channel : channelId
       		};
-      		PlaybackService.getOverlappedId(year, month, date)
+      		PlaybackService.getOverlappedId(query)
       		.then(function(value){
       			var itemSet = new ItemSetModel();
       			//value.OverlappedIDList format is = {1,0} 
@@ -128,11 +129,11 @@ kindFramework
 
 	    };
 
-		PlaybackInterface.openPlayback = function(inputData) {
+		PlaybackInterface.openPlayback = function(channelId) {
 			searchData.setPlaybackType('timeSearch');
 			searchData.setWebIconStatus(true);
 			searchData.setEventTypeList(['All']);  //For default set value. (web & app different)
-			this.requestTimeSearch();
+			this.requestTimeSearch('All',channelId);
 		};
 		PlaybackInterface.refreshLivePage = function() {
 			searchData.setWebIconStatus(false);
@@ -234,9 +235,9 @@ kindFramework
 		* return date to recorded
 		* @name : findRecordings
 		*/
-		PlaybackInterface.findRecordings = function(year, month) {
+		PlaybackInterface.findRecordings = function(info) {
 			var def = $q.defer();
-			PlaybackService.findRecordingDate(year, month)
+			PlaybackService.findRecordingDate(info)
 			.then(function(results){
 				def.resolve(results);
 			}, function(error) {
@@ -489,29 +490,6 @@ kindFramework
 					updateEventList();
 				}
 			})();
-    function playStepFrame(command) {
-      var pbStep = playbackStepService;
-      var data;
-      if( command === PLAY_CMD.STEPBACKWARD ) {
-        data = pbStep.getBackward();
-      } else {
-        data = pbStep.getForward();
-      }
-
-      var decodeFunc = pbStep.getDecodeFunc();
-      var timebarCallback = playData.getTimeBarPositionCallback();
-      var time = data.timeStamp;
-      var curTime = new Date(time.timestamp*1000);
-      var calculatedTime = curTime.getTime() + curTime.getTimezoneOffset()*60*1000;
-      if( typeof(time.timezone) !== 'undefined' && time.timezone !== null) {
-        calculatedTime += time.timezone*60*1000;
-      }
-      curTime.setTime(calculatedTime);
-      timebarCallback(curTime);
-      var timeString = $filter('date')(curTime, 'yyyyMMddHHmmss');
-      playData.setTimeString(timeString);
-      decodeFunc(data.frameData, "playback");
-    }
 
 		workerManager.setCallback('timeStamp', PlaybackInterface.timelineCallback);
 		workerManager.setCallback('stepRequest', PlaybackInterface.stepRequestCallback);

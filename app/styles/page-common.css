@@ -737,10 +737,16 @@ kind_stream{
             top: 0;
         }
         #cm_live-ptz-control .cm_ptz-control-left .cm_far{
-            top: 30px;
+            top: 42px;
+        }
+        #cm_live-ptz-control .cm_ptz-control-left .cm_at .tui-ch-live-ptz-tracking-auto-on{
+            color: #f37321;
+        }
+        #cm_live-ptz-control .cm_ptz-control-left .cm_ptz-at{
+            top: 84px;
         }
         #cm_live-ptz-control .cm_ptz-control-left .cm_home{
-            bottom: 0;
+            top: 126px;
         }
     #cm_live-ptz-control .cm_ptz-control-right{
         width: 25px;
@@ -804,6 +810,41 @@ kind_stream{
             font-size: 24px;
         }
 
+#live-ptz-tabs select{
+    margin-top: 5px;
+    min-width: 200px;
+}
+#live-ptz-tabs.ui-tabs .ui-tabs-nav{
+    padding: 0 !important;
+}
+#live-ptz-tabs.ui-widget-content{
+    background: none !important;
+}
+#live-ptz-tabs .ui-widget-header{
+    border: none !important;
+    border-bottom: 1px solid #d2d2d2 !important;
+    background: none !important;
+}
+#live-ptz-tabs .ui-state-default{
+    margin-right: 0 !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-bottom: none !important;
+    border-right: 1px solid #d2d2d2 !important;
+}
+#live-ptz-tabs .ui-state-default:last-of-type{
+    border-right: none !important;
+}
+#live-ptz-tabs .ui-state-default.ui-state-active{
+    border-bottom: none !important;
+}
+#live-ptz-tabs .ui-state-default a{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: #000;
+    font-weight: normal !important;
+}
 
 #live-ptz-control-zoomonly{
     float: left;
