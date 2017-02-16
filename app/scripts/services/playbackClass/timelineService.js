@@ -143,7 +143,7 @@ kindFramework
 	      	return moment.utc(dateObj);
 	      };
 
-	      var getTimelineOption = function(type, startDate, endDate) {
+	      var getTimelineOption = function(startDate, endDate) {
 	        var options = {
 	            start: startDate,
 	            end: endDate,
@@ -182,20 +182,6 @@ kindFramework
 					month:      'HH:mm',
 					year:       ''	        		
 	        	}
-	        }
-	        if( type === 'event') {
-	          options.format = {
-	              majorLabels: {
-	              millisecond:'HH:mm:ss',
-	              second:     'MM/D HH:mm',
-	              minute:     'MM/D',
-	              hour:       'MM/D',
-	              weekday:    'MMMM YYYY',
-	              day:        'MMMM YYYY',
-	              month:      'YYYY',
-	              year:       ''
-	            }
-	          };
 	        }
 	        return options;
 	      };
@@ -458,7 +444,7 @@ kindFramework
 				 * @name createTimeline
 				 * @param : _updateTimelineText is callback function from channel.js
 				 */
-				this.createTimeline = function(type, element, _updateTimelineText){
+				this.createTimeline = function(element, _updateTimelineText){
 					if( timeline !== null ) {
 						console.log("already created timeline object");
 						$timeout(function(){
@@ -466,7 +452,6 @@ kindFramework
 						});
 						return;
 					}
-					var idVal = typeof(type) ==='undefined' ? '': type;
 					var deviceType = playData.getDeviceType();
 					var today;
 					if( deviceType ==='NWC' ) {
@@ -478,7 +463,7 @@ kindFramework
 					var inputDate = $filter('date')(today, 'yyyy-MM-dd');
 					var startDate = convert_String_to_moment(inputDate+' 00:00:00');
 					var endDate = convert_String_to_moment(inputDate+' 23:59:59');
-					var options = getTimelineOption(idVal, startDate, endDate);
+					var options = getTimelineOption(startDate, endDate);
 					var container = element.find('div.timeline-container')[0];
 					
 					timeline = new vis.Timeline(container, itemSet.getFullItemSet(), options);
@@ -584,8 +569,7 @@ kindFramework
 					direction = 1;
 				};
 
-				this.changeOptions = function(inputDate, inputEndDate, type){
-					var idVal = typeof(type) ==='undefined' ? '': type;
+				this.changeOptions = function(inputDate, inputEndDate){
 					var deviceType = playData.getDeviceType();
 					var today;
 					if( deviceType ==='NWC' ) {
@@ -598,7 +582,7 @@ kindFramework
 					var startDate = convert_String_to_moment(targetDate+' 00:00:00');
 					var endDate = convert_String_to_moment(targetDate+' 23:59:59');
 
-					var options = getTimelineOption(idVal, startDate, endDate);
+					var options = getTimelineOption(startDate, endDate);
 					timeline.setOptions(options);
 					itemSet.clearData();
 				};
@@ -669,7 +653,7 @@ kindFramework
 					}
 				};
 				
-				this.isValidTimePosition = function() {
+				this.checkCurrentTimeIsValid = function() {
 					if( timeline === null) return false;
 					var currentTime = convert_String_to_Date(getPosition());
 					var selectedItem = itemSet.getSelectedItem(currentTime, direction);
