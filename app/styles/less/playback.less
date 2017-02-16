@@ -42,6 +42,9 @@
 	}
 
 	
+	#timeline-setting {
+		max-height: 50px;
+	}
 
 	
 	/* After active click Event button */
@@ -104,12 +107,15 @@
 
 	.cm-playback-duplicate-items {
 	    text-align: center;
-	    margin-top: 20px;
+	    margin-top: 15px;
+	    float: left;
+	    width: 100%;
 
 	    & > div {
 	        display: inline-block;
 	        min-width: 125px;
 	        padding: 10px 0;
+	        // margin-top: 10px;
 	        text-align: center;
 	        background-color: #fff;
 	        border: 1px solid #d2d2d2;
@@ -138,8 +144,8 @@
 
 
 	#cm-icon-list .cm-playback-speed {
-        height: 30px;
-        margin-top: 10px;
+	        height: 30px;
+	        margin-top: 10px;
 	}
 
 	#cm-date-control{
@@ -220,24 +226,22 @@
 
 
 	#cm-bottom-menu.cm-full-menu{
-
-		
 		
 		#cm-menu-content {
 			height: 200px;
 		}
 
 		.cm-playback-duplicate-items {
-	        & > div {
-	            background-color: #262626;
-	            border: 1px solid #333;
-	            color: #797979;
+		        & > div {
+		            background-color: #262626;
+		            border: 1px solid #333;
+		            color: #797979;
 
-	            &.active, &.selected {
-	                color: #fff;
-	            }
-	        }
-	    }  // .cm-playback-duplicate-items  finish
+		            &.active, &.selected {
+		                color: #fff;
+		            }
+		        }
+	 	   }  // .cm-playback-duplicate-items  finish
 
 	    #cm-playback-datepicker {
 
@@ -311,19 +315,27 @@
 @media screen and (max-width:799px) {
 	.kind-responsive-playback {
 
+		#cm-icon-list {
+			height: 100px;
+			max-height: 100px;
+		}
+
 		#cm-playback-event {
 			& > .cm-center {
 				width: 100%;
 			}
 		}
 
-
 		#volume-control {
 			float: none;
-			// margin: 50px auto 0 auto;
 			margin: 0 10px;
 			height: 50px;
 			margin-top: 50px;
+			line-height: 40px;
+
+			#cm-speaker-slider {
+				margin-top: 0;
+			}
 		}
 
 		.cm-control-icon {
@@ -333,7 +345,6 @@
 				margin: 0px 5px;
 			}
 		}
-
 
 		#cm-bottom-menu.cm-full-menu {
 

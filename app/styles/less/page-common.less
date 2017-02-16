@@ -494,6 +494,7 @@ kind_stream {
 #cm-bottom-menu {
     width: 100%;
     height: 50px;
+    margin-top: 10px;
     text-align: center;
     background-color: #fff;
     overflow: hidden;
@@ -575,6 +576,7 @@ kind_stream {
         line-height: 50px;
         padding: 0;
         height: 50px;
+        overflow: hidden;
 
         // & > .cm-center {
         //     height: 50px;
@@ -848,7 +850,6 @@ kind_stream {
     background-color: #fff;
     position: relative;
     overflow: hidden;
-    margin-bottom: 10px;
 
     &.smaller {
         height: calc(~"100% - 110px");
@@ -1192,15 +1193,15 @@ kind_stream {
             display: none;
         }
     }  // #cm-nav  finish
+
+
     
     #cm-bottom-menu {
         height: 150px;
-        margin-top: -10px;
-
 
         &.cm-show-menu {
             height: 350px;
-            margin-top: 0;
+            
         }
 
         &.cm-live-bottom-menu {
@@ -1277,12 +1278,7 @@ kind_stream {
     }
 
     #cm-video{
-        width: 100%;
         height: calc(~"100% - 360px");
-        background-color: #fff;
-        position: relative;
-        overflow: hidden;
-        margin-bottom: 10px;
 
         &.smaller {
             height: calc(~"100% - 160px");
@@ -1298,7 +1294,7 @@ kind_stream {
     }
 	
 	#timeline-setting {
-		margin: -20px 0px;
+
 	}
 	
 	#cm-date-control .cm-col,

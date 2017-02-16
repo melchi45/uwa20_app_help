@@ -33,6 +33,8 @@
             }
         }
 
+
+
         .cm-live-controller {
             position: relative;
             max-height: 50px;
@@ -89,7 +91,7 @@
 
         #cm-ptz {
             .cm-center {
-                width: 100%;
+                width: 90%;
 
                 & > div {
                     float: left;
@@ -296,7 +298,13 @@
 
 
     @media screen and (max-width:799px) {
+
+         #cm-bottom-menu {
+            margin-top: 0;
+        }
+
         #cm-icon-list {
+            padding-top: 5px !important;
             max-height: none;
 
             .info-toggle {
@@ -440,7 +448,7 @@
 
     @media(max-width: 549px) {
         #ptz-components {
-            padding: 0 40px;
+            padding: 0;
 
             & > .cm-col {
                 margin: 10px 0;
@@ -466,11 +474,6 @@
                 // tables
                 &#cm-ptz-tables {
                     margin-top: 20px !important;
-                }
-
-                // table title
-                & > div {
-                    text-align: center !important;
                 }
             }
 
