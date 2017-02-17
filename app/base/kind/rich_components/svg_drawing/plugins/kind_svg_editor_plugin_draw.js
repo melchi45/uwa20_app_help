@@ -941,12 +941,12 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 			var axis = [
 				{
-					x: getXAxisOfText(angle),
-					y: getYAxisOfText(angle)
-				},
-				{
 					x: getXAxisOfText(angle + 180),
 					y: getYAxisOfText(angle + 180)
+				},
+				{
+					x: getXAxisOfText(angle),
+					y: getYAxisOfText(angle)
 				}
 			];
 
