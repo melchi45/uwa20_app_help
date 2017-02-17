@@ -113,7 +113,10 @@
                     float: left;
                     display: inline;
                     min-width: 230px;
-                    margin: 0 calc(~"calc(40% - 230px)/2");
+                    // margin: 0 calc(~"calc(40% - 230px)/2");  IE 11 bug
+                    margin-left: calc(~"20% - 115px");
+                    margin-right: calc(~"20% - 115px");
+
 
                     & > div {
                         height: 160px;
@@ -300,6 +303,7 @@
         } 
     }
 
+<<<<<<< HEAD
     
     .live-slider-vertical-input {
         display: inline-block;
@@ -309,6 +313,11 @@
         left: 20px;
         width: 45px;
         text-align:center;
+=======
+
+    #ptz-components {
+
+>>>>>>> 58b13cd0095ee250a4f84001913a1333a1431ca6
     }
 
     .live-slider-horizontal-input{
