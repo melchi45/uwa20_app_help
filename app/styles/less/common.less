@@ -223,7 +223,11 @@
     }
 
 
-/*   Page Interface Style     */
+
+
+/*   Page Interface Style     
+            from page-common.less
+*/
 .cm-row {
     width: 100%;
     padding: 0 20px;
@@ -558,6 +562,7 @@
 #cm-icon-list {
     z-index: 100;
     position: relative;
+    max-height: 100px;
 
     .ui-state-default{
         top: 13px;
@@ -1629,30 +1634,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Mobile ~799px
 @media(max-width: 799px){
 
@@ -1691,20 +1672,10 @@
                     height: 100px;
                 }
 
-
-
                 .cm-list-2 {
                     transform: translateY(-50px);
                 }
             }  
-
-            #cm-icon-list {
-
-
-                .cm-list-2 {
-                    transform: translateY(-50px);
-                }
-            }
         }
     } 
 } 
