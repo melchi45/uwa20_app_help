@@ -352,6 +352,14 @@
 
 
         #cm-bottom-menu {
+            &.cm-full-menu {
+                height: 150px;
+
+                &.cm-show-menu {
+                    height: 310px;
+                }
+            }
+            
             &.cm-live-bottom-menu {
 
                 &.cm-show-menu {
@@ -456,13 +464,7 @@
             position: relative;
         }
 
-        &.cm-full-menu {
-            height: 150px;
 
-            &.cm-show-menu {
-                height: 310px;
-            }
-        }
     }
 
     @media(max-width: 549px) {
