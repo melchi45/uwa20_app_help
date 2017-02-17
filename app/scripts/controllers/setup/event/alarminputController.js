@@ -386,136 +386,17 @@ kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScop
         }
     }
 
-    function inArray(arr, str) {
-        for(var i = 0; i < arr.length; i++) {
-            var tArray = arr[i].split(".");
-            tArray = tArray[0] + "." + tArray[1];
-            if(tArray === str){
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    $scope.setColor = function(day, hour, isAlways) {
-        var index = parseInt($scope.AlarmData.SelectedAlarm);
-        for (var i = 0; i < $scope.EventRules[index].ScheduleIds.length; i++) {
-            if ($scope.EventRules[index].ScheduleIds[i].indexOf(day + '.' + hour + '.') >= 0) {
-                if (isAlways) {
-                    return 'setMiniteFaded';
-                } else {
-                    return 'setMinite already-selected ui-selected';
-                }
-            }
-        }
-        if ($scope.EventRules[index].ScheduleIds.indexOf(day + '.' + hour) !== -1) {
-            if (isAlways) {
-                return 'setHourFaded';
-            } else {
-                return 'setHour already-selected ui-selected';
-            }
-        }
-    };
-    $scope.mouseOver = function(day, hour) {
-        var index = parseInt($scope.AlarmData.SelectedAlarm);
-        var tIndex = inArray($scope.EventRules[index].ScheduleIds, day + '.' + hour);
-        if(tIndex !== -1) {
-            $scope.MouseOverMessage = $scope.EventRules[index].ScheduleIds[tIndex].split('.');
-        }
-        // $scope.MouseOverMessage = [];
-        // for (var i = 0; i < $scope.EventRules[index].ScheduleIds.length; i++) {
-        //     if ($scope.EventRules[index].ScheduleIds[i].indexOf(day + '.' + hour) >= 0) {
-        //         $scope.MouseOverMessage = $scope.EventRules[index].ScheduleIds[i].split('.');
-        //         break;
-        //     }
-        // }
-    };
-    $scope.mouseLeave = function() {
-        $scope.MouseOverMessage = [];
-    };
     $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
     });
-    $scope.getTooltipMessage = function() {
-        if (typeof $scope.MouseOverMessage !== 'undefined') {
-            var hr, fr, to;
-            if ($scope.MouseOverMessage.length === 2) {
-                var hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
-                var fr = '00';
-                var to = '59';
-            } else if ($scope.MouseOverMessage.length === 4) {
-                var hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
-                var fr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[2], 2);
-                var to = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[3], 2);
-            } else {
-                return;
-            }
-            return "(" + $translate.instant($scope.MouseOverMessage[0]) + ") " + hr + ":" + fr + " ~ " + hr + ":" + to;
-        }
-    };
+
     $scope.clearAll = function() {
         $timeout(function() {
             var index = parseInt($scope.AlarmData.SelectedAlarm);
             $scope.EventRules[index].ScheduleIds = [];
         });
     };
-    $scope.open = function(day, hour) {
-        $scope.SelectedDay = day;
-        $scope.SelectedHour = hour;
-        $scope.SelectedFromMinute = 0;
-        $scope.SelectedToMinute = 59;
-        var index = parseInt($scope.AlarmData.SelectedAlarm);
-        var tIndex = inArray($scope.EventRules[index].ScheduleIds, day + '.' + hour);
-        if(tIndex !== -1) {
-            var str = $scope.EventRules[index].ScheduleIds[tIndex].split('.');
 
-            if (str.length === 4)
-            {
-                $scope.SelectedFromMinute = Math.round(str[2]);
-                $scope.SelectedToMinute = Math.round(str[3]);
-            }
-        }
-        // for (var i = 0; i < $scope.EventRules[index].ScheduleIds.length; i++) {
-        //     if ($scope.EventRules[index].ScheduleIds[i].indexOf(day + '.' + hour + '.') >= 0) {
-        //         var str = $scope.EventRules[index].ScheduleIds[i].split('.');
-        //         if (str.length === 4) {
-        //             $scope.SelectedFromMinute = Math.round(str[2]);
-        //             $scope.SelectedToMinute = Math.round(str[3]);
-        //         }
-        //         break;
-        //     }
-        // }
-        var modalInstance = $uibModal.open({
-            size: 'lg',
-            templateUrl: 'views/setup/common/schedulePopup.html',
-            controller: 'alarmScheduleCtrl',
-            resolve: {
-                SelectedDay: function() {
-                    return $scope.SelectedDay;
-                },
-                SelectedHour: function() {
-                    return $scope.SelectedHour;
-                },
-                SelectedFromMinute: function() {
-                    return $scope.SelectedFromMinute;
-                },
-                SelectedToMinute: function() {
-                    return $scope.SelectedToMinute;
-                },
-                SelectedAlarm: function() {
-                    return index;
-                },
-                Rules: function() {
-                    return $scope.EventRules;
-                }
-            }
-        });
-        modalInstance.result.then(function(selectedItem) {
-            //console.log("Selected : ",selectedItem);
-        }, function() {
-            //$log.info('Modal dismissed at: ' + new Date());
-        });
-    };
     $scope.submit = set;
     $scope.view = view;
     (function wait() {

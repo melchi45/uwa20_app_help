@@ -297,129 +297,16 @@ kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal,
         }
     }
 
-    function inArray(arr, str) {
-        for(var i = 0; i < arr.length; i++) {
-            var tArray = arr[i].split(".");
-            tArray = tArray[0] + "." + tArray[1];
-            if(tArray === str){
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    $scope.setColor = function(day, hour, isAlways) {
-        for (var i = 0; i < $scope.EventRule.ScheduleIds.length; i++) {
-            if ($scope.EventRule.ScheduleIds[i].indexOf(day + '.' + hour + '.') >= 0) {
-                if (isAlways) {
-                    return 'setMiniteFaded';
-                } else {
-                    return 'setMinite already-selected ui-selected';
-                }
-            }
-        }
-        if ($scope.EventRule.ScheduleIds.indexOf(day + '.' + hour) !== -1) {
-            if (isAlways) {
-                return 'setHourFaded';
-            } else {
-                return 'setHour already-selected ui-selected';
-            }
-        }
-    };
-    $scope.mouseOver = function(day, hour) {
-        var index = inArray($scope.EventRule.ScheduleIds, day + '.' + hour);
-        if(index !== -1){
-            $scope.MouseOverMessage = $scope.EventRule.ScheduleIds[index].split('.');
-        }
-        // $scope.MouseOverMessage = [];
-        // for (var i = 0; i < $scope.EventRule.ScheduleIds.length; i++) {
-        //     if ($scope.EventRule.ScheduleIds[i].indexOf(day + '.' + hour) >= 0) {
-        //         $scope.MouseOverMessage = $scope.EventRule.ScheduleIds[i].split('.');
-        //         break;
-        //     }
-        // }
-    };
-    $scope.mouseLeave = function() {
-        $scope.MouseOverMessage = [];
-    };
     $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
     });
-    $scope.getTooltipMessage = function() {
-        if (typeof $scope.MouseOverMessage !== 'undefined') {
-            var hr, fr, to;
-            if ($scope.MouseOverMessage.length === 2) {
-                var hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
-                var fr = '00';
-                var to = '59';
-            } else if ($scope.MouseOverMessage.length === 4) {
-                var hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
-                var fr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[2], 2);
-                var to = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[3], 2);
-            } else {
-                return;
-            }
-            return "(" + $translate.instant($scope.MouseOverMessage[0]) + ") " + hr + ":" + fr + " ~ " + hr + ":" + to;
-        }
-    };
+
     $scope.clearAll = function() {
         $timeout(function() {
             $scope.EventRule.ScheduleIds = [];
         });
     };
-    $scope.open = function(day, hour) {
-        $scope.SelectedDay = day;
-        $scope.SelectedHour = hour;
-        $scope.SelectedFromMinute = 0;
-        $scope.SelectedToMinute = 59;
 
-        var index = inArray($scope.EventRule.ScheduleIds, day + '.' + hour);
-        if(index !== -1){
-            var str = $scope.EventRule.ScheduleIds[index].split('.');
-            if (str.length === 4) {
-                $scope.SelectedFromMinute = Math.round(str[2]);
-                $scope.SelectedToMinute = Math.round(str[3]);
-            }
-        }
-        
-        // for (var i = 0; i < $scope.EventRule.ScheduleIds.length; i++) {
-        //     if ($scope.EventRule.ScheduleIds[i].indexOf(day + '.' + hour + '.') >= 0) {
-        //         var str = $scope.EventRule.ScheduleIds[i].split('.');
-        //         if (str.length === 4) {
-        //             $scope.SelectedFromMinute = Math.round(str[2]);
-        //             $scope.SelectedToMinute = Math.round(str[3]);
-        //         }
-        //         break;
-        //     }
-        // }
-        var modalInstance = $uibModal.open({
-            size: 'lg',
-            templateUrl: 'views/setup/common/schedulePopup.html',
-            controller: 'modalInstanceCtrl',
-            resolve: {
-                SelectedDay: function() {
-                    return $scope.SelectedDay;
-                },
-                SelectedHour: function() {
-                    return $scope.SelectedHour;
-                },
-                SelectedFromMinute: function() {
-                    return $scope.SelectedFromMinute;
-                },
-                SelectedToMinute: function() {
-                    return $scope.SelectedToMinute;
-                },
-                Rule: function() {
-                    return $scope.EventRule;
-                }
-            }
-        });
-        modalInstance.result.then(function(selectedItem) {
-            //console.log("Selected : ",selectedItem);
-        }, function() {
-            //$log.info('Modal dismissed at: ' + new Date());
-        });
-    };
     $scope.submit = set;
     $scope.view = view;
     (function wait() {
