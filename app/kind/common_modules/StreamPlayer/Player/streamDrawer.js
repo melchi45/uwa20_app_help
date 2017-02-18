@@ -152,10 +152,7 @@ function KindDrawer(id) {
   };
 
   var drawFrame = function (stepValue) {
-    // var bufferNode = null;
-//    bufferNode = videoBufferList.pop();
     bufferNode = videoBufferQueue.dequeue();
-
     if (bufferNode != null && bufferNode.buffer != null && (bufferNode.codecType == 'mjpeg' || bufferNode.buffer.length > 0)) {
       if (preWidth === undefined || preHeight === undefined || preWidth !== bufferNode.width || preHeight !== bufferNode.height || prevCodecType !== bufferNode.codecType) {
         drawingStrategy = (bufferNode.codecType == 'h264' || bufferNode.codecType == 'h265') ? 'YUVWebGL' : 'ImageWebGL';
@@ -174,12 +171,16 @@ function KindDrawer(id) {
           captureFlag = false;
           doCapture(canvas.toDataURL(), fileName);
         }
-        delete bufferNode.buffer;
-        bufferNode.buffer = null;
+        if(bufferNode.codecType == 'mjpeg'){
+          imagePool.free(bufferNode.buffer);
+          console.log("imagePool.free");
+        } else {
+          delete bufferNode.buffer;
+          bufferNode.buffer = null;
+        }
         bufferNode.previous = null;
         bufferNode.next = null;
         bufferNode = null;
-//        freeBufferCallback(bufferNode.bufferIdx);
         return true;
       } else {
         console.log('drawer is undefined in KindDrawer!');
@@ -278,14 +279,22 @@ function KindDrawer(id) {
       }
     },
     drawMJPEG: function (data, width, height, codecType, frameType, timeStamp) {
+      console.log('drawMJPEG in KindDrawer!');
       var image = imagePool.alloc();
-      image.onload = function() { drawImage(this); };
+      image.width = width;
+      image.height = height;
+      image.codecType = codecType;
+      image.frameType = frameType;
+      image.time = timeStamp;
+      image.onload = function() {
+        if(Uniformity == false){
+          drawImage(this);
+        } else {
+          if(videoBufferQueue !== null)
+            videoBufferQueue.enqueue(this, this.width, this.height, this.codecType, this.frameType, this.time);
+        }
+      };
       image.setAttribute("src", "data:image/jpeg;base64," + base64ArrayBuffer(data));
-      tempwidth = width;
-      tempheight = height;
-      tempcodecType = codecType;
-      tempframeType = frameType;
-      temptime = timeStamp;
     },
     /**
      * Represents draws video image on the canvas.

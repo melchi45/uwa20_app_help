@@ -33,7 +33,7 @@ function WorkerManager() {
   SDPInfo = null,
   frameRate = 0,
   govLength = null,
-  image = new Image(),
+  // image = new Image(),
   isTalkService = false,
   isPaused = true,
   decodeMode = "canvas",
@@ -90,7 +90,7 @@ function WorkerManager() {
   var mjpegStackCount = 0,
     messageArray = new Array();
 
-  image.onload = function() { draw(image); };
+  // image.onload = function() { draw(image); };
 
   var metaSession = null;
   var metaDataParser = null;
@@ -134,9 +134,9 @@ function WorkerManager() {
     switch (message.type) {
       case 'canvasRender':
         audioStart(0, "currentTime");
-        if (videoInfo.codecType == "mjpeg") {
-          image.setAttribute("src", "data:image/jpeg;base64," + base64ArrayBuffer(message.data));
-        } else {
+        // if (videoInfo.codecType == "mjpeg") {
+        //   image.setAttribute("src", "data:image/jpeg;base64," + base64ArrayBuffer(message.data));
+        // } else {
           draw(message.data);
           play_count++;
           if (start_time === 0) {
@@ -152,7 +152,7 @@ function WorkerManager() {
               play_count = 0;
             }
           }
-        }
+        // }
         break;
       case 'initSegment':
           // var blob = new Blob([initSegmentData], {type: "application/octet-stream"});
@@ -358,7 +358,11 @@ function WorkerManager() {
 
   function draw(frameData) {
     if (frameData !== null && videoRenderer !== null)  {
-      videoRenderer.draw(frameData, videoInfo.width, videoInfo.height, videoInfo.codecType, videoInfo.frameType, videoInfo.timeStamp);
+        if (videoInfo.codecType == "mjpeg") {
+            videoRenderer.drawMJPEG(frameData, videoInfo.width, videoInfo.height, videoInfo.codecType, videoInfo.frameType, videoInfo.timeStamp);
+        } else {
+            videoRenderer.draw(frameData, videoInfo.width, videoInfo.height, videoInfo.codecType, videoInfo.frameType, videoInfo.timeStamp);
+        }
     }
   }
 
