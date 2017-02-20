@@ -17,6 +17,10 @@
 
 	}
 
+	.info-toggle {
+		bottom:0;
+	}
+
 	.cm-playback-block {
 		position: relative;
         		display: block;
@@ -230,16 +234,16 @@
 		}
 
 		.cm-playback-duplicate-items {
-	        & > div {
-	            background-color: #262626;
-	            border: 1px solid #333;
-	            color: #797979;
+		        & > div {
+		            background-color: #262626;
+		            border: 1px solid #333;
+		            color: #797979;
 
-	            &.active, &.selected {
-	                color: #fff;
-	            }
-	        }
-	    }  
+		            &.active, &.selected {
+		                color: #fff;
+		            }
+		        }
+		}  
 
 	    #cm-playback-datepicker {
 
@@ -272,8 +276,6 @@
 	        } 
 	    } 
 	}
-
-
 }
 
 
@@ -282,7 +284,7 @@
 }
 
 #volume-control {
-	margin: 0 20px;
+    margin: 0 20px;
 }
 
 
@@ -313,9 +315,25 @@
 
 }
 
+@media screen and (max-width:850px) {
+	.kind-responsive-playback {
+		#cm-menu-content {
+			.cm-col {
+				margin: 0 10px;
+			}
+		}
+	}
+}
+
 
 @media screen and (max-width:799px) {
 	.kind-responsive-playback {
+
+		#cm-menu-content {
+			.cm-col {
+				margin: 0 2px;
+			}
+		}
 
 		#cm-playback-event {
 			& > .cm-center {
@@ -325,11 +343,15 @@
 
 
 		#volume-control {
-			float: none;
+			float: left;
 			// margin: 50px auto 0 auto;
 			margin: 0 10px;
 			height: 50px;
-			margin-top: 50px;
+			//margin-top: 50px;
+			clear: both;
+			margin-left: 50%;
+			transform: translateX(-50%);
+			margin-top: -5px;
 		}
 
 		.cm-control-icon {
@@ -341,26 +363,23 @@
 		}
 
 
-		#cm-bottom-menu.cm-full-menu {
+        		#cm-bottom-menu {
+		            height: 100px;
 
-			.info-toggle {
-		        position: absolute;
-		        bottom: 0;
-		    }
+		            &.cm-show-menu {
+		                height: 300px;
+		            }
 
-			// #cm_menu-content {
-			// 	height: 140px;	
-			// }
-		}
-		
-
-		.cm-center{
-			width: 384px;
-		}
+		            &.cm-full-menu {
+		            	.info-toggle {
+		            		position: absolute;
+		            	}
+		            }
+        		}
 	}
 }
 
-@media screen and (max-width:654px) {
+@media screen and (max-width:700px) {
 	.kind-responsive-playback {
 
 

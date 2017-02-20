@@ -106,7 +106,7 @@
 
                 & > div {
                     float: left;
-                    width: 90%;
+                    width: 100%;
                 }
 
                 #cm-live-ptz-control {
@@ -339,7 +339,7 @@
                 width: 100vw;
                 position: absolute;
                 left: 50%;
-                bottom: 0;
+                top: 100px;
                 transform: translateX(-50%);
             }
 
@@ -363,16 +363,21 @@
 
 
         #cm-bottom-menu {
+            &.cm-full-menu {
+                height: 150px;
+
+                &.cm-show-menu {
+                    height: 310px;
+                }
+            }
+            
             &.cm-live-bottom-menu {
-                height: 160px;
 
                 &.cm-show-menu {
                     height: 350px;
                 }
 
                 #cm-icon-list {
-                    height: 160px;
-                    
                     .cm-vline {
                         display: none;
                     }
@@ -468,9 +473,8 @@
         #ptz-components {
             padding: 0 20px;
             position: relative;
-
-
         }
+
 
     }
 
@@ -502,11 +506,6 @@
                 // tables
                 &#cm-ptz-tables {
                     margin-top: 20px !important;
-                }
-
-                // table title
-                & > div {
-                    text-align: center !important;
                 }
             }
 
