@@ -6,6 +6,10 @@
 // .kind-responsive-live {
 .kind-responsive-live {
 
+    #cm-video {
+    
+    }
+
     .cm-live-bottom-menu {
         #cm-icon-list {
             .cm-col {
@@ -92,7 +96,7 @@
 
             .cm-setup-col {
                 width: calc(~"50% - 10px");
-                min-width: 400px;
+                min-width: 360px;
                 padding: 0 20px;
                 margin: 10px 0;
                 display: inline-table;
@@ -341,7 +345,7 @@
                 width: 100vw;
                 position: absolute;
                 left: 50%;
-                top: 110px;
+                bottom: -1px;
                 transform: translateX(-50%);
             }
 
@@ -409,9 +413,7 @@
                 #cm-menu-content {
                     #cm-setup .cm-col {
                         width: 80%;
-
                     }
-
 
                     #cm-live-ptz-control {
                         margin: 0 20px;
@@ -428,8 +430,6 @@
                             }
                         }
                     }
-
-
                 } 
 
                 #cm-icon-list {
@@ -476,8 +476,6 @@
             padding: 0 20px;
             position: relative;
         }
-
-
     }
 
     @media(max-width: 549px) {
@@ -497,7 +495,7 @@
 
             // ptz controller with tables
             & > div {
-                min-width: 400px;
+                min-width: 360px;
                 border: none !important;
                 margin: 0 !important;
                 padding: 0 20px !important;
@@ -510,8 +508,106 @@
                     margin-top: 20px !important;
                 }
             }
-
-
         } 
     } 
-}
+
+
+    &.land-scape {
+        #cm-video {
+            width: calc(~"100% - 70px");
+            height: calc(~"100% - 100px");
+            float: left;
+            margin-bottom: 0;
+        }
+
+        #cm-bottom-menu {
+            #cm-icon-list {
+                width: 100%;
+                height: 50px !important;
+                border-top: 1px solid #ccc;
+
+                .info-toggle {
+                    position: fixed;
+                    top: 50%;
+                    left: 100%;
+                    transform: translate(-100%, -50%);
+                    width: 60px;
+                    height: 150px;
+
+                    li {
+                        float: left;
+                        border: 1px solid #e9e9e9;
+                        &:not(:first-child) {
+                            border-top: none;
+                        }
+
+                        &.cm-active {
+                            border-right: none;
+                        }
+                    }
+                }
+            }
+
+            #cm-menu-content {
+                position: fixed;
+                width: 400px;
+                height: 100%;
+                top: 50px;
+                height: calc(~"100% - 100px");
+        
+                 .cm-status-wrap .cm-status-col {
+                    width: 80%;
+                    min-width: 360px;
+                    margin: 10px 0;
+                    position: relative;
+                    left: 50%;
+                    transform: translate(-50%);
+                }
+
+            }
+
+            &.cm-show-menu {
+                #cm-menu-content {
+                    left: calc(~"100% - 400px");
+                }
+
+                #cm-icon-list .info-toggle {
+                    left: calc(~"100% - 400px");
+                }
+            }
+        }
+
+
+
+        #ptz-components {
+            padding:0;
+
+            & > .cm-col {
+                border: 1px solid #ddd !important;
+                left: 50%;
+                position: relative;
+                transform: translateX(-50%);
+
+                &#cm-live-ptz-control {
+                    margin-top: 0px;
+                }
+            }
+
+            // ptz controller with tables
+            & > div {
+                min-width: 360px;
+                border: none !important;
+                margin: 10px 0 !important;
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+
+                // tables
+                &#cm-ptz-tables {
+                    margin-top: 20px !important;
+                }
+            }
+        } 
+
+    }
+} 
