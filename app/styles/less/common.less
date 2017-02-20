@@ -169,6 +169,11 @@
         scrollbar-face-color: #666;
         scrollbar-arrow-color: #999;
 
+        &.kind-responsive-live,
+        &.kind-responsive-playback {
+            background-color: black;
+        }
+
         .is-login {
             overflow-x: hidden;
             overflow-y: auto;
@@ -1346,7 +1351,7 @@ live-playback common {
 
     #cm-ptz-control-move-btn {
         line-height: 22px;
-        color: #fff;
+        color: gray;
     } 
 
     .cm-playback-duplicate-items {
