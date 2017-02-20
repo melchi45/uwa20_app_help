@@ -158,7 +158,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
         };
 
         /*ZOOM*/
-        $("#cm_ptz-zoom-slider").slider({
+        $("#cm-ptz-zoom-slider").slider({
             min: -100,
             max: 100,
             value: 0,
@@ -169,13 +169,13 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
               execSunapi(sunapiURI);
             },
             stop: function(){
-              $( "#cm_ptz-zoom-slider" ).slider('value', 0);
+              $( "#cm-ptz-zoom-slider" ).slider('value', 0);
               ptzStop();
             }
         });
         /*ZOOM*/
 
-				$("#cm_ptz-control-move-btn").draggable({
+				$("#cm-ptz-control-move-btn").draggable({
 					containment: "parent",
 					revert: false,
 					revertDuration: 100,
@@ -199,9 +199,9 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						}else{
 							isDrag = false;
 							isMove = false;
-							var moveAreaWidth = $('#cm_ptz-control-box').width();
-							var moveAreaHeight = $('#cm_ptz-control-box').height();
-							$('#cm_ptz-control-move-btn').animate({
+							var moveAreaWidth = $('#cm-ptz-control-box').width();
+							var moveAreaHeight = $('#cm-ptz-control-box').height();
+							$('#cm-ptz-control-move-btn').animate({
 								top: (moveAreaHeight/2-12),
 								left: (moveAreaWidth/2-12)
 							}, animateDuration, function(){
@@ -211,17 +211,17 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}
 				});
 
-				$("#cm_ptz-control-box").mousedown(function(e){
+				$("#cm-ptz-control-box").mousedown(function(e){
 					if(isDrag || isMove || e.which !== 1)
 						return;
 
 					isMove = true;
-					var jogWidth = $('#cm_ptz-control-move-btn').width()/2;
+					var jogWidth = $('#cm-ptz-control-move-btn').width()/2;
 
-					var moveAreaPos = $('#cm_ptz-control-box').offset();
-					var moveAreaWidth = $('#cm_ptz-control-box').width();
-					var moveAreaHeight = $('#cm_ptz-control-box').height();
-					var jogPos = $('#cm_ptz-control-move-btn').offset();
+					var moveAreaPos = $('#cm-ptz-control-box').offset();
+					var moveAreaWidth = $('#cm-ptz-control-box').width();
+					var moveAreaHeight = $('#cm-ptz-control-box').height();
+					var jogPos = $('#cm-ptz-control-move-btn').offset();
 					var jog_Left = jogPos.left + jogWidth;
 					var jog_Top = jogPos.top + jogWidth;
 					var xPos = e.pageX;
@@ -250,7 +250,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					if (-4 <= xPos && xPos <= 4) xPos = 0;
 					if (-2 <= yPos && yPos <= 2) yPos = 0;
 
-					$('#cm_ptz-control-move-btn').animate({
+					$('#cm-ptz-control-move-btn').animate({
 						top: (moveAreaHeight/2-12)-yPos,
 						left: (moveAreaWidth/2-12)+xPos
 					}, animateDuration, function() {
@@ -261,14 +261,14 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						if(isMove === true) {
 							clearTimeout(downTimer);
 							downTimer = setTimeout(function(){
-								$('#cm_ptz-control-move-btn').trigger(e);
+								$('#cm-ptz-control-move-btn').trigger(e);
 							},animateDuration);
 						}
 					});
 					e.preventDefault();
 				});
 
-				$('#cm_ptz-control-box,#cm_ptz-control-move-btn').mouseup(
+				$('#cm-ptz-control-box,#cm-ptz-control-move-btn').mouseup(
 					function(e) {
 					clearTimeout(downTimer);
 					e.preventDefault();
@@ -276,9 +276,9 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}else{
 						isDrag = false;
 						isMove = false;
-						var moveAreaWidth = $('#cm_ptz-control-box').width();
-						var moveAreaHeight = $('#cm_ptz-control-box').height();
-						$('#cm_ptz-control-move-btn').animate({
+						var moveAreaWidth = $('#cm-ptz-control-box').width();
+						var moveAreaHeight = $('#cm-ptz-control-box').height();
+						$('#cm-ptz-control-move-btn').animate({
 							top: (moveAreaHeight/2-12),
 							left: (moveAreaWidth/2-12)
 						}, animateDuration, function(){

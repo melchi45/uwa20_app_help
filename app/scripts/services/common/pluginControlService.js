@@ -63,7 +63,7 @@ kindFramework
                   pluginElement.SetUserFps(fps);
                   pluginElement.PlayLiveStream(rtspIP, Number(rtspPort), Number(currentProfile-1), userID, '', '');
                   $rootScope.$emit('changeLoadingBar', false);
-                  $(pluginElement).removeClass("cm_vn");
+                  $(pluginElement).removeClass("cm-visibility-hidden");
                   console.log("pluginControlService::startPluginStreaming() ===> PlugIn Streaming Started");
               }catch(err){
                   console.log("pluginControlService::startPluginStreaming() ===> PlugIn is loading...");

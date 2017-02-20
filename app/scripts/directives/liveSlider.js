@@ -11,7 +11,7 @@ kindFramework
                 templateUrl: './views/setup/common/liveSlider.html',
                 link:function(scope, elem, attrs){
                     var mAttr = Attributes.get();
-                    var slider = elem.find(".cm_slider div");
+                    var slider = elem.find(".cm-slider div");
                     var checkLoad = false;
                     var inputOnChange = false;
                     var isFloat = false;
@@ -179,16 +179,16 @@ kindFramework
                             var SliderValue;
                             var SliderStep = (('step' in scope.liveSliderProperty) ? scope.liveSliderProperty.step : 1 );
 
-                            if (target.className !== 'tui tui-wn5-minus cm_right' && target.className !== 'tui tui-wn5-add cm_left') return;
+                            if (target.className !== 'tui tui-wn5-minus cm-right' && target.className !== 'tui tui-wn5-add cm-left') return;
 
                             if(scope.liveSliderProperty.disabled) return;
 
                             switch(target.className)
                             {
-                                case 'tui tui-wn5-minus cm_right' :
+                                case 'tui tui-wn5-minus cm-right' :
                                     SliderValue = validatedValue(scope.liveSliderModel[scope.modelName] - SliderStep);
                                     break;
-                                case 'tui tui-wn5-add cm_left' :
+                                case 'tui tui-wn5-add cm-left' :
                                     SliderValue = validatedValue(scope.liveSliderModel[scope.modelName] + SliderStep);
                                     break;
                             }

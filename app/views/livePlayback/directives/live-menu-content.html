@@ -1,25 +1,21 @@
-  <div id="cm_menu-content">
-    <!-- PTZ 버튼을 클릭했을 때 -->
-    <div ng-show="channelSetFunctions['ptz']" class="cm_ptz">
-      <live-ptz-control></live-ptz-control>
-    </div>
+    <div id="cm-menu-content">
+
 
     <!-- Setup 버튼을 클릭했을 때 -->
-    <div ng-show="channelSetFunctions['setup']" class="cm_setup">
-      <div class="cm_center">
-
-        <div class="cm_col">
+    <div ng-show="channelSetFunctions['setup']" id="cm-setup">
+      <div class="cm-center">
+        <div class="cm-setup-col">
           <h2>
-            <span class="cm_margin-rs">{{'lang_profile' | translate}}</span>
+            <span class="cm-m0-10">{{'lang_profile' | translate}}</span>
             <select 
-              class="cm_selectbox cm_profile-sel" 
+              class="cm-selectbox cm-profile-sel" 
               ng-model="selectedProfile" 
               ng-change="changeProfile(selectedProfile)" 
               ng-options="profileList.indexOf(profile) as profile.Name for profile in profileList">
             </select>
           </h2>
           <div class="ng-binding">
-            <table class="cm_table cm_profile-table">
+            <table class="cm-table cm-profile-table">
               <tr>
                 <th>{{'lang_resolution' | translate}}</th>
                 <td>{{profileList[selectedProfile].Resolution}}</td>
@@ -48,11 +44,11 @@
           </div>
         </div>
 
-        <div class="cm_col" ng-show="showImageController">
+        <div class="cm-setup-col" ng-show="showImageController">
           <h2>
-            <span class="cm_margin-rs">{{'lang_display' | translate}}</span>
+            <span class="cm-m0-10">{{'lang_display' | translate}}</span>
             <button 
-              class="cm_str-button" 
+              class="cm-str-button" 
               title="{{ 'lang_camerareset' | translate}}" 
               ng-click="resetDisplay()"
               style="padding: 0 5px 0 4px; height: 25px; line-height: 25px; transform: translateY(-3px);">
@@ -60,46 +56,46 @@
               <i class="tui tui-wn5-return"></i>
             </button>
           </h2>
-          <ul id="cm_display-slider">
+          <ul id="cm-display-slider" class="cm-profile-ul">
             <li data-type="Contrast">
               <h3>{{'lang_contrast' | translate}}</h3>
-              <span class="cm_min">0</span>
-              <div class="cm_slider">
+              <span class="cm-min">0</span>
+              <div class="cm-slider">
                 <div></div>
               </div>
-              <span class="cm_max">0</span>
-              <input type="number" min="0" max="100" class="cm_textbox">
+              <span class="cm-max">0</span>
+              <input type="number" min="0" max="100" class="cm-textbox">
             </li>
             <li data-type="Brightness">
               <h3>{{'lang_brightness' | translate}}</h3>
-              <span class="cm_min">0</span>
-              <div class="cm_slider">
+              <span class="cm-min">0</span>
+              <div class="cm-slider">
                 <div></div>
               </div>
-              <span class="cm_max">0</span>
-              <input type="number" min="0" max="100" class="cm_textbox">
+              <span class="cm-max">0</span>
+              <input type="number" min="0" max="100" class="cm-textbox">
             </li>
             <li data-type="SharpnessLevel">
               <h3>{{'lang_sharpness' | translate}}</h3>
-              <div class="cm_checkbox-wrap">
+              <div class="cm-checkbox-wrap">
                 <input type="checkbox" id="sharpness-enable">
                 <label for="sharpness-enable"></label>
               </div>
-              <span class="cm_min">0</span>
-              <div class="cm_slider">
+              <span class="cm-min">0</span>
+              <div class="cm-slider">
                 <div></div>
               </div>
-              <span class="cm_max">0</span>
-              <input type="number" min="0" max="100" class="cm_textbox">
+              <span class="cm-max">0</span>
+              <input type="number" min="0" max="100" class="cm-textbox">
             </li>
             <li data-type="Saturation">
               <h3>{{'lang_colorlevel' | translate}}</h3>
-              <span class="cm_min">0</span>
-              <div class="cm_slider">
+              <span class="cm-min">0</span>
+              <div class="cm-slider">
                 <div></div>
               </div>
-              <span class="cm_max">0</span>
-              <input type="number" min="0" max="100" class="cm_textbox">
+              <span class="cm-max">0</span>
+              <input type="number" min="0" max="100" class="cm-textbox">
             </li>
           </ul>
         </div>
@@ -107,13 +103,20 @@
       </div>
     </div>
 
-    <!-- Status 버튼을 클릭했을 때 -->
-    <div ng-show="channelSetFunctions['status']" class="cm_status">
-      <div class="cm_status-wrap">
 
-        <div class="cm_status-col">
-          <h2><span>{{'lang_menu_info' | translate}}</span></h2>
-          <table class="cm_table" id="cm_status-first">
+    <!-- PTZ 버튼을 클릭했을 때 -->
+    <div ng-show="channelSetFunctions['ptz']" id="cm-ptz">
+      <live-ptz-control></live-ptz-control>
+    </div>
+
+
+    <!-- Status 버튼을 클릭했을 때 -->
+    <div ng-show="channelSetFunctions['status']" id="cm-status">
+      <div class="cm-status-wrap">
+
+        <div class="cm-status-col">
+          <h2><span class="cm-m0-10">{{'lang_menu_info' | translate}}</span></h2>
+          <table class="cm-table cm-status-table" id="cm-status-first">
             <thead>
               <tr>
                 <th>{{'lang_profile' | translate}}</th>
@@ -135,9 +138,9 @@
           </table>
         </div>
 
-        <div class="cm_status-col">
-          <h2><span>{{'lang_currentUsers' | translate}}</span></h2>
-          <table class="cm_table" id="cm_status-second">
+        <div class="cm-status-col">
+          <h2><span class="cm-m0-10">{{'lang_currentUsers' | translate}}</span></h2>
+          <table class="cm-table cm-status-table" id="cm-status-second">
             <thead>
               <tr>
                 <th>{{'lang_profile' | translate}}</th>

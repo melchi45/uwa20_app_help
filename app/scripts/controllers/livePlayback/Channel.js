@@ -175,10 +175,10 @@ kindFramework
       var sunapiURI = '/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.'+ (index+1) +'.State=';
       if(UniversialManagerService.getAlarmOutput(index) === true){
         sunapiURI += 'On';
-        $(event.target).addClass('cm_on');
+        $(event.target).addClass('cm-on');
       }else{
         sunapiURI += 'Off';
-        $(event.target).removeClass('cm_on');
+        $(event.target).removeClass('cm-on');
       }
 
       console.log("channel::alarmOutput sunapiURI = " + sunapiURI);
@@ -192,9 +192,9 @@ kindFramework
           for(var i=0; i<Object.keys(response.data.AlarmOutput).length; i++) {
             UniversialManagerService.setAlarmOutput(i, response.data.AlarmOutput[i+1]);
             if (response.data.AlarmOutput[i+1]) {
-              $('#output-' + i).addClass('cm_on');
+              $('#output-' + i).addClass('cm-on');
             } else {
-              $('output-' + i).removeClass('cm_on');
+              $('output-' + i).removeClass('cm-on');
             }
           }
         }
@@ -565,13 +565,13 @@ kindFramework
     function checkStreamTagType(profile) {
       var resolution = profile.Resolution.split("x");
       var resolutionSize = resolution[0] * resolution[1];
-      var rec = $(".cm_live-rec");
+      var rec = $(".cm-live-rec");
       if (resolutionSize > videoLimitSize && profile.EncodingType === "H264" && profile.FrameRate >= videoLimitFPS
         && BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.CHROME) {
         return 'video';
       } else {
         rec
-          .removeClass("cm_disabled")
+          .removeClass("cm-disabled")
           .parent()
             .removeAttr("disabled");
         return 'canvas';
@@ -935,12 +935,12 @@ kindFramework
 
       if(StreamingMode === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE)
       {
-        $(".cm_plugin-btn").addClass("cm_active");
+        $(".cm-plugin-btn").addClass("cm-active");
         UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
       }
       else
       {
-        $(".cm_plugin-btn").removeClass("cm_active");
+        $(".cm-plugin-btn").removeClass("cm-active");
         if(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE)
         {
           var MJPEGProfileID = 1;
@@ -1030,7 +1030,7 @@ kindFramework
     });    
 
     $timeout(function(){
-      $("#cm_speaker-slider div").slider({
+      $("#cm-speaker-slider div").slider({
         min: 0,
         max: 5,
         step: 1,
@@ -1052,7 +1052,7 @@ kindFramework
         }
       });
 
-      $("#cm_mic-slider div").slider({
+      $("#cm-mic-slider div").slider({
         min: 0,
         max: 5,
         step: 1,
@@ -1081,7 +1081,7 @@ kindFramework
         $scope.channelBasicFunctions.micVolume = 0;
       });
 
-      $(".cm_video-slider").each(function(i, self){
+      $(".cm-video-slider").each(function(i, self){
         $(self).find("div")
           .slider({
             min: 0,

@@ -1,21 +1,21 @@
-<div id="cm_playback-backup">
+<div id="cm-playback-backup">
 
-	<div class="cm_col cm_margin10">
+	<div class="cm-playback-block cm-m0-10">
 		<input 
 			type="text" 
 			disabled="disabled"
-			class="cm_textbox cm_date-textbox"
+			class="cm-textbox cm-date-textbox"
 			ng-model="currentDate">
 	</div>
 
-	<div class="cm_col cm_margin10 cm_timeboxes start-time">
+	<div class="cm-playback-block cm-m0-10 cm-timeboxes start-time">
         <input 
         	type="text" 
         	maxlength="2" 
 	        ng-pattern-restrict="{{control.timeValidation.pattern.hour}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm-textbox" 
         	ng-model="startTime.hours">
         :
         <input 
@@ -24,7 +24,7 @@
 	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm-textbox" 
         	ng-model="startTime.minutes">
         :
         <input 
@@ -33,20 +33,20 @@
 	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm-textbox" 
         	ng-model="startTime.seconds">
     </div>
 
-    <div class="cm_playback-range">~</div>
+    <div class="cm-playback-range">~</div>
 
-    <div class="cm_col cm_margin10 cm_timeboxes end-time">
+    <div class="cm-playback-block cm-m0-10 cm-timeboxes end-time">
         <input 
         	type="text" 
         	maxlength="2" 
 	        ng-pattern-restrict="{{control.timeValidation.pattern.hour}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm-textbox" 
         	ng-model="endTime.hours">
         :
         <input 
@@ -55,7 +55,7 @@
 	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm-textbox" 
         	ng-model="endTime.minutes">
         :      
         <input 
@@ -64,7 +64,7 @@
 	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm-textbox" 
         	ng-model="endTime.seconds">
     </div>
 

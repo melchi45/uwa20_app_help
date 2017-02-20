@@ -310,12 +310,12 @@ kindFramework
         var StreamingMode = UniversialManagerService.getStreamingMode();
         if(StreamingMode === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE)
         {
-            $(".cm_plugin-btn").addClass("cm_active");
+            $(".cm-plugin-btn").addClass("cm-active");
             UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
         }
         else
         {
-            $(".cm_plugin-btn").removeClass("cm_active");
+            $(".cm-plugin-btn").removeClass("cm-active");
             UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
         }
         goToPlaybackPage();

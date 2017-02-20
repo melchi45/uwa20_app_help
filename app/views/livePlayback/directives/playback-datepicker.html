@@ -1,12 +1,12 @@
-<div id="cm_playback-datepicker">
-	<div class="cm_row">
-		<div class="cm_center">
+<div id="cm-playback-datepicker">
+	<div class="cm-row">
+		<div class="cm-center">
 
-			<div class="cm_col">
+			<div class="cm-playback-block cm-datepicker-section">
 				<uib-datepicker 
 					ng-model="playback.search.selectedDate" 
 					show-weeks="false" 
-					class="ua-datepicker cm_datepicker" 
+					class="ua-datepicker cm-datepicker" 
 					datepicker-mode = "playback.search.mode"
 					custom-class="playback.getDayClass(date, mode)"
 					ng-change="playback.recordingDataIsExist()" 
@@ -15,55 +15,55 @@
 		  		</uib-datepicker>
 		  	</div>
 		  	
-		  	<div class="cm_col">
-				<div class="start-time cm_col cm_margin5" style="margin-left: 0;">
+		  	<div class="cm-playback-block cm-datepicker-section">
+				<div class="start-time cm-playback-block cm-m0-5">
 		        	<h2>{{"lang_from"|translate}}</h2>
-		        	<div class="cm_timeboxes">
-			            <input type="text" maxlength="2" id="slider-start-time-hours" class="cm_textbox" ng-model="slider.start.hours"
+		        	<div class="cm-timeboxes">
+			            <input type="text" maxlength="2" id="slider-start-time-hours" class="cm-textbox" ng-model="slider.start.hours"
 			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
 			            :
-			            <input type="text" maxlength="2" id="slider-start-time-minutes" class="cm_textbox" ng-model="slider.start.minutes"
+			            <input type="text" maxlength="2" id="slider-start-time-minutes" class="cm-textbox" ng-model="slider.start.minutes"
 			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
 			            :
-			            <input type="text" maxlength="2" id="slider-start-time-seconds" class="cm_textbox" ng-model="slider.start.seconds"
+			            <input type="text" maxlength="2" id="slider-start-time-seconds" class="cm-textbox" ng-model="slider.start.seconds"
 			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
 		            </div>
 		        </div>
 
-		        <div class="cm_col cm_margin5">
+		        <div class="cm-playback-block cm-m0-5">
 		        	<h2>&nbsp;</h2>
-			        <div class="cm_playback-range">~</div>
+			        <div class="cm-playback-range">~</div>
 			    </div>
 
-		        <div class="end-time cm_col cm_margin5" style="float: none;">
+		        <div class="end-time cm-playback-block cm-m0-5">
 		        	<h2>{{"lang_to"|translate}}</h2>
-		        	<div class="cm_timeboxes">
-			            <input type="text" maxlength="2" id="slider-end-time-hours" class="cm_textbox"  ng-model="slider.end.hours"
+		        	<div class="cm-timeboxes">
+			            <input type="text" maxlength="2" id="slider-end-time-hours" class="cm-textbox"  ng-model="slider.end.hours"
 			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
-			            :
-			            <input type="text" maxlength="2" id="slider-end-time-minutes" class="cm_textbox" ng-model="slider.end.minutes"
+			            
+			            <input type="text" maxlength="2" id="slider-end-time-minutes" class="cm-textbox" ng-model="slider.end.minutes"
 			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
 			            :      
-			            <input type="text" maxlength="2" id="slider-end-time-seconds" class="cm_textbox" ng-model="slider.end.seconds"
+			            <input type="text" maxlength="2" id="slider-end-time-seconds" class="cm-textbox" ng-model="slider.end.seconds"
 			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
 			        </div>
 		        </div>
 
-				<div class="cm_playback-all-day cm_checkbox-wrap">
+				<div class="cm-playback-all-day cm-checkbox-wrap">
 					<input type="checkbox" id="all-day" ng-model="allDay" ng-click="selectAllDay()">
 					<label for="all-day">{{'lang_all_day' | translate}}</label>
 				</div>
 
-				<div class="cm_playback-button-wrap">
+				<div class="cm-playback-button-wrap">
 				  <button 
 				    ng-click="control.submit()"
-				    class="cm_submit-button"
+				    class="cm-submit-button"
 				    style="margin-right: 5px;">
 				    {{'lang_apply' | translate}}
 				  </button>
 				  <button 
 				    ng-click="control.cancel()"
-				    class="cm_str-button cm_cancel-button">
+				    class="cm-str-button cm-cancel-button">
 				    {{'lang_cancel' | translate}}
 				  </button>
 				</div>

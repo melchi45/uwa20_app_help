@@ -1,14 +1,14 @@
-<div id="cm_playback-event" class="cm_row">
-  <div class="cm_center">
-    <div class="cm_col">
+<div id="cm-playback-event" class="cm-row">
+  <div class="cm-center cm-force-center">
+    <div class="cm-playback-block cm-event-section">
       <h2><span>{{'lang_event' | translate}}</span></h2>
-      <div class="cm_checkbox-wrap cm_event-all-wrap">
+      <div class="cm-checkbox-wrap cm-event-all-wrap">
         <input type="checkbox" id="allEvent" ng-model="allEventSearch.selected" ng-click="selectAllEvent($event)">
         <label for="allEvent">{{allEventSearch.name | translate}}</label>
       </div>
 
-      <div class="cm_event-list-wrap">
-        <div ng-repeat="event in eventList" class="cm_checkbox-wrap">
+      <div class="cm-event-list-wrap">
+        <div ng-repeat="event in eventList" class="cm-checkbox-wrap">
           <input type="checkbox" id="event-{{event.name}}" ng-model="event.selected" value="{{event.event}}" ng-click="selectEachEvent($event)">
           <label for="event-{{event.name}}" ng-class="{'available-check-event':event.enable}">{{event.name | translate}}</label>
         </div>
@@ -16,7 +16,7 @@
 
     </div>
 
-    <div class="cm_col">
+    <div class="cm-playback-block cm-event-section">
       <h2><span>{{'lang_overlapped_section' | translate}}</span></h2>
       <div 
         ng-if="showOverlap"

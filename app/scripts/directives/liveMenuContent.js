@@ -78,13 +78,13 @@ kindFramework.directive('liveMenuContent', function(
 							}
 						};
 					    var values = response.data.ImageEnhancements[0];
-						$("#cm_display-slider li").each(function(i, self){
+						$("#cm-display-slider li").each(function(i, self){
 							var type = $(self).attr("data-type");
 							display[type].value = values[type];
-							var slider = $(self).find(".cm_slider div");
+							var slider = $(self).find(".cm-slider div");
 
-							$(self).find(".cm_min").html(display[type].min);
-							$(self).find(".cm_max").html(display[type].max);
+							$(self).find(".cm-min").html(display[type].min);
+							$(self).find(".cm-max").html(display[type].max);
 							$(self).find("input[type='number']")
 								.attr("min", display[type].min)
 								.attr("max", display[type].max)
@@ -121,7 +121,7 @@ kindFramework.directive('liveMenuContent', function(
 							$('#sharpness-enable')
 								.parent()
 								.parent()
-								.find(".cm_slider > div")
+								.find(".cm-slider > div")
 								.slider({
 									disabled: false
 								});
@@ -129,7 +129,7 @@ kindFramework.directive('liveMenuContent', function(
 							$('#sharpness-enable')
 								.parent()
 								.parent()
-								.find(".cm_slider > div")
+								.find(".cm-slider > div")
 								.slider({
 									disabled: true
 								});
@@ -150,7 +150,7 @@ kindFramework.directive('liveMenuContent', function(
 					$(this)
 						.parent()
 						.parent()
-						.find(".cm_slider > div")
+						.find(".cm-slider > div")
 						.slider({
 							disabled: false
 						});
@@ -158,7 +158,7 @@ kindFramework.directive('liveMenuContent', function(
 					$(this)
 						.parent()
 						.parent()
-						.find(".cm_slider > div")
+						.find(".cm-slider > div")
 						.slider({
 							disabled: true
 						});
@@ -207,7 +207,7 @@ kindFramework.directive('liveMenuContent', function(
 
 			function setTableSize(){
 				var padding = 20;
-				var allWidth = $(".cm_status-col")[0].clientWidth - (padding * 2);
+				var allWidth = $(".cm-status-col")[0].clientWidth - (padding * 2);
 				var size = {
 					first: [
 						18,
@@ -224,8 +224,9 @@ kindFramework.directive('liveMenuContent', function(
 					]
 				};
 
+				/*
 				for(var key in size){
-					var table = $("#cm_status-" + key);
+					var table = $("#cm-status-" + key);
 					table.css({width: allWidth + "px"});
 
 					table.find("thead tr, tbody tr").each(function(trNum, tr){
@@ -242,6 +243,7 @@ kindFramework.directive('liveMenuContent', function(
 						});
 					});
 				}
+				*/
 			}
 
 			$rootScope.$saveOn('liveMenuContent:setTableSize', setTableSize);

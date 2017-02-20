@@ -1,0 +1,458 @@
+////////////////////////////////
+/*  Playback Page Style less  */
+////////////////////////////////
+
+// cm_col  ->  cm-playback-block 변경
+// 추가적인 클래스는 .cm-OOOO-section or .cm-playback-block 적용
+
+
+.kind-responsive-playback {
+
+	.cm-vline {
+		margin-top: 12px;
+	}
+
+	.cm-button-today {
+		margin: 10px 30px 0 0;
+
+	}
+
+	.info-toggle {
+		bottom:0;
+	}
+
+	.cm-playback-block {
+		position: relative;
+        		display: block;
+	        margin: 0 10px;
+	        float: left;
+
+        &.cm-control-icon {
+	        li {
+	        	// float: left;
+	        	display: inline;
+	        	margin: 0 10px;
+	        }
+	    }
+
+	    &.cm-event-section {
+	    	text-align: left;
+	    	margin-bottom: 20px;
+	    }
+
+	    &.cm-datepicker-section {
+	    	text-align: left;
+	    }
+	}
+
+	
+
+	
+	/* After active click Event button */
+	#cm-playback-event {
+	    margin-bottom: 10px;
+	    z-index: 1;
+
+	    & > .cm-center {
+	        display: table-cell;
+	        width: auto;
+	        position: relative;
+	        left: calc(~"calc(100vw - 40px)/2");
+	        transform: translateX(-50%);
+	    }
+
+	    .cm-event-all-wrap{
+	        width: 100px; 
+	        height: 25px;
+	        line-height: 25px;
+	        float: left; 
+	    }
+
+	    .cm-event-list-wrap {
+	        width: 640px; 
+	        float: left; 
+
+	        & > div {
+	            width: 160px; 
+	            height: 25px; 
+	            line-height: 25px; 
+	            float: left;
+
+	            label {
+	                white-space: nowrap;
+	                font-weight: normal;
+
+	                &.available-check-event {
+	                    font-weight: bold;
+	                }
+	            }
+	        } 
+	    }
+	} 
+
+
+
+	/*  after active click backup button  */
+	#cm-playback-backup{
+		float: left;
+		//margin-left: 25%;
+		transform: translateY(-50%);
+
+	    .cm-date-textbox{
+	        width: 120px;
+	        text-align: center;
+	    }
+	} 
+
+
+
+	.cm-playback-duplicate-items {
+	    text-align: center;
+	    margin-top: 20px;
+	    float: left;
+	    width: 100%;
+
+	    & > div {
+	        display: inline-block;
+	        min-width: 125px;
+	        padding: 10px 0;
+	        text-align: center;
+	        background-color: #fff;
+	        border: 1px solid #d2d2d2;
+	        color: #a5a5a5;
+	        cursor: pointer;
+
+	        &+div {
+	            margin-left: 10px;
+	        }
+
+	        &.active, 
+	        &.selected {
+	            color: #000;
+	        }
+	    } 
+
+	    .event-type {
+	        font-weight: bold;
+	        font-size: 13px;
+	    }
+
+	    .event-time {
+	        font-size: 11px;
+	    }
+	}  
+
+
+	#cm-icon-list .cm-playback-speed {
+        height: 30px;
+        margin-top: 10px;
+	}
+
+	#cm-date-control{
+	    float:left;
+
+	    [class*="cm-date-button"]{
+	        width: 22px;
+	        margin: 0;
+	        padding:0;
+	    }
+	    
+	    .cm-date-button-l{
+	        margin-right: -5px;
+	    }
+
+	    .cm-date-button-r{
+	        margin-left: -5px;
+	    }
+
+	    .cm-calendar-icon{
+	        font-size: 20px; 
+	        transform: translateY(2px); 
+	        margin-right: 3px;
+	    }
+	} 
+
+
+	#cm-playback-datepicker {
+	    margin-top: -5px;
+
+	    & > .cm-row > .cm-center {
+	        display: table-cell;
+	        position: relative;
+	        left: calc(~"50vw - 20px");
+	        transform: translateX(-50%);
+	    }
+
+	    h2 {
+	        line-height: 15px;
+	        font-size: 12px;
+	        margin: 5px 0;
+	    }
+
+	    .cm-playback-all-day {
+	        display: block;
+	        font-size: 14px;
+	        color: #000;
+	        width: 100%;
+	        margin: 10px 0 30px 0px;
+	        clear: both;
+	        
+	        label {
+	            font-weight: normal;
+	            margin-top: 10px;
+	        }
+	    }  
+
+	    .cm-playback-button-wrap {
+	        display: block;
+	        margin-top: 47px;
+	    }
+
+	    .cm-datepicker tbody tr td {
+	        &.event:after {
+	            display: none;
+	        }
+
+	        &.event {
+	            color: #f37321;
+	        }
+	    }
+
+	    .start-time {
+	    	margin-left: 0;
+	    }
+	} 
+
+
+
+	#cm-bottom-menu.cm-full-menu{
+
+		
+		
+		#cm-menu-content {
+			height: 200px;
+		}
+
+		.cm-playback-duplicate-items {
+		        & > div {
+		            background-color: #262626;
+		            border: 1px solid #333;
+		            color: #797979;
+
+		            &.active, &.selected {
+		                color: #fff;
+		            }
+		        }
+		}  
+
+	    #cm-playback-datepicker {
+
+	    	.cm-playback-all-day {
+	    		label {
+	    			color: white;
+	    		}
+	    	}
+
+	        .ua-datepicker {
+	            table { 
+	                width: 100%;
+	                .btn.btn-default {
+	                    background-color: #191919 !important;
+	                    color: #fff !important;
+
+	                    &.active {
+	                        background-color: #fff !important;
+
+	                        span {
+	                            color: #000;
+	                        }
+	                    }  
+	                }  
+	                
+	                tbody tr td.event span {
+	                    color: #f37321 !important;
+	                } 
+	            } 
+	        } 
+	    } 
+	}
+}
+
+
+#backup {
+    margin-left: 30px;
+}
+
+#volume-control {
+    margin: 0 20px;
+}
+
+
+/////////////////////////////////////////
+/* Playback Responsive Page Style less */
+/////////////////////////////////////////
+
+@media screen and (max-width:1023px) {
+
+
+	.kind-responsive-playback {
+
+		#cm-playback-event {
+
+			& > .cm-center {
+				width: 100%;
+			}
+
+			.cm-event-list-wrap {
+		        width: 100%;
+		        margin-bottom: 20px;
+		    }
+
+		}
+
+	}
+
+
+}
+
+@media screen and (max-width:850px) {
+	.kind-responsive-playback {
+		#cm-menu-content {
+			.cm-col {
+				margin: 0 10px;
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width:799px) {
+	.kind-responsive-playback {
+
+		#cm-menu-content {
+			.cm-col {
+				margin: 0 2px;
+			}
+		}
+
+		#cm-playback-event {
+			& > .cm-center {
+				width: 100%;
+			}
+		}
+
+
+		#volume-control {
+			float: left;
+			// margin: 50px auto 0 auto;
+			margin: 0 10px;
+			height: 50px;
+			//margin-top: 50px;
+			clear: both;
+			margin-left: 50%;
+			transform: translateX(-50%);
+			margin-top: -5px;
+		}
+
+		.cm-control-icon {
+			margin: 0 10px;
+
+			&.cm-list-2 li {
+				margin: 0px 5px;
+			}
+		}
+
+
+        		#cm-bottom-menu {
+		            height: 100px;
+
+		            &.cm-show-menu {
+		                height: 300px;
+		            }
+
+		            &.cm-full-menu {
+		            	.info-toggle {
+		            		position: absolute;
+		            	}
+		            }
+        		}
+	}
+}
+
+@media screen and (max-width:700px) {
+	.kind-responsive-playback {
+
+
+		#cm-playback-datepicker {
+		    margin-top: -5px;
+
+		    .cm-playback-block {
+				&.cm-m0-5 {
+					margin: 0 3px;
+				}
+			}
+			
+			& > .cm-row > .cm-center > .cm-playback-block {
+				margin: 0 auto;
+				float: none;
+
+				&:first-child {
+					width: 100%;
+					margin: 15px 0px;
+				}
+			}
+
+			.cm-playback-button-wrap {
+				text-align: center;
+		        display: block;
+		        margin: 15px auto;
+		        clear: both;
+		        width: 100%;
+		    }
+
+		    h2 {
+		        text-align: center;
+		    }
+
+			.ua-datepicker table {
+				width: 80%;
+			}
+
+			.start-time, .end-time {
+				margin: 0;
+			}
+
+			.start-time {
+				margin-left: 5%;
+			}
+
+		}  
+	}
+
+	.cm-playback-all-day label {
+		margin-left: 5%;
+	}
+
+	.cm-cancel-button {
+	    width: 100px;
+	    font-size: 14px;
+	}
+
+
+}
+
+@media screen and (max-width:530px) {
+	.kind-responsive-playback {
+
+		#cm-playback-event {
+
+			.cm-event-list-wrap {
+		        & > div {
+		        	width: 50%;
+		        }
+		    }
+
+		}
+
+	}
+}

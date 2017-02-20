@@ -235,7 +235,7 @@ kindFramework.directive('liveIconList', function(
 			      },
 			    };
 
-		        $("#cm_speaker-slider div").slider({
+		        $("#cm-speaker-slider div").slider({
 			      	orientation: "horizontal",
 			      	range: "min",
 			        min: 0,
