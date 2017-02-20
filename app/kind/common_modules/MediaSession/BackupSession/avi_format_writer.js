@@ -142,6 +142,13 @@ function AviFormatWriter() {
       this.streamFormat = streamFormat;
     },
     /**
+    * @function : appendBuffer
+    */
+    appendBuffer : function(buffer) {
+      this.buffer.set(buffer, this.bufferIndex);
+      this.bufferIndex += buffer.length;
+    },
+    /**
     * make index buffer & return it
     * @function : getIndexBuffer
     */
@@ -262,24 +269,28 @@ function AviFormatWriter() {
       this.writeMainHeader(this.mainHeader);
     },
     /**
-    * @function : writeVideoHeader
+    * @function : getVideoHeader
     */ 
-    writeVideoHeader : function() {
+    getVideoHeader : function() {
+      this.setBuffer(new Uint8Array(31*4));
       this.writeString("LIST"); //video list
       this.writeInt32(4 + 64 + 48);
       this.writeString("strl");
       this.writeStreamHeader();
       this.writeBitmapInfo();
+      return this.buffer;
     },
     /**
-    * @function : writeAudioHeader
+    * @function : getAudioHeader
     */ 
-    writeAudioHeader : function() {
+    getAudioHeader : function() {
+      this.setBuffer(new Uint8Array(29*4));
       this.writeString("LIST");  //Audio list
       this.writeInt32(4+ SIZE_OF_STREAM_HEADER + SIZE_OF_WAVE_FORMAT );
       this.writeString("strl");
       this.writeStreamHeader();
       this.writeWaveFormatEx();
+      return this.buffer;
     },
     /**
     * @function : writeJunk

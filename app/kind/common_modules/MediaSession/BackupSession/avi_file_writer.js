@@ -17,6 +17,7 @@ var AviFileWriter = function() {
       if( type === 'video' ) {
         this.initMainHeader(frameInfo);
         createVideoHeader.initHeader(frameInfo); 
+        createAudioHeader.initHeader();
       }
       else {
         createAudioHeader.initHeader();
@@ -77,8 +78,8 @@ var AviFileWriter = function() {
       mainHeader.aviTotalFrames = createVideoHeader.getTotalFrames();
       this.setMainHeader(mainHeader);
       this.writeAviMainHeader(fileSize);
-      createVideoHeader.writeVideoHeader();
-      createAudioHeader.writeAudioHeader();
+      this.appendBuffer(createVideoHeader.getVideoHeader());
+      this.appendBuffer(createAudioHeader.getAudioHeader());
       return this.writeJunk(filePos);
     },
     /**

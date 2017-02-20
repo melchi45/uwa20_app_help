@@ -16,7 +16,7 @@ var BackupSession = function(_sendMessageCallback) {
 
 	var createAviFile = null;
 	var fileName = "";
-	var isPlayback = true;
+	var isPlayback = false;
 
 	var getbuffersize = function() {
 		if( !isVideo ) {

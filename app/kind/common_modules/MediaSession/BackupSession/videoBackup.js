@@ -49,6 +49,9 @@ var VideoHeader = function() {
 	    */
 		updateInfo : function(videoFrame, file_info){
 			var videoHeader = this.getStreamHeader();
+			if(videoHeader.last_ms === undefined ) {
+				videoHeader.last_ms = 0;
+			}
 			var aviIndexEntry = this.getIndexEntry();
 			var size = videoFrame.PESsize;
 			if( size % 2 !== 0 ) {
