@@ -1,7 +1,6 @@
 <div class="cm-row cm-live-icon-list" id="cm-icon-list">
   <div class="cm-center">
 
-
     <!-- information toggle buttons -->
     <ul class="info-toggle">
       <li 
@@ -34,7 +33,7 @@
           <i class="tui {{(function.class === 'viewMode'? viewModeIcon : function.class)}}"></i>
         </button>
       </li>
-      <li>
+      <li ng-show="MaxAudioOutput !== 0">
         <button 
           class="cm-icon-button-b"
           ng-click="changeMic()" 
@@ -66,7 +65,7 @@
 
         <div class="cm-vline"></div>
 
-        <div class="cm-col" id="volume-control">
+        <div class="cm-col" id="volume-control" ng-show="MaxAudioInput !== 0">
           <button 
             class="cm-icon-button-s"
             ng-click="changeSpeaker()" 
