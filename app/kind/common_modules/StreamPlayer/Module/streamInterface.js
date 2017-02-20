@@ -112,30 +112,60 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
                                     var checkType = $('.cm-live-icon-list').length;
                                     var checkSize = window.innerWidth;
+                                    var checkHeight = window.innerHeight;
 
-                                    // 하단 메뉴 On-Off시 height 차이
-                                    if(controlShow) bottomMenuHeight = 260;
-                                    else bottomMenuHeight = 60;
+                                    console.log(checkSize, checkHeight);
 
-                                    // Default Show 상태의 메뉴 > Responsive 상태일시 2줄
-                                    if(checkSize < 800) bottomMenuHeight += 50;
+                                    if(checkHeight < 600) {
+                                        if($(".kind-responsive-live").length)   $(".kind-responsive-live").addClass('land-scape');
+                                        if($(".kind-responsive-playback").length)   $(".kind-responsive-playback").addClass('land-scape');
 
-                                    // live page 에서는 하단의 길이가 더 김
-                                    if(checkType && checkSize < 800) bottomMenuHeight += 50;
+                                       // 하단 메뉴 On-Off시 width 차이
+                                       var bottomMenuWidth;
+                                        if(controlShow) bottomMenuWidth = 470;
+                                        else bottomMenuWidth = 70;
 
+                                        $("#cm-video").removeAttr('style');
+                                        $("#cm-video").css({ width: "calc(100% - "+ (bottomMenuWidth) +"px)" });
+                                        if( $(".full-screen img").length || $(".full-screen object").length){
+                                            $(".full-screen kind_stream").css({ width: "100%" });
+                                            $(".full-screen").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
+                                        }else{
+                                            $(".full-screen").css({ width: "100%" });
+                                            $(".full-screen kind_stream").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
+                                        }
 
-				$("#cm-video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
-				if( $(".full-screen img").length || $(".full-screen object").length){
-					$(".full-screen kind_stream").css({ height: "100%" });
-					$(".full-screen").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
-				}else{
-					$(".full-screen").css({ height: "100%" });
-					$(".full-screen kind_stream").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
-				}
+                                        if(UniversialManagerService.getViewMode() != 0){
+                                            $("#cm-video").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
+                                        }
 
-				if(UniversialManagerService.getViewMode() != 0){
-					$("#cm-video").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
-				}
+                                    } else {
+                                        $(".land-scape").removeClass('land-scape');
+
+                                       // 하단 메뉴 On-Off시 height 차이
+                                        if(controlShow) bottomMenuHeight = 260;
+                                        else bottomMenuHeight = 60;
+
+                                        // Default Show 상태의 메뉴 > Responsive 상태일시 2줄
+                                        if(checkSize < 800) bottomMenuHeight += 50;
+
+                                        // live page 에서는 하단의 길이가 더 김
+                                        if(checkType && checkSize < 800) bottomMenuHeight += 50;
+
+                                        $("#cm-video").removeAttr('style');
+                                        $("#cm-video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
+                                        if( $(".full-screen img").length || $(".full-screen object").length){
+                                            $(".full-screen kind_stream").css({ height: "100%" });
+                                            $(".full-screen").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
+                                        }else{
+                                            $(".full-screen").css({ height: "100%" });
+                                            $(".full-screen kind_stream").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
+                                        }
+
+                                        if(UniversialManagerService.getViewMode() != 0){
+                                            $("#cm-video").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
+                                        }
+                                    }
 			}
 
 			function getSize(boxWidth, boxHeight){
