@@ -1257,6 +1257,33 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         return points;
     }
 
+    /**
+     * @date 2017-02-20
+     * @author Yongku Cho
+     * 최대 해상도로 카메라에 저장이 되지 않기 때문에
+     * MD, IVA는 최대 해상도의 값은 최대 해상도 - 1이다.
+     * FD의 경우 홀수는 허용이 되지 않으므로
+     * FD의 최대 해상도값은 최대 해상도 - 2로 한다.
+     */
+    function fixMaxResolution(points){
+        var definedVideoInfo = getDefinedVideoInfo();
+        var maxWidth = definedVideoInfo[2];
+        var maxHeight = definedVideoInfo[3];
+
+        for(var i = 0, len = points.length; i < len; i++){
+            var self = points[i];
+            if(self[0] >= maxWidth){
+                points[i][0] = maxWidth - 2;
+            }
+
+            if(self[1] >= maxHeight){
+                points[i][1] = maxHeight - 2;
+            }
+        }
+
+        return points;
+    }
+
     $rootScope.$saveOn('<app/scripts/directives>::<updateCoordinates>', function(obj, args){
         var modifiedIndex = args[0];
         var modifiedType = args[1]; //생성: create, 삭제: delete
@@ -1271,6 +1298,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             if(modifiedType !== "delete"){
                 modifiedPoints = fixRatioForCoordinates(modifiedPoints);   
                 modifiedPoints = changeOnlyEvenNumberOfWiseFD(modifiedPoints);
+                modifiedPoints = fixMaxResolution(modifiedPoints);
             }
             
             if(modifiedType === "create" || fdIndex === null){
