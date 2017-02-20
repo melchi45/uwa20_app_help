@@ -259,7 +259,7 @@ kindFramework
           }
           if( guess < targetArray.length && 
             checkTimePosition(targetArray[guess].startObj, targetArray[guess].endObj) === 0 ) {
-				return targetArray[guess];
+				    return targetArray[guess];
           }
           return null;
         };

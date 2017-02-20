@@ -388,6 +388,7 @@ kindFramework
 			this.playbackInfo.rtspIP = rtspInfo.cameraUrl;
 			this.playbackInfo.rtspPort = rtspInfo.rtspPort;
 			this.playbackInfo.userID = rtspInfo.user;
+			this.playbackInfo.channel = searchData.getChannelId();
       		$rootScope.$emit("channelPlayer:command", "playbackBackup", this.playbackInfo, backupErrorCallback);
 		};
 		var checkEventSource = function() {

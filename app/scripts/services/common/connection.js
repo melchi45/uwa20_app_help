@@ -85,6 +85,7 @@ kindFramework
     var getPlaybackDataSet = function(data, timeCallback, errorCallback, closeCallback){
       var newUrl = "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
       console.log("new playback url : "+newUrl);
+      //TODO : playerInfo need to add channel filed ( data.channel )
       playbackId = newUrl;
       isPlaybackAlive = true;
       playerInfo.callback.time = timeCallback;
@@ -134,6 +135,7 @@ kindFramework
     };
 
     var playbackBackup = function(data, fileName, callback) {
+      //TODO : playerInfo need to add channel filed ( data.channel )
       playerInfo.callback.error = callback;
       playerInfo.device.captureName = fileName;
       playerInfo.media.type = 'backup';
@@ -143,12 +145,13 @@ kindFramework
       return playerInfo;
     };
 
-    var backupCommand = function(menu, fileName, callback) {
+    var backupCommand = function(recordInfo) {
+      //TODO : playerInfo need to add channel filed ( recordInfo.channel )
       playerInfo.media.type = 'live';
-      playerInfo.media.requestInfo.cmd = 'backup'+ menu;
-      if( menu === 'start' ) {
-        playerInfo.callback.close = callback;
-        playerInfo.device.captureName = fileName;
+      playerInfo.media.requestInfo.cmd = 'backup'+ recordInfo.menu;
+      if( recordInfo.menu === 'start' ) {
+        playerInfo.callback.close = recordInfo.callback;
+        playerInfo.device.captureName = recordInfo.fileName;
       }
       return playerInfo;
     };

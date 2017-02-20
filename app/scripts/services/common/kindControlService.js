@@ -28,15 +28,25 @@ kindFramework
         return dateStr;
     };
 
-    this.startRecord = function(_scope, _callback)
+    this.startRecord = function(_scope, info)
     {
       var fileName = sunapiAttributes.ModelName + ' ' + getDateStr();
-      _scope.playerdata = ConnectionSettingService.backupCommand('start', fileName, _callback);
+      var recordInfo = {
+        'menu' : 'start',
+        'channel' : info.channel,
+        'fileName' : fileName,
+        'callback' : info.callback
+      };
+      _scope.playerdata = ConnectionSettingService.backupCommand(recordInfo);
     }
 
-    this.stopRecord = function(_scope)
+    this.stopRecord = function(_scope, info)
     {
-      _scope.playerdata = ConnectionSettingService.backupCommand('stop', null, null); 
+      var recordInfo = {
+        'menu' : 'stop',
+        'channel' : info.channelId
+      };
+      _scope.playerdata = ConnectionSettingService.backupCommand(recordInfo); 
     }
 
     this.capture = function(_scope)
