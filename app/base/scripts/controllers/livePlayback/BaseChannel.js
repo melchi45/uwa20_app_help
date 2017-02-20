@@ -101,15 +101,6 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
         disalbePlaybackButton: false,
         togglemessage: "Live",
         togglePlayback: function() {
-          switch(UniversialManagerService.getPlayMode())
-          {
-            case CAMERA_STATUS.PLAY_MODE.LIVE : // goto Playback Mode
-              openPlaybackPage();
-              break;
-            case CAMERA_STATUS.PLAY_MODE.PLAYBACK : // goto Live Mode
-              closePlaybackPage();
-              break;
-          }
         },
         closePlayback : function(){
           closePlaybackPage();
@@ -200,66 +191,6 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
             $scope.setChannelSize();
           }
         }
-    };
-
-    /**
-    * convert page mode to playback
-    * @name : openPlaybackPage
-    */
-    var openPlaybackPage = function() {
-      $scope.activeGNB(1);
-
-      self.selectChannelList();
-
-      $rootScope.$emit('changeLoadingBar', true);
-      //1. close Live Stream.
-      var result = playbackInterfaceService.stopLive();
-      if( result !== null) {
-        $scope.playerdata = result;
-      }
-
-      self.setChannelState('PLAYBACK');
-      $scope.timelineController.create();
-      playbackInterfaceService.preparePlayback()
-      .then(function(value){
-        self.stopAllChannel();
-        domControls.enablePlayback = true;
-        UniversialManagerService.setPlayMode(CAMERA_STATUS.PLAY_MODE.PLAYBACK);
-        playData.setStatus(PLAY_CMD.PLAYPAGE);
-        $rootScope.$emit('changeLoadingBar', false);
-      }, function(){
-        $scope.activeGNB(0);
-        self.stopAllChannel();
-        $rootScope.$emit('changeLoadingBar', false);
-        //re-play live
-        var result = playbackInterfaceService.startLive($scope.profileInfo);
-        if( result !== null) {
-          $scope.playerdata = result;
-        }
-        $scope.timelineController.destroy();
-        domControls.enablePlayback = false;
-        playData.setStatus(PLAY_CMD.LIVE);
-        UniversialManagerService.setPlayMode(CAMERA_STATUS.PLAY_MODE.LIVE);
-        self.setChannelState('LIVE');
-      });
-      self.resetSetting();
-      self.stopAllChannel();
-    };
-
-    /**
-    * convert page mode to live
-    * @name : closePlaybackPage
-    */
-    var closePlaybackPage = function() {
-      $scope.activeGNB(0);
-      setDefaultPlaybackData();
-      UniversialManagerService.setPlayMode(CAMERA_STATUS.PLAY_MODE.LIVE);
-      var playerData =  playbackInterfaceService.refreshLivePage();
-      self.setChannelState('LIVE');
-      self.applyLiveMedia(playerData);
-      $scope.timelineController.destroy();
-      self.resetUI();
-      self.resetSetting();
     };
 
     checkValidUser();
@@ -519,21 +450,6 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
           });
     }, $scope);
 
-    $rootScope.$saveOn("/script/controllers/livePlayback/channel::preparePlayback",
-      function(event, data) {
-        if( data === null ) return;
-        $rootScope.$emit('changeLoadingBar', true);
-          playbackInterfaceService.preparePlayback(data)
-          .then(function(result){
-            $rootScope.$emit('changeLoadingBar', false);
-            $scope.timelineController.create();
-            console.log("openPlaybackAfterAuth success");
-          }, function(error){
-            $rootScope.$emit('changeLoadingBar', false);
-            playbackInterfaceService.showErrorPopup(error);
-          });
-    }, $scope);
-
     $rootScope.$saveOn('clearTimeline', function(event, data) {
       $scope.timelineController.clear();
     }, $scope);
@@ -600,17 +516,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
       }catch(e){
         console.error("That isPlugin is removed have problem.", e);
       }
-    })();   
-
-    $rootScope.$saveOn('refreshLivePage', function(event, data) {
-      if( data && UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.LIVE) {
-        playbackInterfaceService.refreshLivePage();
-        $scope.timelineController.destroy();
-        $scope.domControls.enablePlayback = false;
-        UniversialManagerService.setPlayMode(CAMERA_STATUS.PLAY_MODE.LIVE);
-        self.resetUI();
-      }
-    }, $scope);
+    })();
 
     $rootScope.$saveOn('app/scripts/controllers/livePlayback/channel.js :: resetPlaySpeed', function(event, data) {
       self.resetPlaySpeed();

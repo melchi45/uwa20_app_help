@@ -13,7 +13,9 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				scope.dptzMode = CAMERA_STATUS.DPTZ_MODE;
 				scope.ptzType = CAMERA_STATUS.PTZ_MODE;
 				scope.autoTrackingFlag = false;
-				scope.ptzMode = "external";	//external or dptz
+				scope.ptzMode = "external";	//external or dptz or zoomonly
+				scope.showLivePtzControl = true;
+				scope.showZoomOnlyControl = false;
 				scope.presetAddForm = {
 					show: false,
 					set: function(value){
@@ -49,7 +51,13 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 							getSettingPresetList();
 							break;
 						case CAMERA_STATUS.PTZ_MODE.OPTICAL:
-							break;														
+							break;
+						case CAMERA_STATUS.PTZ_MODE.ZOOMONLY:
+							scope.ptzMode = "zoomonly";
+							getSettingPresetList();
+							scope.showLivePtzControl = false;
+							scope.showZoomOnlyControl = true;
+							break;
 					}
 
 					console.log("scope.ptzMode = " + scope.ptzMode);
@@ -282,6 +290,17 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				function init() {
 					scope.presetList = [];
 					scope.groupList = [];
+					setTabs();
+				}
+
+				function setTabs(){
+					if( $("#live-ptz-tabs").length ){
+						$("#live-ptz-tabs").tabs();
+						var tabCount = $("#live-ptz-tabs .ui-widget-header li").length;
+						if(tabCount < 5){
+							$("#live-ptz-tabs .ui-widget-header li").css("width", (100 / tabCount) + "%");
+						}
+					}
 				}
 
 				function getSettingPresetList() {
@@ -292,6 +311,97 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					DigitalPTZContorlService.getSettingList(groupListCallback, 'group');
 				}
 
+				scope.ptzControlZoom = function(value){
+					if(value=='Stop'){
+						if (UniversialManagerService.getDigitalPTZ() !== CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING) {
+							ptzStop();
+						}
+					}else{
+						sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True&Zoom=" + value;
+						if(scope.showPTZControlFisheyeDPTZ === true)
+						{
+							sunapiURI += "&SubViewIndex=" + scope.quadrant.select;
+						}
+						execSunapi(sunapiURI);
+					}
+				};
+                
+				scope.clickPtzFocus = function(value){
+					if(value=='Stop'){
+						ptzStop();
+					}else if(value=='Auto'){
+						sunapiURI = "/stw-cgi/image.cgi?msubmenu=focus&action=control&Channel=0&Mode=AutoFocus";
+						execSunapi(sunapiURI);
+					}else{
+						sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&Focus="+value;
+						execSunapi(sunapiURI);
+					}
+				};
+                
+				$("#ptz-control_slider-horizontal-zoom").unbind();
+
+				$("#ptz-control_slider-horizontal-zoom").slider({
+					orientation: "horizontal",
+					min: -100,
+					max: 100,
+					value: 0,
+					revert: true,
+					slide: function(event, ui){
+						if(ptzJogTimer === null) {
+							makeJogTimer();
+						}
+
+						if(isJogUpdating === false) {
+							var sliderVal = ui.value;
+							sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True&Zoom=" + sliderVal;
+
+							execSunapi(sunapiURI);
+							isJogUpdating = true;
+						}
+
+					},
+					stop: function(){
+						$( "#ptz-control_slider-horizontal-zoom" ).slider('value', 0);
+						ptzStop();
+					}
+				});
+
+
+
+
+				$("#ptz-control_slider-horizontal-focus").unbind();
+
+				$("#ptz-control_slider-horizontal-focus").slider({
+					orientation: "horizontal",
+					min: -100,
+					max: 100,
+					value: 0,
+					revert: true,
+					slide: function(event, ui){
+						if(ptzJogTimer === null) {
+							makeJogTimer();
+						}
+
+						if(isJogUpdating === false) {
+							var sliderVal = ui.value;
+							if (sliderVal > 0)
+							{
+								scope.clickPtzFocus('Far');
+							}
+							else if (sliderVal < 0)
+							{
+								scope.clickPtzFocus('Near');
+							}
+							isJogUpdating = true;
+						}
+
+					},
+					stop: function(){
+						$( "#ptz-control_slider-horizontal-focus" ).slider('value', 0);
+						ptzStop();
+					}
+				});
+                
 				function makeJogTimer() {
 					ptzJogTimer = $interval(function() {
 						isJogUpdating = false;

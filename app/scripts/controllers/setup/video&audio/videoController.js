@@ -37,6 +37,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         $scope.MaxPrivacyMask =  mAttr.MaxPrivacyMask;
         $scope.PrivacyMasGlobalColor = mAttr.PrivacyMasGlobalColor;
         $scope.MaskPatternArray = mAttr.PrivacyMaskPattern;
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
 
         if (mAttr.MaxZoom !== undefined) {
             $scope.MaxZoom = mAttr.MaxZoom.maxValue;
@@ -67,12 +68,17 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
     function getZoomValue(){
         var deferred = $q.defer();
-        if(mAttr.PTZModel){
+        if(mAttr.PTZModel || mAttr.ZoomOnlyModel){
             var getData = {};
             SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=query&action=view&Query=Zoom', getData,
                 function (response) {
-                    if(response.data.Query[0].Zoom){
-                        deferred.resolve(response.data.Query[0].Zoom);
+                    var resValue;
+                    try {
+                        resValue = response.data.Query[0].Zoom
+                    } catch (e) {
+                    }
+                    if(resValue){
+                        deferred.resolve(resValue);
                     } else {
                         deferred.resolve(1);  
                     }
@@ -208,7 +214,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 $scope.PrivacyMask = response.data.PrivacyMask;
                 pageData.PrivacyMask = angular.copy($scope.PrivacyMask);
 
-                if(mAttr.PTZModel && $scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined && $scope.PrivacyMask[$scope.SelectedChannel].Enable){
+                if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && $scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined && $scope.PrivacyMask[$scope.SelectedChannel].Enable){
                     for(var i = 0; i < $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++){
                         if($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable == true){
                             $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "[ZOOM]";
@@ -222,14 +228,14 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                     $scope.$apply(function(){
                         $scope.PrivacyMaskListCheck = true;
                         if( $scope.PrivacyMaskSelected !== $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskIndex) {
-                            if(inputIndex != undefined && mAttr.PTZModel == true){
+                            if(inputIndex != undefined && (mAttr.PTZModel == true || mAttr.ZoomOnlyModel == true)){
                                 $scope.PrivacyMaskSelected = inputIndex;
                             } else {
-                                $scope.PrivacyMaskSelected = $scope.PTZModel? null : $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskIndex;
+                                $scope.PrivacyMaskSelected = ($scope.PTZModel || $scope.ZoomOnlyModel)? null : $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskIndex;
                             }
                         }
                         else if( prevSelectedMaskCoordinate !== $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskCoordinate) {
-                            if(mAttr.PTZModel){
+                            if(mAttr.PTZModel || mAttr.ZoomOnlyModel){
                                 $scope.PrivacyMaskSelected = inputIndex;
                                 updatePrivacyMaskCoordinate(inputIndex);
                             } else {
@@ -314,8 +320,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
             SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=add', setData,
             function (response) {
-
-                if(mAttr.PTZModel && data.thresholdEnable){
+                if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && data.thresholdEnable){
                     var modalInstance2 = $uibModal.open({
                         templateUrl: "privacyPopup2.html",
                         backdrop: false,
@@ -882,11 +887,18 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             rotate: rotate,
             adjust: adjust
         };
-        $scope.ptzinfo = {
-            autoOpen: false,
-            type: 'VideoSetup',
-            setPTZControlVideoSetup: setPTZControlVideoSetup
-        };
+        if(mAttr.ZoomOnlyModel){
+            $scope.ptzinfo = {
+                    autoOpen: true,
+                    type: 'ZoomOnly'
+                };
+        } else {
+            $scope.ptzinfo = {
+                autoOpen: false,
+                type: 'VideoSetup',
+                setPTZControlVideoSetup: setPTZControlVideoSetup
+            };
+        }
 
         var drawType = (mAttr.PrivacyMaskRectangle == '0')? 1 : 0;
         var drawMax = 0;

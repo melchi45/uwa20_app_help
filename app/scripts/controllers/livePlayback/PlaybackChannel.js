@@ -124,6 +124,7 @@ kindFramework
 
     var goToPlaybackPage = function() {
       var playData = new PlayDataModel();
+      var channelId = searchData.getChannelId();
 
       $rootScope.$emit('changeLoadingBar', true);
 
@@ -131,7 +132,7 @@ kindFramework
       
       PlaybackInterface.stopLive();
 
-      PlaybackInterface.preparePlayback();
+      PlaybackInterface.preparePlayback(channelId);
       $scope.domControls.enablePlayback = true;
       $scope.timelineController.create();
       $scope.timelineController.changeCurrnetDate({'date':searchData.getSelectedDate()});

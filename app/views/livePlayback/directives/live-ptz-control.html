@@ -19,7 +19,7 @@
   </button>
 </p>
  -->
-    <div id="cm-live-ptz-control">
+    <div id="cm-live-ptz-control" ng-show="showLivePtzControl === true">
       <div class="cm-ptz-control-left">
         <button 
           ng-if="ptzMode === 'external' || currentPtzType === ptzType.OPTICAL"
@@ -35,6 +35,7 @@
           ng-if="ptzMode === 'dptz' || currentPtzType === ptzType.OPTICAL"
           ng-click="autoTracking()"
           class="cm-icon-button-s cm-at"
+          ng-class="{'cm-ptz-at' : currentPtzType === ptzType.OPTICAL}"
           title="{{'lang_autotracking_on' | translate}}">
           <span class="sr-only">{{ 'lang_autotracking_on' | translate }}</span>
           <i class="tui" ng-class="autoTrackingFlag === dptzMode.DIGITAL_PTZ ? 'tui-ch-live-ptz-tracking-auto-off' : 'tui-ch-live-ptz-tracking-auto-on'"></i>
@@ -48,6 +49,14 @@
           title="{{'lang_far' | translate}}">
           <span class="sr-only">{{ 'lang_far' | translate }}</span>
           <i class="tui tui-wn5-ptz-far"></i>
+        </button>
+        <button 
+          ng-if="currentPtzType === ptzType.OPTICAL"
+           ng-click="clickPtzFocus('Auto')"
+          class="cm-icon-button-s cm-home"
+          title="{{'lang_autoFocus' | translate}}">
+          <span class="sr-only">{{ 'lang_autoFocus' | translate }}</span>
+          <i class="tui tui-wn5-simple-focus"></i>
         </button>
         <!-- 
         <button 
@@ -92,13 +101,96 @@
         </div>
       </div>
     </div>
+      <!--
+      hash : 30b3911
+      [XNO-6120R] x12
+      1. privacy mask zoomThreshold.
+      2. last position view.
+      3. Live PTZ - zoom slider issue fixed.
+      -->
+      <div id="live-ptz-control-zoomonly" ng-show="showZoomOnlyControl">
+        <div class="slider-fields live-slider-field col-xs-3" style="min-width: 250px;">
+            <h3>{{ 'lang_zoom' | translate }}</h3>
+            <div class="ptz-control_slider-box-horizontal" style="width: 175px;">
+                <button 
+                    class="cm-icon-button-s verticalMiddle"
+                    title="{{'lang_zoomOut' | translate}}"
+                    ng-mousedown="ptzControlZoom(-50);"
+                    ng-mouseup="ptzControlZoom('Stop')"
+                    ng-mouseleave="ptzControlZoom('Stop')">
 
+                    <i class="tui tui-wn5-ptz-minus" ></i>
+                </button>
+                <div class="ptz-control_slider-horizontal verticalMiddle" id="ptz-control_slider-horizontal-zoom"></div>
+                <button
+                    class="cm-icon-button-s verticalMiddle"
+                    title="{{'lang_zoomInt' | translate}}"
+                    ng-mousedown="ptzControlZoom(50);"
+                    ng-mouseup="ptzControlZoom('Stop')"
+                    ng-mouseleave="ptzControlZoom('Stop')">
+                    <i class="tui tui-wn5-ptz-plus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="slider-fields live-slider-field col-xs-3" style="min-width: 250px;">
 
-    <div id="cm-ptz-tables">
+            <h3>{{ 'lang_focus' | translate }}</h3>
+            <div class="ptz-control_focus-box-horizontal">
+                <button 
+                    class="cm_icon-button-s verticalMiddle"
+                    title="{{'lang_zoomOut' | translate}}"
+                    ng-mousedown="clickPtzFocus('Near')"
+                    ng-mouseup="clickPtzFocus('Stop')"
+                    ng-mouseleave="clickPtzFocus('Stop')">
+                    <i class="tui tui-wn5-ptz-near" ></i>
+                </button>
+                <button
+                    class="cm_icon-button-s verticalMiddle"
+                    title="{{'lang_zoomInt' | translate}}"
+                    ng-mousedown="clickPtzFocus('Far');"
+                    ng-mouseup="clickPtzFocus('Stop')"
+                    ng-mouseleave="clickPtzFocus('Stop')">
+                    <i class="tui tui-wn5-ptz-far"></i>
+                </button>
 
-      <div>
-        <h2><span class="cm-m0-10">{{'lang_preset' | translate}}</span></h2>
-        <table class="cm-table">
+                <i class="tui tui-ch-live-autofocus verticalMiddle ptz-function-btn-autofocus" ng-click="clickPtzFocus('Auto')"></i>
+            </div>
+        </div>
+      </div>
+
+    <div id="live-ptz-tabs" class="cm-col">
+      <ul>
+        <li>
+          <a href="#live-ptz-preset">{{ 'lang_preset' | translate }}</a>
+        </li>
+        <li ng-if="currentPtzType === ptzType.OPTICAL">
+            <a href="#live-ptz-swing">{{ 'lang_swing' | translate }}</a>
+        </li>
+        <li ng-if="(!(currentPtzType == ptzType.EXTERNAL || currentPtzType == ptzType.ZOOMONLY)) || currentPtzType === ptzType.OPTICAL">
+          <a href="#live-ptz-group">{{ 'lang_group' | translate }}</a>
+        </li>
+        <li ng-if="currentPtzType === ptzType.OPTICAL">
+          <a href="#live-ptz-tour">{{ 'lang_tour' | translate }}</a>
+        </li>
+        <li ng-if="currentPtzType === ptzType.OPTICAL">
+          <a href="#live-ptz-trace">{{ 'lang_trace' | translate }}</a>
+        </li>
+      </ul>
+
+      <!-- Preset start -->
+      <div id="live-ptz-preset">
+        <div ng-if="currentPtzType === ptzType.OPTICAL">
+          <div>{{'lang_selectPreset' | translate}}</div>
+          <select class="form-control cm-selectbox">
+            <option value="1: Preset">1: Preset</option>
+          </select>
+          <div style="margin-top: 5px;">
+            <button type="button" class="cm-str-button" title="Go">Go</button>
+            <button type="button" class="cm-str-button" title="Stop">Stop</button>
+            <button type="button" class="cm-str-button" title="Set" style="float: right;">Set</button>
+          </div>
+        </div>
+        <table class="cm-table" ng-if="currentPtzType !== ptzType.OPTICAL">
           <colgroup>
             <col width="50">
             <col width="180">
@@ -127,10 +219,34 @@
           </tbody>
         </table>
       </div>
+      <!-- Preset end -->
 
-      <div ng-if="currentPtzType !== ptzType.EXTERNAL">
-        <h2><span class="cm-m0-10">{{'lang_group' | translate}}</span></h2>
-        <table class="cm-table">
+      <!-- Swing start -->
+      <div id="live-ptz-swing" ng-if="currentPtzType === ptzType.OPTICAL">
+        <div>{{'lang_swingMode' | translate}}</div>
+        <select class="form-control cm-selectbox">
+          <option value="Pan swing">Pan swing</option>
+        </select>
+        <div style="margin-top: 5px;">
+          <button type="button" class="cm-str-button" title="Go">Go</button>
+          <button type="button" class="cm-str-button" title="Stop">Stop</button>
+        </div>
+      </div>
+      <!-- Swing end -->
+
+      <!-- Group start -->
+      <div id="live-ptz-group" ng-if="(!(currentPtzType == ptzType.EXTERNAL || currentPtzType == ptzType.ZOOMONLY)) || currentPtzType === ptzType.OPTICAL">
+        <div ng-if="currentPtzType === ptzType.OPTICAL">
+          <div>{{'lang_group' | translate}}</div>
+          <select class="form-control cm-selectbox">
+            <option value="1. Group 01">1. Group 01</option>
+          </select>
+          <div style="margin-top: 5px;">
+            <button type="button" class="cm-str-button" title="Go">Go</button>
+            <button type="button" class="cm-str-button" title="Stop">Stop</button>
+          </div>
+        </div>
+        <table class="cm-table" ng-if="currentPtzType !== ptzType.OPTICAL">
           <colgroup>
             <col width="50">
             <col width="200">
@@ -167,9 +283,71 @@
           </tbody>
         </table>
       </div>
+      <!-- Group end -->
 
-    </div><!-- ptz tables end -->
+      <!-- Tour start -->
+      <div id="live-ptz-tour" ng-if="currentPtzType === ptzType.OPTICAL">
+        <div>{{'lang_tour' | translate}}</div>
+        <div style="margin-top: 5px; min-width: 200px;">
+          <button type="button" class="cm-str-button" title="Go">Go</button>
+          <button type="button" class="cm-str-button" title="Stop">Stop</button>
+        </div>
+      </div>
+      <!-- Tour end -->
 
+      <!-- Trace start -->
+      <div id="live-ptz-trace" ng-if="currentPtzType === ptzType.OPTICAL">
+        <div>{{'lang_traceNo' | translate}}</div>
+        <select class="form-control cm-selectbox">
+          <option value="1">1</option>
+        </select>
+        <div style="margin-top: 5px;">
+          <button type="button" class="cm-str-button" title="Go">Go</button>
+          <button type="button" class="cm-str-button" title="Stop">Stop</button>
+        </div>
+      </div>
+      <!-- Trace end -->
+    </div> <!-- live-ptz-tabs end -->
+
+    <div class="cm-col" ng-if="currentPtzType === ptzType.OPTICAL">
+      <h2><span>{{ 'lang_areaZoom' | translate }}</span></h2>
+      <div>
+        <button 
+          class="cm-icon-button-b"
+          title="{{'lang_areaZoom' | translate}}">
+          <span class="sr-only">{{ 'lang_areaZoom' | translate }}</span>
+          <i class="tui tui-ch-live-ptz-areazoom"></i>
+        </button>
+        <button 
+          class="cm-icon-button-b"
+          title="{{'lang_goto1x' | translate}}">
+          <span class="sr-only">{{ 'lang_goto1x' | translate }}</span>
+          <i class="tui tui-ch-live-ptz-areazoom-1x"></i>
+        </button>
+        <button 
+          class="cm-icon-button-b"
+          title="{{'lang_prev' | translate}}">
+          <span class="sr-only">{{ 'lang_prev' | translate }}</span>
+          <i class="tui tui-ch-live-ptz-areazoom-back"></i>
+        </button>
+        <button 
+          class="cm-icon-button-b"
+          title="{{'lang_next' | translate}}">
+          <span class="sr-only">{{ 'lang_next' | translate }}</span>
+          <i class="tui tui-ch-live-ptz-areazoom-pre"></i>
+        </button>
+      </div>
+
+      <h2 style="margin-top: 20px;"><span>{{ 'Lock - ON' | translate }}</span></h2>
+      <div>
+        <button 
+          class="cm-icon-button-s"
+          title="{{'lang_ptz_manual_lock_on' | translate}}">
+          <span class="sr-only">{{ 'lang_ptz_manual_lock_on' | translate }}</span>
+          <i class="tui tui-ch-live-ptz-tracking-auto-on"></i>
+        </button>
+      </div>
+    </div>
   </div>
 
   <div ng-show="currentPtzType === ptzType.NONE">

@@ -53,6 +53,7 @@ kindFramework.constant('CAMERA_STATUS',{
 		'DIGITAL' : 2,
 		'EXTERNAL_DIGITAL' : 3,
 		'OPTICAL' : 4,
+        'ZOOMONLY' : 5,
 	},
 	B2C_DEFAULT_PROFILE : 'Low',
 });

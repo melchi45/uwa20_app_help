@@ -216,6 +216,8 @@ kindFramework
         $scope.currentPtzType = CAMERA_STATUS.PTZ_MODE.EXTERNAL;  //1
       } else if ($scope.ExternalPTZModel === false && $scope.DigitalPTZ === true) {
         $scope.currentPtzType = CAMERA_STATUS.PTZ_MODE.DIGITAL;  //2
+      } else if (sunapiAttributes.ZoomOnlyModel === true) {
+        $scope.currentPtzType = CAMERA_STATUS.PTZ_MODE.ZOOMONLY;  //5
       } else {
         $scope.currentPtzType = CAMERA_STATUS.PTZ_MODE.NONE;  //0
       }

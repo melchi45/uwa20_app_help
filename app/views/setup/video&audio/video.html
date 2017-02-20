@@ -30,8 +30,14 @@
                 coordinates='coordinates'>
             </sketchbook>
 
+            <!-- PTZ Control -->
+            <div class="ptz-control_box ptz-control_ptz-menu-width">
+                <ptz-control ptzinfo='ptzinfo'></ptz-control>
+            </div>
+            <!-- //PTZ Control End -->
+            
             <div class="wn5-setup-preview">
-                <div class="form-group" ng-show="!PTZModel">
+                <div class="form-group" ng-show="!PTZModel && !ZoomOnlyModel">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_pattern' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
                         <select 
@@ -375,7 +381,7 @@
                 </select>
             </div>
         </div>
-        <div class="modal-body modal-setup" ng-show="IsPTZ">
+        <div class="modal-body modal-setup" ng-show="IsPTZ || IsZoomOnly">
             <label class="col-sm-3 control-label">
                 {{ 'lang_zoomThreshold' | translate }}
             </label>
