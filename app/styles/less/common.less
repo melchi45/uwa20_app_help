@@ -224,6 +224,69 @@
 
 
 
+// Full screen style
+
+
+#full-screen-functions .carousel-inner,
+#full-screen-functions .controller-area {
+    height: 65px;
+}
+
+#full-screen-functions .carousel-inner>.item {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+}
+
+
+//  page common css
+channel_player canvas,
+channel_player #video-container,
+channel_player object:not(.dptz),
+channel_player img,
+#cm-livecanvas {
+  position: absolute;
+}
+
+kind_stream {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.full-screen {
+    display: block;
+    background-color: black;
+
+    #container {
+        position: relative;
+        height: 100%;
+    }
+    div {
+        display: block;
+        background-color: black;
+        overflow: hidden !important;
+    } 
+}
+
+.channels-wrapper-pc {
+    background-color: #fff !important;
+}
+
+
+
+/*common*/
+
+.cm-selectbox{
+    padding: 0 7px;
+}
+.cm-textbox{
+    padding: 0 10px;
+}
+
+
+
+
 
 /*   Page Interface Style     
             from page-common.less
@@ -1637,17 +1700,81 @@ live-playback common {
 }
 
 
+//--
+.cm-slider-label{
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    transform: translateX(100%); 
+    line-height: 37px; 
+    padding-left: 20px;
+}
 
+.cm-readonly-click{
+    background-color: #fff !important;
+    color: #000 !important;
+    border: 1px solid #d2d2d2 !important;
+}
+
+
+
+
+
+
+
+// Mobile ~1024px
+@media(max-width: 1024px){
+    #cm-nav .cm-right ul span{
+        display: none;
+    }
+}
+
+//--//
 
 // Mobile ~799px
 @media(max-width: 799px){
+    
 
+    #cm-nav {
+        #cm-logo {
+            position: relative;
+            
+            .cm-logo_lg{
+                display: none;
+            }
+            
+            .cm-logo_sm{
+                margin-top: 15px;
+                display: block;
+            }
+        } 
+
+        .cm-menu {
+            li:not(:last-of-type) {
+                margin-right: 25px !important;
+            }
+        }
+    
+        .cm-right .cm-devicename {
+            padding: 0;
+        }
+        .cm-right ul {
+            display: none;
+        }
+    }  
+
+    
+    //--
 
     #cm-bottom-menu {
-        height: 100px;
+        height: 150px;
+
+        &.cm-show-menu {
+            height: 350px;
+            margin-top: 0;
+        }
 
         &.cm-live-bottom-menu {
-
             #cm-icon-list {
                 height: 150px;
                 
@@ -1659,11 +1786,19 @@ live-playback common {
                     margin: 0;
                 }
 
-                .cm-col-100 li {
-                    float: none;
-                    display: inline-block;
-                }
+                .cm-col-100 {
+                    width: 100%;
+                    height: 50px;
+                    line-height: 50px;
+                    text-align: center;
+                    border-top: none;
 
+                    li {
+                        float: none;
+                        display: inline-block;
+                    }
+                }
+                
                 .cm-live-controller {
                     max-height: 50px;
                     height: 100px;
@@ -1673,8 +1808,87 @@ live-playback common {
                     transform: translateY(-50px);
                 }
             }  
+
+            #cm-icon-list {
+                .cm-list-2 {
+                    transform: translateY(-50px);
+                }
+            } 
+        } 
+
+        #cm-icon-list {
+            height: auto;
         }
-    } 
+
+    }  
+
+    #cm-icon-list {
+        .cm-content-icon-list {
+            li {
+                border-top: 1px solid #e9e9e9;
+                transform: translateY(1px);
+            }
+        }  
+    }  
+    
+    #cm-menu-content .cm-status-wrap .cm-status-col {
+        width: 100%;
+    }
+
+    #cm-menu-content {
+        #cm-display-slider {
+            min-width: 0;
+        }
+        
+
+    }  
+
+    .info-toggle {
+        position: absolute;
+        
+    }
+
+    #cm-video{
+        width: 100%;
+        height: calc(~"100% - 360px");
+        background-color: #fff;
+        position: relative;
+        overflow: hidden;
+
+
+        &.smaller {
+            height: calc(~"100% - 160px");
+        }
+    }
+
+    #backup {
+        margin-left: 20px;
+    }
+
+    playback-page .info-toggle {
+        margin-left: 30px !important;
+    }
+    
+    #timeline-setting {
+        margin: 0;
+    }
+    
+    #cm-date-control .cm-col,
+    #timeline-setting .cm-col {
+        margin: 0 3px;
+    }
+    
+    #cm-date-control .cm-timeboxes input {
+        padding: 0 5px;
+        width: 40px;
+    }
+
+    #backup {
+        margin-left: 10px;
+    }
+
+    //--//
+
 } 
 
 
