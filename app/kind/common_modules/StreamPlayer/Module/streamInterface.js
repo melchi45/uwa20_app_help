@@ -33,6 +33,15 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		};
 
 		var setCanvasStyle = function(mode, controlShow) {
+                                console.info("setCanvasStyle");
+
+                                if(controlShow === undefined){
+                                    var bottomMenu = $("#cm-bottom-menu");
+                                    controlShow = bottomMenu.hasClass('cm-show-menu')? true : false;
+                                }
+
+                                setContainerSize(controlShow);
+
 		 	if (streamCanvas === null || streamCanvas === undefined) {
 		 		return;
 			}
@@ -49,13 +58,6 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
 				EventNotificationService.setBorderElement(getBorderElement(), currentPage);
 			}
-
-		 	if(controlShow === undefined){
-		 		var bottomMenu = $("#cm-bottom-menu");
-		 		controlShow = bottomMenu.hasClass('cm-show-menu')? true : false;
-		 	}
-
-		 	setContainerSize(controlShow);
 		 	UniversialManagerService.setViewModeType(mode);
 
 		 	var container = $("#container, .channel-container");
@@ -115,6 +117,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                     var checkHeight = window.innerHeight;
 
                                     console.log(checkSize, checkHeight);
+                                    console.log(checkHeight);
 
                                     if(checkHeight < 600) {
                                         if($(".kind-responsive-live").length)   $(".kind-responsive-live").addClass('land-scape');
