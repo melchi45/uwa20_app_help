@@ -560,10 +560,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         });
     }  
 
-    function getSliderColor(){
-        return mAttr.sliderEnableColor;
-    }
-
     function setEventRules() {
         var setData = {};
         setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
