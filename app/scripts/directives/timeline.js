@@ -8,9 +8,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
       restrict: 'E',
       templateUrl: 'views/livePlayback/directives/timeline.html',
       scope: {
-        'items': '@',
         'control': '=',
-        'eventChangeUnallowed':'=',
         'disableBackupIcon' : '=',
         'playbackBackup' : '='
       },
@@ -27,6 +25,12 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           backup : false
         };
 
+        /*
+        * Callback function called by when selecting timeline item.
+        *
+        * @function : updateTimelineText
+        * @param : list is type of Object ( containing selected item info )
+        */
         var updateTimelineText = function(list) {
           var eventList = searchData.getEventTypeList();
           if( eventList === null || eventList.length > 1  || eventList[0] ==='All') {
@@ -42,22 +46,42 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           $scope.duplicateItems = list;
         };
 
-        $scope.timelineControl.create = function(type) {
+        /*
+        * create timeline
+        *
+        * @function : create
+        */
+        $scope.timelineControl.create = function() {
           //check element.
-          timelineCtrl.createTimeline(type, $element, updateTimelineText);
+          timelineCtrl.createTimeline($element, updateTimelineText);
         };
 
+        /*
+        * redraw timeline
+        *
+        * @function : redraw
+        */
         $scope.timelineControl.redraw = function() {
           timelineCtrl.redraw();
         };
 
+        /*
+        * reset timeline ( clear data & set default view )
+        *
+        * @function : clear
+        */
         $scope.timelineControl.clear = function() {
           $scope.duplicateItems = [];
           timelineCtrl.clearTimeline();
         };
 
-        $scope.timelineControl.isValidTimePosition = function() {
-          return timelineCtrl.isValidTimePosition();
+        /*
+        * check current timebar is valid
+        *
+        * @function : checkCurrentTimeIsValid
+        */
+        $scope.timelineControl.checkCurrentTimeIsValid = function() {
+          return timelineCtrl.checkCurrentTimeIsValid();
         };
 
         $scope.timelineControl.timeValidation = {
@@ -106,6 +130,12 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
 
         $scope.timelineControl.currentTimelineMode = 'playback';
 
+        /*
+        * change timeline mode 
+        *
+        * @function : changeTimelineMode
+        * @param : index is type of Int
+        */
         $scope.timelineControl.changeTimelineMode = function(index){
           $scope.timelineControl.currentTimelineMode = timelineMode[index];
           if( index === 1 ) { // backup
@@ -121,6 +151,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
             $scope.visibility.datepicker = false;
           }
           if( index !== 1 ) {
+            // In case of Backup, other button to be disabled
             $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
           }
         };
@@ -145,6 +176,11 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
         //This function will be defined in playbackBackup.js
         $scope.timelineControl.getBackupDate = function(){};
 
+        /*
+        * determine event sorting buttons' name 
+        *
+        * @function : changePopupName
+        */
         $scope.timelineControl.changePopupName = function() {
           var targetEvent = null;
           var eventList = searchData.getEventTypeList();
@@ -156,9 +192,14 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           $scope.selectedEvent = playbackInterfaceService.getEventName(targetEvent);
         };
 
+        /*
+        * ok button click event action
+        *
+        * @function : submit
+        */
         $scope.timelineControl.submit = function(){
           var mode = 0;
-          switch($scope.timelineControl.currentTimelineMode){
+          switch( $scope.timelineControl.currentTimelineMode ) {
             case 'datepicker':
               var selectedDate = $scope.timelineControl.getSelectedDate();
               /* 달력 Validation이 실패 했을 때 */
@@ -172,7 +213,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
               .then(function() {
                 $rootScope.$emit('changeLoadingBar', false);
               }, function(){
-                $scope.redraw();
+                timelineCtrl.redraw();
                 $rootScope.$emit('changeLoadingBar', false);
               }); 
             break;
@@ -194,18 +235,17 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
                 .then(function(){
                   $rootScope.$emit('changeLoadingBar', false);
                 },function(){
-                  $scope.redraw();
+                  timelineCtrl.redraw();
                   $rootScope.$emit('changeLoadingBar', false);
                 });
               };
-
               successCallback(data);
             break;
             case 'backup':
-              
               var backupTime = $scope.timelineControl.getBackupDate();
               if( backupTime !== null ) {
-                playData.setPlaybackBackupTime(backupTime.currentDate, backupTime.startTime, backupTime.endTime);
+                playData.setPlaybackBackupTime(backupTime.currentDate, backupTime.startTime, 
+                                                backupTime.endTime);
                 $rootScope.$emit('playbackBackup');
                 $rootScope.$emit('changeLoadingBar', true);
               }
@@ -213,10 +253,14 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
               timelineCtrl.resetTimeRange();
             break;
           }
-
           $scope.timelineControl.changeTimelineMode(mode);
         };
 
+        /*
+        * cancel button click event action
+        *
+        * @function : cancel
+        */
         $scope.timelineControl.cancel = function(){
           switch($scope.timelineControl.currentTimelineMode) {
             case 'backup':
@@ -233,7 +277,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
 
         /*
         * re-start selected Item
-        * @name : goInit
+        * @function : goInit
         */
         $scope.timelineControl.goInit = function() {
           timelineCtrl.goInit();
@@ -241,7 +285,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
 
         /*
         * jump to next/prev item.
-        * @name : jumpEvent
+        * @function : jumpEvent
         * @param : newVal is PLAY_CMD.PREV or PLAY_CMD.NEXT ( refer to playback_type.js )
         */
         $scope.timelineControl.jumpEvent = function(newVal) {
@@ -250,7 +294,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
 
         /*
         * delete timeline and item set
-        * @name : destroy
+        * @function : destroy
         */
         $scope.timelineControl.destroy = function() {
           timelineCtrl.destroy();
@@ -258,25 +302,18 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
         };
 
         /*
-        * change window if changing from / to time (through ModalInstnceSearchCtrl.js)
-        * @name : changeView
-        * @param : timelineView - {'start' : "HH:mm:ss" , 'end' : "HH:mm:ss", 'date' : Date object}
+        * re-calcurating timerange
+        * @function : resetTimeRange
         */
-        $scope.timelineControl.changeView = function(timelineView) {
-          timelineCtrl.changeOptions(timelineView.date);
-          var currentDate = searchData.getSelectedDate();
-          var startTime = timelineView.start.split(":");
-          var endTime = timelineView.end.split(":");
-          var startWindow = moment.parseZone(startTime+"+00:00");
-          var endWindow = moment.parseZone(endTime + "+00:00");
-
-          timelineCtrl.changeTimelineView(startWindow, endWindow);
-        };
-
         $scope.timelineControl.resetTimeRange = function() {
           timelineCtrl.resetTimeRange();
         };
 
+        /*
+        * change timebar position
+        * @function : setTimebarPosition
+        * @param : hour, minutes, seconds is type of init
+        */
         $scope.timelineControl.setTimebarPosition = function(hour, minutes, seconds) {
           if( timelineCtrl.setTimebar(hour, minutes, seconds) === true ) {
             if( playData.getStatus() === PLAY_CMD.PAUSE ) {
@@ -297,38 +334,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           timelineCtrl.selectOneEvent(scope.duplicateItems, item);
         };
 
-        /*
-        * If multiple event select or All selected, popup name show "All Event"
-        * else, popup name show selected Event name
-        * @name : changePopupName
-        */
-
         scope.control.changePopupName();
-
-        /**
-        * Check current overlap & event status to open popup
-        * @name : checkCurrentStatus
-        */
-        scope.checkCurrentStatus = function() {
-          if(scope.eventChangeUnallowed === true) return;
-          console.log("open Overlap menu");
-          $rootScope.$emit('changeLoadingBar', true);
-          playbackInterfaceService.checkCurrentStatus(searchData.getSelectedDate())
-            .then(function(eventList) {
-              $rootScope.$emit('changeLoadingBar', false);
-              openOverlapEventPopup(eventList);
-                /*.finally(function(result) {
-                  $rootScope.$emit('changeLoadingBar', false);
-                });*/
-            }, function(error) {
-              ModalManagerService.open(
-                'message',
-                {'message' : 'lang_timeout', 'buttonCount':1}
-              );
-              $rootScope.$emit('changeLoadingBar', false);
-              console.log("get Current Status failed");
-            });
-        };
 
         var openOverlapEventPopup = function(eventList) {
           var recordedDate = searchData.getSelectedDate();
@@ -350,6 +356,27 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           scope.control.changeTimelineMode(3);
         };
 
+        /**
+        * Check current overlap & event status to open popup
+        * @function : checkCurrentStatus
+        */
+        scope.checkCurrentStatus = function() {
+          // console.log("open Overlap menu");
+          $rootScope.$emit('changeLoadingBar', true);
+          playbackInterfaceService.checkCurrentStatus(searchData.getSelectedDate())
+            .then(function(eventList) {
+              $rootScope.$emit('changeLoadingBar', false);
+              openOverlapEventPopup(eventList);
+            }, function(error) {
+              ModalManagerService.open(
+                'message',
+                {'message' : 'lang_timeout', 'buttonCount':1}
+              );
+              $rootScope.$emit('changeLoadingBar', false);
+              console.log("get Current Status failed");
+            });
+        };
+
         scope.onClick = function(event){
           timelineCtrl.selectTimeline(event);
           if( playData.getStatus() === PLAY_CMD.PAUSE ) {
@@ -357,16 +384,24 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           }
         };
 
+        /*
+        * pinch event handler
+        * @function : zoomTimeline
+        */
         scope.zoomTimeline = function(event) {
           if( event.type === 'pinchcancel' || event.type === 'pinchend') {
             timelineCtrl.enableToDraw();
           }
         };
 
+        /*
+        * swipe event handler
+        * @function : swipeTimelie
+        */
         scope.swipeTimelie = function(event) {
-            if( event.type === 'panend' || event.type === 'pancancel') {
-              timelineCtrl.enableToDraw();
-            }
+          if( event.type === 'panend' || event.type === 'pancancel') {
+            timelineCtrl.enableToDraw();
+          }
         };
 
         var redrawTimeout = null;
@@ -381,24 +416,26 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           }
         });
 
-        scope.redraw = function() {
-          timelineCtrl.redraw();
-        };
-
-        var watchPlayStatus = scope.$watch(function(){return playData.getStatus();}, function(newVal){
-          if( newVal === null ) return;
-          if( newVal ===  PLAY_CMD.STOP || newVal === PLAY_CMD.PAUSE ){
-            timelineCtrl.stopCallback(true);
-          }
-          else if( newVal === PLAY_CMD.PLAY ){
-            timelineCtrl.stopCallback(false);
-          }
+        var watchPlayStatus = scope.$watch(
+          function() {
+            return playData.getStatus();
+          }, function(newVal){
+            if( newVal === null ) return;
+            if( newVal ===  PLAY_CMD.STOP || newVal === PLAY_CMD.PAUSE ) {
+              timelineCtrl.stopCallback(true);
+            }
+            else if( newVal === PLAY_CMD.PLAY ) {
+              timelineCtrl.stopCallback(false);
+            }
         });
 
-        var watchEventList = scope.$watch(function(){ return searchData.getEventTypeList();}, function(oldVal, newVal) {
-          if( oldVal !== newVal) {
-            scope.control.changePopupName();
-          }
+        var watchEventList = scope.$watch(
+          function() { 
+            return searchData.getEventTypeList();
+          }, function(oldVal, newVal) {
+            if( oldVal !== newVal) {
+              scope.control.changePopupName();
+            }
         });
 
         $rootScope.$saveOn('updateItem', function(event, data){
@@ -412,7 +449,6 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
         }, scope);
 
         $rootScope.$saveOn('itemSetDone', function() {
-          console.log('item set done :::');
           $timeout(timelineCtrl.redraw);
         }, scope);
 
@@ -420,13 +456,15 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
         * reset start & end time for event search.
         * 'refreshStartEndTime' event sent by playbackFunction.js
         */
-        $rootScope.$saveOn('app/scripts/models/playback/PlayDataModel.js::changeSpeed', function(event, data) {
-          if( data === null ) return;
-          timelineCtrl.applyPlaySpeed(data);
+        $rootScope.$saveOn('app/scripts/models/playback/PlayDataModel.js::changeSpeed', 
+          function(event, data) {
+            if( data === null ) return;
+            timelineCtrl.applyPlaySpeed(data);
         }, scope);
 
-        $rootScope.$saveOn('app/scripts/services/playbackClass::setDefaultPlaybackMode', function(event, data){
-          scope.timelineControl.changeTimelineMode(0);
+        $rootScope.$saveOn('app/scripts/services/playbackClass::setDefaultPlaybackMode', 
+          function(event, data){
+            scope.timelineControl.changeTimelineMode(0);
         }, scope);
 
         scope.$on('$destroy', function(){

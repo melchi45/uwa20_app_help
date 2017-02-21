@@ -1,21 +1,10 @@
-function AudioBackup() {
+function AudioHeader() {
 	"use strict";
 
-	var AviIndexEntry;
-	var AviVideoHeader;
-
-	var videoHeader;
-	var backup_framerate;
-
-    var aviIndexEntry;
-    var chunkHeader;
-	var audioHeader;
-	var audioFormat;
-    var SIZE_OF_CHUNK_HEADER = 8;
-    var SIZE_OF_AVI_INDEX_ENTRY = 16;
+  var SIZE_OF_CHUNK_HEADER = 8;
 
 	var SIZE_OF_WAVE_FORMAT = 40;
-    var SIZE_OF_STREAM_HEADER = 64;
+  var SIZE_OF_STREAM_HEADER = 64;
 	var MEDIASUBTYPE_RAW_AAC1 = 0x00FF;
 	var AAC_PER_SAMPLE = 1024;
 	var AAC_FORMAT_SIZE = 2;
@@ -28,57 +17,6 @@ function AudioBackup() {
   SEG_MASK  =  0x70;  /* Segment field mask. */
 
   var WAVE_FORMAT_MULAW = 0x0007;
-
-  var AUDIO_G711 = 0;
-  var AUDIO_G726 = 1;
-  var AUDIO_AAC = 2;
-
-  var buffer;
-  var size;
-
-  var decoding_stream = null;
-  var decoding_stream_size = 0;
-  var error_case;
-	
-	function Constructor() {
-		audioHeader = {};
-		audioFormat = {};
-    aviIndexEntry = {};
-    chunkHeader = {};
-    size = 0;
-		backup_framerate = 0;
-    error_case = 0;
-	};
-
-  var writeInt8 = function(buffer, val) {
-    buffer[size]=val;
-    size++;
-  };
-
-  var writeInt16 = function(buffer, val) {
-    writeInt8(buffer,val & 0xFF);
-    writeInt8(buffer,val >> 8 );
-  };
-
-  var writeInt32 = function(buffer, val) {
-    writeInt8(buffer,val & 0xFF);
-    writeInt8(buffer,(val >> 8) & 0xFF);
-    writeInt8(buffer,(val >> 16) & 0xFF);
-    writeInt8(buffer,val >> 24);
-  };
-
-  var writeString = function(buffer, str) {
-    for( var i=0 ; i< str.length ; i++) {
-      buffer[size++] = str.charCodeAt(i);
-    }
-  };
-
-  function writeChunkHeader(ChunkHeader) {
-    buffer = new Uint8Array(SIZE_OF_CHUNK_HEADER);
-    size = 0;
-    writeString(buffer, ChunkHeader.fourcc);
-    writeInt32(buffer, ChunkHeader.payloadsize);
-  }
 
   function makeAudioConfig(samplerate, channels) {
     //AAC supported maximum 48kbps.
@@ -125,8 +63,16 @@ function AudioBackup() {
     return (bitcnt | 0x0010);
   }
 
-	Constructor.prototype = {
-    initHeader : function() {
+	function Constructor() {
+	};
+  Constructor.prototype = inheritObject(new AviFormatWriter(), {
+    /**
+    * initialize audio header
+    * @function : initHeader
+    */
+    initHeader : function(audioFrame) {
+      var audioHeader = {}, audioFormat = {};
+      /* Audio stream header */
       audioHeader.aviFourCC = "strh";
       audioHeader.aviBytesCount = SIZE_OF_STREAM_HEADER-8;
       audioHeader.aviQuality = -1;
@@ -139,6 +85,7 @@ function AudioBackup() {
       audioHeader.aviSuggestedBufferSize = 0;
       audioHeader.aviLength = 0;
       audioHeader.aviSampleSize = 0;
+      this.setStreamHeader(audioHeader);
 
       audioFormat.FourCC = "strf";
       audioFormat.BytesCount = SIZE_OF_WAVE_FORMAT - 8;
@@ -150,40 +97,14 @@ function AudioBackup() {
       audioFormat.BlockAlign = 0;
       audioFormat.Size = 0;
       audioFormat.AudioConfig = 0;
+      this.setStreamFormat(audioFormat);
     },
-    checkAudioFrameInfo : function(audioFrame, file_info ) {
-      if( file_info.audio_init === undefined || file_info.audio_init === false ) {
-        if( audioFrame.codectype === 'AAC' ) {
-          this.settingAAC(audioFrame, file_info);
-        }
-        else if(audioFrame.codectype === 'G711') {
-          this.settingG711(audioFrame, file_info);
-        }
-        else if( audioFrame.codectype ==='G726') {
-          this.settingG726(audioFrame, file_info);
-        }
-        file_info.audio_init = true;
-        file_info.audio_strn = 0;
-        file_info.audio_bytes = 0;
-        file_info.codectype = audioFrame.codectype;
-        file_info.bitrate = audioFrame.bitrate;
-        file_info.sampling_rate = audioFrame.audio_samplingrate;
-        return 0;
-      }
-      else {
-        if( file_info.codectype !== audioFrame.codectype ) {
-          return -1;
-        }
-        if( file_info.bitrate !== audioFrame.bitrate ) {
-          return -1;
-        }
-        if( file_info.sampling_rate !== audioFrame.audio_samplingrate ) {
-          return -1;
-        }
-      }
-      return 0;
-    },
+    /*
+    * AAC audio setting
+    * @function : settingAAC
+    */
     settingAAC : function(audioFrame, file_info) {
+      var audioHeader = this.getStreamHeader();
       audioHeader.aviQuality = 0;
       audioHeader.aviType = "auds";
       audioHeader.aviFlags = 1;
@@ -191,7 +112,9 @@ function AudioBackup() {
       audioHeader.aviScale = AAC_PER_SAMPLE;
       audioHeader.aviRate = audioFrame.audio_samplingrate;
       audioHeader.aviSuggestedBufferSize = AAC_BUF_SIZE;
+      this.setStreamHeader(audioHeader);
 
+      var audioFormat = this.getStreamFormat();
       var audioConfiguration = makeAudioConfig(audioFrame.audio_samplingrate, 1);
       audioFormat.FormatTag = MEDIASUBTYPE_RAW_AAC1;
       audioFormat.SamplesPerSec = audioFrame.audio_samplingrate;
@@ -200,28 +123,44 @@ function AudioBackup() {
       audioFormat.BlockAlign = AAC_PER_SAMPLE;
       audioFormat.Size = AAC_FORMAT_SIZE;
       audioFormat.AudioConfig = audioConfiguration;
+      this.setStreamFormat(audioFormat);
     },
+    /*
+    * G.711 audio setting
+    * @function : settingG711
+    */
     settingG711 : function(audioFrame, file_info) {
+      var audioHeader = this.getStreamHeader();
       audioHeader.aviQuality = 0;
       audioHeader.aviType = "auds";
       audioHeader.aviScale = 1;
       audioHeader.aviRate = 8000;
       audioHeader.aviSuggestedBufferSize = 8000;
-      
+
+      var audioFormat = this.getStreamFormat();
       audioFormat.FormatTag = WAVE_FORMAT_MULAW;
       audioFormat.SamplesPerSec = 8000;
       audioFormat.AvgBytesPerSec = 8000;
       audioFormat.BitsPerSample = 8;
       audioFormat.BlockAlign = 1;
 
-      audioHeader.aviSampleSize = this.avi_sampsize();
+      audioHeader.aviSampleSize = this.getAviSampleSize();
+
+      this.setStreamHeader(audioHeader);
+      this.setStreamFormat(audioFormat);
     },
+    /*
+    * G.726 audio setting
+    * @function : settingG726
+    */
     settingG726 : function(audioFrame, file_info) {
+      var audioHeader = this.getStreamHeader();
+      var audioFormat = this.getStreamFormat();
       audioHeader.aviType = "auds";
       audioHeader.aviScale = 1;
       audioHeader.aviSampleSize = 2;
       if( audioFrame.bitrate === 16000 ) {
-        audioFormat.AvgBytesPerSec = audioHeader.aviRate = 2000;
+        audioFormat.AvgBytesPerSec =audioHeader.aviRate = 2000;
         audioFormat.BitsPerSample = 2 ;
       }
       else if( audioFrame.bitrate === 24000 ) {
@@ -240,82 +179,91 @@ function AudioBackup() {
       audioFormat.aviSuggestedBufferSize = audioHeader.aviRate; 
       audioFormat.SamplesPerSec = 8000;
       audioFormat.BlockAlign = 1;
-      
+      this.setStreamHeader(audioHeader);
+      this.setStreamFormat(audioFormat);
     },
-		updateInfo : function(audioFrame, file_info, streamData){
+    /*
+    * setting audio config at first
+    * @function : checkAudioFrameInfo
+    */
+    checkAudioFrameInfo : function(audioFrame, file_info ) {
+      //First setting audio config.
+      if( file_info.audio_init === undefined || file_info.audio_init === false ) {
+        if( audioFrame.codectype === 'AAC' ) {
+          this.settingAAC(audioFrame, file_info);
+        }
+        else if(audioFrame.codectype === 'G711') {
+          this.settingG711(audioFrame, file_info);
+        }
+        else if( audioFrame.codectype ==='G726') {
+          this.settingG726(audioFrame, file_info);
+        }
+        file_info.audio_init = true;
+        file_info.audio_strn = 0;
+        file_info.audio_bytes = 0;
+        file_info.codectype = audioFrame.codectype;
+        file_info.bitrate = audioFrame.bitrate;
+        file_info.sampling_rate = audioFrame.audio_samplingrate;
+        return 0;
+      }
+      else { // check previous config
+        if( file_info.codectype !== audioFrame.codectype ) {
+          return -1;
+        }
+        if( file_info.bitrate !== audioFrame.bitrate ) {
+          return -1;
+        }
+        if( file_info.sampling_rate !== audioFrame.audio_samplingrate ) {
+          return -1;
+        }
+      }
+      return 0;
+    },
+    /*
+    * update received audio frame's info
+    * @function : updateInfo
+    */
+		updateInfo : function(audioFrame, file_info){
+      var audioHeader = this.getStreamHeader();
+      var aviIndexEntry = this.getIndexEntry();
 			var size = audioFrame.PESsize;
       if( size % 2 !== 0 ) {
           size += 1;
       }
-      var decodingSize = 0;
       aviIndexEntry.flag = 0x10;
       aviIndexEntry.chid = '01wb';
       if( this.checkAudioFrameInfo(audioFrame, file_info) !== 0 ){
-        error_case = -1;
-        console.log("check Audio Frame info failed!!!!!");
+        this.setErrorCode(-1); //BACKUP_STATUS.CODEC_CHANGED
+        console.error("check Audio Frame info failed!!!!!");
         return null;
       }
-      decoding_stream = streamData;
-      decoding_stream_size = size;
-      decodingSize = decoding_stream_size;
       if( audioFrame.codectype === 'AAC' ) {
         this.settingAAC(audioFrame, file_info);
         audioHeader.aviLength = ++file_info.audio_strn;
-        
-      } else if( audioFrame.codectype === 'G711' || audioFrame.codectype === 'G726') {
+      } 
+      else if( audioFrame.codectype === 'G711' || audioFrame.codectype === 'G726') {
         if( audioFrame.codectype === 'G711') {
           this.settingG711(audioFrame, file_info);
         }
         else {
           this.settingG726(audioFrame, file_info);
         } 
-        file_info.audio_bytes += decodingSize;
-        audioHeader.aviLength =  file_info.audio_bytes / this.avi_sampsize();
+        file_info.audio_bytes += size;
+        audioHeader.aviLength =  file_info.audio_bytes / this.getAviSampleSize();
       }
 
       aviIndexEntry.offset = file_info.pos;
-      aviIndexEntry.size = decoding_stream_size;
+      aviIndexEntry.size = size;
 
-      file_info.pos = aviIndexEntry.offset + SIZE_OF_CHUNK_HEADER + decoding_stream_size;
-      chunkHeader.fourcc = aviIndexEntry.chid;
-      chunkHeader.payloadsize = decoding_stream_size;
-      writeChunkHeader(chunkHeader);
-      return buffer;
-    },
-    avi_sampsize : function() {
-      var s = Math.floor( ( audioFormat.BitsPerSample + 7 ) /8 ) * audioFormat.Channels;
-      if( s === 0 ) {
-        s = 1;
-      }
-      return s;
-    },
-		getAudioHeader : function() {
-			return audioHeader;
-		},
-		getAudioFormat : function() {
-			return audioFormat;
-		},
-    getIndexEntry : function() {
-      return aviIndexEntry;
-    },
-    getChunkPayloadSize : function() {
-      return chunkHeader.payloadsize;
-    },
-    getDecodingStream : function() {
-      return decoding_stream;
-    },
-    getErrorCode : function() {
-      return error_case;
-    },
-    getIdxBuffer : function() {
-      var idxBuffer = new Uint8Array(SIZE_OF_AVI_INDEX_ENTRY);
-      size = 0;
-      writeString(idxBuffer, aviIndexEntry.chid);
-      writeInt32(idxBuffer, aviIndexEntry.flag);
-      writeInt32(idxBuffer, aviIndexEntry.offset);
-      writeInt32(idxBuffer, aviIndexEntry.size);
-      return idxBuffer;     
+      file_info.pos = this.aviIndexEntry.offset + SIZE_OF_CHUNK_HEADER + size;
+      this.chunkHeader.fourcc = this.aviIndexEntry.chid;
+      this.chunkHeader.payloadsize = size;
+      this.writeChunkHeader();
+      this.setChunkHeader(this.chunkHeader);
+      this.setStreamHeader(audioHeader);
+      this.setIndexEntry(aviIndexEntry);
+      return this.buffer;
     }
-	};
+  });
 	return new Constructor();
 };

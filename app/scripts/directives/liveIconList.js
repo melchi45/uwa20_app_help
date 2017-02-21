@@ -8,7 +8,8 @@ kindFramework.directive('liveIconList', function(
 	BACKUP_STATUS,
 	BrowserService,
 	UniversialManagerService,
-	CAMERA_STATUS
+	CAMERA_STATUS,
+	SearchDataModel
 	){
 	"use strict";
 	return {
@@ -60,11 +61,19 @@ kindFramework.directive('liveIconList', function(
 		    };
 
 		    function backup() {
+		    	var searchData = new SearchDataModel();
+		    	var channelId = searchData.getChannelId();
+		    	var recordInfo = {
+		    		'channel' : channelId,
+		    		'callback' : backupCallback
+		    	};
 		      if( scope.channelBasicFunctions.rec === false ) {
-		        $rootScope.$emit('channelPlayer:command', 'record', 'start', backupCallback);
+		      	recordInfo.command = 'start';
+		        $rootScope.$emit('channelPlayer:command', 'record', recordInfo);
 		      }
 		      else {
-		        $rootScope.$emit('channelPlayer:command', 'record', 'stop', backupCallback);
+		      	recordInfo.command = 'stop';
+		        $rootScope.$emit('channelPlayer:command', 'record', recordInfo);
 		      }
 		    }
 

@@ -599,19 +599,19 @@ kindFramework.directive('channelPlayer',
               }
             }            
 
-            function record(_streamingmode, _command, _callback) {
+            function record(_streamingmode, recordInfo) {
               switch(BrowserService.BrowserDetect)
               {
                   case BrowserService.BROWSER_TYPES.IE:
                       if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE)
                       {
-                        if(_command === 'start')
+                        if(recordInfo.command === 'start')
                         {
-                          PluginControlService.startRecord(_callback);
+                          PluginControlService.startRecord(recordInfo.callback);
                         }
-                        else if(_command === 'stop')
+                        else if(recordInfo.command === 'stop')
                         {
-                          PluginControlService.stopRecord(_callback);
+                          PluginControlService.stopRecord(recordInfo.callback);
                         }
                       }
                       else
@@ -624,24 +624,24 @@ kindFramework.directive('channelPlayer',
                   case BrowserService.BROWSER_TYPES.SAFARI:
                       if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE)
                       {
-                        if(_command === 'start')
+                        if(recordInfo.command === 'start')
                         {
-                          PluginControlService.startRecord(_callback);
+                          PluginControlService.startRecord(recordInfo.callback);
                         }
-                        else if(_command === 'stop')
+                        else if(recordInfo.command === 'stop')
                         {
-                          PluginControlService.stopRecord(_callback);
+                          PluginControlService.stopRecord(recordInfo.callback);
                         }
                       }
                       else
                       {
-                        if(_command === 'start')
+                        if(recordInfo.command === 'start')
                         {
-                          KindControlService.startRecord(scope, _callback);
+                          KindControlService.startRecord(scope, recordInfo);
                         }
-                        else if(_command === 'stop')
+                        else if(recordInfo.command === 'stop')
                         {
-                          KindControlService.stopRecord(scope);
+                          KindControlService.stopRecord(scope, recordInfo);
                         }
                       }
                       break;
@@ -651,13 +651,13 @@ kindFramework.directive('channelPlayer',
                   /* jshint ignore:start */
                   default :
                   /* jshint ignore:end */
-                      if(_command === 'start')
+                      if(recordInfo.command === 'start')
                       {
-                        KindControlService.startRecord(scope , _callback);
+                        KindControlService.startRecord(scope , recordInfo);
                       }
-                      else if(_command === 'stop')
+                      else if(recordInfo.command === 'stop')
                       {
-                        KindControlService.stopRecord(scope);
+                        KindControlService.stopRecord(scope, recordInfo);
                       }
                     break;
               }      
@@ -1107,7 +1107,7 @@ kindFramework.directive('channelPlayer',
                     capture(StreamingMode);
                     break;
                   case 'record':
-                    record(StreamingMode, command, callback);
+                    record(StreamingMode, command);
                     break;
                   case 'stopLive' :
                     stopLiveForPlayback(StreamingMode, command);
