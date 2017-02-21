@@ -117,7 +117,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                     console.log(checkSize, checkHeight);
                                     console.log(checkHeight);
 
-                                    if(checkHeight < 600) {
+                                    if(checkHeight < 400) {
                                         if($(".kind-responsive-live").length)   $(".kind-responsive-live").addClass('land-scape');
                                         if($(".kind-responsive-playback").length)   $(".kind-responsive-playback").addClass('land-scape');
 
@@ -145,13 +145,13 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
                                        // 하단 메뉴 On-Off시 height 차이
                                         if(controlShow) bottomMenuHeight = 260;
-                                        else bottomMenuHeight = 60;
+                                        else bottomMenuHeight = 50;
 
                                         // Default Show 상태의 메뉴 > Responsive 상태일시 2줄
                                         if(checkSize < 800) bottomMenuHeight += 50;
 
                                         // live page 에서는 하단의 길이가 더 김
-                                        if(checkType && checkSize < 800) bottomMenuHeight += 50;
+                                        if(checkType && checkSize < 800) bottomMenuHeight += 60;
 
                                         $("#cm-video").removeAttr('style');
                                         $("#cm-video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
