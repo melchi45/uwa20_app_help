@@ -183,7 +183,10 @@ function VideoMediaSource() {
       if (diffTime > delay) {
         var tempCurrentTime = endTime - delay;
         if (tempCurrentTime > startTime && tempCurrentTime < endTime) {
-          videoElement.currentTime = tempCurrentTime;
+          //console.log("startTime, endTime, tempCurrentTime, videoElement.currentTime, diffTime = ", startTime, endTime, tempCurrentTime, videoElement.currentTime, diffTime);
+          if (playbackFlag === true || (diffTime > 2  && browserType === "chrome")) {
+            videoElement.currentTime = tempCurrentTime;
+          }
           if (videoElement.paused) {
             videoSizeCallback();
             if (!isPlaying) {

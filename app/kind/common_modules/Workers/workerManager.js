@@ -64,7 +64,7 @@ function WorkerManager() {
   speed = 1,
   numBox = normalNumBox,
   modeChangeFlag = false,
-  preNumBox = 0;
+  preNumBox = numBox;
 
   var mediaSegmentCount =0;
   var initSegmentFlag = false;
