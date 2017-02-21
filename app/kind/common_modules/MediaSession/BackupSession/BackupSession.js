@@ -118,6 +118,7 @@ var BackupSession = function(_sendMessageCallback) {
 			data = null;
 		},
 		sendData : function(frameInfo, streamData) {
+			if( createAviFile === null ) { return; }
 			var header = null;
 			var needToAddDummy = false;
 			if( frameInfo.type === 'video' ) {
