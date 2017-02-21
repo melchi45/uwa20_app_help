@@ -214,6 +214,10 @@
       margin-top: 20px;
     }
   }
+  /**
+   * @setup-mobile-width-for-block-main 인 1021px 부터는 사이드 메뉴가
+   * 무조건 보이기 때문에 검색 배경을 삭제한다.
+   */
   @media(min-width: @setup-mobile-width-for-block-main) {
     #block-main {
       display: none !important;
