@@ -33,8 +33,6 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		};
 
 		var setCanvasStyle = function(mode, controlShow) {
-                                console.info("setCanvasStyle");
-
                                 if(controlShow === undefined){
                                     var bottomMenu = $("#cm-bottom-menu");
                                     controlShow = bottomMenu.hasClass('cm-show-menu')? true : false;
