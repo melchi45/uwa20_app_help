@@ -148,10 +148,10 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                         else bottomMenuHeight = 60;
 
                                         // Default Show 상태의 메뉴 > Responsive 상태일시 2줄
-                                        if(checkSize < 800) bottomMenuHeight += 40;
+                                        if(checkSize < 800) bottomMenuHeight += 50;
 
                                         // live page 에서는 하단의 길이가 더 김
-                                        if(checkType && checkSize < 800) bottomMenuHeight += 60;
+                                        if(checkType && checkSize < 800) bottomMenuHeight += 50;
 
                                         $("#cm-video").removeAttr('style');
                                         $("#cm-video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
