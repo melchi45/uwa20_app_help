@@ -33,6 +33,13 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		};
 
 		var setCanvasStyle = function(mode, controlShow) {
+                                if(controlShow === undefined){
+                                    var bottomMenu = $("#cm-bottom-menu");
+                                    controlShow = bottomMenu.hasClass('cm-show-menu')? true : false;
+                                }
+
+                                setContainerSize(controlShow);
+
 		 	if (streamCanvas === null || streamCanvas === undefined) {
 		 		return;
 			}
@@ -49,13 +56,6 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
 				EventNotificationService.setBorderElement(getBorderElement(), currentPage);
 			}
-
-		 	if(controlShow === undefined){
-		 		var bottomMenu = $("#cm-bottom-menu");
-		 		controlShow = bottomMenu.hasClass('cm-show-menu')? true : false;
-		 	}
-
-		 	setContainerSize(controlShow);
 		 	UniversialManagerService.setViewModeType(mode);
 
 		 	var container = $("#container, .channel-container");
@@ -115,8 +115,9 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                     var checkHeight = window.innerHeight;
 
                                     console.log(checkSize, checkHeight);
+                                    console.log(checkHeight);
 
-                                    if(checkHeight < 600) {
+                                    if(checkHeight < 400) {
                                         if($(".kind-responsive-live").length)   $(".kind-responsive-live").addClass('land-scape');
                                         if($(".kind-responsive-playback").length)   $(".kind-responsive-playback").addClass('land-scape');
 
@@ -147,10 +148,10 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                         else bottomMenuHeight = 60;
 
                                         // Default Show 상태의 메뉴 > Responsive 상태일시 2줄
-                                        if(checkSize < 800) bottomMenuHeight += 50;
+                                        if(checkSize < 800) bottomMenuHeight += 40;
 
                                         // live page 에서는 하단의 길이가 더 김
-                                        if(checkType && checkSize < 800) bottomMenuHeight += 50;
+                                        if(checkType && checkSize < 800) bottomMenuHeight += 60;
 
                                         $("#cm-video").removeAttr('style');
                                         $("#cm-video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
