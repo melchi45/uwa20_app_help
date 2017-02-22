@@ -181,13 +181,14 @@
       <div id="live-ptz-preset">
         <div ng-if="currentPtzType === ptzType.OPTICAL">
           <div>{{'lang_selectPreset' | translate}}</div>
-          <select class="form-control cm-selectbox">
-            <option value="1: Preset">1: Preset</option>
+          <select class="form-control cm-selectbox"
+            ng-model="selectedObj.presetObj"
+            ng-options="preset as (preset.value + ' : ' + preset.name)  for preset in presetList">
           </select>
           <div style="margin-top: 5px;">
-            <button type="button" class="cm-str-button" title="Go">Go</button>
-            <button type="button" class="cm-str-button" title="Stop">Stop</button>
-            <button type="button" class="cm-str-button" title="Set" style="float: right;">Set</button>
+            <button type="button" class="cm-str-button" title="Go" ng-click="ptzPreset('Go')">Go</button>
+            <button type="button" class="cm-str-button" title="Stop" ng-click="ptzPreset('Stop')">Stop</button>
+            <button type="button" class="cm-str-button" title="Set" style="float: right;" ng-click="ptzPreset('Set')">Set</button>
           </div>
         </div>
         <table class="cm-table" ng-if="currentPtzType !== ptzType.OPTICAL">
@@ -224,12 +225,13 @@
       <!-- Swing start -->
       <div id="live-ptz-swing" ng-if="currentPtzType === ptzType.OPTICAL">
         <div>{{'lang_swingMode' | translate}}</div>
-        <select class="form-control cm-selectbox">
-          <option value="Pan swing">Pan swing</option>
+        <select class="form-control cm-selectbox"
+          ng-model="selectedObj.swingObj"
+          ng-options="Mode as Mode for Mode in SwingModes">
         </select>
         <div style="margin-top: 5px;">
-          <button type="button" class="cm-str-button" title="Go">Go</button>
-          <button type="button" class="cm-str-button" title="Stop">Stop</button>
+          <button type="button" class="cm-str-button" title="Go" ng-click="ptzSwing('Go')">Go</button>
+          <button type="button" class="cm-str-button" title="Stop" ng-click="ptzSwing('Stop')">Stop</button>
         </div>
       </div>
       <!-- Swing end -->
@@ -238,12 +240,13 @@
       <div id="live-ptz-group" ng-if="(!(currentPtzType == ptzType.EXTERNAL || currentPtzType == ptzType.ZOOMONLY)) || currentPtzType === ptzType.OPTICAL">
         <div ng-if="currentPtzType === ptzType.OPTICAL">
           <div>{{'lang_group' | translate}}</div>
-          <select class="form-control cm-selectbox">
-            <option value="1. Group 01">1. Group 01</option>
+          <select class="form-control cm-selectbox"
+            ng-model="selectedObj.groupObj"
+            ng-options="group as (group.value + ' : ' + group.name)  for group in groupList">
           </select>
           <div style="margin-top: 5px;">
-            <button type="button" class="cm-str-button" title="Go">Go</button>
-            <button type="button" class="cm-str-button" title="Stop">Stop</button>
+            <button type="button" class="cm-str-button" title="Go" ng-click="ptzGroup('Start')">Go</button>
+            <button type="button" class="cm-str-button" title="Stop" ng-click="ptzGroup('Stop')">Stop</button>
           </div>
         </div>
         <table class="cm-table" ng-if="currentPtzType !== ptzType.OPTICAL">
@@ -289,8 +292,8 @@
       <div id="live-ptz-tour" ng-if="currentPtzType === ptzType.OPTICAL">
         <div>{{'lang_tour' | translate}}</div>
         <div style="margin-top: 5px; min-width: 200px;">
-          <button type="button" class="cm-str-button" title="Go">Go</button>
-          <button type="button" class="cm-str-button" title="Stop">Stop</button>
+          <button type="button" class="cm-str-button" title="Go" ng-click="ptzTour('Go')">Go</button>
+          <button type="button" class="cm-str-button" title="Stop"  ng-click="ptzTour('Stop')">Stop</button>
         </div>
       </div>
       <!-- Tour end -->
@@ -298,12 +301,13 @@
       <!-- Trace start -->
       <div id="live-ptz-trace" ng-if="currentPtzType === ptzType.OPTICAL">
         <div>{{'lang_traceNo' | translate}}</div>
-        <select class="form-control cm-selectbox">
-          <option value="1">1</option>
+        <select class="form-control cm-selectbox"
+          ng-model="Trace.SelectedIndex"
+          ng-options="TraceOptions.indexOf(Option) as Option for Option in TraceOptions">
         </select>
         <div style="margin-top: 5px;">
-          <button type="button" class="cm-str-button" title="Go">Go</button>
-          <button type="button" class="cm-str-button" title="Stop">Stop</button>
+          <button type="button" class="cm-str-button" title="Go" ng-click="ptzTrace('Go')">Go</button>
+          <button type="button" class="cm-str-button" title="Stop"  ng-click="ptzTrace('Stop')">Stop</button>
         </div>
       </div>
       <!-- Trace end -->
