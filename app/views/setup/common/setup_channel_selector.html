@@ -1,0 +1,13 @@
+<div class="clearfix">
+    <div id="setup-channel-selector">
+        <h3>
+            {{ 'lang_selectMode' | translate }}
+        </h3>
+    </div>
+    <div class="clearfix">
+        <channel-selector></channel-selector>
+        <button class="cm-str-button"
+                ng-if="setupChannelSelector.useInfo"
+                ng-click="setupChannelSelector.showInfo()">info</button>
+    </div>
+</div>

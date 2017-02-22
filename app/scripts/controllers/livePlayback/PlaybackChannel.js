@@ -383,6 +383,15 @@ kindFramework
       }
     }, $scope);
 
+    /* Channel Selector Direction */
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+      console.log(index);
+    }, $scope);
+
+    $rootScope.$saveOn('channelSelector:changeQuadView', function(event, response){
+      console.log(response);
+    }, $scope);
+
     var watchViewMode = $scope.$watch('viewMode', function(newVal, oldVal) {
       console.log("kind ", newVal);
       if(newVal === null){
