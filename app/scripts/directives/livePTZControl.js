@@ -1,15 +1,17 @@
 "use strict";
 kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerService', 
 	'SunapiClient', '$timeout', 'DigitalPTZContorlService', 'ModalManagerService', '$translate',
-	'$interval',
+	'$interval','Attributes', 'COMMONUtils',
 	function(CAMERA_STATUS, UniversialManagerService, SunapiClient, $timeout, DigitalPTZContorlService,
-		ModalManagerService, $translate, $interval) {	
+		ModalManagerService, $translate, $interval, Attributes, COMMONUtils) {
 		return {
 			restrict: 'E',
 			scope: false,
 			replace: true,
 			templateUrl: 'views/livePlayback/directives/live-ptz-control.html',
 			link: function(scope, element, attrs){
+                var mAttr = Attributes.get();
+
 				scope.dptzMode = CAMERA_STATUS.DPTZ_MODE;
 				scope.ptzType = CAMERA_STATUS.PTZ_MODE;
 				scope.autoTrackingFlag = false;
@@ -21,6 +23,11 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					set: function(value){
 						this.show = value;
 					}
+				};
+				scope.selectedObj = {
+					presetObj : null,
+					groupObj : null,
+					swingObj : null
 				};
 
 				var isDrag = false,
@@ -51,6 +58,22 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 							getSettingPresetList();
 							break;
 						case CAMERA_STATUS.PTZ_MODE.OPTICAL:
+                            getSettingPresetList();
+                            getSettingGroupList();
+                            if (mAttr.TraceSupport)
+                            {
+                                scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
+                                scope.Trace = {};
+                                scope.Trace.SelectedIndex = 0;
+                            }
+                            if (mAttr.SwingSupport)
+                            {
+                                if (mAttr.SwingModes !== undefined)
+                                {
+                                    scope.SwingModes = mAttr.SwingModes;
+                                    scope.selectedObj.swingObj = scope.SwingModes[0];
+                                }
+                            }
 							break;
 						case CAMERA_STATUS.PTZ_MODE.ZOOMONLY:
 							scope.ptzMode = "zoomonly";
@@ -118,6 +141,87 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
             }
         };
 
+		scope.ptzPreset = function(value){
+			try {
+				if(value === 'Stop'){
+					run('preset', scope.selectedObj.presetObj.value, 'Stop');
+				}else if(value === 'Go'){
+					run('preset',  scope.selectedObj.presetObj.value, 'Start');
+				}else {
+					throw "Wrong Argument";
+				}
+			} catch (error)
+			{
+				console.error(error.message);
+			}
+		};
+
+		scope.ptzGroup = function(value){
+			try {
+				if(value === 'Stop'){
+                    run('group', scope.selectedObj.groupObj.value, 'Stop');
+				}else if(value === 'Go'){
+                    run('group',  scope.selectedObj.groupObj.value, 'Start');
+				}else {
+					throw "Wrong Argument";
+				}
+			} catch (error)
+			{
+				console.error(error.message);
+			}
+		};
+
+		scope.ptzTrace = function(value){
+			try {
+                if(value === 'Stop'){
+                    sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=trace&action=control&Channel=0&Mode=Stop&Trace=" + (scope.Trace.SelectedIndex + 1);
+                    execSunapi(sunapiURI);
+                }else if(value === 'Go'){
+                    sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=trace&action=control&Channel=0&Mode=Start&Trace=" + (scope.Trace.SelectedIndex + 1);
+                    execSunapi(sunapiURI);
+                }else {
+					throw "Wrong Argument";
+                }
+			} catch (error)
+			{
+				console.error(error.message);
+			}
+		};
+
+		scope.ptzTour = function(value){
+			try {
+				if(value === 'Stop'){
+					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=tour&action=control&Channel=0&Tour=1&Mode=Stop";
+					execSunapi(sunapiURI);
+				}else if(value === 'Go'){
+					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=tour&action=control&Channel=0&Tour=1&Mode=Start";
+					execSunapi(sunapiURI);
+				}else {
+					throw "Wrong Argument";
+				}
+			} catch (error)
+			{
+				console.error(error.message);
+			}
+		};
+
+		scope.ptzSwing = function(value){
+			try {
+				if(value === 'Stop'){
+					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=tour&action=control&Channel=0&Mode=Stop";
+					execSunapi(sunapiURI);
+				}else if(value === 'Go'){
+					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=swing&action=control&Channel=0&Mode=" + scope.selectedObj.swingObj;
+					execSunapi(sunapiURI);
+				}else {
+					throw "Wrong Argument";
+				}
+			} catch (error)
+			{
+				console.error(error.message);
+			}
+		};
+
         var presetListCallback = function(result) {
 	        if (result.PTZPresets === undefined) {
 						ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
@@ -130,7 +234,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                               'value':result.PTZPresets[0].Presets[index].Preset,
                             };
             }
-
+			scope.selectedObj.presetObj = scope.presetList[0];
 						scope.$apply();
           }
         };
@@ -152,13 +256,13 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						    'value':groups[i].Group,
               });
             }
-
+			scope.selectedObj.groupObj = scope.groupList[0];
 						scope.$apply();           
           }
         };
 
         /*ZOOM*/
-        $("#cm_ptz-zoom-slider").slider({
+        $("#cm-ptz-zoom-slider").slider({
             min: -100,
             max: 100,
             value: 0,
@@ -169,13 +273,13 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
               execSunapi(sunapiURI);
             },
             stop: function(){
-              $( "#cm_ptz-zoom-slider" ).slider('value', 0);
+              $( "#cm-ptz-zoom-slider" ).slider('value', 0);
               ptzStop();
             }
         });
         /*ZOOM*/
 
-				$("#cm_ptz-control-move-btn").draggable({
+				$("#cm-ptz-control-move-btn").draggable({
 					containment: "parent",
 					revert: false,
 					revertDuration: 100,
@@ -199,9 +303,9 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						}else{
 							isDrag = false;
 							isMove = false;
-							var moveAreaWidth = $('#cm_ptz-control-box').width();
-							var moveAreaHeight = $('#cm_ptz-control-box').height();
-							$('#cm_ptz-control-move-btn').animate({
+							var moveAreaWidth = $('#cm-ptz-control-box').width();
+							var moveAreaHeight = $('#cm-ptz-control-box').height();
+							$('#cm-ptz-control-move-btn').animate({
 								top: (moveAreaHeight/2-12),
 								left: (moveAreaWidth/2-12)
 							}, animateDuration, function(){
@@ -211,17 +315,17 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}
 				});
 
-				$("#cm_ptz-control-box").mousedown(function(e){
+				$("#cm-ptz-control-box").mousedown(function(e){
 					if(isDrag || isMove || e.which !== 1)
 						return;
 
 					isMove = true;
-					var jogWidth = $('#cm_ptz-control-move-btn').width()/2;
+					var jogWidth = $('#cm-ptz-control-move-btn').width()/2;
 
-					var moveAreaPos = $('#cm_ptz-control-box').offset();
-					var moveAreaWidth = $('#cm_ptz-control-box').width();
-					var moveAreaHeight = $('#cm_ptz-control-box').height();
-					var jogPos = $('#cm_ptz-control-move-btn').offset();
+					var moveAreaPos = $('#cm-ptz-control-box').offset();
+					var moveAreaWidth = $('#cm-ptz-control-box').width();
+					var moveAreaHeight = $('#cm-ptz-control-box').height();
+					var jogPos = $('#cm-ptz-control-move-btn').offset();
 					var jog_Left = jogPos.left + jogWidth;
 					var jog_Top = jogPos.top + jogWidth;
 					var xPos = e.pageX;
@@ -250,7 +354,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					if (-4 <= xPos && xPos <= 4) xPos = 0;
 					if (-2 <= yPos && yPos <= 2) yPos = 0;
 
-					$('#cm_ptz-control-move-btn').animate({
+					$('#cm-ptz-control-move-btn').animate({
 						top: (moveAreaHeight/2-12)-yPos,
 						left: (moveAreaWidth/2-12)+xPos
 					}, animateDuration, function() {
@@ -261,14 +365,14 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						if(isMove === true) {
 							clearTimeout(downTimer);
 							downTimer = setTimeout(function(){
-								$('#cm_ptz-control-move-btn').trigger(e);
+								$('#cm-ptz-control-move-btn').trigger(e);
 							},animateDuration);
 						}
 					});
 					e.preventDefault();
 				});
 
-				$('#cm_ptz-control-box,#cm_ptz-control-move-btn').mouseup(
+				$('#cm-ptz-control-box,#cm-ptz-control-move-btn').mouseup(
 					function(e) {
 					clearTimeout(downTimer);
 					e.preventDefault();
@@ -276,9 +380,9 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}else{
 						isDrag = false;
 						isMove = false;
-						var moveAreaWidth = $('#cm_ptz-control-box').width();
-						var moveAreaHeight = $('#cm_ptz-control-box').height();
-						$('#cm_ptz-control-move-btn').animate({
+						var moveAreaWidth = $('#cm-ptz-control-box').width();
+						var moveAreaHeight = $('#cm-ptz-control-box').height();
+						$('#cm-ptz-control-move-btn').animate({
 							top: (moveAreaHeight/2-12),
 							left: (moveAreaWidth/2-12)
 						}, animateDuration, function(){

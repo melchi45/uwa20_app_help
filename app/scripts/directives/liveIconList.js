@@ -8,7 +8,8 @@ kindFramework.directive('liveIconList', function(
 	BACKUP_STATUS,
 	BrowserService,
 	UniversialManagerService,
-	CAMERA_STATUS
+	CAMERA_STATUS,
+	SearchDataModel
 	){
 	"use strict";
 	return {
@@ -18,6 +19,16 @@ kindFramework.directive('liveIconList', function(
 		templateUrl: 'views/livePlayback/directives/live-icon-list.html',
 		link: function(scope, element, attrs){
     		var mAttr = Attributes.get();
+
+        if(mAttr.MaxAudioInput !== undefined)
+        {
+            scope.MaxAudioInput = mAttr.MaxAudioInput;
+        }
+
+        if(mAttr.MaxAudioOutput !== undefined)
+        {
+            scope.MaxAudioOutput = mAttr.MaxAudioOutput;
+        }        
 
     		scope.disableAlarmOutput = function() {
     			if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE &&
@@ -50,11 +61,19 @@ kindFramework.directive('liveIconList', function(
 		    };
 
 		    function backup() {
+		    	var searchData = new SearchDataModel();
+		    	var channelId = searchData.getChannelId();
+		    	var recordInfo = {
+		    		'channel' : channelId,
+		    		'callback' : backupCallback
+		    	};
 		      if( scope.channelBasicFunctions.rec === false ) {
-		        $rootScope.$emit('channelPlayer:command', 'record', 'start', backupCallback);
+		      	recordInfo.command = 'start';
+		        $rootScope.$emit('channelPlayer:command', 'record', recordInfo);
 		      }
 		      else {
-		        $rootScope.$emit('channelPlayer:command', 'record', 'stop', backupCallback);
+		      	recordInfo.command = 'stop';
+		        $rootScope.$emit('channelPlayer:command', 'record', recordInfo);
 		      }
 		    }
 
@@ -225,7 +244,7 @@ kindFramework.directive('liveIconList', function(
 			      },
 			    };
 
-		        $("#cm_speaker-slider div").slider({
+		        $("#cm-speaker-slider div").slider({
 			      	orientation: "horizontal",
 			      	range: "min",
 			        min: 0,

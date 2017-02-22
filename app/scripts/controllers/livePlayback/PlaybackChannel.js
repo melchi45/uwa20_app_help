@@ -9,24 +9,20 @@ kindFramework
   'DigitalZoomService', 'CAMERA_TYPE', 'SunapiClient','PLAYBACK_TYPE',
   'SessionOfUserManager', 'ModalManagerService', 'UniversialManagerService',
   'CAMERA_STATUS', 'Attributes', 'CameraService', '$translate', 'AccountService', 
-  'MultiLanguage','$state', 'SearchDataModel', 'PlayDataModel','KindProfileService',
+  'MultiLanguage','$state', 'SearchDataModel', 'PlayDataModel',
   'PlaybackInterface','playbackStepService', 'BACKUP_STATUS', 'RESTCLIENT_CONFIG', 'BrowserService', 'ExtendChannelContainerService', 'COMMONUtils',
     function($controller, $scope, $timeout,  $q, $rootScope, $location, LocalStorageService,
       ConnectionSettingService, LoggingService,kindStreamInterface, DigitalZoomService, 
       CAMERA_TYPE, SunapiClient,PLAYBACK_TYPE, SessionOfUserManager, ModalManagerService, 
       UniversialManagerService, CAMERA_STATUS, Attributes, CameraService, $translate, 
-      AccountService, MultiLanguage, $state, SearchDataModel, PlayDataModel, KindProfileService, 
+      AccountService, MultiLanguage, $state, SearchDataModel, PlayDataModel,
       PlaybackInterface, playbackStepService, BACKUP_STATUS, RESTCLIENT_CONFIG, BrowserService, ExtendChannelContainerService,COMMONUtils) {
     "use strict";
 
     var self = this;
     var sunapiAttributes = Attributes.get();  //--> not common.
-    var defaultProfileID = 2; // H.264
-    var logger = LoggingService.getInstance('ChannelCtrl');
     var PLAY_CMD = PLAYBACK_TYPE.playCommand;
     var searchData = new SearchDataModel();
-    var playbackInterfaceService = PlaybackInterface;
-    var pageData = {};
     $scope.sliderRefreshInProgress = false;
     var DEFAULT_CHANNEL=0;
     var waitingPlaybackPage = false;
@@ -61,7 +57,6 @@ kindFramework
           }catch(e){
             $scope.timelineController.destroy();
           }
-          playbackInterfaceService = null;
         }
       }
     };
@@ -97,9 +92,6 @@ kindFramework
       self.changeToDigitalZoom();
     };
 
-    BaseChannel.prototype.init = function() {
-      KindProfileService.setDeviceConnectionInfo(ConnectionSettingService.getConnectionSetting());      
-    };
     angular.extend(this, $controller('BaseChannelCtrl', {
       $scope:$scope, $timeout:$timeout, $rootScope:$rootScope, LocalStorageService:LocalStorageService,
       LoggingService:LoggingService, CAMERA_TYPE:CAMERA_TYPE, SunapiClient:SunapiClient, 
@@ -108,6 +100,10 @@ kindFramework
       PlayDataModel:PlayDataModel, PlaybackInterface:PlaybackInterface
     }));
 
+    /*
+    * 
+    * @function : resetSetting
+    */
     var resetSetting = function() {
       /*Web Viewer using timezone value.*/
       var playData = new PlayDataModel();
@@ -120,19 +116,37 @@ kindFramework
         UniversialManagerService.setMicOn(false);
         UniversialManagerService.setMicVol(0);
       }
+      waitingPlaybackPage = false;
+      isTimelineInit = false;
+      isChannelPlayerInit = false;
     };
 
-    var goToPlaybackPage = function() {
-      var playData = new PlayDataModel();
+    /*
+    * initialize for playback streaming
+    * 
+    * @function : initStreaming
+    */
+    var initStreaming = function() {
       var channelId = searchData.getChannelId();
-
-      $rootScope.$emit('changeLoadingBar', true);
-
       //1. close Live Stream.
-      
       PlaybackInterface.stopLive();
-
       PlaybackInterface.preparePlayback(channelId);
+
+      kindStreamInterface.setResizeEvent();
+      kindStreamInterface.setCanvasStyle($scope.viewMode, 'Playback');
+      workerManager.initVideo(false);
+    };
+
+    /*
+    * initialize Playback page ( create timeline, prepare playback stream )
+    *
+    * @function : initializePlaybackPage
+    */
+    var initializePlaybackPage = function() {
+      var playData = new PlayDataModel();
+      $rootScope.$emit('changeLoadingBar', true);
+      initStreaming();
+     
       $scope.domControls.enablePlayback = true;
       $scope.timelineController.create();
       $scope.timelineController.changeCurrnetDate({'date':searchData.getSelectedDate()});
@@ -141,9 +155,6 @@ kindFramework
       playData.setStatus(PLAY_CMD.PLAYPAGE);
       playData.setTimelineMode(true);
 
-      kindStreamInterface.setResizeEvent();
-      kindStreamInterface.setCanvasStyle($scope.viewMode, 'Playback');
-      workerManager.initVideo(false);
       //Check Browser
       if( BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ||
         BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.EDGE ) {
@@ -167,21 +178,30 @@ kindFramework
       kindStreamInterface.setCanvasStyle($scope.viewMode, $scope.channelSetFunctions.show);
     };
 
+    /*
+    * @function : setAccountData
+    * @param : response of '/stw-cgi/security.cgi?msubmenu=users&action=view'
+    */
     var setAccountData = function(response){
-        var accountInfo = {};
-        var data = response.data.Users;
+      var accountInfo = {};
+      var data = response.data.Users;
 
-        if(data.length > 0 ){       //admin, user
-            accountInfo = data[0];
-            UniversialManagerService.setUserId(data[0].UserID);
-        }else{                      //guest
-            accountInfo.UserID = 'guest';
-            UniversialManagerService.setUserId('guest');
-        }
-        AccountService.setAccount(accountInfo);
-        $rootScope.$emit('AccountInfoUpdated');
+      if(data.length > 0 ){       //admin, user
+        accountInfo = data[0];
+        UniversialManagerService.setUserId(data[0].UserID);
+      } else {                      //guest
+        accountInfo.UserID = 'guest';
+        UniversialManagerService.setUserId('guest');
+      }
+      AccountService.setAccount(accountInfo);
+      $rootScope.$emit('AccountInfoUpdated');
     };
 
+    /*
+    * get rtsp user data
+    *
+    * @function : getUserInfo
+    */
     var getUserInfo = function() {
       return SunapiClient.get(
       '/stw-cgi/security.cgi?msubmenu=users&action=view', {},
@@ -194,6 +214,11 @@ kindFramework
       {}, true);
     };    
     
+    /*
+    * get ip address
+    *
+    * @function : getClientIP
+    */
     var getClientIP = function() {
       return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=getclientip&action=view',
       {},
@@ -206,6 +231,11 @@ kindFramework
       }, '', true);
     };
 
+    /*
+    * get Mac address
+    *
+    * @function : getRtspIpMac
+    */
     var getRtspIpMac = function() {
       return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=interface&action=view',
       {},
@@ -217,8 +247,13 @@ kindFramework
       function(errorData,errorCode) {
           console.error(errorData);
       }, '', true);
-    }
+    };
 
+    /*
+    * get rtsp port
+    *
+    * @function : getRtspPort
+    */
     var getRtspPort = function() {
       return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=rtsp&action=view',
       {},
@@ -230,33 +265,62 @@ kindFramework
           console.error(errorData);
       }, '', true);
     };
+
+    /*
+    * get rtsp info for playback
+    *
+    * @function : getStreamingInfo
+    * @
+    */
+    var getStreamingInfo = function() {
+      getRtspIpMac();
+      getRtspPort();
+      if(SessionOfUserManager.IsLoggedin()) {
+        var id = SessionOfUserManager.getUsername();
+        var password = SessionOfUserManager.getPassword();
+        ConnectionSettingService.setConnectionInfo({id:id, password:password});
+        /**
+         * When user refresh the browser, account is resetted.
+         * So below lines is added.
+         */
+        getUserInfo();
+        if(SessionOfUserManager.GetClientIPAddress() === '127.0.0.1') {
+          getClientIP();
+        }
+      }
+      UniversialManagerService.setLiveStreamStatus(false);
+    };
+
+    /*
+    * get current date of camera
+    * 
+    * @function : getCurrentDate
+    */
+    function getCurrentDate() {
+      resetSetting();
+      SunapiClient.get('/stw-cgi/system.cgi?msubmenu=date&action=view', {},
+        function(response) {
+          var currentDay = response.data.LocalTime.split(" ")[0];
+          var current = new Date(currentDay);
+          current.setTime(current.getTime() + current.getTimezoneOffset()*60*1000);
+          searchData.setDefaultDate(current);
+          initializePlaybackPage();
+        },
+        function(errorDate){
+        }, '', true);      
+    }
     
+    // When connect to PlaybackChannel at first,
     $scope.$on('$stateChangeSuccess', 
       function(event, toState, toParams, fromState, fromParams){
-        var prevPage = fromState;
-        var curPage = toState;
-        console.log(prevPage," :->", curPage);
-        $timeout(self.init);
+        console.log(fromState," :->", toState);
+        getStreamingInfo();
         self.resetUI();
-        getRtspIpMac();
-        getRtspPort();
-        if(SessionOfUserManager.IsLoggedin()){
-          var id = SessionOfUserManager.getUsername();
-          var password = SessionOfUserManager.getPassword();
-          ConnectionSettingService.setConnectionInfo({id:id, password:password});
-          /**
-           * When user refresh the browser, account is resetted.
-           * So below lines is added.
-           */
-          getUserInfo();
-          if(SessionOfUserManager.GetClientIPAddress() === '127.0.0.1')
-          {
-            getClientIP();
-          }
-          self.resetUI();
-        }
-        UniversialManagerService.setLiveStreamStatus(false);
         waitingPlaybackPage = true;
+        if( waitingPlaybackPage === true && isTimelineInit === true &&
+            isChannelPlayerInit === true ) {
+          getCurrentDate();
+        }
       }
     );
 
@@ -275,32 +339,19 @@ kindFramework
       }
     }, $scope);
 
-    function showPlaybackPage() {
-      resetSetting();
-      waitingPlaybackPage = false;
-      SunapiClient.get('/stw-cgi/system.cgi?msubmenu=date&action=view', {},
-        function(response) {
-          var currentDay = response.data.LocalTime.split(" ")[0];
-          var current = new Date(currentDay);
-          current.setTime(current.getTime() + current.getTimezoneOffset()*60*1000);
-          searchData.setDefaultDate(current);
-          goToPlaybackPage();
-        },
-        function(errorDate){
-        }, '', true);      
-    }
-
     $rootScope.$saveOn('channelPlayer::initialized', function(event, data) {
       isChannelPlayerInit = true;
-      if( waitingPlaybackPage === true && isTimelineInit === true) {
-        showPlaybackPage();
+      if( waitingPlaybackPage === true && isTimelineInit === true &&
+          isChannelPlayerInit === true ) {
+        getCurrentDate();
       }
     }, $scope);
 
     $rootScope.$saveOn('timeline::initialized', function(event, data) {
       isTimelineInit = true;
-      if( waitingPlaybackPage === true && isChannelPlayerInit === true) {
-        showPlaybackPage();
+      if( waitingPlaybackPage === true && isTimelineInit === true &&
+          isChannelPlayerInit === true ) {
+        getCurrentDate();
       }
     }, $scope);
 
@@ -310,15 +361,15 @@ kindFramework
         var StreamingMode = UniversialManagerService.getStreamingMode();
         if(StreamingMode === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE)
         {
-            $(".cm_plugin-btn").addClass("cm_active");
+            $(".cm-plugin-btn").addClass("cm-active");
             UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
         }
         else
         {
-            $(".cm_plugin-btn").removeClass("cm_active");
+            $(".cm-plugin-btn").removeClass("cm-active");
             UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
         }
-        goToPlaybackPage();
+        initializePlaybackPage();
     }, $scope);
 
     $rootScope.$saveOn('channel:reloadStreaming', function() {

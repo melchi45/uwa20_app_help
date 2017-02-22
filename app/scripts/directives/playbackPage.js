@@ -178,7 +178,7 @@ kindFramework
           var speakerSlider = null;
 
           $timeout(function(){
-            speakerSlider = $("#cm_speaker-slider div");
+            speakerSlider = $("#cm-speaker-slider div");
             speakerSlider.slider({
               orientation: "horizontal",
               range: "min",
@@ -296,6 +296,11 @@ kindFramework
           scope.showMenuContent = true;
           scope.toggleShowMenuContent = function(){
             scope.showMenuContent = !scope.showMenuContent;
+            console.log(scope.showMenuContent);
+
+            if(scope.showMenuContent === true) angular.element('#cm-video').removeClass('smaller');
+            else angular.element('#cm-video').addClass('smaller');
+
             kindStreamInterface.setCanvasStyle(scope.viewMode, scope.showMenuContent);
           };
         }

@@ -33,7 +33,6 @@ function WorkerManager() {
   SDPInfo = null,
   frameRate = 0,
   govLength = null,
-  image = new Image(),
   isTalkService = false,
   isPaused = true,
   decodeMode = "canvas",
@@ -90,8 +89,6 @@ function WorkerManager() {
   var mjpegStackCount = 0,
     messageArray = new Array();
 
-  image.onload = function() { draw(image); };
-
   var metaSession = null;
   var metaDataParser = null;
 
@@ -134,23 +131,18 @@ function WorkerManager() {
     switch (message.type) {
       case 'canvasRender':
         audioStart(0, "currentTime");
-        if (videoInfo.codecType == "mjpeg") {
-          image.setAttribute("src", "data:image/jpeg;base64," + base64ArrayBuffer(message.data));
+        draw(message.data);
+        play_count++;
+        if (start_time === 0) {
+          start_time =  performance.now();
         } else {
-          draw(message.data);
-          play_count++;
-          if (start_time === 0) {
-            start_time =  performance.now();
-          } else {
-            count_spanElement.html(" Count fps : " + (fps_count - play_count));
-            if( (play_count % fps_count) === 0 ) {
-              var next_time = performance.now();
-              var diff_time = (next_time - start_time)/1000;
-
-              fps_spanElement.html(" Average fps : " + (play_count/diff_time).toFixed(2));
-              start_time = next_time;
-              play_count = 0;
-            }
+          count_spanElement.html(" Count fps : " + (fps_count - play_count));
+          if( (play_count % fps_count) === 0 ) {
+            var next_time = performance.now();
+            var diff_time = (next_time - start_time)/1000;
+            fps_spanElement.html(" Average fps : " + (play_count/diff_time).toFixed(2));
+            start_time = next_time;
+            play_count = 0;
           }
         }
         break;
@@ -358,7 +350,11 @@ function WorkerManager() {
 
   function draw(frameData) {
     if (frameData !== null && videoRenderer !== null)  {
-      videoRenderer.draw(frameData, videoInfo.width, videoInfo.height, videoInfo.codecType, videoInfo.frameType, videoInfo.timeStamp);
+      if (videoInfo.codecType == "mjpeg") {
+        videoRenderer.drawMJPEG(frameData, videoInfo.width, videoInfo.height, videoInfo.codecType, videoInfo.frameType, videoInfo.timeStamp);
+      } else {
+        videoRenderer.draw(frameData, videoInfo.width, videoInfo.height, videoInfo.codecType, videoInfo.frameType, videoInfo.timeStamp);
+      }
     }
   }
 

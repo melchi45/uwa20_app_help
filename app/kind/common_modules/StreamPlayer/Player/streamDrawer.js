@@ -8,7 +8,6 @@
  * @name KindDrawer
  */
 function KindDrawer(id) {
-  var STEP_MS = 17; //safari didn't accept const in "use strict"
   var Uniformity = true;
   /**
    * id of channel.
@@ -49,19 +48,12 @@ function KindDrawer(id) {
   var frameInterval, maxDelay;
   var prevCodecType;
   var resizeCallback;
-  var freeBufferCallback;
-  var bufferFullCallback;
   var startTimestamp = 0,
     frameTimestamp = null,
     preTimestamp = 0,
     progressTime = 0,
     curTime = 0,
     imagePool = new ImagePool(),
-    tempwidth,
-    tempheight,
-    tempcodecType,
-    tempframeType,
-    temptime,
     bufferNode;
   var fileName = "",
     captureFlag = false;
@@ -115,7 +107,6 @@ function KindDrawer(id) {
     // console.log("streamDrawer Constructor!!");
     drawingStrategy = 'rgb2d';
     prevCodecType = null;
-//    videoBufferList = new VideoBufferList();
     videoBufferQueue = new VideoBufferQueue();
     frameInterval = 16.7;
   }
@@ -152,10 +143,7 @@ function KindDrawer(id) {
   };
 
   var drawFrame = function (stepValue) {
-    // var bufferNode = null;
-//    bufferNode = videoBufferList.pop();
     bufferNode = videoBufferQueue.dequeue();
-
     if (bufferNode != null && bufferNode.buffer != null && (bufferNode.codecType == 'mjpeg' || bufferNode.buffer.length > 0)) {
       if (preWidth === undefined || preHeight === undefined || preWidth !== bufferNode.width || preHeight !== bufferNode.height || prevCodecType !== bufferNode.codecType) {
         drawingStrategy = (bufferNode.codecType == 'h264' || bufferNode.codecType == 'h265') ? 'YUVWebGL' : 'ImageWebGL';
@@ -174,12 +162,16 @@ function KindDrawer(id) {
           captureFlag = false;
           doCapture(canvas.toDataURL(), fileName);
         }
-        delete bufferNode.buffer;
-        bufferNode.buffer = null;
+        if(bufferNode.codecType == 'mjpeg'){
+          imagePool.free(bufferNode.buffer);
+          console.log("imagePool.free");
+        } else {
+          delete bufferNode.buffer;
+          bufferNode.buffer = null;
+        }
         bufferNode.previous = null;
         bufferNode.next = null;
         bufferNode = null;
-//        freeBufferCallback(bufferNode.bufferIdx);
         return true;
       } else {
         console.log('drawer is undefined in KindDrawer!');
@@ -212,21 +204,19 @@ function KindDrawer(id) {
       curTime = 0;
     }
     preTimestamp = timestamp;
-    // drawFrame();
-
     window.requestAnimationFrame(drawingInTime);
   };
 
   function drawImage(data) {
-    if (preWidth === undefined || preHeight === undefined || preWidth !== tempwidth || preHeight !== tempheight) {
+    if (preWidth === undefined || preHeight === undefined || preWidth !== data.width || preHeight !== data.height) {
       drawingStrategy = 'ImageWebGL';
-      resize(tempwidth, tempheight);
-      preWidth = tempwidth;
-      preHeight = tempheight;
+      resize(data.width, data.height);
+      preWidth = data.width;
+      preHeight = data.height;
       resizeCallback('resize');
     }
 
-    frameTimestamp = temptime;  //update frameTimestamp
+    frameTimestamp = data.time;  //update frameTimestamp
     if (frameTimestamp !== null) {
       workerManager.timeStamp(frameTimestamp);
     }
@@ -278,14 +268,22 @@ function KindDrawer(id) {
       }
     },
     drawMJPEG: function (data, width, height, codecType, frameType, timeStamp) {
+      console.log('drawMJPEG in KindDrawer!');
       var image = imagePool.alloc();
-      image.onload = function() { drawImage(this); };
+      image.width = width;
+      image.height = height;
+      image.codecType = codecType;
+      image.frameType = frameType;
+      image.time = timeStamp;
+      image.onload = function() {
+        if(Uniformity == false){
+          drawImage(this);
+        } else {
+          if(videoBufferQueue !== null)
+            videoBufferQueue.enqueue(this, this.width, this.height, this.codecType, this.frameType, this.time);
+        }
+      };
       image.setAttribute("src", "data:image/jpeg;base64," + base64ArrayBuffer(data));
-      tempwidth = width;
-      tempheight = height;
-      tempcodecType = codecType;
-      tempframeType = frameType;
-      temptime = timeStamp;
     },
     /**
      * Represents draws video image on the canvas.
@@ -303,36 +301,33 @@ function KindDrawer(id) {
      */
     draw: function (data, width, height, codecType, frameType, timeStamp) {
       if(Uniformity == false){
-          if (preWidth === undefined || preHeight === undefined || preWidth !== width || preHeight !== height || prevCodecType !== codecType) {
-            drawingStrategy = (codecType == 'h264' || codecType == 'h265') ? 'YUVWebGL' : 'ImageWebGL';
-            resize(width, height);
-            preWidth = width;
-            preHeight = height;
-            prevCodecType = codecType;
-            resizeCallback('resize');
-          }
+        if (preWidth === undefined || preHeight === undefined || preWidth !== width || preHeight !== height || prevCodecType !== codecType) {
+          drawingStrategy = (codecType == 'h264' || codecType == 'h265') ? 'YUVWebGL' : 'ImageWebGL';
+          resize(width, height);
+          preWidth = width;
+          preHeight = height;
+          prevCodecType = codecType;
+          resizeCallback('resize');
+        }
 
-          frameTimestamp = timeStamp;  //update frameTimestamp
-          if (frameTimestamp !== null) {
-            workerManager.timeStamp(frameTimestamp);
+        frameTimestamp = timeStamp;  //update frameTimestamp
+        if (frameTimestamp !== null) {
+          workerManager.timeStamp(frameTimestamp);
+        }
+        if (drawer !== undefined) {
+          drawer.drawCanvas(data);
+          if (captureFlag) {
+            captureFlag = false;
+            doCapture(canvas.toDataURL(), fileName);
           }
-          if (drawer !== undefined) {
-            drawer.drawCanvas(data);
-            if (captureFlag) {
-              captureFlag = false;
-              doCapture(canvas.toDataURL(), fileName);
-            }
-            return true;
-          } else {
-            console.log('drawer is undefined in KindDrawer!');
-          }
-          return false;
+          return true;
+        } else {
+          console.log('drawer is undefined in KindDrawer!');
+        }
+        return false;
       } else {
         if(videoBufferQueue !== null)
           videoBufferQueue.enqueue(data, width, height, codecType, frameType, timeStamp);
-          // if (frameTimestamp == null) {
-          //     window.requestAnimationFrame(drawingInTime);
-          // }
       }
     },
     /**
@@ -346,7 +341,6 @@ function KindDrawer(id) {
     capture: function (name) {
       fileName = name;
       captureFlag = true;
-      //return canvas.toDataURL();
     },
     /**
      * Represents send vertex array buffer, which is calculated by digitalZoomService to canvas.
@@ -379,15 +373,13 @@ function KindDrawer(id) {
     setFPS: function (fps) {
       if(fps === undefined){
         frameInterval = 16.7;
-        maxDelay = 10 * 2;//
+        maxDelay = 10 * 2;
       } else if(fps == 0){
         frameInterval = 16.7;
-        maxDelay = 10 * 2;//
-//        videoBufferList.setMaxLength(fps);
+        maxDelay = 10 * 2;
       } else {
         frameInterval = (1000 / fps);
-        maxDelay = fps * 1;//
-//        videoBufferList.setMaxLength(fps);
+        maxDelay = fps * 1;
       }
     },
     setThroughPut: function(throughput){

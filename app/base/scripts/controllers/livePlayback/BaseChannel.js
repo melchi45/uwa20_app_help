@@ -234,7 +234,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
       playData.setStatus(command);
       if( command !== PLAY_CMD.PAUSE && command !== PLAY_CMD.STOP && command !== PLAY_CMD.NEXT && 
         command !== PLAY_CMD.BACKUP) {
-        if( $scope.timelineController.isValidTimePosition() === false) {
+        if( $scope.timelineController.checkCurrentTimeIsValid() === false) {
           playData.setStatus(PLAY_CMD.STOP);
           $rootScope.$emit('playStatus', 'pause');
           return null;

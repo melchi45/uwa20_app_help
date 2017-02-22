@@ -1,63 +1,63 @@
-<header id="cm_nav" ng-class="{'cm_live-nav': globalNavigationBar.isPlayback !== true}">
-    <div class="cm_row">
-        <h1 id="cm_logo">
+<header id="cm-nav" class="cm-live-nav">
+    <div class="cm-row">
+        <h1 id="cm-logo">
             <a ng-click=" globalNavigationBar.goToLive()">
                 <img 
                     alt="{{'lang_live' | translate}}"
                     title="{{'lang_live' | translate}}"
-                    class="cm_logo_lg"
+                    class="cm-logo_lg"
                     src="base/images/wisenet_logo.svg">
                 <img 
                     alt="{{'lang_live' | translate}}"
                     title="{{'lang_live' | translate}}"
-                    class="cm_logo_sm"
+                    class="cm-logo_sm"
                     src="base/images/wisenet_logo_sm.svg">
             </a>
         </h1>
-        <ul class="cm_menu">
+        <ul class="cm-menu">
             <li 
                 title="{{'lang_live' | translate}}"
-                class="cm_live"
-                ng-class="{'cm_active': globalNavigationBar.isLive === true}">
+                class="cm-live"
+                ng-class="{'cm-active': globalNavigationBar.isLive === true}">
                 <a ng-click=" globalNavigationBar.goToLive()">
                     <i class="tui tui-wn5-top-live"></i>
                 </a>
             </li>
             <li 
                 title="{{'lang_top_playback' | translate}}"
-                class="cm_playback"
+                class="cm-playback"
                 ng-if="globalNavigationBar.isAdmin"
-                ng-class="{'cm_active': globalNavigationBar.isPlayback === true}">
+                ng-class="{'cm-active': globalNavigationBar.isPlayback === true}">
                 <a ng-click="globalNavigationBar.goToPlayback()">
                     <i class="tui tui-wn5-top-playback"></i>
                 </a>
             </li>
             <li 
                 title="{{'lang_top_setup' | translate}}"
-                class="cm_setup"
+                class="cm-setup"
                 ng-if="globalNavigationBar.isAdmin"
-                ng-class="{'cm_active': globalNavigationBar.isSetup === true}">
+                ng-class="{'cm-active': globalNavigationBar.isSetup === true}">
                 <a href="#/setup/basic_videoProfile">
                     <i class="tui tui-wn5-top-setup"></i>
                 </a>
             </li>
         </ul>
-        <div class="cm_right">
+        <div class="cm-right">
             <div id="fpsdiv" style="display: none;">
                 <input type="text" ng-model="globalNavigationBar.fpsFrameNum" ng-pattern-restrict="^[0-9]*$">
                 <button type="button" class="btn btn-orange ng-binding" ng-click="changeFpsFrame()">OK</button>
                 <button type="button" class="btn btn-orange ng-binding" ng-click="closeFpsMeter()">CLOSE</button>
-                <span class="cm_devicename" id="span-fps">Average fps : 0 </span>
-                <span class="cm_devicename" id="count-fps">Count fps : 1000 </span>
+                <span class="cm-devicename" id="span-fps">Average fps : 0 </span>
+                <span class="cm-devicename" id="count-fps">Count fps : 1000 </span>
             </div>
-            <span class="cm_devicename" ng-click="toggleFpsMeter()">
+            <span class="cm-devicename" ng-click="toggleFpsMeter()">
                 {{globalNavigationBar.deviceModelName}}
             </span>
             <ul>
                 <li ng-show="!notInstalledPlugin && !globalNavigationBar.isSetup && supportPlugin">
-                    <button class="cm_plugin-btn cm_active" ng-click="setPlugin()" title="{{ 'lang_plugin' | translate}}">
+                    <button class="cm-plugin-btn cm-active" ng-click="setPlugin()" title="{{ 'lang_plugin' | translate}}">
                         <span>{{ "lang_plugin" | translate}}</span>
-                        <span class="cm_plugin-icon">
+                        <span class="cm-plugin-icon">
                             <span></span>
                         </span>
                     </button>
