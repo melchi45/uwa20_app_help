@@ -60,23 +60,32 @@ kindFramework.controller('layoutCtrl', function($scope, $rootScope, $state, Menu
 		var menuPath = [];
 		var currentName = $state.current.name;
 		var parnetName = $state.current.name.split("_")[0];
-		var i = 0;
-		var j = 0;
-		while(i < menuData.length) {
-			if(menuData[i].stateName.indexOf(parnetName) >= 0) {
-				menuPath.push(menuData[i].name);
-				j = 0;
-				while( j < menuData[i].childs.length) {
-					if(menuData[i].childs[j].stateName.indexOf(currentName) >= 0) {
-						menuPath.push(menuData[i].childs[j].name);
+
+		for(var i = 0, ii = menuData.length; i < ii; i++){
+			var iSelf = menuData[i];
+			if(iSelf.stateName.indexOf(parnetName) >= 0) {
+				menuPath.push(iSelf.name);
+				for(var j = 0, jj = iSelf.childs.length; j < jj; j++){
+					var jSelf = iSelf.childs[j];
+					if(currentName.indexOf(jSelf.stateName) >= 0) {
+						menuPath.push(jSelf.name);
+
+						if(jSelf.childs !== undefined && jSelf.childs.length > 0){
+							for(var k = 0, kk = jSelf.childs.length; k < kk; k++){
+								var kSelf = jSelf.childs[k];
+								if(currentName.indexOf(kSelf.stateName) >= 0){
+									menuPath.push(kSelf.name);
+									break;
+								}
+							}
+						}
 						break;
 					}
-					j++;
 				}
 				break;
 			}
-			i++;
 		}
+
 		return menuPath;
 	};
 
