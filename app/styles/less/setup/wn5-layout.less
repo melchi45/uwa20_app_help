@@ -1,5 +1,9 @@
 .wn5-gui-body-large {
   font-size: @wn5-gui-body-l;
+  
+  @media(max-width: @setup-mobile-max-width){
+    font-size: @wn5-gui-body-m;
+  }
 }
 
 .wn5-gui-text-orange-100 {
@@ -16,6 +20,10 @@
   font-size: @wn5-setup-content-area-main-title-size;
   margin-top: @wn5-setup-content-area-main-title-margin-top;
   margin-bottom: @wn5-setup-content-area-main-title-margin-bottom;
+
+  @media(max-width: @setup-mobile-max-width){
+    font-size: @wn5-gui-title-m;
+  }
 }
 
 .clearfix() {
@@ -77,6 +85,15 @@
   &.no-margin-bottom {
     margin-bottom: 0;
   }
+
+  @media(max-width: @setup-mobile-max-width){
+    font-size: @wn5-gui-title-s !important;
+
+    > h3,
+    > h2 {
+      font-size: @wn5-gui-title-s !important;
+    }
+  }
 }
 
 .wn5-setup-section-article-heading {
@@ -86,6 +103,10 @@
   padding-bottom: 3px;
   line-height: 1.2;
   font-weight: bold;
+
+  @media(max-width: @setup-mobile-max-width){
+    font-size: @wn5-gui-body-m;
+  }
 
   +.wn5-setup-section-article-content,
   +div .wn5-setup-section-article-content {
@@ -100,6 +121,10 @@
   .wn5-setup-common();
   width: 100%;
   font-size: @wn5-gui-title-s;
+
+  @media(max-width: @setup-mobile-max-width){
+    font-size: @wn5-gui-body-m;
+  }
 
   &.livechart {
     height: 120px;
@@ -203,6 +228,11 @@
 .wn5-setup-table {
   font-size: @wn5-gui-title-s;
   margin-bottom: 0;
+
+  @media(max-width: @setup-mobile-max-width){
+    font-size: @wn5-gui-body-m;
+  }
+
   tr{
     background: #fff;
   }
@@ -225,6 +255,10 @@
   clear: both;
   margin: @wn5-setup-content-area-line-margin-top 0 @wn5-setup-content-area-line-margin-bottom;
   border-color: @wn5-gui-table-border;
+
+  @media(max-width: @setup-mobile-max-width){
+    margin: 15px 0;
+  }
 }
 
 .generate-wn5-grid-system(@n, @i: 1) when (@i =< @n){
@@ -282,12 +316,24 @@
     > h3 {
       font-size: @wn5-gui-title-s;
     }
+
+    @media(max-width: @setup-mobile-max-width){
+      font-size: @wn5-gui-body-m;
+
+      > h3 {
+        font-size: @wn5-gui-body-m;
+      }
+    }
   }
 
   .wn5-setup-preview-content {
     width: 75%;
     font-size: @wn5-gui-title-s;
     float: left;
+
+    @media(max-width: @setup-mobile-max-width){
+      font-size: @wn5-gui-body-m;
+    }
   }
 
   > .form-group {
@@ -364,6 +410,10 @@
         color: @wn5-gui-tab-color;
         font-size: @wn5-gui-title-s;
         font-weight: bold;
+        
+        @media(max-width: @setup-mobile-max-width){
+          font-size: @wn5-gui-body-m;
+        }
 
         &:hover {
           .btn-hover();
