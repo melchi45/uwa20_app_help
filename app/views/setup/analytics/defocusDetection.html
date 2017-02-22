@@ -85,7 +85,8 @@
                     </div>
                 </div>
                 <div class="form-group" ng-show="DefocusDetect.hasOwnProperty('AutoSimpleFocus')">
-                    <div class="wn5-setup-section-article-heading">{{ 'lang_simpleFocus' | translate }}</div>
+                    <div class="wn5-setup-section-article-heading" ng-if="!ZoomOnlyModel && !PTZModel">{{ 'lang_simpleFocus' | translate }}</div>
+                    <div class="wn5-setup-section-article-heading" ng-if="ZoomOnlyModel || PTZModel">{{ 'lang_autoFocus' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
                         <input type="checkbox" name="SimpleFocusEnable" ng-model="DefocusDetect.AutoSimpleFocus" ng-click="SimpleFocusClickEventHandler()">
                         <label>{{'lang_enable'|translate}}</label>
