@@ -46,11 +46,15 @@ fieldset {
     height: @wn5-gui-button-height;
     line-height: @wn5-gui-button-line-height;
     padding: 0 @wn5-gui-button-padding-left 0 @wn5-gui-button-padding-right;
+    margin-bottom: 0;
+
+    @media(max-width: @setup-mobile-max-width){
+      font-size: @wn5-gui-body-m;
+    }
+
     i {
       color: @wn5-gui-button-black-normal-text;
     }
-
-    margin-bottom: 0;
 
     &:hover,
     &.wn5-btn-hover {
@@ -194,6 +198,11 @@ fieldset {
       padding-top: 0;
       padding-bottom: 0;
       margin-bottom: 0;
+      font-size: @wn5-gui-title-s;
+
+      @media(max-width: @setup-mobile-max-width){
+        font-size: @wn5-gui-body-m;
+      }
 
       @media(max-width:500px) {
         width: 40%;
@@ -210,6 +219,11 @@ fieldset {
     background-color: @wn5-gui-text-fields-normal-input-bg;
     line-height: @wn5-gui-text-line-height;
     padding: 0 @wn5-gui-text-padding-right 0 @wn5-gui-text-padding-left;
+    font-size: @wn5-gui-title-s;
+
+    @media(max-width: @setup-mobile-max-width){
+      font-size: @wn5-gui-body-m;
+    }
 
     &:not([readonly]):focus {
       border-color: @wn5-gui-text-fields-focus-line !important;
