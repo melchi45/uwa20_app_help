@@ -1,15 +1,17 @@
 "use strict";
 kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerService', 
 	'SunapiClient', '$timeout', 'DigitalPTZContorlService', 'ModalManagerService', '$translate',
-	'$interval',
+	'$interval','Attributes', 'COMMONUtils',
 	function(CAMERA_STATUS, UniversialManagerService, SunapiClient, $timeout, DigitalPTZContorlService,
-		ModalManagerService, $translate, $interval) {	
+		ModalManagerService, $translate, $interval, Attributes, COMMONUtils) {
 		return {
 			restrict: 'E',
 			scope: false,
 			replace: true,
 			templateUrl: 'views/livePlayback/directives/live-ptz-control.html',
 			link: function(scope, element, attrs){
+                var mAttr = Attributes.get();
+
 				scope.dptzMode = CAMERA_STATUS.DPTZ_MODE;
 				scope.ptzType = CAMERA_STATUS.PTZ_MODE;
 				scope.autoTrackingFlag = false;
@@ -21,6 +23,10 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					set: function(value){
 						this.show = value;
 					}
+				};
+				scope.selectedObj = {
+					presetObj : null,
+					groupObj : null
 				};
 
 				var isDrag = false,
@@ -51,6 +57,14 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 							getSettingPresetList();
 							break;
 						case CAMERA_STATUS.PTZ_MODE.OPTICAL:
+                            getSettingPresetList();
+                            getSettingGroupList();
+                            if (mAttr.TraceSupport)
+                            {
+                                scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
+                                scope.Trace = {};
+                                scope.Trace.SelectedIndex = 0;
+                            }
 							break;
 						case CAMERA_STATUS.PTZ_MODE.ZOOMONLY:
 							scope.ptzMode = "zoomonly";
@@ -118,6 +132,70 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
             }
         };
 
+		scope.ptzPreset = function(value){
+			try {
+				if(value === 'Stop'){
+					run('preset', scope.selectedObj.presetObj.value, 'Stop');
+				}else if(value === 'Go'){
+					run('preset',  scope.selectedObj.presetObj.value, 'Start');
+				}else {
+					throw "Wrong Argument";
+				}
+			} catch (error)
+			{
+				console.error(error.message);
+			}
+		};
+
+		scope.ptzGroup = function(value){
+			try {
+				if(value === 'Stop'){
+                    run('group', scope.selectedObj.groupObj.value, 'Stop');
+				}else if(value === 'Go'){
+                    run('group',  scope.selectedObj.groupObj.value, 'Start');
+				}else {
+					throw "Wrong Argument";
+				}
+			} catch (error)
+			{
+				console.error(error.message);
+			}
+		};
+
+		scope.ptzTrace = function(value){
+			try {
+                if(value === 'Stop'){
+                    sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=trace&action=control&Channel=0&Mode=Stop&Trace=" + (scope.Trace.SelectedIndex + 1);
+                    execSunapi(sunapiURI);
+                }else if(value === 'Go'){
+                    sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=trace&action=control&Channel=0&Mode=Start&Trace=" + (scope.Trace.SelectedIndex + 1);
+                    execSunapi(sunapiURI);
+                }else {
+					throw "Wrong Argument";
+                }
+			} catch (error)
+			{
+				console.error(error.message);
+			}
+		};
+
+		scope.ptzTour = function(value){
+			try {
+				if(value === 'Stop'){
+					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=tour&action=control&Channel=0&Tour=1&Mode=Stop";
+					execSunapi(sunapiURI);
+				}else if(value === 'Go'){
+					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=tour&action=control&Channel=0&Tour=1&Mode=Start";
+					execSunapi(sunapiURI);
+				}else {
+					throw "Wrong Argument";
+				}
+			} catch (error)
+			{
+				console.error(error.message);
+			}
+		};
+
         var presetListCallback = function(result) {
 	        if (result.PTZPresets === undefined) {
 						ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
@@ -130,7 +208,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                               'value':result.PTZPresets[0].Presets[index].Preset,
                             };
             }
-
+			scope.selectedObj.presetObj = scope.presetList[0];
 						scope.$apply();
           }
         };
@@ -152,7 +230,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						    'value':groups[i].Group,
               });
             }
-
+			scope.selectedObj.groupObj = scope.groupList[0];
 						scope.$apply();           
           }
         };
