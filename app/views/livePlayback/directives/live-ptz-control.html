@@ -225,12 +225,13 @@
       <!-- Swing start -->
       <div id="live-ptz-swing" ng-if="currentPtzType === ptzType.OPTICAL">
         <div>{{'lang_swingMode' | translate}}</div>
-        <select class="form-control cm-selectbox">
-          <option value="Pan swing">Pan swing</option>
+        <select class="form-control cm-selectbox"
+          ng-model="selectedObj.swingObj"
+          ng-options="Mode as Mode for Mode in SwingModes">
         </select>
         <div style="margin-top: 5px;">
-          <button type="button" class="cm-str-button" title="Go">Go</button>
-          <button type="button" class="cm-str-button" title="Stop">Stop</button>
+          <button type="button" class="cm-str-button" title="Go" ng-click="ptzSwing('Go')">Go</button>
+          <button type="button" class="cm-str-button" title="Stop" ng-click="ptzSwing('Stop')">Stop</button>
         </div>
       </div>
       <!-- Swing end -->

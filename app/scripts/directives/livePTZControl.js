@@ -26,7 +26,8 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				};
 				scope.selectedObj = {
 					presetObj : null,
-					groupObj : null
+					groupObj : null,
+					swingObj : null
 				};
 
 				var isDrag = false,
@@ -64,6 +65,14 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                                 scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
                                 scope.Trace = {};
                                 scope.Trace.SelectedIndex = 0;
+                            }
+                            if (mAttr.SwingSupport)
+                            {
+                                if (mAttr.SwingModes !== undefined)
+                                {
+                                    scope.SwingModes = mAttr.SwingModes;
+                                    scope.selectedObj.swingObj = scope.SwingModes[0];
+                                }
                             }
 							break;
 						case CAMERA_STATUS.PTZ_MODE.ZOOMONLY:
@@ -186,6 +195,23 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					execSunapi(sunapiURI);
 				}else if(value === 'Go'){
 					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=tour&action=control&Channel=0&Tour=1&Mode=Start";
+					execSunapi(sunapiURI);
+				}else {
+					throw "Wrong Argument";
+				}
+			} catch (error)
+			{
+				console.error(error.message);
+			}
+		};
+
+		scope.ptzSwing = function(value){
+			try {
+				if(value === 'Stop'){
+					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=tour&action=control&Channel=0&Mode=Stop";
+					execSunapi(sunapiURI);
+				}else if(value === 'Go'){
+					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=swing&action=control&Channel=0&Mode=" + scope.selectedObj.swingObj;
 					execSunapi(sunapiURI);
 				}else {
 					throw "Wrong Argument";
