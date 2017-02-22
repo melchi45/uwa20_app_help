@@ -243,6 +243,7 @@ kind_stream {
 }
 
 .full-screen {
+    width: 100% !important;
     display: block;
     background-color: black;
 
@@ -1913,5 +1914,21 @@ live-playback common {
         &.cm-show-menu {
             height: 525px;
         }
+    }
+}
+
+#cm-channel-selector {
+    float: left;
+
+    li {
+        button {
+            margin-top: 10px;
+        }
+    }
+
+    > button {
+        float: left;
+        margin-top: 10px;
+        margin-right: 10px;
     }
 }
