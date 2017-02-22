@@ -1,0 +1,16 @@
+<ul id="channel-selector">
+	<li>
+		<button class="cm-str-button">CH</button>
+	</li>
+	<li ng-repeat="num in [1,2,3,4]">
+		<button 
+			class="cm-str-button" 
+			ng-click="channelSelector.selectChannel(num - 1)">
+			{{num}}
+		</button>
+	</li>
+	<li>
+		<button class="cm-str-button"
+			ng-click="channelSelector.changeQuadView()">Quad view</button>
+	</li>
+</ul>

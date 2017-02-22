@@ -991,6 +991,15 @@ kindFramework
       }
     };
 
+    /* Channel Selector Direction */
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+      console.log(index);
+    }, $scope);
+
+    $rootScope.$saveOn('channelSelector:changeQuadView', function(event, response){
+      console.log(response);
+    }, $scope);
+
     $scope.$watch('channelBasicFunctions.speakerStatus', function(newVal, oldVal){
       if(newVal === oldVal || oldVal === undefined)
         return;
