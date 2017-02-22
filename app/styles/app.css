@@ -877,9 +877,6 @@ live-playback common {
 #cm-menu-content .cm-status-wrap .cm-status-col .cm-table thead {
   display: block;
 }
-#cm-menu-content .cm-status-wrap .cm-status-col .cm-table thead > tr > *:last-child {
-  padding: 0 18px;
-}
 #cm-menu-content .cm-status-wrap .cm-status-col .cm-table tbody {
   width: 100%;
   position: relative;
