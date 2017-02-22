@@ -1714,10 +1714,6 @@ live-playback common {
 
 
 
-
-
-
-
 // Mobile ~1024px
 @media(max-width: 1024px){
     #cm-nav .cm-right ul span{
@@ -1888,3 +1884,119 @@ live-playback common {
 } 
 
 
+/* 4K WebViewer Style */
+
+@media(min-width:2300px) and (min-height:1294px) {
+    #cm-nav {
+        height: 75px;
+
+        #cm-logo {
+            .cm-logo_lg {
+                width: 150px;
+                height: 24px;
+                margin-top: 25.5px;
+
+            }
+        }
+
+        .cm-menu {
+            li:not(:last-of-type) {
+                margin-right: 67.5px;
+            }
+
+            li {
+                a,i {
+                    font-size: 54px;
+                }
+            }
+        }
+
+        .cm-right {
+            margin-top: 13.5px;
+
+            .cm-devicename {
+                font-size: 21px;
+                padding: 0 12px;
+                margin-top: 8px;
+                float: left;
+            }
+
+            ul {
+                li {
+                    font-size: 18px;
+                    padding: 8px 15px;
+                    height: 45px;
+                    border-left: 2px solid #e2e2e2;
+                }
+            }
+        }
+    }
+
+    
+
+    #cm-bottom-menu {
+        &.cm-show-menu {
+            height: 450px;
+        }
+    }
+
+}
+
+
+
+@media(min-width:3000px) and (min-height:1688px) {
+    #cm-nav {
+        height: 87.5px;
+
+        #cm-logo {
+            .cm-logo_lg {
+                width: 175px;
+                height: 28px;
+                margin-top: 30px;
+
+            }
+        }
+
+        .cm-menu {
+            li:not(:last-of-type) {
+                margin-right: 79px;
+            }
+
+            li {
+                a,i {
+                    font-size: 63px;
+                }
+            }
+        }
+
+        .cm-right {
+            margin-top: 16.25px;
+
+            .cm-devicename {
+                font-size: 24.5px;
+                padding: 0 14px;
+                margin-top: 10px;
+                float: left;
+            }
+
+            ul {
+                li {
+                    font-size: 21px;
+                    padding: 10px 15px;
+                    height: 52.5px;
+                    border-left: 2px solid #e2e2e2;
+                }
+            }
+        }
+    }
+
+
+   
+
+
+    #cm-bottom-menu {
+        &.cm-show-menu {
+            height: 525px;
+        }
+    }
+}
