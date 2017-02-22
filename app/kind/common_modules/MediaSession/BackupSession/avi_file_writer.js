@@ -68,7 +68,7 @@ var AviFileWriter = function() {
     * @function : getDuration
     */
     getDuration : function() {
-      createVideoHeader.getDuration()
+      return createVideoHeader.getDuration();
     },
     /**
     * @function : makeAviHeader

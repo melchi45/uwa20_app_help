@@ -16,9 +16,7 @@
         ng-class="{'nav-opened': navOpened}">
         <p id="setup-menu-title" ng-if="!isDisableSideNav()">
             <span ng-repeat="name in getMenuPath() track by $index">
-                <span ng-hide="$index == 0">
-                    >
-                </span>
+                <strong ng-hide="$index == 0">&nbsp;&frasl;&nbsp;</strong>
                 {{ name | translate }}
             </span>
         </p>
