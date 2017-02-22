@@ -785,7 +785,7 @@ live-playback common {
   position: relative;
 }
 .cm-table.cm-status-table ::-webkit-scrollbar {
-  width: 16px;
+  width: 12px;
   height: 1em;
 }
 .cm-table.cm-status-table ::-webkit-scrollbar-button {
@@ -857,7 +857,7 @@ live-playback common {
   text-align: left;
 }
 #cm-menu-content .cm-status-wrap .cm-status-col .cm-table ::-webkit-scrollbar {
-  width: 16px;
+  width: 12px;
   height: 1em;
 }
 #cm-menu-content .cm-status-wrap .cm-status-col .cm-table ::-webkit-scrollbar-button {
