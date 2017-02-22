@@ -1,15 +1,4 @@
-////////////////////////////////
-////* Live Page Style less *////
-////////////////////////////////
-
-
-// .kind-responsive-live {
 .kind-responsive-live {
-
-    #cm-video {
-    
-    }
-
     #cm-bottom-menu {
         #cm-icon-list {
             .cm-col {
@@ -82,7 +71,6 @@
                 .cm-center {
                     width: 100%;
 
-                    // > h2
                     .cm-profile-sel{    
                         height: 30px;
                         line-height: 30px;
@@ -112,16 +100,12 @@
                         float: left;
                         display: inline;
                         min-width: 230px;
-                        margin-left: calc(~"20% - 115px");
-                        margin-right: calc(~"20% - 115px");
-
 
                         & > div {
                             height: 160px;
                             float:left;
                             position: relative;
                         }
-
 
                         .cm-ptz-control-left {
                             width: 25px;
@@ -211,7 +195,7 @@
                             }
 
                             .cm-zoom-out {
-                                top: 0;
+                                top: 126px;
                                 left: -3px;
                             }
                         } 
@@ -221,7 +205,7 @@
                             height: 91px;
                             position: absolute;
                             top: 35px;
-                            left: 7px;
+                            left: 8px;
                                 
                             .ui-state-default {
                                 left: -6px;
@@ -250,7 +234,66 @@
                         }
                     }
                 } 
-            } 
+            }
+
+            #cm-status {
+                .cm-status-wrap {
+                    width: 100%;
+                    display: inline-table;
+
+                    .cm-status-col {
+                        width: calc(~"50% - 10px");
+                        padding: 0 20px;
+                        text-align: left;
+                        display: inline-table;
+
+                        .cm-table {
+                            ::-webkit-scrollbar {
+                                width: 12px;
+                                height: 1em;
+                            }
+                            ::-webkit-scrollbar-button {
+                                background: #999;
+                                display: none;
+                            }
+                            ::-webkit-scrollbar-track-piece {
+                                background: #ccc;
+                            }
+                            ::-webkit-scrollbar-thumb {
+                                background: #666;
+                            }​
+
+                            thead, tbody {
+                                display: block;
+                            }
+
+                            thead {
+                                display: block;
+
+                                & > tr > *:last-child {
+                                    width: 1.2%;
+                                }
+                            }
+
+                            tbody {
+                                width: 100%;
+                                position: relative;
+                                max-height: 95px;
+                                height: 95px;
+                                overflow: auto;
+                                overflow-x: hidden;
+                                overflow-y: scroll;
+                            }
+
+                            th, td {
+                                width: 1%;
+                                box-sizing: border-box;
+                            }
+
+                        } 
+                    } 
+                } 
+            }
 
 
             #cm-display-slider {
@@ -370,101 +413,105 @@
                     height: 310px;
                 }
             }
-            
-            &.cm-live-bottom-menu {
 
-                &.cm-show-menu {
-                    height: 360px;
+            &.cm-show-menu {
+                height: 360px;
+            }
+
+            #cm-icon-list {
+                .cm-vline {
+                    display: none;
                 }
 
-                #cm-icon-list {
-                    .cm-vline {
-                        display: none;
-                    }
+                .cm-col-100 {
+                    width: 100%;
+                    height: 50px;
+                    float: left;
+                    line-height: 50px;
+                    text-align: center;
+                    border-top: none;
 
-                    .cm-col-100 {
-                        width: 100%;
-                        height: 50px;
-                        float: left;
-                        line-height: 50px;
-                        text-align: center;
-                        border-top: none;
-
-                        li {
-                            float: none;
-                            display: inline-block;
-                        }
-                    }  
-
-                    .cm-small-center {
-                        width: auto;
-                        margin: 0 auto;
-                        display: inline-block;
+                    li {
                         float: none;
-                    } 
+                        display: inline-block;
+                    }
                 }  
 
-                #cm-menu-content {
-                    #cm-setup .cm-col {
+                .cm-small-center {
+                    width: auto;
+                    margin: 0 auto;
+                    display: inline-block;
+                    float: none;
+                } 
+            }  
+
+            #cm-menu-content {
+                #cm-live-ptz-control {
+                    margin: 0 20px;
+                }
+
+                #cm-ptz-tables {
+
+                    & > div {
+                        width: 100%;
+                        margin: 0;
+
+                        &:nth-child(2) {
+                            margin-top: 20px;
+                        }
+                    }
+                }
+
+                #cm-setup {
+                    .cm-setup-col {
                         width: 80%;
-                    }
+                        min-width: 360px;
+                        padding: 0;
 
-                    #cm-live-ptz-control {
-                        margin: 0 20px;
-                    }
-
-                    #cm-ptz-tables {
-
-                        & > div {
-                            width: 100%;
-                            margin: 0;
-
-                            &:nth-child(2) {
-                                margin-top: 20px;
-                            }
+                        &:nth-child(n+2) {
+                            margin: 20px 0 10px 0;
                         }
                     }
-                } 
+                }
 
-                #cm-icon-list {
-                    .cm-small-center {
-                        width: auto;
-                        margin: 0 auto;
-                        float: none;
+                .cm-profile-table,
+                #cm-display-slider {
+                    min-width: 0;
+                }
+                
+                #cm-status {
+                    .cm-status-wrap .cm-status-col {
+                        width: 80% !important;
+                        min-width: 360px;
+                        padding: 0;
+                        position: relative;
+                        overflow-x: scroll;
 
-                        .cm-col {
-                            display: inline-block;
-                            margin: 0 10px;
+                        &:nth-child(n+2) {
+                            margin: 20px 0;
                         }
                     }
+                }
+            } 
 
-                    .cm-list-2 {
-                        transform: translateY(-50px);
+            #cm-icon-list {
+                .cm-small-center {
+                    width: auto;
+                    margin: 0 auto;
+                    float: none;
+
+                    .cm-col {
+                        display: inline-block;
+                        margin: 0 10px;
                     }
-                } 
+                }
+
+                .cm-list-2 {
+                    transform: translateY(-50px);
+                }
             } 
         } 
-        
-        #cm-menu-content .cm-status-wrap .cm-status-col {
-            width: 80%;
-            min-width: 360px;
-            margin: 10px 0;
-            position: relative;
-            left: 50%;
-            transform: translate(-50%);
-        }
 
-        #cm-menu-content {
-            #cm-setup .cm-col {
-                width: 80%;
-                margin: 10px 0;
-            }
-
-            .cm-profile-table,
-            #cm-display-slider {
-                min-width: 0;
-            }
-        }
 
         #ptz-components {
             padding: 0 20px;
@@ -482,13 +529,13 @@
                 }
             }
 
-            // ptz controller with tables
+            /* ptz controller with tables */
             & > div {
                 position: relative;
                 left: 50%;
                 transform: translateX(-50%);
 
-                // tables
+                /* tables */
                 &#cm-ptz-tables {
                     margin-top: 20px !important;
                 }
@@ -543,15 +590,13 @@
                 left: 100%;
                 height: calc(~"100% - 100px");
         
-                 .cm-status-wrap .cm-status-col {
+                 .cm-status-wrap .cm-status-col,
+                 #cm-setup .cm-setup-col {
                     width: 80%;
                     min-width: 360px;
                     margin: 10px 0;
                     position: relative;
-                    left: 50%;
-                    transform: translate(-50%);
                 }
-
             }
 
             &.cm-show-menu {
@@ -581,7 +626,7 @@
                 }
             }
 
-            // ptz controller with tables
+            /* ptz controller with tables */
             & > div {
                 border: none !important;
                 margin: 10px 0 !important;
@@ -589,7 +634,7 @@
                 left: 50%;
                 transform: translateX(-50%);
 
-                // tables
+                /* tables */
                 &#cm-ptz-tables {
                     margin-top: 20px !important;
                 }

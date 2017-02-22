@@ -113,7 +113,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                     var checkType = $('.cm-live-icon-list').length;
                                     var checkSize = window.innerWidth;
                                     var checkHeight = window.innerHeight;
-                                    
+                                    var smallerHeight;
 
                                     console.log(checkSize, checkHeight);
                                     console.log(checkHeight);
@@ -134,7 +134,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                             $(".full-screen").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
                                         }else{
                                             $(".full-screen").css({ width: "100%" });
-                                            $(".full-screen kind_stream").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
+                                            // $(".full-screen kind_stream").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
                                         }
 
                                         if(UniversialManagerService.getViewMode() != 0){
@@ -154,11 +154,6 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                         // live page 에서는 하단의 길이가 더 김
                                         if(checkType && checkSize < 800) bottomMenuHeight += 50;
 
-                                        // 4K 해상도에서 가로 2300px 이상 16:9 비율일 때
-                                        if(checkSize > 2300 && checkHeight > 1294) bottomMenuHeight = 410;
-
-                                        // 4K 해상도에서 가로 300px 이상 16:9 비율일 때
-                                        if(checkSize > 3000 && checkHeight > 1688) bottomMenuHeight = 485;
 
                                         $("#cm-video").removeAttr('style');
                                         $("#cm-video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
