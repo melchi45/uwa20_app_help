@@ -6648,6 +6648,60 @@ rzslider .rz-bubble {
 #sketchbook #sketchbook_svg {
   overflow: visible;
 }
+@media (max-width: 700px) {
+  #sketchbook canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+  #container,
+  #sketchbook {
+    width: 100% !important;
+    /* 영상 비율별 height 설정 */
+    /* 1:1 */
+    /* 21:9 */
+    /* 4:3 */
+    /* 16:9 */
+    /* 4096x2160 */
+    /* 2592x1520 */
+  }
+  #container[style*="height: 640px"],
+  #sketchbook[style*="height: 640px"],
+  #container[height="640"],
+  #sketchbook[height="640"] {
+    height: 100% !important;
+  }
+  #container[style*="height: 278px"],
+  #sketchbook[style*="height: 278px"],
+  #container[height="278"],
+  #sketchbook[height="278"] {
+    height: 43.4375% !important;
+  }
+  #container[style*="height: 480px"],
+  #sketchbook[style*="height: 480px"],
+  #container[height="480"],
+  #sketchbook[height="480"] {
+    height: 75% !important;
+  }
+  #container[style*="height: 360px"],
+  #sketchbook[style*="height: 360px"],
+  #container[height="360"],
+  #sketchbook[height="360"] {
+    height: 56.25% !important;
+  }
+  #container[style*="height: 337px"],
+  #sketchbook[style*="height: 337px"],
+  #container[height="337"],
+  #sketchbook[height="337"] {
+    height: 52.65625% !important;
+  }
+  #container[style*="height: 376px"],
+  #sketchbook[style*="height: 376px"],
+  #container[height="376"],
+  #sketchbook[height="376"] {
+    height: 58.75% !important;
+  }
+}
 .ibox-content .nav > li {
   width: 200px;
   display: inline-block;
