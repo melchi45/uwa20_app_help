@@ -130,7 +130,7 @@
     #cm-icon-list .cm-playback-speed {
         height: 30px;
         margin-top: 10px;
-    }
+	}
 
     #cm-date-control{
         float:left;
@@ -541,5 +541,233 @@
                 }
             }
         }
-    } 
+    }
+
+
+@media(min-width:2300px) and (min-height:1294px) {    
+    #cm-bottom-menu {
+        #cm-icon-list {
+            height: 75px;
+
+            .info-toggle {
+                height: 75px;
+
+                li {
+                    height: 75px;
+                    width: 93px;
+
+                    button {
+                        margin-top: 10px;
+                    }
+                }
+            }
+
+            .cm-playback-block {
+                margin: 0 15px;
+
+                li {
+                    margin: 0 15px;
+                }
+            }
+
+            .cm-icon-button-b {
+                font-size: 40px;
+                margin-top: 10px;
+            }
+
+            .cm-vline {
+                height: 39px;
+                margin-top: 18px;
+            }
+
+            .cm-playback-speed {
+                height: 45px;
+                margin-top: 15px;
+                width: 72px;
+                font-size: 20px;
+            }
+
+            #volume-control {
+                margin: 0 30px;
+
+                .cm-icon-button-s {
+                    font-size: 36px;
+                    margin-top: 10px;
+                }
+            }
+
+            [id$="slider"] {
+                width: 150px;
+                margin-left: 22.5px;
+                margin-top: 15.5px;
+            }
+        }
+
+        #timeline-setting {
+            height: 75px;
+        }
+
+        #cm-menu-content {
+            height: 300px;
+            padding: 28.5px 0 22.5px 0;
+            
+            .cm-col {
+                margin: 0 30px;
+            }
+
+            #cm-date-control {
+                .cm-col {
+                    margin: 0 30px;
+                }
+
+                .cm-timeboxes {
+                    line-height: 51px;
+
+                    input {
+                        width: 67.5px;
+                        height: 51px;
+                        font-size: 20px;
+                    }
+                }
+            }
+
+            #backup {
+                margin-left: 45px;
+            }
+
+        }
+    }
+
+    .cm-str-button {
+        height: 51px;
+        line-height: 51px;
+        padding: 0 15px;
+        font-size: 20px;
+    }
+
+    .vis-text {
+        font-size: 20px !important;
+    }
+
+    .vis-costom-time div {
+        margin-top: 54px;
+    }
+
+    .cm-playback-duplicate-item {
+        & > div {
+            padding: 15px 15px;
+
+            .event-type {
+                font-size: 19px;
+            }
+
+            .event-time {
+                font-size: 17px;
+            }
+        }
+    }
+}
+
+
+
+@media(min-width:3000px) and (min-height:1688px) {
+    #cm-bottom-menu {        
+        #cm-icon-list {
+            height: 87.5px;
+
+            .info-toggle {
+                height: 87.5px;
+
+                li {
+                    height: 87.5px;
+                    width: 108.5px;
+
+                    button {
+                        margin-top: 12px;
+                    }
+                }
+            }
+
+            .cm-playback-block {
+                margin: 0 17.5px;
+
+                li {
+                    margin: 0 17.5px;
+                }
+            }
+
+            .cm-icon-button-b {
+                font-size: 47px;
+                margin-top: 13px;
+            }
+
+            .cm-vline {
+                height: 45.5px;
+                margin-top: 21px;
+            }
+
+            .cm-playback-speed {
+                height: 52.5px;
+                margin-top: 17.5px;
+                width: 84px;
+                font-size: 23.3px;
+            }
+
+            #volume-control {
+                margin: 0 35px;
+
+                .cm-icon-button-s {
+                    font-size: 42px;
+                    margin-top: 13px;
+                }
+            }
+
+            [id$="slider"] {
+                width: 175px;
+                margin-left: 26.25px;
+                margin-top: 18px;
+            }
+        }
+
+        #timeline-setting {
+            height: 75px;
+        }
+
+        #cm-menu-content {
+            height: 350px;
+            padding: 33.25px 0 26.25px 0;
+            
+            .cm-col {
+                margin: 0 35px;
+            }
+
+            #cm-date-control {
+                .cm-col {
+                    margin: 0 35px;
+                }
+
+                .cm-timeboxes {
+                    line-height: 59.5px;
+
+                    input {
+                        width: 78.75px;
+                        height: 59.5px;
+                    }
+                }
+            }
+
+            #backup {
+                margin-left: 52.5px;
+            }
+
+        }
+    }
+
+    .cm-str-button {
+        height: 59.5px;
+        line-height: 59.5px;
+        padding: 0 17.5px;
+    }
+}
+
 }

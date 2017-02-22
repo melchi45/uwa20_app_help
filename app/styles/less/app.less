@@ -272,6 +272,32 @@ channels-wrapper canvas {
     content: normal;
 }
 
+/* 추후 common에 추가 */
+#channel-selector {
+  float: left;
+
+  li {
+    float: left;
+    margin-right: 5px;
+
+    button {
+      margin-top: 10px;
+    }
+
+    &:first-child {
+      button {
+        &:hover,
+        &:focus,
+        &:active {
+          border: 1px solid #a5a5a5;
+          background-color: #fff;
+          color: #4c4c4c;
+        }
+      }
+    }
+  }
+}
+
 @import "pages/login";
 @import "pages/channel";
 @import "pages/channel-all";

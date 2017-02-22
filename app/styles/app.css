@@ -236,8 +236,11 @@
   .cm-mobile {
     display: inherit !important;
   }
+  #cm-menu-content .cm-center > .cm-setup-col:nth-child(n+2) {
+    margin: 20px 0;
+  }
 }
-​ html,
+html,
 body {
   width: 100%;
   min-height: 0 !important;
@@ -248,19 +251,19 @@ body {
   scrollbar-face-color: #666;
   scrollbar-arrow-color: #999;
 }
-​ html.kind-responsive-live,
+html.kind-responsive-live,
 body.kind-responsive-live,
-​ html.kind-responsive-playback,
+html.kind-responsive-playback,
 body.kind-responsive-playback {
   background-color: black;
 }
-​ html .is-login,
+html .is-login,
 body .is-login {
   overflow-x: hidden;
   overflow-y: auto;
   background-color: #ffffff;
 }
-​ html .wrap,
+html .wrap,
 body .wrap {
   position: relative;
   width: 100%;
@@ -556,8 +559,7 @@ live-playback common {
   width: 100%;
   min-width: 400px;
   height: 200px;
-  padding-top: 19px;
-  padding: 19px 0 15px 0;
+  padding: 19px 0 0 0;
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
@@ -3320,6 +3322,24 @@ channels-wrapper canvas {
 }
 .fc-time-grid-event.fc-short .fc-time:after {
   content: normal;
+}
+/* 추후 common에 추가 */
+#channel-selector {
+  float: left;
+}
+#channel-selector li {
+  float: left;
+  margin-right: 5px;
+}
+#channel-selector li button {
+  margin-top: 10px;
+}
+#channel-selector li:first-child button:hover,
+#channel-selector li:first-child button:focus,
+#channel-selector li:first-child button:active {
+  border: 1px solid #a5a5a5;
+  background-color: #fff;
+  color: #4c4c4c;
 }
 .login-wrapper {
   width: 700px;
@@ -6634,6 +6654,60 @@ rzslider .rz-bubble {
 #sketchbook #sketchbook_svg {
   overflow: visible;
 }
+@media (max-width: 700px) {
+  #sketchbook canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+  #container,
+  #sketchbook {
+    width: 100% !important;
+    /* 영상 비율별 height 설정 */
+    /* 1:1 */
+    /* 21:9 */
+    /* 4:3 */
+    /* 16:9 */
+    /* 4096x2160 */
+    /* 2592x1520 */
+  }
+  #container[style*="height: 640px"],
+  #sketchbook[style*="height: 640px"],
+  #container[height="640"],
+  #sketchbook[height="640"] {
+    height: 100% !important;
+  }
+  #container[style*="height: 278px"],
+  #sketchbook[style*="height: 278px"],
+  #container[height="278"],
+  #sketchbook[height="278"] {
+    height: 43.4375% !important;
+  }
+  #container[style*="height: 480px"],
+  #sketchbook[style*="height: 480px"],
+  #container[height="480"],
+  #sketchbook[height="480"] {
+    height: 75% !important;
+  }
+  #container[style*="height: 360px"],
+  #sketchbook[style*="height: 360px"],
+  #container[height="360"],
+  #sketchbook[height="360"] {
+    height: 56.25% !important;
+  }
+  #container[style*="height: 337px"],
+  #sketchbook[style*="height: 337px"],
+  #container[height="337"],
+  #sketchbook[height="337"] {
+    height: 52.65625% !important;
+  }
+  #container[style*="height: 376px"],
+  #sketchbook[style*="height: 376px"],
+  #container[height="376"],
+  #sketchbook[height="376"] {
+    height: 58.75% !important;
+  }
+}
 .ibox-content .nav > li {
   width: 200px;
   display: inline-block;
@@ -8277,20 +8351,17 @@ img[id^="hm-results-image-"] {
  * Modifiy Carousel Style of angular-boostrap
  * Only live-function
  */
-.kind-responsive-live .cm-live-bottom-menu #cm-icon-list .cm-col {
+.kind-responsive-live #cm-bottom-menu #cm-icon-list .cm-col {
   height: 50px;
 }
-.kind-responsive-live .cm-live-bottom-menu #cm-icon-list #alarm {
+.kind-responsive-live #cm-bottom-menu #cm-icon-list #alarm {
   margin: 0 20px;
 }
-.kind-responsive-live #cm-icon-list {
-  max-height: 50px;
-}
-.kind-responsive-live #cm-icon-list .cm-col {
+.kind-responsive-live #cm-bottom-menu #cm-icon-list .cm-col {
   float: right;
   height: 50px;
 }
-.kind-responsive-live #cm-icon-list .cm-vline {
+.kind-responsive-live #cm-bottom-menu #cm-icon-list .cm-vline {
   float: left;
   width: 1px;
   height: 26px;
@@ -8300,118 +8371,118 @@ img[id^="hm-results-image-"] {
   margin-top: 12px;
   z-index: 1;
 }
-.kind-responsive-live #cm-icon-list .alarm-volume {
+.kind-responsive-live #cm-bottom-menu #cm-icon-list .alarm-volume {
   float: left;
 }
-.kind-responsive-live #cm-icon-list .alarm-volume #alarm {
+.kind-responsive-live #cm-bottom-menu #cm-icon-list .alarm-volume #alarm {
   float: left;
 }
-.kind-responsive-live #cm-icon-list .cm-live-controller {
+.kind-responsive-live #cm-bottom-menu #cm-icon-list .cm-live-controller {
   position: relative;
   max-height: 50px;
   height: 50px;
   float: left;
 }
-.kind-responsive-live #cm-icon-list .cm-live-controller li {
+.kind-responsive-live #cm-bottom-menu #cm-icon-list .cm-live-controller li {
   margin: 0 10px;
   float: left;
 }
-.kind-responsive-live #cm-menu-content .cm-col {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content .cm-col {
   float: left;
   display: inline-table;
   margin: 0 5px;
 }
-.kind-responsive-live #cm-menu-content .cm-col h2 {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content .cm-col h2 {
   width: auto;
 }
-.kind-responsive-live #cm-menu-content > * {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content > * {
   margin: 0 auto;
   max-width: 1024px;
 }
-.kind-responsive-live #cm-menu-content #cm-setup .cm-center {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-setup .cm-center {
   width: 100%;
 }
-.kind-responsive-live #cm-menu-content #cm-setup .cm-center .cm-profile-sel {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-setup .cm-center .cm-profile-sel {
   height: 30px;
   line-height: 30px;
   margin-top: -8px;
 }
-.kind-responsive-live #cm-menu-content #cm-setup .cm-setup-col {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-setup .cm-setup-col {
   width: calc(50% - 10px);
   min-width: 360px;
   padding: 0 20px;
   display: inline-table;
   text-align: left;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center {
   width: 100%;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center > div {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center > div {
   float: left;
   width: 100%;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control {
   float: left;
   display: inline;
   min-width: 230px;
   margin-left: calc(20% - 115px);
   margin-right: calc(20% - 115px);
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control > div {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control > div {
   height: 160px;
   float: left;
   position: relative;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left {
   width: 25px;
   margin-right: 10px;
   /* aa34bcb: Live PTZ UI */
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left button {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left button {
   position: absolute;
   left: 0;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left .cm-near {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left .cm-near {
   top: 0;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left .cm-far {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left .cm-far {
   top: 42px;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left .cm-at .tui-ch-live-ptz-tracking-auto-on {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left .cm-at .tui-ch-live-ptz-tracking-auto-on {
   color: #f37321;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left .cm-ptz-at {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left .cm-ptz-at {
   top: 84px;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left .cm-home {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-left .cm-home {
   top: 126px;
   bottom: 0;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-control-box {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-control-box {
   width: 160px;
   height: 160px;
   background-color: #fff;
   position: relative;
   border: 1px solid #e9e9e9;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-control-box .cm-ptz-line {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-control-box .cm-ptz-line {
   border: 1px dashed #e9e9e9;
   position: absolute;
   z-index: 1;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-control-box .cm-ptz-line.horizontal {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-control-box .cm-ptz-line.horizontal {
   width: 100%;
   height: 0;
   top: calc(50% - 1px);
   left: 0;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-control-box .cm-ptz-line.vertical {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-control-box .cm-ptz-line.vertical {
   width: 0;
   height: 100%;
   top: 0;
   left: calc(50% - 1px);
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-control-box #cm-ptz-control-move-btn {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-control-box #cm-ptz-control-move-btn {
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -8421,36 +8492,36 @@ img[id^="hm-results-image-"] {
   z-index: 2;
   font-size: 24px;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-right {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-right {
   width: 25px;
   margin-left: 10px;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-right button {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-right button {
   position: absolute;
   left: 0;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-right .cm-zoom-in {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-right .cm-zoom-in {
   top: 0;
   left: -3px;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-right .cm-zoom-out {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control .cm-ptz-control-right .cm-zoom-out {
   top: 0;
   left: -3px;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-zoom-slider {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-zoom-slider {
   width: 2px;
   height: 91px;
   position: absolute;
   top: 35px;
   left: 7px;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-zoom-slider .ui-state-default {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-zoom-slider .ui-state-default {
   left: -6px;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-zoom-slider .ui-slider:hover .ui-state-default {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-live-ptz-control #cm-ptz-zoom-slider .ui-slider:hover .ui-state-default {
   left: -7px;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-ptz-tables {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-ptz-tables {
   width: calc(100% - 40%);
   max-width: calc(100% - 270px);
   min-height: 160px;
@@ -8458,41 +8529,41 @@ img[id^="hm-results-image-"] {
   float: left;
   border-left: 1px solid #e2e2e2;
 }
-.kind-responsive-live #cm-menu-content #cm-ptz .cm-center #cm-ptz-tables > div {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #cm-ptz-tables > div {
   width: calc(50% - 20px);
   float: left;
   display: inline;
   margin: 0 10px;
   text-align: left;
 }
-.kind-responsive-live #cm-menu-content #cm-display-slider {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider {
   width: 100%;
   margin-top: -5px;
 }
-.kind-responsive-live #cm-menu-content #cm-display-slider li {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li {
   width: 100%;
   height: 34px;
   line-height: 34px;
 }
-.kind-responsive-live #cm-menu-content #cm-display-slider li h3 {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li h3 {
   display: inline-block;
   width: 90px;
   font-size: 12px;
   color: #000;
   font-weight: normal;
 }
-.kind-responsive-live #cm-menu-content #cm-display-slider li .cm-slider {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li .cm-slider {
   display: inline-block;
   width: calc(100% - 220px);
   vertical-align: top;
 }
-.kind-responsive-live #cm-menu-content #cm-display-slider li span[class^="cm-"] {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li span[class^="cm-"] {
   display: inline-block;
   width: 20px;
   margin: 1px 5px 0;
   text-align: center;
 }
-.kind-responsive-live #cm-menu-content #cm-display-slider li input[type="number"] {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li input[type="number"] {
   width: 50px;
   height: 30px;
   text-align: center;
@@ -8500,16 +8571,16 @@ img[id^="hm-results-image-"] {
   margin-top: 2px;
   float: right;
 }
-.kind-responsive-live #cm-menu-content #cm-display-slider .ui-state-default {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider .ui-state-default {
   top: 12px;
 }
-.kind-responsive-live #cm-menu-content #cm-display-slider li[data-type="SharpnessLevel"] .cm-checkbox-wrap {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li[data-type="SharpnessLevel"] .cm-checkbox-wrap {
   display: inline-block;
 }
-.kind-responsive-live #cm-menu-content #cm-display-slider li[data-type="SharpnessLevel"] .cm-slider {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li[data-type="SharpnessLevel"] .cm-slider {
   width: calc(100% - 245px);
 }
-.kind-responsive-live .live-slider-vertical-input {
+.kind-responsive-live #cm-bottom-menu .live-slider-vertical-input {
   display: inline-block;
   float: left;
   position: relative;
@@ -8518,7 +8589,7 @@ img[id^="hm-results-image-"] {
   width: 45px;
   text-align: center;
 }
-.kind-responsive-live .live-slider-horizontal-input {
+.kind-responsive-live #cm-bottom-menu .live-slider-horizontal-input {
   margin-top: 5px;
   position: relative;
   display: inline-block;
@@ -8609,12 +8680,14 @@ img[id^="hm-results-image-"] {
   .kind-responsive-live #cm-menu-content .cm-status-wrap .cm-status-col {
     width: 80%;
     min-width: 360px;
+    margin: 10px 0;
     position: relative;
     left: 50%;
     transform: translate(-50%);
   }
   .kind-responsive-live #cm-menu-content #cm-setup .cm-col {
     width: 80%;
+    margin: 10px 0;
   }
   .kind-responsive-live #cm-menu-content .cm-profile-table,
   .kind-responsive-live #cm-menu-content #cm-display-slider {
@@ -8684,6 +8757,7 @@ img[id^="hm-results-image-"] {
 .kind-responsive-live.land-scape #cm-bottom-menu #cm-menu-content .cm-status-wrap .cm-status-col {
   width: 80%;
   min-width: 360px;
+  margin: 10px 0;
   position: relative;
   left: 50%;
   transform: translate(-50%);

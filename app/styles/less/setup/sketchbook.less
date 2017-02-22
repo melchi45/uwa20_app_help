@@ -4,3 +4,52 @@
 		overflow: visible;
 	}
 }
+
+@media(max-width: @setup-mobile-max-width){
+	#sketchbook canvas {
+		width: 100% !important;
+		height: 100% !important;
+		display: block;
+	}
+	#container,
+	#sketchbook {
+		width: 100% !important;
+
+		/* 영상 비율별 height 설정 */
+		/* 1:1 */
+		&[style*="height: 640px"],
+		&[height="640"],{
+			height: 100% !important;
+		}
+		
+		/* 21:9 */
+		&[style*="height: 278px"],
+		&[height="278"],{
+			height: 43.4375% !important;
+		}
+		
+		/* 4:3 */
+		&[style*="height: 480px"],
+		&[height="480"],{
+			height: 75% !important;
+		}
+
+		/* 16:9 */
+		&[style*="height: 360px"],
+		&[height="360"],{
+			height: 56.25% !important;
+		}
+
+		/* 4096x2160 */
+		&[style*="height: 337px"],
+		&[height="337"],{
+			height: 52.65625% !important;
+		}
+
+		/* 2592x1520 */
+		&[style*="height: 376px"],
+		&[height="376"],{
+			height: 58.75% !important;
+		}
+	}
+}
