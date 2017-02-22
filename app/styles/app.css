@@ -853,7 +853,6 @@ live-playback common {
 }
 #cm-menu-content .cm-status-wrap .cm-status-col {
   width: calc(50% - 10px);
-  float: left;
   padding: 0 20px;
   text-align: left;
 }
@@ -8680,10 +8679,7 @@ img[id^="hm-results-image-"] {
   .kind-responsive-live #cm-menu-content .cm-status-wrap .cm-status-col {
     width: 80%;
     min-width: 360px;
-    margin: 10px 0;
     position: relative;
-    left: 50%;
-    transform: translate(-50%);
   }
   .kind-responsive-live #cm-menu-content #cm-setup .cm-col {
     width: 80%;
@@ -8757,10 +8753,7 @@ img[id^="hm-results-image-"] {
 .kind-responsive-live.land-scape #cm-bottom-menu #cm-menu-content .cm-status-wrap .cm-status-col {
   width: 80%;
   min-width: 360px;
-  margin: 10px 0;
   position: relative;
-  left: 50%;
-  transform: translate(-50%);
 }
 .kind-responsive-live.land-scape #cm-bottom-menu.cm-show-menu #cm-menu-content {
   left: calc(100% - 400px);
@@ -9152,10 +9145,7 @@ img[id^="hm-results-image-"] {
 .kind-responsive-playback.land-scape #cm-bottom-menu #cm-menu-content .cm-status-wrap .cm-status-col {
   width: 80%;
   min-width: 360px;
-  margin: 10px 0;
   position: relative;
-  left: 50%;
-  transform: translate(-50%);
 }
 .kind-responsive-playback.land-scape #cm-bottom-menu #cm-menu-content #cm-playback-event .cm-center {
   left: 50%;
