@@ -203,7 +203,7 @@ kindFramework
 				var searchInfo = {
 					'fromTime' : timeInfo.date+" "+timeInfo.startTime,
 					'toTime' : timeInfo.date+" "+timeInfo.endTime,
-					'type' : inputData.eventList,
+					'eventSelect' : inputData.eventList,
 					'overlappedId' : overlappedId,
 					'channel' : channelId
 				};

@@ -571,7 +571,7 @@ kindFramework.controller('dptzSetupCtrl', function ($scope, $interval, $timeout,
   }
 
   $scope.addPreset = function() {
-    if($scope.presetsetup.selectedPresetName === null)
+    if($scope.presetsetup.selectedPresetName === null || $scope.presetsetup.selectedPresetName === undefined)
     {
       showError('lang_msg_selValidPresetNumber');
       return;

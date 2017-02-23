@@ -292,38 +292,6 @@
 
 
     @media screen and (max-width:799px) {
-
-        #cm-menu-content {
-            .cm-col {
-                margin: 0 2px;
-            }
-        }
-
-        #cm-playback-event {
-            & > .cm-center {
-                width: 100%;
-            }
-        }
-
-        #volume-control {
-            float: left;
-            margin: 0 10px;
-            height: 50px;
-            clear: both;
-            margin-left: 50%;
-            transform: translateX(-50%);
-            margin-top: -5px;
-        }
-
-        .cm-control-icon {
-            margin: 0 10px;
-
-            &.cm-list-2 li {
-                margin: 0px 5px;
-            }
-        }
-
-
         #cm-bottom-menu {
             height: 100px;
 
@@ -334,6 +302,42 @@
             &.cm-full-menu {
                 .info-toggle {
                     position: absolute;
+                }
+            }
+
+
+            #cm-icon-list {
+                height: auto;
+
+                .cm-control-icon {
+                    margin: 0 10px;
+
+                    &.cm-list-2 li {
+                        margin: 0px 5px;
+                    }
+                }
+
+                #volume-control {
+                    float: left;
+                    margin: 0 10px;
+                    height: 50px;
+                    clear: both;
+                    margin-left: 50%;
+                    transform: translateX(-50%);
+                    margin-top: -5px;
+                }
+            }
+
+
+            #cm-menu-content {
+                .cm-col {
+                    margin: 0 2px;
+                }
+
+                #cm-playback-event {
+                    & > .cm-center {
+                        width: 100%;
+                    }
                 }
             }
         }
