@@ -154,7 +154,14 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     }else if(ptzinfo.type ==='ZoomOnly'){
                         scope.showPTZControl = false;
                         scope.showPTZControlLabel = 'lang_hide';
-                        scope.showPTZControlPreset = false;
+                        if (ptzinfo.showPTZControlPreset === true)
+                        {
+                            scope.showPTZControlPreset = true;
+                        }
+                        else
+                        {
+                            scope.showPTZControlPreset = false;
+                        }
                         scope.showPTZControlAT = false;
                         scope.showPTZControlBLC = false;
                         scope.showPTZControlDPTZ = false;
