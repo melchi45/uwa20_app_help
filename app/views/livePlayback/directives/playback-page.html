@@ -11,7 +11,7 @@
   <div class="cm-row" id="cm-icon-list" ng-show="enablePlayback">
     <div class="cm-center">
 
-      <!-- <live-playback-channel-selector></live-playback-channel-selector> -->
+      <live-playback-channel-selector ng-hide="channelCount <= 1"></live-playback-channel-selector>
       <ul class="info-toggle">
         <li ng-class="{ 'cm-active' : showMenuContent }">
           <button 

@@ -41,6 +41,7 @@
                 max-height: 50px;
                 height: 50px;
                 float: left;
+                margin: 0 10px;
 
                 li {
                     margin: 0 10px;
@@ -85,6 +86,23 @@
                     display: inline-table;
                     text-align: left;
                 }
+
+                .cm-table {
+                    width: 100%;
+
+                    th {
+                        width: 35%;
+                        text-align: left;
+                    }
+
+                    td {
+                        width: 65%;
+                    }
+
+                    tr {
+                        height: 33px;
+                    }
+                } 
             }
 
             #cm-ptz {
@@ -248,48 +266,67 @@
                         display: inline-table;
 
                         .cm-table {
+                            width: 100%;
+                            position: relative;
+        
                             ::-webkit-scrollbar {
                                 width: 12px;
                                 height: 1em;
                             }
                             ::-webkit-scrollbar-button {
-                                background: #999;
-                                display: none;
-                            }
-                            ::-webkit-scrollbar-track-piece {
-                                background: #ccc;
-                            }
-                            ::-webkit-scrollbar-thumb {
-                                background: #666;
-                            }​
+                                &:vertical {
+                                    /*
+                                    background: url('https://pixabay.com/static/uploads/photo/2015/10/07/10/55/arrow-975992_960_720.png') no-repeat center center;
+                                    background-size:cover;
+                                    position: relative;
 
-                            thead, tbody {
-                                display: block;
-                            }
-
-                            thead {
-                                display: block;
-
-                                & > tr > *:last-child {
-                                    width: 1.2%;
+                                    &::after {
+                                        content: "";
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        border-color: #505050 transparent;
+                                        border-left: 2px solid;
+                                        border-top: 3px solid;
+                                        border-right: 2px solid;
+                                    }
+                                    */
+                                    background: #666;
                                 }
                             }
-
-                            tbody {
-                                width: 100%;
-                                position: relative;
-                                max-height: 95px;
-                                height: 95px;
-                                overflow: auto;
-                                overflow-x: hidden;
-                                overflow-y: scroll;
+                            ::-webkit-scrollbar-track-piece {
+                                background: #f1f1f1;
                             }
+                            ::-webkit-scrollbar-thumb {
+                                background: #c1c1c1;
+                            }​
+
+                            /* thumb 이후에 스타일이 죽습니다 */
+                            dummy {}
 
                             th, td {
                                 width: 1%;
                                 box-sizing: border-box;
                             }
 
+                            thead {
+                                display: block;
+
+                                & > tr > *:last-child {
+                                    width: 1.23% !important;
+                                }
+                            }
+
+                            tbody {
+                                width: 100%;
+                                height: 95px;
+                                position: relative;
+                                max-height: 95px;
+                                display: block;
+                                overflow: auto;
+                                overflow-x: hidden;
+                                overflow-y: scroll;
+                            }
                         } 
                     } 
                 } 
@@ -351,61 +388,57 @@
                 }
             } 
         }
-
-        
-        .live-slider-vertical-input {
-            display: inline-block;
-            float:left;
-            position: relative;
-            top: -97px;
-            left: 20px;
-            width: 45px;
-            text-align:center;
-        }
-
-        .live-slider-horizontal-input{
-            margin-top: 5px;
-            position: relative;
-            display: inline-block;
-            width:45px;
-            left: 20px;
-            text-align:center
-        }
-
     } 
 
     @media screen and (max-width:799px) {
-        #cm-icon-list {
-            max-height: none;
+        #cm-bottom-menu {
+            height: 150px;
+            
+            #cm-icon-list {
+                max-height: none;
+                height: 150px;
 
-            .info-toggle {
-                width: 100vw;
-                position: absolute;
-                left: 50%;
-                bottom: -1px;
-                transform: translateX(-50%);
-            }
+                .info-toggle {
+                    width: 100vw;
+                    position: absolute;
+                    left: 50%;
+                    bottom: -1px;
+                    transform: translateX(-50%);
+                }
 
-            .cm-live-controller {
-                position: relative;
-                max-height: 50px;
-                height: 100px;
+                .cm-live-controller {
+                    position: relative;
+                    max-height: 50px;
+                    width: 100%;
+                    height: 100px;
+                    display: inline-table;
 
-                li {
-                    margin: 0 10px;
-                    float: left;
+                    li {
+                        display: inline-table;
+                        float: none;
+                        line-height: 0;
+                    }
+                }
+
+                .alarm-volume {
+                    position: relative;
+                    transform: translateX(-50%);
+                    left: 50%;
+                }
+                
+                .cm-vline {
+                    display: none;
+                }
+
+                .cm-col {
+                    margin: 0;
+                }
+
+                .cm-list-2 {
+                    transform: translateY(-50px);
                 }
             }
 
-            .alarm-volume {
-                position: relative;
-                transform: translateX(-50%);
-                left: 50%;
-            }
-        }
-
-
-        #cm-bottom-menu {
             &.cm-full-menu {
                 height: 150px;
 

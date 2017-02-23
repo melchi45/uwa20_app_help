@@ -23,6 +23,7 @@ kindFramework
           'setPlaySpeed':'&',
           'timelineController' : '=',
           'pageController' : '=',
+          'channelCount' : '=',
         },
         controller : function($scope) {
         },
