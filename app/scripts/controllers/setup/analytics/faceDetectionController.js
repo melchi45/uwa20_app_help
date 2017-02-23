@@ -1329,6 +1329,14 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         // console.log($scope.FD);
     }, $scope);
 
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+      console.log(index);
+    }, $scope);
+
+    $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
+      console.log(response);
+    }, $scope);
+
     $scope.detectionAreaDisplayAll = false;
     $scope.changeDisplayAll = function(val){
         $scope.detectionAreaDisplayAll = val;

@@ -134,7 +134,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                             $(".full-screen").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
                                         }else{
                                             $(".full-screen").css({ width: "100%" });
-                                            $(".full-screen kind_stream").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
+                                            // $(".full-screen kind_stream").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
                                         }
 
                                         if(UniversialManagerService.getViewMode() != 0){

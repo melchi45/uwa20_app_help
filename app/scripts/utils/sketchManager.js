@@ -408,6 +408,7 @@
                 document.addEventListener("mousemove", mdSize.mdSizeMousemove, false);
                 document.addEventListener("mouseup", mdSize.mdSizeMouseup, false);
             } else if (
+                sketchInfo.workType === "qmArea" || 
                 sketchInfo.workType === "mdArea" || 
                 sketchInfo.workType === "fdArea" || 
                 sketchInfo.workType === "smartCodec" || 
@@ -595,7 +596,7 @@
             }
             if (sketchInfo.workType === "mdSize") {
                 return mdSize.get();
-            } else if (sketchInfo.workType === "mdArea" || sketchInfo.workType === "fdArea" || sketchInfo.workType === "smartCodec" || sketchInfo.workType === "simpleFocus") {
+            } else if (sketchInfo.workType === "qmArea" || sketchInfo.workType === "mdArea" || sketchInfo.workType === "fdArea" || sketchInfo.workType === "smartCodec" || sketchInfo.workType === "simpleFocus") {
                 if (sketchInfo.shape === 0) {
                     return mdArea.get();
                 }else{
@@ -619,7 +620,7 @@
             }
             if (sketchInfo.workType === "mdSize") {
                 if (mdSize !== null) mdSize.set(data, flag);
-            } else if (sketchInfo.workType === "mdArea" || sketchInfo.workType === "fdArea" || sketchInfo.workType === "smartCodec" || sketchInfo.workType === "simpleFocus") {
+            } else if (sketchInfo.workType === "qmArea" || sketchInfo.workType === "mdArea" || sketchInfo.workType === "fdArea" || sketchInfo.workType === "smartCodec" || sketchInfo.workType === "simpleFocus") {
                 if (sketchInfo.shape === 0) {
                     if (mdArea !== null) mdArea.set(data, flag);
                 }else{
@@ -640,7 +641,7 @@
         changeFlag: function(data) {
             if (sketchInfo.workType === "mdSize") {
                 mdSize.changeMdsizeFlag(data);
-            } else if (sketchInfo.workType === "mdArea" || sketchInfo.workType === "fdArea") {
+            } else if (sketchInfo.workType === "qmArea" || sketchInfo.workType === "mdArea" || sketchInfo.workType === "fdArea") {
                 mdArea.changeMdDetectFlag(data);
             } else if (sketchInfo.workType === "vaEntering" || sketchInfo.workType === "vaAppearing") {}
         },
@@ -2258,6 +2259,7 @@
                 };
 
                 if(
+                    sketchInfo.workType === "qmArea" ||
                     sketchInfo.workType === "mdArea" ||
                     sketchInfo.workType === "fdArea"
                     ){
@@ -2326,6 +2328,7 @@
              * IVA/Common, Face Detection/Area, People Counting/Setup/Calibration Tab
              */
             if(
+				sketchInfo.workType !== "qmArea" &&
                 sketchInfo.workType !== "commonArea" && //IVA Common
                 sketchInfo.workType !== "calibration" && //People Counting Calibration
                 !(sketchInfo.workType === "fdArea" && sketchInfo.color === 0)//Face Detection
@@ -2705,6 +2708,7 @@
                                 (sketchInfo.hasOwnProperty('mode') && coordinates[i].enExAppear === sketchInfo.mode)
                                 )
                             ) || 
+                            (sketchInfo.workType === "qmArea" && coordinates[i].enExAppear === sketchInfo.color) || 
                             (sketchInfo.workType === "mdArea" && coordinates[i].enExAppear === sketchInfo.color) || 
                             (sketchInfo.workType === "fdArea" && coordinates[i].enExAppear === sketchInfo.color)
                             ) {
@@ -2737,7 +2741,7 @@
 
                         coordinates[i].points = _self.getConvertedPoints(data[i], 'set', i);
 
-                        if(sketchInfo.workType === "mdArea" || sketchInfo.workType === "fdArea"){
+                        if(sketchInfo.workType === "qmArea" || sketchInfo.workType === "mdArea" || sketchInfo.workType === "fdArea"){
                             enExAppear = sketchInfo.color;
                         }else if(sketchInfo.workType === "vaAppearing" && sketchInfo.hasOwnProperty('mode')){
                             enExAppear = sketchInfo.mode;

@@ -655,7 +655,11 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
 
         if (method === 'POST')
         {
+          if(url.indexOf("firmwareupdate") !== -1){
+            xhr.timeout = 360000;
+          }else{
             xhr.timeout = 300000;
+          }
         }
         else if (url.indexOf("configbackup") !== -1)
         {
