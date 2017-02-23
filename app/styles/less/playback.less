@@ -544,8 +544,9 @@
     }
 
 
-@media(min-width:2300px) and (min-height:1294px) {    
+@media(min-width:2300px) and (min-height:1294px) {
 
+    /* Main UI Style */
     #cm-video {
         height: calc(~"100% - 460px") !important;
 
@@ -555,6 +556,23 @@
     }
 
     #cm-bottom-menu {
+        &.cm-full-menu {
+            height: 75px;
+
+            &.cm-show-menu {
+                height: 375px;
+            }
+
+            #cm-menu-content {
+                height: 300px;
+
+                h2 {
+                    span {
+                        font-size: 21px;
+                    }
+                }
+            }
+        }
 
         #cm-icon-list {
             height: 75px;
@@ -652,10 +670,9 @@
         height: 51px;
         line-height: 51px;
         padding: 0 15px;
-        font-size: 20px;
+        font-size: 17px;
     }
 
-    /*  .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly.vis-item-normal .vis-item-overflow  */
 
     .vis-timeline {
     &.vis-bottom {
@@ -712,9 +729,6 @@
     }
   }
       
-
-    /* .vis-custom-time div */
-
     .vis-custom-time {
         div {
             width: 36px !important;
@@ -745,6 +759,98 @@
             font-size: 15px;
         }
     }
+
+    
+    /* Event-content UI style */
+
+    #cm-menu-content {
+        h2 {
+            font-size: 24px;
+            margin-bottom: 16px;    
+        }
+
+        .cm-event-all-wrap {
+            width: 130px;
+
+            label {
+                font-size: 17px;
+            }
+        }
+        
+        .cm-event-list-wrap {
+            width: 960px;
+
+            .cm-checkbox-wrap {
+                width: 240px;
+                height: 30px;
+
+                label {
+                    font-size: 17px;
+                }
+            }
+        }
+
+        .overlap-search-container {
+            label {
+                font-size: 17px;
+            }
+        }
+
+        .cm-timeboxes {
+            input {
+                width: 52px;
+                height: 42px;
+            }
+        }
+    }
+
+    .cm-submit-button {
+        width: 150px;
+        height: 51px;
+        font-size: 20px;
+    }
+
+    .cm-cancel-button {
+        width: 150px;
+    }
+
+    /* .kind-responsive-playback #cm-playback-datepicker .cm-playback-all-day */
+
+    // Date-content UI style
+    #cm-playback-datepicker {
+        .cm-center {
+            width: 830px;
+
+            .cm-datepicker-section {
+                &:first-child {
+                    width: 35%;
+
+                    table {
+                        width: 80% !important;
+
+                        th {
+                            font-size: 14px;
+                        }
+
+                        .btn-sm {
+                            font-size: 14px;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    width: 55%;
+                    margin: 15px 0px;
+
+
+                    .cm-playback-all-day {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 
@@ -759,6 +865,18 @@
     }
 
     #cm-bottom-menu {        
+        &.cm-full-menu {
+            &.cm-show-menu {
+                height: 420px;
+            }
+
+            #cm-menu-content {
+                height: 300px;
+
+
+            }
+        }
+
         #cm-icon-list {
             height: 87.5px;
 
