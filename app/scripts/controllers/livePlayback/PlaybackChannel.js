@@ -29,6 +29,7 @@ kindFramework
     var isChannelPlayerInit = false;
     var isTimelineInit = false;
     $scope.pageController = {};
+    $scope.playbackPage = {};
 
     BaseChannel.prototype.locationChange = function(next) {
       if( next.indexOf('playbackChannel') === -1 ) {
@@ -147,6 +148,9 @@ kindFramework
       $rootScope.$emit('changeLoadingBar', true);
       initStreaming();
      
+      $scope.playbackPage.MaxChannel = sunapiAttributes.MaxChannel;
+      //TODO : below is only for test.
+      //$scope.playbackPage.MaxChannel = 4;
       $scope.domControls.enablePlayback = true;
       $scope.timelineController.create();
       $scope.timelineController.changeCurrnetDate({'date':searchData.getSelectedDate()});
@@ -385,7 +389,8 @@ kindFramework
 
     /* Channel Selector Direction */
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-      console.log(index);
+      searchData.setChannelId(index);
+      PlaybackInterface.preparePlayback(index);
     }, $scope);
 
     $rootScope.$saveOn('channelSelector:changeQuadView', function(event, response){
