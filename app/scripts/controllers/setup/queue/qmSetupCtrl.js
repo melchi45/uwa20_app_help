@@ -52,17 +52,6 @@ kindFramework.controller('QMSetupCtrl',
         return COMMONUtils.getTranslatedOption(Option);
     };
 
-	/* Counting Start
-	----------------------------------------------*/
-
-	// function changeModeToArrow(mode){
-	// 	return mode === "LeftToRightIn" ? 0 : 1;
-	// }
-
-	// function changeArrowToMode(arrow){
- // 		return arrow === 'L' ? "LeftToRightIn" : "RightToLeftIn";
-	// }
-
 	function setMaxResolution(){
         return pcSetupService.setMaxResolution(mAttr.EventSourceOptions);
 	}
@@ -237,13 +226,11 @@ kindFramework.controller('QMSetupCtrl',
 		maxArr: {},
 		start: function(){
 			$scope.queueLevelSection.stop();
+			$scope.queueLevelSection.reload();
 
 			gaugeTimer = setInterval(function(){
 				$scope.queueLevelSection.change();
 			}, 3000);
-
-			$scope.queueLevelSection.resetBar();
-			$scope.queueLevelSection.setPosition();
 		},
 		stop: function(){
 			if(gaugeTimer !== null){
@@ -323,6 +310,9 @@ kindFramework.controller('QMSetupCtrl',
 				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].HighPeople = setInt(val);
 			}
 
+			$scope.queueLevelSection.reload();
+		},
+		reload: function(){
 			$scope.queueLevelSection.getRange();
 			$scope.queueLevelSection.resetBar();
 			$scope.queueLevelSection.bindHtml();
@@ -411,8 +401,6 @@ kindFramework.controller('QMSetupCtrl',
 	//
 	$scope.currentTapStatus = [true, false];
 	$scope.changeTabStatus = function(value){
-		var flag = '';
-		
 		for(var i = 0, len = $scope.currentTapStatus.length; i < len; i++){
 			if(i === value){
 				$scope.currentTapStatus[i] = true;
@@ -423,16 +411,16 @@ kindFramework.controller('QMSetupCtrl',
 
 		//Configuration
 		if($scope.currentTapStatus[0] === true){
-			flag = 'area';
+			$scope.sketchinfo = getSketchinfo('area');
+			$timeout(function(){
+				sketchbookService.activeShape($scope.queueListSection.selectedQueueId);
+			});
 		}else if($scope.currentTapStatus[1] === true){
-			flag = 'calibration';
+			$scope.sketchinfo = getSketchinfo('calibration');
+			$timeout(function(){
+				sketchbookService.activeShape(0);
+			});
 		}
-
-		$scope.sketchinfo = getSketchinfo(flag);
-
-		$timeout(function(){
-			sketchbookService.activeShape($scope.queueListSection.selectedQueueId);
-		});
 	};
 
 	function getSketchinfo(flag){
