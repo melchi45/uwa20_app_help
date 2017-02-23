@@ -143,6 +143,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
       "taskmanager": "NWC",
       "openplatform":"NWC",
       "peoplecounting": "common",
+      "queue": "common",
       "heatmap": "common",
       "setup": "common",
       "statistics": "common",
@@ -312,6 +313,9 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           }else{
             retVal = false;
           }
+        }
+        else if(menuId === "queue" || menuId === "statistics"){
+          retVal = true;
         }
         else if(menuId === "heatmap" || menuId === "statistics"){
           if(mAttr.HeatMap){
