@@ -19,20 +19,6 @@
 }
 
 
-// Size
-.cm-w-auto { width: auto; }
-.cm-w-full { width: 100%; }
-.cm-W-full { width: 100% !important; }
-.cm-w-50 { width: 50px; }
-.cm-w-100 { width: 100px; }
-
-.cm-h-full { height: 100%; }
-.cm-H-full { height: 100% !important; }
-.cm-h-50 { height: 50px; }
-.cm-h-100 { height: 100px; }
-.cm-h-150 { height: 150px;}
-
-
 // Margin
 .cm-m0 { margin: 0; }
 .cm-m0-10 { margin: 0 10px; }
@@ -55,8 +41,8 @@
 
 // Padding
 .cm-p0 { padding: 0; }
-.cm-p010 { padding: 0 10px; }
-.cm-p100 { padding: 10px 0; }
+.cm-p0-10 { padding: 0 10px; }
+.cm-p10-0 { padding: 10px 0; }
 
 .cm-pt10 { padding-top: 10px; }
 .cm-pt20 { padding-top: 20px; }
@@ -243,6 +229,7 @@ kind_stream {
 }
 
 .full-screen {
+    width: 100% !important;
     display: block;
     background-color: black;
 
@@ -461,7 +448,6 @@ live-playback common {
     height: 50px;
     text-align: center;
     background-color: #fff;
-    overflow: hidden;
 
     &.cm-show-menu {
         height: 300px;
@@ -991,6 +977,7 @@ live-playback common {
 
     &.cm-fullscreen {
         background-color: #000;
+        width: 100% !important; 
     }
 }
 
@@ -1912,5 +1899,21 @@ live-playback common {
         &.cm-show-menu {
             height: 525px;
         }
+    }
+}
+
+#cm-channel-selector {
+    float: left;
+
+    li {
+        button {
+            margin-top: 10px;
+        }
+    }
+
+    > button {
+        float: left;
+        margin-top: 10px;
+        margin-right: 10px;
     }
 }
