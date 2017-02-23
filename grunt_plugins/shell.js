@@ -39,7 +39,7 @@ module.exports = function(injection){
 					var data = grunt.file.read(filePath);
 
 					data = data.replace('<link href="styles/less/app.less" rel="stylesheet/less">', '');
-					data = data.replace('<script src="base/kind/base_components/less/dist/less.js"></script>', '');
+					data = data.replace('<script src="external-lib/less/dist/less.js"></script>', '');
 
 					grunt.file.write(filePath, data);
 					//Temporary Added
