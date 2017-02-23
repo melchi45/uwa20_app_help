@@ -41,6 +41,7 @@
                 max-height: 50px;
                 height: 50px;
                 float: left;
+                margin: 0 10px;
 
                 li {
                     margin: 0 10px;
@@ -411,37 +412,54 @@
     } 
 
     @media screen and (max-width:799px) {
-        #cm-icon-list {
-            max-height: none;
+        #cm-bottom-menu {
+            height: 150px;
+            
+            #cm-icon-list {
+                max-height: none;
+                height: 150px;
 
-            .info-toggle {
-                width: 100vw;
-                position: absolute;
-                left: 50%;
-                bottom: -1px;
-                transform: translateX(-50%);
-            }
+                .info-toggle {
+                    width: 100vw;
+                    position: absolute;
+                    left: 50%;
+                    bottom: -1px;
+                    transform: translateX(-50%);
+                }
 
-            .cm-live-controller {
-                position: relative;
-                max-height: 50px;
-                height: 100px;
+                .cm-live-controller {
+                    position: relative;
+                    max-height: 50px;
+                    width: 100%;
+                    height: 100px;
+                    display: inline-table;
 
-                li {
-                    margin: 0 10px;
-                    float: left;
+                    li {
+                        display: inline-table;
+                        float: none;
+                        line-height: 0;
+                    }
+                }
+
+                .alarm-volume {
+                    position: relative;
+                    transform: translateX(-50%);
+                    left: 50%;
+                }
+                
+                .cm-vline {
+                    display: none;
+                }
+
+                .cm-col {
+                    margin: 0;
+                }
+
+                .cm-list-2 {
+                    transform: translateY(-50px);
                 }
             }
 
-            .alarm-volume {
-                position: relative;
-                transform: translateX(-50%);
-                left: 50%;
-            }
-        }
-
-
-        #cm-bottom-menu {
             &.cm-full-menu {
                 height: 150px;
 
