@@ -106,7 +106,8 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     {
         var defer = $q.defer();
         $scope.MaxAlarmOutput = mAttr.MaxAlarmOutput;
-
+        $scope.PTZModel = mAttr.PTZModel;
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
         if (mAttr.EnableOptions !== undefined)
         {
             $scope.EnableOptions = mAttr.EnableOptions;

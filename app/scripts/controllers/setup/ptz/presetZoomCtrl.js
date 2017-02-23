@@ -6,19 +6,52 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
 
     var pageData = {};
         
-    $scope.PTZPresetOptionsList = [];       
+    $scope.PTZPresetOptionsList = [];
     $scope.SelectedChannel = 0;
-    $scope.CurrentPreset = 1;    
+    $scope.CurrentPreset = 1;
     $scope.PTZPresetOptions = {};
-    $scope.PresetName = "";     
+    $scope.PresetName = "";
 
+    $scope.presetCheckbox = function(){
+        if (typeof $scope.PTZPresets !== 'undefined'){
+            var presetCount = $scope.PTZPresets.length;
+            var selectedCount = 0;
+            for(var index in $scope.PTZPresets){
+                var preset = $scope.PTZPresets[index];
+                if(preset.SelectedPreset) selectedCount++;
+            }
+            $scope.PTZPreset.checkAll = presetCount == selectedCount;
+        }
+    };
+    
+    $scope.checkAll = function(){
+        if (typeof $scope.PTZPresets !== 'undefined'){
+            for(var index in $scope.PTZPresets){
+                var preset = $scope.PTZPresets[index];
+                preset.SelectedPreset = $scope.PTZPreset.checkAll;
+            }
+        }
+    };
     function getAttributes()
-    {    
+    {
         $scope.OnlyNumStr = mAttr.OnlyNumStr;
        
+        $scope.PTZPreset = {};
+        $scope.PTZPreset.checkAll = false;
+
+        if (mAttr.PresetActions !== undefined)
+        {
+            $scope.PresetActions = mAttr.PresetActions;
+        }
+
+        if (mAttr.PresetTrackingTime !== undefined)
+        {
+            $scope.PresetTrackingTime = mAttr.PresetTrackingTime;
+        }
+        
         if (mAttr.PresetNameMaxLen !== undefined) {
             $scope.PresetNameMaxLen = parseInt(mAttr.PresetNameMaxLen);
-        }  
+        }
         try {
             $scope.LastPositionAttr = {};
             $scope.LastPositionAttr.RememberLastPosition = mAttr.RememberLastPosition;
@@ -30,12 +63,108 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
         }
     }
 
+    function getPresets() {
+        var getData = {};
+        return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=view', getData,
+            function (response) {
+                $scope.PTZPresets = response.data.PTZPresets[0].Presets;
+            },
+            function (errorData) {
+                if (errorData !== "Configuration Not Found") {
+                    console.log(errorData);
+                } else {
+                    $scope.PTZPresets = [];
+                    $scope.PTZPreset.checkAll = false;
+                }
+            }, '', true);
+    }
+
+    function removePresets(presetFilter)
+    {
+        var getData = {};
+
+        getData.Preset = presetFilter;
+
+        SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=remove', getData,
+            function (response) {
+                view();
+            },
+            function (errorData) {
+                view();
+                console.log(errorData);
+            }, '', true);
+    }
+
+    function gotoPreset(Preset)
+    {
+        var getData = {};
+
+        getData.Channel = 0;
+        getData.Preset = Preset;
+
+        return SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=preset&action=control', getData,
+                function (response)
+                {
+            
+                },
+                function (errorData)
+                {
+                    console.log(errorData);
+                }, '', true);
+    }
+    
+    function remove()
+    {
+        if (typeof $scope.PTZPresets !== 'undefined')
+        {
+            var presetFilter = "";
+
+            var selectedCount = 0;
+            for (var i = 0; i < $scope.PTZPresets.length; i++)
+            {
+                if ($scope.PTZPresets[i].SelectedPreset)
+                {
+                    presetFilter += $scope.PTZPresets[i].Preset + ',';
+                    selectedCount++;
+                }
+            }
+            
+            if (selectedCount && (selectedCount === $scope.PTZPresets.length))
+            {
+                presetFilter = 'All';
+                COMMONUtils.ShowConfirmation(function(){
+                    removePresets(presetFilter);
+                },'lang_msg_confirm_remove_profile','sm');
+            }
+            else
+            {
+                if (presetFilter.length)
+                {
+                    presetFilter = presetFilter.substring(0, presetFilter.length - 1);
+                    COMMONUtils.ShowConfirmation(function(){
+                        removePresets(presetFilter);
+                    },'lang_msg_confirm_remove_profile','sm');
+                }
+            }
+        }
+    }
+ 
+    $scope.$watch('LastPosition.RememberLastPosition',function(newVal, oldVal){
+        if (typeof newVal !== 'undefined'){
+            $scope.ptzinfo = {
+                autoOpen: true,
+                type: 'preset',
+                disablePosition: newVal
+            };
+        }
+    });
+    
     function view()
     {
         getAttributes();
         var promises = [];
-        
         promises.push(PresetView);
+        promises.push(getPresets);
         if (typeof mAttr.RememberLastPosition !== 'undefined'){
             promises.push(getLastPosition);
         }
@@ -79,7 +208,8 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
 
                 $scope.ptzinfo = {
                     autoOpen: true,
-                    type: 'ZoomOnly'
+                    type: 'ZoomOnly',
+                    showPTZControlPreset:true
                 };
             },
             function (errorData) {
@@ -127,115 +257,7 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
             }, '', true);
 
     }
-
-    $scope.PresetAdd = function () {
-        var _functionlist = [];
-        if ($scope.PresetName === "") {
-            COMMONUtils.ShowError("lang_msg_validPresetName");
-            return;
-        }
-        _functionlist.push(function(){
-            var setData = {};
-            setData.Preset = GetCurrentPresetNum($scope.CurrentPreset);
-            setData.Name = $scope.PresetName;
-            return SunapiClient.get("/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=add", setData,
-                function () {},
-                function (errorData) {
-                    console.log(errorData);
-                }, "", true);
-        });
-
-        if(_functionlist.length > 0)
-        {
-            $q.seqAll(_functionlist).then(
-                function(){
-                    COMMONUtils.ShowInfo("Add");
-                    PresetView();
-                },
-                function(errorData){
-                    console.log(errorData);
-                }
-            );
-        }
-    };
-
-    $scope.PresetRemove = function () {
-        var _functionlist = [];
-        var presetname = GetCurrentPresetName($scope.CurrentPreset);
-        if (presetname == "") {
-            COMMONUtils.ShowError("lang_msg_selValidPresetNumber");
-            return;
-        }
-
-        _functionlist.push(function(){
-            var setData = {};
-            setData.Preset = GetCurrentPresetNum($scope.CurrentPreset);
-            return SunapiClient.get("/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=remove", setData,
-                function () { },
-                function (errorData) {
-                    console.log(errorData);
-                }, "", true);
-        });
-        if(_functionlist.length > 0)
-        {
-            $q.seqAll(_functionlist).then(
-                function(){
-                    COMMONUtils.ShowInfo("Remove");
-                    PresetView();
-                },
-                function(errorData){
-                    console.log(errorData);
-                }
-            );
-        }
-    };
-
-    $scope.PresetControl = function () {
-        var _functionlist = [];        
-
-        var presetnum = GetCurrentPresetNum($scope.CurrentPreset);
-        
-        if (presetnum == "") {
-            COMMONUtils.ShowError("lang_msg_selValidPresetNumber");
-            return;
-        }
-        
-        _functionlist.push(function(){
-            var setData = {};
-            setData.Channel = 0;
-            setData.Preset = presetnum;
-            
-            return SunapiClient.get("/stw-cgi/ptzcontrol.cgi?msubmenu=preset&action=control", setData,
-                function () {},
-                function (errorData) {
-                    console.log(errorData);
-                }, "", true);
-        });
-
-        if(_functionlist.length > 0)
-        {
-            $q.seqAll(_functionlist).then(
-                function(){
-                },
-                function(errorData){
-                    console.log(errorData);
-                }
-            );
-        }
-    };
-
-    function GetCurrentPresetName(preset) {
-        var delindex = preset.indexOf(":");
-        var CurrentPresetName = preset.substr(delindex + 1);
-        return CurrentPresetName;
-    }
-
-    function GetCurrentPresetNum(preset) {
-        var delindex = preset.indexOf(":");
-        var presetnum = parseInt(preset.substr(0, delindex));
-        return presetnum;
-    }
-    
+  
     function validationLastPosition()
     {
         if (Number($scope.LastPosition.RememberLastPositionDuration) > 
@@ -283,8 +305,26 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
                 }, '', true);
     }
     
+    $scope.presetSelected = function (preset)
+    {
+        gotoPreset(preset);
+    };
     
+    $scope.$saveOn('changePTZPreset', function(args, preset){
+    	var promises = [];
+        promises.push(getPresets);
+    	$q.seqAll(promises).then(
+    			function(){
+                    gotoPreset(preset);
+    			},
+    			function(errorData){
+                    COMMONUtils.ShowInfo(errorData);
+    			}
+    	);
+
+    });
     
+$scope.remove = remove;
 $scope.view = view;
 
     (function wait(){

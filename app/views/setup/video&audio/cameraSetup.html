@@ -1255,7 +1255,8 @@
                                     <div class="wn5-setup-section-article-content">
                                         <div ng-if="PTZPositionEnable">
                                             <input type="checkbox" ng-model="Overlay.PTZPositionEnable" id="OverlayPTZPositionEnable" ng-change="overlayChangeHandler()">
-                                            <label for="OverlayPTZPositionEnable">{{ 'lang_ptzPosition' | translate }}</label>
+                                            <label for="OverlayPTZPositionEnable" ng-if="!ZoomOnlyModel">{{ 'lang_ptzPosition' | translate }}</label>
+                                            <label for="OverlayPTZPositionEnable" ng-if="ZoomOnlyModel">{{ 'lang_zoom_magnification' | translate }}</label>
                                         </div>
                                         <div ng-if="PresetNameEnable">
                                             <input type="checkbox" ng-model="Overlay.PresetNameEnable" id="OverlayPresetNameEnable" ng-change="overlayChangeHandler()">

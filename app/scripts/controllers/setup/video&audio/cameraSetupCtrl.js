@@ -5925,8 +5925,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             focusView();
         }
 
-        if (mAttr.PTZModel === true) {
-            ptzsettingsView();
+        if (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true) {
+        	ptzsettingsView();
+        }
+        
+      	if (mAttr.PTZModel === true) {
             ptzPresetsView();
             presetImageConfigView();
         }

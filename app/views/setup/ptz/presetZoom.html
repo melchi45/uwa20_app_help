@@ -7,7 +7,7 @@
             <sketchbook class="wn5-setup-preview-video" videoinfo='videoinfo' style="margin-bottom: 10px;"></sketchbook>
             
             <!-- PTZ Control -->
-            <div class="ptz-control_box ptz-control_ptz-menu-width">
+            <div class="ptz-control_box">
                 <ptz-control ptzinfo='ptzinfo'></ptz-control>
             </div>
             <!-- //PTZ Control End -->
@@ -36,54 +36,46 @@
                     </div>
                 </div>
             </form>
-            <fieldset style="min-width:750px;">
-            <div class="wn5-setup-section-article"   style="margin-top:10px;">
-
-                <div class="form-group">                                                        
-                    <div class="wn5-setup-section-article-heading">
-                        {{ 'lang_number' | translate }}
-                    </div>
-                    <div class="wn5-setup-section-article-content">
-                        <select class="form-control" ng-model="CurrentPreset" style="width:100px">
-                            <option ng-selected="CurrentPreset == PresetNum" value={{PresetNum}} ng-repeat="PresetNum in PTZPresetOptionsList">{{PresetNum}}</option>
-                        </select>                        
-                        <button type="button" class="btn btn-primary" ng-disabled="false" style="text-align:left" ng-click="PresetControl()">{{ 'lang_go' | translate }}</button>
-                        <button type="button" class="btn btn-primary" ng-disabled="false" style="text-align:left" ng-click="PresetAdd()">{{ 'lang_add' | translate }}</button>
-                        <button type="button" class="btn btn-primary" ng-disabled="false" style="text-align:left" ng-click="PresetRemove()">{{ 'lang_remove' | translate }}</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="wn5-setup-section-article-heading">{{ 'lang_name' | translate }}</div>
-                    <div class="wn5-setup-section-article-content">
-                        <input
-                                type="text"
-                                class="form-control"
-                                name="PresetName"
-                                maxlength="12"
-                                ng-model="PresetName"
-                                required ng-pattern-restrict="{{AlphaNumericStr}}"
-                                ng-maxlength="PresetNameMaxLen"
-                                maxlength="{{PresetNameMaxLen}}"
-                                style="width:100px"
-                        >
-                    </div>
-                    <div role="alert">
-                        <span class="error col-sm-2 control-label" ng-show="externalPTZForm.PresetName.$error.maxlength">Too long!</span>
-                    </div>
-                </div>
-            </div>
-        
-        </fieldset> 
         </div>    
     </fieldset>
+    <hr class="wn5-setup-hr">
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h3>{{ 'lang_presetSetup' | translate }}</h3> 
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="form-group">
+                <div class="wn5-setup-section-article-content">
+                    <button type="button" class="btn btn-primary" ng-click="remove()">{{ 'lang_remove' | translate }}</button>
+                </div>
+            </div>
+            <div class="table-wrapper form-group">
+                <table class="table table-bordered table-editor wn5-setup-table">
+                    <thead>
+                        <tr>
+                            <th width="7%" height="40" class="text-center"><input type="checkbox" ng-model="PTZPreset.checkAll" ng-click="checkAll()"></th>
+                            <th width="8%" height="40" class="text-center">{{ 'lang_num' | translate }}</th>
+                            <th width="20%" height="40" class="text-center">{{ 'lang_name' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr ng-repeat="Preset in PTZPresets"> 
+                            <td width="7%" class="text-center"><input type="checkbox" ng-model="Preset.SelectedPreset" ng-click="presetCheckbox()"></td>
+                            <td width="8%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Preset}}</a></td>
+                            <td width="20%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Name}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
+    <hr calss="wn5-setup-hr">            
 
-        <hr calss="wn5-setup-hr">            
+    <wn5-setup-common-button
+        data-submit-click="submit()"
+        data-cancel-click="view()">
+    </wn5-setup-common-button>
 
-        <wn5-setup-common-button
-            data-submit-click="submit()"
-            data-cancel-click="view()">
-        </wn5-setup-common-button>
-    </form>
 </div>
