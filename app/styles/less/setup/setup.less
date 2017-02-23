@@ -371,107 +371,23 @@
   }
 }
 
-cm-slider_wrap {
-	overflow: hidden;
+.live-slider-vertical-input {
+    display: inline-block;
+    float:left;
+    position: relative;
+    top: -97px;
+    left: 20px;
+    width: 45px;
+    text-align:center;
+}
 
-	&.horizontal {
-		width: 300px;
-		float: left;
-
-		.cm-left,
-		.cm-right {
-			height: 30px;
-			line-height: 30px;
-			float: left;
-		}
-		.cm-left {
-			width: 10px;
-		}
-
-		.cm-right {
-			width: 40px;
-		}
-
-		.cm-slider {
-			width: 250px;
-			padding: 0 10px;
-			float: left;
-			.ui-slider-range-min {
-				background: #797979 !important;
-				height:2px;
-				top: 18px;
-			}
-		}
-
-		+.input-align input {
-			float: left;
-		}
-	}
-
-	&.vertical {
-		width: 50px;
-		padding: 10px;
-		float: left;
-
-		.cm-left,
-		.cm-right {
-			width: 100%;
-		}
-
-		.cm-left,
-		.cm-right {
-			height: 20px;
-			line-height: 20px;
-			text-align: center;
-		}
-
-		.cm-right {
-			line-height: 35px;
-		}
-
-
-
-		.cm-slider {
-			background: none;
-			padding-left: 13px;
-			padding-top: 25px;
-			.ui-slider {
-				top: 3px;
-				border : none;
-
-				.ui-state-hover {
-					left: 1px;
-				}
-				.ui-state-active {
-					left: 1px;
-				}
-				.ui-slider-range-min {
-					width: 1.5px;
-					border : 1.5px solid #797979;
-				}
-			}
-			.ui-slider-vertical:after{
-				display: inline-block;
-				content: ' ';
-				width: 2px;
-				height: 100%;
-				background-color: #d2d2d2;
-			}
-		}
-
-		+.input-align {
-			float: left;
-		}
-	}
-
-	+.input-align input {
-		border: solid #ddd 1px;
-	}
-
-	.ui-widget-header,
-	.ui-widget-content{
-		background: none !important;
-	}
+.live-slider-horizontal-input{
+    margin-top: 5px;
+    position: relative;
+    display: inline-block;
+    width:45px;
+    left: 20px;
+    text-align:center
 }
 
 /* Setup Channel Selector */
