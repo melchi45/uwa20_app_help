@@ -115,14 +115,17 @@ kindFramework
 		    		'message',
 		    		{'message' : "lang_timeout", 'buttonCount':1}
 		  			);
+		  			itemSet.addData([]);
 		  			$rootScope.$emit('changeLoadingBar', false);
 		    	});
 	      	},function(){
+	      		var itemSet = new ItemSetModel();
 	      		console.log("There is no valid record item");
       			ModalManagerService.open(
 	    		'message',
 	    		{'message' : "lang_timeout", 'buttonCount':1}
 	  			);
+	  			itemSet.addData([]);
 	      		$rootScope.$emit('changeLoadingBar', false);
 	    	});
 
