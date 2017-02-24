@@ -1363,6 +1363,47 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         return detectionType;
     }
 
+    $scope.setOnlyEnable = function() {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'views/setup/common/confirmMessage.html',
+            controller: 'confirmMessageCtrl',
+            size: 'sm',
+            resolve: {
+                Message: function() {
+                    return 'lang_apply_question';
+                }
+            }
+        });
+        modalInstance.result.then(function() {
+            var url = '';
+            if($scope.IntelligentVideoEnable === true) {
+                if($scope.orgDetectionType === "MotionDetection") {
+                    url = $scope.va2CommonCmd + '&action=set&DetectionType=MDAndIV';
+                } else if($scope.orgDetectionType === "Off") {
+                    url = $scope.va2CommonCmd + '&action=set&DetectionType=IntelligentVideo';
+                }
+            } else {
+                if($scope.orgDetectionType === "MDAndIV") {
+                    url = $scope.va2CommonCmd + '&action=set&DetectionType=MotionDetection';
+                } else if($scope.orgDetectionType === "IntelligentVideo" || $scope.orgDetectionType === "Off") {
+                    url = $scope.va2CommonCmd + '&action=set&DetectionType=Off';
+                }
+            }
+            var getData = {};
+            SunapiClient.get(url, getData, function(response) {
+                // $scope.sketchinfo = {};
+                // $scope.currentTableData = null;
+                view();
+            },
+            function(errorData) {
+                console.log(errorData);
+            });
+        },
+        function() {
+
+        });
+    };
+
     function set(isEnabledChanged) {
         var queue = [];
         var detectionType = getCurrentDetectionType();
@@ -1773,56 +1814,69 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         var detectionType = getCurrentDetectionType();
         if($scope.VA[0] === undefined || detectionType === "Off" || detectionType === "MotionDetection") {
             setCommonMenuDisabled();
+            $scope.sketchinfo = {}
+            var tTable = [];
+            for(var i = 0; i < 8; i++){
+                tTable.push({
+                    index: null,
+                    Type: null,
+                    Mode: '',
+                    isEnabled: null,
+                    Coordinates: null
+                });
+            }
+            $scope.currentTableData = tTable;
             // return;
-        }
-        var result = [];
-        var startIndex = 0;
-        var va = $scope.VA[$scope.presetTypeData.SelectedPreset];
-        var definedAreas = va.DefinedAreas;
-        var lines = va.Lines;
+        } else {
+            var result = [];
+            var startIndex = 0;
+            var va = $scope.VA[$scope.presetTypeData.SelectedPreset];
+            var definedAreas = va.DefinedAreas;
+            var lines = va.Lines;
 
-        if($scope.activeTab.title === "Virtual Area") {
-            if ($scope.VA.SelectedAnalysis === undefined) {
-                $scope.VA.SelectedAnalysis = $scope.VideoAnalyticTypes[0];
+            if($scope.activeTab.title === "Virtual Area") {
+                if ($scope.VA.SelectedAnalysis === undefined) {
+                    $scope.VA.SelectedAnalysis = $scope.VideoAnalyticTypes[0];
+                }
+
+                updateTableData(0, true);
+
+                $scope.includeTableData = result;
+                $scope.currentTableData = $scope.includeTableData;
+                $scope.SelectedAnalysis = "Entering"; // set inital type
+                // console.info('updateMDVARegion2 :: Virtual Area');
+                if(changeOnlyTableData !== true){
+                    drawVaArea('Include'); 
+                }
+                $scope.selectColumn($scope.currentSelectedIncludeColumn);
+            } else if($scope.activeTab.title === "Excluded Area") {
+                updateTableData(8, true);
+
+                $scope.excludeTableData = result;
+                $scope.currentTableData = $scope.excludeTableData;
+
+                $scope.SelectedAnalysis = "Entering"; // set inital type
+                // console.info('updateMDVARegion2 :: Excluded Area');
+                if(changeOnlyTableData !== true){
+                    drawVaArea('Exclude');
+                }
+                $scope.selectColumn($scope.currentSelectedExcludeColumn);
+            } else if($scope.activeTab.title === "Virtual Line") {
+                updateTableData(0, false);
+
+                $scope.lineTableData = result;
+                $scope.currentTableData = $scope.lineTableData;
+                // console.info('updateMDVARegion2 :: Virtual Line');
+                $scope.SelectedAnalysis = "Passing"; // set inital type
+                if(changeOnlyTableData !== true){
+                    drawVaLine();
+                }
+                $scope.selectColumn($scope.currentSelectedLineColumn);
+            } else if($scope.activeTab.title === "Common") {
+                // setInitialObjectSize();
+                drawSizeArea();
+                setCommonMenuAbled();
             }
-
-            updateTableData(0, true);
-
-            $scope.includeTableData = result;
-            $scope.currentTableData = $scope.includeTableData;
-            $scope.SelectedAnalysis = "Entering"; // set inital type
-            // console.info('updateMDVARegion2 :: Virtual Area');
-            if(changeOnlyTableData !== true){
-                drawVaArea('Include'); 
-            }
-            $scope.selectColumn($scope.currentSelectedIncludeColumn);
-        } else if($scope.activeTab.title === "Excluded Area") {
-            updateTableData(8, true);
-
-            $scope.excludeTableData = result;
-            $scope.currentTableData = $scope.excludeTableData;
-
-            $scope.SelectedAnalysis = "Entering"; // set inital type
-            // console.info('updateMDVARegion2 :: Excluded Area');
-            if(changeOnlyTableData !== true){
-                drawVaArea('Exclude');
-            }
-            $scope.selectColumn($scope.currentSelectedExcludeColumn);
-        } else if($scope.activeTab.title === "Virtual Line") {
-            updateTableData(0, false);
-
-            $scope.lineTableData = result;
-            $scope.currentTableData = $scope.lineTableData;
-            // console.info('updateMDVARegion2 :: Virtual Line');
-            $scope.SelectedAnalysis = "Passing"; // set inital type
-            if(changeOnlyTableData !== true){
-                drawVaLine();
-            }
-            $scope.selectColumn($scope.currentSelectedLineColumn);
-        } else if($scope.activeTab.title === "Common") {
-            // setInitialObjectSize();
-            drawSizeArea();
-            setCommonMenuAbled();
         }
     }
 
