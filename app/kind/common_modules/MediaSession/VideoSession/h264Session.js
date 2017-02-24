@@ -57,6 +57,7 @@ var H264Session = function () {
 	var width = 0, height = 0;
 	var errorcheck = false;
 	var errorIFrameNum = 0;
+	var durationCorrection = 0;
 
 	//media segment test
 	var segmentBuffer = new Uint8Array(size_1M),
@@ -346,6 +347,7 @@ var H264Session = function () {
 								if (playbackVideoTagTempSample.frame_duration > 3000){
 									playbackVideoTagTempSample.frame_duration =33;
 								}
+
 								decodedData.frameData = new Uint8Array(playbackVideoTagTempFrame);
 								decodedData.mediaSample = playbackVideoTagTempSample;
 								mediaCounter++;

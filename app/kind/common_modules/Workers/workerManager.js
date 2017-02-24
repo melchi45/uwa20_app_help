@@ -58,12 +58,12 @@ function WorkerManager() {
   throughPutGOV = 30,
   videoTimeStamp = null,
   videoTagPlayFlag = false,
-  normalNumBox = (browser !== "chrome" ? 10 : 4),
+  normalNumBox = (browser !== "chrome" ? 10 : 2),
   speedNumBox = 1,
   speed = 1,
   numBox = normalNumBox,
   modeChangeFlag = false,
-  preNumBox = 0;
+  preNumBox = numBox;
 
   var mediaSegmentCount =0;
   var initSegmentFlag = false;
@@ -179,7 +179,7 @@ function WorkerManager() {
               numBox = 10;
               break;
             default :
-              numBox = 4;
+              numBox = 2;
           }
         }
 
@@ -709,9 +709,6 @@ function WorkerManager() {
     },
     setFPS: function(fps) {
       frameRate = fps == 0 ? 30 : fps;
-      if (decodeMode === "video") {
-        normalNumBox = (fps === 30 ? 4 : 2);
-      }
       initVideo(speed === 1 ? false : true);
     },
     setGovLength: function(gov){
