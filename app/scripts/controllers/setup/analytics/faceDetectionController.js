@@ -4,6 +4,20 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
     var pageData = {};
+
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+
     var DetectionModes = ['Inside', 'Outside'];
     $scope.tabs = [{
         title: 'Include',
@@ -161,8 +175,12 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     function getDefaultWiseFDData(){
         var points = [];
         var definedVideoInfo = getDefinedVideoInfo();
-        var maxWidth = definedVideoInfo[2];
-        var maxHeight = definedVideoInfo[3];
+        /**
+         * 카메라에서 최대 해상도를 저장하지 못하여 보통 -1를 해서 보내지만
+         * Face Detection은 짝수만 가능하기 때문에 -2를 해서 보냄
+         */
+        var maxWidth = definedVideoInfo[2] - 2;
+        var maxHeight = definedVideoInfo[3] - 2;
 
         //Flip
         if($scope.videoinfo.flip === true && $scope.videoinfo.mirror === false){
@@ -332,8 +350,12 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function getFaceDetection() {
-        return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=view', {}, function(response) {
-            $scope.FD = response.data.FaceDetection[0];
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
+        return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=view', getData, function(response) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            $scope.FD = response.data.FaceDetection[currentChannel];
 
             pageData.FD = angular.copy($scope.FD);
             $scope.SensitivitySliderModel = {
@@ -358,8 +380,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             DetectionAreaIndex: null
         };
         var removeIndex = [];
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
 
-        setData.Channel = 0;
+        setData.Channel = currentChannel;
         if (pageData.FD.Enable !== $scope.FD.Enable) {
             setData.Enable = $scope.FD.Enable;
         }
@@ -439,6 +462,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         }
 
         if(removeData.DetectionAreaIndex !== null){
+            removeData.Channel = currentChannel;
             queue.push({
                 url: '/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=remove', 
                 reqData: removeData
@@ -463,6 +487,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             defaultWiseFDPoints = changeOnlyEvenNumberOfWiseFD(defaultWiseFDPoints);
 
             initSetData['DetectionArea.1.Coordinate'] = defaultWiseFDPoints.join(',');
+            initSetData.Channel = currentChannel;
 
             queue.push({
                 url: '/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=set', 
@@ -512,15 +537,18 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function showVideo() {
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
             var viewerWidth = 640;
             var viewerHeight = 360;
             var maxWidth = mAttr.MaxROICoordinateX;
             var maxHeight = mAttr.MaxROICoordinateY;
-            var rotate = response.data.Flip[0].Rotate;
-            var flip = response.data.Flip[0].VerticalFlipEnable;
-            var mirror = response.data.Flip[0].HorizontalFlipEnable;
+            var rotate = response.data.Flip[currentChannel].Rotate;
+            var flip = response.data.Flip[currentChannel].VerticalFlipEnable;
+            var mirror = response.data.Flip[currentChannel].HorizontalFlipEnable;
             var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
             $scope.videoinfo = {
                 width: viewerWidth,
@@ -888,6 +916,33 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         return points;
     }
 
+    /**
+     * @date 2017-02-20
+     * @author Yongku Cho
+     * 최대 해상도로 카메라에 저장이 되지 않기 때문에
+     * MD, IVA는 최대 해상도의 값은 최대 해상도 - 1이다.
+     * FD의 경우 홀수는 허용이 되지 않으므로
+     * FD의 최대 해상도값은 최대 해상도 - 2로 한다.
+     */
+    function fixMaxResolution(points){
+        var definedVideoInfo = getDefinedVideoInfo();
+        var maxWidth = definedVideoInfo[2];
+        var maxHeight = definedVideoInfo[3];
+
+        for(var i = 0, len = points.length; i < len; i++){
+            var self = points[i];
+            if(self[0] >= maxWidth){
+                points[i][0] = maxWidth - 2;
+            }
+
+            if(self[1] >= maxHeight){
+                points[i][1] = maxHeight - 2;
+            }
+        }
+
+        return points;
+    }
+
     $rootScope.$saveOn('<app/scripts/directives>::<updateCoordinates>', function(obj, args){
         var modifiedIndex = args[0];
         var modifiedType = args[1]; //생성: create, 삭제: delete
@@ -902,6 +957,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             if(modifiedType !== "delete"){
                 modifiedPoints = fixRatioForCoordinates(modifiedPoints);   
                 modifiedPoints = changeOnlyEvenNumberOfWiseFD(modifiedPoints);
+                modifiedPoints = fixMaxResolution(modifiedPoints);
             }
             
             if(modifiedType === "create" || fdIndex === null){
