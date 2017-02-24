@@ -242,14 +242,17 @@
   }
 }
 
+/* Only Crop Encoding in Basic/Video Profile */
 .modal.modal-width-auto {
   .modal-dialog {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: 0 !important;
-    width: auto;
-    .translate(-50%,-50%);
+    @media(min-width: 768px){
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin: 0 !important;
+      width: auto;
+      .translate(-50%,-50%);
+    }
   }
 }
 
