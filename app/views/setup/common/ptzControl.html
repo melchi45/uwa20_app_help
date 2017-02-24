@@ -11,8 +11,8 @@
     </button>
     <div ng-show="showPTZControl"> -->
 
-    <div id="ptz-control">
-        <div id="ptz-control-zoomonly" ng-show="showZoomFocus">
+    <div id="ptz-control" ng-class="showZoomFocus? 'ptz-zoomonly' : ''">
+        <div id="ptz-control-zoomonly" class="zoomctrl" ng-show="showZoomFocus">
             <div class="slider-fields live-slider-field col-xs-3" style="min-width: 200px;">
                 <h3>{{ 'lang_zoom' | translate }}</h3>
                 <div class="ptz-control_slider-box-horizontal">                    
@@ -28,7 +28,7 @@
                     <div class="ptz-control_slider-horizontal verticalMiddle" id="ptz-control_slider-horizontal-zoom"></div>
                     <button
                         class="cm-icon-button-s verticalMiddle"
-                        title="{{'lang_zoomInt' | translate}}"
+                        title="{{'lang_zoomIn' | translate}}"
                         ng-mousedown="ptzControlZoom(50);" 
                         ng-mouseup="ptzControlZoom('Stop')" 
                         ng-mouseleave="ptzControlZoom('Stop')">
@@ -51,7 +51,7 @@
                     </button>                                                            
                     <button
                         class="cm-icon-button-s verticalMiddle"
-                        title="{{'lang_zoomInt' | translate}}"
+                        title="{{'lang_zoomIn' | translate}}"
                         ng-mousedown="clickPtzFocus('Far');" 
                         ng-mouseup="clickPtzFocus('Stop')" 
                         ng-mouseleave="clickPtzFocus('Stop')">
@@ -122,8 +122,8 @@
             </button>
         </div>
 
-        <div id="ptz-control_right-box">
-            <div id="ptz-control_preset-box" ng-show="showPTZControlPreset">
+        <div id="ptz-control_right-box" ng-class="showZoomFocus? 'zoompreset' : ''">
+            <div id="ptz-control_preset-box" ng-show="showPTZControlPreset" >
                 <button type="button" class="btn btn-primary ptz-control_icon-btn" title="Set preset" ng-click="showSetPreset()">
                     <i class="tui tui-ch-live-ptz-preset"></i>
                 </button>

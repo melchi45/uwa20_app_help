@@ -22,6 +22,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
             scope.isShowPTZControl = false;                 
             scope.showZoomFocus = false;   
             scope.showPTZControlBox = true;
+            scope.isPtzControlStart = false;
 
             var sunapiURI, showPTZControlFlag = false;
 
@@ -153,7 +154,14 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     }else if(ptzinfo.type ==='ZoomOnly'){
                         scope.showPTZControl = false;
                         scope.showPTZControlLabel = 'lang_hide';
-                        scope.showPTZControlPreset = false;
+                        if (ptzinfo.showPTZControlPreset === true)
+                        {
+                            scope.showPTZControlPreset = true;
+                        }
+                        else
+                        {
+                            scope.showPTZControlPreset = false;
+                        }
                         scope.showPTZControlAT = false;
                         scope.showPTZControlBLC = false;
                         scope.showPTZControlDPTZ = false;
@@ -350,6 +358,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 }
 
                 if(isJogUpdating === false) {
+                	scope.isPtzControlStart = true;
                     execSunapi(sunapiURI);
                     isJogUpdating = true;
                 }
@@ -375,6 +384,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                             sunapiURI += "&SubViewIndex=" + scope.quadrant.select;
                         }
 
+                        scope.isPtzControlStart = true;
                         execSunapi(sunapiURI);
                         isJogUpdating = true;
                     }
@@ -403,6 +413,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         var sliderVal = ui.value;
                         sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True&Zoom=" + sliderVal;
 
+                        scope.isPtzControlStart = true;
                         execSunapi(sunapiURI);
                         isJogUpdating = true;
                     }
@@ -460,9 +471,11 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     ptzStop();
                 }else if(value=='Auto'){
                     sunapiURI = "/stw-cgi/image.cgi?msubmenu=focus&action=control&Channel=0&Mode=AutoFocus";
+                    scope.isPtzControlStart = true;
                     execSunapi(sunapiURI);
                 }else{
                     sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&Focus="+value;
+                    scope.isPtzControlStart = true
                     execSunapi(sunapiURI);
                 }
             };
@@ -516,6 +529,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     {
                         sunapiURI += "&SubViewIndex=" + scope.quadrant.select;
                     }
+                    scope.isPtzControlStart = true;
                     execSunapi(sunapiURI);
                 }
 		    };
@@ -525,11 +539,13 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     $interval.cancel(ptzJogTimer);
                     ptzJogTimer = null;
                 }
+                if(!scope.isPtzControlStart) return;
                 sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control&Channel=0&OperationType=All";
                 if(scope.showPTZControlFisheyeDPTZ === true)
                 {
                     sunapiURI += "&SubViewIndex=" + scope.quadrant.select;
                 }
+                scope.isPtzControlStart = false;
                 execSunapi(sunapiURI);
             }
 

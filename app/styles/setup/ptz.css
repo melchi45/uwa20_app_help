@@ -82,8 +82,20 @@
 			left: 0;
 			transform: translateX(-50%);
 		}
-#ptz-control-zoomonly{
+.ptz-zoomonly{
     overflow:hidden !important;
+    min-width: 200px !important;
+    width: auto !important;
+    
+}
+.ptz-zoomonly .zoomctrl{
+    float: left !important;
+    max-width: 240px !important;
+}
+.ptz-zoomonly .zoompreset{
+    float: left !important;
+    padding: 15px 0 0 15px;
+    max-width: 120px;
 }
 
 .ptz-control_dptz-width{
