@@ -17,8 +17,10 @@ kindFramework.directive('channelSelector', function($rootScope) {
         templateUrl: 'views/common/directives/channel_selector.html',
         link: function(scope, element, attrs){
             scope.channelSelector = {
+                selectedChannel: 0,
                 selectChannel: function(index){
                     $rootScope.$emit("channelSelector:selectChannel", index);
+                    scope.channelSelector.selectedChannel = index;
                 }
             };   
         }
@@ -28,6 +30,10 @@ kindFramework.directive('channelSelector', function($rootScope) {
 /**
  * View
  * <live-playback-channel-selector>
+ * </live-playback-channel-selector>
+ *
+ * Quad view 버튼 사용시
+ * <live-playback-channel-selector use-quad-view="true">
  * </live-playback-channel-selector>
  *
  * Controller
@@ -48,6 +54,7 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope) {
         templateUrl: 'views/livePlayback/directives/live-playback-channel-selector.html',
         link: function(scope, element, attrs){
             scope.livePlaybackChannelSelector = {
+                useQuadView: attrs.useQuadView === 'true',
                 changeQuadView: function(){
                     $rootScope.$emit("channelSelector:changeQuadView", true);
                 }
