@@ -2756,20 +2756,23 @@ input[type='text'] {
 .ua-modal.modal.fade .modal-dialog .modal-content .button-groups button.three-buttons + .three-buttons {
   border-left: 1px solid #e5e5e3;
 }
-.modal.modal-width-auto .modal-dialog {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: 0 !important;
-  width: auto;
-  -webkit-transform: translateZ(0) translate(-50%, -50%);
-  -moz-transform: translateZ(0) translate(-50%, -50%);
-  -ms-transform: translateZ(0) translate(-50%, -50%);
-  -o-transform: translateZ(0) translate(-50%, -50%);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
+/* Only Crop Encoding in Basic/Video Profile */
+@media (min-width: 768px) {
+  .modal.modal-width-auto .modal-dialog {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: 0 !important;
+    width: auto;
+    -webkit-transform: translateZ(0) translate(-50%, -50%);
+    -moz-transform: translateZ(0) translate(-50%, -50%);
+    -ms-transform: translateZ(0) translate(-50%, -50%);
+    -o-transform: translateZ(0) translate(-50%, -50%);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+  }
 }
 .modal-bottom-bar {
   padding: 0;

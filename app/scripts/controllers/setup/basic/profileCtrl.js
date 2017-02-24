@@ -2077,6 +2077,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             templateUrl: 'views/livePlayback/modal/ModalCrop.html',
             controller: 'ModalInstnceCropCtrl',
             windowClass: 'modal-width-auto wn5-setup-modal-wrapper',
+            size: 'sm',
             resolve: {
                 data: function(){
                     return {
