@@ -165,7 +165,14 @@ Prefix : pc-n-hm
 #pc-setup-cameramanagement {
 	position: absolute;
 	right: 0;
-	top: 0;	
+	top: 0;
+
+	@media(max-width: @setup-mobile-max-width){
+		position: relative;
+		width: 100%;
+		padding-top: 20px;
+		text-align: center;
+	}
 }
 
 @import "peoplecounting.less";
