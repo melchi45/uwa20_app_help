@@ -369,6 +369,24 @@
       background-color: @wn5-gui-text-fields-disabled-bg;  
     }
   }
+
+  @media(max-width: @setup-mobile-max-width){
+    width: 30%;
+
+    &:first-of-type {
+      margin-bottom: 5px;
+    }
+
+    &.date-time-selector-input {
+      width: 70%;
+      margin-left: 0;
+
+      &:first-of-type {
+        margin-right: 0;
+        margin-bottom: 5px;
+      }
+    }
+  }
 }
 
 .tab-content {

@@ -34,12 +34,17 @@
                     <div class="form-group" ng-show="DeviceType === 'NWC'">
                         <div class="wn5-setup-section-article-heading">{{'lang_source' | translate}}</div>
                         <div class="wn5-setup-section-article-content">
-                            <select class="form-control" type="text" ng-model="AudioInputs[SelectedChannel].Source">
-                                <option ng-selected="AudioInputs[SelectedChannel].Source == Source" value={{Source}} ng-repeat="Source in AudioInSourceOptions track by Source">{{getTranslatedOption(Source)}}</option>
-                            </select>
-                            <span ng-show = "AudioInputs[SelectedChannel].PowerOnExternalMIC !== undefined">
+                            <div class="col-sm-6 col-xs-6">
+                                <select class="form-control" type="text" ng-model="AudioInputs[SelectedChannel].Source">
+                                    <option ng-selected="AudioInputs[SelectedChannel].Source == Source" value={{Source}} ng-repeat="Source in AudioInSourceOptions track by Source">{{getTranslatedOption(Source)}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <span ng-show = "AudioInputs[SelectedChannel].PowerOnExternalMIC !== undefined">
+                                    &nbsp;
                                     <input type="checkbox" ng-model="AudioInputs[SelectedChannel].PowerOnExternalMIC" ng-disabled="AudioInputs[SelectedChannel].Source!='ExternalMIC'"> <label>{{'lang_bias_on' | translate}}</label>
-                            </span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group" ng-if="DeviceType === 'NWC'">

@@ -35,13 +35,15 @@
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_nameofCertificate' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <input type="text" class="form-control" name ="cerName" ng-model="SSL.PublicCertificateName" ng-disabled="IsCerticateInstalled()" maxlength="{{PublicCertificateNameRange}}" pattern="{{PublicCertificateNamePattern}}" ng-pattern-restrict>
+                        <div class="col-xs-12 col-sm-6">
+                            <input type="text" class="form-control" name="cerName" ng-model="SSL.PublicCertificateName" ng-disabled="IsCerticateInstalled()" maxlength="{{PublicCertificateNameRange}}" pattern="{{PublicCertificateNamePattern}}" ng-pattern-restrict>
+                        </div>
                     </div>                            
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_certfile' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <div class="wn5-setup-preview-table-col-6 file-browser-field">
+                        <div class="col-xs-12 col-sm-6 file-browser-field">
                             <input type="text" class="form-control" name ="cerName" id="certificateFile" ng-model="CertificateFile" ng-disabled="true">
                             <label for="certificatefileid"> <span class="btn btn-primary" ng-disabled="IsCerticateInstalled()">...</span></label>
                             <input style="visibility: hidden; position: relative; display:none" id="certificatefileid" class="form-control" type="file" name="certificatefileid" ng-disabled="IsCerticateInstalled()" ng-model-instant accept=".crt"  onchange="angular.element(this).scope().setCertificateFile(this)">
@@ -51,7 +53,7 @@
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_keyfile' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <div class="wn5-setup-preview-table-col-6 file-browser-field">
+                        <div class="col-xs-12 col-sm-6 file-browser-field">
                             <input type="text" class="form-control" name ="keyName" id="keyFile" ng-model="KeyFile" ng-disabled="true">
                             <label for="keyfileid"> <span class="btn btn-primary" ng-disabled="IsCerticateInstalled()">...</span></label>
                             <input style="visibility: hidden; position: relative; display:none" id="keyfileid" class="form-control" type="file" name="keyfileid" ng-disabled="IsCerticateInstalled()" ng-model-instant accept=".key" onchange="angular.element(this).scope().setKeyFile(this)">

@@ -5145,6 +5145,22 @@ i.tui-ch-playback-stop {
   color: #797979;
   background-color: #f2f2f2;
 }
+@media (max-width: 700px) {
+  .date-time-selector {
+    width: 30%;
+  }
+  .date-time-selector:first-of-type {
+    margin-bottom: 5px;
+  }
+  .date-time-selector.date-time-selector-input {
+    width: 70%;
+    margin-left: 0;
+  }
+  .date-time-selector.date-time-selector-input:first-of-type {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+}
 .tab-content .tab-pane {
   padding: 0 15px;
 }
@@ -7573,7 +7589,7 @@ Prefix : pc-n-hm
 .pc-n-hm-delete-data {
   position: relative;
 }
-#pc-conditions-date-form .col-xs-2 {
+#pc-conditions-date-form .col-sm-2 {
   margin-right: 10px;
 }
 #pc-setup-cameramanagement {
