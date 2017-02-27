@@ -1563,13 +1563,15 @@
             <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-content">
                     <div class="form-group">
-                        <div class="wn5-setup-preview-table-col-4 field-radio-wrapper">
-                            <input type="radio" class="radio" name="Off" ng-model="ImagePreset[ch].ScheduleEnable" ng-value="false" ng-change="setScheduleColor()">
-                            <label class="control-label col-sub-label"> {{ 'lang_off' | translate }} </label>
-                        </div>
-                        <div class="wn5-setup-preview-table-col-4 field-radio-wrapper">
-                            <input type="radio" class="radio" name="Schedule" ng-model="ImagePreset[ch].ScheduleEnable" ng-value="true" ng-change="setScheduleColor()">
-                            <label class="control-label col-sub-label"> {{ 'lang_only_schedule' | translate }} </label>
+                        <div class="wn5-setup-preview-table-col-8">
+                            <div class="col-sm-6 col-xs-12 field-radio-wrapper wn5-setup-camera-setup-activation-time">
+                                <input type="radio" class="radio" name="Off" ng-model="ImagePreset[ch].ScheduleEnable" ng-value="false" ng-change="setScheduleColor()">
+                                <label class="control-label col-sub-label"> {{ 'lang_off' | translate }} </label>
+                            </div>
+                            <div class="col-sm-6 col-xs-12 field-radio-wrapper wn5-setup-camera-setup-activation-time">
+                                <input type="radio" class="radio" name="Schedule" ng-model="ImagePreset[ch].ScheduleEnable" ng-value="true" ng-change="setScheduleColor()">
+                                <label class="control-label col-sub-label"> {{ 'lang_only_schedule' | translate }} </label>
+                            </div>
                         </div>
                         <div class="wn5-setup-preview-table-col-4 text-right">
                             <button type="button" class="btn btn-primary" ng-disabled="!ImagePreset[ch].ScheduleEnable" ng-click="openImagePresetSched()" style="padding: 0; width: 30px; height: 30px;"><i class="tui tui-wn5-top-setup"></i></button>
