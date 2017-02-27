@@ -851,10 +851,24 @@ KindSVGEditor.addPlugin('draw', function(options){
 			}
 		}
 
+		function show(){
+			if(textInCircle !== null){
+				textTag.style.display = 'inline';
+			}
+		}
+
+		function hide(){
+			if(textInCircle !== null){
+				textTag.style.display = 'none';
+			}
+		}
+
 		return {
 			addText: addText,
 			append: append,
-			remove: remove
+			remove: remove,
+			show: show,
+			hide: hide
 		};
 	})();
 
@@ -1952,6 +1966,8 @@ KindSVGEditor.addPlugin('draw', function(options){
 			arrowImageHelper.hide();
 		}
 
+		textTagHelper.hide();
+
 		LineInformation.resetAllColor();
 	}
 
@@ -1966,6 +1982,8 @@ KindSVGEditor.addPlugin('draw', function(options){
 		if(useArrow === true){
 			arrowImageHelper.show();
 		}
+
+		textTagHelper.show();
 
 		LineInformation.setAllColor();
 	}

@@ -2715,6 +2715,10 @@
                             if (coordinates[i].isSet) {
                                 kindSvgOptions.points = coordinates[i].points;
 
+                                if(sketchInfo.workType === "qmArea" && "textInCircle" in coordinates[i]){
+                                    kindSvgOptions.textInCircle = coordinates[i].textInCircle;                                    
+                                }
+
                                 _self.addSVGObj(kindSVGEditor.draw(kindSvgOptions), false, i);
 
                                 if('enable' in coordinates[i]){
@@ -2746,6 +2750,11 @@
                         }else if(sketchInfo.workType === "vaAppearing" && sketchInfo.hasOwnProperty('mode')){
                             enExAppear = sketchInfo.mode;
                         }
+
+                        if(sketchInfo.workType === "qmArea" && "textInCircle" in data[i]){
+                            coordinates[i].textInCircle = data[i].textInCircle;   
+                        }
+
                         coordinates[i].enExAppear = enExAppear;
                     }
                 }
