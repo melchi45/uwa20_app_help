@@ -166,7 +166,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         {
             retVal = mAttr.SimpleFocus;
         }
-        else if (menuId === "ptz" || menuId === "rs485" || menuId === "preset" || menuId === "sequence" || menuId === "ptLimit" || menuId === "autoTrack" || menuId === "autoTrackEvent")
+        else if (menuId === "ptz" || menuId === "rs485" || menuId === "ptzInfoSetup" || menuId === "preset" || menuId === "sequence" || menuId === "ptLimit" || menuId === "autoTrack" || menuId === "autoTrackEvent")
         {
             if (menuId === "preset" || menuId === "sequence"){
             	retVal = false;
