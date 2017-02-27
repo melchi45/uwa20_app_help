@@ -981,6 +981,41 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         $scope.setDetectionAreas();
     };
 
+    function isHallwayMode(){
+        return $scope.videoinfo.rotate === "90" || $scope.videoinfo.rotate === "270";
+    }
+
+    function getMaxVideoSize(){
+        var _2M = WISE_FACE_DETECTION._2M.BASIC.MAX;
+        var _5M = WISE_FACE_DETECTION._5M.BASIC.MAX;
+        var isHallway = isHallwayMode();
+        var maxWidth = 0;
+        var maxHeight = 0;
+
+        switch(mAttr.MaxResolution){
+            case _2M.WIDTH + 'x' + _2M.HEIGHT :
+                if(isHallway === true){
+                    maxWidth = _2M.HEIGHT;
+                    maxHeight = _2M.WIDTH;
+                }else{
+                    maxWidth = _2M.WIDTH;
+                    maxHeight = _2M.HEIGHT;
+                }
+            break;
+            case _5M.WIDTH + 'x' + _5M.HEIGHT :
+                if(isHallway === true){
+                    maxWidth = _5M.HEIGHT;
+                    maxHeight = _5M.WIDTH;
+                }else{
+                    maxWidth = _5M.WIDTH;
+                    maxHeight = _5M.HEIGHT;
+                }
+            break;
+        }
+
+        return [maxWidth, maxHeight];
+    }
+
     function getDefinedVideoInfo(){
         var _2M = WISE_FACE_DETECTION._2M;
         var _5M = WISE_FACE_DETECTION._5M;
@@ -991,7 +1026,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         var maxHeight = 0;
         var ratio = [];
         var CONFIG = {};
-        var isHallway = $scope.videoinfo.rotate === "90" || $scope.videoinfo.rotate === "270";
+        var isHallway = isHallwayMode();
 
         switch(mAttr.MaxResolution){
             case _2M.BASIC.MAX.WIDTH + 'x' + _2M.BASIC.MAX.HEIGHT :
@@ -1262,9 +1297,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
      * FD의 최대 해상도값은 최대 해상도 - 2로 한다.
      */
     function fixMaxResolution(points){
-        var definedVideoInfo = getDefinedVideoInfo();
-        var maxWidth = definedVideoInfo[2];
-        var maxHeight = definedVideoInfo[3];
+        var maxVideoSize = getMaxVideoSize();
+        var maxWidth = maxVideoSize[0];
+        var maxHeight = maxVideoSize[1];
 
         for(var i = 0, len = points.length; i < len; i++){
             var self = points[i];
@@ -1292,9 +1327,13 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             var fdIndex = findFDIndex(roiIndex);
 
             if(modifiedType !== "delete"){
+                console.log(modifiedPoints.join(','));
                 modifiedPoints = fixRatioForCoordinates(modifiedPoints);   
+                console.log(modifiedPoints.join(','));
                 modifiedPoints = changeOnlyEvenNumberOfWiseFD(modifiedPoints);
+                console.log(modifiedPoints.join(','));
                 modifiedPoints = fixMaxResolution(modifiedPoints);
+                console.log(modifiedPoints.join(','));
             }
             
             if(modifiedType === "create" || fdIndex === null){
