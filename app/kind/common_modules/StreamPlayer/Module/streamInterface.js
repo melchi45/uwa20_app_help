@@ -115,9 +115,6 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                     var checkHeight = window.innerHeight;
                                     var smallerHeight;
 
-                                    console.log(checkSize, checkHeight);
-                                    console.log(checkHeight);
-
                                     if(checkHeight < 400) {
                                         if($(".kind-responsive-live").length)   $(".kind-responsive-live").addClass('land-scape');
                                         if($(".kind-responsive-playback").length)   $(".kind-responsive-playback").addClass('land-scape');
@@ -145,8 +142,21 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                         $(".land-scape").removeClass('land-scape');
 
                                        // 하단 메뉴 On-Off시 height 차이
-                                        if(controlShow) bottomMenuHeight = 260;
-                                        else bottomMenuHeight = 60;
+
+                                       if(checkSize > 2300 && checkHeight > 1294){
+                                       	  if(controlShow) bottomMenuHeight = 400;
+                                          else bottomMenuHeight = 115;
+                                       }else {
+                                       	  if(controlShow) bottomMenuHeight = 260;
+                                          else bottomMenuHeight = 60;
+                                       }
+
+                                       if (checkSize > 3000 && checkHeight > 1688) {
+                                       	  if(controlShow) bottomMenuHeight = 500;
+                                          else bottomMenuHeight = 145;
+
+                                       }
+                                        
 
                                         // Default Show 상태의 메뉴 > Responsive 상태일시 2줄
                                         if(checkSize < 800) bottomMenuHeight += 50;
