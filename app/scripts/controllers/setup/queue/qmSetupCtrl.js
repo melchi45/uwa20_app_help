@@ -479,10 +479,12 @@ kindFramework.controller('QMSetupCtrl',
 	        			isSet: true,
 	        			enable: data[i].enable,
 	            		points: data[i].points
+	            		// textInCircle: (i + 1) + ''
 	            	}
             	);
         	}
 
+			sketchinfo.useEvent = false;
         	sketchinfo.workType = 'qmArea';
         	// sketchinfo.minNumber = 4;
         	sketchinfo.maxNumber = 3;
