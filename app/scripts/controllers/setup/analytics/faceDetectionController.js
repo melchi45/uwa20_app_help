@@ -220,6 +220,8 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     function getDefaultWiseFDData(){
         var points = [];
         var definedVideoInfo = getDefinedVideoInfo();
+        var maxVideoSize = 0;
+        var movementY = 0;
         /**
          * 카메라에서 최대 해상도를 저장하지 못하여 보통 -1를 해서 보내지만
          * Face Detection은 짝수만 가능하기 때문에 -2를 해서 보냄
@@ -227,42 +229,52 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         var maxWidth = definedVideoInfo[2] - 2;
         var maxHeight = definedVideoInfo[3] - 2;
 
-        //Flip
         if($scope.videoinfo.flip === true && $scope.videoinfo.mirror === false){
+            //Flip
             points = [
                 [0, maxHeight],
                 [0, 0],
                 [maxWidth, 0],
                 [maxWidth, maxHeight]
             ];
-
-            // console.log("Flip", points);
-        //Mirror
         }else if($scope.videoinfo.flip === false && $scope.videoinfo.mirror === true){
+            //Mirror
             points = [
                 [maxWidth,0],
                 [maxWidth, maxHeight],
                 [0, maxHeight],
                 [0, 0]
             ];
-            // console.log("Mirror", points);
-        //Flip/Mirror
         }else if($scope.videoinfo.flip === true && $scope.videoinfo.mirror === true){
+            //Flip/Mirror
             points = [
                 [maxWidth, maxHeight],
                 [maxWidth,0],
                 [0, 0],
                 [0, maxHeight]
             ];
-            // console.log("Flip/Mirror", points);
         }else{
+            //Normal
             points = [
                 [0,0],
                 [0, maxHeight],
                 [maxWidth, maxHeight],
                 [maxWidth, 0]
             ];
-            // console.log("Normal", points);
+        }
+
+        /**
+         * @date 2017-02-27
+         * @author Yongku Cho
+         * Hallway View일 때 기본 영역은 가운데 정렬을 한다.
+         * FD Enable On -> Hallway View -> FD 일 때 시나리오와 동일함.
+         */
+        if(isHallwayMode()){
+            maxVideoSize = getMaxVideoSize()[1];
+            movementY = (maxVideoSize - maxHeight) / 2;
+            for(var i = 0, ii = points.length; i < ii; i++){
+                points[i][1] += movementY;
+            }
         }
 
         return points;
@@ -791,7 +803,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
         var queue = [];
         if (validatePage()) {
-            // setAreaScope();
             if (
                 !angular.equals(pageData.FD, $scope.FD) || 
                 !angular.equals(pageData.EventRule, $scope.EventRule) ||
@@ -1100,44 +1111,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         return sketchinfo;
     }
 
-    /*function setAreaScope() {
-        var maxArea = parseInt(mAttr.MaxFaceDetectionArea, 10);
-        var data = sketchbookService.get();
-        if (typeof data != "undefined") {
-            $scope.FD.DetectionAreas = new Array(maxArea);
-            var index = 0;
-            for (var i = 0; i < maxArea; i++) {
-                if (data[i].isSet) {
-                    if ($scope.FD.DetectionAreas[index] == undefined) {
-                        $scope.FD.DetectionAreas[index] = {
-                            Coordinates: new Array(4)
-                        };
-                    }
-                    $scope.FD.DetectionAreas[index].DetectionArea = i + 1;
-                    $scope.FD.DetectionAreas[index].Coordinates[0] = {
-                        x: data[i].x1,
-                        y: data[i].y1
-                    };
-                    $scope.FD.DetectionAreas[index].Coordinates[1] = {
-                        x: data[i].x2,
-                        y: data[i].y2
-                    };
-                    $scope.FD.DetectionAreas[index].Coordinates[2] = {
-                        x: data[i].x3,
-                        y: data[i].y3
-                    };
-                    $scope.FD.DetectionAreas[index].Coordinates[3] = {
-                        x: data[i].x4,
-                        y: data[i].y4
-                    };
-                    index++;
-                } else {
-                    $scope.FD.DetectionAreas.splice(i, maxArea - i);
-                }
-            }
-        }
-    }*/
-
     function createDetectionAreaItem(roiIndex, modeType, points){
         var mode = modeType === 0 ? "Inside" : "Outside";
         var coor = [];
@@ -1327,13 +1300,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             var fdIndex = findFDIndex(roiIndex);
 
             if(modifiedType !== "delete"){
-                console.log(modifiedPoints.join(','));
                 modifiedPoints = fixRatioForCoordinates(modifiedPoints);   
-                console.log(modifiedPoints.join(','));
                 modifiedPoints = changeOnlyEvenNumberOfWiseFD(modifiedPoints);
-                console.log(modifiedPoints.join(','));
                 modifiedPoints = fixMaxResolution(modifiedPoints);
-                console.log(modifiedPoints.join(','));
             }
             
             if(modifiedType === "create" || fdIndex === null){
