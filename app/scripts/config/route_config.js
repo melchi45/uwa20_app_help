@@ -196,6 +196,12 @@ kindFramework.constant('ROUTE_CONFIG', {
                             controller: 'presetZoomCtrl'
                         },
                         {
+                            urlName: 'ptzInfoSetup',
+                            name: 'lang_menu_ptz',
+                            templateUrl: 'views/setup/ptz/ptzInfoSetup.html',
+                            controller: 'ptzInfoSetupCtrl'
+                        },
+                        {
                             urlName: 'sequence',
                             name: 'lang_menu_ptzsequence',
                             templateUrl: 'views/setup/ptz/sequence.html',

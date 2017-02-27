@@ -21,6 +21,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
             scope.DATFlag = false;
             scope.isShowPTZControl = false;                 
             scope.showZoomFocus = false;   
+            scope.showZoomFocusWide = false;
             scope.showPTZControlBox = true;
             scope.isPtzControlStart = false;
 
@@ -55,6 +56,20 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         }
                         else if($state.current.name === "setup.ptzSetup_externalPtzSetup") {
                             scope.isShowPTZControl = true;
+                        }
+                        else if($state.current.name === "setup.videoAudio_cameraSetup") {
+                            if(mAttr.ZoomOnlyModel){
+                                scope.showPTZControlPreset = false;
+                                scope.showPTZControlAT = false;
+                                scope.showPTZControlBLC = false;
+                                scope.showPTZControlDPTZ = false;
+                                scope.showPTZControlEPTZ = false;
+                                scope.showZoomFocus = false;
+                                scope.showZoomFocusWide = true;
+                                scope.showPTZControlBox = false;
+                                scope.isShowPTZControl = true;
+                                $("#ptz-control_at-selectable").unbind();
+                            }
                         }
                         else {
                             scope.isShowPTZControl = false;
@@ -167,6 +182,20 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         scope.showPTZControlDPTZ = false;
                         scope.showPTZControlEPTZ = false;
                         scope.showZoomFocus = true;
+                        scope.showZoomFocusWide = false;
+                        scope.showPTZControlBox = false;
+                        scope.isShowPTZControl = true;
+                        $("#ptz-control_at-selectable").unbind();
+                    }else if(ptzinfo.type ==='ZoomOnlyWide'){
+                        scope.showPTZControl = false;
+                        scope.showPTZControlLabel = 'lang_hide';
+                        scope.showPTZControlPreset = false;
+                        scope.showPTZControlAT = false;
+                        scope.showPTZControlBLC = false;
+                        scope.showPTZControlDPTZ = false;
+                        scope.showPTZControlEPTZ = false;
+                        scope.showZoomFocus = false;
+                        scope.showZoomFocusWide = true;
                         scope.showPTZControlBox = false;
                         scope.isShowPTZControl = true;
                         $("#ptz-control_at-selectable").unbind();

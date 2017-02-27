@@ -138,7 +138,7 @@
             <div class="ptz-control_focus-box-horizontal">
                 <button 
                     class="cm-icon-button-s verticalMiddle"
-                    title="{{'lang_zoomOut' | translate}}"
+                    title="{{'lang_near' | translate}}"
                     ng-mousedown="clickPtzFocus('Near')"
                     ng-mouseup="clickPtzFocus('Stop')"
                     ng-mouseleave="clickPtzFocus('Stop')">
@@ -146,14 +146,18 @@
                 </button>
                 <button
                     class="cm-icon-button-s verticalMiddle"
-                    title="{{'lang_zoomIn' | translate}}"
+                    title="{{'lang_far' | translate}}"
                     ng-mousedown="clickPtzFocus('Far');"
                     ng-mouseup="clickPtzFocus('Stop')"
                     ng-mouseleave="clickPtzFocus('Stop')">
                     <i class="tui tui-wn5-ptz-far"></i>
                 </button>
-
-                <i class="tui tui-ch-live-autofocus verticalMiddle ptz-function-btn-autofocus" ng-click="clickPtzFocus('Auto')"></i>
+                <button
+                    class="cm-icon-button-s verticalMiddle"
+                    title="{{'lang_autoFocus' | translate}}"
+                    ng-mousedown="clickPtzFocus('Auto');">
+                    <i class="tui tui-wn5-simple-focus"></i>
+                </button>
             </div>
         </div>
       </div>

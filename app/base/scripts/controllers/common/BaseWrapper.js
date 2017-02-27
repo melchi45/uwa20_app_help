@@ -89,6 +89,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
       //PTZ Menus
       "preset": "NWC",
       "presetZoom": "NWC",
+      "ptzInfoSetup": "NWC",
       "sequence": "NWC",
       "ptLimit": "NWC",
       "autoTrack": "NWC",
@@ -167,7 +168,11 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         }
         else if (menuId === "ptz" || menuId === "rs485" || menuId === "preset" || menuId === "sequence" || menuId === "ptLimit" || menuId === "autoTrack" || menuId === "autoTrackEvent")
         {
-            retVal = mAttr.PTZModel;
+            if (menuId === "preset" || menuId === "sequence"){
+            	retVal = false;
+            } else {
+                retVal = mAttr.PTZModel;
+            }
         }
         else if (menuId === "presetZoom")
         {

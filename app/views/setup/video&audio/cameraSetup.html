@@ -11,13 +11,12 @@
             <div class="wn5-setup-section-article">
                 <div class="form-group" style="margin: 20px 0 15px 0;">
                     <sketchbook videoinfo='videoinfo'></sketchbook>
+                    <!-- PTZ Control -->
+                    <div class="ptz-control_box ptz-control_ptz-menu-width" ng-class="ZoomOnlyModel? 'max_none' : ''">
+                        <ptz-control ptzinfo='ptzinfo'></ptz-control>
+                    </div>
+                    <!-- //PTZ Control End -->
                 </div>
-
-                <!-- PTZ Control -->
-                <div class="ptz-control_box ptz-control_ptz-menu-width">
-                    <ptz-control ptzinfo='ptzinfo'></ptz-control>
-                </div>
-                <!-- //PTZ Control End -->
 
                 <div class="form-group" ng-if="ImagePresetModeOptions && ImagePreset !== undefined && presetTypeData.SelectedPresetType == 0">
                     <div id="ImagePresetModeLabel" class="wn5-setup-section-article-heading">{{ 'lang_imagePreset' | translate }}</div>
@@ -1432,7 +1431,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group  slider-container" ng-show="IRledLevel != undefined">
+                                <div class="form-group" ng-show="IRledLevel != undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_level' | translate }} </div>
                                     <!-- <div class="wn5-setup-section-article-content">
                                         <div class="col-xs-6">
@@ -1453,7 +1452,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group  slider-container" ng-if="LEDOnLevel !== undefined">
+                                <div class="form-group" ng-if="LEDOnLevel !== undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_ledOnLevel' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
                                         <!-- <div class="col-xs-6">
@@ -1482,7 +1481,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group  slider-container" ng-if="LEDOffLevel !== undefined">
+                                <div class="form-group" ng-if="LEDOffLevel !== undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_ledOffLevel' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
                                         <!-- <div class="col-xs-6">
