@@ -5399,6 +5399,14 @@ i.tui-ch-playback-stop {
 .wn5-setup-section-article.wn5-setup-section-article-ratio-4-6 .wn5-setup-section-article-content.wn5-setup-section-article-heading-offset {
   padding-left: calc(40% + 15px);
 }
+.wn5-setup-table-responsive {
+  overflow-x: auto;
+}
+.wn5-setup-table-responsive .wn5-setup-table input[type="text"],
+.wn5-setup-table-responsive .wn5-setup-table input[type="password"],
+.wn5-setup-table-responsive .wn5-setup-table select {
+  min-width: 100px;
+}
 .wn5-setup-table {
   font-size: 14px;
   margin-bottom: 0;
