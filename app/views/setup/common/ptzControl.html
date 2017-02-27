@@ -11,8 +11,8 @@
     </button>
     <div ng-show="showPTZControl"> -->
 
-    <div id="ptz-control" ng-class="showZoomFocus? 'ptz-zoomonly' : ''">
-        <div id="ptz-control-zoomonly" class="zoomctrl" ng-show="showZoomFocus">
+    <div id="ptz-control" ng-class="showZoomFocus? 'ptz-zoomonly' : showZoomFocusWide ? 'ptz-zoomonly-wide' : ''">
+        <div id="ptz-control-zoomonly" class="zoomctrl" ng-show="showZoomFocus || showZoomFocusWide">
             <div class="slider-fields live-slider-field col-xs-3" style="min-width: 200px;">
                 <h3>{{ 'lang_zoom' | translate }}</h3>
                 <div class="ptz-control_slider-box-horizontal">                    
@@ -43,7 +43,7 @@
                 <div class="ptz-control_focus-box-horizontal">                  
                     <button 
                         class="cm-icon-button-s verticalMiddle"                        
-                        title="{{'lang_zoomOut' | translate}}"
+                        title="{{'lang_near' | translate}}"
                         ng-mousedown="clickPtzFocus('Near')" 
                         ng-mouseup="clickPtzFocus('Stop')" 
                         ng-mouseleave="clickPtzFocus('Stop')">
@@ -51,14 +51,18 @@
                     </button>                                                            
                     <button
                         class="cm-icon-button-s verticalMiddle"
-                        title="{{'lang_zoomIn' | translate}}"
+                        title="{{'lang_far' | translate}}"
                         ng-mousedown="clickPtzFocus('Far');" 
                         ng-mouseup="clickPtzFocus('Stop')" 
                         ng-mouseleave="clickPtzFocus('Stop')">
                         <i class="tui tui-wn5-ptz-far"></i>
                     </button>
-
-                    <i class="tui tui-ch-live-autofocus verticalMiddle ptz-function-btn-autofocus" ng-click="clickPtzFocus('Auto')"></i>
+                    <button
+                        class="cm-icon-button-s verticalMiddle"
+                        title="{{'lang_autoFocus' | translate}}"
+                        ng-mousedown="clickPtzFocus('Auto');">
+                        <i class="tui tui-wn5-simple-focus"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -122,7 +126,7 @@
             </button>
         </div>
 
-        <div id="ptz-control_right-box" ng-class="showZoomFocus? 'zoompreset' : ''">
+        <div id="ptz-control_right-box" ng-class="(showZoomFocus||showZoomFocusWide)? 'zoompreset' : ''">
             <div id="ptz-control_preset-box" ng-show="showPTZControlPreset" >
                 <button type="button" class="btn btn-primary ptz-control_icon-btn" title="Set preset" ng-click="showSetPreset()">
                     <i class="tui tui-ch-live-ptz-preset"></i>

@@ -2051,10 +2051,14 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 vertical: false,
                 disabled: false
             };
-            if(PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogMode === 'Off'){
-                $scope.PresetDefogLevelSliderOptions.disabled = true;
-            } else {
-                $scope.PresetDefogLevelSliderOptions.disabled = false;
+            if($scope.PresetImageConfig.length > 0 
+                && (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] != 'undefined')){
+                
+                if($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode === 'Off'){
+                    $scope.PresetDefogLevelSliderOptions.disabled = true;
+                } else {
+                    $scope.PresetDefogLevelSliderOptions.disabled = false;
+                }
             }
         }
 
@@ -3506,6 +3510,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             functionList.push(whiteBalanceSet);
         }
 
+        if (mAttr.IRLedSupport === true) {
+            ///stw-cgi/image.cgi?msubmenu=irled&action=set
+            functionList.push(irLedSet);
+        }
+
         if (mAttr.CompensationModeOptions !== undefined) {
             ///stw-cgi/image.cgi?msubmenu=camera&action=set
             functionList.push(cameraSet);
@@ -3557,11 +3566,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 functionList.push(presetAdd);
                 
             }
-        }
-
-        if (mAttr.IRLedSupport === true) {
-            ///stw-cgi/image.cgi?msubmenu=irled&action=set
-            functionList.push(irLedSet);
         }
 
         if (mAttr.MaxOSDTitles) {
@@ -4101,7 +4105,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         cameraChangeHandler();
     }
 
-    $scope.handlePresetChange = function (presetName) {
+    function handlePresetChange() {
         $scope.ImageOptionsIndex = getDefaultPresetIndex($scope.ImagePreset[$scope.ch].Mode);
         setDefaultPreset();
         //if(mAttr.PTZModel==true){
@@ -4117,6 +4121,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $scope.$broadcast('reCalcViewDimensions');
         }, 10);
     }
+    $scope.handlePresetChange = handlePresetChange;
 
     function getDefaultPresetIndex(preset) {
         var ImagePresetModes = $scope.ImageOptions.ImagePresetModes, presetCnt = 0;
@@ -5883,55 +5888,55 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         return true;
     }
 
-    function viewNoDependency() {
+    function viewNoDependency(promises) {
         /** If there is not dependency between paramters that make calls at the same time  */
 
         if (mAttr.SSDRLevel !== undefined) {
-            viewSSDR();
+            promises.push(viewSSDR);
         }
 
         if (mAttr.WhiteBalanceModeOptions !== undefined) {
-            whitebalanceView();
+            promises.push(whitebalanceView);
         }
 
         if (mAttr.Brightness !== undefined) {
-            imageenhancementsView();
+        	promises.push(imageenhancementsView);
         }
 
         if (mAttr.MultiImageIndex !== undefined) {
-            multiimageoverlayView();
+        	promises.push(multiimageoverlayView);
         }
 
         if (mAttr.RotateOptions !== undefined) {
-            flipView();
+        	promises.push(flipView);
         }
 
         if (mAttr.IRLedSupport === true) {
-            irLEDView();
+        	promises.push(irLEDView);
         }
 
         if (mAttr.MaxOSDTitles) {
-            getMultiLineOSD();
+        	promises.push(getMultiLineOSD);
         }
 
         if (mAttr.PTZPositionEnable
                 || mAttr.PresetNameEnable
                 || mAttr.CameraIDEnable
                 || mAttr.AzimuthEnable) {
-            getOverlay();
+        	promises.push(getOverlay);
         }
 
         if (mAttr.FocusModeOptions !== undefined && (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true)) {
-            focusView();
+            promises.push(focusView);
         }
 
         if (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true) {
-        	ptzsettingsView();
+            promises.push(ptzsettingsView);
         }
         
       	if (mAttr.PTZModel === true) {
-            ptzPresetsView();
-            presetImageConfigView();
+            promises.push(ptzPresetsView);
+            promises.push(presetImageConfigView);
         }
     }
 
@@ -5971,35 +5976,65 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
         $q.seqAll(promises).then(
                 function () {
-                    viewNoDependency();
-                    initShutterSpeeds(false);
-                    isReady = true;
-                    $scope.pageLoaded = true;
-                    if(mAttr.PTZModel==true){
-                        if($scope.tabActiveData.backLight){
-                            var disable = $scope.Camera.CompensationMode != 'BLC';
-                            $scope.ptzinfo = {
-                                autoOpen: false,
-                                type: 'BLC',
-                                disable: disable
-                            };
-                        }else if($scope.tabActiveData.osd){
-                            $scope.ptzinfo = {
-                                autoOpen: false,
-                                type: 'OSD'
-                            };
+                	var dependencyPromises = [];
+                    viewNoDependency(dependencyPromises);
+                    $q.seqAll(dependencyPromises).then(
+                        function(){
+                            if($scope.presetTypeData.SelectedPresetType == 0){
+                                handlePresetChange();
+                            }
+                            excView();
+                        },
+                        excView
+                    );
+                    function excView(){
+                        initShutterSpeeds(false);
+                        isReady = true;
+                        $scope.pageLoaded = true;
+                        if(mAttr.PTZModel==true){
+                            if($scope.tabActiveData.backLight){
+                                var disable = $scope.Camera.CompensationMode != 'BLC';
+                                $scope.ptzinfo = {
+                                    autoOpen: false,
+                                    type: 'BLC',
+                                    disable: disable
+                                };
+                            }else if($scope.tabActiveData.osd){
+                                $scope.ptzinfo = {
+                                    autoOpen: false,
+                                    type: 'OSD'
+                                };
+                            }
                         }
+                        initShutterSpeeds(false);
+                        isReady = true;
+                        $scope.pageLoaded = true;
+                        if(mAttr.PTZModel==true){
+                            if($scope.tabActiveData.backLight){
+                                var disable = $scope.Camera.CompensationMode != 'BLC';
+                                    $scope.ptzinfo = {
+                                    autoOpen: false,
+                                    type: 'BLC',
+                                    disable: disable
+                                };
+                            }else if($scope.tabActiveData.osd){
+                                $scope.ptzinfo = {
+                                    autoOpen: false,
+                                    type: 'OSD'
+                                };
+                            }
+                        }
+                        $timeout(function(){
+                            if($scope.presetTypeData.SelectedPresetType == 0){
+                                //livePreviewMode('Start');
+                                livePreviewMode('Stop');
+                            }else{
+                                gotoPreset('Start',$scope.presetTypeData.SelectedPreset);
+                            }
+                        },500);
+                        refreshSliders();
+                        $("#camerasetuppage").show();
                     }
-                    $timeout(function(){
-                        if($scope.presetTypeData.SelectedPresetType == 0){
-                            //livePreviewMode('Start');
-                            livePreviewMode('Stop');
-                        }else{
-                            gotoPreset('Start',$scope.presetTypeData.SelectedPreset);
-                        }
-                    },500);
-                    refreshSliders();
-                    $("#camerasetuppage").show();
                 },
                 function (errorData) {
                     //alert(errorData);

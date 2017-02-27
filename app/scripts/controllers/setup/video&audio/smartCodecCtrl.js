@@ -44,6 +44,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
     };
 
     function getAttributes() {
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
         if (mAttr.SmartCodecOptions !== undefined) {
             $scope.SmartCodecOptions = mAttr.SmartCodecOptions;
         }
@@ -241,11 +242,17 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
                     rotate: rotate,
                     adjust: adjust
                 };
-                $scope.ptzinfo = {
-                    autoOpen: false,
-                    type: 'none'
-                };
-
+                if($scope.ZoomOnlyModel){
+                    $scope.ptzinfo = {
+                        autoOpen: true,
+                        type: 'ZoomOnlyWide'
+                    };
+                } else {
+                    $scope.ptzinfo = {
+                        autoOpen: false,
+                        type: 'none'
+                    };
+                }
                 var drawMax = mAttr.MaxSmartCodecArea;
                 $scope.coordinates = new Array(drawMax);
 
