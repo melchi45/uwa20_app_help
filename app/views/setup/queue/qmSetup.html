@@ -174,7 +174,7 @@
                                 </select> -->
                                 <select 
                                     class="cm_selectbox" 
-                                    ng-model="queueData.Queues[queueListSection.selectedQueueId].HighPeople"
+                                    ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[0].Count"
                                     ng-change="queueLevelSection.changeValue()"
                                     ng-options="maxData for maxData in queueLevelSection.maxArr"
                                     style="margin: 0 7px;">
@@ -186,7 +186,7 @@
                 </div>
             </section>
 
-            <section class="wn5-setup-section" ng-show="currentTapStatus[0] === true" ng-show="queueData.Enable">
+            <section class="wn5-setup-section" ng-show="currentTapStatus[0] === true && queueData.Enable" ng-if="queueData.dataLoad">
                 <hr class="wn5-setup-hr">
                 <div class="wn5-setup-section-heading">
                     <h3>
@@ -197,20 +197,32 @@
                 <div class="wn5-setup-section-article">
                     <div class="form-group">
                         <div class="wn5-setup-section-article-content">
-                            <input type="checkbox">
+                            <input 
+                                type="checkbox"
+                                ng-model="queueData.Queues[queueList.selectedQueueId].QueueTypes[0].AlarmEnable">
                             {{ lang.queueEvent.high | translate }}
                             <div style="display: inline-block; width: 100%; max-width: 300px;">
-                                <live_slider live-slider-property="queueEventSection.high.sliderProperty" live-slider-model="queueEventSection.high.sliderModel"></live_slider>
+                                <live_slider 
+                                    live-slider-property="queueEventSection.high.sliderProperty" 
+                                    live-slider-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[0]"
+                                    live-slider-model-name="Threshold">
+                                </live_slider>
                             </div>
                             {{ lang.queueEvent.sec | translate }}
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="wn5-setup-section-article-content">
-                            <input type="checkbox">
-                            {{ lang.queueEvent.high | translate }}
+                            <input 
+                                type="checkbox"
+                                ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[1].AlarmEnable">
+                            {{ lang.queueEvent.mid | translate }}
                             <div style="display: inline-block; width: 100%; max-width: 300px;">
-                                <live_slider live-slider-property="queueEventSection.mid.sliderProperty" live-slider-model="queueEventSection.mid.sliderModel"></live_slider>
+                                <live_slider 
+                                    live-slider-property="queueEventSection.mid.sliderProperty" 
+                                    live-slider-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[1]"
+                                    live-slider-model-name="Threshold">
+                                </live_slider>
                             </div>
                             {{ lang.queueEvent.sec | translate }}
                         </div>
@@ -227,7 +239,7 @@
 
     <hr class="wn5-setup-hr">
 
-    <pc-setup-report page-type="pc"></pc-setup-report>
+    <pc-setup-report page-type="hm"></pc-setup-report>
 
     <hr class="wn5-setup-hr">
 

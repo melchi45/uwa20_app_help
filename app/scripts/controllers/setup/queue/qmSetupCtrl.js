@@ -45,7 +45,8 @@ kindFramework.controller('QMSetupCtrl',
 	$scope.coordinates = [];
 	$scope.sketchinfo = {};
 
-	$scope.queueData = null;
+	$scope.queueData = {};
+	$scope.queueData.dataLoad = false;
 	$scope.support = {};
 
     $scope.getTranslatedOption = function(Option) {
@@ -101,6 +102,7 @@ kindFramework.controller('QMSetupCtrl',
 		qmModel.getData().then(
 			function(data){
 				$scope.queueData = data;
+				$scope.queueData.dataLoad = true;
 				console.info($scope.queueData);
 
 				//Realtime
@@ -120,6 +122,8 @@ kindFramework.controller('QMSetupCtrl',
 				$timeout(function(){
 					sketchbookService.activeShape($scope.queueListSection.selectedQueueId);
 				});
+				//Report
+				$scope.reportSection.init();
 			}, 
 			function(errorData){
 				console.error(errorData);
@@ -211,7 +215,7 @@ kindFramework.controller('QMSetupCtrl',
 
 	function getPeopleData(){
 		var max = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople;
-		var high = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].HighPeople;
+		var high = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueTypes[0].Count;
 		var mid = Math.ceil( high / 2 );
 
 		return {
@@ -307,7 +311,7 @@ kindFramework.controller('QMSetupCtrl',
 			if(type === 'max'){
 				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople = setInt(val);
 			}else if(type === 'high'){
-				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].HighPeople = setInt(val);
+				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueTypes[0].Count = setInt(val);
 			}
 
 			$scope.queueLevelSection.reload();
@@ -330,9 +334,6 @@ kindFramework.controller('QMSetupCtrl',
 		        showInputBox: true,
 		        disabled: false,
 		        onEnd: function(){}
-			},
-			sliderModel : {
-				data: 60
 			}
 		},
 		mid: {
@@ -344,9 +345,6 @@ kindFramework.controller('QMSetupCtrl',
 		        showInputBox: true,
 		        disabled: false,
 		        onEnd: function(){}
-			},
-			sliderModel : {
-				data: 60
 			}
 		}
 	};
@@ -389,6 +387,28 @@ kindFramework.controller('QMSetupCtrl',
 				$scope.calibrationSection.maxSize = maxResolution.width * 0.5;
 				$scope.calibrationSection.minSize = maxResolution.height * 0.1;
 			}
+		}
+	};
+
+	$scope.reportSection = {
+		init: function(){
+			$scope.pcSetupReport.getReport();
+			console.info($scope.pcSetupReport);
+			// var data = $scope.queueData;
+			// $scope.pcSetupReport = {
+			// 	use: data.ReportEnable,
+			// 	schedule: {
+			// 		periodList: '',
+			// 		date: '',
+			// 		dateList: '',
+			// 		hour: '',
+			// 		minute: ''
+			// 	},
+			// 	fileName: {
+			// 		name: '',
+			// 		extension: '',
+			// 	}
+			// };
 		}
 	};
 
@@ -597,11 +617,11 @@ kindFramework.controller('QMSetupCtrl',
 
 	$scope.submit = function(needRefresh){
 		// if(setValidation()){
-			// if($scope.pcSetupReport.validate()){
+			if($scope.pcSetupReport.validate()){
 				COMMONUtils.ApplyConfirmation(function(){
 					set(needRefresh);
 				});
-			// }
+			}
 		// }
 	};
 	$scope.view = view;

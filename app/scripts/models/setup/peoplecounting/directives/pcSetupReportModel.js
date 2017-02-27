@@ -55,7 +55,15 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 		};
 
 		this.getReportInfo = function (type){
-			var msubmenu = type === "hm"? 'heatmap' : 'peoplecount';
+			var msubmenu = '';
+			if(type === "hm"){
+				msubmenu = 'heatmap';
+			}else if(type === "qm"){
+				msubmenu = 'queuemanagementsetup';
+			}else{
+				msubmenu = 'peoplecount';
+			}
+
 			var deferred = $q.defer();
 			var options = {
 				cgi: 'eventsources',
@@ -65,6 +73,8 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 				successCallback: function(responseData){
 					if(type === "hm"){
 						deferred.resolve(responseData.data.HeatMap[0]);
+					}else if(type === "qm"){
+						deferred.resolve(responseData.data.QueueManagementSetup[0]);
 					}else{
 						deferred.resolve(responseData.data.PeopleCount[0]);
 					}
@@ -79,7 +89,15 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 		};
 
 		this.getSchedule = function (type){
-			var pageType = type === "hm"? 'HeatMap' : 'PeopleCount';
+			var pageType = '';
+			if(type === "hm"){
+				pageType = 'HeatMap';
+			}else if(type === "qm"){
+				pageType = 'QueueManagement';
+			}else{
+				pageType = 'PeopleCount';
+			}
+
 			var deferred = $q.defer();
 			var options = {
 				cgi: 'eventrules',
@@ -91,6 +109,8 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 				successCallback: function(responseData){
 					if(type === "hm"){
 						deferred.resolve(responseData.data.HeatMap[0]);
+					}else if(type === "qm"){
+						deferred.resolve(responseData.data.QueueManagementSetup[0]);
 					}else{
 						deferred.resolve(responseData.data.PeopleCount[0]);
 					}
@@ -105,7 +125,15 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 		};
 
 		this.setReport = function (type, Enable, ReportEnable, ReportFilename, ReportFileType){
-			var msubmenu = type === "hm"? 'heatmap' : 'peoplecount';
+			var msubmenu = '';
+			if(type === "hm"){
+				msubmenu = 'heatmap';
+			}else if(type === "qm"){
+				msubmenu = 'queuemanagementsetup';
+			}else{
+				msubmenu = 'peoplecount';
+			}
+
 			var deferred = $q.defer();
 			var options = {
 				cgi: 'eventsources',
@@ -134,7 +162,15 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 		};
 
 		this.setSchedule = function (type, ScheduleType, WeekDay, Hour, Minute){
-			var pageType = type === "hm"? 'HeatMap' : 'PeopleCount';
+			var pageType = '';
+			if(type === "hm"){
+				pageType = 'HeatMap';
+			}else if(type === "qm"){
+				pageType = 'QueueManagement';
+			}else{
+				pageType = 'PeopleCount';
+			}
+
 			var deferred = $q.defer();
 			var options = {
 				cgi: 'eventrules',

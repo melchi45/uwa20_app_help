@@ -107,7 +107,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					            "Enable": true,
 					            "ReportEnable": false,
 					            "ReportFilename": "",
-					            "ReportFileType": "XLS",
+					            "ReportFileType": "xlsx",
 					            "CalibrationMode": "CameraHeight",
 					            "CameraHeight": 300,
 					            "ObjectSizeCoordinates": [
@@ -145,18 +145,18 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					                            "y": 123
 					                        }
 					                    ],
-										"QueueTypes":[
+										QueueTypes:[
 											{
 												"Type": "High",
 												"Count": 6,
 												"AlarmEnable": true,
-												"Threshold": 180
+												"Threshold": 140
 											},
 											{
 												"Type": "Medium",
 												"Count": 3,
 												"AlarmEnable": true,
-												"Threshold": 180
+												"Threshold": 130
 											}
 										]
 					                },
@@ -189,13 +189,13 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 												"Type": "High",
 												"Count": 6,
 												"AlarmEnable": true,
-												"Threshold": 180
+												"Threshold": 120
 											},
 											{
 												"Type": "Medium",
 												"Count": 3,
 												"AlarmEnable": true,
-												"Threshold": 180
+												"Threshold": 110
 											}
 										]
 					                },
@@ -204,7 +204,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					                    "MaxPeople": 7,
 					                    "HighPeople": 3,
 					                    "Name": "Queue3",
-					                    "Enable": true,
+					                    "Enable": false,
 					                    "Coordinates": [
 					                        {
 					                            "x": 363,
@@ -228,13 +228,13 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 												"Type": "High",
 												"Count": 6,
 												"AlarmEnable": true,
-												"Threshold": 180
+												"Threshold": 100
 											},
 											{
 												"Type": "Medium",
 												"Count": 3,
 												"AlarmEnable": true,
-												"Threshold": 180
+												"Threshold": 90
 											}
 										]
 					                }
@@ -526,33 +526,33 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			}
 		};
 
-		var eventRulesCgi = {
-			scheduler: {
-				view: function(successCallback, failCallback){
-					pcSetupService.requestSunapi({
-						cgi: 'eventrules',
-						msubmenu: 'scheduler',
-						action: 'view',
-						data: {
-							Type: 'QueueManagement'
-						},
-						successCallback: successCallback,
-						failCallback: failCallback
-					});
-				},
-				set: function(data, successCallback, failCallback){
-					data.Type = 'QueueManagement';
-					pcSetupService.requestSunapi({
-						cgi: 'eventrules',
-						msubmenu: 'scheduler',
-						action: 'set',
-						data: data,
-						successCallback: successCallback,
-						failCallback: failCallback
-					});
-				}
-			}
-		};
+		// var eventRulesCgi = {
+		// 	scheduler: {
+		// 		view: function(successCallback, failCallback){
+		// 			pcSetupService.requestSunapi({
+		// 				cgi: 'eventrules',
+		// 				msubmenu: 'scheduler',
+		// 				action: 'view',
+		// 				data: {
+		// 					Type: 'QueueManagement'
+		// 				},
+		// 				successCallback: successCallback,
+		// 				failCallback: failCallback
+		// 			});
+		// 		},
+		// 		set: function(data, successCallback, failCallback){
+		// 			data.Type = 'QueueManagement';
+		// 			pcSetupService.requestSunapi({
+		// 				cgi: 'eventrules',
+		// 				msubmenu: 'scheduler',
+		// 				action: 'set',
+		// 				data: data,
+		// 				successCallback: successCallback,
+		// 				failCallback: failCallback
+		// 			});
+		// 		}
+		// 	}
+		// };
 
 		var eventStatusCgi = {
 			check: function(successCallback, failCallback){
