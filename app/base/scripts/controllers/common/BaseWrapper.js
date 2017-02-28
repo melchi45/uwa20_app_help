@@ -256,7 +256,6 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         }
         else if (menuId === "audioDetection")
         {
-            // retVal = mAttr.AudioDetection;
           if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
             retVal = false;
           } else {
