@@ -257,7 +257,11 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         }
         else if (menuId === "audioDetection")
         {
-            retVal = mAttr.AudioDetection;
+          if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
+            retVal = false;
+          } else {
+            retVal = true;
+          }
         }
         else if (menuId === "defocusDetection")
         {
@@ -325,6 +329,13 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           }
         }
         else if(menuId === "audioSetup"){
+          if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
+            retVal = false;
+          } else {
+            retVal = true;
+          }
+        }
+        else if(menuId === "soundClassification"){
           if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
             retVal = false;
           } else {
