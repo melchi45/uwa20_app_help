@@ -5110,55 +5110,63 @@ i.tui-ch-playback-stop {
 #language-dropdown li a {
   text-align: center;
 }
-.date-time-selector {
+.wn5-setup-date-time-selector {
   float: left;
 }
-.date-time-selector .date-time-selector-big {
+.wn5-setup-date-time-selector .wn5-setup-date-time-selector-big {
   width: 55px !important;
 }
-.date-time-selector .date-time-selector-small {
+.wn5-setup-date-time-selector .wn5-setup-date-time-selector-small {
   width: 40px !important;
 }
-.date-time-selector > input,
-.date-time-selector > span {
+.wn5-setup-date-time-selector > input,
+.wn5-setup-date-time-selector > span {
   float: left;
 }
-.date-time-selector > .form-control {
+.wn5-setup-date-time-selector > .form-control {
   text-align: center;
   border: 0 !important;
   padding: 0 5px;
 }
-.date-time-selector:not(.date-time-selector-input) > span {
+.wn5-setup-date-time-selector:not(.wn5-setup-date-time-selector-input) > span {
   margin: 0 3px;
 }
-.date-time-selector.date-time-selector-input {
+.wn5-setup-date-time-selector.wn5-setup-date-time-selector-input {
   margin-left: 5px;
   border: solid 1px #d2d2d2;
   color: #000000;
   background-color: #ffffff;
 }
-.date-time-selector.date-time-selector-input:first-of-type {
+.wn5-setup-date-time-selector.wn5-setup-date-time-selector-input:first-of-type {
   margin-right: 10px;
 }
-.date-time-selector.date-time-selector-input.date-time-selector-input-disabled {
+.wn5-setup-date-time-selector.wn5-setup-date-time-selector-input.wn5-setup-date-time-selector-input-disabled {
   border-color: #e9e9e9 !important;
   color: #797979;
   background-color: #f2f2f2;
 }
+.wn5-setup-date-time-selector-wrapper {
+  float: left;
+}
 @media (max-width: 700px) {
-  .date-time-selector {
+  .wn5-setup-date-time-selector-wrapper {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .wn5-setup-date-time-selector-wrapper strong.wn5-setup-date-time-selector {
     width: 30%;
   }
-  .date-time-selector:first-of-type {
-    margin-bottom: 5px;
+  .wn5-setup-date-time-selector-wrapper .wn5-setup-date-time-selector-input {
+    width: 145px;
   }
-  .date-time-selector.date-time-selector-input {
-    width: 70%;
-    margin-left: 0;
+  .wn5-setup-date-time-selector-wrapper:last-of-type .wn5-setup-date-time-selector-input {
+    padding-left: 8px;
+    padding-right: 8px;
   }
-  .date-time-selector.date-time-selector-input:first-of-type {
-    margin-right: 0;
-    margin-bottom: 5px;
+}
+@media (max-width: 700px) {
+  #wn5-setup-date-time-sync-pc {
+    padding-right: 0;
   }
 }
 .tab-content .tab-pane {
@@ -5421,8 +5429,11 @@ i.tui-ch-playback-stop {
   overflow-x: auto;
 }
 .wn5-setup-table-responsive .wn5-setup-table td > input[type="text"],
+.wn5-setup-table-responsive .wn5-setup-table ng-form > input[type="text"],
 .wn5-setup-table-responsive .wn5-setup-table td > input[type="password"],
-.wn5-setup-table-responsive .wn5-setup-table td > select {
+.wn5-setup-table-responsive .wn5-setup-table ng-form > input[type="password"],
+.wn5-setup-table-responsive .wn5-setup-table td > select,
+.wn5-setup-table-responsive .wn5-setup-table ng-form > select {
   min-width: 100px;
 }
 .wn5-setup-table {

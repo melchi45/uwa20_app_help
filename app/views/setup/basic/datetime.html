@@ -82,79 +82,83 @@
                     <div class="wn5-setup-section-article-content">
                         <div class="wn5-setup-section">
                             <div class="form-group">
-                                <strong class="date-time-selector">
-                                    <span>{{'lang_year' | translate}}</span>
-                                    <span>-</span>
-                                    <span>{{'lang_month' | translate}}</span>
-                                    <span>-</span>
-                                    <span>{{'lang_day' | translate}}</span>
-                                </strong>
-                                <div 
-                                    class="date-time-selector date-time-selector-input"
-                                    ng-class="{'date-time-selector-input-disabled': IsManualDisabled()}">
-                                    <input 
-                                        type="text" 
-                                        class="form-control date-time-selector-big"
-                                        ng-model="ManualDateTime.ManualYear" 
-                                        ng-pattern-restrict="{{timeValidation.pattern.year}}"
-                                        ng-blur="timeValidation.blur($event, 'Year')"
-                                        ng-focus="timeValidation.focus($event, 4)"
-                                        ng-disabled="IsManualDisabled()">
-                                    <span>-</span>
-                                    <input 
-                                        type="text" 
-                                        class="form-control date-time-selector-small"
-                                        ng-model="ManualDateTime.ManualMonth" 
-                                        ng-pattern-restrict="{{timeValidation.pattern.month}}"
-                                        ng-blur="timeValidation.blur($event, 'Month')"
-                                        ng-focus="timeValidation.focus($event, 2)"
-                                        ng-disabled="IsManualDisabled()">
-                                    <span>-</span>
-                                    <input 
-                                        type="text" 
-                                        class="form-control date-time-selector-small"
-                                        ng-model="ManualDateTime.ManualDay" 
-                                        ng-pattern-restrict="{{timeValidation.pattern.day}}"
-                                        ng-blur="timeValidation.blur($event, 'Day')"
-                                        ng-focus="timeValidation.focus($event, 2)"
-                                        ng-disabled="IsManualDisabled()">
+                                <div class="wn5-setup-date-time-selector-wrapper">
+                                    <strong class="wn5-setup-date-time-selector">
+                                        <span>{{'lang_year' | translate}}</span>
+                                        <span>-</span>
+                                        <span>{{'lang_month' | translate}}</span>
+                                        <span>-</span>
+                                        <span>{{'lang_day' | translate}}</span>
+                                    </strong>
+                                    <div 
+                                        class="wn5-setup-date-time-selector wn5-setup-date-time-selector-input"
+                                        ng-class="{'wn5-setup-date-time-selector-input-disabled': IsManualDisabled()}">
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-big"
+                                            ng-model="ManualDateTime.ManualYear" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.year}}"
+                                            ng-blur="timeValidation.blur($event, 'Year')"
+                                            ng-focus="timeValidation.focus($event, 4)"
+                                            ng-disabled="IsManualDisabled()">
+                                        <span>-</span>
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-small"
+                                            ng-model="ManualDateTime.ManualMonth" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.month}}"
+                                            ng-blur="timeValidation.blur($event, 'Month')"
+                                            ng-focus="timeValidation.focus($event, 2)"
+                                            ng-disabled="IsManualDisabled()">
+                                        <span>-</span>
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-small"
+                                            ng-model="ManualDateTime.ManualDay" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.day}}"
+                                            ng-blur="timeValidation.blur($event, 'Day')"
+                                            ng-focus="timeValidation.focus($event, 2)"
+                                            ng-disabled="IsManualDisabled()">
+                                    </div>
                                 </div>
-                                <strong class="date-time-selector">
-                                    <span>{{'lang_hour' | translate}}</span>
-                                    <span>:</span>
-                                    <span>{{'lang_lower_minute' | translate}}</span>
-                                    <span>:</span>
-                                    <span>{{'lang_sec' | translate}}</span>
-                                </strong>
-                                <div 
-                                    class="date-time-selector date-time-selector-input"
-                                    ng-class="{'date-time-selector-input-disabled': IsManualDisabled()}">
-                                    <input 
-                                        type="text" 
-                                        class="form-control date-time-selector-small"
-                                        ng-model="ManualDateTime.ManualHour" 
-                                        ng-pattern-restrict="{{timeValidation.pattern.hour}}"
-                                        ng-blur="timeValidation.blur($event, 'Hour')"
-                                        ng-focus="timeValidation.focus($event, 2)"
-                                        ng-disabled="IsManualDisabled()">
-                                    <span>:</span>
-                                    <input 
-                                        type="text" 
-                                        class="form-control date-time-selector-small"
-                                        ng-model="ManualDateTime.ManualMinute" 
-                                        ng-pattern-restrict="{{timeValidation.pattern.minuteSecond}}"
-                                        ng-blur="timeValidation.blur($event, 'Minute')"
-                                        ng-focus="timeValidation.focus($event, 2)"
-                                        ng-disabled="IsManualDisabled()">
-                                    <span>:</span>
-                                    <input 
-                                        type="text" 
-                                        class="form-control date-time-selector-small"
-                                        ng-model="ManualDateTime.ManualSecond" 
-                                        ng-pattern-restrict="{{timeValidation.pattern.minuteSecond}}"
-                                        ng-blur="timeValidation.blur($event, 'Second')"
-                                        ng-focus="timeValidation.focus($event, 2)"
-                                        ng-disabled="IsManualDisabled()">
+                                <div class="wn5-setup-date-time-selector-wrapper">
+                                    <strong class="wn5-setup-date-time-selector">
+                                        <span>{{'lang_hour' | translate}}</span>
+                                        <span>:</span>
+                                        <span>{{'lang_lower_minute' | translate}}</span>
+                                        <span>:</span>
+                                        <span>{{'lang_sec' | translate}}</span>
+                                    </strong>
+                                    <div 
+                                        class="wn5-setup-date-time-selector wn5-setup-date-time-selector-input"
+                                        ng-class="{'wn5-setup-date-time-selector-input-disabled': IsManualDisabled()}">
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-small"
+                                            ng-model="ManualDateTime.ManualHour" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.hour}}"
+                                            ng-blur="timeValidation.blur($event, 'Hour')"
+                                            ng-focus="timeValidation.focus($event, 2)"
+                                            ng-disabled="IsManualDisabled()">
+                                        <span>:</span>
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-small"
+                                            ng-model="ManualDateTime.ManualMinute" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.minuteSecond}}"
+                                            ng-blur="timeValidation.blur($event, 'Minute')"
+                                            ng-focus="timeValidation.focus($event, 2)"
+                                            ng-disabled="IsManualDisabled()">
+                                        <span>:</span>
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-small"
+                                            ng-model="ManualDateTime.ManualSecond" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.minuteSecond}}"
+                                            ng-blur="timeValidation.blur($event, 'Second')"
+                                            ng-focus="timeValidation.focus($event, 2)"
+                                            ng-disabled="IsManualDisabled()">
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -167,7 +171,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-content">
-                                    <div class="wn5-setup-section">
+                                    <div class="wn5-setup-section" id="wn5-setup-date-time-sync-pc">
                                         <div class="wn5-setup-section-article-content">
                                             <input type="text" class="form-control" name="pctime" ng-model="pctimeformat" ng-disabled="true">
                                         </div>
