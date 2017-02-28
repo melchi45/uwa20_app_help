@@ -52,7 +52,9 @@
                             </button> -->
                         </div>
                         <div class="wn5-setup-preview-content">
-                            <table class="pc-n-hm-table table-bordered text-center wn5-setup-table">
+                            <table 
+                                class="pc-n-hm-table table-bordered text-center wn5-setup-table"
+                                style="max-width: 400px;">
                                 <colgroup>
                                     <col class="pc-n-hm-per-10">
                                     <col class="pc-n-hm-per-10">
@@ -189,7 +191,9 @@
                             <input 
                                 type="checkbox"
                                 ng-model="queueData.Queues[queueList.selectedQueueId].QueueTypes[0].AlarmEnable">
-                            {{ lang.queueEvent.high | translate }}
+                            <span style="display: inline-block; width: 60px;">
+                                {{ lang.queueEvent.high | translate }}
+                            </span>
                             <div style="display: inline-block; width: 100%; max-width: 300px;">
                                 <live_slider 
                                     live-slider-property="queueEventSection.high.sliderProperty" 
@@ -205,7 +209,9 @@
                             <input 
                                 type="checkbox"
                                 ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[1].AlarmEnable">
-                            {{ lang.queueEvent.mid | translate }}
+                            <span style="display: inline-block; width: 60px;">
+                                {{ lang.queueEvent.mid | translate }}
+                            </span>
                             <div style="display: inline-block; width: 100%; max-width: 300px;">
                                 <live_slider 
                                     live-slider-property="queueEventSection.mid.sliderProperty" 

@@ -249,15 +249,15 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					            "Queues": [
 					                {
 					                    "Queue": 1,
-					                    "Level": 1,                  
+					                    "Level": 5,                  
 					                },
 					                {
 					                    "Queue": 2,
-					                    "Level": 2,
+					                    "Level": 5,
 					                },
 							{
 					                    "Queue": 3,
-					                    "Level": 3,
+					                    "Level": 6,
 					                },
 					            ]
 					        }
@@ -755,9 +755,9 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			
 
 		// 	function failCallback(errorData){
-		// 		if(asyncInterrupt === true){
+		// 		// if(asyncInterrupt === true){
 		// 			errorData = interruptMessage;
-		// 		}
+		// 		// }
 
 		// 		console.log("getSearchData Error", errorData);
 		// 		deferred.reject(errorData);
@@ -956,49 +956,55 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 		// 	var searchLineOptions = {};
 
 		// 	for(var i = 0; i < lineNames.length; i++){
-		// 		searchLineOptions['Camera.' + //masterCameraName + '.Line.' + lineNames[i] + '.Direction']	= 'In,Out';
+		// 		// searchLineOptions['Camera.' + //masterCameraName + '.Line.' + lineNames[i] + '.Direction']	= 'In,Out';
 		// 	}
 
 		// 	return searchLineOptions;
 		// };
 
-		// this.getTodayGraphData = function(){
-		// 	var nowDate = getSunapiDateFormat(cameraLocalTime.getDateObj().getTime());
-		// 	var searchOptions =  getBasicSearchOption();
+		this.getTodayGraphData = function(){
+			// var nowDate = getSunapiDateFormat(cameraLocalTime.getDateObj().getTime());
+			// var searchOptions =  getBasicSearchOption();
 
-		// 	searchOptions.FromDate = removeTime(nowDate);
-		// 	searchOptions.ToDate = setLastTime(nowDate);
+			// searchOptions.FromDate = removeTime(nowDate);
+			// searchOptions.ToDate = setLastTime(nowDate);
 
-		// 	return getSearchData(searchOptions);
-		// };
+			// return getSearchData(searchOptions);
+			var deferred = $q.defer();
+			deferred.resolve("Success");
+			return deferred.promise;
+		};
 
-		// this.getWeekGraphData = function(){
-		// 	var newDate = cameraLocalTime.getDateObj();
-		// 	var nowDate = getSunapiDateFormat(newDate.getTime());
-		// 	var fromDate = null;
-		// 	var searchOptions = getBasicSearchOption();
+		this.getWeekGraphData = function(){
+			// var newDate = cameraLocalTime.getDateObj();
+			// var nowDate = getSunapiDateFormat(newDate.getTime());
+			// var fromDate = null;
+			// var searchOptions = getBasicSearchOption();
 
-		// 	//get date at the six day ago
-		// 	newDate.setDate(newDate.getDate() - 6);
+			// //get date at the six day ago
+			// newDate.setDate(newDate.getDate() - 6);
 
-		// 	/*
-		// 	카메라는 최소 2000/01/01까지 지원을 하기 때문에
-		// 	현재 날짜(newDate)가 2000년 이전을 설정될 경우
-		// 	강제로 2000/01/01로 설정한다.
-		// 	*/
-		// 	if(newDate.getFullYear() < 2000){
-		// 		newDate.setYear(2000);
-		// 		newDate.setMonth(0);
-		// 		newDate.setDate(1);
-		// 	}
+			/*
+			카메라는 최소 2000/01/01까지 지원을 하기 때문에
+			현재 날짜(newDate)가 2000년 이전을 설정될 경우
+			강제로 2000/01/01로 설정한다.
+			*/
+			// if(newDate.getFullYear() < 2000){
+			// 	newDate.setYear(2000);
+			// 	newDate.setMonth(0);
+			// 	newDate.setDate(1);
+			// }
 
-		// 	fromDate = getSunapiDateFormat(newDate.getTime());
+			// fromDate = getSunapiDateFormat(newDate.getTime());
 
-		// 	searchOptions.FromDate = removeTime(fromDate);
-		// 	searchOptions.ToDate = setLastTime(nowDate);
+			// searchOptions.FromDate = removeTime(fromDate);
+			// searchOptions.ToDate = setLastTime(nowDate);
 
-		// 	return getSearchData(searchOptions);
-		// };
+			// return getSearchData(searchOptions);
+			var deferred = $q.defer();
+			deferred.resolve("Success");
+			return deferred.promise;
+		};
 
 		// this.getSearchResults = function(options){
 		// 	var searchOptions = {
@@ -1017,7 +1023,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 		// 			direction.push('Out');
 		// 		}
 
-		// 		searchOptions['Camera.' + //masterCameraName + '.Line.' + lineName + '.Direction'] = direction.join(',');
+		// 		// searchOptions['Camera.' + //masterCameraName + '.Line.' + lineName + '.Direction'] = direction.join(',');
 		// 	}
 
 		// 	return getSearchData(searchOptions);
@@ -1026,7 +1032,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 		// this.cancelSearch = function(){
 		// 	if(searchToken === null) return;
 
-		// 	asyncInterrupt = true;
+		// 	// asyncInterrupt = true;
 		// 	recordingCgi.peoplecountsearch.control({
 		// 		Mode: 'Cancel',
 		// 		SearchToken: searchToken
