@@ -114,8 +114,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					            "CameraHeight": 300,
 					            "ObjectSizeCoordinates": [
 					                {
-					                    "x": 895,
-					                    "y": 475
+					                    "x": 695,
+					                    "y": 275
 					                },
 					                {
 					                    "x": 1024,
@@ -370,12 +370,30 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 				{
 					"Status": "Completed"
 				},
-				viewResults:
+				viewResultsAverage:
+				{	
+					"ResultInterval": "Hourly",
+					"QueueResults": [
+						{
+							"Queue": 1,
+							"AveragePeopleResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+						},
+						{
+							"Queue": 2,
+							"AveragePeopleResult": ["24", "22", "21", "5", "9", "5", "4", "2", "10", "22", "21", "11", "12", "13", "14", "15", "16", "17", "18", "12", "14", "15", "2", "20"]
+						},
+						{
+							"Queue": 3,
+							"AveragePeopleResult": ["0", "1", "2", "3", "4", "5", "6", "7", "5", "9", "20", "11", "24", "13", "14", "20", "16", "10", "8", "19", "20", "21", "22", "23"]
+						}
+					]
+				},
+				viewResultsCumulative:
 				{
 					"ResultInterval": "Hourly",
 					"QueueResults": [
 				        {
-				            "Queue": 1,
+				            "Queue": "Queue 1",
 						    "QueueTypes":[
 						    	{
 									"High": true,
@@ -388,7 +406,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					        ]
 					    },
 					 	{
-				            "Queue": 2,
+				            "Queue": "Queue 2",
 						    "QueueTypes":[
 							    {
 									"High": true,
@@ -401,7 +419,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					        ]
 				         },
 						{
-					            "Queue": 3,
+					            "Queue": "Queue 3",
 							    "QueueTypes":[
 								    {
 										"High": true,
@@ -726,230 +744,223 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			return deferred.promise;
 		};
 
-		this.controlSearch = function(data){
-			var deferred = $q.defer();
-
-			function successCallback(successData){
-				successData = mockupData.recordingCgi.controlStart;
-				deferred.resolve(successData);
-			}
-
-			function failCallback(failData){
-				failData = mockupData.recordingCgi.controlStart;
-				deferred.resolve(failData);
-				// deferred.reject(failData);
-			}
-
-			recordingCgi.control(data, successCallback, failCallback);
-
-			return deferred.promise;
-		};
-
-		// var searchToken = null;
-
-		// var getSearchData = function(searchOptions){
+		// this.controlSearch = function(data){
 		// 	var deferred = $q.defer();
 
-		// 	var searchControl = recordingCgi.peoplecountsearch.control;
-		// 	var searchView = recordingCgi.peoplecountsearch.view;
-			
-
-		// 	function failCallback(errorData){
-		// 		// if(asyncInterrupt === true){
-		// 			errorData = interruptMessage;
-		// 		// }
-
-		// 		console.log("getSearchData Error", errorData);
-		// 		deferred.reject(errorData);
+		// 	function successCallback(successData){
+		// 		successData = mockupData.recordingCgi.controlStart;
+		// 		deferred.resolve(successData);
 		// 	}
 
-		// 	function controlSuccessCallback(response){
-		// 		searchToken = response.data.SearchToken;
-		// 		requestSearchView();
+		// 	function failCallback(failData){
+		// 		failData = mockupData.recordingCgi.controlStart;
+		// 		deferred.resolve(failData);
+		// 		// deferred.reject(failData);
 		// 	}
 
-		// 	function requestSearchView(){
-		// 		searchView(
-		// 			{
-		// 				Type: 'Status',
-		// 				SearchToken: searchToken
-		// 			},
-		// 			viewStatusSuccessCallback,
-		// 			failCallback
-		// 		);
-		// 	}
-
-		// 	function viewStatusSuccessCallback(response){
-		// 		if(response.data.Status === "Completed"){
-		// 			searchView(
-		// 				{
-		// 					Type: 'Results',
-		// 					SearchToken: searchToken
-		// 				},
-		// 				viewResultSuccessCallback,
-		// 				failCallback
-		// 			);
-		// 		}else{
-		// 			requestSearchView();
-		// 		}
-		// 	}
-
-		// 	function viewResultSuccessCallback(response){
-		// 		var responseData = response.data;
-		// 		var resultInterval = responseData.ResultInterval;
-		// 		var lineResults = responseData.PeopleCountSearchResults[channelIndex].LineResults;
-		// 		var responseData = [];
-
-		// 		for(var i = 0, len = lineResults.length; i < len; i++){
-		// 			var lineSelf = lineResults[i];
-
-		// 			for(var j = 0,jLen = lineSelf.DirectionResults.length; j < jLen; j++){
-		// 				var directionSelf = lineSelf.DirectionResults[j];
-		// 				if(typeof directionSelf.Result !== "undefined"){
-		// 					var data = {
-		// 						name: '',
-		// 						direction: '',
-		// 						results: []
-		// 					};
-		// 					var results = directionSelf.Result.split(',');
-
-		// 					data.name = lineSelf.Line;
-		// 					data.direction = directionSelf.Direction.toLowerCase() === "in" ? 
-		// 						$translate.instant(lang.realTime.counting.in) : 
-		// 						$translate.instant(lang.realTime.counting.out);
-		// 					data.results = fillterResults(results, resultInterval);
-
-		// 					responseData.push(data);
-		// 				}
-		// 			}
-		// 		}
-
-		// 		responseData.resultInterval = resultInterval;
-
-		// 		searchToken = null;
-		// 		deferred.resolve(responseData);
-		// 	}
-
-		// 	function fillterResults(results, resultInterval){
-		// 		var fillterData = [];
-
-		// 		var changeDateObj = function(str){
-		// 			str = str.replace('T',' ').replace('Z', '');
-		// 			str = str.split(' ');
-		// 			str[0] = str[0].split('-');
-		// 			str[1] = str[1].split(':');
-
-		// 			str = new Date(
-		// 				str[0][0],
-		// 				str[0][1] - 1,
-		// 				str[0][2],
-		// 				str[1][0],
-		// 				str[1][1],
-		// 				str[1][2]
-		// 			);
-
-		// 			return str;
-		// 		};
-
-		// 		/**
-		// 		 * Graph format is <Full Year><Month><Date><Hours><Minutes><Seconds>
-		// 		 * 2014-07-11 11:23:32 => 20140711112332
-		// 		 */
-		// 		var changeFormatForGraph = function(dateObj){
-		// 			var year = dateObj.getFullYear();
-		// 			var month = addZero(dateObj.getMonth() + 1);
-		// 			var date = addZero(dateObj.getDate());
-		// 			var hours = addZero(dateObj.getHours());
-		// 			var minutes = addZero(dateObj.getMinutes());
-		// 			var seconds = addZero(dateObj.getSeconds());
-
-		// 			var str = [
-		// 				year,
-		// 				month,
-		// 				date,
-		// 				hours,
-		// 				minutes,
-		// 				seconds
-		// 			];
-
-		// 			return parseInt(str.join(''));
-		// 		};
-
-		// 		var fromDate = changeDateObj(searchOptions.FromDate);
-		// 		var toDate = changeDateObj(searchOptions.ToDate);
-
-		// 		switch(resultInterval){
-		// 			case "Hourly":
-		// 				for(var i = 0, len = results.length; i < len; i++){
-		// 					var data = {};
-		// 					fromDate.setHours(i);
-		// 					data.timeStamp = changeFormatForGraph(fromDate);
-		// 					data.value = parseInt(results[i]);
-		// 					fillterData.push(data);
-		// 				}
-		// 			break;
-		// 			case "Daily":
-		// 			case "Weekly":
-		// 				for(var i = 0, len = results.length; i < len; i++){
-		// 					var data = {};
-
-		// 					if(i === 0){
-		// 						data.timeStamp = changeFormatForGraph(fromDate);
-		// 					}else{
-		// 						fromDate.setDate(fromDate.getDate() + 1);
-		// 						data.timeStamp = changeFormatForGraph(fromDate);
-		// 					}
-
-		// 					data.value = parseInt(results[i]);
-		// 					fillterData.push(data);
-
-		// 					if(
-		// 						fromDate.getFullYear() === toDate.getFullYear() &&
-		// 						fromDate.getMonth() === toDate.getMonth() &&
-		// 						fromDate.getDate() === toDate.getDate()
-		// 						){
-		// 						break;
-		// 					}
-		// 				}
-		// 			break;
-		// 			case "Monthly":
-		// 				for(var i = 0, len = results.length; i < len; i++){
-		// 					var data = {};
-							
-		// 					if(
-		// 						fromDate.getFullYear() === toDate.getFullYear() &&
-		// 						fromDate.getMonth() === toDate.getMonth()
-		// 						){
-		// 						break;
-		// 					}
-
-		// 					if(i === 0){
-		// 						data.timeStamp = changeFormatForGraph(fromDate);
-		// 					}else{
-		// 						fromDate.setMonth(fromDate.getMonth() + 1);
-		// 						data.timeStamp = changeFormatForGraph(fromDate);
-		// 					}
-
-		// 					data.value = parseInt(results[i]);
-		// 					fillterData.push(data);
-		// 				}
-		// 			break;
-		// 		}
-
-		// 		return fillterData;
-		// 	}
-
-		// 	searchOptions.Channel = channelIndex;
-		// 	searchOptions.Mode = 'Start';
-
-		// 	searchControl(
-		// 		searchOptions,
-		// 		controlSuccessCallback,
-		// 		failCallback
-		// 	);
+		// 	recordingCgi.control(data, successCallback, failCallback);
 
 		// 	return deferred.promise;
 		// };
+
+		var searchToken = null;
+
+		var getSearchData = function(searchOptions){
+			var deferred = $q.defer();
+
+			var searchControl = recordingCgi.control;
+			var searchView = recordingCgi.view;
+
+			function failCallback(errorData){
+				errorData = interruptMessage;
+
+				console.log("getSearchData Error", errorData);
+				deferred.reject(errorData);
+			}
+
+			function controlSuccessCallback(response){
+				// searchToken = response.data.SearchToken;
+				searchToken = "123456"; //mockup
+				requestSearchView();
+			}
+
+			function requestSearchView(){
+				searchView(
+					{
+						Type: 'Status',
+						SearchToken: searchToken
+					},
+					viewStatusSuccessCallback,
+					viewStatusSuccessCallback
+					// failCallback
+				);
+			}
+
+			function viewStatusSuccessCallback(response){
+				// if(response.data.Status === "Completed"){
+				if(true){ //mockup
+					searchView(
+						{
+							Type: 'Results',
+							SearchToken: searchToken
+						},
+						viewResultSuccessCallback,
+						viewResultSuccessCallback
+						// failCallback
+					);
+				}else{
+					requestSearchView();
+				}
+			}
+
+			function viewResultSuccessCallback(response){
+				response = mockupData.recordingCgi.viewResultsAverage; //mockup
+				var resultInterval = response.ResultInterval;
+				var queueResults = response.QueueResults;
+				var responseData = {
+					resultInterval: resultInterval,
+					data: []
+				};
+
+				for(var i = 0, len = queueResults.length; i < len; i++){
+					var queueSelf = queueResults[i];
+					var data = {
+						name: queueSelf.Queue,
+						direction: "Average",
+						results: fillterResults(queueSelf.AveragePeopleResult, resultInterval)
+					};
+
+					responseData.data.push(data);
+				}
+
+				searchToken = null;
+				deferred.resolve(responseData);
+			}
+
+			function fillterResults(results, resultInterval){
+				var fillterData = [];
+
+				var changeDateObj = function(str){
+					str = str.replace('T',' ').replace('Z', '');
+					str = str.split(' ');
+					str[0] = str[0].split('-');
+					str[1] = str[1].split(':');
+
+					str = new Date(
+						str[0][0],
+						str[0][1] - 1,
+						str[0][2],
+						str[1][0],
+						str[1][1],
+						str[1][2]
+					);
+
+					return str;
+				};
+
+				/**
+				 * Graph format is <Full Year><Month><Date><Hours><Minutes><Seconds>
+				 * 2014-07-11 11:23:32 => 20140711112332
+				 */
+				var changeFormatForGraph = function(dateObj){
+					var year = dateObj.getFullYear();
+					var month = addZero(dateObj.getMonth() + 1);
+					var date = addZero(dateObj.getDate());
+					var hours = addZero(dateObj.getHours());
+					var minutes = addZero(dateObj.getMinutes());
+					var seconds = addZero(dateObj.getSeconds());
+
+					var str = [
+						year,
+						month,
+						date,
+						hours,
+						minutes,
+						seconds
+					];
+
+					return parseInt(str.join(''));
+				};
+
+				var fromDate = changeDateObj(searchOptions.FromDate);
+				var toDate = changeDateObj(searchOptions.ToDate);
+
+				switch(resultInterval){
+					case "Hourly":
+						for(var i = 0, len = results.length; i < len; i++){
+							var data = {};
+							fromDate.setHours(i);
+							data.timeStamp = changeFormatForGraph(fromDate);
+							data.value = parseInt(results[i]);
+							fillterData.push(data);
+						}
+					break;
+					case "Daily":
+					case "Weekly":
+						for(var i = 0, len = results.length; i < len; i++){
+							var data = {};
+
+							if(i === 0){
+								data.timeStamp = changeFormatForGraph(fromDate);
+							}else{
+								fromDate.setDate(fromDate.getDate() + 1);
+								data.timeStamp = changeFormatForGraph(fromDate);
+							}
+
+							data.value = parseInt(results[i]);
+							fillterData.push(data);
+
+							if(
+								fromDate.getFullYear() === toDate.getFullYear() &&
+								fromDate.getMonth() === toDate.getMonth() &&
+								fromDate.getDate() === toDate.getDate()
+								){
+								break;
+							}
+						}
+					break;
+					case "Monthly":
+						for(var i = 0, len = results.length; i < len; i++){
+							var data = {};
+							
+							if(
+								fromDate.getFullYear() === toDate.getFullYear() &&
+								fromDate.getMonth() === toDate.getMonth()
+								){
+								break;
+							}
+
+							if(i === 0){
+								data.timeStamp = changeFormatForGraph(fromDate);
+							}else{
+								fromDate.setMonth(fromDate.getMonth() + 1);
+								data.timeStamp = changeFormatForGraph(fromDate);
+							}
+
+							data.value = parseInt(results[i]);
+							fillterData.push(data);
+						}
+					break;
+				}
+
+				return fillterData;
+			}
+
+			searchOptions.Channel = channelIndex;
+			searchOptions.Mode = 'Start';
+			searchOptions["Queue.1.AveragePeople"] = 'True';
+			searchOptions["Queue.2.AveragePeople"] = 'True';
+			searchOptions["Queue.3.AveragePeople"] = 'True';
+
+			searchControl(
+				searchOptions,
+				controlSuccessCallback,
+				controlSuccessCallback
+				// failCallback
+			);
+
+			return deferred.promise;
+		};
 
 		// var getBasicSearchOption = function(){
 		// 	var lineNames = lineName.get();
@@ -963,16 +974,16 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 		// };
 
 		this.getTodayGraphData = function(){
-			// var nowDate = getSunapiDateFormat(cameraLocalTime.getDateObj().getTime());
-			// var searchOptions =  getBasicSearchOption();
+			var nowDate = getSunapiDateFormat(cameraLocalTime.getDateObj().getTime());
+			var searchOptions =  {};
 
-			// searchOptions.FromDate = removeTime(nowDate);
-			// searchOptions.ToDate = setLastTime(nowDate);
+			searchOptions.FromDate = removeTime(nowDate);
+			searchOptions.ToDate = setLastTime(nowDate);
 
-			// return getSearchData(searchOptions);
-			var deferred = $q.defer();
-			deferred.resolve("Success");
-			return deferred.promise;
+			return getSearchData(searchOptions);
+			// var deferred = $q.defer();
+			// deferred.resolve("Success");
+			// return deferred.promise;
 		};
 
 		this.getWeekGraphData = function(){

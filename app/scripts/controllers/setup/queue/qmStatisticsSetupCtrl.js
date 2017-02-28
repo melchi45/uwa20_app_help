@@ -8,6 +8,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 	$timeout,
 	$state,
 	$translate,
+	$window,
 	Attributes,
 	ConnectionSettingService, 
 	pcSetupService,
@@ -34,6 +35,11 @@ kindFramework.controller('QMStatisticsCtrl', function (
 
 	$scope.queueData = {};
 	$scope.queueData.dataLoad = false;
+
+	var chartColor = {
+		default: '#ddd',
+		selected: '#399'
+	};
 
 	var channel = 0;
 
@@ -106,49 +112,208 @@ kindFramework.controller('QMStatisticsCtrl', function (
 		}
 	};
 
+	function changeFormatForGraph(timeForamtForGraph, dateFormat){
+		timeForamtForGraph += ""; //Change Type
+		var year = timeForamtForGraph.substr(0,4);
+		var month = timeForamtForGraph.substr(4,2);
+		var date = timeForamtForGraph.substr(6,2);
+		var hours = timeForamtForGraph.substr(8,2);
+		var minutes = timeForamtForGraph.substr(10,2);
+		var seconds = timeForamtForGraph.substr(12,2);
+
+		var returnVal = null;
+
+		switch(dateFormat){
+			case "hour":
+				returnVal = hours + ":00";
+			break;
+			case "day":
+				returnVal = month + "/" + date;
+			break;
+			case "month":
+				returnVal = year + "-" + month;
+			break;
+		}
+
+		return returnVal;
+	}
+
+	function changeYAxisFormat(data){
+		function isFloat(x) {
+			return typeof(x, 'Number') && !!(x % 1);
+		}
+
+		/* tickFormat이 비정상일 때 null 처리 */
+		if(isFloat(data) || data < 0) return null;
+
+    	var num = data < 10 ? 1 : data < 100 ? 2 : 3;
+        return d3.format('.' + num + 's')(data);
+	}
+
 	$scope.graphSection = {
-		start: function(type){
-			if(type === 'Today'){
-				qmModel
-					.getTodayGraphData()
-					.then(todaySuccessCallback, failCallback);
-			}else{
+		chartConfig: {
+			deepWatchData: false
+		},
+		today: {
+			average: {
+				options: {
+					chart: {
+						type: 'lineChart',
+			            height: 300,
+			            margin : {
+			                // top: 20,
+			                // right: 0,
+			                bottom: 20,
+			                left: 40
+			            },
+			            x: function(d){
+			        		return d[0];
+			        	},
+			            y: function(d){
+			        		return d[1];
+			        	},
+			            useVoronoi: false,
+			            clipEdge: true,
+			            transitionDuration: 500,
+			            useInteractiveGuideline: true,
+			            xAxis: {
+			                tickFormat: function(index) {
+			                	var data = $scope.graphSection.today.average.xAxisData[index];
+			                    return changeFormatForGraph(data, 'hour');
+			                }
+			            },
+			            yAxis: {
+			                showMaxMin: true,
+			                tickFormat: changeYAxisFormat
+			            },
+			            dispatch: {
+			            	renderEnd: function(){
+			            		console.log("renderEnd");
+			            	}
+			            },
+			            showLegend: true,
+			            //Event of Legend
+			            legend: {
+			                dispatch: {
+			                    legendClick: function(item){
+			                        $scope.graphSection.selectChartItem(
+			                        	'.pc-realtime-graph-today', 
+			                        	$scope.graphSection.today.average.data,
+			                        	item
+			                    	);
+			                    }
+			                }
+			            }
+					}
+				},
+				data: [],
+				setData: function(data){
+					$scope.graphSection.today.average.data = data;
+					$timeout(function(){
+						$scope.graphSection.today.average.options.chart.legend.dispatch.legendClick({
+							seriesIndex: 0
+						});
+					});
+				},
+				api: null,
+				update: function(){
+					if($scope.graphSection.today.average.api !== null){
+						$scope.graphSection.today.average.api.update();
+					}
+				},
+				xAxisData: [],
+				setXAxisData: function(data){
+					$scope.graphSection.today.average.xAxisData = data;
+				},
+				getXAxisData: function(){
+					return $scope.graphSection.today.average.xAxisData;
+				}
 			}
+		},
+		selectChartItem: function(parentClass, chartData, item){
+	        item.disabled = true;
 
-			function todaySuccessCallback(data){
-				qmModel
-					.getWeekGraphData()
-					.then(weekSuccessCallback, failCallback);
-			}
+	        var seriesIndex = item.seriesIndex;
+	        if(seriesIndex === undefined){
+	        	seriesIndex = item.values[0].series;
+	        }
 
-			function weekSuccessCallback(data){
-				
+	        d3.selectAll(parentClass + ' .nv-series-' + seriesIndex).each(function(){
+	            this.parentNode.appendChild(this);
+	        });
+
+	        for(var i = 0, len = chartData.length; i < len; i++){
+	            var color = i === seriesIndex ? chartColor.selected : chartColor.default;
+	            chartData[i].color = color;
+	        }
+	    },
+		resizeHandle: function(){
+		    $scope.graphSection.today.average.update();
+		},
+		bindResize: function(){
+			angular.element($window).bind(
+				'resize',
+				$scope.graphSection.resizeHandle
+			);
+		},
+		unbindResize: function(){
+			angular.element($window).unbind(
+				'resize',
+				$scope.graphSection.resizeHandle
+			);	
+		},
+		init: function(){
+			$scope.graphSection.bindResize();
+		},
+		getTodayAverageGraph: function(){
+			function successCallback(data){
+				console.info(data);
+				data = data.data;
+				// qmModel
+				// 	.getWeekGraphData()
+				// 	.then(getWeekGraphDataCallback, failCallback);
+
+				var todayRuleData = [];
+				var todayXAxisData = [];
+				var todayChartData = [];
+
+				for(var i = 0, len = data.length; i < len; i++){
+					var self = data[i];
+
+					var chartData = {
+						key: self.name + ' - ' + self.direction,
+						values: [],
+						color: i === 0 ? chartColor.selected : chartColor.default,
+						area: true
+					};
+
+					for(var j = 0, jLen = self.results.length; j < jLen; j++){
+						var resultSelf = self.results[j];
+						chartData.values.push([j, resultSelf.value]);
+						todayXAxisData[j] = resultSelf.timeStamp;
+					}
+
+					todayChartData.push(chartData);
+				}
+
+				$scope.graphSection.today.average.setData(todayChartData);
+				$scope.graphSection.today.average.setXAxisData(todayXAxisData);
 			}
 
 			function failCallback(failData){
 				console.info(failData);
 			}
 
-			// var data = {};
-
-			// if(type === 'Today'){
-			// 	data = {
-			// 		Mode: 'Start',
-			// 		"Queue.1.AveragePeople": true,
-			// 		"Queue.2.AveragePeople": true,
-			// 		"Queue.3.AveragePeople": true
-			// 	};
-			// }else{
-			// }
+			qmModel
+				.getTodayGraphData()
+				.then(successCallback, failCallback);
 		}
 	};
 
 	$scope.searchSection = {
 		start: function(){
-
 		},
 		openReport: function(){
-
 		}
 	};
 
@@ -196,43 +361,6 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			FromDate: FromDate,
 			ToDate: ToDate
 		};
-	}
-
-	function controlSearch(data){
-		var dateForm = $scope.pcConditionsDateForm;
-
-        cameraLocalTime.set()
-        .then(
-        	function(){
-				var calenderDate = getCalenderDate();
-
-				data.Channel = channel;
-				data.FromDate = calenderDate.FromDate;
-				data.ToDate = calenderDate.ToDate;
-
-				qmModel.controlSearch(
-					data,
-					function(responseData){
-						if(responseData.SearchToken !== undefined){
-							$scope.searchToken = responseData.SearchToken;
-						}
-					},
-					function(errorData){
-						console.info(errorData);
-					}
-				);
-				// HMStatisticsModel
-				// 	.startSearch(searchFromDate, searchToDate, ResultImageType)
-				// 	.then(
-				// 		function(responseData){
-				// 			$scope.conditionsSection.checkSearch(withoutBG, responseData.SearchToken, 0);
-				// 		},
-				// 		function(failData){
-				// 			$scope.conditionsSection.errorSearch(failData);
-				// 		}
-				// 	);
-	        }
-	    );
 	}
 
 	function showVideo() {
@@ -436,27 +564,41 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			console.error(errorData);
 		};
 
-		qmModel.getData().then(
-			function(data){
-				$scope.queueData = data;
-				$scope.queueData.dataLoad = true;
-				console.info($scope.queueData);
+		var resizeGraph = function(){
+			setTimeout(function(){
+				$scope.graphSection.resizeHandle();	
+			}, 100);
+		}
 
-				// Preview
-				$scope.previewSection.init();
-				// Queue Level(Start graph)
-				$scope.queueLevelSection.start(0);
-				$scope.queueLevelSection.start(1);
-				$scope.queueLevelSection.start(2);
+		qmModel.initModel().then(
+			function(){
+				qmModel.getData().then(
+					function(data){
+						$scope.queueData = data;
+						$scope.queueData.dataLoad = true;
+						console.info($scope.queueData);
 
-				$scope.pcConditionsDateForm.init(function(){
-					//Graph
-					$scope.graphSection.start('Today');
-					$timeout(function(){
-						$scope.pageLoaded = true;
-					});
-				}, failCallback);
-			}, 
+						// Preview
+						$scope.previewSection.init();
+						// Queue Level(Start graph)
+						$scope.queueLevelSection.start(0);
+						$scope.queueLevelSection.start(1);
+						$scope.queueLevelSection.start(2);
+						//Graph
+						$scope.graphSection.init();
+						$scope.graphSection.getTodayAverageGraph();
+
+						$scope.pcConditionsDateForm.init(
+							function(){
+								$scope.pageLoaded = true;
+								resizeGraph();
+							}, 
+							failCallback
+						);
+					}, 
+					failCallback
+				);
+			},
 			failCallback
 		);
 
@@ -478,10 +620,10 @@ kindFramework.controller('QMStatisticsCtrl', function (
     /* Queue management Search page를 벗어 날 때 */
     $scope.$on('$stateChangeStart',function (event, toState, toParams, fromState, fromParams) {
         if(fromState.controller === 'QMStatisticsCtrl'){
+        	$scope.graphSection.unbindResize();
 			$scope.queueLevelSection.stop(0);
 			$scope.queueLevelSection.stop(1);
 			$scope.queueLevelSection.stop(2);
-			gaugeTimer = {};
         }
     });
 
