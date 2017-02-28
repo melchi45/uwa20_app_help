@@ -58,13 +58,11 @@
                                         <!-- </label> -->
                                     </td>
                                     <td>
-                                        <div>
-                                            <select class="form-control" ng-change="OnStorageEnable(Storage.Enable)" ng-disabled="$parent.selected != $index && isLoading" ng-model="Storage.Enable" style="text-align:center">
-                                                <option ng-repeat="Enable in RecordEnableOptions track by Enable" ng-selected="Storage.Enable == Enable" value="{{Enable}}">
-                                                    {{getTranslatedOption(Enable)}}
-                                                </option>
-                                            </select>
-                                        </div>
+                                        <select class="form-control" ng-change="OnStorageEnable(Storage.Enable)" ng-disabled="$parent.selected != $index && isLoading" ng-model="Storage.Enable" style="text-align:center">
+                                            <option ng-repeat="Enable in RecordEnableOptions track by Enable" ng-selected="Storage.Enable == Enable" value="{{Enable}}">
+                                                {{getTranslatedOption(Enable)}}
+                                            </option>
+                                        </select>
                                     </td>
                                     <td>
                                         <!-- <label ng-disabled="$parent.selected != $index" style="text-align:center"> -->
@@ -176,15 +174,17 @@
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-content wn5-setup-section-article-heading-offset">
-                        <div class="wn5-setup-preview-table-col-3">
+                        <div class="wn5-setup-preview-table-col-4 wn5-setup-storage-auto-delete">
                             <input ng-disabled="(!RecordStorageInfo.OverWrite) || (Storageinfo.Storages[SelectedStorage].Enable === 'Off')" ng-model="RecordStorageInfo.AutoDeleteEnable" type="checkbox">
                             {{'lang_autoDelete' | translate}}
                         </div>
-                        <span>{{ 'lang_days' | translate }}</span>
-                        <input class="form-control wn5-setup-section-article-content-unit-small" maxlength="{{AutoDeleteDayOptions.max.toString().length}}" name="AutoDeleteDays" ng-disabled="!RecordStorageInfo.AutoDeleteEnable || !RecordStorageInfo.OverWrite || Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordStorageInfo.AutoDeleteDays" ng-pattern-restrict="{{ OnlyNumStr}}" type="text" style="width: 50px;">
-                        <span>
-                            (1 ~ 180)
-                        </span>
+                        <div class="col-xs-12 col-sm-5 wn5-setup-storage-days">
+                            <span>{{ 'lang_days' | translate }}</span>
+                            <input class="form-control wn5-setup-section-article-content-unit-small" maxlength="{{AutoDeleteDayOptions.max.toString().length}}" name="AutoDeleteDays" ng-disabled="!RecordStorageInfo.AutoDeleteEnable || !RecordStorageInfo.OverWrite || Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordStorageInfo.AutoDeleteDays" ng-pattern-restrict="{{ OnlyNumStr}}" type="text" style="width: 50px;">
+                            <span>
+                                (1 ~ 180)
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
