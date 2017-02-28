@@ -817,7 +817,7 @@ function WorkerManager() {
     },
     playbackPause: function() {
       isPaused = true;
-      if (videoMS !== null) {
+      if (videoMS !== null && browser === 'edge') {
         videoMS.pause();
       }
       // console.log("workerManager::playbackPause isPaused " + isPaused);
