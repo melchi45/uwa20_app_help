@@ -7450,13 +7450,7 @@ rzslider .rz-bubble {
 #storagepage .wn5-setup-storage-days span,
 #storagepage .wn5-setup-storage-days input {
   float: left;
-<<<<<<< HEAD
-}
-#storagepage .wn5-setup-storage-days input {
-  margin: 0 5px;
-=======
   margin-right: 5px;
->>>>>>> eaad464cdf06b272ffc671efdc196128b44de9f9
 }
 @media (max-width: 700px) {
   #storagepage .wn5-setup-storage-auto-delete {
@@ -7847,9 +7841,28 @@ Prefix : pc-n-hm
 #pc-setup-report .pc-n-hm-grid-4 {
   padding-left: 15px;
 }
+@media (max-width: 700px) {
+  #pc-setup-report .pc-n-hm-grid-2,
+  #pc-setup-report .pc-n-hm-grid-4 {
+    width: 35%;
+  }
+}
+#pc-setup-report-schedule {
+  overflow: hidden;
+}
 #pc-setup-report-schedule .pc-setup-report-schedule-txt {
   padding-left: 15px;
   float: left;
+}
+@media (max-width: 700px) {
+  #pc-setup-report-schedule .pc-setup-report-schedule-hour {
+    clear: left;
+    margin-top: 5px;
+  }
+  #pc-setup-report-schedule .pc-setup-report-schedule-hour ~ div,
+  #pc-setup-report-schedule .pc-setup-report-schedule-hour ~ span {
+    margin-top: 5px;
+  }
 }
 #pc-results {
   width: 100%;
