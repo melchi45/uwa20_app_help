@@ -817,6 +817,9 @@ function WorkerManager() {
     },
     playbackPause: function() {
       isPaused = true;
+      if (videoMS !== null) {
+        videoMS.pause();
+      }
       // console.log("workerManager::playbackPause isPaused " + isPaused);
       if(usePlaybackDrawer){
         if (videoRenderer !== null) {
