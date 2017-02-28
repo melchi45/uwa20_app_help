@@ -484,7 +484,7 @@ kindFramework.controller('QMSetupCtrl',
             	);
         	}
 
-			sketchinfo.useEvent = false;
+			sketchinfo.useEvent = true;
         	sketchinfo.workType = 'qmArea';
         	// sketchinfo.minNumber = 4;
         	sketchinfo.maxNumber = 3;
