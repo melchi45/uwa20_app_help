@@ -149,6 +149,17 @@
     &.wn5-setup-section-article-content-unit-big {
       max-width: 100%;
     }
+
+    @form-max-width: 100%;
+    @media(max-width: @setup-mobile-max-width){
+      max-width: @form-max-width;
+
+      &.wn5-setup-section-article-content-unit-small,
+      &.wn5-setup-section-article-content-unit-middle,
+      &.wn5-setup-section-article-content-unit-big {
+        max-width: @form-max-width;
+      }
+    }
   }
 
   > textarea {
@@ -228,10 +239,13 @@
 .wn5-setup-table-responsive {
   overflow-x: auto;
   .wn5-setup-table {
-    input[type="text"],
-    input[type="password"],
-    select {
-      min-width: 100px;
+    td,
+    ng-form {
+      > input[type="text"],
+      > input[type="password"],
+      > select {
+        min-width: 100px;
+      }
     }
   }  
 }

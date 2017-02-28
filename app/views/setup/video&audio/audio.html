@@ -34,7 +34,7 @@
                     <div class="form-group" ng-show="DeviceType === 'NWC'">
                         <div class="wn5-setup-section-article-heading">{{'lang_source' | translate}}</div>
                         <div class="wn5-setup-section-article-content">
-                            <div class="col-sm-6 col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <select class="form-control" type="text" ng-model="AudioInputs[SelectedChannel].Source">
                                     <option ng-selected="AudioInputs[SelectedChannel].Source == Source" value={{Source}} ng-repeat="Source in AudioInSourceOptions track by Source">{{getTranslatedOption(Source)}}</option>
                                 </select>

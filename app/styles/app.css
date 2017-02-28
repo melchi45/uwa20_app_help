@@ -5352,6 +5352,24 @@ i.tui-ch-playback-stop {
 .wn5-setup-section-article-content > select.wn5-setup-section-article-content-unit-big {
   max-width: 100%;
 }
+@media (max-width: 700px) {
+  .wn5-setup-section-article-content > input[type="text"],
+  .wn5-setup-section-article-content > input[type="password"],
+  .wn5-setup-section-article-content > select {
+    max-width: 100%;
+  }
+  .wn5-setup-section-article-content > input[type="text"].wn5-setup-section-article-content-unit-small,
+  .wn5-setup-section-article-content > input[type="password"].wn5-setup-section-article-content-unit-small,
+  .wn5-setup-section-article-content > select.wn5-setup-section-article-content-unit-small,
+  .wn5-setup-section-article-content > input[type="text"].wn5-setup-section-article-content-unit-middle,
+  .wn5-setup-section-article-content > input[type="password"].wn5-setup-section-article-content-unit-middle,
+  .wn5-setup-section-article-content > select.wn5-setup-section-article-content-unit-middle,
+  .wn5-setup-section-article-content > input[type="text"].wn5-setup-section-article-content-unit-big,
+  .wn5-setup-section-article-content > input[type="password"].wn5-setup-section-article-content-unit-big,
+  .wn5-setup-section-article-content > select.wn5-setup-section-article-content-unit-big {
+    max-width: 100%;
+  }
+}
 .wn5-setup-section-article-content > textarea {
   max-width: 100%;
 }
@@ -5402,9 +5420,9 @@ i.tui-ch-playback-stop {
 .wn5-setup-table-responsive {
   overflow-x: auto;
 }
-.wn5-setup-table-responsive .wn5-setup-table input[type="text"],
-.wn5-setup-table-responsive .wn5-setup-table input[type="password"],
-.wn5-setup-table-responsive .wn5-setup-table select {
+.wn5-setup-table-responsive .wn5-setup-table td > input[type="text"],
+.wn5-setup-table-responsive .wn5-setup-table td > input[type="password"],
+.wn5-setup-table-responsive .wn5-setup-table td > select {
   min-width: 100px;
 }
 .wn5-setup-table {
