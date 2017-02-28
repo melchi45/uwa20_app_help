@@ -45,7 +45,7 @@
                         {{ 'lang_alarm_input_type' | translate }}
                     </div>
                     <div class="wn5-setup-section-article-content">
-                        <div class="pc-n-hm-grid-5" ng-repeat="State in AlarmInputStateOptions">
+                        <div ng-repeat="State in AlarmInputStateOptions" class="col-sm-5 col-xs-12 field-radio-wrapper control-label">
                             <input name="State" ng-model="$parent.AlarmInputs[AlarmData.SelectedAlarm].State" ng-value="State" type="radio"/>
                             <label>{{getTranslatedOption(State)}}</label>
                         </div>

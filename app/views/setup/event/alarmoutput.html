@@ -35,8 +35,8 @@
                         {{ 'lang_alarm_input_type' | translate }}
                     </div>
                     <div class="wn5-setup-section-article-content">
-                        <div ng-class="RadioClassSm" ng-repeat="State in AlarmOutputIdleStateOptions">
-                            <input class="radio" name="State" ng-model="$parent.AlarmOutputs[SelectedAlarm].IdleState" ng-value="State" type="radio"/>
+                        <div ng-repeat="State in AlarmOutputIdleStateOptions" class="col-sm-5 col-xs-12 field-radio-wrapper control-label">
+                            <input class="radio" name="State" ng-model="$parent.AlarmOutputs[SelectedAlarm].IdleState" ng-value="State" type="radio">
                             {{getTranslatedOption(State)}}                            
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                         {{ 'lang_mode' | translate }}
                     </div>
                     <div class="wn5-setup-section-article-content">
-                        <div ng-class="RadioClassSm" ng-repeat="Mode in AlarmoutModes">
+                        <div ng-repeat="Mode in AlarmoutModes" class="col-sm-5 col-xs-12 field-radio-wrapper control-label">
                             {{getTranslatedOption(Mode)}}
                             <input class="radio" name="Mode" ng-model="$parent.AlarmOutputs[SelectedAlarm].Mode" ng-value="Mode" type="radio"/>
                         </div>

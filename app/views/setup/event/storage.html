@@ -179,8 +179,8 @@
                             {{'lang_autoDelete' | translate}}
                         </div>
                         <div class="col-xs-12 col-sm-5 wn5-setup-storage-days">
-                            <span>{{ 'lang_days' | translate }}</span>
                             <input class="form-control wn5-setup-section-article-content-unit-small" maxlength="{{AutoDeleteDayOptions.max.toString().length}}" name="AutoDeleteDays" ng-disabled="!RecordStorageInfo.AutoDeleteEnable || !RecordStorageInfo.OverWrite || Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordStorageInfo.AutoDeleteDays" ng-pattern-restrict="{{ OnlyNumStr}}" type="text" style="width: 50px;">
+                            <span>{{ 'lang_days' | translate }}</span>
                             <span>
                                 (1 ~ 180)
                             </span>

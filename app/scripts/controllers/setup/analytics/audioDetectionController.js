@@ -463,6 +463,27 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
 
         return true;
     }
+   
+
+    function setSizeChart(){
+        var chart = "#audio-line-chart";
+        var width = $(chart).parent().width();
+        if(width > 480){
+            width = 480;
+        }
+
+        width -= 80;
+        $scope.AudioDetectChartOptions.width = width;
+
+        $(chart+" .graph").css("width", width + "px");
+        $(chart+" .graph-border").css("width", (width - 27) + "px");
+        $(chart+".level-threshold-slider").css("width", (width + 100) + "px");
+    }
+
+    window.addEventListener('resize', setSizeChart);
+    $scope.$on("$destroy", function(){
+        window.removeEventListener('resize', setSizeChart);
+    });
 
     function view(data)
     {
@@ -478,6 +499,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
         $q.seqAll(promises).then(
                 function () {
                     $scope.pageLoaded = true;
+                    $timeout(setSizeChart);
                 },
                 function (errorData) {
                     //alert(errorData);

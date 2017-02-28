@@ -163,12 +163,33 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
             function(){
                 $scope.pageLoaded = true;
                 $("#imagepage").show();
+                $timeout(setSizeChart);
             },
             function(errorData){
                 alert(errorData);
             }
         );
     }
+
+    function setSizeChart(){
+        var chart = "#sound-line-chart";
+        var width = $(chart).parent().width();
+        if(width > 480){
+            width = 480;
+        }
+
+        width -= 80;
+        $scope.SoundClassificationtChartOptions.width = width;
+
+        $(chart+" .graph").css("width", width + "px");
+        $(chart+" .graph-border").css("width", (width - 27) + "px");
+        $(chart+".level-threshold-slider").css("width", (width + 100) + "px");
+    }
+
+    window.addEventListener('resize', setSizeChart);
+    $scope.$on("$destroy", function(){
+        window.removeEventListener('resize', setSizeChart);
+    });
 
     function getSoundClassificationData(){
         var getData = {};
