@@ -131,7 +131,18 @@ kindFramework
       
       PlaybackInterface.stopLive();
 
-      PlaybackInterface.preparePlayback();
+      PlaybackInterface.preparePlayback()
+      .then(function() {
+        //Check Browser
+        if( BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ||
+          BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.EDGE ) {
+          ModalManagerService.open(
+            'message',
+            {'message':"Optimized for Chrome Browser", 'buttonCount':0}
+          );  
+        }
+      }, function() {
+      });
       $scope.domControls.enablePlayback = true;
       $scope.timelineController.create();
       $scope.timelineController.changeCurrnetDate({'date':searchData.getSelectedDate()});
@@ -143,14 +154,7 @@ kindFramework
       kindStreamInterface.setResizeEvent();
       kindStreamInterface.setCanvasStyle($scope.viewMode, 'Playback');
       workerManager.initVideo(false);
-      //Check Browser
-      if( BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ||
-        BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.EDGE ) {
-        ModalManagerService.open(
-          'message',
-          {'message':"Optimized for Chrome Browser", 'buttonCount':0}
-        );  
-      }
+
     };
 
     $scope.channelSetFunctions = {
