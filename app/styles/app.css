@@ -5334,10 +5334,6 @@ i.tui-ch-playback-stop {
     font-size: 12px;
   }
 }
-.wn5-setup-section-article-content.livechart {
-  height: 120px;
-  top: -25px;
-}
 .wn5-setup-section-article-content > input[type="text"],
 .wn5-setup-section-article-content > input[type="password"],
 .wn5-setup-section-article-content > select {
@@ -5614,6 +5610,7 @@ i.tui-ch-playback-stop {
 }
 .wn5-setup-preview-table .wn5-setup-preview-content,
 .wn5-setup-preview .wn5-setup-preview-content {
+  position: relative;
   width: 75%;
   font-size: 14px;
   float: left;
@@ -5863,6 +5860,19 @@ i.tui-ch-playback-stop {
 }
 #md-line-chart .slider-align {
   margin-left: -10px;
+}
+.wn5-setup-realtime-chart {
+  height: 120px;
+  top: -25px;
+  padding-left: 15px;
+}
+.wn5-setup-realtime-chart.wn5-setup-preview-content {
+  margin-left: -15px;
+}
+@media (min-width: 1255px) {
+  .wn5-setup-realtime-chart.wn5-setup-preview-content {
+    margin-left: 0;
+  }
 }
 fieldset[disabled] .btn {
   background-color: #d2d2d2 !important;
@@ -7435,6 +7445,16 @@ rzslider .rz-bubble {
   #wn5-setup-8021x .file-browser-field ~ button,
   #wn5-setup-8021x .file-browser-field ~ label {
     margin-top: 5px;
+  }
+}
+#storagepage .wn5-setup-storage-days span,
+#storagepage .wn5-setup-storage-days input {
+  float: left;
+  margin-right: 5px;
+}
+@media (max-width: 700px) {
+  #storagepage .wn5-setup-storage-auto-delete {
+    width: 100%;
   }
 }
 /* Setup Channel Selector */
