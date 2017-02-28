@@ -159,6 +159,10 @@
       &.wn5-setup-section-article-content-unit-big {
         max-width: @form-max-width;
       }
+
+      ~button {
+        margin-top: 5px;
+      }
     }
   }
 
@@ -427,6 +431,10 @@
       width: 20%;
       float: left;
 
+      @media(max-width: @setup-mobile-max-width){
+        width: 25%;
+      }
+
       > button,
       > a {
         .wn5-setup-tab-item-common();
@@ -499,13 +507,19 @@
   +.wn5-setup-section {
     margin-top: @wn5-setup-content-area-line-margin-top;
   }
-}
 
-.wn5-setup-tab.wn5-tab-fill > .nav{
-  &:after{
-    height: 80px !important;
-    background-color: #f2f2f2 !important;
-    border-right: 1px solid #e9e9e9 !important;
+  /**
+   * Camera Setup과 같이 탭이 많을 때 사용
+   */
+  &.wn5-tab-fill {
+    > .nav {
+      &:after{
+        height: 100% !important;
+        display: block;
+        background-color: #f2f2f2 !important;
+        border-right: 1px solid #e9e9e9 !important;
+      }
+    }
   }
 }
 
