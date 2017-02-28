@@ -7437,6 +7437,18 @@ rzslider .rz-bubble {
     margin-top: 5px;
   }
 }
+#storagepage .wn5-setup-storage-days span,
+#storagepage .wn5-setup-storage-days input {
+  float: left;
+}
+#storagepage .wn5-setup-storage-days input {
+  margin: 0 5px;
+}
+@media (max-width: 700px) {
+  #storagepage .wn5-setup-storage-auto-delete {
+    width: 100%;
+  }
+}
 /* Setup Channel Selector */
 #setup-channel-selector {
   width: 100%;
