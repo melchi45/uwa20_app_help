@@ -7415,6 +7415,16 @@ rzslider .rz-bubble {
   left: 20px;
   text-align: center;
 }
+#dptzsetuppage .preset-btn-group {
+  text-align: right;
+  width: 62.5%;
+}
+@media (max-width: 700px) {
+  #dptzsetuppage .preset-btn-group {
+    width: 100%;
+    padding-right: 15px;
+  }
+}
 /* Setup Channel Selector */
 #setup-channel-selector {
   width: 100%;

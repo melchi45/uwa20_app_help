@@ -395,6 +395,18 @@
     text-align:center
 }
 
+#dptzsetuppage {
+	.preset-btn-group {
+	    text-align: right;
+	    width: 62.5%;
+
+    	@media(max-width: @setup-mobile-max-width){
+    		width: 100%;
+    		padding-right: @wn5-setup-content-area-indent;
+    	}
+	}
+}
+
 /* Setup Channel Selector */
 #setup-channel-selector {
 	.wn5-setup-section-heading();

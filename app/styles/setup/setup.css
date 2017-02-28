@@ -68,8 +68,3 @@ select option:disabled {
 .wn5-setup-wrapper #setup-border-box {
     display: block;
 }
-
-#dptzsetuppage .preset-btn-group {
-    text-align: right;
-    width: 62.5%;
-}
