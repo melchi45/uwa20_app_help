@@ -7691,8 +7691,15 @@ Prefix : pc-n-hm
 .pc-n-hm-delete-data {
   position: relative;
 }
-#pc-conditions-date-form .col-sm-2 {
-  margin-right: 10px;
+#pc-conditions-date-form .pc-conditions-date-form-option {
+  width: 16.66666667%;
+  margin-right: 5px;
+  float: left;
+}
+@media (max-width: 700px) {
+  #pc-conditions-date-form .pc-conditions-date-form-option {
+    width: 45%;
+  }
 }
 #pc-setup-cameramanagement {
   position: absolute;
@@ -7977,12 +7984,24 @@ Prefix : pc-n-hm
 .pc-calender-icon input[readonly] {
   background-color: #fff;
 }
+@media (max-width: 700px) {
+  .pc-calender-icon {
+    width: 105px;
+    margin-top: 5px;
+  }
+}
 .pc-swing-dash {
   width: 30px;
   height: 30px;
   text-align: center;
   float: left;
   font-size: 16px;
+}
+@media (max-width: 700px) {
+  .pc-swing-dash {
+    width: 20px;
+    margin-top: 5px;
+  }
 }
 .pc-calender {
   position: absolute;
@@ -9787,8 +9806,8 @@ img[id^="hm-results-image-"] {
     font-size: 15px;
   }
   .kind-responsive-playback #cm-menu-content h2 {
-    font-size: 24px;
-    margin-bottom: 16px;
+    font-size: 24px !important;
+    margin-bottom: 16px !important;
   }
   .kind-responsive-playback #cm-menu-content .cm-event-all-wrap {
     width: 130px;
@@ -9976,8 +9995,8 @@ img[id^="hm-results-image-"] {
     font-size: 18px;
   }
   .kind-responsive-playback #cm-menu-content h2 {
-    font-size: 30px;
-    margin-bottom: 22px;
+    font-size: 30px !important;
+    margin-bottom: 22px !important;
   }
   .kind-responsive-playback #cm-menu-content .cm-event-all-wrap {
     width: 170px;

@@ -3,7 +3,7 @@
         <label>{{ pcConditionsDateForm.dateTitle | translate }}</label>
     </div>
     <div class="wn5-setup-section-article-content">
-        <div class="col-xs-6 col-sm-2">
+        <div class="pc-conditions-date-form-option">
             <select 
                 class="form-control" 
                 ng-model="pcConditionsDateForm.firstSelect" 
@@ -15,7 +15,7 @@
                 </option>
             </select>
         </div>
-        <div class="col-xs-6 col-sm-2">
+        <div class="pc-conditions-date-form-option">
             <select 
                 class="form-control" 
                 ng-model="pcConditionsDateForm.secondSelect"
@@ -27,8 +27,7 @@
                 </option>
             </select>
         </div>
-        <div 
-            class="pc-calender-icon">
+        <div class="pc-calender-icon">
             <input 
                 type="text"
                 ng-value="pcConditionsDateForm.fromCalenderInput"

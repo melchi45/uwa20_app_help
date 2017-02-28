@@ -157,8 +157,14 @@ Prefix : pc-n-hm
 }
 
 #pc-conditions-date-form {
-	.col-sm-2 {
-		margin-right: 10px;
+	.pc-conditions-date-form-option {
+		width: 16.66666667%;
+		margin-right: 5px;
+		float: left;
+
+		@media(max-width: @setup-mobile-max-width){
+			width: 45%;
+		}
 	}
 }
 
