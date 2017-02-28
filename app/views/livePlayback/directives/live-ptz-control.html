@@ -108,7 +108,7 @@
       2. last position view.
       3. Live PTZ - zoom slider issue fixed.
       -->
-      <div id="live-ptz-control-zoomonly" ng-show="showZoomOnlyControl">
+    <div id="live-ptz-control-zoomonly" ng-show="showZoomOnlyControl">
         <div class="slider-fields live-slider-field col-xs-3" style="min-width: 250px;">
             <h3>{{ 'lang_zoom' | translate }}</h3>
             <div class="ptz-control_slider-box-horizontal" style="width: 175px;">
@@ -348,11 +348,12 @@
 
       <h2 style="margin-top: 20px;"><span>{{ 'Lock - ON' | translate }}</span></h2>
       <div>
-        <button 
+        <button
           class="cm-icon-button-s"
-          title="{{'lang_ptz_manual_lock_on' | translate}}">
+          title="{{'lang_ptz_manual_lock_on' | translate}}"
+          ng-click="setManualTracking()">
           <span class="sr-only">{{ 'lang_ptz_manual_lock_on' | translate }}</span>
-          <i class="tui tui-ch-live-ptz-tracking-auto-on"></i>
+          <i class="tui" ng-class="modePTZ.ManualTrackingMode === true ? 'cm-active tui-ch-live-ptz-tracking-auto-on' : 'tui-ch-live-ptz-tracking-auto-off'"></i>
         </button>
       </div>
     </div>

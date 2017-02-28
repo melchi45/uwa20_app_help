@@ -1,9 +1,9 @@
 "use strict";
 kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerService', 
 	'SunapiClient', '$timeout', 'DigitalPTZContorlService', 'ModalManagerService', '$translate',
-	'$interval','Attributes', 'COMMONUtils',
+	'$interval','Attributes', 'COMMONUtils', 'PTZContorlService', 'PTZ_TYPE',
 	function(CAMERA_STATUS, UniversialManagerService, SunapiClient, $timeout, DigitalPTZContorlService,
-		ModalManagerService, $translate, $interval, Attributes, COMMONUtils) {
+		ModalManagerService, $translate, $interval, Attributes, COMMONUtils, PTZContorlService, PTZ_TYPE) {
 		return {
 			restrict: 'E',
 			scope: false,
@@ -11,6 +11,9 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 			templateUrl: 'views/livePlayback/directives/live-ptz-control.html',
 			link: function(scope, element, attrs){
                 var mAttr = Attributes.get();
+                scope.modePTZ =  {
+                	ManualTrackingMode : false
+				};
 
 				scope.dptzMode = CAMERA_STATUS.DPTZ_MODE;
 				scope.ptzType = CAMERA_STATUS.PTZ_MODE;
@@ -60,6 +63,8 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						case CAMERA_STATUS.PTZ_MODE.OPTICAL:
                             getSettingPresetList();
                             getSettingGroupList();
+                            scope.modePTZ.ManualTrackingMode = (PTZContorlService.getManualTrackingMode() === "True");
+
                             if (mAttr.TraceSupport)
                             {
                                 scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
@@ -208,7 +213,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 		scope.ptzSwing = function(value){
 			try {
 				if(value === 'Stop'){
-					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=tour&action=control&Channel=0&Mode=Stop";
+					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=swing&action=control&Channel=0&Mode=Stop";
 					execSunapi(sunapiURI);
 				}else if(value === 'Go'){
 					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=swing&action=control&Channel=0&Mode=" + scope.selectedObj.swingObj;
@@ -219,6 +224,62 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 			} catch (error)
 			{
 				console.error(error.message);
+			}
+		};
+
+		function mouseUp (event) {
+			if(event.target.id !== "livecanvas") return;
+
+			var canvas = document.getElementsByTagName("channel_player")[0].getElementsByTagName("canvas")[0];
+			var xPos = event.offsetX;
+			var yPos = event.offsetY;
+
+            if(xPos < 0 || yPos < 0) { // out of frame
+				return;
+			} else {
+				var rotate = UniversialManagerService.getRotate();
+
+				if(rotate === '90' || rotate === '270') {
+					xPos = Math.ceil(xPos*(10000 / canvas.offsetHeight));
+					yPos = Math.ceil(yPos*(10000 / canvas.offsetWidth));
+				} else {
+					xPos = Math.ceil(xPos*(10000 / canvas.offsetWidth));
+					yPos = Math.ceil(yPos*(10000 / canvas.offsetHeight));
+				}
+
+				PTZContorlService.execute([xPos, yPos]);
+			}
+        }
+
+		scope.setManualTracking = function() {
+			try{
+                var elemChannelPlayer = document.getElementsByTagName("channel_player")[0];
+
+                if("True" === PTZContorlService.getManualTrackingMode())
+                {
+                    PTZContorlService.setManualTrackingMode("False");
+                    scope.modePTZ.ManualTrackingMode = false;
+                    elemChannelPlayer.removeEventListener('mouseup', mouseUp);
+                }
+                else if("False" === PTZContorlService.getManualTrackingMode())
+				{
+					if("True" === PTZContorlService.getAutoTrackingMode())
+					{
+                        PTZContorlService.setAutoTrackingMode("False");
+					}
+
+					PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
+                    PTZContorlService.setManualTrackingMode("True");
+                    elemChannelPlayer.addEventListener('mouseup', mouseUp);
+                    scope.modePTZ.ManualTrackingMode = true;
+				}
+				else
+				{
+                    throw new Error(300, "Argument Error");
+				}
+			}catch(e)
+			{
+				console.log(e.message);
 			}
 		};
 
@@ -260,6 +321,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						scope.$apply();           
           }
         };
+
 
         /*ZOOM*/
         $("#cm-ptz-zoom-slider").slider({
@@ -469,9 +531,6 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						ptzStop();
 					}
 				});
-
-
-
 
 				$("#ptz-control_slider-horizontal-focus").unbind();
 
