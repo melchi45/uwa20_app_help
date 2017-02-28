@@ -128,14 +128,20 @@ kindFramework
     * @function : initStreaming
     */
     var initStreaming = function() {
+      var def = $q.defer();
       var channelId = searchData.getChannelId();
       //1. close Live Stream.
       PlaybackInterface.stopLive();
-      PlaybackInterface.preparePlayback(channelId);
-
+      PlaybackInterface.preparePlayback(channelId)
+      .then(function(results) {
+        def.resolve(results);
+      }, function(err) {
+        def.reject(err);
+      });
       kindStreamInterface.setResizeEvent();
       kindStreamInterface.setCanvasStyle($scope.viewMode, 'Playback');
       workerManager.initVideo(false);
+      return def.promise;
     };
 
     /*
@@ -151,6 +157,18 @@ kindFramework
       $scope.playbackPage.MaxChannel = sunapiAttributes.MaxChannel;
       //TODO : below is only for test.
       //$scope.playbackPage.MaxChannel = 4;
+      PlaybackInterface.preparePlayback()
+      .then(function() {
+        //Check Browser
+        if( BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ||
+          BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.EDGE ) {
+          ModalManagerService.open(
+            'message',
+            {'message':"Optimized for Chrome Browser", 'buttonCount':0}
+          );  
+        }
+      }, function() {
+      });
       $scope.domControls.enablePlayback = true;
       $scope.timelineController.create();
       $scope.timelineController.changeCurrnetDate({'date':searchData.getSelectedDate()});
@@ -158,15 +176,6 @@ kindFramework
       UniversialManagerService.setPlayMode(CAMERA_STATUS.PLAY_MODE.PLAYBACK);
       playData.setStatus(PLAY_CMD.PLAYPAGE);
       playData.setTimelineMode(true);
-
-      //Check Browser
-      if( BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ||
-        BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.EDGE ) {
-        ModalManagerService.open(
-          'message',
-          {'message':"Optimized for Chrome Browser", 'buttonCount':0}
-        );  
-      }
     };
 
     $scope.channelSetFunctions = {
