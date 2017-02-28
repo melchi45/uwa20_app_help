@@ -49,6 +49,8 @@ kindFramework.controller('QMSetupCtrl',
 	$scope.queueData.dataLoad = false;
 	$scope.support = {};
 
+	var channel = 0;
+
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
     };
@@ -99,6 +101,11 @@ kindFramework.controller('QMSetupCtrl',
 			console.error("Getting Maxinum Resolution of Video is Wrong!");
 		}
 
+		var failCallback = function(errorData){
+			$scope.pageLoaded = true;
+			console.error(errorData);
+		};
+
 		qmModel.getData().then(
 			function(data){
 				$scope.queueData = data;
@@ -125,9 +132,7 @@ kindFramework.controller('QMSetupCtrl',
 				//Report
 				$scope.reportSection.init();
 			}, 
-			function(errorData){
-				console.error(errorData);
-			}
+			failCallback
 		);
 
 		deferred.resolve("Success");
@@ -231,6 +236,7 @@ kindFramework.controller('QMSetupCtrl',
 		start: function(){
 			$scope.queueLevelSection.stop();
 			$scope.queueLevelSection.reload();
+			$scope.queueLevelSection.change();
 
 			gaugeTimer = setInterval(function(){
 				$scope.queueLevelSection.change();
@@ -243,41 +249,54 @@ kindFramework.controller('QMSetupCtrl',
 			}
 		},
 		change: function(){
-			var colorList = ["#2beddb", "#0dd8eb", "#57ed06", "#0ec20e", "#ffab33", "#ff5400"];
-			var colorNameList = ["#1be2e4", "#31d70a", "#ff7f19"];
+			var successCallback = function(responseData){
+				var queue = responseData[$scope.queueListSection.selectedQueueId].Level;
+				var data = getPeopleData();
 
-			var data = getPeopleData();
-			var rand = makeRandom(0, data.max);
+				var colorList = ["#2beddb", "#0dd8eb", "#57ed06", "#0ec20e", "#ffab33", "#ff5400"];
+				var colorNameList = ["#1be2e4", "#31d70a", "#ff7f19"];
 
-			$("#qm-bar .qm-bar-mask").css({
-				width: (100 - getPercent(rand, data.max)) + "%"
-			});
+				$("#qm-bar .qm-bar-mask").css({
+					width: (100 - getPercent(queue, data.max)) + "%"
+				});
 
-			//Bar 2
-			var colorName = null;
-			var startColor = null;
-			var endColor = null;
-			if(rand < data.mid){
-				colorName = colorNameList[0];
-				startColor = colorList[0];
-				endColor = colorList[1];
-			}else if(rand < data.high){
-				colorName = colorNameList[1];
-				startColor = colorList[2];
-				endColor = colorList[3];
-			}else{
-				colorName = colorNameList[2];
-				startColor = colorList[4];
-				endColor = colorList[5];
-			}
+				//Bar 2
+				var colorName = null;
+				var startColor = null;
+				var endColor = null;
+				if(queue < data.mid){
+					colorName = colorNameList[0];
+					startColor = colorList[0];
+					endColor = colorList[1];
+				}else if(queue < data.high){
+					colorName = colorNameList[1];
+					startColor = colorList[2];
+					endColor = colorList[3];
+				}else{
+					colorName = colorNameList[2];
+					startColor = colorList[4];
+					endColor = colorList[5];
+				}
 
-			$("#qm-bar .qm-bar").css({
-				background: colorName,
-				background: "-webkit-linear-gradient(left, " + startColor + ", " + endColor + ")",
-				background: "-o-linear-gradient(right, " + startColor + ", " + endColor + ")",
-				background: "-moz-linear-gradient(right, " + startColor + ", " + endColor + ")",
-				background: "linear-gradient(to right, " + startColor + ", " + endColor + ")"
-			});
+				$("#qm-bar .qm-bar").css({
+					background: colorName,
+					background: "-webkit-linear-gradient(left, " + startColor + ", " + endColor + ")",
+					background: "-o-linear-gradient(right, " + startColor + ", " + endColor + ")",
+					background: "-moz-linear-gradient(right, " + startColor + ", " + endColor + ")",
+					background: "linear-gradient(to right, " + startColor + ", " + endColor + ")"
+				});
+			};
+
+			var failCallback = function(failData){
+				console.info(failData);
+			};
+
+			qmModel.checkData(
+				{
+					Channel: channel,
+					QueueIndex: ($scope.queueListSection.selectedQueueId + 1)
+				}
+			).then(successCallback, failCallback);
 		},
 		resetBar: function(){
 			$("#qm-bar .qm-bar-mask").css({
@@ -444,6 +463,7 @@ kindFramework.controller('QMSetupCtrl',
 	};
 
 	function getSketchinfo(flag){
+		if(!$scope.queueData.Enable) return null;
 		var sketchinfo = {
 			shape: 1,
 			modalId: "./views/setup/common/confirmMessage.html"
@@ -477,7 +497,7 @@ kindFramework.controller('QMSetupCtrl',
         			enable: true,
             		points: $scope.calibrationSection.coordinates
             	}
-            ];console.info($scope.calibrationSection.coordinates);
+            ];
 
         	sketchinfo.workType = 'calibration';
         	sketchinfo.maxNumber = 1;
@@ -577,11 +597,43 @@ kindFramework.controller('QMSetupCtrl',
 		}, failCallback);
 	}
 
-	function setValidation(){
-		return true;
-	}
-
 	function set(needRefresh){
+		var data = $scope.queueData;
+
+		var setData = {};
+		setData.Channel = channel;
+		setData.Enable = data.Enable;
+		setData.CalibrationMode = data.CalibrationMode;
+		setData.ObjectSizeCoordinates = [
+			$scope.calibrationSection.coordinates[0].join(),
+			$scope.calibrationSection.coordinates[2].join()
+		].join();
+
+		for(var i = 1; i <= data.Queues.length; i++){
+			var j = i - 1;
+			var queue = data.Queues[j];
+			setData['Queue.' + i + '.Enable'] = queue.Enable;
+			setData['Queue.' + i + '.MaxPeople'] = queue.MaxPeople;
+			setData['Queue.' + i + '.Name'] = queue.Name;
+			setData['Queue.' + i + '.Level.High.AlarmEnable'] = queue.QueueTypes[0].AlarmEnable;
+			setData['Queue.' + i + '.Level.High.Count'] = queue.QueueTypes[0].Count;
+			setData['Queue.' + i + '.Level.High.Threshold'] = queue.QueueTypes[0].Threshold;
+			setData['Queue.' + i + '.Level.Medium.AlarmEnable'] = queue.QueueTypes[1].AlarmEnable;
+			setData['Queue.' + i + '.Level.Medium.Count'] = queue.QueueTypes[1].Count;
+			setData['Queue.' + i + '.Level.Medium.Threshold'] = queue.QueueTypes[1].Threshold;
+			setData['Queue.' + i + '.Coordinates'] = $scope.coordinates[j].points.join();
+		}
+
+		$scope.pcSetupReport.setReport();
+		qmModel.setData(
+			setData, 
+			function(responseData){
+				console.info(responseData);
+			}, 
+			function(errorData){
+				console.info(errorData);
+			}
+		);
 	}
 
 	$scope.submitEnable = function(){
@@ -617,14 +669,37 @@ kindFramework.controller('QMSetupCtrl',
 		);
 	};
 
+	function setValidation(){
+		var data = $scope.queueData.Queues;
+		var isOk = true;
+		var alertMessage = '';
+
+		if(data.length !== 0){
+			if(
+				(data[0].Name === '' && data[0].Enable === true) ||
+				(data[1].Name === '' && data[1].Enable === true) ||
+				(data[2].Name === '' && data[2].Enable === true)
+				){
+				isOk = false;
+				alertMessage = $translate.instant('lang_msg_noname');
+			}
+
+			if(isOk === false){
+				COMMONUtils.ShowError(alertMessage);
+			}
+		}
+
+		return isOk;
+	}
+
 	$scope.submit = function(needRefresh){
-		// if(setValidation()){
+		if(setValidation()){
 			if($scope.pcSetupReport.validate()){
 				COMMONUtils.ApplyConfirmation(function(){
 					set(needRefresh);
 				});
 			}
-		// }
+		}
 	};
 	$scope.view = view;
 

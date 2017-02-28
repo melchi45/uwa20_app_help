@@ -489,12 +489,12 @@ kindFramework.constant('ROUTE_CONFIG', {
                         name: 'Queue management',
                         iconClass: 'tui tui-wn5-ptz-near',
                         childs: [
-                            // {
-                            //     urlName: 'search',
-                            //     name: 'lang_search',
-                            //     templateUrl: 'views/setup/queue/qmStatistics.html',
-                            //     controller: 'QMStatisticsCtrl'
-                            // },
+                            {
+                                urlName: 'search',
+                                name: 'lang_search',
+                                templateUrl: 'views/setup/queue/qmStatistics.html',
+                                controller: 'QMStatisticsCtrl'
+                            },
                             {
                                 urlName: 'setup',
                                 name: 'lang_setup',

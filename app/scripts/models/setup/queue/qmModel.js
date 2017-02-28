@@ -22,6 +22,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			realTime: {
 				queueLevel: 'Queue Level', 
 				button: 'lang_setup',
+				message: ''
 			},
 			graph: {
 				today: 'lang_today',
@@ -35,7 +36,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			search: {
 				title: 'lang_search',
 				button: 'lang_search',
-				date: 'lang_date',
+				// date: 'lang_date',
 				rule: {
 					title: 'Rule',
 					peopleInQ: 'People in queue',
@@ -87,6 +88,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 		};
 
 		(function langInit(){
+			lang.realTime.message = $translate.instant('lang_pc_hm_data_init_rule') + ' ' + $translate.instant('lang_msg_init_rule_but_delete_all_data');
 			lang.queueUndefined.disable = $translate.instant('lang_msg_please_enable').replace('%1', lang.queueManagement);
 			lang.queueUndefined.noRule = $translate.instant('lang_msg_norule') + ' ' + $translate.instant('lang_msg_addrule').replace('%1', $translate.instant('lang_setup'));
 			lang.calibration.message = $translate.instant('lang_msg_calibration_guide_1') + ' ' + $translate.instant('lang_msg_calibration_guide_2').replace('%1', lang.queueManagement);
@@ -108,7 +110,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					            "ReportEnable": false,
 					            "ReportFilename": "",
 					            "ReportFileType": "xlsx",
-					            "CalibrationMode": "CameraHeight",
+					            "CalibrationMode": "ObjectSize",
 					            "CameraHeight": 300,
 					            "ObjectSizeCoordinates": [
 					                {
@@ -124,7 +126,6 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					                {
 					                    "Queue": 1,
 					                    "MaxPeople": 10,
-					                    "HighPeople": 7,
 					                    "Name": "Queue1",
 					                    "Enable": true,
 					                    "Coordinates": [
@@ -162,8 +163,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					                },
 					                {
 					                    "Queue": 2,
-					                    "MaxPeople": 5,
-					                    "HighPeople": 4,
+					                    "MaxPeople": 8,
 					                    "Name": "Queue2",
 					                    "Enable": true,
 					                    "Coordinates": [
@@ -201,8 +201,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					                },
 					                {
 					                    "Queue": 3,
-					                    "MaxPeople": 7,
-					                    "HighPeople": 3,
+					                    "MaxPeople": 10,
 					                    "Name": "Queue3",
 					                    "Enable": false,
 					                    "Coordinates": [
@@ -250,40 +249,20 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					            "Queues": [
 					                {
 					                    "Queue": 1,
-					                    "Level": 8,                  
+					                    "Level": 1,                  
 					                },
 					                {
 					                    "Queue": 2,
-					                    "Level": 15,
+					                    "Level": 2,
 					                },
 							{
 					                    "Queue": 3,
-					                    "Level": 25,
+					                    "Level": 3,
 					                },
-					            ]
-					        }
-					    ]
-					},
-					checkOnly12:
-					{
-					    "QueueLevels": [
-					        {
-					            "Channel": 0,                        
-					            "Queues": [
-					                {
-					                    "Queue": 1,
-					                    "Level": 8,                  
-					                },
-					                {
-					                    "Queue": 2,
-					                    "Level": 15,
-					                }
 					            ]
 					        }
 					    ]
 					}
-
-
 				},
 				sourceoptions: {
 					view: 
@@ -689,7 +668,9 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			var deferred = $q.defer();
 
 			function successCallback(data){
-				deferred.reject(data);
+				data = data.QueueManagementSetup[0];
+				
+				deferred.resolve(data);
 			}
 
 			function failCallback(data){
@@ -697,6 +678,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 				data = data.QueueManagementSetup[0];
 				
 				deferred.resolve(data);
+				// deferred.reject(data);
 			}
 
 			eventSourcesCgi.queue.view(successCallback, failCallback);
@@ -707,15 +689,58 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 		this.setData = function(data){
 			var deferred = $q.defer();
 
-			function successCallback(data){
-				deferred.reject(data);
+			function successCallback(successData){
+				deferred.resolve(successData);
 			}
 
-			function failCallback(data){
-				deferred.resolve(data);
+			function failCallback(failData){
+				deferred.resolve(failData);
+				// deferred.reject(data);
 			}
 
 			eventSourcesCgi.queue.set(data, successCallback, failCallback);
+
+			return deferred.promise;
+		};
+
+		this.checkData = function(data){
+			var deferred = $q.defer();
+
+			function successCallback(successData){
+				successData = mockupData.eventSourcesCgi.queue.check; //mockup
+				successData = successData.QueueLevels[0].Queues;
+				
+				deferred.resolve(successData);
+			}
+
+			function failCallback(failData){
+				// failData = mockupData.eventSourcesCgi.queue.check; //mockup
+				// failData = failData.QueueLevels.Queues;
+				
+				// deferred.resolve(failData);
+				deferred.reject(failData);
+			}
+
+			eventSourcesCgi.queue.check(data, successCallback, failCallback);
+
+			return deferred.promise;
+		};
+
+		this.controlSearch = function(data){
+			var deferred = $q.defer();
+
+			function successCallback(successData){
+				successData = mockupData.recordingCgi.controlStart;
+				deferred.resolve(successData);
+			}
+
+			function failCallback(failData){
+				failData = mockupData.recordingCgi.controlStart;
+				deferred.resolve(failData);
+				// deferred.reject(failData);
+			}
+
+			recordingCgi.control(data, successCallback, failCallback);
 
 			return deferred.promise;
 		};
