@@ -7425,6 +7425,18 @@ rzslider .rz-bubble {
     padding-right: 15px;
   }
 }
+@media (max-width: 700px) {
+  #wn5-setup-8021x .file-browser-field {
+    width: 100%;
+  }
+  #wn5-setup-8021x .file-browser-field + button {
+    margin-left: 0;
+  }
+  #wn5-setup-8021x .file-browser-field ~ button,
+  #wn5-setup-8021x .file-browser-field ~ label {
+    margin-top: 5px;
+  }
+}
 /* Setup Channel Selector */
 #setup-channel-selector {
   width: 100%;

@@ -95,7 +95,7 @@ kindFramework.controller('8021xCtrl', function ($scope, SunapiClient, COMMONUtil
         getAttributes();
         IEEE8021xView().then(function(){
             $scope.pageLoaded = true;
-            $("#8021xpage").show();
+            $("#wn5-setup-8021x").show();
         }, function(errorData){
             console.log(errorData);
         });
