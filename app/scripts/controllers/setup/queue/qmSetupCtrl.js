@@ -279,10 +279,10 @@ kindFramework.controller('QMSetupCtrl',
 				}
 
 				$("#qm-bar .qm-bar").css({
-					background: colorName,
-					background: "-webkit-linear-gradient(left, " + startColor + ", " + endColor + ")",
-					background: "-o-linear-gradient(right, " + startColor + ", " + endColor + ")",
-					background: "-moz-linear-gradient(right, " + startColor + ", " + endColor + ")",
+					// background: colorName,
+					// background: "-webkit-linear-gradient(left, " + startColor + ", " + endColor + ")",
+					// background: "-o-linear-gradient(right, " + startColor + ", " + endColor + ")",
+					// background: "-moz-linear-gradient(right, " + startColor + ", " + endColor + ")",
 					background: "linear-gradient(to right, " + startColor + ", " + endColor + ")"
 				});
 			};
