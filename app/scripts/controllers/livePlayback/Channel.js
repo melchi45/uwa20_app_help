@@ -10,13 +10,13 @@ kindFramework
   'SessionOfUserManager', 'ModalManagerService', 'UniversialManagerService',
   'CAMERA_STATUS', 'Attributes', 'CameraService', '$translate', 'AccountService', 
   'MultiLanguage','$state', 'SearchDataModel', 'PlayDataModel','KindProfileService',
-  'PlaybackInterface','playbackStepService', 'RESTCLIENT_CONFIG', 'BrowserService', 'ExtendChannelContainerService', 'COMMONUtils',
+  'PlaybackInterface','playbackStepService', 'RESTCLIENT_CONFIG', 'BrowserService', 'ExtendChannelContainerService', 'COMMONUtils', 'BACKUP_STATUS',
     function($controller, $scope, $timeout,  $q, $rootScope, $location, LocalStorageService,
       ConnectionSettingService, LoggingService,kindStreamInterface, DigitalZoomService, 
       CAMERA_TYPE, SunapiClient,PLAYBACK_TYPE, SessionOfUserManager, ModalManagerService, 
       UniversialManagerService, CAMERA_STATUS, Attributes, CameraService, $translate, 
       AccountService, MultiLanguage, $state, SearchDataModel, PlayDataModel, KindProfileService, 
-      PlaybackInterface, playbackStepService, RESTCLIENT_CONFIG, BrowserService, ExtendChannelContainerService,COMMONUtils) {
+      PlaybackInterface, playbackStepService, RESTCLIENT_CONFIG, BrowserService, ExtendChannelContainerService,COMMONUtils, BACKUP_STATUS) {
     "use strict";
 
     var self = this;
@@ -881,6 +881,27 @@ kindFramework
         $scope.stop3d();
       }
     };    
+
+    $rootScope.$saveOn("channel:changeFullSetRec", function(event) {
+      var backupCallback = function(data) {
+        if( data.errorCode === BACKUP_STATUS.MODE.RECORDING ) {
+          $timeout(function(){
+            $scope.channelBasicFunctions.rec = true;
+          }); 
+        }
+        else if( data.errorCode === BACKUP_STATUS.MODE.STOP){
+          $timeout(function(){
+            $scope.channelBasicFunctions.rec = false;
+          });
+        }
+      };
+
+      if(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE || BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI){
+        if( $scope.channelBasicFunctions.rec === true ){
+          $rootScope.$emit('channelPlayer:command', 'record', 'stop', backupCallback);
+        }
+      }
+    }, $scope);
 
     $rootScope.$saveOn('channelPlayer:stopped', function(event, _errorCode, _profileNumber, _stringmingMode) {
       if(_errorCode === 'NOT_AVAIALBE')
