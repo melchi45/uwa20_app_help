@@ -298,7 +298,7 @@ kindFramework
             if(blockWindowShiftTimeoutId === null && playData.getTimelineEnable()) {
               itemFocusing(curTime);
             }
-            setTimebarPosition(curTime.format(), convert_String_to_Date(endTarget));
+            setTimebarPosition(curTime.format(), convert_String_to_Date(endTarget), true);
           }
           timestamp = time.timestamp;
         };
@@ -378,16 +378,18 @@ kindFramework
         *
         * @function : setTimebarPosition
         * @param : timePosition is type of String, endTime is type of Date
+        *        : if discard set to true, don't update rtsp url info.
         */
-        var setTimebarPosition = function(timePosition, endTime) {
+        var setTimebarPosition = function(timePosition, endTime, discard) {
           if( timeline === null ) return;
           var playbackStatus = playData.getStatus();
-          if( playbackStatus === PLAY_CMD.STOP ||
-            playbackStatus === PLAY_CMD.PAUSE ||
-            playbackStatus === PLAY_CMD.PLAYPAGE) {
-            setTimeRange(convert_String_to_Date(timePosition), endTime);
+          if( discard !== true ) {
+          	if( playbackStatus === PLAY_CMD.STOP ||
+            	playbackStatus === PLAY_CMD.PAUSE ||
+            	playbackStatus === PLAY_CMD.PLAYPAGE) {
+            	setTimeRange(convert_String_to_Date(timePosition), endTime);
+          	}
           }
-
           timeline.setCustomTime(timePosition, 't1');
 
           var time_info = {

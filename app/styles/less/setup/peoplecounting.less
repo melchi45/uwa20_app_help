@@ -163,13 +163,32 @@
 	.pc-n-hm-grid-2,
 	.pc-n-hm-grid-4 {
 		padding-left: 15px;
+
+		@media(max-width: @setup-mobile-max-width){
+			width: 35%;
+		}
 	}
 }
 
 #pc-setup-report-schedule {
+	overflow: hidden;
+
 	.pc-setup-report-schedule-txt {
-		#pc-setup-report .pc-n-hm-grid-2();
+		padding-left: 15px;
 		float: left;
+	}
+
+	.pc-setup-report-schedule-hour {
+		@margin-top: 5px;
+		@media(max-width: @setup-mobile-max-width){
+			clear: left;
+			margin-top: @margin-top;
+
+			~div,
+			~span {
+				margin-top: @margin-top;
+			}
+		}
 	}
 }
 
@@ -321,6 +340,11 @@ overflow: visible;
 	input[readonly] {
 		background-color: #fff;
 	}
+
+	@media(max-width: @setup-mobile-max-width){
+		width: 105px;
+		margin-top: 5px;
+	}
 }
 
 .pc-swing-dash {
@@ -329,6 +353,11 @@ overflow: visible;
 	text-align: center;
 	float: left;
 	font-size: 16px;
+
+	@media(max-width: @setup-mobile-max-width){
+		width: 20px;
+		margin-top: 5px;
+	}
 }
 
 .pc-calender {

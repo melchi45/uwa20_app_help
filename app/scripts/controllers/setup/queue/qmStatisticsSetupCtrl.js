@@ -108,21 +108,38 @@ kindFramework.controller('QMStatisticsCtrl', function (
 
 	$scope.graphSection = {
 		start: function(type){
-			var successCallback = function(){
-
-			};
-
-			var data = {};
-
 			if(type === 'Today'){
-				data = {
-					Mode: 'Start',
-					"Queue.1.AveragePeople": true,
-					"Queue.2.AveragePeople": true,
-					"Queue.3.AveragePeople": true
-				};
+				qmModel
+					.getTodayGraphData()
+					.then(todaySuccessCallback, failCallback);
 			}else{
 			}
+
+			function todaySuccessCallback(data){
+				qmModel
+					.getWeekGraphData()
+					.then(weekSuccessCallback, failCallback);
+			}
+
+			function weekSuccessCallback(data){
+				
+			}
+
+			function failCallback(failData){
+				console.info(failData);
+			}
+
+			// var data = {};
+
+			// if(type === 'Today'){
+			// 	data = {
+			// 		Mode: 'Start',
+			// 		"Queue.1.AveragePeople": true,
+			// 		"Queue.2.AveragePeople": true,
+			// 		"Queue.3.AveragePeople": true
+			// 	};
+			// }else{
+			// }
 		}
 	};
 
@@ -382,10 +399,10 @@ kindFramework.controller('QMStatisticsCtrl', function (
 				}
 
 				parent.find(".qm-bar").css({
-					background: colorName,
-					background: "-webkit-linear-gradient(left, " + startColor + ", " + endColor + ")",
-					background: "-o-linear-gradient(right, " + startColor + ", " + endColor + ")",
-					background: "-moz-linear-gradient(right, " + startColor + ", " + endColor + ")",
+					// background: colorName,
+					// background: "-webkit-linear-gradient(left, " + startColor + ", " + endColor + ")",
+					// background: "-o-linear-gradient(right, " + startColor + ", " + endColor + ")",
+					// background: "-moz-linear-gradient(right, " + startColor + ", " + endColor + ")",
 					background: "linear-gradient(to right, " + startColor + ", " + endColor + ")"
 				});
 			};

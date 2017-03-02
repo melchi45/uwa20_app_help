@@ -5334,10 +5334,6 @@ i.tui-ch-playback-stop {
     font-size: 12px;
   }
 }
-.wn5-setup-section-article-content.livechart {
-  height: 120px;
-  top: -25px;
-}
 .wn5-setup-section-article-content > input[type="text"],
 .wn5-setup-section-article-content > input[type="password"],
 .wn5-setup-section-article-content > select {
@@ -5614,6 +5610,7 @@ i.tui-ch-playback-stop {
 }
 .wn5-setup-preview-table .wn5-setup-preview-content,
 .wn5-setup-preview .wn5-setup-preview-content {
+  position: relative;
   width: 75%;
   font-size: 14px;
   float: left;
@@ -5863,6 +5860,19 @@ i.tui-ch-playback-stop {
 }
 #md-line-chart .slider-align {
   margin-left: -10px;
+}
+.wn5-setup-realtime-chart {
+  height: 120px;
+  top: -25px;
+  padding-left: 15px;
+}
+.wn5-setup-realtime-chart.wn5-setup-preview-content {
+  margin-left: -15px;
+}
+@media (min-width: 1255px) {
+  .wn5-setup-realtime-chart.wn5-setup-preview-content {
+    margin-left: 0;
+  }
 }
 fieldset[disabled] .btn {
   background-color: #d2d2d2 !important;
@@ -7437,6 +7447,16 @@ rzslider .rz-bubble {
     margin-top: 5px;
   }
 }
+#storagepage .wn5-setup-storage-days span,
+#storagepage .wn5-setup-storage-days input {
+  float: left;
+  margin-right: 5px;
+}
+@media (max-width: 700px) {
+  #storagepage .wn5-setup-storage-auto-delete {
+    width: 100%;
+  }
+}
 /* Setup Channel Selector */
 #setup-channel-selector {
   width: 100%;
@@ -7665,8 +7685,15 @@ Prefix : pc-n-hm
 .pc-n-hm-delete-data {
   position: relative;
 }
-#pc-conditions-date-form .col-sm-2 {
-  margin-right: 10px;
+#pc-conditions-date-form .pc-conditions-date-form-option {
+  width: 16.66666667%;
+  margin-right: 5px;
+  float: left;
+}
+@media (max-width: 700px) {
+  #pc-conditions-date-form .pc-conditions-date-form-option {
+    width: 45%;
+  }
 }
 #pc-setup-cameramanagement {
   position: absolute;
@@ -7814,9 +7841,28 @@ Prefix : pc-n-hm
 #pc-setup-report .pc-n-hm-grid-4 {
   padding-left: 15px;
 }
+@media (max-width: 700px) {
+  #pc-setup-report .pc-n-hm-grid-2,
+  #pc-setup-report .pc-n-hm-grid-4 {
+    width: 35%;
+  }
+}
+#pc-setup-report-schedule {
+  overflow: hidden;
+}
 #pc-setup-report-schedule .pc-setup-report-schedule-txt {
   padding-left: 15px;
   float: left;
+}
+@media (max-width: 700px) {
+  #pc-setup-report-schedule .pc-setup-report-schedule-hour {
+    clear: left;
+    margin-top: 5px;
+  }
+  #pc-setup-report-schedule .pc-setup-report-schedule-hour ~ div,
+  #pc-setup-report-schedule .pc-setup-report-schedule-hour ~ span {
+    margin-top: 5px;
+  }
 }
 #pc-results {
   width: 100%;
@@ -7951,12 +7997,24 @@ Prefix : pc-n-hm
 .pc-calender-icon input[readonly] {
   background-color: #fff;
 }
+@media (max-width: 700px) {
+  .pc-calender-icon {
+    width: 105px;
+    margin-top: 5px;
+  }
+}
 .pc-swing-dash {
   width: 30px;
   height: 30px;
   text-align: center;
   float: left;
   font-size: 16px;
+}
+@media (max-width: 700px) {
+  .pc-swing-dash {
+    width: 20px;
+    margin-top: 5px;
+  }
 }
 .pc-calender {
   position: absolute;
@@ -9761,8 +9819,8 @@ img[id^="hm-results-image-"] {
     font-size: 15px;
   }
   .kind-responsive-playback #cm-menu-content h2 {
-    font-size: 24px;
-    margin-bottom: 16px;
+    font-size: 24px !important;
+    margin-bottom: 16px !important;
   }
   .kind-responsive-playback #cm-menu-content .cm-event-all-wrap {
     width: 130px;
@@ -9950,8 +10008,8 @@ img[id^="hm-results-image-"] {
     font-size: 18px;
   }
   .kind-responsive-playback #cm-menu-content h2 {
-    font-size: 30px;
-    margin-bottom: 22px;
+    font-size: 30px !important;
+    margin-bottom: 22px !important;
   }
   .kind-responsive-playback #cm-menu-content .cm-event-all-wrap {
     width: 170px;
