@@ -22,13 +22,13 @@
                         </div>
                     </div>
                     <div class="form-group setup-border-box-padding">
-                        <sketchbook videoinfo='videoinfo' sketchinfo='sketchinfo' coordinates='coordinates'></sketchbook>
+                        <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : ''" videoinfo='videoinfo' sketchinfo='sketchinfo' coordinates='coordinates'></sketchbook>
+                        <!-- PTZ Control -->
+                        <div class="ptz-control_box">
+                            <ptz-control ptzinfo='ptzinfo'></ptz-control>
+                        </div>
+                        <!-- //PTZ Control End -->
                     </div>
-                    <!-- PTZ Control -->
-                    <div class="ptz-control_box ptz-control_ptz-menu-width" style="margin-left: 15px;">
-                        <ptz-control ptzinfo='ptzinfo'></ptz-control>
-                    </div>
-                    <!-- //PTZ Control End -->
                 </div>
             </div>
         </div>

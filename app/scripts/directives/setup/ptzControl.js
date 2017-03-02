@@ -18,14 +18,15 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
             scope.showPTZControlBasicDPTZ = false;
             scope.showPTZControlFisheyeDPTZ = false;
             scope.showPTZControlEPTZ = false;
+            scope.showPTZControlFocus = false;
             scope.DATFlag = false;
             scope.isShowPTZControl = false;                 
             scope.showZoomFocus = false;   
-            scope.showZoomFocusWide = false;
             scope.showPTZControlBox = true;
-            scope.isPtzControlStart = false;
+            scope.ptzControlClass = '';
+            scope.zoomPresetClass = '';
 
-            var sunapiURI, showPTZControlFlag = false;
+            var sunapiURI, showPTZControlFlag = false, isPtzControlStart = false;
 
             (function wait(){
                 if (!mAttr.Ready) {
@@ -34,46 +35,40 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         wait();
                     }, 500);
                 } else {
-                    if(mAttr.PTZModel){
-                        return true;
-                    }                    
-                    else {
-                        if($state.current.name === "setup.ptzSetup_dptzSetup") {
-                            SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
-                                function (response) {
-                                    var DEFAULT_CHANNEL = 0;
-                                    var IsDigitalPTZProfile = response.data.VideoProfiles[DEFAULT_CHANNEL].Profiles.some(function(element){
-                                        if('IsDigitalPTZProfile' in element)
-                                        {
-                                            return element.IsDigitalPTZProfile;
-                                        }
-                                    });
-                                    scope.isShowPTZControl = (mAttr.ExternalPTZModel === false && IsDigitalPTZProfile === true);
-                                },
-                                function (errorData) {
-                                    scope.isShowPTZControl = false;
-                                },'', true);
-                        }
-                        else if($state.current.name === "setup.ptzSetup_externalPtzSetup") {
+                    if($state.current.name === "setup.ptzSetup_dptzSetup") {
+                        if(mAttr.PTZModel) return true;
+                        SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
+                            function (response) {
+                                var DEFAULT_CHANNEL = 0;
+                                var IsDigitalPTZProfile = response.data.VideoProfiles[DEFAULT_CHANNEL].Profiles.some(function(element){
+                                    if('IsDigitalPTZProfile' in element)
+                                    {
+                                        return element.IsDigitalPTZProfile;
+                                    }
+                                });
+                                scope.isShowPTZControl = (mAttr.ExternalPTZModel === false && IsDigitalPTZProfile === true);
+                            },
+                            function (errorData) {
+                                scope.isShowPTZControl = false;
+                            },'', true);
+                    }
+                    else if($state.current.name === "setup.ptzSetup_externalPtzSetup") {
+                        if(mAttr.PTZModel) return true;
+                        scope.isShowPTZControl = true;
+                    }
+                    else if($state.current.name === "setup.videoAudio_cameraSetup") {
+                        if(mAttr.ZoomOnlyModel){
+                            scope.showZoomFocus = true;
+                            scope.showPTZControlBox = false;
                             scope.isShowPTZControl = true;
+                            scope.ptzControlClass = 'w210';
+                        }else if(mAttr.PTZModel){
+                            scope.isShowPTZControl = true;
+                            scope.showPTZControlFocus = true;
                         }
-                        else if($state.current.name === "setup.videoAudio_cameraSetup") {
-                            if(mAttr.ZoomOnlyModel){
-                                scope.showPTZControlPreset = false;
-                                scope.showPTZControlAT = false;
-                                scope.showPTZControlBLC = false;
-                                scope.showPTZControlDPTZ = false;
-                                scope.showPTZControlEPTZ = false;
-                                scope.showZoomFocus = false;
-                                scope.showZoomFocusWide = true;
-                                scope.showPTZControlBox = false;
-                                scope.isShowPTZControl = true;
-                                $("#ptz-control_at-selectable").unbind();
-                            }
-                        }
-                        else {
-                            scope.isShowPTZControl = false;
-                        }
+                    }
+                    else {
+                        scope.isShowPTZControl = false;
                     }
                 }
             })();
@@ -94,9 +89,12 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     if(showPTZControlFlag===false){
                         if(ptzinfo.autoOpen){
                             scope.showPTZControl = true;
+                            scope.isShowPTZControl = true;
                             scope.showPTZControlLabel = 'lang_hide';
                         }else{
-                            scope.showPTZControl = false;
+                            //scope.showPTZControl = false;
+                            scope.showPTZControl = true;
+                            scope.isShowPTZControl = true;
                             scope.showPTZControlLabel = 'lang_show';
                         }
                     }
@@ -106,6 +104,8 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         scope.showPTZControlAT = false;
                         scope.showPTZControlBLC = false;
                         scope.showPTZControlFisheyeDPTZ = false;
+                        scope.showPTZControlFocus = true;
+                        scope.ptzControlClass = 'w310';
                         $("#ptz-control_at-selectable").unbind();
                     }else if(ptzinfo.type==='AT'){
                         scope.showPTZControlPreset = false;
@@ -145,6 +145,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         }else{
                             scope.disablePTZControlBLC = false;
                         }
+                        scope.ptzControlClass = 'w510';
                         $("#ptz-control_at-selectable").unbind();
                     }else if(ptzinfo.type ==='DPTZ'){
                         scope.showPTZControl = false;
@@ -169,41 +170,48 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     }else if(ptzinfo.type ==='ZoomOnly'){
                         scope.showPTZControl = false;
                         scope.showPTZControlLabel = 'lang_hide';
-                        if (ptzinfo.showPTZControlPreset === true)
-                        {
-                            scope.showPTZControlPreset = true;
-                        }
-                        else
-                        {
-                            scope.showPTZControlPreset = false;
-                        }
-                        scope.showPTZControlAT = false;
-                        scope.showPTZControlBLC = false;
-                        scope.showPTZControlDPTZ = false;
-                        scope.showPTZControlEPTZ = false;
-                        scope.showZoomFocus = true;
-                        scope.showZoomFocusWide = false;
-                        scope.showPTZControlBox = false;
-                        scope.isShowPTZControl = true;
-                        $("#ptz-control_at-selectable").unbind();
-                    }else if(ptzinfo.type ==='ZoomOnlyWide'){
-                        scope.showPTZControl = false;
-                        scope.showPTZControlLabel = 'lang_hide';
                         scope.showPTZControlPreset = false;
                         scope.showPTZControlAT = false;
                         scope.showPTZControlBLC = false;
                         scope.showPTZControlDPTZ = false;
                         scope.showPTZControlEPTZ = false;
-                        scope.showZoomFocus = false;
-                        scope.showZoomFocusWide = true;
+                        scope.showZoomFocus = true;
                         scope.showPTZControlBox = false;
                         scope.isShowPTZControl = true;
+                        scope.ptzControlClass = 'w210';
+                        $("#ptz-control_at-selectable").unbind();
+                    }else if(ptzinfo.type ==='presetZoom'){
+                        scope.showPTZControl = false;
+                        scope.showPTZControlPreset = true;
+                        scope.showPTZControlAT = false;
+                        scope.showPTZControlBLC = false;
+                        scope.showPTZControlDPTZ = false;
+                        scope.showPTZControlEPTZ = false;
+                        scope.showZoomFocus = true;
+                        scope.showPTZControlBox = false;
+                        scope.showPTZControlFocus = false;
+                        scope.isShowPTZControl = true;
+                        scope.ptzControlClass = 'w310';
+                        scope.zoomPresetClass = 'zoompreset';
                         $("#ptz-control_at-selectable").unbind();
                     }else{
                         scope.showPTZControlPreset = false;
                         scope.showPTZControlAT = false;
                         scope.showPTZControlBLC = false;
                         scope.showPTZControlDPTZ = false;
+                        if($state.current.name === "setup.videoAudio_cameraSetup") {
+                            if(mAttr.ZoomOnlyModel){
+                                scope.ptzControlClass = 'w210';
+                            }else if(mAttr.PTZModel){
+                            }
+                        }else{
+                            if(mAttr.ZoomOnlyModel){
+                                scope.showPTZControlFocus = false;
+                            }else if(mAttr.PTZModel){
+                                scope.showPTZControlBox = true;
+                                scope.showPTZControlFocus = true;
+                            }
+                        }
                         $("#ptz-control_at-selectable").unbind();
                     }
                 }
@@ -387,7 +395,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 }
 
                 if(isJogUpdating === false) {
-                	scope.isPtzControlStart = true;
+                	isPtzControlStart = true;
                     execSunapi(sunapiURI);
                     isJogUpdating = true;
                 }
@@ -413,7 +421,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                             sunapiURI += "&SubViewIndex=" + scope.quadrant.select;
                         }
 
-                        scope.isPtzControlStart = true;
+                        isPtzControlStart = true;
                         execSunapi(sunapiURI);
                         isJogUpdating = true;
                     }
@@ -442,7 +450,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         var sliderVal = ui.value;
                         sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True&Zoom=" + sliderVal;
 
-                        scope.isPtzControlStart = true;
+                        isPtzControlStart = true;
                         execSunapi(sunapiURI);
                         isJogUpdating = true;
                     }
@@ -500,11 +508,10 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     ptzStop();
                 }else if(value=='Auto'){
                     sunapiURI = "/stw-cgi/image.cgi?msubmenu=focus&action=control&Channel=0&Mode=AutoFocus";
-                    scope.isPtzControlStart = true;
                     execSunapi(sunapiURI);
                 }else{
                     sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&Focus="+value;
-                    scope.isPtzControlStart = true
+                    isPtzControlStart = true;
                     execSunapi(sunapiURI);
                 }
             };
@@ -558,7 +565,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     {
                         sunapiURI += "&SubViewIndex=" + scope.quadrant.select;
                     }
-                    scope.isPtzControlStart = true;
+                    isPtzControlStart = true;
                     execSunapi(sunapiURI);
                 }
 		    };
@@ -568,13 +575,13 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     $interval.cancel(ptzJogTimer);
                     ptzJogTimer = null;
                 }
-                if(!scope.isPtzControlStart) return;
+                if(!isPtzControlStart) return;
                 sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control&Channel=0&OperationType=All";
                 if(scope.showPTZControlFisheyeDPTZ === true)
                 {
                     sunapiURI += "&SubViewIndex=" + scope.quadrant.select;
                 }
-                scope.isPtzControlStart = false;
+                isPtzControlStart = false;
                 execSunapi(sunapiURI);
             }
 

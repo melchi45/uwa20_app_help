@@ -2502,6 +2502,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 return false;
             }
         }
+        if(mAttr.ZoomOnlyModel==true){
+            if(($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2' || $scope.IRled.Mode == 'Manual') &&(mode=='Off' || mode=='Manual')){
+                return false;
+            }
+        }
         return true;
     };
 
@@ -2519,7 +2524,9 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         var retVal = true;
 
         if (mode === 'Auto') {
-            if ($scope.Camera.AGCMode == 'Off' || (mAttr.PTZModel && $scope.IRled.Mode == 'DayNight')) {
+            if ($scope.Camera.AGCMode == 'Off' ||
+                (mAttr.PTZModel && $scope.IRled.Mode == 'DayNight') ||
+                (mAttr.ZoomOnlyModel && ($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2' || $scope.IRled.Mode == 'Manual'))) {
                 retVal = false;
             }
         }
@@ -2529,6 +2536,9 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     $scope.iSSupportedDayNightMode = function () {
         var retVal = true;
         if(mAttr.PTZModel && ($scope.IRled.Mode == 'On' || $scope.IRled.Mode == 'Sensor' || $scope.IRled.Mode == 'Schedule' || $scope.IRled.Mode == 'DayNight')){
+            retVal = false;
+        }
+        if(mAttr.ZoomOnlyModel && ($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2' || $scope.IRled.Mode == 'Manual')){
             retVal = false;
         }
         return retVal;
@@ -4564,8 +4574,20 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
     };
     $scope.irledChangeHandler = function () {
-        if(mAttr.PTZModel){
-            if($scope.IRled.Mode == 'DayNight'){
+        if(mAttr.PTZModel || mAttr.ZoomOnlyModel){
+            if(mAttr.PTZModel && $scope.IRled.Mode == 'DayNight'){
+                $scope.Camera.DayNightMode = 'Auto';
+                if($scope.Camera.AGCMode == 'Off' || $scope.Camera.AGCMode == 'Manual'){
+                    $scope.Camera.AGCMode = 'High';
+                }
+                if($scope.PresetImageConfig.length > 0){
+                    $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.DayNightMode = 'Auto';
+                    if($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode == 'Off' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode == 'Manual'){
+                        $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode = 'High';
+                    }
+                }
+            }
+            if(mAttr.ZoomOnlyModel && ($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2' || $scope.IRled.Mode == 'Manual')){
                 $scope.Camera.DayNightMode = 'Auto';
                 if($scope.Camera.AGCMode == 'Off' || $scope.Camera.AGCMode == 'Manual'){
                     $scope.Camera.AGCMode = 'High';
@@ -4625,7 +4647,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function presetImageConfigView() {
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=view', '',
             function (response) {
-                $scope.PresetImageConfig = response.data.PresetImageConfig[$scope.ch].Presets;
+                if(response.data.PresetImageConfig !== undefined){
+                    $scope.PresetImageConfig = response.data.PresetImageConfig[$scope.ch].Presets;
+                }else{
+                    $scope.PresetImageConfig = [];
+                }
                 for(var index=0; index<$scope.PresetImageConfig.length; index++){
                     $scope.PresetImageConfig[index].SSDR = {
                         Channel : $scope.ch,

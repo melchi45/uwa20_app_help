@@ -208,8 +208,7 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
 
                 $scope.ptzinfo = {
                     autoOpen: true,
-                    type: 'ZoomOnly',
-                    showPTZControlPreset:true
+                    type: 'presetZoom'
                 };
             },
             function (errorData) {
