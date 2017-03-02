@@ -13,25 +13,23 @@
             <!-- //PTZ Control End -->
             <form name="ptzLastPositionForm" ng-if="LastPositionAttr.RememberLastPosition !== undefined" method="get" class="form-horizontal" novalidate>
                 <hr class="wn5-setup-hr">
-                <div class="wn5-setup-section">
-                    <div class="wn5-setup-section-heading">
-                        <h3>{{ 'lang_lastPosition' | translate }}</h3> 
-                    </div>
-                    <div class="wn5-setup-section-article">
-                        <div class="form-group">
-                            <div class="wn5-setup-section-article-heading">{{ 'lang_lastPosition' | translate }}</div>
-                            <div class="wn5-setup-section-article-content">
-                                <input type="checkbox" ng-model="LastPosition.RememberLastPosition" />
-                                {{'lang_enable' | translate}}
-                            </div>
+                <div class="wn5-setup-section-heading">
+                    <h3>{{ 'lang_lastPosition' | translate }}</h3> 
+                </div>
+                <div class="wn5-setup-section-article">
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_lastPosition' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input type="checkbox" ng-model="LastPosition.RememberLastPosition" />
+                            {{'lang_enable' | translate}}
                         </div>
-                        <div class="form-group">
-                            <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
-                            <div class="wn5-setup-section-article-content">
-                                <input type="text" class="form-control" ng-model="LastPosition.RememberLastPositionDuration" maxlength="{{LastPositionAttr.DurLen}}" required ng-pattern-restrict="{{OnlyNumStr}}"/>
-                                <label class="col-lg-2 control-label" style="text-align:left">({{LastPositionAttr.RememberLastPositionDuration.minValue}}~{{LastPositionAttr.RememberLastPositionDuration.maxValue}} {{ 'lang_sec' | translate }})</label>
-                                <button type="button" class="btn btn-primary" ng-click="setLastPosition()">{{ 'lang_set' | translate }}</button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input type="text" class="form-control" ng-model="LastPosition.RememberLastPositionDuration" maxlength="{{LastPositionAttr.DurLen}}" required ng-pattern-restrict="{{OnlyNumStr}}"/>
+                            <label class="col-lg-2 control-label" style="text-align:left">({{LastPositionAttr.RememberLastPositionDuration.minValue}}~{{LastPositionAttr.RememberLastPositionDuration.maxValue}} {{ 'lang_sec' | translate }})</label>
+                            <button type="button" class="btn btn-primary" ng-click="setLastPosition()">{{ 'lang_set' | translate }}</button>
                         </div>
                     </div>
                 </div>
