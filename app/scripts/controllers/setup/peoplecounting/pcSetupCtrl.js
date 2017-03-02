@@ -785,6 +785,9 @@ kindFramework.controller('PCSetupCtrl',
 
 		showVideo().then(function(){
 			$scope.init().then(function(){
+				try{
+					$scope.pcSetupReport.getReport();
+				}catch(e){ }
 				$scope.pageLoaded = true;
 			}, failCallback);
 		}, failCallback);

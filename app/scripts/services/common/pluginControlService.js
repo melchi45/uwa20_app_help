@@ -301,6 +301,7 @@ kindFramework
     {
       if(pluginElement !== null && pluginElement !== undefined){
         // jshint ignore:line
+        console.info(pluginElement);
         pluginElement.StopLocalRecording();
         console.log("pluginControlService::stopRecord() ===> Stop record");
       }

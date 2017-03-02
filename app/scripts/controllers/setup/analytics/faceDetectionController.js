@@ -1300,9 +1300,13 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             var fdIndex = findFDIndex(roiIndex);
 
             if(modifiedType !== "delete"){
+                console.log(modifiedPoints.join(','));
                 modifiedPoints = fixRatioForCoordinates(modifiedPoints);   
+                console.log(modifiedPoints.join(','));
                 modifiedPoints = changeOnlyEvenNumberOfWiseFD(modifiedPoints);
+                console.log(modifiedPoints.join(','));
                 modifiedPoints = fixMaxResolution(modifiedPoints);
+                console.log(modifiedPoints.join(','));
             }
             
             if(modifiedType === "create" || fdIndex === null){

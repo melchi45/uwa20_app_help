@@ -506,6 +506,7 @@ function WorkerManager() {
       videoMS.setVideoSizeCallback(videoSizeCallback);
       videoMS.init(videoElem);
       videoMS.setSpeedPlay(speed);
+      videoMS.setBoxSize(numBox);
     } else {
       var element = videoMS.getVideoElement();
       videoMS.setInitSegment();
@@ -813,6 +814,9 @@ function WorkerManager() {
     },
     playbackPause: function() {
       isPaused = true;
+      if (videoMS !== null && browser === 'edge') {
+        videoMS.pause();
+      }
       // console.log("workerManager::playbackPause isPaused " + isPaused);
       if(usePlaybackDrawer){
         if (videoRenderer !== null) {
@@ -839,7 +843,7 @@ function WorkerManager() {
         videoMS.setTimeStampInit();
       }
 
-      initVideo(speed);
+      initVideo(speed === 1 ? false : true );
       videoWorker.postMessage({'type': 'stepPlay', 'data': 'playbackSeek'});
   	},
     videoBuffering: function() {

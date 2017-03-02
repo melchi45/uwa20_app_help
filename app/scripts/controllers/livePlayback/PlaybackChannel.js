@@ -385,12 +385,13 @@ kindFramework
 
     $rootScope.$saveOn('channel:reloadStreaming', function() {
       var playData = new PlayDataModel();
-      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && playData.getStatus() === PLAY_CMD.PLAY )
+      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH )
       {
-        $scope.playPlayback(PLAY_CMD.PAUSE);
+        $scope.playPlayback(PLAY_CMD.STOP);
         $timeout(function(){
-          $scope.playPlayback(PLAY_CMD.RESUME);
-        });
+          $scope.timelineController.resetTimeRange();
+          $scope.playPlayback(PLAY_CMD.PLAY);
+        },100);
       }
     }, $scope);
 
