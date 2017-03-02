@@ -29,13 +29,16 @@
                 </li>
             </ul>
             <div class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
-                <sketchbook 
-                    class="wn5-setup-preview-video" 
-                    sketchinfo='sketchinfo' 
+                <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'"
+                    sketchinfo='sketchinfo'
                     videoinfo='videoinfo' 
                     coordinates='coordinates'>
                 </sketchbook>
-
+                <!-- PTZ Control -->
+                <div class="ptz-control_box">
+                    <ptz-control ptzinfo='ptzinfo'></ptz-control>
+                </div>
+                <!-- //PTZ Control End -->
                 <div class="wn5-setup-preview-table">
                     <div 
                         class="form-group"

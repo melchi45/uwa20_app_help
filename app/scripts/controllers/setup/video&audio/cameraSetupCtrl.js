@@ -539,14 +539,12 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $timeout(function(){
                 var disable = $scope.Camera.CompensationMode != 'BLC';
                 $scope.ptzinfo = {
-                    autoOpen: false,
                     type: 'BLC',
                     disable: disable
                 };
             });
         }else if(oldVal==true && newVal==false){
             $scope.ptzinfo = {
-                autoOpen: false,
                 type: 'none'
             };
         }
@@ -555,13 +553,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if(oldVal==false && newVal==true){
             $timeout(function(){
                 $scope.ptzinfo = {
-                    autoOpen: false,
                     type: 'OSD'
                 };
             });
         }else if(oldVal==true && newVal==false){
             $scope.ptzinfo = {
-                autoOpen: false,
                 type: 'none'
             };
         }
@@ -930,7 +926,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if($scope.tabActiveData.backLight){
             var disable = $scope.Camera.CompensationMode != 'BLC';
             $scope.ptzinfo = {
-                autoOpen: false,
                 type: 'BLC',
                 disable: disable
             };
@@ -6021,13 +6016,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                             if($scope.tabActiveData.backLight){
                                 var disable = $scope.Camera.CompensationMode != 'BLC';
                                 $scope.ptzinfo = {
-                                    autoOpen: false,
                                     type: 'BLC',
                                     disable: disable
                                 };
                             }else if($scope.tabActiveData.osd){
                                 $scope.ptzinfo = {
-                                    autoOpen: false,
                                     type: 'OSD'
                                 };
                             }
@@ -6039,13 +6032,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                             if($scope.tabActiveData.backLight){
                                 var disable = $scope.Camera.CompensationMode != 'BLC';
                                     $scope.ptzinfo = {
-                                    autoOpen: false,
                                     type: 'BLC',
                                     disable: disable
                                 };
                             }else if($scope.tabActiveData.osd){
                                 $scope.ptzinfo = {
-                                    autoOpen: false,
                                     type: 'OSD'
                                 };
                             }
@@ -6094,7 +6085,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     };
 
                     $scope.ptzinfo = {
-                        autoOpen: false,
                         type: 'none'
                     };
                 },

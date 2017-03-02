@@ -70,7 +70,6 @@ kindFramework.controller('dptzSetupCtrl', function ($scope, $interval, $timeout,
                   currentPage: 'DigitalAutoTracking'
               };
               $scope.ptzinfo = {
-                  autoOpen: false,
                   type: 'DPTZ'
               };
 

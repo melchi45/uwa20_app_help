@@ -593,7 +593,6 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                         currentPage: 'DefocusDetection'
                     };
                     $scope.ptzinfo = {
-                        autoOpen: false,
                         type: 'none'
                     };
                 },

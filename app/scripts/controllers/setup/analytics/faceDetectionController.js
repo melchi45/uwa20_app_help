@@ -110,6 +110,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         $scope.EventActions = COMMONUtils.getSupportedEventActions("FaceDetection");
         $scope.getAlarmOutArray = COMMONUtils.getArray(mAttr.MaxAlarmOutput);
         $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
+
+        $scope.PTZModel = mAttr.PTZModel;
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
     }
 
     function prepareEventRules(eventRules) {
@@ -792,6 +795,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
                 rotate: rotate,
                 adjust: adjust,
                 currentPage: 'FaceDetection'
+            };
+            $scope.ptzinfo = {
+                type: 'none'
             };
         }, function(errorData) {
             console.log(errorData);

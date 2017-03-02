@@ -449,7 +449,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             $scope.HandoverSupport = false;
         }
 
-
+        $scope.PTZModel = mAttr.PTZModel;
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
 
     }
 
@@ -696,8 +697,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         if ($scope.HandoverSupport){
             //promises.push(getHandoverList);
             getHandoverList();
-            if ($scope.isPTZModel){
-                promises.push(getPresetHandoverList);
+            if ($scope.PTZModel){
+                getPresetHandoverList;
             }
         }
     }
@@ -878,7 +879,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                         currentPage: 'MotionDetection'
                     };
                     $scope.ptzinfo = {
-                        autoOpen: false,
                         type: 'none'
                     };
 

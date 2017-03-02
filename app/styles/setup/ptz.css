@@ -350,3 +350,14 @@
 		margin-top:20px;
 	}
 }
+
+.ptz-control_set-north{
+	position: absolute;
+	z-index: 100;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	line-height: 50px;
+	text-align: center;
+	font-size: 70px;
+	color: white;
+}
