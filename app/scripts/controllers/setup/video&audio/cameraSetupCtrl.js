@@ -2503,7 +2503,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
         }
         if(mAttr.ZoomOnlyModel==true){
-            if(($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2' || $scope.IRled.Mode == 'Manual') &&(mode=='Off' || mode=='Manual')){
+            if(($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2') &&(mode=='Off' || mode=='Manual')){
                 return false;
             }
         }
@@ -2526,7 +2526,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if (mode === 'Auto') {
             if ($scope.Camera.AGCMode == 'Off' ||
                 (mAttr.PTZModel && $scope.IRled.Mode == 'DayNight') ||
-                (mAttr.ZoomOnlyModel && ($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2' || $scope.IRled.Mode == 'Manual'))) {
+                (mAttr.ZoomOnlyModel && ($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2'))) {
                 retVal = false;
             }
         }
@@ -2538,7 +2538,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if(mAttr.PTZModel && ($scope.IRled.Mode == 'On' || $scope.IRled.Mode == 'Sensor' || $scope.IRled.Mode == 'Schedule' || $scope.IRled.Mode == 'DayNight')){
             retVal = false;
         }
-        if(mAttr.ZoomOnlyModel && ($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2' || $scope.IRled.Mode == 'Manual')){
+        if(mAttr.ZoomOnlyModel && ($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2')){
             retVal = false;
         }
         return retVal;
@@ -4587,7 +4587,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     }
                 }
             }
-            if(mAttr.ZoomOnlyModel && ($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2' || $scope.IRled.Mode == 'Manual')){
+            if(mAttr.ZoomOnlyModel && ($scope.IRled.Mode == 'Auto1' || $scope.IRled.Mode == 'Auto2')){
                 $scope.Camera.DayNightMode = 'Auto';
                 if($scope.Camera.AGCMode == 'Off' || $scope.Camera.AGCMode == 'Manual'){
                     $scope.Camera.AGCMode = 'High';
