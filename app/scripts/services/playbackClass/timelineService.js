@@ -25,7 +25,7 @@ kindFramework
 				var timestamp = 0;
 				var stopCallback = false;
 				var calculatedTimezone = false;
-				var endTarget = -1;
+				var endTarget = undefined;
 				var selectedID = -1;
 				
 				var DUPLICATE_CLASS_NAME = 'vis-duplicate-view';
@@ -939,7 +939,7 @@ kindFramework
 					var endTime = endTarget;
 					if( endTime !== null ) {
 						endTime = convert_String_to_Date(endTime);
-						if( endTarget.substring(11,13) !== endTime.getHours()) {
+						if( endTarget !== undefined && endTarget.substring(11,13) !== endTime.getHours()) {
 							endTime.checkDst(true);
 						}
 					}
