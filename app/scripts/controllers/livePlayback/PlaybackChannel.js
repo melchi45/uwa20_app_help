@@ -152,12 +152,10 @@ kindFramework
     var initializePlaybackPage = function() {
       var playData = new PlayDataModel();
       $rootScope.$emit('changeLoadingBar', true);
-      initStreaming();
-     
       $scope.playbackPage.MaxChannel = sunapiAttributes.MaxChannel;
       //TODO : below is only for test.
       //$scope.playbackPage.MaxChannel = 4;
-      PlaybackInterface.preparePlayback()
+      initStreaming()
       .then(function() {
         //Check Browser
         if( BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ||
