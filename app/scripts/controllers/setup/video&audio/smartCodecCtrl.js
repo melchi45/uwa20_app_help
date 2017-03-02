@@ -245,7 +245,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
                 if($scope.ZoomOnlyModel){
                     $scope.ptzinfo = {
                         autoOpen: true,
-                        type: 'ZoomOnlyWide'
+                        type: 'ZoomOnly'
                     };
                 } else {
                     $scope.ptzinfo = {

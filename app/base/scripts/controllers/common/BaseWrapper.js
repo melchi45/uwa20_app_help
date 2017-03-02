@@ -168,7 +168,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         }
         else if (menuId === "ptz" || menuId === "rs485" || menuId === "ptzInfoSetup" || menuId === "preset" || menuId === "sequence" || menuId === "ptLimit" || menuId === "autoTrack" || menuId === "autoTrackEvent")
         {
-            if (menuId === "preset" || menuId === "sequence"){
+            if (menuId === "ptzInfoSetup"){ //if (menuId === "preset" || menuId === "sequence"){
             	retVal = false;
             } else {
                 retVal = mAttr.PTZModel;

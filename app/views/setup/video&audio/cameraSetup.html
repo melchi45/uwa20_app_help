@@ -10,9 +10,9 @@
             </div>
             <div class="wn5-setup-section-article">
                 <div class="form-group" style="margin: 20px 0 15px 0;">
-                    <sketchbook videoinfo='videoinfo'></sketchbook>
+                    <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : ''" videoinfo='videoinfo'></sketchbook>
                     <!-- PTZ Control -->
-                    <div class="ptz-control_box ptz-control_ptz-menu-width" ng-class="ZoomOnlyModel? 'max_none' : ''">
+                    <div class="ptz-control_box">
                         <ptz-control ptzinfo='ptzinfo'></ptz-control>
                     </div>
                     <!-- //PTZ Control End -->

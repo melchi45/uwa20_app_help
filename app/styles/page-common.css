@@ -5,30 +5,6 @@ hash : 30b3911
 2. last position view.
 3. Live PTZ - zoom slider issue fixed.
 */
-#live-ptz-control-zoomonly{
-    float: left;
-}
-
-#live-ptz-control-zoomonly h3{
-    text-align: left
-}
-
-#live-ptz-control-zoomonly .ui-slider-handle
-{
-    top: 13px;
-    width: 12px;
-    height: 12px;
-}
-
-#live-ptz-control-zoomonly .ui-slider-handle:hover
-{
-    top: 12px;
-}
-
-#live-ptz-control-zoomonly .ui-slider:hover .ui-state-default
-{
-    top: 12px;
-}
 
 /* aa34bcb: Live PTZ UI */
 #live-ptz-tabs select{

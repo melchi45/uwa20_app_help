@@ -51,7 +51,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             $scope.maxViewModeIndex = mAttr.ViewModeIndex.maxValue;
             $scope.cameraPositionList = mAttr.CameraPosition; // "Wall", "Ceiling"
         }
-
+        $scope.privacyMaskDrawType = (mAttr.PrivacyMaskRectangle == '0')? 1 : 0;
     }
 
     function getDisValue() {
@@ -793,7 +793,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         $scope.$watch(function() {if(pageData.PrivacyMask != undefined) return pageData.PrivacyMask[$scope.SelectedChannel].Enable;}, function(newVal, oldVal) {
             if(newVal != oldVal){
                 if (newVal == true) {
-                    var drawType = (mAttr.PrivacyMaskRectangle == '0')? 1 : 0;
+                    var drawType = $scope.privacyMaskDrawType;
                     var drawMax = 0;
                     if(drawType == 0){
                         drawMax = mAttr.PrivacyMaskRectangle;
@@ -887,11 +887,16 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             rotate: rotate,
             adjust: adjust
         };
-        if(mAttr.ZoomOnlyModel){
+        if(mAttr.ZoomOnlyModel) {
             $scope.ptzinfo = {
-                    autoOpen: true,
-                    type: 'ZoomOnly'
-                };
+                autoOpen: true,
+                type: 'ZoomOnly'
+            };
+        }else if(mAttr.PTZModel){
+            $scope.ptzinfo = {
+                autoOpen: true,
+                type: 'none'
+            };
         } else {
             $scope.ptzinfo = {
                 autoOpen: false,
@@ -900,7 +905,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             };
         }
 
-        var drawType = (mAttr.PrivacyMaskRectangle == '0')? 1 : 0;
+        var drawType = $scope.privacyMaskDrawType;
         var drawMax = 0;
         if(drawType == 0){
             drawMax = mAttr.PrivacyMaskRectangle;

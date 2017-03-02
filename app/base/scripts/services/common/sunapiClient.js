@@ -667,7 +667,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         }
         else if (url.indexOf("ptzconfig.cgi") !== -1)
         {
-            xhr.timeout = 10000;
+            xhr.timeout = 30000;
         }
         else
         {
