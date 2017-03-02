@@ -634,10 +634,12 @@ kindFramework
         alarmOutputCheck();
     }
     $rootScope.$saveOn('channel:reloadStreaming', function() {
-      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH)
-      {
-          startStreaming(UniversialManagerService.getProfileInfo());
-      }
+      $timeout(function(){
+        if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH)
+        {
+            startStreaming(UniversialManagerService.getProfileInfo());
+        }
+      }, 1000);
     }, $scope);
     // $rootScope.$emit('channel:reloadStreaming');
 
@@ -896,8 +898,7 @@ kindFramework
         }
       };
 
-      if(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE || BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI){
-        if( $scope.channelBasicFunctions.rec === true ){
+      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI){        if( $scope.channelBasicFunctions.rec === true ){
           $rootScope.$emit('channelPlayer:command', 'record', 'stop', backupCallback);
         }
       }
