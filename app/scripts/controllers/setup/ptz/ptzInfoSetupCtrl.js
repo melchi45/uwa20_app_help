@@ -5,6 +5,17 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
     var mAttr = Attributes.get();
 
     var pageData = {};
+    $scope.PTZPresetPage = {};
+    $scope.PTZPresetPage.pageSize = 15;
+    $scope.PTZPresetPage.presetList = [];
+    $scope.PTZPresetPage.currentPage = 1;
+    $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
+
+    $scope.PTZGroupPage = {};
+    $scope.PTZGroupPage.pageSize = 5;
+    $scope.PTZGroupPage.presetList = [];
+    $scope.PTZGroupPage.currentPage = 1;
+    $scope.PTZGroupPage.pageIndex = $scope.PTZPresetPage.currentPage;
 
     $scope.clearSchedule = function ()
     {
@@ -70,12 +81,10 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
         
         if (newVal.title == 'Preset'){
             $scope.ptzinfo = {
-                    autoOpen: true,
                     type: 'preset'
                 };
         } else {
             $scope.ptzinfo = {
-                    autoOpen: false,
                     type: 'none'
                 };
         }
@@ -109,7 +118,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
     };
     $scope.$saveOn('changePTZPreset', function(args, preset){
         var promises = [];
-        promises.push(gotoPreset(preset));
+        promises.push(function(){return gotoPreset(preset)});
         promises.push(getPresetList);
         promises.push(getPresetImageConfig);
         $q.seqAll(promises).then(
@@ -141,6 +150,10 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
         }
     };
     function getPresetImageConfig() {
+        $scope.PTZPresetPage.presetList = [];
+        $scope.PTZPresetPage.currentPage = 1;
+        $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
+
         var getData = {};
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=view', getData,
             function (response) {
@@ -161,6 +174,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
                     $scope.PTZPresets = [];
                 }
                 pageData.PTZPresets = angular.copy($scope.PTZPresets);
+                $scope.PTZPresetPage.presetList = COMMONUtils.chunkArray($scope.PTZPresets, $scope.PTZPresetPage.pageSize);
             },
             function (errorData) {
                 if (errorData !== "Configuration Not Found") {
@@ -257,7 +271,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
         } 
         return true;
     }
-    function openSelectRemove(selectorName,removeIndex,focusSkip){
+    function openSelectRemovePreset(selectorName,removeIndex,focusSkip){
         var newVal = $('#'+selectorName+' option:selected').val();
         var removeSelect = $('#'+selectorName);
         removeSelect.unbind();
@@ -274,7 +288,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
             }
         });
     }
-    function openSelectCreate(selectorName,index,options,selectedVal,hideSelector){
+    function openSelectCreatePreset(selectorName,index,options,selectedVal,hideSelector){
         var selectHtml = $('<select id="'+selectorName+'" name="'+selectorName+'" data-index="'+index+'" class="form-control preset-input-select openSelect" />');
         $.each(options,function(subIndex,item){
             if(item==selectedVal){
@@ -288,12 +302,13 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
         var createdSelect = $('#'+selectorName);
         createdSelect.focus();
         createdSelect.focusout(function(){
-            openSelectRemove(selectorName,index,true);
+            openSelectRemovePreset(selectorName,index,true);
         });
         createdSelect.change(function(){
-            openSelectRemove(selectorName,index);
+            openSelectRemovePreset(selectorName,index);
         });
     }
+    
     $scope.openAfterActionSelect = function(index,isShow){
         var selectorName = 'presetAfterActionSelect';
         if(isShow){
@@ -304,9 +319,9 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
             if(openedSelect.length == 1) {
                 var removeSelectorName = openedSelect.attr('id');
                 var removeIndex = parseInt(openedSelect.attr('data-index'),10);
-                openSelectRemove(removeSelectorName,removeIndex);
+                openSelectRemovePreset(removeSelectorName,removeIndex);
             }
-            openSelectCreate(selectorName,index,options,selectedVal,hideSelector);
+            openSelectCreatePreset(selectorName,index,options,selectedVal,hideSelector);
         }
     };
     $scope.openTrackingTimeSelect = function(index,isShow){
@@ -319,15 +334,14 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
             if(openedSelect.length == 1) {
                 var removeSelectorName = openedSelect.attr('id');
                 var removeIndex = parseInt(openedSelect.attr('data-index'),10);
-                openSelectRemove(removeSelectorName,removeIndex);
+                openSelectRemovePreset(removeSelectorName,removeIndex);
             }
-            openSelectCreate(selectorName,index,options,selectedVal,hideSelector);
+            openSelectCreatePreset(selectorName,index,options,selectedVal,hideSelector);
         }
     };
     $scope.$watch('LastPosition.RememberLastPosition',function(newVal, oldVal){
         if (typeof newVal !== 'undefined'){
             $scope.ptzinfo = {
-                autoOpen: true,
                 type: 'preset',
                 disablePosition: newVal
             };
@@ -371,6 +385,70 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
                 {
                 }, '', true);
     }
+    function getPageType(pageType){
+        var page = {};
+        switch (pageType) {
+        case "preset":
+            page = $scope.PTZPresetPage;
+            break;
+        case "group":
+            page = $scope.PTZGroupPage;
+            break;
+        default:
+            page = $scope.PTZPresetPage;
+            break;
+        }
+        return page;
+    }
+    $scope.getPageCount = function(pageType){
+        var page = getPageType(pageType);
+        return page.presetList.length;;
+    };
+    $scope.getFirstPage = function(pageType){
+        var page = getPageType(pageType);
+        page.currentPage = 1;
+        page.pageIndex = page.currentPage;
+        return page.currentPage;
+    };
+    $scope.getPrevPage = function(pageType){
+        var page = getPageType(pageType);
+        if(page.currentPage > 1){
+            page.currentPage--;
+        }
+        page.pageIndex = page.currentPage;
+
+        return page.currentPage;
+    };
+    $scope.jumpToPage = function(pageType){
+        var page = getPageType(pageType);
+        var pageCount = parseInt($scope.getPageCount(pageType));
+        var pageNum = page.pageIndex;
+
+        if(pageNum < 1){
+            page.currentPage = 1;
+        }else if(pageNum > pageCount){
+            page.currentPage = pageCount;
+        }else{
+            page.currentPage = pageNum;
+        }
+        page.pageIndex = page.currentPage;
+    };
+    $scope.getNextPage = function(pageType){
+        var page = getPageType(pageType);
+        if(page.currentPage < $scope.getPageCount(pageType)){
+            page.currentPage++;
+        }
+        page.pageIndex = page.currentPage;
+        return page.currentPage;
+    };
+    $scope.getLastPage = function(pageType){
+        var page = getPageType(pageType);
+        page.currentPage = $scope.getPageCount(pageType);
+        page.pageIndex = page.currentPage;
+
+        return page.currentPage;
+    };
+    
     function set()
     {
         if (!angular.equals(pageData.PTZPresets, $scope.PTZPresets))
@@ -1639,7 +1717,6 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
                 };
 
                 $scope.ptzinfo = {
-                    autoOpen: true,
                     type: 'preset'
                 };
             },
@@ -1797,7 +1874,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
         return presetName;
     };
 
-    function openSelectRemove(selectorName,removeIndex,focusSkip){
+    function openSelectRemove(selectorName,removeIndex,focusSkip,showIndex){
+        if (typeof showIndex == 'undefined') showIndex = removeIndex;
         var newVal = $('#'+selectorName+' option:selected').val();
         var removeSelect = $('#'+selectorName);
         removeSelect.unbind();
@@ -1805,20 +1883,21 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
         $timeout(function(){
             if(selectorName=='swingsFromPresetSelect') {
                 if (newVal !== undefined) $scope.Swings[$scope.SwingMode.SelectedIndex].FromPreset = parseInt(newVal, 10);
-                $('.swingsFromPreset:eq(' + removeIndex + ')').show();
-                if(focusSkip != true) $('.swingsFromPreset:eq(' + removeIndex + ')').focus();
+                $('.swingsFromPreset:eq(' + showIndex + ')').show();
+                if(focusSkip != true) $('.swingsFromPreset:eq(' + showIndex + ')').focus();
             }else if(selectorName=='swingsToPresetSelect'){
                 if(newVal !== undefined) $scope.Swings[$scope.SwingMode.SelectedIndex].ToPreset = parseInt(newVal,10);
-                $('.swingsToPreset:eq('+removeIndex+')').show();
-                if(focusSkip != true) $('.swingsToPreset:eq('+removeIndex+')').focus();
+                $('.swingsToPreset:eq('+showIndex+')').show();
+                if(focusSkip != true) $('.swingsToPreset:eq('+showIndex+')').focus();
             }else{
                 if(newVal !== undefined) $scope.Groups[$scope.Group.SelectedIndex].PresetList[removeIndex].SelectedPresetIndex = parseInt(newVal,10);
-                $('.groupPresetInput:eq('+removeIndex+')').show();
-                if(focusSkip != true) $('.groupPresetInput:eq('+removeIndex+')').focus();
+                $('.groupPresetInput:eq('+showIndex+')').show();
+                if(focusSkip != true) $('.groupPresetInput:eq('+showIndex+')').focus();
             }
         });
     }
-    function openSelectCreate(selectorName,index,options,selectedVal,hideSelector){
+    function openSelectCreate(selectorName,index,options,selectedVal,hideSelector,showIndex){
+        if (typeof showIndex == 'undefined') showIndex = index;
         var selectHtml = $('<select id="'+selectorName+'" name="'+selectorName+'" data-index="'+index+'" class="form-control preset-input-select openSelect" />');
         $.each(options,function(subIndex,item){
             if(item.preset==selectedVal){
@@ -1832,13 +1911,14 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
         var createdSelect = $('#'+selectorName);
         createdSelect.focus();
         createdSelect.focusout(function(){
-            openSelectRemove(selectorName,index,true);
+            openSelectRemove(selectorName,index,true,showIndex);
         });
         createdSelect.change(function(){
-            openSelectRemove(selectorName,index);
+            openSelectRemove(selectorName,index,undefined,showIndex);
         });
     }
-    $scope.openPresetNoSelect = function(presetMode,index,isShow){
+    $scope.openPresetNoSelect = function(presetMode,index,isShow,showIndex){
+        if (typeof showIndex == 'undefined') showIndex = index;
         var selectorName;
         if(presetMode=='SwingsFromPreset'){
             selectorName = 'swingsFromPresetSelect';
@@ -1852,13 +1932,13 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
             var hideSelector;
             if(presetMode=='SwingsFromPreset'){
                 selectedVal = $scope.Swings[$scope.SwingMode.SelectedIndex].FromPreset;
-                hideSelector = '.swingsFromPreset:eq('+index+')';
+                hideSelector = '.swingsFromPreset:eq('+showIndex+')';
             }else if(presetMode=='SwingsToPreset'){
                 selectedVal = $scope.Swings[$scope.SwingMode.SelectedIndex].ToPreset;
-                hideSelector = '.swingsToPreset:eq('+index+')';
+                hideSelector = '.swingsToPreset:eq('+showIndex+')';
             }else{
                 selectedVal = $scope.Groups[$scope.Group.SelectedIndex].PresetList[index].SelectedPresetIndex;
-                hideSelector = '.groupPresetInput:eq('+index+')';
+                hideSelector = '.groupPresetInput:eq('+showIndex+')';
             }
             var options = $scope.PresetNameOptions;
             var openedSelect = $('.openSelect');
@@ -1867,7 +1947,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
                 var removeIndex = parseInt(openedSelect.attr('data-index'),10);
                 openSelectRemove(removeSelectorName,removeIndex);
             }
-            openSelectCreate(selectorName,index,options,selectedVal,hideSelector);
+            openSelectCreate(selectorName,index,options,selectedVal,hideSelector,showIndex);
         }
     };
 
@@ -1880,7 +1960,12 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
                 wait();
             }, 500);
         } else {
-            $scope.PTZPresetArray = COMMONUtils.getArrayWithMinMax(0, mAttr.MaxPresetsPerGroup - 1);
+            $scope.PTZPresetArray = [];
+            for (var i = 0; i <= mAttr.MaxPresetsPerGroup - 1; i++)
+            {
+                $scope.PTZPresetArray.push({'index' : i});
+            }
+            $scope.PTZGroupPage.presetList = COMMONUtils.chunkArray($scope.PTZPresetArray, $scope.PTZGroupPage.pageSize);
             $scope.PTZGroupArray = COMMONUtils.getArrayWithMinMax(0, mAttr.MaxGroupCount - 1);
             $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
             view();

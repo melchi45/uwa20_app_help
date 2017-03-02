@@ -528,10 +528,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     function getAttributes() {
         $scope.VideoAnalysis2Support = mAttr.VideoAnalysis2Support;
         $scope.MotionDetectionOverlay = mAttr.MotionDetectionOverlay;
-        $scope.isPTZModel = mAttr.PTZModel;
-        if($scope.isPTZModel === undefined) {
-            $scope.isPTZModel = false;
-        }
+        $scope.PTZModel = mAttr.PTZModel;
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
         $scope.HttpMaxPort = mAttr.Http.maxValue;
         if (mAttr.PresetTypes !== undefined) {
             $scope.PresetTypes = mAttr.PresetTypes;
@@ -1324,7 +1322,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 currentPage: 'VideoAnalytics'
             };
             $scope.ptzinfo = {
-                autoOpen: false,
                 type: 'none'
             };
             //To run $digest

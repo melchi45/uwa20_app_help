@@ -48,7 +48,6 @@ kindFramework.controller('dptzSetupCtrl', function ($scope, $interval, $timeout,
                       adjust: adjust
                   };
                   $scope.ptzinfo = {
-                      autoOpen: false,
                       type: (mAttr.FisheyeLens ? 'DPTZ' : 'none')
                   };
 

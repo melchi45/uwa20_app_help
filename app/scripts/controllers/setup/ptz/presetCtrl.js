@@ -306,7 +306,6 @@ kindFramework.controller('presetCtrl', function ($scope, $location, $timeout, $u
     $scope.$watch('LastPosition.RememberLastPosition',function(newVal, oldVal){
         if (typeof newVal !== 'undefined'){
             $scope.ptzinfo = {
-                autoOpen: true,
                 type: 'preset',
                 disablePosition: newVal
             };
@@ -399,7 +398,6 @@ kindFramework.controller('presetCtrl', function ($scope, $location, $timeout, $u
                 };
 
                 $scope.ptzinfo = {
-                    autoOpen: true,
                     type: 'preset'
                 };
             },

@@ -36,8 +36,13 @@
         </ul>
 
         <div class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
-            <sketchbook class="wn5-setup-preview-video" coordinates="coordinates" flag="flag" sketchinfo="sketchinfo" videoinfo="videoinfo">
+            <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'" coordinates="coordinates" flag="flag" sketchinfo="sketchinfo" videoinfo="videoinfo">
             </sketchbook>
+            <!-- PTZ Control -->
+            <div class="ptz-control_box">
+                <ptz-control ptzinfo='ptzinfo'></ptz-control>
+            </div>
+            <!-- //PTZ Control End -->
             <div class="wn5-setup-preview-table">
                 <div 
                     class="form-group"
@@ -259,17 +264,12 @@
                     </div>
                 </div>
             </div>
-            <!-- PTZ Control -->
-            <div class="ptz-control_box ptz-control_ptz-menu-width" style="margin-left: 0px;" ng-if="isPTZModel">
-                <ptz-control ptzinfo="ptzinfo">
-                </ptz-control>
-            </div>
             <!-- <h3>
                 {{ 'lang_configuration' | translate }}
             </h3>
             <div class="hr-line-dashed">
             </div> -->
-            <div class="form-group" ng-if="isPTZModel">
+            <div class="form-group" ng-if="PTZModel">
                 <div class="wn5-setup-section-article-heading">
                     {{ 'lang_type' | translate }}
                 </div>

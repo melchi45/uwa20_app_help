@@ -103,7 +103,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                     currentPage: 'Fog'
                 };
                 $scope.ptzinfo = {
-                    autoOpen: false,
                     type: 'none'
                 };
 
@@ -698,6 +697,9 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
         $scope.EventActions = COMMONUtils.getSupportedEventActions("TamperingDetection");
         $scope.getAlarmOutArray = COMMONUtils.getArray(mAttr.MaxAlarmOutput);
         $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
+
+        $scope.PTZModel = mAttr.PTZModel;
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
 
         defer.resolve("success");
         return defer.promise;

@@ -12,10 +12,13 @@
         </div>
 
         <div class="wn5-setup-section">
-            <sketchbook 
-                class="wn5-setup-preview-video"
+            <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'"
                 sketchinfo='sketchinfo' videoinfo='videoinfo' coordinates='coordinates'></sketchbook>
-
+            <!-- PTZ Control -->
+            <div class="ptz-control_box">
+                <ptz-control ptzinfo='ptzinfo'></ptz-control>
+            </div>
+            <!-- //PTZ Control End -->
 
             <div class="wn5-setup-preview">
                 <div class="form-group">
@@ -45,11 +48,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- PTZ Control -->
-        <div class="ptz-control_box ptz-control_ptz-menu-width">
-            <ptz-control ptzinfo='ptzinfo' ng-if="supportPTZ"></ptz-control>
         </div>
 
         <div class="wn5-setup-section">
