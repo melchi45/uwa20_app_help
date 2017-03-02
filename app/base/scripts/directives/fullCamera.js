@@ -92,6 +92,7 @@ function($q, DisplayService,CAMERA_TYPE,PLAYBACK_TYPE,PTZ_TYPE,
           }
 
           $timeout(function(){
+            $rootScope.$emit('channel:changeFullSetRec');
             $rootScope.$emit('channel:reloadStreaming');
             $rootScope.$emit('BaseChannel:resetViewMode');
             kindStreamInterface.setCanvasStyle('originalratio');
