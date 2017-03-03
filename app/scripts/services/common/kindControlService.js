@@ -160,7 +160,7 @@ kindFramework
     }
 
     this.startPlayback = function(_scope, data, timeCallback, errorCallback){
-      _scope.playerdata = ConnectionSettingService.getPlaybackDataSet(data, timeCallback, errorCallback );
+      _scope.playerdata = ConnectionSettingService.startPlayback(data, timeCallback, errorCallback );
     };
 
     this.applyResumeCommand = function(_scope, data) {

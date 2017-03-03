@@ -156,9 +156,12 @@ kindFramework
     var initializePlaybackPage = function() {
       var playData = new PlayDataModel();
       $rootScope.$emit('changeLoadingBar', true);
-      $scope.playbackPage.MaxChannel = sunapiAttributes.MaxChannel;
       //TODO : below is only for test.
-      //$scope.playbackPage.MaxChannel = 4;
+      // sunapiAttributes.MaxChannel = 4;
+      $scope.playbackPage.MaxChannel = sunapiAttributes.MaxChannel;
+      ConnectionSettingService.SetMultiChannelSupport(
+                    sunapiAttributes.MaxChannel > 1 ? true : false);
+      
       initStreaming()
       .then(function() {
         //Check Browser
