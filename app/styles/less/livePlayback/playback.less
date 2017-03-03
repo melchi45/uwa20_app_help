@@ -81,7 +81,6 @@
     /*  after active click backup button  */
     #cm-playback-backup{
         float: left;
-        transform: translateY(-50%);
 
         .cm-date-textbox{
             width: 120px;
@@ -337,6 +336,28 @@
                 #cm-playback-event {
                     & > .cm-center {
                         width: 100%;
+                    }
+                }
+    
+                #cm-playback-backup {
+                    width: 100%;
+                    text-align: center;
+                    display: inline-table;
+
+                    .cm-playback-block {
+                        margin: 0 5px !important;
+                        display: inline-table;
+                        float: none;
+
+                        input {
+                            padding: 0 5px !important;
+                        }
+
+                        &#backup-date {
+                            width: 100%;
+                            text-align: center;
+                            margin-bottom: 10px;
+                        }
                     }
                 }
             }
