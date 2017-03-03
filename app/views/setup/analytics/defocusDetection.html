@@ -12,10 +12,13 @@
         </div>
 
         <div class="wn5-setup-section">
-            <sketchbook 
-                class="wn5-setup-preview-video"
+            <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'"
                 videoinfo='videoinfo'></sketchbook>
-
+            <!-- PTZ Control -->
+            <div class="ptz-control_box">
+                <ptz-control ptzinfo='ptzinfo'></ptz-control>
+            </div>
+            <!-- //PTZ Control End -->
             <div class="wn5-setup-preview">
                 <div class="form-group">
                     <div class="wn5-setup-preview-heading">{{ 'lang_level_of_detection' | translate }}</div>
