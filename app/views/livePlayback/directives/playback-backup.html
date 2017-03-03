@@ -15,7 +15,8 @@
 	        ng-pattern-restrict="{{control.timeValidation.pattern.hour}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm_textbox"
+            data-ng-disabled='blockTimeInput'
         	ng-model="startTime.hours">
         :
         <input 
@@ -24,7 +25,8 @@
 	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm_textbox"
+            data-ng-disabled='blockTimeInput'
         	ng-model="startTime.minutes">
         :
         <input 
@@ -33,7 +35,8 @@
 	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm_textbox"
+            data-ng-disabled='blockTimeInput'
         	ng-model="startTime.seconds">
     </div>
 
@@ -46,7 +49,8 @@
 	        ng-pattern-restrict="{{control.timeValidation.pattern.hour}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm_textbox"
+            data-ng-disabled='blockTimeInput'
         	ng-model="endTime.hours">
         :
         <input 
@@ -55,7 +59,8 @@
 	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm_textbox"
+            data-ng-disabled='blockTimeInput'
         	ng-model="endTime.minutes">
         :      
         <input 
@@ -64,7 +69,8 @@
 	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
-        	class="cm_textbox" 
+        	class="cm_textbox"
+            data-ng-disabled='blockTimeInput'
         	ng-model="endTime.seconds">
     </div>
 

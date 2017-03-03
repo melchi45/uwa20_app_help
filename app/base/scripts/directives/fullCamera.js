@@ -2,9 +2,10 @@
 kindFramework.directive('fullCamera', ['$q', 'DisplayService',
   'CAMERA_TYPE', 'PLAYBACK_TYPE','PTZ_TYPE','UniversialManagerService', 
   'CAMERA_STATUS', '$rootScope', '$timeout','PlayDataModel','PTZContorlService', 'kindStreamInterface',
+  'BrowserService',
 function($q, DisplayService,CAMERA_TYPE,PLAYBACK_TYPE,PTZ_TYPE,
   UniversialManagerService, CAMERA_STATUS, $rootScope, $timeout,
-  PlayDataModel, PTZContorlService, kindStreamInterface) {
+  PlayDataModel, PTZContorlService, kindStreamInterface,BrowserService) {
   'use strict';
   return {
     restrict: 'E',
@@ -89,6 +90,11 @@ function($q, DisplayService,CAMERA_TYPE,PLAYBACK_TYPE,PTZ_TYPE,
           }
           if(PTZContorlService.getAutoTrackingMode() === "True") {
             PTZContorlService.setAutoTrackingMode("False");
+          }
+
+          //Cancel Safari block user input
+          if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH) {
+            $rootScope.$emit('blockTimebarInputField', false);
           }
 
           $timeout(function(){
