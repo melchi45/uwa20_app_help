@@ -69,6 +69,10 @@ kindFramework
         playData.setCurrentMenu('full');
         searchData.setWebIconStatus(true);
       }
+      //Safari block user input
+      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH) {
+        $rootScope.$emit('blockTimebarInputField', true);
+      }
       // else{
         // var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true:false;
         // if (kindStreamInterface.managerCheck() || plugin) {

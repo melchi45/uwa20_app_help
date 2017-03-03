@@ -15,6 +15,7 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope','Moda
           var playData = new PlayDataModel();
           var PLAY_CMD = PLAYBACK_TYPE.playCommand;
           var searchData = new SearchDataModel();
+          scope.blockTimeInput = false;
             var pad = function(x){
               x *= 1;
               return x < 10 ? "0" + x : x;
@@ -118,6 +119,9 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope','Moda
                 scope.endTime.hours = pad(endTarget.hour());
                 scope.endTime.minutes = pad(endTarget.minute());
                 scope.endTime.seconds = pad(endTarget.second());         
+            }, scope);
+            $rootScope.$saveOn('blockTimebarInputField', function(event, data) {
+              scope.blockTimeInput = data;
             }, scope);
 
             scope.$on('$destroy', function() {
