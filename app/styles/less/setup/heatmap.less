@@ -46,13 +46,21 @@
 
 .hm-setup-overlay-heatmap {
 	position: absolute;
-	left: @wn5-setup-tab-content-padding;
-	top: @wn5-setup-tab-content-padding;
+	left: 0;
+	top: 0;
+	padding: @wn5-setup-tab-content-padding;
 	z-index: 999;
 	
 	> img {
 		border: 0;
 	}
+
+	@media(max-width: @setup-mobile-max-width){
+		width: 100%;
+		> img {
+			width: 100%;
+		}
+	}	
 }
 
 #hm-setup-camera-height-slider {
@@ -332,7 +340,7 @@ div.hm_index span:last-of-type{
 	max-width:1080px;
 }
 
-#hm-realtime-overimg{
+#hm-realtime-overimg {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -340,6 +348,13 @@ div.hm_index span:last-of-type{
 
 	background-repeat: no-repeat;
 	.clearfix();
+
+	@media(max-width: @setup-mobile-max-width){
+		width: 100%;
+		> img {
+			width: 100%;
+		}
+	}	
 }
 
 img[id^="hm-results-image-"]{

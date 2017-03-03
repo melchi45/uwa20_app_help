@@ -7775,6 +7775,14 @@ Prefix : pc-n-hm
   height: 330px;
   padding-right: 10px;
 }
+@media (max-width: 700px) {
+  #pc-realtime-graph .pc-realtime-graph-today,
+  [id^="qm-realtime-graph-"] .pc-realtime-graph-today,
+  #pc-realtime-graph .pc-realtime-graph-week,
+  [id^="qm-realtime-graph-"] .pc-realtime-graph-week {
+    width: 100%;
+  }
+}
 #pc-realtime-graph nvd3,
 [id^="qm-realtime-graph-"] nvd3 {
   display: block;
@@ -8138,12 +8146,21 @@ Prefix : pc-n-hm
 }
 .hm-setup-overlay-heatmap {
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 0;
+  top: 0;
+  padding: 20px;
   z-index: 999;
 }
 .hm-setup-overlay-heatmap > img {
   border: 0;
+}
+@media (max-width: 700px) {
+  .hm-setup-overlay-heatmap {
+    width: 100%;
+  }
+  .hm-setup-overlay-heatmap > img {
+    width: 100%;
+  }
 }
 #hm-setup-camera-height-slider {
   width: 300px;
@@ -8407,6 +8424,14 @@ div.hm_index span:last-of-type {
   clear: both;
   display: block;
   content: ' ';
+}
+@media (max-width: 700px) {
+  #hm-realtime-overimg {
+    width: 100%;
+  }
+  #hm-realtime-overimg > img {
+    width: 100%;
+  }
 }
 img[id^="hm-results-image-"] {
   margin-top: 20px;
