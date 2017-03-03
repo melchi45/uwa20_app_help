@@ -22,6 +22,7 @@ function VideoMediaSource() {
   var isPlaying = false;
   var isPause = true;
   var audioStartNum = 0;
+  var boxSize = 0;
 
   function Constructor() { }
 
@@ -171,8 +172,12 @@ function VideoMediaSource() {
 
       if (playbackFlag === true) {
         delay = (browserType === "chrome" ? 2 : 4);
-        if (browserType === "edge") {
-          delay = 18;
+        if (boxSize === 1) {
+          if (browserType === "edge") {
+            delay = 18;
+          } else {
+            delay = 4;
+          }
         }
       } else {
         delay = (browserType === "chrome" ? 0.2 : 2);
@@ -370,6 +375,9 @@ function VideoMediaSource() {
     setTimeStampInit: function() {
       preVideoTimeStamp = null;
       firstTimeStamp = {timestamp:0, timestamp_usec:0, timezone:0};
+    },
+    setBoxSize: function(size) {
+      boxSize = size;
     },
     close: function() {
       removeEventListener();

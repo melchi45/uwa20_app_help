@@ -510,6 +510,7 @@ function WorkerManager() {
       videoMS.setVideoSizeCallback(videoSizeCallback);
       videoMS.init(videoElem);
       videoMS.setSpeedPlay(speed);
+      videoMS.setBoxSize(numBox);
     } else {
       var element = videoMS.getVideoElement();
       videoMS.setInitSegment();
@@ -846,7 +847,7 @@ function WorkerManager() {
         videoMS.setTimeStampInit();
       }
 
-      initVideo(speed);
+      initVideo(speed === 1 ? false : true );
       videoWorker.postMessage({'type': 'stepPlay', 'data': 'playbackSeek'});
   	},
     videoBuffering: function() {
