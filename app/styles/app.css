@@ -7756,6 +7756,11 @@ Prefix : pc-n-hm
   width: 680px;
   padding: 0 20px;
 }
+@media (max-width: 700px) {
+  .pc-setup-counting-table {
+    width: 100%;
+  }
+}
 #pc-realtime-graph,
 [id^="qm-realtime-graph-"] {
   width: 100%;
@@ -8123,6 +8128,15 @@ Prefix : pc-n-hm
   position: relative;
   width: 640px;
   margin: 0 auto;
+}
+@media (max-width: 700px) {
+  #hm-results-heatmap .hm-results-heatmap-item {
+    width: 100%;
+  }
+  #hm-results-heatmap .hm-results-heatmap-item > img {
+    width: 100% !important;
+    height: auto !important;
+  }
 }
 #hm-results-heatmap .hm-results-overimg {
   position: absolute;
@@ -8659,6 +8673,8 @@ img[id^="hm-results-image-"] {
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #ptz-components {
   float: left;
   width: 100%;
+  display: inline-table;
+  text-align: center;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center #ptz-components #cm-live-ptz-control {
   display: inline-table;
