@@ -337,7 +337,7 @@ kindFramework
         $timeout(function(){
           $scope.timelineController.resetTimeRange();
           $scope.playPlayback(PLAY_CMD.PLAY);
-        },100);
+        },500);
       }
     }, $scope);
 
