@@ -14,6 +14,7 @@ kindFramework.directive('playbackDatepicker', function() {
             var isValueChanged = true;
             var playbackInterfaceService = PlaybackInterface;
 
+            $scope.blockTimeInput = false;
             $scope.submitButton = 'lang_search';
             $scope.minDate = new Date(2000, 0, 1);
             $scope.maxDate = new Date(2037, 11, 31);
@@ -374,6 +375,10 @@ kindFramework.directive('playbackDatepicker', function() {
             $rootScope.$saveOn('onChangedMonth', function(event, data) {
                 $scope.playback.search.selectedDate = selectedDate = data;
                 showRecordingDate(selectedDate.getFullYear(), pad(selectedDate.getMonth() + 1));
+            }, $scope);
+
+            $rootScope.$saveOn('blockTimebarInputField', function(event, data) {
+              $scope.blockTimeInput = data;
             }, $scope);
             /*
              * @author Yongku Cho
