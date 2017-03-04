@@ -523,33 +523,33 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			}
 		};
 
-		// var eventRulesCgi = {
-		// 	scheduler: {
-		// 		view: function(successCallback, failCallback){
-		// 			pcSetupService.requestSunapi({
-		// 				cgi: 'eventrules',
-		// 				msubmenu: 'scheduler',
-		// 				action: 'view',
-		// 				data: {
-		// 					Type: 'QueueManagement'
-		// 				},
-		// 				successCallback: successCallback,
-		// 				failCallback: failCallback
-		// 			});
-		// 		},
-		// 		set: function(data, successCallback, failCallback){
-		// 			data.Type = 'QueueManagement';
-		// 			pcSetupService.requestSunapi({
-		// 				cgi: 'eventrules',
-		// 				msubmenu: 'scheduler',
-		// 				action: 'set',
-		// 				data: data,
-		// 				successCallback: successCallback,
-		// 				failCallback: failCallback
-		// 			});
-		// 		}
-		// 	}
-		// };
+		var eventRulesCgi = {
+			scheduler: {
+				view: function(successCallback, failCallback){
+					pcSetupService.requestSunapi({
+						cgi: 'eventrules',
+						msubmenu: 'scheduler',
+						action: 'view',
+						data: {
+							Type: 'QueueManagement'
+						},
+						successCallback: successCallback,
+						failCallback: failCallback
+					});
+				},
+				set: function(data, successCallback, failCallback){
+					data.Type = 'QueueManagement';
+					pcSetupService.requestSunapi({
+						cgi: 'eventrules',
+						msubmenu: 'scheduler',
+						action: 'set',
+						data: data,
+						successCallback: successCallback,
+						failCallback: failCallback
+					});
+				}
+			}
+		};
 
 		var eventStatusCgi = {
 			check: function(successCallback, failCallback){
@@ -686,17 +686,12 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			var deferred = $q.defer();
 
 			function successCallback(data){
-				data = data.QueueManagementSetup[0];
-				
+				data = data.data.QueueManagementSetup[0];
 				deferred.resolve(data);
 			}
 
 			function failCallback(data){
-				data = mockupData.eventSourcesCgi.queue.view; //mockup
-				data = data.QueueManagementSetup[0];
-				
-				deferred.resolve(data);
-				// deferred.reject(data);
+				deferred.reject(data);
 			}
 
 			eventSourcesCgi.queue.view(successCallback, failCallback);
@@ -712,8 +707,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			}
 
 			function failCallback(failData){
-				deferred.resolve(failData);
-				// deferred.reject(data);
+				deferred.reject(failData);
 			}
 
 			eventSourcesCgi.queue.set(data, successCallback, failCallback);
@@ -725,47 +719,57 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			var deferred = $q.defer();
 
 			function successCallback(successData){
-				successData = mockupData.eventSourcesCgi.queue.check; //mockup
-				successData = successData.QueueLevels[0].Queues;
+				successData = successData.data.QueueCount[0].Queues;
 				
 				deferred.resolve(successData);
 			}
 
 			function failCallback(failData){
-				// failData = mockupData.eventSourcesCgi.queue.check; //mockup
-				// failData = failData.QueueLevels.Queues;
-				
-				// deferred.resolve(failData);
 				deferred.reject(failData);
 			}
 
-			eventSourcesCgi.queue.check(data, successCallback, failCallback);
+			eventSourcesCgi.queue.check(successCallback, failCallback, data);
 
 			return deferred.promise;
 		};
 
-		// this.controlSearch = function(data){
-		// 	var deferred = $q.defer();
+		this.getEventActionData = function(){
+			var deferred = $q.defer();
 
-		// 	function successCallback(successData){
-		// 		successData = mockupData.recordingCgi.controlStart;
-		// 		deferred.resolve(successData);
-		// 	}
+			function successCallback(data){
+				console.info(data);
+				data = data.data.QueueManagement[0];
+				deferred.resolve(data);
+			}
 
-		// 	function failCallback(failData){
-		// 		failData = mockupData.recordingCgi.controlStart;
-		// 		deferred.resolve(failData);
-		// 		// deferred.reject(failData);
-		// 	}
+			function failCallback(data){
+				deferred.reject(data);
+			}
 
-		// 	recordingCgi.control(data, successCallback, failCallback);
+			eventRulesCgi.scheduler.view(successCallback, failCallback);
 
-		// 	return deferred.promise;
-		// };
+			return deferred.promise;
+		};
+
+		this.setEventActionData = function(data){
+			var deferred = $q.defer();
+
+			function successCallback(successData){
+				deferred.resolve(successData);
+			}
+
+			function failCallback(failData){
+				deferred.reject(failData);
+			}
+
+			eventRulesCgi.scheduler.set(data, successCallback, failCallback);
+
+			return deferred.promise;
+		};
 
 		var searchToken = null;
 
-		var getSearchData = function(searchOptions){
+		var getSearchData = function(searchOptions, type){
 			var deferred = $q.defer();
 
 			var searchControl = recordingCgi.control;
@@ -779,8 +783,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			}
 
 			function controlSuccessCallback(response){
-				// searchToken = response.data.SearchToken;
-				searchToken = "123456"; //mockup
+				searchToken = response.data.SearchToken;
 				requestSearchView();
 			}
 
@@ -791,22 +794,19 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 						SearchToken: searchToken
 					},
 					viewStatusSuccessCallback,
-					viewStatusSuccessCallback
-					// failCallback
+					failCallback
 				);
 			}
 
 			function viewStatusSuccessCallback(response){
-				// if(response.data.Status === "Completed"){
-				if(true){ //mockup
+				if(response.data.Status === "Completed"){
 					searchView(
 						{
 							Type: 'Results',
 							SearchToken: searchToken
 						},
 						viewResultSuccessCallback,
-						viewResultSuccessCallback
-						// failCallback
+						failCallback
 					);
 				}else{
 					requestSearchView();
@@ -814,7 +814,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			}
 
 			function viewResultSuccessCallback(response){
-				response = mockupData.recordingCgi.viewResultsAverage; //mockup
+				response = response.data;
 				var resultInterval = response.ResultInterval;
 				var queueResults = response.QueueResults;
 				var responseData = {
@@ -824,10 +824,19 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 
 				for(var i = 0, len = queueResults.length; i < len; i++){
 					var queueSelf = queueResults[i];
+					var direction = null;
+					var results = null;
+					if(type === "Average"){
+						direction = type;
+						results = fillterResults(queueSelf.AveragePeopleResult, resultInterval);
+					}else{
+						direction = queueSelf.QueueLevels.Level;
+						results = fillterResults(queueSelf.QueueLevels.CumulativeTimeResult, resultInterval);
+					}
 					var data = {
 						name: queueSelf.Queue,
-						direction: "Average",
-						results: fillterResults(queueSelf.AveragePeopleResult, resultInterval)
+						direction: direction,
+						results: results
 					};
 
 					responseData.data.push(data);
@@ -948,30 +957,25 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 
 			searchOptions.Channel = channelIndex;
 			searchOptions.Mode = 'Start';
-			searchOptions["Queue.1.AveragePeople"] = 'True';
-			searchOptions["Queue.2.AveragePeople"] = 'True';
-			searchOptions["Queue.3.AveragePeople"] = 'True';
+			if(type === "Average"){
+				for(var i = 1; i <= 3; i++){
+					searchOptions["Queue."+i+".AveragePeople"] = 'True';
+				}
+			}else{
+				for(var i = 1; i <= 3; i++){
+					searchOptions["Queue."+i+".Type.High.Cumulative"] = 'True';
+					searchOptions["Queue."+i+".Type.Medium.Cumulative"] = 'True';
+				}
+			}
 
 			searchControl(
 				searchOptions,
 				controlSuccessCallback,
-				controlSuccessCallback
-				// failCallback
+				failCallback
 			);
 
 			return deferred.promise;
 		};
-
-		// var getBasicSearchOption = function(){
-		// 	var lineNames = lineName.get();
-		// 	var searchLineOptions = {};
-
-		// 	for(var i = 0; i < lineNames.length; i++){
-		// 		// searchLineOptions['Camera.' + //masterCameraName + '.Line.' + lineNames[i] + '.Direction']	= 'In,Out';
-		// 	}
-
-		// 	return searchLineOptions;
-		// };
 
 		this.getTodayGraphData = function(){
 			var nowDate = getSunapiDateFormat(cameraLocalTime.getDateObj().getTime());
@@ -980,41 +984,41 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			searchOptions.FromDate = removeTime(nowDate);
 			searchOptions.ToDate = setLastTime(nowDate);
 
-			return getSearchData(searchOptions);
+			return getSearchData(searchOptions, 'Average');
 			// var deferred = $q.defer();
 			// deferred.resolve("Success");
 			// return deferred.promise;
 		};
 
 		this.getWeekGraphData = function(){
-			// var newDate = cameraLocalTime.getDateObj();
-			// var nowDate = getSunapiDateFormat(newDate.getTime());
-			// var fromDate = null;
-			// var searchOptions = getBasicSearchOption();
+			var newDate = cameraLocalTime.getDateObj();
+			var nowDate = getSunapiDateFormat(newDate.getTime());
+			var fromDate = null;
+			var searchOptions = {};
 
-			// //get date at the six day ago
-			// newDate.setDate(newDate.getDate() - 6);
+			//get date at the six day ago
+			newDate.setDate(newDate.getDate() - 6);
 
 			/*
 			카메라는 최소 2000/01/01까지 지원을 하기 때문에
 			현재 날짜(newDate)가 2000년 이전을 설정될 경우
 			강제로 2000/01/01로 설정한다.
 			*/
-			// if(newDate.getFullYear() < 2000){
-			// 	newDate.setYear(2000);
-			// 	newDate.setMonth(0);
-			// 	newDate.setDate(1);
-			// }
+			if(newDate.getFullYear() < 2000){
+				newDate.setYear(2000);
+				newDate.setMonth(0);
+				newDate.setDate(1);
+			}
 
-			// fromDate = getSunapiDateFormat(newDate.getTime());
+			fromDate = getSunapiDateFormat(newDate.getTime());
 
-			// searchOptions.FromDate = removeTime(fromDate);
-			// searchOptions.ToDate = setLastTime(nowDate);
+			searchOptions.FromDate = removeTime(fromDate);
+			searchOptions.ToDate = setLastTime(nowDate);
 
-			// return getSearchData(searchOptions);
-			var deferred = $q.defer();
-			deferred.resolve("Success");
-			return deferred.promise;
+			return getSearchData(searchOptions, 'Cumulative');
+			// var deferred = $q.defer();
+			// deferred.resolve("Success");
+			// return deferred.promise;
 		};
 
 		// this.getSearchResults = function(options){

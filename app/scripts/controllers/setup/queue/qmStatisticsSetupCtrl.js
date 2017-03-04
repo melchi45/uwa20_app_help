@@ -154,81 +154,109 @@ kindFramework.controller('QMStatisticsCtrl', function (
 		chartConfig: {
 			deepWatchData: false
 		},
-		today: {
-			average: {
-				options: {
-					chart: {
-						type: 'lineChart',
-			            height: 300,
-			            margin : {
-			                // top: 20,
-			                // right: 0,
-			                bottom: 20,
-			                left: 40
-			            },
-			            x: function(d){
-			        		return d[0];
-			        	},
-			            y: function(d){
-			        		return d[1];
-			        	},
-			            useVoronoi: false,
-			            clipEdge: true,
-			            transitionDuration: 500,
-			            useInteractiveGuideline: true,
-			            xAxis: {
-			                tickFormat: function(index) {
-			                	var data = $scope.graphSection.today.average.xAxisData[index];
-			                    return changeFormatForGraph(data, 'hour');
-			                }
-			            },
-			            yAxis: {
-			                showMaxMin: true,
-			                tickFormat: changeYAxisFormat
-			            },
-			            dispatch: {
-			            	renderEnd: function(){
-			            		console.log("renderEnd");
-			            	}
-			            },
-			            showLegend: true,
-			            //Event of Legend
-			            legend: {
-			                dispatch: {
-			                    legendClick: function(item){
-			                        $scope.graphSection.selectChartItem(
-			                        	'.pc-realtime-graph-today', 
-			                        	$scope.graphSection.today.average.data,
-			                        	item
-			                    	);
-			                    }
-			                }
-			            }
-					}
-				},
-				data: [],
-				setData: function(data){
-					$scope.graphSection.today.average.data = data;
-					$timeout(function(){
-						$scope.graphSection.today.average.options.chart.legend.dispatch.legendClick({
-							seriesIndex: 0
-						});
-					});
-				},
-				api: null,
-				update: function(){
-					if($scope.graphSection.today.average.api !== null){
-						$scope.graphSection.today.average.api.update();
-					}
-				},
-				xAxisData: [],
-				setXAxisData: function(data){
-					$scope.graphSection.today.average.xAxisData = data;
-				},
-				getXAxisData: function(){
-					return $scope.graphSection.today.average.xAxisData;
+		average: {
+			options: {
+				chart: {
+					type: 'lineChart',
+		            height: 300,
+		            margin : {
+		                // top: 20,
+		                // right: 0,
+		                bottom: 20,
+		                left: 40
+		            },
+		            x: function(d){
+		        		return d[0];
+		        	},
+		            y: function(d){
+		        		return d[1];
+		        	},
+		            useVoronoi: false,
+		            clipEdge: true,
+		            transitionDuration: 500,
+		            useInteractiveGuideline: true,
+		            xAxis: {
+		                tickFormat: function(index) {
+		                	var data = $scope.graphSection.average.xAxisData[index];
+		                    return changeFormatForGraph(data, 'hour');
+		                }
+		            },
+		            yAxis: {
+		                showMaxMin: true,
+		                tickFormat: changeYAxisFormat
+		            },
+		            dispatch: {
+		            	renderEnd: function(){
+		            		console.log("renderEnd");
+		            	}
+		            },
+		            showLegend: true,
+		            //Event of Legend
+		            legend: {
+		                dispatch: {
+		                    legendClick: function(item){
+		                        $scope.graphSection.selectChartItem(
+		                        	'.pc-realtime-graph-today', 
+		                        	$scope.graphSection.average.data,
+		                        	item
+		                    	);
+		                    }
+		                }
+		            }
 				}
+			},
+			data: [],
+			setData: function(data){
+				$scope.graphSection.average.data = data;
+				$timeout(function(){
+					$scope.graphSection.average.options.chart.legend.dispatch.legendClick({
+						seriesIndex: 0
+					});
+				});
+			},
+			api: null,
+			update: function(){
+				if($scope.graphSection.average.api !== null){
+					$scope.graphSection.average.api.update();
+				}
+			},
+			xAxisData: [],
+			setXAxisData: function(data){
+				$scope.graphSection.average.xAxisData = data;
+			},
+			getXAxisData: function(){
+				return $scope.graphSection.average.xAxisData;
 			}
+		},
+		cumulative: {
+			options: {
+	            chart: {
+	                type: 'multiBarChart',
+	                height: 300,
+	                margin : {
+	                    // top: 20,
+	                    // right: 20,
+	                    bottom: 20,
+	                    left: 40
+	                },
+	                clipEdge: true,
+	                duration: 500,
+	                stacked: true,
+	                useInteractiveGuideline: true,
+	                xAxis: {
+	                    showMaxMin: false,
+	                    tickFormat: function(d){
+	                        return d[0];
+	                    }
+	                },
+	                yAxis: {
+	                    tickFormat: function(d){
+	                        return d[1];
+	                    }
+	                }
+	            }
+			},
+			data: []
 		},
 		selectChartItem: function(parentClass, chartData, item){
 	        item.disabled = true;
@@ -248,7 +276,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 	        }
 	    },
 		resizeHandle: function(){
-		    $scope.graphSection.today.average.update();
+		    $scope.graphSection.average.update();
 		},
 		bindResize: function(){
 			angular.element($window).bind(
@@ -265,17 +293,65 @@ kindFramework.controller('QMStatisticsCtrl', function (
 		init: function(){
 			$scope.graphSection.bindResize();
 		},
-		getTodayAverageGraph: function(){
+		getGraph: function(){
+			$scope.graphSection.getTodayGraph().then(
+				function(){
+					$scope.graphSection.getWeeklyGraph();
+				},
+				function(failData){
+					console.error(failData);
+				}
+			);
+		},
+		getWeeklyGraph: function(){
 			function successCallback(data){
-				console.info(data);
 				data = data.data;
-				// qmModel
-				// 	.getWeekGraphData()
-				// 	.then(getWeekGraphDataCallback, failCallback);
 
-				var todayRuleData = [];
-				var todayXAxisData = [];
-				var todayChartData = [];
+				var xAxisData = [];
+				var allChartData = [];
+
+				for(var i = 0, len = data.length; i < len; i++){
+					var self = data[i];
+
+					var chartData = {
+						key: self.name + ' - ' + self.direction,
+						values: [],
+						seriesIndex: i
+						// color: i === 0 ? chartColor.selected : chartColor.default,
+						// area: true
+					};
+
+					for(var j = 0, jLen = self.results.length; j < jLen; j++){
+						var resultSelf = self.results[j];
+						chartData.values.push([j, resultSelf.value]);
+						xAxisData[j] = resultSelf.timeStamp;
+					}
+
+					allChartData.push(chartData);
+				}
+
+				$scope.graphSection.average.setData(allChartData);
+				$scope.graphSection.average.setXAxisData(xAxisData);
+
+				deferred.resolve("Success");
+			}
+
+			function failCallback(failData){
+				console.error(failData);
+			}
+
+			// qmModel
+			// 	.getWeekGraphData()
+			// 	.then(successCallback, failCallback);
+		},
+		getTodayGraph: function(){
+			var deferred = $q.defer();
+
+			function successCallback(data){
+				data = data.data;
+
+				var xAxisData = [];
+				var allChartData = [];
 
 				for(var i = 0, len = data.length; i < len; i++){
 					var self = data[i];
@@ -290,23 +366,28 @@ kindFramework.controller('QMStatisticsCtrl', function (
 					for(var j = 0, jLen = self.results.length; j < jLen; j++){
 						var resultSelf = self.results[j];
 						chartData.values.push([j, resultSelf.value]);
-						todayXAxisData[j] = resultSelf.timeStamp;
+						xAxisData[j] = resultSelf.timeStamp;
 					}
 
-					todayChartData.push(chartData);
+					allChartData.push(chartData);
 				}
 
-				$scope.graphSection.today.average.setData(todayChartData);
-				$scope.graphSection.today.average.setXAxisData(todayXAxisData);
+				$scope.graphSection.average.setData(allChartData);
+				$scope.graphSection.average.setXAxisData(xAxisData);
+
+				deferred.resolve("Success");
 			}
 
 			function failCallback(failData){
-				console.info(failData);
+				deferred.reject("Fail");
+				console.error(failData);
 			}
 
 			qmModel
 				.getTodayGraphData()
 				.then(successCallback, failCallback);
+
+			return deferred.promise;
 		}
 	};
 
@@ -463,7 +544,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 
 	function getPeopleData(id){
 		var max = $scope.queueData.Queues[id].MaxPeople;
-		var high = $scope.queueData.Queues[id].QueueTypes[0].Count;
+		var high = $scope.queueData.Queues[id].QueueLevels[0].Count;
 		var mid = Math.ceil( high / 2 );
 
 		return {
@@ -496,8 +577,8 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			}
 		},
 		change: function(id){
-			var successCallback = function(responseData){
-				var queue = responseData[id].Level;
+			var successCallback = function(response){
+				var queue = response[0].Count;
 				var data = getPeopleData(id);
 				var parent = $("#qm-bar-" + id);
 
@@ -536,7 +617,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			};
 
 			var failCallback = function(failData){
-				console.info(failData);
+				console.error(failData);
 			};
 
 			qmModel.checkData(
@@ -586,7 +667,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						$scope.queueLevelSection.start(2);
 						//Graph
 						$scope.graphSection.init();
-						$scope.graphSection.getTodayAverageGraph();
+						$scope.graphSection.getGraph();
 
 						$scope.pcConditionsDateForm.init(
 							function(){

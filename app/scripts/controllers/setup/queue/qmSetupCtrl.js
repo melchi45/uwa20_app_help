@@ -62,7 +62,8 @@ kindFramework.controller('QMSetupCtrl',
     function getAttributes() {
         var defer = $q.defer();
 
-        if (mAttr.AlarmoutDurationOptions !== undefined) {
+        if (mAttr.AlarmoutDurationOptions !== undefined)
+        {
             $scope.AlarmoutDurationOptions = mAttr.AlarmoutDurationOptions;
         }
 
@@ -82,6 +83,8 @@ kindFramework.controller('QMSetupCtrl',
         {
         	$scope.support.isFisheyeLens = mAttr.FisheyeLens;
         }
+
+        $scope.eventSection.getAlarmOutArray = COMMONUtils.getArray(mAttr.MaxAlarmOutput);
 
         defer.resolve("success");
         return defer.promise;
@@ -131,6 +134,8 @@ kindFramework.controller('QMSetupCtrl',
 				});
 				//Report
 				$scope.reportSection.init();
+				//Event action settings
+				$scope.eventSection.init();
 			}, 
 			failCallback
 		);
@@ -220,7 +225,7 @@ kindFramework.controller('QMSetupCtrl',
 
 	function getPeopleData(){
 		var max = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople;
-		var high = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueTypes[0].Count;
+		var high = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueLevels[0].Count;
 		var mid = Math.ceil( high / 2 );
 
 		return {
@@ -249,8 +254,8 @@ kindFramework.controller('QMSetupCtrl',
 			}
 		},
 		change: function(){
-			var successCallback = function(responseData){
-				var queue = responseData[$scope.queueListSection.selectedQueueId].Level;
+			var successCallback = function(response){
+				var queue = response[0].Count;
 				var data = getPeopleData();
 
 				var colorList = ["#2beddb", "#0dd8eb", "#57ed06", "#0ec20e", "#ffab33", "#ff5400"];
@@ -330,7 +335,7 @@ kindFramework.controller('QMSetupCtrl',
 			if(type === 'max'){
 				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople = setInt(val);
 			}else if(type === 'high'){
-				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueTypes[0].Count = setInt(val);
+				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueLevels[0].Count = setInt(val);
 			}
 
 			$scope.queueLevelSection.reload();
@@ -413,31 +418,93 @@ kindFramework.controller('QMSetupCtrl',
 		init: function(){
 			$scope.pcSetupReport.getReport();
 			console.info($scope.pcSetupReport);
-			// var data = $scope.queueData;
-			// $scope.pcSetupReport = {
-			// 	use: data.ReportEnable,
-			// 	schedule: {
-			// 		periodList: '',
-			// 		date: '',
-			// 		dateList: '',
-			// 		hour: '',
-			// 		minute: ''
-			// 	},
-			// 	fileName: {
-			// 		name: '',
-			// 		extension: '',
-			// 	}
-			// };
 		}
 	};
 
-	/* Counting Rule End
-	----------------------------------------------*/
+	$scope.eventSection = {
+		data: {},
+		getAlarmOutArray: [],
+		EventActions: COMMONUtils.getSupportedEventActions("QueueManagement"),
+		init: function(){
+			qmModel.getEventActionData().then(
+				function(response){
+					var data = {
+						FtpEnable: false,
+						SmtpEnable: false,
+						RecordEnable: false
+					};
+					var actions = response.EventAction;
+	                if (actions !== 'undefined') {
+	                    if (actions.indexOf('FTP') !== -1) {
+	                        data.FtpEnable = true;
+	                    }
+	                    if (actions.indexOf('SMTP') !== -1) {
+	                        data.SmtpEnable = true;
+	                    }
+	                    if (actions.indexOf('Record') !== -1) {
+	                        data.RecordEnable = true;
+	                    }
+	                }
 
-	/* Collapse Start
-	----------------------------------------------*/
+	                data.AlarmOutputs = [];
+	                if (typeof response.AlarmOutputs === 'undefined') {
+	                    for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+	                        data.AlarmOutputs[ao] = {};
+	                        data.AlarmOutputs[ao].Duration = 'Off';
+	                    }
+	                } else {
+	                    for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+	                        data.AlarmOutputs[ao] = {};
+	                        var duration = 'Off';
+	                        for (var j = 0; j < response.AlarmOutputs.length; j++) {
+	                            if ((ao + 1) === response.AlarmOutputs[j].AlarmOutput) {
+	                                duration = response.AlarmOutputs[j].Duration;
+	                                break;
+	                            }
+	                        }
+	                        data.AlarmOutputs[ao].Duration = duration;
+	                    }
+	                }
 
-	//
+	                $scope.eventSection.data = data;
+				},
+				function(failData){
+					console.error(failData);
+				}
+			);
+		},
+		set: function(){
+			var setData = {};
+            setData.EventAction = "";
+            if ($scope.eventSection.data.FtpEnable) {
+                setData.EventAction += 'FTP,';
+            }
+            if ($scope.eventSection.data.SmtpEnable) {
+                setData.EventAction += 'SMTP,';
+            }
+            if ($scope.eventSection.data.RecordEnable) {
+                setData.EventAction += 'Record,';
+            }
+            for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+                if ($scope.eventSection.data.AlarmOutputs[ao].Duration !== 'Off') {
+                    setData.EventAction += 'AlarmOutput.' + (ao + 1) + ',';
+                    setData["AlarmOutput." + (ao + 1) + ".Duration"] = $scope.eventSection.data.AlarmOutputs[ao].Duration;
+                }
+            }
+            if (setData.EventAction.length) {
+                setData.EventAction = setData.EventAction.substring(0, setData.EventAction.length - 1);
+            }
+			return qmModel.setEventActionData(setData).then(
+				function(successData){
+					//Success
+				},
+				function(failData){
+					console.error(failData);
+				}
+			);
+		}
+	};
+
 	$scope.currentTapStatus = [true, false];
 	$scope.changeTabStatus = function(value){
 		for(var i = 0, len = $scope.currentTapStatus.length; i < len; i++){
@@ -597,7 +664,7 @@ kindFramework.controller('QMSetupCtrl',
 		}, failCallback);
 	}
 
-	function set(needRefresh){
+	function setQueueManagement(){
 		var data = $scope.queueData;
 
 		var setData = {};
@@ -613,27 +680,48 @@ kindFramework.controller('QMSetupCtrl',
 			var j = i - 1;
 			var queue = data.Queues[j];
 			setData['Queue.' + i + '.Enable'] = queue.Enable;
-			setData['Queue.' + i + '.MaxPeople'] = queue.MaxPeople;
+			// setData['Queue.' + i + '.MaxPeople'] = queue.MaxPeople;
 			setData['Queue.' + i + '.Name'] = queue.Name;
-			setData['Queue.' + i + '.Level.High.AlarmEnable'] = queue.QueueTypes[0].AlarmEnable;
-			setData['Queue.' + i + '.Level.High.Count'] = queue.QueueTypes[0].Count;
-			setData['Queue.' + i + '.Level.High.Threshold'] = queue.QueueTypes[0].Threshold;
-			setData['Queue.' + i + '.Level.Medium.AlarmEnable'] = queue.QueueTypes[1].AlarmEnable;
-			setData['Queue.' + i + '.Level.Medium.Count'] = queue.QueueTypes[1].Count;
-			setData['Queue.' + i + '.Level.Medium.Threshold'] = queue.QueueTypes[1].Threshold;
-			setData['Queue.' + i + '.Coordinates'] = $scope.coordinates[j].points.join();
+			setData['Queue.' + i + '.Level.High.AlarmEnable'] = queue.QueueLevels[0].AlarmEnable;
+			setData['Queue.' + i + '.Level.High.Count'] = queue.QueueLevels[0].Count;
+			setData['Queue.' + i + '.Level.High.Threshold'] = queue.QueueLevels[0].Threshold;
+			setData['Queue.' + i + '.Level.Medium.AlarmEnable'] = queue.QueueLevels[1].AlarmEnable;
+			// setData['Queue.' + i + '.Level.Medium.Count'] = queue.QueueLevels[1].Count;
+			setData['Queue.' + i + '.Level.Medium.Threshold'] = queue.QueueLevels[1].Threshold;
+			setData['Queue.' + i + '.Coordinates'] = $scope.realtimeSection.coordinates[j].points.join();
 		}
 
-		$scope.pcSetupReport.setReport();
-		qmModel.setData(
+		return qmModel.setData(
 			setData, 
 			function(responseData){
 				console.info(responseData);
 			}, 
 			function(errorData){
-				console.info(errorData);
+				console.error(errorData);
 			}
 		);
+	}
+
+	function set(needRefresh){
+        var promises = [];
+
+        promises.push(setQueueManagement);
+        promises.push($scope.pcSetupReport.setReport);
+        promises.push($scope.eventSection.set);
+
+        if(promises.length > 0){
+            $q.seqAll(promises).then(
+            	function(){
+                	
+            	}, 
+            	function(errorData){
+                	console.error(errorData);
+            	}
+            );
+        } else {
+            view();
+        }
+
 	}
 
 	$scope.submitEnable = function(){

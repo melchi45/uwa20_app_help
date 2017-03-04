@@ -727,6 +727,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                     mAttributes.MaxPreset = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Limit/MaxPreset');
 
                     mAttributes.RecordStreamLimitation = XMLParser.parseAttributeSection(response.data, 'Recording/Support/RecordStreamLimitation');
+                    mAttributes.QueueManagement = XMLParser.parseAttributeSection(response.data, 'Recording/Support/QueueManagement');
                     mAttributes.isDigitalPTZ = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Support/DigitalPTZ');
                     mAttributes.MaxGroupCount = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Limit/MaxGroupCount');
                     mAttributes.MaxPresetsPerGroup = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Limit/MaxPresetCountPerGroup');

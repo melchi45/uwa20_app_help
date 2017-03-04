@@ -165,7 +165,7 @@
                                 {{ lang.queueLevel.high | translate }}
                                 <select 
                                     class="cm_selectbox" 
-                                    ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[0].Count"
+                                    ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[0].Count"
                                     ng-change="queueLevelSection.changeValue()"
                                     ng-options="maxData for maxData in queueLevelSection.maxArr"
                                     style="margin: 0 7px;">
@@ -190,14 +190,14 @@
                         <div class="wn5-setup-section-article-content">
                             <input 
                                 type="checkbox"
-                                ng-model="queueData.Queues[queueList.selectedQueueId].QueueTypes[0].AlarmEnable">
+                                ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[0].AlarmEnable">
                             <span style="display: inline-block; width: 60px;">
                                 {{ lang.queueEvent.high | translate }}
                             </span>
                             <div style="display: inline-block; width: 100%; max-width: 300px;">
                                 <live_slider 
                                     live-slider-property="queueEventSection.high.sliderProperty" 
-                                    live-slider-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[0]"
+                                    live-slider-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[0]"
                                     live-slider-model-name="Threshold">
                                 </live_slider>
                             </div>
@@ -208,14 +208,14 @@
                         <div class="wn5-setup-section-article-content">
                             <input 
                                 type="checkbox"
-                                ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[1].AlarmEnable">
+                                ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[1].AlarmEnable">
                             <span style="display: inline-block; width: 60px;">
                                 {{ lang.queueEvent.mid | translate }}
                             </span>
                             <div style="display: inline-block; width: 100%; max-width: 300px;">
                                 <live_slider 
                                     live-slider-property="queueEventSection.mid.sliderProperty" 
-                                    live-slider-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[1]"
+                                    live-slider-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[1]"
                                     live-slider-model-name="Threshold">
                                 </live_slider>
                             </div>
@@ -234,48 +234,60 @@
 
     <hr class="wn5-setup-hr">
 
-    <pc-setup-report page-type="hm"></pc-setup-report>
+    <pc-setup-report page-type="qm"></pc-setup-report>
 
     <hr class="wn5-setup-hr">
 
-    <div class="wn5-setup-section">
+    <div class="wn5-setup-section" style="margin-top: 20px;">
         <div class="wn5-setup-section-heading">
             <h3>
                 {{ 'lang_eventActionSetup' | translate }}
             </h3>
         </div>
         <div class="wn5-setup-section-article">
-            <div class="form-group">
+            <div class="form-group" ng-if="eventSection.EventActions.indexOf('FTP') !== -1">
                 <div class="wn5-setup-section-article-heading">
                     FTP
                 </div>
                 <div class="wn5-setup-section-article-content">
-                    <input type="checkbox">
+                    <input ng-model="eventSection.data.FtpEnable" type="checkbox">
                         <label>
                             {{'lang_enable' | translate}}
                         </label>
                     </input>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-if="eventSection.EventActions.indexOf('SMTP') !== -1">
                 <div class="wn5-setup-section-article-heading">
                     {{ 'lang_email' | translate }}
                 </div>
                 <div class="wn5-setup-section-article-content">
-                    <input type="checkbox">
+                    <input ng-model="eventSection.data.SmtpEnable" type="checkbox">
                         <label>
                             {{'lang_enable' | translate}}
                         </label>
                     </input>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-if="eventSection.EventActions.indexOf('Record') !== -1">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_record' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <input ng-model="eventSection.data.RecordEnable" type="checkbox">
+                        <label>
+                            {{'lang_enable' | translate}}
+                        </label>
+                    </input>
+                </div>
+            </div>
+            <div class="form-group" ng-if="eventSection.EventActions.indexOf('AlarmOutput') !== -1" ng-repeat="n in eventSection.getAlarmOutArray">
                 <div class="wn5-setup-section-article-heading">
                     {{ 'lang_alarmOutput' | translate }} {{n + 1}}
                 </div>
                 <div class="wn5-setup-section-article-content">
-                    <select class="form-control">
-                        <option ng-repeat="Duration in AlarmoutDurationOptions" value="{{Duration}}">
+                    <select class="form-control" ng-model="eventSection.data.AlarmOutputs[n].Duration">
+                        <option ng-repeat="Duration in AlarmoutDurationOptions" ng-selected="eventSection.data.AlarmOutputs[n].Duration == Duration" value="{{Duration}}">
                             {{getTranslatedOption(Duration)}}
                         </option>
                     </select>

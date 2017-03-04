@@ -110,7 +110,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 					if(type === "hm"){
 						deferred.resolve(responseData.data.HeatMap[0]);
 					}else if(type === "qm"){
-						deferred.resolve(responseData.data.QueueManagementSetup[0]);
+						deferred.resolve(responseData.data.QueueManagement[0]);
 					}else{
 						deferred.resolve(responseData.data.PeopleCount[0]);
 					}
