@@ -20,13 +20,13 @@
 		        	<h2>{{"lang_from"|translate}}</h2>
 		        	<div class="cm_timeboxes">
 			            <input type="text" maxlength="2" id="slider-start-time-hours" class="cm_textbox" ng-model="slider.start.hours"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay||blockTimeInput">
 			            :
 			            <input type="text" maxlength="2" id="slider-start-time-minutes" class="cm_textbox" ng-model="slider.start.minutes"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay||blockTimeInput">
 			            :
 			            <input type="text" maxlength="2" id="slider-start-time-seconds" class="cm_textbox" ng-model="slider.start.seconds"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay||blockTimeInput">
 		            </div>
 		        </div>
 
@@ -39,13 +39,13 @@
 		        	<h2>{{"lang_to"|translate}}</h2>
 		        	<div class="cm_timeboxes">
 			            <input type="text" maxlength="2" id="slider-end-time-hours" class="cm_textbox"  ng-model="slider.end.hours"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay||blockTimeInput">
 			            :
 			            <input type="text" maxlength="2" id="slider-end-time-minutes" class="cm_textbox" ng-model="slider.end.minutes"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay||blockTimeInput">
 			            :      
 			            <input type="text" maxlength="2" id="slider-end-time-seconds" class="cm_textbox" ng-model="slider.end.seconds"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay||blockTimeInput">
 			        </div>
 		        </div>
 
