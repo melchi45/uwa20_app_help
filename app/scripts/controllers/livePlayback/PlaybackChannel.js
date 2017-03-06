@@ -174,6 +174,7 @@ kindFramework
         }
       }, function() {
       });
+      $scope.playbackPage.MaxAudioInput = sunapiAttributes.MaxAudioInput;
       $scope.domControls.enablePlayback = true;
       $scope.timelineController.create();
       $scope.timelineController.changeCurrnetDate({'date':searchData.getSelectedDate()});
