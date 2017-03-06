@@ -271,9 +271,9 @@ kindFramework.controller('userCtrl', function ($scope, SunapiClient, Attributes,
                 {
                     setData.AudioOutAccess = $scope.Users[idx].AudioOutAccess;
                 }
-
-                setData.AlarmOutputAccess = $scope.Users[idx].AlarmOutputAccess;
-
+                if(mAttr.MaxAlarmOutput > 0) {
+                    setData.AlarmOutputAccess = $scope.Users[idx].AlarmOutputAccess;
+                }
                 promisesData.push(angular.copy(setData));
                 promises.push(addUserAsync);
             }
