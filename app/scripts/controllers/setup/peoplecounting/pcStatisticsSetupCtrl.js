@@ -996,6 +996,7 @@ kindFramework.controller('PCStatisticsCtrl',
 					$scope.graphSection.result.options.chart.legend.dispatch.legendClick({
 						seriesIndex: 0
 					});
+					setTimeout($scope.graphSection.resizeHandle, 500);
 				});
 			},
 			api: null,
