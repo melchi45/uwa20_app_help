@@ -322,9 +322,10 @@
       <div>
         <button 
           class="cm-icon-button-b"
-          title="{{'lang_areaZoom' | translate}}">
+          title="{{'lang_areaZoom' | translate}}"
+          ng-click="areaZoom()">
           <span class="sr-only">{{ 'lang_areaZoom' | translate }}</span>
-          <i class="tui tui-ch-live-ptz-areazoom"></i>
+          <i class="tui" ng-class="modePTZ.AreaZoom === true ? 'cm-active tui-ch-live-ptz-areazoom' : 'tui-ch-live-ptz-areazoom'"></i>
         </button>
         <button 
           class="cm-icon-button-b"

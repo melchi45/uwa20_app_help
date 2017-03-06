@@ -12,7 +12,8 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 			link: function(scope, element, attrs){
                 var mAttr = Attributes.get();
                 scope.modePTZ =  {
-                	ManualTrackingMode : false
+                	ManualTrackingMode : false,
+                    AreaZoom : false
 				};
 
 				scope.dptzMode = CAMERA_STATUS.DPTZ_MODE;
@@ -64,7 +65,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                             getSettingPresetList();
                             getSettingGroupList();
                             scope.modePTZ.ManualTrackingMode = (PTZContorlService.getManualTrackingMode() === "True");
-
+                            scope.modePTZ.AreaZoom = false;
                             if (mAttr.TraceSupport)
                             {
                                 scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
@@ -259,6 +260,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                 {
                     PTZContorlService.setManualTrackingMode("False");
                     scope.modePTZ.ManualTrackingMode = false;
+                    scope.modePTZ.AreaZoom = false;
                     elemChannelPlayer.removeEventListener('mouseup', mouseUp);
                 }
                 else if("False" === PTZContorlService.getManualTrackingMode())
@@ -272,6 +274,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                     PTZContorlService.setManualTrackingMode("True");
                     elemChannelPlayer.addEventListener('mouseup', mouseUp);
                     scope.modePTZ.ManualTrackingMode = true;
+                    scope.modePTZ.AreaZoom = false;
 				}
 				else
 				{
@@ -282,6 +285,92 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				console.log(e.message);
 			}
 		};
+
+		scope.areaZoom = function () {
+          if(scope.modePTZ.AreaZoom)
+          {
+              scope.modePTZ.AreaZoom = false;
+              scope.modePTZ.ManualTrackingMode = false;
+              PTZContorlService.setManualTrackingMode("False");
+          }
+          else
+          {
+              scope.modePTZ.AreaZoom = true;
+              scope.modePTZ.ManualTrackingMode = false;
+              PTZContorlService.setManualTrackingMode("False");
+          }
+        };
+
+        var ManualTracking = (function(){
+            var _ManualTracking = function(){
+
+                this._$init.apply(this, arguments);
+            };
+
+            /* private method */
+            var _eventHandler = function(){
+
+            };
+
+            /* public method */
+            _ManualTracking.prototype= {
+                _$init : function(e)
+                {
+                    /* 초기화 */
+                },
+                enable : function () {
+                    _eventHandler.apply(this);
+                },
+                disable : function () {
+
+                },
+                prev : function() {
+
+                },
+                next: function () {
+
+                }
+            };
+
+            return _ManualTracking;
+        })();
+
+		var AreaZoom = (function(){
+		    var _aAreaZoomList = null;
+
+		    var _AreaZoom = function(){
+              _aAreaZoomList = [];
+
+		      this._$init.apply(this, arguments);
+            };
+
+		    /* private method */
+		    var _eventHandler = function(){
+
+            };
+
+		    /* public method */
+            _AreaZoom.prototype= {
+		      _$init : function(e)
+              {
+                /* 초기화 */
+              },
+              enable : function () {
+                  _eventHandler.apply(this);
+              },
+              disable : function () {
+
+              },
+              prev : function() {
+
+              },
+              next: function () {
+
+              }
+            };
+
+		    return _AreaZoom;
+        })();
 
         var presetListCallback = function(result) {
 	        if (result.PTZPresets === undefined) {
