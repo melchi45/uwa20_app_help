@@ -162,7 +162,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                         if(checkSize < 800) bottomMenuHeight += 50;
 
                                         // live page 에서는 하단의 길이가 더 김
-                                        if(checkType && checkSize < 800) bottomMenuHeight += 50;
+                                        if(checkType && checkSize < 900) bottomMenuHeight += 50;
 
 
                                         $("#cm-video").removeAttr('style');
