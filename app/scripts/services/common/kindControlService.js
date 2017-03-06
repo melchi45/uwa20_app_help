@@ -160,7 +160,7 @@ kindFramework
     }
 
     this.startPlayback = function(_scope, data, timeCallback, errorCallback){
-      _scope.playerdata = ConnectionSettingService.getPlaybackDataSet(data, timeCallback, errorCallback );
+      _scope.playerdata = ConnectionSettingService.startPlayback(data, timeCallback, errorCallback );
     };
 
     this.applyResumeCommand = function(_scope, data) {
@@ -385,6 +385,7 @@ kindFramework
       var CurrentProfile = UniversialManagerService.getProfileInfo();
 
       if (UserName === "guest" || (UserName !== "admin" && ProfileAuth === false)) {
+        $rootScope.$emit('channelPlayer:command', 'stopLive', false);
         ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_msg_not_profile_auth" } );
       } else {
         if (CurrentProfile !== undefined) {
@@ -439,16 +440,20 @@ kindFramework
                   );
                 }
               } else {
-                var freeResolution = NonPluginResolutionArray[NonPluginSelectNum].split('x');
-                var NonPluginSize = freeResolution[0] * freeResolution[1];
-                if (size <= NonPluginSize && codec === "H264") {
+                if(NonPluginResolutionArray !== undefined){
+                  var freeResolution = NonPluginResolutionArray[NonPluginSelectNum].split('x');
+                  var NonPluginSize = freeResolution[0] * freeResolution[1];
+                  if (size <= NonPluginSize && codec === "H264") {
+                    deferred.resolve(ProfileIndex);
+                  } else {
+                    $rootScope.$emit('channelPlayer:command', 'stopLive', false);
+                    revertDefaultProfile(ProfileIndex).then(
+                      function(){ deferred.resolve(ProfileIndex); },
+                      function(){ deferred.reject(); }
+                    );
+                  }
+                }else{
                   deferred.resolve(ProfileIndex);
-                } else {
-                  $rootScope.$emit('channelPlayer:command', 'stopLive', false);
-                  revertDefaultProfile(ProfileIndex).then(
-                    function(){ deferred.resolve(ProfileIndex); },
-                    function(){ deferred.reject(); }
-                  );
                 }
               }
               break;
@@ -484,13 +489,15 @@ kindFramework
       var curResolutionSize = (size === undefined ? curResolution[0] * curResolution[1] : size);
       var selectNum = -1;
 
-      for (var i = 0; i < NonPluginResolutionArray.length; i++) {
-        var resolution = NonPluginResolutionArray[i].split('x');
-        var size = resolution[0] * resolution[1];
+      if(NonPluginResolutionArray !== undefined){
+        for (var i = 0; i < NonPluginResolutionArray.length; i++) {
+          var resolution = NonPluginResolutionArray[i].split('x');
+          var size = resolution[0] * resolution[1];
 
-        if (size < curResolutionSize) {
-          selectNum = i;
-          break;
+          if (size < curResolutionSize) {
+            selectNum = i;
+            break;
+          }
         }
       }
 

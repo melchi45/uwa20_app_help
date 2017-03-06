@@ -12,13 +12,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     $scope.SelectedChannel = 0;
     $scope.PrivacyMaskListCheck = false;
     $scope.PrivacyMaskSelected = null;
-    $scope.showPTZControlVideoSetup = false;
- 
-    var disValue = null;
 
-    function setPTZControlVideoSetup(type){
-        $scope.showPTZControlVideoSetup = type;
-    }
+    var disValue = null;
 
     $scope.getTranslatedOption = function (Option) {
         return COMMONUtils.getTranslatedOption(Option);
@@ -32,11 +27,11 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         $scope.EnableOptions = mAttr.EnableOptions;
         $scope.VideoTypeOptions = mAttr.VideoTypeOptions;
         $scope.ColorOptions = mAttr.ColorOptions;
-        $scope.PTZModel = mAttr.PTZModel;
         $scope.SensorModeOptions = mAttr.SensorModeOptions;
         $scope.MaxPrivacyMask =  mAttr.MaxPrivacyMask;
         $scope.PrivacyMasGlobalColor = mAttr.PrivacyMasGlobalColor;
         $scope.MaskPatternArray = mAttr.PrivacyMaskPattern;
+        $scope.PTZModel = mAttr.PTZModel;
         $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
 
         if (mAttr.MaxZoom !== undefined) {
@@ -51,7 +46,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             $scope.maxViewModeIndex = mAttr.ViewModeIndex.maxValue;
             $scope.cameraPositionList = mAttr.CameraPosition; // "Wall", "Ceiling"
         }
-
+        $scope.privacyMaskDrawType = (mAttr.PrivacyMaskRectangle == '0')? 1 : 0;
     }
 
     function getDisValue() {
@@ -793,7 +788,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         $scope.$watch(function() {if(pageData.PrivacyMask != undefined) return pageData.PrivacyMask[$scope.SelectedChannel].Enable;}, function(newVal, oldVal) {
             if(newVal != oldVal){
                 if (newVal == true) {
-                    var drawType = (mAttr.PrivacyMaskRectangle == '0')? 1 : 0;
+                    var drawType = $scope.privacyMaskDrawType;
                     var drawMax = 0;
                     if(drawType == 0){
                         drawMax = mAttr.PrivacyMaskRectangle;
@@ -887,20 +882,11 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             rotate: rotate,
             adjust: adjust
         };
-        if(mAttr.ZoomOnlyModel){
-            $scope.ptzinfo = {
-                    autoOpen: true,
-                    type: 'ZoomOnly'
-                };
-        } else {
-            $scope.ptzinfo = {
-                autoOpen: false,
-                type: 'VideoSetup',
-                setPTZControlVideoSetup: setPTZControlVideoSetup
-            };
-        }
+        $scope.ptzinfo = {
+            type: 'none'
+        };
 
-        var drawType = (mAttr.PrivacyMaskRectangle == '0')? 1 : 0;
+        var drawType = $scope.privacyMaskDrawType;
         var drawMax = 0;
         if(drawType == 0){
             drawMax = mAttr.PrivacyMaskRectangle;

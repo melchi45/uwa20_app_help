@@ -110,6 +110,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         $scope.EventActions = COMMONUtils.getSupportedEventActions("FaceDetection");
         $scope.getAlarmOutArray = COMMONUtils.getArray(mAttr.MaxAlarmOutput);
         $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
+
+        $scope.PTZModel = mAttr.PTZModel;
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
     }
 
     function prepareEventRules(eventRules) {
@@ -793,6 +796,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
                 adjust: adjust,
                 currentPage: 'FaceDetection'
             };
+            $scope.ptzinfo = {
+                type: 'none'
+            };
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
@@ -1300,9 +1306,13 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             var fdIndex = findFDIndex(roiIndex);
 
             if(modifiedType !== "delete"){
+                console.log(modifiedPoints.join(','));
                 modifiedPoints = fixRatioForCoordinates(modifiedPoints);   
+                console.log(modifiedPoints.join(','));
                 modifiedPoints = changeOnlyEvenNumberOfWiseFD(modifiedPoints);
+                console.log(modifiedPoints.join(','));
                 modifiedPoints = fixMaxResolution(modifiedPoints);
+                console.log(modifiedPoints.join(','));
             }
             
             if(modifiedType === "create" || fdIndex === null){

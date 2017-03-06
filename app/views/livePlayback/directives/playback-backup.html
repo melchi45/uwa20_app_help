@@ -1,6 +1,6 @@
 <div id="cm-playback-backup">
 
-	<div class="cm-playback-block cm-m0-10">
+	<div class="cm-playback-block cm-m0-10" id="backup-date">
 		<input 
 			type="text" 
 			disabled="disabled"
@@ -16,6 +16,7 @@
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
         	class="cm-textbox" 
+            data-ng-disabled='blockTimeInput'
         	ng-model="startTime.hours">
         :
         <input 
@@ -25,6 +26,7 @@
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
         	class="cm-textbox" 
+            data-ng-disabled='blockTimeInput'
         	ng-model="startTime.minutes">
         :
         <input 
@@ -34,6 +36,7 @@
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
         	class="cm-textbox" 
+            data-ng-disabled='blockTimeInput'
         	ng-model="startTime.seconds">
     </div>
 
@@ -47,6 +50,7 @@
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
         	class="cm-textbox" 
+            data-ng-disabled='blockTimeInput'
         	ng-model="endTime.hours">
         :
         <input 
@@ -56,6 +60,7 @@
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
         	class="cm-textbox" 
+            data-ng-disabled='blockTimeInput'
         	ng-model="endTime.minutes">
         :      
         <input 
@@ -65,6 +70,7 @@
 	        ng-blur="control.timeValidation.blur($event)"
 	        ng-focus="control.timeValidation.focus($event)"
         	class="cm-textbox" 
+            data-ng-disabled='blockTimeInput'
         	ng-model="endTime.seconds">
     </div>
 

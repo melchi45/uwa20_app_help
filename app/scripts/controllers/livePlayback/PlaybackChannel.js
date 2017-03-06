@@ -69,6 +69,10 @@ kindFramework
         playData.setCurrentMenu('full');
         searchData.setWebIconStatus(true);
       }
+      //Safari block user input
+      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH) {
+        $rootScope.$emit('blockTimebarInputField', true);
+      }
       // else{
         // var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true:false;
         // if (kindStreamInterface.managerCheck() || plugin) {
@@ -128,14 +132,20 @@ kindFramework
     * @function : initStreaming
     */
     var initStreaming = function() {
+      var def = $q.defer();
       var channelId = searchData.getChannelId();
       //1. close Live Stream.
       PlaybackInterface.stopLive();
-      PlaybackInterface.preparePlayback(channelId);
-
+      PlaybackInterface.preparePlayback(channelId)
+      .then(function(results) {
+        def.resolve(results);
+      }, function(err) {
+        def.reject(err);
+      });
       kindStreamInterface.setResizeEvent();
       kindStreamInterface.setCanvasStyle($scope.viewMode, 'Playback');
       workerManager.initVideo(false);
+      return def.promise;
     };
 
     /*
@@ -146,11 +156,25 @@ kindFramework
     var initializePlaybackPage = function() {
       var playData = new PlayDataModel();
       $rootScope.$emit('changeLoadingBar', true);
-      initStreaming();
-     
-      $scope.playbackPage.MaxChannel = sunapiAttributes.MaxChannel;
       //TODO : below is only for test.
-      //$scope.playbackPage.MaxChannel = 4;
+      // sunapiAttributes.MaxChannel = 4;
+      $scope.playbackPage.MaxChannel = sunapiAttributes.MaxChannel;
+      ConnectionSettingService.SetMultiChannelSupport(
+                    sunapiAttributes.MaxChannel > 1 ? true : false);
+      
+      initStreaming()
+      .then(function() {
+        //Check Browser
+        if( BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ||
+          BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.EDGE ) {
+          ModalManagerService.open(
+            'message',
+            {'message':"Optimized for Chrome Browser", 'buttonCount':0}
+          );  
+        }
+      }, function() {
+      });
+      $scope.playbackPage.MaxAudioInput = sunapiAttributes.MaxAudioInput;
       $scope.domControls.enablePlayback = true;
       $scope.timelineController.create();
       $scope.timelineController.changeCurrnetDate({'date':searchData.getSelectedDate()});
@@ -158,15 +182,6 @@ kindFramework
       UniversialManagerService.setPlayMode(CAMERA_STATUS.PLAY_MODE.PLAYBACK);
       playData.setStatus(PLAY_CMD.PLAYPAGE);
       playData.setTimelineMode(true);
-
-      //Check Browser
-      if( BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ||
-        BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.EDGE ) {
-        ModalManagerService.open(
-          'message',
-          {'message':"Optimized for Chrome Browser", 'buttonCount':0}
-        );  
-      }
     };
 
     $scope.channelSetFunctions = {
@@ -378,12 +393,13 @@ kindFramework
 
     $rootScope.$saveOn('channel:reloadStreaming', function() {
       var playData = new PlayDataModel();
-      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && playData.getStatus() === PLAY_CMD.PLAY )
+      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH )
       {
-        $scope.playPlayback(PLAY_CMD.PAUSE);
+        $scope.playPlayback(PLAY_CMD.STOP);
         $timeout(function(){
-          $scope.playPlayback(PLAY_CMD.RESUME);
-        });
+          $scope.timelineController.resetTimeRange();
+          $scope.playPlayback(PLAY_CMD.PLAY);
+        },100);
       }
     }, $scope);
 

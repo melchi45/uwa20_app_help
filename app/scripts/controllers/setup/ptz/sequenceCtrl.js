@@ -1233,7 +1233,6 @@ kindFramework.controller('sequenceCtrl', function ($scope, $uibModal, $timeout, 
                 };
 
                 $scope.ptzinfo = {
-                    autoOpen: false,
                     type: 'none'
                 };
             },

@@ -97,6 +97,7 @@ kindFramework.directive('liveIconList', function(
 
 		    function openFullscreenButton(e){
 		      e.fullButton = true;
+		      $rootScope.$emit('channel:changeFullSetRec');
 		      $rootScope.$emit('channelContainer:openFullscreenButton', e);
 		    }
 

@@ -127,7 +127,8 @@ kindFramework.controller('autoTrackEventCtrl', function ($scope, $uibModal, $tra
         return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=rules&action=view', getData,
                 function (response)
                 {
-                    prepareEventRules(response.data.EventRules);
+                    if(response.data.EventRules != undefined && response.data.EventRules.length>0)
+                        prepareEventRules(response.data.EventRules);
                 },
                 function (errorData)
                 {

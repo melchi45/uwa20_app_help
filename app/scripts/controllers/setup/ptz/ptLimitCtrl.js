@@ -154,7 +154,6 @@ kindFramework.controller('ptLimitCtrl', function ($scope, $timeout, $uibModal, S
                 };
 
                 $scope.ptzinfo = {
-                    autoOpen: false,
                     type: 'none'
                 };
             },

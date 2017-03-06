@@ -5,71 +5,10 @@ hash : 30b3911
 2. last position view.
 3. Live PTZ - zoom slider issue fixed.
 */
-#live-ptz-control-zoomonly{
-    float: left;
-}
-
-#live-ptz-control-zoomonly h3{
-    text-align: left
-}
-
-#live-ptz-control-zoomonly .ui-slider-handle
-{
-    top: 13px;
-    width: 12px;
-    height: 12px;
-}
-
-#live-ptz-control-zoomonly .ui-slider-handle:hover
-{
-    top: 12px;
-}
-
-#live-ptz-control-zoomonly .ui-slider:hover .ui-state-default
-{
-    top: 12px;
-}
 
 /* aa34bcb: Live PTZ UI */
-#live-ptz-tabs select{
-    margin-top: 5px;
-    min-width: 200px;
-}
 
-#live-ptz-tabs.ui-tabs .ui-tabs-nav{
-    padding: 0 !important;
-}
 
-#live-ptz-tabs.ui-widget-content{
-    background: none !important;
-}
-
-#live-ptz-tabs .ui-widget-header{
-    border: none !important;
-    border-bottom: 1px solid #d2d2d2 !important;
-    background: none !important;
-}
-
-#live-ptz-tabs .ui-state-default{
-    margin-right: 0 !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-bottom: none !important;
-    border-right: 1px solid #d2d2d2 !important;
-}
-
-#live-ptz-tabs .ui-state-default:last-of-type{
-    border-right: none !important;
-}
-
-#live-ptz-tabs .ui-state-default.ui-state-active{
-    border-bottom: none !important;
-}
-
-#live-ptz-tabs .ui-state-default a {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    color: #000;
-    font-weight: normal !important;
-}
+/*  
+    Responsive Layout go to live.less / common.less
+*/

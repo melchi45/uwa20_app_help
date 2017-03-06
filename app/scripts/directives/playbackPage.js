@@ -24,6 +24,7 @@ kindFramework
           'timelineController' : '=',
           'pageController' : '=',
           'channelCount' : '=',
+          'maxAudioInput' : '=',
         },
         controller : function($scope) {
         },

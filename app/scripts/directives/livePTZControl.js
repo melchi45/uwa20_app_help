@@ -42,7 +42,8 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				downTimer = null,
 				sunapiURI = "",
 				ptzJogTimer = null,
-				isJogUpdating = false;
+				isJogUpdating = false,
+				isPtzControlStart = false;
 
 				scope.openPTZ = function() {
 					init();
@@ -411,7 +412,6 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
           }
         };
 
-
         /*ZOOM*/
         $("#cm-ptz-zoom-slider").slider({
             min: -100,
@@ -421,6 +421,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
             orientation: "vertical",
             slide: function(event, ui){
               sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True&Zoom=" + ui.value;
+              isPtzControlStart = true;
               execSunapi(sunapiURI);
             },
             stop: function(){
@@ -609,7 +610,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						if(isJogUpdating === false) {
 							var sliderVal = ui.value;
 							sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True&Zoom=" + sliderVal;
-
+							isPtzControlStart = true;
 							execSunapi(sunapiURI);
 							isJogUpdating = true;
 						}
@@ -621,39 +622,6 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}
 				});
 
-				$("#ptz-control_slider-horizontal-focus").unbind();
-
-				$("#ptz-control_slider-horizontal-focus").slider({
-					orientation: "horizontal",
-					min: -100,
-					max: 100,
-					value: 0,
-					revert: true,
-					slide: function(event, ui){
-						if(ptzJogTimer === null) {
-							makeJogTimer();
-						}
-
-						if(isJogUpdating === false) {
-							var sliderVal = ui.value;
-							if (sliderVal > 0)
-							{
-								scope.clickPtzFocus('Far');
-							}
-							else if (sliderVal < 0)
-							{
-								scope.clickPtzFocus('Near');
-							}
-							isJogUpdating = true;
-						}
-
-					},
-					stop: function(){
-						$( "#ptz-control_slider-horizontal-focus" ).slider('value', 0);
-						ptzStop();
-					}
-				});
-                
 				function makeJogTimer() {
 					ptzJogTimer = $interval(function() {
 						isJogUpdating = false;
@@ -678,6 +646,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}
 
 					if (isJogUpdating === false) {
+						isPtzControlStart = true;
 						execSunapi(sunapiURI);
 						isJogUpdating = true;
 					}
@@ -688,8 +657,9 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						$interval.cancel(ptzJogTimer);
 						ptzJogTimer = null;
 					}
-
+					if(!isPtzControlStart) return;
 					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control&Channel=0&OperationType=All";
+					isPtzControlStart = false;
 					execSunapi(sunapiURI);
 				}
 

@@ -5,13 +5,18 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
     var mAttr = Attributes.get();
 
     var pageData = {};
-        
+    $scope.PTZPresetPage = {};
+    $scope.PTZPresetPage.pageSize = 15;
+    $scope.PTZPresetPage.presetList = [];
+    $scope.PTZPresetPage.currentPage = 1;
+    $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
+    
     $scope.PTZPresetOptionsList = [];
     $scope.SelectedChannel = 0;
     $scope.CurrentPreset = 1;
     $scope.PTZPresetOptions = {};
     $scope.PresetName = "";
-
+    
     $scope.presetCheckbox = function(){
         if (typeof $scope.PTZPresets !== 'undefined'){
             var presetCount = $scope.PTZPresets.length;
@@ -68,6 +73,10 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=view', getData,
             function (response) {
                 $scope.PTZPresets = response.data.PTZPresets[0].Presets;
+                $scope.PTZPresetPage.presetList = [];
+                $scope.PTZPresetPage.currentPage = 1;
+                $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
+                $scope.PTZPresetPage.presetList = COMMONUtils.chunkArray($scope.PTZPresets, $scope.PTZPresetPage.pageSize);
             },
             function (errorData) {
                 if (errorData !== "Configuration Not Found") {
@@ -150,10 +159,9 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
     }
  
     $scope.$watch('LastPosition.RememberLastPosition',function(newVal, oldVal){
-        if (typeof newVal !== 'undefined'){
+        if (typeof newVal !== 'undefined' && newVal != oldVal){
             $scope.ptzinfo = {
-                autoOpen: true,
-                type: 'preset',
+                type: 'presetZoom',
                 disablePosition: newVal
             };
         }
@@ -163,7 +171,6 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
     {
         getAttributes();
         var promises = [];
-        promises.push(PresetView);
         promises.push(getPresets);
         if (typeof mAttr.RememberLastPosition !== 'undefined'){
             promises.push(getLastPosition);
@@ -207,55 +214,12 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
                 };
 
                 $scope.ptzinfo = {
-                    autoOpen: true,
-                    type: 'ZoomOnly',
-                    showPTZControlPreset:true
+                    type: 'presetZoom'
                 };
             },
             function (errorData) {
                 console.log(errorData);
             }, '', true);
-    }
-
-    function PresetView() {
-        var idx, idy;
-        $scope.PresetName = '';
-        return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=view', '',
-            function (response) {
-                $scope.PTZPresets = response.data.PTZPresets;
-                pageData.PTZPresets = angular.copy($scope.PTZPresets);
-
-                if (mAttr.PTZPresetOptions !== undefined) {
-                    $scope.PTZPresetOptions.Min = mAttr.PTZPresetOptions.minValue;
-                    $scope.PTZPresetOptions.Max = mAttr.PTZPresetOptions.maxValue;
-                    $scope.PTZPresetOptionsList = COMMONUtils.getArray($scope.PTZPresetOptions.Max, true);
-
-                    for (idx = 0; idx < $scope.PTZPresetOptionsList.length; idx = idx + 1) {
-                        $scope.PTZPresetOptionsList[idx] = $scope.PTZPresetOptionsList[idx] + ":";
-                    }
-                    $scope.CurrentPreset = "1:";
-
-                    if ($scope.PTZPresets !== '') {
-                        for (idx = 0; idx < $scope.PTZPresets[$scope.SelectedChannel].Presets.length; idx = idx + 1) {
-                            for (idy = 0; idy < $scope.PTZPresetOptionsList.length; idy = idy + 1) {
-                                if ($scope.PTZPresets[$scope.SelectedChannel].Presets[idx].Preset === 1) {
-                                    $scope.CurrentPreset = $scope.CurrentPreset + $scope.PTZPresets[$scope.SelectedChannel].Presets[idx].Name;
-                                }
-                                var tmppreset = $scope.PTZPresets[$scope.SelectedChannel].Presets[idx].Preset + ":";
-                                if (tmppreset === $scope.PTZPresetOptionsList[idy]) {
-                                    $scope.PTZPresetOptionsList[idy] = $scope.PTZPresetOptionsList[idy] + $scope.PTZPresets[$scope.SelectedChannel].Presets[idx].Name;
-                                    break;
-                                }
-                            }
-                        }
-
-                    }
-                }
-            },
-            function (errorData) {
-
-            }, '', true);
-
     }
   
     function validationLastPosition()
@@ -323,6 +287,50 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
     	);
 
     });
+  
+    $scope.getPageCount = function(){
+        return $scope.PTZPresetPage.presetList.length;
+    };
+    $scope.getFirstPage = function(){
+        $scope.PTZPresetPage.currentPage = 1;
+        $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
+
+        return $scope.PTZPresetPage.currentPage;
+    };
+    $scope.getPrevPage = function(){
+        if($scope.PTZPresetPage.currentPage > 1){
+            $scope.PTZPresetPage.currentPage--;
+        }
+        $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
+
+        return $scope.PTZPresetPage.currentPage;
+    };
+    $scope.jumpToPage = function(){
+        var pageCount = parseInt($scope.getPageCount());
+        var pageNum = $scope.PTZPresetPage.pageIndex;
+
+        if(pageNum < 1){
+            $scope.PTZPresetPage.currentPage = 1;
+        }else if(pageNum > pageCount){
+            $scope.PTZPresetPage.currentPage = pageCount;
+        }else{
+            $scope.PTZPresetPage.currentPage = pageNum;
+        }
+        $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
+    };
+    $scope.getNextPage = function(){
+        if($scope.PTZPresetPage.currentPage < $scope.getPageCount()){
+            $scope.PTZPresetPage.currentPage++;
+        }
+        $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
+        return $scope.PTZPresetPage.currentPage;
+    };
+    $scope.getLastPage = function(){
+        $scope.PTZPresetPage.currentPage = $scope.getPageCount();
+        $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
+
+        return $scope.PTZPresetPage.currentPage;
+    };
     
 $scope.remove = remove;
 $scope.view = view;

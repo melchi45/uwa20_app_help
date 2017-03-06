@@ -91,7 +91,6 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
                         $scope.AutoTracking.TrackingAreas = response.data.AutoTracking[0].TrackingAreas;
                         if(!$scope.AutoTracking.TrackingAreas) $scope.AutoTracking.TrackingAreas = [];
                         $scope.ptzinfo = {
-                            autoOpen: false,
                             type: 'AT',
                             TrackingAreas : angular.copy($scope.AutoTracking.TrackingAreas),
                             isViewTrackingData : true
@@ -180,7 +179,6 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
 
                 if (!$scope.AutoTracking.TrackingAreas) $scope.AutoTracking.TrackingAreas = [];
                 $scope.ptzinfo = {
-                    autoOpen: false,
                     type: 'AT',
                     TrackingAreas: angular.copy($scope.AutoTracking.TrackingAreas),
                     isViewTrackingData: true
@@ -281,7 +279,6 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
                 };
 
                 $scope.ptzinfo = {
-                    autoOpen: false,
                     type: 'AT'
                 };
 

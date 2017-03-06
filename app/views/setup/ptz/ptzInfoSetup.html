@@ -84,7 +84,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <tr ng-repeat="Preset in PTZPresets"> 
+                                           <tr ng-repeat="Preset in PTZPresetPage.presetList[PTZPresetPage.currentPage-1]"> 
                                                 <td width="7%" class="text-center"><input type="checkbox" ng-model="Preset.SelectedPreset" ng-click="presetCheckbox()"></td>
                                                 <td width="8%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Preset}}</a></td>
                                                 <td width="20%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Name}}</a></td>
@@ -103,6 +103,17 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                        <div ng-show="getPageCount('preset') > 1" class="text-center page-controller">
+                            <a ng-click="getFirstPage('preset')"><i class="tui tui-left"></i><i class="tui tui-left"></i></a>
+                            <a ng-click="getPrevPage('preset')"><i class="tui tui-left"></i></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="text" ng-model="PTZPresetPage.pageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{OnlyNumStr}}"/>
+                            <label class="control-label">/ {{getPageCount('preset')}}</label>
+                            <a ng-click="jumpToPage('preset')"><i class="tui tui-ch-live-gotochannel"></i></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a ng-click="getNextPage('preset')"><i class="tui tui-right"></i></a>
+                            <a ng-click="getLastPage('preset')"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
                         </div>
                 
                         <hr calss="wn5-setup-hr">            
@@ -146,7 +157,7 @@
                                                     <input type="hidden" ng-model="Swings[SwingMode.SelectedIndex].FromPreset">
                                                 </td>
                                                 <td width="50%">
-                                                    <input type="text" class="form-control preset-input swingsToPreset" value="{{getTranslatedOption(getPresetNameWidthPresetNo(Swings[SwingMode.SelectedIndex].ToPreset))}}" readonly ng-mouseover="openPresetNoSelect('SwingsToPreset',0,true)" ng-keyup="openPresetNoSelect('SwingsToPreset',0,true)">
+                                                    <input type="text" class="form-control preset-input swingsToPreset" value="{{getTranslatedOption(getPresetNameWidthPresetNo(Swings[SwingMode.SelectedIndex].ToPreset))}}" readonly ng-mouseover="openPresetNoSelect('SwingsToPreset',0,true,$index)" ng-keyup="openPresetNoSelect('SwingsToPreset',0,true,$index)">
                                                     <input type="hidden" ng-model="Swings[SwingMode.SelectedIndex].ToPreset">
                                                 </td>
                                             </tr>
@@ -207,20 +218,31 @@
                                             <td>
                                                 <div style="overflow:scroll;height:auto;max-height:352px;width:630px;overflow:auto">
                                                     <table class="table-bordered wn5-setup-table" cellspacing="0" cellpadding="1" border="1" width="600px" style="text-align:center">
-                                                        <tr ng-repeat="Preset in PTZPresetArray"> 
-                                                            <td width="10%"><span style="text-align:center">{{$index + 1}}</span></td>
+                                                        <tr ng-repeat="Preset in PTZGroupPage.presetList[PTZGroupPage.currentPage-1]"> 
+                                                            <td width="10%"><span style="text-align:center">{{Preset.index}}</span></td>
                                                             <td width="40%">
-                                                                <input type="text" class="form-control preset-input groupPresetInput" value="{{getTranslatedOption(getPresetNameWidthPresetNo(Groups[Group.SelectedIndex].PresetList[Preset].SelectedPresetIndex))}}" readonly ng-mouseover="openPresetNoSelect('GroupPreset',Preset,true)" ng-keyup="openPresetNoSelect('GroupPreset',Preset,true)" ng-click="openPresetNoSelect('GroupPreset',Preset,true)">
-                                                                <input type="hidden" ng-model="Groups[Group.SelectedIndex].PresetList[Preset].SelectedPresetIndex">
+                                                                <input type="text" class="form-control preset-input groupPresetInput" value="{{getTranslatedOption(getPresetNameWidthPresetNo(Groups[Group.SelectedIndex].PresetList[Preset.index].SelectedPresetIndex))}}" readonly ng-mouseover="openPresetNoSelect('GroupPreset',Preset.index,true,$index)" ng-keyup="openPresetNoSelect('GroupPreset',Preset.index,true,$index)" ng-click="openPresetNoSelect('GroupPreset',Preset.index,true,$index)">
+                                                                <input type="hidden" ng-model="Groups[Group.SelectedIndex].PresetList[Preset.index].SelectedPresetIndex">
                                                             </td>
-                                                            <td width="25%"><input type="text" class="form-control" style="text-align:center" ng-model="Groups[Group.SelectedIndex].PresetList[Preset].Speed" ng-disabled="!Groups[Group.SelectedIndex].PresetList[Preset].SelectedPresetIndex" maxlength="2"  required ng-pattern-restrict="{{OnlyNumStr}}"/></td>
-                                                            <td width="25%"><input type="text" class="form-control" style="text-align:center" ng-model="Groups[Group.SelectedIndex].PresetList[Preset].DwellTime" ng-disabled="!Groups[Group.SelectedIndex].PresetList[Preset].SelectedPresetIndex" maxlength="3"  required ng-pattern-restrict="{{OnlyNumStr}}"/></td>
+                                                            <td width="25%"><input type="text" class="form-control" style="text-align:center" ng-model="Groups[Group.SelectedIndex].PresetList[Preset.index].Speed" ng-disabled="!Groups[Group.SelectedIndex].PresetList[Preset.index].SelectedPresetIndex" maxlength="2"  required ng-pattern-restrict="{{OnlyNumStr}}"/></td>
+                                                            <td width="25%"><input type="text" class="form-control" style="text-align:center" ng-model="Groups[Group.SelectedIndex].PresetList[Preset.index].DwellTime" ng-disabled="!Groups[Group.SelectedIndex].PresetList[Preset.index].SelectedPresetIndex" maxlength="3"  required ng-pattern-restrict="{{OnlyNumStr}}"/></td>
                                                         </tr>   
                                                     </table>  
                                                 </div>                                                        
                                             </td>
                                         </tr> 
                                     </table>
+                                </div>
+                                <div ng-show="getPageCount('group') > 1" class="text-center page-controller">
+                                    <a ng-click="getFirstPage('group')"><i class="tui tui-left"></i><i class="tui tui-left"></i></a>
+                                    <a ng-click="getPrevPage('group')"><i class="tui tui-left"></i></a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="text" class="text" ng-model="PTZGroupPage.pageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{OnlyNumStr}}"/>
+                                    <label class="control-label">/ {{getPageCount('group')}}</label>
+                                    <a ng-click="jumpToPage('group')"><i class="tui tui-ch-live-gotochannel"></i></a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a ng-click="getNextPage('group')"><i class="tui tui-right"></i></a>
+                                    <a ng-click="getLastPage('group')"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
                                 </div>
 
                                 <div class="form-group">

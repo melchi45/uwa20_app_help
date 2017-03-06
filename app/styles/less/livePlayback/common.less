@@ -875,7 +875,7 @@ live-playback common {
 
     [id^="cm-"], [class^="cm-"],
     [id^="cm-"], [class^="cm-"] {
-        color: #fff;
+        color: #fff !important;
     }
     
     [class^="cm-icon-button"] {
@@ -976,6 +976,9 @@ live-playback common {
             background-color: #191919 !important;
             border: 1px solid #333 !important;
             color: #333 !important;
+            * {
+                color: #333 !important;
+            }
         }
     }
 
@@ -1071,11 +1074,10 @@ live-playback common {
         h2 span {
             color: #fff;
             line-height: 15px;
-            margin: 5px 10px;
         }
 
         #cm-display-slider li h3 {
-            color: #fff;
+            color: #fff !important;
         }
 
         .cm-ptz-type p label {

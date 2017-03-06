@@ -24,7 +24,8 @@ kindFramework
         name: "CAM1",
         cameraUrl: CAMERA_IP_ADDRESS,
         user: "",
-        password: ""
+        password: "",
+        supportMultiChannel : false,
     };
 
     var connectionSettings = {
@@ -82,11 +83,14 @@ kindFramework
       return JSON.parse(JSON.stringify(obj));
     };
 
-    var getPlaybackDataSet = function(data, timeCallback, errorCallback, closeCallback){
-      var newUrl = "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
-      console.log("new playback url : "+newUrl);
+    var startPlayback = function(data, timeCallback, errorCallback, closeCallback){
+      var playbackId = "";
+      if( cameraInfo.supportMultiChannel === true ) {
+        playbackId += data.channel + "/";
+      }
+      playbackId += "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
+      console.log("new playback url : "+playbackId);
       //TODO : playerInfo need to add channel filed ( data.channel )
-      playbackId = newUrl;
       isPlaybackAlive = true;
       playerInfo.callback.time = timeCallback;
       playerInfo.callback.error = errorCallback;
@@ -135,12 +139,17 @@ kindFramework
     };
 
     var playbackBackup = function(data, fileName, callback) {
+      var backupUrl = "";
+      if( cameraInfo.supportMultiChannel === true ) {
+        backupUrl += data.channel +"/";
+      }
+      backupUrl += "recording/"+data.time+"/OverlappedID="+data.id+"/backup.smp";
       //TODO : playerInfo need to add channel filed ( data.channel )
       playerInfo.callback.error = callback;
       playerInfo.device.captureName = fileName;
       playerInfo.media.type = 'backup';
       playerInfo.media.requestInfo.cmd = 'backup';
-      playerInfo.media.requestInfo.url = "recording/"+data.time+"/OverlappedID="+data.id+"/backup.smp";
+      playerInfo.media.requestInfo.url = backupUrl;
       console.log(playerInfo.media.requestInfo.url);
       return playerInfo;
     };
@@ -203,9 +212,14 @@ kindFramework
     * @argument : data - object of { time :string, id :int }
     */
     var applyResumeCommand = function(data) {
+      var newUrl = "";
+      if( cameraInfo.supportMultiChannel === true ) {
+        newUrl += data.channel +"/";
+      }
+      newUrl += "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
       playerInfo.media.type = 'playback';
       playerInfo.media.requestInfo.cmd = 'resume';
-      playerInfo.media.requestInfo.url = "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
+      playerInfo.media.requestInfo.url = newUrl;
       playerInfo.media.needToImmediate = data.needToImmediate;
       console.log("playback resume url : "+playerInfo.media.requestInfo.url);
       return playerInfo;
@@ -217,19 +231,29 @@ kindFramework
     * @argument : data - object of { time :string, id :int }
     */
     var applySeekCommand = function(data){
+      var newUrl = "";
+      if( cameraInfo.supportMultiChannel === true ) {
+        newUrl += data.channel +"/";
+      }
+      newUrl += "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
       workerManager.playbackSeek();
       playerInfo.media.type = 'playback';
       playerInfo.media.requestInfo.cmd = 'seek';
-      playerInfo.media.requestInfo.url = "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
+      playerInfo.media.requestInfo.url = newUrl;
       console.log("playback seek url : "+playerInfo.media.requestInfo.url);
       return playerInfo;
     };
 
     var applyStepCommand = function(cmd, data){
+      var newUrl = "";
+      if( cameraInfo.supportMultiChannel === true ) {
+        newUrl += data.channel +"/";
+      }
+      newUrl += "recording/"+calcStepDateTime(data.time)+"/OverlappedID="+data.id+"/play.smp";
       playerInfo.media.requestInfo.cmd = cmd;
       if (cmd === "step")  {
         playerInfo.media.type = 'step';
-        playerInfo.media.requestInfo.url = "recording/"+ calcStepDateTime(data.time) +"/OverlappedID="+data.id+"/play.smp";
+        playerInfo.media.requestInfo.url = newUrl;
         playerInfo.media.requestInfo.scale = data.speed;
         playbackStepService.setRequestTime(data.time);
       }
@@ -254,17 +278,22 @@ kindFramework
     * @return : playerInfo structure
     */
     var applyPlaySpeed = function( speed, data) {
+      var newUrl = "";
+      if( cameraInfo.supportMultiChannel === true ) {
+        newUrl += data.channel +"/";
+      }
+      newUrl += "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp"; 
       workerManager.playbackSpeed(speed);
       /*
       * If speed direction changed, send seek command instead of speed command.
       */
       if( playerInfo.media.requestInfo.scale * speed < 0 ) { //different direction.
         playerInfo.media.requestInfo.cmd = 'seek';
-        playerInfo.media.requestInfo.url = "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
+        playerInfo.media.requestInfo.url = newUrl;
         playerInfo.media.requestInfo.scale = speed;
       } else {
         var command = "speed";
-        playerInfo.media.requestInfo.url = "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
+        playerInfo.media.requestInfo.url = newUrl;
         playerInfo.media.requestInfo.cmd = command;
         playerInfo.media.requestInfo.scale = speed;       
       }
@@ -347,6 +376,15 @@ kindFramework
     var SetRtspPort = function(port) {
       connectionSettings.rtspPort = RESTCLIENT_CONFIG.digest.rtspPort = port;
     };
+
+    /**
+    * Set it is support multi channel or not
+    * @function : SetMultiChannelSupport
+    * @param : support is boolean value
+    */
+    var SetMultiChannelSupport = function(support) {
+      cameraInfo.supportMultiChannel = support;
+    };
     return {
         setConnectionInfo: setConnectionInfo,
         getPlayerData: getPlayerData,
@@ -356,7 +394,7 @@ kindFramework
         applyPlaySpeed : applyPlaySpeed,
         closePlaybackSession : closePlaybackSession,
         closeStream : closeStream,
-        getPlaybackDataSet : getPlaybackDataSet,
+        startPlayback : startPlayback,
         applyResumeCommand : applyResumeCommand,
         stepPlay : stepPlay,
         applyStepCommand : applyStepCommand,
@@ -364,6 +402,7 @@ kindFramework
         backupCommand : backupCommand,
         playbackBackup : playbackBackup,
         SetRtspPort : SetRtspPort,
-        SetRtspIpMac : SetRtspIpMac
+        SetRtspIpMac : SetRtspIpMac,
+        SetMultiChannelSupport : SetMultiChannelSupport
     };
 }]);

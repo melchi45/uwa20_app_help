@@ -431,7 +431,6 @@ kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiCl
                 };
 
                 $scope.ptzinfo = {
-                    autoOpen: false,
                     type: 'EPTZ'
                 };
             },

@@ -238,7 +238,6 @@ kindFramework.controller('imageAlignCtrl', function ($scope, $timeout, SunapiCli
                 };
 
                 $scope.ptzinfo = {
-                    autoOpen: false,
                     type: 'none'
                 };
             },

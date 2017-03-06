@@ -114,7 +114,12 @@ kindFramework.controller('presetCtrl', function ($scope, $location, $timeout, $u
         var getData = {};
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=view', getData,
             function (response) {
-                var PresetImageConfig = response.data.PresetImageConfig[0].Presets;
+                var PresetImageConfig;
+                if(typeof response.data.PresetImageConfig !== 'undefined'){
+                    PresetImageConfig = response.data.PresetImageConfig[0].Presets;
+                }else{
+                    PresetImageConfig = [];
+                }
 
                 if (PresetImageConfig.length === $scope.PTZPresets.length) {
                     for (var i = 0; i < PresetImageConfig.length; i++) {
@@ -301,7 +306,6 @@ kindFramework.controller('presetCtrl', function ($scope, $location, $timeout, $u
     $scope.$watch('LastPosition.RememberLastPosition',function(newVal, oldVal){
         if (typeof newVal !== 'undefined'){
             $scope.ptzinfo = {
-                autoOpen: true,
                 type: 'preset',
                 disablePosition: newVal
             };
@@ -394,7 +398,6 @@ kindFramework.controller('presetCtrl', function ($scope, $location, $timeout, $u
                 };
 
                 $scope.ptzinfo = {
-                    autoOpen: true,
                     type: 'preset'
                 };
             },

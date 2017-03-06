@@ -60,6 +60,12 @@
 	}
 }
 
+.pc-setup-counting-table {
+	@media(max-width: @setup-mobile-max-width){
+		width: 100%;
+	}
+}
+
 #pc-realtime-graph,
 [id^="qm-realtime-graph-"] {
 	.section();
@@ -75,6 +81,10 @@
 		width: 50%;
 		height: 330px;
 		padding-right: 10px;
+
+		@media(max-width: @setup-mobile-max-width){
+			width: 100%;
+		}
 	}
 
 	nvd3 {
