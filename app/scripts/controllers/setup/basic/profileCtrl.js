@@ -1886,7 +1886,9 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         /*
             Default AudioInput Encoding Settings
          */
-        profile.AudioInputEnable = false;
+        if(mAttr.MaxAudioInput > 0) {
+            profile.AudioInputEnable = false;
+        }
 
         /*
             Resoltion and Bitrate settins
