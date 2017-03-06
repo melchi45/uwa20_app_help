@@ -159,7 +159,8 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                         
 
                                         // Default Show 상태의 메뉴 > Responsive 상태일시 2줄
-                                        if(checkSize < 800) bottomMenuHeight += 50;
+                                        // Live에서는 변경점  900
+                                        if(checkSize < 800 || (checkSize < 900 && checkType)) bottomMenuHeight += 50;
 
                                         // live page 에서는 하단의 길이가 더 김
                                         if(checkType && checkSize < 900) bottomMenuHeight += 50;
