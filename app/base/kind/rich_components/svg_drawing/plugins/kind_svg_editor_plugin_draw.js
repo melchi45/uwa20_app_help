@@ -537,6 +537,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 		iconHelper.onClick(function(event){
 			removeCircle.call({circleIndex: hoveredPointIndex}, event);
+			update();
 		});
 		iconHelper.createIcon(false);
 
