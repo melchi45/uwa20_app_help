@@ -1548,7 +1548,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         var detectionType = getCurrentDetectionType();
         if($scope.VA[0] === undefined || detectionType === "Off" || detectionType === "MotionDetection") {
             setCommonMenuDisabled();
-            // return;
+            $scope.sketchinfo = null;
+            return;
         }
         var result = [];
         var startIndex = 0;
