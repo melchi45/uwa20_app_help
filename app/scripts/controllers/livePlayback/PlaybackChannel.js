@@ -33,6 +33,7 @@ kindFramework
     var isChannelPlayerInit = false;
     var isTimelineInit = false;
     $scope.pageController = {};
+    $scope.playbackPage = {};
 
     BaseChannel.prototype.locationChange = function(next) {
       if( next.indexOf('playbackChannel') === -1 ) {
@@ -147,6 +148,7 @@ kindFramework
         }
       }, function() {
       });
+      $scope.playbackPage.MaxAudioInput = sunapiAttributes.MaxAudioInput;
       $scope.domControls.enablePlayback = true;
       $scope.timelineController.create();
       $scope.timelineController.changeCurrnetDate({'date':searchData.getSelectedDate()});

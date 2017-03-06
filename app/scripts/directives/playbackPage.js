@@ -23,6 +23,7 @@ kindFramework
           'setPlaySpeed':'&',
           'timelineController' : '=',
           'pageController' : '=',
+          'maxAudioInput' : '=',
         },
         controller : function($scope) {
         },
