@@ -10,6 +10,8 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
 		link: function(scope, element, attrs){
             var mAttr = Attributes.get("attr");
 			scope.showPTZControlPreset = false;
+			scope.showPTZControlPresetText = false;
+			scope.showPTZControlHome = false;
 			scope.showPTZControlAT = false;
 			scope.showPTZControlBLC = false;
 			scope.disablePTZControlBLC = true;
@@ -29,6 +31,8 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
 
             var initControlUI = function(){
                 scope.showPTZControlPreset = false;
+                scope.showPTZControlPresetText = false;
+                scope.showPTZControlHome = false;
                 scope.showPTZControlAT = false;
                 scope.showPTZControlBLC = false;
                 scope.showPTZControlOSD = false;
@@ -97,6 +101,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
 
                     if(ptzinfo.type==='preset'){
                         scope.showPTZControlPreset = true;
+                        scope.showPTZControlHome = true;
                         scope.ptzControlClass = 'w310';
                         if(ptzinfo.disablePosition == true){
                             scope.disablePosition = true;
@@ -152,8 +157,9 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     }else if(ptzinfo.type ==='EPTZ'){
                         scope.showPTZControlEPTZ = true;
                     }else if(ptzinfo.type ==='presetZoom'){
-                        scope.showPTZControlPreset = true;
-                        scope.ptzControlClass = 'w310';
+                        scope.showPTZControlPresetText = true;
+                        scope.showPTZControlHome = false;
+                        scope.ptzControlClass = 'ptz-zoom-preset-width';
                         scope.zoomPresetClass = 'zoompreset';
                         if(ptzinfo.disablePosition == true){
                             scope.disablePosition = true;

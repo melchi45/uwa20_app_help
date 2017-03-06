@@ -1349,8 +1349,8 @@
                                         <select class="form-control" ng-model="Focus.LensResetSchedule">
                                             <option ng-selected="Focus.LensResetSchedule === Mode" value={{Mode}} ng-repeat="Mode in LensResetScheduleOptions">{{Mode === 'Manual' ? getTranslatedOption(Mode) : Mode.split('D')[0] + ' ' + getTranslatedOption('Day')}}</option>
                                         </select>
+                                        <button type="button" class="btn btn-primary" ng-disabled="Focus.LensResetSchedule !== 'Manual'" ng-click="setLensReset()">{{ 'lang_reset' | translate }}</button>
                                     </div>
-                                    <button type="button" class="col-xs-1 btn btn-primary" ng-disabled="Focus.LensResetSchedule !== 'Manual'" ng-click="setLensReset()">{{ 'lang_reset' | translate }}</button>
                                 </div>
                             </div>
                             <div ng-if="tabUI.Focus == 1">
