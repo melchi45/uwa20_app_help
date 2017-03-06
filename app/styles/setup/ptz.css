@@ -8,7 +8,9 @@
 #ptz-control.w210{width: 210px;}
 #ptz-control.w250{width: 250px;}
 #ptz-control.w310{width: 310px;}
+#ptz-control.w410{width: 410px;}
 #ptz-control.w510{width: 510px;}
+
 #ptz-control_left-box{
 	width: 25px;
 	margin-right: 5px;
@@ -94,7 +96,41 @@
 }
 .zoompreset{
     float: left !important;
-    padding: 15px 0 0 0;
+    padding: 15px 0 0 15px;
+}
+@media (min-width: 1260px) {
+	#ptz-control.ptz-zoom-preset-width{
+		width: 210px;
+	}
+}
+@media (min-width: 1020px) and (max-width: 1260px) {
+	#ptz-control.ptz-zoom-preset-width{
+		width: 610px;
+	}
+	#ptz-control.ptz-zoom-preset-width .zoomctrl{
+		width: 410px;
+	}
+	#ptz-control.ptz-zoom-preset-width .zoompreset{
+		float: left !important;
+		padding: 5px 0;
+	}
+}
+@media (min-width: 930px) and (max-width: 1020px) {
+	#ptz-control.ptz-zoom-preset-width{
+		width: 210px;
+	}
+}
+@media (max-width: 930px) {
+	#ptz-control.ptz-zoom-preset-width{
+		width: 610px;
+	}
+	#ptz-control.ptz-zoom-preset-width .zoomctrl{
+		width: 410px;
+	}
+	#ptz-control.ptz-zoom-preset-width .zoompreset{
+		float: left !important;
+		padding: 5px 0;
+	}
 }
 
 .ptz-control_dptz-width{

@@ -1,4 +1,4 @@
-kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeout, $translate, SunapiClient, Attributes, COMMONUtils, $q)
+kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibModal, $timeout, $translate, SunapiClient, Attributes, COMMONUtils, $q)
 {
     "use strict";
 
@@ -94,21 +94,15 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
     
     
     
-    $scope.onSelectedImage = function (Option, PresetNumber)
+    $scope.onSelectedMenu = function (goMenuIndex, PresetNumber)
     {
-        Attributes.setDefaultPresetNumber(PresetNumber);
-
-        if (Option === 0)
-        {
-            $location.path('/setup/videoAudio_cameraSetup');
-        }
-        else if (Option === 1)
-        {
-            var path = '/setup/event_motionDetection';
-            if (mAttr.VideoAnalyticsSupport === true) {
-                path = '/setup/event_videoAnalytics';
+        var gourl = '';
+        if (typeof $scope.menuOptions[goMenuIndex] != 'undefined'){
+            gourl = $scope.menuOptions[goMenuIndex].url;
+            if (typeof gourl != 'undefined' && gourl != '') {
+                Attributes.setDefaultPresetNumber(PresetNumber);
+                $location.path(gourl);
             }
-            $location.path(path);
         }
     };
     
@@ -169,6 +163,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
                         $scope.PTZPresets[i].SelectedPreset = false;
                         $scope.PTZPresets[i].AfterAction = PresetImageConfig[i].AfterAction;
                         $scope.PTZPresets[i].AfterActionTrackingTime = PresetImageConfig[i].AfterActionTrackingTime;
+                        $scope.PTZPresets[i].goMenu = 0;
                     }
                 } else {
                     $scope.PTZPresets = [];
@@ -790,6 +785,21 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $uibModal, $timeo
         $scope.tabs = [];
         $scope.MaxPreset = mAttr.MaxPreset;
         $scope.OnlyNumStr = mAttr.OnlyNumStr;
+        
+        $scope.menuOptions = [
+            {
+                'menu': $translate.instant('lang_menu_camera'),
+                'url': '/setup/videoAudio_cameraSetup'
+            },
+            {
+                'menu': $translate.instant('lang_menu_motiondetection'),
+                'url': '/setup/analytics_motionDetection/v2'
+            },
+            {
+                'menu': $translate.instant('lang_menu_iva'),
+                'url': '/setup/analytics_iva'
+            }
+        ];
 
         $scope.tabs.push('Preset');
         $scope.PTZPreset = {};

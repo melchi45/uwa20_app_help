@@ -103,28 +103,39 @@
         </div>
 
         <div id="ptz-control_at-left" ng-show="showPTZControlAT">
-            <button type="button" class="btn btn-primary" title="Auto tracking on">
+            <button type="button" class="btn btn-primary" title="{{'lang_autotracking_on' | translate}}">
                 <i class="tui tui-ch-live-ptz-tracking-auto"></i>
             </button>
-            <button type="button" class="btn btn-primary" title="Auto tracking off">
+            <button type="button" class="btn btn-primary" title="{{'lang_autotracking_off' | translate}}">
                 <i class="tui tui-ch-live-ptz-tracking-auto"></i>
             </button>
         </div>
 
         <div id="ptz-control_right-box" ng-class="zoomPresetClass">
-            <div id="ptz-control_preset-box" ng-show="showPTZControlPreset" >
-                <button type="button" class="btn btn-primary" title="Set preset" ng-click="showSetPreset()">
+            <div id="ptz-control_preset-box" ng-if="showPTZControlPreset" >
+                <button type="button" class="btn btn-primary" title="{{'lang_setPreset' | translate}}" ng-click="showSetPreset()">
                     <i class="tui tui-ch-live-ptz-preset"></i>
                 </button>
-                <button type="button" class="btn btn-primary" title="Go home position" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition">
+                <button type="button" class="btn btn-primary" title="{{'lang_goHomePosition' | translate}}" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
                     <i class="tui tui-ch-live-home"></i>
                 </button>
-                <button type="button" class="btn btn-primary" title="Set home position" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition">
+                <button type="button" class="btn btn-primary" title="{{'lang_setHomePosition' | translate}}" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
                     <i class="tui tui-setup"></i>
                 </button>
             </div>
+            <div id="ptz-control_preset-box" ng-if="showPTZControlPresetText" >
+                <button type="button" class="btn btn-primary" ng-click="showSetPreset()">
+                    {{'lang_setPreset' | translate}}
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                    {{'lang_goHomePosition' | translate}}
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                    {{'lang_setHomePosition' | translate}}
+                </button>
+            </div>
             <div id="ptz-control_at-right" ng-show="showPTZControlAT">
-                <button type="button" class="btn btn-primary" title="Delete" ng-click="deleteAutoTracking()">
+                <button type="button" class="btn btn-primary" title="{{'lang_delete' | translate}}" ng-click="deleteAutoTracking()">
                     <i class="tui tui-delete"></i>
                 </button>
                 <ul id="ptz-control_at-selectable">
