@@ -443,7 +443,62 @@
 
 /* Setup Channel Selector */
 #setup-channel-selector {
-	.wn5-setup-section-heading();
+	padding: 0;
+
+	.setup-channel-selector-btns {
+		button {
+			height: 30px;
+			line-height: 28px;
+
+			&.active,
+			&:active,
+			&:hover,
+			&:focus {
+				line-height: 30px;
+				background-color: #000;
+				color: #fff !important;
+				border: 0 !important;
+			}
+		}
+
+		/**
+	     * Channel Selector Directive Commom
+	     * .channel-selector는 공통 스타일만 있음
+	     */
+		.channel-selector {
+			li {
+				color: #000;
+
+				/* CH 텍스트 */
+	            &:first-child {
+	                /* CH 텍스트 오른쪽 숫자 버튼 */
+	                &~li {
+	                    margin-right: 4px;
+	                }
+
+	                .channel-selector-title {
+	                    font-size: 15px;
+	                    line-height: 30px;
+	                }
+	            }
+
+				> button {
+					width: 43px;
+					color: #000;
+					font-size: 15px;
+					border: solid 1px #868686;
+				}
+			}
+		}
+
+		.setup-channel-selector-info {
+			margin-left: 16px;
+			width: 68px;
+			font-size: 14px;
+			border: solid 1px #a5a5a5;
+			color: #333;
+		}
+	}
 }
 
 @import "peoplecounting-n-heatmap.less";

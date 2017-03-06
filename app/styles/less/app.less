@@ -273,23 +273,23 @@ channels-wrapper canvas {
 }
 
 /* Channel Selector Directive Commom */
-#channel-selector {
+.channel-selector {
   float: left;
 
   li {
     float: left;
-    margin-right: 5px;
 
     &:first-child {
-      button {
-        &:hover,
-        &:focus,
-        &:active {
-          border: 1px solid #a5a5a5;
-          background-color: #fff;
-          color: #4c4c4c;
-        }
+      margin-right: 10px;
+      .channel-selector-title {
+        float: left;
+        padding: 0;
+        margin: 0;
       }
+    }
+
+    > button {
+      padding: 0;
     }
   }
 }
