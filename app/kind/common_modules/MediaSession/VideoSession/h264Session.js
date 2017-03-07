@@ -13,7 +13,6 @@ var H264Session = function () {
 	curSize = 0,
 	preInfo = null,
 	preCodecInfo = null,
-	decoder = null,
 	NumDecodedFrame = 0,
 	SumDecodingTime =0,
 	gopTime = 0,
@@ -78,7 +77,7 @@ var H264Session = function () {
 	};
 
 	function Constructor() {
-		decoder = H264Decoder(); //new H264Decoder();
+		this.decoder = H264Decoder(); //new H264Decoder();
 	}
 
 	Constructor.prototype = inheritObject(new RtpSession(), {
@@ -86,7 +85,7 @@ var H264Session = function () {
 			initalSegmentFlag = false;
 			playback = false;
 			decodeMode = mode;
-			decoder.setIsFirstFrame(false);
+            this.decoder.setIsFirstFrame(false);
 			this.videoBufferList = new VideoBufferList();
 			this.firstDiffTime = 0;
 		},
@@ -184,7 +183,7 @@ var H264Session = function () {
 					initalSegmentFlag = false;
 					preInfo = sizeInfo;
 					preCodecInfo = SPSParser.getCodecInfo();
-					decoder.setIsFirstFrame(false);
+                    this.decoder.setIsFirstFrame(false);
 				}
 
 				width_segment = sizeInfo.width;
@@ -256,7 +255,7 @@ var H264Session = function () {
 				if (decodeMode == "canvas") {
 					if (outputSize !== curSize) {
 						outputSize = curSize;
-						decoder.setOutputSize(outputSize);
+                        this.decoder.setOutputSize(outputSize);
 					}
 					//inputBufferSub = inputBuffer.subarray(0, inputLength);
 					//frameType = (inputBufferSub[4] == 0x67) ? 'I' : 'P';
@@ -274,13 +273,13 @@ var H264Session = function () {
 					decodedData.frameData = null;
 
 					if( isBackup !== true || playback !== true) {
-						decodedData.frameData = decoder.decode(inputBufferSub);
+						decodedData.frameData = this.decoder.decode(inputBufferSub);
 					}
 
 					decodedData.timeStamp = null;
 					inputLength = 0;
 					if (playback == true) {
-						timeData = (timeData.timestamp == null ? GetTimeStamp() : timeData);
+						timeData = (timeData.timestamp == null ? this.GetTimeStamp() : timeData);
 						decodedData.timeStamp = timeData;
 					}
 				} else {
@@ -355,7 +354,7 @@ var H264Session = function () {
 								playbackVideoTagTempSample = sample;
 							}
 						}
-						timeData = (timeData.timestamp == null ? GetTimeStamp() : timeData);
+						timeData = (timeData.timestamp == null ? this.GetTimeStamp() : timeData);
 						decodedData.timeStamp = timeData;
 					}
 					inputLength = 0;
@@ -389,9 +388,6 @@ var H264Session = function () {
 
 				return data;
 			}
-		},
-		freeBufferIdx: function(bufferIdx){
-			decoder.freeBuffer(bufferIdx);
 		},
 		bufferingRtpData: function(rtspInterleaved, rtpHeader, rtpPayload) {
 			if (decodeMode === "video") {
@@ -527,7 +523,7 @@ var H264Session = function () {
 			if ((HEADER[1] & 0x80) == 0x80) {
 				if (outputSize !== curSize) {
 					outputSize = curSize;
-					decoder.setOutputSize(outputSize);
+                    this.decoder.setOutputSize(outputSize);
 
 					if (!initalSegmentFlag && decodeMode != "canvas") {
 						initalSegmentFlag = true;
@@ -561,51 +557,6 @@ var H264Session = function () {
 				inputLength = 0;
 			}
 		},
-		stepForward: function(){
-			if(this.videoBufferList !== null) {
-				//        console.log("streamDrawer::drawFrame stepValue = FORWARD, videoBufferList.length = " + videoBufferList._length + ", FrameNum = " + videoBufferList.getCurIdx());
-				var bufferNode;
-				var nextNode = this.videoBufferList.getCurIdx() + 1;
-				if (nextNode <= this.videoBufferList._length) {
-					bufferNode = this.videoBufferList.searchNodeAt(nextNode);
-					if (bufferNode === null || bufferNode === undefined) {
-						return false;
-					} else {
-						var data = {};
-						this.SetTimeStamp(bufferNode.timeStamp);
-						data.frameData = decoder.decode(bufferNode.buffer);
-						data.timeStamp = bufferNode.timeStamp;
-						return data;
-					}
-				} else {
-					return false;
-				}
-			}
-		},
-		stepBackward: function(){
-			if(this.videoBufferList !== null) {
-				var bufferNode;
-				var prevINode = this.videoBufferList.getCurIdx() - 1;
-				while (prevINode > 0) {
-					bufferNode = this.videoBufferList.searchNodeAt(prevINode);
-					if (bufferNode.frameType === "I" || bufferNode.codecType == "mjpeg") {
-						break;
-					} else {
-						bufferNode = null;
-						prevINode--;
-					}
-				}
-				if (bufferNode === null || bufferNode === undefined) {
-					return false;
-				} else {
-					var data = {};
-					this.SetTimeStamp(bufferNode.timeStamp);
-					data.frameData = decoder.decode(bufferNode.buffer);
-					data.timeStamp = bufferNode.timeStamp;
-					return data;
-				}
-			}
-		},
 		findIFrame: function() {
 			if(this.videoBufferList !== null) {
 				var bufferNode = this.videoBufferList.findIFrame();
@@ -614,7 +565,7 @@ var H264Session = function () {
 				} else {
 					var data = {};
 					this.SetTimeStamp(bufferNode.timeStamp);
-					data.frameData = decoder.decode(bufferNode.buffer);
+					data.frameData = this.decoder.decode(bufferNode.buffer);
 					data.timeStamp = bufferNode.timeStamp;
 					return data;
 				}

@@ -11,7 +11,6 @@ function H265Decoder() {
 	context,
 	outputBuffer = null,
 	inputBuffer,
-	bufferPool,
 	outBufferArray,
 	self = this,
 	outpic = new Uint8Array(),
@@ -99,9 +98,6 @@ function H265Decoder() {
 			}
 
 
-		},
-		freeBuffer: function(index) {
-			bufferPool.free(outBufferArray[index]);
 		}
 	});
 
