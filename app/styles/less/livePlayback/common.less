@@ -1710,16 +1710,74 @@ live-playback common {
 
 #cm-channel-selector {
     float: left;
+    width: 250px;
+    height: 51px;
+    border: solid 1px #e9e9e9;
+    padding: 15px 0 0 25px;
 
-    li {
-        button {
-            margin-top: 10px;
+    button {
+        width: 28px;
+        height: 21px;
+    }
+
+    /**
+     * Channel Selector Directive Commom
+     * .channel-selector는 공통 스타일만 있음
+     */
+    .channel-selector {
+        height: 21px;
+
+        li {
+            height: 21px;
+
+            /* CH 텍스트 */
+            &:first-child {
+                /* CH 텍스트 오른쪽 숫자 버튼 */
+                &~li {
+                    margin-right: 6px;
+                }
+
+                .channel-selector-title {
+                    font-size: 15px;
+                    line-height: 20px;
+                }
+            }
+
+            > button {
+                border: solid 2px #797979;
+                color: #666;
+                line-height: 17px;
+                font-size: 14px;
+
+                &:active,
+                &:hover,
+                &:focus,
+                &.active {
+                    color: #fff;
+                    background-color: #797979;
+                }
+            }
         }
     }
 
-    > button {
+    .cm-channel-selector-quad-btn {
         float: left;
-        margin-top: 10px;
-        margin-right: 10px;
+        margin-left: 4px;
+        border: solid 1px #797979;
+        border-bottom-width: 2px;
+        padding: 0;
+
+        /* Quad view의 Channel 표시 */
+        > div {
+            float: left;
+            width: 13px;
+            height: 9px;
+            border-left: solid 1px #797979;
+            border-top: solid 1px #797979;
+
+            &:nth-of-type(2n) {
+                border-right: solid 1px #797979;
+            }
+        }
     }
 }

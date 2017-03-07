@@ -39,6 +39,8 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
     };
     function getAttributes()
     {
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
+        $scope.PTZModel = mAttr.PTZModel;
         $scope.OnlyNumStr = mAttr.OnlyNumStr;
        
         $scope.PTZPreset = {};
@@ -224,10 +226,11 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
   
     function validationLastPosition()
     {
-        if (Number($scope.LastPosition.RememberLastPositionDuration) > 
-            Number($scope.LastPositionAttr.RememberLastPositionDuration.maxValue)){
+        if ((Number($scope.LastPosition.RememberLastPositionDuration) < 1) || (Number($scope.LastPosition.RememberLastPositionDuration) >
+            Number($scope.LastPositionAttr.RememberLastPositionDuration.maxValue))){
+            COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', 1).replace('%2', $scope.LastPositionAttr.RememberLastPositionDuration.maxValue));
             return false;
-        } 
+        }
         return true;
     }
 

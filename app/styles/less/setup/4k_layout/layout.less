@@ -2,48 +2,58 @@
     
     /* left side-bar style */
     .side-nav-wrapper {
-    	&.setup-wrapper {
-			width: 340px;
-    	}
+        &.setup-wrapper {
+            width: 340px;
+        }
 
-    	nav {
-    		#side-menu {
-	    		margin-top: 75px;
-	    	}
+        nav {
+            #side-menu {
+                margin-top: 75px;
+            }
 
-	    	dl dt a {
-	    		font-size: 22px;
-	    		padding: 13px 15px 13px 10px;
+            dl dt a {
+                font-size: 22px;
+                padding: 13px 15px 13px 10px;
 
-	    		&:hover {
-	    			font-size: 22px;
-	    			padding: 13px 15px 13px 10px;
-	    		}
-	    	}
-    	}
+                &:hover {
+                    font-size: 22px;
+                    padding: 13px 15px 13px 10px;
+                }
+            }
+        }
     }
 
-	/* left side-bar dropdown style */
+    #setup-menu li a i {
+        font-size: 20px;
+        margin-top: 5px;
+    }
+
+    /* left side-bar dropdown style */
     .nav {
-    	.nav-second-level {
-    		a {
-    			font-size: 18px !important;
-    		}
-    	}
+        .nav-second-level {
+            a {
+                font-size: 18px !important;
+            }
+        }
     }
-	
+    
 
-	/* content section style */
+    /* content section style */
     .main {
-    	&.setup-wrapper {
-    		.wrapper {
-    			&.wrapper-content {
-    				padding: 30px 30px 20px 140px;
-    				max-width: 1700px;
-    			}
-    		}
+        &.setup-wrapper {
+            .form-group {
+                line-height: 40px;
+            }
 
-            input[type=checkbox] {
+            .wrapper {
+                &.wrapper-content {
+                    padding: 30px 30px 20px 140px;
+                    max-width: 1700px;
+                }
+            }
+
+            input[type=checkbox],
+            input[type=radio] {
                 transform: scale(1.5);
             }
 
@@ -54,57 +64,436 @@
             strong {
                 font-size: 17px;
             }
-    	}
+
+            table {
+                font-size: 18px;
+            }
+
+            .page-controller {
+                a i {
+                    font-size: 27px;
+                    margin: 15px 0px;
+                }
+            }
+        }
+
+
     }
-	
-	/* content main title style */
+
+    #SelectedAccessLogPage {
+        width: 60px !important;
+        height: 37.5px !important;
+        margin-top: 5px !important;
+        transform: translateY(5px);
+        font-size: 19px;
+
+        ~ .btn {
+            height: 37.5px !important;
+            padding: 0px 15px !important;
+        }
+    }
+    
+    /* content main title style */
     .wn5-setup-main-title {
-    	font-size: 40px;
+        font-size: 40px;
     }
 
     .wn5-setup-tab {
-    	margin-top: 30px;
+        margin-top: 30px;
 
-    	.wn5-setup-tab-list {
-    		.wn5-setup-tab-item {
-    			& > button {
-    				font-size: 21px;
-    				padding: 17px 0px;
-    				height: 60px;
-    			}
-    		}
-    	}
-
-    	.wn5-setup-tab-content {
-    		.wn5-setup-section {
-    			&.use-padding {
-    				padding: 0px 30px;
-    			}
-
-    			.wn5-setup-section-heading {
-    				width: 22%;
-
-    				& > h3 {
-    					font-size: 21px !important;
-    				}
-    			}
-
-    			.wn5-setup-section-article {
-    				.wn5-setup-section-article-heading {
-    					font-size: 19px;
-    					padding-top: 10px;
-    					padding-bottom: 8px;
-    				}
-    			}
-    		}
-    	}
+        > .nav.nav-tabs li a {
+            font-size: 23px;
+            padding: 10px 0px;
+            height: 51px;
+        }
+        
+        .wn5-setup-tab-list {
+            .wn5-setup-tab-item {
+                & > button {
+                    font-size: 21px;
+                    padding: 12px 0px;
+                    height: 60px;
+                }
+            }
+        }
     }
+
+    .wn5-setup-section {
+        &.use-padding {
+            padding: 0px 30px;
+        }
+
+        .wn5-setup-section-heading {
+            width: 22%;
+
+            & > h3 {
+                font-size: 21px !important;
+            }
+        }
+    }
+    
+    .wn5-setup-section-article-heading {
+        font-size: 19px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+    }
+    
+    .wn5-setup-section-article-content {
+        font-size: 19px;
+    }
+
+
+    /* Basic Layout */
+    /* User page */
+    #userpage {
+        .userpage-password-description {
+            ol {
+                padding-top: 25px;
+                padding-bottom: 25px;
+                padding-left: 30px;
+                padding-right: 15px;
+
+                li {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+    
+    /* Date&Time page System time setup tab timesetting section */
+    .wn5-setup-date-time-selector {
+        .wn5-setup-date-time-selector-big {
+            width: 71px !important;
+        }
+
+        .wn5-setup-date-time-selector-small {
+            width: 52px !important;
+        }
+    }
+    
+    /* analytics.less */
+    .wn5-setup-preview-heading {
+        font-size: 19px !important;
+
+        &:first-of-type {
+            margin-top: 30px;
+        }
+    }
+
+    .wn5-setup-wrapper {
+        .btn.wn5-btn-small-square {
+            height: 36px !important;
+            padding: 0 12px !important;
+        }
+    }
+
+    
+    /* people_counting.less */
+    #pc-realtime-live {
+        > p {
+            margin-top: 30px;
+            font-size: 19px;
+            line-height: 30px;
+        }
+    }
+
+    .pc-statistics-dialog-title {
+        > p {
+            font-size: 19px;
+            padding-bottom: 10px;
+        }
+    }
+
+    .modal-sm {
+        width: 500px;
+
+        .modal-content {
+            .modal-header h3 {
+                font-size: 23px;
+                padding: 5px 15px;
+                
+            }
+
+            .modal-body h5 {
+                font-size: 20px !important;
+                padding: 15px 50px;
+
+                p {
+                    font-size: 20px !important;
+                    padding: 15px 50px;
+                }
+            }
+
+            .modal-footer button {
+                padding: 10px 40px !important;
+                font-size: 19px;
+            }
+        }
+    }
+
 }
 
 
 
 @media(min-width:3000px) and (min-height:1688px) {
+    .side-nav-wrapper {
+        &.setup-wrapper {
+            width: 440px;
+        }
+        
+        
+
+        nav {
+            #side-menu {
+                margin-top: 87.5px;
+            }
+
+            dl dt a {
+                font-size: 27px;
+                padding: 18px 28.5px 18px 25px;
+
+                &:hover {
+                    font-size: 27px;
+                    padding: 18px 28.5px 18px 25px;
+                }
+            }
+        }
+    }
+
+    #setup-menu li a i {
+        font-size: 27px;
+        margin-top: 5px;
+    }
+
+    /* left side-bar dropdown style */
+    .nav {
+        .nav {
+            &.nav-second-level {
+                a {
+                    font-size: 25px !important;
+                    padding-left: 80px !important;
+                }
+            }
+
+            &.nav-third-level {
+                a {
+                    font-size: 25px !important;
+                    padding-left: 110px !important;
+                }
+            }
+        }
+    }
     
+
+    /* content section style */
+    .main {
+        &.setup-wrapper {
+            .form-group {
+                line-height: 52.5px;
+            }
+
+            .wrapper {
+                &.wrapper-content {
+                    padding: 80px 30px 20px 270px;
+                    max-width: 2400px;
+                }
+            }
+
+            input[type=checkbox],
+            input[type=radio] {
+                transform: scale(1.75);
+            }
+
+            label {
+                font-size: 24px;
+            }
+
+            strong {
+                font-size: 21px;
+            }
+
+            table {
+                font-size: 25px;
+            }
+
+            .table {
+                td {
+                    padding: 15px;
+                }
+            }
+
+            .page-controller {
+                a i {
+                    font-size: 33px;
+                    margin: 15px 0px;
+                }
+            }
+        }
+    }
+
+    #SelectedAccessLogPage {
+        width: 75px !important;
+        height: 43px !important;
+        margin-top: 5px !important;
+        transform: translateY(5px);
+        font-size: 24px;
+
+        ~ .btn {
+            height: 43px !important;
+            padding: 0px 15px !important;
+        }
+    }
+    
+    /* content main title style */
+    .wn5-setup-main-title {
+        font-size: 47.5px;
+    }
+
+    .wn5-setup-tab {
+        margin-top: 50px;
+        
+        > .nav.nav-tabs li a {
+            font-size: 27px;
+            padding: 20px 0px;
+            height: 73px;
+        }
+
+        .wn5-setup-tab-list {
+            .wn5-setup-tab-item {
+                & > button {
+                    font-size: 29px;
+                    padding: 23px 0px;
+                    height: 80px;
+                }
+            }
+        }
+    }
+
+    .wn5-setup-section {
+        &.use-padding {
+            padding: 0px 35px;
+        }
+
+        .wn5-setup-section-heading {
+            width: 22%;
+
+            & > h3 {
+                font-size: 29px !important;
+            }
+        }
+    }
+    
+    .wn5-setup-section-article-heading {
+        font-size: 24px;
+        padding-top: 19px;
+        padding-bottom: 14px;
+    }
+    
+    .wn5-setup-section-article-content {
+        font-size: 24px;
+    }
+
+
+    /* Basic Layout */
+    /* User page */
+    #userpage {
+        .userpage-password-description {
+            ol {
+                padding-top: 32px;
+                padding-bottom: 31px;
+                padding-left: 41px;
+                padding-right: 21px;
+
+                li {
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+    
+    /* Date&Time page System time setup tab timesetting section */
+    .wn5-setup-date-time-selector {
+        .wn5-setup-date-time-selector-big {
+            width: 92px !important;
+        }
+
+        .wn5-setup-date-time-selector-small {
+            width: 67px !important;
+        }
+    }
+    
+    /* analytics.less */
+    .wn5-setup-preview-heading {
+        font-size: 28px !important;
+
+        &:first-of-type {
+            margin-top: 30px;
+        }
+    }
+
+    .wn5-setup-wrapper {
+        .btn.wn5-btn-small-square {
+            height: 48px !important;
+            padding: 0 16px !important;
+        }
+    }
+
+    
+    /* people_counting.less */
+    #pc-realtime-live {
+        > p {
+            margin-top: 40px;
+            font-size: 28px;
+            line-height: 40px;
+        }
+    }
+
+    .pc-statistics-dialog-title {
+        > p {
+            font-size: 28px;
+            padding-bottom: 15px;
+        }
+    }
+
+    #pc-setup-report-schedule {
+        overflow: visible;
+    }
+
+    .modal-sm {
+        width: 700px;
+
+        .modal-content {
+            .modal-header h3 {
+                font-size: 30px;
+                padding: 10px 20px;
+                
+            }
+
+            .modal-body h5 p {
+                font-size: 25px !important;
+                padding: 20px 30px;
+            }
+
+            .modal-body h5 {
+                font-size: 25px !important;
+                padding: 20px 30px;
+
+                p {
+                    font-size: 25px !important;
+                    padding: 20px 30px;
+                }
+            }
+
+            .modal-footer button {
+                padding: 15px 50px !important;
+                font-size: 23px;
+            }
+        }
+    }
+
+    .pc-calender-icon {
+        width: 190px;
+    }
 }
 
 

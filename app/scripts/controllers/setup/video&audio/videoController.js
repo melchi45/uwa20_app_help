@@ -377,12 +377,6 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                             };
 
                             scope.cancel = function() {
-                                $scope.deletePrivacy(setData["MaskIndex"]);
-
-                                var coordinates = {};
-                                coordinates = {name:"", color:"", selectedMask: true, x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
-                                sketchbookService.set(coordinates);
-
                                 $uibModalInstance.dismiss();
                             };
 
@@ -406,12 +400,18 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                             });
                         }]
                     });
-
-                    modalInstance2.result.finally(
+                    
+                    modalInstance2.result.then(
                         function(){
                             $("[type='radio'][name='VideoOutput']").prop("disabled", false);
                             $scope.coordinates = {};
                             $scope.coordinates = {name:"", color:"", x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
+                        }
+                        , function(){
+                            $scope.deletePrivacy(setData["MaskIndex"]);
+                            var coordinates = {};
+                            coordinates = {name:"", color:"", selectedMask: true, x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
+                            sketchbookService.set(coordinates);
                         }
                     );
                 }else{

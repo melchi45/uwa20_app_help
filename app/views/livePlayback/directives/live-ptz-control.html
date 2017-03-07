@@ -135,7 +135,7 @@
       3. Live PTZ - zoom slider issue fixed.
       -->
 
-    <div id="live-ptz-tabs" class="cm-col">
+    <div id="live-ptz-tabs">
       <ul>
         <li>
           <a href="#live-ptz-preset">{{ 'lang_preset' | translate }}</a>
@@ -290,7 +290,7 @@
       <!-- Trace end -->
     </div> <!-- live-ptz-tabs end -->
 
-    <div class="cm-col" ng-if="currentPtzType === ptzType.OPTICAL">
+    <div id="live-ptz-zoom" ng-if="currentPtzType === ptzType.OPTICAL">
       <h2><span>{{ 'lang_areaZoom' | translate }}</span></h2>
       <div>
         <button 
@@ -319,16 +319,18 @@
         </button>
       </div>
 
-      <h2 style="margin-top: 20px;"><span>{{ 'Lock - ON' | translate }}</span></h2>
+      <!-- <h2 style="margin-top: 20px;"><span>{{ 'Lock - ON' | translate }}</span></h2> -->
       <div>
-        <button 
+        {{ 'lang_msg_lockon_info' | translate }}
+        <!-- <button 
           class="cm-icon-button-s"
           title="{{'lang_ptz_manual_lock_on' | translate}}">
           <span class="sr-only">{{ 'lang_ptz_manual_lock_on' | translate }}</span>
           <i class="tui tui-ch-live-ptz-tracking-auto-on"></i>
-        </button>
+        </button> -->
       </div>
     </div>
+
   </div>
 
   <div ng-show="currentPtzType === ptzType.NONE">

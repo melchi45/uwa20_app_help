@@ -983,6 +983,7 @@ kindFramework.directive('channelPlayer',
             }
 
             function closePlayback(_streamingmode) {
+              $rootScope.$emit('blockTimebarInputField', false);
               switch(BrowserService.BrowserDetect)
               {
                 case BrowserService.BROWSER_TYPES.IE:
