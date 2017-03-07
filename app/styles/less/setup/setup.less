@@ -443,9 +443,25 @@
 
 /* Setup Channel Selector */
 #setup-channel-selector {
+	@number-button-margin: 8px;
+
 	padding: 0;
 
+	.setup-channel-selector-heading {
+		float: left;
+		width: 25%;
+
+		h3 {
+			@media(max-width: @setup-mobile-max-width){
+				font-size: @wn5-gui-title-s !important;
+			}
+		}
+	}
+
 	.setup-channel-selector-btns {
+		float: left;
+		width: 75%;
+
 		button {
 			height: 30px;
 			line-height: 28px;
@@ -473,7 +489,7 @@
 	            &:first-child {
 	                /* CH 텍스트 오른쪽 숫자 버튼 */
 	                &~li {
-	                    margin-right: 4px;
+	                    margin-right: @number-button-margin;
 	                }
 
 	                .channel-selector-title {
