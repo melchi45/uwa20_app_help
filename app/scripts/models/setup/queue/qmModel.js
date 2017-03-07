@@ -98,352 +98,6 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			return lang;
 		};
 
-		var mockupData = {
-			eventSourcesCgi: {
-				queue: {
-					view: 
-					{
-					    "QueueManagementSetup": [
-					        {
-					            "Channel": 0,
-					            "Enable": true,
-					            "ReportEnable": false,
-					            "ReportFilename": "",
-					            "ReportFileType": "xlsx",
-					            "CalibrationMode": "ObjectSize",
-					            "CameraHeight": 300,
-					            "ObjectSizeCoordinates": [
-					                {
-					                    "x": 695,
-					                    "y": 275
-					                },
-					                {
-					                    "x": 1024,
-					                    "y": 604
-					                }
-					            ],
-					            "Queues": [
-					                {
-					                    "Queue": 1,
-					                    "MaxPeople": 10,
-					                    "Name": "Queue1",
-					                    "Enable": true,
-					                    "Coordinates": [
-					                        {
-					                            "x": 138,
-					                            "y": 129
-					                        },
-					                        {
-					                            "x": 120,
-					                            "y": 569
-					                        },
-					                        {
-					                            "x": 633,
-					                            "y": 590
-					                        },
-					                        {
-					                            "x": 648,
-					                            "y": 123
-					                        }
-					                    ],
-										QueueTypes:[
-											{
-												"Type": "High",
-												"Count": 6,
-												"AlarmEnable": true,
-												"Threshold": 140
-											},
-											{
-												"Type": "Medium",
-												"Count": 3,
-												"AlarmEnable": true,
-												"Threshold": 130
-											}
-										]
-					                },
-					                {
-					                    "Queue": 2,
-					                    "MaxPeople": 8,
-					                    "Name": "Queue2",
-					                    "Enable": true,
-					                    "Coordinates": [
-					                        {
-					                            "x": 1238,
-					                            "y": 204
-					                        },
-					                        {
-					                            "x": 1112,
-					                            "y": 519
-					                        },
-					                        {
-					                            "x": 1526,
-					                            "y": 551
-					                        },
-					                        {
-					                            "x": 1556,
-					                            "y": 255
-					                        }
-					                    ],
-										 QueueTypes:[
-											{
-												"Type": "High",
-												"Count": 6,
-												"AlarmEnable": true,
-												"Threshold": 120
-											},
-											{
-												"Type": "Medium",
-												"Count": 3,
-												"AlarmEnable": true,
-												"Threshold": 110
-											}
-										]
-					                },
-					                {
-					                    "Queue": 3,
-					                    "MaxPeople": 10,
-					                    "Name": "Queue3",
-					                    "Enable": false,
-					                    "Coordinates": [
-					                        {
-					                            "x": 363,
-					                            "y": 713
-					                        },
-					                        {
-					                            "x": 378,
-					                            "y": 986
-					                        },
-					                        {
-					                            "x": 1535,
-					                            "y": 971
-					                        },
-					                        {
-					                            "x": 1466,
-					                            "y": 671
-					                        }
-					                    ],
-										 QueueTypes:[
-											{
-												"Type": "High",
-												"Count": 6,
-												"AlarmEnable": true,
-												"Threshold": 100
-											},
-											{
-												"Type": "Medium",
-												"Count": 3,
-												"AlarmEnable": true,
-												"Threshold": 90
-											}
-										]
-					                }
-					            ]
-					        }
-					    ]
-					},
-					check: 
-					{
-					    "QueueLevels": [
-					        {
-					            "Channel": 0,                        
-					            "Queues": [
-					                {
-					                    "Queue": 1,
-					                    "Level": 5,                  
-					                },
-					                {
-					                    "Queue": 2,
-					                    "Level": 5,
-					                },
-							{
-					                    "Queue": 3,
-					                    "Level": 6,
-					                },
-					            ]
-					        }
-					    ]
-					}
-				},
-				sourceoptions: {
-					view: 
-					{
-					    "EventSources": [        
-					        {
-					            "EventSource": "QueueManagement",
-					            "EventAction": [
-					                "FTP",
-					                "SMTP",
-									"AlarmOutput"
-					            ]
-					        }
-					    ]
-					}
-
-				}
-			},
-			eventRulesCgi: {
-				scheduler: {
-					view:
-					{
-					    "QueueManagement": [
-					        {
-					            "Channel": 0,
-					            "ScheduleType": "Daily",
-					            "Hour": 0,
-					            "Minute": 0,
-					            "WeekDay": "SUN",
-						    	"EventAction": [
-					                "AlarmOutput.1",
-					                "SMTP",
-					                "FTP"
-					            ],
-					            "AlarmOutputs": [
-					                {
-					                    "AlarmOutput": 1,
-					                    "Duration": "5s"
-					                }
-					            ]
-					        }
-					    ]
-					}	
-				}
-			},
-			eventStatusCgi: {
-				check: 
-				{
-				    "ChannelEvent": [
-				        {
-				            "Channel": 0,
-				            "QueueEvents": {
-				                "Queues": [
-					                {
-					                    "Queue": 1,
-									    "QueueTypes":[
-											{
-												"High": true
-											},
-											{
-												"Medium": false
-											}
-										]
-					                },
-					                {
-					                    "Queue": 2,                    
-									    "QueueTypes":[
-											{
-												"High": false
-											},
-											{
-												"Medium": false
-											}
-										]
-					                }
-				            	]
-				            }
-				        }
-				    ]
-				},
-				monitor: 
-				{
-				    "ChannelEvent": [
-				        {
-				            "Channel": 0,            
-				            "QueueEvents": {
-				                "Queues": [
-					                {
-					                    "Queue": 1,                    
-									    "QueueTypes":[
-											{
-												"High": true
-											}
-										]                
-						            }
-					            ]
-				            }
-				        }
-				    ]
-				}
-
-			},
-			recordingCgi: {
-				viewStatus: 
-				{
-					"Status": "Completed"
-				},
-				viewResultsAverage:
-				{	
-					"ResultInterval": "Hourly",
-					"QueueResults": [
-						{
-							"Queue": 1,
-							"AveragePeopleResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-						},
-						{
-							"Queue": 2,
-							"AveragePeopleResult": ["24", "22", "21", "5", "9", "5", "4", "2", "10", "22", "21", "11", "12", "13", "14", "15", "16", "17", "18", "12", "14", "15", "2", "20"]
-						},
-						{
-							"Queue": 3,
-							"AveragePeopleResult": ["0", "1", "2", "3", "4", "5", "6", "7", "5", "9", "20", "11", "24", "13", "14", "20", "16", "10", "8", "19", "20", "21", "22", "23"]
-						}
-					]
-				},
-				viewResultsCumulative:
-				{
-					"ResultInterval": "Hourly",
-					"QueueResults": [
-				        {
-				            "Queue": "Queue 1",
-						    "QueueLevels":[
-						    	{
-									"Level": "High",
-									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-					            },
-					            {
-									"Level": "Medium",
-									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-					            }
-					        ]
-					    },
-					 	{
-				            "Queue": "Queue 2",
-						    "QueueLevels":[
-							    {
-									"Level": "High",
-									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-							    },
-							    {
-									"Level": "Medium",
-									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-					            }
-					        ]
-				         },
-						{
-				            "Queue": "Queue 3",
-						    "QueueLevels":[
-							    {
-									"Level": "High",
-									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-							    },
-							    {
-									"Level": "Medium",
-									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-							    }
-						    ]
-					    }
-				    ]
-				},
-				controlStart:
-				{
-					"SearchToken": "123456"
-				},
-				controlCancel:
-				{
-					"Response": "Success"
-				}
-			}
-		};
-
 		var eventSourcesCgi = {
 			queue: {
 				view: function(successCallback, failCallback){
@@ -813,12 +467,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			}
 
 			function viewResultSuccessCallback(response){
-				if(type === graphType[0]){ //mockup
-					response = mockupData.recordingCgi.viewResultsAverage;
-				}else{
-					response = mockupData.recordingCgi.viewResultsCumulative;
-				}
-				// response = response.data;
+				response = response.data;
 				var resultInterval = response.ResultInterval;
 				var queueResults = response.QueueResults;
 				var responseData = {
@@ -831,7 +480,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					var data = {
 						name: queueSelf.Queue,
 						direction: null,
-						results: null
+						results: null,
+						resultInterval: resultInterval
 					};
 
 					if(type === graphType[0]){
@@ -971,8 +621,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 				}
 			}else{
 				for(var i = 1; i <= 3; i++){
-					searchOptions["Queue."+i+".Type.High.CumulativeTime"] = 'True';
-					searchOptions["Queue."+i+".Type.Medium.CumulativeTime"] = 'True';
+					searchOptions["Queue."+i+".Level.High.CumulativeTime"] = 'True';
+					searchOptions["Queue."+i+".Level.Medium.CumulativeTime"] = 'True';
 				}
 			}
 
@@ -981,10 +631,6 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 				controlSuccessCallback,
 				failCallback
 			);
-
-			if(type === graphType[1]){ //mockup
-				viewResultSuccessCallback();
-			}
 
 			return deferred.promise;
 		};
@@ -999,7 +645,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			return getSearchData(searchOptions, type);
 		};
 
-		this.getWeekGraphData = function(type){
+		this.getWeeklyGraphData = function(type){
 			var newDate = cameraLocalTime.getDateObj();
 			var nowDate = getSunapiDateFormat(newDate.getTime());
 			var fromDate = null;
@@ -1021,42 +667,28 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			return getSearchData(searchOptions, type);
 		};
 
-		// this.getSearchResults = function(options){
-		// 	var searchOptions = {
-		// 		FromDate: removeTime(getSunapiDateFormat(options.fromDate)),
-		// 		ToDate: getSunapiDateFormat(options.toDate)
-		// 	};
+		this.getSearchGraphData = function(type, options){
+			var searchOptions = {
+				FromDate: removeTime(getSunapiDateFormat(options.fromDate)),
+				ToDate: getSunapiDateFormat(options.toDate)
+			};
 
-		// 	for(var lineName in options.lines){
-		// 		var self = options.lines[lineName];
-		// 		var direction = [];
+			return getSearchData(searchOptions, type);
+		};
 
-		// 		if(self.in === true){
-		// 			direction.push('In');
-		// 		}
-		// 		if(self.out === true){
-		// 			direction.push('Out');
-		// 		}
+		this.cancelSearch = function(){
+			if(searchToken === null) return;
 
-		// 		// searchOptions['Camera.' + //masterCameraName + '.Line.' + lineName + '.Direction'] = direction.join(',');
-		// 	}
-
-		// 	return getSearchData(searchOptions);
-		// };
-
-		// this.cancelSearch = function(){
-		// 	if(searchToken === null) return;
-
-		// 	// asyncInterrupt = true;
-		// 	recordingCgi.peoplecountsearch.control({
-		// 		Mode: 'Cancel',
-		// 		SearchToken: searchToken
-		// 	}, function(response){
-		// 		console.log("Search is canceled.");
-		// 	}, function(errorData){
-		// 		console.error(errorData);
-		// 	});
-		// };
+			// asyncInterrupt = true;
+			recordingCgi.control({
+				Mode: 'Cancel',
+				SearchToken: searchToken
+			}, function(response){
+				console.log("Search is canceled.");
+			}, function(errorData){
+				console.error(errorData);
+			});
+		};
 
 	};
 

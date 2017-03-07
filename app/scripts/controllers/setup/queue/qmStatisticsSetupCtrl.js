@@ -40,8 +40,8 @@ kindFramework.controller('QMStatisticsCtrl', function (
 		default: '#ddd',
 		selected: '#399'
 	};
-	var graphType = ["average", "cumulative"];
-	var graphDateType = ["today", "weekly", "search"];
+	var graphTypes = ["average", "cumulative"];
+	var graphDateTypes = ["today", "weekly", "search"];
 
 	var channel = 0;
 
@@ -126,13 +126,14 @@ kindFramework.controller('QMStatisticsCtrl', function (
 		var returnVal = null;
 
 		switch(dateFormat){
-			case "hour":
+			case "Hourly":
 				returnVal = hours + ":00";
 			break;
-			case "day":
+			case "Daily":
+			case "Weekly":
 				returnVal = month + "/" + date;
 			break;
-			case "month":
+			case "Monthly":
 				returnVal = year + "-" + month;
 			break;
 		}
@@ -157,116 +158,64 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			deepWatchData: false
 		},
 		average: {
-			options: {
-				chart: {
-					type: 'lineChart',
-		            height: 300,
-		            margin : {
-		                bottom: 20,
-		                left: 40
-		            },
-		            x: function(d){
-		        		return d[0];
-		        	},
-		            y: function(d){
-		        		return d[1];
-		        	},
-		            useVoronoi: false,
-		            clipEdge: true,
-					api: null,
-		            transitionDuration: 500,
-		            useInteractiveGuideline: true,
-		            xAxis: {
-	                    showMaxMin: true,
-		                tickFormat: function(index) {
-		                	var data = $scope.graphSection.average.options.chart.xAxisData[index];
-		                    return changeFormatForGraph(data, 'hour');
-		                }
-		            },
-		            yAxis: {
-		                showMaxMin: true,
-		                tickFormat: changeYAxisFormat
-		            },
-		            dispatch: {
-		            	renderEnd: function(){
-		            		console.log("renderEnd");
-		            	}
-		            },
-		            showLegend: true,
-		            //Event of Legend
-		            legend: {
-		                dispatch: {
-		                    legendClick: function(item){
-		                        $scope.graphSection.selectChartItem(
-		                        	'.pc-realtime-graph-today', 
-		                        	$scope.graphSection.average.data,
-		                        	item
-		                    	);
-		                    }
-		                }
-		            }
-				}
+			today: {
+				options: {},
+				data: [],
+				xAxisData: []
 			},
-			data: []
+			weekly: {
+				options: {},
+				data: [],
+				xAxisData: []
+			},
+			search: {
+				options: {},
+				data: [],
+				xAxisData: []
+			}
 		},
 		cumulative: {
-			options: {
-	            chart: {
-	                type: 'multiBarChart',
-	                height: 300,
-	                margin : {
-	                    bottom: 20,
-	                    left: 40
-	                },
-	                clipEdge: true,
-	                duration: 500,
-	                stacked: true,
-					api: null,
-	                useInteractiveGuideline: true,
-		            x: function(d){
-		        		return d[0];
-		        	},
-		            y: function(d){
-		        		return d[1];
-		        	},
-	                xAxis: {
-	                    showMaxMin: true,
-	                    tickFormat: function(index){
-		                	var data = $scope.graphSection.cumulative.options.chart.xAxisData[index];
-		                    return changeFormatForGraph(data, 'hour');
-	                    }
-	                },
-	                yAxis: {
-	                    showMaxMin: true,
-	                    tickFormat: changeYAxisFormat
-	                },
-		            showLegend: true
-	            }
+			today: {
+				options: {},
+				data: [],
+				xAxisData: []
 			},
-			data: []
+			weekly: {
+				options: {},
+				data: [],
+				xAxisData: []
+			},
+			search: {
+				options: {},
+				data: [],
+				xAxisData: []
+			}
 		},
-		setData: function(data, type){
-			console.info(data, type);
-			$scope.graphSection[type].data = data;
+		setData: function(data, dateType, type){
+			$scope.graphSection[type][dateType].data = data;
 			$timeout(function(){
-				if(type === graphType[0]){ //mockup - color 설정 후
-					$scope.graphSection[type].options.chart.legend.dispatch.legendClick({
-						seriesIndex: 0
-					});
+				if(type === graphTypes[0]){
+					if($scope.graphSection[type][dateType].options.chart.legend !== undefined){
+						$scope.graphSection[type][dateType].options.chart.legend.dispatch.legendClick({
+							seriesIndex: 0
+						});
+					}
 				}
 			});
 		},
-		update: function(type){
-			if($scope.graphSection[type].options.chart.api !== null){
-				$scope.graphSection[type].options.chart.api.update();
+		update: function(){
+			for(var t = 0; t < graphTypes.length; t++){
+				var type = graphTypes[t];
+				for(var d = 0; d < graphDateTypes.length; d++){
+					var dateType = graphDateTypes[d];
+					if($scope.graphSection[type][dateType].options.chart.api !== null){
+						$scope.graphSection[type][dateType].options.chart.api.update();
+					}
+				}
 			}
 		},
-		xAxisData: [],
-		setXAxisData: function(data, type){
-			$scope.graphSection[type].options.chart.xAxisData = data;
-		},
-		getXAxisData: function(type){
-			return $scope.graphSection[type].options.chart.xAxisData;
+		setXAxisData: function(data, dateType, type){
+			$scope.graphSection[type][dateType].xAxisData = data;
 		},
 		selectChartItem: function(parentClass, chartData, item){
 	        item.disabled = true;
@@ -286,8 +235,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 	        }
 	    },
 		resizeHandle: function(){
-		    $scope.graphSection.update(graphType[0]);
-		    $scope.graphSection.update(graphType[1]);
+		    $scope.graphSection.update();
 		},
 		bindResize: function(){
 			angular.element($window).bind(
@@ -302,15 +250,127 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			);	
 		},
 		init: function(){
-			$scope.graphSection.bindResize();
-			$scope.graphSection.getGraph("Today", graphType[0]).then(
-				function(){
-					$scope.graphSection.getGraph("Today", graphType[1]);
-				},
-				function(failData){
-					console.error(failData);
+			var deferred = $q.defer();
+			var gs = $scope.graphSection;
+			var promises = [];
+
+			var failCallback = function(errorData){
+				console.error(errorData);
+				deferred.reject("Fail");
+			};
+			var todayAverage = function(){
+				return gs.getGraph(graphDateTypes[0], graphTypes[0]);
+			};
+			var todayCumulative = function(){
+				return gs.getGraph(graphDateTypes[0], graphTypes[1]);
+			};
+			var weeklyAverage = function(){
+				return gs.getGraph(graphDateTypes[1], graphTypes[0]);
+			};
+			var weeklyCumulative = function(){
+				return gs.getGraph(graphDateTypes[1], graphTypes[1]);
+			};
+
+			promises.push(gs.setChartOptions);
+			promises.push(todayAverage);
+			// promises.push(todayCumulative);
+			promises.push(weeklyAverage);
+			// promises.push(weeklyCumulative);
+
+			if(promises.length > 0){
+				$q.seqAll(promises).then(
+					function(){
+						gs.bindResize();
+						deferred.resolve("Success");
+					}, 
+					failCallback
+				);
+			}
+
+			return deferred.promise;
+		},
+		setChartOptions: function(){
+			var deferred = $q.defer();
+			var gs = $scope.graphSection;
+
+			var commonOptions = {
+				chart: {
+					height: 300,
+					margin : {
+						bottom: 20,
+						left: 40
+					},
+					x: function(d){
+						return d[0];
+					},
+					y: function(d){
+						return d[1];
+					},
+					clipEdge: true,
+					api: null,
+					useInteractiveGuideline: true,
+					xAxis: {
+						showMaxMin: true,
+						tickFormat: null
+					},
+					yAxis: {
+						showMaxMin: true,
+						tickFormat: changeYAxisFormat
+					},
+					showLegend: true
 				}
-			);
+			};
+
+			var eachChartOptions = {
+				average: {
+					type: 'lineChart',
+					useVoronoi: false,
+					transitionDuration: 500,
+					dispatch: {
+						renderEnd: function(){
+							console.log("renderEnd");
+						}
+					},
+					legend: {}
+				},
+				cumulative: {
+					type: 'multiBarChart',
+					duration: 500,
+					stacked: false,
+					showControls: false
+				}
+			};
+
+			graphTypes.forEach(function(type, t){
+				graphDateTypes.forEach(function(dateType, d){
+					gs[type][dateType].options = angular.copy(commonOptions);
+					//tickFormat
+					gs[type][dateType].options.chart.xAxis.tickFormat = function(index) {
+						var data = gs[type][dateType].xAxisData[index];
+						var resultInterval = gs[type][dateType].data[0].resultInterval;
+						return changeFormatForGraph(data, resultInterval);
+					};
+					for(var k in eachChartOptions[type]){
+						gs[type][dateType].options.chart[k] = eachChartOptions[type][k];
+						if(type === graphTypes[0] && k === "legend"){
+							gs[type][dateType].options.chart[k] = {
+								dispatch: {
+									legendClick: function(item){
+										gs.selectChartItem(
+											'.pc-realtime-graph-today', 
+											gs.average[dateType].data,
+											item
+										);
+									}
+								}
+							};
+						}
+					}
+				});
+			});
+
+			deferred.resolve("Success");
+			return deferred.promise;
 		},
 		getGraph: function(dateType, type){
 			var deferred = $q.defer();
@@ -320,6 +380,10 @@ kindFramework.controller('QMStatisticsCtrl', function (
 
 				var xAxisData = [];
 				var allChartData = [];
+				var tableData = {
+					rules: [],
+					timeTable: []
+				};
 
 				for(var i = 0, len = data.length; i < len; i++){
 					var self = data[i];
@@ -327,10 +391,11 @@ kindFramework.controller('QMStatisticsCtrl', function (
 					var chartData = {
 						key: self.name + ' - ' + self.direction,
 						values: [],
-						seriesIndex: i
+						seriesIndex: i,
+						resultInterval: self.resultInterval
 					};
 
-					if(type === graphType[0]){
+					if(type === graphTypes[0]){
 						chartData.color =  i === 0 ? chartColor.selected : chartColor.default;
 						chartData.area = true;
 					}
@@ -344,8 +409,8 @@ kindFramework.controller('QMStatisticsCtrl', function (
 					allChartData.push(chartData);
 				}
 
-				$scope.graphSection.setData(allChartData, type);
-				$scope.graphSection.setXAxisData(xAxisData, type);
+				$scope.graphSection.setData(allChartData, dateType, type);
+				$scope.graphSection.setXAxisData(xAxisData, dateType, type);
 
 				deferred.resolve("Success");
 			}
@@ -355,18 +420,27 @@ kindFramework.controller('QMStatisticsCtrl', function (
 				console.error(failData);
 			}
 
-			if(dateType === graphDateType[0]){
+			if(dateType === graphDateTypes[0]){
 				qmModel
 					.getTodayGraphData(type)
 					.then(successCallback, failCallback);
-			}else if(dateType === graphDateType[1]){
+			}else if(dateType === graphDateTypes[1]){
 				qmModel
 					.getWeeklyGraphData(type)
 					.then(successCallback, failCallback);
 			}else{
-				// qmModel
-				// 	.getSearchGraphData(type)
-				// 	.then(successCallback, failCallback);
+				var dateForm = $scope.pcConditionsDateForm;
+				var toCalenderTimeStamp = dateForm.toCalender.getTime();
+				var fromCalenderTimeStamp = dateForm.fromCalender.getTime();
+
+				var searchOptions = {
+					fromDate: fromCalenderTimeStamp,
+					toDate: toCalenderTimeStamp
+				};
+
+				qmModel
+					.getSearchGraphData(type, searchOptions)
+					.then(successCallback, failCallback);
 			}
 
 			return deferred.promise;
@@ -375,13 +449,296 @@ kindFramework.controller('QMStatisticsCtrl', function (
 
 	$scope.searchSection = {
 		start: function(){
-		},
-		openReport: function(){
+			var deferred = $q.defer();
+			var gs = $scope.graphSection;
+			var promises = [];
+
+			var failCallback = function(errorData){
+				console.error(errorData);
+				deferred.reject("Fail");
+			};
+			var searchAverage = function(){
+				return gs.getGraph(graphDateTypes[2], graphTypes[0]);
+			};
+			var searchCumulative = function(){
+				return gs.getGraph(graphDateTypes[2], graphTypes[1]);
+			};
+
+			promises.push(searchAverage);
+			// promises.push(searchCumulative);
+
+			if(promises.length > 0){
+				$q.seqAll(promises).then(
+					function(){
+						gs.bindResize();
+						deferred.resolve("Success");
+					}, 
+					failCallback
+				);
+			}
+
+			return deferred.promise;
 		}
 	};
 
+	function exportSuccessCallback(data){
+        var specialHeaders = [];
+        specialHeaders[0] = {};
+        specialHeaders[0].Type = 'Content-Type';
+        specialHeaders[0].Header = 'application/json';
+
+        var dateForm = $scope.pcConditionsDateForm;
+		var toCalenderTimeStamp = dateForm.toCalender;
+		var fromCalenderTimeStamp = dateForm.fromCalender;
+
+		var changeFormat = function(dateObj){
+			var year = dateObj.getFullYear();
+	        var month = dateObj.getMonth() + 1;
+	        var day = dateObj.getDate();
+	        var hour = dateObj.getHours();
+	        var minute = dateObj.getMinutes();
+	        var second = dateObj.getSeconds();
+
+			month = month < 10 ? "0" + month : month;
+	        day = day < 10 ? "0" + day : day;
+	        hour = hour < 10 ? "0" + hour : hour;
+	        minute = minute < 10 ? "0" + minute : minute;
+			second = second < 10 ? "0" + second : second;
+
+			var str = [
+				year,
+				'-',
+				month,
+				'-',
+				day,
+				' ',
+				hour,
+				':',
+				minute,
+				':',
+				second
+			];
+
+			return str.join('');
+		};
+
+        var postData = {
+            'fileTitle': data.title,
+            'fileDesc': data.description,
+            'fileName': data.fileName,
+            'fileType': data.extension,
+            'countandzone': 'People Counting',
+            'period': changeFormat(fromCalenderTimeStamp) + ' - ' + changeFormat(toCalenderTimeStamp),
+            'currentDateStr': changeFormat(new Date()),
+            'searchResultData': {
+	        	"format":"",
+	        	"recCnt":"",
+	        	"curOffset":"0",	        	
+	        	"recInfo":[]
+	    	}
+        };
+
+        var format = $scope.resultSection.getXAxisFormat();
+        format = format.replace(format[0], format[0].toUpperCase()) + 's';
+        postData.searchResultData.format = format;
+
+		var recInfo = [];
+		var resultTableData = $scope.resultSection.getTableData();
+
+        postData.searchResultData.recCnt = resultTableData.timeTable.length + "";
+
+        for(var i = 0, len = resultTableData.timeTable.length; i < len; i++){
+        	var recInfoItem = {};
+        	recInfoItem.time = resultTableData.timeTable[i];
+        	//Zero index is always rule name.
+        	for(var j = 0, jLen = resultTableData.rules.length; j < jLen; j++){
+        		var name = resultTableData.rules[j][0];
+	        	recInfoItem[name] = resultTableData.rules[j][i + 1] + "";
+        	}
+
+        	recInfo.push(recInfoItem);
+        }
+
+        postData.searchResultData.recInfo = recInfo;
+
+        //searchResultData have to be string.
+        postData.searchResultData = JSON.stringify(postData.searchResultData);
+
+        var encodedta = encodeURI(JSON.stringify(postData));
+
+        var url = "/home/exportToExcel.cgi?dumy=" + new Date().getTime();
+        SunapiClient.file(url,
+            function (response) {
+                var filename = postData.fileName + '.' +postData.fileType;
+                var contentType = 'text/plain';
+                var success = false;
+                if(postData.fileType==='.xlsx'){
+                    contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+                }                    
+                try{
+                    console.log("Trying SaveBlob method ...");
+
+                    var blob = new Blob([response.data], {type: contentType});
+                    if (navigator.msSaveBlob) {
+                        navigator.msSaveBlob(blob, filename);
+                    }
+                    else {
+                        var saveBlob = navigator.webkitSaveBlob || navigator.mozSaveBlob || navigator.saveBlob;
+                        if (saveBlob === undefined) {
+                            throw "Not supported";
+                        }
+                        saveBlob(blob, filename);
+                    }
+                    console.log("SaveBlob succeded");
+                    success = true;
+                }
+                catch (ex) {
+                    console.log("SaveBlob method failed with the exception: ", ex);
+                }
+
+                if (!success) {
+                    var urlCreator = window.URL || window.webkitURL || window.mozURL || window.msURL;
+                    if (urlCreator) {
+                        var link = document.createElement('a');
+                        if ('download' in link) {
+                            try {
+                                console.log("Trying DownloadLink method ...");
+
+                                var blob = new Blob([response.data], {type: contentType});
+                                var url = urlCreator.createObjectURL(blob);
+                                link.setAttribute('href', url);
+                                link.setAttribute("download", filename);
+
+                                var event = document.createEvent('MouseEvents');
+                                event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+                                link.dispatchEvent(event);
+
+                                console.log("Succeeded File Export");
+                                success = true;
+                            }
+                            catch (ex) {
+                                console.log("DownloadLink method failed with exception: ", ex);
+                            }
+                        }
+                        if (!success) {
+                            try {
+                                console.log("Trying DownloadLink method with WindowLocation ...");
+                                var blob = new Blob([response.data], {type: contentType});
+				                var reader = new FileReader();
+				                var downloadText = function(){
+				                	var text = reader.result;
+				                	var form = document.createElement('form');
+						            var input = document.createElement('input');
+						            var input2 = document.createElement('input');
+						            var iframe = document.createElement('iframe');
+
+						            form.action = '/home/setup/imagedownload.cgi';
+						            form.method = 'POST';
+						            form.id = 'captureForm';
+
+						            input.type = 'hidden';
+						            input.name = 'backupfileData';
+						            input.id = 'backupfileData';
+						            input.value = text;
+
+						            input2.type = 'hidden';
+						            input2.name = 'fileName';
+						            input2.id = 'fileName';
+						            input2.value = filename;
+
+						            form.appendChild(input);
+						            form.appendChild(input2);
+
+						            iframe.style.display = 'none';
+						            iframe.name = 'captureFrame';
+						            iframe.id = 'captureFrame';
+						            iframe.width = '0px';
+						            iframe.height = '0px';
+
+						            form.target = 'captureFrame';
+						            document.body.appendChild(iframe);
+						            document.body.appendChild(form);
+						            
+						            form.submit();
+
+						            var interval;
+						            var captureFrame = $('#' + iframe.id);
+						            var captureForm = $('#' + form.id);
+						            captureFrame.unbind();
+						            interval = setTimeout(function(){
+
+						                captureFrame.unbind();
+						                captureForm.remove();
+						                captureFrame.remove();
+						            }, 1000);
+				                };
+				                reader.readAsText(blob);
+				                reader.onload = downloadText;
+                                console.log("DownloadLink method with WindowLocation succeeded");
+                                success = true;
+                            }
+                            catch (ex) {
+                                console.log("DownloadLink method with WindowLocation failed with exception: ", ex);
+                            }
+                        }
+                    }
+                }
+
+                if (!success) {
+                    console.log("No methods worked for saving the arraybuffer, Using Resort window.open");
+                    var httpPath = '';
+                    window.open(httpPath, '_blank', '');
+                }
+            }, 
+            function (errorData) {
+                console.log(errorData);
+            }, $scope, encodedta, specialHeaders);
+	}
+
 	$scope.resultSection = {
-		view: false
+		view: false,
+		show: function(){
+			$scope.resultSection.showResults = true;
+		},
+		hide: function(){
+			$scope.resultSection.showResults = false;
+		},
+		noResults: false,
+		tableData: {},
+		setTable: function(data){
+			$scope.resultSection.tableData = data;
+		},
+		getTableData: function(){
+			return $scope.resultSection.tableData;
+		},
+		getReport: function(){
+		  pcModalService.openReportForm().then(
+		  	exportSuccessCallback, 
+		  	function(){
+		  		console.log("Fail Report");
+		  	}
+		  );
+		},
+		xAxisFormat: '',
+		setXAxisFormat: function(resultInterval){
+			var format = '';
+			switch(resultInterval){
+				case 'Hourly':
+					format = 'hour';
+				break;
+				case 'Daily':
+					format = 'day';
+				break;
+				case 'Monthly':
+					format = 'month';
+				break;
+			}
+
+			$scope.resultSection.xAxisFormat = format;
+		},
+		getXAxisFormat: function(){
+			return $scope.resultSection.xAxisFormat;
+		}
 	};
 
 	function changeDateFormat(date, useMonth, useDay, useTime){
@@ -623,8 +980,8 @@ kindFramework.controller('QMStatisticsCtrl', function (
 		}
 
 		var failCallback = function(errorData){
-			$scope.pageLoaded = true;
 			console.error(errorData);
+			deferred.reject("Fail");
 		};
 
 		var resizeGraph = function(){
@@ -648,23 +1005,26 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						$scope.queueLevelSection.start(1);
 						$scope.queueLevelSection.start(2);
 						//Graph
-						$scope.graphSection.init();
-
-						$scope.pcConditionsDateForm.init(
+						$scope.graphSection.init().then(
 							function(){
-								$scope.pageLoaded = true;
-								resizeGraph();
-							}, 
-							failCallback
-						);
+								$scope.pcConditionsDateForm.init(
+									function(){
+										resizeGraph();
+										deferred.resolve("Success");
+									}, 
+									failCallback
+								);
+							},
+							function(failData){
+								console.error(failData);
+							}
+						)
 					}, 
 					failCallback
 				);
 			},
 			failCallback
 		);
-
-		deferred.resolve("Success");
 
 		return deferred.promise;
 	};
@@ -686,6 +1046,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			$scope.queueLevelSection.stop(0);
 			$scope.queueLevelSection.stop(1);
 			$scope.queueLevelSection.stop(2);
+			qmModel.cancelSearch();
         }
     });
 

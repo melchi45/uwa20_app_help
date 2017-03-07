@@ -74,10 +74,11 @@
                     {{ lang.graph.average | translate }}
                 </figcaption>
                 <nvd3 
-                    options="graphSection.average.options" 
-                    data="graphSection.average.data" 
-                    api="graphSection.average.api" 
-                    config="graphSection.chartConfig"></nvd3>
+                    options="graphSection.average.today.options" 
+                    data="graphSection.average.today.data" 
+                    api="graphSection.average.today.options.chart.api" 
+                    config="graphSection.chartConfig"
+                    ng-if="pageLoaded"></nvd3>
             </figure>
 
             <figure class="pc-realtime-graph-week">
@@ -85,10 +86,11 @@
                     {{ lang.graph.cumulative | translate }}
                 </figcaption>
                 <nvd3 
-                    options="graphSection.cumulative.options" 
-                    data="graphSection.cumulative.data" 
-                    api="graphSection.cumulative.api" 
-                    config="graphSection.chartConfig"></nvd3>
+                    options="graphSection.cumulative.today.options" 
+                    data="graphSection.cumulative.today.data" 
+                    api="graphSection.cumulative.today.options.chart.api" 
+                    config="graphSection.chartConfig"
+                    ng-if="pageLoaded"></nvd3>
             </figure>
         </section>  
 
@@ -107,22 +109,24 @@
                 <figcaption class="pc-n-hm-heading-lv3">
                     {{ lang.graph.average | translate }}
                 </figcaption>
-                <!-- <nvd3 
-                    options="graphSection.week.average.options" 
-                    data="graphSection.week.average.data" 
-                    api="graphSection.week.average.api" 
-                    config="graphSection.chartConfig"></nvd3> -->
+                <nvd3 
+                    options="graphSection.average.weekly.options" 
+                    data="graphSection.average.weekly.data" 
+                    api="graphSection.average.weekly.options.chart.api" 
+                    config="graphSection.chartConfig"
+                    ng-if="pageLoaded"></nvd3>
             </figure>
 
             <figure class="pc-realtime-graph-week">
                 <figcaption class="pc-n-hm-heading-lv3">
                     {{ lang.graph.cumulative | translate }}
                 </figcaption>
-                <!-- <nvd3 
-                    options="graphSection.week.cumulative.options" 
-                    data="graphSection.week.cumulative.data" 
-                    api="graphSection.week.cumulative.api"
-                    config="graphSection.chartConfig"></nvd3> -->
+                <nvd3 
+                    options="graphSection.cumulative.weekly.options" 
+                    data="graphSection.cumulative.weekly.data" 
+                    api="graphSection.cumulative.weekly.options.chart.api" 
+                    config="graphSection.chartConfig"
+                    ng-if="pageLoaded"></nvd3>
             </figure>
         </section>  
 
@@ -211,31 +215,76 @@
         </div>
 
         <hr class="wn5-setup-hr" ng-hide="!resultSection.view">
-        <div class="pc-n-hm-section" id="hm_results" 
-            ng-hide="!resultSection.view">
+
+        <section id="pc-results"
+            ng-show="resultSection.view">
             <h3 class="applyColor">{{ lang.results.title | translate }}</h3>
-            <!-- <div 
-                class="pc-n-hm-section" 
-                id="hm-results-heatmap">
-                <figure class="hm-results-heatmap-item">
-                    <img src="" id="hm-results-image-1">
-                    <figcaption class="hm-results-heatmap-figcaption" id="hm-results-label-1">{{deviceName}}</figcaption>
-                </figure>
-            </div> -->
+            <hr class="wn5-setup-hr">
+
+            <article 
+                class="pc-statistics-dialog"
+                ng-show="resultSection.noResults">
+                <p 
+                    class="pc-statistics-dialog-title">
+                    {{lang.results.noResults | translate}}
+                </p>
+            </article>
+
+            <figure 
+                class="pc-results-graph pc-graph-fix-tooltip"
+                ng-hide="resultSection.noResults">
+                <nvd3 
+                    options="graphSection.average.search.options" 
+                    data="graphSection.average.search.data" 
+                    api="graphSection.average.search.options.chart.api" 
+                    config="graphSection.chartConfig"
+                    ng-if="resultSection.view"></nvd3>
+            </figure>
+
+            <figure 
+                class="pc-results-graph pc-graph-fix-tooltip"
+                ng-hide="resultSection.noResults">
+                <nvd3 
+                    options="graphSection.cumulative.search.options" 
+                    data="graphSection.cumulative.search.data" 
+                    api="graphSection.cumulative.search.options.chart.api" 
+                    config="graphSection.chartConfig"
+                    ng-if="resultSection.view"></nvd3>
+            </figure>
+
+            <div 
+                class="table-wrapper"
+                ng-hide="resultSection.noResults">
+                <table class="pc-n-hm-table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center pc-results-table-rule">{{ "Rule" | translate }}</th>
+                            <th 
+                                ng-repeat="timeData in resultSection.tableData.timeTable track by $index"
+                                class="text-center">
+                                {{timeData}}
+                            </th>
+                            <th class="text-center">{{ "SUM" | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ruleData in resultSection.tableData.rules track by $index">
+                            <td ng-repeat="rule in ruleData track by $index">{{rule}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="text-center pc-conditions-buttons wn5-setup-common-button">
-                <button
-                    type="button" 
+                <button 
                     class="btn btn-black" 
-                    ng-disabled="!resultSection.view"
-                    ng-click="searchSection.openReport()">
+                    type="button" 
+                    ng-disabled="!resultSection.view || resultSection.noResults"
+                    ng-click="conditionsSection.getReport()">
                     {{ lang.results.button | translate }}
                 </button>
             </div>
-        </div>
+        </section>
 
-        <hr 
-            class="pc-n-hm-hr"
-            ng-hide="!resultSection.view">
     </form>
 </div>

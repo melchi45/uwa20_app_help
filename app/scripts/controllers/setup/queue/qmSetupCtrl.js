@@ -722,7 +722,6 @@ kindFramework.controller('QMSetupCtrl',
         } else {
             view();
         }
-
 	}
 
 	$scope.submitEnable = function(){
