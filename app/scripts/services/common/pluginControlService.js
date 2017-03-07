@@ -1,9 +1,9 @@
 "use strict";
 kindFramework
 .service('PluginControlService', ['$rootScope', '$timeout', 'Attributes', 'SunapiClient', 'UniversialManagerService', '$interval',
-  'kindStreamInterface', 'ModalManagerService', '$translate', 'CAMERA_STATUS', 'EventNotificationService', 'PlayDataModel',
+  'kindStreamInterface', 'ModalManagerService', '$translate', 'CAMERA_STATUS', 'EventNotificationService', 'PlayDataModel', 'PTZContorlService', 'PTZ_TYPE',
   function($rootScope, $timeout, Attributes, SunapiClient, UniversialManagerService, $interval, 
-    kindStreamInterface, ModalManagerService, $translate, CAMERA_STATUS, EventNotificationService, PlayDataModel){
+    kindStreamInterface, ModalManagerService, $translate, CAMERA_STATUS, EventNotificationService, PlayDataModel, PTZContorlService, PTZ_TYPE){
     var sunapiAttributes = Attributes.get();  //--> not common.
     var pluginElement = null,
         rtspIP = null,
@@ -307,6 +307,41 @@ kindFramework
       }
     };
 
+    this.setManualTrackingMode = function(_mode)
+    {
+      try {
+          if(pluginElement !== null && pluginElement !== undefined){
+              // jshint ignore:line
+              if(_mode !== true && _mode !== false)
+              {
+                  throw new Error(300, "Argument Error");
+                  return;
+              }
+
+              if(_mode)
+              {
+                  PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
+                  PTZContorlService.setManualTrackingMode("True");
+
+                  pluginElement.SetManualTrackingModeOnOff(1);
+              }
+              else
+              {
+                  PTZContorlService.setManualTrackingMode("False");
+                  pluginElement.SetManualTrackingModeOnOff(0);
+              }
+              console.log("pluginControlService::setManualTrackingMode() ===>" + _mode + " Manual Tracking");
+          }
+          else
+          {
+              throw new Error(400, "PlugIn Element is empty");
+          }
+      }catch (e)
+      {
+          console.log(e.message);
+      }
+    };
+
     function updatePluginEventNotification(eventType, status){
       var data = {
         type:'',
@@ -346,6 +381,23 @@ kindFramework
       }
 
       EventNotificationService.updateEventStatus(data);
+    }
+
+    function runManualTracking(xPos, yPos)
+    {
+        var pluginElement = document.getElementsByTagName("channel_player")[0].getElementsByTagName("object")[0];
+
+        if(xPos >=0  && yPos >= 0) {
+            var rotate = UniversialManagerService.getRotate();
+            if(rotate === '90' || rotate === '270') {
+                xPos = Math.ceil(xPos*(10000 / pluginElement.offsetHeight));
+                yPos = Math.ceil(yPos*(10000 / pluginElement.offsetWidth));
+            } else {
+                xPos = Math.ceil(xPos*(10000 / pluginElement.offsetWidth));
+                yPos = Math.ceil(yPos*(10000 / pluginElement.offsetHeight));
+            }
+            PTZContorlService.execute([xPos, yPos]);
+        }
     }
 
     var reconnectionTimeout = null;
@@ -406,6 +458,12 @@ kindFramework
         case 301: //Event Notification
           updatePluginEventNotification(lp, rp);
           break;
+        case 311: //AreaZoom
+
+            break;
+        case 312: //Manual Tracking
+            runManualTracking(lp, rp);
+            break;
         case 351:
           if( timelineCallback !== null ) {
               timelineCallback({'timezone':lp,'timestamp':rp}, stepFlag !== undefined ? stepFlag : undefined);

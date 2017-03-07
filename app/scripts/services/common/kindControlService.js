@@ -2,10 +2,10 @@ kindFramework
 .service('KindControlService', ['$rootScope', 'LoggingService', 'kindStreamInterface', 
   'UniversialManagerService', 'ConnectionSettingService', 'Attributes', 'ModalManagerService',
   '$translate', 'CAMERA_STATUS', 'EventNotificationService', 'AccountService', '$q', 'SunapiClient',
-  '$timeout',
+  '$timeout', 'PTZContorlService', 'PTZ_TYPE',
 	function($rootScope, LoggingService, kindStreamInterface, UniversialManagerService, 
     ConnectionSettingService, Attributes, ModalManagerService, $translate, CAMERA_STATUS, 
-    EventNotificationService, AccountService, $q, SunapiClient, $timeout){
+    EventNotificationService, AccountService, $q, SunapiClient, $timeout, PTZContorlService, PTZ_TYPE){
     var NonPluginProfile = "PLUGINFREE";
     var NonPluginResolution = "1920x1080";
     var NonPluginResolution_Multi = "1536x676";
@@ -185,6 +185,58 @@ kindFramework
 
     this.closeStream = function(_scope) {
       _scope.playerdata = ConnectionSettingService.closeStream();
+    };
+
+    function mouseup_manualTracking (event) {
+        if(event.target.id !== "livecanvas") return;
+
+        var canvas = document.getElementsByTagName("channel_player")[0].getElementsByTagName("canvas")[0];
+        var xPos = event.offsetX;
+        var yPos = event.offsetY;
+
+        if(xPos >=0  && yPos >= 0) {
+            var rotate = UniversialManagerService.getRotate();
+
+            if(rotate === '90' || rotate === '270') {
+                xPos = Math.ceil(xPos*(10000 / canvas.offsetHeight));
+                yPos = Math.ceil(yPos*(10000 / canvas.offsetWidth));
+            } else {
+                xPos = Math.ceil(xPos*(10000 / canvas.offsetWidth));
+                yPos = Math.ceil(yPos*(10000 / canvas.offsetHeight));
+            }
+
+            PTZContorlService.execute([xPos, yPos]);
+        }
+    }
+
+    this.setManualTrackingMode = function(_mode){
+        try {
+            if(_mode !== true && _mode !== false)
+            {
+                throw new Error(300, "Argument Error");
+                return;
+            }
+
+            var elementChannelPlayer = document.getElementsByTagName("channel_player")[0];
+
+            if(_mode)
+            {
+                PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
+                PTZContorlService.setManualTrackingMode("True");
+
+                elementChannelPlayer.addEventListener('mouseup', mouseup_manualTracking);
+            }
+            else
+            {
+                PTZContorlService.setManualTrackingMode("False");
+                elementChannelPlayer.removeEventListener('mouseup', mouseup_manualTracking);
+            }
+
+            console.log("pluginControlService::setManualTrackingMode() ===>" + _mode + "AreaZoom");
+        }catch (e)
+        {
+            console.log(e.message);
+        }
     };
 
     var waitUWAProfile = function () {

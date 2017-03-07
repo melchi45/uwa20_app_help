@@ -1,9 +1,9 @@
 "use strict";
 kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerService', 
 	'SunapiClient', '$timeout', 'DigitalPTZContorlService', 'ModalManagerService', '$translate',
-	'$interval','Attributes', 'COMMONUtils', 'PTZContorlService', 'PTZ_TYPE',
+	'$interval','Attributes', 'COMMONUtils', 'PTZContorlService', '$rootScope',
 	function(CAMERA_STATUS, UniversialManagerService, SunapiClient, $timeout, DigitalPTZContorlService,
-		ModalManagerService, $translate, $interval, Attributes, COMMONUtils, PTZContorlService, PTZ_TYPE) {
+		ModalManagerService, $translate, $interval, Attributes, COMMONUtils, PTZContorlService, $rootScope) {
 		return {
 			restrict: 'E',
 			scope: false,
@@ -229,40 +229,13 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 			}
 		};
 
-		function mouseUp (event) {
-			if(event.target.id !== "livecanvas") return;
-
-			var canvas = document.getElementsByTagName("channel_player")[0].getElementsByTagName("canvas")[0];
-			var xPos = event.offsetX;
-			var yPos = event.offsetY;
-
-            if(xPos < 0 || yPos < 0) { // out of frame
-				return;
-			} else {
-				var rotate = UniversialManagerService.getRotate();
-
-				if(rotate === '90' || rotate === '270') {
-					xPos = Math.ceil(xPos*(10000 / canvas.offsetHeight));
-					yPos = Math.ceil(yPos*(10000 / canvas.offsetWidth));
-				} else {
-					xPos = Math.ceil(xPos*(10000 / canvas.offsetWidth));
-					yPos = Math.ceil(yPos*(10000 / canvas.offsetHeight));
-				}
-
-				PTZContorlService.execute([xPos, yPos]);
-			}
-        }
-
 		scope.setManualTracking = function() {
 			try{
-                var elemChannelPlayer = document.getElementsByTagName("channel_player")[0];
-
                 if("True" === PTZContorlService.getManualTrackingMode())
                 {
-                    PTZContorlService.setManualTrackingMode("False");
+                    $rootScope.$emit('channelPlayer:command', 'manualTracking', false);
                     scope.modePTZ.ManualTrackingMode = false;
                     scope.modePTZ.AreaZoom = false;
-                    elemChannelPlayer.removeEventListener('mouseup', mouseUp);
                 }
                 else if("False" === PTZContorlService.getManualTrackingMode())
 				{
@@ -271,9 +244,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                         PTZContorlService.setAutoTrackingMode("False");
 					}
 
-					PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
-                    PTZContorlService.setManualTrackingMode("True");
-                    elemChannelPlayer.addEventListener('mouseup', mouseUp);
+                    $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
                     scope.modePTZ.ManualTrackingMode = true;
                     scope.modePTZ.AreaZoom = false;
 				}
@@ -301,77 +272,6 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
               PTZContorlService.setManualTrackingMode("False");
           }
         };
-
-        var ManualTracking = (function(){
-            var _ManualTracking = function(){
-
-                this._$init.apply(this, arguments);
-            };
-
-            /* private method */
-            var _eventHandler = function(){
-
-            };
-
-            /* public method */
-            _ManualTracking.prototype= {
-                _$init : function(e)
-                {
-                    /* 초기화 */
-                },
-                enable : function () {
-                    _eventHandler.apply(this);
-                },
-                disable : function () {
-
-                },
-                prev : function() {
-
-                },
-                next: function () {
-
-                }
-            };
-
-            return _ManualTracking;
-        })();
-
-		var AreaZoom = (function(){
-		    var _aAreaZoomList = null;
-
-		    var _AreaZoom = function(){
-              _aAreaZoomList = [];
-
-		      this._$init.apply(this, arguments);
-            };
-
-		    /* private method */
-		    var _eventHandler = function(){
-
-            };
-
-		    /* public method */
-            _AreaZoom.prototype= {
-		      _$init : function(e)
-              {
-                /* 초기화 */
-              },
-              enable : function () {
-                  _eventHandler.apply(this);
-              },
-              disable : function () {
-
-              },
-              prev : function() {
-
-              },
-              next: function () {
-
-              }
-            };
-
-		    return _AreaZoom;
-        })();
 
         var presetListCallback = function(result) {
 	        if (result.PTZPresets === undefined) {
