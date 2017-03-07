@@ -1,0 +1,378 @@
+/* Heat Map
+---------------------------------------*/
+#hm-results-heatmap {
+	.hm-results-heatmap-item {
+		position: relative;
+		width: 640px;
+		margin: 0 auto;
+
+		@media(max-width: @setup-mobile-max-width){
+			width: 100%;
+			> img {
+				width: 100% !important;
+				height: auto !important;
+			}
+		}
+	}
+
+	/*
+	.hm-results-heatmap-item:nth-child(even) {
+		padding-left: 10px;
+	}
+
+	.hm-results-heatmap-item:nth-child(odd) {
+		padding-right: 10px;
+	}
+	*/
+
+	.hm-results-overimg{
+		position: absolute;
+		top: 20px;
+		left: 0;
+		z-index: 1;
+
+		width: 640px;
+		height: 640px;
+
+		background-repeat: no-repeat;
+	}
+
+	.hm-results-heatmap-figcaption {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.hm-results-heatmap-canvas {
+		width:640px;
+		height:640px;
+		margin-top: 20px;
+
+		background-repeat: no-repeat;
+	}
+}
+
+.hm-setup-overlay-heatmap {
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: @wn5-setup-tab-content-padding;
+	z-index: 999;
+	
+	> img {
+		border: 0;
+	}
+
+	@media(max-width: @setup-mobile-max-width){
+		width: 100%;
+		> img {
+			width: 100%;
+		}
+	}	
+}
+
+#hm-setup-camera-height-slider {
+	width: 300px;
+	float: left;
+}
+
+#hm-setup-camera-height-slider-meter {
+	float: left;
+	line-height: 39px;
+}
+
+div.hm_index > div {
+	width: 640px;
+	padding: 0 @wn5-setup-responsive-ui-content-padding-left;
+}
+
+div.hm_index div.hm_index_image{
+	width: 640px;
+	height:9px;
+	background-image:url("@{images}/hm_statistics_index.png");
+	background-repeat: no-repeat;
+	margin:2px 0;
+}
+div.hm_index span:first-of-type{
+	float:left;
+}
+div.hm_index span:last-of-type{
+	float:right;
+}
+
+#hm_conditions {
+	.section();
+}
+
+#hm_conditions > label:first-of-type{
+	padding-bottom:15px;
+	font-weight: 700;
+}
+
+#hm_rule_table{
+	max-width:800px;
+	tr td input[type="checkbox"]{
+		margin-right:5px;
+	}
+	tr:nth-of-type(1) td{
+		background-color:#d9d9d9;
+	}
+	tr:nth-of-type(2) td{
+		background-color:#b4c7e7;
+	}
+	tr:nth-of-type(3) td{
+		background-color:#c5e0b4;
+	}
+	tr:nth-of-type(4) td{
+		background-color:#deebf7;
+	}
+}
+
+#hm_everyday_at select{
+	display: inline-block;
+	width:150px;
+}
+
+.hm_hr_line_ddd {
+    width:100%;
+    height: 1px;
+    float:left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color:#ddd;
+}
+
+.hm_hr_line_ccc {
+    width:100%;
+    height: 1px;
+    float:left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color:#ccc;
+}
+
+.hm_row{
+	width:100%;
+	padding:5px 0;
+	float:left;
+
+	label{
+		display: block;
+	}
+	canvas{
+		width:640px;
+		height:640px;
+		background-color: #eee;
+		border:2px dashed #ccc;
+	}
+}
+
+.hm_row_half{
+	width: 480px;
+	margin-left: 20px;
+	margin-right: 10px;
+	margin-top: 10px;
+	float: left;
+
+	label{
+		display: block;
+	}
+	canvas{
+		width:480px;
+		height:360px;
+		background-color: #eee;
+		border:2px dashed #ccc;
+	}
+}
+
+.hm_p0{
+	padding:0 !important;
+}
+.hm_dn{
+	display:none;
+}
+
+.hm_fwn{
+	font-weight: normal;
+}
+
+/* Calender Start */
+.hm-date-form {
+	position: relative;
+	z-index: 1;
+}
+
+.hm-calender-icon {
+	padding-left: 49px;
+}
+
+.hm-calender-icon .hm-calender-button {
+	position: absolute;
+	left: 15px;
+	top: 0px;
+	background: none;
+	border: 0;
+	margin-top: 3px;
+}
+
+.hm-calender-icon .hm-calender-button > span {
+	font-size: 22px;
+}
+
+.hm-calender-icon .hm-swung-dash {
+	position: absolute;
+	left: -3px;
+	top: 0px;
+	font-size: 16px;
+}
+
+.hm-calender-icon input[readonly] {
+	background-color: #fff;
+}
+
+.hm-calender {
+	position: absolute;
+	left: -119px;
+	top: 50px;
+	width: 300px;
+	padding: 10px 20px;
+	border: 1px solid #eee;
+	background-color: #fff;
+	border-radius: 3px;
+	outline: none;
+}
+
+.hm-calender table,
+.hm-calender button {
+	outline: none;
+}
+
+.hm-calender-arrow-top {
+	transform: rotate(-90deg);
+	position: absolute;
+	top: 33px;
+	left: 20px;
+	font-size: 20px;
+}
+/* Calender End */
+
+/*setup page*/
+.hm_msel{
+	display:inline-block;
+	width:80px;
+	margin-right:5px;
+	margin-left:15px;
+}
+#hm_everyday_at{
+	line-height:35px;
+}
+
+.hm_cbox{
+	width:100%;
+	height:170px;
+	background-color:#fdfdfd;
+	border:1px solid #ddd;
+	border-radius:2px;
+	padding:0 !important;
+}
+	.hm_cbox_title{
+		width:100%;
+		height:40px;
+		line-height:40px;
+		float:left;
+		padding:0 15px;
+		border-bottom:1px solid #ddd;
+	}
+		.hm_cbox_title span{
+			float:left;
+			font-weight: bold;
+		}
+		.hm_cbox_title input[type="button"]{
+			float:right;
+			padding:0;
+			height:22px;
+			line-height:20px;
+			margin:9px 0;
+			vertical-align: middle;
+			background-color:white;
+			border:1px solid #ddd;
+			border-radius:3px;
+		}
+		.hm_cbox_title input[type="button"][value="Slave"]{
+			width:50px;
+		}
+		.hm_cbox_title input[type="button"][value="X"]{
+			width:22px;
+		}
+	.hm_cbox_cont{
+		float:left;
+		padding:15px;
+	}
+		.hm_cbox_cont p{
+			margin-bottom:10px;
+			font-weight: bold;
+		}
+			.hm_cbox_cont p span:first-of-type{
+				display:inline-block;
+				width:50px;
+			}
+			.hm_cbox_cont p span:first-of-type::after{
+				float:right;
+				content:":";
+			}
+#hm_ip_add label{
+	width:20%;
+	line-height:30px;
+	float:left;
+}
+#hm_ip_add input{
+	width:80%;
+	height:30px;
+}
+#hm_ip_add button{
+	width:70px;
+	height:30px;
+	line-height:18px;
+}
+
+#hm_master .col-lg-3:first-of-type{
+	padding-left:0;
+	margin-bottom:20px;
+}
+#hm_slave .col-lg-3:first-of-type{
+	padding-left:0;
+}
+
+#hm_results{
+	.section();
+	max-width:1080px;
+}
+
+#hm-realtime-overimg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+
+	background-repeat: no-repeat;
+	.clearfix();
+
+	@media(max-width: @setup-mobile-max-width){
+		width: 100%;
+		> img {
+			width: 100%;
+		}
+	}	
+}
+
+img[id^="hm-results-image-"]{
+	margin-top:20px;
+}
+
+.hm-confirm-button-area{
+	padding-bottom: 20px;
+	padding-right:40px;
+}
+
+/* Heat Map
+---------------------------------------*/
