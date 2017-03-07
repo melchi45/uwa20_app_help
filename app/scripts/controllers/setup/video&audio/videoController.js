@@ -69,7 +69,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 function (response) {
                     var resValue;
                     try {
-                        resValue = response.data.Query[0].Zoom
+                        resValue = response.data.Query[0].Zoom;
                     } catch (e) {
                     }
                     if(resValue){
@@ -879,6 +879,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             flip: flip,
             mirror: mirror,
             support_ptz: mAttr.PTZModel,
+            support_zoomOnly: mAttr.ZoomOnlyModel,
             rotate: rotate,
             adjust: adjust
         };

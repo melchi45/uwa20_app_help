@@ -68,76 +68,77 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
     }
 
     function setSmartCodec() {
-        var setData = {},
-            ignoredKeys = ['Areas'],
-            changed = 0;
+        var ignoredKeys = ['Areas'],
+            functionList = [];
 
-        COMMONUtils.fillSetData(setData, $scope.SmartCodec[$scope.ch], pageData.SmartCodec[$scope.ch], ignoredKeys, false);
+        functionList.push(function(){
+            var setData = {},
+                changed = 0;
 
-        $.each(setData, function (k, value) {
-            changed++;
-        })
-
-        if (changed != 0) {
-            SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=set', setData,
-                function (response) {
-                    if(!angular.equals(pageData.SmartCodec, $scope.SmartCodec)){
-                        pageData.SmartCodec = angular.copy($scope.SmartCodec);
-                    }
-                },
-                function (errorData) {
-                    console.log(errorData);
-                }, '', true);
-        }
-
-        //$q.seqAll(promises).finally(function(){
-            changed = 0;
-        /*
-        ignoredKeys = ['Mode','QualityLevel'];
-
-        COMMONUtils.fillSetData(setData, $scope.SmartCodec[$scope.ch], pageData.SmartCodec[$scope.ch],
-            ignoredKeys, false);
-
-        $.each(setData, function (k, value) {
-            changed++;
-         })
-        */
-        setData = {};
-
-        if(!angular.equals($scope.SmartCodec[$scope.ch].Areas, pageData.SmartCodec[$scope.ch].Areas)){
-            if(typeof pageData.SmartCodec[$scope.ch].Areas == "undefined"){
-                for(var i = 0; i < mAttr.MaxSmartCodecArea; i++){
-                    if(typeof $scope.SmartCodec[$scope.ch].Areas[i] != "undefined"){
-                        var coordi = $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].x + ',';
-                        coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].y + ',';
-                        coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].x + ',';
-                        coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].y;
-
-                        setData['Area.' + $scope.SmartCodec[$scope.ch].Areas[i].Area + '.Coordinate'] = coordi;
-                        changed++;
-                    }
-                }                
-            }else{
-                for(var i = 0; i < mAttr.MaxSmartCodecArea; i++){
-                    if(typeof $scope.SmartCodec[$scope.ch].Areas[i] != "undefined" && typeof pageData.SmartCodec[$scope.ch].Areas[i] == "undefined"){
-                        var coordi = $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].x + ',';
-                        coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].y + ',';
-                        coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].x + ',';
-                        coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].y;
-
-                        setData['Area.' + $scope.SmartCodec[$scope.ch].Areas[i].Area + '.Coordinate'] = coordi;
-                        changed++;
-                    }
-                }                
-            }
-        }
-
-        if (changed != 0) {            
-                return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=add', setData,
+            COMMONUtils.fillSetData(setData, $scope.SmartCodec[$scope.ch], pageData.SmartCodec[$scope.ch], ignoredKeys, false);
+            $.each(setData, function (k, value) {
+                changed++;
+            });
+            if (changed != 0) {
+            return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=set', setData,
                 function (response) {},
                 function (errorData) {
                     console.log(errorData);
+                }, '', true);
+            }
+        });
+
+        functionList.push(function(){
+            var setData = {},
+                changed = 0;
+
+            if(!angular.equals($scope.SmartCodec[$scope.ch].Areas, pageData.SmartCodec[$scope.ch].Areas)){
+                if(typeof pageData.SmartCodec[$scope.ch].Areas == "undefined"){
+                    for(var i = 0; i < mAttr.MaxSmartCodecArea; i++){
+                        if(typeof $scope.SmartCodec[$scope.ch].Areas[i] != "undefined"){
+                            var coordi = $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].x + ',';
+                            coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].y + ',';
+                            coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].x + ',';
+                            coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].y;
+
+                            setData['Area.' + $scope.SmartCodec[$scope.ch].Areas[i].Area + '.Coordinate'] = coordi;
+                            changed++;
+                        }
+                    }
+                }else{
+                    for(var i = 0; i < mAttr.MaxSmartCodecArea; i++){
+                        if(typeof $scope.SmartCodec[$scope.ch].Areas[i] != "undefined" && typeof pageData.SmartCodec[$scope.ch].Areas[i] == "undefined"){
+                            var coordi = $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].x + ',';
+                            coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].y + ',';
+                            coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].x + ',';
+                            coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].y;
+
+                            setData['Area.' + $scope.SmartCodec[$scope.ch].Areas[i].Area + '.Coordinate'] = coordi;
+                            changed++;
+                        }
+                    }
+                }
+            }
+
+            if (changed != 0) {
+                return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=add', setData,
+                    function (response) {},
+                    function (errorData) {
+                        console.log(errorData);
                     }, '', true);
+            }
+        });
+
+        if(functionList.length > 0){
+            $q.seqAll(functionList).then(
+                function () {
+                    if(!angular.equals(pageData.SmartCodec, $scope.SmartCodec)){
+                        pageData.SmartCodec = angular.copy($scope.SmartCodec);
+                    }
+                    view();
+                },
+                function (errorData) {}
+            );
         }
     }
 
