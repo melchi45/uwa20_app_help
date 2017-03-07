@@ -319,7 +319,11 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           }
         }
         else if(menuId === "queue" || menuId === "statistics"){
-          retVal = true;
+          if(mAttr.QueueManagement){
+            retVal = true;
+          }else{
+            retVal = false;
+          }
         }
         else if(menuId === "heatmap" || menuId === "statistics"){
           if(mAttr.HeatMap){

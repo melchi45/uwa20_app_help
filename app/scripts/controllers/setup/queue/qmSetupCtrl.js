@@ -475,6 +475,7 @@ kindFramework.controller('QMSetupCtrl',
 		},
 		set: function(){
 			var setData = {};
+			setData.ScheduleType = $scope.pcSetupReport.schedule.period;
             setData.EventAction = "";
             if ($scope.eventSection.data.FtpEnable) {
                 setData.EventAction += 'FTP,';

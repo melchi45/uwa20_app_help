@@ -394,42 +394,42 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					"QueueResults": [
 				        {
 				            "Queue": "Queue 1",
-						    "QueueTypes":[
+						    "QueueLevels":[
 						    	{
-									"High": true,
+									"Level": "High",
 									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
 					            },
 					            {
-									"Medium": false,
+									"Level": "Medium",
 									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
 					            }
 					        ]
 					    },
 					 	{
 				            "Queue": "Queue 2",
-						    "QueueTypes":[
+						    "QueueLevels":[
 							    {
-									"High": true,
+									"Level": "High",
 									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
 							    },
 							    {
-									"Medium": false,
+									"Level": "Medium",
 									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
 					            }
 					        ]
 				         },
 						{
-					            "Queue": "Queue 3",
-							    "QueueTypes":[
-								    {
-										"High": true,
-										"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-								    },
-								    {
-										"Medium": false,
-										"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-								    }
-							    ]
+				            "Queue": "Queue 3",
+						    "QueueLevels":[
+							    {
+									"Level": "High",
+									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+							    },
+							    {
+									"Level": "Medium",
+									"CumulativeTimeResult": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+							    }
+						    ]
 					    }
 				    ]
 				},
@@ -768,6 +768,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 		};
 
 		var searchToken = null;
+		var graphType = ["average", "cumulative"];
 
 		var getSearchData = function(searchOptions, type){
 			var deferred = $q.defer();
@@ -776,9 +777,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			var searchView = recordingCgi.view;
 
 			function failCallback(errorData){
-				errorData = interruptMessage;
-
-				console.log("getSearchData Error", errorData);
+				// errorData = interruptMessage;
 				deferred.reject(errorData);
 			}
 
@@ -814,7 +813,12 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			}
 
 			function viewResultSuccessCallback(response){
-				response = response.data;
+				if(type === graphType[0]){ //mockup
+					response = mockupData.recordingCgi.viewResultsAverage;
+				}else{
+					response = mockupData.recordingCgi.viewResultsCumulative;
+				}
+				// response = response.data;
 				var resultInterval = response.ResultInterval;
 				var queueResults = response.QueueResults;
 				var responseData = {
@@ -824,22 +828,26 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 
 				for(var i = 0, len = queueResults.length; i < len; i++){
 					var queueSelf = queueResults[i];
-					var direction = null;
-					var results = null;
-					if(type === "Average"){
-						direction = type;
-						results = fillterResults(queueSelf.AveragePeopleResult, resultInterval);
-					}else{
-						direction = queueSelf.QueueLevels.Level;
-						results = fillterResults(queueSelf.QueueLevels.CumulativeTimeResult, resultInterval);
-					}
 					var data = {
 						name: queueSelf.Queue,
-						direction: direction,
-						results: results
+						direction: null,
+						results: null
 					};
 
-					responseData.data.push(data);
+					if(type === graphType[0]){
+						data.direction = type;
+						data.results = fillterResults(queueSelf.AveragePeopleResult, resultInterval);
+
+						responseData.data.push(data);
+					}else{
+						var queueLevels = queueSelf.QueueLevels;
+						for(var j = 0; j < queueLevels.length; j++){
+							data.direction = queueLevels[j].Level;
+							data.results = fillterResults(queueLevels[j].CumulativeTimeResult, resultInterval);
+
+							responseData.data.push(angular.copy(data));
+						}
+					}
 				}
 
 				searchToken = null;
@@ -957,14 +965,14 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 
 			searchOptions.Channel = channelIndex;
 			searchOptions.Mode = 'Start';
-			if(type === "Average"){
+			if(type === graphType[0]){
 				for(var i = 1; i <= 3; i++){
 					searchOptions["Queue."+i+".AveragePeople"] = 'True';
 				}
 			}else{
 				for(var i = 1; i <= 3; i++){
-					searchOptions["Queue."+i+".Type.High.Cumulative"] = 'True';
-					searchOptions["Queue."+i+".Type.Medium.Cumulative"] = 'True';
+					searchOptions["Queue."+i+".Type.High.CumulativeTime"] = 'True';
+					searchOptions["Queue."+i+".Type.Medium.CumulativeTime"] = 'True';
 				}
 			}
 
@@ -974,36 +982,31 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 				failCallback
 			);
 
+			if(type === graphType[1]){ //mockup
+				viewResultSuccessCallback();
+			}
+
 			return deferred.promise;
 		};
 
-		this.getTodayGraphData = function(){
+		this.getTodayGraphData = function(type){
 			var nowDate = getSunapiDateFormat(cameraLocalTime.getDateObj().getTime());
 			var searchOptions =  {};
 
 			searchOptions.FromDate = removeTime(nowDate);
 			searchOptions.ToDate = setLastTime(nowDate);
 
-			return getSearchData(searchOptions, 'Average');
-			// var deferred = $q.defer();
-			// deferred.resolve("Success");
-			// return deferred.promise;
+			return getSearchData(searchOptions, type);
 		};
 
-		this.getWeekGraphData = function(){
+		this.getWeekGraphData = function(type){
 			var newDate = cameraLocalTime.getDateObj();
 			var nowDate = getSunapiDateFormat(newDate.getTime());
 			var fromDate = null;
 			var searchOptions = {};
 
-			//get date at the six day ago
 			newDate.setDate(newDate.getDate() - 6);
 
-			/*
-			카메라는 최소 2000/01/01까지 지원을 하기 때문에
-			현재 날짜(newDate)가 2000년 이전을 설정될 경우
-			강제로 2000/01/01로 설정한다.
-			*/
 			if(newDate.getFullYear() < 2000){
 				newDate.setYear(2000);
 				newDate.setMonth(0);
@@ -1015,10 +1018,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			searchOptions.FromDate = removeTime(fromDate);
 			searchOptions.ToDate = setLastTime(nowDate);
 
-			return getSearchData(searchOptions, 'Cumulative');
-			// var deferred = $q.defer();
-			// deferred.resolve("Success");
-			// return deferred.promise;
+			return getSearchData(searchOptions, type);
 		};
 
 		// this.getSearchResults = function(options){
