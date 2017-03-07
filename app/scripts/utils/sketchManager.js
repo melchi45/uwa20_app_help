@@ -1,4 +1,4 @@
-﻿var SketchManager = (function() {
+﻿﻿var SketchManager = (function() {
     "use strict";
     var sketchInfo = {
         workType: null, //"mdSize", "mdArea", "vaEntering", "vaPassing", "vaAppearing", "fdArea", "smartCodec", "simpleFocus", "autoTracking"
@@ -17,6 +17,7 @@
         flip: null,
         mirror: null,
         support_ptz: null,
+        support_zoomOnly: null,
         rotate: null,
         adjust: true
     };
@@ -2067,7 +2068,7 @@
             },
             openDialog: function(index, type) {
                 sketchInfo.getZoomValue().then(function(returnZoomValue) {      /////
-                    if (videoInfo.support_ptz && (sketchInfo.disValue === true || returnZoomValue > 20)) {
+                    if ((videoInfo.support_ptz || videoInfo.support_zoomOnly) && (sketchInfo.disValue === true || returnZoomValue > 20)) {
                         $("[type='radio'][name='VideoOutput']").prop("disabled", true);
                         var modalInstance = dialog.open({
                             templateUrl: "privacyPopup3.html",
