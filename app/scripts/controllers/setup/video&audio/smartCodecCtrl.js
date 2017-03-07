@@ -5,6 +5,8 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
     COMMONUtils.getResponsiveObjects($scope);
     $scope.ch = 0;
     var pageData = {};
+    $scope.qSetData = null;
+    $scope.pSetData = null;
 
     $scope.clearAll = function ()
     {
@@ -65,10 +67,33 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
         return true;
     }
 
+    function setQuality() {
+        var setData = $scope.qSetData;
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=set', setData,
+            function (response) {
+                if(!angular.equals(pageData.SmartCodec, $scope.SmartCodec)){
+                    pageData.SmartCodec = angular.copy($scope.SmartCodec);
+                }
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    }
+
+    function setPOI() {
+        var setData = $scope.pSetData;
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=add', setData,
+            function (response) {},
+            function (errorData) {
+                console.log(errorData);
+                }, '', true);
+    }
+
     function setSmartCodec() {
         var setData = {},
             ignoredKeys = ['Areas'],
-            changed = 0;
+            changed = 0,
+            promises = [];
 
         COMMONUtils.fillSetData(setData, $scope.SmartCodec[$scope.ch], pageData.SmartCodec[$scope.ch], ignoredKeys, false);
 
@@ -77,15 +102,8 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
         })
 
         if (changed != 0) {
-            SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=set', setData,
-                function (response) {
-                    if(!angular.equals(pageData.SmartCodec, $scope.SmartCodec)){
-                        pageData.SmartCodec = angular.copy($scope.SmartCodec);
-                    }
-                },
-                function (errorData) {
-                    console.log(errorData);
-                }, '', true);
+            $scope.qSetData = setData;
+            promises.push(setQuality);
         }
 
         //$q.seqAll(promises).finally(function(){
@@ -100,6 +118,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
             changed++;
          })
         */
+
         setData = {};
 
         if(!angular.equals($scope.SmartCodec[$scope.ch].Areas, pageData.SmartCodec[$scope.ch].Areas)){
@@ -130,12 +149,18 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
             }
         }
 
-        if (changed != 0) {            
-                return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=add', setData,
-                function (response) {},
-                function (errorData) {
-                    console.log(errorData);
-                    }, '', true);
+        if (changed != 0) {
+            $scope.pSetData = setData;     
+            promises.push(setPOI);
+        }
+
+        if(promises.length > 0) {
+            $q.seqAll(promises).then(
+                function(result) {
+                },
+                function(error) {
+                    console.log(error);
+            });
         }
     }
 
