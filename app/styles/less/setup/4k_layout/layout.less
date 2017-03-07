@@ -68,6 +68,28 @@
             table {
                 font-size: 18px;
             }
+
+            .page-controller {
+                a i {
+                    font-size: 27px;
+                    margin: 15px 0px;
+                }
+            }
+        }
+
+
+    }
+
+    #SelectedAccessLogPage {
+        width: 60px !important;
+        height: 37.5px !important;
+        margin-top: 5px !important;
+        transform: translateY(5px);
+        font-size: 19px;
+
+        ~ .btn {
+            height: 37.5px !important;
+            padding: 0px 15px !important;
         }
     }
     
@@ -79,11 +101,17 @@
     .wn5-setup-tab {
         margin-top: 30px;
 
+        > .nav.nav-tabs li a {
+            font-size: 23px;
+            padding: 10px 0px;
+            height: 51px;
+        }
+        
         .wn5-setup-tab-list {
             .wn5-setup-tab-item {
                 & > button {
                     font-size: 21px;
-                    padding: 17px 0px;
+                    padding: 12px 0px;
                     height: 60px;
                 }
             }
@@ -176,6 +204,33 @@
         }
     }
 
+    .modal-sm {
+        width: 500px;
+
+        .modal-content {
+            .modal-header h3 {
+                font-size: 23px;
+                padding: 5px 15px;
+                
+            }
+
+            .modal-body h5 {
+                font-size: 20px !important;
+                padding: 15px 50px;
+
+                p {
+                    font-size: 20px !important;
+                    padding: 15px 50px;
+                }
+            }
+
+            .modal-footer button {
+                padding: 10px 40px !important;
+                font-size: 19px;
+            }
+        }
+    }
+
 }
 
 
@@ -212,10 +267,19 @@
 
     /* left side-bar dropdown style */
     .nav {
-        .nav.nav-second-level {
-            a {
-                font-size: 25px !important;
-                padding-left: 80px !important;
+        .nav {
+            &.nav-second-level {
+                a {
+                    font-size: 25px !important;
+                    padding-left: 80px !important;
+                }
+            }
+
+            &.nav-third-level {
+                a {
+                    font-size: 25px !important;
+                    padding-left: 110px !important;
+                }
             }
         }
     }
@@ -249,8 +313,34 @@
             }
 
             table {
-                font-size: 23px;
+                font-size: 25px;
             }
+
+            .table {
+                td {
+                    padding: 15px;
+                }
+            }
+
+            .page-controller {
+                a i {
+                    font-size: 33px;
+                    margin: 15px 0px;
+                }
+            }
+        }
+    }
+
+    #SelectedAccessLogPage {
+        width: 75px !important;
+        height: 43px !important;
+        margin-top: 5px !important;
+        transform: translateY(5px);
+        font-size: 24px;
+
+        ~ .btn {
+            height: 43px !important;
+            padding: 0px 15px !important;
         }
     }
     
@@ -261,6 +351,12 @@
 
     .wn5-setup-tab {
         margin-top: 50px;
+        
+        > .nav.nav-tabs li a {
+            font-size: 27px;
+            padding: 20px 0px;
+            height: 73px;
+        }
 
         .wn5-setup-tab-list {
             .wn5-setup-tab-item {
@@ -361,6 +457,42 @@
 
     #pc-setup-report-schedule {
         overflow: visible;
+    }
+
+    .modal-sm {
+        width: 700px;
+
+        .modal-content {
+            .modal-header h3 {
+                font-size: 30px;
+                padding: 10px 20px;
+                
+            }
+
+            .modal-body h5 p {
+                font-size: 25px !important;
+                padding: 20px 30px;
+            }
+
+            .modal-body h5 {
+                font-size: 25px !important;
+                padding: 20px 30px;
+
+                p {
+                    font-size: 25px !important;
+                    padding: 20px 30px;
+                }
+            }
+
+            .modal-footer button {
+                padding: 15px 50px !important;
+                font-size: 23px;
+            }
+        }
+    }
+
+    .pc-calender-icon {
+        width: 190px;
     }
 }
 
