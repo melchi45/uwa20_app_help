@@ -1,12 +1,12 @@
-<div class="clearfix">
-    <div id="setup-channel-selector">
+<div class="wn5-setup-section" id="setup-channel-selector">
+    <div class="setup-channel-selector-heading">
         <h3>
-            {{ 'lang_selectMode' | translate }}
+            {{ 'Select channel' | translate }}
         </h3>
     </div>
-    <div class="clearfix">
+    <div class="setup-channel-selector-btns">
         <channel-selector></channel-selector>
-        <button class="cm-str-button"
+        <button class="cm-str-button setup-channel-selector-info"
                 ng-if="setupChannelSelector.useInfo"
                 ng-click="setupChannelSelector.showInfo()">info</button>
     </div>

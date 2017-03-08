@@ -41,13 +41,39 @@ kindFramework.controller('ModalInstnceMessageCtrl',
     }, $scope);
 
     /**
+     * $uibModalInstance가 비정상적으로 2개이상 열릴 때
+     * $uibModalInstance.close() 기능이 정상적으로 실행되지 않는다.
+     * 그래서 event.target을 통해 모달을 닫아 준다.
+     */
+    function closeModal(event){
+      var target = $(event.target);
+      if(target.hasClass('tui-loading-wrapper')){
+        target
+          .parent()
+          .parent()
+          .parent()
+          .remove();
+      }else if(target.hasClass('tui-close')){
+        target
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .remove();
+      }else{
+        $uibModalInstance.close();
+      }
+      
+      $('.modal-backdrop').remove();
+    };
+
+    /**
      * buttonCount가 2일 때는 Cancel 버튼이 존재해야 하기 때문에
      * 예외 처리를 한다.
      * Wisenet5에서는 기존 Message의 스타일을 사용하지 않고,
      * 새로운 디자인을 사용하기 때문에
      * 기존 modal의 스타일을 Reset 해준다.
      */
-
     if(data.buttonCount < 2){
       $uibModalInstance.rendered.then(function(){
         var transformReset = 'translate(0,0)';
@@ -65,10 +91,10 @@ kindFramework.controller('ModalInstnceMessageCtrl',
         var message = $scope.isHtml ? deliberatelyTrustDangerousSnippet() : $translate.instant(data.message);
 
         if(data.buttonCount === 1){
-          tuiLoadingCancel.on("click", $uibModalInstance.close);
+          tuiLoadingCancel.on("click", closeModal);
           tuiLoadingWrapper.on("click", function(event){
             if($(event.target).hasClass('tui-loading-wrapper')){
-              $uibModalInstance.close(); 
+              closeModal(event); 
             }
           });
 

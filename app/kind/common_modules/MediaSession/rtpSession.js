@@ -1,15 +1,14 @@
 "use strict";
 
 function RtpSession() {
-	function Constructor() {}
+	function Constructor() { this.decoder = null; }
 	var rtpPayloadCbFunc = null,
 		rtpBufferingCbFunc = null,
 		rtpTimestampCbFunc = null,
 		rtpOutputSizeCbFunc = null,
 		interleavedID = null,
 		timeData = null,
-		frameRate = 0,
-		videoBufferList = null;
+		frameRate = 0;
 
 	var currentGov = 0,
 		calcGov = 0,
@@ -44,8 +43,56 @@ function RtpSession() {
 		bufferingRtpData: function(rtspinterleave, rtpheader, rtpPacketArray) {
 		},
 		stepForward: function(){
+            if(this.videoBufferList !== null) {
+                var bufferNode;
+                var nextNode = this.videoBufferList.getCurIdx() + 1;
+                if (nextNode <= this.videoBufferList._length) {
+                    bufferNode = this.videoBufferList.searchNodeAt(nextNode);
+                    if (bufferNode === null || bufferNode === undefined) {
+                        return false;
+                    } else {
+                        var data = {};
+                        this.SetTimeStamp(bufferNode.timeStamp);
+                        if (bufferNode.codecType == "mjpeg") {
+                            data.frameData = this.decoder.decode(new Uint8Array(bufferNode.buffer));
+                        } else {
+                            data.frameData = this.decoder.decode(bufferNode.buffer);
+                        }
+                        data.timeStamp = bufferNode.timeStamp;
+                        return data;
+                    }
+                } else {
+                    return false;
+                }
+            }
 		},
 		stepBackward: function(){
+            if(this.videoBufferList !== null) {
+                var bufferNode;
+                var prevINode = this.videoBufferList.getCurIdx() - 1;
+                while (prevINode > 0) {
+                    bufferNode = this.videoBufferList.searchNodeAt(prevINode);
+                    if (bufferNode.frameType === "I" || bufferNode.codecType == "mjpeg") {
+                        break;
+                    } else {
+                        bufferNode = null;
+                        prevINode--;
+                    }
+                }
+                if (bufferNode === null || bufferNode === undefined) {
+                    return false;
+                } else {
+                    var data = {};
+                    this.SetTimeStamp(bufferNode.timeStamp);
+                    if (bufferNode.codecType == "mjpeg") {
+                        data.frameData = this.decoder.decode(new Uint8Array(bufferNode.buffer));
+                    } else {
+                        data.frameData = this.decoder.decode(bufferNode.buffer);
+					}
+                    data.timeStamp = bufferNode.timeStamp;
+                    return data;
+                }
+            }
 		},
 		setBufferfullCallback: function(bufferFull){
 			if(this.videoBufferList !== null){
@@ -198,8 +245,6 @@ function RtpSession() {
 		initStartTime: function() {
             this.firstDiffTime = 0;
             calcGov = 0;
-		},
-        freeBufferIdx: function(bufferIdx){
 		}
 	};	
 	return new Constructor();

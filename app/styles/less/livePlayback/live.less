@@ -1,4 +1,10 @@
 .kind-responsive-live {
+    .live-channel-selector {
+        border: solid 1px #e9e9e9;
+        border-right: 0;
+        padding: 15px 25px 0 25px;
+    }
+
     #cm-bottom-menu {
         #cm-icon-list {
             .cm-col {
@@ -108,203 +114,217 @@
             #cm-ptz {
                 .cm-center {
                     width: 100%;
+                }
 
-                    #ptz-components {
+                #ptz-components {
+                    float: left;
+                    width: 100%;
+                    display: block;
+
+                    #cm-live-ptz-control {
+                        width: 30%;
                         float: left;
-                        width: 100%;
-                        display: block;
+                        line-height: 0em;
 
-                        #cm-live-ptz-control {
-                            width: 40%;
-                            float: left;
-                            margin: 0 0 0 10%;
+                        & > div {
+                            height: 160px;
+                            display: inline-table;
+                            position: relative;
+                        }
 
-                            & > div {
-                                height: 160px;
-                                float:left;
-                                position: relative;
-                            }
+                        .cm-ptz-control-left {
+                            width: 25px;
+                            margin-right: 10px;
 
-                            .cm-ptz-control-left {
-                                width: 25px;
-                                margin-right: 10px;
-
-                                button {
-                                    position: absolute;
-                                    left: 0;
-                                }
-
-                                .cm-near {
-                                    top: 0;
-                                }
-                                /* aa34bcb: Live PTZ UI */
-                                .cm-far {
-                                    top: 42px;
-                                }
-
-                                .cm-at {
-                                    .tui-ch-live-ptz-tracking-auto-on{
-                                        color: #f37321;
-                                    }
-                                }
-
-                                .cm-ptz-at{
-                                    top: 84px;
-                                }
-                                
-                                .cm-home{
-                                    top: 126px;
-                                    bottom: 0;
-                                }
-                            }  
-
-
-                            #cm-ptz-control-box {
-                                width: 160px;
-                                height: 160px;
-                                background-color:#fff;
-                                position: relative;
-                                border: 1px solid #e9e9e9;
-                                
-                                .cm-ptz-line {
-                                    border: 1px dashed #e9e9e9;
-                                    position: absolute;
-                                    z-index: 1;
-
-                                    &.horizontal {
-                                        width: 100%;
-                                        height: 0;
-                                        top: calc(~"50% - 1px");
-                                        left: 0;
-                                    }
-
-                                    &.vertical {
-                                        width: 0;
-                                        height: 100%;
-                                        top: 0;
-                                        left: calc(~"50% - 1px");
-                                    }
-                                }
-
-                                #cm-ptz-control-move-btn {
-                                    width: 24px;
-                                    height: 24px;
-                                    line-height: 24px;
-                                    position: absolute;
-                                    top: calc(~"50% - 12px");
-                                    left: calc(~"50% - 12px");
-                                    z-index: 2;
-                                    font-size: 24px;
-                                }
-                            }  
-
-                            .cm-ptz-control-right {
-                                width: 25px;
-                                margin-left: 10px;
-
-                                button {
-                                    position: absolute;
-                                    left: 0;
-                                }
-
-                                .cm-zoom-in {
-                                    top: 0;
-                                    left: -3px;
-                                }
-
-                                .cm-zoom-out {
-                                    top: 126px;
-                                    left: -3px;
-                                }
-                            } 
-
-                            #cm-ptz-zoom-slider {
-                                width: 2px;
-                                height: 91px;
+                            button {
                                 position: absolute;
-                                top: 35px;
-                                left: 8px;
-                                    
-                                .ui-state-default {
-                                    left: -6px;
+                                left: 0;
+                            }
+
+                            .cm-near {
+                                top: 0;
+                            }
+                            /* aa34bcb: Live PTZ UI */
+                            .cm-far {
+                                top: 42px;
+                            }
+
+                            .cm-at {
+                                .tui-ch-live-ptz-tracking-auto-on{
+                                    color: #f37321;
                                 }
-
-                                .ui-slider:hover .ui-state-default {
-                                    left: -7px;
-                                }
-                            } 
-                        } 
-
-                        /*
-                        #cm-ptz-tables {
-                            width: calc(~"100% - 40%");
-                            max-width: calc(~"100% - 270px");
-                            min-height: 160px;
-                            padding: 0 20px;
-                            border-left: 1px solid #e2e2e2;
-                            display: inline;
-
-                            & > div {
-                                width: calc(~"50% - 20px");
-                                float: left;
-                                display: inline;
-                                margin: 0 10px;
-                                text-align: left;
-                            }
-                        }
-                        */
-                        #live-ptz-tabs {
-                            width: 40%;
-                            min-width: 300px;
-                            margin: 0 10% 0 0;
-
-                            select{
-                                margin-top: 5px;
-                                min-width: 200px;
                             }
 
-                            &.ui-tabs .ui-tabs-nav{
-                                padding: 0 !important;
+                            .cm-ptz-at{
+                                top: 84px;
                             }
-
-                            &.ui-widget-content{
-                                background: none !important;
+                            
+                            .cm-home{
+                                top: 126px;
+                                bottom: 0;
                             }
+                        }  
 
-                            .ui-widget-header{
-                                border: none !important;
-                                border-bottom: 1px solid #d2d2d2 !important;
-                                background: none !important;
-                            }
 
-                            .ui-state-default{
-                                margin-right: 0 !important;
-                                border-top: none !important;
-                                border-left: none !important;
-                                border-bottom: none !important;
-                                border-right: 1px solid #d2d2d2 !important;
+                        #cm-ptz-control-box {
+                            width: 160px;
+                            height: 160px;
+                            background-color:#fff;
+                            position: relative;
+                            border: 1px solid #e9e9e9;
+                            
+                            .cm-ptz-line {
+                                border: 1px dashed #e9e9e9;
+                                position: absolute;
+                                z-index: 1;
 
-                                :last-of-type {
-                                    border-right: none !important;
-                                }
-
-                                &.ui-state-active {
-                                    border-bottom: none !important;
-                                }
-
-                                a {
-                                    display: inline-block;
+                                &.horizontal {
                                     width: 100%;
-                                    text-align: center;
-                                    color: #000;
-                                    font-weight: normal !important;
+                                    height: 0;
+                                    top: calc(~"50% - 1px");
+                                    left: 0;
                                 }
+
+                                &.vertical {
+                                    width: 0;
+                                    height: 100%;
+                                    top: 0;
+                                    left: calc(~"50% - 1px");
+                                }
+                            }
+
+                            #cm-ptz-control-move-btn {
+                                width: 24px;
+                                height: 24px;
+                                line-height: 24px;
+                                position: absolute;
+                                top: calc(~"50% - 12px");
+                                left: calc(~"50% - 12px");
+                                z-index: 2;
+                                font-size: 24px;
+                            }
+                        }  
+
+                        .cm-ptz-control-right {
+                            width: 25px;
+                            margin-left: 10px;
+
+                            button {
+                                position: absolute;
+                                left: 0;
+                            }
+
+                            .cm-zoom-in {
+                                top: 0;
+                                left: -3px;
+                            }
+
+                            .cm-zoom-out {
+                                top: 126px;
+                                left: -3px;
                             }
                         }
 
+                        #cm-ptz-zoom-slider {
+                            width: 2px;
+                            height: 91px;
+                            position: absolute;
+                            top: 35px;
+                            left: 8px;
+                                
+                            .ui-state-default {
+                                left: -6px;
+                            }
+
+                            .ui-slider:hover .ui-state-default {
+                                left: -7px;
+                            }
+                        }
+                    } 
+
+                    /*
+                    #cm-ptz-tables {
+                        width: calc(~"100% - 40%");
+                        max-width: calc(~"100% - 270px");
+                        min-height: 160px;
+                        padding: 0 20px;
+                        border-left: 1px solid #e2e2e2;
+                        display: inline;
+
+                        & > div {
+                            width: calc(~"50% - 20px");
+                            float: left;
+                            display: inline;
+                            margin: 0 10px;
+                            text-align: left;
+                        }
+                    }
+                    */
+
+                    #live-ptz-tabs {
+                        width: 40%;
+                        float: left;
+                        box-sizing: border-box;
+                        text-align: left;
+
+                        select{
+                            margin-top: 5px;
+                            min-width: 200px;
+                        }
+
+                        &.ui-tabs .ui-tabs-nav{
+                            padding: 0;
+
+                            li {
+                                min-width: 20%;
+                            }
+                        }
+
+                        &.ui-widget-content{
+                            background: #fff;
+                        }
+
+                        .ui-widget-header{
+                            border: none;
+                            border-bottom: 1px solid #d2d2d2;
+                            background: none;
+                        }
+
+                        .ui-state-default{
+                            margin-right: 0;
+                            border-top: none;
+                            border-left: none;
+                            border-bottom: none;
+                            border-right: 1px solid #d2d2d2;
+
+                            :last-of-type {
+                                border-right: none;
+                            }
+
+                            &.ui-state-active {
+                                border-bottom: none;
+                            }
+
+                            a {
+                                display: inline-block;
+                                width: 100%;
+                                text-align: center;
+                                color: #000;
+                                font-weight: normal;
+                            }
+                        }
                     }
 
-                } 
+
+                    #live-ptz-zoom {
+                        width: 30%;
+                        float: left;
+                        text-align: left;
+                        padding: 0 20px;
+                        font-size: 12px;
+                    }
+
+                }
             }
 
             #cm-status {
@@ -443,7 +463,7 @@
         }
     } 
 
-    @media screen and (max-width:799px) {
+    @media screen and (max-width:899px) {
         #cm-bottom-menu {
             height: 150px;
             
@@ -470,6 +490,8 @@
                         display: inline-table;
                         float: none;
                         line-height: 0;
+                        position: relative;
+                        top: 10px;
                     }
                 }
 
@@ -532,11 +554,11 @@
             }  
 
             #cm-menu-content {
-
-                #ptz-components {
+    
+                #cm-ptz #ptz-components {
                     #cm-live-ptz-control {
-                        width: auto !important;
-                        margin: 0 auto !important;
+                        width: auto;
+                        margin: 0 auto;
                     }
                 
                     /*
@@ -554,8 +576,14 @@
                     */
 
                     #live-ptz-tabs {
-                        width: 80% !important;
-                        margin: 20px 0 !important;
+                        width: 80%;
+                        margin: 20px 0;
+                    }
+
+                    #live-ptz-zoom {
+                        width: 80%;
+                        margin: 20px 0;
+                        padding: 0;
                     }
                 }
 
@@ -683,6 +711,7 @@
 
                 .cm-live-controller li {
                     line-height: 50px;
+                    top: 0;
                 }
             }
 
@@ -715,7 +744,7 @@
         }
 
 
-        #ptz-components {
+        #cm-ptz #ptz-components {
             padding: 0;
 
             & > .cm-col {
@@ -748,6 +777,13 @@
                     width: 80% !important;
                     margin: 20px 0 !important;
                 }
+
+                &#live-ptz-zoom {
+                    width: 80% !important;
+                    margin: 20px 0 !important;
+                    padding: 0 !important;
+                }
+
             }
         } 
     }

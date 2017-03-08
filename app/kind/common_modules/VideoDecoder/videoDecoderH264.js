@@ -11,7 +11,6 @@ function H264Decoder() {
 	context=null,
 	outputBuffer = null,
 	inputBuffer,
-	bufferPool,
 	outBufferArray,
 	self = this,
 	outpic = new Uint8Array(),
@@ -100,9 +99,6 @@ function H264Decoder() {
 
 				return frameData;
 			}
-		},
-		freeBuffer: function(index) {
-			//  bufferPool.free(outBufferArray[index]);
 		}
 	});
 

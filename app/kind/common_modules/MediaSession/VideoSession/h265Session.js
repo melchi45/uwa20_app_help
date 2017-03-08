@@ -11,7 +11,6 @@ var H265Session = function () {
     inputBuffer = new Uint8Array(size_1M),
     PREFIX = new Uint8Array(4),
     SPSParser = new H265SPSParser(),
-    decoder = null,
     NumDecodedFrame = 0,
     SumDecodingTime =0,
     gopTime = 0,
@@ -48,12 +47,12 @@ var H265Session = function () {
   };
 
   function Constructor() {
-    decoder = H265Decoder();
+    this.decoder = H265Decoder();
   }
 
   Constructor.prototype = inheritObject(new RtpSession(), {
     init: function(){
-      decoder.setIsFirstFrame(false);
+      this.decoder.setIsFirstFrame(false);
       this.videoBufferList = new VideoBufferList();
       this.firstDiffTime = 0;
     },
@@ -191,7 +190,7 @@ var H265Session = function () {
 		  // var DepacketizingTime = Date.now() - beforeDepacketizing;
         if (outputSize !== curSize) {
           outputSize = curSize;
-          decoder.setOutputSize(outputSize);
+          this.decoder.setOutputSize(outputSize);
         }
 
         var inputBufferSub = inputBuffer.subarray(0, inputLength);
@@ -264,7 +263,7 @@ var H265Session = function () {
 //           }
 
           // if (this.isDrop(frameType, needDropCnt)) {
-            decodedData.frameData = decoder.decode(inputBufferSub);
+            decodedData.frameData = this.decoder.decode(inputBufferSub);
           // }
         }
 
@@ -296,9 +295,6 @@ var H265Session = function () {
 
         return data;
       }
-    },
-    freeBufferIdx: function(bufferIdx){
-      decoder.freeBuffer(bufferIdx);
     },
     bufferingRtpData: function(rtspInterleaved, rtpHeader, rtpPayload) {
       var HEADER = rtpHeader,
@@ -415,7 +411,7 @@ var H265Session = function () {
       if ((HEADER[1] & 0x80) === 0x80) {
         if (outputSize !== curSize) {
           outputSize = curSize;
-          decoder.setOutputSize(outputSize);
+          this.decoder.setOutputSize(outputSize);
         }
 
         var stepBufferSub = new Uint8Array(inputBuffer.subarray(0, inputLength));
@@ -426,52 +422,6 @@ var H265Session = function () {
         inputLength = 0;
       }
     },
-    stepForward: function(){
-      if(this.videoBufferList !== null) {
-//        console.log("streamDrawer::drawFrame stepValue = FORWARD, videoBufferList.length = " + videoBufferList._length + ", FrameNum = " + videoBufferList.getCurIdx());
-        var bufferNode;
-        var nextNode = this.videoBufferList.getCurIdx() + 1;
-        if (nextNode <= this.videoBufferList._length) {
-          bufferNode = this.videoBufferList.searchNodeAt(nextNode);
-          if (bufferNode === null || bufferNode === undefined) {
-            return false;
-          } else {
-            var data = {};
-            this.SetTimeStamp(bufferNode.timeStamp);
-            data.frameData = decoder.decode(bufferNode.buffer);
-            data.timeStamp = bufferNode.timeStamp;
-            return data;
-          }
-        } else {
-          return false;
-        }
-      }
-    },
-    stepBackward: function(){
-      if(this.videoBufferList !== null) {
-        //        console.log("stepBackward stepValue = BACKWARD, videoBufferList.length = " + videoBufferList._length + ", FrameNum = " + videoBufferList.getCurIdx());
-        var bufferNode;
-        var prevINode = this.videoBufferList.getCurIdx() - 1;
-        while (prevINode > 0) {
-          bufferNode = this.videoBufferList.searchNodeAt(prevINode);
-          if (bufferNode.frameType === "I" || bufferNode.codecType == "mjpeg") {
-            break;
-          } else {
-            bufferNode = null;
-            prevINode--;
-          }
-        }
-        if (bufferNode === null || bufferNode === undefined) {
-          return false;
-        } else {
-          var data = {};
-          this.SetTimeStamp(bufferNode.timeStamp);
-          data.frameData = decoder.decode(bufferNode.buffer);
-          data.timeStamp = bufferNode.timeStamp;
-          return data;
-        }
-      }
-    },
     findIFrame: function() {
       if(this.videoBufferList !== null) {
         var bufferNode = this.videoBufferList.findIFrame();
@@ -480,7 +430,7 @@ var H265Session = function () {
         } else {
           var data = {};
           this.SetTimeStamp(bufferNode.timeStamp);
-          data.frameData = decoder.decode(bufferNode.buffer);
+          data.frameData = this.decoder.decode(bufferNode.buffer);
           data.timeStamp = bufferNode.timeStamp;
           return data;
         }

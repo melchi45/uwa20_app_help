@@ -100,32 +100,35 @@
           <div></div>
         </div>
       </div>
-        <div class="slider-fields live-slider-field col-xs-3 ptz-control_horizontal-wrap" ng-show="currentPtzType === ptzType.ZOOMONLY">
-            <h4>{{ 'lang_zoom' | translate }}</h4>
-            <div class="ptz-control_horizontal">
-                <button class="cm-icon-button-s ptz-control_horizontal-item slider-button left-btn" title="{{'lang_zoomOut' | translate}}" ng-mousedown="ptzZoom('out');" ng-mouseup="ptzZoom('stop')" ng-mouseleave="ptzZoom('stop')">
-                    <i class="tui tui-wn5-ptz-minus" ></i>
-                </button>
-                <div class="ptz-control_horizontal-item ptz-control_horizontal-slider slider-cursor-btn" id="ptz-control_slider-horizontal-zoom"></div>
-                <button class="cm-icon-button-s ptz-control_horizontal-item slider-button right-btn" title="{{'lang_zoomIn' | translate}}" ng-mousedown="ptzZoom('in');" ng-mouseup="ptzZoom('stop')" ng-mouseleave="ptzZoom('stop')">
-                    <i class="tui tui-wn5-ptz-plus"></i>
-                </button>
-            </div>
+      <div class="slider-fields live-slider-field col-xs-3 ptz-control_horizontal-wrap" ng-show="currentPtzType === ptzType.ZOOMONLY">
+        <div>
+          <h4>{{ 'lang_zoom' | translate }}</h4>
+          <div class="ptz-control_horizontal" style="line-height: normal;height: 40px;">
+            <button class="cm-icon-button-s ptz-control_horizontal-item slider-button left-btn" title="{{'lang_zoomOut' | translate}}" ng-mousedown="ptzZoom('out');" ng-mouseup="ptzZoom('stop')" ng-mouseleave="ptzZoom('stop')">
+              <i class="tui tui-wn5-ptz-minus" ></i>
+            </button>
+            <div class="ptz-control_horizontal-item ptz-control_horizontal-slider slider-cursor-btn" id="ptz-control_slider-horizontal-zoom"></div>
+            <button class="cm-icon-button-s ptz-control_horizontal-item slider-button right-btn" title="{{'lang_zoomIn' | translate}}" ng-mousedown="ptzZoom('in');" ng-mouseup="ptzZoom('stop')" ng-mouseleave="ptzZoom('stop')">
+              <i class="tui tui-wn5-ptz-plus"></i>
+            </button>
+          </div>
         </div>
-        <div class="slider-fields live-slider-field col-xs-3 ptz-control_horizontal-wrap" ng-if="currentPtzType === ptzType.ZOOMONLY">
-            <h4>{{ 'lang_focus' | translate }}</h4>
-            <div class="ptz-control_horizontal">
-                <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_near' | translate}}" ng-mousedown="ptzFocus('Near')" ng-mouseup="ptzFocus('Stop')" ng-mouseleave="ptzFocus('Stop')">
-                    <i class="tui tui-wn5-ptz-near" ></i>
-                </button>
-                <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_far' | translate}}" ng-mousedown="ptzFocus('Far');" ng-mouseup="ptzFocus('Stop')" ng-mouseleave="ptzFocus('Stop')">
-                    <i class="tui tui-wn5-ptz-far"></i>
-                </button>
-                <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="ptzFocus('Auto');">
-                    <i class="tui tui-wn5-simple-focus"></i>
-                </button>
-            </div>
+        <div>
+          <h4>{{ 'lang_focus' | translate }}</h4>
+          <div class="ptz-control_horizontal" style="line-height: normal;height: 40px;">
+            <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_near' | translate}}" ng-mousedown="ptzFocus('Near')" ng-mouseup="ptzFocus('Stop')" ng-mouseleave="ptzFocus('Stop')">
+              <i class="tui tui-wn5-ptz-near" ></i>
+            </button>
+            <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_far' | translate}}" ng-mousedown="ptzFocus('Far');" ng-mouseup="ptzFocus('Stop')" ng-mouseleave="ptzFocus('Stop')">
+              <i class="tui tui-wn5-ptz-far"></i>
+            </button>
+            <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="ptzFocus('Auto');">
+              <i class="tui tui-wn5-simple-focus"></i>
+            </button>
+          </div>
         </div>
+      </div>
+
     </div>
       <!--
       hash : 30b3911
@@ -135,7 +138,7 @@
       3. Live PTZ - zoom slider issue fixed.
       -->
 
-    <div id="live-ptz-tabs" class="cm-col">
+    <div id="live-ptz-tabs">
       <ul>
         <li>
           <a href="#live-ptz-preset">{{ 'lang_preset' | translate }}</a>
@@ -290,7 +293,7 @@
       <!-- Trace end -->
     </div> <!-- live-ptz-tabs end -->
 
-    <div class="cm-col" ng-if="currentPtzType === ptzType.OPTICAL">
+    <div id="live-ptz-zoom" ng-if="currentPtzType === ptzType.OPTICAL">
       <h2><span>{{ 'lang_areaZoom' | translate }}</span></h2>
       <div>
         <button 

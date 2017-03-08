@@ -10,7 +10,6 @@ var MjpegSession = function () {
   var MARKERAPPLAST = 0xef;
   var MARKERCOMMENT = 0xfe;
   var extensionHeaderLen;
-  var decoder;
   var width,
     height;
   var decodedData = {
@@ -466,12 +465,12 @@ var MjpegSession = function () {
 
   function Constructor() {
     self = this;
-    decoder = new MJPEGDecoder();
+    this.decoder = new MJPEGDecoder();
   }
 
   Constructor.prototype = inheritObject(new RtpSession(), {
     init: function () {
-      decoder.setIsFirstFrame(false);
+      this.decoder.setIsFirstFrame(false);
       this.videoBufferList = new VideoBufferList();
     },
     SendRtpData: function (rtspInterleaved, rtpHeader, rtpPayload, isBackup) {
@@ -563,8 +562,8 @@ var MjpegSession = function () {
           frmCnt++;
           decodedData.frameData = null;
           if (isBackup !== true || playback !== true) {
-            decoder.setResolution(width, height);
-            decodedData.frameData = decoder.decode(jpegFrame.subarray(0, readLength));
+            this.decoder.setResolution(width, height);
+            decodedData.frameData = this.decoder.decode(jpegFrame.subarray(0, readLength));
           }
           decodedData.timeStamp = null;
 
@@ -634,8 +633,8 @@ var MjpegSession = function () {
           frmCnt++;
           decodedData.frameData = null;
           if (isBackup !== true || playback !== true) {
-            decoder.setResolution(width, height);
-            decodedData.frameData = decoder.decode(jpegFrame.subarray(0, readLength));
+            this.decoder.setResolution(width, height);
+            decodedData.frameData = this.decoder.decode(jpegFrame.subarray(0, readLength));
           }
           decodedData.timeStamp = null;
 
@@ -807,54 +806,6 @@ var MjpegSession = function () {
             this.videoBufferList.push(new Uint8Array(jpegFrame.subarray(0, readLength)), width, height, 'mjpeg', 'I', timeData);
           }
           readLength = 0;
-        }
-      }
-    },
-    stepForward: function () {
-      if (this.videoBufferList !== null) {
-//        console.log("streamDrawer::drawFrame stepValue = FORWARD, videoBufferList.length = " + videoBufferList._length + ", FrameNum = " + videoBufferList.getCurIdx());
-        var bufferNode;
-        var nextNode = this.videoBufferList.getCurIdx() + 1;
-        if (nextNode <= this.videoBufferList._length) {
-          bufferNode = this.videoBufferList.searchNodeAt(nextNode);
-          if (bufferNode === null || bufferNode === undefined) {
-            return false;
-          } else {
-            var data = {};
-            this.SetTimeStamp(bufferNode.timeStamp);
-            decoder.setResolution(width, height);
-            data.frameData = decoder.decode(new Uint8Array(bufferNode.buffer));
-            data.timeStamp = bufferNode.timeStamp;
-            return data;
-          }
-        } else {
-          return false;
-        }
-      }
-    },
-    stepBackward: function () {
-      if (this.videoBufferList !== null) {
-        //        console.log("stepBackward stepValue = BACKWARD, videoBufferList.length = " + videoBufferList._length + ", FrameNum = " + videoBufferList.getCurIdx());
-        var bufferNode;
-        var prevINode = this.videoBufferList.getCurIdx() - 1;
-        while (prevINode > 0) {
-          bufferNode = this.videoBufferList.searchNodeAt(prevINode);
-          if (bufferNode.frameType === "I" || bufferNode.codecType == "mjpeg") {
-            break;
-          } else {
-            bufferNode = null;
-            prevINode--;
-          }
-        }
-        if (bufferNode === null || bufferNode === undefined) {
-          return false;
-        } else {
-          var data = {};
-          this.SetTimeStamp(bufferNode.timeStamp);
-          decoder.setResolution(width, height);
-          data.frameData = decoder.decode(new Uint8Array(bufferNode.buffer));
-          data.timeStamp = bufferNode.timeStamp;
-          return data;
         }
       }
     }

@@ -1,0 +1,13 @@
+.btn-disalbed-color(@color, @background-color, @border-color) {
+  &.disabled, &[disabled],
+  &.disabled:hover, &[disabled]:hover,
+  &.disabled:focus, &[disabled]:focus,
+  &.disabled:active, &[disabled]:active{
+    color: @color;
+    border-color: @border-color;
+    background-color: @background-color;
+    i{
+      color: @color;
+    }
+  }
+}

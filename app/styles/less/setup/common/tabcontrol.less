@@ -1,0 +1,36 @@
+.ibox-content {
+  .nav > li {
+    width: 200px;
+    display: inline-block;
+    margin-right: -7px;
+    padding: 0;
+    vertical-align: middle;
+    z-index: 0;
+    background-color: transparent;
+    &> a {
+      text-align: center;
+      padding: 0;
+      margin-bottom: 0;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid @color-button-font;
+      color: @color-button-font;
+      border-bottom: 0;
+      background-color: white;
+      height: 36px;
+      line-height: 36px;
+      &:hover {
+        border-color: @color-button-selected;
+      }
+    }
+    &.active, &:hover {
+      &> a, &>a:focus {
+        color: @color-button-selected;
+        border-color: @color-button-selected;
+        background-color: white;
+      }
+    }
+    &.active, &:focus {
+      z-index: 1;
+    }
+  }
+}
