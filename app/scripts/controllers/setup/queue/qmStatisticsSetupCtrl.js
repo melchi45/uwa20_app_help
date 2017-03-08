@@ -209,7 +209,8 @@ kindFramework.controller('QMStatisticsCtrl', function (
 				var type = graphTypes[t];
 				for(var d = 0; d < graphDateTypes.length; d++){
 					var dateType = graphDateTypes[d];
-					if($scope.graphSection[type][dateType].options.chart.api !== null){
+					var api = $scope.graphSection[type][dateType].options.chart.api;
+					if(api !== null){
 						$scope.graphSection[type][dateType].options.chart.api.update();
 					}
 				}
@@ -274,9 +275,9 @@ kindFramework.controller('QMStatisticsCtrl', function (
 
 			promises.push(gs.setChartOptions);
 			promises.push(todayAverage);
-			// promises.push(todayCumulative);
+			promises.push(todayCumulative);
 			promises.push(weeklyAverage);
-			// promises.push(weeklyCumulative);
+			promises.push(weeklyCumulative);
 
 			if(promises.length > 0){
 				$q.seqAll(promises).then(
@@ -427,6 +428,13 @@ kindFramework.controller('QMStatisticsCtrl', function (
 				$scope.graphSection.setXAxisData(xAxisData, dateType, type);
 
 				if(dateType === graphDateTypes[2]){
+					if(type === graphTypes[1]){
+						var oldTableData = $scope.resultSection.getTableData().rules;
+						oldTableData.reverse();
+						oldTableData.forEach(function(rule, i){
+							tableData.rules.unshift(rule);
+						});
+					}
 					$scope.resultSection.setTable(tableData);
 				}
 
@@ -456,9 +464,29 @@ kindFramework.controller('QMStatisticsCtrl', function (
 					toDate: toCalenderTimeStamp
 				};
 
-				qmModel
-					.getSearchGraphData(type, searchOptions)
-					.then(successCallback, failCallback);
+				var checkList = {};
+				var typeArr = type === graphTypes[0]? ["average"] : ["medium", "high"];
+
+				typeArr.forEach(function(typeSelf, i){
+					var arr = [];
+					$("input[type='checkbox'][id^='qm-search-" + typeSelf + "-']:checked").each(function(j, self){
+						var index = parseInt( $(self).attr("data-index"), 10);
+						arr.push(index);
+					});
+
+					if(arr.length > 0){
+						checkList[typeSelf] = arr;
+					}
+				});
+
+				if(Object.keys(checkList).length === 0){
+					deferred.resolve("NoData");
+				}else{
+					$scope.resultSection.viewGraph[type] = true;
+					qmModel
+						.getSearchGraphData(type, searchOptions, checkList)
+						.then(successCallback, failCallback);
+				}
 			}
 
 			return deferred.promise;
@@ -472,6 +500,9 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			var promises = [];
 
 			$scope.resultSection.view = false;
+			$scope.resultSection.viewGraph[graphTypes[0]] = false;
+			$scope.resultSection.viewGraph[graphTypes[1]] = false;
+			$scope.resultSection.resetTableData();
 
 			var failCallback = function(errorData){
 				console.error(errorData);
@@ -485,7 +516,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			};
 
 			promises.push(searchAverage);
-			// promises.push(searchCumulative);
+			promises.push(searchCumulative);
 
 			if(promises.length > 0){
 				$q.seqAll(promises).then(
@@ -726,13 +757,26 @@ kindFramework.controller('QMStatisticsCtrl', function (
 		hide: function(){
 			$scope.resultSection.showResults = false;
 		},
+		viewGraph: {
+			average: false,
+			cumulative: false
+		},
 		noResults: false,
-		tableData: {},
+		tableData: {
+			rules: [],
+			timeTable: []
+		},
 		setTable: function(data){
 			$scope.resultSection.tableData = data;
 		},
 		getTableData: function(){
 			return $scope.resultSection.tableData;
+		},
+		resetTableData: function(){
+			$scope.resultSection.tableData = {
+				rules: [],
+				timeTable: []
+			};
 		},
 		getReport: function(){
 		  pcModalService.openReportForm().then(

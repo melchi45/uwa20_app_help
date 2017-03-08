@@ -169,6 +169,7 @@
                                                 <input 
                                                     type="checkbox"
                                                     id="qm-search-average-{{$index}}"
+                                                    data-index="{{$index}}"
                                                     checked>
                                                 {{ lang.search.rule.average | translate }}
                                             </label>
@@ -178,6 +179,7 @@
                                                 <input 
                                                     type="checkbox"
                                                     id="qm-search-medium-{{$index}}"
+                                                    data-index="{{$index}}"
                                                     checked>
                                                 {{ lang.search.rule.cumulative | translate }}
                                             </label>
@@ -187,6 +189,7 @@
                                                 <input 
                                                     type="checkbox"
                                                     id="qm-search-high-{{$index}}"
+                                                    data-index="{{$index}}"
                                                     checked>
                                                 {{ lang.search.rule.cumulative | translate }}
                                             </label>
@@ -214,8 +217,6 @@
             </div>
         </div>
 
-        <hr class="wn5-setup-hr" ng-hide="!resultSection.view">
-
         <section id="pc-results"
             ng-show="resultSection.view">
             <h3 class="applyColor">{{ lang.results.title | translate }}</h3>
@@ -223,7 +224,7 @@
 
             <article 
                 class="pc-statistics-dialog"
-                ng-show="resultSection.noResults">
+                ng-show="resultSection.noResults || !(resultSection.viewGraph.average && resultSection.viewGraph.cumulative)">
                 <p 
                     class="pc-statistics-dialog-title">
                     {{lang.results.noResults | translate}}
@@ -232,7 +233,7 @@
 
             <figure 
                 class="pc-results-graph pc-graph-fix-tooltip"
-                ng-hide="resultSection.noResults">
+                ng-show="resultSection.viewGraph.average && !resultSection.noResults">
                 <nvd3 
                     options="graphSection.average.search.options" 
                     data="graphSection.average.search.data" 
@@ -243,7 +244,7 @@
 
             <figure 
                 class="pc-results-graph pc-graph-fix-tooltip"
-                ng-hide="resultSection.noResults">
+                ng-show="resultSection.viewGraph.cumulative && !resultSection.noResults">
                 <nvd3 
                     options="graphSection.cumulative.search.options" 
                     data="graphSection.cumulative.search.data" 
@@ -258,7 +259,7 @@
                 <table class="pc-n-hm-table table-bordered text-center">
                     <thead>
                         <tr>
-                            <th class="text-center pc-results-table-rule">{{ lang.results.table.rule | translate }}</th>
+                            <th class="text-center pc-results-table-rule">{{ lang.results.table.queue | translate }}</th>
                             <th 
                                 ng-repeat="timeData in resultSection.tableData.timeTable track by $index"
                                 class="text-center">
@@ -279,7 +280,7 @@
                 <button 
                     class="btn btn-black" 
                     type="button" 
-                    ng-disabled="!resultSection.view || resultSection.noResults"
+                    ng-disabled="!resultSection.view || resultSection.noResults || !(resultSection.viewGraph.average && resultSection.viewGraph.cumulative)"
                     ng-click="resultSection.getReport()">
                     {{ lang.results.button | translate }}
                 </button>

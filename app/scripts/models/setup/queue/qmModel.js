@@ -48,12 +48,11 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			},
 			results: {
 				title: 'lang_results',
-				queue: 'Queue',
 				// timeInQ: 'Time in Queue',
 				noResults: 'lang_msg_no_result',
 				button: 'lang_download',
 				table: {
-					rule: 'Rule',
+					queue: 'Queue',
 					sum: 'lang_sum',
 					average: 'Average',
 					high: 'lang_high',
@@ -428,7 +427,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 		var searchToken = null;
 		var graphType = ["average", "cumulative"];
 
-		var getSearchData = function(searchOptions, type){
+		var getSearchData = function(searchOptions, type, checkList){
 			var deferred = $q.defer();
 
 			var searchControl = recordingCgi.control;
@@ -489,6 +488,11 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					};
 
 					if(type === graphType[0]){
+						if(checkList){
+							if(checkList.average.indexOf(i) === -1){
+								continue;
+							}
+						}
 						data.direction = type;
 						data.results = fillterResults(queueSelf.AveragePeopleResult, resultInterval);
 
@@ -496,6 +500,12 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 					}else{
 						var queueLevels = queueSelf.QueueLevels;
 						for(var j = 0; j < queueLevels.length; j++){
+							if(checkList){
+								var checkListKey = queueLevels[j].Level.toLowerCase();
+								if(checkList[checkListKey] === undefined || checkList[checkListKey].indexOf(i) === -1){
+									continue;
+								}
+							}
 							data.direction = queueLevels[j].Level;
 							data.results = fillterResults(queueLevels[j].CumulativeTimeResult, resultInterval);
 
@@ -671,13 +681,13 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			return getSearchData(searchOptions, type);
 		};
 
-		this.getSearchGraphData = function(type, options){
+		this.getSearchGraphData = function(type, options, checkList){
 			var searchOptions = {
 				FromDate: removeTime(getSunapiDateFormat(options.fromDate)),
 				ToDate: getSunapiDateFormat(options.toDate)
 			};
 
-			return getSearchData(searchOptions, type);
+			return getSearchData(searchOptions, type, checkList);
 		};
 
 		this.cancelSearch = function(){
