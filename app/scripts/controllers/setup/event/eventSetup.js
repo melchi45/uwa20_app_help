@@ -182,8 +182,10 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
                 mRule.EventOrder = 4;
                 $scope.EventRules.push(mRule);
             } else if (eventSource === 'AudioDetection') {
-                mRule.EventOrder = 9;
-                $scope.EventRules.push(mRule);
+                if(mAttr.MaxAudioOutput > 0 || mAttr.MaxAudioInput > 0) {
+                    mRule.EventOrder = 9;
+                    $scope.EventRules.push(mRule);
+                }
             } else if (eventSource === 'Timer') {
                 mRule.EventOrder = 2;
                 $scope.EventRules.push(mRule);
@@ -200,8 +202,10 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
                 mRule.EventOrder = 3;
                 $scope.EventRules.push(mRule);
             } else if (eventSource === 'AudioAnalysis') {
-                mRule.EventOrder = 10;
-                $scope.EventRules.push(mRule);
+                if(mAttr.MaxAudioOutput > 0 || mAttr.MaxAudioInput > 0) {
+                    mRule.EventOrder = 10;
+                    $scope.EventRules.push(mRule);
+                }
             } else if (eventSource === 'UserInput') {} else {
                 for (var ai = 0; ai < mAttr.MaxAlarmInput; ai++) {
                     var sourceName = 'AlarmInput.' + (ai + 1);
