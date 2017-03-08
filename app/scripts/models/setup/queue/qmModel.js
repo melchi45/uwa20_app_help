@@ -49,11 +49,16 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			results: {
 				title: 'lang_results',
 				queue: 'Queue',
-				timeInQ: 'Time in Queue',
-				high: 'lang_high',
-				mid: 'Mid',
+				// timeInQ: 'Time in Queue',
 				noResults: 'lang_msg_no_result',
-				button: 'lang_download'
+				button: 'lang_download',
+				table: {
+					rule: 'Rule',
+					sum: 'lang_sum',
+					average: 'Average',
+					high: 'lang_high',
+					mid: 'Mid'
+				}
 			},
 			setupTabTitle: {
 				configuration: 'Configuration',
@@ -391,7 +396,6 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			var deferred = $q.defer();
 
 			function successCallback(data){
-				console.info(data);
 				data = data.data.QueueManagement[0];
 				deferred.resolve(data);
 			}

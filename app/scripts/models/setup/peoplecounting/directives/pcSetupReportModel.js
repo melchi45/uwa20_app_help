@@ -79,7 +79,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 						deferred.resolve(responseData.data.PeopleCount[0]);
 					}
 				},
-				errorCallback: function(errorData){
+				failCallback: function(errorData){
 					deferred.reject(errorData);
 				}
 			};
@@ -115,7 +115,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 						deferred.resolve(responseData.data.PeopleCount[0]);
 					}
 				},
-				errorCallback: function(errorData){
+				failCallback: function(errorData){
 					deferred.reject(errorData);
 				}
 			};
@@ -147,7 +147,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 				successCallback: function(responseData){
 					deferred.resolve('Success');
 				},
-				errorCallback: function(errorData){
+				failCallback: function(errorData){
 					deferred.reject(errorData);
 				}
 			};
@@ -185,7 +185,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 				successCallback: function(responseData){
 					deferred.resolve('Success');
 				},
-				errorCallback: function(errorData){
+				failCallback: function(errorData){
 					deferred.reject(errorData);
 				}
 			};

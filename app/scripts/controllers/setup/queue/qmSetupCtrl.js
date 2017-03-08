@@ -115,16 +115,18 @@ kindFramework.controller('QMSetupCtrl',
 				$scope.queueData.dataLoad = true;
 				console.info($scope.queueData);
 
-				//Realtime
-				$scope.realtimeSection.init();
-				//Queue List
-				$scope.queueListSection.checkAllStatus();
-				//Queue Level
-				$scope.queueLevelSection.start();
-				$scope.queueLevelSection.bindHtml();
-				$scope.queueLevelSection.getRange();
-				//Calibration
-				$scope.calibrationSection.init();
+				if(data.Enable === true){
+					//Realtime
+					$scope.realtimeSection.init();
+					//Queue List
+					$scope.queueListSection.checkAllStatus();
+					//Queue Level
+					$scope.queueLevelSection.start();
+					$scope.queueLevelSection.bindHtml();
+					$scope.queueLevelSection.getRange();
+					//Calibration
+					$scope.calibrationSection.init();
+				}
 				//Tab(Draw init)
 				var activedTab = $scope.currentTapStatus.indexOf(true);
 				$scope.changeTabStatus(activedTab);
@@ -293,7 +295,7 @@ kindFramework.controller('QMSetupCtrl',
 			};
 
 			var failCallback = function(failData){
-				console.info(failData);
+				console.error(failData);
 			};
 
 			qmModel.checkData(
@@ -654,7 +656,7 @@ kindFramework.controller('QMSetupCtrl',
 
 	function view(){
 		var failCallback = function(errorData){
-			alert(errorData);
+			console.error(errorData);
 			$scope.pageLoaded = true;
 		};
 
@@ -815,7 +817,7 @@ kindFramework.controller('QMSetupCtrl',
                 currentPage: 'Queue'
             };
         }, function(errorData) {
-            console.log(errorData);
+            console.error(errorData);
         }, '', true);
     }
 

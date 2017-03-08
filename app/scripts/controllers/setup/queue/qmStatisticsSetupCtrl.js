@@ -12,6 +12,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 	Attributes,
 	ConnectionSettingService, 
 	pcSetupService,
+	pcModalService,
 	SunapiClient, 
 	QmModel
 	){
@@ -400,17 +401,34 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						chartData.area = true;
 					}
 
+					tableData.rules[i] = [];
+					tableData.rules[i].push(data[i].name + ' - ' + data[i].direction);
+
+					var sum = 0;
 					for(var j = 0, jLen = self.results.length; j < jLen; j++){
 						var resultSelf = self.results[j];
 						chartData.values.push([j, resultSelf.value]);
 						xAxisData[j] = resultSelf.timeStamp;
+
+						tableData.rules[i].push(resultSelf.value);
+						sum += resultSelf.value;
+
+						if(i === 0){
+							var time = changeFormatForGraph(resultSelf.timeStamp, self.resultInterval);
+							tableData.timeTable.push(time);
+						}
 					}
 
 					allChartData.push(chartData);
+					tableData.rules[i].push(sum);
 				}
 
 				$scope.graphSection.setData(allChartData, dateType, type);
 				$scope.graphSection.setXAxisData(xAxisData, dateType, type);
+
+				if(dateType === graphDateTypes[2]){
+					$scope.resultSection.setTable(tableData);
+				}
 
 				deferred.resolve("Success");
 			}
@@ -453,6 +471,8 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			var gs = $scope.graphSection;
 			var promises = [];
 
+			$scope.resultSection.view = false;
+
 			var failCallback = function(errorData){
 				console.error(errorData);
 				deferred.reject("Fail");
@@ -470,7 +490,10 @@ kindFramework.controller('QMStatisticsCtrl', function (
 			if(promises.length > 0){
 				$q.seqAll(promises).then(
 					function(){
-						gs.bindResize();
+						$scope.resultSection.view = true;
+						$timeout(function(){
+							gs.resizeHandle();
+						});
 						deferred.resolve("Success");
 					}, 
 					failCallback
@@ -901,7 +924,9 @@ kindFramework.controller('QMStatisticsCtrl', function (
 	$scope.queueLevelSection = {
 		maxArr: {},
 		start: function(id){
-			$scope.queueLevelSection.stop();
+			$scope.queueLevelSection.stop(0);
+			$scope.queueLevelSection.stop(1);
+			$scope.queueLevelSection.stop(2);
 			$scope.queueLevelSection.change(id);
 
 			gaugeTimer['timer' + id] = setInterval(function(){
@@ -998,27 +1023,29 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						$scope.queueData.dataLoad = true;
 						console.info($scope.queueData);
 
-						// Preview
-						$scope.previewSection.init();
 						// Queue Level(Start graph)
 						$scope.queueLevelSection.start(0);
 						$scope.queueLevelSection.start(1);
 						$scope.queueLevelSection.start(2);
-						//Graph
-						$scope.graphSection.init().then(
-							function(){
-								$scope.pcConditionsDateForm.init(
-									function(){
-										resizeGraph();
-										deferred.resolve("Success");
-									}, 
-									failCallback
-								);
-							},
-							function(failData){
-								console.error(failData);
-							}
-						)
+						if(data.Enable === true){
+							// Preview
+							$scope.previewSection.init();
+							//Graph
+							$scope.graphSection.init().then(
+								function(){
+									$scope.pcConditionsDateForm.init(
+										function(){
+											resizeGraph();
+											deferred.resolve("Success");
+										}, 
+										failCallback
+									);
+								},
+								failCallback
+							)
+						}else{
+							deferred.resolve("Success");
+						}
 					}, 
 					failCallback
 				);
