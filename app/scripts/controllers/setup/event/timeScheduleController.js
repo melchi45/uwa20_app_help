@@ -108,17 +108,16 @@ kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $transl
                     }
                 });
                 modalInstance.result.then(function() {
+                    $scope.$emit('applied', true);
                     if (!angular.equals(pageData.Timer, $scope.Timer)) {
                         promises.push(setTimer);
                     }
 
                     if(promises.length > 0) {
                         $q.seqAll(promises).then(function() {
-                            $scope.applied = true;
                             view();
                         }, function(errorData) {});
                     } else {
-                        $scope.applied = true;
                         view();
                     }
                 }, function() {});
