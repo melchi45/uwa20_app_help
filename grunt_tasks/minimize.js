@@ -50,6 +50,8 @@ module.exports = function(injection){
 				
 					if(mode === "4k"){
 						task.splice(11, 0, "mode:4k");
+					}else if(mode === "s1"){
+						task.splice(10, 1, "mode:s1");
 					}
 			}else if(target == "cam"){
 				task = [
