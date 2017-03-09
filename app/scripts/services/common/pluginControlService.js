@@ -342,6 +342,63 @@ kindFramework
       }
     };
 
+    this.setAreaZoomMode = function(_mode)
+    {
+      try{
+          if(pluginElement !== null && pluginElement !== undefined){
+              // jshint ignore:line
+              if(_mode !== true && _mode !== false)
+              {
+                  throw new Error(300, "Argument Error");
+                  return;
+              }
+
+              if(_mode)
+              {
+                  PTZContorlService.setManualTrackingMode("False");
+                  pluginElement.SetAreaZoomOnOff(1);
+              }
+              else
+              {
+                  PTZContorlService.setManualTrackingMode("False");
+                  pluginElement.SetAreaZoomOnOff(0);
+              }
+              console.log("pluginControlService::setAreaZoomMode() ===>" + _mode + " Area Zoom");
+          }
+          else
+          {
+              throw new Error(400, "PlugIn Element is empty");
+          }
+      }catch(e)
+      {
+          console.log(e.message);
+      }
+    };
+
+    this.setAreaZoomAction = function(_command)
+    {
+      try{
+          switch (_command)
+          {
+              case '1X':
+                  SunapiClient.get("/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=1x", '',
+                      function () {},
+                      function (errorData)
+                      {
+                          console.log(errorData);
+                      }, "", true);
+                  break;
+              case 'Prev':
+                  break;
+              case 'Next':
+                  break;
+          }
+      }catch(e)
+      {
+          console.log(e.message);
+      }
+    };
+
     function updatePluginEventNotification(eventType, status){
       var data = {
         type:'',
@@ -398,6 +455,28 @@ kindFramework
             }
             PTZContorlService.execute([xPos, yPos]);
         }
+    }
+
+    function runAreaZoom(Pos1, Pos2)
+    {
+      var setData = {};
+      var pluginElement = document.getElementsByTagName("channel_player")[0].getElementsByTagName("object")[0];
+
+      setData.X1 = parseInt(Number(Pos1) / 10000);
+      setData.Y1 = Number(String(Pos1).substring(4, 8));
+
+      setData.X2 = parseInt(Number(Pos2) / 10000);
+      setData.Y2 = Number(String(Pos2).substring(4, 8));
+
+      setData.TileWidth = pluginElement.offsetWidth;
+      setData.TileHeight = pluginElement.offsetHeight;
+
+      SunapiClient.get("/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=ZoomIn", setData,
+          function () {},
+          function (errorData)
+          {
+              console.log(errorData);
+          }, "", true);
     }
 
     var reconnectionTimeout = null;
@@ -459,7 +538,7 @@ kindFramework
           updatePluginEventNotification(lp, rp);
           break;
         case 311: //AreaZoom
-
+            runAreaZoom(lp, rp);
             break;
         case 312: //Manual Tracking
             runManualTracking(lp, rp);

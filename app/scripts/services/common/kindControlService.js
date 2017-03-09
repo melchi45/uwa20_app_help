@@ -211,6 +211,8 @@ kindFramework
 
     this.setManualTrackingMode = function(_mode){
         try {
+
+
             if(_mode !== true && _mode !== false)
             {
                 throw new Error(300, "Argument Error");
@@ -232,7 +234,62 @@ kindFramework
                 elementChannelPlayer.removeEventListener('mouseup', mouseup_manualTracking);
             }
 
-            console.log("pluginControlService::setManualTrackingMode() ===>" + _mode + "AreaZoom");
+            console.log("kindControlService::setManualTrackingMode() ===>" + _mode + "AreaZoom");
+        }catch (e)
+        {
+            console.log(e.message);
+        }
+    };
+
+    this.setAreaZoomMode = function(_mode)
+    {
+        try {
+            if(_mode !== true && _mode !== false)
+            {
+                throw new Error(300, "Argument Error");
+                return;
+            }
+
+            var elementChannelPlayer = document.getElementsByTagName("channel_player")[0];
+
+            if(_mode)
+            {
+                PTZContorlService.setManualTrackingMode("False");
+                PTZContorlService.setPTZAreaZoom("on");
+                PTZContorlService.setElementEvent(elementChannelPlayer);
+            }
+            else
+            {
+                PTZContorlService.setManualTrackingMode("False");
+                PTZContorlService.setPTZAreaZoom("off");
+                PTZContorlService.deleteElementEvent(elementChannelPlayer);
+            }
+
+            console.log("kindControlService::setAreaZoomMode() ===>" + _mode + "AreaZoom");
+        }catch (e)
+        {
+            console.log(e.message);
+        }
+    };
+
+    this.setAreaZoomAction = function(_command)
+    {
+        try {
+            switch (_command)
+            {
+                case '1X':
+                    PTZContorlService.getPTZAreaZoomURI("1x");
+                    break;
+                case 'Prev':
+                    PTZContorlService.getPTZAreaZoomURI("prev");
+                    break;
+                case 'Next':
+                    PTZContorlService.getPTZAreaZoomURI("next");
+                    break;
+                default:
+                    throw new Error(300, "Argument Error");
+            }
+            console.log("kindControlService::setAreaZoomAction() ===>" + _command);
         }catch (e)
         {
             console.log(e.message);

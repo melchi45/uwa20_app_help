@@ -299,25 +299,28 @@
         <button 
           class="cm-icon-button-b"
           title="{{'lang_areaZoom' | translate}}"
-          ng-click="areaZoom()">
+          ng-click="areaZoomMode()">
           <span class="sr-only">{{ 'lang_areaZoom' | translate }}</span>
           <i class="tui" ng-class="modePTZ.AreaZoom === true ? 'cm-active tui-ch-live-ptz-areazoom' : 'tui-ch-live-ptz-areazoom'"></i>
         </button>
         <button 
           class="cm-icon-button-b"
-          title="{{'lang_goto1x' | translate}}">
+          title="{{'lang_goto1x' | translate}}"
+          ng-click="areaZoomAction('1X')">
           <span class="sr-only">{{ 'lang_goto1x' | translate }}</span>
           <i class="tui tui-ch-live-ptz-areazoom-1x"></i>
         </button>
         <button 
           class="cm-icon-button-b"
-          title="{{'lang_prev' | translate}}">
+          title="{{'lang_prev' | translate}}"
+          ng-click="areaZoomAction('Prev')">
           <span class="sr-only">{{ 'lang_prev' | translate }}</span>
           <i class="tui tui-ch-live-ptz-areazoom-back"></i>
         </button>
         <button 
           class="cm-icon-button-b"
-          title="{{'lang_next' | translate}}">
+          title="{{'lang_next' | translate}}"
+          ng-click="areaZoomAction('Next')">
           <span class="sr-only">{{ 'lang_next' | translate }}</span>
           <i class="tui tui-ch-live-ptz-areazoom-pre"></i>
         </button>

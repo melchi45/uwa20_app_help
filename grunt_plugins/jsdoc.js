@@ -19,6 +19,14 @@ module.exports = function(injection){
 					options: {
 							destination: projectStructure.cmDocsPath
 					}
+			},
+			sample: {
+					src: [
+						"app/base/kind/rich_components/rest_client/*.js"
+					],
+					options: {
+							destination: projectStructure.docsDir + "/sample/"
+					}
 			}
 	};	
 };

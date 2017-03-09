@@ -1064,6 +1064,76 @@ kindFramework.directive('channelPlayer',
                 }
             }
 
+            function setAreaZoomMode(_streamingmode, _mode)
+            {
+                switch(BrowserService.BrowserDetect)
+                {
+                    case BrowserService.BROWSER_TYPES.IE:
+                        if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE)
+                        {
+                            PluginControlService.setAreaZoomMode(_mode);
+                        }
+                        else
+                        {
+                            //?
+                        }
+                        break;
+                    case BrowserService.BROWSER_TYPES.SAFARI:
+                        if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE)
+                        {
+                            PluginControlService.setAreaZoomMode(_mode);
+                        }
+                        else
+                        {
+                            KindControlService.setAreaZoomMode(_mode);
+                        }
+                        break;
+                    case BrowserService.BROWSER_TYPES.CHROME:
+                    case BrowserService.BROWSER_TYPES.EDGE:
+                    case BrowserService.BROWSER_TYPES.FIREFOX:
+                    /* jshint ignore:start */
+                    default :
+                        /* jshint ignore:end */
+                        KindControlService.setAreaZoomMode(_mode);
+                        break;
+                }
+            }
+
+            function setAreaZoomAction(_streamingmode, _command)
+            {
+                switch(BrowserService.BrowserDetect)
+                {
+                    case BrowserService.BROWSER_TYPES.IE:
+                        if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE)
+                        {
+                            PluginControlService.setAreaZoomAction(_command);
+                        }
+                        else
+                        {
+                            //?
+                        }
+                        break;
+                    case BrowserService.BROWSER_TYPES.SAFARI:
+                        if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE)
+                        {
+                            PluginControlService.setAreaZoomAction(_command);
+                        }
+                        else
+                        {
+                            KindControlService.setAreaZoomAction(_command);
+                        }
+                        break;
+                    case BrowserService.BROWSER_TYPES.CHROME:
+                    case BrowserService.BROWSER_TYPES.EDGE:
+                    case BrowserService.BROWSER_TYPES.FIREFOX:
+                    /* jshint ignore:start */
+                    default :
+                        /* jshint ignore:end */
+                        KindControlService.setAreaZoomAction(_command);
+                        break;
+                }
+            }
+
             $rootScope.$saveOn('channelPlayer:play', function(event, pluginMode, ip, port, profile, id, password, streamTagType, statusCallback, isReconnect) {
                 console.log("Requested Play { plugInMode : " + pluginMode + ", Profile : " + profile + " }");
 
@@ -1199,6 +1269,12 @@ kindFramework.directive('channelPlayer',
                     break;
                   case 'manualTracking' :
                     setManualTrackingMode(StreamingMode, command);
+                    break;
+                  case 'areaZoomMode' :
+                    setAreaZoomMode(StreamingMode, command);
+                    break;
+                  case 'areaZoomAction' :
+                    setAreaZoomAction(StreamingMode, command);
                     break;
                   default:
                     break;
