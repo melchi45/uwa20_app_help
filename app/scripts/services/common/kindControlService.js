@@ -234,7 +234,7 @@ kindFramework
                 elementChannelPlayer.removeEventListener('mouseup', mouseup_manualTracking);
             }
 
-            console.log("pluginControlService::setManualTrackingMode() ===>" + _mode + "AreaZoom");
+            console.log("kindControlService::setManualTrackingMode() ===>" + _mode + "AreaZoom");
         }catch (e)
         {
             console.log(e.message);
@@ -265,7 +265,31 @@ kindFramework
                 PTZContorlService.deleteElementEvent(elementChannelPlayer);
             }
 
-            console.log("pluginControlService::setAreaZoomMode() ===>" + _mode + "AreaZoom");
+            console.log("kindControlService::setAreaZoomMode() ===>" + _mode + "AreaZoom");
+        }catch (e)
+        {
+            console.log(e.message);
+        }
+    };
+
+    this.setAreaZoomAction = function(_command)
+    {
+        try {
+            switch (_command)
+            {
+                case '1X':
+                    PTZContorlService.getPTZAreaZoomURI("1x");
+                    break;
+                case 'Prev':
+                    PTZContorlService.getPTZAreaZoomURI("prev");
+                    break;
+                case 'Next':
+                    PTZContorlService.getPTZAreaZoomURI("next");
+                    break;
+                default:
+                    throw new Error(300, "Argument Error");
+            }
+            console.log("kindControlService::setAreaZoomAction() ===>" + _command);
         }catch (e)
         {
             console.log(e.message);
