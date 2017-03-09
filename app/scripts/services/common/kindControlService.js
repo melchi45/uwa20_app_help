@@ -211,6 +211,8 @@ kindFramework
 
     this.setManualTrackingMode = function(_mode){
         try {
+
+
             if(_mode !== true && _mode !== false)
             {
                 throw new Error(300, "Argument Error");
@@ -233,6 +235,37 @@ kindFramework
             }
 
             console.log("pluginControlService::setManualTrackingMode() ===>" + _mode + "AreaZoom");
+        }catch (e)
+        {
+            console.log(e.message);
+        }
+    };
+
+    this.setAreaZoomMode = function(_mode)
+    {
+        try {
+            if(_mode !== true && _mode !== false)
+            {
+                throw new Error(300, "Argument Error");
+                return;
+            }
+
+            var elementChannelPlayer = document.getElementsByTagName("channel_player")[0];
+
+            if(_mode)
+            {
+                PTZContorlService.setManualTrackingMode("False");
+                PTZContorlService.setPTZAreaZoom("on");
+                PTZContorlService.setElementEvent(elementChannelPlayer);
+            }
+            else
+            {
+                PTZContorlService.setManualTrackingMode("False");
+                PTZContorlService.setPTZAreaZoom("off");
+                PTZContorlService.deleteElementEvent(elementChannelPlayer);
+            }
+
+            console.log("pluginControlService::setAreaZoomMode() ===>" + _mode + "AreaZoom");
         }catch (e)
         {
             console.log(e.message);

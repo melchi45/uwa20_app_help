@@ -195,13 +195,13 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
                     width : "8px",
                     height : "8px",
                     backgroundColor : "#ffff00",
-                    position: "fixed",
+                    position: "absolute",
                     zIndex: "100",
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)"
                 });
-                $("kind_stream").prepend(ptzAreaZoomDot);
+                $("channel_player").prepend(ptzAreaZoomDot);
                 
                 break;
             case "off" : 

@@ -114,6 +114,14 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				};
 
 				scope.autoTracking = function() {
+					//Disable Manual Tracking
+                    scope.modePTZ.ManualTrackingMode = false;
+                    $rootScope.$emit('channelPlayer:command', 'manualTracking', false);
+
+                    //Disable Area Zoom
+                    scope.modePTZ.AreaZoom = false;
+                    $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
+
 					if (UniversialManagerService.getDigitalPTZ() === scope.dptzMode.DIGITAL_PTZ) {
 						scope.autoTrackingFlag = scope.dptzMode.DIGITAL_AUTO_TRACKING;
 					} else {
@@ -122,7 +130,8 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 
 					UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
 					sunapiURI = '/stw-cgi/ptzcontrol.cgi?msubmenu=digitalautotracking&action=control&Mode=';
-					sunapiURI += (scope.autoTrackingFlag === scope.dptzMode.DIGITAL_PTZ ? "Stop" : "Start");
+					sunapiURI += (scope.autoTrackingFlag === scope.dptzMode.DIGITAL_PTZ) ? "Stop" : "Start";
+
 					execSunapi(sunapiURI);
 				};
 
@@ -231,47 +240,74 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 
 		scope.setManualTracking = function() {
 			try{
-                if("True" === PTZContorlService.getManualTrackingMode())
+                //Disable Area Zoom
+                scope.modePTZ.AreaZoom = false;
+                $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
+
+                //Disable Auto Tracking
+                scope.autoTrackingFlag = scope.dptzMode.DIGITAL_PTZ;
+                UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
+
+                if(scope.modePTZ.ManualTrackingMode)
                 {
+                    //Disble Manual Tracking
                     $rootScope.$emit('channelPlayer:command', 'manualTracking', false);
                     scope.modePTZ.ManualTrackingMode = false;
-                    scope.modePTZ.AreaZoom = false;
                 }
-                else if("False" === PTZContorlService.getManualTrackingMode())
-				{
-					if("True" === PTZContorlService.getAutoTrackingMode())
-					{
-                        PTZContorlService.setAutoTrackingMode("False");
-					}
-
-                    $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
+                else {
+                    //Enable Manual Tracking
                     scope.modePTZ.ManualTrackingMode = true;
-                    scope.modePTZ.AreaZoom = false;
-				}
-				else
-				{
-                    throw new Error(300, "Argument Error");
-				}
+                    $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
+                }
 			}catch(e)
 			{
 				console.log(e.message);
 			}
 		};
 
-		scope.areaZoom = function () {
-          if(scope.modePTZ.AreaZoom)
-          {
-              scope.modePTZ.AreaZoom = false;
-              scope.modePTZ.ManualTrackingMode = false;
-              PTZContorlService.setManualTrackingMode("False");
-          }
-          else
-          {
-              scope.modePTZ.AreaZoom = true;
-              scope.modePTZ.ManualTrackingMode = false;
-              PTZContorlService.setManualTrackingMode("False");
-          }
+		scope.areaZoomMode = function () {
+			try {
+                //Disable Manual Tracking
+                scope.modePTZ.ManualTrackingMode = false;
+                $rootScope.$emit('channelPlayer:command', 'manualTracking', false);
+
+                //Disable Auto Tracking
+                scope.autoTrackingFlag = scope.dptzMode.DIGITAL_PTZ;
+                UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
+
+                if(scope.modePTZ.AreaZoom)
+                {
+                    scope.modePTZ.AreaZoom = false;
+                    $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
+                }
+                else
+                {
+                    scope.modePTZ.AreaZoom = true;
+                    $rootScope.$emit('channelPlayer:command', 'areaZoomMode', true);
+                }
+			}catch(e)
+			{
+                console.log(e.message);
+			}
         };
+
+		scope.areaZoomAction = function (value) {
+			if(scope.modePTZ.AreaZoom)
+			{
+				try {
+                    if(value !== '1X' && value !== 'Prev' && value !== 'Next')
+					{
+						throw new Error(300, "Argument Error");
+					}
+
+                    $rootScope.$emit('channelPlayer:command', 'areaZoomAction', value);
+
+				} catch(e)
+				{
+					console.log(e.message);
+				}
+			}
+		};
 
         var presetListCallback = function(result) {
 	        if (result.PTZPresets === undefined) {
