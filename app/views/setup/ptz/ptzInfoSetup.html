@@ -18,18 +18,17 @@
                 </button>
             </li>
         </ul>
-        
-        <div class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
-            <div align="center">
-                <sketchbook videoinfo='videoinfo'></sketchbook>
+        <fieldset class="preset-setup-fieldset">
+            <div class="wn5-setup-section" style="margin-top: 10px;">
+                <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'" videoinfo='videoinfo' style="margin-bottom: 10px;"></sketchbook>
+                
+                <!-- PTZ Control -->
+                <div class="ptz-control_box">
+                    <ptz-control ptzinfo='ptzinfo'></ptz-control>
+                </div>
+                <!-- //PTZ Control End -->
             </div>
-            <div class="form-group"></div>
-            <!-- PTZ Control -->
-            <div class="ptz-control_box ptz-control_ptz-menu-width">
-                <ptz-control ptzinfo='ptzinfo'></ptz-control>
-            </div>
-            <!-- //PTZ Control End -->
-        </div>
+        </fieldset>
 
         <div class="form-group"></div>
                 <div ng-if="activeTab.title === 'Preset'">
@@ -195,18 +194,20 @@
                 <div ng-if="activeTab.title === 'Group'">
                     <div class="wn5-setup-section-article">                                        
                         <div class="form-group">
-                            <div class="wn5-setup-section-article-heading">{{ 'lang_groupNo' | translate }}</div>
-                            <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="Group.SelectedIndex" ng-options="GroupOptions.indexOf(Option) as Option for Option in GroupOptions"></select></div>
-                        </div>
-                        <div class="form-group">
-                            <div class="wn5-setup-section-article-heading">{{ 'lang_presetList' | translate }}</div>
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_groupSetup' | translate }}</div>
                             <div class="wn5-setup-section-article-content">
                                 <div class="form-group">
+                                    <div style="display: inline-block;width: 150px;">
+                                        <select class="form-control" ng-model="Group.SelectedIndex" ng-options="GroupOptions.indexOf(Option) as Option for Option in GroupOptions"></select>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" ng-click="startStopGroup(0)">{{ 'lang_start' | translate }}</button>
+                                    <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopGroup(1)">{{ 'lang_stop' | translate }}</button>
+                                    <button type="button" class="btn btn-primary" ng-click="setGroup()">{{ 'lang_set' | translate }}</button>
                                     <button type="button" class="btn btn-primary" ng-click="removeGroups()">
                                         {{ 'lang_remove' | translate }}
                                     </button>
                                 </div>
-                                <div class="table-wrapper form-group">
+                                <div class="form-group">
                                     <table 
                                         cellspacing="0" 
                                         cellpadding="0" 
@@ -241,25 +242,23 @@
                                                     </table>  
                                                 </div>                                                        
                                             </td>
-                                        </tr> 
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div ng-show="getPageCount('group') > 1" class="text-center page-controller">
+                                                    <a ng-click="getFirstPage('group')"><i class="tui tui-left"></i><i class="tui tui-left"></i></a>
+                                                    <a ng-click="getPrevPage('group')"><i class="tui tui-left"></i></a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <input type="text" class="text" ng-model="PTZGroupPage.pageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{OnlyNumStr}}"/>
+                                                    <label class="control-label">/ {{getPageCount('group')}}</label>
+                                                    <a ng-click="jumpToPage('group')"><i class="tui tui-ch-live-gotochannel"></i></a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a ng-click="getNextPage('group')"><i class="tui tui-right"></i></a>
+                                                    <a ng-click="getLastPage('group')"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </table>
-                                </div>
-                                <div ng-show="getPageCount('group') > 1" class="text-center page-controller">
-                                    <a ng-click="getFirstPage('group')"><i class="tui tui-left"></i><i class="tui tui-left"></i></a>
-                                    <a ng-click="getPrevPage('group')"><i class="tui tui-left"></i></a>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="text" class="text" ng-model="PTZGroupPage.pageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{OnlyNumStr}}"/>
-                                    <label class="control-label">/ {{getPageCount('group')}}</label>
-                                    <a ng-click="jumpToPage('group')"><i class="tui tui-ch-live-gotochannel"></i></a>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a ng-click="getNextPage('group')"><i class="tui tui-right"></i></a>
-                                    <a ng-click="getLastPage('group')"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
-                                </div>
-
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-primary" ng-click="startStopGroup(0)">{{ 'lang_start' | translate }}</button>
-                                    <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopGroup(1)">{{ 'lang_stop' | translate }}</button>
-                                    <button type="button" class="btn btn-primary" ng-click="setGroup()">{{ 'lang_set' | translate }}</button>
                                 </div>
                             </div>
                         </div>
@@ -269,9 +268,12 @@
                 <div ng-if="activeTab.title === 'Tour'">                                                 
                     <div class="wn5-setup-section-article">
                         <div class="form-group">
-                            <div class="wn5-setup-section-article-heading">{{ 'lang_groupList' | translate }}</div>
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_tourSetup' | translate }}</div>
                             <div class="wn5-setup-section-article-content">
                                 <div class="form-group">
+                                    <button type="button" class="btn btn-primary" ng-click="startStopTour(0)">{{ 'lang_start' | translate }}</button>
+                                    <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopTour(1)">{{ 'lang_stop' | translate }}</button>
+                                    <button type="button" class="btn btn-primary" ng-click="setTour()">{{ 'lang_set' | translate }}</button>
                                     <button type="button" class="btn btn-primary" ng-click="removeTours()">{{ 'lang_remove' | translate }}</button>
                                 </div>
                                 <div class="form-group">
@@ -287,11 +289,6 @@
                                             </tr>   
                                         </tbody>
                                     </table> 
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-primary" ng-click="startStopTour(0)">{{ 'lang_start' | translate }}</button>
-                                    <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopTour(1)">{{ 'lang_stop' | translate }}</button>
-                                    <button type="button" class="btn btn-primary" ng-click="setTour()">{{ 'lang_set' | translate }}</button>
                                 </div>
                             </div>
                         </div>

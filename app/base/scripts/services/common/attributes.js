@@ -1077,7 +1077,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         var returnVal = false;
         try {
             if(this.isSupportGoToPreset()){
-                if(mAttributes.EventLogTypes.indexOf("GotoPreset") > 0){
+                if(mAttributes.EventActions.indexOf("GoToPreset") >= 0){
                     setPresetOption();
                     returnVal = mAttributes.PresetOptions;
                 }
