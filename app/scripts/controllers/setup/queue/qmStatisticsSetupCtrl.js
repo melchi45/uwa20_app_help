@@ -970,9 +970,6 @@ kindFramework.controller('QMStatisticsCtrl', function (
 	$scope.queueLevelSection = {
 		maxArr: {},
 		start: function(id){
-			$scope.queueLevelSection.stop(0);
-			$scope.queueLevelSection.stop(1);
-			$scope.queueLevelSection.stop(2);
 			$scope.queueLevelSection.change(id);
 
 			gaugeTimer['timer' + id] = setInterval(function(){
