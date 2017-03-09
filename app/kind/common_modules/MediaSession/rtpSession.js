@@ -19,8 +19,6 @@ function RtpSession() {
 		dropPer = 0,
 		frameCount = 1,
 		dropCount = 0,
-		//throughPut = 0,
-		throughPutGov = 0,
 		decodeMode = "canvas";
 
 	Constructor.prototype = {
@@ -35,6 +33,9 @@ function RtpSession() {
 		},
 		setOutputSizeCallback: function(rtpOutputSizeCallbackFunc) {
 			this.rtpOutputSizeCbFunc = rtpOutputSizeCallbackFunc;
+		},
+		setReturnCallback: function(RtpReturn) {
+			this.rtpReturnCallback = RtpReturn;
 		},
 		setAACCodecInfo: function(info) {
 		},
@@ -173,78 +174,9 @@ function RtpSession() {
 		getDropCount: function() {
 			return dropCount;
 		},
-		initThroughPutGov: function(){
-			dropTimeStart = 0,
-			decodingTime = 0,
-			dropCheckTime = 0,
-			dropPer = 0,
-			frameCount = 1,
-			dropCount = 0,
-			throughPutGov = 0;
-			calcGov =0;
-			currentGov =0;
-			// console.log("init throughput gov !!!!");
-		},
-		setThroughPut: function(value) {
-			var throughPut = value;
-			if (currentGov !== 0) {
-				throughPutGov = (throughPut / (frameRate/currentGov));
-				//throughPutGov -= 4;
-				// console.log("dropCheck::throughPut = " + throughPut + ", throughPutGov = " + throughPutGov + ", Gov = " + currentGov + ", fps = " + frameRate);
-				return throughPutGov;
-				
-			}
-		},
-		dropCheck: function(frameType) {
-			if (frameType == 'I') {
-				currentGov = calcGov;
-				calcGov = 1;
-				return true;
-			} else {
-				calcGov++;
-			}
-			
-			if (throughPutGov !== 0) {				
-				// console.log("dropCheck::calcGov < throughPutGov = " + calcGov + " < " + throughPutGov.toFixed(2) + ", " + (calcGov < throughPutGov));
-				if (calcGov < throughPutGov) {
-					return true;
-				} else {
-					dropCount++;
-					if (dropCount > 100000) {
-						dropCount = 0;
-					}
-					return false;
-				}
-			} else {
-				return true;
-			}
-		},
-		isDrop: function(frameType, needDropCnt) {
-		  if(this.getGovLength() == 0 || this.getGovLength() == null){
-            if (frameType == 'I') {
-              if(calcGov == 0){
-                calcGov = 1;
-			  } else {
-                this.setGovLength(calcGov);
-                // console.log("rtpSession::isDrop setGovLength " + calcGov);
-			  }
-            } else {
-              calcGov+=1;
-            }
-		  } else if (frameType == 'I') {
-            calcGov = 1;
-          } else {
-            calcGov+=1;
-			if((this.getGovLength() - calcGov) < needDropCnt){
-              // console.log("isDrop::this.getGovLength() - calcGov " + (this.getGovLength() - calcGov) + " needDropCnt = " + needDropCnt);
-              return false;
-			}
-          }
-          return true;
-		},
 		initStartTime: function() {
-            this.firstDiffTime = 0;
-            calcGov = 0;
+			this.firstDiffTime = 0;
+			calcGov = 0;
 		}
 	};	
 	return new Constructor();

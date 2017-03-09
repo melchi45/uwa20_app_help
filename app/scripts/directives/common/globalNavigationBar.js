@@ -76,11 +76,11 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                     scope.globalNavigationBar.isPlayback = false;
                     $rootScope.$emit('enablePlayback', false);
                     $state.go('uni.channel');
-                    workerManager.initVideo(false);
+                    //workerManager.initVideo(false);
                 },
                 goToPlayback: function(){
                     scope.pageInit();
-                    workerManager.setLiveMode("canvas");
+                    //workerManager.setLiveMode("canvas");
                     scope.globalNavigationBar.isPlayback = true;
                     scope.globalNavigationBar.isSetup = false;
                     scope.globalNavigationBar.isLive = false;
@@ -113,20 +113,24 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
             scope.toggleFpsMeter = function() {
                 scope.globalNavigationBar.showFpsMeterNum++;
                 if (scope.globalNavigationBar.showFpsMeterNum > 3) {
-                    workerManager.openFPSmeter();
+                    //workerManager.openFPSmeter();
+                    this.controlWorker({'channelId':0, 'cmd':'openFPSmeter', 'data': []});
                     scope.globalNavigationBar.showFpsMeterNum = 0;
                 } else {
-                    workerManager.closeFPSmeter();
+                    //workerManager.closeFPSmeter();
+                    this.controlWorker({'channelId':0, 'cmd':'closeFPSmeter', 'data': []});
                 }
             };
 
             scope.closeFpsMeter = function() {
-                workerManager.closeFPSmeter();
+                //workerManager.closeFPSmeter();
+                this.controlWorker({'channelId':0, 'cmd':'closeFPSmeter', 'data': []});
             };
 
             scope.changeFpsFrame = function() {
                 console.log("fpsFrameNum = " + scope.globalNavigationBar.fpsFrameNum);
-                workerManager.setFpsFrame(scope.globalNavigationBar.fpsFrameNum);
+                //workerManager.setFpsFrame(scope.globalNavigationBar.fpsFrameNum);
+                this.controlWorker({'channelId':0, 'cmd':'setFpsFrame', 'data': [scope.globalNavigationBar.fpsFrameNum]});
             };
 
             function getSupportMenu(){

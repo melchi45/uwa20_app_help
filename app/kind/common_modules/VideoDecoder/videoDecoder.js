@@ -10,8 +10,8 @@ var KIND_HEADER_SIZE = 0;
  * @name KindDecoder
  */
 function KindDecoder() {
-  var isFirstIFrame,
-    outputSize = 0;
+  var isFirstIFrame;
+  var outputSize = 0;
 
   function Constructor() {
   }

@@ -489,26 +489,16 @@ var MjpegSession = function () {
           }
           playback = true;
           startHeader = 4;
-          // NTPmsw = new Uint8Array(new ArrayBuffer(4));
-          // NTPmsw.set(rtpPayload.subarray(startHeader, startHeader + 4), 0);
-          // ntpmsw = this.ntohl(NTPmsw);
           NTPmsw = rtpPayload.subarray(startHeader, startHeader + 4);
 
           startHeader += 4;
-          // NTPlsw = new Uint8Array(new ArrayBuffer(4));
-          // NTPlsw.set(rtpPayload.subarray(startHeader, startHeader + 4), 0);
-          // ntplsw = this.ntohl(NTPlsw);
           NTPlsw = rtpPayload.subarray(startHeader, startHeader + 4);
 
           startHeader += 4;
-          // microseconds = (this.ntohl(NTPlsw) / 0xffffffff) * 1000;
           fsynctime.seconds = ((this.ntohl(NTPmsw) - 0x83AA7E80) >>> 0);
           fsynctime.useconds = (this.ntohl(NTPlsw) / 0xffffffff) * 1000;
 
           startHeader += 2;
-          // gmt = new Uint8Array(new ArrayBuffer(2));
-          // gmt.set(rtpPayload.subarray(startHeader, startHeader + 2), 0);
-          // gmt = (((gmt[0] << 8) | gmt[1]) << 16) >> 16;
           gmt = rtpPayload.subarray(startHeader, startHeader + 2);
           gmt = (((gmt[0] << 8) | gmt[1]) << 16) >> 16;
 
@@ -530,10 +520,6 @@ var MjpegSession = function () {
       }
 
       fragmentOffset = rtpPayload[extensionHeaderLen + 1] << 16 | rtpPayload[extensionHeaderLen + 2] << 8 | rtpPayload[extensionHeaderLen + 3];
-
-      // rtpTimeStamp = new Uint8Array(new ArrayBuffer(4));
-      // rtpTimeStamp.set(rtpHeader.subarray(4, 8), 0);
-      // rtpTimeStamp = this.ntohl(rtpTimeStamp);
       rtpTimeStamp = this.ntohl(rtpHeader.subarray(4, 8));
 
       if (fragmentOffset === 0) {
@@ -588,7 +574,8 @@ var MjpegSession = function () {
           }
           readLength = 0;
           data.decodedData = decodedData;
-          return data;
+          this.rtpReturnCallback(data);
+          return;// data;
         } else {
           totalFrameSize = jpegStartHeaderSize + jpegDataSize;
           if (jpegFrame.length == 0) {
@@ -662,7 +649,8 @@ var MjpegSession = function () {
           if (decodeMode !== "canvas") {
             data.decodeMode = "canvas";
           }
-          return data;
+          this.rtpReturnCallback(data);
+          return;// data;
         }
       }
     },

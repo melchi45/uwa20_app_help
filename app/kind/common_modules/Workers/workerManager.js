@@ -1,14 +1,13 @@
 "use strict";
 
-var workerManager = new WorkerManager();
-
 function WorkerManager() {
   //Workers
-  var usePlaybackDrawer = false,
+  var usePlaybackDrawer = false,  //삭제
   videoWorker = null,
   audioWorker = null,
   backupWorker = null,
-  audioTalkWorker = null;
+  audioTalkWorker = null,
+  self = null;  
 
   //Renderers
   var videoRenderer = null,
@@ -28,72 +27,85 @@ function WorkerManager() {
 
   var browser = BrowserDetect();
 
+  //Rendering
+  var videoInfo;
+  var SDPInfo = null;
+  var frameRate = 0;
+  var govLength = null;
+  var isTalkService = false;
+  var isPaused = true;
+  var decodeMode = "canvas";
+
+  //canvas 
+  var stepFlag = false;
+  var canvasElem = null;
+  var plabyackInterface = null;
+
+  //backup
+  var playerMode = null;
+  var fileMaker = null;
+  var isPlaybackBackup = false;
+
   //video
-  var videoInfo,
-  SDPInfo = null,
-  frameRate = 0,
-  govLength = null,
-  isTalkService = false,
-  isPaused = true,
-  decodeMode = "canvas",
-  videoMS = null,
-  initSegmentData,
-  mediaSegmentData,
-  mediaInfo = {
+  var videoMS = null;
+  var initSegmentData;
+  var mediaSegmentData;
+  var mediaInfo = {
     id: 1,
     samples: null,
     baseMediaDecodeTime: 0
-  },
-  mediaSegmentNum = 0,
-  mediaFrameSize = 0,
-  mediaFrameData,
-  sequenseNum = 1,
-  videoElement = null,
-  stepFlag = false,
-  playerMode = null,
-  playbackService = null,
-  codecInfo = "",
-  videoElem = null,
-  canvasElem = null,
-  throughPutGOV = 30,
-  videoTimeStamp = null,
-  videoTagPlayFlag = false,
-  normalNumBox = (browser !== "chrome" ? 10 : 2),
-  speedNumBox = 1,
-  speed = 1,
-  numBox = normalNumBox,
-  modeChangeFlag = false,
-  preNumBox = numBox;
-
-  var mediaSegmentCount =0;
+  };
+  var mediaSegmentNum = 0;
+  var mediaFrameSize = 0;
+  var mediaFrameData;
+  var sequenseNum = 1;
+  var videoElement = null;
+  var codecInfo = "";
+  var videoElem = null;
+  var videoTimeStamp = null;
+  //var normalNumBox = (browser !== "chrome" ? 10 : 2);
+  var normalNumBox = 4;
+  var speedNumBox = 1;
+  var speed = 1;
+  var numBox = normalNumBox;
+  var preNumBox = numBox;
+  var mediaSegmentCount = 0;
   var initSegmentFlag = false;
-  var prebaseMediaDecodeTime =0,
-    curbaseMediaDecoderTime =0;  
+  var prebaseMediaDecodeTime = 0;
+  var curbaseMediaDecoderTime = 0;
+  var h264SessionVideo = null;
 
   //audio
   var audioCodec = null;
+  var preVolume = 0;
+  var initVideoTimeStamp = 0;
 
-  //backup
-  var fileMaker = null;
-  var fisheye3D = null;
-  var isPlaybackBackup = false;
+  //fps meter
+  var start_time = 0;
+  var play_count = 0;
+  var fps_count = 1000;
+  var fps_spanElement = null;
+  var count_spanElement = null;
+  var fps_div = null;
 
-  //fps
-  var start_time = 0,
-  play_count = 0,
-  fps_count = 1000,
-  fps_spanElement = null,
-  count_spanElement = null,
-  fps_div = null;
+  //postMessage
+  var rtpStackCount = 0;
+  var rtpStackCheckNum = 10;
+  var messageArray = new Array();
 
-  var mjpegStackCount = 0,
-    messageArray = new Array();
-
+  //meta
   var metaSession = null;
   var metaDataParser = null;
 
+  //multi-difrectional
+  var channelId = null; //multi-direction  
+
+  //suspended
+  var modeChangeFlag = false;
+
   function Constructor() {
     isPaused = true;
+    self = this;
   }
 
   function GetInitializationSegment() {
@@ -102,8 +114,8 @@ function WorkerManager() {
 
   function videoSizeCallback() {
     $(window).trigger('resize');
-    loadingBarCallback(false);
-    videoTagPlayFlag = true;
+    if (loadingBarCallback !== null)
+      loadingBarCallback(false);
   }
 
   function closeBackupWorker() {
@@ -147,14 +159,14 @@ function WorkerManager() {
         }
         break;
       case 'initSegment':
-          // var blob = new Blob([initSegmentData], {type: "application/octet-stream"});
-          // saveAs(blob, "initSegmentData.m4s");
-
-    		  initSegmentData = message.data;
+          initSegmentData = message.data;
           createVideoMS();
+
+          // var blob = new Blob([initSegmentData], {type: "application/octet-stream"});
+          // saveAs(blob, "initSegmentData.m4s");          
         break;
       case 'mediaSample':
-        if( mediaInfo.samples == null) {
+        if( mediaInfo.samples === null) {
           mediaInfo.samples = new Array(numBox);
         }
         
@@ -172,15 +184,16 @@ function WorkerManager() {
         if(mediaInfo.samples[0].frame_duration > 500 && mediaInfo.samples[0].frame_duration <= 3000){
           numBox = 1;
         } else{
-          switch(browser){
-            case 'firefox' : 
-            case 'edge' : 
-            case 'safari' :
-              numBox = 10;
-              break;
-            default :
-              numBox = 2;
-          }
+          // switch(browser){
+          //   case 'firefox' :
+          //   case 'edge' :
+          //   case 'safari' :
+          //     numBox = 10;
+          //     break;
+          //   default :
+          //     numBox = 2;
+          // }
+          numBox = 4;
         }
 
         if(preNumBox !== numBox) {
@@ -219,7 +232,7 @@ function WorkerManager() {
           mediaFrameData = null;
           mediaFrameSize = 0;
 
-          // if(mediaSegmentCount <5) {
+          // if(mediaSegmentCount <1) {
           //   var blob2 = new Blob([mediaSegmentData], {type: "application/octet-stream"});
           //   saveAs(blob2, "mediaSegmentData"+ (sequenseNum-1) + ".m4s");
           //   mediaSegmentCount++;
@@ -234,17 +247,13 @@ function WorkerManager() {
           }
         }
         break;
-      case 'decodingTime':
-        // if(divPerfomanceTest !== null && message.data !== undefined){
-        //   if(span.innerHTML.length > 10000){
-        //     span.innerHTML = "";
-        //   }
-        //   span.innerHTML = "decodingTime = " + message.data.toFixed(2);
+      case 'mediasegmentData':
+        videoMS.setMediaSegment(message.data);
 
-        //   if(divPerfomanceTest.scrollTop === divPerfomanceTest.scrollHeight-269 || divPerfomanceTest.scrollHeight < 300){
-        //     divPerfomanceTest.scrollTop = divPerfomanceTest.scrollHeight;
-        //   }
-        // }
+        if (initSegmentFlag === false) {
+          console.log("videoMS error!! recreate videoMS");
+          createVideoMS();
+        }
         break;
       case 'videoInfo':
         videoInfo = message.data;
@@ -305,7 +314,7 @@ function WorkerManager() {
         switch (message.data) {
           case 'needBuffering':
             stepFlag = true;
-            stepRequestCallback("request", playbackService);
+            stepRequestCallback("request", plabyackInterface);
             break;
           case 'BufferFull':
             stepFlag = false;
@@ -331,12 +340,6 @@ function WorkerManager() {
           videoMS.setPlaybackFlag(message.data);
         }
         break;
-      case 'throughPut':
-        throughPutGOV = message.data;
-        if (videoRenderer !== null)  {
-          videoRenderer.setThroughPut(throughPutGOV);
-        }
-        break;
       case 'error':
         if (errorCallback !== null) {
           errorCallback(message.data);
@@ -348,18 +351,6 @@ function WorkerManager() {
     }
   }
 
-  function draw(frameData) {
-    if (frameData !== null && videoRenderer !== null)  {
-      if (videoInfo.codecType == "mjpeg") {
-        videoRenderer.drawMJPEG(frameData, videoInfo.width, videoInfo.height, videoInfo.codecType, videoInfo.frameType, videoInfo.timeStamp);
-      } else {
-        videoRenderer.draw(frameData, videoInfo.width, videoInfo.height, videoInfo.codecType, videoInfo.frameType, videoInfo.timeStamp);
-      }
-    }
-  }
-
-  var preVolume = 0;
-  var initVideoTimeStamp = 0;
   function audioWorkerMessage(event){
     var message = event.data;
     
@@ -488,6 +479,16 @@ function WorkerManager() {
     mediaFrameSize = 0;
   }
 
+  function draw(frameData) {
+    if (frameData !== null && videoRenderer !== null)  {
+      if (videoInfo.codecType == "mjpeg") {
+        videoRenderer.drawMJPEG(frameData, videoInfo.width, videoInfo.height, videoInfo.codecType, videoInfo.frameType, videoInfo.timeStamp);
+      } else {
+        videoRenderer.draw(frameData, videoInfo.width, videoInfo.height, videoInfo.codecType, videoInfo.frameType, videoInfo.timeStamp);
+      }
+    }
+  }  
+
   function checkChangeMode() {
     if (decodeMode !== "canvas") {
       Constructor.prototype.setLiveMode("canvas");
@@ -497,10 +498,10 @@ function WorkerManager() {
 
   function createVideoMS() {
     initSegmentFlag = true;
-    videoTagPlayFlag = false;
 
     if (videoMS === null) {
-      videoMS = VideoMediaSource();
+      var videoElement = document.getElementById("livevideo" + channelId);
+      videoMS = VideoMediaSource(self);
       videoMS.setCodecInfo(codecInfo);
       videoMS.setInitSegmentFunc(GetInitializationSegment);
       videoMS.setVideoSizeCallback(videoSizeCallback);
@@ -521,7 +522,9 @@ function WorkerManager() {
   }
 
 	Constructor.prototype = {
-    init: function(mode) {
+    init: function(deviceInfo) {
+      var mode = deviceInfo.mode;
+      channelId = deviceInfo.channelId;
       var userAgent = window.navigator.userAgent;
       if(userAgent.indexOf('Trident/') !== -1){
         videoWorker = new Worker('./kind/common_modules/Workers/mjpegVideoWorker.js');
@@ -534,13 +537,13 @@ function WorkerManager() {
       audioWorker.onmessage = audioWorkerMessage;
       if(usePlaybackDrawer){
         if(mode === 'live') {
-          videoRenderer = new LiveDrawer(0);
+          videoRenderer = new LiveDrawer(channelId, this);
         } else {
-          videoRenderer = new PlaybackDrawer(0);
+          videoRenderer = new PlaybackDrawer(channelId, this);
           videoRenderer.setBufferFullCallback(bufferFullCallback);
         }
       }else {
-        videoRenderer = new KindDrawer(0);
+        videoRenderer = new KindDrawer(channelId, this);
       }
 
       videoRenderer.setResizeCallback(resizeCallback);
@@ -605,15 +608,8 @@ function WorkerManager() {
         }
       }
       audioCodec = null;
-/*
-      if(audioRenderer != null){
-        audioRenderer.audioInit();
-      }
-*/
       initSegmentFlag = false;
       SDPInfo = sdpInfo;
-      // console.log("workerManager::sendSdpInfo()");
-      // console.log(SDPInfo);
     },
     sendRtpData: function(rtspinterleave, rtpheader, rtpPacketArray) {
       var mediaType = rtspinterleave[1];
@@ -629,14 +625,10 @@ function WorkerManager() {
 
       switch (SDPInfo[idx].codecName) {
         case 'H264':
-        case 'H265': {
-          //console.log("workerManager::sendRtpData()");
-          if( videoWorker ) videoWorker.postMessage(message);
-          break;
-        }
+        case 'H265':
         case 'JPEG':
           messageArray.push(message);
-          if (mjpegStackCount >= 10 || (rtpheader[1] & 0x80) === 0x80) {
+          if (rtpStackCount >= rtpStackCheckNum || (rtpheader[1] & 0x80) === 0x80) {
             var sendMessage = {
               'type': 'rtpDataArray', 
               'data': messageArray
@@ -645,9 +637,9 @@ function WorkerManager() {
             if( videoWorker ) videoWorker.postMessage(sendMessage);
 
             messageArray = [];
-            mjpegStackCount = 0;
+            rtpStackCount = 0;
           } else {
-            mjpegStackCount++;
+            rtpStackCount++;
           }
           break;
         case 'G.711':
@@ -693,9 +685,20 @@ function WorkerManager() {
           break;
         case 'error':
           errorCallback  = func;
+          break;
         default:
           console.log("workerManager::setCallback() : type is unknown");
           break;
+      }
+    },
+    setCallbackData: function(dataArray) {
+      switch (dataArray[0]) {
+        case 'stepRequest':
+          plabyackInterface = dataArray[2];
+        break;
+        default:
+          console.log("workerManager::setCallbackData() : type is unknown");
+        break;
       }
     },
     capture: function(filename) {
@@ -788,7 +791,7 @@ function WorkerManager() {
       if(usePlaybackDrawer){
         if (videoRenderer.forward() == false) {
           videoRenderer.videoBuffering();
-          stepRequestCallback("request", playbackService);
+          stepRequestCallback("request", plabyackInterface);
           stepFlag = true;
         } else {
           timeStampCallback(videoRenderer.getFrameTimestamp(), true);
@@ -803,7 +806,7 @@ function WorkerManager() {
       if(usePlaybackDrawer){
         if (videoRenderer.backward() == false) {
           videoRenderer.videoBuffering();
-          stepRequestCallback("request", playbackService);
+          stepRequestCallback("request", plabyackInterface);
           stepFlag = true;
         } else {
           timeStampCallback(videoRenderer.getFrameTimestamp(), true);
@@ -814,9 +817,10 @@ function WorkerManager() {
     },
     playbackPause: function() {
       isPaused = true;
-      if (videoMS !== null && browser === 'edge') {
-        videoMS.pause();
-      }
+      videoMS.pause();
+      // if (videoMS !== null && browser === 'edge') {
+      //   videoMS.pause();
+      // }
       // console.log("workerManager::playbackPause isPaused " + isPaused);
       if(usePlaybackDrawer){
         if (videoRenderer !== null) {
@@ -843,7 +847,7 @@ function WorkerManager() {
         videoMS.setTimeStampInit();
       }
 
-      initVideo(speed === 1 ? false : true );
+      initVideo(speed);
       videoWorker.postMessage({'type': 'stepPlay', 'data': 'playbackSeek'});
   	},
     videoBuffering: function() {
@@ -881,9 +885,6 @@ function WorkerManager() {
           initVideo(true);
         }
       }
-    },
-    setPlaybackservice: function(obj) {
-      playbackService = obj;
     },
     backup : function(menu, fileName, callback, isPlayback) {
       if( fileMaker === null ) {
@@ -948,6 +949,9 @@ function WorkerManager() {
       fps_count = num;
       play_count = 0;
       start_time = 0;
+    },
+    setStackCount: function(num) {
+      rtpStackCheckNum = num;
     },
     terminate: function() {
       if( playerMode !== 'backup' ) {

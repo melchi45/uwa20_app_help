@@ -271,18 +271,18 @@ mdhd = function(track) {
     0x00, 0x00, 0x00,       // flags
     0x00, 0x00, 0x00, 0x02, // creation_time
     0x00, 0x00, 0x00, 0x03, // modification_time
-    0x00, 0x01, 0x5F, 0x90, // timescale, 90,000 "ticks" per second
-/*     (track.fps >>> 24) & 0xFF,
+    //0x00, 0x01, 0x5F, 0x90, // timescale, 90,000 "ticks" per second
+    0x00, 0x00, 0x03, 0xE8, // timescale, 90,000 "ticks" per second
+    (track.fps >>> 24) & 0xFF,
     (track.fps >>> 16) & 0xFF,
     (track.fps >>>  8) & 0xFF,
-    track.fps & 0xFF,  // fps
+    track.fps & 0xFF,
     (track.duration >>> 24) & 0xFF,
-      (track.duration >>> 16) & 0xFF,
-      (track.duration >>>  8) & 0xFF,
-      track.duration & 0xFF,  // duration */
-      //0x11,0x11,0x11,0x11, //unknown duration
-      0x00,0x00,0x00,0x00, //unknown duration
-    0x55, 0xc4,             // 'und' language (undetermined)
+    (track.duration >>> 16) & 0xFF,
+    (track.duration >>>  8) & 0xFF,
+    track.duration & 0xFF,
+    0x00,0x00,0x00,0x00, //unknown duration
+    0x55, 0xc4, // 'und' language (undetermined)
     0x00, 0x00
   ]);
 
@@ -341,7 +341,6 @@ moov = function(tracks) {
     boxes[i] = trak(tracks[i]);
   }
 
-  //return box.apply(null, [types.moov, mvhd(0x11111111), iods()].concat(mvex(tracks)).concat(boxes).concat(udta()));
   return box.apply(null, [types.moov, mvhd(0x00000000)/*, iods()*/].concat(mvex(tracks)).concat(boxes));
 };
 mvex = function(tracks, fps) {
@@ -350,10 +349,9 @@ mvex = function(tracks, fps) {
     boxes = [];
 
   while (i--) {
-    boxes[i] = trex(tracks[i], (90000/tracks[0].fps));
+    boxes[i] = trex(tracks[i], (1000/tracks[0].fps));
   }
-  //return box.apply(null, [types.mvex, mehd()].concat(boxes).concat(trep()));
-  return box.apply(null, [types.mvex].concat(boxes).concat(trep()));
+  return box.apply(null, [types.mvex].concat(boxes));
 };
 
 udta = function() {
@@ -386,8 +384,8 @@ sidx = function(size, ept) {
       0x00, 0x00, 0x00, 0x00,
       0x00, 0x00, 0x00, 0x01,
       //0x00, 0x00, 0x27, 0x10, //25000
-      //0x00, 0x00, 0x61, 0xA8, // timescale, 90,000 "ticks" per second
-      0x00, 0x01, 0x5F, 0x90, // timescale, 90,000 "ticks" per second
+      0x00, 0x00, 0x03, 0xE8, // timescale, 1000 "ticks" per second
+      //0x00, 0x01, 0x5F, 0x90, // timescale, 90,000 "ticks" per second
       (ept & 0xFF000000) >> 24,
       (ept & 0xFF0000) >> 16,
       (ept & 0xFF00) >> 8,
@@ -399,7 +397,8 @@ sidx = function(size, ept) {
       (size & 0xFF00) >> 8,
       size & 0xFF, // size
       //0x00, 0x00, 0x27, 0x10, //20000
-      0x00, 0x01, 0x5F, 0x90, // timescale, 90,000 "ticks" per second
+      //0x00, 0x01, 0x5F, 0x90, // timescale, 90,000 "ticks" per second
+      0x00, 0x00, 0x03, 0xE8, // timescale, 90,000 "ticks" per second
       0x90, 0x00, 0x00, 0x00
     ]);
   return box(types.sidx, bytes);
@@ -487,7 +486,8 @@ mvhd = function(duration) {
       0x00, 0x00, 0x00, // flags
       0x00, 0x00, 0x00, 0x01, // creation_time
       0x00, 0x00, 0x00, 0x02, // modification_time
-      0x00, 0x01, 0x5F, 0x90, // timescale, 90,000 "ticks" per second
+      //0x00, 0x01, 0x5F, 0x90, // timescale, 90,000 "ticks" per second
+      0x00, 0x00, 0x03, 0xE8, // timescale, 1,000 "ticks" per second
       0xFF, 0xFF, 0xFF, 0xFF, // duration
       // (duration & 0xFF000000) >> 24,
       // (duration & 0xFF0000) >> 16,
@@ -615,11 +615,6 @@ stbl = function(track) {
       0x00, 0x00, 0x00, 0x00, // reserved
       0x00, 0x01, // frame_count
       0x13,
-      // 0x76, 0x69, 0x64, 0x65,
-      // 0x6f, 0x6a, 0x73, 0x2d,
-      // 0x63, 0x6f, 0x6e, 0x74,
-      // 0x72, 0x69, 0x62, 0x2d,
-      // 0x68, 0x6c, 0x73, 0x00,
       0x00, 0x00, 0x00, 0x00,
       0x00, 0x00, 0x00, 0x00,
       0x00, 0x00, 0x00, 0x00,
@@ -640,13 +635,7 @@ stbl = function(track) {
       sps.length // numOfSequenceParameterSets
     ]).concat(sequenceParameterSets).concat([
       pps.length // numOfPictureParameterSets
-    ]).concat(pictureParameterSets)))/*, // "PPS"
-            box(types.btrt, new Uint8Array([
-              0x00, 0x01, 0xBB, 0x5B, // bufferSizeDB 0001BB5B
-              0x00, 0x1D, 0xB0, 0x38, // maxBitrate001DB038
-              0x00, 0x19, 0xC5, 0x38  // 0019C538
-            ]))*/ // avgBitrate
-              );
+    ]).concat(pictureParameterSets))));
   };
 
   audioSample = function(track) {
@@ -753,19 +742,6 @@ traf = function(track) {
                 8 +  // moof header
                 8);  // mdat header
 
-  // audio tracks require less metadata
-  if (track.type === 'audio') {
-    trackFragmentRun = trun(track, dataOffset);
-    return box(types.traf,
-               trackFragmentHeader,
-               trackFragmentDecodeTime,
-               trackFragmentRun);
-  }
-
-  // video tracks should contain an independent and disposable samples
-  // box (sdtp)
-  // generate one and adjust offsets to match
-  sampleDependencyTable = sdtp(track);
   trackFragmentRun = trun(track,
                           /*sampleDependencyTable.length + */dataOffset);
   return box(types.traf,
@@ -815,32 +791,15 @@ trex = function(track, sampleDuration) {
 };
 
 (function() {
-  var audioTrun, videoTrun, trunHeader;
+  var audioTrun, videoTrun, trunHeader, trunHeader1;
 
   // This method assumes all samples are uniform. That is, if a
   // duration is present for the first sample, it will be present for
   // all subsequent samples.
   // see ISO/IEC 14496-12:2012, Section 8.8.8.1
+  //trunHeader for not exiting frame ducation value
   trunHeader = function(samples, offset) {
-    var durationPresent = 0, sizePresent = 0,
-        flagsPresent = 0, compositionTimeOffset = 0;
-
-    // trun flag constants
-    if (samples.length) {
-      if (samples[0].duration !== undefined) {
-        durationPresent = 0x1;
-      }
-      if (samples[0].size !== undefined) {
-        sizePresent = 0x2;
-      }
-      if (samples[0].flags !== undefined) {
-        flagsPresent = 0x4;
-      }
-      if (samples[0].compositionTimeOffset !== undefined) {
-        compositionTimeOffset = 0x8;
-      }
-    }
-
+ 
     return [
       0x00, 0x00, // version 0
       0x02, 0x05, // flags
@@ -855,46 +814,59 @@ trex = function(track, sampleDuration) {
       0x00, 0x00, 0x00, 0x00
     ];
   };
+  //trunHeader for existing frame duration value
+  trunHeader1 = function(samples, offset) {
+     return [
+      0x00, 0x00, // version 0
+      0x03, 0x05, // flags
+      (samples.length & 0xFF000000) >>> 24,
+      (samples.length & 0xFF0000) >>> 16,
+      (samples.length & 0xFF00) >>> 8,
+      samples.length & 0xFF, // sample_count
+      (offset & 0xFF000000) >>> 24,
+      (offset & 0xFF0000) >>> 16,
+      (offset & 0xFF00) >>> 8,
+      offset & 0xFF, // data_offset
+      0x00, 0x00, 0x00, 0x00
+    ];
+  };
 
   videoTrun = function(track, offset) {
-    var bytes, samples, sample, i;
+	var bytes, samples, sample, i;
+	samples = track.samples || [];
+	if (samples[0].frame_duration == null){
+		offset += 8 + 12 + 4 + (4 * samples.length); // size
+		bytes = trunHeader(samples, offset);
+		for (i = 0; i < samples.length; i++) {
+			sample = samples[i];
+			bytes = bytes.concat([
+			(sample.size & 0xFF000000) >>> 24,
+			(sample.size & 0xFF0000) >>> 16,
+			(sample.size & 0xFF00) >>> 8,
+			sample.size & 0xFF, // sample_size
+			
+			]);
+		} 
+	} else {
+		offset += 8 + 12 + 4 + (4 * samples.length)+(4*samples.length); //duration and size
+		bytes = trunHeader1(samples, offset);
+		for (i = 0; i < samples.length; i++) {
+			sample = samples[i];
+			bytes = bytes.concat([
+			(sample.frame_duration & 0xFF000000) >>> 24,
+			(sample.frame_duration & 0xFF0000) >>> 16,
+			(sample.frame_duration & 0xFF00) >>> 8,
+			 sample.frame_duration & 0xFF, // sample_duration
+			(sample.size & 0xFF000000) >>> 24,
+			(sample.size & 0xFF0000) >>> 16,
+			(sample.size & 0xFF00) >>> 8,
+			sample.size & 0xFF, // sample_size
+			
+			]);
+		} 
 
-    samples = track.samples || [];
-    offset += 8 + 12 + 4 + (4 * samples.length);
-
-    bytes = trunHeader(samples, offset);
-
-    for (i = 0; i < samples.length; i++) {
-      sample = samples[i];
-      bytes = bytes.concat([
-        // (sample.duration & 0xFF000000) >>> 24,
-        // (sample.duration & 0xFF0000) >>> 16,
-        // (sample.duration & 0xFF00) >>> 8,
-        // sample.duration & 0xFF, // sample_duration
-        (sample.size & 0xFF000000) >>> 24,
-        (sample.size & 0xFF0000) >>> 16,
-        (sample.size & 0xFF00) >>> 8,
-        sample.size & 0xFF, // sample_size
-        // (sample.flags.isLeading << 2) | sample.flags.dependsOn,
-        // (sample.flags.isDependedOn << 6) |
-        // (sample.flags.hasRedundancy << 4) |
-        // (sample.flags.paddingValue << 1) |
-        // sample.flags.isNonSyncSample,
-        // (sample.flags.degradationPriority & 0xFF00000000000000) >>> 56,
-        // (sample.flags.degradationPriority & 0xFF000000000000) >>> 48,
-        // (sample.flags.degradationPriority & 0xFF0000000000) >>> 40,
-        // (sample.flags.degradationPriority & 0xFF00000000) >>> 32,
-        // (sample.flags.degradationPriority & 0xFF000000) >>> 24,
-        // (sample.flags.degradationPriority & 0xFF0000) >>> 16,
-        // (sample.flags.degradationPriority & 0xFF00) >>> 8,
-        // sample.flags.degradationPriority & 0xFF,
-        // (sample.compositionTimeOffset & 0xFF000000) >>> 24,
-        // (sample.compositionTimeOffset & 0xFF0000) >>> 16,
-        // (sample.compositionTimeOffset & 0xFF00) >>> 8,
-        // sample.compositionTimeOffset & 0xFF // sample_composition_time_offset
-      ]);
-    }
-    return box(types.trun, new Uint8Array(bytes));
+	}
+	return box(types.trun, new Uint8Array(bytes));
   };
 
   audioTrun = function(track, offset) {
@@ -931,33 +903,24 @@ trex = function(track, sampleDuration) {
 }());
 
 function initSegment(tracks) {
-  var
-    fileType = ftyp(),
-    freeINfo = free(),
-    movie = moov(tracks),
-    result;
+  var fileType = ftyp();
+  var movie = moov(tracks);
+  var result;
 
-  result = new Uint8Array(fileType.byteLength + freeINfo.byteLength + movie.byteLength);
+  result = new Uint8Array(fileType.byteLength + movie.byteLength);
   result.set(fileType);
-  result.set(freeINfo, fileType.byteLength);
-  result.set(movie, freeINfo.byteLength + fileType.byteLength);
+  result.set(movie, fileType.byteLength);
   return result;
 }
 
 function mediaSegment(sequenceNumber, tracks, data, ept) {
-  var
-    stypBox = styp(),
-    moofBox = moof(sequenceNumber, tracks),
-    frameData = mdat(data),
-    sidxBox = sidx((data.length + moofBox.length + 8), ept),
-    result;
-
-  result = new Uint8Array(stypBox.byteLength + sidxBox.byteLength +
-                          moofBox.byteLength + frameData.byteLength);
-  result.set(stypBox);
-  result.set(sidxBox, stypBox.byteLength);
-  result.set(moofBox, stypBox.byteLength + sidxBox.byteLength);
-  result.set(frameData, stypBox.byteLength + sidxBox.byteLength + moofBox.byteLength);
+  var moofBox = moof(sequenceNumber, tracks);
+  var frameData = mdat(data);
+  var result;
+  
+  result = new Uint8Array(moofBox.byteLength + frameData.byteLength);
+  result.set(moofBox);
+  result.set(frameData, moofBox.byteLength);
 
   return result;
 }

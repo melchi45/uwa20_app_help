@@ -63,6 +63,18 @@ var KindStreamManager = (function () {
                 console.log('ERROR: KindStreamPlayer is not initialized');
             }
         },
+        controlWorker: function(controlData) {
+            //controlData = {'channelId':0, 'cmd':'', 'data': ['data1', 'data2']}
+            var player,
+                id = controlData.channelId;
+
+            if (playerContainer[id]) {
+                player = playerContainer[id];
+                player.controlWorker(controlData);
+            } else {
+                console.log('ERROR: KindStreamPlayer is not initialized controlWorker::cmd = ' + controlData.cmd);
+            }
+        },
         setResizeCallback: function(callback) {
             player.setResizeCallback(callback);
         },
@@ -70,8 +82,10 @@ var KindStreamManager = (function () {
             player.decoderInit(codecType);
         },
         destroyPlayer: function(){
-            workerManager.controlAudioListen('volumn', 0);
-            workerManager.controlAudioTalk('volumn', 0);
+            this.controlWorker({'channelId':0, 'cmd':'initVideo', 'data': [false]});
+            this.controlWorker({'channelId':0, 'cmd':'setLiveMode', 'data': ["canvas"]});
+            this.controlWorker({'channelId':0, 'cmd':'controlAudioListen', 'data': ['volumn', 0]});
+            this.controlWorker({'channelId':0, 'cmd':'controlAudioTalk', 'data': ['volumn', 0]});
             playerContainer = [];
         }
     };

@@ -144,7 +144,8 @@ kindFramework
       });
       kindStreamInterface.setResizeEvent();
       kindStreamInterface.setCanvasStyle($scope.viewMode, 'Playback');
-      workerManager.initVideo(false);
+      //workerManager.initVideo(false);
+      kindStreamInterface.controlWorker({'channelId':0, 'cmd':'initVideo', 'data': [false]});
       return def.promise;
     };
 

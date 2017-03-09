@@ -35,14 +35,16 @@ function KindStreamPlayer(configInfo, sunapiClient) {
   };
 
   var rtspClient;
+  var workerManager;
   var setBufferingFunc = null;
   var isValidBackupCheck = null;
 
   function Constructor(configInfo) {
     isValidBackupCheck = null;
     var transportType = configInfo.media.transportType;
-        
-    rtspClient = new RtspClient();
+    
+    workerManager = new WorkerManager();
+    rtspClient = new RtspClient(configInfo.device.channelId, workerManager);
     rtspClient.SetSunapiClient(sunapiClient);
   }
     
@@ -94,7 +96,7 @@ function KindStreamPlayer(configInfo, sunapiClient) {
     var ip = connectionInfo.server_address ? connectionInfo.server_address : info.device.cameraIp;
     var port = (connectionInfo.port == "") ? connectionInfo.port : (":"+ connectionInfo.port);
     var protocol = (connectionInfo.protocol == "http") ? "ws://" : "wss://";
-    var rtspUrl = 'rtsp://'+profileInfo.device.cameraIp+'/'+profileInfo.media.requestInfo.url;
+    var rtspUrl = 'rtsp://'+profileInfo.device.user+':'+profileInfo.device.password+'@'+profileInfo.device.cameraIp+'/'+profileInfo.media.requestInfo.url;
     var address;
     var pathName = window.location.pathname;
     if (pathName !== "/") {
@@ -121,10 +123,12 @@ function KindStreamPlayer(configInfo, sunapiClient) {
       rtspUrl: rtspUrl,
       mode: profileInfo.media.type,
       useragent: "UWC["+connectionInfo.ClientIPAddress+"]",
-      audioOutStatus: profileInfo.media.audioOutStatus
+      audioOutStatus: profileInfo.media.audioOutStatus,
+      ip:ip,
+      channelId:channelId
     };
     rtspClient.SetDeviceInfo(deviceInfo);
-    workerManager.init(deviceInfo.mode);
+    workerManager.init(deviceInfo);
     window.setTimeout(function(){
       console.log("Open ", channelId, "Channel!");
       rtspClient.Connect();
@@ -178,10 +182,6 @@ function KindStreamPlayer(configInfo, sunapiClient) {
     profileInfo.media.requestInfo.cmd = 'pause';
     profileInfo.media.requestInfo.url = "rtsp://"+profileInfo.device.cameraIp +":554" +"/"+info.media.requestInfo.url;
     rtspClient.ControlStream(profileInfo);
-    /* Todo :
-    1. call h264Decoder.init()
-    2. call h265Decoder.init()
-    */
   }
 
   function speed(info) {
@@ -195,6 +195,8 @@ function KindStreamPlayer(configInfo, sunapiClient) {
     profileInfo.media.requestInfo.scale = info.media.requestInfo.scale;
     profileInfo.media.requestInfo.url = "rtsp://"+profileInfo.device.cameraIp +":554" +"/"+info.media.requestInfo.url;
     rtspClient.ControlStream(profileInfo);
+
+    playbackSpeed(info.media.requestInfo.scale);
   }
 
   function seek(info) {
@@ -212,7 +214,9 @@ function KindStreamPlayer(configInfo, sunapiClient) {
     profileInfo.media.requestInfo.cmd = 'seek';
     profileInfo.media.requestInfo.scale = info.media.requestInfo.scale;
     profileInfo.media.requestInfo.url = "rtsp://"+profileInfo.device.cameraIp +":554" +"/"+info.media.requestInfo.url;
-    rtspClient.ControlStream(profileInfo);
+    rtspClient.ControlStream(profileInfo);    
+
+    playbackSeek();
   }
 
   function stepRequest(info) {
@@ -276,7 +280,64 @@ function KindStreamPlayer(configInfo, sunapiClient) {
       workerManager.controlAudioTalk('volumn', data);
     }
   }
-    
+
+  function changeStackCount(info) {
+    var data = info.media.requestInfo.data;
+    data = parseInt(data, 10);
+    workerManager.setStackCount(data);
+  }
+
+  function setCallback(dataArray) {
+    workerManager.setCallback(dataArray[0], dataArray[1]);
+    if (dataArray.length > 2) {
+      workerManager.setCallbackData(dataArray);
+    }
+  }
+
+  function timeStamp(dataArray) {
+    workerManager.timeStamp(dataArray[0]);
+  }
+
+  function initVideo(dataArray) {
+    workerManager.initVideo(dataArray[0]);
+  }
+
+  function playbackSpeed(dataArray) {
+    workerManager.playbackSpeed(dataArray[0]);
+  }
+
+  function videoBuffering(dataArray) {
+    workerManager.videoBuffering();
+  }
+
+  function setLiveMode(dataArray) {
+    workerManager.setLiveMode(dataArray[0]);
+  }
+
+  function openFPSmeter(dataArray) {
+    workerManager.openFPSmeter();
+  }
+
+  function closeFPSmeter(dataArray) {
+    workerManager.closeFPSmeter();
+  }
+
+  function setFpsFrame(dataArray) {
+    workerManager.setFpsFrame(dataArray[0]);
+  }
+
+  function playbackSeek(dataArray) {
+    workerManager.playbackSeek();
+  }
+
+  function playToggle(dataArray) {
+    workerManager.playToggle(dataArray[0]);
+  }
+
+  function setPlaybackservice(dataArray) {
+    workerManager.setPlaybackservice(dataArray[0]);
+  }
+
   Constructor.prototype = {
     decoderInit: function(codecType) {
       if (codecType === "h264") {
@@ -355,8 +416,56 @@ function KindStreamPlayer(configInfo, sunapiClient) {
         case 'backupstop':
           backup(info);
           break;
+        case 'changeStackCount':
+          changeStackCount(info);
+          break;
         default:
           console.log('Not Supported Commnad');
+          break;
+      }
+    },
+    controlWorker: function(controlData) {
+      var controlType = controlData.cmd;
+
+      switch (controlType) {
+        case 'setCallback':
+          setCallback(controlData.data);
+          break;
+        case 'timeStamp':
+          timeStamp(controlData.data);
+          break;
+        case 'initVideo':
+          initVideo(controlData.data);
+          break;
+        case 'playbackSpeed':
+          playbackSpeed(controlData.data);
+          break;
+        case 'videoBuffering':
+          videoBuffering(controlData.data);
+          break;
+        case 'setLiveMode':
+          setLiveMode(controlData.data);
+          break;
+        case 'openFPSmeter':
+          openFPSmeter(controlData.data);
+          break;
+        case 'closeFPSmeter':
+          closeFPSmeter(controlData.data);
+          break;
+        case 'setFpsFrame':
+          setFpsFrame(controlData.data);
+          break;
+        case 'playbackSeek':
+          playbackSeek(controlData.data);
+          break;
+        case 'playToggle':
+          playToggle(controlData.data);
+          break;
+        case 'setPlaybackservice':
+          setPlaybackservice(controlData.data);
+          break;
+        default:
+          console.log("undefined command!");
           break;
       }
     }

@@ -57,15 +57,14 @@ var H265Session = function () {
       this.firstDiffTime = 0;
     },
     SendRtpData: function(rtspInterleaved, rtpHeader, rtpPayload, isBackup) {
-	  // var beforeDepacketizing = Date.now();
       var HEADER = rtpHeader,
-        PAYLOAD = null,
+        PAYLOAD,
         timeData = {'timestamp': null, 'timezone': null},
         channelId = rtspInterleaved[1],
         pktTime = {},
         extensionHeaderLen = 0,
-        PaddingSize = 0;
-      var data = {};
+        PaddingSize = 0,
+        data = {};
 
       if (rtspInterleaved[0] !== 0x24) {
         console.log("H265Session::it is not valid interleave header (RTSP over TCP)");
@@ -108,25 +107,14 @@ var H265Session = function () {
             timezone: gmt};
 
           if((this.getFramerate() === 0 || this.getFramerate() === undefined) && (this.GetTimeStamp() != null || this.GetTimeStamp() !== undefined)){
-//            console.log("H265Session::GetTimeStamp = " + this.GetTimeStamp().timestamp + ' ' + this.GetTimeStamp().timestamp_usec);
-//            console.log("H265Session::timestamp = " + timeData.timestamp + ' ' + timeData.timestamp_usec);
-//            console.log("H265Session:: diff timestamp = " + (timeData.timestamp - this.GetTimeStamp().timestamp));
-//            console.log("H265Session:: diff timestamp_usec = " + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec));
-//            console.log("H265Session:: framerate = " + parseInt(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
-//            this.setFramerate(parseInt(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
             this.setFramerate(Math.round(1000/(((timeData.timestamp - this.GetTimeStamp().timestamp) == 0 ? 0 : 1000) + (timeData.timestamp_usec - this.GetTimeStamp().timestamp_usec))));
-            // console.log("H265Session::frameRate = " + this.getFramerate());
           }
           this.SetTimeStamp(timeData);
-          //this.rtpTimestampCbFunc(timeData);
           playback = true;
         }
       }
 
       PAYLOAD = rtpPayload.subarray(extensionHeaderLen, rtpPayload.length - PaddingSize);
-      // rtpTimeStamp = new Uint8Array(new ArrayBuffer(4));
-      // rtpTimeStamp.set(rtpHeader.subarray(4, 8), 0);
-      // rtpTimeStamp = this.ntohl(rtpTimeStamp);
       rtpTimeStamp = this.ntohl(rtpHeader.subarray(4, 8));
 
       var nal_type = (PAYLOAD[0] >> 1) & 0x3f;
@@ -171,7 +159,8 @@ var H265Session = function () {
                 description: "Resolution is too big",
                 place: "h265Session.js"
               };
-              return data;
+              this.rtpReturnCallback(data);
+              return;// data;
             }
           }
           inputBuffer = setBuffer(inputBuffer, PREFIX);
@@ -217,7 +206,8 @@ var H265Session = function () {
                   description: "Delay time is too long",
                   place: "h265Session.js"
                 };
-                return data;
+                this.rtpReturnCallback(data);
+                return;// data;
               }
             }
             needDropCnt = (needDropCnt > 0) ? Math.round(needDropCnt/frameDiffTime) : 0;
@@ -229,42 +219,9 @@ var H265Session = function () {
           // criticalTime = ((this.getGovLength()-1) *1000)/this.getFramerate();// - privDecodingTime;
         }
 
-//        frameType = (inputBufferSub[4] == 0x40) ? 'I' : 'P';
         decodedData.frameData = null;
         if( isBackup !== true || playback !== true ) {
-          //if (this.dropCheck(frameType) || playback !== true) {
-          // if (this.dropCheck(frameType)) {
-          //   decodedData.frameData = decoder.decode(inputBufferSub);
-          //   if (decodedData.frameData.decodingTime !== undefined) {
-          //     privDecodingTime = decodedData.frameData.decodingTime;
-          //
-          //       NumDecodedFrame++;
-          //     SumDecodingTime = SumDecodingTime + decodedData.frameData.decodingTime+ DepacketizingTime;
-          //
-			//   	if (SumDecodingTime > 1000){
-			// 		var diff = this.getFramerate() - NumDecodedFrame;
-			// 		if (diff > 0) {
-			// 			data.throughPut = this.setThroughPut(NumDecodedFrame);
-			// 		}
-			// 		NumDecodedFrame = 0;
-			// 		SumDecodingTime = 0;
-			// 	}
-			// }
-          //
-          // } else {
-            //decodedData.dropPercent = this.getDropPercent();
-            // decodedData.dropCount = this.getDropCount();
-          // }
-          // if( diffTime <= criticalTime ) {
-          //   decodedData.frameData = decoder.decode(inputBufferSub);
-//            privDecodingTime = decodedData.frameData.decodingTime;
-//           } else {
-//            console.log("H265Session:: diffTime = " + diffTime + " criticalTime = " + criticalTime );
-//           }
-
-          // if (this.isDrop(frameType, needDropCnt)) {
             decodedData.frameData = this.decoder.decode(inputBufferSub);
-          // }
         }
 
         decodedData.timeStamp = null;
@@ -293,7 +250,8 @@ var H265Session = function () {
           data.decodeMode = "canvas";
         }
 
-        return data;
+        this.rtpReturnCallback(data);
+        return;// data;
       }
     },
     bufferingRtpData: function(rtspInterleaved, rtpHeader, rtpPayload) {
@@ -344,11 +302,6 @@ var H265Session = function () {
 
           timeData = {timestamp: fsynctime.seconds, timestamp_usec : fsynctime.useconds,
             timezone: gmt};
-
-//          this.SetTimeStamp(timeData);
-          //this.rtpTimestampCbFunc(timeData);
-
-          // console.log("H265Session::timestamp = " + fsynctime.seconds +" "+ fsynctime.useconds);
           playback = true;
         }
       }

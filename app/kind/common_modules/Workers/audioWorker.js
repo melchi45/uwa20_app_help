@@ -4,7 +4,6 @@ importScripts('../MediaSession/rtpSession.js',
 			'../MediaSession/AudioSession/g711Session.js',
 			'../MediaSession/AudioSession/g726Session.js',
 			'../MediaSession/AudioSession/aacSession.js',
-			'../MediaSession/VideoSession/videoRtcpSession.js',
 			'../AudioDecoder/audioDecoder.js',
 			'../AudioDecoder/audioDecoderG711.js',
 			'../AudioDecoder/audioDecoderG726x.js',
@@ -20,7 +19,6 @@ addEventListener('message', receiveMessage, false);
 var audioRtpSessionsArray = [];
 var sdpInfo = null;
 var rtpSession = null;
-var rtcpSession = null;
 var isBackupCommand = false;
 var frameInfo = {};
 
@@ -93,10 +91,7 @@ function setAudioRtpSession(sdpInfo,aacCodecInfo){
 	  }
 
 	  var channelID = SDPInfo[sdpIndex].RtpInterlevedID;
-      audioRtpSessionsArray[channelID] = rtpSession;
-      //rtcpSession = null;
-	  //rtcpSession = new RtcpSession(SDPInfo[sdpIndex].ClockFreq);
-	  //audioRtcpSessionsArray.push(rtcpSession);
+    audioRtpSessionsArray[channelID] = rtpSession;
 	}
   }
 }

@@ -133,7 +133,7 @@ kindFramework
         var RequestProfile = UniversialManagerService.getProfileInfo();
 
         UniversialManagerService.setVideoMode(_streamtagtype);
-        workerManager.setLiveMode(_streamtagtype);
+        // workerManager.setLiveMode(_streamtagtype);
         kindStreamInterface.setIspreview(false, 'live');
 
         if(_streamtagtype === 'canvas')

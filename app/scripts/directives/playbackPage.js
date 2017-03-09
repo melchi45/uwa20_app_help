@@ -159,8 +159,8 @@ kindFramework
               if(UniversialManagerService.isSpeakerOn()){
                 changeSpeakerStatus(false);
               }
-              workerManager.initVideo(false);
-              workerManager.playbackSpeed(1);
+              //workerManager.initVideo(false);
+              //workerManager.playbackSpeed(1);
             };
           }
 
@@ -249,7 +249,8 @@ kindFramework
           }, scope);
 
           $rootScope.$saveOn('app/script/services/playbackClass/timelineService.js::stepInit', function() {
-            workerManager.videoBuffering();
+            //workerManager.videoBuffering();
+            kindStreamInterface.controlWorker({'channelId':0, 'cmd':'videoBuffering', 'data': []});
 
             if(scope.initStepService !== undefined) {
               scope.initStepService();

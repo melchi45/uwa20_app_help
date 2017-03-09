@@ -7,7 +7,9 @@
  * @param {number} id channel.
  * @name KindDrawer
  */
-function KindDrawer(id) {
+function KindDrawer(id, workerManager) {
+  var workerManager = workerManager;
+  var STEP_MS = 17; //safari didn't accept const in "use strict"
   var Uniformity = true;
   /**
    * id of channel.
@@ -123,6 +125,7 @@ function KindDrawer(id) {
   var resize = function (width, height) {
     var size = new Size(width, height);
     canvas = $('canvas[kind-channel-id="' + channelId + '"]')[0];
+    //canvas = document.getElementById('livecanvas' + channelId);
     switch (drawingStrategy) {
       case 'RGB2d':
         drawer = new RGB2dCanvas(canvas, size);
@@ -151,7 +154,9 @@ function KindDrawer(id) {
         preWidth = bufferNode.width;
         preHeight = bufferNode.height;
         prevCodecType = bufferNode.codecType;
-        resizeCallback('resize');
+        if (resizeCallback !== undefined && resizeCallback !== null) {
+          resizeCallback('resize');
+        }
       }
 
       frameTimestamp = bufferNode.timeStamp;  //update frameTimestamp
@@ -381,9 +386,6 @@ function KindDrawer(id) {
         frameInterval = (1000 / fps);
         maxDelay = fps * 1;
       }
-    },
-    setThroughPut: function(throughput){
-      this.throughPut = throughput;
     },
     getCanvas: function () {
       return canvas;

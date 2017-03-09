@@ -1,4 +1,4 @@
-var RtspClient = function () {
+var RtspClient = function (channelId, workerManager) {
   "use strict";
   var module = {};
   var rtspUrl;
@@ -30,6 +30,8 @@ var RtspClient = function () {
   var isRTPRunning = true;
 
   var AACCodecInfo = {};
+  var channelId = channelId;
+  var workerManager = workerManager;
 
   var CommandConstructor = function (method, requestURL, extHeader) {
     var sendMessage = '';
@@ -359,16 +361,23 @@ var RtspClient = function () {
     getData.Nonce = digestInfo.nonce;
     getData.Uri = encodeURIComponent(rtspUrl);
 
-    sunapiClient.get('/stw-cgi/security.cgi?msubmenu=digestauth&action=view', getData,
-      function(response) {
-        responseValue = response.data.Response;
-        Authentication = 'Authorization:' + ' Digest ' + 'username="' + id + '", ' + 'realm="' + digestInfo.realm + '", ' + 'nonce="' + digestInfo.nonce + '", ' + 'uri="' + rtspUrl + '", ' + 'response="' + responseValue + '"\r\n';                                
-        SendUnauthorizedRtspCmd();
-      },
-      function(errorData,errorCode) {
-        console.error(errorData);
-      },'',true);
+    if (sunapiClient === null) {
+      responseValue = digestGenerator.formulateResponse(id, pw, rtspUrl, getData.Realm, getData.Method, getData.Nonce);
+      Authentication = 'Authorization:' + ' Digest ' + 'username="' + id + '", ' + 'realm="' + digestInfo.realm + '", ';
+      Authentication += 'nonce="' + digestInfo.nonce + '", ' + 'uri="' + rtspUrl + '", ' + 'response="' + responseValue + '"\r\n';
 
+      SendUnauthorizedRtspCmd();
+    } else {
+      sunapiClient.get('/stw-cgi/security.cgi?msubmenu=digestauth&action=view', getData,
+        function(response) {
+          responseValue = response.data.Response;
+          Authentication = 'Authorization:' + ' Digest ' + 'username="' + id + '", ' + 'realm="' + digestInfo.realm + '", ' + 'nonce="' + digestInfo.nonce + '", ' + 'uri="' + rtspUrl + '", ' + 'response="' + responseValue + '"\r\n';                                
+          SendUnauthorizedRtspCmd();
+        },
+        function(errorData,errorCode) {
+          console.error(errorData);
+        },'',true);
+    }
   };
 
   var SendUnauthorizedRtspCmd = function(){
@@ -524,7 +533,7 @@ var RtspClient = function () {
             extraheader = 'Transport: RTP/AVP/TCP;unicast;interleaved=' + (2*setupSDPIndex).toString() + '-' + ((2*setupSDPIndex) + 1).toString() + '\r\n';
             transport.SendRtspCommand(CommandConstructor('SETUP', SDPinfo[setupSDPIndex].trackID, extraheader));
           }else{
-            workerManager.sendSdpInfo(SDPinfo, AACCodecInfo, audioTalkServiceStatus);
+            workerManager.sendSdpInfo(SDPinfo, AACCodecInfo, audioTalkServiceStatus, channelId);
             if(audioTalkServiceStatus){
               workerManager.setCallback('audioTalk', module.SendAudioTalkData);    
             }
@@ -648,7 +657,7 @@ var RtspClient = function () {
   };
 
   var RtpDataHandler = function (rtspinterleave, rtpheader, rtpPacketArray) {
-    workerManager.sendRtpData(rtspinterleave, rtpheader, rtpPacketArray);
+    workerManager.sendRtpData(rtspinterleave, rtpheader, rtpPacketArray, channelId);
     isRTPRunning = true;
   };
 
@@ -710,18 +719,6 @@ var RtspClient = function () {
   module.close = function () {
     transport.close();
   };
-
-  // module.GetPacketTimeStamp = function (Channel, rtpTimeStamp) {
-  //   var pakTimeStamp = {};
-
-  //   for (idx = 0; idx < SDPinfo.length; idx = idx + 1) {
-  //     if (Channel === SDPinfo[idx].RtpInterlevedID) {
-  //       pakTimeStamp = rtcpSessionsArray[idx].calculatePacketTime(rtpTimeStamp);
-  //       break;
-  //     }
-  //   }
-  //   return pakTimeStamp;
-  // }
 
   module.ControlStream = function(controlInfo) {
     var extraheader = '';

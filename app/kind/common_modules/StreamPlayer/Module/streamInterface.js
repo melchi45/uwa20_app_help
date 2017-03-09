@@ -16,6 +16,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		var bottomMenuHeight = 50;
 		var currentPage = null;
 		var tagType = null;
+		var callbackArray = new Array();
 
 		var loadingBar = function(flag) {
 			$rootScope.$emit('changeLoadingBar', flag);
@@ -327,11 +328,18 @@ return {
 	 	manager = new KindStreamManager();
 	 	manager.initKindStreamPlayer(info, sunapiClient);
 	 	manager.setBufferingFunc(this.setBufferingData);
-	 	workerManager.setCallback('resize', this.setCanvasStyle);
-	 	workerManager.setCallback('videoMode', UniversialManagerService.setVideoMode);
-	 	workerManager.setCallback('metaEvent', EventNotificationService.updateEventStatus);
-	 	workerManager.setCallback('loadingBar', this.loadingBar);
-	 	//manager.setResizeCallback(this.setCanvasStyle);
+	 	// workerManager.setCallback('resize', this.setCanvasStyle);
+	 	// workerManager.setCallback('videoMode', UniversialManagerService.setVideoMode);
+	 	// workerManager.setCallback('metaEvent', EventNotificationService.updateEventStatus);
+	 	// workerManager.setCallback('loadingBar', this.loadingBar);
+		var channelId = info.device.channelId;
+		for (var i = 0; i < callbackArray.length; i++) {
+			this.controlWorker(callbackArray[i]);
+		}
+		this.controlWorker({'channelId':channelId, 'cmd':'setCallback', 'data':['resize', this.setCanvasStyle]});
+		this.controlWorker({'channelId':channelId, 'cmd':'setCallback', 'data':['videoMode', UniversialManagerService.setVideoMode]});
+		this.controlWorker({'channelId':channelId, 'cmd':'setCallback', 'data':['metaEvent', EventNotificationService.updateEventStatus]});
+		this.controlWorker({'channelId':channelId, 'cmd':'setCallback', 'data':['loadingBar', this.loadingBar]});
 	},
 	destroyPlayer: function(){
 		if(manager === undefined || manager === null)
@@ -397,6 +405,18 @@ return {
     	};
     	manager.controlPlayer(info);
     },
+		controlWorker: function(controlData) {
+			if(manager === undefined || manager === null) {
+				if (controlData.cmd === "setCallback") {
+					callbackArray[callbackArray.length] = controlData;
+					return;
+				}
+				return;
+			}
+
+			//controlData = {'channelId':0, 'cmd':'', 'data': ['data1', 'data2']}
+			manager.controlWorker(controlData);
+		},    
     controlAudioIn: function(data) {
 			if(manager === undefined || manager === null)
 				return false;

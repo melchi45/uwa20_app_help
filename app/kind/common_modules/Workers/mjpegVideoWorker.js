@@ -11,7 +11,6 @@ importScripts('../Util/util.js',
 addEventListener('message', receiveMessage, false);
 
 var videoRtpSessionsArray = [],
-	videoRtcpSessionsArray = [],
 	sdpInfo = null,
 	rtpSession = null,
 	rtcpSession = null,

@@ -568,7 +568,7 @@ kindFramework
       var resolutionSize = resolution[0] * resolution[1];
       var rec = $(".cm-live-rec");
       if (resolutionSize > videoLimitSize && profile.EncodingType === "H264" && profile.FrameRate >= videoLimitFPS
-        && BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.CHROME) {
+        /*&& BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.CHROME*/) {
         return 'video';
       } else {
         rec
