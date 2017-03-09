@@ -86,7 +86,7 @@ function receiveMessage(event) {
 	    if (mediaData.frameData !== null && decodeMode == "canvas") {
 		  if(mediaData.frameData.firstFrame == true){
 		    sendMessage('firstFrame', mediaData.frameData.firstFrame);
-		    break;
+		    //break;
           }
 		  var frameInfo = {
 			'bufferIdx': mediaData.frameData.bufferIdx,

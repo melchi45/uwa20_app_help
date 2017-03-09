@@ -371,6 +371,15 @@ var H264Session = function () {
 					changeModeFlag = true;
 					iFrameNum = 0;
 				}
+
+				if (initalSegmentFlag === true && isNaN(decodedData.mediaSample.frame_duration) === false) {
+					if (decodedData.mediaSample.frame_duration > 500) {
+						decodeMode = "canvas";
+						data.decodeMode = "canvas";
+						decodedData.frameData.firstFrame = true;
+					}
+				}
+
 				decodedData.playback = playback;
 				data.decodedData = decodedData;
 
