@@ -334,10 +334,13 @@ kindFramework.controller('QMSetupCtrl',
 			$scope.queueLevelSection.maxArr = arr;
 		},
 		changeValue: function(type, val){
+			val = setInt(val);
 			if(type === 'max'){
-				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople = setInt(val);
+				if(val < 3) { val = 3; }
+				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople = val;
 			}else if(type === 'high'){
-				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueLevels[0].Count = setInt(val);
+				if(val < 2) { val = 2; }
+				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueLevels[0].Count = val;
 			}
 
 			$scope.queueLevelSection.reload();
@@ -632,9 +635,9 @@ kindFramework.controller('QMSetupCtrl',
         	$scope.realtimeSection.coordinates[modifiedIndex].points = modifiedPoints;
 
         	var max = getMax(modifiedPoints);
-        	$scope.queueLevelSection.changeValue('max', max);
+        	$scope.queueLevelSection.changeValue( 'max', max );
         	if(max < getPeopleData().high){
-        		$scope.queueLevelSection.changeValue('high', max);
+        		$scope.queueLevelSection.changeValue( 'high', (max - 1) );
         	}
         }else if($scope.currentTapStatus[1] === true){ //Calibration
         	$scope.calibrationSection.coordinates = modifiedPoints;
