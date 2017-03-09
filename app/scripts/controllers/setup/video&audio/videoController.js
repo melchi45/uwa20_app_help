@@ -49,6 +49,14 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         $scope.privacyMaskDrawType = (mAttr.PrivacyMaskRectangle == '0')? 1 : 0;
     }
 
+    function getMessagePrivacyZoom(){
+        var msg = '';
+        if (typeof mAttr.MaxZoom !== 'undefined'){
+            msg = $translate.instant('lang_msg_privacy_Zoom_variable_magnification').replace('%1', mAttr.MaxZoom.maxValue);
+        }
+        return msg;
+    }
+    
     function getDisValue() {
         var getData = {};
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=view', getData,
@@ -226,7 +234,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                             if(inputIndex != undefined && (mAttr.PTZModel == true || mAttr.ZoomOnlyModel == true)){
                                 $scope.PrivacyMaskSelected = inputIndex;
                             } else {
-                                $scope.PrivacyMaskSelected = ($scope.PTZModel || $scope.ZoomOnlyModel)? null : $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskIndex;
+                                $scope.PrivacyMaskSelected = $scope.PTZModel? null : $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskIndex;
                             }
                         }
                         else if( prevSelectedMaskCoordinate !== $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskCoordinate) {
@@ -322,11 +330,12 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         controller: ['$scope', '$uibModalInstance', '$timeout', 'sketchbookService', function(scope, $uibModalInstance, $timeout, sketchbookService){
                             scope.ok = function() {
                                 getZoomValue().then(function(returnZoomValue){
-                                    if(returnZoomValue > 20){
+                                    if(returnZoomValue > $scope.MaxZoom){
                                         var modalInstance3 = $uibModal.open({
                                             templateUrl: "privacyPopup3.html",
                                             backdrop: false,
                                             controller: ['$scope', '$uibModalInstance', '$timeout', 'Attributes', 'COMMONUtils', 'sketchbookService', function($scope, $uibModalInstance, $timeout, Attributes, COMMONUtils, sketchbookService){
+                                                $scope.message = getMessagePrivacyZoom();
                                                 $scope.ok = function() {
                                                     var coordinates = {};
                                                     coordinates = {name:"", color:"", selectedMask: true, x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
@@ -351,7 +360,17 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                                                             margin: 0
                                                         });
                                                 });
-                                            }]
+                                            }],
+                                            resolve: {
+                                                Message: function ()
+                                                {
+                                                    var msg = '';
+                                                    if (typeof mAttr.MaxZoom !== 'undefined'){
+                                                        msg = $translate.instant('lang_msg_privacy_Zoom_variable_magnification').replace('%1', mAttr.MaxZoom.maxValue);
+                                                    }
+                                                    return msg;
+                                                }
+                                            }
                                         });
                                         modalInstance3.result.finally(
                                             function() {
@@ -810,7 +829,9 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         currentNumber: privacyCount,
                         modalId: "privacyPopup.html",
                         disValue: disValue,
-                        getZoomValue : getZoomValue
+                        getZoomValue : getZoomValue,
+                        MaxZoomValue : $scope.MaxZoom,
+                        message : getMessagePrivacyZoom()
                     };
 
                     if(privacyCount != 0){
@@ -909,7 +930,9 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 currentNumber: privacyCount,
                 modalId: "privacyPopup.html",
                 disValue: disValue,
-                getZoomValue : getZoomValue
+                getZoomValue : getZoomValue,
+                MaxZoomValue : $scope.MaxZoom,
+                message : getMessagePrivacyZoom()
             };
         }else{
             $scope.coordinates = null;

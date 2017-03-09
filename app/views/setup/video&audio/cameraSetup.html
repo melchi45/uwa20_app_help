@@ -682,20 +682,18 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable != undefined">
-                                    <div class="form-group">
-                                        <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }}</div>
-                                        <div class="wn5-setup-section-article-content">
-                                            <select name="SSNREnable" class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="PresetImageConfig[presetTypeData.PresetIndex].Camera.AGCMode === 'Off'" ng-change="presetCameraChangeHandler()">
-                                            </select>
-                                        </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select name="SSNREnable" class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="PresetImageConfig[presetTypeData.PresetIndex].Camera.AGCMode === 'Off'" ng-change="presetCameraChangeHandler()">
+                                        </select>
                                     </div>
-                                    <div class="form-group" ng-show="Camera.SSNRLevel !== undefined">
-                                        <div class="wn5-setup-section-article-heading">{{ 'lang_ssnrlevel' | translate }}</div>
-                                        <div class="wn5-setup-section-article-content">
-                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNRLevel" ng-disabled="isPresetSSNRLevelDisabled()" ng-options="option for option in PresetSSNRLevel" ng-change="presetCameraChangeHandler()">
-                                            </select>
-                                        </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable != undefined" ng-show="Camera.SSNRLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ssnrlevel' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNRLevel" ng-disabled="isPresetSSNRLevelDisabled()" ng-options="option for option in PresetSSNRLevel" ng-change="presetCameraChangeHandler()">
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group" ng-show="IrisModeOptions !== undefined">
