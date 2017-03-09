@@ -224,7 +224,7 @@
 
             <article 
                 class="pc-statistics-dialog"
-                ng-show="resultSection.noResults || !(resultSection.viewGraph.average && resultSection.viewGraph.cumulative)">
+                ng-show="resultSection.noResults || !(resultSection.viewGraph.average || resultSection.viewGraph.cumulative)">
                 <p 
                     class="pc-statistics-dialog-title">
                     {{lang.results.noResults | translate}}
@@ -280,7 +280,7 @@
                 <button 
                     class="btn btn-black" 
                     type="button" 
-                    ng-disabled="!resultSection.view || resultSection.noResults || !(resultSection.viewGraph.average && resultSection.viewGraph.cumulative)"
+                    ng-disabled="!resultSection.view || resultSection.noResults || !(resultSection.viewGraph.average || resultSection.viewGraph.cumulative)"
                     ng-click="resultSection.getReport()">
                     {{ lang.results.button | translate }}
                 </button>

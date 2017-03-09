@@ -387,6 +387,8 @@ kindFramework.controller('QMStatisticsCtrl', function (
 					timeTable: []
 				};
 
+				$scope.resultSection.setXAxisFormat(data[0].resultInterval);
+
 				for(var i = 0, len = data.length; i < len; i++){
 					var self = data[i];
 
@@ -581,7 +583,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
             'fileDesc': data.description,
             'fileName': data.fileName,
             'fileType': data.extension,
-            'countandzone': 'People Counting',
+            'countandzone': $scope.lang.queueManagement,
             'period': changeFormat(fromCalenderTimeStamp) + ' - ' + changeFormat(toCalenderTimeStamp),
             'currentDateStr': changeFormat(new Date()),
             'searchResultData': {
