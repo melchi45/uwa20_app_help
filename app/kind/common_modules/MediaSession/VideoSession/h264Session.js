@@ -321,7 +321,7 @@ var H264Session = function () {
 
 					var framerate = this.getFramerate();
 					var sample = {
-						duration: Math.round((1 / framerate) * 1000),
+						duration: 10*Math.round((1 / framerate) * 1000),
 						size: inputSegBufferSub.length,
 						frame_time_stamp: null, //added
 						frame_duration: null, //added
@@ -342,9 +342,9 @@ var H264Session = function () {
 							} else if (initalMediaFrameFlag == false) {
 								var preFrameTime = playbackVideoTagTempSample.frame_time_stamp;
 								var curFrameTime = sample.frame_time_stamp;
-								playbackVideoTagTempSample.frame_duration = Math.abs(curFrameTime - preFrameTime);
-								if (playbackVideoTagTempSample.frame_duration > 3000){
-									playbackVideoTagTempSample.frame_duration =33;
+								playbackVideoTagTempSample.frame_duration = 10*Math.abs(curFrameTime - preFrameTime);
+								if (playbackVideoTagTempSample.frame_duration > 30000){ //mp4 time scale is 10000
+									playbackVideoTagTempSample.frame_duration =330;
 								}
 
 								decodedData.frameData = new Uint8Array(playbackVideoTagTempFrame);
