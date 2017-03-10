@@ -293,7 +293,7 @@
       <!-- Trace end -->
     </div> <!-- live-ptz-tabs ends -->
 
-    <div id="live-ptz-zoom">
+    <div id="live-ptz-zoom" ng-if="currentPtzType === ptzType.OPTICAL">
       <h2><span>{{ 'lang_areaZoom' | translate }}</span></h2>
       <div>
         <button 
