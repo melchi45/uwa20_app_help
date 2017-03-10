@@ -343,9 +343,9 @@ var H264Session = function () {
 							} else if (initalMediaFrameFlag == false) {
 								var preFrameTime = playbackVideoTagTempSample.frame_time_stamp;
 								var curFrameTime = sample.frame_time_stamp;
-								playbackVideoTagTempSample.frame_duration = Math.abs(curFrameTime - preFrameTime);
-								if (playbackVideoTagTempSample.frame_duration > 3000){
-									playbackVideoTagTempSample.frame_duration =33;
+								playbackVideoTagTempSample.frame_duration = 10*Math.abs(curFrameTime - preFrameTime);
+								if (playbackVideoTagTempSample.frame_duration > 30000){
+									playbackVideoTagTempSample.frame_duration =330;
 								}
 
 								decodedData.frameData = new Uint8Array(playbackVideoTagTempFrame);

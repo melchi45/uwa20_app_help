@@ -70,7 +70,7 @@ function WorkerManager() {
   var initSegmentFlag = false;
   var prebaseMediaDecodeTime =0,
     curbaseMediaDecoderTime =0;  
-
+ var sumDuration =0;
   //audio
   var audioCodec = null;
 
@@ -167,17 +167,17 @@ function WorkerManager() {
         }
         
         if(message.data.frame_time_stamp == null) {
-          message.data.frame_duration = Math.round(1000/frameRate);
+          message.data.frame_duration = 10* Math.round(1000/frameRate);
         }
 
         if (speed !== 1) {
-          message.data.frame_duration = 1000/Math.abs(speed);			
+          message.data.frame_duration = 10*(1000/Math.abs(speed));			
         }
 
         mediaInfo.samples[mediaSegmentNum++] = message.data;
         curbaseMediaDecoderTime += message.data.frame_duration;
 
-        if(mediaInfo.samples[0].frame_duration > 500 && mediaInfo.samples[0].frame_duration <= 3000){
+        if(mediaInfo.samples[0].frame_duration > 5000 && mediaInfo.samples[0].frame_duration <= 30000){
           numBox = 1;
         } else{
           switch(browser){
@@ -218,8 +218,16 @@ function WorkerManager() {
             }
             prebaseMediaDecodeTime = curbaseMediaDecoderTime;
           } else {
-            mediaInfo.baseMediaDecodeTime = Math.round(1000/frameRate)*numBox*(sequenseNum - 1);
+            mediaInfo.baseMediaDecodeTime = 10*Math.round(1000/frameRate)*numBox*(sequenseNum - 1);
           } 
+          if(browser == "chrome"){
+            var avgDuration = sumDuration/numBox;
+            var mp4Length = mediaInfo.samples.length;
+            for (var i=0; i< mp4Length; i++){
+              mediaInfo.samples[i].frame_duration = avgDuration;
+            }
+          }
+          sumDuration=0;
           
           mediaSegmentData = mediaSegment(sequenseNum, [mediaInfo], mediaFrameData, mediaInfo.baseMediaDecodeTime);
           sequenseNum++;
