@@ -18,12 +18,14 @@ module.exports = function(injection){
 		reportDir = 'reports',
 		docsDir = 'docs',
 
+		customPath = 'custom';
+
 		tcDir = 'test_case',
 
 		cvrgDir = 'coverage',
 		utDir = 'unit_test',
 		saDir = 'static_analysis',
-		customSaDir = 'custom_' + saDir,
+		customSaDir = customPath + '_' + saDir,
 
 		appJsPath = appDir + '/' + jsDir,
 		appCssPath = appDir + '/' + cssDir,
@@ -45,6 +47,7 @@ module.exports = function(injection){
 
 		rcDocsPath = docsDir + '/' + rcDir,
 		cmDocsPath = docsDir + '/' + cmDir;
+		customDocsPath = docsDir + '/' + customPath;
 	
 	var originalPlatforms = "platforms_original";
 	var originalPlugins = "plugins_original";
@@ -81,9 +84,10 @@ module.exports = function(injection){
 	];
 
 	var customSaConfig = './grunt_configs/custom_sa.json';
+	var customSaPath = [];
 
-	var customSaPath = [
-	];
+	var customDocsConfig = './grunt_configs/custom_jsdoc.json';
+	var customDocsSrc = [];
 
 	var totalJsCodePath = [].concat(
 			projectJsCodePath,
@@ -123,6 +127,7 @@ module.exports = function(injection){
 		bcDirPath: bcDirPath,
 		rcDocsPath: rcDocsPath,
 		cmDocsPath: cmDocsPath,
+		customDocsPath: customDocsPath,
 		serverInfo: serverInfo,
 		projectJsCodePath: projectJsCodePath,
 		richComponentsJsCodePath: richComponentsJsCodePath,
@@ -131,6 +136,8 @@ module.exports = function(injection){
 		originalPlatforms: originalPlatforms,
 		originalPlugins: originalPlugins,
 		customSaPath: customSaPath,
-		customSaConfig: customSaConfig
+		customSaConfig: customSaConfig,
+		customDocsConfig: customDocsConfig,
+		customDocsSrc: customDocsSrc
 	};
 };
