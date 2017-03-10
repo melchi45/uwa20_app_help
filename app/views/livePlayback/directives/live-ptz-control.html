@@ -291,9 +291,9 @@
         </div>
       </div>
       <!-- Trace end -->
-    </div> <!-- live-ptz-tabs end -->
+    </div> <!-- live-ptz-tabs ends -->
 
-    <div id="live-ptz-zoom" ng-if="currentPtzType === ptzType.OPTICAL">
+    <div id="live-ptz-zoom">
       <h2><span>{{ 'lang_areaZoom' | translate }}</span></h2>
       <div>
         <button 
@@ -327,14 +327,7 @@
       </div>
 
       <div>
-        <h2><span>{{ 'Lock - ON' | translate }}</span></h2>
-        <button
-          class="cm-icon-button-s"
-          title="{{'lang_ptz_manual_lock_on' | translate}}"
-          ng-click="setManualTracking()">
-          <span class="sr-only">{{ 'lang_ptz_manual_lock_on' | translate }}</span>
-          <i class="tui" ng-class="modePTZ.ManualTrackingMode === true ? 'cm-active tui-ch-live-ptz-tracking-auto-on' : 'tui-ch-live-ptz-tracking-auto-off'"></i>
-        </button>
+        {{ 'lang_msg_lockon_info' | translate }}
       </div>
     </div>
   </div>
