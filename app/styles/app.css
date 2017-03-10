@@ -1487,25 +1487,29 @@ live-playback common {
 }
 .cm-channel-selector .channel-selector li > button {
   width: 28px;
-  border: solid 2px #797979;
+  border: solid 2px #4c4c4c;
   color: #666;
   line-height: 17px;
   font-size: 14px;
   padding-left: 1px;
   /* 텍스트가 중앙으로 정확히 맞지 않아 추가 */
 }
+.cm-channel-selector .channel-selector li > button:hover {
+  color: #ffffff;
+  background-color: #4c4c4c;
+}
 .cm-channel-selector .channel-selector li > button:active,
-.cm-channel-selector .channel-selector li > button:hover,
 .cm-channel-selector .channel-selector li > button:focus,
 .cm-channel-selector .channel-selector li > button.active {
-  color: #fff;
-  background-color: #797979;
+  color: #ffffff;
+  background-color: #000000;
+  border-color: #000000;
 }
 .cm-channel-selector .cm-channel-selector-quad-btn {
   width: 27px;
   float: left;
   margin-left: 4px;
-  border: solid 1px #797979;
+  border: solid 1px #4c4c4c;
   border-bottom-width: 2px;
   border-right-width: 2px;
   padding: 0;
@@ -1515,8 +1519,13 @@ live-playback common {
   float: left;
   width: 12px;
   height: 9px;
-  border-left: solid 1px #797979;
-  border-top: solid 1px #797979;
+  border-left: solid 1px #4c4c4c;
+  border-top: solid 1px #4c4c4c;
+}
+.cm-channel-selector .cm-channel-selector-quad-btn:hover,
+.cm-channel-selector .cm-channel-selector-quad-btn:active,
+.cm-channel-selector .cm-channel-selector-quad-btn:focus {
+  background-color: #fff;
 }
 [ng\:cloak],
 [ng-cloak],
@@ -8732,6 +8741,9 @@ i.tui-ch-playback-stop {
   padding: 0 20px;
   display: inline-table;
   text-align: left;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-setup .cm-setup-col h2 span {
+  margin-right: 5px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-setup .cm-table {
   width: 100%;

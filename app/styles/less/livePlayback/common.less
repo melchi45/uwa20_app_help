@@ -1719,6 +1719,10 @@ live-playback common {
 }
 
 .cm-channel-selector {
+    @btn-active-text-color: #fff;
+    @btn-border-color: #4c4c4c;
+    @btn-active-color: #000;
+
     float: left;
     height: 51px;
 
@@ -1751,18 +1755,23 @@ live-playback common {
 
             > button {
                 width: 28px;
-                border: solid 2px #797979;
+                border: solid 2px @btn-border-color;
                 color: #666;
                 line-height: 17px;
                 font-size: 14px;
                 padding-left: 1px; /* 텍스트가 중앙으로 정확히 맞지 않아 추가 */
 
+                &:hover {
+                    color: @btn-active-text-color;
+                    background-color: @btn-border-color;
+                }
+
                 &:active,
-                &:hover,
                 &:focus,
                 &.active {
-                    color: #fff;
-                    background-color: #797979;
+                    color: @btn-active-text-color;
+                    background-color: @btn-active-color;
+                    border-color: @btn-active-color;
                 }
             }
         }
@@ -1772,7 +1781,7 @@ live-playback common {
         width: 27px;
         float: left;
         margin-left: 4px;
-        border: solid 1px #797979;
+        border: solid 1px @btn-border-color;
         border-bottom-width: 2px;
         border-right-width: 2px;
         padding: 0;
@@ -1782,8 +1791,14 @@ live-playback common {
             float: left;
             width: 12px;
             height: 9px;
-            border-left: solid 1px #797979;
-            border-top: solid 1px #797979;
+            border-left: solid 1px @btn-border-color;
+            border-top: solid 1px @btn-border-color;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: #fff;
         }
     }
 }
