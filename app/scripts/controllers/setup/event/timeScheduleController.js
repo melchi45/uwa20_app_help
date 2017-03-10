@@ -114,11 +114,11 @@ kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $transl
 
                     if(promises.length > 0) {
                         $q.seqAll(promises).then(function() {
-                            $scope.applied = true;
+                            $scope.$emit('applied', true);
                             view();
                         }, function(errorData) {});
                     } else {
-                        $scope.applied = true;
+                        $scope.$emit('applied', true);
                         view();
                     }
                 }, function() {});

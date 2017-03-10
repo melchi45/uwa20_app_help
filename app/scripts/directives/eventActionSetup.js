@@ -69,7 +69,7 @@ kindFramework
                     setData.EventAction = setData.EventAction.substring(0, setData.EventAction.length - 1);
                 }
                 setData.ScheduleType = scope.EventRule.ScheduleType;
-                //if ($scope.EventRule.ScheduleType === 'Scheduled')
+                // if ($scope.EventRule.ScheduleType === 'Scheduled')
                 {
                     var diff = $(pageData.EventRule.ScheduleIds).not(scope.EventRule.ScheduleIds).get();
                     var sun = 0,
@@ -372,7 +372,6 @@ kindFramework
 
                 SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=rules&action=update', setData,
                     function(response) {
-
                     },
                     function(errorData) {
                         console.log(errorData);
@@ -509,6 +508,24 @@ kindFramework
                     return;
                 }
                 if(newVal === true) {
+                    if(scope.EventSource !== 'AlarmInput') {
+                        if (!angular.equals(pageData.EventRule, scope.EventRule)) {
+                            setEventRules();
+                        }
+                    } else {
+                        if (!angular.equals(pageData.EventRules, scope.EventRules)) {
+                            scope.EventRules.forEach(function(elem, index){
+                                if (!angular.equals(pageData.EventRules[index], scope.EventRules[index])) {
+                                    setEventRulesByIndex(index);
+                                }
+                            });
+                        }
+                    }
+                }
+            }, true);
+
+            scope.$saveOn('applied',function(event, data) { // for TimeScheduler, IVA, FD page.
+                if(data === true) {
                     if(scope.EventSource !== 'AlarmInput') {
                         if (!angular.equals(pageData.EventRule, scope.EventRule)) {
                             setEventRules();

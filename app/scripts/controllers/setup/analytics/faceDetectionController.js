@@ -590,7 +590,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
                     }
                 });
                 modalInstance.result.then(function() {
-                    $scope.applied = true;
+                    $scope.$emit('applied', true);
                     if (
                         !angular.equals(pageData.FD, $scope.FD) ||
                         !("DetectionAreas" in pageData.FD) || //초기

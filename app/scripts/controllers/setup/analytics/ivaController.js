@@ -1165,7 +1165,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                     }
                 });
                 modalInstance.result.then(function() {
-                    $scope.applied = true;
+                    $scope.$emit('applied', true);
                     if (!angular.equals(pageData.VA[0], $scope.VA[0]) || detectionType !== pageDetectionType) {
                         queue = queue.concat(setVideoAnalysis());
                     }
