@@ -393,7 +393,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 					var self = data[i];
 
 					var chartData = {
-						key: self.name + ' - ' + self.direction,
+						key: $scope.queueData.Queues[self.name - 1].Name + ' - ' + self.direction,
 						values: [],
 						seriesIndex: i,
 						resultInterval: self.resultInterval
@@ -405,8 +405,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 					}
 
 					tableData.rules[i] = [];
-					tableData.rules[i].push(data[i].name + ' - ' + data[i].direction);
-
+					tableData.rules[i].push( $scope.queueData.Queues[data[i].name - 1].Name + ' - ' + data[i].direction );
 					var sum = 0;
 					for(var j = 0, jLen = self.results.length; j < jLen; j++){
 						var resultSelf = self.results[j];
@@ -1146,15 +1145,17 @@ kindFramework.controller('QMStatisticsCtrl', function (
 	$scope.view = view;
 
 	(function wait(){
-        if (!mAttr.Ready) {
-            $timeout(function () {
-                mAttr = Attributes.get();
-                wait();
-            }, 500);
-        } else {
-            getAttributes().finally(function() {
-                view();
-            });
-        }
+		$timeout(function(){
+			if (!mAttr.Ready) {
+				$timeout(function () {
+					mAttr = Attributes.get();
+					wait();
+				}, 500);
+			} else {
+				getAttributes().finally(function() {
+					view();
+				});
+			}
+		});
 	})();
 });

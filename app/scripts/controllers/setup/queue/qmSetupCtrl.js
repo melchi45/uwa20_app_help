@@ -75,8 +75,8 @@ kindFramework.controller('QMSetupCtrl',
 
         if (mAttr.QueueMidDuration !== undefined)
         {
-            $scope.queueEventSection.mid.sliderProperty.floor = mAttr.QueueMidDuration.minValue;
-            $scope.queueEventSection.mid.sliderProperty.ceil = mAttr.QueueMidDuration.maxValue;
+            $scope.queueEventSection.medium.sliderProperty.floor = mAttr.QueueMidDuration.minValue;
+            $scope.queueEventSection.medium.sliderProperty.ceil = mAttr.QueueMidDuration.maxValue;
         }
 
         if(mAttr.FisheyeLens !== undefined)
@@ -113,7 +113,7 @@ kindFramework.controller('QMSetupCtrl',
 			function(data){
 				$scope.queueData = data;
 				$scope.queueData.dataLoad = true;
-				console.info($scope.queueData);
+				// console.info($scope.queueData);
 
 				if(data.Enable === true){
 					//Realtime
@@ -176,8 +176,8 @@ kindFramework.controller('QMSetupCtrl',
 		regExp: pcSetupService.regExp.getAlphaNum(),
 		allEnableStatus: false,
 		changeQueue: function(id){
+			$scope.queueListSection.selectedQueueId = id;
 			$timeout(function(){
-				$scope.queueListSection.selectedQueueId = id;
 				sketchbookService.activeShape(id);
 				$scope.queueLevelSection.start();
 			});
@@ -222,13 +222,13 @@ kindFramework.controller('QMSetupCtrl',
 	function getPeopleData(){
 		var max = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople;
 		var high = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueLevels[0].Count;
-		var mid = Math.ceil( high / 2 );
-		if(high === 1){ mid = 0; }
+		var medium = Math.ceil( high / 2 );
+		if(high === 1){ medium = 0; }
 
 		return {
 			max: max,
 			high: high,
-			mid: mid
+			medium: medium
 		};
 	}
 
@@ -237,7 +237,6 @@ kindFramework.controller('QMSetupCtrl',
 		maxArr: {},
 		start: function(){
 			$scope.queueLevelSection.stop();
-			$scope.queueLevelSection.reload();
 			$scope.queueLevelSection.change();
 
 			gaugeTimer = setInterval(function(){
@@ -266,7 +265,7 @@ kindFramework.controller('QMSetupCtrl',
 				var colorName = null;
 				var startColor = null;
 				var endColor = null;
-				if(queue < data.mid){
+				if(queue < data.medium){
 					colorName = colorNameList[0];
 					startColor = colorList[0];
 					endColor = colorList[1];
@@ -310,13 +309,14 @@ kindFramework.controller('QMSetupCtrl',
 
 			$("#qm-bar .qm-bar-high").css("left", getPercent(data.high, data.max) + "%");
 
-			$("#qm-bar .qm-bar-mid").css("left", getPercent(data.mid, data.max) + "%");
+			$("#qm-bar .qm-bar-mid").css("left", getPercent(data.medium, data.max) + "%");
 		},
 		bindHtml: function(){
 			var data = getPeopleData();
+			console.info(data);
 			$("#qm-bar .qm-bar-max span").html(data.max);
 			$("#qm-bar .qm-bar-high span").html(data.high);
-			$("#qm-bar .qm-bar-mid span").html(data.mid);
+			$("#qm-bar .qm-bar-mid span").html(data.medium);
 		},
 		getRange: function(){
 			var data = getPeopleData();
@@ -329,19 +329,18 @@ kindFramework.controller('QMSetupCtrl',
 
 			$scope.queueLevelSection.maxArr = arr;
 		},
-		changeValue: function(type, val){
+		changeValue: function(type, val, id){
+			if(!id){ id = $scope.queueListSection.selectedQueueId; }
 			var data = getPeopleData();
 
 			val = setInt(val);
 			if(type === 'max'){
-				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople = val;
+				$scope.queueData.Queues[id].MaxPeople = val;
 			}else if(type === 'high'){
 				if(val >= data.max) { val = data.max - 1; }
 				if(val < 0){ val = 0; }
-				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueLevels[0].Count = val;
+				$scope.queueData.Queues[id].QueueLevels[0].Count = val;
 			}
-
-			$scope.queueLevelSection.reload();
 		},
 		reload: function(){
 			$scope.queueLevelSection.getRange();
@@ -363,7 +362,7 @@ kindFramework.controller('QMSetupCtrl',
 		        onEnd: function(){}
 			}
 		},
-		mid: {
+		medium: {
 			sliderProperty : {
 		        ceil: 180,
 		        floor: 10,
@@ -420,7 +419,7 @@ kindFramework.controller('QMSetupCtrl',
 	$scope.reportSection = {
 		init: function(){
 			$scope.pcSetupReport.getReport();
-			console.info($scope.pcSetupReport);
+			// console.info($scope.pcSetupReport);
 		}
 	};
 
@@ -519,19 +518,20 @@ kindFramework.controller('QMSetupCtrl',
 			}
 		}
 
-		//Configuration
 		if($scope.currentTapStatus[0] === true){
-			$scope.sketchinfo = getSketchinfo('area');
-			console.info($scope.sketchinfo);
-			$timeout(function(){
-				sketchbookService.activeShape($scope.queueListSection.selectedQueueId);
-			});
-		}else if($scope.currentTapStatus[1] === true){
 			$scope.sketchinfo = getSketchinfo('calibration');
 			$timeout(function(){
 				sketchbookService.activeShape(0);
 			});
+		}else if($scope.currentTapStatus[1] === true){
+			$scope.sketchinfo = getSketchinfo('area');
+			// console.info($scope.sketchinfo);
+			$timeout(function(){
+				sketchbookService.activeShape($scope.queueListSection.selectedQueueId);
+			});
 		}
+
+		$scope.queueLevelSection.reload();
 	};
 
 	function getSketchinfo(flag){
@@ -545,7 +545,7 @@ kindFramework.controller('QMSetupCtrl',
         //Configuration
         if(flag === "area") {
         	var data = $scope.realtimeSection.coordinates;
-			console.info(data);
+			// console.info(data);
         	for(var i = 0; i < data.length; i++){
 	            $scope.coordinates.push(
 		            {
@@ -607,7 +607,20 @@ kindFramework.controller('QMSetupCtrl',
 	    };
 
 	    var max = areaSize / (calSize.width * calSize.height);
+		// console.info(max);
 	    return Math.ceil(max);
+	}
+
+	function setAutoMaxPeople(){
+		var queues = $scope.queueData.Queues;
+		for(var i = 0; i < queues.length; i++){
+			var max = getMax($scope.realtimeSection.coordinates[i].points);
+			$scope.queueLevelSection.changeValue( 'max', max, i );
+			if(max < getPeopleData().high){
+				$scope.queueLevelSection.changeValue( 'high', (max - 1), i );
+			}
+		}
+		$scope.queueLevelSection.reload();
 	}
 
 	/* Collapse End
@@ -621,12 +634,15 @@ kindFramework.controller('QMSetupCtrl',
         var vaLinesIndex = null;
         var vaAreaIndex = null;
 
-        console.info("updateCoordinates", modifiedIndex, modifiedType, modifiedPoints, modifiedDirection);
+        // console.info("updateCoordinates", modifiedIndex, modifiedType, modifiedPoints, modifiedDirection);
 
         var coordinates = [];
         var mode = [];
 
-        if($scope.currentTapStatus[0] === true){ //Configuration
+        if($scope.currentTapStatus[0] === true){
+        	$scope.calibrationSection.coordinates = modifiedPoints;
+			setAutoMaxPeople();
+        }else if($scope.currentTapStatus[1] === true){
         	$scope.queueListSection.changeQueue(modifiedIndex);
         	sketchbookService.activeShape(modifiedIndex);
 
@@ -637,8 +653,7 @@ kindFramework.controller('QMSetupCtrl',
         	if(max < getPeopleData().high){
         		$scope.queueLevelSection.changeValue( 'high', (max - 1) );
         	}
-        }else if($scope.currentTapStatus[1] === true){ //Calibration
-        	$scope.calibrationSection.coordinates = modifiedPoints;
+			$scope.queueLevelSection.reload();
         }
     }, $scope);
 
@@ -823,15 +838,17 @@ kindFramework.controller('QMSetupCtrl',
     }
 
 	(function wait(){
-        if (!mAttr.Ready) {
-            $timeout(function () {
-                mAttr = Attributes.get();
-                wait();
-            }, 500);
-        } else {
-            getAttributes().finally(function() {
-                view();
-            });
-        }
+		$timeout(function(){
+			if (!mAttr.Ready) {
+				$timeout(function () {
+					mAttr = Attributes.get();
+					wait();
+				}, 500);
+			} else {
+				getAttributes().finally(function() {
+					view();
+				});
+			}
+		});
 	})();
 });

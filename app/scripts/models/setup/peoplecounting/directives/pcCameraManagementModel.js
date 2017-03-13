@@ -68,7 +68,12 @@ kindFramework.factory('PcCameraManagementModel', function($q, pcSetupService, $t
 		};
 
 		this.deleteData = function (type){
-			var pageType = type === "hm"? 'HeatMap' : 'PeopleCount';
+			var pageType = null;
+			switch(type){
+				case "hm" : pageType = 'HeatMap'; break;
+				case "qm" : pageType = 'QueueEvents'; break;
+				default : pageType = 'PeopleCount'; break;
+			}
 			var deferred = $q.defer();
 			var options = {
 				cgi: 'system',
