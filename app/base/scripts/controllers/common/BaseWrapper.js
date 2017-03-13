@@ -82,6 +82,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
       "system": "common",
       //Basic Menus
       "videoProfile": "common",
+      "record" : "common",
       "user": "NWC",
       "dateTime": "common",
       "ipPort": "common",

@@ -1,0 +1,74 @@
+<div id="recordpage" class="wrapper wrapper-content">
+    <form name="recordForm" method="get" class="form-horizontal">
+        <wn5-setup-main-title 
+            data-title="lang_record">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section" ng-show="maxChannel > 1">
+            <hr class="wn5-setup-hr">
+            <div class="form-group wn5-setup-section-article">
+                <setup-channel-selector></setup-channel-selector> 
+            </div>
+        </div>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_recordsettings' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_recordProfile' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <!-- 선택중인 채널의 record profile 정보가 보일 곳-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_normal_recording' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select name="normalRecording" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_event_recording' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select name="eventRecording" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_preEventDuration' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select name="normalRecording" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_postEventDuration' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select name="postEventRecording" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{'lang_recordFileType'| translate}}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select name="recordFiletype" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{'lang_normalRecordSetup'| translate}}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <label class="col-lg-5 field-radio-wrapper control-label">
+                            <input type="radio" ng-model="recordSchedule" value="Alway" class="ng-pristine ng-untouched ng-valid ng-not-empty"> <span class="ng-binding">{{ 'lang_always' | translate }}</span>
+                        </label> &nbsp;&nbsp;
+                        <label class="col-lg-5 field-radio-wrapper control-label">
+                            <input type="radio" ng-model="recordSchedule" value="Schedule" class="ng-pristine ng-untouched ng-valid ng-not-empty"> <span class="ng-binding">{{ 'lang_recording_only_schedule' | translate }}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="wn5-setup-hr">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>
