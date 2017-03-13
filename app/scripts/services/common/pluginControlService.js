@@ -22,6 +22,7 @@ kindFramework
     var stepFlag = undefined;
     var playbackMode = 1;
     var liveStatusCallback = null;
+    var areazoomCheck = false;
 
     var windowEvent = window.attachEvent || window.addEventListener,
         beforeUnloadEvt = window.attachEvent ? 'onbeforeunload' : 'beforeunload'; 
@@ -320,14 +321,10 @@ kindFramework
 
               if(_mode)
               {
-                  PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
-                  PTZContorlService.setManualTrackingMode("True");
-
                   pluginElement.SetManualTrackingModeOnOff(1);
               }
               else
               {
-                  PTZContorlService.setManualTrackingMode("False");
                   pluginElement.SetManualTrackingModeOnOff(0);
               }
               console.log("pluginControlService::setManualTrackingMode() ===>" + _mode + " Manual Tracking");
@@ -355,12 +352,10 @@ kindFramework
 
               if(_mode)
               {
-                  PTZContorlService.setManualTrackingMode("False");
                   pluginElement.SetAreaZoomOnOff(1);
               }
               else
               {
-                  PTZContorlService.setManualTrackingMode("False");
                   pluginElement.SetAreaZoomOnOff(0);
               }
               console.log("pluginControlService::setAreaZoomMode() ===>" + _mode + " Area Zoom");
@@ -378,19 +373,18 @@ kindFramework
     this.setAreaZoomAction = function(_command)
     {
       try{
+          if(areazoomCheck) return;
+          
           switch (_command)
           {
               case '1X':
-                  SunapiClient.get("/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=1x", '',
-                      function () {},
-                      function (errorData)
-                      {
-                          console.log(errorData);
-                      }, "", true);
+                  PTZContorlService.getPTZAreaZoomURI("1x");
                   break;
               case 'Prev':
+                  PTZContorlService.getPTZAreaZoomURI("prev");
                   break;
               case 'Next':
+                  PTZContorlService.getPTZAreaZoomURI("next");
                   break;
           }
       }catch(e)
@@ -435,6 +429,14 @@ kindFramework
           break;
         case 12 : data.type = 'NetworkDisconnection';
           break;
+        case 13 :  //for AreaZoom, PT & Zoom are IDLE
+          if(areazoomCheck === true)
+          {
+              areazoomCheck = false;
+              PTZContorlService.savePTZAreaZoomList();
+          }
+          PTZContorlService.setPTZAreaZoom("end");
+          break;
       }
 
       EventNotificationService.updateEventStatus(data);
@@ -443,6 +445,9 @@ kindFramework
     function runManualTracking(xPos, yPos)
     {
         var pluginElement = document.getElementsByTagName("channel_player")[0].getElementsByTagName("object")[0];
+
+        PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
+        PTZContorlService.setManualTrackingMode("True");
 
         if(xPos >=0  && yPos >= 0) {
             var rotate = UniversialManagerService.getRotate();
@@ -470,6 +475,9 @@ kindFramework
 
       setData.TileWidth = pluginElement.offsetWidth;
       setData.TileHeight = pluginElement.offsetHeight;
+
+      PTZContorlService.setPTZAreaZoom("start");
+      areazoomCheck = true;
 
       SunapiClient.get("/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=ZoomIn", setData,
           function () {},

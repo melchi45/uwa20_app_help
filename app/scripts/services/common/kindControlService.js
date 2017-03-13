@@ -193,6 +193,9 @@ kindFramework
         //마우스 오른쪽 버튼만 허용
         if(event.button != 2) return;
 
+        PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
+        PTZContorlService.setManualTrackingMode("True");
+
         var canvas = document.getElementsByTagName("channel_player")[0].getElementsByTagName("canvas")[0];
         var xPos = event.offsetX;
         var yPos = event.offsetY;
@@ -214,7 +217,6 @@ kindFramework
 
     this.setManualTrackingMode = function(_mode){
         try {
-
 
             if(_mode !== true && _mode !== false)
             {
