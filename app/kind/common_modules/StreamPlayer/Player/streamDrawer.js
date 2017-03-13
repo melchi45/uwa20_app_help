@@ -164,7 +164,7 @@ function KindDrawer(id) {
         }
         if(bufferNode.codecType == 'mjpeg'){
           imagePool.free(bufferNode.buffer);
-          console.log("imagePool.free");
+          //console.log("imagePool.free");
         } else {
           delete bufferNode.buffer;
           bufferNode.buffer = null;
@@ -268,7 +268,7 @@ function KindDrawer(id) {
       }
     },
     drawMJPEG: function (data, width, height, codecType, frameType, timeStamp) {
-      console.log('drawMJPEG in KindDrawer!');
+      //console.log('drawMJPEG in KindDrawer!');
       var image = imagePool.alloc();
       image.width = width;
       image.height = height;

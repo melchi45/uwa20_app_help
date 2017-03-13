@@ -183,11 +183,11 @@ kindFramework
                         }
                         else
                         {
-                            if (getBrowserDetect().isIE) {
+                            //if (getBrowserDetect().isIE) {
                                 profileInfo.Name = 'profile13';
-                            } else {
-                                profileInfo.Name = 'profile14';
-                            }    
+                            //} else {
+                            //    profileInfo.Name = 'profile14';
+                            //}
                         }
                         
                     }
