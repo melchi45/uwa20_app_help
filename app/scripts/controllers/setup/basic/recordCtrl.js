@@ -21,7 +21,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
     $scope.IPv4PatternStr = mAttr.IPv4PatternStr;
     $scope.isNewProfile = false;
     $scope.getTranslatedOption = COMMONUtils.getTranslatedOption;
-    $scope.maxChannel = mAttr.MaxChannel
+    $scope.maxChannel = mAttr.MaxChannel;
 
     function view() {
         console.log('view load');
