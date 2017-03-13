@@ -23,6 +23,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     $scope.IPv4PatternStr = mAttr.IPv4PatternStr;
     $scope.isNewProfile = false;
     $scope.getTranslatedOption = COMMONUtils.getTranslatedOption;
+    $scope.maxChannel = mAttr.MaxChannel;
 
     function getAttributes() {
         $scope.ch = 0;

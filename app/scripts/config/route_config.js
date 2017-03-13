@@ -159,6 +159,12 @@ kindFramework.constant('ROUTE_CONFIG', {
                             controller: 'profileCtrl'
                         },
                         {
+                            urlName: 'record',
+                            name: 'lang_record',
+                            templateUrl: 'views/setup/basic/record.html',
+                            controller: 'recordCtrl'
+                        },
+                        {
                             urlName: 'user',
                             name: 'lang_menu_user',
                             templateUrl: 'views/setup/basic/user.html',

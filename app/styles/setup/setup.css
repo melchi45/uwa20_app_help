@@ -68,3 +68,7 @@ select option:disabled {
 .wn5-setup-wrapper #setup-border-box {
     display: block;
 }
+
+#recordpage .setup-channel-selector-btns {
+    padding: 0 15px;
+}
