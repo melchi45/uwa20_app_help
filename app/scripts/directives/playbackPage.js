@@ -33,6 +33,7 @@ kindFramework
           var playData = new PlayDataModel();
           var waitChangePlaySpeed = false;
           var delayOpenPopup = false;
+          scope.channelCount = 1;
           scope.disableButton = false;
           scope.disableSpeedIcon = true;
           scope.disableStepIcon = true;

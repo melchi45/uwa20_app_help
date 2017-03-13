@@ -6,7 +6,7 @@
     <!--'cm-playback-menu' : domControls.enablePlayback -->
 
   <!--
-  Prev, Play, Next, ë°°ì†ê³¼ ê°™ì€ ë²„íŠ¼ ì˜ì—­
+  Prev, Play, Next, ¹è¼Ó°ú °°Àº ¹öÆ° ¿µ¿ª
   -->
   <div class="cm-row" id="cm-icon-list" ng-show="enablePlayback">
     <div class="cm-center">
@@ -23,7 +23,7 @@
         </li> 
      </ul>
 
-      <live-playback-channel-selector class="playback-channel-selector" ng-hide="channelCount <= 1"></live-playback-channel-selector>
+      <live-playback-channel-selector class="playback-channel-selector" ng-show="channelCount > 1"></live-playback-channel-selector>
       <div class="cm-vline" ng-hide="channelCount <= 1"></div>
 
       <ul class="cm-playback-block cm-control-icon cm-list-2">
