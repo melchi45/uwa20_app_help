@@ -9,7 +9,7 @@ module.exports = function(injection){
 	}
 
 	var customDocsSrc = grunt.file.readJSON(projectStructure.customDocsConfig);
-	var isOk = true;
+	// var isOk = true;
 
 	for(var i = 0, len = customDocsSrc.length; i < len; i++){
 		var self = customDocsSrc[i];
@@ -22,8 +22,8 @@ module.exports = function(injection){
 		}
 
 		if(!grunt.file.exists(self)){
-			grunt.log.errorlns(self + " is not exists.");
-			isOk = false;
+			// grunt.log.errorlns(self + " is not exists.");
+			// isOk = false;
 		}
 
 		if(!haveExtension.test(saperatedSelf)){
