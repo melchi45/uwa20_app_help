@@ -1,9 +1,10 @@
-<div id="recordpage" class="wrapper wrapper-content">
+<div id="recordpage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
     <form name="recordForm" method="get" class="form-horizontal">
         <wn5-setup-main-title 
             data-title="lang_record">
         </wn5-setup-main-title>
-        <div class="wn5-setup-section" ng-show="maxChannel > 1">
+        <!--<div class="wn5-setup-section" ng-show="maxChannel > 1">-->
+        <div class="wn5-setup-section">
             <hr class="wn5-setup-hr">
             <div class="form-group wn5-setup-section-article">
                 <setup-channel-selector></setup-channel-selector> 
@@ -19,6 +20,7 @@
                     <div class="wn5-setup-section-article-heading">{{ 'lang_recordProfile' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
                         <!-- 선택중인 채널의 record profile 정보가 보일 곳-->
+                        {{ maxChannel }}
                     </div>
                 </div>
                 <div class="form-group">

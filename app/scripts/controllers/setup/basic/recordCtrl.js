@@ -21,12 +21,14 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
     $scope.IPv4PatternStr = mAttr.IPv4PatternStr;
     $scope.isNewProfile = false;
     $scope.getTranslatedOption = COMMONUtils.getTranslatedOption;
-    $scope.maxChannel = mAttr.MaxChannel;
+    
 
     function view() {
-        console.log('view load');
         $scope.EnableAddButton = true;
         $scope.isNewProfile = false;
+        $scope.maxChannel = mAttr.MaxChannel;
+
+        /*
         var promises = [getConnectionPolicy, getVideoSource, getVideoProfilePolicies, getProfiles, getVideoCodecInfo, getVideoRotate];
         var temp;
 
@@ -41,6 +43,10 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
             },
             function(error){
         });
+        */
+
+        $scope.pageLoaded = true;
+        $("#recordpage").show();
     }
 
     function saveSettings() {
@@ -77,6 +83,16 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
         }
     }
 
+    (function wait() {
+        if (!mAttr.Ready) {
+            $timeout(function () {
+                mAttr = Attributes.get("media");
+                wait();
+            }, 500);
+        } else {
+            view();
+        }
+    })();
 
     $scope.submit = set;
     $scope.view = view;
