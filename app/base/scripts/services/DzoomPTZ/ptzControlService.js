@@ -11,7 +11,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
     var controlCheck = false;
     var autoTracking = "False";    //"False" or "True"
     var manualTracking = "False";
-    var areazoomCheck = false;
+    var areaZoomCheck = false;
     var curX = 0;
     var curY = 0;
     var moveX = 0;
@@ -157,7 +157,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
           sunapiURI += "&TileWidth=" + canvas.offsetWidth + "&TileHeight=" + canvas.offsetHeight;
           setPTZAreaZoom("start");
           turnOffTracking();
-          return execSunapi(sunapiURI, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; areazoomCheck = true; } );
+          return execSunapi(sunapiURI, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; setAreaZoomCheck(true); } );
         } 
       }
       return null;
@@ -264,7 +264,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       }else if(mode === "1x"){
         setPTZAreaZoom("start");
         var uri = "/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=1x";
-        execSunapi(uri, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; areazoomCheck = true; });
+        execSunapi(uri, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; setAreaZoomCheck(true); });
       }
     }
 
@@ -393,15 +393,22 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       }
       if( PTStatus === "IDLE" && ZStatus === "IDLE")
       {
-        if(areazoomCheck === true)
+        if(getAreaZoomCheck() === true)
         {
-          areazoomCheck = false;
+          setAreaZoomCheck(false);
           savePTZAreaZoomList();
         }
         setPTZAreaZoom("end");
       }
     }); 
 
+    function setAreaZoomCheck(status){
+        areaZoomCheck = status;
+    }
+    function getAreaZoomCheck(){
+      console.log("areaZoomCheck : " + areaZoomCheck);
+      return areaZoomCheck;
+    }
     function setMode(mode) { 
       ptzMode = mode; 
       if(mode === PTZ_TYPE.ptzCommand.PTZ) { // when ptz mode set, initialize mouse event value
@@ -491,6 +498,8 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       getMode : getMode,
       execute : execute,
       getSettingList : getSettingList,
+      setAreaZoomCheck : setAreaZoomCheck,
+      getAreaZoomCheck : getAreaZoomCheck,
       ptzSetting : ptzSetting,
       execSunapi : execSunapi,
       setAutoTrackingMode : setAutoTrackingMode,

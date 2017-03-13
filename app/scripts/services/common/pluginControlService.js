@@ -22,7 +22,6 @@ kindFramework
     var stepFlag = undefined;
     var playbackMode = 1;
     var liveStatusCallback = null;
-    var areazoomCheck = false;
 
     var windowEvent = window.attachEvent || window.addEventListener,
         beforeUnloadEvt = window.attachEvent ? 'onbeforeunload' : 'beforeunload'; 
@@ -373,8 +372,8 @@ kindFramework
     this.setAreaZoomAction = function(_command)
     {
       try{
-          if(areazoomCheck) return;
-          
+          if(PTZContorlService.getAreaZoomCheck()) return;
+
           switch (_command)
           {
               case '1X':
@@ -430,12 +429,8 @@ kindFramework
         case 12 : data.type = 'NetworkDisconnection';
           break;
         case 13 :  //for AreaZoom, PT & Zoom are IDLE
-          if(areazoomCheck === true)
-          {
-              areazoomCheck = false;
-              PTZContorlService.savePTZAreaZoomList();
-          }
-          PTZContorlService.setPTZAreaZoom("end");
+          $rootScope.$emit('PTZMoveStatus', {type: 'MoveStatus:PanTilt', value:'IDLE'});
+          $rootScope.$emit('PTZMoveStatus', {type: 'MoveStatus:Zoom', value:'IDLE'});
           break;
       }
 
@@ -477,7 +472,7 @@ kindFramework
       setData.TileHeight = pluginElement.offsetHeight;
 
       PTZContorlService.setPTZAreaZoom("start");
-      areazoomCheck = true;
+      PTZContorlService.setAreaZoomCheck(true);
 
       SunapiClient.get("/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=ZoomIn", setData,
           function () {},
