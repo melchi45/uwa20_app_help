@@ -189,6 +189,9 @@ kindFramework
 
     function mouseup_manualTracking (event) {
         if(event.target.id !== "livecanvas") return;
+        
+        //마우스 오른쪽 버튼만 허용
+        if(event.button != 2) return;
 
         var canvas = document.getElementsByTagName("channel_player")[0].getElementsByTagName("canvas")[0];
         var xPos = event.offsetX;
@@ -254,13 +257,11 @@ kindFramework
 
             if(_mode)
             {
-                PTZContorlService.setManualTrackingMode("False");
                 PTZContorlService.setPTZAreaZoom("on");
                 PTZContorlService.setElementEvent(elementChannelPlayer);
             }
             else
             {
-                PTZContorlService.setManualTrackingMode("False");
                 PTZContorlService.setPTZAreaZoom("off");
                 PTZContorlService.deleteElementEvent(elementChannelPlayer);
             }
