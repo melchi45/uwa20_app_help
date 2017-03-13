@@ -164,7 +164,6 @@ kindFramework.controller('QMSetupCtrl',
 
 				$scope.realtimeSection.coordinates.push(
 					{
-						enable: datas[i].Enable,
 						points: points
 					}
 				);
@@ -216,11 +215,6 @@ kindFramework.controller('QMSetupCtrl',
 		return (val / max)*100;
 	}
 
-	function makeRandom(min, max){
-		var rand = Math.random() * (max- min) + min;
-		return Math.floor(rand);
-	}
-
 	function setInt(val){
 		return parseInt(val, 10);
 	}
@@ -229,6 +223,7 @@ kindFramework.controller('QMSetupCtrl',
 		var max = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople;
 		var high = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueLevels[0].Count;
 		var mid = Math.ceil( high / 2 );
+		if(high === 1){ mid = 0; }
 
 		return {
 			max: max,
@@ -327,19 +322,22 @@ kindFramework.controller('QMSetupCtrl',
 			var data = getPeopleData();
 
 			var arr = {};
-			for(var i = 1; i <= data.max; i++){
+			for(var i = 0; i < data.max; i++){
 				arr[i] = i;
 			}
+			if(data.max === 0){ arr[0] = 0; }
 
 			$scope.queueLevelSection.maxArr = arr;
 		},
 		changeValue: function(type, val){
+			var data = getPeopleData();
+
 			val = setInt(val);
 			if(type === 'max'){
-				if(val < 3) { val = 3; }
 				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople = val;
 			}else if(type === 'high'){
-				if(val < 2) { val = 2; }
+				if(val >= data.max) { val = data.max - 1; }
+				if(val < 0){ val = 0; }
 				$scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueLevels[0].Count = val;
 			}
 
@@ -524,6 +522,7 @@ kindFramework.controller('QMSetupCtrl',
 		//Configuration
 		if($scope.currentTapStatus[0] === true){
 			$scope.sketchinfo = getSketchinfo('area');
+			console.info($scope.sketchinfo);
 			$timeout(function(){
 				sketchbookService.activeShape($scope.queueListSection.selectedQueueId);
 			});
@@ -546,20 +545,19 @@ kindFramework.controller('QMSetupCtrl',
         //Configuration
         if(flag === "area") {
         	var data = $scope.realtimeSection.coordinates;
+			console.info(data);
         	for(var i = 0; i < data.length; i++){
 	            $scope.coordinates.push(
 		            {
 	        			isSet: true,
-	        			enable: data[i].enable,
+	        			enable: $scope.queueData.Queues[i].Enable,
 	            		points: data[i].points
-	            		// textInCircle: (i + 1) + ''
 	            	}
             	);
         	}
 
 			sketchinfo.useEvent = true;
         	sketchinfo.workType = 'qmArea';
-        	// sketchinfo.minNumber = 4;
         	sketchinfo.maxNumber = 3;
         	sketchinfo.color = 0;
         //Calibration
