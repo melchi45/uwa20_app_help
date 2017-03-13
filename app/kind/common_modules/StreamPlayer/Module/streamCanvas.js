@@ -45,6 +45,7 @@ kindStreamModule.directive('kindStream', [
 						return;
 
 					elem.find('canvas').attr('kind-channel-id', newValue.device.channelId);
+					elem.find('video').attr('kind-channel-id', newValue.device.channelId);
 					kindStreamInterface.init(newValue, SunapiClient);
 
 					if (newValue.media.requestInfo.cmd == 'init' ||

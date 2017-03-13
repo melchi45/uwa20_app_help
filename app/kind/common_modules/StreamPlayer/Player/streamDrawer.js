@@ -125,7 +125,6 @@ function KindDrawer(id, workerManager) {
   var resize = function (width, height) {
     var size = new Size(width, height);
     canvas = $('canvas[kind-channel-id="' + channelId + '"]')[0];
-    //canvas = document.getElementById('livecanvas' + channelId);
     switch (drawingStrategy) {
       case 'RGB2d':
         drawer = new RGB2dCanvas(canvas, size);

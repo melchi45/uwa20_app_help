@@ -59,7 +59,6 @@ function WorkerManager() {
   var mediaFrameSize = 0;
   var mediaFrameData;
   var sequenseNum = 1;
-  var videoElement = null;
   var codecInfo = "";
   var videoElem = null;
   var videoTimeStamp = null;
@@ -500,7 +499,6 @@ function WorkerManager() {
     initSegmentFlag = true;
 
     if (videoMS === null) {
-      var videoElement = document.getElementById("livevideo" + channelId);
       videoMS = VideoMediaSource(self);
       videoMS.setCodecInfo(codecInfo);
       videoMS.setInitSegmentFunc(GetInitializationSegment);
@@ -724,8 +722,8 @@ function WorkerManager() {
       }
 
       decodeMode = (mode == null ? "canvas" : mode);
-      canvasElem = document.getElementById("livecanvas");
-      videoElem = document.getElementById("livevideo");
+      canvasElem = $('canvas[kind-channel-id="' + channelId + '"]')[0];
+      videoElem = $('video[kind-channel-id="' + channelId + '"]')[0];
       $(".video-display-none").removeClass('video-display-none');
       if (decodeMode == "video") {
         $(canvasElem).addClass('video-display-none');
@@ -817,7 +815,9 @@ function WorkerManager() {
     },
     playbackPause: function() {
       isPaused = true;
-      videoMS.pause();
+      if (videoMS !== null) {
+        videoMS.pause();
+      }
       // if (videoMS !== null && browser === 'edge') {
       //   videoMS.pause();
       // }
