@@ -94,7 +94,12 @@ function KindStreamPlayer(configInfo, sunapiClient) {
     var ip = connectionInfo.server_address ? connectionInfo.server_address : info.device.cameraIp;
     var port = (connectionInfo.port == "") ? connectionInfo.port : (":"+ connectionInfo.port);
     var protocol = (connectionInfo.protocol == "http") ? "ws://" : "wss://";
-    var rtspUrl = 'rtsp://'+profileInfo.device.cameraIp+'/'+profileInfo.media.requestInfo.url;
+    var rtspUrl = 'rtsp://'+profileInfo.device.cameraIp+'/';
+    if(channelId !== null){
+      rtspUrl += channelId + "/";
+    }
+    rtspUrl += profileInfo.media.requestInfo.url;
+    // rtspUrl += "profile2/media.smp";
     var address;
     var pathName = window.location.pathname;
     if (pathName !== "/") {
