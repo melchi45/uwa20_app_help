@@ -1709,19 +1709,45 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     function setConnectionPolicy() {
         if($scope.ProfileSessionPolicy === true)
         {
-            var modalInstance = COMMONUtils.ShowConfirmation(saveConnectionPolicy, 'lang_msg_change_setting', 'md');
-            /** If user selects cancel, then value should not be changed. */
-            modalInstance.result.then(function () {}, function () {
-                $scope.ProfileSessionPolicy = !$scope.ProfileSessionPolicy;
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'md',
+                resolve: {
+                    Message: function () {
+                        return 'lang_msg_change_setting';
+                    }
+                }
             });
+            modalInstance.result.then(
+                function () {
+                    saveConnectionPolicy();
+                },
+                function () {
+                    $scope.ProfileSessionPolicy = !$scope.ProfileSessionPolicy;
+                }
+            );
         }
         else
         {
-            var modalInstance = COMMONUtils.ShowConfirmation(saveConnectionPolicy, 'lang_msg_change_connection_policy', 'lg');
-            /** If user selects cancel, then value should not be changed. */
-            modalInstance.result.then(function () {}, function () {
-                $scope.ProfileSessionPolicy = !$scope.ProfileSessionPolicy;
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'lg',
+                resolve: {
+                    Message: function () {
+                        return 'lang_msg_change_connection_policy';
+                    }
+                }
             });
+            modalInstance.result.then(
+                function () {
+                    saveConnectionPolicy();
+                },
+                function () {
+                    $scope.ProfileSessionPolicy = !$scope.ProfileSessionPolicy;
+                }
+            );
         }
     }
 

@@ -116,6 +116,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
     $scope.EventRule = {};
 
+    $scope.isMultiChannel = false;
+
     $scope.channelSelectionSection = (function(){
         var currentChannel = 0;
 
@@ -673,9 +675,13 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             getData.DetectionType = "IntelligentVideo";
         }
 
-        return SunapiClient.get($scope.va2CommonCmd + '&action=view', getData, function(response) {
+        if($scope.isMultiChannel) {
             var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-            var videoAnalysis = response.data.VideoAnalysis[currentChannel];
+            getData.Channel = currentChannel;
+        }
+
+        return SunapiClient.get($scope.va2CommonCmd + '&action=view', getData, function(response) {
+            var videoAnalysis = response.data.VideoAnalysis[0];
 
             if(!("DefinedAreas" in videoAnalysis)){
                 videoAnalysis.DefinedAreas = [];
@@ -1090,16 +1096,16 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     function showVideo() {
         var getData = {};
         var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-        getData.Channel = currentChannel;console.info(currentChannel);
+        getData.Channel = currentChannel;
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
             var viewerWidth = 640;
             var viewerHeight = 360;
             var maxWidth = mAttr.MaxROICoordinateX;
             var maxHeight = mAttr.MaxROICoordinateY;
-            var rotate = response.data.Flip[currentChannel].Rotate;
+            var rotate = response.data.Flip[0].Rotate;
             $scope.rotate = rotate + '';
-            var flip = response.data.Flip[currentChannel].VerticalFlipEnable;
-            var mirror = response.data.Flip[currentChannel].HorizontalFlipEnable;
+            var flip = response.data.Flip[0].VerticalFlipEnable;
+            var mirror = response.data.Flip[0].HorizontalFlipEnable;
             var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
             
             $scope.videoinfo = {

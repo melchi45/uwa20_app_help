@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, sketchbookService, $uibModal, $uibModalStack, $q, $translate) {
+kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, sketchbookService, $uibModal, $uibModalStack, $q, $translate, $rootScope) {
     "use strict";
 
     var mAttr = Attributes.get();

@@ -4,7 +4,7 @@
     </wn5-setup-main-title>
     <div class="wn5-setup-section">
         <hr class="wn5-setup-hr">
-        <setup-channel-selector use-info="false"></setup-channel-selector>
+        <setup-channel-selector use-info="false" ng-if="isMultiChannel === true"></setup-channel-selector>
         <div class="wn5-gui-body-large">
             <input type="checkbox" name="Enable" ng-model="$parent.IntelligentVideoEnable" ng-change="setOnlyEnable()">
             <label>{{ 'lang_enable_feature_enable_IVA' | translate }}</label>
