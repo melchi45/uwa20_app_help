@@ -8,12 +8,12 @@ local=${local:-$default}
 commit=${commit:-$message}
 echo "Local branch is $local"
 
-cd app/kind/
+cd media/
 git status
 git add .
 git commit -m $commit
 git push origin master
-cd ../..
+cd ../
 git status
 git add .
 git commit -m $commit
