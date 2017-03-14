@@ -944,15 +944,20 @@ kindFramework.factory('COMMONUtils', function ($translate, $location,  $uibModal
         var k;
         var changed = false;
 
+
         $.each(newVal, function (k, value) {
+
             if (ignoredKeys !== undefined && ignoredKeys !== '') {
+
                 if (ignoredKeys.indexOf(k) !== -1) {
                     return;
                 }
             }
 
             if (newVal[k] !== '' && newVal[k] !== undefined) {
+                
                 if (oldVal[k] !== newVal[k] || copyAll === true) {
+
                     changed = true;
                     if (newVal[k] === 'true') {
                         setData[k] = newVal[k] = true;

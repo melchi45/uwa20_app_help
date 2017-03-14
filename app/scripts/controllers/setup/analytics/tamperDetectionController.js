@@ -290,6 +290,9 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
         $scope.PTZModel = mAttr.PTZModel;
         $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
+        $scope.MaxChannel = mAttr.MaxChannel;
+
+        console.log($scope.MaxChannel);
 
         defer.resolve("success");
         return defer.promise;

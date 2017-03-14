@@ -4,7 +4,10 @@
             data-title="lang_menu_videosrc">
         </wn5-setup-main-title>
     
-        <setup-channel-selector use-info="true"></setup-channel-selector>
+        <setup-channel-selector 
+            ng-show="MaxChannel > 1"
+            use-info="true">    
+        </setup-channel-selector>
 
         <div ng-show = "MaxPrivacyMask !== undefined && MaxPrivacyMask > 0" class="wn5-setup-section">
             <hr class="wn5-setup-hr">

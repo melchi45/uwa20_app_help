@@ -119,6 +119,10 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             $scope.AutoDeleteDayOptions.max = parseInt(mAttr.AutoDeleteDayOptions.maxValue);
             $scope.IdPattern = mAttr.OnlyNumber;
         }
+
+        $scope.MaxChannel = mAttr.MaxChannel;
+
+
         defer.resolve("success");
         return defer.promise;
     }
@@ -966,6 +970,10 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
             switch( response.data.Model ) {
                 case "PNM-9080QV" :
+                    $scope.storageDeviceType = false;
+                    break;
+
+                case "PNM-9020V" :
                     $scope.storageDeviceType = false;
                     break;
 
