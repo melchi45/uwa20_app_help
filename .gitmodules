@@ -5,6 +5,3 @@
 	path = languages
 	url = ssh://ctf1.stw.net:29418/uwa_base
 	branch = develop
-[submodule "app/media"]
-	path = app/media
-	url = ssh://ctf1.stw.net:29418/ump_module
