@@ -29,7 +29,7 @@
             <i class="tui tui-menu">
             </i>
         </button>
-        <div class="block loading-bar" ng-class="{'visible':isLoading}">
+        <!-- <div class="block loading-bar" ng-class="{'visible':isLoading}">
             <div class="spinner middle-center">
                 <div class="bounce1">
                 </div>
@@ -38,8 +38,10 @@
                 <div class="bounce3">
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="block" id="block-main" ng-class="{'visible' : navOpened}" ng-click="toggleNav(false)">
         </div>
     </div>
+    
+    <loading-bar is-loading="isLoading"></loading-bar>
 </div>
