@@ -63,11 +63,12 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope) {
     };
 });
 
+
 /**
  * View
- * info 버튼 사용시 use-info="true" 를 추가 하시면 됩니다.
+ * info 버튼 사용시 use-info="true" 를 추가 하시면 됩니다.`
  * <setup-channel-selector>
- * </setup-channel-selector>
+     * </setup-channel-selector>
  *
  * <setup-channel-selector use-info="true">
  * </setup-channel-selector>
@@ -81,8 +82,11 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope) {
  *    //Open popup
  * }, $scope);
  */
-kindFramework.directive('setupChannelSelector', function($rootScope) {
+
+
+kindFramework.directive('setupChannelSelector', function($rootScope){
     "use strict";
+
     return {
         restrict: 'E',
         replace: true,
@@ -94,7 +98,9 @@ kindFramework.directive('setupChannelSelector', function($rootScope) {
                 showInfo: function(){
                     $rootScope.$emit("channelSelector:showInfo", true);
                 }
-            };   
+            };
+
+
         }
     };
 });

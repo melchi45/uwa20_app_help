@@ -265,7 +265,7 @@
                 </div>
             </div>
         </div>
-        <div class="wn5-setup-section">
+        <div class="wn5-setup-section" ng-show="storageDeviceTypeCheck()">
             <hr class="wn5-setup-hr">
             <div class="wn5-setup-section-heading">
                 <h3>
@@ -289,7 +289,7 @@
             </div>
         </div>
 
-        <scheduler></scheduler>
+        <scheduler ng-show="storageDeviceTypeCheck()"></scheduler>
         
         <hr class="wn5-setup-hr">
 
