@@ -132,9 +132,9 @@
 
         <hr class="wn5-setup-hr" ng-show="queueData.Enable">
 
-        <div class="pc-n-hm-section" id="hm_conditions" ng-show="queueData.Enable">
+        <div class="pc-n-hm-section" id="hm_conditions">
             <div class="wn5-setup-section form-group">
-                <div class="wn5-setup-section-heading" style="width: 100%">
+                <div class="wn5-setup-section-heading" style="width: 100%; margin-bottom: 20px;">
                     <h3>{{ lang.search.title | translate }}</h3>
                 </div>
                 <div class="wn5-setup-section-article" style="width: 100%">
@@ -159,7 +159,7 @@
                                         <th style="text-align:center; line-height:20px;">{{ lang.search.area.totalTitle | translate }}<br>({{ lang.search.area.highTitle | translate }})</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody ng-if="queueData.Enable">
                                     <tr ng-repeat="data in queueData.Queues track by $index">
                                         <td class="text-center">
                                             {{ data.Name }}
@@ -230,34 +230,36 @@
                     {{lang.results.noResults | translate}}
                 </p>
             </article>
-            
-            <figure 
-                class="pc-results-graph pc-graph-fix-tooltip"
-                ng-show="resultSection.viewGraph.average && !resultSection.noResults">
-                <figcaption class="pc-n-hm-heading-lv3">
-                    {{ lang.graph.average | translate }}
-                </figcaption>
-                <nvd3 
-                    options="graphSection.average.search.options" 
-                    data="graphSection.average.search.data" 
-                    api="graphSection.average.search.options.chart.api" 
-                    config="graphSection.chartConfig"
-                    ng-if="resultSection.view"></nvd3>
-            </figure>
 
-            <figure 
-                class="pc-results-graph pc-graph-fix-tooltip"
-                ng-show="resultSection.viewGraph.cumulative && !resultSection.noResults">
-                <figcaption class="pc-n-hm-heading-lv3">
-                    {{ lang.graph.cumulative | translate }}
-                </figcaption>
-                <nvd3 
-                    options="graphSection.cumulative.search.options" 
-                    data="graphSection.cumulative.search.data" 
-                    api="graphSection.cumulative.search.options.chart.api" 
-                    config="graphSection.chartConfig"
-                    ng-if="resultSection.view"></nvd3>
-            </figure>
+            <div id="qm-realtime-graph-3" class="pc-graph-fix-tooltip">
+                <figure 
+                    ng-class="resultSection.viewGraph.cumulative&&resultSection.viewGraph.average? 'pc-realtime-graph-today' : 'pc-results-graph'"
+                    ng-show="resultSection.viewGraph.average && !resultSection.noResults">
+                    <figcaption class="pc-n-hm-heading-lv3">
+                        {{ lang.graph.average | translate }}
+                    </figcaption>
+                    <nvd3 
+                        options="graphSection.average.search.options" 
+                        data="graphSection.average.search.data" 
+                        api="graphSection.average.search.options.chart.api" 
+                        config="graphSection.chartConfig"
+                        ng-if="resultSection.view"></nvd3>
+                </figure>
+
+                <figure 
+                    ng-class="resultSection.viewGraph.cumulative&&resultSection.viewGraph.average? 'pc-realtime-graph-week' : 'pc-results-graph'"
+                    ng-show="resultSection.viewGraph.cumulative && !resultSection.noResults">
+                    <figcaption class="pc-n-hm-heading-lv3">
+                        {{ lang.graph.cumulative | translate }}
+                    </figcaption>
+                    <nvd3 
+                        options="graphSection.cumulative.search.options" 
+                        data="graphSection.cumulative.search.data" 
+                        api="graphSection.cumulative.search.options.chart.api" 
+                        config="graphSection.chartConfig"
+                        ng-if="resultSection.view"></nvd3>
+                </figure>
+            </div>
 
             <div 
                 class="table-wrapper"

@@ -174,7 +174,7 @@
                                         <select 
                                             class="cm_selectbox" 
                                             ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[0].Count"
-                                            ng-change="queueLevelSection.changeValue()"
+                                            ng-change="queueLevelSection.reload()"
                                             ng-options="maxData for maxData in queueLevelSection.maxArr"
                                             style="margin: 0 7px;">
                                         </select>

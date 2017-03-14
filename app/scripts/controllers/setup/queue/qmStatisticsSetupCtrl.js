@@ -392,8 +392,13 @@ kindFramework.controller('QMStatisticsCtrl', function (
 				for(var i = 0, len = data.length; i < len; i++){
 					var self = data[i];
 
+					var key = $scope.queueData.Queues[self.name - 1].Name;
+					if(type === graphTypes[1]){
+						key = key + ' - ' + self.direction.toLowerCase();
+					}
+
 					var chartData = {
-						key: $scope.queueData.Queues[self.name - 1].Name + ' - ' + self.direction,
+						key: key,
 						values: [],
 						seriesIndex: i,
 						resultInterval: self.resultInterval
@@ -404,8 +409,12 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						chartData.area = true;
 					}
 
+					var tableKey = $scope.queueData.Queues[data[i].name - 1].Name;
+					if(type === graphTypes[1]){
+						tableKey = tableKey + ' - ' + data[i].direction.toLowerCase();
+					}
 					tableData.rules[i] = [];
-					tableData.rules[i].push( $scope.queueData.Queues[data[i].name - 1].Name + ' - ' + data[i].direction );
+					tableData.rules[i].push( tableKey );
 					var sum = 0;
 					for(var j = 0, jLen = self.results.length; j < jLen; j++){
 						var resultSelf = self.results[j];
@@ -1065,23 +1074,25 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						$scope.queueData.dataLoad = true;
 						console.info($scope.queueData);
 
-						// Queue Level(Start graph)
-						$scope.queueLevelSection.start(0);
-						$scope.queueLevelSection.start(1);
-						$scope.queueLevelSection.start(2);
+						//Search
+						$scope.pcConditionsDateForm.init(
+							function(){
+								console.info("Success");
+							},
+							failCallback
+						);
 						if(data.Enable === true){
+							// Queue Level(Start graph)
+							$scope.queueLevelSection.start(0);
+							$scope.queueLevelSection.start(1);
+							$scope.queueLevelSection.start(2);
 							// Preview
 							$scope.previewSection.init();
 							//Graph
 							$scope.graphSection.init().then(
 								function(){
-									$scope.pcConditionsDateForm.init(
-										function(){
-											resizeGraph();
-											deferred.resolve("Success");
-										}, 
-										failCallback
-									);
+									resizeGraph();
+									deferred.resolve("Success");
 								},
 								failCallback
 							)

@@ -22,7 +22,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			realTime: {
 				occupancy: 'Occupancy', 
 				button: 'lang_setup',
-				message: 'To analyze the data according to newly set rules, click the [Delete All Data] button to delete the existing data.'
+				message: 'To analyze the data according to newly set rules, click the [Delete all data] button to delete the existing data.'
 			},
 			graph: {
 				today: 'lang_today',
@@ -37,7 +37,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 				// date: 'lang_date',
 				area: {
 					title: 'lang_area',
-					averageTitle: 'Average',
+					averageTitle: 'lang_average',
 					peopleTitle: 'People',
 					totalTitle: 'Total time',
 					mediumTitle: 'lang_medium',
@@ -55,7 +55,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 				}
 			},
 			setupTabTitle: {
-				configuration: 'Configuration',
+				configuration: 'lang_configuration',
 				calibration: 'lang_calibration'
 			},
 			areaList: {
@@ -93,7 +93,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 			// lang.realTime.message = $translate.instant('lang_pc_hm_data_init_rule') + ' ' + $translate.instant('lang_msg_init_rule_but_delete_all_data');
 			lang.queueUndefined.disable = $translate.instant('lang_msg_please_enable').replace('%1', lang.queueManagement);
 			lang.queueUndefined.noRule = $translate.instant('lang_msg_norule') + ' ' + $translate.instant('lang_msg_addrule').replace('%1', $translate.instant('lang_setup'));
-			lang.queueEventDuration.title = $translate.instant('lang_minimum_duration') + ' (s)';
+			lang.queueEventDuration.title = $translate.instant('lang_minimum_duration') + ' (' + $translate.instant('lang_sec') + ')';
 			lang.calibration.message = $translate.instant('lang_msg_calibration_guide_1') + ' ' + $translate.instant('lang_msg_calibration_guide_2').replace('%1', lang.queueManagement);
 		})();
 
