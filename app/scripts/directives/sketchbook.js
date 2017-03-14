@@ -1,7 +1,7 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 kindFramework
-    .directive('sketchbook', ['$rootScope','$location','sketchbookService','SessionOfUserManager','ConnectionSettingService','kindStreamInterface', 'SunapiClient', 'PTZ_TYPE', 'PTZContorlService', 'DigitalPTZContorlService', 'Attributes', 'RESTCLIENT_CONFIG',
-    function($rootScope, $location, sketchbookService, SessionOfUserManager, ConnectionSettingService, kindStreamInterface, SunapiClient, PTZ_TYPE, PTZContorlService, DigitalPTZContorlService, Attributes, RESTCLIENT_CONFIG){
+    .directive('sketchbook', ['$rootScope','$location','sketchbookService','SessionOfUserManager','ConnectionSettingService','kindStreamInterface', 'SunapiClient', 'PTZ_TYPE', 'PTZContorlService', 'DigitalPTZContorlService', 'Attributes', 'RESTCLIENT_CONFIG','$timeout',
+    function($rootScope, $location, sketchbookService, SessionOfUserManager, ConnectionSettingService, kindStreamInterface, SunapiClient, PTZ_TYPE, PTZContorlService, DigitalPTZContorlService, Attributes, RESTCLIENT_CONFIG, $timeout){
     'use strict';
     return{
         restrict:'E',
@@ -32,12 +32,19 @@ kindFramework
         link:function(scope, elem, attrs){
             var mAttr = Attributes.get();
             var profileInfo = {};
+            var currentChannel = 0; //Default 0 CH
             var timeCallback = function(){};
             var closeCallback = function(){};
 
             var reconnectionInterval = null;
             var xmlHttp = new XMLHttpRequest();
             var retryStatus = true;
+
+            var getPlayerData = function(){
+                profileInfo.ChannelId = currentChannel;
+                console.log(profileInfo);
+                return ConnectionSettingService.getPlayerData('live', profileInfo, timeCallback, errorCallback, closeCallback);
+            };
 
             var errorCallback = function(error) {
               console.log("errorcode:", error.errorCode, "error string:", error.description, "error place:", error.place);
@@ -46,7 +53,7 @@ kindFramework
               }else if(error.errorCode === "999"){
                 reconnectionInterval = setInterval(function(){
                     if(RESTCLIENT_CONFIG.serverType === 'grunt'){
-                        var data = ConnectionSettingService.getPlayerData('live', profileInfo, timeCallback, errorCallback, closeCallback);
+                        var data = getPlayerData();
                         kindStreamInterface.changeStreamInfo(data);
                     }else{
                         if(retryStatus){
@@ -62,7 +69,7 @@ kindFramework
 
                 },5000);
               }else if(error.errorCode === "404"){
-                SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
+                SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', {Channel: currentChannel},
                     function (response) {
                         var profileList = response.data.VideoProfiles[0].Profiles;
                         profileInfo = profileList[0];
@@ -74,14 +81,14 @@ kindFramework
                             }
                         }
                         scope.$apply(function(){
-                            scope.playerdata = ConnectionSettingService.getPlayerData('live', profileInfo, timeCallback, errorCallback, closeCallback);
+                            scope.playerdata = getPlayerData();
                         });
                     },
                     function (errorData) {
                       console.log(errorData);
                 },'',true);
               }
-            };
+            }; 
 
             xmlHttp.onreadystatechange = function(){
                 if(this.readyState === 4){
@@ -95,7 +102,7 @@ kindFramework
                             function(response) {
                                 var macIp = response.data.NetworkInterfaces[0].MACAddress;
                                 if(macIp == RESTCLIENT_CONFIG.digest.macAddress){
-                                    var data = ConnectionSettingService.getPlayerData('live', profileInfo, timeCallback, errorCallback, closeCallback);
+                                    var data = getPlayerData();
                                     kindStreamInterface.changeStreamInfo(data);
                                 }else{
                                     window.setTimeout(RefreshPage, 500);
@@ -208,7 +215,7 @@ kindFramework
                         
                         window.setTimeout(function(){
                             scope.$apply(function(){
-                                scope.playerdata = ConnectionSettingService.getPlayerData('live', profileInfo, timeCallback, errorCallback, closeCallback);
+                                scope.playerdata = getPlayerData();
                                 scope.isReady = true;
                             });
                         },1000);
@@ -238,6 +245,13 @@ kindFramework
                 if(!(scope.coordinates === undefined || scope.coordinates === null || scope.coordinates === {})){
                     sketchbookService.set(scope.coordinates, scope.flag);
                 }
+            });
+
+            $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+                currentChannel = index;
+                $timeout(function(){
+                    scope.playerdata = getPlayerData();
+                });
             });
 
             function updateCoordinates(data){
