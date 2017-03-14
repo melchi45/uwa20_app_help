@@ -401,8 +401,13 @@ kindFramework.controller('PCSetupCtrl',
 	/* Collapse Start
 	----------------------------------------------*/
 
-	//
-	$scope.currentTapStatus = [true, false, false];
+	/** 
+	 * @variable {Array} currentTabStatus 탭 활성화/비활성화 표시, 실재로 보이는 영역과 다름
+	 * @variable {Boolean} currentTabStatus[0] Configuration 탭
+	 * @variable {Boolean} currentTabStatus[1] Exclude Area 탭
+	 * @variable {Boolean} currentTabStatus[2] Calibration 탭
+	 */
+	$scope.currentTapStatus = [false, false, true];
 	$scope.changeTabStatus = function(value){
 		var flag = '';
 		// if(value === 1 && $scope.rectanglePainterController.getState() === false){
