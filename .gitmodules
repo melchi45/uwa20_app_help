@@ -7,4 +7,4 @@
 	branch = develop
 [submodule "app/media"]
 	path = app/media
-	url = ssh://mijoo462.park@ctf1.stw.net:29418/ump_module
+	url = ssh://ctf1.stw.net:29418/ump_module
