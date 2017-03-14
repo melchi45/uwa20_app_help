@@ -188,7 +188,7 @@ kindFramework
     };
 
     function mouseup_manualTracking (event) {
-        if(event.target.id !== "livecanvas") return;
+        if(event.target.id !== "areaCanvas") return;
         
         //마우스 오른쪽 버튼만 허용
         if(event.button != 2) return;
@@ -224,19 +224,20 @@ kindFramework
                 return;
             }
 
-            var elementChannelPlayer = document.getElementsByTagName("channel_player")[0];
+            PTZContorlService.enableAreaCanvas();
+            var elementAreaCanvas = document.getElementById("areaCanvas");
 
             if(_mode)
             {
                 PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
                 PTZContorlService.setManualTrackingMode("True");
 
-                elementChannelPlayer.addEventListener('mouseup', mouseup_manualTracking);
+                elementAreaCanvas.addEventListener('mouseup', mouseup_manualTracking);
             }
             else
             {
                 PTZContorlService.setManualTrackingMode("False");
-                elementChannelPlayer.removeEventListener('mouseup', mouseup_manualTracking);
+                elementAreaCanvas.removeEventListener('mouseup', mouseup_manualTracking);
             }
 
             console.log("kindControlService::setManualTrackingMode() ===>" + _mode + "AreaZoom");
@@ -255,17 +256,18 @@ kindFramework
                 return;
             }
 
-            var elementChannelPlayer = document.getElementsByTagName("channel_player")[0];
+            PTZContorlService.enableAreaCanvas();
+            var elementAreaCanvas = document.getElementById("areaCanvas");
 
             if(_mode)
             {
                 PTZContorlService.setPTZAreaZoom("on");
-                PTZContorlService.setElementEvent(elementChannelPlayer);
+                PTZContorlService.setElementEvent(elementAreaCanvas);
             }
             else
             {
                 PTZContorlService.setPTZAreaZoom("off");
-                PTZContorlService.deleteElementEvent(elementChannelPlayer);
+                PTZContorlService.deleteElementEvent(elementAreaCanvas);
             }
 
             console.log("kindControlService::setAreaZoomMode() ===>" + _mode + "AreaZoom");
