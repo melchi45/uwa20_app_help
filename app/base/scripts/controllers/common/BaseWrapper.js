@@ -295,7 +295,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         {
             retVal = false;
         }
-        else if (menuId === "opensdk" || menuId === "appEvent")
+        else if (menuId === "opensdk" || menuId === "appEvent" || menuId === "openplatform")
         {
             retVal = mAttr.OpenSDKSupport;
         }
