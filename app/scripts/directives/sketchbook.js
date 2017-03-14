@@ -41,8 +41,13 @@ kindFramework
             var retryStatus = true;
 
             var getPlayerData = function(){
-                profileInfo.ChannelId = currentChannel;
-                console.log(profileInfo);
+                if(mAttr.MaxChannel > 1){
+                    profileInfo.ChannelId = currentChannel;
+                }else{
+                    profileInfo.ChannelId = null;
+                }
+
+                console.log(profileInfo.ChannelId);
                 return ConnectionSettingService.getPlayerData('live', profileInfo, timeCallback, errorCallback, closeCallback);
             };
 
