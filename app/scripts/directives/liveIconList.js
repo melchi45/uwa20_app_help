@@ -75,12 +75,8 @@ kindFramework.directive('liveIconList', function(
 		        scope.channelBasicFunctions.pixelCount = true;
 		      }
 
-		      var resolution = UniversialManagerService.getProfileInfo().Resolution.split("x");
-
 		      var command = {
-		      	cmd : scope.channelBasicFunctions.pixelCount,
-		      	width : resolution[0],
-		      	height : resolution[1]
+		      	cmd : scope.channelBasicFunctions.pixelCount
 		      }
 
 		      $rootScope.$emit('channelPlayer:command', 'pixelCount', command);
