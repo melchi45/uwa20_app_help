@@ -305,9 +305,6 @@ kindFramework.controller('QMStatisticsCtrl', function (
 					x: function(d){
 						return d[0];
 					},
-					y: function(d){
-						return d[1];
-					},
 					clipEdge: true,
 					api: null,
 					useInteractiveGuideline: true,
@@ -319,7 +316,8 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						showMaxMin: true,
 						tickFormat: changeYAxisFormat
 					},
-					showLegend: true
+					showLegend: true,
+					yDomain: [0, 1]
 				}
 			};
 
@@ -351,6 +349,12 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						var data = gs[type][dateType].xAxisData[index];
 						var resultInterval = gs[type][dateType].data[0].resultInterval;
 						return changeFormatForGraph(data, resultInterval);
+					};
+					gs[type][dateType].options.chart.y = function(d){
+						if(gs[type][dateType].options.chart.yDomain[1] < d[1]){
+							gs[type][dateType].options.chart.yDomain[1] = d[1];
+						}
+						return d[1];
 					};
 					for(var k in eachChartOptions[type]){
 						gs[type][dateType].options.chart[k] = eachChartOptions[type][k];
@@ -387,6 +391,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 					timeTable: []
 				};
 
+				$scope.graphSection[type][dateType].options.chart.yDomain = [0, 1];
 				$scope.resultSection.setXAxisFormat(data[0].resultInterval);
 
 				for(var i = 0, len = data.length; i < len; i++){

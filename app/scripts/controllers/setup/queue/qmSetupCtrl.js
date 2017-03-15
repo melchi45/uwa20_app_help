@@ -177,6 +177,7 @@ kindFramework.controller('QMSetupCtrl',
 		allEnableStatus: false,
 		changeQueue: function(id){
 			$scope.queueListSection.selectedQueueId = id;
+			$scope.queueLevelSection.reload();
 			$timeout(function(){
 				sketchbookService.activeShape(id);
 				$scope.queueLevelSection.start();
@@ -643,7 +644,11 @@ kindFramework.controller('QMSetupCtrl',
         	$scope.calibrationSection.coordinates = modifiedPoints;
 			setAutoMaxPeople();
         }else if($scope.currentTapStatus[1] === true){
-        	$scope.queueListSection.changeQueue(modifiedIndex);
+			$scope.queueListSection.selectedQueueId = modifiedIndex;
+			$timeout(function(){
+				sketchbookService.activeShape(modifiedIndex);
+				$scope.queueLevelSection.start();
+			});
         	sketchbookService.activeShape(modifiedIndex);
 
         	$scope.realtimeSection.coordinates[modifiedIndex].points = modifiedPoints;
