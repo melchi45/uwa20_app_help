@@ -155,7 +155,15 @@ kindFramework
     };
 
     this.pixcelCount = function(command) {
-      pluginElement.SetPixelCounterOnOff_WH((command.cmd == true ? 1 : 0), parseInt(command.width), parseInt(command.height));
+      var rotate = UniversialManagerService.getRotate();
+      var width = command.width;
+      var height = command.height;
+      if(rotate === '90' || rotate === '270') {
+        width = command.height;
+        height = command.width;
+      }
+
+      pluginElement.SetPixelCounterOnOff_WH((command.cmd == true ? 1 : 0), parseInt(width), parseInt(height));
       console.log("pluginControlService::pixcelCount() ===> ");
     };
     /* Playback interface */
