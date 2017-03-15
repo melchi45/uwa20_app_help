@@ -936,12 +936,12 @@ kind_stream{
     }
         #cm_playback-event .cm_event-list-wrap > div{
             width: 160px; 
-            height: 25px; 
-            line-height: 25px; 
+            height: 30px; 
+            line-height: 15px; 
             float: left;
         }
         #cm_playback-event .cm_event-list-wrap > div label{
-            white-space: nowrap;
+            word-break: break-all;
             font-weight: normal;
         }
         #cm_playback-event .cm_event-list-wrap > div label.available-check-event{
