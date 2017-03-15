@@ -414,10 +414,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						chartData.area = true;
 					}
 
-					var tableKey = $scope.queueData.Queues[data[i].name - 1].Name;
-					if(type === graphTypes[1]){
-						tableKey = tableKey + ' - ' + data[i].direction.toLowerCase();
-					}
+					var tableKey = $scope.queueData.Queues[data[i].name - 1].Name + ' - ' + data[i].direction.toLowerCase();
 					tableData.rules[i] = [];
 					tableData.rules[i].push( tableKey );
 					var sum = 0;

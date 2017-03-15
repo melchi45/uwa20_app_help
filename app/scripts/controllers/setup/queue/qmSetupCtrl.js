@@ -266,6 +266,8 @@ kindFramework.controller('QMSetupCtrl',
 				var colorName = null;
 				var startColor = null;
 				var endColor = null;
+				var elem = $(".qm-bar-wrap.qm-bar-setup");
+				elem.find(".over").removeClass("over");
 				if(queue < data.medium){
 					colorName = colorNameList[0];
 					startColor = colorList[0];
@@ -274,17 +276,16 @@ kindFramework.controller('QMSetupCtrl',
 					colorName = colorNameList[1];
 					startColor = colorList[2];
 					endColor = colorList[3];
+					elem = elem.find(".qm-bar-mid");
 				}else{
 					colorName = colorNameList[2];
 					startColor = colorList[4];
 					endColor = colorList[5];
+					elem = elem.find(".qm-bar-mid, .qm-bar-high");
 				}
 
+				elem.addClass("over");
 				$("#qm-bar .qm-bar").css({
-					// background: colorName,
-					// background: "-webkit-linear-gradient(left, " + startColor + ", " + endColor + ")",
-					// background: "-o-linear-gradient(right, " + startColor + ", " + endColor + ")",
-					// background: "-moz-linear-gradient(right, " + startColor + ", " + endColor + ")",
 					background: "linear-gradient(to right, " + startColor + ", " + endColor + ")"
 				});
 			};
@@ -304,6 +305,7 @@ kindFramework.controller('QMSetupCtrl',
 			$("#qm-bar .qm-bar-mask").css({
 				width: "100%"
 			});
+			$(".qm-bar-wrap.qm-bar-setup").find(".over").removeClass("over");
 		},
 		setPosition: function(){
 			var data = getPeopleData();
