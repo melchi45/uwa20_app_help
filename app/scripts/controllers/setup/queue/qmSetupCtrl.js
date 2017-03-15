@@ -522,15 +522,15 @@ kindFramework.controller('QMSetupCtrl',
 		}
 
 		if($scope.currentTapStatus[0] === true){
-			$scope.sketchinfo = getSketchinfo('calibration');
-			$timeout(function(){
-				sketchbookService.activeShape(0);
-			});
-		}else if($scope.currentTapStatus[1] === true){
 			$scope.sketchinfo = getSketchinfo('area');
 			// console.info($scope.sketchinfo);
 			$timeout(function(){
 				sketchbookService.activeShape($scope.queueListSection.selectedQueueId);
+			});
+		}else if($scope.currentTapStatus[1] === true){
+			$scope.sketchinfo = getSketchinfo('calibration');
+			$timeout(function(){
+				sketchbookService.activeShape(0);
 			});
 		}
 

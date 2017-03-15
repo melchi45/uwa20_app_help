@@ -18,7 +18,7 @@
                     ng-class="{'active': currentTapStatus[0] === true }"
                     ng-click="changeTabStatus(0)" 
                     type="button">
-                    {{ lang.setupTabTitle.calibration | translate }}
+                    {{ lang.setupTabTitle.configuration | translate}}
                 </button>
             </li>
             <li class="wn5-setup-tab-item">
@@ -26,7 +26,7 @@
                     ng-class="{'active': currentTapStatus[1] === true }"
                     ng-click="changeTabStatus(1)" 
                     type="button">
-                    {{ lang.setupTabTitle.configuration | translate}}
+                    {{ lang.setupTabTitle.calibration | translate }}
                 </button>
             </li>
         </ul>
@@ -39,7 +39,7 @@
             </sketchbook>
 
             <div class="wn5-setup-preview-table">
-                <div ng-show="currentTapStatus[0] === true">
+                <div ng-show="currentTapStatus[1] === true">
                     <section class="form-group">
                         <div class="wn5-setup-preview-heading">
                             <label>
@@ -56,7 +56,7 @@
                         </div>
                     </section>
                 </div>
-                <div ng-show="currentTapStatus[1] === true">
+                <div ng-show="currentTapStatus[0] === true">
                     <section 
                         ng-show="queueData.Enable"
                         class="form-group">
@@ -131,7 +131,7 @@
                 </article>
             </section>
 
-            <section class="wn5-setup-section" ng-show="currentTapStatus[1] === true && queueData.Enable" style="margin-top: 30px;">
+            <section class="wn5-setup-section" ng-show="currentTapStatus[0] === true && queueData.Enable" style="margin-top: 30px;">
                 <div class="wn5-setup-section-heading" style="margin-bottom:50px;">
                     <h3>
                         {{ lang.queueEvent.title | translate }}
@@ -139,7 +139,7 @@
                 </div>
 
                 <div class="wn5-setup-section-article">
-                    <section class="wn5-setup-section" ng-show="currentTapStatus[1] === true && queueData.Enable">
+                    <section class="wn5-setup-section" ng-show="currentTapStatus[0] === true && queueData.Enable">
                         <div class="wn5-setup-section-heading" style="margin-bottom:50px;">
                             <h3>
                                 {{ lang.queueEventLevel.title | translate }}
@@ -185,7 +185,7 @@
                         </div>
                     </section>
 
-                    <section class="wn5-setup-section" ng-show="currentTapStatus[1] === true && queueData.Enable" ng-if="queueData.dataLoad">
+                    <section class="wn5-setup-section" ng-show="currentTapStatus[0] === true && queueData.Enable" ng-if="queueData.dataLoad">
                         <!--<hr class="wn5-setup-hr">-->
                         <div class="wn5-setup-section-heading">
                             <h3>
