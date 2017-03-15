@@ -407,7 +407,7 @@ kindFramework.controller('PCSetupCtrl',
 	 * @variable {Boolean} currentTabStatus[1] Exclude Area 탭
 	 * @variable {Boolean} currentTabStatus[2] Calibration 탭
 	 */
-	$scope.currentTapStatus = [false, false, true];
+	$scope.currentTapStatus = [true, false, false];
 	$scope.changeTabStatus = function(value){
 		var flag = '';
 		// if(value === 1 && $scope.rectanglePainterController.getState() === false){

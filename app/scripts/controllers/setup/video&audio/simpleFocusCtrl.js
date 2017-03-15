@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attributes, $timeout, COMMONUtils, sketchbookService, $q) {
+kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attributes, $timeout, COMMONUtils, sketchbookService, $q, $rootScope) {
     "use strict";
 
     $scope.FastAutoFocusDefined = true;
@@ -10,6 +10,19 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     $scope.FastAutoFocus = true;
 
     $scope.PageData = {};
+
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
 
     var mAttr = Attributes.get();
     COMMONUtils.getResponsiveObjects($scope);
@@ -27,6 +40,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                 $scope.ZoomOptionsDefined = false;
             }
             $scope.FocusModeOptions = mAttr.FocusModeOptions;
+            $scope.MaxChannel = mAttr.MaxChannel;
         }
         
         defer.resolve("success");
@@ -52,6 +66,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         var setData = {};
 
         setData.Focus = level;
+        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
 
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=control', setData,
             function (response) {},
@@ -64,6 +79,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         var setData = {};
 
         setData.Zoom = level;
+        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
 
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=control', setData,
             function (response) {},
@@ -76,6 +92,8 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         var setData = {};
 
         setData.Mode = mode;
+        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+
         var coordi = sketchbookService.get();
         if(coordi[0].isSet){
             setData.FocusAreaCoordinate = coordi[0].x1 + "," + coordi[0].y1 + "," + coordi[0].x2 + "," + coordi[0].y2;
@@ -92,6 +110,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     function SaveFAFSettings() {
         var setData = {};
         setData.FastAutoFocus = $scope.FastAutoFocus;
+        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=set', setData,
             function (response) {
                 view();
@@ -109,7 +128,8 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     }
 
     function focusView(){
-        var jData;
+        var jData = {};
+        jData.Channel = $scope.channelSelectionSection.getCurrentChannel();
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=view', jData,
             function (response) {
                 $scope.PageData = response.data;
@@ -125,9 +145,10 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
         $q.seqAll(promises).then(
             function(){
-        $scope.pageLoaded = true;
+                $scope.pageLoaded = true;
+                $rootScope.$emit('changeLoadingBar', false);
                 showVideo().finally(function(){
-        $("#simplefocuspage").show();
+                    $("#simplefocuspage").show();
                 });
             },
             function(errorData){
@@ -138,6 +159,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
     function showVideo(){
         var getData = {};
+        getData.Channel = $scope.channelSelectionSection.getCurrentChannel();
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
             function (response) {
                 var viewerWidth = 640;
@@ -175,6 +197,12 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                 console.log(errorData);
             }, '', true);                    
     }
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        $rootScope.$emit('changeLoadingBar', true);
+        $scope.channelSelectionSection.setCurrentChannel(index);
+        view();
+    }, $scope);
 
     (function wait() {
         if (!mAttr.Ready) {

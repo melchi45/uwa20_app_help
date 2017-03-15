@@ -84,7 +84,7 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope) {
  */
 
 
-kindFramework.directive('setupChannelSelector', function($rootScope){
+kindFramework.directive('setupChannelSelector', function($rootScope, SunapiClient){
     "use strict";
 
     return {
@@ -95,12 +95,12 @@ kindFramework.directive('setupChannelSelector', function($rootScope){
         link: function(scope, element, attrs){
             scope.setupChannelSelector = {
                 useInfo: attrs.useInfo === 'true',
+                ProfileData: "",
                 showInfo: function(){
                     $rootScope.$emit("channelSelector:showInfo", true);
-                }
+                },
+
             };
-
-
         }
     };
 });
