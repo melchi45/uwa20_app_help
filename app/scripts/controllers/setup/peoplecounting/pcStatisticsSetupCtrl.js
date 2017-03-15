@@ -813,6 +813,9 @@ kindFramework.controller('PCStatisticsCtrl',
 		        		return d[0];
 		        	},
 		            y: function(d){
+						if($scope.graphSection.today.options.chart.yDomain[1] < d[1]){
+							$scope.graphSection.today.options.chart.yDomain[1] = d[1];
+						}
 		        		return d[1];
 		        	},
 		            useVoronoi: false,
@@ -846,11 +849,13 @@ kindFramework.controller('PCStatisticsCtrl',
 		                    	);
 		                    }
 		                }
-		            }
+		            },
+					yDomain: [0, 1]
 				}
 			},
 			data: [],
 			setData: function(data){
+				$scope.graphSection.today.options.chart.yDomain = [0, 1];
 				$scope.graphSection.today.data = data;
 				$timeout(function(){
 					$scope.graphSection.today.options.chart.legend.dispatch.legendClick({
@@ -886,7 +891,12 @@ kindFramework.controller('PCStatisticsCtrl',
 		            x: function(d){
 		            	return d[0];
 		            },
-		            y: function(d){return d[1];},
+		            y: function(d){
+						if($scope.graphSection.week.options.chart.yDomain[1] < d[1]){
+							$scope.graphSection.week.options.chart.yDomain[1] = d[1];
+						}
+						return d[1];
+					},
 		            useVoronoi: false,
 		            clipEdge: true,
 		            transitionDuration: 500,
@@ -914,11 +924,13 @@ kindFramework.controller('PCStatisticsCtrl',
 		                    	);
 		                    }
 		                }
-		            }
+		            },
+					yDomain: [0, 1]
 		        }
 			},
 			data: [],
 			setData: function(data){
+				$scope.graphSection.week.options.chart.yDomain = [0, 1];
 				$scope.graphSection.week.data = data;
 				$timeout(function(){
 					$scope.graphSection.week.options.chart.legend.dispatch.legendClick({
@@ -954,7 +966,12 @@ kindFramework.controller('PCStatisticsCtrl',
 		                left: 40
 		            },
 		            x: function(d){return d[0];},
-		            y: function(d){return d[1];},
+		            y: function(d){
+						if($scope.graphSection.result.options.chart.yDomain[1] < d[1]){
+							$scope.graphSection.result.options.chart.yDomain[1] = d[1];
+						}
+						return d[1];
+					},
 		            useVoronoi: false,
 		            clipEdge: true,
 		            transitionDuration: 500,
@@ -986,11 +1003,13 @@ kindFramework.controller('PCStatisticsCtrl',
 		                    	);
 		                    }
 		                }
-		            }
+		            },
+					yDomain: [0, 1]
 		        }
 			},
 			data: [],
 			setData: function(data){
+				$scope.graphSection.result.options.chart.yDomain = [0, 1];
 				$scope.graphSection.result.data = data;
 				$timeout(function(){
 					$scope.graphSection.result.options.chart.legend.dispatch.legendClick({
