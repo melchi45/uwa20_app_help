@@ -82,17 +82,10 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     }
     
     function getDisValue() {
-<<<<<<< HEAD
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
         var getData = {
             Channel: currentChannel
         };
-=======
-        var getData = {};
-        if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-            getData.Channel = currentChannel;
-        }
->>>>>>> 202459784b56707e6de7f4152a2089fa2667f937
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=view', getData,
             function (response) {
                 disValue = response.data.ImageEnhancements[0].DISEnable;
@@ -133,17 +126,10 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     }
 
     function videoOutputView() {
-<<<<<<< HEAD
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
         var getData = {
             Channel: currentChannel
         };
-=======
-        var getData = {};
-        if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-            getData.Channel = currentChannel;
-        }
->>>>>>> 202459784b56707e6de7f4152a2089fa2667f937
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videooutput&action=view', getData,
             function (response) {
                 $scope.VideoOutputs = response.data.VideoOutputs;
@@ -155,18 +141,10 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     }
 
     function flipView() {
-<<<<<<< HEAD
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
         var getData = {
             Channel: currentChannel
         };
-
-=======
-        var getData = {};
-        if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-            getData.Channel = currentChannel;
-        }
->>>>>>> 202459784b56707e6de7f4152a2089fa2667f937
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
             function (response) {
                 var FlipRadioValue;
@@ -189,17 +167,10 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     }
 
     function videoSourceView() {
-<<<<<<< HEAD
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
         var getData = {
             Channel: currentChannel
         };
-=======
-        var getData = {};
-        if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-            getData.Channel = currentChannel;
-        }
->>>>>>> 202459784b56707e6de7f4152a2089fa2667f937
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=view', getData,
             function (response) {
                 $scope.VideoSources = response.data.VideoSources;
@@ -277,17 +248,10 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     };
 
     function privacyAreaView(inputIndex) {
-<<<<<<< HEAD
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
         var getData = {
             Channel: currentChannel
         };
-=======
-        var getData = {};
-        if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-            getData.Channel = currentChannel;
-        }
->>>>>>> 202459784b56707e6de7f4152a2089fa2667f937
         var prevSelectedMaskCoordinate = null;
         if( $scope.PrivacyMaskSelected !== null ) {
             if($scope.PrivacyMask[$scope.SelectedChannel].Masks !== undefined ) {
