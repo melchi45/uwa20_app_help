@@ -1,5 +1,6 @@
 <div class="channel-container" ng-class="{'transparent' : isTransParent}">
   <channel_player class="channel-content" display="displayInfo"></channel_player>
+  <canvas id="areaCanvas" style="position:absolute;z-index:1000;"></canvas>
   <!--<kind_stream class="channel-content" kindplayer="playdata" display="displayInfo" ng-class="{'none' : isTransParent}"></kind_stream>-->
   <div class="select-box control-box " ng-if="enableGoto">
     <button class="tui-button-circle">

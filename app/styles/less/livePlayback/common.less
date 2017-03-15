@@ -661,6 +661,7 @@ live-playback common {
     background-color: #fff;
     border: 1px solid #a5a5a5;
     color: #4c4c4c;
+    box-sizing: border-box;
 
     &.cm-cancel-button {
         width: 100px;
@@ -668,23 +669,32 @@ live-playback common {
     }
 
     &:hover, 
-    &:focus {
+    &:focus,
+    &:hover *,
+    &:focus * {
         background-color: #4c4c4c;
-        border: 1px solid #4c4c4c;
         color: #fff;
     }
 
     &:active,
-    &.active {
+    &.active,
+    &:active *,
+    &.active * {
         background-color: #000;
         border: 1px solid #000;
         color: #fff;
     }
 
     &.cm-disabled {
-        background-color: #d2d2d2 !important;
         border: 1px solid #a5a5a5 !important;
+        background-color: #d2d2d2 !important;
         color: #797979 !important;
+
+        * {
+            background-color: #d2d2d2 !important;
+            color: #797979 !important;
+            border: none !important;
+        }
     }
 
     &.cm-cancel-button {
@@ -882,14 +892,14 @@ live-playback common {
 
     [id^="cm-"], [class^="cm-"],
     [id^="cm-"], [class^="cm-"] {
-        color: #fff !important;
+        color: #fff;
     }
     
     [class^="cm-icon-button"] {
         color: #a5a5a5;
 
-        .cm-active{
-            color: #f37321;
+        &.cm-active{
+            color: #f37321 !important;
         }
     }
 
@@ -966,14 +976,18 @@ live-playback common {
         border: 1px solid #797979;
         color: #fff;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus,
+        &:hover *,
+        &:focus * {
             background-color: #d2d2d2;
-            border: 1px solid #d2d2d2;
             color: #000;
         }
 
         &:active,
-        &.active {
+        &.active,
+        &:active *,
+        &.active * {
             background-color: #fff;
             border: 1px solid #fff;
             color: #000;
@@ -983,7 +997,10 @@ live-playback common {
             background-color: #191919 !important;
             border: 1px solid #333 !important;
             color: #333 !important;
+
             * {
+                border: none !important;
+                background-color: #191919 !important;
                 color: #333 !important;
             }
         }

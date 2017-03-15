@@ -295,7 +295,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         {
             retVal = false;
         }
-        else if (menuId === "opensdk" || menuId === "appEvent")
+        else if (menuId === "opensdk" || menuId === "appEvent" || menuId === "openplatform")
         {
             retVal = mAttr.OpenSDKSupport;
         }
@@ -335,6 +335,13 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
             retVal = false;
           } else {
             retVal = true;
+          }
+        }
+        else if(menuId === "record"){
+          if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){ //2.5.3 버전 이상일 때
+            retVal = true;
+          }else{
+            retVal = false;
           }
         }
         else

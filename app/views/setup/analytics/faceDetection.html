@@ -6,7 +6,7 @@
     <div class="wn5-setup-section">
         <hr class="wn5-setup-hr">
 
-         <!-- <setup-channel-selector use-info="true"></setup-channel-selector>  -->
+        <setup-channel-selector ng-show="MaxChannel > 1"></setup-channel-selector> 
 
         <div class="wn5-gui-body-large">
             <input type="checkbox" name="Enable" ng-model="FD.Enable" ng-change="submit(true)">
@@ -28,7 +28,7 @@
         </ul>
         <div 
             class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
-            <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'"
+            <sketchbook class="wn5-setup-preview-video"
                 coordinates="coordinates" 
                 flag="flag" 
                 sketchinfo="sketchinfo" 

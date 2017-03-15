@@ -3,7 +3,8 @@
         <wn5-setup-main-title 
             data-title="lang_menu_videoprofile">
         </wn5-setup-main-title>
-        <!--<div ng-show="Channels.length > 1">
+        <setup-channel-selector use-info="true" ng-if="isMultiChannel === true"></setup-channel-selector>
+        <!-- <div ng-show="Channels.length > 1">
             <div class="form-group">
                 <div>
                     <div class="wn5-setup-section-article-heading">Channel</div>
@@ -12,13 +13,7 @@
                     </div>
                 </div>
             </div>
-        </div>-->
-        <div class="wn5-setup-section" ng-show="maxChannel > 1">
-            <hr class="wn5-setup-hr">
-            <div class="form-group wn5-setup-section-article">
-                <setup-channel-selector></setup-channel-selector> 
-            </div>
-        </div>
+        </div> -->
         <div ng-show="PTZModeSupport" class="wn5-setup-section">
             <hr class="wn5-setup-hr">
             <div class="wn5-setup-section-heading">

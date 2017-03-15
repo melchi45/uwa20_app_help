@@ -71,6 +71,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
     function getAttributes() {
         $scope.MaxAlarmOutput = mAttr.MaxAlarmOutput;
+        $scope.MaxChannel = mAttr.MaxChannel;
         if (mAttr.EnableOptions !== undefined) {
             $scope.EnableOptions = mAttr.EnableOptions;
         }
@@ -369,8 +370,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             Channel: $scope.channelSelectionSection.getCurrentChannel()
         };
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=view', getData, function(response) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-            $scope.FD = response.data.FaceDetection[currentChannel];
+            $scope.FD = response.data.FaceDetection[0];
 
             pageData.FD = angular.copy($scope.FD);
             $scope.SensitivitySliderModel = {
@@ -541,6 +541,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         ];
 
         $q.seqAll(promises).then(function(){
+            $rootScope.$emit('changeLoadingBar', false);
             $scope.pageLoaded = true;
         }, function(errorData){
             console.log(errorData);
@@ -552,14 +553,13 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             Channel: $scope.channelSelectionSection.getCurrentChannel()
         };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
             var viewerWidth = 640;
             var viewerHeight = 360;
             var maxWidth = mAttr.MaxROICoordinateX;
             var maxHeight = mAttr.MaxROICoordinateY;
-            var rotate = response.data.Flip[currentChannel].Rotate;
-            var flip = response.data.Flip[currentChannel].VerticalFlipEnable;
-            var mirror = response.data.Flip[currentChannel].HorizontalFlipEnable;
+            var rotate = response.data.Flip[0].Rotate;
+            var flip = response.data.Flip[0].VerticalFlipEnable;
+            var mirror = response.data.Flip[0].HorizontalFlipEnable;
             var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
             $scope.videoinfo = {
                 width: viewerWidth,
@@ -1038,11 +1038,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }, $scope);
 
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-      console.log(index);
-    }, $scope);
-
-    $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
-      console.log(response);
+        $rootScope.$emit('changeLoadingBar', true);
+        $scope.channelSelectionSection.setCurrentChannel(index);
+        view();
     }, $scope);
 
     $scope.detectionAreaDisplayAll = false;

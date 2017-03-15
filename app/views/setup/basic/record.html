@@ -13,7 +13,7 @@
         <div class="wn5-setup-section">
             <hr class="wn5-setup-hr">
             <div class="wn5-setup-section-heading">
-                <h3>{{ 'lang_recordsettings' | translate }}</h3>
+                <h3>{{ 'lang_record_settings' | translate }}</h3>
             </div>
             <div class="wn5-setup-section-article">
                 <div class="form-group">
@@ -26,41 +26,68 @@
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_normal_recording' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <select name="normalRecording" class="form-control"></select>
+                        <select 
+                            name="normalRecording" 
+                            class="form-control"
+                            ng-options="option as option for option in RecNormalModeOptions"
+                            ng-model="recordSetting[ch].normalRecording">
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_event_recording' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <select name="eventRecording" class="form-control"></select>
+                        <select 
+                            name="eventRecording" 
+                            class="form-control"
+                            ng-options="option as option for option in RecEventModeOptions"
+                            ng-model="recordSetting[ch].eventRecording"></select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_preEventDuration' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <select name="normalRecording" class="form-control"></select>
+                        <select 
+                            name="preEvent" 
+                            class="form-control"
+                            ng-model="recordSetting[ch].preEvent">
+                                <option ng-repeat="option in RecPreEventDurationOptions" value="{{ option }}">
+                                    {{ option.split('s')[0] }} {{'lang_seconds' | translate }}
+                                </option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_postEventDuration' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <select name="postEventRecording" class="form-control"></select>
+                        <select 
+                            name="postEvent" 
+                            class="form-control"
+                            ng-model="recordSetting[ch].postEvent">
+                                <option ng-repeat="option in RecPostEventDurationOptions" value="{{ option }}">
+                                    {{ option.split('s')[0] }} {{'lang_seconds' | translate }}
+                                </option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{'lang_recordFileType'| translate}}</div>
                     <div class="wn5-setup-section-article-content">
-                        <select name="recordFiletype" class="form-control"></select>
+                        <select 
+                            name="fileType" 
+                            class="form-control"
+                            ng-options="option as option for option in RecVideoFileTypeOptions"
+                            ng-model="recordSetting[ch].fileType"></select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{'lang_normalRecordSetup'| translate}}</div>
                     <div class="wn5-setup-section-article-content">
                         <label class="col-lg-5 field-radio-wrapper control-label">
-                            <input type="radio" ng-model="recordSchedule" value="Alway" class="ng-pristine ng-untouched ng-valid ng-not-empty"> <span class="ng-binding">{{ 'lang_always' | translate }}</span>
+                            <input type="radio" ng-model="recordSetting[ch].recordSchedule" value="Alway" class="ng-pristine ng-untouched ng-valid ng-not-empty"> <span class="ng-binding">{{ 'lang_always' | translate }}</span>
                         </label> &nbsp;&nbsp;
                         <label class="col-lg-5 field-radio-wrapper control-label">
-                            <input type="radio" ng-model="recordSchedule" value="Schedule" class="ng-pristine ng-untouched ng-valid ng-not-empty"> <span class="ng-binding">{{ 'lang_recording_only_schedule' | translate }}</span>
+                            <input type="radio" ng-model="recordSetting[ch].recordSchedule" value="Schedule" class="ng-pristine ng-untouched ng-valid ng-not-empty"> <span class="ng-binding">{{ 'lang_recording_only_schedule' | translate }}</span>
                         </label>
                     </div>
                 </div>

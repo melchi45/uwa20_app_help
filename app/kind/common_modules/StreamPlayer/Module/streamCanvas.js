@@ -43,8 +43,12 @@ kindStreamModule.directive('kindStream', [
 				var watchKindPlayer = scope.$watch('kindplayer', function(newValue, oldValue) {
 					if (newValue === undefined || newValue === null || isPhone)
 						return;
-
-					elem.find('canvas').attr('kind-channel-id', newValue.device.channelId);
+					
+					var channelId = 0;
+					if(newValue.device.channelId !== null){
+						channelId = newValue.device.channelId;
+					}
+					elem.find('canvas').attr('kind-channel-id', channelId);
 					kindStreamInterface.init(newValue, SunapiClient);
 
 					if (newValue.media.requestInfo.cmd == 'init' ||

@@ -266,7 +266,12 @@ function VideoMediaSource() {
     var duration = parseInt(mediaSource.duration, 10);
     var currentTime =  parseInt(videoElement.currentTime, 10);
     var calcTimeStamp = receiveTimeStamp.timestamp - (speedValue * (duration - currentTime + (speedValue !== 1 ? 1 : 0)));
-    var sendTimeStamp = {timestamp:calcTimeStamp, timestamp_usec:0, timezone:receiveTimeStamp.timezone};    
+    var sendTimeStamp = {timestamp:calcTimeStamp, timestamp_usec:0, timezone:receiveTimeStamp.timezone};
+
+    if (currentTime === 0 || isNaN(duration)) return;
+    if (Math.abs(duration - currentTime) > 4) return;
+
+    //console.log("duration, currentTime, receiveTimeStamp.timestamp, calcTimeStamp = ", duration, currentTime, receiveTimeStamp.timestamp, calcTimeStamp);    
 
     if (!videoElement.paused) {
       if (preVideoTimeStamp === null) {

@@ -41,7 +41,7 @@ kindFramework.constant('ROUTE_CONFIG', {
             {
               urlName: 'channellist',
               name: 'channelList',
-              templateUrl: 'views/channellist/channellist.html',
+              templateUrl: 'views/livePlayback/channellist.html',
               controller: 'ChannelListCtrl',
             },
             {

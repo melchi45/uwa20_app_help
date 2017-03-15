@@ -116,6 +116,21 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
     $scope.EventRule = {};
 
+    $scope.isMultiChannel = false;
+
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+
     var LINE_MODE = {
         RIGHT: 'Right',
         LEFT: 'Left',
@@ -530,6 +545,9 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     }
 
     function getAttributes() {
+        if(mAttr.MaxChannel > 1) {
+            $scope.isMultiChannel = true;
+        }
         $scope.VideoAnalysis2Support = mAttr.VideoAnalysis2Support;
         $scope.MotionDetectionOverlay = mAttr.MotionDetectionOverlay;
         $scope.PTZModel = mAttr.PTZModel;
@@ -655,6 +673,11 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             getData.DetectionType = detectionType;
         } else {
             getData.DetectionType = "IntelligentVideo";
+        }
+
+        if($scope.isMultiChannel) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            getData.Channel = currentChannel;
         }
 
         return SunapiClient.get($scope.va2CommonCmd + '&action=view', getData, function(response) {
@@ -836,7 +859,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         var setData = {};
         var removeData = {};
         var queue = [];
-        setData.Channel = 0;
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = currentChannel;
         var isRemoved = 0;
         var isSetted = 0;
         var detectionType = getCurrentDetectionType();
@@ -1071,6 +1095,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
     function showVideo() {
         var getData = {};
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+        getData.Channel = currentChannel;
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
             var viewerWidth = 640;
             var viewerHeight = 360;
@@ -1102,6 +1128,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 setInitialObjectSize();
                 updateMDVARegion2($scope.activeTab);
                 $scope.pageLoaded = true;
+                $rootScope.$emit('changeLoadingBar', false);
             });
         }, function(errorData) {
             //alert(errorData);
@@ -1160,6 +1187,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 }
             }
             var getData = {};
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            getData.Channel = currentChannel;
             SunapiClient.get(url, getData, function(response) {
                 // $scope.sketchinfo = {};
                 // $scope.currentTableData = null;
@@ -1384,6 +1413,12 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 }
             });
         // }
+    }, $scope);
+
+    $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
+        $scope.channelSelectionSection.setCurrentChannel(data);
+        $rootScope.$emit('changeLoadingBar', true);
+        view();
     }, $scope);
 
     function findLinesIndex(lineIndex){

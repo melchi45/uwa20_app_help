@@ -15,6 +15,14 @@
         <ul class="wn5-setup-tab-list">
             <li class="wn5-setup-tab-item">
                 <button 
+                    ng-class="{'active': currentTapStatus[2] === true }"
+                    ng-click="changeTabStatus(2)" 
+                    type="button">
+                    {{'lang_calibration' | translate}}
+                </button>
+            </li>
+            <li class="wn5-setup-tab-item">
+                <button 
                     ng-class="{'active': currentTapStatus[0] === true }"
                     ng-click="changeTabStatus(0)" 
                     type="button">
@@ -27,14 +35,6 @@
                     ng-click="changeTabStatus(1)" 
                     type="button">
                     {{'lang_excluded_area' | translate}}
-                </button>
-            </li>
-            <li class="wn5-setup-tab-item">
-                <button 
-                    ng-class="{'active': currentTapStatus[2] === true }"
-                    ng-click="changeTabStatus(2)" 
-                    type="button">
-                    {{'lang_calibration' | translate}}
                 </button>
             </li>
         </ul>

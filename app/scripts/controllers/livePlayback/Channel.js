@@ -616,6 +616,11 @@ kindFramework
 
         $scope.domControls.profileInfo = $scope.profileInfo = _requestProfile;
         $scope.selectedProfile = getProfileIndex(_requestProfile.Profile);
+        if(sunapiAttributes.MaxChannel > 1){
+          $scope.profileInfo.ChannelId = 0;
+        }else{
+          $scope.profileInfo.ChannelId = null;
+        }
         UniversialManagerService.setProfileInfo($scope.profileInfo);
 
         setAudioInEnable();
