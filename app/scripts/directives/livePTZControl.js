@@ -64,6 +64,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						case CAMERA_STATUS.PTZ_MODE.OPTICAL:
                             getSettingPresetList();
                             getSettingGroupList();
+
                             scope.modePTZ.AreaZoom = false;
                             $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
                             if (mAttr.TraceSupport)

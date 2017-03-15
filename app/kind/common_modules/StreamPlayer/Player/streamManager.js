@@ -28,7 +28,7 @@ var KindStreamManager = (function () {
          *    manager.initKindStreamPlayer(info);
          */
         initKindStreamPlayer: function (info, sunapiClient) {
-            var id = info.device.channelId;
+            var id = (info.device.channelId === null) ? 0: info.device.channelId;
             checkPlayer = false;
             if (!playerContainer[id]) {
                 player = new KindStreamPlayer(info, sunapiClient);
@@ -54,7 +54,7 @@ var KindStreamManager = (function () {
          */
         controlPlayer: function (info) {
             var player,
-                id = info.device.channelId;
+                id = (info.device.channelId === null) ? 0: info.device.channelId;
 
             if (playerContainer[id]) {
                 player = playerContainer[id];
