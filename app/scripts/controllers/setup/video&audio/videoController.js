@@ -80,6 +80,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         }
         return msg;
     }
+    $scope.getMessagePrivacyZoom = getMessagePrivacyZoom;
     
     function getDisValue() {
         var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
@@ -218,6 +219,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                             function (errorData) {
                                 console.log(errorData);
                             },'',true);
+                        } else if(mAttr.ZoomOnlyModel == true){
+                            sketchbookService.set({name:"", color:"", x1:0, y1:0, x2:0, y2:0, selectedMask:true});
                         } else {
                             var maskCoor = $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].MaskCoordinate;
                             $scope.coordinates.x1 = maskCoor[0].x;
@@ -427,17 +430,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                                                             margin: 0
                                                         });
                                                 });
-                                            }],
-                                            resolve: {
-                                                Message: function ()
-                                                {
-                                                    var msg = '';
-                                                    if (typeof mAttr.MaxZoom !== 'undefined'){
-                                                        msg = $translate.instant('lang_msg_privacy_Zoom_variable_magnification').replace('%1', mAttr.MaxZoom.maxValue);
-                                                    }
-                                                    return msg;
-                                                }
-                                            }
+                                            }]
                                         });
                                         modalInstance3.result.finally(
                                             function() {
@@ -568,7 +561,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     function flipSet() {
         var setData = {},
             ignoredKeys,
-            changed = true;;
+            changed = true;
 
         ignoredKeys = ['Channel'];
 

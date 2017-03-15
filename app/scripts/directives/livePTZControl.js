@@ -123,6 +123,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						if (isJogUpdating === false) {
 							sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True";
 							sunapiURI += (value === 'in' ? "&Zoom=50" : "&Zoom=-50");
+                            isPtzControlStart = true;
 							execSunapi(sunapiURI);
 							isJogUpdating = true;
 						}
@@ -165,6 +166,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                 execSunapi(sunapiURI);
             }else{
                 sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&Focus="+value;
+                isPtzControlStart = true;
                 execSunapi(sunapiURI);
             }
         };

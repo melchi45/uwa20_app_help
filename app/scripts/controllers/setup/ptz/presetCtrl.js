@@ -35,7 +35,7 @@ kindFramework.controller('presetCtrl', function ($scope, $location, $timeout, $u
     };
     $scope.$saveOn('changePTZPreset', function(args, preset){
     	var promises = [];
-    	promises.push(gotoPreset(preset));
+    	promises.push(function(){return gotoPreset(preset)});
         promises.push(getPresets);
         promises.push(getPresetImageConfig);
     	$q.seqAll(promises).then(
