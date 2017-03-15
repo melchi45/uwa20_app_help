@@ -3,8 +3,8 @@
         <wn5-setup-main-title 
             data-title="lang_record">
         </wn5-setup-main-title>
-        <!--<div class="wn5-setup-section" ng-show="maxChannel > 1">-->
-        <div class="wn5-setup-section">
+        <div class="wn5-setup-section" ng-show="maxChannel > 1">
+        <!--<div class="wn5-setup-section">-->
             <hr class="wn5-setup-hr">
             <div class="form-group wn5-setup-section-article">
                 <setup-channel-selector></setup-channel-selector> 
@@ -20,17 +20,19 @@
                     <div class="wn5-setup-section-article-heading">{{ 'lang_recordProfile' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
                         <!-- 선택중인 채널의 record profile 정보가 보일 곳-->
-                        {{ maxChannel }}
+                        {{ RecordProfileName }}
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_normal_recording' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
                         <select 
-                            name="normalRecording" 
+                            name="NormalMode" 
                             class="form-control"
-                            ng-options="option as option for option in RecNormalModeOptions"
-                            ng-model="recordSetting[ch].normalRecording">
+                            ng-model="recordSetting[Channel].NormalMode">
+                                <option ng-repeat="option in RecNormalModeOptions" value="{{option}}">
+                                    {{option == 'Full'?getTranslatedOption('FullFrame'):option == 'Off'?getTranslatedOption('None'):getTranslatedOption(option)}}
+                                </option>
                         </select>
                     </div>
                 </div>
@@ -40,8 +42,11 @@
                         <select 
                             name="eventRecording" 
                             class="form-control"
-                            ng-options="option as option for option in RecEventModeOptions"
-                            ng-model="recordSetting[ch].eventRecording"></select>
+                            ng-model="recordSetting[Channel].EventMode">
+                                <option ng-repeat="option in RecEventModeOptions" value="{{option}}">
+                                    {{option == 'Full'?getTranslatedOption('FullFrame'):option == 'Off'?getTranslatedOption('None'):getTranslatedOption(option)}}
+                                </option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -50,7 +55,7 @@
                         <select 
                             name="preEvent" 
                             class="form-control"
-                            ng-model="recordSetting[ch].preEvent">
+                            ng-model="recordSetting[Channel].PreEventDuration">
                                 <option ng-repeat="option in RecPreEventDurationOptions" value="{{ option }}">
                                     {{ option.split('s')[0] }} {{'lang_seconds' | translate }}
                                 </option>
@@ -63,7 +68,7 @@
                         <select 
                             name="postEvent" 
                             class="form-control"
-                            ng-model="recordSetting[ch].postEvent">
+                            ng-model="recordSetting[Channel].PostEventDuration">
                                 <option ng-repeat="option in RecPostEventDurationOptions" value="{{ option }}">
                                     {{ option.split('s')[0] }} {{'lang_seconds' | translate }}
                                 </option>
@@ -76,19 +81,32 @@
                         <select 
                             name="fileType" 
                             class="form-control"
-                            ng-options="option as option for option in RecVideoFileTypeOptions"
-                            ng-model="recordSetting[ch].fileType"></select>
+                            ng-model="recordSetting[Channel].RecordedVideoFileType">
+                                <option ng-repeat="option in RecVideoFileTypeOptions" value="{{ option }}">
+                                    {{ option }}
+                                </option>
+                        </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="wn5-setup-section-article-heading">{{'lang_normalRecordSetup'| translate}}</div>
-                    <div class="wn5-setup-section-article-content">
-                        <label class="col-lg-5 field-radio-wrapper control-label">
-                            <input type="radio" ng-model="recordSetting[ch].recordSchedule" value="Alway" class="ng-pristine ng-untouched ng-valid ng-not-empty"> <span class="ng-binding">{{ 'lang_always' | translate }}</span>
-                        </label> &nbsp;&nbsp;
-                        <label class="col-lg-5 field-radio-wrapper control-label">
-                            <input type="radio" ng-model="recordSetting[ch].recordSchedule" value="Schedule" class="ng-pristine ng-untouched ng-valid ng-not-empty"> <span class="ng-binding">{{ 'lang_recording_only_schedule' | translate }}</span>
-                        </label>
+                <div class="wn5-setup-section">
+                    <hr class="wn5-setup-hr">
+                    <div class="wn5-setup-section-heading">
+                        <h3>
+                            {{ 'lang_normalRecordSetup' | translate }}
+                        </h3>
+                    </div>
+                    <div class="wn5-setup-section-article form-group">
+                        <div class="wn5-setup-section-article-content">
+                            <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
+                                <input class="radio" name="Activate" ng-model="recordSetting[Channel].Activate" ng-value="Activate" type="radio">
+                                <div ng-if="Activate === 'Scheduled'">
+                                {{ 'lang_recording_only_schedule' | translate }}
+                                </div>
+                                <div ng-if="Activate === 'Always'">
+                                    {{ 'lang_recording_always' | translate }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
