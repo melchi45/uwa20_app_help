@@ -664,6 +664,7 @@ live-playback common {
 .cm-str-button.cm-disabled * {
   background-color: #d2d2d2 !important;
   color: #797979 !important;
+  border: none !important;
 }
 .cm-str-button.cm-cancel-button {
   width: 100px;
@@ -924,7 +925,8 @@ live-playback common {
   color: #333 !important;
 }
 #cm-bottom-menu.cm-full-menu .cm-str-button.cm-disabled * {
-  border: 1px solid #333 !important;
+  border: none !important;
+  background-color: #191919 !important;
   color: #333 !important;
 }
 #cm-bottom-menu.cm-full-menu .cm-submit-button {
@@ -8887,11 +8889,45 @@ i.tui-ch-playback-stop {
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #cm-live-ptz-control #cm-ptz-zoom-slider .ui-slider:hover .ui-state-default {
   left: -7px;
 }
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form {
+  width: 40%;
+  float: left;
+  box-sizing: border-box;
+  text-align: left;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1em 1.4em;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form > .form-group {
+  margin-bottom: 10px;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form > .form-group:last-child {
+  margin-bottom: 0;
+  padding: 0;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form > .form-group > span {
+  width: 100px;
+  float: left;
+  line-height: 30px;
+  color: #000;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form > .form-group > div {
+  width: calc(100% - 100px);
+  display: inline-block;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form > .form-group > div input,
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form > .form-group > div select {
+  float: left;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form > .form-group > div:first-child {
+  margin-left: 100px;
+}
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-tabs {
   width: 40%;
   float: left;
   box-sizing: border-box;
   text-align: left;
+  padding: 0;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-tabs select {
   margin-top: 5px;
@@ -8902,6 +8938,9 @@ i.tui-ch-playback-stop {
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-tabs.ui-tabs .ui-tabs-nav li {
   min-width: 20%;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-tabs.ui-tabs .ui-tabs-nav li:last-child {
+  border-right: none;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-tabs.ui-widget-content {
   background: #fff;
@@ -9144,6 +9183,7 @@ i.tui-ch-playback-stop {
     width: auto;
     margin: 0 auto;
   }
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form,
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-tabs {
     width: 80%;
     margin: 20px 0;
@@ -9188,7 +9228,6 @@ i.tui-ch-playback-stop {
     transform: translateY(-50px);
   }
   .kind-responsive-live:not(.land-scape) #ptz-components {
-    padding: 0 20px;
     position: relative;
     /* ptz controller with tables */
   }
@@ -9296,6 +9335,7 @@ i.tui-ch-playback-stop {
   width: auto !important;
   margin: 0 auto !important;
 }
+.kind-responsive-live.land-scape #cm-ptz #ptz-components > div #live-ptz-add-form,
 .kind-responsive-live.land-scape #cm-ptz #ptz-components > div#live-ptz-tabs {
   width: 80% !important;
   margin: 20px 0 !important;

@@ -265,11 +265,51 @@
                     }
                     */
 
+                    #live-ptz-add-form {
+                        width: 40%;
+                        float: left;
+                        box-sizing: border-box;
+                        text-align: left;
+                        background: #fff;
+                        border: 1px solid #ddd;
+                        padding: 1em 1.4em;
+
+                        & > .form-group {
+                            margin-bottom: 10px;
+
+                            &:last-child {
+                                margin-bottom: 0;
+                                padding: 0;
+                            }
+
+                            & > span {
+                                width: 100px;
+                                float: left;
+                                line-height: 30px;
+                                color: #000;
+                            }
+
+                            & > div {
+                                width: calc(~"100% - 100px");
+                                display: inline-block;
+
+                                input, select {
+                                    float: left
+                                }
+                            }
+
+                            & > div:first-child {
+                                margin-left: 100px;
+                            }
+                        }
+                    }
+
                     #live-ptz-tabs {
                         width: 40%;
                         float: left;
                         box-sizing: border-box;
                         text-align: left;
+                        padding: 0;
 
                         select{
                             margin-top: 5px;
@@ -281,6 +321,10 @@
 
                             li {
                                 min-width: 20%;
+
+                                &:last-child {
+                                    border-right: none;
+                                }
                             }
                         }
 
@@ -580,7 +624,8 @@
                             }
                         }
                         */
-
+                        
+                        #live-ptz-add-form,
                         #live-ptz-tabs {
                             width: 80%;
                             margin: 20px 0;
@@ -645,7 +690,6 @@
 
 
             #ptz-components {
-                padding: 0 20px;
                 position: relative;
 
                 & > .cm-col {
@@ -780,6 +824,7 @@
                     margin: 0 auto !important;
                 }
 
+                #live-ptz-add-form,
                 &#live-ptz-tabs {
                     width: 80% !important;
                     margin: 20px 0 !important;

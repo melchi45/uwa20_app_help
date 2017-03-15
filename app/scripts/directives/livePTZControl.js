@@ -23,8 +23,24 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				scope.showZoomOnlyControl = false;
 				scope.presetAddForm = {
 					show: false,
-					set: function(value){
+					set: function(value) {
 						this.show = value;
+					},
+					apply: function(value){
+						this.show = false;
+						$("#live-ptz-tabs").removeClass('cm-display-none');
+					},
+					cancel: function () {
+						this.show = false;
+						$("#live-ptz-tabs").removeClass('cm-display-none');
+					},
+					waitTab : function () {
+						if( $("#live-ptz-tabs").length ) scope.setTabs();
+						else {
+							setTimeout(function () {
+								scope.presetAddForm.waitTab();
+							},1);
+						}
 					}
 				};
 				scope.selectedObj = {
@@ -154,12 +170,16 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
         };
 
 		scope.ptzPreset = function(value){
+			console.log(value);
 			try {
 				if(value === 'Stop'){
 					run('preset', scope.selectedObj.presetObj.value, 'Stop');
 				}else if(value === 'Go'){
 					run('preset',  scope.selectedObj.presetObj.value, 'Start');
-				}else {
+				}else if(value === 'Set') {
+					$("#live-ptz-tabs").addClass('cm-display-none');
+					scope.presetAddForm.show = true;
+				}else{
 					throw "Wrong Argument";
 				}
 			} catch (error)
@@ -447,11 +467,13 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				function init() {
 					scope.presetList = [];
 					scope.groupList = [];
-					setTabs();
+					scope.setTabs();
 				}
 
-				function setTabs(){
+				scope.setTabs = function(){
+					console.log($("#live-ptz-tabs").length);
 					if( $("#live-ptz-tabs").length ){
+						console.log('use tabs');
 						$("#live-ptz-tabs").tabs();
 						var tabCount = $("#live-ptz-tabs .ui-widget-header li").length;
 						if(tabCount < 5){

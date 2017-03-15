@@ -138,6 +138,45 @@
       3. Live PTZ - zoom slider issue fixed.
       -->
 
+    <div id="live-ptz-add-form" ng-if="presetAddForm.show === true">
+        <div class="form-group">
+            <span>{{ 'lang_name' | translate }}</span>
+            <div>
+                <input 
+                  type="text"
+                  class="form-control"
+                  ng-model="addPresetting.name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span>{{ 'lang_number' | translate }}</span>
+            <div>
+                <select
+                  class="form-control"
+                  ng-model="addPresetting.Number"></select>
+            </div>
+        </div>
+
+        <div class="cm-row form-group">
+            <div>
+                <button 
+                  ng-click="presetAddForm.apply()"
+                  title="{{'lang_apply' | translate}}"
+                  class="cm-submit-button"
+                  style="margin-right: 5px;">
+                  {{'lang_apply' | translate}}
+                </button>
+                <button 
+                  ng-click="presetAddForm.cancel()"
+                  title="{{'lang_cancel' | translate}}"
+                  class="cm-str-button cm-cancel-button">
+                  {{'lang_cancel' | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div id="live-ptz-tabs">
       <ul>
         <li>
