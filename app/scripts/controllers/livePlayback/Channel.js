@@ -32,7 +32,6 @@ kindFramework
     var cameraMicEnable = false;
     var videoLimitFPS = 3;
     var videoLimitSize = 1920 * 1080;
-    var isLivePageConnect = true;
     var audioEncodingType = null;
 
     BaseChannel.prototype.resetSetting = function() {
@@ -102,7 +101,6 @@ kindFramework
     };
 
     BaseChannel.prototype.init = function() {
-      isLivePageConnect = true;
       KindProfileService.setDeviceConnectionInfo(ConnectionSettingService.getConnectionSetting());
     };
 
@@ -123,7 +121,6 @@ kindFramework
     };
 
     BaseChannel.prototype.locationChange = function(next) {
-      isLivePageConnect = false;
       if(next.indexOf('setup') !== -1 || next.indexOf('basic_videoProfile') !== -1) {
         $rootScope.$emit('channelPlayer:command', 'stopLive', false);
         if(UniversialManagerService.isSpeakerOn()){
@@ -464,7 +461,6 @@ kindFramework
       var prevPage = fromState;
       var curPage = toState;
       var functionList = [];
-      isLivePageConnect = true;
 
       functionList.push(GetFlipMirror);
       functionList.push(initImageEnhancementSettings);
@@ -511,10 +507,6 @@ kindFramework
             console.error(errorData);
           }
       );
-    });
-
-    $scope.$on('$destroy', function(){
-      isLivePageConnect = false;
     });
 
     var setAccountData = function(response){
@@ -605,7 +597,9 @@ kindFramework
     }
 
     function startStreaming(_requestProfile, isReconnect) {
-        if( isLivePageConnect === false ) return;
+        var playData = new PlayDataModel();
+        var isPlaybackEnable = playData.isPlaybackEnable();
+        if( isPlaybackEnable === true ) return;
         var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true:false;
         var ip = (plugin === true) ? RESTCLIENT_CONFIG.digest.hostName : RESTCLIENT_CONFIG.digest.rtspIp;
         var port = RESTCLIENT_CONFIG.digest.rtspPort;
@@ -616,6 +610,11 @@ kindFramework
 
         $scope.domControls.profileInfo = $scope.profileInfo = _requestProfile;
         $scope.selectedProfile = getProfileIndex(_requestProfile.Profile);
+        if(sunapiAttributes.MaxChannel > 1){
+          $scope.profileInfo.ChannelId = 0;
+        }else{
+          $scope.profileInfo.ChannelId = null;
+        }
         UniversialManagerService.setProfileInfo($scope.profileInfo);
 
         setAudioInEnable();
@@ -968,6 +967,7 @@ kindFramework
         {
           var MJPEGProfileID = 1;
           RequestProfile = getProfileByIndex($scope.profileList, MJPEGProfileID);
+          $scope.channelBasicFunctions.pixelCount = false;
         }
         UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
       }

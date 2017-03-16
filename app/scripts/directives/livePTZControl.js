@@ -12,7 +12,6 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 			link: function(scope, element, attrs){
                 var mAttr = Attributes.get();
                 scope.modePTZ =  {
-                	ManualTrackingMode : false,
                     AreaZoom : false
 				};
 
@@ -24,8 +23,24 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				scope.showZoomOnlyControl = false;
 				scope.presetAddForm = {
 					show: false,
-					set: function(value){
+					set: function(value) {
 						this.show = value;
+					},
+					apply: function(value){
+						this.show = false;
+						$("#live-ptz-tabs").removeClass('cm-display-none');
+					},
+					cancel: function () {
+						this.show = false;
+						$("#live-ptz-tabs").removeClass('cm-display-none');
+					},
+					waitTab : function () {
+						if( $("#live-ptz-tabs").length ) scope.setTabs();
+						else {
+							setTimeout(function () {
+								scope.presetAddForm.waitTab();
+							},1);
+						}
 					}
 				};
 				scope.selectedObj = {
@@ -65,8 +80,9 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						case CAMERA_STATUS.PTZ_MODE.OPTICAL:
                             getSettingPresetList();
                             getSettingGroupList();
-                            scope.modePTZ.ManualTrackingMode = (PTZContorlService.getManualTrackingMode() === "True");
+
                             scope.modePTZ.AreaZoom = false;
+                            $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
                             if (mAttr.TraceSupport)
                             {
                                 scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
@@ -107,6 +123,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						if (isJogUpdating === false) {
 							sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True";
 							sunapiURI += (value === 'in' ? "&Zoom=50" : "&Zoom=-50");
+                            isPtzControlStart = true;
 							execSunapi(sunapiURI);
 							isJogUpdating = true;
 						}
@@ -114,10 +131,6 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				};
 
 				scope.autoTracking = function() {
-					//Disable Manual Tracking
-                    scope.modePTZ.ManualTrackingMode = false;
-                    $rootScope.$emit('channelPlayer:command', 'manualTracking', false);
-
                     //Disable Area Zoom
                     scope.modePTZ.AreaZoom = false;
                     $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
@@ -153,17 +166,22 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                 execSunapi(sunapiURI);
             }else{
                 sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&Focus="+value;
+                isPtzControlStart = true;
                 execSunapi(sunapiURI);
             }
         };
 
 		scope.ptzPreset = function(value){
+			console.log(value);
 			try {
 				if(value === 'Stop'){
 					run('preset', scope.selectedObj.presetObj.value, 'Stop');
 				}else if(value === 'Go'){
 					run('preset',  scope.selectedObj.presetObj.value, 'Start');
-				}else {
+				}else if(value === 'Set') {
+					$("#live-ptz-tabs").addClass('cm-display-none');
+					scope.presetAddForm.show = true;
+				}else{
 					throw "Wrong Argument";
 				}
 			} catch (error)
@@ -238,39 +256,8 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 			}
 		};
 
-		scope.setManualTracking = function() {
-			try{
-                //Disable Area Zoom
-                scope.modePTZ.AreaZoom = false;
-                $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
-
-                //Disable Auto Tracking
-                scope.autoTrackingFlag = scope.dptzMode.DIGITAL_PTZ;
-                UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
-
-                if(scope.modePTZ.ManualTrackingMode)
-                {
-                    //Disble Manual Tracking
-                    $rootScope.$emit('channelPlayer:command', 'manualTracking', false);
-                    scope.modePTZ.ManualTrackingMode = false;
-                }
-                else {
-                    //Enable Manual Tracking
-                    scope.modePTZ.ManualTrackingMode = true;
-                    $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
-                }
-			}catch(e)
-			{
-				console.log(e.message);
-			}
-		};
-
 		scope.areaZoomMode = function () {
 			try {
-                //Disable Manual Tracking
-                scope.modePTZ.ManualTrackingMode = false;
-                $rootScope.$emit('channelPlayer:command', 'manualTracking', false);
-
                 //Disable Auto Tracking
                 scope.autoTrackingFlag = scope.dptzMode.DIGITAL_PTZ;
                 UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
@@ -482,11 +469,13 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				function init() {
 					scope.presetList = [];
 					scope.groupList = [];
-					setTabs();
+					scope.setTabs();
 				}
 
-				function setTabs(){
+				scope.setTabs = function(){
+					console.log($("#live-ptz-tabs").length);
 					if( $("#live-ptz-tabs").length ){
+						console.log('use tabs');
 						$("#live-ptz-tabs").tabs();
 						var tabCount = $("#live-ptz-tabs .ui-widget-header li").length;
 						if(tabCount < 5){

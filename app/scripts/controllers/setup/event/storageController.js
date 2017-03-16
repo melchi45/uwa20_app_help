@@ -16,6 +16,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.OnlyNumStr = mAttr.OnlyNumStr;
     $scope.IPv4PatternStr = mAttr.IPv4PatternStr;
     $scope.FriendlyNameCharSetNoNewLineStr = mAttr.FriendlyNameCharSetNoNewLineStr;
+    $scope.storageDeviceType = false;
     /*
     ID : 숫자,알파벳,특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능.
 Password : 숫자,알파벳,특수문자(~ ! @ $ ^ * _ - { } [ ] . / ?) 입력가능하고 이외 문자는 설정 불가능
@@ -32,6 +33,8 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
     };
+
+
 
     function showModalDialog(callback, displaymsg, index, queue) {
         var deferred = $q.defer();
@@ -116,6 +119,10 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             $scope.AutoDeleteDayOptions.max = parseInt(mAttr.AutoDeleteDayOptions.maxValue);
             $scope.IdPattern = mAttr.OnlyNumber;
         }
+
+        $scope.MaxChannel = mAttr.MaxChannel;
+
+
         defer.resolve("success");
         return defer.promise;
     }
@@ -953,6 +960,30 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
+    }
+
+    $scope.storageDeviceTypeCheck = function(){
+        SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', '', function(response) {
+            //scope.globalNavigationBar.deviceModelName = response.data.Model;
+            
+            
+
+            switch( response.data.Model ) {
+                case "PNM-9080QV" :
+                    $scope.storageDeviceType = false;
+                    break;
+
+                case "PNM-9020V" :
+                    $scope.storageDeviceType = false;
+                    break;
+
+                default :
+                    $scope.storageDeviceType = true;
+                    break;
+            }
+        });  
+
+        return $scope.storageDeviceType;
     }
 });
 kindFramework.controller('ModalMsgCtrl', function($scope, $uibModalInstance, Attributes, Msg) {

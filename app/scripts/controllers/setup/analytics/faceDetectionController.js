@@ -29,6 +29,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         active: false
     }];
     $scope.activeTab = $scope.tabs[0];
+    $scope.EventSource = 'FaceDetection';
+    $scope.EventRule = {};
+
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
     };
@@ -68,6 +71,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
     function getAttributes() {
         $scope.MaxAlarmOutput = mAttr.MaxAlarmOutput;
+        $scope.MaxChannel = mAttr.MaxChannel;
         if (mAttr.EnableOptions !== undefined) {
             $scope.EnableOptions = mAttr.EnableOptions;
         }
@@ -113,54 +117,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
         $scope.PTZModel = mAttr.PTZModel;
         $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
-    }
-
-    function prepareEventRules(eventRules) {
-        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-        $scope.EventRule = {};
-        $scope.EventRule.FtpEnable = false;
-        $scope.EventRule.SmtpEnable = false;
-        $scope.EventRule.RecordEnable = false;
-        $scope.EventRule.Enable = eventRules[currentChannel].Enable;
-        $scope.EventRule.RuleIndex = eventRules[currentChannel].RuleIndex;
-        $scope.EventRule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds(eventRules[currentChannel].Schedule));
-        $scope.EventRule.ScheduleType = eventRules[currentChannel].ScheduleType;
-        if (typeof eventRules[currentChannel].EventAction !== 'undefined') {
-            if (eventRules[currentChannel].EventAction.indexOf('FTP') !== -1) {
-                $scope.EventRule.FtpEnable = true;
-            }
-            if (eventRules[currentChannel].EventAction.indexOf('SMTP') !== -1) {
-                $scope.EventRule.SmtpEnable = true;
-            }
-            if (eventRules[currentChannel].EventAction.indexOf('Record') !== -1) {
-                $scope.EventRule.RecordEnable = true;
-            }
-        }
-        $scope.EventRule.AlarmOutputs = [];
-        if (typeof eventRules[currentChannel].AlarmOutputs === 'undefined') {
-            for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-                $scope.EventRule.AlarmOutputs[ao] = {};
-                $scope.EventRule.AlarmOutputs[ao].Duration = 'Off';
-            }
-        } else {
-            for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-                $scope.EventRule.AlarmOutputs[ao] = {};
-                var duration = 'Off';
-                for (var j = 0; j < eventRules[currentChannel].AlarmOutputs.length; j++) {
-                    if (ao + 1 === eventRules[currentChannel].AlarmOutputs[j].AlarmOutput) {
-                        duration = eventRules[currentChannel].AlarmOutputs[j].Duration;
-                        break;
-                    }
-                }
-                $scope.EventRule.AlarmOutputs[ao].Duration = duration;
-            }
-        }
-        if (typeof eventRules[currentChannel].PresetNumber === 'undefined') {
-            $scope.EventRule.PresetNumber = 'Off';
-        } else {
-            $scope.EventRule.PresetNumber = eventRules[currentChannel].PresetNumber + '';
-        }
-        pageData.EventRule = angular.copy($scope.EventRule);
     }
 
     //Include, Exclude 에 출력 되는 테이블 데이터
@@ -414,8 +370,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             Channel: $scope.channelSelectionSection.getCurrentChannel()
         };
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=view', getData, function(response) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-            $scope.FD = response.data.FaceDetection[currentChannel];
+            $scope.FD = response.data.FaceDetection[0];
 
             pageData.FD = angular.copy($scope.FD);
             $scope.SensitivitySliderModel = {
@@ -429,17 +384,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             $scope.setDetectionAreas();
         },
         function(errorData) {
-            console.log(errorData);
-        }, '', true);
-    }
-
-    function getEventRules() {
-        var getData = {};
-        getData.EventSource = 'FaceDetection';
-        /*getData.Channel = $scope.channelSelectionSection.getCurrentChannel();*/
-        return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=rules&action=view', getData, function(response) {
-            prepareEventRules(response.data.EventRules);
-        }, function(errorData) {
             console.log(errorData);
         }, '', true);
     }
@@ -573,172 +517,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             $scope.$broadcast('rzSliderForceRender');
             $scope.$broadcast('reCalcViewDimensions');
         });
-    }  
-
-    function setEventRules() {
-        var setData = {};
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
-        setData.RuleIndex = $scope.EventRule.RuleIndex;
-        setData.EventAction = "";
-        if ($scope.EventRule.FtpEnable) {
-            setData.EventAction += 'FTP,';
-        }
-        if ($scope.EventRule.SmtpEnable) {
-            setData.EventAction += 'SMTP,';
-        }
-        if ($scope.EventRule.RecordEnable) {
-            setData.EventAction += 'Record,';
-        }
-        for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-            if ($scope.EventRule.AlarmOutputs[ao].Duration !== 'Off') {
-                setData.EventAction += 'AlarmOutput.' + (ao + 1) + ',';
-                setData["AlarmOutput." + (ao + 1) + ".Duration"] = $scope.EventRule.AlarmOutputs[ao].Duration;
-            }
-        }
-        if ($scope.EventRule.PresetNumber !== 'Off') {
-            setData.EventAction += 'GoToPreset,';
-            setData.PresetNumber = $scope.EventRule.PresetNumber;
-        }
-        if (setData.EventAction.length) {
-            setData.EventAction = setData.EventAction.substring(0, setData.EventAction.length - 1);
-        }
-        setData.ScheduleType = $scope.EventRule.ScheduleType;
-        //if ($scope.EventRule.ScheduleType === 'Scheduled')
-        {
-            var diff = $(pageData.EventRule.ScheduleIds).not($scope.EventRule.ScheduleIds).get();
-            var sun = 0,
-                mon = 0,
-                tue = 0,
-                wed = 0,
-                thu = 0,
-                fri = 0,
-                sat = 0;
-            for (var s = 0; s < diff.length; s++) {
-                var str = diff[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                    if (str[0] === mAttr.WeekDays[d]) {
-                        switch (d) {
-                            case 0:
-                                sun = 1;
-                                setData["SUN" + str[1]] = 0;
-                                break;
-                            case 1:
-                                mon = 1;
-                                setData["MON" + str[1]] = 0;
-                                break;
-                            case 2:
-                                tue = 1;
-                                setData["TUE" + str[1]] = 0;
-                                break;
-                            case 3:
-                                wed = 1;
-                                setData["WED" + str[1]] = 0;
-                                break;
-                            case 4:
-                                thu = 1;
-                                setData["THU" + str[1]] = 0;
-                                break;
-                            case 5:
-                                fri = 1;
-                                setData["FRI" + str[1]] = 0;
-                                break;
-                            case 6:
-                                sat = 1;
-                                setData["SAT" + str[1]] = 0;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-            }
-            for (var s = 0; s < $scope.EventRule.ScheduleIds.length; s++) {
-                var str = $scope.EventRule.ScheduleIds[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                    if (str[0] === mAttr.WeekDays[d]) {
-                        switch (d) {
-                            case 0:
-                                sun = 1;
-                                setData["SUN" + str[1]] = 1;
-                                if (str.length === 4) {
-                                    setData["SUN" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                }
-                                break;
-                            case 1:
-                                mon = 1;
-                                setData["MON" + str[1]] = 1;
-                                if (str.length === 4) {
-                                    setData["MON" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                }
-                                break;
-                            case 2:
-                                tue = 1;
-                                setData["TUE" + str[1]] = 1;
-                                if (str.length === 4) {
-                                    setData["TUE" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                }
-                                break;
-                            case 3:
-                                wed = 1;
-                                setData["WED" + str[1]] = 1;
-                                if (str.length === 4) {
-                                    setData["WED" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                }
-                                break;
-                            case 4:
-                                thu = 1;
-                                setData["THU" + str[1]] = 1;
-                                if (str.length === 4) {
-                                    setData["THU" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                }
-                                break;
-                            case 5:
-                                fri = 1;
-                                setData["FRI" + str[1]] = 1;
-                                if (str.length === 4) {
-                                    setData["FRI" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                }
-                                break;
-                            case 6:
-                                sat = 1;
-                                setData["SAT" + str[1]] = 1;
-                                if (str.length === 4) {
-                                    setData["SAT" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                }
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-            }
-            if (sun) {
-                setData.SUN = 1;
-            }
-            if (mon) {
-                setData.MON = 1;
-            }
-            if (tue) {
-                setData.TUE = 1;
-            }
-            if (wed) {
-                setData.WED = 1;
-            }
-            if (thu) {
-                setData.THU = 1;
-            }
-            if (fri) {
-                setData.FRI = 1;
-            }
-            if (sat) {
-                setData.SAT = 1;
-            }
-        }
-
-        return {
-            url: '/stw-cgi/eventrules.cgi?msubmenu=rules&action=update',
-            reqData: setData
-        };
     }
 
     function validatePage() {
@@ -760,10 +538,10 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         var promises = [
             showVideo,
             getFaceDetection,
-            getEventRules,
         ];
 
         $q.seqAll(promises).then(function(){
+            $rootScope.$emit('changeLoadingBar', false);
             $scope.pageLoaded = true;
         }, function(errorData){
             console.log(errorData);
@@ -775,14 +553,13 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             Channel: $scope.channelSelectionSection.getCurrentChannel()
         };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
             var viewerWidth = 640;
             var viewerHeight = 360;
             var maxWidth = mAttr.MaxROICoordinateX;
             var maxHeight = mAttr.MaxROICoordinateY;
-            var rotate = response.data.Flip[currentChannel].Rotate;
-            var flip = response.data.Flip[currentChannel].VerticalFlipEnable;
-            var mirror = response.data.Flip[currentChannel].HorizontalFlipEnable;
+            var rotate = response.data.Flip[0].Rotate;
+            var flip = response.data.Flip[0].VerticalFlipEnable;
+            var mirror = response.data.Flip[0].HorizontalFlipEnable;
             var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
             $scope.videoinfo = {
                 width: viewerWidth,
@@ -833,16 +610,17 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
                         ) {
                         setFaceDetection(queue);
                     }
-                    if (!angular.equals(pageData.EventRule, $scope.EventRule)) {
-                        queue.push(setEventRules());
-                    }
 
                     if(queue.length > 0){
                         SunapiClient.sequence(queue, function(){
+                            $scope.$emit('applied', true);
                             $timeout(view);
                         }, function(errorData){
                             console.error(errorData);
                         });
+                    } else {
+                        $scope.$emit('applied', true);
+                        $timeout(view);
                     }
                 }, function(){
                     if(isEnable === true){
@@ -853,129 +631,13 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         }
     }
 
-    function inArray(arr, str) {
-        for(var i = 0; i < arr.length; i++) {
-            var tArray = arr[i].split(".");
-            tArray = tArray[0] + "." + tArray[1];
-            if(tArray === str){
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    $scope.setColor = function(day, hour, isAlways) {
-        for (var i = 0; i < $scope.EventRule.ScheduleIds.length; i++) {
-            if ($scope.EventRule.ScheduleIds[i].indexOf(day + '.' + hour + '.') >= 0) {
-                if (isAlways) {
-                    return 'setMiniteFaded';
-                } else {
-                    return 'setMinite already-selected ui-selected';
-                }
-            }
-        }
-        if ($scope.EventRule.ScheduleIds.indexOf(day + '.' + hour) !== -1) {
-            if (isAlways) {
-                return 'setHourFaded';
-            } else {
-                return 'setHour already-selected ui-selected';
-            }
-        }
-    };
-    $scope.mouseOver = function(day, hour) {
-
-        var index = inArray($scope.EventRule.ScheduleIds, day + '.' + hour);
-        if(index !== -1){
-            $scope.MouseOverMessage = $scope.EventRule.ScheduleIds[index].split('.');
-        }
-        
-        // $scope.MouseOverMessage = [];
-        // for (var i = 0; i < $scope.EventRule.ScheduleIds.length; i++) {
-        //     if ($scope.EventRule.ScheduleIds[i].indexOf(day + '.' + hour) >= 0) {
-        //         $scope.MouseOverMessage = $scope.EventRule.ScheduleIds[i].split('.');
-        //         break;
-        //     }
-        // }
-    };
-    $scope.mouseLeave = function() {
-        $scope.MouseOverMessage = [];
-    };
     $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
     });
-    $scope.getTooltipMessage = function() {
-        if (typeof $scope.MouseOverMessage !== 'undefined') {
-            var hr, fr, to;
-            if ($scope.MouseOverMessage.length === 2) {
-                var hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
-                var fr = '00';
-                var to = '59';
-            } else if ($scope.MouseOverMessage.length === 4) {
-                var hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
-                var fr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[2], 2);
-                var to = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[3], 2);
-            } else {
-                return;
-            }
-            return "(" + $translate.instant($scope.MouseOverMessage[0]) + ") " + hr + ":" + fr + " ~ " + hr + ":" + to;
-        }
-    };
+
     $scope.clearAll = function() {
         $timeout(function() {
             $scope.EventRule.ScheduleIds = [];
-        });
-    };
-    $scope.open = function(day, hour) {
-        $scope.SelectedDay = day;
-        $scope.SelectedHour = hour;
-        $scope.SelectedFromMinute = 0;
-        $scope.SelectedToMinute = 59;
-        
-        var index = inArray($scope.EventRule.ScheduleIds, day + '.' + hour);
-        if(index !== -1){
-            var str = $scope.EventRule.ScheduleIds[index].split('.');
-            if (str.length === 4) {
-                $scope.SelectedFromMinute = Math.round(str[2]);
-                $scope.SelectedToMinute = Math.round(str[3]);
-            }
-        }
-        
-        // for (var i = 0; i < $scope.EventRule.ScheduleIds.length; i++) {
-        //     if ($scope.EventRule.ScheduleIds[i].indexOf(day + '.' + hour + '.') >= 0) {
-        //         var str = $scope.EventRule.ScheduleIds[i].split('.');
-        //         if (str.length === 4) {
-        //             $scope.SelectedFromMinute = Math.round(str[2]);
-        //             $scope.SelectedToMinute = Math.round(str[3]);
-        //         }
-        //         break;
-        //     }
-        // }
-        var modalInstance = $uibModal.open({
-            size: 'lg',
-            templateUrl: 'views/setup/common/schedulePopup.html',
-            controller: 'modalInstanceCtrl',
-            resolve: {
-                SelectedDay: function() {
-                    return $scope.SelectedDay;
-                },
-                SelectedHour: function() {
-                    return $scope.SelectedHour;
-                },
-                SelectedFromMinute: function() {
-                    return $scope.SelectedFromMinute;
-                },
-                SelectedToMinute: function() {
-                    return $scope.SelectedToMinute;
-                },
-                Rule: function() {
-                    return $scope.EventRule;
-                }
-            }
-        });
-        modalInstance.result.then(function(selectedItem) {
-            //console.log("Selected : ",selectedItem);
-        }, function() {
-            //$log.info('Modal dismissed at: ' + new Date());
         });
     };
 
@@ -1376,11 +1038,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }, $scope);
 
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-      console.log(index);
-    }, $scope);
-
-    $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
-      console.log(response);
+        $rootScope.$emit('changeLoadingBar', true);
+        $scope.channelSelectionSection.setCurrentChannel(index);
+        view();
     }, $scope);
 
     $scope.detectionAreaDisplayAll = false;

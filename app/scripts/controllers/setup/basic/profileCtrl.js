@@ -23,8 +23,27 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     $scope.IPv4PatternStr = mAttr.IPv4PatternStr;
     $scope.isNewProfile = false;
     $scope.getTranslatedOption = COMMONUtils.getTranslatedOption;
+    $scope.maxChannel = mAttr.MaxChannel;
+
+    $scope.isMultiChannel = false;
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+
 
     function getAttributes() {
+        if(mAttr.MaxChannel > 1) {
+            $scope.isMultiChannel = true;
+        }
         $scope.ch = 0;
         $scope.pro = 0;
         $scope.DeviceType = mAttr.DeviceType;
@@ -1342,12 +1361,12 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         $scope.selectResolutionList(false);
     }
 
-    $scope.channelSelect = function () {
-        setDefaultProfile();
+    // $scope.channelSelect = function () {
+    //     setDefaultProfile();
 
         /** select any one set based on the video encoding of the profile */
-        $scope.selectResolutionList(false);
-    };
+    //     $scope.selectResolutionList(false);
+    // };
 
     function getIndexByProfileNo(profileNo) {
         var i = 0;
@@ -1369,9 +1388,14 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     }
 
     function getVideoSource() {
-        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=view', '',
+        var getData = {};
+        if($scope.isMultiChannel) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            getData.Channel = currentChannel;
+        }
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=view', getData,
             function (response) {
-                $scope.VideoSources = response.data.VideoSources[$scope.ch];
+                $scope.VideoSources = response.data.VideoSources[0];
                 pageData.VideoSources = angular.copy($scope.VideoSources);
             },
             function (errorData) {
@@ -1406,6 +1430,10 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         var setData = {},
             ignoredKeys;
 
+        if($scope.isMultiChannel) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            setData.Channel = currentChannel;
+        }
         ignoredKeys = [];
 
         COMMONUtils.fillSetData(setData, $scope.VideoSources, pageData.VideoSources,
@@ -1446,11 +1474,13 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     };
 
     function getVideoCodecInfo() {
-        var setData = {};
-
-        setData.ViewMode = "All";
-
-        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videocodecinfo&action=view', setData,
+        var getData = {};
+        getData.ViewMode = "All";
+        if($scope.isMultiChannel) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            getData.Channel = currentChannel;
+        }
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videocodecinfo&action=view', getData,
             function (response) {
                 $scope.VideoCodecInfo = response.data.VideoCodecInfo;
                 getVideoParms();
@@ -1481,7 +1511,12 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     }
 
     function getVideoProfilePolicies() {
-        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', '',
+        var getData = {};
+        if($scope.isMultiChannel) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            getData.Channel = currentChannel;
+        }
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', getData,
             function (response) {
                 $scope.VideoProfilePolicies = response.data.VideoProfilePolicies;
 
@@ -1495,7 +1530,12 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     }
 
     function getVideoRotate() {
-        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', '',
+        var getData = {};
+        if($scope.isMultiChannel) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            getData.Channel = currentChannel;
+        }
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
         function (response) {
             $scope.rotate = response.data.Flip[0].Rotate;
         },
@@ -1518,7 +1558,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         }
     }
 
-    function fillProfileType(profile, chnCnt) {
+    function fillProfileType(profile) {
         var profCnt = 0,
             typeCnt = 0,
             profType = [],
@@ -1534,7 +1574,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         ];
         var typename;
 
-        policy = $scope.VideoProfilePolicies[chnCnt];
+        policy = $scope.VideoProfilePolicies[0];
         if ($scope.VideoProfilePolicies !== undefined) {
 
             profile.Type = '';
@@ -1596,29 +1636,28 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
 
     function getProfiles() {
         var Profiles,
-            chnCnt = 0,
             profCnt = 0;
-
-        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
+        var getData = {};
+        if($scope.isMultiChannel) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            getData.Channel = currentChannel;
+        }
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData,
             function (response) {
                 $scope.VideoProfiles = response.data.VideoProfiles;
-                $scope.Channels = [];
 
-                for (chnCnt = 0; chnCnt < $scope.VideoProfiles.length; chnCnt++) {
-                    $scope.Channels.push($scope.VideoProfiles[chnCnt].Channel);
-                    Profiles = $scope.VideoProfiles[chnCnt].Profiles;
+                Profiles = $scope.VideoProfiles[0].Profiles;
 
-                    for (profCnt = 0; profCnt < Profiles.length; profCnt++) {
-                        /**
-                         * Identify the profile type
-                         */
-                        fillProfileType(Profiles[profCnt], chnCnt);
-                        /**
-                         * fill Encoder Details
-                         */
-                        manipulateEncoderSettings(Profiles[profCnt]);
-                        adjustATCMode(Profiles[profCnt]);
-                    }
+                for (profCnt = 0; profCnt < Profiles.length; profCnt++) {
+                    /**
+                     * Identify the profile type
+                     */
+                    fillProfileType(Profiles[profCnt]);
+                    /**
+                     * fill Encoder Details
+                     */
+                    manipulateEncoderSettings(Profiles[profCnt]);
+                    adjustATCMode(Profiles[profCnt]);
                 }
                 setDefaultProfile();
                 /** Fish Eye model adjust supported encoding type based on profile index*/
@@ -1668,21 +1707,48 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     }
 
     function setConnectionPolicy() {
-        var modalInstance;
-
         if($scope.ProfileSessionPolicy === true)
         {
-            modalInstance = COMMONUtils.ShowConfirmation(saveConnectionPolicy, 'lang_msg_change_setting', 'md');
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'md',
+                resolve: {
+                    Message: function () {
+                        return 'lang_msg_change_setting';
+                    }
+                }
+            });
+            modalInstance.result.then(
+                function () {
+                    saveConnectionPolicy();
+                },
+                function () {
+                    $scope.ProfileSessionPolicy = !$scope.ProfileSessionPolicy;
+                }
+            );
         }
         else
         {
-            modalInstance = COMMONUtils.ShowConfirmation(saveConnectionPolicy, 'lang_msg_change_connection_policy', 'lg');
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'lg',
+                resolve: {
+                    Message: function () {
+                        return 'lang_msg_change_connection_policy';
+                    }
+                }
+            });
+            modalInstance.result.then(
+                function () {
+                    saveConnectionPolicy();
+                },
+                function () {
+                    $scope.ProfileSessionPolicy = !$scope.ProfileSessionPolicy;
+                }
+            );
         }
-
-        /** If user selects cancel, then value should not be changed. */
-        modalInstance.result.then(function () {}, function () {
-            $scope.ProfileSessionPolicy = !$scope.ProfileSessionPolicy;
-        });
     }
 
     $scope.setConnectionPolicy = setConnectionPolicy;
@@ -1886,7 +1952,9 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         /*
             Default AudioInput Encoding Settings
          */
-        profile.AudioInputEnable = false;
+        if(mAttr.MaxAudioInput > 0) {
+            profile.AudioInputEnable = false;
+        }
 
         /*
             Resoltion and Bitrate settins
@@ -1992,6 +2060,10 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
 
     function del_profile() {
         var setData = {};
+        if($scope.isMultiChannel) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            setData.Channel = currentChannel;
+        }
         if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined) {
             setData.Profile = $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Profile;
             SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=remove', setData,
@@ -2351,6 +2423,10 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                 url += 'action=update';
             }
 
+            if($scope.isMultiChannel) {
+                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                setData.Channel = currentChannel;
+            }
             return SunapiClient.get(url, setData,
                 function (response) {
                     if ($scope.VideoProfiles[$scope.ch].Profiles.length !== $scope.MaxProfiles) {
@@ -2384,6 +2460,10 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             }
         }
 
+        if($scope.isMultiChannel) {
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            setData.Channel = currentChannel;
+        }
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=set', setData,
             function (response) {},
             function (errorData) {
@@ -2682,6 +2762,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             function(result){
                 $scope.pageLoaded = true;
                 $("#profilepage").show();
+                $rootScope.$emit('changeLoadingBar', false);
             },
             function(error){
         });
@@ -2731,6 +2812,12 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                 retrySavingProfilePolicy();
         });
     }
+
+    $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
+        $scope.channelSelectionSection.setCurrentChannel(data);
+        $rootScope.$emit('changeLoadingBar', true);
+        view();
+    }, $scope);
 
     function set() {
         if (validatePage()) {

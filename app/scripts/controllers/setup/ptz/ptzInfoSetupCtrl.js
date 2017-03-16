@@ -785,6 +785,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         $scope.tabs = [];
         $scope.MaxPreset = mAttr.MaxPreset;
         $scope.OnlyNumStr = mAttr.OnlyNumStr;
+        $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
+        $scope.PTZModel = mAttr.PTZModel;
         
         $scope.menuOptions = [
             {
@@ -1908,7 +1910,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     }
     function openSelectCreate(selectorName,index,options,selectedVal,hideSelector,showIndex){
         if (typeof showIndex == 'undefined') showIndex = index;
-        var selectHtml = $('<select id="'+selectorName+'" name="'+selectorName+'" data-index="'+index+'" class="form-control preset-input-select openSelect" />');
+        var selectHtml = $('<select id="'+selectorName+'" name="'+selectorName+'" data-index="'+index+'" data-sindex="'+ showIndex + '" class="form-control preset-input-select openSelect" />');
         $.each(options,function(subIndex,item){
             if(item.preset==selectedVal){
                 $('<option/>',{value:item.preset,text:$scope.getTranslatedOption(item.name),selected:'selected'}).appendTo(selectHtml);
@@ -1924,7 +1926,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             openSelectRemove(selectorName,index,true,showIndex);
         });
         createdSelect.change(function(){
-            openSelectRemove(selectorName,index,undefined,showIndex);
+            openSelectRemove(selectorName,index,false,showIndex);
         });
     }
     $scope.openPresetNoSelect = function(presetMode,index,isShow,showIndex){
@@ -1954,8 +1956,9 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             var openedSelect = $('.openSelect');
             if(openedSelect.length == 1) {
                 var removeSelectorName = openedSelect.attr('id');
-                var removeIndex = parseInt(openedSelect.attr('data-index'),10);
-                openSelectRemove(removeSelectorName,removeIndex);
+                var rindex = parseInt(openedSelect.attr('data-index'),10);
+                var sindex = parseInt(openedSelect.attr('data-sindex'),10);
+                openSelectRemove(removeSelectorName,rindex,false,sindex);
             }
             openSelectCreate(selectorName,index,options,selectedVal,hideSelector,showIndex);
         }

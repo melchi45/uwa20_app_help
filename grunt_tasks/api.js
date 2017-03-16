@@ -6,19 +6,22 @@ module.exports = function(injection){
 
 			switch(target){
 					case 'rc':
-							taskType = 'richComponents';
+						taskType = 'richComponents';
 					break;
 					case 'cm':
-							taskType = 'commonModules';
+						taskType = 'commonModules';
+					break;
+					case 'custom':
+						taskType = 'custom';
 					break;
 					case undefined:
-							taskType = 'project';
+						taskType = 'project';
 					break;
 			}
 
 			if(taskType === null){
-					grunt.log.write("Please enter code correctly");
-					return;
+				grunt.log.write("Please enter code correctly");
+				return;
 			}
 
 			grunt.task.run([

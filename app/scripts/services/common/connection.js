@@ -126,6 +126,12 @@ kindFramework
         playerInfo.callback.time = timeCallback;
         playerInfo.callback.error = errorCallback;
         playerInfo.callback.close = closeCallback;
+        if(data.ChannelId !== undefined){
+          playerInfo.device.channelId = data.ChannelId;
+        }else{
+          playerInfo.device.channelId = null;
+        }
+        
         playerInfo.device.ClientIPAddress = RESTCLIENT_CONFIG.digest.ClientIPAddress;
         playerInfo.media.audioOutStatus = UniversialManagerService.isMicOn();
         if(data.EncodingType === "H264"){

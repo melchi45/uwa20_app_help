@@ -82,6 +82,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
       "system": "common",
       //Basic Menus
       "videoProfile": "common",
+      "record" : "common",
       "user": "NWC",
       "dateTime": "common",
       "ipPort": "common",
@@ -262,7 +263,11 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         }
         else if (menuId === "audioDetection")
         {
-            retVal = mAttr.AudioDetection;
+          if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
+            retVal = false;
+          } else {
+            retVal = true;
+          }
         }
         else if (menuId === "defocusDetection")
         {
@@ -294,7 +299,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         {
             retVal = false;
         }
-        else if (menuId === "opensdk" || menuId === "appEvent")
+        else if (menuId === "opensdk" || menuId === "appEvent" || menuId === "openplatform")
         {
             retVal = mAttr.OpenSDKSupport;
         }
@@ -334,6 +339,20 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
             retVal = false;
           } else {
             retVal = true;
+          }
+        }
+        else if(menuId === "soundClassification"){
+          if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
+            retVal = false;
+          } else {
+            retVal = true;
+          }
+        }
+        else if(menuId === "record"){
+          if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){ //2.5.3 버전 이상일 때
+            retVal = true;
+          }else{
+            retVal = false;
           }
         }
         else

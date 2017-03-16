@@ -870,8 +870,11 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                 {
                     if (mAttributes.DeviceType === 'NWC')
                     {
-                        mAttributes.GetFail = true;
-                        console.log("EventSourceOptions : ", errorData);
+                        if(errorData !== 'Not Authorized')
+                        {
+                            mAttributes.GetFail = true;
+                            console.log("EventSourceOptions : ", errorData);
+                        }
                     }
                     else
                     {
@@ -894,7 +897,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                 functionList.push(this.getDeviceInfo);
             }
 
-            if ((!mAttributes.EventSourceOptionsReady) && isAdmin())
+            if (!mAttributes.EventSourceOptionsReady)
             {
                 functionList.push(this.getEventSourceOptions);
             }
@@ -1077,7 +1080,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         var returnVal = false;
         try {
             if(this.isSupportGoToPreset()){
-                if(mAttributes.EventLogTypes.indexOf("GotoPreset") > 0){
+                if(mAttributes.EventActions.indexOf("GoToPreset") >= 0){
                     setPresetOption();
                     returnVal = mAttributes.PresetOptions;
                 }
@@ -1108,7 +1111,14 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         }
         else
         {
-            return true;
+            if(SessionOfUserManager.getUsername()==='admin')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     };
 

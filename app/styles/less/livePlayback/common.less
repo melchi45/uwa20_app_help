@@ -112,10 +112,7 @@
 
 /* Responsive Element show/hide */
 .cm-mobile { display: none !important; }
-@media(max-width:799px) {
-    .cm-pc { display: none !important; }
-    .cm-mobile {display: inherit !important; }
-}
+/* another style is live.less and playback.less */
 
 
 html, body {
@@ -664,6 +661,7 @@ live-playback common {
     background-color: #fff;
     border: 1px solid #a5a5a5;
     color: #4c4c4c;
+    box-sizing: border-box;
 
     &.cm-cancel-button {
         width: 100px;
@@ -671,23 +669,32 @@ live-playback common {
     }
 
     &:hover, 
-    &:focus {
+    &:focus,
+    &:hover *,
+    &:focus * {
         background-color: #4c4c4c;
-        border: 1px solid #4c4c4c;
         color: #fff;
     }
 
     &:active,
-    &.active {
+    &.active,
+    &:active *,
+    &.active * {
         background-color: #000;
         border: 1px solid #000;
         color: #fff;
     }
 
     &.cm-disabled {
-        background-color: #d2d2d2 !important;
         border: 1px solid #a5a5a5 !important;
+        background-color: #d2d2d2 !important;
         color: #797979 !important;
+
+        * {
+            background-color: #d2d2d2 !important;
+            color: #797979 !important;
+            border: none !important;
+        }
     }
 
     &.cm-cancel-button {
@@ -885,14 +892,14 @@ live-playback common {
 
     [id^="cm-"], [class^="cm-"],
     [id^="cm-"], [class^="cm-"] {
-        color: #fff !important;
+        color: #fff;
     }
     
     [class^="cm-icon-button"] {
         color: #a5a5a5;
 
-        .cm-active{
-            color: #f37321;
+        &.cm-active{
+            color: #f37321 !important;
         }
     }
 
@@ -969,14 +976,18 @@ live-playback common {
         border: 1px solid #797979;
         color: #fff;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus,
+        &:hover *,
+        &:focus * {
             background-color: #d2d2d2;
-            border: 1px solid #d2d2d2;
             color: #000;
         }
 
         &:active,
-        &.active {
+        &.active,
+        &:active *,
+        &.active * {
             background-color: #fff;
             border: 1px solid #fff;
             color: #000;
@@ -986,7 +997,10 @@ live-playback common {
             background-color: #191919 !important;
             border: 1px solid #333 !important;
             color: #333 !important;
+
             * {
+                border: none !important;
+                background-color: #191919 !important;
                 color: #333 !important;
             }
         }
@@ -1514,14 +1528,6 @@ live-playback common {
 }
 
 
-/* Mobile ~1024px */
-@media(max-width: 1024px){
-    #cm-nav .cm-right ul span{
-        display: none;
-    }
-}
-
-
 /* Mobile ~799px */
 @media(max-width: 799px){
     #cm-nav {
@@ -1719,6 +1725,10 @@ live-playback common {
 }
 
 .cm-channel-selector {
+    @btn-active-text-color: #fff;
+    @btn-border-color: #4c4c4c;
+    @btn-active-color: #000;
+
     float: left;
     height: 51px;
 
@@ -1751,18 +1761,23 @@ live-playback common {
 
             > button {
                 width: 28px;
-                border: solid 2px #797979;
+                border: solid 2px @btn-border-color;
                 color: #666;
                 line-height: 17px;
                 font-size: 14px;
                 padding-left: 1px; /* 텍스트가 중앙으로 정확히 맞지 않아 추가 */
 
+                &:hover {
+                    color: @btn-active-text-color;
+                    background-color: @btn-border-color;
+                }
+
                 &:active,
-                &:hover,
                 &:focus,
                 &.active {
-                    color: #fff;
-                    background-color: #797979;
+                    color: @btn-active-text-color;
+                    background-color: @btn-active-color;
+                    border-color: @btn-active-color;
                 }
             }
         }
@@ -1772,7 +1787,7 @@ live-playback common {
         width: 27px;
         float: left;
         margin-left: 4px;
-        border: solid 1px #797979;
+        border: solid 1px @btn-border-color;
         border-bottom-width: 2px;
         border-right-width: 2px;
         padding: 0;
@@ -1782,8 +1797,14 @@ live-playback common {
             float: left;
             width: 12px;
             height: 9px;
-            border-left: solid 1px #797979;
-            border-top: solid 1px #797979;
+            border-left: solid 1px @btn-border-color;
+            border-top: solid 1px @btn-border-color;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: #fff;
         }
     }
 }

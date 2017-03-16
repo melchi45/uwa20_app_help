@@ -1706,7 +1706,7 @@
                     }
                     /////////////////////
                     sketchInfo.getZoomValue().then(function(returnZoomValue) {
-                        if (!isInit && sketchInfo.disValue !== undefined && !sketchInfo.disValue && returnZoomValue <= 20) {
+                        if (!isInit && sketchInfo.disValue !== undefined && !sketchInfo.disValue && returnZoomValue <= sketchInfo.MaxZoomValue) {
                             updateCoordinates();
                         }
                     });
@@ -2068,12 +2068,13 @@
             },
             openDialog: function(index, type) {
                 sketchInfo.getZoomValue().then(function(returnZoomValue) {      /////
-                    if ((videoInfo.support_ptz || videoInfo.support_zoomOnly) && (sketchInfo.disValue === true || returnZoomValue > 20)) {
+                    if ((videoInfo.support_ptz || videoInfo.support_zoomOnly) && (sketchInfo.disValue === true || returnZoomValue > sketchInfo.MaxZoomValue)) {
                         $("[type='radio'][name='VideoOutput']").prop("disabled", true);
                         var modalInstance = dialog.open({
                             templateUrl: "privacyPopup3.html",
                             backdrop: false,
                             controller: ['$scope', '$uibModalInstance', '$timeout', 'Attributes', 'COMMONUtils', 'sketchbookService', function($scope, $uibModalInstance, $timeout, Attributes, COMMONUtils, sketchbookService) {
+                                $scope.message = sketchInfo.message;
                                 $scope.ok = function() {
                                     var coordinates = {};
                                     coordinates = {

@@ -41,7 +41,7 @@ kindFramework.constant('ROUTE_CONFIG', {
             {
               urlName: 'channellist',
               name: 'channelList',
-              templateUrl: 'views/channellist/channellist.html',
+              templateUrl: 'views/livePlayback/channellist.html',
               controller: 'ChannelListCtrl',
             },
             {
@@ -157,6 +157,12 @@ kindFramework.constant('ROUTE_CONFIG', {
                             name: 'lang_menu_videoprofile',
                             templateUrl: 'views/setup/basic/profile.html',
                             controller: 'profileCtrl'
+                        },
+                        {
+                            urlName: 'record',
+                            name: 'lang_record',
+                            templateUrl: 'views/setup/basic/record.html',
+                            controller: 'recordCtrl'
                         },
                         {
                             urlName: 'user',

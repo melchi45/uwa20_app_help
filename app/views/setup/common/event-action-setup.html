@@ -1,0 +1,147 @@
+<div class="wn5-setup-section" style="margin-top: 20px;" ng-if="EventSource !== 'AlarmInput'">
+    <div class="wn5-setup-section-heading">
+        <h3>
+            {{ 'lang_eventActionSetup' | translate }}
+        </h3>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="form-group" ng-if="EventActions.indexOf('FTP') !== -1">
+            <div class="wn5-setup-section-article-heading">
+                FTP
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <input ng-model="EventRule.FtpEnable" type="checkbox">
+                    <label>
+                        {{'lang_enable' | translate}}
+                    </label>
+                </input>
+            </div>
+        </div>
+        <div class="form-group" ng-if="EventActions.indexOf('SMTP') !== -1">
+            <div class="wn5-setup-section-article-heading">
+                {{ 'lang_email' | translate }}
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <input ng-model="EventRule.SmtpEnable" type="checkbox">
+                    <label>
+                        {{'lang_enable' | translate}}
+                    </label>
+                </input>
+            </div>
+        </div>
+        <div class="form-group" ng-if="EventActions.indexOf('Record') !== -1">
+            <div class="wn5-setup-section-article-heading">
+                {{ 'lang_record' | translate }}
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <input ng-model="EventRule.RecordEnable" type="checkbox">
+                    <label>
+                        {{'lang_enable' | translate}}
+                    </label>
+                </input>
+            </div>
+        </div>
+        <div class="form-group" ng-if="EventActions.indexOf('AlarmOutput') !== -1" ng-repeat="n in getAlarmOutArray">
+            <div class="wn5-setup-section-article-heading">
+                {{ 'lang_alarmOutput' | translate }} {{n + 1}}
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <select class="form-control" ng-model="EventRule.AlarmOutputs[n].Duration">
+                    <option ng-repeat="Duration in AlarmoutDurationOptions" ng-selected="EventRule.AlarmOutputs[n].Duration == Duration" value="{{Duration}}">
+                        {{getTranslatedOption(Duration)}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-if="EventActions.indexOf('GoToPreset') !== -1">
+            <div class="wn5-setup-section-article-heading">
+                {{ 'lang_gotoPreset' | translate }}
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <select class="form-control" ng-model="EventRule.PresetNumber">
+                    <option ng-repeat="Preset in PresetOptions" ng-selected="EventRule.PresetNumber == Preset" value="{{Preset}}">
+                        {{getTranslatedOption(Preset)}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="DefocusDetect.hasOwnProperty('AutoSimpleFocus')">
+            <div class="wn5-setup-section-article-heading">{{ 'lang_simpleFocus' | translate }}</div>
+            <div class="wn5-setup-section-article-content">
+                <input type="checkbox" name="SimpleFocusEnable" ng-model="DefocusDetect.AutoSimpleFocus" ng-click="SimpleFocusClickEventHandler()">
+                <label>{{'lang_enable'|translate}}</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wn5-setup-section" style="margin-top: 20px;" ng-if="EventSource === 'AlarmInput'">
+    <hr class="wn5-setup-hr">
+    <div class="wn5-setup-section-heading">
+        <h3>
+            {{ 'lang_eventActionSetup' | translate }}
+        </h3>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="form-group" ng-if="EventActions[AlarmData.SelectedAlarm].indexOf('FTP') !== -1">
+            <div class="wn5-setup-section-article-heading">
+                FTP
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <input ng-model="EventRules[AlarmData.SelectedAlarm].FtpEnable" type="checkbox">
+                    <label>
+                        {{'lang_enable' | translate}}
+                    </label>
+                </input>
+            </div>
+        </div>
+        <div class="form-group" ng-if="EventActions[AlarmData.SelectedAlarm].indexOf('SMTP') !== -1">
+            <div class="wn5-setup-section-article-heading">
+                {{ 'lang_email' | translate }}
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <input ng-model="EventRules[AlarmData.SelectedAlarm].SmtpEnable" type="checkbox">
+                    <label>
+                        {{'lang_enable' | translate}}
+                    </label>
+                </input>
+            </div>
+        </div>
+        <div class="form-group" ng-if="EventActions[AlarmData.SelectedAlarm].indexOf('Record') !== -1">
+            <div class="wn5-setup-section-article-heading">
+                {{ 'lang_record' | translate }}
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <input ng-model="EventRules[AlarmData.SelectedAlarm].RecordEnable" type="checkbox">
+                    <label>
+                        {{'lang_enable' | translate}}
+                    </label>
+                </input>
+            </div>
+        </div>
+        <div class="form-group" ng-if="EventActions[AlarmData.SelectedAlarm].indexOf('AlarmOutput') !== -1" ng-repeat="n in getAlarmOutArray">
+            <div class="wn5-setup-section-article-heading">
+                {{ 'lang_alarmOutput' | translate }} {{n + 1}}
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <select class="form-control" ng-model="EventRules[AlarmData.SelectedAlarm].AlarmOutputs[n].Duration">
+                    <option ng-repeat="Duration in AlarmoutDurationOptions" ng-selected="EventRules[AlarmData.SelectedAlarm].AlarmOutputs[n].Duration == Duration" value="{{Duration}}">
+                        {{getTranslatedOption(Duration)}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-if="EventActions[AlarmData.SelectedAlarm].indexOf('GoToPreset') !== -1">
+            <div class="wn5-setup-section-article-heading">
+                {{ 'lang_gotoPreset' | translate }}
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <select class="form-control" ng-model="EventRules[AlarmData.SelectedAlarm].PresetNumber">
+                    <option ng-repeat="Preset in PresetOptions" ng-selected="EventRules[AlarmData.SelectedAlarm].PresetNumber == Preset" value="{{Preset}}">
+                        {{getTranslatedOption(Preset)}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

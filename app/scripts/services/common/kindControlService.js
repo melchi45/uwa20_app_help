@@ -188,7 +188,13 @@ kindFramework
     };
 
     function mouseup_manualTracking (event) {
-        if(event.target.id !== "livecanvas") return;
+        if(event.target.id !== "areaCanvas") return;
+        
+        //마우스 오른쪽 버튼만 허용
+        if(event.button != 2) return;
+
+        PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
+        PTZContorlService.setManualTrackingMode("True");
 
         var canvas = document.getElementsByTagName("channel_player")[0].getElementsByTagName("canvas")[0];
         var xPos = event.offsetX;
@@ -212,26 +218,26 @@ kindFramework
     this.setManualTrackingMode = function(_mode){
         try {
 
-
             if(_mode !== true && _mode !== false)
             {
                 throw new Error(300, "Argument Error");
                 return;
             }
 
-            var elementChannelPlayer = document.getElementsByTagName("channel_player")[0];
+            PTZContorlService.enableAreaCanvas();
+            var elementAreaCanvas = document.getElementById("areaCanvas");
 
             if(_mode)
             {
                 PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
                 PTZContorlService.setManualTrackingMode("True");
 
-                elementChannelPlayer.addEventListener('mouseup', mouseup_manualTracking);
+                elementAreaCanvas.addEventListener('mouseup', mouseup_manualTracking);
             }
             else
             {
                 PTZContorlService.setManualTrackingMode("False");
-                elementChannelPlayer.removeEventListener('mouseup', mouseup_manualTracking);
+                elementAreaCanvas.removeEventListener('mouseup', mouseup_manualTracking);
             }
 
             console.log("kindControlService::setManualTrackingMode() ===>" + _mode + "AreaZoom");
@@ -250,19 +256,18 @@ kindFramework
                 return;
             }
 
-            var elementChannelPlayer = document.getElementsByTagName("channel_player")[0];
+            PTZContorlService.enableAreaCanvas();
+            var elementAreaCanvas = document.getElementById("areaCanvas");
 
             if(_mode)
             {
-                PTZContorlService.setManualTrackingMode("False");
                 PTZContorlService.setPTZAreaZoom("on");
-                PTZContorlService.setElementEvent(elementChannelPlayer);
+                PTZContorlService.setElementEvent(elementAreaCanvas);
             }
             else
             {
-                PTZContorlService.setManualTrackingMode("False");
                 PTZContorlService.setPTZAreaZoom("off");
-                PTZContorlService.deleteElementEvent(elementChannelPlayer);
+                PTZContorlService.deleteElementEvent(elementAreaCanvas);
             }
 
             console.log("kindControlService::setAreaZoomMode() ===>" + _mode + "AreaZoom");
@@ -344,9 +349,11 @@ kindFramework
       var deferred = $q.defer();
       var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=add&Name=" + NonPluginProfile + "&EncodingType=H264";
       sunapiURI += "&ATCTrigger=Network&ATCMode=Disabled&Resolution=" + resolution;
-      sunapiURI += "&FrameRate=20&CompressionLevel=10&Bitrate=2048&AudioInputEnable=False";
+      sunapiURI += "&FrameRate=20&CompressionLevel=10&Bitrate=2048&"; //AudioInputEnable=False";
       sunapiURI += "&H264.BitrateControlType=VBR&H264.PriorityType=FrameRate&H264.GOVLength=20";
       sunapiURI += "&H264.Profile=Main&H264.EntropyCoding=CABAC";
+
+      
 
       SunapiClient.get(sunapiURI, '',
         function (response) {

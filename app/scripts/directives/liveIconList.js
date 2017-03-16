@@ -28,7 +28,7 @@ kindFramework.directive('liveIconList', function(
         if(mAttr.MaxAudioOutput !== undefined)
         {
             scope.MaxAudioOutput = mAttr.MaxAudioOutput;
-        }        
+        }
 
     		scope.disableAlarmOutput = function() {
     			if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE &&
@@ -84,12 +84,8 @@ kindFramework.directive('liveIconList', function(
 		        scope.channelBasicFunctions.pixelCount = true;
 		      }
 
-		      var resolution = UniversialManagerService.getProfileInfo().Resolution.split("x");
-
 		      var command = {
-		      	cmd : scope.channelBasicFunctions.pixelCount,
-		      	width : resolution[0],
-		      	height : resolution[1]
+		      	cmd : scope.channelBasicFunctions.pixelCount
 		      }
 
 		      $rootScope.$emit('channelPlayer:command', 'pixelCount', command);
@@ -295,6 +291,9 @@ kindFramework.directive('liveIconList', function(
 
 			function loadedAttr(){
 				scope.wisenetCameraFuntions2.ptz.show = (mAttr.ZoomOnlyModel || mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
+        if(mAttr.MaxChannel > 1) {
+            scope.isMultiChannel = true;
+        }				
 			}
 
 			function wait(){

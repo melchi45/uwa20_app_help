@@ -1,8 +1,8 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 "use strict";
 kindFramework
-    .directive('liveChart', ['$rootScope','$location','sketchbookService','SessionOfUserManager','ConnectionSettingService','kindStreamInterface', 'SunapiClient', 'PTZ_TYPE', 'PTZContorlService', 'DigitalPTZContorlService', 'Attributes', '$timeout', '$interval',
-        function($rootScope, $location, sketchbookService, SessionOfUserManager, ConnectionSettingService, kindStreamInterface, SunapiClient, PTZ_TYPE, PTZContorlService, DigitalPTZContorlService, Attributes, $timeout, $interval){
+    .directive('liveChart', ['$rootScope','$location','sketchbookService','SessionOfUserManager','ConnectionSettingService','kindStreamInterface', 'SunapiClient', 'PTZ_TYPE', 'Attributes', '$timeout', '$interval',
+        function($rootScope, $location, sketchbookService, SessionOfUserManager, ConnectionSettingService, kindStreamInterface, SunapiClient, PTZ_TYPE, Attributes, $timeout, $interval){
             return{
                 restrict:"E",
                 replace: true,

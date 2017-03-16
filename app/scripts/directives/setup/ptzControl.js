@@ -53,7 +53,11 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     scope.showZoomFocus = true;
                     scope.showPTZControlBox = false;
                     scope.showPTZControlFocus = false;
-                    scope.ptzControlClass = 'w210';
+                    if($('.wn5-setup-section-article .ptz-control-viewer').length > 0){
+                        scope.ptzControlClass = 'ptz-zoom-article-width';
+                    } else {
+                        scope.ptzControlClass = 'ptz-zoom-width';
+                    }
                 }else if(mAttr.PTZModel){
                     scope.isShowPTZControl = true;
                     scope.showPTZControlFocus = true;
@@ -159,7 +163,6 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     }else if(ptzinfo.type ==='presetZoom'){
                         scope.showPTZControlPresetText = true;
                         scope.showPTZControlHome = false;
-                        scope.ptzControlClass = 'ptz-zoom-preset-width';
                         scope.zoomPresetClass = 'zoompreset';
                         if(ptzinfo.disablePosition == true){
                             scope.disablePosition = true;

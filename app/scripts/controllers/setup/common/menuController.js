@@ -21,7 +21,7 @@ kindFramework.controller('topNavCtrl', function ($scope, $rootScope, $state, Men
 	$scope.menuData = MenuData.getTopMenuData();
 });
 
-kindFramework.controller('layoutCtrl', function($scope, $rootScope, $state, MenuData, SessionOfUserManager,ModalManagerService,UniversialManagerService,SunapiClient,RESTCLIENT_CONFIG) {
+kindFramework.controller('layoutCtrl', function($scope, $rootScope, $state, MenuData, SessionOfUserManager,ModalManagerService,UniversialManagerService,SunapiClient,RESTCLIENT_CONFIG, $timeout) {
 	"use strict";
 
 	var menuData = MenuData.getMenuData($state);
@@ -92,6 +92,13 @@ kindFramework.controller('layoutCtrl', function($scope, $rootScope, $state, Menu
 	$scope.$on('$stateChangeStart',function (event, toState, toParams, fromState, fromParams) {
 		if(toState !== fromState) $scope.toggleNav(false);
 	});
+
+	$scope.isLoading = false;
+	$rootScope.$saveOn('changeLoadingBar', function(event, data){
+		$timeout(function(){
+			$scope.isLoading = data;
+		});
+	}, $scope);
 
 	$scope.isDisableSideNav= function()
 	{

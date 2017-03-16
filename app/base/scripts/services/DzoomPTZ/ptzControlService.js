@@ -7,11 +7,12 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
     var logger = LoggingService.getInstance('PTZContorlService');
 
     var downCheck = false;
+    var areaZoomdownCheck = false;
     var moveCheck = false;
     var controlCheck = false;
     var autoTracking = "False";    //"False" or "True"
     var manualTracking = "False";
-    var areazoomCheck = false;
+    var areaZoomCheck = false;
     var curX = 0;
     var curY = 0;
     var moveX = 0;
@@ -39,6 +40,9 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
     var ptzAreaZoomCurrent = -1;
     var ptzAreaZoomStart =  false;
     var isTracking = false;
+
+    var liveCanvas = null;
+    var areaCanvasContext = null;
     
     function eventHandler(event,eventType,element) {
       sunapiURI = "/stw-cgi/ptzcontrol.cgi?";
@@ -68,23 +72,32 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
         //return execSunapi(sunapiURI);
       } else if (eventType === "mousedown") {
         if(event.button === 2) return;
-        curX = event.clientX;
-        curY = event.clientY;
+        curX = event.offsetX;
+        curY = event.offsetY;
         if(!checkBoundary(curX, curY)) { return; }
         if (ptzMode !== ptzModeList.AREAZOOM && (!ptzAreaZoomMode) && ptzMode !== ptzModeList.NEAR && ptzMode !== ptzModeList.FAR &&
-          ptzMode !== ptzModeList.SWING && ptzMode !== ptzModeList.Group && ptzMode !== ptzModeList.Trace && 
+          ptzMode !== ptzModeList.SWING && ptzMode !== ptzModeList.Group && SptzMode !== ptzModeList.Trace &&
           ptzMode !== ptzModeList.Tour) {
           downCheck = true;
         }
+        if(ptzMode === ptzModeList.AREAZOOM)
+        {
+          areaZoomdownCheck = true;
+        }
       } else if (eventType === "mousemove") {
         if(event.button === 2) return;
+        if(areaZoomdownCheck)
+        {
+            areaCanvasContext.clearRect(0, 0, liveCanvas.offsetWidth, liveCanvas.offsetHeight);
+            areaCanvasContext.strokeRect(curX, curY, event.offsetX - curX, event.offsetY - curY);
+        }
         if(downCheck) {
           moveCheck = true;
           var pan = 0;
           var tilt = 0;          
-          moveX = curX - event.clientX;
-          moveY = curY - event.clientY;
-          
+          moveX = curX - event.offsetX;
+          moveY = curY - event.offsetY;
+
           if (moveX < -minMove ) { //left -> right
             if (moveX < -moveLevel * 6) pan = 6;
             else if (moveX < -moveLevel * 5) pan = 5;
@@ -133,6 +146,11 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
         }
       } else if (eventType === "mouseup" || eventType === "mouseleave") {
         if(event.button === 2) return;
+        if(areaZoomdownCheck)
+        {
+            areaZoomdownCheck = false;
+            areaCanvasContext.clearRect(0, 0, liveCanvas.offsetWidth, liveCanvas.offsetHeight);
+        }
         if (downCheck) {
           downCheck = false;
           if(moveCheck && (autoTracking === "True" || manualTracking === "True")) {
@@ -143,21 +161,20 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
           }
         } else if ( (ptzMode === ptzModeList.AREAZOOM || ptzAreaZoomMode) && eventType === "mouseup" && (event.target.nodeName === "CANVAS" || event.target.nodeName === "DIV")) {
           if(ptzAreaZoomStart) { return; }
-          if(!checkBoundary(curX, curY)) { return; }  // Checking Start Point
-          if(!checkBoundary(event.clientX, event.clientY)) { return; }  // Checking End Point
 
-          if(Math.abs(curX - event.clientX) <= 8 && Math.abs(curY - event.clientY) <= 8){
-            curX = event.clientX;
-            curY = event.clientY;
+          if(!checkBoundary(curX, curY)) { return; }  // Checking Start Point
+          if(!checkBoundary(event.offsetX, event.offsetY)) { return; }  // Checking End Point
+
+          if(Math.abs(curX - event.offsetX) <= 8 && Math.abs(curY - event.offsetY) <= 8){
+            curX = event.offsetX;
+            curY = event.offsetY;
           }
 
-          var canvas = document.querySelector(".kind-stream-canvas");
-
-          sunapiURI += "&X1=" + (curX - canvas.offsetLeft) + "&Y1=" + (curY - canvas.offsetTop) + "&X2=" + (event.clientX - canvas.offsetLeft) + "&Y2=" + (event.clientY - canvas.offsetTop);
-          sunapiURI += "&TileWidth=" + canvas.offsetWidth + "&TileHeight=" + canvas.offsetHeight;
+          sunapiURI += "&X1=" + curX + "&Y1=" + curY + "&X2=" + event.offsetX + "&Y2=" + event.offsetY;
+          sunapiURI += "&TileWidth=" + liveCanvas.offsetWidth + "&TileHeight=" + liveCanvas.offsetHeight;
           setPTZAreaZoom("start");
           turnOffTracking();
-          return execSunapi(sunapiURI, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; areazoomCheck = true; } );
+          return execSunapi(sunapiURI, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; setAreaZoomCheck(true); } );
         } 
       }
       return null;
@@ -264,7 +281,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       }else if(mode === "1x"){
         setPTZAreaZoom("start");
         var uri = "/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=1x";
-        execSunapi(uri, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; areazoomCheck = true; });
+        execSunapi(uri, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; setAreaZoomCheck(true); });
       }
     }
 
@@ -393,15 +410,21 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       }
       if( PTStatus === "IDLE" && ZStatus === "IDLE")
       {
-        if(areazoomCheck === true)
+        if(getAreaZoomCheck() === true)
         {
-          areazoomCheck = false;
+          setAreaZoomCheck(false);
           savePTZAreaZoomList();
         }
         setPTZAreaZoom("end");
       }
     }); 
 
+    function setAreaZoomCheck(status){
+        areaZoomCheck = status;
+    }
+    function getAreaZoomCheck(){
+      return areaZoomCheck;
+    }
     function setMode(mode) { 
       ptzMode = mode; 
       if(mode === PTZ_TYPE.ptzCommand.PTZ) { // when ptz mode set, initialize mouse event value
@@ -412,6 +435,31 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
         ptzAreaZoomMode = true;
       }
     }
+
+    function enableAreaCanvas()
+    {
+        var elementAreaCanvas = document.getElementById("areaCanvas");
+        liveCanvas = document.querySelector(".kind-stream-canvas");
+
+        // areaCanvas 위치 이동
+        elementAreaCanvas.style.left = liveCanvas.style.left;
+        elementAreaCanvas.style.top = liveCanvas.style.top;
+
+        //Canvas에 그릴때 기준이 되는 크기
+        elementAreaCanvas.setAttribute("width", liveCanvas.clientWidth);
+        elementAreaCanvas.setAttribute("height", liveCanvas.clientHeight);
+
+        //화면에 표시되는 영역
+        elementAreaCanvas.style.width = liveCanvas.clientWidth + "px";
+        elementAreaCanvas.style.height = liveCanvas.clientHeight + "px";
+
+        areaCanvasContext = elementAreaCanvas.getContext("2d");
+
+        //AreaZoom 영역 색상 두께 설정
+        areaCanvasContext.strokeStyle = "#FFFF00";
+        areaCanvasContext.lineWidth = 5;
+    }
+
     function getMode(type) { return (ptzAreaZoomMode === true && type === "Areazoom")? ptzModeList.AREAZOOM : ptzMode; }
     function setAutoTrackingMode(mode) { 
       autoTracking = mode;
@@ -491,6 +539,8 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       getMode : getMode,
       execute : execute,
       getSettingList : getSettingList,
+      setAreaZoomCheck : setAreaZoomCheck,
+      getAreaZoomCheck : getAreaZoomCheck,
       ptzSetting : ptzSetting,
       execSunapi : execSunapi,
       setAutoTrackingMode : setAutoTrackingMode,
@@ -500,6 +550,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       getMaxGroup : getMaxGroup,
       getMaxTour : getMaxTour,
       getMaxTrace : getMaxTrace,
-      extendExecute : extendExecute
+      extendExecute : extendExecute,
+      enableAreaCanvas : enableAreaCanvas
     };
 }]);

@@ -155,7 +155,17 @@ kindFramework
     };
 
     this.pixcelCount = function(command) {
-      pluginElement.SetPixelCounterOnOff_WH((command.cmd == true ? 1 : 0), parseInt(command.width), parseInt(command.height));
+      var rotate = UniversialManagerService.getRotate();
+      var resolution = UniversialManagerService.getProfileInfo().Resolution.split("x");
+      var width = parseInt(resolution[0], 10);
+      var height = parseInt(resolution[1], 10);
+
+      if(rotate === '90' || rotate === '270') {
+        width = parseInt(resolution[1], 10);
+        height = parseInt(resolution[0], 10);
+      }
+
+      pluginElement.SetPixelCounterOnOff_WH((command.cmd == true ? 1 : 0), parseInt(width), parseInt(height));
       console.log("pluginControlService::pixcelCount() ===> ");
     };
     /* Playback interface */
@@ -320,14 +330,10 @@ kindFramework
 
               if(_mode)
               {
-                  PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
-                  PTZContorlService.setManualTrackingMode("True");
-
                   pluginElement.SetManualTrackingModeOnOff(1);
               }
               else
               {
-                  PTZContorlService.setManualTrackingMode("False");
                   pluginElement.SetManualTrackingModeOnOff(0);
               }
               console.log("pluginControlService::setManualTrackingMode() ===>" + _mode + " Manual Tracking");
@@ -355,12 +361,10 @@ kindFramework
 
               if(_mode)
               {
-                  PTZContorlService.setManualTrackingMode("False");
                   pluginElement.SetAreaZoomOnOff(1);
               }
               else
               {
-                  PTZContorlService.setManualTrackingMode("False");
                   pluginElement.SetAreaZoomOnOff(0);
               }
               console.log("pluginControlService::setAreaZoomMode() ===>" + _mode + " Area Zoom");
@@ -378,19 +382,18 @@ kindFramework
     this.setAreaZoomAction = function(_command)
     {
       try{
+          if(PTZContorlService.getAreaZoomCheck()) return;
+
           switch (_command)
           {
               case '1X':
-                  SunapiClient.get("/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=1x", '',
-                      function () {},
-                      function (errorData)
-                      {
-                          console.log(errorData);
-                      }, "", true);
+                  PTZContorlService.getPTZAreaZoomURI("1x");
                   break;
               case 'Prev':
+                  PTZContorlService.getPTZAreaZoomURI("prev");
                   break;
               case 'Next':
+                  PTZContorlService.getPTZAreaZoomURI("next");
                   break;
           }
       }catch(e)
@@ -435,6 +438,10 @@ kindFramework
           break;
         case 12 : data.type = 'NetworkDisconnection';
           break;
+        case 13 :  //for AreaZoom, PT & Zoom are IDLE
+          $rootScope.$emit('PTZMoveStatus', {type: 'MoveStatus:PanTilt', value:'IDLE'});
+          $rootScope.$emit('PTZMoveStatus', {type: 'MoveStatus:Zoom', value:'IDLE'});
+          break;
       }
 
       EventNotificationService.updateEventStatus(data);
@@ -443,6 +450,9 @@ kindFramework
     function runManualTracking(xPos, yPos)
     {
         var pluginElement = document.getElementsByTagName("channel_player")[0].getElementsByTagName("object")[0];
+
+        PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
+        PTZContorlService.setManualTrackingMode("True");
 
         if(xPos >=0  && yPos >= 0) {
             var rotate = UniversialManagerService.getRotate();
@@ -470,6 +480,9 @@ kindFramework
 
       setData.TileWidth = pluginElement.offsetWidth;
       setData.TileHeight = pluginElement.offsetHeight;
+
+      PTZContorlService.setPTZAreaZoom("start");
+      PTZContorlService.setAreaZoomCheck(true);
 
       SunapiClient.get("/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=ZoomIn", setData,
           function () {},
@@ -587,7 +600,7 @@ kindFramework
                   _self.startAudioTalk();
                 }
                 if (UniversialManagerService.getPixelCount()) {
-                  _self.pixcelCount(true);
+                  _self.pixcelCount({cmd:true});
                 }
               },500);
             }

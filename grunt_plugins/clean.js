@@ -26,6 +26,9 @@ module.exports = function(injection){
 			commonModulesInDocs: [
 					projectStructure.cmDocsPath + '/*'
 			],
+			customInDocs: [
+					projectStructure.customDocsPath + '/*'
+			],
 			buildInIos: [
 					'platforms/ios/build'
 			]
