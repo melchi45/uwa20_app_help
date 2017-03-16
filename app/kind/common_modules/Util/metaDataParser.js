@@ -134,6 +134,8 @@ function MetaDataParser(callback) {
               eventName = "DigitalAutoTracking"; break;
             case "tns1:AudioAnalytics/Audio/DetectedSound" :
               eventName = "SoundClassification"; break;
+            case "tns1:VideoSource/tnssamsung:QueueManagement" :
+              eventName = "Queue"; break;
             default :
               eventName = "Unknown Event";
           }
