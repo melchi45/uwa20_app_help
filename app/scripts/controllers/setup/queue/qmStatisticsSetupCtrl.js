@@ -984,7 +984,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 
 			gaugeTimer['timer' + id] = setInterval(function(){
 				$scope.queueLevelSection.change(id);
-			}, 3000);
+			}, 1000);
 		},
 		stop: function(id){
 			var name = 'timer' + id;

@@ -242,7 +242,7 @@ kindFramework.controller('QMSetupCtrl',
 
 			gaugeTimer = setInterval(function(){
 				$scope.queueLevelSection.change();
-			}, 3000);
+			}, 1000);
 		},
 		stop: function(){
 			if(gaugeTimer !== null){
