@@ -63,8 +63,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         }
     })();
 
-    console.log($scope.channelSelectionSection);
-
     function setSizeChart(){
         var chart = "#tamper-line-chart";
         var width = $(chart).parent().width();
@@ -406,6 +404,10 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
             setData.DarknessDetection = $scope.TamperDetect.DarknessDetection;
         }
 
+        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+
+
+
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=tamperingdetection&action=set', setData,
                 function (response)
                 {
@@ -436,7 +438,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
             function (){
                 var setData = {};
 
-                setData.Channel = 0;
+                setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
 
                 if (pageData.TamperDetect.Enable !== $scope.TamperDetect.Enable)
                 {
@@ -446,6 +448,8 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                 return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=tamperingdetection&action=set', setData,
                     function ()
                     {
+
+
                         pageData.TamperDetect.Enable = angular.copy($scope.TamperDetect.Enable);
                     },
                     function (errorData)
