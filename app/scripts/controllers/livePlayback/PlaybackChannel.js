@@ -53,6 +53,8 @@ kindFramework
           $rootScope.$emit("channelPlayer:command", "close");
           $scope.domControls.enablePlayback = false;
           $scope.pageController.closePlayback();
+          var playData = new PlayDataModel();
+          playData.setPlaybackEnable(false);
           UniversialManagerService.setPlayMode(CAMERA_STATUS.PLAY_MODE.LIVE);
           try {
             if("destroy" in $scope.timelineController){
@@ -133,7 +135,8 @@ kindFramework
       $rootScope.$emit('changeLoadingBar', true);
 
       //1. close Live Stream.
-      
+      var playData = new PlayDataModel();
+      playData.setPlaybackEnable(true);
       PlaybackInterface.stopLive();
 
       PlaybackInterface.preparePlayback()

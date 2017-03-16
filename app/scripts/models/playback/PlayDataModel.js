@@ -29,6 +29,7 @@ kindFramework.factory(
       var enableTimezone = false;
       var needToImmediate = false;
       var timelineMode = false;
+      var enablePlayback = false;
 
       this.getPlaySpeed = function() {
         return playSpeed;
@@ -201,6 +202,23 @@ kindFramework.factory(
 
       this.setTimelineMode = function(mode) {
         timelineMode = mode;
+      };
+
+      /**
+       * only in case of 'enablePlayback' is true, playback streaming works
+       * @function : setPlaybackEnable
+       * @param : mode is type of boolean
+       */
+      this.setPlaybackEnable = function(mode) {
+        enablePlayback = mode;
+      };
+      /**
+       * get current status of page ( playback or not )
+       * @function : setPlaybackEnable
+       * @return : boolean value
+       */
+      this.isPlaybackEnable = function() {
+        return enablePlayback;
       };
     };
 		return PlayDataModel;
