@@ -1,4 +1,4 @@
-kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, $translate, ModalManagerService, $q, XMLParser) {
+kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, $translate, ModalManagerService, $q, XMLParser, $location) {
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
@@ -28,6 +28,13 @@ kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiCl
         return COMMONUtils.getTranslatedOption(Option);
     };
 
+    var url = $location.absUrl();
+    if (url.indexOf('ptzSetup_rs485') !== -1) {
+        $scope.getTitle = 'lang_menu_rs485';
+    } else {
+        $scope.getTitle ='lang_external_PTZ';
+    }
+    
     function getAttributes() {
         $scope.AlphaNumericStr = mAttr.AlphaNumericStr;
 

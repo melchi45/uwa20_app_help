@@ -113,13 +113,13 @@
 
         <div id="ptz-control_right-box" ng-class="zoomPresetClass">
             <div id="ptz-control_preset-box" ng-if="showPTZControlPreset" >
-                <button type="button" class="btn btn-primary" title="{{'lang_setPreset' | translate}}" ng-click="showSetPreset()">
+                <button type="button" class="cm-icon-button-s" title="{{'lang_setPreset' | translate}}" ng-click="showSetPreset()">
                     <i class="tui tui-ch-live-ptz-preset"></i>
                 </button>
-                <button type="button" class="btn btn-primary" title="{{'lang_goHomePosition' | translate}}" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                <button type="button" class="cm-icon-button-s" title="{{'lang_goHomePosition' | translate}}" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
                     <i class="tui tui-ch-live-home"></i>
                 </button>
-                <button type="button" class="btn btn-primary" title="{{'lang_setHomePosition' | translate}}" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                <button type="button" class="cm-icon-button-s" title="{{'lang_setHomePosition' | translate}}" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
                     <i class="tui tui-setup"></i>
                 </button>
             </div>
@@ -143,11 +143,8 @@
 				</ul>
             </div>
             <div ng-show="showPTZControlOSD">
-                <div ng-show="setNorth" class="ptz-control_set-north">
-                    <i class="tui tui-north"></i>
-                </div>
-                <button type="button" class="btn btn-primary" title="{{'lang_setNorth' | translate}}" ng-click="setNorthView()">
-                    <i class="tui tui-north"></i>
+                <button type="button" class="cm-icon-button-s" title="{{'lang_setNorth' | translate}}" ng-click="setNorthView()">
+                    <i class="tui tui-wn5-north"></i>
                 </button>
             </div>
             <div id="ptz-control_blc-box" ng-show="showPTZControlBLC" style="margin-left: 20px;">

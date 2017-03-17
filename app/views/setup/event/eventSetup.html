@@ -39,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr height="50" ng-repeat="Rule in EventRules | orderBy: 'EventOrder' track by Rule.RuleIndex" ng-show="isSupportedEventSource(Rule)">
+                            <tr height="50" ng-repeat="Rule in EventRules | orderBy: 'EventOrder' |limitTo:eventCountToShow" ng-show="isSupportedEventSource(Rule)">
                                 <td class="text-center" width="8%">
                                     <input ng-model="Rule.Enable" type="checkbox"/>
                                 </td>
@@ -68,13 +68,34 @@
                                     </div>
                                 </td>
                                 <td ng-repeat="a in getAlarmOutArray" class="text-center" width="15%">
-                                    <select class="form-control" ng-model="Rule.AlarmOutputs[a].Duration" ng-options="Duration as getTranslatedOption(Duration) for Duration in AlarmoutDurationOptions" ng-show="Rule.alarmActionSupported">
-                                    </select>
+                                    <div ng-show="Rule.alarmActionSupported">
+                                        <div ng-if="presetAlarmActionSelectShow[Rule.EventSource][a].inputShow" ng-click="presetAlarmActionSelectShowChange(Rule.EventSource,a,true)" ng-keypress="presetAlarmActionSelectShowChange(Rule.EventSource,a,true,$event)">
+                                            <input type="text" class="form-control preset-input" value="{{getTranslatedOption(Rule.AlarmOutputs[a].Duration)}}" readonly style="cursor: default;">
+                                            <input type="hidden" ng-model="Rule.AlarmOutputs[a].Duration">
+                                        </div>
+                                        <div ng-if="presetAlarmActionSelectShow[Rule.EventSource][a].selectShow">
+                                            <select class="form-control preset-input-select presetSelectbox" ng-show="Rule.alarmActionSupported" ng-model="Rule.AlarmOutputs[a].Duration" ng-options="Duration as getTranslatedOption(Duration) for Duration in AlarmoutDurationOptions" ng-blur="presetAlarmActionSelectShowChange(Rule.EventSource,a,false)"></select>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td ng-show="presetActionSupported" class="text-center" width="20%">
                                     <div ng-show="Rule.presetActionSupported">
-                                        <select class="form-control" ng-model="Rule.PresetNumber" ng-options="Preset as getTranslatedOption(Preset) for Preset in PresetOptions">
-                                        </select>
+                                        <div ng-if="presetGotoSelectShow[Rule.EventSource].inputShow" ng-click="presetGotoSelectShowChange(Rule.EventSource,true)" ng-keypress="presetGotoSelectShowChange(Rule.EventSource,true,$event)">
+                                            <input type="text" class="form-control preset-input" value="{{getTranslatedOption(Rule.PresetNumber)}}" readonly style="cursor: default;">
+                                            <input type="hidden" ng-model="Rule.PresetNumber">
+                                        </div>
+                                        <div ng-if="presetGotoSelectShow[Rule.EventSource].selectShow">
+                                            <select class="form-control preset-input-select presetSelectbox" ng-model="Rule.PresetNumber" ng-options="Preset as getTranslatedOption(Preset) for Preset in PresetOptions" ng-blur="presetGotoSelectShowChange(Rule.EventSource,false)"></select>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-show="showReducedEventList">
+                                <td colspan="100%">
+                                    <div class="form-group">
+                                        <button type="button" class="button button-background-none btn-wide" ng-model="showAdvancedMenu" ng-click="advacedMenu()" style="text-align: center;">
+                                          {{ showAdvancedLabel | translate }}<i ng-class="showAdvancedMenu == true ? 'tui-top' :'tui-down'" class="tui"></i>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
