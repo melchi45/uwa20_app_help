@@ -11,6 +11,19 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     var idx;
     var pageData = {};
 
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+
     //sketchbook 에서 쓰이는 미사용 변수
     $scope.coordinates = null;
     $scope.sketchinfo = null;
@@ -82,7 +95,9 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     });
 
     function showVideo(){
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
             function (response) {
                 var viewerWidth = 640;
@@ -215,6 +230,8 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
         getData.EventSourceType = 'FogDetection';
         
+        getData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+
         var sunapiURL = '/stw-cgi/eventsources.cgi?msubmenu=samples&action=check';
 
         return SunapiClient.get(sunapiURL, getData,
@@ -234,7 +251,9 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
     function getFogDetection()
     {
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
 
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=fogdetection&action=view', getData,
             function (response)
@@ -256,7 +275,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     {
         var setData = {};
 
-        setData.Channel = 0;
+        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
 
         if (pageData.FogDetect.Enable !== $scope.FogDetect.Enable)
         {
@@ -308,7 +327,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
         var successCallback = function (){
             var setData = {};
 
-            setData.Channel = 0;
+            setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
 
             if (pageData.FogDetect.Enable !== $scope.FogDetect.Enable)
             {
@@ -339,6 +358,8 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
     function getAttributes() {
         var defer = $q.defer();
+
+        $scope.MaxChannel = mAttr.MaxChannel;
 
         if (mAttr.ActivateOptions !== undefined)
         {
@@ -419,11 +440,13 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
         $q.seqAll(promises).then(
             function(){
+                $rootScope.$emit('changeLoadingBar', false);
                 $scope.pageLoaded = true;
                 $("#imagepage").show();
                 $timeout(setSizeChart);
             },
             function(errorData){
+                $rootScope.$emit('changeLoadingBar', false);
                 alert(errorData);
             }
         );
@@ -471,6 +494,12 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
             }
         }
     }
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        $rootScope.$emit('changeLoadingBar', true);
+        $scope.channelSelectionSection.setCurrentChannel(index);
+        view();
+    }, $scope);
 
 
     (function wait() {
