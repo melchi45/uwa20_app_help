@@ -231,7 +231,6 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
 
                 modalInstance.result.then(function ()
                 {
-                    $scope.applied = true;
                     var functionList = [];
                     if (!angular.equals(pageData.AD, $scope.AD))
                     {
@@ -241,6 +240,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
                     if(functionList.length !== 0) {
                         $q.seqAll(functionList).then(
                             function(){
+                                $scope.$emit('applied', true);
                                 view();
                             },function(errorData){
                                 console.log(errorData);
@@ -250,6 +250,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
                                 startMonitoringAudioLevel();
                             });
                     } else {
+                        $scope.$emit('applied', true);
                         view();
                         startMonitoringAudioLevel();
                     }
@@ -281,7 +282,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
 
                         while(index--)
                         {
-                            var level = validateLevel(newAudioLevel[index]);
+                            var level = newAudioLevel[index].Level;
 
                             if(level === null) continue;
 
@@ -310,17 +311,6 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
     });
 
     var mLastSequenceLevel = 0;
-    function validateLevel(audioLevelObject)
-    {
-        if (mLastSequenceLevel > audioLevelObject.SequenceID)
-        {
-          return null;  
-        } 
-
-        mLastSequenceLevel = audioLevelObject.SequenceID;
-
-        return audioLevelObject.Level;
-    }
 
     function getAudioLevel(func)
     {
