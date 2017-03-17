@@ -338,12 +338,12 @@ kindFramework.directive('channelPlayer',
               }
             }
 
-            function pixelCount(_streamingmode, command) {
-              UniversialManagerService.setPixelCount(command.cmd);
+            function pixelCount(_streamingmode, _type, _command) {
+              UniversialManagerService.setPixelCount(_command.cmd);
               switch(BrowserService.BrowserDetect) {
                 case BrowserService.BROWSER_TYPES.IE:
                     if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) {
-                        PluginControlService.pixcelCount(command);
+                        PluginControlService.pixcelCount(_command);
                     } else {
                         stopStreaming(elem);
                         elem.empty();
@@ -352,7 +352,7 @@ kindFramework.directive('channelPlayer',
                     break;
                 case BrowserService.BROWSER_TYPES.SAFARI:
                     if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) {
-                        PluginControlService.pixcelCount(command);
+                        PluginControlService.pixcelCount(_command);
                         break;
                     }
                 case BrowserService.BROWSER_TYPES.CHROME:
@@ -361,7 +361,8 @@ kindFramework.directive('channelPlayer',
                 /* jshint ignore:start */
                 default :
                 /* jshint ignore:end */
-                  $rootScope.$emit('channel:pixelCount', command.cmd);
+                  $rootScope.$emit('channel:overlayCanvas', _command.cmd);
+                  $rootScope.$emit('overlayCanvas::command', _type, _command.cmd);
                   break;
               }
             }            
@@ -1030,7 +1031,7 @@ kindFramework.directive('channelPlayer',
               }
             }
 
-            function setManualTrackingMode(_streamingmode, _mode)
+            function setManualTrackingMode(_streamingmode, _type, _mode)
             {
                 switch(BrowserService.BrowserDetect)
                 {
@@ -1065,7 +1066,7 @@ kindFramework.directive('channelPlayer',
                 }
             }
 
-            function setAreaZoomMode(_streamingmode, _mode)
+            function setAreaZoomMode(_streamingmode, _type ,_mode)
             {
                 switch(BrowserService.BrowserDetect)
                 {
@@ -1168,16 +1169,16 @@ kindFramework.directive('channelPlayer',
                    elem.empty();
                   if(BrowserService.PlugInSupport && BrowserService.PlugInDetect)
                   {
-                      //IE ?îå?ü¨Í∑∏Ïù∏ ?ôú?Ñ±?ôî // PlugIn Off ?ÉÅ?Éú?óê?Ñú H264, H265 ?öîÏ≤? ?ãú
+                      //IE ?ÔøΩÔøΩ?ÔøΩÔøΩÍ∑∏Ïù∏ ?ÔøΩÔøΩ?ÔøΩÔøΩ?ÔøΩÔøΩ // PlugIn Off ?ÔøΩÔøΩ?ÔøΩÔøΩ?ÔøΩÔøΩ?ÔøΩÔøΩ H264, H265 ?ÔøΩÔøΩÔøΩ? ?ÔøΩÔøΩ
                       $rootScope.$emit("channel:setPlugin");
                   }
                   else {
-                      //?Ñ§Ïπ? ?ãú?ÇòÎ¶¨Ïò§
+                      //?ÔøΩÔøΩÔøΩ? ?ÔøΩÔøΩ?ÔøΩÔøΩÎ¶¨Ïò§
                       createPlugInInstallElement();
                       $rootScope.$emit('changeLoadingBar', false);
                   }
 
-                  //NonPlugIn ?û¨?Éù ?ãú?ÇòÎ¶¨Ïò§
+                  //NonPlugIn ?ÔøΩÔøΩ?ÔøΩÔøΩ ?ÔøΩÔøΩ?ÔøΩÔøΩÎ¶¨Ïò§
                   //requestAvailableProfile(profile);
                   return;
                 }
@@ -1241,7 +1242,7 @@ kindFramework.directive('channelPlayer',
                     closePlayback(StreamingMode);
                     break;
                   case 'pixelCount':
-                    pixelCount(StreamingMode, command);
+                    pixelCount(StreamingMode, type, command);
                     break;
                   case 'speakerStatus':
                     if(command) {
@@ -1269,10 +1270,10 @@ kindFramework.directive('channelPlayer',
                     step(StreamingMode, command);
                     break;
                   case 'manualTracking' :
-                    setManualTrackingMode(StreamingMode, command);
+                    setManualTrackingMode(StreamingMode, type, command);
                     break;
                   case 'areaZoomMode' :
-                    setAreaZoomMode(StreamingMode, command);
+                    setAreaZoomMode(StreamingMode, type, command);
                     break;
                   case 'areaZoomAction' :
                     setAreaZoomAction(StreamingMode, command);
