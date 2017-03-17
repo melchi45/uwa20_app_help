@@ -56,7 +56,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     $scope.ImagePresetOffTitle += '\r\n' + COMMONUtils.getTranslatedOption('Time') + ' : 00:00 - 23:59';
 
     $scope.showPTZControlBLC = false;
-    $scope.CameraTemp = {};
+
     $scope.Camera = {
         AGCMode: 'Off',
         DayNightModeSchedules: false
@@ -465,11 +465,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         for (var k in $scope.tabActiveData) {
             $scope.tabActiveData[k] = false;
         }
-        if($scope.PTZModel){
-            $scope.tabActiveData.ssdr = true;
-        }else{
+//        if($scope.PTZModel){
+//            $scope.tabActiveData.ssdr = true;
+//        }else{
             $scope.tabActiveData.sensor = true;
-        }
+//        }
     }
 
     /**
@@ -478,7 +478,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function initTabOrder(){
         if($scope.PTZModel){
             // PTZ Model
-            $scope.tabMenu.Sensor = false;
+            $scope.tabMenu.Sensor = true;
             $scope.tabMenu.DayNight = false;
 
             if($scope.presetTypeData.SelectedPresetType==0){
@@ -581,7 +581,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             };
         }
     });
-    $scope.$saveOn('changeBlcArea', function(args, data){
+    $scope.$on('changeBlcArea', function(args, data){
         if(data.mode=='top'){
             if(data.direction=='up'){
                 $scope.Camera.BLCAreaTop = $scope.Camera.BLCAreaTop + data.step;
@@ -632,6 +632,72 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             SetBlcRange('blcAreaBottom');
         }
     });
+    function SetBlcRange(direction) {
+        // BLC Mode ON - Allow to set BLC Range
+        if ($scope.Camera.CompensationMode !== 'BLC') {
+            return;
+        }
+
+        if (direction == "blcAreaTop") {
+
+            if ($scope.Camera.BLCAreaTop + $scope.maxBlcLength <= $scope.BLCAbsMax) {
+                $scope.BLCBottomSliderOptions.ceil = $scope.Camera.BLCAreaTop + $scope.maxBlcLength;
+            } else {
+                $scope.BLCBottomSliderOptions.ceil = $scope.BLCAbsMax;
+            }
+
+            if ($scope.Camera.BLCAreaTop + $scope.minBlcHeightLength >= $scope.minBlcHeightLength) {
+                $scope.BLCBottomSliderOptions.floor = $scope.Camera.BLCAreaTop + $scope.minBlcHeightLength;
+            } else {
+                $scope.BLCBottomSliderOptions.floor = $scope.minBlcHeightLength;
+            }
+
+        } else if (direction == "blcAreaBottom") {
+
+            if ($scope.Camera.BLCAreaBottom - $scope.minBlcHeightLength <= $scope.BLCAbsMax - $scope.minBlcHeightLength) {
+                $scope.BLCTopSliderOptions.ceil = $scope.Camera.BLCAreaBottom - $scope.minBlcHeightLength;
+            } else {
+                $scope.BLCTopSliderOptions.ceil = $scope.BLCAbsMax - $scope.minBlcHeightLength;
+            }
+
+            if ($scope.Camera.BLCAreaBottom - $scope.maxBlcLength > 0) {
+                $scope.BLCTopSliderOptions.floor = $scope.Camera.BLCAreaBottom - $scope.maxBlcLength;
+            } else {
+                $scope.BLCTopSliderOptions.floor = $scope.BLCAbsMin;
+            }
+
+        } else if (direction == "blcAreaLeft") {
+
+            if ($scope.Camera.BLCAreaLeft + $scope.maxBlcLength <= $scope.BLCAbsMax) {
+                $scope.BLCRightSliderOptions.ceil = $scope.Camera.BLCAreaLeft + $scope.maxBlcLength;
+            } else {
+                $scope.BLCRightSliderOptions.ceil = $scope.BLCAbsMax;
+            }
+
+            if ($scope.Camera.BLCAreaLeft + $scope.minBlcWidthLength >= $scope.minBlcWidthLength) {
+                $scope.BLCRightSliderOptions.floor = $scope.Camera.BLCAreaLeft + $scope.minBlcWidthLength;
+            } else {
+                $scope.BLCRightSliderOptions.floor = $scope.minBlcWidthLength;
+            }
+
+        } else if (direction == "blcAreaRight") {
+
+            if ($scope.Camera.BLCAreaRight - $scope.minBlcWidthLength <= $scope.BLCAbsMax - $scope.minBlcWidthLength) {
+                $scope.BLCLeftSliderOptions.ceil = $scope.Camera.BLCAreaRight - $scope.minBlcWidthLength;
+            } else {
+                $scope.BLCLeftSliderOptions.ceil = $scope.BLCAbsMax - $scope.minBlcWidthLength;
+            }
+
+            if ($scope.Camera.BLCAreaRight - $scope.maxBlcLength > 0) {
+                $scope.BLCLeftSliderOptions.floor = $scope.Camera.BLCAreaRight - $scope.maxBlcLength;
+            } else {
+                $scope.BLCLeftSliderOptions.floor = $scope.BLCAbsMin;
+            }
+        }
+
+        $scope.refreshSliders();
+        cameraChangeHandler();
+    }
 
     function initPresetGlobalType() {
         if (mAttr.PresetTypes !== undefined) {
@@ -1083,11 +1149,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         $scope.minBLCWidthLength = $scope.BLCAreaRight.maxValue - $scope.BLCAreaLeft.maxValue;
         $scope.maxBLCLength = $scope.BLCAreaTop.maxValue;
 
-        // if (rotate == '90' || rotate == '270'){
-        //     $scope.maxBLCLength = $scope.BLCAreaLeft.maxValue;
-        // } else {
-        //     $scope.maxBLCLength = $scope.BLCAreaTop.maxValue;
-        // }
+        if($scope.PTZModel){
+            if (rotate == '90' || rotate == '270'){
+                $scope.maxBlcLength = $scope.BLCAreaLeft.maxValue;
+            } else {
+                $scope.maxBlcLength = $scope.BLCAreaTop.maxValue;
+            }
+        }
     }
 
     function initHLCBoundary() {
@@ -3666,10 +3734,10 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
     function saveSettings() {
         var functionList = [];
-        if (mAttr.PTZModel !== true) {
+        //if (mAttr.PTZModel !== true) {
             ///stw-cgi/media.cgi?msubmenu=videosource&action=set
             functionList.push(videoSourceSet);
-        }
+        //}
 
         if ($scope.ImagePresetModeOptions !== undefined) {
             ///stw-cgi/image.cgi?msubmenu=imagepreset&action=set
