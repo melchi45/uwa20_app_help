@@ -93,9 +93,9 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
         };
 
         /**
-         * Timeline ModeëŠ” ì´ 4ê°œê°€ ìˆìœ¼ë©°,
-         * Timeline Modeê°€ ë°”ë€Œë©´ UI ê°€ ë°”ë€ë‹¤.
-         * playback, backup, datepicker, eventsorting ì´ 4ê°œê°€ ìˆë‹¤.
+         * Timeline Mode´Â ÃÑ 4°³°¡ ÀÖÀ¸¸ç,
+         * Timeline Mode°¡ ¹Ù²î¸é UI °¡ ¹Ù²ï´Ù.
+         * playback, backup, datepicker, eventsorting ÃÑ 4°³°¡ ÀÖ´Ù.
          */
         var timelineMode = [
           'playback',
@@ -110,15 +110,13 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           $scope.timelineControl.currentTimelineMode = timelineMode[index];
           if( index === 1 ) { // backup
             $scope.visibility.backup = true;
-            $scope.visibility.datepicker = false;
           }
           else if( index === 2 ) { // datepicker
             $scope.visibility.backup = false;
-            $scope.visibility.datepicker = true;
+            $scope.timelineControl.showMenu();
           }
           else {
             $scope.visibility.backup = false;
-            $scope.visibility.datepicker = false;
           }
           if( index !== 1 ) {
             $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
@@ -132,6 +130,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
 
         //This function will be defined in playbackDatepicker.js
         $scope.timelineControl.getSelectedDate = function(){};
+        $scope.timelineControl.showMenu = function(){};
 
         //This function will be defined in dataControl.js
         $scope.timelineControl.changeCurrnetDate = function(dateobj){};
@@ -161,7 +160,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           switch($scope.timelineControl.currentTimelineMode){
             case 'datepicker':
               var selectedDate = $scope.timelineControl.getSelectedDate();
-              /* ë‹¬ë ¥ Validationì´ ì‹¤íŒ¨ í–ˆì„ ë•Œ */
+              /* ´Ş·Â ValidationÀÌ ½ÇÆĞ ÇßÀ» ¶§ */
               if(selectedDate === false){
                 return;
               }

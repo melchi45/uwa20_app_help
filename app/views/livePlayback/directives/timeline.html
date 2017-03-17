@@ -59,8 +59,8 @@
 <playback-datepicker
   control="timelineControl"
   get-selected-date="timelineControl.getSelectedDate"
-  ng-show="timelineControl.currentTimelineMode.indexOf('datepicker') > -1"
-  visibility="visibility.datepicker">
+  ng-show="timelineControl.currentTimelineMode === 'datepicker'"
+  show-menu="timelineControl.showMenu">
 </playback-datepicker>
 
 <playback-event-sorting 

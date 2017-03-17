@@ -10,7 +10,7 @@ kindFramework.directive('playbackDatepicker', function() {
             var recordingDate = [];
             var optionServiceType = ['WEB_SSM', 'WEB_IPOLIS', 'MOBILE_B2C', 'MOBILE_B2B'];
             var selectedEventList = [];
-            var selectedDate = searchData.getSelectedDate();
+            var currentDate = searchData.getSelectedDate();
             var isValueChanged = true;
             var playbackInterfaceService = PlaybackInterface;
 
@@ -152,7 +152,7 @@ kindFramework.directive('playbackDatepicker', function() {
             $scope.playback = {
                 'search': {
                     mode : 'day',
-                    selectedDate: selectedDate
+                    selectedDate: currentDate
                 },
                 getDayClass: function(date, mode) {
                     switch (mode) {
@@ -177,7 +177,7 @@ kindFramework.directive('playbackDatepicker', function() {
                     }
                 },
                 recordingDataIsExist: function() {
-                    selectedDate = $scope.playback.search.selectedDate;
+                    currentDate = $scope.playback.search.selectedDate;
                     if (recordingDate.length === 0) {
                         $scope.showError("lang_msg_timebackupDateError");
                     } else {
@@ -338,16 +338,16 @@ kindFramework.directive('playbackDatepicker', function() {
             $scope.ok = function() {
             	var data = {};
                 if (search()) {
-                    searchData.setSelectedDate(selectedDate);
+                    searchData.setSelectedDate(currentDate);
                     searchData.setSelectedStartedTime([stringPad(slider.start.hours), stringPad(slider.start.minutes), stringPad(slider.start.seconds)]);
                     searchData.setSelectedEndedTime([stringPad(slider.end.hours), stringPad(slider.end.minutes), stringPad(slider.end.seconds)]);
                     data = {
                         'startTime': makeFullPackageOfInputBox('start'),
                         'endTime': makeFullPackageOfInputBox('end'),
-                        'date': selectedDate,
+                        'date': currentDate,
                         'eventList': selectedEventList,
-                        'fromTimeStep': dateConverter.getMinutes(selectedDate, slider.start.from),
-                        'toTimeStep': dateConverter.getMinutes(selectedDate, slider.end.to),
+                        'fromTimeStep': dateConverter.getMinutes(currentDate, slider.start.from),
+                        'toTimeStep': dateConverter.getMinutes(currentDate, slider.end.to),
                     };
                     if( data.startTime === '00:00:00' && data.endTime === '23:59:59') {
                         $scope.allDay = true;
@@ -363,7 +363,7 @@ kindFramework.directive('playbackDatepicker', function() {
                 return data;
             };
             $scope.cancel = function() {
-                $scope.playback.search.selectedDate = selectedDate = searchData.getSelectedDate();
+                $scope.playback.search.selectedDate = currentDate = searchData.getSelectedDate();
                 $scope.playback.search.mode = 'day';
                 if( makeFullPackageOfInputBox('start') === '00:00:00' && makeFullPackageOfInputBox('end') ==='23:59:59') {
                     $scope.allDay = true;
@@ -373,8 +373,8 @@ kindFramework.directive('playbackDatepicker', function() {
                 $scope.errorMessage = "";
             };
             $rootScope.$saveOn('onChangedMonth', function(event, data) {
-                $scope.playback.search.selectedDate = selectedDate = data;
-                showRecordingDate(selectedDate.getFullYear(), pad(selectedDate.getMonth() + 1));
+                $scope.playback.search.selectedDate =  currentDate = data;
+                showRecordingDate(currentDate.getFullYear(), pad(currentDate.getMonth() + 1));
             }, $scope);
 
             $rootScope.$saveOn('blockTimebarInputField', function(event, data) {
@@ -414,27 +414,29 @@ kindFramework.directive('playbackDatepicker', function() {
                 var searchModal = $("#search-box").parent().parent().parent();
                 searchModal.bind("mousedown", clickHandler);
             });
-            var watchVisible = $scope.$watch(function(){return $scope.visibility;} , 
-                function(newVal, oldVal) {
-                if( newVal === oldVal ) return;
-                if( newVal === true ) {
-                    $scope.playback.search.selectedDate = selectedDate = searchData.getSelectedDate();
-                    showRecordingDate(selectedDate.getFullYear(), pad(selectedDate.getMonth() + 1));
-                }
-                else {
-                    $scope.cancel();
-                }
-            });
+
+            /**
+             * when open PlaybackDatepicker menu, call this function by timeline.js
+             * @function : showMenu
+             * @description : set ng-model value to default date
+             */
+            $scope.showMenu = function() {
+                currentDate = searchData.getSelectedDate();
+                $scope.playback.search.selectedDate = new Date(currentDate);
+                showRecordingDate(currentDate.getFullYear(), pad(currentDate.getMonth() + 1));
+                $timeout(function(){
+                    $scope.$apply();
+                });
+            };
 
             $scope.$on('$destroy', function() {
-                watchVisible();
                 documentBody.removeEventListener('keyup', keyUpHandler);
             });
         },
         scope: {
             getSelectedDate: '=',
             control: '=',
-            visibility : '='
+            showMenu : '='
         },
         link: function(scope, element, attr) {
             scope.getSelectedDate = scope.ok;
