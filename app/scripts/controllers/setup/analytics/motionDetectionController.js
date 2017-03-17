@@ -910,7 +910,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
                         while(index--)
                         {
-                            var level = validateLevel(newMotionLevel[index]);
+                            var level = newMotionLevel[index].Level;
 
                             if(level === null) continue;
 
@@ -925,18 +925,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 }
             });
         })();
-    }
-
-    function validateLevel(motionLeveObject)
-    {
-        if(mLastSequenceLevel > motionLeveObject.SequenceID)
-        {
-            return null;
-        }
-
-        mLastSequenceLevel = motionLeveObject.SequenceID;
-
-        return motionLeveObject.Level;
     }
 
     function getMotionLevel(func)
@@ -1066,8 +1054,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function saveSettings() {
-        $scope.applied = true;
-
         var functionlist = [];
         // SUNAPI SET
         ////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
@@ -1090,14 +1076,26 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         if(functionlist.length > 0) {
             $q.seqAll(functionlist).then(
                 function(){
-                    getHandoverList(view);
+                    getHandoverList(view).then(
+                        function() {
+                            $scope.$emit('applied', true);
+                        },
+                        function(errorData) {
+                            console.log(errorData);
+                        });
                 },
                 function(errorData){
                     console.log(errorData);
                 }
             );
         } else {
-            getHandoverList(view);
+            getHandoverList(view).then(
+                function() {
+                    $scope.$emit('applied', true);
+                },
+                function(errorData) {
+                    console.log(errorData);
+                });
         }
     }
 

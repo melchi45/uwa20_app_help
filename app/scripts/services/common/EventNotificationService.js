@@ -10,7 +10,7 @@ kindFramework
   	var eventTimer = null;
   	var borderElement = null;
   	var viewMode = "default";
-  	var currentEventPage = null;	//MotionDetection, TamperingDetection, DefocusDetection, Fog, FaceDetection
+  	var currentEventPage = null;	//MotionDetection, TamperingDetection, DefocusDetection, Fog, FaceDetection, Queue
   	var isDetect = false;
 
   	var commonBorderCSS = "3px solid white",
