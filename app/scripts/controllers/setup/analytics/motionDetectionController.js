@@ -910,7 +910,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
                         while(index--)
                         {
-                            var level = validateLevel(newMotionLevel[index]);
+                            var level = newMotionLevel[index].Level;
 
                             if(level === null) continue;
 
@@ -925,18 +925,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 }
             });
         })();
-    }
-
-    function validateLevel(motionLeveObject)
-    {
-        if(mLastSequenceLevel > motionLeveObject.SequenceID)
-        {
-            return null;
-        }
-
-        mLastSequenceLevel = motionLeveObject.SequenceID;
-
-        return motionLeveObject.Level;
     }
 
     function getMotionLevel(func)
