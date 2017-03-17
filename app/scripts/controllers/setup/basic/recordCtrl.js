@@ -225,7 +225,6 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
         setData.Enable = $scope.RecordStorageInfo.Enable;
         setData.OverWrite = $scope.RecordStorageInfo.OverWrite;
         setData.AutoDeleteEnable = $scope.RecordStorageInfo.AutoDeleteEnable;
-        setData.AutoDeleteDays = $scope.RecordStorageInfo.AutoDeleteDays;
         queue.push({
             url: '/stw-cgi/recording.cgi?msubmenu=storage&action=set',
             reqData: setData,
@@ -312,32 +311,26 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
 
     function validatePage() {
         var retVal = true;
-        if ($scope.storageForm.AutoDeleteDays.$valid === false) {
-            COMMONUtils.ShowError('lang_msg_invalidValue');
-            retVal = false;
-        }
-        if ($scope.RecordStorageInfo.AutoDeleteEnable === true) {
-            if ($scope.RecordStorageInfo.AutoDeleteDays < $scope.AutoDeleteDayOptions.min || $scope.RecordStorageInfo.AutoDeleteDays > $scope.AutoDeleteDayOptions.max) {
-                COMMONUtils.ShowError('lang_msg_chkPeriodRange');
-                retVal = false;
-            }
-        }
-        if ($scope.Storageinfo.Storages[$scope.SelectedStorage].Type === 'NAS' && $scope.Storageinfo.Storages[$scope.SelectedStorage].Enable === 'On') {
-            if (checkNas($scope.SelectedStorage) === false) {
-                retVal = false;
-            }
-        }
+        //[$scope.SelectedStorage]
+        console.log($scope.recordSetting);
+        console.log($scope.Storageinfo.Storages);
+        // if ($scope.Storageinfo.Storages[$scope.SelectedStorage].Type === 'NAS' && $scope.Storageinfo.Storages[$scope.SelectedStorage].Enable === 'On') {
+        //     if (checkNas($scope.SelectedStorage) === false) {
+        //         retVal = false;
+        //     }
+        // }
+
         var otherstorage;
         if ($scope.SelectedStorage === 0) {
             otherstorage = 1;
         } else {
             otherstorage = 0;
         }
-        if ($scope.Storageinfo.Storages[otherstorage].Type === 'NAS' && $scope.Storageinfo.Storages[otherstorage].Enable === 'On') {
-            if (checkNas(otherstorage) === false) {
-                retVal = false;
-            }
-        }
+        // if ($scope.Storageinfo.Storages[otherstorage].Type === 'NAS' && $scope.Storageinfo.Storages[otherstorage].Enable === 'On') {
+        //     if (checkNas(otherstorage) === false) {
+        //         retVal = false;
+        //     }
+        // }
         for (var i = 0; i < $scope.RecordSchedule.length; i++) {
             if ($scope.RecordSchedule[i].Activate === 'Scheduled' && $scope.RecordSchedule[i].ScheduleIds.length === 0) {
                 COMMONUtils.ShowError('lang_msg_checkthetable');
@@ -438,13 +431,15 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
     }
 
     function getRecordingSchedules() {
-        var getData = {},
-            idx = 0;
+        var getData = {};
+        
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
             $scope.RecordSchedule = response.data.RecordSchedule;
-            for (idx = 0; idx < $scope.RecordSchedule.length; idx = idx + 1) {
-                $scope.RecordSchedule[idx].ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule[idx].Schedule));
+            
+            for (var i = 0; i < $scope.RecordSchedule.length; i++) {
+                $scope.RecordSchedule[i].ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule[i].Schedule));
             }
+            
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
         }, function(errorData) {
             console.log(errorData);
@@ -452,12 +447,16 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
     }
 
     function getRecordGeneralDetails() {
-        var getData = {},
+        var getData = {
+            Channel: 0
+        },
             idx = 0;
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=general&action=view', getData, function(response) {
+            console.info("getRecordGeneralDetails", response);
             $scope.RecordGeneralInfo = response.data.RecordSetup;
             pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
         }, function(errorData) {
+            console.info("getRecordGeneralDetails error", errorData);
             console.log(errorData);
         }, '', true);
     }
@@ -494,36 +493,40 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
         }, '', true);
     }
 
+    function setAttribute () {
+        var defer = $q.defer();
+        console.info($scope.RecordGeneralInfo);
+        var isChannel = findChannel($scope.Channel, $scope.RecordGeneralInfo);
+        // EventMode NormalMode PostEventDuration PreEventDuration RecordedVideoFileType
+
+        $scope.recordSetting[$scope.Channel].NormalMode = isChannel.NormalMode;
+        $scope.recordSetting[$scope.Channel].EventMode = isChannel.EventMode;
+        $scope.recordSetting[$scope.Channel].PreEventDuration = isChannel.PreEventDuration;
+        $scope.recordSetting[$scope.Channel].PostEventDuration = isChannel.PostEventDuration;
+        $scope.recordSetting[$scope.Channel].RecordedVideoFileType = isChannel.RecordedVideoFileType;
+        $scope.RecordSchedule[$scope.Channel].Activate = $scope.RecordSchedule[$scope.Channel].Activate;
+     
+        defer.resolve('Success');
+        return defer.promise;
+    }
+
     function view() {
         // if(data === 0) $rootScope.$emit('resetScheduleData', true);
 
         var promises = [];
-        // promises.push(getStorageDetails);
+        promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
-        // promises.push(getRecordingStorageDetails);
+        promises.push(getRecordingStorageDetails);
         promises.push(getRecordingSchedules);
         promises.push(getRecordProfile);
         promises.push(getRecordProfileDetails);
 
-        $q.seqAll(promises).then(function() {
-            var isChannel = findChannel($scope.Channel, $scope.RecordGeneralInfo);
-            // EventMode NormalMode PostEventDuration PreEventDuration RecordedVideoFileType
-
-            $scope.recordSetting[$scope.Channel].NormalMode = isChannel.NormalMode;
-            $scope.recordSetting[$scope.Channel].EventMode = isChannel.EventMode;
-            $scope.recordSetting[$scope.Channel].PreEventDuration = isChannel.PreEventDuration;
-            $scope.recordSetting[$scope.Channel].PostEventDuration = isChannel.PostEventDuration;
-            $scope.recordSetting[$scope.Channel].RecordedVideoFileType = isChannel.RecordedVideoFileType;
-            $scope.recordSetting[$scope.Channel].Activate = $scope.RecordSchedule[$scope.Channel].Activate;
-
+        $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
-            $("#recordpage").show();
         }, function(errorData) {
+            $scope.pageLoaded = true;
             console.log(errorData);
         });
-
-        $scope.pageLoaded = true;
-        $("#recordpage").show();
     }
 
     function findChannel (channel, structure) {
@@ -538,13 +541,231 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
         return is;
     }
 
+    function saveStorage() {
+        var promises = [],
+            queue = [],
+            needRefresh = false,
+            promise;
+
+        function callSequence(){
+            SunapiClient.sequence(queue, function(){
+                if (needRefresh) {
+                    window.setTimeout(RefreshPage, 1000);
+                }
+            }, function(errorData) {});
+        }
+
+        if (!angular.equals(pageData.RecordSchedule, $scope.RecordSchedule)) {
+            setRecordSchedule(queue);
+        }
+        if (!angular.equals(pageData.RecordGeneralInfo[$scope.Channel], $scope.RecordGeneralInfo[$scope.Channel])) {
+            if ($scope.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType !== pageData.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType) {
+                $scope.DisplayMsg = $translate.instant('lang_msg_storage_format');
+                promises.push(function(){
+                    return showModalDialog("setRecordGeneralInfo", $scope.DisplayMsg, $scope.Channel, queue);
+                });
+            } else {
+                setRecordGeneralInfo($scope.Channel, queue);
+            }
+        }
+        if (!angular.equals(pageData.RecordStorageInfo, $scope.RecordStorageInfo)) {
+            setRecordingStorageInfo(queue);
+        }
+        if (!angular.equals(pageData.Storageinfo.Storages[$scope.SelectedStorage], $scope.Storageinfo.Storages[$scope.SelectedStorage])) {
+            if ($scope.Storageinfo.Storages[$scope.SelectedStorage].Type === 'SD') {
+                if (pageData.Storageinfo.Storages[$scope.SelectedStorage].FileSystem !== $scope.Storageinfo.Storages[$scope.SelectedStorage].FileSystem) {
+                    $scope.DisplayMsg = $translate.instant('lang_msg_storage_format2');
+                    if ($scope.Storageinfo.Storages[$scope.SelectedStorage].FileSystem === 'ext4') { // ext4
+                        $scope.DisplayMsg += "\n" + $translate.instant('lang_msg_storage_format3');
+                    }
+                    promises.push(function(){
+                        return showModalDialog("setStorageInfo", $scope.DisplayMsg, $scope.SelectedStorage, queue);
+                    });
+                    needRefresh = true;
+                } else {
+                    setStorageInfo($scope.SelectedStorage, queue);
+                    needRefresh = true;
+                }
+            } else {
+                setStorageInfo($scope.SelectedStorage, queue);
+                needRefresh = true;
+            }
+        } else {
+            //check for other storage
+            var otherstorage;
+            if ($scope.SelectedStorage === 0) {
+                otherstorage = 1;
+            } else {
+                otherstorage = 0;
+            }
+            if ($scope.Storageinfo.Storages[otherstorage] !== undefined && !angular.equals(pageData.Storageinfo.Storages[otherstorage], $scope.Storageinfo.Storages[otherstorage])) {
+                if ($scope.Storageinfo.Storages[otherstorage].Type === 'SD') {
+                    if (pageData.Storageinfo.Storages[otherstorage].FileSystem !== $scope.Storageinfo.Storages[otherstorage].FileSystem) {
+                        $scope.DisplayMsg = $translate.instant('lang_msg_storage_format2');
+                        promises.push(function(){
+                            return showModalDialog("setStorageInfo", $scope.DisplayMsg, otherstorage, queue);
+                        });
+                        needRefresh = true;
+                    } else {
+                        setStorageInfo(otherstorage, queue);
+                        needRefresh = true;
+                    }
+                } else {
+                    setStorageInfo(otherstorage, queue);
+                    needRefresh = true;
+                }
+            }
+        }
+
+        if(promises.length > 0){
+            $q
+                .seqAll(promises)
+                .then(
+                    callSequence, 
+                    function(errorData){}
+                );   
+        }else{
+            callSequence();            
+        }
+    }
+
+
     function saveSettings() {
         var promises = [];
     }
 
     function set() {
+        var modalInstance;
+        if (validatePage()) {
+            var otherstorage;
+            if ($scope.SelectedStorage === 0) {
+                otherstorage = 1;
+            } else {
+                otherstorage = 0;
+            }
+
+            // console.log($scope.Storageinfo.Storages[$scope.SelectedStorage].Enable);
+            // console.log(pageData.Storageinfo.Storages[$scope.SelectedStorage].Enable);
+
+                /*
+            if (typeof mAttr.RecordStreamLimitation !== 'undefined' && mAttr.RecordStreamLimitation === true && ((($scope.Storageinfo.Storages[$scope.SelectedStorage].Enable !== pageData.Storageinfo.Storages[$scope.SelectedStorage].Enable) && $scope.Storageinfo.Storages[$scope.SelectedStorage].Enable === 'On') || (($scope.Storageinfo.Storages[otherstorage].Enable !== pageData.Storageinfo.Storages[otherstorage].Enable) && $scope.Storageinfo.Storages[otherstorage].Enable === 'On'))) {
+                COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
+                    COMMONUtils.ApplyConfirmation(saveStorage);
+                });
+            } else {
+                COMMONUtils.ApplyConfirmation(saveStorage);
+            }
+            */
+            
+            // COMMONUtils.ApplyConfirmation(saveStorage);
+            COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
+                COMMONUtils.ApplyConfirmation(saveStorage);
+            });
+        }
+
         console.log($scope.recordSetting);
         // COMMONUtils.ApplyConfirmation(saveSettings);
+    }
+
+    function startMonitoringStatus()
+    {
+        (function update()
+        {
+            getCurrentStatus(function (data) {
+                if(destroyInterrupt) return;
+
+                var tStorageinfo = data;
+                if (!mStopMonotoringStatus)
+                {
+                    var isLoading = false;
+                    for (var idx = 0; idx < tStorageinfo.Storages.length; idx = idx + 1) {
+                        if (tStorageinfo.Storages[idx].Status === "") {
+                            $scope.Storageinfo.Storages[idx].Status = "None";
+                            $scope.Storageinfo.Storages[idx].isProcessing = false;
+                        } else if (tStorageinfo.Storages[idx].Status === "Normal") {
+                            $scope.Storageinfo.Storages[idx].Status = "Ready";
+                            $scope.Storageinfo.Storages[idx].isProcessing = false;
+                        } else if (tStorageinfo.Storages[idx].Status === "Active") {
+                            $scope.Storageinfo.Storages[idx].Status = "Recording";
+                            $scope.Storageinfo.Storages[idx].isProcessing = false;
+                        } else if (tStorageinfo.Storages[idx].Status === "Formatting") {
+                            $scope.Storageinfo.Storages[idx].Status = "Formatting";
+                            $scope.Storageinfo.Storages[idx].isProcessing = false;
+                            isLoading = true;
+                        } else if (tStorageinfo.Storages[idx].Status === "Wait") {
+                            $scope.Storageinfo.Storages[idx].Status = "Waiting";
+                            $scope.Storageinfo.Storages[idx].isProcessing = true;
+                            isLoading = true;
+                        } else { // Error, Full
+                            $scope.Storageinfo.Storages[idx].Status = tStorageinfo.Storages[idx].Status;
+                            $scope.Storageinfo.Storages[idx].isProcessing = false;
+                        }
+                        if(tStorageinfo.Storages[idx].Status !== "Wait") {
+                            $scope.Storageinfo.Storages[idx].TotalSpace = tStorageinfo.Storages[idx].TotalSpace;
+                            $scope.Storageinfo.Storages[idx].UsedSpace = tStorageinfo.Storages[idx].UsedSpace;
+                            var totalSize = $scope.Storageinfo.Storages[idx].TotalSpace;
+                            var freeSize = $scope.Storageinfo.Storages[idx].TotalSpace - $scope.Storageinfo.Storages[idx].UsedSpace;
+                            if (totalSize >= 1024 * 1024) {
+                                totalSize = (totalSize / 1024 / 1024).toFixed(2);
+                                $scope.Storageinfo.Storages[idx].TotalSpace = totalSize + " TB";
+                            } else if (totalSize >= 1024) {
+                                totalSize = (totalSize / 1024).toFixed(2);
+                                $scope.Storageinfo.Storages[idx].TotalSpace = totalSize + " GB";
+                            } else {
+                                $scope.Storageinfo.Storages[idx].TotalSpace = totalSize + " MB";
+                            }
+                            if (freeSize >= 1024 * 1024) {
+                                freeSize = (freeSize / 1024 / 1024).toFixed(2);
+                                $scope.Storageinfo.Storages[idx].UsedSpace = freeSize + " TB";
+                            } else if (freeSize >= 1024) {
+                                freeSize = (freeSize / 1024).toFixed(2);
+                                $scope.Storageinfo.Storages[idx].UsedSpace = freeSize + " GB";
+                            } else {
+                                $scope.Storageinfo.Storages[idx].UsedSpace = freeSize + " MB";
+                            }
+                        }
+                    }
+                    $scope.isLoading = isLoading;
+                    monitoringTimer = $timeout(update,2900);
+                }
+            });
+        })();
+    }
+
+    function stopMonitoringStatus(){
+        if(monitoringTimer !== null){
+            destroyInterrupt = true;
+            $timeout.cancel(monitoringTimer);
+        }
+    }
+
+    function stopMonitoringStatus(){
+        if(monitoringTimer !== null){
+            destroyInterrupt = true;
+            $timeout.cancel(monitoringTimer);
+        }
+    }
+
+    $scope.$on("$destroy", function(){
+        destroyInterrupt = true;
+        stopMonitoringStatus();
+    });
+
+
+    function getCurrentStatus(func)
+    {
+        var getData = {},
+        idx = 0;
+        return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData, function(response) {
+        
+            var tStorageinfo = response.data;
+        
+            func(tStorageinfo);
+        
+        }, function(errorData) {
+            console.log(errorData);
+            startMonitoringStatus();
+        }, '', true);
     }
 
     (function wait() {

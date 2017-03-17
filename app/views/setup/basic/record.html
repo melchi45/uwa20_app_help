@@ -97,7 +97,7 @@
                     <div class="wn5-setup-section-article form-group">
                         <div class="wn5-setup-section-article-content">
                             <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
-                                <input class="radio" name="Activate" ng-model="recordSetting[Channel].Activate" ng-value="Activate" type="radio">
+                                <input class="radio" name="Activate" ng-model="RecordSchedule[Channel].Activate" ng-value="Activate" type="radio">
                                 <div ng-if="Activate === 'Scheduled'">
                                 {{ 'lang_recording_only_schedule' | translate }}
                                 </div>
@@ -111,7 +111,11 @@
             </div>
         </div>
 
+        <!-- scheduler -->
+        <scheduler></scheduler>
+        
         <hr class="wn5-setup-hr">
+
         <wn5-setup-common-button
             data-submit-click="submit()"
             data-cancel-click="view()">
