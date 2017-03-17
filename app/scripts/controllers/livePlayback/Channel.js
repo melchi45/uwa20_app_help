@@ -28,11 +28,12 @@ kindFramework
     var StreamTagType = 'canvas';
     var pageData = {};
     $scope.sliderRefreshInProgress = false;
-    var DEFAULT_CHANNEL=0;
+    //var DEFAULT_CHANNEL=0;
     var cameraMicEnable = false;
     var videoLimitFPS = 3;
     var videoLimitSize = 1920 * 1080;
     var audioEncodingType = null;
+    var channelId = 0;
 
     BaseChannel.prototype.resetSetting = function() {
       if(UniversialManagerService.isSpeakerOn()){
@@ -293,7 +294,7 @@ kindFramework
       
       return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=view', '',
         function (response) {
-            $scope.ImageEnhancements = response.data.ImageEnhancements[DEFAULT_CHANNEL];
+            $scope.ImageEnhancements = response.data.ImageEnhancements[channelId];
             pageData.ImageEnhancements = angular.copy($scope.ImageEnhancements);
             initImageEnhancementSettings();
         },
@@ -525,10 +526,10 @@ kindFramework
     };
 
     var getDefaultProfileIndex = function() {
-      var DEFAULT_CHANNEL=0;
+      //var DEFAULT_CHANNEL=0;
       return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', '',
         function (response) {
-          defaultProfileID = response.data.VideoProfilePolicies[DEFAULT_CHANNEL].DefaultProfile;
+          defaultProfileID = response.data.VideoProfilePolicies[channelId].DefaultProfile;
         },
         function (errorData) {
           ModalManagerService.open('message', { 'buttonCount': 0, 'message': errorData } );
@@ -611,7 +612,7 @@ kindFramework
         $scope.domControls.profileInfo = $scope.profileInfo = _requestProfile;
         $scope.selectedProfile = getProfileIndex(_requestProfile.Profile);
         if(sunapiAttributes.MaxChannel > 1){
-          $scope.profileInfo.ChannelId = 0;
+          $scope.profileInfo.ChannelId = channelId;
         }else{
           $scope.profileInfo.ChannelId = null;
         }
@@ -739,10 +740,10 @@ kindFramework
     }    
 
     var getVideoProfile = function() {
-      var DEFAULT_CHANNEL=0;
+      //var DEFAULT_CHANNEL=0;
       return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
         function (response) {
-          var ProfileList = response.data.VideoProfiles[DEFAULT_CHANNEL].Profiles;
+          var ProfileList = response.data.VideoProfiles[channelId].Profiles;
           if(ProfileList.length > 1 && ProfileList[1].IsDigitalPTZProfile !== undefined)
           {
             sunapiAttributes.isDigitalPTZ = true;
@@ -796,10 +797,10 @@ kindFramework
     };
 
     var getAudioOutEnabled = function(){
-      var DEFAULT_CHANNEL=0;
+      //var DEFAULT_CHANNEL=0;
       return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=audiooutput&action=view', '',
         function (response) {
-          var isEnabled = response.data.AudioOutputs[DEFAULT_CHANNEL].Enable;
+          var isEnabled = response.data.AudioOutputs[channelId].Enable;
           setAudioOutEnable(isEnabled);
           cameraMicEnable = isEnabled;
         },
@@ -809,10 +810,10 @@ kindFramework
     };
 
     var getAudioInEncodingType = function(){
-      var DEFAULT_CHANNEL=0;
+      //var DEFAULT_CHANNEL=0;
       return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=audioinput&action=view', '',
         function (response) {
-          audioEncodingType = response.data.AudioInputs[DEFAULT_CHANNEL].EncodingType;
+          audioEncodingType = response.data.AudioInputs[channelId].EncodingType;
         },
         function (errorData) {
 
@@ -1017,10 +1018,15 @@ kindFramework
     /* Channel Selector Direction */
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
       console.log(index);
+      $rootScope.$emit('channelPlayer:command', 'stopLive', false);
+      channelId = index;
+
+      setProfileInfo();
     }, $scope);
 
     $rootScope.$saveOn('channelSelector:changeQuadView', function(event, response){
       console.log(response);
+      $state.go('uni.channellist');
     }, $scope);
 
     $scope.$watch('channelBasicFunctions.speakerStatus', function(newVal, oldVal){
