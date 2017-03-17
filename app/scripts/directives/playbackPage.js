@@ -27,6 +27,7 @@ kindFramework
           'turnOnChannelSelector' : '=',
         },
         controller : function($scope) {
+          var selectorDirective = null;
           if( $scope.pageController ) {
           /**
            * create <live-playback-channel-selector> directives for multi channel
@@ -34,10 +35,10 @@ kindFramework
            * @param : mode is boolean type.
            */
             $scope.pageController.channelSelector = function(mode) {
-              if( mode === true ) {
+              if( mode === true && selectorDirective === null) {
                 var childScope = $scope.$new();
-                var selector = $compile('<live-playback-channel-selector class="playback-channel-selector"></live-playback-channel-selector>');
-                $('#playback-channel-holder').append(selector(childScope)).append('<div class="cm-vline"></div>');
+                selectorDirective = $compile('<live-playback-channel-selector class="playback-channel-selector"></live-playback-channel-selector>');
+                $('#playback-channel-holder').append(selectorDirective(childScope)).append('<div class="cm-vline"></div>');
               }
             }
           }

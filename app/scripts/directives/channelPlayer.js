@@ -675,6 +675,7 @@ kindFramework.directive('channelPlayer',
                 case BrowserService.BROWSER_TYPES.IE:
                   if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE)
                   {
+                    elem.empty();
                     PluginControlService.stopStreaming();
                   }
                   else
@@ -1167,16 +1168,16 @@ kindFramework.directive('channelPlayer',
                    elem.empty();
                   if(BrowserService.PlugInSupport && BrowserService.PlugInDetect)
                   {
-                      //IE í”ŒëŸ¬ê·¸ì¸ í™œì„±í™” // PlugIn Off ìƒíƒœì—ì„œ H264, H265 ìš”ì²­ ì‹œ
+                      //IE ?”Œ?Ÿ¬ê·¸ì¸ ?™œ?„±?™” // PlugIn Off ?ƒ?ƒœ?—?„œ H264, H265 ?š”ì²? ?‹œ
                       $rootScope.$emit("channel:setPlugin");
                   }
                   else {
-                      //ì„¤ì¹˜ ì‹œë‚˜ë¦¬ì˜¤
+                      //?„¤ì¹? ?‹œ?‚˜ë¦¬ì˜¤
                       createPlugInInstallElement();
                       $rootScope.$emit('changeLoadingBar', false);
                   }
 
-                  //NonPlugIn ì¬ìƒ ì‹œë‚˜ë¦¬ì˜¤
+                  //NonPlugIn ?¬?ƒ ?‹œ?‚˜ë¦¬ì˜¤
                   //requestAvailableProfile(profile);
                   return;
                 }
