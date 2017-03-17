@@ -277,7 +277,7 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
         gotoPreset(preset);
     };
     
-    $scope.$saveOn('changePTZPreset', function(args, preset){
+    $scope.$on('changePTZPreset', function(args, preset){
     	var promises = [];
         promises.push(getPresets);
     	$q.seqAll(promises).then(

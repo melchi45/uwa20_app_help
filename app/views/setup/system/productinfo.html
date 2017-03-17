@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_deviceName' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <input type="text" class="form-control" name="DeviceName" ng-model="Info.DeviceName" ng-disabled="false" required ng-minlength="DeviceNameRange.Min" ng-pattern-restrict="{{DeviceNameRange.PatternStr}}" >
+                        <input type="text" class="form-control" name="DeviceName" ng-model="Info.DeviceName" ng-disabled="false" required ng-minlength="DeviceNameRange.Min" ng-maxlength="DeviceNameRange.Max" maxlength={{DeviceNameRange.Max}} ng-pattern-restrict="{{DeviceNameRange.PatternStr}}" >
                     </div>
 
                 </div>
