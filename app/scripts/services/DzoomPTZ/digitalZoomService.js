@@ -28,11 +28,15 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
       zoomY = 0.0;
       zoomZ = initZoomZ;
       movelimit = 5;
-      zoomData = [zoomX, zoomY, zoomZ];
-      return zoomData;
+      var data = {channelId:0, zoomArray : [zoomX, zoomY, zoomZ]};
+      return data;
     }
 
     function eventHandler(event,eventType,element) {
+      var data = {
+        channelId:event.currentTarget.attributes[2].value, 
+        zoomArray : []
+      };
       if (!event) {
         event = window.event;
       }
@@ -84,8 +88,8 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
           }
         }
 
-        zoomData = [zoomX, zoomY, zoomZ];
-        return zoomData;
+        data.zoomArray = [zoomX, zoomY, zoomZ];
+        return data;
       } else if (eventType === "mousedown") {
         downCheck = true;
         curX = event.clientX;
@@ -141,8 +145,8 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
             }
           }
         }
-        zoomData = [zoomX, zoomY, zoomZ];
-        return zoomData;
+        data.zoomArray = [zoomX, zoomY, zoomZ];
+        return data;
       } else if (eventType === "mouseup" || eventType === "mouseleave") {
         downCheck = false;
       }
