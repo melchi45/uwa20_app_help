@@ -21,6 +21,7 @@ function AudioPlayerGxx() {
 	var bufferingFlag = false;
 	var playBuffer = new Float32Array(80000);
 	var readLength = 0;
+	var sourceNode = null;
 
 	function playAudioIn(data, rtpTimestamp) {
 		var timegap = rtpTimestamp - preTimeStamp;
@@ -29,6 +30,9 @@ function AudioPlayerGxx() {
 			nextStartTime = 0;
 			readLength = 0;
 			bufferingFlag = true;
+			if(sourceNode !== null){
+				sourceNode.stop();
+			}
 			// console.log("audioBuffering :: bufferingStart G7xx!!!!!!!!!!!!");
 		}
 
@@ -67,7 +71,7 @@ function AudioPlayerGxx() {
 			}
 			
 			readLength = 0;
-			var	sourceNode = audioContext.createBufferSource();
+			sourceNode = audioContext.createBufferSource();
 
 			sourceNode.buffer = audioBuffer;
 			sourceNode.connect(biquadFilter);
