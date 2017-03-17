@@ -182,9 +182,6 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 data.step = scope.blcbox.select;
                 scope.$emit('changeBlcArea',data);
             };
-            scope.$watch('blcbox.select',function(newVal, oldVal){
-
-            });
 
             scope.setNorth = false;
             scope.setNorthView = function(){

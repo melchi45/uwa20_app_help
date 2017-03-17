@@ -2,14 +2,16 @@
     <form name="tamperDetectForm" method="get" class="form-horizontal" novalidate>
         <wn5-setup-main-title
             data-title="lang_menu_tamperingdetection">
-        </wn5-setup-main-title>
-        <setup-channel-selector 
-            use-info="false"
-            ng-show="MaxChannel > 1">                
-        </setup-channel-selector>
+        </wn5-setup-main-title>            
 
         <div class="wn5-setup-section">
             <hr class="wn5-setup-hr">
+
+            <setup-channel-selector 
+                use-info="false"
+                ng-show="MaxChannel > 1">                
+            </setup-channel-selector>
+            
             <div class="wn5-gui-body-large">
                 <input type="checkbox" name="Enable" ng-model="TamperDetect.Enable" ng-click="setTamperDetectionEnable()">
                 <label>{{ 'lang_enable_feature_tampering_detection' | translate }}</label>
