@@ -351,6 +351,11 @@ kindFramework
           break;
         case 12 : data.type = 'NetworkDisconnection';
           break;
+        case 14 :                                              //QueueManagement : status == 10  ==> Level : High, status : false
+          data.type = 'Queue';                                 //                  status == 11  ==> Level : High, status : true
+          data.value = (status % 10 === 0) ? 'false': 'true';  //                  status == 20  ==> Level : Middle, status : false
+          data.eventId = parseInt((status / 10), 10);          //                  status == 21  ==> Level : Middle, status : true
+          break;          
       }
 
       EventNotificationService.updateEventStatus(data);
