@@ -824,7 +824,7 @@
                                         <select name="DISEnable" class="form-control" ng-model="ImageEnhancements.DISEnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="isDisDisabled()"></select>
                                     </div>
                                 </div>
-                                <div ng-if="PTZModel">
+                                <div class="form-group" ng-if="PTZModel">
                                     <div class="form-group" ng-show="Camera.DayNightMode != undefined">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_daynight' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
