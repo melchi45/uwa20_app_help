@@ -335,134 +335,90 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         });
     }
 
-    function openSelectRemove(selectorName, removeIndex, eventIndex, focusSkip, alarmIndex) {
-        var newVal = $('#' + selectorName + ' option:selected').val();
-        var removeSelect = $('#' + selectorName);
-        if (eventIndex === undefined) {
-            $.each($scope.EventRules, function(subIndex, item) {
-                if (item.EventSource === removeSelect.attr('name')) {
-                    eventIndex = subIndex;
-                    alarmIndex = removeSelect.attr('data-alarmOutput');
-                    return;
-                }
-            });
-        }
 
-        removeSelect.unbind();
-        removeSelect.remove();
-
-        $timeout(function() {
-            if (selectorName === 'gotoPresetSelect') {
-                if (newVal !== undefined){
-                    $scope.EventRules[eventIndex].PresetNumber = newVal;
-                }
-
-                $('.gotoPresetInput:eq(' + removeIndex + ')').show();
-
-                if (focusSkip !== true){
-                    $('.gotoPresetInput:eq(' + removeIndex + ')').focus();
-                }
-            } else {
-                if (newVal !== undefined){
-                    $scope.EventRules[eventIndex].AlarmOutputs[alarmIndex].Duration = newVal;
-                }
-                $('.alarmOutputInput' + alarmIndex + ':eq(' + removeIndex + ')').show();
-                if (focusSkip !== true){
-                    $('.alarmOutputInput' + alarmIndex + ':eq(' + removeIndex + ')').focus();
-                }
+    $scope.presetGotoSelectShowChange = function(index,isShow,event){
+        if(isShow){
+            for(var i=0;i<$scope.EventRules.length;i++){
+                var eventSource = $scope.EventRules[i].EventSource;
+                $scope.presetGotoSelectShow[eventSource].selectShow=false;
+                $scope.presetGotoSelectShow[eventSource].inputShow=true;
             }
-        });
-    }
-
-    function openSelectCreate(selectorName, index, options, selectedVal, hideSelector, eventIndex, eventSource, alarmIndex) {
-        var selectHtml = $('<select id="' + selectorName + '" name="' + eventSource + '" data-index="' + index + '" class="form-control preset-input-select openSelect" />');
-        if (alarmIndex !== undefined){
-            selectHtml.attr('data-alarmOutput', alarmIndex);
-        }
-
-        $.each(options, function(subIndex, item) {
-            var opt = {
-                value: item,
-                text: $scope.getTranslatedOption(item)
-            };
-
-            if (item === selectedVal) {
-                opt.selected = 'selected';
-            }
-
-            $('<option/>', opt).appendTo(selectHtml);
-        });
-
-        $(hideSelector).hide();
-        $(hideSelector).parent().append(selectHtml);
-
-        var createdSelect = $('#' + selectorName);
-        createdSelect.focus();
-        createdSelect.focusout(function() {
-            if(alarmIndex !== undefined){
-                openSelectRemove(selectorName, index, eventIndex, true, alarmIndex);
+            if(event != undefined){
+                var code = event.which;
+                if(code==32) event.preventDefault();
+                if(code==32||code==13||code==188||code==186){
+                    $scope.presetGotoSelectShow[index].inputShow=false;
+                    $scope.presetGotoSelectShow[index].selectShow=true;
+                    $timeout(function(){
+                        $('.presetSelectbox').focus();
+                    },100);
+                }
             }else{
-                openSelectRemove(selectorName, index, eventIndex, true);
+                $scope.presetGotoSelectShow[index].inputShow=false;
+                $scope.presetGotoSelectShow[index].selectShow=true;
+                $timeout(function(){
+                    $('.presetSelectbox').focus();
+                },100);
             }
-        });
-        createdSelect.change(function() {
-            if (alarmIndex !== undefined){
-                openSelectRemove(selectorName, index, eventIndex, undefined, alarmIndex);
-            }else{
-                openSelectRemove(selectorName, index, eventIndex);
-            }
-        });
-    }
-
-    $scope.openGotoPresetSelect = function(index, isShow, eventSource) {
-        var selectorName = 'gotoPresetSelect';
-        var eventIndex = 0;
-        $.each($scope.EventRules, function(subIndex, item) {
-            if (item.EventSource === eventSource) {
-                eventIndex = subIndex;
-                return;
-            }
-        });
-        if (isShow) {
-            var selectedVal = $scope.EventRules[eventIndex].PresetNumber;
-            var hideSelector = '.gotoPresetInput:eq(' + index + ')';
-            var options = $scope.PresetOptions;
-            var openedSelect = $('.openSelect');
-            if (openedSelect.length === 1) {
-                var removeSelectorName = openedSelect.attr('id');
-                var removeIndex = parseInt(openedSelect.attr('data-index'), 10);
-                openSelectRemove(removeSelectorName, removeIndex);
-            }
-            openSelectCreate(selectorName, index, options, selectedVal, hideSelector, eventIndex, eventSource);
+        }else{
+            $scope.presetGotoSelectShow[index].selectShow=false;
+            $timeout(function(){
+                $scope.presetGotoSelectShow[index].inputShow=true;
+            },100);
         }
     };
-
-    $scope.openAlarmOutputSelect = function(index, isShow, eventSource, alarmIndex) {
-        var selectorName = 'alarmOutputSelect' + alarmIndex;
-        var eventIndex = 0;
-        $.each($scope.EventRules, function(subIndex, item) {
-            if (item.EventSource === eventSource) {
-                eventIndex = subIndex;
-                return;
+    $scope.presetAlarmActionSelectShowChange = function(index,alarmIndex,isShow,event){
+        if(isShow){
+            for(var i=0;i<$scope.EventRules.length;i++){
+                var eventSource = $scope.EventRules[i].EventSource;
+                var subArray = $scope.presetAlarmActionSelectShow[eventSource];
+                for(var j=0;j<subArray.length;j++){
+                    $scope.presetAlarmActionSelectShow[eventSource][j].selectShow=false;
+                    $scope.presetAlarmActionSelectShow[eventSource][j].inputShow=true;
+                }
             }
-        });
-        if (isShow) {
-            var selectedVal = $scope.EventRules[eventIndex].AlarmOutputs[alarmIndex].Duration;
-            var hideSelector = '.alarmOutputInput' + alarmIndex + ':eq(' + index + ')';
-            var options = $scope.AlarmoutDurationOptions;
-            var openedSelect = $('.openSelect');
-            if (openedSelect.length === 1) {
-                var removeSelectorName = openedSelect.attr('id');
-                var removeIndex = parseInt(openedSelect.attr('data-index'), 10);
-                openSelectRemove(removeSelectorName, removeIndex);
+            if(event != undefined){
+                var code = event.which;
+                if(code==32) event.preventDefault();
+                if(code==32||code==13||code==188||code==186){
+                    $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=false;
+                    $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=true;
+                    $timeout(function(){
+                        $('.presetSelectbox').focus();
+                    },100);
+                }
+            }else{
+                $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=false;
+                $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=true;
+                $timeout(function(){
+                    $('.presetSelectbox').focus();
+                },100);
             }
-            openSelectCreate(selectorName, index, options, selectedVal, hideSelector, eventIndex, eventSource, alarmIndex);
+        }else{
+            $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=false;
+            $timeout(function(){
+                $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=true;
+            },100);
         }
     };
-
+    function initPresetSelectShow(){
+        $scope.presetGotoSelectShow = [];
+        $scope.presetAlarmActionSelectShow = [];
+        for(var i=0;i<$scope.EventRules.length;i++){
+            var eventSource = $scope.EventRules[i].EventSource;
+            $scope.presetGotoSelectShow[eventSource] = {selectShow:false,inputShow:true};
+            var alarmOutArray = [];
+            for(var j=0;j<$scope.getAlarmOutArray.length;j++){
+                alarmOutArray.push({selectShow:false,inputShow:true});
+            }
+            $scope.presetAlarmActionSelectShow[eventSource] = alarmOutArray;
+        }
+    }
+    
     function view() {
         getAttributes();
         $q.seqAll([getEventRules, cameraView]).then(function(result) {
+            initPresetSelectShow();
             $scope.pageLoaded = true;
         }, function(error) {});
     }

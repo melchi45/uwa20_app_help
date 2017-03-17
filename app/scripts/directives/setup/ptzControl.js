@@ -150,10 +150,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                     }else if(ptzinfo.type=='OSD'){
                         if(mAttr.PTZModel) {
                             scope.showPTZControlOSD = true;
-                            var height = $("canvas.kind-stream-canvas").height();
-                            $(".ptz-control_set-north").css({
-                                top: -(height / 2) + "px"
-                            });
+                            scope.ptzControlClass = 'w310';
                         }
                     }else if(ptzinfo.type ==='DPTZ'){
                         scope.showPTZControlBasicDPTZ = true;
@@ -183,21 +180,24 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 scope.$emit('changeBlcArea',data);
             };
 
-            scope.setNorth = false;
             scope.setNorthView = function(){
                 COMMONUtils.ApplyConfirmation(setNorth);
             };
             function setNorth(){
-                scope.setNorth = true;
+                var html = '<div id="set_North" class="ptz-control_set-north">';
+                    html += '<i class="tui tui-wn5-north"></i>';
+                    html += '</div>';
+                $('#sketchbook').append(html);
+
                 execSunapi('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set&NorthDirection',function(){
                     $timeout(function(){
-                        scope.setNorth = false;
+                        $('#sketchbook #set_North').remove();
                     }, 1000);
                 });
             }
             scope.$watch('showPTZControlOSD', function(value){
                 if(value == false){
-                    scope.setNorth = false;
+                    $('#sketchbook #set_North').remove();
                 }
             });
 
