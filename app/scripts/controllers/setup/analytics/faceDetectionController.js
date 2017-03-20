@@ -543,6 +543,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         $q.seqAll(promises).then(function(){
             $rootScope.$emit('changeLoadingBar', false);
             $scope.pageLoaded = true;
+            $scope.$emit('pageLoaded', true);
         }, function(errorData){
             $rootScope.$emit('changeLoadingBar', false);
             console.log(errorData);
