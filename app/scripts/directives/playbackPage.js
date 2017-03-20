@@ -154,6 +154,7 @@ kindFramework
               UniversialManagerService.setPlayMode(CAMERA_STATUS.PLAY_MODE.LIVE);
               scope.timelineController.destroy();
               playData.setDefautPlaySpeed();
+              playData.setPlaybackEnable(false);
               searchData.setRefreshHoldValues();
               if(UniversialManagerService.isSpeakerOn()){
                 changeSpeakerStatus(false);
