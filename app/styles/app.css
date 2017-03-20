@@ -832,7 +832,7 @@ live-playback common {
   background-color: #000;
   position: fixed;
   bottom: 0;
-  z-index: 10000;
+  z-index: 20;
   height: 50px;
 }
 #cm-bottom-menu.cm-full-menu [id^="cm-"],
