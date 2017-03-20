@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, sketchbookService, $uibModal, $uibModalStack, $q, $translate, $rootScope) {
+kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, sketchbookService, $uibModal, $uibModalStack, $q, $translate, $rootScope, ModalManagerService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -546,7 +546,10 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     }, $scope);
 
     $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
-      console.log(response);
+        $uibModal.open({
+            templateUrl: 'views/setup/video&audio/modal/ModalVideoSetupInfo.html',
+            controller: 'ModalInstanceVideoSetupInfoCtrl'
+        });
     }, $scope);
 
     function digitalFlipView() {

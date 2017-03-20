@@ -1,4 +1,4 @@
-kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, $q) {
+kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, $q, $rootScope, ModalManagerService) {
     "use strict";
     var mAttr = Attributes.get();
     var pageData = {};
@@ -440,6 +440,15 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
             }, function() {});
         }
     }
+
+
+    $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
+        $uibModal.open({
+            templateUrl: 'views/setup/event/modal/ModalEventSetupInfo.html',
+            controller: 'ModalInstanceEventSetupInfoCtrl'
+        });
+    }, $scope);
+
 
     $scope.submit = set;
     $scope.view = view;
