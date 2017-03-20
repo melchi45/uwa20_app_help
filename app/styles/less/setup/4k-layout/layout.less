@@ -43,6 +43,9 @@
         &.setup-wrapper {
             .form-group {
                 line-height: 40px;
+                width: 100%;
+                float: left;
+                
             }
 
             .wrapper {
@@ -230,6 +233,36 @@
             }
         }
     }
+    
+
+    #setup-channel-selector {
+        .setup-channel-selector-heading h3 {
+            font-size: 21px;
+        }
+
+        .setup-channel-selector-btns {
+            .channel-selector li {
+                &:first-child {
+                    .channel-selector-title {
+                        font-size: 20px;
+                    }
+                }
+
+                > button {
+                    width: 51px;
+                    height: 36px;
+                    font-size: 18px;
+                }
+            }
+
+            .setup-channel-selector-info {
+                width: 86px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+    }
+    
 
 }
 

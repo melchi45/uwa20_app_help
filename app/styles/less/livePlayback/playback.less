@@ -595,6 +595,39 @@
                 height: calc(~"100% - 160px") !important;
             }
         }
+        
+        /* .cm-channel-selector .channel-selector li > button */
+
+        #playback-channel-holder {
+            display: block;
+            float: left;
+
+            .playback-channel-selector {
+                padding: 20px 18px 0 25px;
+
+                .channel-selector {
+                    li {
+                        > button {
+                            width: 45px;
+                            height: 35px;
+                            padding-left: 15px;
+                            font-size: 19px;
+                        }
+
+                        &:first-child {
+                            .channel-selector-title {
+                                font-size: 19px;
+                                line-height: 30px;
+                            }
+
+                            ~ li {
+                                margin-right: 8px;
+                            }
+                        }
+                    } 
+                }
+            }
+        }
 
         #cm-bottom-menu {
             height: 75px;
@@ -764,7 +797,7 @@
                 &.vis-foreground {
                   .vis-text {
                     &.vis-minor {
-                      font-size: 20px;
+                      font-size: 17px;
                     }
                   }
                 }

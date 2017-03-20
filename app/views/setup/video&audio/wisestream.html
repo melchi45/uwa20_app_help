@@ -7,11 +7,13 @@
             <hr class="wn5-setup-hr">
 
             <setup-channel-selector ng-show="MaxChannel > 1"></setup-channel-selector>
+
+            
             
             <div class="wn5-setup-section-heading">
                 <h3>{{ 'lang_wisestreamWisestream' | translate }}</h3>
             </div>
-            <div class="wn5-setup-section-article form-group">
+            <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-heading">{{'lang_mode' | translate}}</div>
                 <div class="wn5-setup-section-article-content">
                     <select class="form-control" type="text" ng-model="wisestreamMode" ng-options="option.value as getTranslatedOption(option.text) for option in WiseStreamEnableOptions">
