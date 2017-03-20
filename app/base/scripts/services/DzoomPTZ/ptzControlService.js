@@ -41,8 +41,8 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
     var ptzAreaZoomStart =  false;
     var isTracking = false;
 
-    var liveCanvas = null;
-    var areaCanvasContext = null;
+    var overlayCanvas = null;
+    var overlayCanvasContext = null;
     
     function eventHandler(event,eventType,element) {
       sunapiURI = "/stw-cgi/ptzcontrol.cgi?";
@@ -88,8 +88,8 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
         if(event.button === 2) return;
         if(areaZoomdownCheck)
         {
-            areaCanvasContext.clearRect(0, 0, liveCanvas.offsetWidth, liveCanvas.offsetHeight);
-            areaCanvasContext.strokeRect(curX, curY, event.offsetX - curX, event.offsetY - curY);
+            overlayCanvasContext.clearRect(0, 0, overlayCanvas.offsetWidth, overlayCanvas.offsetHeight);
+            overlayCanvasContext.strokeRect(curX, curY, event.offsetX - curX, event.offsetY - curY);
         }
         if(downCheck) {
           moveCheck = true;
@@ -149,7 +149,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
         if(areaZoomdownCheck)
         {
             areaZoomdownCheck = false;
-            areaCanvasContext.clearRect(0, 0, liveCanvas.offsetWidth, liveCanvas.offsetHeight);
+            overlayCanvasContext.clearRect(0, 0, overlayCanvas.offsetWidth, overlayCanvas.offsetHeight);
         }
         if (downCheck) {
           downCheck = false;
@@ -171,7 +171,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
           }
 
           sunapiURI += "&X1=" + curX + "&Y1=" + curY + "&X2=" + event.offsetX + "&Y2=" + event.offsetY;
-          sunapiURI += "&TileWidth=" + liveCanvas.offsetWidth + "&TileHeight=" + liveCanvas.offsetHeight;
+          sunapiURI += "&TileWidth=" + overlayCanvas.offsetWidth + "&TileHeight=" + overlayCanvas.offsetHeight;
           setPTZAreaZoom("start");
           turnOffTracking();
           return execSunapi(sunapiURI, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; setAreaZoomCheck(true); } );
@@ -207,7 +207,8 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
             case "on" : 
                 ptzAreaZoomStart =  false;
                 setMode(ptzModeList.AREAZOOM);
-                
+                areaZoomInit();
+
                 ptzAreaZoomDot.css({
                     width : "8px",
                     height : "8px",
@@ -218,8 +219,8 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
                     left: "50%",
                     transform: "translate(-50%, -50%)"
                 });
-                $("channel_player").prepend(ptzAreaZoomDot);
-                
+                $("kind_stream").prepend(ptzAreaZoomDot);
+
                 break;
             case "off" : 
                 ptzAreaZoomStart =  false;
@@ -436,28 +437,14 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       }
     }
 
-    function enableAreaCanvas()
+    function areaZoomInit(width, height)
     {
-        var elementAreaCanvas = document.getElementById("areaCanvas");
-        liveCanvas = document.querySelector(".kind-stream-canvas");
-
-        // areaCanvas 위치 이동
-        elementAreaCanvas.style.left = liveCanvas.style.left;
-        elementAreaCanvas.style.top = liveCanvas.style.top;
-
-        //Canvas에 그릴때 기준이 되는 크기
-        elementAreaCanvas.setAttribute("width", liveCanvas.clientWidth);
-        elementAreaCanvas.setAttribute("height", liveCanvas.clientHeight);
-
-        //화면에 표시되는 영역
-        elementAreaCanvas.style.width = liveCanvas.clientWidth + "px";
-        elementAreaCanvas.style.height = liveCanvas.clientHeight + "px";
-
-        areaCanvasContext = elementAreaCanvas.getContext("2d");
+        overlayCanvas = document.getElementById("cm-livecanvas");
+        overlayCanvasContext = overlayCanvas.getContext("2d");
 
         //AreaZoom 영역 색상 두께 설정
-        areaCanvasContext.strokeStyle = "#FFFF00";
-        areaCanvasContext.lineWidth = 5;
+        overlayCanvasContext.strokeStyle = "#FFFF00";
+        overlayCanvasContext.lineWidth = 5;
     }
 
     function getMode(type) { return (ptzAreaZoomMode === true && type === "Areazoom")? ptzModeList.AREAZOOM : ptzMode; }
@@ -550,7 +537,6 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       getMaxGroup : getMaxGroup,
       getMaxTour : getMaxTour,
       getMaxTrace : getMaxTrace,
-      extendExecute : extendExecute,
-      enableAreaCanvas : enableAreaCanvas
+      extendExecute : extendExecute
     };
 }]);

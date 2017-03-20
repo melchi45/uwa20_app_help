@@ -1,0 +1,32 @@
+<div class="modal-header modal-setup">
+    <h3 class="applyColor">{{ 'lang_information' | translate }}</h3>
+</div>
+<div class="modal-body modal-setup" style="text-align:center">        
+  <div class="wn5-setup-table-responsive">
+    <table class="table table-bordered wn5-setup-table">
+      <thead>
+        <tr>
+          <th style="text-align:center">&nbsp;</th>
+          <th style="text-align:center">{{'lang_flip' | translate}}</th>
+          <th style="text-align:center">{{'lang_mirror' | translate}}(kbps)</th>
+          <th style="text-align:center">{{'lang_hallwayView' | translate}}</th>
+          <th style="text-align:center">{{'lang_videoOutput' | translate}}</th>
+          <th style="text-align:center">{{'lang_privacy' | translate}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="i in [1,2,3,4]">
+          <td style="text-align:center">CH {{i}}</td>
+          <td style="text-align:center">xx</td>
+          <td style="text-align:center">xx</td>
+          <td style="text-align:center">xx</td>
+          <td style="text-align:center">xx</td>
+          <td style="text-align:center">xx</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal-footer modal-setup" style="text-align:center">        
+    <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>        
+</div>

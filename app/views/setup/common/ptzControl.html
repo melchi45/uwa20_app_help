@@ -113,13 +113,13 @@
 
         <div id="ptz-control_right-box" ng-class="zoomPresetClass">
             <div id="ptz-control_preset-box" ng-if="showPTZControlPreset" >
-                <button type="button" class="btn btn-primary" title="{{'lang_setPreset' | translate}}" ng-click="showSetPreset()">
+                <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_setPreset' | translate}}" ng-click="showSetPreset()">
                     <i class="tui tui-ch-live-ptz-preset"></i>
                 </button>
-                <button type="button" class="btn btn-primary" title="{{'lang_goHomePosition' | translate}}" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_goHomePosition' | translate}}" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
                     <i class="tui tui-ch-live-home"></i>
                 </button>
-                <button type="button" class="btn btn-primary" title="{{'lang_setHomePosition' | translate}}" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_setHomePosition' | translate}}" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
                     <i class="tui tui-setup"></i>
                 </button>
             </div>
@@ -143,21 +143,18 @@
 				</ul>
             </div>
             <div ng-show="showPTZControlOSD">
-                <div ng-show="setNorth" class="ptz-control_set-north">
-                    <i class="tui tui-north"></i>
-                </div>
-                <button type="button" class="btn btn-primary" title="{{'lang_setNorth' | translate}}" ng-click="setNorthView()">
-                    <i class="tui tui-north"></i>
+                <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_setNorth' | translate}}" ng-click="setNorthView()">
+                    <i class="tui tui-wn5-north"></i>
                 </button>
             </div>
-            <div id="ptz-control_blc-box" ng-show="showPTZControlBLC">
+            <div id="ptz-control_blc-box" ng-show="showPTZControlBLC" style="margin-left: 20px;">
                 <div id="ptz-control_blc-left">
                     <h4>{{"lang_blcboxadjust" | translate}}</h4>
                     <div id="ptz-control_blc-adj">
-                        <button type="button" class="btn btn-primary top-up" ng-disabled="disablePTZControlBLC" ng-click="blcAreaChange('top','up')">
+                        <button type="button" class="btn btn-primary top-up" ng-disabled="disablePTZControlBLC" ng-click="blcAreaChange('top','down')">
                             <i class="tui tui-top"></i>
                         </button>
-                        <button type="button" class="btn btn-primary top-down" ng-disabled="disablePTZControlBLC" ng-click="blcAreaChange('top','down')">
+                        <button type="button" class="btn btn-primary top-down" ng-disabled="disablePTZControlBLC" ng-click="blcAreaChange('top','up')">
                             <i class="tui tui-down"></i>
                         </button>
                         <button type="button" class="btn btn-primary left-left" ng-disabled="disablePTZControlBLC" ng-click="blcAreaChange('left','left')">
@@ -172,10 +169,10 @@
                         <button type="button" class="btn btn-primary right-right" ng-disabled="disablePTZControlBLC" ng-click="blcAreaChange('right','right')">
                             <i class="tui tui-right"></i>
                         </button>
-                        <button type="button" class="btn btn-primary bottom-up" ng-disabled="disablePTZControlBLC" ng-click="blcAreaChange('bottom','up')">
+                        <button type="button" class="btn btn-primary bottom-up" ng-disabled="disablePTZControlBLC" ng-click="blcAreaChange('bottom','down')">
                             <i class="tui tui-top"></i>
                         </button>
-                        <button type="button" class="btn btn-primary bottom-down" ng-disabled="disablePTZControlBLC" ng-click="blcAreaChange('bottom','down')">
+                        <button type="button" class="btn btn-primary bottom-down" ng-disabled="disablePTZControlBLC" ng-click="blcAreaChange('bottom','up')">
                             <i class="tui tui-down"></i>
                         </button>
                     </div>

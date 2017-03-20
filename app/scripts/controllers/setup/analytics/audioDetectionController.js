@@ -300,7 +300,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
 
                         while(index--)
                         {
-                            var level = validateLevel(newAudioLevel[index]);
+                            var level = newAudioLevel[index].Level;
 
                             if(level === null) continue;
 
@@ -329,17 +329,6 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
     });
 
     var mLastSequenceLevel = 0;
-    function validateLevel(audioLevelObject)
-    {
-        if (mLastSequenceLevel > audioLevelObject.SequenceID)
-        {
-          return null;  
-        } 
-
-        mLastSequenceLevel = audioLevelObject.SequenceID;
-
-        return audioLevelObject.Level;
-    }
 
     function getAudioLevel(func)
     {

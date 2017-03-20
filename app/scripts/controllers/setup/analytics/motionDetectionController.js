@@ -50,6 +50,25 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     $scope.EventSource = 'MotionDetection';
     $scope.EventRule = {};
 
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+    
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        $rootScope.$emit('changeLoadingBar', true);
+        $scope.channelSelectionSection.setCurrentChannel(index);
+        view();
+    }, $scope);
+
     function getCommonCmd(){
         if($scope.VideoAnalysis2Support !== undefined && $scope.VideoAnalysis2Support === true){
             $scope.va2CommonCmd = '/stw-cgi/eventsources.cgi?msubmenu=videoanalysis2'
@@ -361,6 +380,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function getAttributes() {
+        $scope.MaxChannel = mAttr.MaxChannel;
         if (mAttr.EnableOptions !== undefined)
         {
             $scope.EnableOptions = mAttr.EnableOptions;
@@ -684,12 +704,14 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
         $q.seqAll(promises).then(
             function(){
+                $rootScope.$emit('changeLoadingBar', false);
                 $scope.pageLoaded = true;
                 $("#imagepage").show();
                 $timeout(setDefaultArea);
                 $timeout(setSizeChart);
             },
             function(errorData){
+                $rootScope.$emit('changeLoadingBar', false);
                 alert(errorData);
             }
         );
@@ -707,7 +729,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function getMotionDetectionData(successCallback){
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         var cmd = $scope.va2CommonCmd + '&action=view';
         return SunapiClient.get(cmd, getData,
                 successCallback,
@@ -857,7 +881,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function showVideo(){
 
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
                 function (response) {
                     var viewerWidth = 640;
@@ -910,7 +936,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
                         while(index--)
                         {
-                            var level = validateLevel(newMotionLevel[index]);
+                            var level = newMotionLevel[index].Level;
 
                             if(level === null) continue;
 
@@ -927,23 +953,13 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         })();
     }
 
-    function validateLevel(motionLeveObject)
-    {
-        if(mLastSequenceLevel > motionLeveObject.SequenceID)
-        {
-            return null;
-        }
-
-        mLastSequenceLevel = motionLeveObject.SequenceID;
-
-        return motionLeveObject.Level;
-    }
-
     function getMotionLevel(func)
     {
         var newMotionLevel = {};
 
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
 
         getData.MaxSamples = maxSample;
         getData.EventSourceType = 'MotionDetection';
@@ -1015,7 +1031,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function setOnlyEnable(){
         var deferred = $q.defer();
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
 
         var cmd = $scope.va2CommonCmd + '&action=view';
         SunapiClient.get(cmd, getData,
@@ -1023,7 +1041,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             {
                 var detectionType = response.data.VideoAnalysis[0].DetectionType;
                 
-                var setData = {};
+                var setData = {
+                    Channel: $scope.channelSelectionSection.getCurrentChannel()
+                };
                 if($scope.MotionDetection.MotionDetectionEnable === true){
                     if(detectionType === "Off" || detectionType === "MotionDetection"){
                         setData.DetectionType = "MotionDetection";
@@ -1107,7 +1127,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 },
                 function(errorData) {
                     console.log(errorData);
-                });
+            });
         }
     }
 
@@ -1132,6 +1152,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function sunapiQueueRequest(queue, callback){
         var currentItem = queue.shift();
+        currentItem.reqData.Channel = $scope.channelSelectionSection.getCurrentChannel();
         SunapiClient.get(
             currentItem.url, 
             currentItem.reqData, 
@@ -1265,6 +1286,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             SunapiClient.get(cmd,            
             //SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=remove', 
                 {
+                    Channel: $scope.channelSelectionSection.getCurrentChannel(),
                     ROIIndex: removedROIIndex.join(',')
                 },
                 function (response){
@@ -1369,7 +1391,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
         //console.log(" ::::: SET ENABLE START ::::: ");
         var deferred = $q.defer();
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         //getData.DetectionType = 'MotionDetection';
 
         //return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=view', getData,
@@ -1383,7 +1407,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
                     var detectionType = response.data.VideoAnalysis[0].DetectionType;
                     
-                    var setData = {};
+                    var setData = {
+                        Channel: $scope.channelSelectionSection.getCurrentChannel()
+                    };
                     if($scope.MotionDetection.MotionDetectionEnable === true){
 
                         if(detectionType === "Off" || detectionType === "MotionDetection"){
@@ -1570,7 +1596,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     var getHandoverList = function(successCallback){
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=view', getData,
                 function (response){
                     //Enable이 비활성화 일 때 Handover는 필요없으므로 Return
@@ -1623,7 +1651,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     
     var getPresetHandoverList = function()
     {
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         getData.PresetIndex = "All";
         
         return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=view', getData,
@@ -1731,7 +1761,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         // console.log("::: handover", $scope.Handover[index]);
         // if ($scope.Handover[index].HandoverList[handoverlistIndex] !== undefined)
         // {
-        var setData = {};
+        var setData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         try{
             setData.ROIIndex = $scope.Handover[index].HandoverList[handoverlistIndex].ROIIndex;   
         }catch(e){
@@ -1830,7 +1862,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         //console.log(" ::: roiIndex, index", roiIndex, index);
 
         if (typeof index == 'undefined') index = 0;
-        var setData = {};
+        var setData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
 
         //var areaIndex = roiIndex - 1;
         var areaIndex = $scope.findHandoverIndex();
@@ -1871,7 +1905,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function removeUserFromHandover(roiIndex, userIndexArray, index)
     {
-        var setData = {};
+        var setData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
 
         setData.ROIIndex = roiIndex;
 

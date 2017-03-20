@@ -154,7 +154,8 @@ kindFramework
       speakerVolume: false,
       micEnable: false,
       micStatus: false,
-      micVolume: false
+      micVolume: false,
+      overlayCanvas : false
     };
     // var isPTZAble = AccountService.isPTZAble() === true;
 
@@ -602,7 +603,7 @@ kindFramework
         var isPlaybackEnable = playData.isPlaybackEnable();
         if( isPlaybackEnable === true ) return;
         var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true:false;
-        var ip = (plugin === true) ? RESTCLIENT_CONFIG.digest.hostName : RESTCLIENT_CONFIG.digest.rtspIp;
+        var ip = RESTCLIENT_CONFIG.digest.rtspIp;
         var port = RESTCLIENT_CONFIG.digest.rtspPort;
         var profile = _requestProfile.Profile;
         var id = SessionOfUserManager.getUsername();
@@ -856,8 +857,8 @@ kindFramework
         );    
     };
 
-    $rootScope.$saveOn('channel:pixelCount', function(data) {
-      if ($scope.channelBasicFunctions.pixelCount) {
+    $rootScope.$saveOn('channel:overlayCanvas', function(data) {
+      if ($scope.channelBasicFunctions.overlayCanvas) {
         kindStreamInterface.setCanvasStyle($scope.viewMode);
       }
     });
@@ -969,6 +970,7 @@ kindFramework
           var MJPEGProfileID = 1;
           RequestProfile = getProfileByIndex($scope.profileList, MJPEGProfileID);
           $scope.channelBasicFunctions.pixelCount = false;
+          $scope.channelBasicFunctions.overlayCanvas = false;
         }
         UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
       }

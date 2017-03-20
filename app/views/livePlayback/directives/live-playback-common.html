@@ -19,7 +19,7 @@
 <!-- Video -->
 <div id="cm-video" ng-class="{'cm-fullscreen' : domControls.visibilityFullScreen}">
 
-  <pixel-count ng-if="checkPlugin()"  ng-show="channelBasicFunctions.pixelCount"></pixel-count>
+  <overlay-canvas ng-if="checkPlugin()"  ng-show="channelBasicFunctions.overlayCanvas"></overlay-canvas>
   <div 
        ng-hide="(domControls.visibilityFullScreen || domControls.visibilityFullStreaming)" 
        class="channels-view wisenet-channel cm-wisenet-channel" 

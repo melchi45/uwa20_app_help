@@ -187,34 +187,6 @@ kindFramework
       _scope.playerdata = ConnectionSettingService.closeStream();
     };
 
-    function mouseup_manualTracking (event) {
-        if(event.target.id !== "areaCanvas") return;
-        
-        //마우스 오른쪽 버튼만 허용
-        if(event.button != 2) return;
-
-        PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
-        PTZContorlService.setManualTrackingMode("True");
-
-        var canvas = document.getElementsByTagName("channel_player")[0].getElementsByTagName("canvas")[0];
-        var xPos = event.offsetX;
-        var yPos = event.offsetY;
-
-        if(xPos >=0  && yPos >= 0) {
-            var rotate = UniversialManagerService.getRotate();
-
-            if(rotate === '90' || rotate === '270') {
-                xPos = Math.ceil(xPos*(10000 / canvas.offsetHeight));
-                yPos = Math.ceil(yPos*(10000 / canvas.offsetWidth));
-            } else {
-                xPos = Math.ceil(xPos*(10000 / canvas.offsetWidth));
-                yPos = Math.ceil(yPos*(10000 / canvas.offsetHeight));
-            }
-
-            PTZContorlService.execute([xPos, yPos]);
-        }
-    }
-
     this.setManualTrackingMode = function(_mode){
         try {
 
@@ -224,23 +196,10 @@ kindFramework
                 return;
             }
 
-            PTZContorlService.enableAreaCanvas();
-            var elementAreaCanvas = document.getElementById("areaCanvas");
+            $rootScope.$emit('channel:overlayCanvas');
+            $rootScope.$emit('overlayCanvas::command', "manualTracking", _mode);
 
-            if(_mode)
-            {
-                PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
-                PTZContorlService.setManualTrackingMode("True");
-
-                elementAreaCanvas.addEventListener('mouseup', mouseup_manualTracking);
-            }
-            else
-            {
-                PTZContorlService.setManualTrackingMode("False");
-                elementAreaCanvas.removeEventListener('mouseup', mouseup_manualTracking);
-            }
-
-            console.log("kindControlService::setManualTrackingMode() ===>" + _mode + "AreaZoom");
+            console.log("kindControlService::setManualTrackingMode() ===>" + _mode + "manualTracking");
         }catch (e)
         {
             console.log(e.message);
@@ -256,19 +215,8 @@ kindFramework
                 return;
             }
 
-            PTZContorlService.enableAreaCanvas();
-            var elementAreaCanvas = document.getElementById("areaCanvas");
-
-            if(_mode)
-            {
-                PTZContorlService.setPTZAreaZoom("on");
-                PTZContorlService.setElementEvent(elementAreaCanvas);
-            }
-            else
-            {
-                PTZContorlService.setPTZAreaZoom("off");
-                PTZContorlService.deleteElementEvent(elementAreaCanvas);
-            }
+            $rootScope.$emit('channel:overlayCanvas');
+            $rootScope.$emit('overlayCanvas::command', "areaZoomMode", _mode);
 
             console.log("kindControlService::setAreaZoomMode() ===>" + _mode + "AreaZoom");
         }catch (e)

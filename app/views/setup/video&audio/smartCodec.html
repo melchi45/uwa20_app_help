@@ -5,10 +5,12 @@
         </wn5-setup-main-title>
         <div class="wn5-setup-section">
             <hr class="wn5-setup-hr">
+
+            <setup-channel-selector ng-show="MaxChannel > 1"></setup-channel-selector>
+            
             <div class="wn5-setup-section-heading">
                 <h3>{{ 'lang_manualROIarea' | translate }}</h3>
             </div>
-            
 
             <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-content">

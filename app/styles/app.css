@@ -193,6 +193,10 @@
 .cm-icon-x15 {
   transform: scale(1.5);
 }
+.wn5-icon-button-xs {
+  padding: 0 15px 0 15px !important;
+  font-size: 20px !important;
+}
 /* Responsive Element show/hide */
 .cm-mobile {
   display: none !important;
@@ -771,6 +775,7 @@ live-playback common {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 #cm-video .cm-plugin-msg a {
   display: inline-block;
@@ -827,7 +832,7 @@ live-playback common {
   background-color: #000;
   position: fixed;
   bottom: 0;
-  z-index: 10000;
+  z-index: 20;
   height: 50px;
 }
 #cm-bottom-menu.cm-full-menu [id^="cm-"],
@@ -9546,8 +9551,12 @@ i.tui-ch-playback-stop {
   /* After active click Event button */
   /*  after active click backup button  */
 }
-.kind-responsive-playback .playback-channel-selector {
-  padding: 15px 18px 0 40px;
+.kind-responsive-playback #playback-channel-holder {
+  display: block;
+  float: left;
+}
+.kind-responsive-playback #playback-channel-holder .playback-channel-selector {
+  padding: 15px 18px 0 30px;
 }
 .kind-responsive-playback .cm-vline {
   margin-top: 12px;

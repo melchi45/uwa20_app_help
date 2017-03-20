@@ -80,16 +80,34 @@ kindFramework.directive('liveIconList', function(
 		    function pixelCountFunc() {
 		      if (scope.channelBasicFunctions.pixelCount) {
 		        scope.channelBasicFunctions.pixelCount = false;
+		        if(scope.channelSetFunctions.ptz === false)
+				{
+                    scope.channelBasicFunctions.overlayCanvas = false;
+				}
 		      } else {
 		        scope.channelBasicFunctions.pixelCount = true;
+                scope.channelBasicFunctions.overlayCanvas = true;
 		      }
 
 		      var command = {
 		      	cmd : scope.channelBasicFunctions.pixelCount
-		      }
+		      };
 
 		      $rootScope.$emit('channelPlayer:command', 'pixelCount', command);
 		    }
+
+            $rootScope.$saveOn("overlayCanvas::command", function(event, mode, boolEnable) {
+                switch (mode)
+                {
+                    case "pixelCount" :
+                        break;
+                    case "manualTracking" :
+                        break;
+                    case "areaZoomMode":
+                        scope.channelBasicFunctions.pixelCount = false;
+                        break;
+                }
+            });
 
 		    function openFullscreenButton(e){
 		      e.fullButton = true;
@@ -157,6 +175,7 @@ kindFramework.directive('liveIconList', function(
 			        	}else{
 			        		openFullscreenButton(e);
 			        	}
+                        $rootScope.$emit('channel:overlayCanvas');
 			        },
 			        'class': 'tui-wn5-toolbar-fullscreen',
 			        'show': true,
@@ -215,6 +234,11 @@ kindFramework.directive('liveIconList', function(
 			      ptz: {
 			        'label': 'lang_PTZ',
 			        'action': function() {
+						if (scope.channelBasicFunctions.overlayCanvas) {
+							scope.channelBasicFunctions.overlayCanvas = false;
+						} else {
+							scope.channelBasicFunctions.overlayCanvas = true;
+						}
 			          toggleChannelFunctions('ptz');
 			        },
 			        'class': 'tui-wn5-toolbar-ptz',

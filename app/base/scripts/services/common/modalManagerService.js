@@ -36,7 +36,7 @@ kindFramework.service('ModalManagerService',
         'generalCheckboxList' : {'controller' : 'ModalGeneralCheckBoxListCtrl'  , 'template' : 'views/livePlayback/modal/ModalGeneralCheckBoxList.html', 'priority': 2 },
         'liveList' : {'controller' : 'ModalInstnceLiveListCtrl'  , 'template' : 'views/livePlayback/modal/ModalLiveList.html', 'priority': 2 },
         'idPassword' : {'controller' : 'ModalInstnceIdPasswordCtrl'  , 'template' : 'views/livePlayback/modal/ModalIPPassword.html', 'priority': 2 },
-        'hugeThumbnail' : {'controller' : 'ModalHugeThumbnailCtrl'  , 'template' : 'views/livePlayback/modal/ModalHugeThumbnail.html', 'priority': 2 },
+        'hugeThumbnail' : {'controller' : 'ModalHugeThumbnailCtrl'  , 'template' : 'views/livePlayback/modal/ModalHugeThumbnail.html', 'priority': 2 }
     };
 
     /*

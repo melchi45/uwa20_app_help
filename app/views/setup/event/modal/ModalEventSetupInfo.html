@@ -1,0 +1,33 @@
+<div class="modal-header modal-setup">
+    <h3 class="applyColor">{{ 'lang_information' | translate }}</h3>
+</div>
+<div class="modal-body modal-setup" style="text-align:center">        
+	<div class="wn5-setup-table-responsive">
+		<table class="table table-bordered wn5-setup-table">
+			<thead>
+			<tr>
+				<th style="text-align:center" colspan="2">&nbsp;</th>
+				<th style="text-align:center">{{'lang_menu_fogdetection' | translate}}</th>
+				<th style="text-align:center">{{'lang_tampering' | translate}}(kbps)</th>
+				<th style="text-align:center">{{'lang_defocus_detection' | translate}}</th>
+				<th style="text-align:center">{{'lang_md' | translate}}</th>
+				<th style="text-align:center">{{'lang_menu_iva' | translate}}</th>
+				<th style="text-align:center">{{'lang_faceDetection' | translate}}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="item in channelItems track by $index">
+				<td 
+					ng-if="item.ch !== undefined"
+					style="text-align:center" 
+					rowspan="{{dataType.length}}">CH {{item.ch}}</td>
+				<td style="text-align:center">{{item.dataType}}</td>
+				<td style="text-align:center" ng-repeat="data in item.datas track by $index">{{data}}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="modal-footer modal-setup" style="text-align:center">        
+    <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>        
+</div>
