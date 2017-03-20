@@ -313,7 +313,10 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         setData.Enable = $scope.RecordStorageInfo.Enable;
         setData.OverWrite = $scope.RecordStorageInfo.OverWrite;
         setData.AutoDeleteEnable = $scope.RecordStorageInfo.AutoDeleteEnable;
+        if(!($scope.RecordStorageInfo.AutoDeleteDays == undefined || $scope.RecordStorageInfo.AutoDeleteDays == '')){
         setData.AutoDeleteDays = $scope.RecordStorageInfo.AutoDeleteDays;
+        }
+        
         queue.push({
             url: '/stw-cgi/recording.cgi?msubmenu=storage&action=set',
             reqData: setData,

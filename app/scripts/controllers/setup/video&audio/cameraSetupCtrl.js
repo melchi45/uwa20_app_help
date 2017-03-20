@@ -468,8 +468,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 //        if($scope.PTZModel){
 //            $scope.tabActiveData.ssdr = true;
 //        }else{
-            $scope.tabActiveData.sensor = true;
+//            $scope.tabActiveData.sensor = true;
 //        }
+        if($scope.tabMenu.Sensor) {
+            $scope.tabActiveData.sensor = true;
+        } else {
+            $scope.tabActiveData.ssdr = true;
+        }
     }
 
     /**
@@ -483,6 +488,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
             if($scope.presetTypeData.SelectedPresetType==0){
                 //Global
+                $scope.tabMenu.Sensor = true;
                 $scope.tabMenu.SSDR = true;
                 $scope.tabMenu.WhiteBalance = true;
                 $scope.tabMenu.BackLight = true;
@@ -500,6 +506,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 $scope.tabUI.Focus = 0;
             }else{
                 //Preset
+                $scope.tabMenu.Sensor = false;
                 $scope.tabMenu.SSDR = true;
                 $scope.tabMenu.WhiteBalance = true;
                 $scope.tabMenu.BackLight = false;

@@ -28,13 +28,17 @@
                         </div>
                         <div class="form-group">
                             <div class="wn5-setup-section-article-heading">{{ 'lang_speed' | translate }}</div>                                            
-                            <div class="wn5-setup-section-article-content"><input type="text" class="form-control" ng-model="Swings[SwingMode.SelectedIndex].Speed" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"/></div>
-                            <label class="col-lg-1 control-label" style="text-align:left">({{PresetMinSpeed}}~{{PresetMaxSpeed}})</label>
+                            <div class="wn5-setup-section-article-content">
+                                <input type="text" class="form-control" ng-model="Swings[SwingMode.SelectedIndex].Speed" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"/>
+                                <label class="col-lg-1 control-label" style="text-align:left">({{PresetMinSpeed}}~{{PresetMaxSpeed}})</label>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="wn5-setup-section-article-heading">{{ 'lang_dwt' | translate }}</div>                                                
-                            <div class="wn5-setup-section-article-content"><input type="text" class="form-control" ng-model="Swings[SwingMode.SelectedIndex].DwellTime" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}"/></div>
-                            <label class="col-lg-2 control-label" style="text-align:left">({{DwellMinTime}}~{{DwellMaxTime}} {{ 'lang_sec' | translate }})</label>
+                            <div class="wn5-setup-section-article-content">
+                                <input type="text" class="form-control" ng-model="Swings[SwingMode.SelectedIndex].DwellTime" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}"/>
+                                <label class="col-lg-2 control-label" style="text-align:left">({{DwellMinTime}}~{{DwellMaxTime}} {{ 'lang_sec' | translate }})</label>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="wn5-setup-section-article-heading">{{ 'lang_presetList' | translate }}</div>
@@ -195,7 +199,7 @@
                                 <button type="button" class="btn btn-primary" ng-click="setAutoRun()">{{ 'lang_set' | translate }}</button>
                             </div>
                         </div>
-                        <div ng-if="AutoRun.Mode == 'Home'">
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Home'">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
@@ -203,7 +207,7 @@
                                 </div>
                             </div>    
                         </div>
-                        <div ng-if="AutoRun.Mode == 'Preset'">
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Preset'">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
@@ -216,7 +220,7 @@
                                 <label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxPreset}})</label>
                             </div>    
                         </div>
-                        <div ng-if="AutoRun.Mode == 'Swing'">
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Swing'">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
@@ -230,7 +234,7 @@
                                 </div>
                             </div>    
                         </div>
-                        <div ng-if="AutoRun.Mode == 'Group'">
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Group'">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
@@ -243,7 +247,7 @@
                                 <label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxGroupCount}})</label>
                             </div>
                         </div>   
-                        <div ng-if="AutoRun.Mode == 'Tour'">
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Tour'">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
@@ -251,7 +255,7 @@
                                 </div>
                             </div>    
                         </div>    
-                        <div ng-if="AutoRun.Mode == 'Trace'">
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Trace'">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
@@ -264,7 +268,7 @@
                                 <label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxTraceCount}})</label>
                             </div>    
                         </div>
-                        <div ng-if="AutoRun.Mode == 'AutoPan'">
+                        <div class="form-group" ng-if="AutoRun.Mode == 'AutoPan'">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
@@ -282,7 +286,7 @@
                                 <label class="col-lg-1 control-label" style="text-align:left">({{AutoPanTiltMinAngle}}~{{AutoPanTiltMaxAngle}})</label>
                             </div>
                         </div>    
-                        <div ng-if="AutoRun.Mode == 'Schedule'">
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Schedule'">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
