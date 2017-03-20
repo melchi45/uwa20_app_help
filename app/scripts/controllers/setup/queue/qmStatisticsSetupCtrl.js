@@ -883,7 +883,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
                 support_ptz: false,
                 rotate: rotate,
                 adjust: adjust,
-                currentPage: 'QueueManagement'
+                currentPage: 'Queue'
             };
         }, function(errorData) {
             console.log(errorData);
