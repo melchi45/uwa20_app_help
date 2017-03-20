@@ -154,6 +154,8 @@ kindFramework.controller('QMSetupCtrl',
     $scope.realtimeSection = {
 		coordinates: [],
 		init: function(){
+			$scope.realtimeSection.coordinates = [];
+
 			var datas = $scope.queueData.Queues;
 			for(var i = 0; i < datas.length; i++){
 				var points = [];
@@ -318,7 +320,6 @@ kindFramework.controller('QMSetupCtrl',
 		},
 		bindHtml: function(){
 			var data = getPeopleData();
-			console.info(data);
 			$("#qm-bar .qm-bar-max span").html(data.max);
 			$("#qm-bar .qm-bar-high span").html(data.high);
 			$("#qm-bar .qm-bar-mid span").html(data.medium);
@@ -424,7 +425,6 @@ kindFramework.controller('QMSetupCtrl',
 	$scope.reportSection = {
 		init: function(){
 			$scope.pcSetupReport.getReport();
-			// console.info($scope.pcSetupReport);
 		}
 	};
 
@@ -525,7 +525,6 @@ kindFramework.controller('QMSetupCtrl',
 
 		if($scope.currentTapStatus[0] === true){
 			$scope.sketchinfo = getSketchinfo('area');
-			// console.info($scope.sketchinfo);
 			$timeout(function(){
 				sketchbookService.activeShape($scope.queueListSection.selectedQueueId);
 			});
@@ -609,7 +608,6 @@ kindFramework.controller('QMSetupCtrl',
         //Configuration
         if(flag === "area") {
         	var data = $scope.realtimeSection.coordinates;
-			// console.info(data);
         	for(var i = 0; i < data.length; i++){
 	            $scope.coordinates.push(
 		            {
@@ -672,7 +670,6 @@ kindFramework.controller('QMSetupCtrl',
 	    };
 
 	    var max = areaSize / (calSize.width * calSize.height);
-		// console.info(max);
 	    return Math.ceil(max);
 	}
 
