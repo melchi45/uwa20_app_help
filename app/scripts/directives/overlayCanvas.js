@@ -36,7 +36,9 @@ kindFramework.directive('overlayCanvas', function(
         ctx = cvs.getContext("2d");
 
         ctx.clearRect(0, 0, parseInt(cvs.width, 10), parseInt(cvs.height, 10));
-        // ctx.fillText("0 x 0", 10, 21);
+        ctx.font = "10pt Tahoma";
+        ctx.fillStyle = "#0f0";
+        ctx.fillText("0 x 0", 10, 21);
 
         var rotate = UniversialManagerService.getRotate();
         if (rotate === "90" || rotate === "270") {
