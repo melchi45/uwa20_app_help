@@ -9,8 +9,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		 */
 		var manager = null;
 		var streamCanvas;
-		var saveCanvas;
-		var pixelCanvas;
+		var overlayCanvas;
 		var ispreview;
 		var curViewMode;
 		var bottomMenuHeight = 50;
@@ -33,18 +32,18 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		};
 
 		var setCanvasStyle = function(mode, controlShow) {
-                                if(controlShow === undefined){
-                                    var bottomMenu = $("#cm-bottom-menu");
-                                    controlShow = bottomMenu.hasClass('cm-show-menu')? true : false;
-                                }
+			if(controlShow === undefined){
+				var bottomMenu = $("#cm-bottom-menu");
+				controlShow = bottomMenu.hasClass('cm-show-menu')? true : false;
+			}
 
-                                setContainerSize(controlShow);
+			setContainerSize(controlShow);
 
 		 	if (streamCanvas === null || streamCanvas === undefined) {
 		 		return;
 			}
 
-			pixelCanvas = $("#cm-livecanvas");
+			overlayCanvas = $("#cm-livecanvas");
 
 			if (tagType !== UniversialManagerService.getVideoMode()) {
 				tagType = UniversialManagerService.getVideoMode();
@@ -80,7 +79,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 					top: 0,
 					left: 0
 				});
-				pixelCanvas.css({
+				overlayCanvas.css({
 					top: 3+"px",
 					left: 3+"px"
 				});
@@ -253,7 +252,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 			} //setCanvasBytestRatio
 			
 			if(streamCanvas[0] !== undefined && BrowserService.BrowserDetect !== BrowserService.BROWSER_TYPES.IE) {
-				$rootScope.$emit("pixelCount::setSize", streamCanvas[0].clientWidth, streamCanvas[0].clientHeight);
+                $rootScope.$emit("overlayCanvas::setSize", streamCanvas[0].clientWidth, streamCanvas[0].clientHeight);
 			}
 		}; //setCanvasStyle
 
@@ -273,7 +272,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 				top: top + "px",
 				left: left + "px"
 			});
-			pixelCanvas.css({
+			overlayCanvas.css({
 				top: (top+3) + "px",
 				left: (left+3) + "px"
 			});

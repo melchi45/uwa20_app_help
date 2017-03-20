@@ -83,6 +83,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 
                             scope.modePTZ.AreaZoom = false;
                             $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
+                            $rootScope.$emit('channelPlayer:command', 'pixelCount', false);
                             if (mAttr.TraceSupport)
                             {
                                 scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
@@ -130,10 +131,28 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}
 				};
 
+                $rootScope.$saveOn("livePTZControl::command", function(event, mode, boolEnable) {
+                    switch (mode)
+                    {
+                        case "pixelCount" :
+                            scope.modePTZ.AreaZoom = false;
+                            break;
+                        case "manualTracking" :
+                            scope.autoTrackingFlag = scope.dptzMode.DIGITAL_PTZ;
+                            break;
+                        case "areaZoomMode":
+                            break;
+                    }
+                });
+
 				scope.autoTracking = function() {
-                    //Disable Area Zoom
-                    scope.modePTZ.AreaZoom = false;
-                    $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
+					if(scope.modePTZ.AreaZoom)
+					{
+                        //Disable Area Zoom
+                        scope.modePTZ.AreaZoom = false;
+                        $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
+					}
+
 
 					if (UniversialManagerService.getDigitalPTZ() === scope.dptzMode.DIGITAL_PTZ) {
 						scope.autoTrackingFlag = scope.dptzMode.DIGITAL_AUTO_TRACKING;

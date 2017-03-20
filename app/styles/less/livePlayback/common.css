@@ -771,6 +771,7 @@ live-playback common {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 #cm-video .cm-plugin-msg a {
   display: inline-block;
