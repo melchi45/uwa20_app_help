@@ -321,6 +321,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                 $timeout(function(){
                     $rootScope.$emit('changeLoadingBar', false);
                     $scope.pageLoaded = true;
+                    $scope.$emit('pageLoaded', true);
                     $timeout(setSizeChart);
                 });
             },

@@ -1128,6 +1128,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 setInitialObjectSize();
                 updateMDVARegion2($scope.activeTab);
                 $scope.pageLoaded = true;
+                $scope.$emit('pageLoaded', true);
                 $rootScope.$emit('changeLoadingBar', false);
             });
         }, function(errorData) {
