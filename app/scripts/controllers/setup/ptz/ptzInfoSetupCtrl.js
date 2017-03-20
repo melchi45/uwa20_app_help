@@ -704,7 +704,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     {
         $scope.memorizeTraceMode = $scope.memorizeTraceMode == 'Start' ? 'Stop' : 'Start';
         var promises = [];
-        promises.push(memorizeTrace($scope.memorizeTraceMode, true));
+        promises.push(function(){return memorizeTrace($scope.memorizeTraceMode, true)});
         $q.seqAll(promises).then(
             function(){
             },
