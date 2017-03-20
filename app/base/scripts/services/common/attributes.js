@@ -573,6 +573,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                 mAttributes.AutoPanTiltAngle = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/autorun/AutoPanTiltAngle/int');
                 mAttributes.ProportionalPTSpeedModes = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/ptzsettings/ProportionalPTSpeedMode/enum');
                 mAttributes.PTLimitControlModes = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/ptlimits/Mode/enum');
+                mAttributes.TiltRangeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/ptlimits/TiltRange/enum');
                 mAttributes.PTZProtocolOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/ptzprotocol/Protocol/enum');
                 mAttributes.CameraIDOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/ptzprotocol/CameraID/int');
             }

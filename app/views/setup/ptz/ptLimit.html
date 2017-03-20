@@ -33,6 +33,10 @@
                     <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="Use[PTLimitMode.SelectedIndex]" ng-change="changePTLimit()" ng-options="Option as getTranslatedOption(Option) for Option in UseOptions"></select></div>
                 </div>
                 <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_tiltAngle' | translate }}</div>
+                    <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="PTLimit.TiltRange" ng-options="Option as getTranslatedOption(Option) for Option in TiltRangeOptions"></select></div>
+                </div>
+                <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_action' | translate }}</div>
                     <div calss="wn5-setup-section-article-content">
                         <table cellspacing="0" cellpadding="0" border="0" width="300px">
