@@ -58,13 +58,13 @@ kindFramework.directive('channelPlayer',
             }
 
             function createPlugInInstallElement() {
-                var ElementTemplate = '<div class="cm_plugin-msg">{{ "lang_msg_plugin_install2" | translate }}<br><a href=' + BrowserService.PlugInPath +'><i class="tui tui-wn5-download cm_icon-x15"></i>Plugin</a></div>';
+                var ElementTemplate = '<div class="cm-plugin-msg">{{ "lang_msg_plugin_install2" | translate }}<br><a href=' + BrowserService.PlugInPath +'><i class="tui tui-wn5-download cm-icon-x15"></i>Plugin</a></div>';
                 elem.append($compile(ElementTemplate)(scope));
                 $rootScope.$emit('NeedToInstallPlugIn', true);
             }
 
             function createNoSupportPlaybackInPlugInElement(){
-                var ElementTemplate = '<div class="cm_plugin-msg">{{ "lang_msg_plugin_only_support_ie" | translate }}</div>';
+                var ElementTemplate = '<div class="cm-plugin-msg">{{ "lang_msg_plugin_only_support_ie" | translate }}</div>';
                 elem.append($compile(ElementTemplate)(scope));
             }
 
@@ -198,7 +198,7 @@ kindFramework.directive('channelPlayer',
                       if( _pluginMode === true )
                       {
                         var pluginObj = elem[0].getElementsByTagName('object')[0];
-                        $(pluginObj).addClass("cm_vn");
+                        $(pluginObj).addClass("cm-vn");
                         PluginControlService.startPluginStreaming(pluginObj, _ip, _port, _profile, _id, _password, statusCallback);
                       }
                       else
@@ -210,7 +210,7 @@ kindFramework.directive('channelPlayer',
                       if( _pluginMode === true )
                       {
                         var pluginObj = elem[0].getElementsByTagName('object')[0];
-                        $(pluginObj).addClass("cm_vn");
+                        $(pluginObj).addClass("cm-vn");
                         PluginControlService.startPluginStreaming(pluginObj, _ip, _port, _profile, _id, _password, statusCallback);
                       }
                       else

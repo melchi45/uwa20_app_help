@@ -771,6 +771,7 @@ live-playback common {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 #cm-video .cm-plugin-msg a {
   display: inline-block;
@@ -9546,8 +9547,12 @@ i.tui-ch-playback-stop {
   /* After active click Event button */
   /*  after active click backup button  */
 }
-.kind-responsive-playback .playback-channel-selector {
-  padding: 15px 18px 0 40px;
+.kind-responsive-playback #playback-channel-holder {
+  display: block;
+  float: left;
+}
+.kind-responsive-playback #playback-channel-holder .playback-channel-selector {
+  padding: 15px 18px 0 30px;
 }
 .kind-responsive-playback .cm-vline {
   margin-top: 12px;

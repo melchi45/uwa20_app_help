@@ -164,7 +164,7 @@
                             <div style="float: left; margin-left: 30px;">
                                 {{ lang.queueLevel.high | translate }}
                                 <select 
-                                    class="cm_selectbox" 
+                                    class="cm-selectbox" 
                                     ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[0].Count"
                                     ng-change="queueLevelSection.changeValue()"
                                     ng-options="maxData for maxData in queueLevelSection.maxArr"
