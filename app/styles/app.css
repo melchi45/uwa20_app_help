@@ -193,6 +193,10 @@
 .cm-icon-x15 {
   transform: scale(1.5);
 }
+.wn5-icon-button-xs {
+  padding: 0 15px 0 15px !important;
+  font-size: 20px !important;
+}
 /* Responsive Element show/hide */
 .cm-mobile {
   display: none !important;
