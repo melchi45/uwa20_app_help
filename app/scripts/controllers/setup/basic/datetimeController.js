@@ -261,7 +261,7 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
                 $scope.isViewed = true;
                 $scope.pageLoaded = true;
                 $scope.SyncPc = false;
-                $("#datetimepage").show();
+                //$("#datetimepage").show();
                 startTicking();
             },
             function(error){
@@ -738,6 +738,11 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
     //     // $scope.cameratimeformat = $filter('date')(cameratime, 'yyyy-MM-dd HH:mm:ss');
     //     $scope.cameratimeformat = cameratime;
     // });
+    $scope.$watch('isViewed', function(newVal,oldVal){
+        if(newVal != oldVal && newVal == false){
+            $("#datetimepage").show();
+        }
+    });
 
     var mStopTicking = false;
     var monitoringTimer = null;

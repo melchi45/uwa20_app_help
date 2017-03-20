@@ -1,9 +1,9 @@
 "use strict";
 kindFramework
 .service('PluginControlService', ['$rootScope', '$timeout', 'Attributes', 'SunapiClient', 'UniversialManagerService', '$interval',
-  'kindStreamInterface', 'ModalManagerService', '$translate', 'CAMERA_STATUS', 'EventNotificationService', 'PlayDataModel', 'PTZContorlService', 'PTZ_TYPE',
+  'kindStreamInterface', 'ModalManagerService', '$translate', 'CAMERA_STATUS', 'EventNotificationService', 'PlayDataModel', 'PTZContorlService', 'PTZ_TYPE', 'RESTCLIENT_CONFIG',
   function($rootScope, $timeout, Attributes, SunapiClient, UniversialManagerService, $interval, 
-    kindStreamInterface, ModalManagerService, $translate, CAMERA_STATUS, EventNotificationService, PlayDataModel, PTZContorlService, PTZ_TYPE){
+    kindStreamInterface, ModalManagerService, $translate, CAMERA_STATUS, EventNotificationService, PlayDataModel, PTZContorlService, PTZ_TYPE, RESTCLIENT_CONFIG){
     var sunapiAttributes = Attributes.get();  //--> not common.
     var pluginElement = null,
         rtspIP = null,
@@ -32,7 +32,7 @@ kindFramework
 
     this.startPluginStreaming = function(pluginObj, _ip, _port, _profile, _id, _password, statusCallback) {
       pluginElement = pluginObj;
-      rtspIP = _ip;
+      rtspIP = RESTCLIENT_CONFIG.digest.hostName;
       rtspPort = _port;
       userID = _id;
       currentProfile = _profile;
@@ -191,7 +191,7 @@ kindFramework
       pluginElement.height = 0;
 
       playbackTime = data.time;
-      rtspIP = data.rtspIP;
+      rtspIP = RESTCLIENT_CONFIG.digest.hostName;
       rtspPort = data.rtspPort;
       userID = data.userID;
       playSpeed = 1;
@@ -211,7 +211,7 @@ kindFramework
       pluginElement.height = 0;
 
       playbackTime = data.time;
-      rtspIP = data.rtspIP;
+      rtspIP = RESTCLIENT_CONFIG.digest.hostName;
       rtspPort = data.rtspPort;
       userID = data.userID;
       playbackMode = 3;

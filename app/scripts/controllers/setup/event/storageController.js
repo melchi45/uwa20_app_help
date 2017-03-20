@@ -123,6 +123,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         $scope.MaxChannel = mAttr.MaxChannel;
 
 
+
         defer.resolve("success");
         return defer.promise;
     }
@@ -524,6 +525,9 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             idx = 0;
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData, function(response) {
             $scope.Storageinfo = response.data;
+
+            console.log(response.data);
+
             for (idx = 0; idx < $scope.Storageinfo.Storages.length; idx = idx + 1) {
                 if ($scope.Storageinfo.Storages[idx].Enable === true) {
                     $scope.Storageinfo.Storages[idx].Enable = "On";

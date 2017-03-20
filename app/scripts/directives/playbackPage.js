@@ -3,11 +3,11 @@ kindFramework
 .directive('playbackPage', ['$rootScope', '$filter', '$timeout','PlaybackInterface',
   'PLAYBACK_TYPE', 'ModalManagerService','CameraService','playbackStepService',
   'CAMERA_TYPE', 'SearchDataModel', 'PlayDataModel', 'UniversialManagerService',
-  'kindStreamInterface','CAMERA_STATUS','BrowserService',
+  'kindStreamInterface','CAMERA_STATUS','BrowserService','$compile',
     function ($rootScope, $filter,$timeout, PlaybackInterface, PLAYBACK_TYPE, 
       ModalManagerService, CameraService, playbackStepService, CAMERA_TYPE,
       SearchDataModel, PlayDataModel, UniversialManagerService, kindStreamInterface,
-      CAMERA_STATUS, BrowserService) {
+      CAMERA_STATUS, BrowserService, $compile) {
       "use strict";
     return {
         templateUrl: 'views/livePlayback/directives/playback-page.html',
@@ -23,17 +23,31 @@ kindFramework
           'setPlaySpeed':'&',
           'timelineController' : '=',
           'pageController' : '=',
-          'channelCount' : '=',
           'maxAudioInput' : '=',
+          'turnOnChannelSelector' : '=',
         },
         controller : function($scope) {
+          var selectorDirective = null;
+          if( $scope.pageController ) {
+          /**
+           * create <live-playback-channel-selector> directives for multi channel
+           * @function : channelSelector
+           * @param : mode is boolean type.
+           */
+            $scope.pageController.channelSelector = function(mode) {
+              if( mode === true && selectorDirective === null) {
+                var childScope = $scope.$new();
+                selectorDirective = $compile('<live-playback-channel-selector class="playback-channel-selector"></live-playback-channel-selector>');
+                $('#playback-channel-holder').append(selectorDirective(childScope)).append('<div class="cm-vline"></div>');
+              }
+            }
+          }
         },
         link: function(scope, element, attributes) {
           var searchData = new SearchDataModel();
           var playData = new PlayDataModel();
           var waitChangePlaySpeed = false;
           var delayOpenPopup = false;
-          scope.channelCount = 1;
           scope.disableButton = false;
           scope.disableSpeedIcon = true;
           scope.disableStepIcon = true;

@@ -1,4 +1,4 @@
-kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q) {
+kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -6,10 +6,24 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
     $scope.ch = 0;
     var pageData = {};
 
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+
     $scope.clearAll = function ()
     {
         var removeSetData = {};
         removeSetData['Area'] = 'All';
+        removeSetData.Channel = $scope.channelSelectionSection.getCurrentChannel();
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=remove',removeSetData,
             function (response) {
                 view();
@@ -46,6 +60,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
     function getAttributes() {
         $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
         $scope.PTZModel = mAttr.PTZModel;
+        $scope.MaxChannel = mAttr.MaxChannel;
         if (mAttr.SmartCodecOptions !== undefined) {
             $scope.SmartCodecOptions = mAttr.SmartCodecOptions;
         }
@@ -80,11 +95,12 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
                 changed++;
             });
             if (changed != 0) {
-            return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=set', setData,
-                function (response) {},
-                function (errorData) {
-                    console.log(errorData);
-                }, '', true);
+                setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+                return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=set', setData,
+                    function (response) {},
+                    function (errorData) {
+                        console.log(errorData);
+                    }, '', true);
             }
         });
 
@@ -121,6 +137,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
             }
 
             if (changed != 0) {
+                setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
                 return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=add', setData,
                     function (response) {},
                     function (errorData) {
@@ -177,7 +194,10 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
     }
 
     function getFaceDetection() {
-        return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=view', '',
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
+        return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=view', getData,
             function (response) {
                 $scope.FaceDetection = response.data.FaceDetection;
                 pageData.FaceDetection = angular.copy($scope.FaceDetection);
@@ -188,7 +208,10 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
     }
 
     function getSmartCodec() {
-        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=view', '',
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=view', getData,
             function (response) {
                 $scope.SmartCodec = response.data.SmartCodec;
                 pageData.SmartCodec = angular.copy($scope.SmartCodec);
@@ -209,19 +232,23 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
 
         $q.seqAll(promises).then(
             function(){
-        $scope.pageLoaded = true;
+                $rootScope.$emit('changeLoadingBar', false);
+                $scope.pageLoaded = true;
                 showVideo().finally(function(){
-        $("#smartcodecpage").show();
+                    $("#smartcodecpage").show();
                 });
             },
             function(errorData){
+                $rootScope.$emit('changeLoadingBar', false);
                 console.log(errorData);
-            }
+            }  
         );
     }
 
     function showVideo(){
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
             function (response) {
                 var viewerWidth = 640;
@@ -309,6 +336,12 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
             view();
         }
     })();
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        $rootScope.$emit('changeLoadingBar', true);
+        $scope.channelSelectionSection.setCurrentChannel(index);
+        view();
+    }, $scope);
 
     $scope.submit = set;
     $scope.view = view;

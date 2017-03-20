@@ -36,6 +36,7 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
       if (!event) {
         event = window.event;
       }
+      
       if (eventType === "mousewheel") {
         event.stopPropagation();
         event.preventDefault ();
@@ -87,6 +88,9 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
         zoomData = [zoomX, zoomY, zoomZ];        
         return zoomData;
       } else if (eventType === "mousedown") {
+        //마우스 왼쪽 버튼만 허용
+        if(event.button !== 0) return;
+
         downCheck = true;
         curX = event.offsetX;
         curY = event.offsetY;

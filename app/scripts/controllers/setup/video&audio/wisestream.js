@@ -2,18 +2,31 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $q) {
+kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $q, $rootScope) {
     "use strict";
 
     var mAttr = Attributes.get();
     $scope.wisestreamMode;
     $scope.WiseStreamEnableOptions;
-    $scope.SelectedChannel = 0;
     COMMONUtils.getResponsiveObjects($scope);
     var idx;
     var pageData = {};
 
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+
     function getAttributes() {
+        $scope.MaxChannel = mAttr.MaxChannel;
         $scope.WiseStreamEnableOptions = [];
 
         for (var i = 0; i < mAttr.WiseStreamOptions.length; i++) {
@@ -31,7 +44,9 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
     }
 
     function wisestreamView(){
-         var getData = {};
+         var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+         };
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=wisestream&action=view', getData,
             function (response) {
                 pageData = angular.copy(response.data);
@@ -52,10 +67,12 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
 
         $q.seqAll(promises).then(
             function(){
-        $scope.pageLoaded = true;
-        $("#wisestreampage").show();
+                $rootScope.$emit('changeLoadingBar', false);
+                $scope.pageLoaded = true;
+                $("#wisestreampage").show();
             },
             function(errorData){
+                $rootScope.$emit('changeLoadingBar', false);
                 console.log(errorData);
             }
         );
@@ -69,7 +86,7 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
         var setData = {};
 
             setData.Mode = $scope.wisestreamMode;
-            setData.Channel = $scope.SelectedChannel;
+            setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
             return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=wisestream&action=set', setData,
             function (response) {
                 view();
@@ -90,7 +107,6 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
         }
     }
 
-
     (function wait() {
         if (!mAttr.Ready) {
             $timeout(function () {
@@ -102,6 +118,12 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
             view();
         }
     })();
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        $rootScope.$emit('changeLoadingBar', true);
+        $scope.channelSelectionSection.setCurrentChannel(index);
+        view();
+    }, $scope);
 
     $scope.submit = set;
     $scope.view = view;

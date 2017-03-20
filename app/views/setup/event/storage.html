@@ -265,7 +265,7 @@
                 </div>
             </div>
         </div>
-        <div class="wn5-setup-section" ng-show="MaxChannel > 1">
+        <div class="wn5-setup-section" ng-show="MaxChannel <= 1">
             <hr class="wn5-setup-hr">
             <div class="wn5-setup-section-heading">
                 <h3>
@@ -289,7 +289,7 @@
             </div>
         </div>
 
-        <scheduler ng-show="storageDeviceTypeCheck()"></scheduler>
+        <scheduler></scheduler>
         
         <hr class="wn5-setup-hr">
 

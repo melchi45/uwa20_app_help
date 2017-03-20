@@ -152,6 +152,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                 });
             },
             function(errorData){
+                $rootScope.$emit('changeLoadingBar', false);
                 console.log(errorData);
             }
         );

@@ -78,8 +78,8 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
      */
     $scope.activeGNB = function(index){
       var menu = ['live', 'playback'];
-      $("#cm_nav ul.cm_left li").removeClass("cm_active");
-      $("#cm_nav ul.cm_left li.cm_" + menu[index]).addClass("cm_active");
+      $("#cm-nav ul.cm-left li").removeClass("cm-active");
+      $("#cm-nav ul.cm-left li.cm-" + menu[index]).addClass("cm-active");
     };
     
     var domControls = $scope.domControls = {

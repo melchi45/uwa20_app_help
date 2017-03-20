@@ -1054,7 +1054,7 @@ kindFramework
 
         this.resetTimeRange = function() {
           var endTime = endTarget;
-          if( endTime !== null ) {
+          if( endTime !== null && endTime !== -1) {
             endTime = convert_String_to_Date(endTime);
             if( endTarget.substring(11,13) !== endTime.getHours()) {
               endTime.checkDst(true);

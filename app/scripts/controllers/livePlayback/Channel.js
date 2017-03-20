@@ -32,7 +32,6 @@ kindFramework
     var cameraMicEnable = false;
     var videoLimitFPS = 3;
     var videoLimitSize = 1920 * 1080;
-    var isLivePageConnect = true;
     var audioEncodingType = null;
 
     BaseChannel.prototype.resetSetting = function() {
@@ -102,7 +101,6 @@ kindFramework
     };
 
     BaseChannel.prototype.init = function() {
-      isLivePageConnect = true;
       KindProfileService.setDeviceConnectionInfo(ConnectionSettingService.getConnectionSetting());
     };
 
@@ -123,7 +121,6 @@ kindFramework
     };
 
     BaseChannel.prototype.locationChange = function(next) {
-      isLivePageConnect = false;
       if(next.indexOf('setup') !== -1 || next.indexOf('basic_videoProfile') !== -1) {
         $rootScope.$emit('channelPlayer:command', 'stopLive', false);
         if(UniversialManagerService.isSpeakerOn()){
@@ -156,7 +153,8 @@ kindFramework
       speakerVolume: false,
       micEnable: false,
       micStatus: false,
-      micVolume: false
+      micVolume: false,
+      overlayCanvas : false
     };
     // var isPTZAble = AccountService.isPTZAble() === true;
 
@@ -464,7 +462,6 @@ kindFramework
       var prevPage = fromState;
       var curPage = toState;
       var functionList = [];
-      isLivePageConnect = true;
 
       functionList.push(GetFlipMirror);
       functionList.push(initImageEnhancementSettings);
@@ -511,10 +508,6 @@ kindFramework
             console.error(errorData);
           }
       );
-    });
-
-    $scope.$on('$destroy', function(){
-      isLivePageConnect = false;
     });
 
     var setAccountData = function(response){
@@ -605,9 +598,11 @@ kindFramework
     }
 
     function startStreaming(_requestProfile, isReconnect) {
-        if( isLivePageConnect === false ) return;
+        var playData = new PlayDataModel();
+        var isPlaybackEnable = playData.isPlaybackEnable();
+        if( isPlaybackEnable === true ) return;
         var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true:false;
-        var ip = (plugin === true) ? RESTCLIENT_CONFIG.digest.hostName : RESTCLIENT_CONFIG.digest.rtspIp;
+        var ip = RESTCLIENT_CONFIG.digest.rtspIp;
         var port = RESTCLIENT_CONFIG.digest.rtspPort;
         var profile = _requestProfile.Profile;
         var id = SessionOfUserManager.getUsername();
@@ -861,8 +856,8 @@ kindFramework
         );    
     };
 
-    $rootScope.$saveOn('channel:pixelCount', function(data) {
-      if ($scope.channelBasicFunctions.pixelCount) {
+    $rootScope.$saveOn('channel:overlayCanvas', function(data) {
+      if ($scope.channelBasicFunctions.overlayCanvas) {
         kindStreamInterface.setCanvasStyle($scope.viewMode);
       }
     });
@@ -974,6 +969,7 @@ kindFramework
           var MJPEGProfileID = 1;
           RequestProfile = getProfileByIndex($scope.profileList, MJPEGProfileID);
           $scope.channelBasicFunctions.pixelCount = false;
+          $scope.channelBasicFunctions.overlayCanvas = false;
         }
         UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
       }

@@ -8,6 +8,19 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
 
     var pageData = {};
 
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+
     $scope.EventSource = 'DefocusDetection';
 
     $scope.EventRule = {};
@@ -109,6 +122,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     function getAttributes()
     {
         var defer = $q.defer();
+        $scope.MaxChannel = mAttr.MaxChannel;
         $scope.MaxAlarmOutput = mAttr.MaxAlarmOutput;
         $scope.PTZModel = mAttr.PTZModel;
         $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
@@ -168,7 +182,9 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
 
     function getDefocusDetection()
     {
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
 
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=defocusdetection&action=view', getData,
                 function (response)
@@ -204,7 +220,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     {
         var setData = {};
 
-        setData.Channel = 0;
+        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
 
         if (pageData.DefocusDetect.Enable !== $scope.DefocusDetect.Enable)
         {
@@ -255,7 +271,9 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     }
 
     function showVideo(){
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
                 function (response) {
                     var viewerWidth = 640;
@@ -301,11 +319,13 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
         $q.seqAll(promises).then(
             function () {
                 $timeout(function(){
+                    $rootScope.$emit('changeLoadingBar', false);
                     $scope.pageLoaded = true;
                     $timeout(setSizeChart);
                 });
             },
             function (errorData) {
+                $rootScope.$emit('changeLoadingBar', false);
                 console.log(errorData);
             }
         );
@@ -422,7 +442,9 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     {
         var newDefocusLevel = {};
 
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
 
         getData.MaxSamples = maxSample;
         getData.EventSourceType = 'DefocusDetection';
@@ -456,6 +478,12 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
         stopMonitoringDefocusLevel();
     });
 
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        $rootScope.$emit('changeLoadingBar', true);
+        $scope.channelSelectionSection.setCurrentChannel(index);
+        view();
+    }, $scope);
+
     $scope.submit = set;
     $scope.view = view;
 
@@ -475,7 +503,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
         modalInstance.result.then(function ()
         {
             var setData = {
-                Channel: 0,
+                Channel: $scope.channelSelectionSection.getCurrentChannel(),
                 Enable: $scope.DefocusDetect.Enable
             };
 

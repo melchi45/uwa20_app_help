@@ -49,6 +49,8 @@ kindFramework
           $rootScope.$emit("channelPlayer:command", "close");
           $scope.domControls.enablePlayback = false;
           $scope.pageController.closePlayback();
+          var playData = new PlayDataModel();
+          playData.setPlaybackEnable(false);
           UniversialManagerService.setPlayMode(CAMERA_STATUS.PLAY_MODE.LIVE);
           try {
             if("destroy" in $scope.timelineController){
@@ -135,6 +137,8 @@ kindFramework
       var def = $q.defer();
       var channelId = searchData.getChannelId();
       //1. close Live Stream.
+      var playData = new PlayDataModel();
+      playData.setPlaybackEnable(true);
       PlaybackInterface.stopLive();
       PlaybackInterface.preparePlayback(channelId)
       .then(function(results) {
@@ -157,8 +161,8 @@ kindFramework
       var playData = new PlayDataModel();
       $rootScope.$emit('changeLoadingBar', true);
       //TODO : below is only for test.
-      // sunapiAttributes.MaxChannel = 4;
-      $scope.playbackPage.MaxChannel = sunapiAttributes.MaxChannel;
+      //sunapiAttributes.MaxChannel = 4;
+      $scope.pageController.channelSelector(sunapiAttributes.MaxChannel > 1 ? true : false);
       ConnectionSettingService.SetMultiChannelSupport(
                     sunapiAttributes.MaxChannel > 1 ? true : false);
       

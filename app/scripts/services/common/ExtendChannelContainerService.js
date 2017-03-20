@@ -3,9 +3,9 @@
 kindFramework
 .service('ExtendChannelContainerService', 
 	['DigitalZoomService', 'DigitalPTZContorlService',
-	'PTZContorlService','PTZ_TYPE', 'PixelCounterService',
+	'PTZContorlService','PTZ_TYPE', 'PixelCounterService', '$rootScope',
 	function(DigitalZoomService, DigitalPTZContorlService,
-		PTZContorlService, PTZ_TYPE, PixelCounterService){
+		PTZContorlService, PTZ_TYPE, PixelCounterService, $rootScope){
 		var isPc = true;
 		this.getIsPcValue = function() {
 			return isPc;
@@ -18,13 +18,41 @@ kindFramework
       }
 		};
 
-    this.setPixelCounterService = function(callbackFunc) {
+    this.setPixelCounterService = function(mode, callbackFunc) {
       var canvasElem = document.getElementById("cm-livecanvas");
-      if (canvasElem !== null) {
-        PixelCounterService.deleteElementEvent(canvasElem);
-        PixelCounterService.setElementEvent(canvasElem);
-        PixelCounterService.setCallbackFunc(callbackFunc);
+      if(mode)
+      {
+          if (canvasElem !== null) {
+              PixelCounterService.setElementEvent(canvasElem);
+              PixelCounterService.setCallbackFunc(callbackFunc);
+              $rootScope.$emit('livePTZControl::command', "pixelCount", true);
+          }
       }
+      else
+      {
+          if (canvasElem !== null) {
+              PixelCounterService.deleteElementEvent(canvasElem);
+          }
+      }
+    };
+
+    this.setManualTrackingService = function(mode, callbackFunc) {
+        var canvasElem = document.getElementById("cm-livecanvas");
+        if(mode)
+        {
+            if (canvasElem !== null) {
+                PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
+                PTZContorlService.setManualTrackingMode("True");
+                canvasElem.addEventListener('mouseup', callbackFunc);
+            }
+        }
+        else
+        {
+            if (canvasElem !== null) {
+                PTZContorlService.setManualTrackingMode("False");
+                canvasElem.removeEventListener('mouseup', callbackFunc);
+            }
+        }
     };
 
 		this.enablePTZ = function(mode) {

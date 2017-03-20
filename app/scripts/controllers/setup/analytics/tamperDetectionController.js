@@ -1,5 +1,6 @@
 kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $interval, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, $rootScope)
-{
+{   
+
     "use strict";
 
     COMMONUtils.getResponsiveObjects($scope);
@@ -49,6 +50,19 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
     $scope.EventRule = {};
 
+    $scope.channelSelectionSection = (function() {
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel : function() {
+                return currentChannel;
+            },
+            setCurrentChannel : function(index) {
+                currentChannel = index;
+            }
+        }
+    })();
+
     function setSizeChart(){
         var chart = "#tamper-line-chart";
         var width = $(chart).parent().width();
@@ -77,7 +91,13 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     $scope.sketchinfo = null;
 
     function showVideo(){
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
+
+
+
+
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
                 function (response) {
                     var viewerWidth = 640;
@@ -176,6 +196,18 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         })();
     }
 
+
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        $rootScope.$emit('changeLoadingBar', true);
+
+        $scope.channelSelectionSection.setCurrentChannel(index);
+
+        view();
+
+    }, $scope);
+
+
     function stopMonitoringTamperingLevel(){
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
@@ -210,12 +242,16 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
         getData.MaxSamples = maxSample;
         getData.EventSourceType = 'TamperingDetection';
+
+
         
         var sunapiURL = '/stw-cgi/eventsources.cgi?msubmenu=samples&action=check';
 
         return SunapiClient.get(sunapiURL, getData,
                 function (response)
                 {
+
+
                     newTamperLevel = angular.copy(response.data.TamperingDetection[0].Samples);
                     if (func !== undefined) {
                         func(newTamperLevel);
@@ -292,7 +328,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
         $scope.MaxChannel = mAttr.MaxChannel;
 
-        console.log($scope.MaxChannel);
 
         defer.resolve("success");
         return defer.promise;
@@ -313,29 +348,36 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
     function getTamperDetection()
     {
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
+
+
 
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=tamperingdetection&action=view', getData,
                 function (response)
                 {
                     $scope.TamperDetect = response.data.TamperingDetection[0];
-                    pageData.TamperDetect = angular.copy($scope.TamperDetect);
+                    pageData.TamperDetect = angular.copy($scope.TamperDetect)
 
                     $scope.TamperDetectChartOptions.ThresholdLevel = $scope.TamperDetect.ThresholdLevel;
+
                     $scope.TamperDetectDurationSliderModel.data = $scope.TamperDetect.Duration;
                     $scope.TamperDetectSensitivitySliderModel.data = $scope.TamperDetect.SensitivityLevel;
+
+
                 },
                 function (errorData)
                 {
                     console.log(errorData);
                 }, '', true);
+
+
     }
 
     function setTamperDetection()
     {
         var setData = {};
-
-        setData.Channel = 0;
 
         if (pageData.TamperDetect.Enable !== $scope.TamperDetect.Enable)
         {
@@ -361,6 +403,10 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         {
             setData.DarknessDetection = $scope.TamperDetect.DarknessDetection;
         }
+
+        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+
+
 
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=tamperingdetection&action=set', setData,
                 function (response)
@@ -392,7 +438,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
             function (){
                 var setData = {};
 
-                setData.Channel = 0;
+                setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
 
                 if (pageData.TamperDetect.Enable !== $scope.TamperDetect.Enable)
                 {
@@ -402,6 +448,8 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                 return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=tamperingdetection&action=set', setData,
                     function ()
                     {
+
+
                         pageData.TamperDetect.Enable = angular.copy($scope.TamperDetect.Enable);
                     },
                     function (errorData)
@@ -442,6 +490,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
         $q.seqAll(promises).then(
                 function () {
+                    $rootScope.$emit('changeLoadingBar', false);
                     $scope.pageLoaded = true;
                     $timeout(setSizeChart);
                 },
@@ -453,6 +502,8 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
     function set()
     {
+
+
         if (validatePage())
         {
             if (!angular.equals(pageData.TamperDetect, $scope.TamperDetect) || !angular.equals(pageData.EventRule, $scope.EventRule))
