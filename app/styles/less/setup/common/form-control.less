@@ -232,8 +232,8 @@ fieldset {
     }
 
     &[disabled],
-    &[readonly],
-    &[readonly]:focus {
+    &[readonly]:not(.not-readonly-style),
+    &[readonly]:not(.not-readonly-style):focus {
       border-color: @wn5-gui-text-fields-disabled-line !important;
       color: @wn5-gui-text-fields-disabled-text;
       background-color: @wn5-gui-text-fields-disabled-bg;  
