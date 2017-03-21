@@ -1,4 +1,4 @@
-kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, $translate, ModalManagerService, $q, XMLParser, $location) {
+kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, $translate, ModalManagerService, $q, XMLParser) {
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
@@ -28,15 +28,11 @@ kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiCl
         return COMMONUtils.getTranslatedOption(Option);
     };
 
-    var url = $location.absUrl();
-    if (url.indexOf('ptzSetup_rs485') !== -1) {
-        $scope.getTitle = 'lang_menu_rs485';
-    } else {
-        $scope.getTitle ='lang_external_PTZ';
-    }
-    
     function getAttributes() {
         $scope.AlphaNumericStr = mAttr.AlphaNumericStr;
+        if (mAttr.PTZProtocolOptions !== undefined) {
+            $scope.PTZProtocolOptions = mAttr.PTZProtocolOptions;
+        }
 
         if (mAttr.CameraIDOptions !== undefined) {
             $scope.CameraIDOptions.Min = mAttr.CameraIDOptions.minValue;
@@ -65,6 +61,12 @@ kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiCl
 
         if (mAttr.PTZModel !== undefined) {
             $scope.PTZModel = mAttr.PTZModel;
+        }
+
+        if($scope.PTZModel){
+            $scope.getTitle = 'lang_menu_rs485';
+        }else{
+            $scope.getTitle ='lang_external_PTZ';
         }
 
         if (mAttr.PresetNameMaxLen !== undefined) {
@@ -388,11 +390,11 @@ kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiCl
     function view() {
         var _functionlist = [];
         getAttributes();
-        _functionlist.push(getCgis);
+        //_functionlist.push(getCgis);
         _functionlist.push(PTZProtocolView);
         _functionlist.push(SerialView);
-        _functionlist.push(PresetView);
         if ($scope.ExternalPTZModel === true) {
+            _functionlist.push(PresetView);
             _functionlist.push(ONVIFFeaturesView);
         }
 
@@ -436,10 +438,15 @@ kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiCl
                     rotate: rotate,
                     adjust: adjust
                 };
-
-                $scope.ptzinfo = {
-                    type: 'EPTZ'
-                };
+                if($scope.PTZModel){
+                    $scope.ptzinfo = {
+                        type: 'none'
+                    };
+                }else{
+                    $scope.ptzinfo = {
+                        type: 'EPTZ'
+                    };
+                }
             },
             function (errorData) {
                 console.log(errorData);
