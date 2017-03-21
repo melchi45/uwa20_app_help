@@ -49,6 +49,7 @@ kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal,
         }
 
         $scope.pageLoaded = true;
+        $scope.$emit('pageLoaded', true);
     }
 
     function set() {
