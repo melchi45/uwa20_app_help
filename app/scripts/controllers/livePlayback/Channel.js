@@ -960,6 +960,7 @@ kindFramework
         {
           var MJPEGProfileID = 1;
           RequestProfile = getProfileByIndex($scope.profileList, MJPEGProfileID);
+          $scope.channelBasicFunctions.pixelCount = false;
         }
         UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
       }

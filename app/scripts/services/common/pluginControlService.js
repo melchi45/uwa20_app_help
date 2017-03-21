@@ -156,11 +156,13 @@ kindFramework
 
     this.pixcelCount = function(command) {
       var rotate = UniversialManagerService.getRotate();
-      var width = command.width;
-      var height = command.height;
+      var resolution = UniversialManagerService.getProfileInfo().Resolution.split("x");
+      var width = parseInt(resolution[0], 10);
+      var height = parseInt(resolution[1], 10);
+
       if(rotate === '90' || rotate === '270') {
-        width = command.height;
-        height = command.width;
+        width = parseInt(resolution[1], 10);
+        height = parseInt(resolution[0], 10);
       }
 
       pluginElement.SetPixelCounterOnOff_WH((command.cmd == true ? 1 : 0), parseInt(width), parseInt(height));
@@ -463,7 +465,7 @@ kindFramework
                   _self.startAudioTalk();
                 }
                 if (UniversialManagerService.getPixelCount()) {
-                  _self.pixcelCount(true);
+                  _self.pixcelCount({cmd:true});
                 }
               },500);
             }
