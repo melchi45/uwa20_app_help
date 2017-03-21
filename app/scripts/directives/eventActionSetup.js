@@ -582,7 +582,7 @@ kindFramework
                     pageData.EventRules = angular.copy(scope.EventRules);
                 });
 
-                scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
+                scope.$emit('EventRulePrepared', scope.EventRules.ScheduleType);
             }
 
             scope.$watch('pageLoaded', function(newVal, oldVal){
