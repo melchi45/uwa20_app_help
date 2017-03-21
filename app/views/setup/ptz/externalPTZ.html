@@ -7,7 +7,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content" style="background-color: #fbfbfb;">
                     <form name="externalPTZForm" method="get" class="form-horizontal" novalidate>
-                        <fieldset class="ptz-control_external-fieldset" ng-disabled="!ExternalPTZModel">
+                        <fieldset class="ptz-control_external-fieldset">
                             <div class="wn5-setup-section">
                                 <hr class="wn5-setup-hr">
                             </div>
@@ -16,14 +16,14 @@
                                 <sketchbook class="wn5-setup-preview-video" videoinfo='videoinfo'></sketchbook>
                                 <div class="wn5-setup-preview">
                                     <!-- PTZ Control -->
-                                    <div class="ptz-control_box ptz-control_dptz-width" ng-show="ExternalPTZModel">
+                                    <div class="ptz-control_box ptz-control_dptz-width">
                                         <ptz-control ptzinfo='ptzinfo'></ptz-control>
                                     </div>
                                     <!-- //PTZ Control End -->
                                 </div>
                             </div>
                                 
-                            <div class="wn5-setup-section">
+                            <div class="wn5-setup-section" ng-show="ExternalPTZModel">
                                 <hr class="wn5-setup-hr">
                                 <div class="wn5-setup-section-heading">
                                     <h3>{{ 'lang_preset' | translate}}</h3>
@@ -101,7 +101,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" ng-show="ExternalPTZModel">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_dataBit' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
                                             <select class="form-control" ng-model="Serial.DataBits">
@@ -109,7 +109,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" ng-show="ExternalPTZModel">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_parityBit' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
                                             <select class="form-control" ng-model="Serial.ParityBit">
@@ -117,7 +117,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" ng-show="ExternalPTZModel">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_stopBit' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
                                             <select class="form-control" ng-model="Serial.StopBits">
@@ -125,7 +125,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" ng-show="ExternalPTZModel">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_onvifFocusMove' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
                                             <select class="form-control" ng-model="FocusControl">
