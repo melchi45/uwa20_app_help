@@ -18,7 +18,7 @@ kindFramework
             function getEventRules() {
                 var getData = {};
                 var url = '';
-                
+
                 if(isEventActionSupported === true) {
                     if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
                         var currentChannel = scope.channelSelectionSection.getCurrentChannel(); 
@@ -67,7 +67,7 @@ kindFramework
                 var setData = {};
 
                 if(isEventActionSupported === true) {
-                    if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
+                    if(scope.EventRule.EventType.substring(0,7) === 'Channel') {
                         var currentChannel = scope.channelSelectionSection.getCurrentChannel();
                         url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
                         setData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
