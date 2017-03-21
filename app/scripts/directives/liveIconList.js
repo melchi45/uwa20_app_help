@@ -80,10 +80,10 @@ kindFramework.directive('liveIconList', function(
 		    function pixelCountFunc() {
 		      if (scope.channelBasicFunctions.pixelCount) {
 		        scope.channelBasicFunctions.pixelCount = false;
-		        if(scope.channelSetFunctions.ptz === false)
-				{
+		    //     if(scope.channelSetFunctions.ptz === false)
+				// {
                     scope.channelBasicFunctions.overlayCanvas = false;
-				}
+				// }
 		      } else {
 		        scope.channelBasicFunctions.pixelCount = true;
                 scope.channelBasicFunctions.overlayCanvas = true;
@@ -234,11 +234,11 @@ kindFramework.directive('liveIconList', function(
 			      ptz: {
 			        'label': 'lang_PTZ',
 			        'action': function() {
-						if (scope.channelBasicFunctions.overlayCanvas) {
-							scope.channelBasicFunctions.overlayCanvas = false;
-						} else {
-							scope.channelBasicFunctions.overlayCanvas = true;
-						}
+						// if (scope.channelBasicFunctions.overlayCanvas) {
+						// 	scope.channelBasicFunctions.overlayCanvas = false;
+						// } else {
+						// 	scope.channelBasicFunctions.overlayCanvas = true;
+						// }
 			          toggleChannelFunctions('ptz');
 			        },
 			        'class': 'tui-wn5-toolbar-ptz',
