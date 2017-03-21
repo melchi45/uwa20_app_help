@@ -107,6 +107,18 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
                     {
                         $scope.OpenSDK.Apps[index].InstalledDate = convertOpenSDKAppTime($scope.OpenSDK.Apps[index].InstalledDate);
                         $scope.OpenSDK.Apps[index].No = index+1;
+                        if ($scope.OpenSDK.Apps[index].Priority === 'High')
+                        {
+                            $scope.OpenSDK.Apps[index].PriorityOrder = 1;
+                        }
+                        else if ($scope.OpenSDK.Apps[index].Priority === 'Medium')
+                        {
+                            $scope.OpenSDK.Apps[index].PriorityOrder = 2;
+                        }
+                        else
+                        {
+                            $scope.OpenSDK.Apps[index].PriorityOrder = 3;
+                        }
                     }
                 }
 

@@ -614,6 +614,7 @@ kindFramework
         $scope.selectedProfile = getProfileIndex(_requestProfile.Profile);
         if(sunapiAttributes.MaxChannel > 1){
           $scope.profileInfo.ChannelId = channelId;
+          ConnectionSettingService.SetMultiChannelSupport(true);
         }else{
           $scope.profileInfo.ChannelId = null;
         }

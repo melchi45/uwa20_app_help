@@ -1292,6 +1292,7 @@ kindFramework
                     }, '', true);
             }
 
+            // in case of changing schedule type while you are in page
             scope.$watch('EventRule.ScheduleType', function(newVal, oldVal){
                 if(typeof newVal === "undefined"){
                     return;
@@ -1308,7 +1309,7 @@ kindFramework
                         setVisibility(newVal);
                     // });
                 }
-            });
+            }, true);
 
             scope.$watch('RecordSchedule[Channel].Activate', function(newVal, oldVal){
                 if(typeof newVal === "undefined"){
@@ -1326,7 +1327,7 @@ kindFramework
                         setVisibility(newVal);
                     // });
                 }
-            });
+            }, true);
 
             scope.$watch('EventRules[0].ScheduleType', function(newVal, oldVal){ // initial alarmInput
                 if(typeof newVal === "undefined"){
@@ -1344,7 +1345,8 @@ kindFramework
                         setVisibility(newVal);
                     // });
                 }
-            });
+            }, true);
+            //---------------------------------------------------------
 
             scope.$watch('EventRules', function(newVal, oldVal){ // alarmInput
                 if(typeof newVal === "undefined" || activeMenu !== 'alarmInput'){
@@ -1361,7 +1363,43 @@ kindFramework
                         setVisibility(newVal);
                     // });
                 }
+            }, true);
+
+
+            // in case of event rules reset by sunapi call in eventActionSetup
+            scope.$saveOn('EventRulePrepared', function(event, data) {
+                if(scope.EventSource === 'AlarmInput') {
+                    activeMenu = 'alarmInput';
+                    if(data === 'Always') {
+                        setVisibility(data);
+                    } else if(data === 'Scheduled') {
+                        $('#calendar').fullCalendar('destroy');
+                        initialRendered = false;
+                        initCalendar(scope.EventRules[0]);
+                        setVisibility(data);
+                    }
+                } else if(scope.EventSource === 'Storage') {
+                    activeMenu = 'storage';
+                    if(data === 'Always') {
+                        setVisibility(data);
+                    } else if(data === 'Scheduled') {
+                        $('#calendar').fullCalendar('destroy');
+                        initialRendered = false;
+                        initCalendar(scope.RecordSchedule[0]);
+                        setVisibility(data);
+                    }
+                } else {
+                    if(data === 'Always') {
+                        setVisibility(data);
+                    } else if(data === 'Scheduled') {
+                        $('#calendar').fullCalendar('destroy');
+                        initialRendered = false;
+                        initCalendar(scope.EventRule);
+                        setVisibility(data);
+                    }
+                }
             });
+            //---------------------------------------------------------
 
             scope.$watch('pageLoaded', function(newVal, oldVal){
                 if(typeof newVal === "undefined"){
@@ -1372,7 +1410,16 @@ kindFramework
                         $('#calendar').fullCalendar('render');
                     });
                 }
+            }, true);
+
+            scope.$saveOn('pageLoaded', function(event, data) {
+                if(data === true) {
+                    $timeout(function(){
+                        $('#calendar').fullCalendar('render');
+                    });
+                }
             });
+
             $rootScope.$saveOn('resetScheduleData', function(){
                 deleteAll();
                 if(prevEventObjs !== null){

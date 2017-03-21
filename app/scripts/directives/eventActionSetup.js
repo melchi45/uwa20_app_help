@@ -12,16 +12,40 @@ kindFramework
             var currentEventRule = {};
             var currentEventSource = null;
             var mAttr = Attributes.get();
+            var isEventActionSupported = mAttr.EventActionSupport;
             var pageData = {};
 
             function getEventRules() {
                 var getData = {};
-                getData.EventSource = scope.EventSource;
+                var url = '';
 
-                return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=rules&action=view', getData,
+                if(isEventActionSupported === true) {
+                    if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
+                        var currentChannel = scope.channelSelectionSection.getCurrentChannel(); 
+                        if(scope.EventSource === 'NetworkEvent') { // SUNAPI NG
+                            getData.EventType = 'NetworkDisconnect';
+                        } else {
+                            getData.EventType = scope.EventSource;
+                        }
+                        url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
+                        getData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
+                    } else {
+                        url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
+                        getData.EventType = scope.EventSource; // EventType=Timer
+                    }
+                } else {
+                    url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=view';
+                    getData.EventSource = scope.EventSource;
+                }
+
+                return SunapiClient.get(url, getData,
                         function (response)
                         {
-                            prepareEventRules(response.data.EventRules);
+                            if(isEventActionSupported === true) {
+                                prepareEventActions(response.data.ComplexActions);
+                            } else {
+                                prepareEventRules(response.data.EventRules);
+                            }
                         },
                         function (errorData)
                         {
@@ -39,12 +63,26 @@ kindFramework
             }
 
             function setEventRules() {
+                var url = '';
                 var setData = {};
-                if(scope.EventSource === 'OpenSDK') {
-                    setData.Enable = scope.EventRule.Enable;
+
+                if(isEventActionSupported === true) {
+                    if(scope.EventRule.EventType.substring(0,7) === 'Channel') {
+                        var currentChannel = scope.channelSelectionSection.getCurrentChannel();
+                        url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
+                        setData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
+                    } else {
+                        url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
+                        setData.EventType = scope.EventRule.EventType;
+                    }
+                } else {
+                    url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=update';
+                    if(scope.EventSource === 'OpenSDK') {
+                        setData.Enable = scope.EventRule.Enable;
+                    }
+                    setData.RuleIndex = scope.EventRule.RuleIndex;
+                    setData.EventSource = scope.EventSource;
                 }
-                setData.RuleIndex = scope.EventRule.RuleIndex;
-                setData.EventSource = scope.EventSource;
                 setData.EventAction = "";
                 if (scope.EventRule.FtpEnable) {
                     setData.EventAction += 'FTP,';
@@ -201,7 +239,7 @@ kindFramework
                     }
                 }
 
-                SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=rules&action=update', setData,
+                SunapiClient.get(url, setData,
                     function(response) {
                     },
                     function(errorData) {
@@ -428,6 +466,61 @@ kindFramework
                 scope.$apply(function() {
                     pageData.EventRule = angular.copy(scope.EventRule);
                 });
+
+                scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
+            };
+
+            function prepareEventActions(eventActions) {
+                var eventAction = eventActions[0].Actions;
+                scope.EventRule = {};
+                scope.EventRule.FtpEnable = false;
+                scope.EventRule.SmtpEnable = false;
+                scope.EventRule.RecordEnable = false;
+                scope.EventRule.Enable = eventAction[0].Enable;
+                scope.EventRule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds(eventAction[0].Schedule));
+                scope.EventRule.ScheduleType = eventAction[0].ScheduleType;
+                scope.EventRule.EventType = eventActions[0].EventType;
+
+                if (typeof eventAction[0].EventActions !== 'undefined') {
+                    if (eventAction[0].EventActions.indexOf('FTP') !== -1) {
+                        scope.EventRule.FtpEnable = true;
+                    }
+                    if (eventAction[0].EventActions.indexOf('SMTP') !== -1) {
+                        scope.EventRule.SmtpEnable = true;
+                    }
+                    if (eventAction[0].EventActions.indexOf('Record') !== -1) {
+                        scope.EventRule.RecordEnable = true;
+                    }
+                }
+                scope.EventRule.AlarmOutputs = [];
+                if (typeof eventAction[0].AlarmOutputs[0].Duration === 'undefined' || eventAction[0].AlarmOutputs[0].Duration === 'None') {
+                    for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+                        scope.EventRule.AlarmOutputs[ao] = {};
+                        scope.EventRule.AlarmOutputs[ao].Duration = 'Off';
+                    }
+                } else {
+                    for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+                        scope.EventRule.AlarmOutputs[ao] = {};
+                        var duration = 'Off';
+                        for (var j = 0; j < eventAction[0].AlarmOutputs.length; j++) {
+                            if ((ao + 1) === eventAction[0].AlarmOutputs[j].AlarmOutput) {
+                                duration = eventAction[0].AlarmOutputs[j].Duration;
+                                break;
+                            }
+                        }
+                        scope.EventRule.AlarmOutputs[ao].Duration = duration;
+                    }
+                }
+                if (typeof eventAction[0].PresetNumber === 'undefined') {
+                    scope.EventRule.PresetNumber = 'Off';
+                } else {
+                    scope.EventRule.PresetNumber = eventAction[0].PresetNumber + '';
+                }
+                scope.$apply(function() {
+                    pageData.EventRule = angular.copy(scope.EventRule);
+                });
+
+                scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
             };
 
             function prepareEventRuleArray(eventRules) {
@@ -488,6 +581,8 @@ kindFramework
                 scope.$apply(function() {
                     pageData.EventRules = angular.copy(scope.EventRules);
                 });
+
+                scope.$emit('EventRulePrepared', scope.EventRules.ScheduleType);
             }
 
             scope.$watch('pageLoaded', function(newVal, oldVal){
@@ -501,30 +596,19 @@ kindFramework
                         getEventRuleArray();
                     }
                 }
-            });
-
-            scope.$watch('applied', function(newVal, oldVal){
-                if(typeof newVal === "undefined"){
-                    return;
-                }
-                if(newVal === true) {
-                    if(scope.EventSource !== 'AlarmInput') {
-                        if (!angular.equals(pageData.EventRule, scope.EventRule)) {
-                            setEventRules();
-                        }
-                    } else {
-                        if (!angular.equals(pageData.EventRules, scope.EventRules)) {
-                            scope.EventRules.forEach(function(elem, index){
-                                if (!angular.equals(pageData.EventRules[index], scope.EventRules[index])) {
-                                    setEventRulesByIndex(index);
-                                }
-                            });
-                        }
-                    }
-                }
             }, true);
 
-            scope.$saveOn('applied',function(event, data) { // for TimeScheduler, IVA, FD page.
+            scope.$saveOn('pageLoaded', function(event, data) {
+                if(data === true) {
+                    if(scope.EventSource !== 'AlarmInput') {
+                        getEventRules();
+                    } else {
+                        getEventRuleArray();
+                    }
+                }
+            });
+
+            scope.$saveOn('applied', function(event, data) {
                 if(data === true) {
                     if(scope.EventSource !== 'AlarmInput') {
                         if (!angular.equals(pageData.EventRule, scope.EventRule)) {
@@ -534,7 +618,7 @@ kindFramework
                         if (!angular.equals(pageData.EventRules, scope.EventRules)) {
                             scope.EventRules.forEach(function(elem, index){
                                 if (!angular.equals(pageData.EventRules[index], scope.EventRules[index])) {
-                                    setEventRulesByIndex(index);console.info('setEventRules');
+                                    setEventRulesByIndex(index);
                                 }
                             });
                         }

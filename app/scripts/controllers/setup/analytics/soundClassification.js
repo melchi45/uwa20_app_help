@@ -163,6 +163,7 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
         $q.seqAll(promises).then(
             function(){
                 $scope.pageLoaded = true;
+                $scope.$emit('pageLoaded', true);
                 $("#imagepage").show();
                 $timeout(setSizeChart);
             },

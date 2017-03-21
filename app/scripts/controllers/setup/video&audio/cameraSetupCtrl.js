@@ -468,8 +468,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 //        if($scope.PTZModel){
 //            $scope.tabActiveData.ssdr = true;
 //        }else{
-            $scope.tabActiveData.sensor = true;
+//            $scope.tabActiveData.sensor = true;
 //        }
+        if($scope.tabMenu.Sensor) {
+            $scope.tabActiveData.sensor = true;
+        } else {
+            $scope.tabActiveData.ssdr = true;
+        }
     }
 
     /**
@@ -483,6 +488,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
             if($scope.presetTypeData.SelectedPresetType==0){
                 //Global
+                $scope.tabMenu.Sensor = true;
                 $scope.tabMenu.SSDR = true;
                 $scope.tabMenu.WhiteBalance = true;
                 $scope.tabMenu.BackLight = true;
@@ -500,6 +506,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 $scope.tabUI.Focus = 0;
             }else{
                 //Preset
+                $scope.tabMenu.Sensor = false;
                 $scope.tabMenu.SSDR = true;
                 $scope.tabMenu.WhiteBalance = true;
                 $scope.tabMenu.BackLight = false;
@@ -1864,6 +1871,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -1993,6 +2002,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -2085,6 +2096,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -2288,6 +2301,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -2391,6 +2406,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -2490,6 +2507,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -2828,6 +2847,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -2933,6 +2954,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -2984,6 +3007,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -3046,6 +3071,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -3297,6 +3324,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -3421,6 +3450,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -3435,7 +3466,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 return;
             }
         }
-		var deferred = $q.defer();
+        var deferred = $q.defer();
         var setData = {},
             ignoredKeys = [],
             changed = false;
@@ -3471,6 +3502,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -3514,6 +3547,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
         /**/
@@ -3572,6 +3607,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -3655,6 +3692,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -3678,19 +3717,17 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         COMMONUtils.ShowInfo('lang_apply');
     };
 
-    function livePreviewMode(mode) {
+    function livePreviewMode(mode,event) {
+        var asyncVal = true;
+        if(typeof event !== 'undefined' && event == 'unload'){
+            asyncVal = false;
+        }
         var setData = {};
         if($scope.isMultiChannel) {
             var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
             setData.Channel = currentChannel;
         }
         setData.ImagePreview = mode;
-        SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set', setData,
-            function (response) {},
-            function (errorData) {
-                //console.log('Stop preview failed ', errorData);
-                //alert(errorData);
-            }, '', true);
         if($scope.presetTypeData.SelectedPresetType==1){
             if(mode=='Stop'){
                 $scope.presetPreview = false;
@@ -3699,8 +3736,15 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', setData,
                     function (response){},
                     function (errorData){
-                    }, '', true);
+                    }, '', asyncVal);
             }
+        } else {
+            SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set', setData,
+                    function (response) {},
+                    function (errorData) {
+                        //console.log('Stop preview failed ', errorData);
+                        //alert(errorData);
+                    }, '', asyncVal);
         }
     }
     $scope.livePreviewMode = livePreviewMode;
@@ -3722,15 +3766,10 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
     });
 
-    if (BrowserDetect.isChrome) {
-        $(window).on('beforeunload', function () {
-            stopLivePreviewMode();
-        });
-    } else {
-        $(window).on('unload', function () {
-            stopLivePreviewMode();
-        });
-    }
+    $(window).unload( function () {
+        stopLivePreviewMode('unload');
+    });
+
 
     function saveSettings() {
         var functionList = [];
@@ -4411,10 +4450,10 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
     }
 
-    function stopLivePreviewMode() {
+    function stopLivePreviewMode(event) {
         if ($scope.previewMode === true) {
             $scope.previewMode = false;
-            livePreviewMode('Stop');
+            livePreviewMode('Stop',event);
         }
     }
 
@@ -5646,6 +5685,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     //alert(errorData);
                     deferred.reject();
                 }, '', true);
+        } else {
+            deferred.resolve();
         }
         return deferred.promise;
     }
@@ -6269,30 +6310,30 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
 
         if (mAttr.Brightness !== undefined) {
-        	promises.push(imageenhancementsView);
+            promises.push(imageenhancementsView);
         }
 
         if (mAttr.MultiImageIndex !== undefined) {
-        	promises.push(multiimageoverlayView);
+            promises.push(multiimageoverlayView);
         }
 
         if (mAttr.RotateOptions !== undefined) {
-        	promises.push(flipView);
+            promises.push(flipView);
         }
 
         if (mAttr.IRLedSupport === true) {
-        	promises.push(irLEDView);
+            promises.push(irLEDView);
         }
 
         if (mAttr.MaxOSDTitles) {
-        	promises.push(getMultiLineOSD);
+            promises.push(getMultiLineOSD);
         }
 
         if (mAttr.PTZPositionEnable
                 || mAttr.PresetNameEnable
                 || mAttr.CameraIDEnable
                 || mAttr.AzimuthEnable) {
-        	promises.push(getOverlay);
+            promises.push(getOverlay);
         }
 
         if (mAttr.FocusModeOptions !== undefined && (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true)) {
@@ -6303,7 +6344,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             promises.push(ptzsettingsView);
         }
         
-      	if (mAttr.PTZModel === true) {
+        if (mAttr.PTZModel === true) {
             promises.push(ptzPresetsView);
             promises.push(presetImageConfigView);
         }
@@ -6345,7 +6386,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
         $q.seqAll(promises).then(
                 function () {
-                	var dependencyPromises = [];
+                    var dependencyPromises = [];
                     viewNoDependency(dependencyPromises);
                     $q.seqAll(dependencyPromises).then(
                         function(){
