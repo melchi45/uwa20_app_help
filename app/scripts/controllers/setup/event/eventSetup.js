@@ -389,7 +389,6 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         }
         pageData.CommonEventRules = angular.copy($scope.CommonEventRules);
         pageData.ChannelEventRules = angular.copy($scope.ChannelEventRules);
-        console.info('prepareEventActions ::: ');console.info($scope.CommonEventRules);console.info($scope.ChannelEventRules);
     }
 
     function getEventRules() {
@@ -636,7 +635,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
                 });
             }
         }
-console.info('setEventActions ::: ');console.info(queue);
+
         sunapiQueueRequest(queue, function(){
             pageData.CommonEventRules = angular.copy($scope.CommonEventRules);
             pageData.ChannelEventRules = angular.copy($scope.ChannelEventRules);

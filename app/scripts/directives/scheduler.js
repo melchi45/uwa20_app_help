@@ -722,7 +722,7 @@ kindFramework
                 alreadyCreated = true;
             }
 
-            function updateScheduler() { console.info('updateScheduler');
+            function updateScheduler() { //console.info('updateScheduler');
                 getEventSources();
                 // schedulerService.set();
             }
