@@ -219,7 +219,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
                     left: "50%",
                     transform: "translate(-50%, -50%)"
                 });
-                $("kind_stream").prepend(ptzAreaZoomDot);
+                $("overlay-canvas").prepend(ptzAreaZoomDot);
 
                 break;
             case "off" : 
@@ -427,6 +427,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       return areaZoomCheck;
     }
     function setMode(mode) { 
+      console.info(mode);
       ptzMode = mode; 
       if(mode === PTZ_TYPE.ptzCommand.PTZ) { // when ptz mode set, initialize mouse event value
         downCheck = false;

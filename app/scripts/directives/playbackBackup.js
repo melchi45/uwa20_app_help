@@ -92,12 +92,6 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope','Moda
               }
             };
 
-            var watchDate = scope.$watch(function(){return searchData.getSelectedDate();},
-              function(newVal, oldVal){
-                var currentDate = newVal;
-                scope.currentDate = newVal.getFullYear() + "-" + pad(newVal.getMonth()+1) + "-" + pad(newVal.getDate());
-            });
-
             var watchVisible = scope.$watch(function(){ return scope.visibility;} , 
               function(newVal, oldVal){
               if( newVal === oldVal ) return;
@@ -126,7 +120,6 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope','Moda
 
             scope.$on('$destroy', function() {
               //KILL Watch Process
-              watchDate();
               watchVisible();
             });
         }

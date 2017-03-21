@@ -388,6 +388,17 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         }
     };
 
+    this.parseEventActionsCgiAttributes = function() {
+        if(!mAttributes.eventactionsCgiAttrReady) {
+            mAttributes.EventActionSupport = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventactions/complexaction/EventType/enum');
+            if(mAttributes.EventActionSupport !== undefined && mAttributes.EventActionSupport !== null) {
+                mAttributes.EventActionSupport = true;
+            } else {
+                mAttributes.EventActionSupport = false;
+            }
+            mAttributes.eventactionsCgiAttrReady = true;
+        }
+    };
 
     this.parseEventRulesCgiAttributes = function ()
     {
@@ -610,6 +621,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         mAttributes.eventsourceCgiAttrReady = false;
         mAttributes.recordingCgiAttrReady = false;
         mAttributes.eventrulesCgiAttrReady = false;
+        mAttributes.eventactionsCgiAttrReady = false;
         mAttributes.imageCgiAttrReady = false;
         mAttributes.ptzCgiAttrReady = false;
         mAttributes.openSDKCgiAttrReady = false;
@@ -1012,6 +1024,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                 this.parseEventSourceCgiAttributes();
                 this.parseRecordingCgiAttributes();
                 this.parseEventRulesCgiAttributes();
+                this.parseEventActionsCgiAttributes();
                 this.parseImageCgiAttributes();
                 this.parsePTZCgiAttributes();
                 this.parseOpenSDKCgiAttributes();
@@ -1049,6 +1062,9 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                     break;
                 case "eventrules":
                     this.parseEventRulesCgiAttributes();
+                    break;
+                case "eventactions":
+                    this.parseEventActionsCgiAttributes();
                     break;
                 case "image":
                     this.parseImageCgiAttributes();
