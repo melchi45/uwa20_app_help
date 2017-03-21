@@ -126,10 +126,12 @@ kindFramework
         playerInfo.callback.time = timeCallback;
         playerInfo.callback.error = errorCallback;
         playerInfo.callback.close = closeCallback;
+        if( cameraInfo.supportMultiChannel === true ) {
+          playerInfo.media.requestInfo.url = data.ChannelId + "/" +playerInfo.media.requestInfo.url;
+        }
+
         if(data.ChannelId !== undefined){
           playerInfo.device.channelId = data.ChannelId;
-        }else{
-          playerInfo.device.channelId = null;
         }
         
         playerInfo.device.ClientIPAddress = RESTCLIENT_CONFIG.digest.ClientIPAddress;
