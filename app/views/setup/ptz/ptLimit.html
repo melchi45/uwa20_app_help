@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_tiltAngle' | translate }}</div>
-                    <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="PTLimit.TiltRange" ng-options="Option as getTranslatedOption(Option) for Option in TiltRangeOptions"></select></div>
+                    <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="PTLimit.TiltRange" ng-change="changePTLimit()" ng-options="Option as getTranslatedOption(Option) for Option in TiltRangeOptions"></select></div>
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_action' | translate }}</div>

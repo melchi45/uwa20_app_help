@@ -117,6 +117,9 @@ kindFramework.directive('pcConditionsDateForm', function(PcConditionsDateFormMod
 					var firstSubSearchOption = firstMainSearchOption.subOptions;
 					var secondSubSearchOption = secondMainSearchOption.subOptions;
 
+					var tempFirstCalenderData = null;
+					var lastDayOfPrevMonth = null;
+
 					var setBeforeDate = function(number){
 						firstCalenderData.setDate(firstCalenderData.getDate() - number);
 					};
@@ -126,24 +129,44 @@ kindFramework.directive('pcConditionsDateForm', function(PcConditionsDateFormMod
 						date.calenderOptions.minMode = mode;
 					};
 
-					//Recent
+					/**
+					 * 첫번째 검색 옵션이 Recent 일때
+					 */ 
 					if(date.firstSelect === firstMainSearchOption.value){
+						//두번째 검색 옵션
 						switch(date.secondSelect){
-							//1 week
+							/**
+							 * 두번째 검색 옵션이 1 Week 일 때
+							 * 현재 날짜를 기준으로 6일전으로 세팅한다.
+							 */
 							case firstSubSearchOption[1].value :
 								setBeforeDate(6);
 							break;
 
-							//1 month
+							/**
+							 * 두번째 검색 옵션이 1 Month 일 때
+							 * 이전 달의 날짜 갯수 - 1로 첫번째 달력을 설정한다.
+							 */
 							case firstSubSearchOption[2].value :
-								setBeforeDate(30);
+								tempFirstCalenderData = new Date(
+									secondCalenderData.getFullYear(),
+									secondCalenderData.getMonth(),
+									secondCalenderData.getDate()
+								);
+
+								tempFirstCalenderData.setDate(0);
+								lastDayOfPrevMonth = tempFirstCalenderData.getDate();
+
+								setBeforeDate(lastDayOfPrevMonth - 1);
 							break;
 						}
 						
 						firstCalenderInputData = changeDateFormat(firstCalenderData);
 						secondCalenderInputData = changeDateFormat(secondCalenderData);
 
-					//Period
+					/**
+					 * 첫번째 검색 옵션이 Period 일때
+					 */ 
 					}else{
 						var firstArgsArr = [
 							firstCalenderData
@@ -151,13 +174,21 @@ kindFramework.directive('pcConditionsDateForm', function(PcConditionsDateFormMod
 						var secondArgsArr = [
 							secondCalenderData
 						];
+						//두번째 검색 옵션
 						switch(date.secondSelect){
-							//Daily
+							/**
+							 * 두번째 검색 옵션이 Daily 일 때
+							 * 날짜 수정이 가능하게 수정
+							 */
 							case secondSubSearchOption[0].value :
 								setMinMaxMode("day");
 							break;
 
-							//Monthly
+							/**
+							 * 두번째 검색 옵션이 Monthly 일 때
+							 * 첫번째 달력은 해당 월의 1일로
+							 * 두번째 달력은 해당 월의 마지막 날로 설정
+							 */
 							case secondSubSearchOption[1].value :
 								setMinMaxMode("month");
 
@@ -193,7 +224,9 @@ kindFramework.directive('pcConditionsDateForm', function(PcConditionsDateFormMod
 								}
 							break;
 
-							//Yearly
+							/**
+							 * 두번째 검색 옵션이 Yearly 일 때
+							 */
 							case secondSubSearchOption[2].value :
 								setMinMaxMode("year");
 

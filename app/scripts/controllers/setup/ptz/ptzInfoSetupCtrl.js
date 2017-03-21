@@ -185,10 +185,10 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=remove', getData,
             function (response) {
-                view();
+                view(true);
             },
             function (errorData) {
-                view();
+                view(true);
                 console.log(errorData);
             }, '', true);
     }
@@ -234,7 +234,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                 },
                 function (errorData)
                 {
-                    view();
+                    view(true);
                     console.log(errorData);
                 }, $scope, encodeddata, specialHeaders);
         
@@ -593,7 +593,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                     return SunapiClient.post('/stw-cgi/ptzconfig.cgi?msubmenu=group&action=set', {},
                         function (response) {
                             $scope.pageLoaded = false;
-                            view();
+                            view(true);
                         },
                         function (errorData) {
                         }, $scope, encodeddata, specialHeaders);
@@ -689,7 +689,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                     return SunapiClient.post('/stw-cgi/ptzconfig.cgi?msubmenu=tour&action=update', {},
                         function (response) {
                             $scope.pageLoaded = false;
-                            view();
+                            view(true);
                         },
                         function (errorData) {
                         }, $scope, encodeddata, specialHeaders);
@@ -780,7 +780,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         return true;
     }
 
-    function getAttributes()
+    function getAttributes(isFirst)
     {
         $scope.tabs = [];
         $scope.MaxPreset = mAttr.MaxPreset;
@@ -941,7 +941,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
             $scope.WeekDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
         }
-        if ($scope.tabs.length > 0){
+        if (isFirst && ($scope.tabs.length > 0)){
             $scope.activeTab.title = $scope.tabs[0];
             $scope.activeTab.active = true;
             $scope.previousTab = angular.copy($scope.activeTab);
@@ -1200,7 +1200,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=swing&action=set', setData,
             function (response) {
                 $scope.pageLoaded = false;
-                view();
+                view(true);
             },
             function (errorData) {
                 //alert(errorData);
@@ -1377,7 +1377,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=group&action=remove', setData,
             function (response) {
                 $scope.pageLoaded = false;
-                view();
+                view(true);
             },
             function (errorData) {
                 //alert(errorData);
@@ -1394,7 +1394,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=tour&action=remove', setData,
             function (response) {
                 $scope.pageLoaded = false;
-                view();
+                view(true);
             },
             function (errorData) {
                 //alert(errorData);
@@ -1414,7 +1414,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                 if(Option=='Stop' && refreshMode){
                     COMMONUtils.ShowInfo('lang_savingCompleted',function(){
                         $scope.pageLoaded = false;
-                        view();
+                        view(true);
                     });
                 }
             },
@@ -1541,7 +1541,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         $q.seqAll(promises).then(
             function(){
                 $scope.pageLoaded = false;
-                view();
+                view(true);
             },
             function(errorData){
                 //alert(errorData);
@@ -1599,7 +1599,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=tour&action=add', setData,
             function (response) {
                 $scope.TourGroupSequencesSet.push(GroupSequenceIndex + 1);
-                //view();
+                //view(true);
             },
             function (errorData) {
             }, '', true);
@@ -1625,7 +1625,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=tour&action=update', setData,
             function (response) {
-                //view();
+                //view(true);
             },
             function (errorData) {
             }, '', true);
@@ -1662,10 +1662,13 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         return true;
     }
 
-    function view()
+    function view(isCurrActiveTab)
     {
-
-        getAttributes();
+        if (isCurrActiveTab != true){
+            getAttributes(true);
+        } else {
+            getAttributes();
+        }
 
         var promises = [];
         promises.push(getPresetList);
@@ -1761,7 +1764,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                                 }
 
                                 $scope.pageLoaded = false;
-                                view();
+                                view(true);
                             },
                             function(errorData){
                                 //alert(errorData);
