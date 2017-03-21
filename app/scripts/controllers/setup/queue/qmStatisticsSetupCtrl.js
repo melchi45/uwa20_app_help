@@ -399,7 +399,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 
 					var key = $scope.queueData.Queues[self.name - 1].Name;
 					if(type === graphTypes[1]){
-						key = key + ' - ' + self.direction.toLowerCase();
+						key = key + ' - ' + $translate.instant($scope.lang.graph[self.direction.toLowerCase()]);
 					}
 
 					var chartData = {
@@ -414,7 +414,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						chartData.area = true;
 					}
 
-					var tableKey = $scope.queueData.Queues[data[i].name - 1].Name + ' - ' + data[i].direction.toLowerCase();
+					var tableKey = $scope.queueData.Queues[data[i].name - 1].Name + ' - ' + $translate.instant($scope.lang.graph[data[i].direction.toLowerCase()]);
 					tableData.rules[i] = [];
 					tableData.rules[i].push( tableKey );
 					var sum = 0;

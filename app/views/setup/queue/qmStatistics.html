@@ -71,7 +71,7 @@
 
             <figure class="pc-realtime-graph-today">
                 <figcaption class="pc-n-hm-heading-lv3">
-                    {{ lang.graph.average | translate }}
+                    {{ lang.graph.averagePeople | translate }}
                 </figcaption>
                 <nvd3 
                     options="graphSection.average.today.options" 
@@ -107,7 +107,7 @@
 
             <figure class="pc-realtime-graph-today">
                 <figcaption class="pc-n-hm-heading-lv3">
-                    {{ lang.graph.average | translate }}
+                    {{ lang.graph.averagePeople | translate }}
                 </figcaption>
                 <nvd3 
                     options="graphSection.average.weekly.options" 
@@ -236,7 +236,7 @@
                     ng-class="resultSection.viewGraph.cumulative&&resultSection.viewGraph.average? 'pc-realtime-graph-today' : 'pc-results-graph'"
                     ng-show="resultSection.viewGraph.average && !resultSection.noResults">
                     <figcaption class="pc-n-hm-heading-lv3">
-                        {{ lang.graph.average | translate }}
+                        {{ lang.graph.averagePeople | translate }}
                     </figcaption>
                     <nvd3 
                         options="graphSection.average.search.options" 

@@ -480,7 +480,7 @@ kindFramework.constant('ROUTE_CONFIG', {
                     },
                     {
                         urlName: 'queue',
-                        name: 'Queue management',
+                        name: 'lang_queue_management',
                         iconClass: 'tui tui-wn5-ptz-near',
                         childs: [
                             {
