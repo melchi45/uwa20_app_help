@@ -20,9 +20,13 @@ kindFramework.directive('channelSelector', function($rootScope) {
                 selectedChannel: 0,
                 selectChannel: function(index){
                     $rootScope.$emit("channelSelector:selectChannel", index);
-                    scope.channelSelector.selectedChannel = index;
+                    // scope.channelSelector.selectedChannel = index;
                 }
-            };   
+            };
+
+            $rootScope.$saveOn('channelSelector:changeChannel', function(event, index){
+                scope.channelSelector.selectedChannel = index;
+            }, scope);
         }
     };
 });
@@ -59,6 +63,10 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope) {
                     $rootScope.$emit("channelSelector:changeQuadView", true);
                 }
             };   
+
+            $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+                $rootScope.$emit('channelSelector:changeChannel', index);
+            }, scope);
         }
     };
 });
@@ -98,8 +106,7 @@ kindFramework.directive('setupChannelSelector', function($rootScope, SunapiClien
                 ProfileData: "",
                 showInfo: function(){
                     $rootScope.$emit("channelSelector:showInfo", true);
-                },
-
+                }
             };
         }
     };

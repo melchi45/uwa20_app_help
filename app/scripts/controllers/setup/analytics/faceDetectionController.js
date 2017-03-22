@@ -1034,10 +1034,29 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         // console.log($scope.FD);
     }, $scope);
 
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+    function changeChannel(index){
+        $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
         $scope.channelSelectionSection.setCurrentChannel(index);
         view();
+    }
+
+    function checkChangedData(){
+        
+    }
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        if(!angular.equals(pageData.FD, $scope.FD)){
+            COMMONUtils
+                .confirmChangeingChannel()
+                .then(function(){
+                    changeChannel(index);
+                }, function(){
+                    //Cancel
+                });    
+        }else{
+            changeChannel(index);
+        }
     }, $scope);
 
     $scope.detectionAreaDisplayAll = false;
