@@ -1370,7 +1370,7 @@ kindFramework
             // in case of event rules reset by sunapi call in eventActionSetup
             scope.$saveOn('EventRulePrepared', function(event, data) {
                 var currentChannel = 0;
-                if(scope.channelSelectionSection !== undefined || scope.channelSelectionSection !== null) {
+                if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
                     currentChannel = scope.channelSelectionSection.getCurrentChannel();
                 }
                 if(scope.EventSource === 'AlarmInput') {
