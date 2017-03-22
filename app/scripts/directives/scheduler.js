@@ -1311,7 +1311,7 @@ kindFramework
                 }
             }, true);
 
-            scope.$watch('RecordSchedule[Channel].Activate', function(newVal, oldVal){
+            scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){
                 if(typeof newVal === "undefined"){
                     return;
                 }
