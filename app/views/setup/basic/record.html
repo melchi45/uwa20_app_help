@@ -28,7 +28,7 @@
                         <select 
                             name="NormalMode" 
                             class="form-control"
-                            ng-model="recordSetting.NormalMode">
+                            ng-model="RecordGeneralInfo.NormalMode">
                                 <option ng-repeat="option in RecNormalModeOptions" value="{{option}}">
                                     {{option == 'Full'?getTranslatedOption('FullFrame'):option == 'Off'?getTranslatedOption('None'):getTranslatedOption(option)}}
                                 </option>
@@ -41,7 +41,7 @@
                         <select 
                             name="eventRecording" 
                             class="form-control"
-                            ng-model="recordSetting.EventMode">
+                            ng-model="RecordGeneralInfo.EventMode">
                                 <option ng-repeat="option in RecEventModeOptions" value="{{option}}">
                                     {{option == 'Full'?getTranslatedOption('FullFrame'):option == 'Off'?getTranslatedOption('None'):getTranslatedOption(option)}}
                                 </option>
@@ -54,7 +54,7 @@
                         <select 
                             name="preEvent" 
                             class="form-control"
-                            ng-model="recordSetting.PreEventDuration">
+                            ng-model="RecordGeneralInfo.PreEventDuration">
                                 <option ng-repeat="option in RecPreEventDurationOptions" value="{{ option }}">
                                     {{ option.split('s')[0] }} {{'lang_seconds' | translate }}
                                 </option>
@@ -67,7 +67,7 @@
                         <select 
                             name="postEvent" 
                             class="form-control"
-                            ng-model="recordSetting.PostEventDuration">
+                            ng-model="RecordGeneralInfo.PostEventDuration">
                                 <option ng-repeat="option in RecPostEventDurationOptions" value="{{ option }}">
                                     {{ option.split('s')[0] }} {{'lang_seconds' | translate }}
                                 </option>
@@ -80,7 +80,7 @@
                         <select 
                             name="fileType" 
                             class="form-control"
-                            ng-model="recordSetting.RecordedVideoFileType">
+                            ng-model="RecordGeneralInfo.RecordedVideoFileType">
                                 <option ng-repeat="option in RecVideoFileTypeOptions" value="{{ option }}">
                                     {{ option }}
                                 </option>
