@@ -67,6 +67,8 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=general&action=view', getData, function(response) {
             $scope.RecordGeneralInfo = response.data.RecordSetup[0];
             pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
+
+            console.log($scope.RecordGeneralInfo, 'general record data');
         }, function(errorData) {
             console.error(errorData);
         }, '', true);
@@ -81,6 +83,8 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
             $rootScope.$emit('resetScheduleData', true);
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
+
+            console.log($scope.RecordSchedule);
 
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
         }, function(errorData) {
@@ -323,7 +327,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     function showModalDialog(callback, displaymsg, index, queue) {
         var deferred = $q.defer();
         var modalInstance = $uibModal.open({
-            templateUrl: 'confirmMessage.html',
+            templateUrl: 'views/setup/common/confirmMessage.html',
             controller: 'confirmMessageCtrl',
             resolve: {
                 Message: function() {
