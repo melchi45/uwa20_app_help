@@ -1385,18 +1385,6 @@ kindFramework
                             setVisibility(data);
                         }
                     }
-                } else if(scope.EventSource === 'Storage') {
-                    activeMenu = 'storage';
-                    if(data === 'Always') {
-                        setVisibility(data);
-                    } else if(data === 'Scheduled') {
-                        if(!alreadyCreated || prevChannel !== currentChannel) {
-                            $('#calendar').fullCalendar('destroy');
-                            initialRendered = false;
-                            initCalendar(scope.RecordSchedule);
-                            setVisibility(data);
-                        }
-                    }
                 } else {
                     if(data === 'Always') {
                         setVisibility(data);
@@ -1411,6 +1399,28 @@ kindFramework
                 }
                 prevChannel = currentChannel;
             });
+
+            scope.$saveOn('recordPageLoaded', function(event, data) {
+                var currentChannel = 0;
+                if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
+                    currentChannel = scope.channelSelectionSection.getCurrentChannel();
+                }
+                if(scope.EventSource === 'Storage') {
+                    activeMenu = 'storage';
+                    if(data === 'Always') {
+                        setVisibility(data);
+                    } else if(data === 'Scheduled') {
+                        if(!alreadyCreated || prevChannel !== currentChannel) {
+                            $('#calendar').fullCalendar('destroy');
+                            initialRendered = false;
+                            initCalendar(scope.RecordSchedule);
+                            setVisibility(data);
+                        }
+                    }
+                }
+                prevChannel = currentChannel;
+            });
+
             //---------------------------------------------------------
 
             scope.$watch('pageLoaded', function(newVal, oldVal){

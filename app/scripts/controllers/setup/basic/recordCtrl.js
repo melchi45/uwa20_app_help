@@ -341,6 +341,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
 
         $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
+            $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
             $rootScope.$emit('changeLoadingBar', false);
         }, function(errorData) {
             console.error(errorData);
