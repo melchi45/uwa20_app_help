@@ -202,10 +202,10 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
         };
 
 		scope.ptzPreset = function(value){
-			console.log(value);
 			try {
-				if(value === 'Stop'){
-					run('preset', scope.selectedObj.presetObj.value, 'Stop');
+				if(value === 'Home'){
+                    sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=home&action=control";
+                    execSunapi(sunapiURI);
 				}else if(value === 'Go'){
 					run('preset',  scope.selectedObj.presetObj.value, 'Start');
 				}else if(value === 'Set') {
@@ -650,7 +650,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=";
 					switch (mode) {
 						case "preset":
-							sunapiURI += "preset&action=control&Channel=0&Preset=" + value;
+                            sunapiURI += "preset&action=control&Channel=0&Preset=" + value;
 							break;
 						case "group":
 							sunapiURI += "group&action=control&Channel=0&Group=" + value +"&Mode=" + option;
