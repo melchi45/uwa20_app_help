@@ -12,40 +12,57 @@ kindFramework
             var currentEventRule = {};
             var currentEventSource = null;
             var mAttr = Attributes.get();
+            var isMultiChannel;
+            if(mAttr.MaxChannel > 1) {
+                isMultiChannel = true;
+            } else {
+                isMultiChannel = false;
+            }
             var isEventActionSupported = mAttr.EventActionSupport;
             var pageData = {};
 
-            function getEventRules() {
+            function getEventActions() {
                 var getData = {};
                 var url = '';
-
-                if(isEventActionSupported === true) {
-                    if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
-                        var currentChannel = scope.channelSelectionSection.getCurrentChannel(); 
-                        if(scope.EventSource === 'NetworkEvent') { // SUNAPI NG
-                            getData.EventType = 'NetworkDisconnect';
-                        } else {
-                            getData.EventType = scope.EventSource;
-                        }
-                        url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
-                        getData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
-                    } else {
-                        url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
-                        getData.EventType = scope.EventSource; // EventType=Timer
-                    }
+                if(scope.EventSource === 'VideoAnalysis'
+                    || scope.EventSource === 'FogDetection'
+                    || scope.EventSource === 'DefocusDetection'
+                    || scope.EventSource === 'FaceDetection'
+                    || scope.EventSource === 'AudioAnalysis'
+                    || scope.EventSource === 'VideoAnalysis'
+                    || scope.EventSource === 'MotionDetection'
+                    || scope.EventSource === 'TamperingDetection') {
+                    var currentChannel = scope.channelSelectionSection.getCurrentChannel(); 
+                    url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
+                    getData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
                 } else {
-                    url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=view';
-                    getData.EventSource = scope.EventSource;
+                    url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
+                    if(scope.EventSource === 'NetworkEvent') { // SUNAPI NG
+                        getData.EventType = 'NetworkDisconnect';
+                    } else {
+                        getData.EventType = scope.EventSource;
+                    }
                 }
 
                 return SunapiClient.get(url, getData,
                         function (response)
                         {
-                            if(isEventActionSupported === true) {
-                                prepareEventActions(response.data.ComplexActions);
-                            } else {
-                                prepareEventRules(response.data.EventRules);
-                            }
+                            prepareEventActions(response.data.ComplexActions);
+                        },
+                        function (errorData)
+                        {
+                            console.log(errorData);
+                        }, '', true);
+            }
+
+            function getEventRules() {
+                var getData = {};
+                getData.EventSource = scope.EventSource;
+
+                return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=rules&action=view', getData,
+                        function (response)
+                        {
+                            prepareEventRules(response.data.EventRules);
                         },
                         function (errorData)
                         {
@@ -66,23 +83,13 @@ kindFramework
                 var url = '';
                 var setData = {};
 
-                if(isEventActionSupported === true) {
-                    if(scope.EventRule.EventType.substring(0,7) === 'Channel') {
-                        var currentChannel = scope.channelSelectionSection.getCurrentChannel();
-                        url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
-                        setData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
-                    } else {
-                        url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
-                        setData.EventType = scope.EventRule.EventType;
-                    }
-                } else {
-                    url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=update';
-                    if(scope.EventSource === 'OpenSDK') {
-                        setData.Enable = scope.EventRule.Enable;
-                    }
-                    setData.RuleIndex = scope.EventRule.RuleIndex;
-                    setData.EventSource = scope.EventSource;
+                url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=update';
+                if(scope.EventSource === 'OpenSDK') {
+                    setData.Enable = scope.EventRule.Enable;
                 }
+                setData.RuleIndex = scope.EventRule.RuleIndex;
+                setData.EventSource = scope.EventSource;
+
                 setData.EventAction = "";
                 if (scope.EventRule.FtpEnable) {
                     setData.EventAction += 'FTP,';
@@ -106,6 +113,190 @@ kindFramework
                 if (setData.EventAction.length) {
                     setData.EventAction = setData.EventAction.substring(0, setData.EventAction.length - 1);
                 }
+                setData.ScheduleType = scope.EventRule.ScheduleType;
+                // if ($scope.EventRule.ScheduleType === 'Scheduled')
+                {
+                    var diff = $(pageData.EventRule.ScheduleIds).not(scope.EventRule.ScheduleIds).get();
+                    var sun = 0,
+                        mon = 0,
+                        tue = 0,
+                        wed = 0,
+                        thu = 0,
+                        fri = 0,
+                        sat = 0;
+                    for (var s = 0; s < diff.length; s++) {
+                        var str = diff[s].split('.');
+                        for (var d = 0; d < mAttr.WeekDays.length; d++) {
+                            if (str[0] === mAttr.WeekDays[d]) {
+                                switch (d) {
+                                    case 0:
+                                        sun = 1;
+                                        setData["SUN" + str[1]] = 0;
+                                        break;
+                                    case 1:
+                                        mon = 1;
+                                        setData["MON" + str[1]] = 0;
+                                        break;
+                                    case 2:
+                                        tue = 1;
+                                        setData["TUE" + str[1]] = 0;
+                                        break;
+                                    case 3:
+                                        wed = 1;
+                                        setData["WED" + str[1]] = 0;
+                                        break;
+                                    case 4:
+                                        thu = 1;
+                                        setData["THU" + str[1]] = 0;
+                                        break;
+                                    case 5:
+                                        fri = 1;
+                                        setData["FRI" + str[1]] = 0;
+                                        break;
+                                    case 6:
+                                        sat = 1;
+                                        setData["SAT" + str[1]] = 0;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                    for (var s = 0; s < scope.EventRule.ScheduleIds.length; s++) {
+                        var str = scope.EventRule.ScheduleIds[s].split('.');
+                        for (var d = 0; d < mAttr.WeekDays.length; d++) {
+                            if (str[0] === mAttr.WeekDays[d]) {
+                                switch (d) {
+                                    case 0:
+                                        sun = 1;
+                                        setData["SUN" + str[1]] = 1;
+                                        if (str.length === 4) {
+                                            setData["SUN" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                        }
+                                        break;
+                                    case 1:
+                                        mon = 1;
+                                        setData["MON" + str[1]] = 1;
+                                        if (str.length === 4) {
+                                            setData["MON" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                        }
+                                        break;
+                                    case 2:
+                                        tue = 1;
+                                        setData["TUE" + str[1]] = 1;
+                                        if (str.length === 4) {
+                                            setData["TUE" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                        }
+                                        break;
+                                    case 3:
+                                        wed = 1;
+                                        setData["WED" + str[1]] = 1;
+                                        if (str.length === 4) {
+                                            setData["WED" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                        }
+                                        break;
+                                    case 4:
+                                        thu = 1;
+                                        setData["THU" + str[1]] = 1;
+                                        if (str.length === 4) {
+                                            setData["THU" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                        }
+                                        break;
+                                    case 5:
+                                        fri = 1;
+                                        setData["FRI" + str[1]] = 1;
+                                        if (str.length === 4) {
+                                            setData["FRI" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                        }
+                                        break;
+                                    case 6:
+                                        sat = 1;
+                                        setData["SAT" + str[1]] = 1;
+                                        if (str.length === 4) {
+                                            setData["SAT" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                    if (sun) {
+                        setData.SUN = 1;
+                    }
+                    if (mon) {
+                        setData.MON = 1;
+                    }
+                    if (tue) {
+                        setData.TUE = 1;
+                    }
+                    if (wed) {
+                        setData.WED = 1;
+                    }
+                    if (thu) {
+                        setData.THU = 1;
+                    }
+                    if (fri) {
+                        setData.FRI = 1;
+                    }
+                    if (sat) {
+                        setData.SAT = 1;
+                    }
+                }
+
+                SunapiClient.get(url, setData,
+                    function(response) {
+                    },
+                    function(errorData) {
+                        console.log(errorData);
+                    }, '', true);
+
+                pageData.EventRule = angular.copy(scope.EventRule);
+            };
+
+            function setEventActions() {
+                var url = '';
+                var setData = {};
+
+                if(scope.EventRule.EventType.substring(0,7) === 'Channel') {
+                    var currentChannel = scope.channelSelectionSection.getCurrentChannel();
+                    url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
+                    setData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
+                } else {
+                    url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
+                    setData.EventType = scope.EventRule.EventType;
+                }
+
+                setData.EventAction = "";
+                if (scope.EventRule.FtpEnable) {
+                    setData.EventAction += 'FTP,';
+                }
+                if (scope.EventRule.SmtpEnable) {
+                    setData.EventAction += 'SMTP,';
+                }
+                if (scope.EventRule.RecordEnable) {
+                    setData.EventAction += 'Record,';
+                }
+                for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+                    if (scope.EventRule.AlarmOutputs[ao].Duration !== 'Off') {
+                        setData.EventAction += 'AlarmOutput.' + (ao + 1) + ',';
+                        setData["AlarmOutput." + (ao + 1) + ".Duration"] = scope.EventRule.AlarmOutputs[ao].Duration;
+                    }
+                }
+                if (scope.EventRule.PresetNumber !== 'Off') {
+                    setData.EventAction += 'GoToPreset,';
+                    setData.PresetNumber = scope.EventRule.PresetNumber;
+                }
+                if (setData.EventAction.length) {
+                    setData.EventAction = setData.EventAction.substring(0, setData.EventAction.length - 1);
+                }
+
+                if(setData.EventAction.length === 0) {
+                    setData.EventAction = 'None';
+                }
+
                 setData.ScheduleType = scope.EventRule.ScheduleType;
                 // if ($scope.EventRule.ScheduleType === 'Scheduled')
                 {
@@ -520,6 +711,7 @@ kindFramework
                     pageData.EventRule = angular.copy(scope.EventRule);
                 });
 
+
                 scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
             };
 
@@ -590,20 +782,36 @@ kindFramework
                     return;
                 }
                 if(newVal === true) {
-                    if(scope.EventSource !== 'AlarmInput') {
-                        getEventRules();
+                    if(isEventActionSupported && isMultiChannel) {
+                        if(scope.EventSource !== 'AlarmInput') {
+                            getEventActions();
+                        } else {
+                            getEventRuleArray();
+                        }
                     } else {
-                        getEventRuleArray();
+                        if(scope.EventSource !== 'AlarmInput') {
+                            getEventRules();
+                        } else {
+                            getEventRuleArray();
+                        }
                     }
                 }
             }, true);
 
             scope.$saveOn('pageLoaded', function(event, data) {
                 if(data === true) {
-                    if(scope.EventSource !== 'AlarmInput') {
-                        getEventRules();
+                    if(isEventActionSupported && isMultiChannel) {
+                        if(scope.EventSource !== 'AlarmInput') {
+                            getEventActions();
+                        } else {
+                            getEventRuleArray();
+                        }
                     } else {
-                        getEventRuleArray();
+                        if(scope.EventSource !== 'AlarmInput') {
+                            getEventRules();
+                        } else {
+                            getEventRuleArray();
+                        }
                     }
                 }
             });
@@ -612,7 +820,11 @@ kindFramework
                 if(data === true) {
                     if(scope.EventSource !== 'AlarmInput') {
                         if (!angular.equals(pageData.EventRule, scope.EventRule)) {
-                            setEventRules();
+                            if(isEventActionSupported && isMultiChannel) {
+                                setEventActions();
+                            } else {
+                                setEventRules();
+                            }
                         }
                     } else {
                         if (!angular.equals(pageData.EventRules, scope.EventRules)) {
