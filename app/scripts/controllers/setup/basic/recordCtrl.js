@@ -92,8 +92,41 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         }, '', true);
     }
 
+    function getProfileDetails() {
+        var getData = {
+            Channel: $scope.Channel
+        };
+        // /stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view&Channel=0&SunapiSeqId=64
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
+            $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
+            // console.info(response.data.VideoProfiles[0]);
+            // $scope.RecordProfileName = $scope.VideoProfile.Name;
+
+        }, function(errorData) {
+            console.log(errorData);
+        }, '', true);
+    }
+
+    function getRecordProfile() {
+        var getData = {
+            Channel: $scope.Channel
+        }
+
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', getData, function(response) {
+            $scope.RecordProfileId = response.data.VideoProfilePolicies[0].RecordProfile;
+        }, function(errorData) {
+            console.log(errorData);
+        }, '', true);
+    }
+
     function setAttribute () {
         var defer = $q.defer();
+
+        for(var i = 0; i<$scope.VideoProfile.length; i++) {
+            if($scope.VideoProfile[i].Profile == $scope.RecordProfileId) {
+                $scope.RecordProfileName = $scope.VideoProfile[i].Name;
+            }
+        }
 
         $scope.RecordGeneralInfo.NormalMode = $scope.RecordGeneralInfo.NormalMode;
         $scope.RecordGeneralInfo.EventMode = $scope.RecordGeneralInfo.EventMode;
@@ -302,6 +335,8 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         var promises = [];
         promises.push(getRecordingSchedules);
         promises.push(getRecordGeneralDetails);
+        promises.push(getProfileDetails);
+        promises.push(getRecordProfile);
 
 
         $q.seqAll(promises).then(setAttribute).then(function() {
