@@ -1,4 +1,4 @@
-<div id="recordpage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+<div id="recordpage" class="wrapper wrapper-content" ng-show='pageLoaded'>
     <form name="recordForm" method="get" class="form-horizontal">
         <wn5-setup-main-title 
             data-title="lang_record">
@@ -28,7 +28,7 @@
                         <select 
                             name="NormalMode" 
                             class="form-control"
-                            ng-model="recordSetting[Channel].NormalMode">
+                            ng-model="recordSetting.NormalMode">
                                 <option ng-repeat="option in RecNormalModeOptions" value="{{option}}">
                                     {{option == 'Full'?getTranslatedOption('FullFrame'):option == 'Off'?getTranslatedOption('None'):getTranslatedOption(option)}}
                                 </option>
@@ -41,7 +41,7 @@
                         <select 
                             name="eventRecording" 
                             class="form-control"
-                            ng-model="recordSetting[Channel].EventMode">
+                            ng-model="recordSetting.EventMode">
                                 <option ng-repeat="option in RecEventModeOptions" value="{{option}}">
                                     {{option == 'Full'?getTranslatedOption('FullFrame'):option == 'Off'?getTranslatedOption('None'):getTranslatedOption(option)}}
                                 </option>
@@ -54,7 +54,7 @@
                         <select 
                             name="preEvent" 
                             class="form-control"
-                            ng-model="recordSetting[Channel].PreEventDuration">
+                            ng-model="recordSetting.PreEventDuration">
                                 <option ng-repeat="option in RecPreEventDurationOptions" value="{{ option }}">
                                     {{ option.split('s')[0] }} {{'lang_seconds' | translate }}
                                 </option>
@@ -67,7 +67,7 @@
                         <select 
                             name="postEvent" 
                             class="form-control"
-                            ng-model="recordSetting[Channel].PostEventDuration">
+                            ng-model="recordSetting.PostEventDuration">
                                 <option ng-repeat="option in RecPostEventDurationOptions" value="{{ option }}">
                                     {{ option.split('s')[0] }} {{'lang_seconds' | translate }}
                                 </option>
@@ -80,7 +80,7 @@
                         <select 
                             name="fileType" 
                             class="form-control"
-                            ng-model="recordSetting[Channel].RecordedVideoFileType">
+                            ng-model="recordSetting.RecordedVideoFileType">
                                 <option ng-repeat="option in RecVideoFileTypeOptions" value="{{ option }}">
                                     {{ option }}
                                 </option>
@@ -97,7 +97,7 @@
                     <div class="wn5-setup-section-article form-group">
                         <div class="wn5-setup-section-article-content">
                             <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
-                                <input class="radio" name="Activate" ng-model="RecordSchedule[Channel].Activate" ng-value="Activate" type="radio">
+                                <input class="radio" name="Activate" ng-model="RecordSchedule.Activate" ng-value="Activate" type="radio">
                                 <div ng-if="Activate === 'Scheduled'">
                                 {{ 'lang_recording_only_schedule' | translate }}
                                 </div>
