@@ -66,7 +66,7 @@ kindFramework
                 if(activeMenu === 'alarmInput') {
                     scope.EventRules[scope.AlarmData.SelectedAlarm].ScheduleIds = angular.copy(scheduleIds); // temporarily index 0
                 } else if(activeMenu === 'storage') {
-                    scope.RecordSchedule[0].ScheduleIds = angular.copy(scheduleIds);
+                    scope.RecordSchedule.ScheduleIds = angular.copy(scheduleIds);
                 } else {
                     scope.EventRule.ScheduleIds = angular.copy(scheduleIds);
                 }
@@ -1322,7 +1322,7 @@ kindFramework
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
                     if(!alreadyCreated) {
-                        initCalendar(scope.RecordSchedule[0]);
+                        initCalendar(scope.RecordSchedule);
                     }
                     // $timeout(function() {
                         setVisibility(newVal);
@@ -1385,18 +1385,6 @@ kindFramework
                             setVisibility(data);
                         }
                     }
-                } else if(scope.EventSource === 'Storage') {
-                    activeMenu = 'storage';
-                    if(data === 'Always') {
-                        setVisibility(data);
-                    } else if(data === 'Scheduled') {
-                        if(!alreadyCreated || prevChannel !== currentChannel) {
-                            $('#calendar').fullCalendar('destroy');
-                            initialRendered = false;
-                            initCalendar(scope.RecordSchedule[0]);
-                            setVisibility(data);
-                        }
-                    }
                 } else {
                     if(data === 'Always') {
                         setVisibility(data);
@@ -1411,6 +1399,28 @@ kindFramework
                 }
                 prevChannel = currentChannel;
             });
+
+            scope.$saveOn('recordPageLoaded', function(event, data) {
+                var currentChannel = 0;
+                if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
+                    currentChannel = scope.channelSelectionSection.getCurrentChannel();
+                }
+                if(scope.EventSource === 'Storage') {
+                    activeMenu = 'storage';
+                    if(data === 'Always') {
+                        setVisibility(data);
+                    } else if(data === 'Scheduled') {
+                        if(!alreadyCreated || prevChannel !== currentChannel) {
+                            $('#calendar').fullCalendar('destroy');
+                            initialRendered = false;
+                            initCalendar(scope.RecordSchedule);
+                            setVisibility(data);
+                        }
+                    }
+                }
+                prevChannel = currentChannel;
+            });
+
             //---------------------------------------------------------
 
             scope.$watch('pageLoaded', function(newVal, oldVal){

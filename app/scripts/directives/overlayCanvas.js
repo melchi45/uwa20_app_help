@@ -9,6 +9,7 @@ kindFramework.directive('overlayCanvas', function(
       var cvs = $("#cm-livecanvas")[0],
       ctx = null,
       rotateCheck = false;
+      var OverlayCanvasMode = null;
 
       function callbackPixelCount(x, y, width, height) {
         ctx.clearRect(0, 0, parseInt(cvs.width, 10), parseInt(cvs.height, 10));
@@ -49,6 +50,14 @@ kindFramework.directive('overlayCanvas', function(
           ctx.fillText("0 x 0", 10, 21);
       };
 
+      scope.areaZoomInit = function(){
+          ctx = cvs.getContext("2d");
+
+          //AreaZoom 영역 색상 두께 설정
+          ctx.strokeStyle = "#FFFF00";
+          ctx.lineWidth = 5;
+      };
+
       function callbackManualTracking (event) {
           if(event.target.id !== "cm-livecanvas") return;
 
@@ -81,9 +90,28 @@ kindFramework.directive('overlayCanvas', function(
       $rootScope.$saveOn("overlayCanvas::setSize", function(event, width, height) {
           cvs.width = width;
           cvs.height = height;
+
+          switch (OverlayCanvasMode)
+          {
+              case "pixelCount" :
+                  scope.pixelCountInit();
+                  scope.pixelCountLableInit();
+                  break;
+              case "manualTracking" :
+                  break;
+              case "areaZoomMode":
+                  scope.areaZoomInit();
+                  break;
+          }
       });
 
       $rootScope.$saveOn("overlayCanvas::command", function(event, mode, boolEnable) {
+          //Set OverlayCanvas Mode
+          if(mode !== 'manualTracking')
+          {
+              OverlayCanvasMode = (boolEnable) ? mode : null;
+          }
+
           switch (mode)
           {
               case "pixelCount" :

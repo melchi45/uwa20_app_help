@@ -233,6 +233,21 @@ kindFramework.factory('COMMONUtils', function ($translate, $location,  $uibModal
         });
     };
 
+    commonUtils.confirmChangeingChannel = function (){
+        var modalInstance = $uibModal.open({
+            templateUrl: 'views/setup/common/confirmMessage.html',
+            controller: 'confirmMessageCtrl',
+            size: 'sm',
+            resolve: {
+                Message: function () {
+                    return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
+                }
+            }
+        });
+
+        return modalInstance.result;
+    };
+
     commonUtils.ShowError = function(ErrorMessage,ModalSize, callback)
     {
         var modalSize = 'sm';
