@@ -18,10 +18,8 @@ kindFramework
             function getEventRules() {
                 var getData = {};
                 var url = '';
-                if(isEventActionSupported === false) {
-                    url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=view';
-                    getData.EventSource = scope.EventSource;
-                } else if(isEventActionSupported === true) {
+
+                if(isEventActionSupported === true) {
                     if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
                         var currentChannel = scope.channelSelectionSection.getCurrentChannel(); 
                         if(scope.EventSource === 'NetworkEvent') { // SUNAPI NG
@@ -35,12 +33,15 @@ kindFramework
                         url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
                         getData.EventType = scope.EventSource; // EventType=Timer
                     }
+                } else {
+                    url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=view';
+                    getData.EventSource = scope.EventSource;
                 }
 
                 return SunapiClient.get(url, getData,
                         function (response)
                         {
-                            if(isEventActionSupported) {
+                            if(isEventActionSupported === true) {
                                 prepareEventActions(response.data.ComplexActions);
                             } else {
                                 prepareEventRules(response.data.EventRules);
@@ -64,15 +65,9 @@ kindFramework
             function setEventRules() {
                 var url = '';
                 var setData = {};
-                if(isEventActionSupported === false) {
-                    url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=update';
-                    if(scope.EventSource === 'OpenSDK') {
-                        setData.Enable = scope.EventRule.Enable;
-                    }
-                    setData.RuleIndex = scope.EventRule.RuleIndex;
-                    setData.EventSource = scope.EventSource;
-                } else if(isEventActionSupported === true) {
-                    if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
+
+                if(isEventActionSupported === true) {
+                    if(scope.EventRule.EventType.substring(0,7) === 'Channel') {
                         var currentChannel = scope.channelSelectionSection.getCurrentChannel();
                         url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
                         setData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
@@ -80,6 +75,13 @@ kindFramework
                         url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
                         setData.EventType = scope.EventRule.EventType;
                     }
+                } else {
+                    url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=update';
+                    if(scope.EventSource === 'OpenSDK') {
+                        setData.Enable = scope.EventRule.Enable;
+                    }
+                    setData.RuleIndex = scope.EventRule.RuleIndex;
+                    setData.EventSource = scope.EventSource;
                 }
                 setData.EventAction = "";
                 if (scope.EventRule.FtpEnable) {
@@ -580,7 +582,7 @@ kindFramework
                     pageData.EventRules = angular.copy(scope.EventRules);
                 });
 
-                scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
+                scope.$emit('EventRulePrepared', scope.EventRules.ScheduleType);
             }
 
             scope.$watch('pageLoaded', function(newVal, oldVal){
