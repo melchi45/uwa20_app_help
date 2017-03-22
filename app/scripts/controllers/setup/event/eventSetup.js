@@ -393,22 +393,31 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
     function getEventRules() {
         var getData = {};
-        var url = '';
-        if($scope.isEventActionSupported && $scope.isMultiChannel) {
-            url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
-        } else {
-            url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=view';
-        }
+        var url = '/stw-cgi/eventrules.cgi?msubmenu=rules&action=view';
 
         return SunapiClient.get(
             url, 
             getData, 
             function(response) {
-                if($scope.isEventActionSupported && $scope.isMultiChannel) {
-                    prepareEventActions(response.data.ComplexActions);
-                } else {
-                    prepareEventRules(response.data.EventRules);
-                }
+                prepareEventRules(response.data.EventRules);
+            },
+            function(errorData) {
+                //alert(errorData);
+            }, 
+            '', 
+            true
+        );
+    }
+
+    function getEventActions() {
+        var getData = {};
+        var url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
+
+        return SunapiClient.get(
+            url, 
+            getData, 
+            function(response) {
+                prepareEventActions(response.data.ComplexActions);
             },
             function(errorData) {
                 //alert(errorData);
@@ -822,15 +831,19 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
     
     function view() {
         getAttributes();
-        $q.seqAll([getEventRules, cameraView]).then(function(result) {
-            if($scope.isMultiChannel && $scope.isEventActionSupported) {
+        if($scope.isMultiChannel && $scope.isEventActionSupported) {
+            $q.seqAll([getEventActions, cameraView]).then(function(result) {
                 initPresetSelectShowForMultiChannel();
-            } else {
+                $scope.pageLoaded = true;
+                $rootScope.$emit('changeLoadingBar', false);
+            }, function(error) {});
+        } else {
+            $q.seqAll([getEventRules, cameraView]).then(function(result) {
                 initPresetSelectShow();
-            }
-            $scope.pageLoaded = true;
-            $rootScope.$emit('changeLoadingBar', false);
-        }, function(error) {});
+                $scope.pageLoaded = true;
+                $rootScope.$emit('changeLoadingBar', false);
+            }, function(error) {});
+        }
     }
 
     function set() {

@@ -27,6 +27,7 @@ kindFramework
             var prevEventObjs = null;
             var initializing = false;
             var currentUnit = '30';
+            var prevChannel = 0;
 
             // eventObjs = setEventSources();
 
@@ -1368,36 +1369,47 @@ kindFramework
 
             // in case of event rules reset by sunapi call in eventActionSetup
             scope.$saveOn('EventRulePrepared', function(event, data) {
+                var currentChannel = 0;
+                if(scope.channelSelectionSection !== undefined || scope.channelSelectionSection !== null) {
+                    currentChannel = scope.channelSelectionSection.getCurrentChannel();
+                }
                 if(scope.EventSource === 'AlarmInput') {
                     activeMenu = 'alarmInput';
                     if(data === 'Always') {
                         setVisibility(data);
                     } else if(data === 'Scheduled') {
-                        $('#calendar').fullCalendar('destroy');
-                        initialRendered = false;
-                        initCalendar(scope.EventRules[0]);
-                        setVisibility(data);
+                        if(!alreadyCreated || prevChannel !== currentChannel) {
+                            $('#calendar').fullCalendar('destroy');
+                            initialRendered = false;
+                            initCalendar(scope.EventRules[0]);
+                            setVisibility(data);
+                        }
                     }
                 } else if(scope.EventSource === 'Storage') {
                     activeMenu = 'storage';
                     if(data === 'Always') {
                         setVisibility(data);
                     } else if(data === 'Scheduled') {
-                        $('#calendar').fullCalendar('destroy');
-                        initialRendered = false;
-                        initCalendar(scope.RecordSchedule[0]);
-                        setVisibility(data);
+                        if(!alreadyCreated || prevChannel !== currentChannel) {
+                            $('#calendar').fullCalendar('destroy');
+                            initialRendered = false;
+                            initCalendar(scope.RecordSchedule[0]);
+                            setVisibility(data);
+                        }
                     }
                 } else {
                     if(data === 'Always') {
                         setVisibility(data);
                     } else if(data === 'Scheduled') {
-                        $('#calendar').fullCalendar('destroy');
-                        initialRendered = false;
-                        initCalendar(scope.EventRule);
-                        setVisibility(data);
+                        if(!alreadyCreated || prevChannel !== currentChannel) {
+                            $('#calendar').fullCalendar('destroy');
+                            initialRendered = false;
+                            initCalendar(scope.EventRule);
+                            setVisibility(data);
+                        }
                     }
                 }
+                prevChannel = currentChannel;
             });
             //---------------------------------------------------------
 
