@@ -145,7 +145,10 @@
                 <input 
                   type="text"
                   class="form-control"
-                  ng-model="addPresetting.name">
+                  ng-model="addPresetting.SelectedName"
+                  required ng-pattern-restrict="{{AlphaNumericStr}}"
+                  ng-maxlength="PresetNameMaxLen"
+                  maxlength="{{PresetNameMaxLen}}">
             </div>
         </div>
 
@@ -154,7 +157,9 @@
             <div>
                 <select
                   class="form-control"
-                  ng-model="addPresetting.Number"></select>
+                  ng-model="addPresetting.SelectedNumber"
+                  ng-options="Preset.Number as (Preset.Number + ' : ' + Preset.Name) for Preset in addPresetting.PresetList">
+                </select>
             </div>
         </div>
 
