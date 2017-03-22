@@ -10,6 +10,7 @@ module.exports = function(injection){
 
 	var customDocsSrc = grunt.file.readJSON(projectStructure.customDocsConfig);
 	// var isOk = true;
+	var newCustomDocsSrc = [];
 
 	for(var i = 0, len = customDocsSrc.length; i < len; i++){
 		var self = customDocsSrc[i];
@@ -27,13 +28,14 @@ module.exports = function(injection){
 		}
 
 		if(!haveExtension.test(saperatedSelf)){
-			self = self + '/**';
+			newCustomDocsSrc.push(self + '/**/*.js');
+			newCustomDocsSrc.push(self + '/*.js');
+		}else{
+			newCustomDocsSrc.push(self);
 		}
-
-		customDocsSrc[i] = self;
 	}
 
-	projectStructure.customDocsSrc = customDocsSrc;
+	projectStructure.customDocsSrc = newCustomDocsSrc;
 
 	return {
 			project: {
