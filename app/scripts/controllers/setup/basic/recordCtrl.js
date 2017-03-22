@@ -155,12 +155,9 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
         };
         
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
-            $scope.RecordSchedule = response.data.RecordSchedule;
-            
-            for (var i = 0; i < $scope.RecordSchedule.length; i++) {
-                $scope.RecordSchedule[i].ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule[i].Schedule));
-            }
-            
+            $scope.RecordSchedule = response.data.RecordSchedule[0];
+            $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
+
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
         }, function(errorData) {
             console.error(errorData);
@@ -200,8 +197,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $c
         $scope.recordSetting.PreEventDuration = $scope.RecordGeneralInfo.PreEventDuration;
         $scope.recordSetting.PostEventDuration = $scope.RecordGeneralInfo.PostEventDuration;
         $scope.recordSetting.RecordedVideoFileType = $scope.RecordGeneralInfo.RecordedVideoFileType;
-        $scope.RecordSchedule.Activate = $scope.RecordSchedule[$scope.Channel].Activate;
-        $scope.recordSetting.Activate = $scope.RecordSchedule;
+        $scope.RecordSchedule.Activate = $scope.RecordSchedule.Activate;
 
         defer.resolve('Success');
         return defer.promise;

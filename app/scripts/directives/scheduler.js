@@ -66,7 +66,7 @@ kindFramework
                 if(activeMenu === 'alarmInput') {
                     scope.EventRules[scope.AlarmData.SelectedAlarm].ScheduleIds = angular.copy(scheduleIds); // temporarily index 0
                 } else if(activeMenu === 'storage') {
-                    scope.RecordSchedule[0].ScheduleIds = angular.copy(scheduleIds);
+                    scope.RecordSchedule.ScheduleIds = angular.copy(scheduleIds);
                 } else {
                     scope.EventRule.ScheduleIds = angular.copy(scheduleIds);
                 }
@@ -1322,7 +1322,7 @@ kindFramework
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
                     if(!alreadyCreated) {
-                        initCalendar(scope.RecordSchedule[0]);
+                        initCalendar(scope.RecordSchedule);
                     }
                     // $timeout(function() {
                         setVisibility(newVal);
@@ -1393,7 +1393,7 @@ kindFramework
                         if(!alreadyCreated || prevChannel !== currentChannel) {
                             $('#calendar').fullCalendar('destroy');
                             initialRendered = false;
-                            initCalendar(scope.RecordSchedule[0]);
+                            initCalendar(scope.RecordSchedule);
                             setVisibility(data);
                         }
                     }
