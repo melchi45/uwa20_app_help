@@ -490,25 +490,25 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         });
 
         //초기 데이터 없을 때
-        var defaultWiseFDPoints = [];
-        if(!("DetectionAreas" in pageData.FD)){
-            if(findFDIndex(1) === null){
-                defaultWiseFDPoints = getDefaultWiseFDData();   
-            }else{
-                defaultWiseFDPoints = $scope.FD.DetectionAreas[findFDIndex(1)].Coordinates;
-            }
+        // var defaultWiseFDPoints = [];
+        // if(!("DetectionAreas" in pageData.FD)){
+        //     if(findFDIndex(1) === null){
+        //         defaultWiseFDPoints = getDefaultWiseFDData();   
+        //     }else{
+        //         defaultWiseFDPoints = $scope.FD.DetectionAreas[findFDIndex(1)].Coordinates;
+        //     }
 
-            defaultWiseFDPoints = fixRatioForCoordinates(defaultWiseFDPoints);   
-            defaultWiseFDPoints = changeOnlyEvenNumberOfWiseFD(defaultWiseFDPoints);
+        //     defaultWiseFDPoints = fixRatioForCoordinates(defaultWiseFDPoints);   
+        //     defaultWiseFDPoints = changeOnlyEvenNumberOfWiseFD(defaultWiseFDPoints);
 
-            initSetData['DetectionArea.1.Coordinate'] = defaultWiseFDPoints.join(',');
-            initSetData.Channel = currentChannel;
+        //     initSetData['DetectionArea.1.Coordinate'] = defaultWiseFDPoints.join(',');
+        //     initSetData.Channel = currentChannel;
 
-            queue.push({
-                url: '/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=set', 
-                reqData: initSetData
-            });
-        }
+        //     queue.push({
+        //         url: '/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=set', 
+        //         reqData: initSetData
+        //     });
+        // }
     }
 
 
@@ -517,14 +517,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             $scope.$broadcast('rzSliderForceRender');
             $scope.$broadcast('reCalcViewDimensions');
         });
-    }
-
-    function validatePage() {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0) {
-            COMMONUtils.ShowError('lang_msg_checkthetable');
-            return false;
-        }
-        return true;
     }
 
     function view(data) {
@@ -586,14 +578,8 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     function set(isEnable) {
         sketchbookService.removeDrawingGeometry();
 
-        var queue = [];
         if (validatePage()) {
-            if (
-                !angular.equals(pageData.FD, $scope.FD) || 
-                !angular.equals(pageData.EventRule, $scope.EventRule) ||
-                !("DetectionAreas" in pageData.FD) || //초기
-                findFDIndex(1) === null //Include 가 없을 때
-                ) {
+            if (checkChangedData()) {
                 var modalInstance = $uibModal.open({
                     templateUrl: 'views/setup/common/confirmMessage.html',
                     controller: 'confirmMessageCtrl',
@@ -604,27 +590,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
                         }
                     }
                 });
-                modalInstance.result.then(function() {
-                    if (
-                        !angular.equals(pageData.FD, $scope.FD) ||
-                        !("DetectionAreas" in pageData.FD) || //초기
-                        findFDIndex(1) === null //Include 가 없을 때
-                        ) {
-                        setFaceDetection(queue);
-                    }
-
-                    if(queue.length > 0){
-                        SunapiClient.sequence(queue, function(){
-                            $scope.$emit('applied', true);
-                            $timeout(view);
-                        }, function(errorData){
-                            console.error(errorData);
-                        });
-                    } else {
-                        $scope.$emit('applied', true);
-                        $timeout(view);
-                    }
-                }, function(){
+                modalInstance.result.then(setChangedData, function(){
                     if(isEnable === true){
                         $scope.FD.Enable = pageData.FD.Enable;
                     }
@@ -1034,10 +1000,71 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         // console.log($scope.FD);
     }, $scope);
 
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+    function changeChannel(index){
+        $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
         $scope.channelSelectionSection.setCurrentChannel(index);
         view();
+    }
+
+    function checkChangedData(){
+        return !angular.equals(pageData.FD, $scope.FD);
+    }
+
+    function validatePage() {
+        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0) {
+            COMMONUtils.ShowError('lang_msg_checkthetable');
+            return false;
+        }
+        return true;
+    }
+
+    function setChangedData() {
+        var deferred = $q.defer();
+        var queue = [];
+
+        if (!angular.equals(pageData.FD, $scope.FD)) {
+            setFaceDetection(queue);
+        }
+
+        if(queue.length > 0){
+            SunapiClient.sequence(queue, function(){
+                $scope.$emit('applied', true);
+                $timeout(function(){
+                    view();
+                    deferred.resolve(true);
+                });
+            }, function(errorData){
+                console.error(errorData);
+                deferred.reject(errorData);
+            });
+        } else {
+            $scope.$emit('applied', true);
+            $timeout(function(){
+                view();
+                deferred.resolve(true);
+            });
+        }
+
+        return deferred.promise;
+    }
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        if(checkChangedData()){
+            COMMONUtils
+                .confirmChangeingChannel()
+                .then(function(){
+                    if(validatePage() === true){
+                        setChangedData().then(function(){
+                            changeChannel(index);
+                        });
+                    }
+                }, function(){
+                    console.log("canceled");
+                });    
+        }else{
+            changeChannel(index);
+        }
     }, $scope);
 
     $scope.detectionAreaDisplayAll = false;

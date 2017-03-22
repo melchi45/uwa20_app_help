@@ -9,6 +9,8 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
     var pageData = {};
 
+
+
     $scope.TamperDetectChartOptions = {
         showInputBox : true,
         ThresholdLevel : 50,
@@ -94,10 +96,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         var getData = {
             Channel: $scope.channelSelectionSection.getCurrentChannel()
         };
-
-
-
-
+        
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
                 function (response) {
                     var viewerWidth = 640;
@@ -360,6 +359,8 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                     $scope.TamperDetect = response.data.TamperingDetection[0];
                     pageData.TamperDetect = angular.copy($scope.TamperDetect)
 
+                    console.log($scope.TamperDetect);
+
                     $scope.TamperDetectChartOptions.ThresholdLevel = $scope.TamperDetect.ThresholdLevel;
 
                     $scope.TamperDetectDurationSliderModel.data = $scope.TamperDetect.Duration;
@@ -448,8 +449,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                 return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=tamperingdetection&action=set', setData,
                     function ()
                     {
-
-
                         pageData.TamperDetect.Enable = angular.copy($scope.TamperDetect.Enable);
                     },
                     function (errorData)

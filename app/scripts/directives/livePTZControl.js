@@ -27,6 +27,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						this.show = value;
 					},
 					apply: function(value){
+                        scope.ptzPreset("Add");
 						this.show = false;
 						$("#live-ptz-tabs").removeClass('cm-display-none');
 					},
@@ -81,15 +82,15 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                             getSettingPresetList();
                             getSettingGroupList();
 
-                            scope.modePTZ.AreaZoom = false;
+                            // scope.modePTZ.AreaZoom = false;
                             $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
-                            $rootScope.$emit('channelPlayer:command', 'pixelCount', false);
                             if (mAttr.TraceSupport)
                             {
                                 scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
                                 scope.Trace = {};
                                 scope.Trace.SelectedIndex = 0;
                             }
+
                             if (mAttr.SwingSupport)
                             {
                                 if (mAttr.SwingModes !== undefined)
@@ -98,6 +99,16 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                                     scope.selectedObj.swingObj = scope.SwingModes[0];
                                 }
                             }
+
+                            if(mAttr.PresetSupport)
+							{
+								//Preset Name Strict Condition
+								//Length Condition
+								//Alphabet or Number are only availabe
+                                scope.AlphaNumericStr = mAttr.AlphaNumericStr;
+                                scope.PresetNameMaxLen = ((mAttr.PresetNameMaxLen && mAttr.PresetNameMaxLen.maxLength)?mAttr.PresetNameMaxLen.maxLength:"12");
+							}
+
 							break;
 						case CAMERA_STATUS.PTZ_MODE.ZOOMONLY:
 							scope.ptzMode = "zoomonly";
@@ -191,15 +202,19 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
         };
 
 		scope.ptzPreset = function(value){
-			console.log(value);
 			try {
-				if(value === 'Stop'){
-					run('preset', scope.selectedObj.presetObj.value, 'Stop');
+				if(value === 'Home'){
+                    sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=home&action=control";
+                    execSunapi(sunapiURI);
 				}else if(value === 'Go'){
 					run('preset',  scope.selectedObj.presetObj.value, 'Start');
 				}else if(value === 'Set') {
-					$("#live-ptz-tabs").addClass('cm-display-none');
-					scope.presetAddForm.show = true;
+                    $("#live-ptz-tabs").addClass('cm-display-none');
+                    scope.presetAddForm.show = true;
+                }else if(value === 'Add') {
+                    sunapiURI = "/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=add&Preset="+scope.addPresetting.SelectedNumber+"&Name="+scope.addPresetting.SelectedName;
+                    execSunapi(sunapiURI);
+                    getSettingPresetList();
 				}else{
 					throw "Wrong Argument";
 				}
@@ -316,20 +331,44 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 		};
 
         var presetListCallback = function(result) {
-	        if (result.PTZPresets === undefined) {
-						ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
-	        } else {
-            scope.presetList = [];
-            var presetFunc = function(value) { run('preset', value); };
-            for(var index = 0 ; index < result.PTZPresets[0].Presets.length; index++ ) {
-              scope.presetList[index] = {'name':result.PTZPresets[0].Presets[index].Name,
-                              'action': presetFunc,
-                              'value':result.PTZPresets[0].Presets[index].Preset,
-                            };
+			if (result.PTZPresets === undefined) {
+				ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
+			} else {
+				scope.presetList = [];
+				var presetFunc = function(value) { run('preset', value); };
+				for(var index = 0 ; index < result.PTZPresets[0].Presets.length; index++ ) {
+					scope.presetList[index] = {
+						'name':result.PTZPresets[0].Presets[index].Name,
+						'action': presetFunc,
+						'value':result.PTZPresets[0].Presets[index].Preset
+					};
+				}
+				scope.selectedObj.presetObj = scope.presetList[0];
+				scope.$apply();
+			}
+
+			if(mAttr.PresetSupport)
+			{
+				//Init Preset Add Menu List
+
+				scope.addPresetting = {};
+				scope.addPresetting.PresetList = new Array(mAttr.MaxPreset);
+				for(var i=0, j=0; i<mAttr.MaxPreset; i++)
+				{
+                    scope.addPresetting.PresetList[i] =  {
+                        'Number' : i+1,
+                        'Name' : ''
+                    };
+				}
+
+                scope.presetList.forEach(function(PresetObj){
+                    scope.addPresetting.PresetList[PresetObj.value-1].Number = PresetObj.value;
+                    scope.addPresetting.PresetList[PresetObj.value-1].Name = PresetObj.name;
+				});
+
+                scope.addPresetting.SelectedName = scope.addPresetting.PresetList[0].Name;
+                scope.addPresetting.SelectedNumber = scope.addPresetting.PresetList[0].Number;
             }
-			scope.selectedObj.presetObj = scope.presetList[0];
-						scope.$apply();
-          }
         };
 
         var groupListCallback = function(result) {
@@ -611,7 +650,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=";
 					switch (mode) {
 						case "preset":
-							sunapiURI += "preset&action=control&Channel=0&Preset=" + value;
+                            sunapiURI += "preset&action=control&Channel=0&Preset=" + value;
 							break;
 						case "group":
 							sunapiURI += "group&action=control&Channel=0&Group=" + value +"&Mode=" + option;
