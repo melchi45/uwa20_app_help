@@ -371,11 +371,13 @@ var H264Session = function () {
 					iFrameNum = 0;
 				}
 
-				if (initalSegmentFlag === true && isNaN(decodedData.mediaSample.frame_duration) === false) {
-					if (decodedData.mediaSample.frame_duration > 500) {
-						decodeMode = "canvas";
-						data.decodeMode = "canvas";
-						decodedData.frameData.firstFrame = true;
+				if (isBackup === false) {
+					if (initalSegmentFlag === true && isNaN(decodedData.mediaSample.frame_duration) === false) {
+						if (decodedData.mediaSample.frame_duration > 500) {
+							decodeMode = "canvas";
+							data.decodeMode = "canvas";
+							decodedData.frameData.firstFrame = true;
+						}
 					}
 				}
 
