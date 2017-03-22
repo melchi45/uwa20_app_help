@@ -9,6 +9,7 @@ kindFramework.directive('overlayCanvas', function(
       var cvs = $("#cm-livecanvas")[0],
       ctx = null,
       rotateCheck = false;
+      var OverlayCanvasMode = null;
 
       function callbackPixelCount(x, y, width, height) {
         ctx.clearRect(0, 0, parseInt(cvs.width, 10), parseInt(cvs.height, 10));
@@ -81,9 +82,24 @@ kindFramework.directive('overlayCanvas', function(
       $rootScope.$saveOn("overlayCanvas::setSize", function(event, width, height) {
           cvs.width = width;
           cvs.height = height;
+
+          switch (OverlayCanvasMode)
+          {
+              case "pixelCount" :
+                  scope.pixelCountInit();
+                  scope.pixelCountLableInit();
+                  break;
+              case "manualTracking" :
+                  break;
+              case "areaZoomMode":
+                  break;
+          }
       });
 
       $rootScope.$saveOn("overlayCanvas::command", function(event, mode, boolEnable) {
+          //Set OverlayCanvas Mode
+          OverlayCanvasMode = (boolEnable) ? mode : null;
+
           switch (mode)
           {
               case "pixelCount" :
