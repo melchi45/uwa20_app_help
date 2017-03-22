@@ -50,6 +50,14 @@ kindFramework.directive('overlayCanvas', function(
           ctx.fillText("0 x 0", 10, 21);
       };
 
+      scope.areaZoomInit = function(){
+          ctx = cvs.getContext("2d");
+
+          //AreaZoom 영역 색상 두께 설정
+          ctx.strokeStyle = "#FFFF00";
+          ctx.lineWidth = 5;
+      };
+
       function callbackManualTracking (event) {
           if(event.target.id !== "cm-livecanvas") return;
 
@@ -92,13 +100,17 @@ kindFramework.directive('overlayCanvas', function(
               case "manualTracking" :
                   break;
               case "areaZoomMode":
+                  scope.areaZoomInit();
                   break;
           }
       });
 
       $rootScope.$saveOn("overlayCanvas::command", function(event, mode, boolEnable) {
           //Set OverlayCanvas Mode
-          OverlayCanvasMode = (boolEnable) ? mode : null;
+          if(mode !== 'manualTracking')
+          {
+              OverlayCanvasMode = (boolEnable) ? mode : null;
+          }
 
           switch (mode)
           {

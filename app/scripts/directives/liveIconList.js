@@ -80,13 +80,8 @@ kindFramework.directive('liveIconList', function(
 		    function pixelCountFunc() {
 		      if (scope.channelBasicFunctions.pixelCount) {
 		        scope.channelBasicFunctions.pixelCount = false;
-		    //     if(scope.channelSetFunctions.ptz === false)
-				// {
-                    scope.channelBasicFunctions.overlayCanvas = false;
-				// }
 		      } else {
 		        scope.channelBasicFunctions.pixelCount = true;
-                scope.channelBasicFunctions.overlayCanvas = true;
 		      }
 
 		      var command = {

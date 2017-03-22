@@ -426,8 +426,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
     function getAreaZoomCheck(){
       return areaZoomCheck;
     }
-    function setMode(mode) { 
-      console.info(mode);
+    function setMode(mode) {
       ptzMode = mode; 
       if(mode === PTZ_TYPE.ptzCommand.PTZ) { // when ptz mode set, initialize mouse event value
         downCheck = false;
@@ -438,7 +437,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
       }
     }
 
-    function areaZoomInit(width, height)
+    function areaZoomInit()
     {
         overlayCanvas = document.getElementById("cm-livecanvas");
         overlayCanvasContext = overlayCanvas.getContext("2d");

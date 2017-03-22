@@ -82,9 +82,8 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                             getSettingPresetList();
                             getSettingGroupList();
 
-                            scope.modePTZ.AreaZoom = false;
+                            // scope.modePTZ.AreaZoom = false;
                             $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
-                            $rootScope.$emit('channelPlayer:command', 'pixelCount', false);
                             if (mAttr.TraceSupport)
                             {
                                 scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
