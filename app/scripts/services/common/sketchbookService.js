@@ -109,6 +109,12 @@ kindFramework.factory('sketchbookService', function() {
             if (this.sketchManager !== undefined){
                 this.sketchManager.showGeometry(index);
             }  
+        },
+        getErrorRange: function(){
+            if(this.sketchManager !== undefined){
+                return this.sketchManager.getErrorRange();
+            }
+            return false;
         }
     };
 });

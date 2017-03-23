@@ -639,6 +639,9 @@
                 if (privacy !== null) privacy.set(data);
             }
         },
+        getErrorRange: function(){
+            return (videoInfo.maxWidth / videoInfo.width) - 1;
+        },
         changeFlag: function(data) {
             if (sketchInfo.workType === "mdSize") {
                 mdSize.changeMdsizeFlag(data);
