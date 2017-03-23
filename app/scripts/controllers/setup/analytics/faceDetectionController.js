@@ -1,5 +1,5 @@
 /*global setTimeout */
-kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope, WISE_FACE_DETECTION) {
+kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope, WISE_FACE_DETECTION, schedulerService) {
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
@@ -1011,7 +1011,8 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function validatePage() {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0) {
+        var target = schedulerService.get();
+        if (target.type === 'Scheduled' && target.data.length === 0) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
