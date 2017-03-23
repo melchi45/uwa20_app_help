@@ -766,7 +766,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                         mAttributes.PTZModel = mAttributes.ZoomOnlyModel = mAttributes.ExternalPTZModel = false;
                     }
 
-                    if(mAttributes.PTZModel || mAttributes.FisheyeLens || mAttributes.ExternalPTZModel)
+                    if(mAttributes.PTZModel || mAttributes.FisheyeLens || mAttributes.ExternalPTZModel || mAttributes.ZoomOnlyModel)
                     {
                         mAttributes.PresetTypes = ['Global', 'Preset'];
                         mAttributes.ContinousZoom = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Support/Continuous.Zoom');
