@@ -678,6 +678,7 @@ kindFramework.directive('channelPlayer',
                   {
                     elem.empty();
                     PluginControlService.stopStreaming();
+                    $rootScope.$emit('app/scripts/directives/channelPlayer.js:disablePlayback', false);
                   }
                   else
                   {
@@ -685,6 +686,7 @@ kindFramework.directive('channelPlayer',
                     elem.empty();
                     if( isPlaybackMode === true ) {
                       createNoSupportPlaybackInPlugInElement();
+                      $rootScope.$emit('app/scripts/directives/channelPlayer.js:disablePlayback', true);
                     }
                   }
                   break;
