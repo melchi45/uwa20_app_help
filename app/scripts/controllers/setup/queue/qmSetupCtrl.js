@@ -597,6 +597,11 @@ kindFramework.controller('QMSetupCtrl',
 		calibrationData[1] = [ pointsFromSketchbook[secondIndex][0], pointsFromSketchbook[firstIndex][1] ];
 	}
 
+	$scope.areaColor = [
+		{color: "#238bc1"},
+		{color: "#ff6633"},
+		{color: "#32ac3a"}
+	];
 	function getSketchinfo(flag){
 		if(!$scope.queueData.Enable) return null;
 		var sketchinfo = {
@@ -613,7 +618,8 @@ kindFramework.controller('QMSetupCtrl',
 		            {
 	        			isSet: true,
 	        			enable: $scope.queueData.Queues[i].Enable,
-	            		points: data[i].points
+	            		points: data[i].points,
+						areaColor: $scope.areaColor[i].color
 	            	}
             	);
         	}

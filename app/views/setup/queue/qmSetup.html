@@ -98,7 +98,7 @@
                                                 ng-change="queueListSection.changeUseState($index, true)"
                                                 ng-model="data.Enable">
                                         </td>
-                                        <td>{{$index + 1}}</td>
+                                        <td ng-style="areaColor[$index]">{{$index + 1}}</td>
                                         <td>
                                             <input 
                                                 type="text" 

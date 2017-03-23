@@ -78,6 +78,11 @@ kindFramework.controller('QMStatisticsCtrl', function (
         return pcSetupService.setMaxResolution(mAttr.EventSourceOptions);
 	}
 
+	$scope.areaColor = [
+		{color: "#238bc1"},
+		{color: "#ff6633"},
+		{color: "#32ac3a"}
+	];
 	$scope.previewSection = {
 		coordinates: [],
 		goToSetup: function(){
@@ -108,7 +113,8 @@ kindFramework.controller('QMStatisticsCtrl', function (
 	        			isSet: true,
 	        			enable: datas[i].Enable,
 	            		points: points,
-	            		textInCircle: (i + 1) + ''
+	            		textInCircle: (i + 1) + '',
+						areaColor: $scope.areaColor[i].color
 	            	}
             	);
 			}

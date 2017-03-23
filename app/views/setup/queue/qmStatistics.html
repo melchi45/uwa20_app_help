@@ -21,7 +21,7 @@
                                     class="form-group" 
                                     ng-repeat="data in queueData.Queues track by $index"
                                     ng-show="data.Enable">
-                                    <div class="wn5-setup-preview-heading"><span>{{ ($index + 1) }}: {{data.Name}}</span></div>
+                                    <div class="wn5-setup-preview-heading"><span><strong ng-style="areaColor[$index]">{{ ($index + 1) }}:</strong> {{data.Name}}</span></div>
                                     <div class="wn5-setup-section-article-content">
                                         <div class="qm-bar-wrap" id="qm-bar-{{$index}}">
                                             <div class="qm-bar-radius">
