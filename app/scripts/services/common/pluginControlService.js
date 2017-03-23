@@ -472,11 +472,13 @@ kindFramework
       var setData = {};
       var pluginElement = document.getElementsByTagName("channel_player")[0].getElementsByTagName("object")[0];
 
+      var LengthPos1 = String(Pos1).length;
+      var LengthPos2 = String(Pos2).length;
       setData.X1 = parseInt(Number(Pos1) / 10000);
-      setData.Y1 = Number(String(Pos1).substring(4, 8));
+      setData.Y1 = Number(String(Pos1).substring(LengthPos1-3, LengthPos1));
 
       setData.X2 = parseInt(Number(Pos2) / 10000);
-      setData.Y2 = Number(String(Pos2).substring(4, 8));
+      setData.Y2 = Number(String(Pos2).substring(LengthPos2-3, LengthPos2));
 
       setData.TileWidth = pluginElement.offsetWidth;
       setData.TileHeight = pluginElement.offsetHeight;
