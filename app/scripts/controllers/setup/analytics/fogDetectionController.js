@@ -461,7 +461,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     function set() {
         if(validatePage())
         {
-            COMMONUtils.ApplyConfirmation(saveSettings);    
+            COMMONUtils.ApplyConfirmation(setChangedData);    
         }
     }
 
@@ -493,6 +493,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     }
 
     function checkChangedData(){
+        $scope.$emit('applied', true);
         return !angular.equals(pageData.FogDetect, $scope.FogDetect);
     }
 
