@@ -57,6 +57,8 @@ var H264Session = function () {
 	var errorcheck = false;
 	var errorIFrameNum = 0;
 	var durationCorrection = 0;
+	var preTimeStamp = null;
+	var frameDuration = 0;
 
 	//media segment test
 	var segmentBuffer = new Uint8Array(size_1M),
@@ -75,6 +77,19 @@ var H264Session = function () {
 		inputLength += buffer2.length;
 		return buffer1;
 	};
+
+	function changeMode(mode) {
+		if (mode !== decodeMode) {
+			if (mode === "video") {
+				decodeMode = "video";
+			} else {
+				decodeMode = "canvas";
+				changeModeFlag = true;
+				iFrameNum = 0;
+				decodedData.frameData.firstFrame = true;
+			}
+		}
+	}
 
 	function Constructor() {
 		this.decoder = H264Decoder(); //new H264Decoder();
@@ -252,6 +267,16 @@ var H264Session = function () {
 						data.backupData.timestamp = (rtpTimeStamp / 90).toFixed(0);
 					}
 				}
+
+				if (preTimeStamp === null && playback === true) {
+					preTimeStamp = (1000*timeData.timestamp) + timeData.timestamp_usec;
+					return null;
+				} else {
+					var curTimeStamp = (1000*timeData.timestamp) + timeData.timestamp_usec;
+					frameDuration = Math.abs(curTimeStamp - preTimeStamp) * 10;
+					preTimeStamp = curTimeStamp;
+				}
+
 				if (decodeMode == "canvas") {
 					if (outputSize !== curSize) {
 						outputSize = curSize;
@@ -361,23 +386,18 @@ var H264Session = function () {
 				}
 
 				var size = width * height;
-				if (decodeMode == "canvas" && playback == true && size > videoTagLimitSize) {
-					decodeMode = "video";
-					data.decodeMode = "video";
-				} else if (decodeMode == "video" && playback == true && size <= videoTagLimitSize) {
-					decodeMode = "canvas";
-					data.decodeMode = "canvas";
-					changeModeFlag = true;
-					iFrameNum = 0;
-				}
-
-				if (isBackup === false) {
-					if (initalSegmentFlag === true && isNaN(decodedData.mediaSample.frame_duration) === false) {
-						if (decodedData.mediaSample.frame_duration > 500) {
-							decodeMode = "canvas";
+				if (playback === true) {
+					if (size > videoTagLimitSize) {
+						if (frameDuration < 5000) {
+							changeMode("video");
+							data.decodeMode = "video";
+						} else {
+							changeMode("canvas");
 							data.decodeMode = "canvas";
-							decodedData.frameData.firstFrame = true;
 						}
+					} else {
+						changeMode("canvas");
+						data.decodeMode = "canvas";
 					}
 				}
 
