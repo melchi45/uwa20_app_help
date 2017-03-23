@@ -48,7 +48,7 @@ kindFramework
 
       if(PlugInPromise !== null)
       {
-        // pluginElement.PlayLiveStream ì‹¤í–‰ ë„ ì¤‘ Profile ë³€ê²½ ìš”ì²­ì´ ë“¤ì–´ì˜¬ ê²½ìš°
+        // pluginElement.PlayLiveStream ½ÇÇà µµ Áß Profile º¯°æ ¿äÃ»ÀÌ µé¾î¿Ã °æ¿ì
         $timeout.cancel(PlugInPromise);
       }
 
@@ -78,6 +78,10 @@ kindFramework
 
     this.stopStreaming = function()
     {
+      if(PlugInPromise !== null) {
+        $timeout.cancel(PlugInPromise);
+        PlugInPromise = null;
+      }
       if(pluginElement !== null && pluginElement !== undefined ){
         if(UniversialManagerService.isSpeakerOn()){
           pluginElement.StopAudio();
