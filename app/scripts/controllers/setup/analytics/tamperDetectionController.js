@@ -1,4 +1,4 @@
-kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $interval, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, $rootScope)
+kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $interval, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, $rootScope, schedulerService)
 {
     "use strict";
 
@@ -415,10 +415,9 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         });
     };
 
-    function validatePage()
-    {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0)
-        {
+    function validatePage() {
+        var target = schedulerService.get();
+        if (target.type === 'Scheduled' && target.data.length === 0) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
@@ -473,8 +472,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
                 modalInstance.result.then(function ()
                 {
-                    $scope.applied = true;
-
                     var functionList = [];
 
                     if (!angular.equals(pageData.TamperDetect, $scope.TamperDetect))
@@ -485,6 +482,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                     if(functionList.length > 0) {
                         $q.seqAll(functionList).then(
                             function () {
+                                $scope.$emit('applied', true);
                                 view();
                             },
                             function (errorData) {
@@ -494,6 +492,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                             startMonitoringTamperingLevel();
                         });
                     } else {
+                        $scope.$emit('applied', true);
                         view();
                         startMonitoringTamperingLevel();
                     }

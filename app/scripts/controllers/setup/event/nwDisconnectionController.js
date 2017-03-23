@@ -1,4 +1,4 @@
-kindFramework.controller('nwDisconnectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $rootScope) {
+kindFramework.controller('nwDisconnectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $rootScope, schedulerService) {
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
@@ -59,7 +59,8 @@ kindFramework.controller('nwDisconnectionCtrl', function($scope, $uibModal, $tra
     }
 
     function validatePage() {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0) {
+        var target = schedulerService.get();
+        if (target.type === 'Scheduled' && target.data.length === 0) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
@@ -105,11 +106,11 @@ kindFramework.controller('nwDisconnectionCtrl', function($scope, $uibModal, $tra
 
                     if(promises.length > 0) {
                         $q.seqAll(promises).then(function(){
-                            $scope.applied = true;
+                            $scope.$emit('applied', true);
                             view();
                         }, function(){});
                     } else {
-                        $scope.applied = true;
+                        $scope.$emit('applied', true);
                         view();
                     }
                 }, function() {});

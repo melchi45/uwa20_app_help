@@ -1,4 +1,4 @@
-kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location, $scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q)
+kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location, $scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, schedulerService)
 {
     "use strict";
 
@@ -243,10 +243,9 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                 }, '', true);
     }
 
-    function validatePage()
-    {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0)
-        {
+    function validatePage() {
+        var target = schedulerService.get();
+        if (target.type === 'Scheduled' && target.data.length === 0) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
@@ -338,8 +337,6 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
 
                 modalInstance.result.then(function ()
                 {
-                    $scope.applied = true;
-
                     var promises = [];
 
                     if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect))
@@ -349,11 +346,13 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
 
                     if(promises.length > 0){
                         $q.seqAll(promises).then(function(){
+                            $scope.$emit('applied', true);
                             view();
                         }, function(errorData){
                             console.error(errorData);
                         });
                     } else {
+                        $scope.$emit('applied', true);
                         view();
                     }
                 }, function ()

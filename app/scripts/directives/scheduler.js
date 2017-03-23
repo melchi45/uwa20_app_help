@@ -27,6 +27,7 @@ kindFramework
             var prevEventObjs = null;
             var initializing = false;
             var currentUnit = '30';
+            var currentScheduleType = null;
 
             // eventObjs = setEventSources();
 
@@ -69,6 +70,8 @@ kindFramework
                 } else {
                     scope.EventRule.ScheduleIds = angular.copy(scheduleIds);
                 }
+
+                schedulerService.set({menu: activeMenu, type:currentScheduleType, data:scheduleIds});
                 // console.info('end of getEventSources ===================== ');
             }
 
@@ -729,6 +732,7 @@ kindFramework
 
             function setVisibility(value) {
                 var v = value;
+                currentScheduleType = value;
                 if(value === "Always") {
                     v = "hidden";
                     $("#calendar").css({"display": "none"});

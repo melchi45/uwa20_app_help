@@ -1,4 +1,4 @@
-kindFramework.controller('autoTrackEventCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $rootScope)
+kindFramework.controller('autoTrackEventCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $rootScope, schedulerService)
 {
     "use strict";
 
@@ -51,10 +51,9 @@ kindFramework.controller('autoTrackEventCtrl', function ($scope, $uibModal, $tra
         $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
     }
 
-    function validatePage()
-    {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0)
-        {
+    function validatePage() {
+        var target = schedulerService.get();
+        if (target.type === 'Scheduled' && target.data.length === 0) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
