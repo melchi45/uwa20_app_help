@@ -9118,6 +9118,10 @@ i.tui-ch-playback-stop {
 .kind-responsive-live #cm-bottom-menu.cm-full-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form .form-group > span {
   color: #fff;
 }
+.kind-responsive-live #cm-bottom-menu.cm-full-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form .form-group .form-control {
+  background: #262626;
+  border: 1px solid #4c4c4c;
+}
 .kind-responsive-live #cm-bottom-menu.cm-full-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-tabs {
   color: #fff;
   border: 1px solid #333;
