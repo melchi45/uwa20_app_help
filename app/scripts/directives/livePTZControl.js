@@ -213,8 +213,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                     scope.presetAddForm.show = true;
                 }else if(value === 'Add') {
                     sunapiURI = "/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=add&Preset="+scope.addPresetting.SelectedNumber+"&Name="+scope.addPresetting.SelectedName;
-                    execSunapi(sunapiURI);
-                    getSettingPresetList();
+                    execSunapi(sunapiURI, getSettingPresetList);
 				}else{
 					throw "Wrong Argument";
 				}
@@ -665,7 +664,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				function execSunapi(uri, callback) {
 					var getData = {};
 					if (uri !== null) {
-						SunapiClient.get(uri, getData,
+						return SunapiClient.get(uri, getData,
 							function (response) {
 								if (callback !== undefined) {
 									if (callback !== null) {
