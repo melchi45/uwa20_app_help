@@ -15,6 +15,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                     AreaZoom : false
 				};
 
+                scope.HomeSupport = mAttr.HomeSupport;
 				scope.dptzMode = CAMERA_STATUS.DPTZ_MODE;
 				scope.ptzType = CAMERA_STATUS.PTZ_MODE;
 				scope.autoTrackingFlag = false;

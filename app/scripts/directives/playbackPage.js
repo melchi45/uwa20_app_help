@@ -232,7 +232,7 @@ kindFramework
             }
             else if( newVal === PLAY_CMD.STOP || newVal === PLAY_CMD.PAUSE || newVal === PLAY_CMD.PLAYPAGE ){
               scope.playback.isPlay = scope.disableStepIcon = false;
-              if( newVal === PLAY_CMD.STOP ) {
+              if( newVal === PLAY_CMD.STOP || newVal === PLAY_CMD.PLAYPAGE) {
                 scope.disableSpeedIcon = true;
                 scope.disableStepIcon = true;
               } else if( newVal === PLAY_CMD.PAUSE ) {
@@ -261,6 +261,15 @@ kindFramework
           $rootScope.$saveOn('app/scripts/services/playbackClass::disableButton', function(event, data) {
             if( scope.disableButton !== data ) {
               scope.disableButton = data;
+            }
+          }, scope);
+
+          $rootScope.$saveOn('app/scripts/directives/channelPlayer.js:disablePlayback', function(event, data) {
+            if( data === true ) {
+              scope.disableButton = true;
+              scope.disableBackupIcon = true;
+            } else {
+              scope.disableButton = false;
             }
           }, scope);
 
