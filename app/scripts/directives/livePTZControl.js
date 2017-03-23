@@ -332,7 +332,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 
         var presetListCallback = function(result) {
 			if (result.PTZPresets === undefined) {
-				ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
+				//ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
 			} else {
 				scope.presetList = [];
 				var presetFunc = function(value) { run('preset', value); };
@@ -373,7 +373,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 
         var groupListCallback = function(result) {
           if(result.PTZGroups === undefined) {
-						ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
+			//ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
           } else {
             var groups = result.PTZGroups[0].Groups;
             scope.groupList = [];
