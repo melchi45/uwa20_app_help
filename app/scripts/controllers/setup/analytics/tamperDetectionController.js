@@ -1,4 +1,4 @@
-kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $interval, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, $rootScope, schedulerService)
+kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $interval, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, $rootScope, eventRuleService)
 {
     "use strict";
 
@@ -416,8 +416,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     };
 
     function validatePage() {
-        var target = schedulerService.get();
-        if (target.type === 'Scheduled' && target.data.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }

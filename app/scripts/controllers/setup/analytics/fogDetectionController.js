@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $interval, $q, ConnectionSettingService, kindStreamInterface, SessionOfUserManager, AccountService, $uibModal, $rootScope, $translate, schedulerService) {
+kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $interval, $q, ConnectionSettingService, kindStreamInterface, SessionOfUserManager, AccountService, $uibModal, $rootScope, $translate, eventRuleService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -397,8 +397,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     };
 
     function validatePage() {
-        var target = schedulerService.get();
-        if (target.type === 'Scheduled' && target.data.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }

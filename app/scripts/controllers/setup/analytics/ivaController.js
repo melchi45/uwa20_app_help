@@ -1,4 +1,4 @@
-kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $rootScope, $q, schedulerService) {
+kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $rootScope, $q, eventRuleService) {
     "use strict";
     /*jshint sub:true*/
     COMMONUtils.getResponsiveObjects($scope);
@@ -1038,8 +1038,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     }
 
     function validatePage() {
-        var target = schedulerService.get();
-        if (target.type === 'Scheduled' && target.data.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }

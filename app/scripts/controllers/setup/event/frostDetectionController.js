@@ -1,13 +1,14 @@
 /*global kindFramework */
 /*global console */
 /*global alert */
-kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, $uibModal, $translate, schedulerService) {
+kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, $uibModal, $translate, eventRuleService) {
     "use strict";
     var mAttr = Attributes.get();
     $scope.SelectedChannel = 0;
     COMMONUtils.getResponsiveObjects($scope);
     var idx;
     var pageData = {};
+    $scope.EventSource = "FrostDetection";
 
     function getAttributes() {
         var defer = $q.defer();
@@ -216,8 +217,7 @@ kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XM
     }
 
     function validatePage() {
-        var target = schedulerService.get();
-        if (target.type === 'Scheduled' && target.data.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }

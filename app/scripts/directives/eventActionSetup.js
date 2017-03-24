@@ -1,7 +1,7 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 kindFramework
-    .directive('eventActionSetup', ['LoggingService', 'COMMONUtils', 'Attributes', 'SunapiClient', '$rootScope',
-    function(LoggingService, COMMONUtils, Attributes, SunapiClient, $rootScope){
+    .directive('eventActionSetup', ['LoggingService', 'COMMONUtils', 'Attributes', 'SunapiClient', '$rootScope', 'eventRuleService',
+    function(LoggingService, COMMONUtils, Attributes, SunapiClient, $rootScope, eventRuleService){
     'use strict';
     return{
         restrict: 'E',
@@ -428,6 +428,8 @@ kindFramework
                 scope.$apply(function() {
                     pageData.EventRule = angular.copy(scope.EventRule);
                 });
+
+                eventRuleService.setEventRuleData({pageData: scope.EventRule, scopeData: scope.EventRule, menu: scope.EventSource});
             };
 
             function prepareEventRuleArray(eventRules) {
@@ -488,6 +490,8 @@ kindFramework
                 scope.$apply(function() {
                     pageData.EventRules = angular.copy(scope.EventRules);
                 });
+
+                eventRuleService.setEventRuleData({pageData: scope.EventRules, scopeData: scope.EventRules, menu: scope.EventSource});
             }
 
             scope.$watch('pageLoaded', function(newVal, oldVal){
@@ -523,6 +527,42 @@ kindFramework
                     }
                 }
             }, true);
+
+            // when update eventRule data by user mouse, set data for eventRuleService.
+            scope.$watch('EventRule', function(newVal, oldVal){
+                if(typeof newVal === "undefined"){
+                    return;
+                }
+                var data = {
+                    pageData: pageData.EventRule,
+                    scopeData: scope.EventRule,
+                    menu: scope.EventSource,
+                }
+                eventRuleService.setEventRuleData(data);
+            }, true);
+
+            // when update eventRules data by user mouse, set data for eventRuleService.
+            scope.$watch('EventRules', function(newVal, oldVal){
+                if(typeof newVal === "undefined"){
+                    return;
+                }
+                var data = {
+                    pageData: pageData.EventRules,
+                    scopeData: scope.EventRules,
+                    menu: scope.EventSource
+                }
+                eventRuleService.setEventRuleData(data);
+            }, true);
+
+            scope.$saveOn('pageLoaded', function(event, data) {
+                if(data === true) {
+                    if(scope.EventSource !== 'AlarmInput') {
+                        getEventRules();
+                    } else {
+                        getEventRuleArray();
+                    }
+                }
+            });
 
             scope.$saveOn('applied',function(event, data) { // for TimeScheduler, IVA, FD page.
                 if(data === true) {

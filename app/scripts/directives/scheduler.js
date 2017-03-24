@@ -1,7 +1,7 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 kindFramework
-    .directive('scheduler', ['$rootScope', '$timeout', 'schedulerService', 'SunapiClient', '$translate', '$uibModal', '$window',
-    function($rootScope, $timeout, schedulerService, SunapiClient, $translate, $uibModal, $window){
+    .directive('scheduler', ['$rootScope', '$timeout', 'eventRuleService', 'SunapiClient', '$translate', '$uibModal', '$window',
+    function($rootScope, $timeout, eventRuleService, SunapiClient, $translate, $uibModal, $window){
     'use strict';
     return{
         restrict: 'E',
@@ -71,7 +71,7 @@ kindFramework
                     scope.EventRule.ScheduleIds = angular.copy(scheduleIds);
                 }
 
-                schedulerService.set({menu: activeMenu, type:currentScheduleType, data:scheduleIds});
+                eventRuleService.setScheduleData({menu: activeMenu, type:currentScheduleType, data:scheduleIds});
                 // console.info('end of getEventSources ===================== ');
             }
 
@@ -733,6 +733,7 @@ kindFramework
             function setVisibility(value) {
                 var v = value;
                 currentScheduleType = value;
+                eventRuleService.setScheduleType(value);
                 if(value === "Always") {
                     v = "hidden";
                     $("#calendar").css({"display": "none"});
@@ -1296,6 +1297,7 @@ kindFramework
                     }, '', true);
             }
 
+            // in case of changing schedule type while you are in page
             scope.$watch('EventRule.ScheduleType', function(newVal, oldVal){
                 if(typeof newVal === "undefined"){
                     return;
@@ -1349,6 +1351,7 @@ kindFramework
                     // });
                 }
             });
+            //---------------------------------------------------------
 
             scope.$watch('EventRules', function(newVal, oldVal){ // alarmInput
                 if(typeof newVal === "undefined" || activeMenu !== 'alarmInput'){
@@ -1377,6 +1380,15 @@ kindFramework
                     });
                 }
             });
+
+            scope.$saveOn('pageLoaded', function(event, data) {
+                if(data === true) {
+                    $timeout(function(){
+                        $('#calendar').fullCalendar('render');
+                    });
+                }
+            });
+
             $rootScope.$saveOn('resetScheduleData', function(){
                 deleteAll();
                 if(prevEventObjs !== null){

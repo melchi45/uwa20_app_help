@@ -1,4 +1,4 @@
-kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $rootScope, schedulerService) {
+kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $rootScope, eventRuleService) {
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
@@ -68,8 +68,7 @@ kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $transl
     }
 
     function validatePage() {
-        var target = schedulerService.get();
-        if (target.type === 'Scheduled' && target.data.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }

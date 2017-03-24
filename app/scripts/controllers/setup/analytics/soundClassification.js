@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, $translate, $uibModal, $rootScope, $location, schedulerService) {
+kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, $translate, $uibModal, $rootScope, $location, eventRuleService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -412,8 +412,7 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
     $scope.view = view;
 
     function validatePage() {
-        var target = schedulerService.get();
-        if (target.type === 'Scheduled' && target.data.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
