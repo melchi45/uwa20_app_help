@@ -7,9 +7,6 @@ kindFramework
 			url : '<div></div>',
 			restrict: 'A',
 			link:function(scope, element, attrs) {
-        scope.closeFullScreen = function() {
-        	scope.navigationInit();
-        };
         scope.actions = {
         	controlAudio : function(data) {
         		kindStreamInterface.controlAudio(data);
