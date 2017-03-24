@@ -176,7 +176,7 @@ function WorkerManager() {
 
         mediaInfo.samples[mediaSegmentNum++] = message.data;
         curbaseMediaDecoderTime += message.data.frame_duration;
-
+        sumDuration+=message.data.frame_duration;
         if(mediaInfo.samples[0].frame_duration > 5000 && mediaInfo.samples[0].frame_duration <= 30000){
           numBox = 1;
         } else{
