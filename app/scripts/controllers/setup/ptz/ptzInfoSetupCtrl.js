@@ -4,6 +4,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
     var mAttr = Attributes.get();
 
+    var BrowserDetect = COMMONUtils.getBrowserDetect();
     var pageData = {};
     $scope.PTZPresetPage = {};
     $scope.PTZPresetPage.pageSize = 15;
@@ -70,16 +71,16 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     };
 
     $scope.changeCurrentTab = function(tab) {
-    	if ($scope.previousTab.title == tab) return;
+        if ($scope.previousTab.title == tab) return;
         $scope.activeTab.title = tab;
         $scope.activeTab.active = true;
         $scope.previousTab = angular.copy($scope.activeTab);
     };
     
-    $scope.$watch('activeTab', function(newVal, oldVal) { // console.info('watch activeTab :: ');console.info(newVal);
+    $scope.$watch('activeTab.title', function(newVal, oldVal) { // console.info('watch activeTab :: ');console.info(newVal);
         if(newVal === oldVal) {return;}
         
-        if (newVal.title == 'Preset'){
+        if (newVal == 'Preset'){
             $scope.ptzinfo = {
                     type: 'preset'
                 };
@@ -110,7 +111,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     {
         gotoPreset(preset);
     };
-    $scope.$saveOn('changePTZPreset', function(args, preset){
+    $scope.$on('changePTZPreset', function(args, preset){
         var promises = [];
         promises.push(function(){return gotoPreset(preset)});
         promises.push(getPresetList);
@@ -266,74 +267,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         } 
         return true;
     }
-    function openSelectRemovePreset(selectorName,removeIndex,focusSkip){
-        var newVal = $('#'+selectorName+' option:selected').val();
-        var removeSelect = $('#'+selectorName);
-        removeSelect.unbind();
-        removeSelect.remove();
-        $timeout(function(){
-            if(selectorName=='presetAfterActionSelect'){
-                if(newVal !== undefined) $scope.PTZPresets[removeIndex].AfterAction = newVal;
-                $('.presetAfterActionInput:eq('+removeIndex+')').show();
-                if(focusSkip != true) $('.presetAfterActionInput:eq('+removeIndex+')').focus();
-            }else{
-                if(newVal !== undefined) $scope.PTZPresets[removeIndex].AfterActionTrackingTime = newVal;
-                $('.presetAfterActionTrackingTimeInput:eq('+removeIndex+')').show();
-                if(focusSkip != true) $('.presetAfterActionTrackingTimeInput:eq('+removeIndex+')').focus();
-            }
-        });
-    }
-    function openSelectCreatePreset(selectorName,index,options,selectedVal,hideSelector){
-        var selectHtml = $('<select id="'+selectorName+'" name="'+selectorName+'" data-index="'+index+'" class="form-control preset-input-select openSelect" />');
-        $.each(options,function(subIndex,item){
-            if(item==selectedVal){
-                $('<option/>',{value:item,text:$scope.getTranslatedOption(item),selected:'selected'}).appendTo(selectHtml);
-            }else{
-                $('<option/>',{value:item,text:$scope.getTranslatedOption(item)}).appendTo(selectHtml);
-            }
-        });
-        $(hideSelector).hide();
-        $(hideSelector).parent().append(selectHtml);
-        var createdSelect = $('#'+selectorName);
-        createdSelect.focus();
-        createdSelect.focusout(function(){
-            openSelectRemovePreset(selectorName,index,true);
-        });
-        createdSelect.change(function(){
-            openSelectRemovePreset(selectorName,index);
-        });
-    }
     
-    $scope.openAfterActionSelect = function(index,isShow){
-        var selectorName = 'presetAfterActionSelect';
-        if(isShow){
-            var selectedVal = $scope.PTZPresets[index].AfterAction;
-            var hideSelector = '.presetAfterActionInput:eq('+index+')';
-            var options = $scope.PresetActions;
-            var openedSelect = $('.openSelect');
-            if(openedSelect.length == 1) {
-                var removeSelectorName = openedSelect.attr('id');
-                var removeIndex = parseInt(openedSelect.attr('data-index'),10);
-                openSelectRemovePreset(removeSelectorName,removeIndex);
-            }
-            openSelectCreatePreset(selectorName,index,options,selectedVal,hideSelector);
-        }
-    };
-    $scope.openTrackingTimeSelect = function(index,isShow){
-        var selectorName = 'presetAfterActionTrackingTimeSelect';
-        if(isShow){
-            var selectedVal = $scope.PTZPresets[index].AfterActionTrackingTime;
-            var hideSelector = '.presetAfterActionTrackingTimeInput:eq('+index+')';
-            var options = $scope.PresetTrackingTime;
-            var openedSelect = $('.openSelect');
-            if(openedSelect.length == 1) {
-                var removeSelectorName = openedSelect.attr('id');
-                var removeIndex = parseInt(openedSelect.attr('data-index'),10);
-                openSelectRemovePreset(removeSelectorName,removeIndex);
-            }
-            openSelectCreatePreset(selectorName,index,options,selectedVal,hideSelector);
-        }
-    };
     $scope.$watch('LastPosition.RememberLastPosition',function(newVal, oldVal){
         if (typeof newVal !== 'undefined'){
             $scope.ptzinfo = {
@@ -540,9 +474,9 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
     $scope.setGroup = function ()
     {
-    	var groupId = parseInt($scope.GroupOptions[$scope.Group.SelectedIndex]);
-    	var gIdx = groupId-1;
-    	if (!angular.equals(pageData.Groups[gIdx], $scope.Groups[gIdx])){
+        var groupId = parseInt($scope.GroupOptions[$scope.Group.SelectedIndex]);
+        var gIdx = groupId-1;
+        if (!angular.equals(pageData.Groups[gIdx], $scope.Groups[gIdx])){
 
             COMMONUtils.ShowConfirmation(function(){
                 // group remove
@@ -607,7 +541,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                     }
                 }
             },'lang_set_question','sm');
-    	}
+        }
     };
 
     $scope.setSwing = function ()
@@ -704,7 +638,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     {
         $scope.memorizeTraceMode = $scope.memorizeTraceMode == 'Start' ? 'Stop' : 'Start';
         var promises = [];
-        promises.push(function(){return memorizeTrace($scope.memorizeTraceMode, true)});
+        promises.push(function(){return memorizeTrace($scope.memorizeTraceMode, true);});
         $q.seqAll(promises).then(
             function(){
             },
@@ -717,10 +651,10 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     function validateGroupSequence(GroupSequenceIndex)
     {
         if ((typeof $scope.GroupSequences[GroupSequenceIndex].DwellTime === 'undefined') || 
-        		$scope.GroupSequences[GroupSequenceIndex].DwellTime < $scope.DwellMinTime || 
-        		$scope.GroupSequences[GroupSequenceIndex].DwellTime > $scope.DwellMaxTime)
+                $scope.GroupSequences[GroupSequenceIndex].DwellTime < $scope.DwellMinTime || 
+                $scope.GroupSequences[GroupSequenceIndex].DwellTime > $scope.DwellMaxTime)
         {
-        	COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.DwellMinTime).replace('%2', $scope.DwellMaxTime));
+            COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.DwellMinTime).replace('%2', $scope.DwellMaxTime));
             return false;
         }
 
@@ -730,26 +664,26 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     function validateSwing(SwingIndex)
     {
         if ((typeof $scope.Swings[SwingIndex].Speed === 'undefined') || 
-        		$scope.Swings[SwingIndex].Speed < $scope.PresetMinSpeed || 
-        		$scope.Swings[SwingIndex].Speed > $scope.PresetMaxSpeed)
+                $scope.Swings[SwingIndex].Speed < $scope.PresetMinSpeed || 
+                $scope.Swings[SwingIndex].Speed > $scope.PresetMaxSpeed)
         {
-        	COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.PresetMinSpeed).replace('%2', $scope.PresetMaxSpeed));
+            COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.PresetMinSpeed).replace('%2', $scope.PresetMaxSpeed));
             return false;
         }
 
         if ((typeof $scope.Swings[SwingIndex].DwellTime === 'undefined') || 
-        		$scope.Swings[SwingIndex].DwellTime < $scope.DwellMinTime || 
-        		$scope.Swings[SwingIndex].DwellTime > $scope.DwellMaxTime)
+                $scope.Swings[SwingIndex].DwellTime < $scope.DwellMinTime || 
+                $scope.Swings[SwingIndex].DwellTime > $scope.DwellMaxTime)
         {
-        	COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.DwellMinTime).replace('%2', $scope.DwellMaxTime));
+            COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.DwellMinTime).replace('%2', $scope.DwellMaxTime));
             return false;
         }
 
         if (!parseInt($scope.Swings[SwingIndex].FromPreset) || 
-        		!parseInt($scope.Swings[SwingIndex].ToPreset) || 
-        		parseInt($scope.Swings[SwingIndex].FromPreset) === parseInt($scope.Swings[SwingIndex].ToPreset))
+                !parseInt($scope.Swings[SwingIndex].ToPreset) || 
+                parseInt($scope.Swings[SwingIndex].FromPreset) === parseInt($scope.Swings[SwingIndex].ToPreset))
         {
-        	COMMONUtils.ShowError($translate.instant('lang_msg_selValidPresetNumber'));
+            COMMONUtils.ShowError($translate.instant('lang_msg_selValidPresetNumber'));
             return false;
         }
 
@@ -761,18 +695,18 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         for (var p = 0; p < $scope.MaxPresetsPerGroup; p++)
         {
             if ((typeof $scope.Groups[GroupIndex].PresetList[p].Speed === 'undefined') || 
-            		$scope.Groups[GroupIndex].PresetList[p].Speed < $scope.PresetMinSpeed ||
-            		$scope.Groups[GroupIndex].PresetList[p].Speed > $scope.PresetMaxSpeed)
+                    $scope.Groups[GroupIndex].PresetList[p].Speed < $scope.PresetMinSpeed ||
+                    $scope.Groups[GroupIndex].PresetList[p].Speed > $scope.PresetMaxSpeed)
             {
-            	COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.PresetMinSpeed).replace('%2', $scope.PresetMaxSpeed));
+                COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.PresetMinSpeed).replace('%2', $scope.PresetMaxSpeed));
                 return false;
             }
 
             if ((typeof $scope.Groups[GroupIndex].PresetList[p].DwellTime === 'undefined') || 
-            		$scope.Groups[GroupIndex].PresetList[p].DwellTime < $scope.DwellMinTime || 
-            		$scope.Groups[GroupIndex].PresetList[p].DwellTime > $scope.DwellMaxTime)
+                    $scope.Groups[GroupIndex].PresetList[p].DwellTime < $scope.DwellMinTime || 
+                    $scope.Groups[GroupIndex].PresetList[p].DwellTime > $scope.DwellMaxTime)
             {
-            	COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.DwellMinTime).replace('%2', $scope.DwellMaxTime));
+                COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.DwellMinTime).replace('%2', $scope.DwellMaxTime));
                 return false;
             }
         }
@@ -806,6 +740,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         $scope.tabs.push('Preset');
         $scope.PTZPreset = {};
         $scope.PTZPreset.checkAll = false;
+        $scope.PresetOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxPreset);
         if (mAttr.PresetActions !== undefined)
         {
             $scope.PresetActions = mAttr.PresetActions;
@@ -1263,7 +1198,18 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             }, '', true);
     }
 
-    function updateAutoRun(promises)
+    function autoRunChangedCheck(){
+        var changed = false;
+        for (var d = 0; d < $scope.WeekDays.length; d++) {
+            var day = $scope.WeekDays[d];
+            if (!angular.equals(pageData.AutoRunScheduler[day], $scope.AutoRunScheduler[day])) {
+                changed = true;
+                break;
+            }
+        }
+        return changed;
+    }
+    function updateAutoRun()
     {
         var scheduleArray = [];
 
@@ -1320,26 +1266,28 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             }
         }
 
-        var scheduleUpdate = function(paramData){
-            return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=autorun&action=update', paramData,
-                function (response) {
-
-                },
-                function (errorData) {
-                    //alert(errorData);
-                }, '', true);
+        var setScheduleData = {
+            "AutoRun": [
+                {
+                    "Channel": 0,
+                    "Mode": "Schedule",
+                    "ModeSchedule": {
+                        "ActivationTime": $scope.AutoRun.ModeSchedule.ActivationTime,
+                        "Schedules": []
+                    }
+                }
+            ]
         };
         for (var i = 0; i < scheduleArray.length; i++)
         {
             var setData = {};
 
-            setData.Channel = 0;
             setData.ScheduleMode = scheduleArray[i].Mode;
             setData.FromTo = scheduleArray[i].FromTo;
 
             if (setData.ScheduleMode === 'Preset')
             {
-                setData.Preset = scheduleArray[i].Preset;
+                setData.Preset = parseInt(scheduleArray[i].Preset);
             }
             else if (setData.ScheduleMode === 'Swing')
             {
@@ -1347,7 +1295,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             }
             else if (setData.ScheduleMode === 'Group')
             {
-                setData.Group = scheduleArray[i].Group;
+                setData.Group = parseInt(scheduleArray[i].Group);
             }
             else if (setData.ScheduleMode === 'Tour')
             {
@@ -1355,15 +1303,32 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             }
             else if (setData.ScheduleMode === 'Trace')
             {
-                setData.Trace = scheduleArray[i].Trace;
+                setData.Trace = parseInt(scheduleArray[i].Trace);
             }
             else if (setData.ScheduleMode === 'AutoPan')
             {
-                setData.AutoPanSpeed = scheduleArray[i].AutoPanSpeed;
-                setData.AutoPanTiltAngle = scheduleArray[i].AutoPanTiltAngle;
+                setData.AutoPanSpeed = parseInt(scheduleArray[i].AutoPanSpeed);
+                setData.AutoPanTiltAngle = parseInt(scheduleArray[i].AutoPanTiltAngle);
             }
 
-            promises.push(scheduleUpdate(setData));
+            setScheduleData.AutoRun[0].ModeSchedule.Schedules.push(setData);
+        }
+
+        if (setScheduleData.AutoRun[0].ModeSchedule.Schedules.length > 0){
+            var specialHeaders = [];
+            specialHeaders[0] = {};
+            specialHeaders[0].Type = 'Content-Type';
+            specialHeaders[0].Header = 'application/x-www-form-urlencoded';
+
+            var jsonString = JSON.stringify(setScheduleData);
+            var encodeddata = encodeURI(jsonString);
+
+            return SunapiClient.post('/stw-cgi/ptzconfig.cgi?msubmenu=autorun&action=update', {},
+                function (response) {
+                },
+                function (errorData) {
+                    //alert(errorData);
+                }, $scope, encodeddata, specialHeaders);
         }
     }
 
@@ -1436,7 +1401,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             setData.Mode = 'Stop';
             if($scope.memorizeTraceMode == 'Start'){
                 $scope.memorizeTraceMode = 'Stop';
-                promises.push(memorizeTrace('Stop'));
+                promises.push(function(){return memorizeTrace('Stop');});
             }
         }
 
@@ -1449,7 +1414,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                     //alert(errorData);
                 }, '', true);
         };
-        promises.push(traceControl(setData));
+        promises.push(function(){return traceControl(setData);});
 
         $q.seqAll(promises).then(
             function(){
@@ -1535,7 +1500,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                 setData.Speed = $scope.Groups[GroupIndex].PresetList[p].Speed;
                 setData.DwellTime = $scope.Groups[GroupIndex].PresetList[p].DwellTime;
 
-                promises.push(groupUpdate(setData));
+                promises.push(function(){return groupUpdate(setData);});
             }
         }
         $q.seqAll(promises).then(
@@ -1635,7 +1600,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     {
         if ($scope.AutoRun.Mode == 'Preset' && ((typeof $scope.AutoRun.ModePreset.Preset === 'undefined') || ($scope.AutoRun.ModePreset.Preset < 1) || ($scope.AutoRun.ModePreset.Preset > mAttr.MaxPreset)))
         {
-        	COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', 1).replace('%2', mAttr.MaxPreset));
+            COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', 1).replace('%2', mAttr.MaxPreset));
             return false;
         }
         else if ($scope.AutoRun.Mode == 'Group' && ((typeof $scope.AutoRun.ModeGroup.Group === 'undefined') || ($scope.AutoRun.ModeGroup.Group < 1) || ($scope.AutoRun.ModeGroup.Group > $scope.MaxGroupCount)))
@@ -1747,13 +1712,13 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
     $scope.setAutoRun = function ()
     {
-        if (!angular.equals(pageData.AutoRun, $scope.AutoRun)) {
+        if (!angular.equals(pageData.AutoRun, $scope.AutoRun) || autoRunChangedCheck) {
             COMMONUtils.ShowConfirmation(function(){
                 if (validatePage())
                 {
                     var runPromises = function(){
                         var promises = [];
-                        updateAutoRun(promises);
+                        promises.push(updateAutoRun);
                         promises.push(getAutoRun);
 
                         $q.seqAll(promises).then(
@@ -1774,7 +1739,9 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
                     if (!angular.equals(pageData.AutoRun, $scope.AutoRun)) {
                         setAutoRunMode(function(){
-                            runPromises();
+                            if(autoRunChangedCheck){
+                                runPromises();
+                            }
                         });
                     }else{
                         runPromises();
@@ -1887,84 +1854,6 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             }
         });
         return presetName;
-    };
-
-    function openSelectRemove(selectorName,removeIndex,focusSkip,showIndex){
-        if (typeof showIndex == 'undefined') showIndex = removeIndex;
-        var newVal = $('#'+selectorName+' option:selected').val();
-        var removeSelect = $('#'+selectorName);
-        removeSelect.unbind();
-        removeSelect.remove();
-        $timeout(function(){
-            if(selectorName=='swingsFromPresetSelect') {
-                if (newVal !== undefined) $scope.Swings[$scope.SwingMode.SelectedIndex].FromPreset = parseInt(newVal, 10);
-                $('.swingsFromPreset:eq(' + showIndex + ')').show();
-                if(focusSkip != true) $('.swingsFromPreset:eq(' + showIndex + ')').focus();
-            }else if(selectorName=='swingsToPresetSelect'){
-                if(newVal !== undefined) $scope.Swings[$scope.SwingMode.SelectedIndex].ToPreset = parseInt(newVal,10);
-                $('.swingsToPreset:eq('+showIndex+')').show();
-                if(focusSkip != true) $('.swingsToPreset:eq('+showIndex+')').focus();
-            }else{
-                if(newVal !== undefined) $scope.Groups[$scope.Group.SelectedIndex].PresetList[removeIndex].SelectedPresetIndex = parseInt(newVal,10);
-                $('.groupPresetInput:eq('+showIndex+')').show();
-                if(focusSkip != true) $('.groupPresetInput:eq('+showIndex+')').focus();
-            }
-        });
-    }
-    function openSelectCreate(selectorName,index,options,selectedVal,hideSelector,showIndex){
-        if (typeof showIndex == 'undefined') showIndex = index;
-        var selectHtml = $('<select id="'+selectorName+'" name="'+selectorName+'" data-index="'+index+'" data-sindex="'+ showIndex + '" class="form-control preset-input-select openSelect" />');
-        $.each(options,function(subIndex,item){
-            if(item.preset==selectedVal){
-                $('<option/>',{value:item.preset,text:$scope.getTranslatedOption(item.name),selected:'selected'}).appendTo(selectHtml);
-            }else{
-                $('<option/>',{value:item.preset,text:$scope.getTranslatedOption(item.name)}).appendTo(selectHtml);
-            }
-        });
-        $(hideSelector).hide();
-        $(hideSelector).parent().append(selectHtml);
-        var createdSelect = $('#'+selectorName);
-        createdSelect.focus();
-        createdSelect.focusout(function(){
-            openSelectRemove(selectorName,index,true,showIndex);
-        });
-        createdSelect.change(function(){
-            openSelectRemove(selectorName,index,false,showIndex);
-        });
-    }
-    $scope.openPresetNoSelect = function(presetMode,index,isShow,showIndex){
-        if (typeof showIndex == 'undefined') showIndex = index;
-        var selectorName;
-        if(presetMode=='SwingsFromPreset'){
-            selectorName = 'swingsFromPresetSelect';
-        }else if(presetMode=='SwingsToPreset'){
-            selectorName = 'swingsToPresetSelect';
-        }else{
-            selectorName = 'groupPresetSelect';
-        }
-        if(isShow){
-            var selectedVal;
-            var hideSelector;
-            if(presetMode=='SwingsFromPreset'){
-                selectedVal = $scope.Swings[$scope.SwingMode.SelectedIndex].FromPreset;
-                hideSelector = '.swingsFromPreset:eq('+showIndex+')';
-            }else if(presetMode=='SwingsToPreset'){
-                selectedVal = $scope.Swings[$scope.SwingMode.SelectedIndex].ToPreset;
-                hideSelector = '.swingsToPreset:eq('+showIndex+')';
-            }else{
-                selectedVal = $scope.Groups[$scope.Group.SelectedIndex].PresetList[index].SelectedPresetIndex;
-                hideSelector = '.groupPresetInput:eq('+showIndex+')';
-            }
-            var options = $scope.PresetNameOptions;
-            var openedSelect = $('.openSelect');
-            if(openedSelect.length == 1) {
-                var removeSelectorName = openedSelect.attr('id');
-                var rindex = parseInt(openedSelect.attr('data-index'),10);
-                var sindex = parseInt(openedSelect.attr('data-sindex'),10);
-                openSelectRemove(removeSelectorName,rindex,false,sindex);
-            }
-            openSelectCreate(selectorName,index,options,selectedVal,hideSelector,showIndex);
-        }
     };
 
     $scope.view = view;

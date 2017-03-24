@@ -27,7 +27,6 @@ kindFramework.controller('layoutCtrl', function($scope, $rootScope, $state, Menu
 	var menuData = MenuData.getMenuData($state);
 	$scope.navOpened = false;
 	$scope.userName = SessionOfUserManager.getUsername();
-	$rootScope.isCameraSetupPreview = false;
 
 
 	$scope.toggleNav = function(val) {
@@ -41,20 +40,6 @@ kindFramework.controller('layoutCtrl', function($scope, $rootScope, $state, Menu
 			$('.side-nav-wrapper').css({zIndex: '0 !important'});
 		}
 	};
-
-    function livePreviewMode(mode) {
-        var setData = {};
-
-        setData.ImagePreview = mode;
-
-        SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set', setData,
-                function (response) {
-                	window.location.href =$rootScope.monitoringPath;
-                },
-                function (errorData) {
-                   window.location.href =$rootScope.monitoringPath;
-                }, '', true);
-    }
 
 	$scope.getMenuPath = function() {
 		var menuPath = [];
