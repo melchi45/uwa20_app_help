@@ -1,4 +1,4 @@
-kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $rootScope, $q, schedulerService) {
+kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $rootScope, $q, eventRuleService) {
     "use strict";
     /*jshint sub:true*/
     COMMONUtils.getResponsiveObjects($scope);
@@ -1060,8 +1060,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     }
 
     function validatePage() {
-        var target = schedulerService.get();
-        if (target.type === 'Scheduled' && target.data.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
@@ -1417,10 +1416,59 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         // }
     }, $scope);
 
-    $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
-        $scope.channelSelectionSection.setCurrentChannel(data);
-        $rootScope.$emit('changeLoadingBar', true);
-        view();
+    $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {console.info(angular.equals(pageData.VA, $scope.VA));
+        if($scope.channelSelectionSection.getCurrentChannel !== data) {
+            if(!angular.equals(pageData.VA, $scope.VA) ||
+                eventRuleService.checkEventRuleValidation()
+                ) {
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'views/setup/common/confirmMessage.html',
+                    controller: 'confirmMessageCtrl',
+                    size: 'sm',
+                    resolve: {
+                        Message: function() {
+                            return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
+                        }
+                    }
+                });
+                modalInstance.result.then(function() {
+                    var queue = [];
+                    var detectionType = getCurrentDetectionType();
+                    var pageDetectionType = pageData.VA[0].DetectionType;
+
+                    sketchbookService.removeDrawingGeometry();
+
+                    if(validatePage()) {
+                        $rootScope.$emit('changeLoadingBar', true);
+                        if (!angular.equals(pageData.VA, $scope.VA)) {
+                            queue = queue.concat(setVideoAnalysis());
+                        }
+
+                        if(queue.length > 0) {
+                            sunapiQueueRequest(queue, function(){
+                                $rootScope.$emit("channelSelector:changeChannel", index);
+                                $scope.channelSelectionSection.setCurrentChannel(data);
+                                $scope.$emit('applied', true);
+                                $timeout(view);
+                            }, function(errorData){
+                                console.error(errorData);
+                            });
+                        } else {
+                            $scope.$emit('applied', true);
+                            $timeout(view);
+                        }
+                    }
+                },
+                function() {
+
+                });
+            } else {
+                $rootScope.$emit("channelSelector:changeChannel", index);
+                $scope.channelSelectionSection.setCurrentChannel(data);
+                $scope.$emit('applied', true);
+                $timeout(view);
+            }
+        }
     }, $scope);
 
     function findLinesIndex(lineIndex){
