@@ -1,4 +1,4 @@
-kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location, $scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, schedulerService)
+kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location, $scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, eventRuleService)
 {
     "use strict";
 
@@ -261,8 +261,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     }
 
     function validatePage() {
-        var target = schedulerService.get();
-        if (target.type === 'Scheduled' && target.data.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
