@@ -738,6 +738,9 @@ function WorkerManager() {
       $(".video-display-none").removeClass('video-display-none');
       if (decodeMode == "video") {
         $(canvasElem).addClass('video-display-none');
+        if (videoRenderer !== null) {
+          videoRenderer.renewCanvas();
+        }
       } else if (decodeMode == "canvas") {
         $(videoElem).parent().addClass('video-display-none');
         initVideo(false);
