@@ -1505,7 +1505,6 @@ live-playback common {
   background-color: #4c4c4c;
 }
 .cm-channel-selector .channel-selector li > button:active,
-.cm-channel-selector .channel-selector li > button:focus,
 .cm-channel-selector .channel-selector li > button.active {
   color: #ffffff;
   background-color: #000000;
@@ -1529,8 +1528,7 @@ live-playback common {
   border-top: solid 1px #4c4c4c;
 }
 .cm-channel-selector .cm-channel-selector-quad-btn:hover,
-.cm-channel-selector .cm-channel-selector-quad-btn:active,
-.cm-channel-selector .cm-channel-selector-quad-btn:focus {
+.cm-channel-selector .cm-channel-selector-quad-btn:active {
   background-color: #fff;
 }
 [ng\:cloak],
@@ -6049,10 +6047,12 @@ rzslider .rz-bubble {
   height: 30px;
   line-height: 28px;
 }
+#setup-channel-selector .setup-channel-selector-btns button:focus {
+  background-color: #fff;
+}
 #setup-channel-selector .setup-channel-selector-btns button.active,
 #setup-channel-selector .setup-channel-selector-btns button:active,
-#setup-channel-selector .setup-channel-selector-btns button:hover,
-#setup-channel-selector .setup-channel-selector-btns button:focus {
+#setup-channel-selector .setup-channel-selector-btns button:hover {
   line-height: 30px;
   background-color: #000;
   color: #fff !important;
