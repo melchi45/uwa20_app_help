@@ -1,9 +1,12 @@
 kindFramework.factory('schedulerService', function() {
     'use strict';
-    var currentScheduleIds;
-    var currentScheduleType;
-    var currentMenu;
-    var dataObj;
+    var currentScheduleIds = [];
+    var currentScheduleType = "Always";
+    var currentMenu = null;
+    var dataObj = {
+        type: currentScheduleType,
+        data: currentScheduleIds,
+    };
 
     return {
         get: function() {
