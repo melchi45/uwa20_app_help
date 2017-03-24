@@ -390,7 +390,9 @@ function KindDrawer(id) {
     },
     renewCanvas: function () {
       resize(preWidth, preHeight);
-      drawer.initCanvas();
+      if (drawer !== undefined && drawer !== null) {
+        drawer.initCanvas();
+      }
     },
     terminate: function () {
       // console.log('streamDrawer terminate!');
