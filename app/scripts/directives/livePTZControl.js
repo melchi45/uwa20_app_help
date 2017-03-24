@@ -15,6 +15,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                     AreaZoom : false
 				};
 
+                scope.HomeSupport = mAttr.HomeSupport;
 				scope.dptzMode = CAMERA_STATUS.DPTZ_MODE;
 				scope.ptzType = CAMERA_STATUS.PTZ_MODE;
 				scope.autoTrackingFlag = false;
@@ -213,8 +214,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                     scope.presetAddForm.show = true;
                 }else if(value === 'Add') {
                     sunapiURI = "/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=add&Preset="+scope.addPresetting.SelectedNumber+"&Name="+scope.addPresetting.SelectedName;
-                    execSunapi(sunapiURI);
-                    getSettingPresetList();
+                    execSunapi(sunapiURI, getSettingPresetList);
 				}else{
 					throw "Wrong Argument";
 				}
@@ -332,7 +332,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 
         var presetListCallback = function(result) {
 			if (result.PTZPresets === undefined) {
-				ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
+				//ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
 			} else {
 				scope.presetList = [];
 				var presetFunc = function(value) { run('preset', value); };
@@ -373,7 +373,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 
         var groupListCallback = function(result) {
           if(result.PTZGroups === undefined) {
-						ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
+			//ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_NoListFound" } );
           } else {
             var groups = result.PTZGroups[0].Groups;
             scope.groupList = [];
@@ -665,7 +665,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				function execSunapi(uri, callback) {
 					var getData = {};
 					if (uri !== null) {
-						SunapiClient.get(uri, getData,
+						return SunapiClient.get(uri, getData,
 							function (response) {
 								if (callback !== undefined) {
 									if (callback !== null) {

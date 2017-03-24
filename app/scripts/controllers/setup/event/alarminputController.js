@@ -1,4 +1,4 @@
-kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q) {
+kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, schedulerService) {
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
@@ -86,12 +86,13 @@ kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScop
     }
 
     function validatePage() {
-        for (var i = 0; i < $scope.EventRules.length; i++) {
-            if ($scope.EventRules[i].ScheduleType === 'Scheduled' && $scope.EventRules[i].ScheduleIds.length === 0) {
+        var target = schedulerService.get();
+        // for (var i = 0; i < $scope.EventRules.length; i++) {
+            if (target.type === 'Scheduled' && target.data.length === 0) {
                 COMMONUtils.ShowError('lang_msg_checkthetable');
                 return false;
             }
-        }
+        // }
         return true;
     }
 

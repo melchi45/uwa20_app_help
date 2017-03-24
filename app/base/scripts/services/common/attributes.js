@@ -737,6 +737,8 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                     mAttributes.AbsoluteTilt = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Support/Absolute.Tilt');
                     mAttributes.AbsoluteZoom = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Support/Absolute.Zoom');
 
+                    mAttributes.HomeSupport = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Support/Home');
+
                     mAttributes.MaxPreset = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Limit/MaxPreset');
 
                     mAttributes.RecordStreamLimitation = XMLParser.parseAttributeSection(response.data, 'Recording/Support/RecordStreamLimitation');
@@ -764,7 +766,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                         mAttributes.PTZModel = mAttributes.ZoomOnlyModel = mAttributes.ExternalPTZModel = false;
                     }
 
-                    if(mAttributes.PTZModel || mAttributes.FisheyeLens || mAttributes.ExternalPTZModel)
+                    if(mAttributes.PTZModel || mAttributes.FisheyeLens || mAttributes.ExternalPTZModel || mAttributes.ZoomOnlyModel)
                     {
                         mAttributes.PresetTypes = ['Global', 'Preset'];
                         mAttributes.ContinousZoom = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Support/Continuous.Zoom');

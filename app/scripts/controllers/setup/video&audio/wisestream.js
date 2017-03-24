@@ -82,12 +82,12 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
         return COMMONUtils.getTranslatedOption(Option);
     };
 
-    function WiseStreamSet() {
+    function setWiseStream() {
         var setData = {};
 
-            setData.Mode = $scope.wisestreamMode;
-            setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
-            return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=wisestream&action=set', setData,
+        setData.Mode = $scope.wisestreamMode;
+        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=wisestream&action=set', setData,
             function (response) {
                 view();
             },
@@ -102,9 +102,13 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
     }
 
     function saveSettings() {
-        if (!angular.equals(pageData.WiseStream[0].Mode, $scope.wisestreamMode)) {
-            WiseStreamSet();
+        if (checkChangedData()) {
+            setWiseStream();
         }
+    }
+
+    function checkChangedData(){
+        return !angular.equals(pageData.WiseStream[0].Mode, $scope.wisestreamMode);
     }
 
     (function wait() {
@@ -119,10 +123,27 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
         }
     })();
 
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+    function changeChannel(index){
+        $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
         $scope.channelSelectionSection.setCurrentChannel(index);
         view();
+    }
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        if(checkChangedData()){
+            COMMONUtils
+                .confirmChangeingChannel()
+                .then(function(){
+                    setWiseStream().then(function(){
+                        changeChannel(index);
+                    });
+                }, function(){
+                    console.log("canceled");
+                }); 
+        }else{
+            changeChannel(index);
+        }
     }, $scope);
 
     $scope.submit = set;

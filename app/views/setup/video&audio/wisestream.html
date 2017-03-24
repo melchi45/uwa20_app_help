@@ -6,9 +6,10 @@
         <div class="wn5-setup-section">
             <hr class="wn5-setup-hr">
 
-            <setup-channel-selector ng-show="MaxChannel > 1"></setup-channel-selector>
-
-            
+            <setup-channel-selector 
+                ng-show="MaxChannel > 1"
+                use-confirm="true">
+            </setup-channel-selector>
             
             <div class="wn5-setup-section-heading">
                 <h3>{{ 'lang_wisestreamWisestream' | translate }}</h3>

@@ -48,7 +48,7 @@ kindFramework
 
       if(PlugInPromise !== null)
       {
-        // pluginElement.PlayLiveStream Ïã§Ìñâ ÎèÑ Ï§ë Profile Î≥ÄÍ≤Ω ÏöîÏ≤≠Ïù¥ Îì§Ïñ¥Ïò¨ Í≤ΩÏö∞
+        // pluginElement.PlayLiveStream Ω««‡ µµ ¡ﬂ Profile ∫Ø∞Ê ø‰√ª¿Ã µÈæÓø√ ∞ÊøÏ
         $timeout.cancel(PlugInPromise);
       }
 
@@ -78,6 +78,10 @@ kindFramework
 
     this.stopStreaming = function()
     {
+      if(PlugInPromise !== null) {
+        $timeout.cancel(PlugInPromise);
+        PlugInPromise = null;
+      }
       if(pluginElement !== null && pluginElement !== undefined ){
         if(UniversialManagerService.isSpeakerOn()){
           pluginElement.StopAudio();
@@ -472,11 +476,13 @@ kindFramework
       var setData = {};
       var pluginElement = document.getElementsByTagName("channel_player")[0].getElementsByTagName("object")[0];
 
+      var LengthPos1 = String(Pos1).length;
+      var LengthPos2 = String(Pos2).length;
       setData.X1 = parseInt(Number(Pos1) / 10000);
-      setData.Y1 = Number(String(Pos1).substring(4, 8));
+      setData.Y1 = Number(String(Pos1).substring(LengthPos1-3, LengthPos1));
 
       setData.X2 = parseInt(Number(Pos2) / 10000);
-      setData.Y2 = Number(String(Pos2).substring(4, 8));
+      setData.Y2 = Number(String(Pos2).substring(LengthPos2-3, LengthPos2));
 
       setData.TileWidth = pluginElement.offsetWidth;
       setData.TileHeight = pluginElement.offsetHeight;

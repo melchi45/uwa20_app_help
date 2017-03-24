@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $interval, $q, ConnectionSettingService, kindStreamInterface, SessionOfUserManager, AccountService, $uibModal, $rootScope, $translate) {
+kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $interval, $q, ConnectionSettingService, kindStreamInterface, SessionOfUserManager, AccountService, $uibModal, $rootScope, $translate, schedulerService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -419,10 +419,9 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
         });
     };
 
-    function validatePage()
-    {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0)
-        {
+    function validatePage() {
+        var target = schedulerService.get();
+        if (target.type === 'Scheduled' && target.data.length === 0) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
@@ -461,45 +460,65 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     function set() {
         if(validatePage())
         {
-            COMMONUtils.ApplyConfirmation(saveSettings);    
+            COMMONUtils.ApplyConfirmation(setChangedData);    
         }
     }
 
     function saveSettings() {
-        var functionList = [];
-
-        if (!angular.equals(pageData.FogDetect, $scope.FogDetect) || !angular.equals(pageData.EventRule, $scope.EventRule))
-        {
-            stopMonitoringFogLevel();
-            if (!angular.equals(pageData.FogDetect, $scope.FogDetect))
-            {
-                functionList.push(setFogDetection);
-            }
-
-            if(functionList.length > 0) {
-                $q.seqAll(functionList).then(
-                    function () {
-                        $scope.$emit('applied', true);
-                         view();
-                    },
-                    function (errorData) {
-                        console.log(errorData);
-                    }
-                ).finally(function(){
-                    startMonitoringFogLevel();
-                });
-            } else {
-                $scope.$emit('applied', true);
-                view();
-                startMonitoringFogLevel();
-            }
+        if (checkChangedData()){
+            setChangedData();
         }
     }
 
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+    function setChangedData(){
+        var deferred = $q.defer();
+        stopMonitoringFogLevel();
+
+        setFogDetection().then(
+            function () {
+                $scope.$emit('applied', true);
+                view();
+                deferred.resolve(true);
+            },
+            function (errorData) {
+                console.log(errorData);
+                deferred.reject(errorData);
+            }
+        ).finally(function(){
+            startMonitoringFogLevel();
+        });
+
+        return deferred.promise;
+    }
+
+    function checkChangedData(){
+        $scope.$emit('applied', true);
+        return !angular.equals(pageData.FogDetect, $scope.FogDetect);
+    }
+
+    function changeChannel(index){
+        $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
         $scope.channelSelectionSection.setCurrentChannel(index);
         view();
+    }
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        if(checkChangedData()){
+            COMMONUtils
+                .confirmChangeingChannel()
+                .then(function(){
+                    if(validatePage() === true){
+                        setChangedData().then(function(){
+                            changeChannel(index);
+                        });
+                    }
+                }, function(){
+                    console.log("canceled");
+                });    
+        }else{
+            changeChannel(index);
+        }
     }, $scope);
 
 

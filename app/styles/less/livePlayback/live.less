@@ -509,6 +509,71 @@
                 }
             } 
         }
+
+
+        &.cm-full-menu {
+            .live-channel-selector {
+                border: none;
+            }
+            
+            .ui-widget-content {
+                color: #fff;
+            }
+
+            #cm-menu-content {
+                #cm-ptz {
+                    #ptz-components {
+                        #live-ptz-add-form {
+                            background: #262626;
+                            border: 1px solid #333;
+                            color: #fff;
+
+                            .form-group > span {
+                                color: #fff;
+                            }
+
+                            .form-group {
+                                .form-control {
+                                    background: #262626;
+                                    border: 1px solid #4c4c4c;
+                                }
+                            }
+                        }
+
+                        #live-ptz-tabs {
+                            color: #fff;
+                            border: 1px solid #333;
+                            background: #262626;
+
+                            & > ul {
+                                border-bottom: 1px solid #333;
+                                
+                                li {
+                                    background: #262626;
+                                    border-color: #333;
+                                }
+
+                                li.ui-tabs-active {
+                                    background: #191919;
+                                }
+
+                                .ui-state-default a{
+                                    color: #fff;
+                                }
+                            }
+
+                            & > div {
+                                background: #191919;
+                            }
+                            
+                            #live-ptz-preset {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     } 
 
     @media screen and (max-width:899px) {

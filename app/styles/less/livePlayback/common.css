@@ -193,6 +193,10 @@
 .cm-icon-x15 {
   transform: scale(1.5);
 }
+.wn5-icon-button-xs {
+  padding: 0 15px 0 15px !important;
+  font-size: 20px !important;
+}
 /* Responsive Element show/hide */
 .cm-mobile {
   display: none !important;
@@ -828,7 +832,7 @@ live-playback common {
   background-color: #000;
   position: fixed;
   bottom: 0;
-  z-index: 10000;
+  z-index: 20;
   height: 50px;
 }
 #cm-bottom-menu.cm-full-menu [id^="cm-"],
