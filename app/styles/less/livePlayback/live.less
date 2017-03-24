@@ -814,6 +814,8 @@
         }
 
         #cm-bottom-menu {
+            height: 50px !important;
+
             #cm-icon-list {
                 width: 100%;
                 height: 50px !important;
@@ -873,6 +875,17 @@
 
                 #cm-icon-list .info-toggle {
                     left: calc(~"100% - 400px");
+                }
+            }
+
+            &.cm-full-menu {
+                #cm-menu-content {
+                    top:0;
+                    height: calc(~"100% - 50px");
+                }
+
+                #cm-icon-list .info-toggle {
+                    top: calc(~"50% - 25px");
                 }
             }
         }

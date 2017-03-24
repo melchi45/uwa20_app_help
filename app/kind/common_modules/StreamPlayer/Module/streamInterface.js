@@ -113,6 +113,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                     var checkSize = window.innerWidth;
                                     var checkHeight = window.innerHeight;
                                     var smallerHeight;
+									var nowfull = $("#cm-video").hasClass('cm-fullscreen');
 
                                     if(checkHeight < 400) {
                                         if($(".kind-responsive-live").length)   $(".kind-responsive-live").addClass('land-scape');
@@ -125,12 +126,17 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
                                         $("#cm-video").removeAttr('style');
                                         $("#cm-video").css({ width: "calc(100% - "+ (bottomMenuWidth) +"px)" });
+										if(nowfull) {
+											$("#cm-video").css({ height: "calc(100% - 50px)" });
+											$(".full-screen").css({ height: "calc(100% - 50px)" });
+											$(".full-screen kind_stream").css({ height: "100%" });
+										}
+
                                         if( $(".full-screen img").length || $(".full-screen object").length){
                                             $(".full-screen kind_stream").css({ width: "100%" });
                                             $(".full-screen").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
                                         }else{
                                             $(".full-screen").css({ width: "100%" });
-                                            // $(".full-screen kind_stream").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
                                         }
 
                                         if(UniversialManagerService.getViewMode() != 0){
