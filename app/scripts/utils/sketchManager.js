@@ -66,11 +66,11 @@ var SketchManager = (function() {
     var alphaFactory = {
         disabled: {
             stroke: "0.5",
-            fill: "0.4"
+            fill: "0.2"
         },
         enabled: {
             stroke: "1",
-            fill: "0.4"
+            fill: "0.2"
         },
         metaData: "0.7"
     };
