@@ -388,6 +388,10 @@ function KindDrawer(id) {
     getCanvas: function () {
       return canvas;
     },
+    renewCanvas: function () {
+      resize(preWidth, preHeight);
+      drawer.initCanvas();
+    },
     terminate: function () {
       // console.log('streamDrawer terminate!');
       startTimestamp = 0;

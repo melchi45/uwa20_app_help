@@ -438,6 +438,9 @@ var ImageWebGLCanvas = (function () {
       var gl = this.gl;
       gl.viewport(0, 0, this.canvas.width, this.canvas.height);
       this.texture = new ImageTexture(gl, this.size, gl.RGBA);
+    },
+    initCanvas: function () {
+      this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
     }
   });
   return Constructor;
@@ -555,6 +558,9 @@ var YUVWebGLCanvas = (function () {
     },
     toString: function () {
       return "YUVCanvas Size: " + this.size;
+    },
+    initCanvas: function () {
+      this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
     }
   });
 
