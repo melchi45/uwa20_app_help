@@ -9,6 +9,7 @@ kindFramework
         rtspIP = null,
         rtspPort = null,
         userID = null,
+        password = null,
         currentProfile = null;
     var backupCallback = null;
     var PlugInPromise = null;
@@ -35,6 +36,7 @@ kindFramework
       rtspIP = RESTCLIENT_CONFIG.digest.hostName;
       rtspPort = _port;
       userID = _id;
+      password = _password;
       currentProfile = _profile;
       liveStatusCallback = statusCallback;
 
@@ -48,9 +50,19 @@ kindFramework
 
       if(PlugInPromise !== null)
       {
-        // pluginElement.PlayLiveStream ½ÇÇà µµ Áß Profile º¯°æ ¿äÃ»ÀÌ µé¾î¿Ã °æ¿ì
+        // pluginElement.PlayLiveStream ì‹¤í–‰ ë„ ì¤‘ Profile ë³€ê²½ ìš”ì²­ì´ ë“¤ì–´ì˜¬ ê²½ìš°
         $timeout.cancel(PlugInPromise);
       }
+
+      function _WebWMDCamEvent(ch, evId, sdata) {
+        console.log("WebWMDCamEvent ch, evId, sdata => ", ch, evId, sdata);
+      }
+
+      function WebWMDCamEvent(ch, evId, sdata) {
+          setTimeout(function () {
+              _WebWMDCamEvent(ch, evId, sdata);
+          }, 0)
+      }         
 
       function startPlay(){
           if(reconnectionTimeout !== null)
@@ -60,8 +72,11 @@ kindFramework
 
           PlugInPromise = $timeout(function(){
               try{
+                  if(sunapiAttributes.MaxChannel > 1) {
+                    pluginElement.SetWMDInitialize(Number(UniversialManagerService.getChannelId()), 1, "WebWMDCamEvent");
+                  }
                   pluginElement.SetUserFps(fps);
-                  pluginElement.PlayLiveStream(rtspIP, Number(rtspPort), Number(currentProfile-1), userID, '', '');
+                  pluginElement.PlayLiveStream(rtspIP, Number(rtspPort), Number(currentProfile-1), userID, password, '');
                   $rootScope.$emit('changeLoadingBar', false);
                   $(pluginElement).removeClass("cm-visibility-hidden");
                   console.log("pluginControlService::startPluginStreaming() ===> PlugIn Streaming Started");

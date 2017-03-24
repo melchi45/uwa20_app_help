@@ -1,5 +1,6 @@
-kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootScope, 
-    kindStreamInterface, Attributes, SunapiClient, ConnectionSettingService) {
+kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootScope, $state,
+    kindStreamInterface, Attributes, SunapiClient, ConnectionSettingService, UniversialManagerService,
+    CAMERA_STATUS, BrowserService, RESTCLIENT_CONFIG) {
     "use strict";
 
     var channlistClass = 'channellist-video-wrapper';
@@ -7,27 +8,53 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
     var requestId = null;
     var sunapiAttributes = Attributes.get()
     var videoMode = "video";
+    var plugin = false;
 
     window.addEventListener('resize', resizeHandle);
 
     $scope.$on("$viewContentLoaded", function() {
+        if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE || 
+            BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI) {
+            plugin = true;
+        }
+
         var section = $('#channellist-containner');
         for (var i = 0; i < sunapiAttributes.MaxChannel; i++ ) {
             var figure = document.createElement('figure');
             var div = document.createElement('div');
-            var videoElement = document.createElement(videoMode);
-
             $(div).addClass('channellist-video-wrapper ratio-16-9');
-            $(videoElement).attr('id', "live" + videoMode + i);
-            $(videoElement).attr('kind-channel-id', i);
-            $(section).append($(figure).append($(div).append(videoElement)));
-        }	        
-
-        getVideoProfile();
+            if (plugin === false) {
+                var videoElement = document.createElement(videoMode);
+                $(videoElement).attr('id', "live" + videoMode + i);
+                $(videoElement).attr('kind-channel-id', i);
+                $(section).append($(figure).append($(div).append(videoElement)));
+            } else {
+                var object = '';
+                if(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) {
+                    object = '<object classid="clsid:FC4C00B9-5A98-461C-88E8-B24B528DDBF5" width="100%" height="100%" name="channel'+i+'" id="channel'+i+'"></object>';
+                } else {
+                    object = '<object type="application/HTWisenetViewer-plugin" width="100%" height="100%" name="channel'+i+'" id="channel'+i+'"></object>';
+                }
+                div.innerHTML = object;
+                $(section).append($(figure).append($(div)));
+            }
+        }
+        startVideoStreaming();
     });
     
     $scope.$on("$destroy", function(){
         window.removeEventListener('resize', resizeHandle);
+        var closeData = ConnectionSettingService.closeStream();
+
+        for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
+            if (plugin === false) {
+                closeData.device.channelId = i;
+                kindStreamInterface.changeStreamInfo(closeData);
+            } else {
+                var obejct = $('#channel' + i)[0];
+                obejct.CloseStream();
+            }
+        }
     });
 
     function resizeHandle(){
@@ -39,7 +66,7 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
                 count = 0;
                 requestId = null;
             }else{
-                requestId = window.requestAnimationFrame(renderCallBack);   
+                requestId = window.requestAnimationFrame(renderCallBack);
             }
         };
 
@@ -52,16 +79,26 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
         requestId = window.requestAnimationFrame(renderCallBack);
     }
 
-    var getVideoProfile = function() {
+    var startVideoStreaming = function() {
         SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
             function (response) {
                 for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
                     var MultiDirectionProfile = response.data.VideoProfiles[i].Profiles[1];
+                    var ip = RESTCLIENT_CONFIG.digest.rtspIp;
+                    var port = RESTCLIENT_CONFIG.digest.rtspPort;
                     MultiDirectionProfile.ChannelId = i;
-                    var playerData = ConnectionSettingService.getPlayerData('live', MultiDirectionProfile, timeCallback, errorCallback, closeCallback, "video");
+                    var playerData = ConnectionSettingService.getPlayerData('live', 
+                        MultiDirectionProfile, timeCallback, errorCallback, closeCallback, "video");
                     playerData.device.channelId = i;
-                    kindStreamInterface.init(playerData, SunapiClient);
-                    kindStreamInterface.changeStreamInfo(playerData);
+                    if (plugin === false) {
+                        kindStreamInterface.init(playerData, SunapiClient);
+                        kindStreamInterface.changeStreamInfo(playerData);
+                    } else {
+                        var obejct = $('#channel' + i)[0];
+                        obejct.SetWMDInitialize(i, i + 1, "WebWMDCamEvent");
+                        obejct.SetUserFps(Number(MultiDirectionProfile.FrameRate));
+                        obejct.PlayLiveStream(ip, port, 1, playerData.device.user, playerData.device.password, '');
+                    }
                 }
             },
             function (errorData) {
@@ -110,6 +147,7 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
     }
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, index){
+        UniversialManagerService.setChannelId(index);
         $state.go('uni.channel');
     }, $scope);
 
@@ -124,6 +162,16 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
     function closeCallback(e) {
         console.log("closeCallback msg =", e);
     }
+
+    function _WebWMDCamEvent(ch, evId, sdata) {
+        console.log("WebWMDCamEvent ch, evId, sdata => ", ch, evId, sdata);
+    }
+
+    function WebWMDCamEvent(ch, evId, sdata) {
+        setTimeout(function () {
+            _WebWMDCamEvent(ch, evId, sdata);
+        }, 0)
+    }    
 
     setTimeout(changeCanvas);
 });
