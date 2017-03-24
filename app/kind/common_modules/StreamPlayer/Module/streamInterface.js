@@ -146,8 +146,8 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                        	  if(controlShow) bottomMenuHeight = 400;
                                           else bottomMenuHeight = 115;
                                        }else {
-                                       	  if(controlShow) bottomMenuHeight = 260;
-                                          else bottomMenuHeight = 60;
+                                       	  if(controlShow) bottomMenuHeight = 250;
+                                          else bottomMenuHeight = 50;
                                        }
 
                                        if (checkSize > 3000 && checkHeight > 1688) {
@@ -182,6 +182,9 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 			}
 
 			function getSize(boxWidth, boxHeight){
+				// menu content margin
+				boxHeight -= 10;
+
   				var width, height;
   				if(streamCanvas[0]  !== undefined){
 	  				if(streamCanvas[0].id === "video-container"){

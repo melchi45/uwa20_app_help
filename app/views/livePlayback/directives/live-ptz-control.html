@@ -1,5 +1,5 @@
 <div class="cm-center">
-  <div ng-show="currentPtzType !== ptzType.NONE" id="ptz-components">
+  <div ng-show="currentPtzType !== ptzType.NONE" id="ptz-components" ng-class="{'ptz-zoom' : currentPtzType === ptzType.ZOOMONLY}">
     <div class="cm-col cm-ptz-type" ng-show="currentPtzType === ptzType.EXTERNAL_DIGITAL">
       <h2><span>Type</span></h2>
       <p class="cm-radio-wrap">
@@ -20,7 +20,7 @@
 </p>
  -->
     <div id="cm-live-ptz-control">
-      <div class="cm-ptz-control-left">
+      <div class="cm-ptz-control-left" ng-show="currentPtzType !== ptzType.ZOOMONLY">
         <button 
           ng-if="ptzMode === 'external' || currentPtzType === ptzType.OPTICAL"
           ng-mousedown="ptzFocus('Near')" 
@@ -100,7 +100,7 @@
           <div></div>
         </div>
       </div>
-      <div class="slider-fields live-slider-field col-xs-3 ptz-control_horizontal-wrap" ng-show="currentPtzType === ptzType.ZOOMONLY">
+      <div class="slider-fields live-slider-field ptz-control_horizontal-wrap" ng-show="currentPtzType === ptzType.ZOOMONLY">
         <div>
           <h4>{{ 'lang_zoom' | translate }}</h4>
           <div class="ptz-control_horizontal" style="line-height: normal;height: 40px;">
