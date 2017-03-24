@@ -440,7 +440,7 @@ var ImageWebGLCanvas = (function () {
       this.texture = new ImageTexture(gl, this.size, gl.RGBA);
     },
     initCanvas: function () {
-      this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+      this.gl.clear(this.gl.DEPTH_BUFFER_BIT | this.gl.COLOR_BUFFER_BIT);
     }
   });
   return Constructor;
@@ -560,7 +560,7 @@ var YUVWebGLCanvas = (function () {
       return "YUVCanvas Size: " + this.size;
     },
     initCanvas: function () {
-      this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+      this.gl.clear(this.gl.DEPTH_BUFFER_BIT | this.gl.COLOR_BUFFER_BIT);
     }
   });
 
