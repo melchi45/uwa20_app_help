@@ -868,6 +868,14 @@ kindFramework
                     }
                 }
             });
+            
+            scope.getTitleAutoSimpleFcous = function(){
+                if(mAttr.PTZModel || mAttr.ZoomOnlyModel){
+                    return 'lang_autoFocus';
+                } else {
+                    return 'lang_simpleFocus';
+        }
+            }
         }
     };
 }]);

@@ -4,6 +4,7 @@ kindFramework.controller('sequenceCtrl', function ($scope, $uibModal, $timeout, 
 
     var mAttr = Attributes.get();
 
+    var BrowserDetect = COMMONUtils.getBrowserDetect();
     var pageData = {};
 
     $scope.clearSchedule = function ()
@@ -262,7 +263,7 @@ kindFramework.controller('sequenceCtrl', function ($scope, $uibModal, $timeout, 
     {
         $scope.memorizeTraceMode = $scope.memorizeTraceMode == 'Start' ? 'Stop' : 'Start';
         var promises = [];
-        promises.push(function(){return memorizeTrace($scope.memorizeTraceMode, true)});
+        promises.push(function(){return memorizeTrace($scope.memorizeTraceMode, true);});
         $q.seqAll(promises).then(
             function(){
             },
@@ -872,7 +873,7 @@ kindFramework.controller('sequenceCtrl', function ($scope, $uibModal, $timeout, 
                 setData.AutoPanTiltAngle = scheduleArray[i].AutoPanTiltAngle;
             }
 
-            promises.push(scheduleUpdate(setData));
+            promises.push(function(){return scheduleUpdate(setData)});
         }
     }
 
@@ -945,7 +946,7 @@ kindFramework.controller('sequenceCtrl', function ($scope, $uibModal, $timeout, 
             setData.Mode = 'Stop';
             if($scope.memorizeTraceMode == 'Start'){
                 $scope.memorizeTraceMode = 'Stop';
-                promises.push(memorizeTrace('Stop'));
+                promises.push(function(){return memorizeTrace('Stop');});
             }
         }
 
@@ -958,7 +959,7 @@ kindFramework.controller('sequenceCtrl', function ($scope, $uibModal, $timeout, 
                     //alert(errorData);
                 }, '', true);
         };
-        promises.push(traceControl(setData));
+        promises.push(function(){return traceControl(setData);});
 
         $q.seqAll(promises).then(
             function(){
@@ -1044,7 +1045,7 @@ kindFramework.controller('sequenceCtrl', function ($scope, $uibModal, $timeout, 
                 setData.Speed = $scope.Groups[GroupIndex].PresetList[p].Speed;
                 setData.DwellTime = $scope.Groups[GroupIndex].PresetList[p].DwellTime;
 
-                promises.push(groupUpdate(setData));
+                promises.push(function(){return groupUpdate(setData);});
             }
         }
         $q.seqAll(promises).then(
@@ -1423,7 +1424,9 @@ kindFramework.controller('sequenceCtrl', function ($scope, $uibModal, $timeout, 
         $(hideSelector).hide();
         $(hideSelector).parent().append(selectHtml);
         var createdSelect = $('#'+selectorName);
-        createdSelect.focus();
+        if(!BrowserDetect.isIE){
+            createdSelect.focus();
+        }
         createdSelect.focusout(function(){
             openSelectRemove(selectorName,index,true);
         });
