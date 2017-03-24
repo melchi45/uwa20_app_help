@@ -1306,7 +1306,7 @@
     "lang_queue": "Wachrtij",
     "lang_queue_event": "Wachtrijgebeurtenissen",
     "lang_msg_queue_events": "Een wachtrijgebeurtenis heeft plaatsgevonden als zowel het niveau van detectie als de minimum duur voldoen aan de vooringestelde voorwaarde.",
-    "lang_msg_ftpemail": "Stel de  FTP- en e-mail-informatie in voor het verzenden van het rapportbestand op de pagina [Gebeurtenis (Event)]>[FTP\/e-mail (FTP\/E-mail)].",
+    "lang_msg_ftpemail": "Stel de  FTP- en e-mail-informatie in voor het verzenden van het rapportbestand op de pagina [Gebeurtenis (Event)]>[FTP\/e-mail (FTP\/E-mail)].",
     "lang_globalDewarpSetup": "Globale afvlakinstellingen",
     "lang_cameraMountingMode": "Cameramontagemodus",
     "lang_ceiling": "Plafond",

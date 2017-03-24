@@ -1306,7 +1306,7 @@
     "lang_queue": "Kuyruk",
     "lang_queue_event": "Kuyruk olayları",
     "lang_msg_queue_events": "Kuyruk olayı, hem algılama düzeyi hem de minimum süre önceden belirlenmiş koşulu karşıladığında gerçekleşir.",
-    "lang_msg_ftpemail": "Rapor dosyasını göndermek için [Event (Olay)]>[FTP\/E-mail] sayfasına giderek FTP ve E-posta bilgilerini ayarlayın.",
+    "lang_msg_ftpemail": "Rapor dosyasını göndermek için [Event (Olay)]>[FTP\/E-mail] sayfasına giderek FTP ve E-posta bilgilerini ayarlayın.",
     "lang_globalDewarpSetup": "Küresel Düzeltme Ayarı",
     "lang_cameraMountingMode": "Kamera Montaj Modu",
     "lang_ceiling": "Tavan",
