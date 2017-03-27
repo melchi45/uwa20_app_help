@@ -168,7 +168,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
                   } else if (delta < 0 && zoom > 1) {
                       zoom = zoom - 0.1;
                       var moveClac = (videoElement.clientWidth * 0.1) / 2;
-                      if (zoom != 1) {
+                      if (zoom !== 1) {
                           if (parseInt(videoElement.style.left,10) < 0) {
                               videoElement.style.left = (parseInt(videoElement.style.left,10) + moveClac) + 'px';
                           } else {
@@ -209,15 +209,17 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
                       curY = event.clientY;
 
                       if (moveX < 0 ) { //left -> right
-                          if (parseInt(videoElement.style.left,10) < leftLimit)
+                          if (parseInt(videoElement.style.left,10) < leftLimit) {
                               videoElement.style.left = (parseInt(videoElement.style.left,10) - moveX) + 'px';
-                          else if (parseInt(videoElement.style.left,10) != leftLimit)
+                          } else if (parseInt(videoElement.style.left,10) != leftLimit) {
                               videoElement.style.left = leftLimit + 'px';
+                          }
                       } else if (moveX > 0) {	//right -> left
-                          if (parseInt(videoElement.style.left,10) > -leftLimit)
-                              videoElement.style.left = (parseInt(videoElement.style.left,10) - moveX) + 'px';
-                          else if (parseInt(videoElement.style.left,10) != -leftLimit)
+                          if (parseInt(videoElement.style.left,10) > -leftLimit) {
+                              videoElement.style.left = (parseInt(videoElement.style.left, 10) - moveX) + 'px';
+                          } else if (parseInt(videoElement.style.left,10) != -leftLimit) {
                               videoElement.style.left = -leftLimit + 'px';
+                          }
                       }
 
                       if (moveY < 0 ) { //top -> bottom
@@ -239,7 +241,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
       }
 
     function mouseWheel(event) {
-      if(videoElement != null)
+      if(videoElement !== null)
       {
           videoEventHandler(event,"mousewheel", null);
       }
@@ -250,7 +252,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
       }
     }
     function mouseDown(event) {
-      if(videoElement != null)
+      if(videoElement !== null)
       {
         videoEventHandler(event,"mousedown", null);
       }
@@ -260,7 +262,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
       }
     }
     function mouseMove(event) {
-      if(videoElement != null)
+      if(videoElement !== null)
       {
           videoEventHandler(event,"mousemove", null);
       }
@@ -271,7 +273,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
       }
     }
     function mouseUp(event) {
-        if(videoElement != null)
+        if(videoElement !== null)
         {
             videoEventHandler(event,"mouseup", null);
         }
