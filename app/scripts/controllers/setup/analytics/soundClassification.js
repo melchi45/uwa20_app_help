@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, $translate, $uibModal, $rootScope, $location) {
+kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, $translate, $uibModal, $rootScope, $location, eventRuleService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -333,10 +333,10 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
     }
 
     function saveSettings() {   // soundClassification set -> event set
-        $scope.applied = true;
         stopMonitoringSoundLevel();
         setSoundClassificationData(
             function(){
+                $scope.$emit('applied', true);
                 view();
                 startMonitoringSoundLevel();
             }
@@ -411,10 +411,8 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
     $scope.submit = set;
     $scope.view = view;
 
-    function validatePage()
-    {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0)
-        {
+    function validatePage() {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }

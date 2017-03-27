@@ -21,7 +21,7 @@
                                     class="form-group" 
                                     ng-repeat="data in queueData.Queues track by $index"
                                     ng-show="data.Enable">
-                                    <div class="wn5-setup-preview-heading"><span>{{ ($index + 1) }}: {{data.Name}}</span></div>
+                                    <div class="wn5-setup-preview-heading"><span><strong ng-style="areaColor[$index]">{{ ($index + 1) }}:</strong> {{data.Name}}</span></div>
                                     <div class="wn5-setup-section-article-content">
                                         <div class="qm-bar-wrap" id="qm-bar-{{$index}}">
                                             <div class="qm-bar-radius">
@@ -71,7 +71,7 @@
 
             <figure class="pc-realtime-graph-today">
                 <figcaption class="pc-n-hm-heading-lv3">
-                    {{ lang.graph.average | translate }}
+                    {{ lang.graph.averagePeople | translate }}
                 </figcaption>
                 <nvd3 
                     options="graphSection.average.today.options" 
@@ -107,7 +107,7 @@
 
             <figure class="pc-realtime-graph-today">
                 <figcaption class="pc-n-hm-heading-lv3">
-                    {{ lang.graph.average | translate }}
+                    {{ lang.graph.averagePeople | translate }}
                 </figcaption>
                 <nvd3 
                     options="graphSection.average.weekly.options" 
@@ -236,7 +236,7 @@
                     ng-class="resultSection.viewGraph.cumulative&&resultSection.viewGraph.average? 'pc-realtime-graph-today' : 'pc-results-graph'"
                     ng-show="resultSection.viewGraph.average && !resultSection.noResults">
                     <figcaption class="pc-n-hm-heading-lv3">
-                        {{ lang.graph.average | translate }}
+                        {{ lang.graph.averagePeople | translate }}
                     </figcaption>
                     <nvd3 
                         options="graphSection.average.search.options" 

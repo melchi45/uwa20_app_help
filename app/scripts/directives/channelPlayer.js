@@ -676,6 +676,8 @@ kindFramework.directive('channelPlayer',
                   if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE)
                   {
                     PluginControlService.stopStreaming();
+                    elem.empty();
+                    $rootScope.$emit('app/scripts/directives/channelPlayer.js:disablePlayback', false);
                   }
                   else
                   {
@@ -683,6 +685,7 @@ kindFramework.directive('channelPlayer',
                     elem.empty();
                     if( isPlaybackMode === true ) {
                       createNoSupportPlaybackInPlugInElement();
+                      $rootScope.$emit('app/scripts/directives/channelPlayer.js:disablePlayback', true);
                     }
                   }
                   break;
@@ -1062,16 +1065,16 @@ kindFramework.directive('channelPlayer',
                    elem.empty();
                   if(BrowserService.PlugInSupport && BrowserService.PlugInDetect)
                   {
-                      //IE í”ŒëŸ¬ê·¸ì¸ í™œì„±í™” // PlugIn Off ìƒíƒœì—ì„œ H264, H265 ìš”ì²­ ì‹œ
+                      //IE ÇÃ·¯±×ÀÎ È°¼ºÈ­ // PlugIn Off »óÅÂ¿¡¼­ H264, H265 ¿äÃ» ½Ã
                       $rootScope.$emit("channel:setPlugin");
                   }
                   else {
-                      //ì„¤ì¹˜ ì‹œë‚˜ë¦¬ì˜¤
+                      //¼³Ä¡ ½Ã³ª¸®¿À
                       createPlugInInstallElement();
                       $rootScope.$emit('changeLoadingBar', false);
                   }
 
-                  //NonPlugIn ì¬ìƒ ì‹œë‚˜ë¦¬ì˜¤
+                  //NonPlugIn Àç»ı ½Ã³ª¸®¿À
                   //requestAvailableProfile(profile);
                   return;
                 }

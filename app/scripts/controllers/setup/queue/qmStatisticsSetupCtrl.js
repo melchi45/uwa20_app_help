@@ -78,6 +78,11 @@ kindFramework.controller('QMStatisticsCtrl', function (
         return pcSetupService.setMaxResolution(mAttr.EventSourceOptions);
 	}
 
+	$scope.areaColor = [
+		{color: "#238bc1"},
+		{color: "#ff6633"},
+		{color: "#32ac3a"}
+	];
 	$scope.previewSection = {
 		coordinates: [],
 		goToSetup: function(){
@@ -108,7 +113,8 @@ kindFramework.controller('QMStatisticsCtrl', function (
 	        			isSet: true,
 	        			enable: datas[i].Enable,
 	            		points: points,
-	            		textInCircle: (i + 1) + ''
+	            		textInCircle: (i + 1) + '',
+						areaColor: $scope.areaColor[i].color
 	            	}
             	);
 			}
@@ -399,7 +405,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 
 					var key = $scope.queueData.Queues[self.name - 1].Name;
 					if(type === graphTypes[1]){
-						key = key + ' - ' + self.direction.toLowerCase();
+						key = key + ' - ' + $translate.instant($scope.lang.graph[self.direction.toLowerCase()]);
 					}
 
 					var chartData = {
@@ -414,7 +420,7 @@ kindFramework.controller('QMStatisticsCtrl', function (
 						chartData.area = true;
 					}
 
-					var tableKey = $scope.queueData.Queues[data[i].name - 1].Name + ' - ' + data[i].direction.toLowerCase();
+					var tableKey = $scope.queueData.Queues[data[i].name - 1].Name + ' - ' + $translate.instant($scope.lang.graph[data[i].direction.toLowerCase()]);
 					tableData.rules[i] = [];
 					tableData.rules[i].push( tableKey );
 					var sum = 0;

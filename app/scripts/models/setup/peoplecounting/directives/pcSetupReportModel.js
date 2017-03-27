@@ -33,7 +33,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 				description: 'lang_description',
 				subject: 'lang_subject',
 				fileNameInfo: 'lang_msg_filename_info',
-				ftpEmailInfo: 'Set the FTP and E-mail information to send the report file in [Event]>[FTP\/E-mail] page.',
+				ftpEmailInfo: 'lang_msg_ftpemail',
 				extensionList: {
 					pc: [
 						'xlsx',

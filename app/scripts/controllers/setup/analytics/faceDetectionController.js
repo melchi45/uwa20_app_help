@@ -1,5 +1,5 @@
 /*global setTimeout */
-kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope, WISE_FACE_DETECTION) {
+kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope, WISE_FACE_DETECTION, eventRuleService) {
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
@@ -509,7 +509,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function validatePage() {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
@@ -590,7 +590,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
                     }
                 });
                 modalInstance.result.then(function() {
-                    $scope.$emit('applied', true);
                     if (
                         !angular.equals(pageData.FD, $scope.FD) ||
                         !("DetectionAreas" in pageData.FD) || //초기
@@ -601,10 +600,14 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
                     if(queue.length > 0){
                         SunapiClient.sequence(queue, function(){
+                            $scope.$emit('applied', true);
                             $timeout(view);
                         }, function(errorData){
                             console.error(errorData);
                         });
+                    } else {
+                        $scope.$emit('applied', true);
+                        $timeout(view);
                     }
                 }, function(){
                     if(isEnable === true){

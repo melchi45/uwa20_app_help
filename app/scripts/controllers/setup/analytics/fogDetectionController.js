@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $interval, $q, ConnectionSettingService, kindStreamInterface, SessionOfUserManager, AccountService, $uibModal, $rootScope, $translate) {
+kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $interval, $q, ConnectionSettingService, kindStreamInterface, SessionOfUserManager, AccountService, $uibModal, $rootScope, $translate, eventRuleService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -396,10 +396,8 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
         });
     };
 
-    function validatePage()
-    {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0)
-        {
+    function validatePage() {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
@@ -446,7 +444,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     }
 
     function saveSettings() {
-        $scope.applied = true;
         var functionList = [];
 
         if (!angular.equals(pageData.FogDetect, $scope.FogDetect) || !angular.equals(pageData.EventRule, $scope.EventRule))
@@ -460,6 +457,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
             if(functionList.length > 0) {
                 $q.seqAll(functionList).then(
                     function () {
+                        $scope.$emit('applied', true);
                          view();
                     },
                     function (errorData) {
@@ -469,6 +467,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                     startMonitoringFogLevel();
                 });
             } else {
+                $scope.$emit('applied', true);
                 view();
             }
         }

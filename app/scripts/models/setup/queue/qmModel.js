@@ -15,42 +15,43 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 		};
 
 		var lang = {
-			queueManagement: 'Queue Management',
+			queueManagement: 'lang_queue_management',
 			searchTitle: 'lang_search', 
 			setupTitle: 'lang_setup',
-			enable: 'Enable Queue management',
+			enable: 'lang_enable_queue',
 			realTime: {
-				occupancy: 'Occupancy', 
+				occupancy: 'lang_occupancy', 
 				button: 'lang_setup',
-				message: 'To analyze the data according to newly set rules, click the [Delete all data] button to delete the existing data.'
+				message: 'lang_msg_delete_all_data'
 			},
 			graph: {
 				today: 'lang_today',
 				weekly: 'lang_weekly',
-				average: 'Average number of people',
-				cumulative: 'Total time',
-				sec: 'lang_sec'
+				averagePeople: 'lang_average_people',
+				cumulative: 'lang_total_time',
+				sec: 'lang_sec',
+				average: 'lang_average',
+				high: 'lang_high',
+				medium: 'lang_medium'
 			},
 			search: {
 				title: 'lang_search',
 				button: 'lang_search',
-				// date: 'lang_date',
 				area: {
 					title: 'lang_area',
 					averageTitle: 'lang_average',
-					peopleTitle: 'People',
-					totalTitle: 'Total time',
+					peopleTitle: 'lang_people',
+					totalTitle: 'lang_total_time',
 					mediumTitle: 'lang_medium',
 					highTitle: 'lang_high'
 				}
 			},
 			results: {
 				title: 'lang_results',
-				// timeInQ: 'Time in Queue',
 				noResults: 'lang_msg_no_result',
 				button: 'lang_download',
 				table: {
-					queue: 'Queue',
+					queue: 'lang_queue',
 					sum: 'lang_sum'
 				}
 			},
@@ -68,11 +69,11 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 				noRule: ''
 			},
 			queueEvent: {
-				title: 'Queue events'
+				title: 'lang_queue_event'
 			},
 			queueEventLevel: {
 				title: 'lang_level_of_detection',
-				people: 'People',
+				people: 'lang_people',
 				max: 'lang_maximumSize',
 				high: 'lang_high',
 				medium: 'lang_medium'
@@ -82,7 +83,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 				high: 'lang_high',
 				medium: 'lang_medium',
 				sec: 'lang_sec',
-				message: 'Queue event is occurred when both level of detection and minimum duration are satisfied the predefined condition.'
+				message: 'lang_msg_queue_events'
 			},
 			calibration: {
 				message: ''
@@ -90,11 +91,10 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 		};
 
 		(function langInit(){
-			// lang.realTime.message = $translate.instant('lang_pc_hm_data_init_rule') + ' ' + $translate.instant('lang_msg_init_rule_but_delete_all_data');
-			lang.queueUndefined.disable = $translate.instant('lang_msg_please_enable').replace('%1', lang.queueManagement);
+			lang.queueUndefined.disable = $translate.instant('lang_msg_please_enable').replace('%1', $translate.instant(lang.queueManagement));
 			lang.queueUndefined.noRule = $translate.instant('lang_msg_norule') + ' ' + $translate.instant('lang_msg_addrule').replace('%1', $translate.instant('lang_setup'));
 			lang.queueEventDuration.title = $translate.instant('lang_minimum_duration') + ' (' + $translate.instant('lang_sec') + ')';
-			lang.calibration.message = $translate.instant('lang_msg_calibration_guide_1') + ' ' + $translate.instant('lang_msg_calibration_guide_2').replace('%1', lang.queueManagement);
+			lang.calibration.message = $translate.instant('lang_msg_calibration_guide_1') + ' ' + $translate.instant('lang_msg_calibration_guide_2').replace('%1', $translate.instant(lang.queueManagement));
 		})();
 
 		this.getStLang = function(){

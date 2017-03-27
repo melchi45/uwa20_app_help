@@ -66,11 +66,11 @@ var SketchManager = (function() {
     var alphaFactory = {
         disabled: {
             stroke: "0.5",
-            fill: "0.4"
+            fill: "0.2"
         },
         enabled: {
             stroke: "1",
-            fill: "0.1"
+            fill: "0.2"
         },
         metaData: "0.7"
     };
@@ -2713,8 +2713,16 @@ var SketchManager = (function() {
                             if (coordinates[i].isSet) {
                                 kindSvgOptions.points = coordinates[i].points;
 
-                                if(sketchInfo.workType === "qmArea" && "textInCircle" in coordinates[i]){
-                                    kindSvgOptions.textInCircle = coordinates[i].textInCircle;                                    
+                                if(sketchInfo.workType === "qmArea"){
+                                    if("textInCircle" in coordinates[i]){
+                                        kindSvgOptions.textInCircle = coordinates[i].textInCircle;                                    
+                                    }
+                                    
+                                    if("areaColor" in coordinates[i]){
+                                        kindSvgOptions.fillColor = coordinates[i].areaColor;
+                                        kindSvgOptions.lineColor = coordinates[i].areaColor;
+                                        kindSvgOptions.pointColor = coordinates[i].areaColor;
+                                    }
                                 }
 
                                 _self.addSVGObj(kindSVGEditor.draw(kindSvgOptions), false, i);
@@ -2749,8 +2757,13 @@ var SketchManager = (function() {
                             enExAppear = sketchInfo.mode;
                         }
 
-                        if(sketchInfo.workType === "qmArea" && "textInCircle" in data[i]){
-                            coordinates[i].textInCircle = data[i].textInCircle;   
+                        if(sketchInfo.workType === "qmArea"){
+                            if("textInCircle" in data[i]){
+                                coordinates[i].textInCircle = data[i].textInCircle;   
+                            }
+                            if("areaColor" in data[i]){
+                                coordinates[i].areaColor = data[i].areaColor;   
+                            }
                         }
 
                         coordinates[i].enExAppear = enExAppear;

@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, sketchbookService, $translate, $uibModal) {
+kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, sketchbookService, $translate, $uibModal, eventRuleService) {
 "use strict";
 
     var mAttr = Attributes.get();
@@ -1514,7 +1514,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
 
 
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0){
+        if(!eventRuleService.checkSchedulerValidation()) {
             errorMessage = 'lang_msg_checkthetable';
             returnVal = false;
         }else{
