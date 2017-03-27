@@ -275,6 +275,7 @@ function AudioBackup() {
 
       aviIndexEntry.offset = file_info.pos;
       aviIndexEntry.size = decoding_stream_size;
+      aviIndexEntry.dummycount = 0;
 
       file_info.pos = aviIndexEntry.offset + SIZE_OF_CHUNK_HEADER + decoding_stream_size;
       chunkHeader.fourcc = aviIndexEntry.chid;
