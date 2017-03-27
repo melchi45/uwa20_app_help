@@ -568,7 +568,7 @@ var RtspClient = function () {
         if(mode === 'live'){
           checkAliveIntervalHandler = setInterval(function(){ 
             if(!isRTPRunning){
-              if(aliveCounter > 3){
+              if(aliveCounter > 6){
                 clearInterval(checkAliveIntervalHandler);
                 errorCallbackFunc({
                   errorCode: "999",
