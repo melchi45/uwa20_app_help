@@ -3,7 +3,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
 
     "use strict";
     $scope.pageLoaded = false;
-    $scope.EventSource = "Storage";
+    $scope.EventSource = "Record";
 
     COMMONUtils.getResponsiveObjects($scope);
 
