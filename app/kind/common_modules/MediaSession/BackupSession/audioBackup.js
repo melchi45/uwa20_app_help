@@ -254,6 +254,7 @@ function AudioHeader() {
 
       aviIndexEntry.offset = file_info.pos;
       aviIndexEntry.size = size;
+      aviIndexEntry.dummycount = 0;
 
       file_info.pos = this.aviIndexEntry.offset + SIZE_OF_CHUNK_HEADER + size;
       this.chunkHeader.fourcc = this.aviIndexEntry.chid;
