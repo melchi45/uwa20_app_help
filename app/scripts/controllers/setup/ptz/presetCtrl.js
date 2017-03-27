@@ -6,6 +6,8 @@ kindFramework.controller('presetCtrl', function ($scope, $location, $timeout, $u
 
     var pageData = {};
 
+    var BrowserDetect = COMMONUtils.getBrowserDetect();
+    
     $scope.getTranslatedOption = function (Option)
     {
         return COMMONUtils.getTranslatedOption(Option);
@@ -265,7 +267,9 @@ kindFramework.controller('presetCtrl', function ($scope, $location, $timeout, $u
         $(hideSelector).hide();
         $(hideSelector).parent().append(selectHtml);
         var createdSelect = $('#'+selectorName);
-        createdSelect.focus();
+        if(!BrowserDetect.isIE){
+            createdSelect.focus();
+        }
         createdSelect.focusout(function(){
             openSelectRemove(selectorName,index,true);
         });

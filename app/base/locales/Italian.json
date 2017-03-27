@@ -1263,6 +1263,7 @@
     "lang_serial_port_setup": "Configurazione porta seriale",
     "lang_analog_video": "Video analogico",
     "lang_msg_simple_focus_activated": "Quando viene abilitata, la funzione “Semplice messa a fuoco” verrà attivata quando viene rilevata della sfocatura.",
+    "lang_msg_auto_focus_activated": "Quando viene abilitata, la funzione “Messa a fuoco automatica” verrà attivata quando viene rilevata della sfocatura.",
     "lang_msg_defog_set_atuo_maintained": "Quando abilitata, la funzione “Sbrinamento” verrà impostata su “Auto” e mantenuta quando viene rilevata della nebbia.",
     "lang_msg_applied_only_when_fog_disabled": "Tuttavia si applica soltanto quando la funzione “rilevamento nebbia (Fog detection)” è attiva.",
     "lang_msg_check_host_name": "Controllare il nome del Host.",

@@ -772,9 +772,9 @@ kindFramework
                       time: timeStamp
                   }
               */
-              // if( timelineCallback !== null ) {
-              //     timelineCallback({'timezone':lp,'timestamp':rp}, stepFlag !== undefined ? stepFlag : undefined);
-              // }
+              if( timelineCallback !== null ) {
+                timelineCallback({'timezone':sdata.gmp,'timestamp':sdata.time}, stepFlag !== undefined ? stepFlag : undefined);
+              }
               break;
           case 352:   //streaming resolution info
               /*  sdata
@@ -804,10 +804,10 @@ kindFramework
               */
               if( sdata.type === 1 ) {
                   if( timelineCallback !== null ) {
-                  pluginElement.PlayRecordStream(playbackTime, '', playSpeed);
-                  if( playbackCallback !== null ) {
-                      playbackCallback({'errorCode':"200"});
-                  }              
+                    pluginElement.PlayRecordStream(playbackTime, '', playSpeed);
+                    if( playbackCallback !== null ) {
+                        playbackCallback({'errorCode':"200"});
+                    }              
                   }
               }
               else if( sdata.type === 3 ) {
@@ -838,7 +838,7 @@ kindFramework
                       // },500);
                   }
                   else if( sdata.type === 1 || sdata.type === 3) {
-                      // rtspDigestAuth('playback');
+                    rtspDigestAuth('playback');
                   }else if( sdata.type === 2 ){
                       // rtspDigestAuth('audioTalk');
                   }

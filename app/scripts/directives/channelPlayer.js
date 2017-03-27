@@ -118,7 +118,6 @@ kindFramework.directive('channelPlayer',
             function createKindElement() {
                 var ElementTemplate = '<kind_stream class="channel-content" kindplayer="playerdata" display="displayInfo"></kind_stream>';
                 elem.append($compile(ElementTemplate)(scope));
-                ExtendChannelContainerService.setDigitalZoomService();
             }
 
             function createStreamElement(_plugin) {

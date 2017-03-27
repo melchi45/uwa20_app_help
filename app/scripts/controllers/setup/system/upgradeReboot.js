@@ -1,4 +1,4 @@
-kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils)
+kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate)
 {
     "use strict";
 
@@ -146,8 +146,13 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                             }
                         }
                         else{
-                            //alert(errorData);
-                            COMMONUtils.ShowInfo('lang_msg_upgrading_was_failed',logout);
+                            if(errorData.indexOf('HTTP Error') !== -1){
+                                var msg = $translate.instant('lang_msg_upgrading_was_failed');
+                                alert(msg);
+                                logout();
+                            }else{
+                                COMMONUtils.ShowInfo('lang_msg_upgrading_was_failed',logout);
+                            }
                         }
                         $scope.IsRestoreRunning = false;
                         $scope.IsFWUpdating = false;

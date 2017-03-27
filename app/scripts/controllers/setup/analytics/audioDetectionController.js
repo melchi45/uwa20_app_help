@@ -1,4 +1,4 @@
-kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, $rootScope, $location, SunapiClient, Attributes, COMMONUtils, $q, schedulerService)
+kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, $rootScope, $location, SunapiClient, Attributes, COMMONUtils, $q, eventRuleService)
 {
     "use strict";
 
@@ -142,8 +142,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
         //     return false;
         // }
 
-        var target = schedulerService.get();
-        if (target.type === 'Scheduled' && target.data.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }

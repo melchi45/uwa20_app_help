@@ -1,7 +1,7 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 kindFramework
-    .directive('eventActionSetup', ['LoggingService', 'COMMONUtils', 'Attributes', 'SunapiClient', '$rootScope',
-    function(LoggingService, COMMONUtils, Attributes, SunapiClient, $rootScope){
+    .directive('eventActionSetup', ['LoggingService', 'COMMONUtils', 'Attributes', 'SunapiClient', '$rootScope', 'eventRuleService',
+    function(LoggingService, COMMONUtils, Attributes, SunapiClient, $rootScope, eventRuleService){
     'use strict';
     return{
         restrict: 'E',
@@ -658,6 +658,8 @@ kindFramework
                     pageData.EventRule = angular.copy(scope.EventRule);
                 });
 
+                eventRuleService.setEventRuleData({pageData: scope.EventRule, scopeData: scope.EventRule, menu: scope.EventSource});
+
                 scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
             };
 
@@ -711,6 +713,7 @@ kindFramework
                     pageData.EventRule = angular.copy(scope.EventRule);
                 });
 
+                eventRuleService.setEventRuleData({pageData: scope.EventRule, scopeData: scope.EventRule, menu: scope.EventSource});
 
                 scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
             };
@@ -774,6 +777,8 @@ kindFramework
                     pageData.EventRules = angular.copy(scope.EventRules);
                 });
 
+                eventRuleService.setEventRuleData({pageData: scope.EventRules, scopeData: scope.EventRules, menu: scope.EventSource});
+
                 scope.$emit('EventRulePrepared', scope.EventRules.ScheduleType);
             }
 
@@ -796,6 +801,32 @@ kindFramework
                         }
                     }
                 }
+            }, true);
+
+            // when update eventRule data by user mouse, set data for eventRuleService.
+            scope.$watch('EventRule', function(newVal, oldVal){
+                if(typeof newVal === "undefined"){
+                    return;
+                }
+                var data = {
+                    pageData: pageData.EventRule,
+                    scopeData: scope.EventRule,
+                    menu: scope.EventSource,
+                }
+                eventRuleService.setEventRuleData(data);
+            }, true);
+
+            // when update eventRules data by user mouse, set data for eventRuleService.
+            scope.$watch('EventRules', function(newVal, oldVal){
+                if(typeof newVal === "undefined"){
+                    return;
+                }
+                var data = {
+                    pageData: pageData.EventRules,
+                    scopeData: scope.EventRules,
+                    menu: scope.EventSource
+                }
+                eventRuleService.setEventRuleData(data);
             }, true);
 
             scope.$saveOn('pageLoaded', function(event, data) {
@@ -837,6 +868,14 @@ kindFramework
                     }
                 }
             });
+            
+            scope.getTitleAutoSimpleFcous = function(){
+                if(mAttr.PTZModel || mAttr.ZoomOnlyModel){
+                    return 'lang_autoFocus';
+                } else {
+                    return 'lang_simpleFocus';
+        }
+            }
         }
     };
 }]);

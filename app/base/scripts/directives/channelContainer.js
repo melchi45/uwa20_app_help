@@ -187,7 +187,6 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window','PLAYBACK_T
           ExtendChannelContainerService.enablePTZ(newVal);
         });
         scope.isPc = ExtendChannelContainerService.getIsPcValue();
-        ExtendChannelContainerService.setDigitalZoomService();
       }
     };
 }]);
