@@ -118,7 +118,6 @@ kindFramework.directive('channelPlayer',
             function createKindElement() {
                 var ElementTemplate = '<kind_stream class="channel-content" kindplayer="playerdata" display="displayInfo"></kind_stream>';
                 elem.append($compile(ElementTemplate)(scope));
-                ExtendChannelContainerService.setDigitalZoomService();
             }
 
             function createStreamElement(_plugin) {
@@ -678,6 +677,7 @@ kindFramework.directive('channelPlayer',
                   {
                     elem.empty();
                     PluginControlService.stopStreaming();
+                    $rootScope.$emit('app/scripts/directives/channelPlayer.js:disablePlayback', false);
                   }
                   else
                   {
@@ -685,6 +685,7 @@ kindFramework.directive('channelPlayer',
                     elem.empty();
                     if( isPlaybackMode === true ) {
                       createNoSupportPlaybackInPlugInElement();
+                      $rootScope.$emit('app/scripts/directives/channelPlayer.js:disablePlayback', true);
                     }
                   }
                   break;

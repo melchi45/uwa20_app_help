@@ -1263,6 +1263,7 @@
     "lang_serial_port_setup": "시리얼 포트 설정",
     "lang_analog_video": "아날로그 비디오",
     "lang_msg_simple_focus_activated": "사용함을 선택할 경우, 디포커스 감지시 '심플 포커스' 가 실행됩니다.",
+    "lang_msg_auto_focus_activated": "사용함을 선택할 경우, 디포커스 감지시 '자동 포커스' 가 실행됩니다.",
     "lang_msg_defog_set_atuo_maintained": "사용함을 선택할 경우, 안개 감지시 '안개 제거' 기능이 '자동' 상태로 변경 후 유지됩니다.",
     "lang_msg_applied_only_when_fog_disabled": "단, '안개 제거' 기능이 '사용 안 함' 상태인 경우에만 해당합니다.",
     "lang_msg_check_host_name": "호스트 이름을 확인하십시오.",

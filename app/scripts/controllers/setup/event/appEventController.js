@@ -1,4 +1,4 @@
-kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q) {
+kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, eventRuleService) {
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
@@ -36,7 +36,7 @@ kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal,
     }
 
     function validatePage() {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }

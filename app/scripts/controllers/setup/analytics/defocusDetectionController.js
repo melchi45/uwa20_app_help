@@ -1,4 +1,4 @@
-kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location, $scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q)
+kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location, $scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, eventRuleService)
 {
     "use strict";
 
@@ -211,7 +211,12 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     $scope.SimpleFocusClickEventHandler = function() {
         if($scope.DefocusDetect.AutoSimpleFocus === true)
         {
-            var msg = $translate.instant('lang_msg_simple_focus_activated');
+            var msg = '';
+            if(mAttr.PTZModel || mAttr.ZoomOnlyModel){
+                msg = $translate.instant('lang_msg_auto_focus_activated');
+            } else {
+                msg = $translate.instant('lang_msg_simple_focus_activated');
+            }
             COMMONUtils.ShowDeatilInfo(msg,'','md');
         }
     };
@@ -260,10 +265,8 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                 }, '', true);
     }
 
-    function validatePage()
-    {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0)
-        {
+    function validatePage() {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }

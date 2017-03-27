@@ -240,7 +240,7 @@ kindFramework.factory('COMMONUtils', function ($translate, $location,  $uibModal
             size: 'sm',
             resolve: {
                 Message: function () {
-                    return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
+                    return 'lang_msg_confirmInterface';
                 }
             }
         });

@@ -10,11 +10,21 @@ kindFramework
 		this.getIsPcValue = function() {
 			return isPc;
 		};
-		this.setDigitalZoomService = function() {
-      var canvasElem = document.getElementById("livecanvas");
-      if (canvasElem !== null) {
-        DigitalZoomService.deleteElementEvent(canvasElem);
-        DigitalZoomService.setElementEvent(canvasElem);
+		this.setDigitalZoomService = function(mode) {
+      var canvasElem = document.getElementById("cm-livecanvas");
+
+      if(mode)
+      {
+        if (canvasElem !== null) {
+          DigitalZoomService.deleteElementEvent(canvasElem);
+          DigitalZoomService.setElementEvent(canvasElem);
+        }
+      }
+      else
+      {
+        if (canvasElem !== null) {
+          DigitalZoomService.deleteElementEvent(canvasElem);
+        }
       }
 		};
 
@@ -56,7 +66,7 @@ kindFramework
     };
 
 		this.enablePTZ = function(mode) {
-      var canvasElem = document.getElementById("livecanvas");
+      var canvasElem = document.getElementById("cm-livecanvas");
       if (canvasElem !== null) {
         PTZContorlService.deleteElementEvent(canvasElem);
         DigitalZoomService.deleteElementEvent(canvasElem);
@@ -71,7 +81,7 @@ kindFramework
         }
         else if(mode === "Digital Zoom")
         {
-          DigitalZoomService.setElementEvent(canvasElem);
+          //DigitalZoomService.setElementEvent(canvasElem);
         }
       }
 		};

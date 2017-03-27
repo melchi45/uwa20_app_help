@@ -94,14 +94,22 @@ kindFramework.directive('overlayCanvas', function(
           switch (OverlayCanvasMode)
           {
               case "pixelCount" :
+                  //Disable DigitalZoom
+                  ExtendChannelContainerService.setDigitalZoomService(false);
                   scope.pixelCountInit();
                   scope.pixelCountLableInit();
                   break;
               case "manualTracking" :
                   break;
               case "areaZoomMode":
+                  //Disable DigitalZoom
+                  ExtendChannelContainerService.setDigitalZoomService(false);
                   scope.areaZoomInit();
                   break;
+              default:
+                  //Enable DigitalZoom
+                  ExtendChannelContainerService.setDigitalZoomService(true);
+                  break;    
           }
       });
 
@@ -123,7 +131,14 @@ kindFramework.directive('overlayCanvas', function(
 
                  if(boolEnable)
                  {
-                     scope.pixelCountLableInit();
+                    scope.pixelCountLableInit();
+                    //Disable DigitalZoom
+                    ExtendChannelContainerService.setDigitalZoomService(false);
+                 }
+                 else
+                 {
+                    //Enable DigitalZoom
+                    ExtendChannelContainerService.setDigitalZoomService(true);
                  }
 
                  $rootScope.$emit('livePTZControl::command', "pixelCount", boolEnable);
@@ -139,11 +154,15 @@ kindFramework.directive('overlayCanvas', function(
                  {
                     PTZContorlService.setPTZAreaZoom("on");
                     PTZContorlService.setElementEvent(cvs);
+                    //Disable DigitalZoom
+                    ExtendChannelContainerService.setDigitalZoomService(false);
                  }
                  else
                  {
                     PTZContorlService.setPTZAreaZoom("off");
                     PTZContorlService.deleteElementEvent(cvs);
+                    //Enable DigitalZoom
+                    ExtendChannelContainerService.setDigitalZoomService(true);
                  }
                 break;
           }

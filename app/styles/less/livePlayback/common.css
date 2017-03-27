@@ -193,6 +193,10 @@
 .cm-icon-x15 {
   transform: scale(1.5);
 }
+.wn5-icon-button-xs {
+  padding: 0 15px 0 15px !important;
+  font-size: 20px !important;
+}
 /* Responsive Element show/hide */
 .cm-mobile {
   display: none !important;
@@ -755,14 +759,13 @@ live-playback common {
 /* video area */
 #cm-video {
   width: 100%;
-  height: calc(100% - 310px);
+  height: calc(100% - 300px);
   background-color: #fff;
   position: relative;
   overflow: hidden;
-  margin-bottom: 10px;
 }
 #cm-video.smaller {
-  height: calc(100% - 110px);
+  height: calc(100% - 100px);
 }
 #cm-video .cm-plugin-msg {
   width: 100%;
@@ -828,7 +831,7 @@ live-playback common {
   background-color: #000;
   position: fixed;
   bottom: 0;
-  z-index: 10000;
+  z-index: 20;
   height: 50px;
 }
 #cm-bottom-menu.cm-full-menu [id^="cm-"],

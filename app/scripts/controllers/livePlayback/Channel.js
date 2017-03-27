@@ -33,7 +33,7 @@ kindFramework
     var videoLimitFPS = 3;
     var videoLimitSize = 1920 * 1080;
     var audioEncodingType = null;
-    var channelId = 0;
+    var channelId = UniversialManagerService.getChannelId();
 
     BaseChannel.prototype.resetSetting = function() {
       if(UniversialManagerService.isSpeakerOn()){
@@ -1023,6 +1023,7 @@ kindFramework
       console.log(index);
       $rootScope.$emit('channelPlayer:command', 'stopLive', false);
       channelId = index;
+      UniversialManagerService.setChannelId(channelId);
 
       setProfileInfo();
     }, $scope);

@@ -800,14 +800,13 @@ live-playback common {
 /* video area */
 #cm-video{
     width: 100%;
-    height: calc(~"100% - 310px");
+    height: calc(~"100% - 300px");
     background-color: #fff;
     position: relative;
     overflow: hidden;
-    margin-bottom: 10px;
 
     &.smaller {
-        height: calc(~"100% - 110px");
+        height: calc(~"100% - 100px");
     }
     
     .cm-plugin-msg {
@@ -1163,7 +1162,7 @@ live-playback common {
     #cm-ptz-control-move-btn {
         line-height: 22px;
         color: gray;
-    } 
+    }
 
     .cm-playback-duplicate-items {
         & > div {
@@ -1774,7 +1773,6 @@ live-playback common {
                 }
 
                 &:active,
-                &:focus,
                 &.active {
                     color: @btn-active-text-color;
                     background-color: @btn-active-color;
@@ -1803,8 +1801,7 @@ live-playback common {
         }
 
         &:hover,
-        &:active,
-        &:focus {
+        &:active {
             background-color: #fff;
         }
     }

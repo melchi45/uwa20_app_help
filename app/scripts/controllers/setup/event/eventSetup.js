@@ -53,34 +53,9 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
     };
-    $scope.showReducedEventList = false;
-    if (BrowserDetect.isIE) {
-        $scope.maxInitialEvents = 3;
-        $scope.showReducedEventList = true;
-    } else {
-        /** Show all the events for other browsers */
-        $scope.maxInitialEvents = 1000;
-    }
-    $scope.eventCountToShow = $scope.maxInitialEvents;
-    $scope.showAdvancedMenu = false;
-    $scope.showAdvancedLabel = 'lang_show';
     $scope.isEventActionSupported = false;
     $scope.isMultiChannel = false;
 
-    $scope.showMoreEvents = function() {
-        $scope.eventCountToShow = $scope.EventRules.length;
-    };
-    $scope.advacedMenu = function() {
-        if ($scope.showAdvancedMenu === false) {
-            $scope.showAdvancedMenu = true;
-            $scope.eventCountToShow = $scope.EventRules.length;
-            $scope.showAdvancedLabel = 'lang_hide';
-        } else {
-            $scope.showAdvancedMenu = false;
-            $scope.eventCountToShow = $scope.maxInitialEvents;
-            $scope.showAdvancedLabel = 'lang_show';
-        }
-    };
     $scope.sourceSelected = function(source) {
         var path = null;
         switch (source) {
@@ -533,7 +508,9 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
                 }
 
                 setData.Channel = channel;
-                channel++;
+                if($scope.isMultiChannel){
+                    channel++;
+                }
                 queue.push({
                     url: '/stw-cgi/eventrules.cgi?msubmenu=rules&action=update',
                     reqData: setData
@@ -651,181 +628,79 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         });
     }
 
-    function prepareInfoData() {
-
-    }
-
-
-    $scope.presetGotoSelectShowChange = function(index,isShow,event){
-        if(isShow){
-            for(var i=0;i<$scope.EventRules.length;i++){
-                var eventSource = $scope.EventRules[i].EventSource;
-                $scope.presetGotoSelectShow[eventSource].selectShow=false;
-                $scope.presetGotoSelectShow[eventSource].inputShow=true;
-            }
-            if(event != undefined){
-                var code = event.which;
-                if(code==32) event.preventDefault();
-                if(code==32||code==13||code==188||code==186){
-                    $scope.presetGotoSelectShow[index].inputShow=false;
-                    $scope.presetGotoSelectShow[index].selectShow=true;
-                    $timeout(function(){
-                        $('.presetSelectbox').focus();
-                    },100);
-                }
-            }else{
-                $scope.presetGotoSelectShow[index].inputShow=false;
-                $scope.presetGotoSelectShow[index].selectShow=true;
-                $timeout(function(){
-                    $('.presetSelectbox').focus();
-                },100);
-            }
-        }else{
-            $scope.presetGotoSelectShow[index].selectShow=false;
-            $timeout(function(){
-                $scope.presetGotoSelectShow[index].inputShow=true;
-            },100);
-        }
+    $scope.changePresetSelectOptions = function(index,event){
+        //if(BrowserDetect.isIE ||BrowserDetect.isEdge){
+        if(BrowserDetect.isIE){
+            var changeOptions = function(){
+                if($scope.presetGotoSelectOptions[index].Options.length !== $scope.PresetOptions.length)
+                    $scope.presetGotoSelectOptions[index].Options = $scope.PresetOptions;
     };
-    $scope.presetAlarmActionSelectShowChange = function(index,alarmIndex,isShow,event){
-        if(isShow){
-            for(var i=0;i<$scope.EventRules.length;i++){
-                var eventSource = $scope.EventRules[i].EventSource;
-                var subArray = $scope.presetAlarmActionSelectShow[eventSource];
-                for(var j=0;j<subArray.length;j++){
-                    $scope.presetAlarmActionSelectShow[eventSource][j].selectShow=false;
-                    $scope.presetAlarmActionSelectShow[eventSource][j].inputShow=true;
-                }
-            }
             if(event != undefined){
                 var code = event.which;
-                if(code==32) event.preventDefault();
                 if(code==32||code==13||code==188||code==186){
-                    $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=false;
-                    $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=true;
-                    $timeout(function(){
-                        $('.presetSelectbox').focus();
-                    },100);
+                    event.preventDefault();
+                    changeOptions();
                 }
             }else{
-                $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=false;
-                $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=true;
-                $timeout(function(){
-                    $('.presetSelectbox').focus();
-                },100);
+                changeOptions();
             }
-        }else{
-            $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=false;
-            $timeout(function(){
-                $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=true;
-            },100);
         }
     };
 
-    $scope.presetAlarmActionSelectShowChangeForCommonEvents = function(index,alarmIndex,isShow,event){
-        if(isShow){
+    function initPresetSelectOptions(){
+        $scope.presetGotoSelectOptions = [];
+        if($scope.isMultiChannel && $scope.isEventActionSupported) {
             for(var i=0;i<$scope.CommonEventRules.length;i++){
+                if($scope.CommonEventRules[i].presetActionSupported){
                 var eventSource = $scope.CommonEventRules[i].EventSource;
-                var subArray = $scope.presetAlarmActionSelectShow[eventSource];
-                for(var j=0;j<subArray.length;j++){
-                    $scope.presetAlarmActionSelectShow[eventSource][j].selectShow=false;
-                    $scope.presetAlarmActionSelectShow[eventSource][j].inputShow=true;
+                    $scope.presetGotoSelectOptions[eventSource] = {Options:[]};
+                    $scope.presetGotoSelectOptions[eventSource].Options.push($scope.EventRules[i].PresetNumber);
                 }
             }
-            if(event != undefined){
-                var code = event.which;
-                if(code==32) event.preventDefault();
-                if(code==32||code==13||code==188||code==186){
-                    $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=false;
-                    $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=true;
-                    $timeout(function(){
-                        $('.presetSelectbox').focus();
-                    },100);
-                }
-            }else{
-                $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=false;
-                $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=true;
-                $timeout(function(){
-                    $('.presetSelectbox').focus();
-                },100);
-            }
-        }else{
-            $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=false;
-            $timeout(function(){
-                $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=true;
-            },100);
-        }
-    };
-
-    $scope.presetAlarmActionSelectShowChangeForChannelEvents = function(index,alarmIndex,isShow,event){
-        if(isShow){
             for(var i=0;i<$scope.ChannelEventRules.length;i++){
+                if($scope.ChannelEventRules[i].presetActionSupported){
                 var eventSource = $scope.ChannelEventRules[i].EventSource;
-                var subArray = $scope.presetAlarmActionSelectShow[eventSource];
-                for(var j=0;j<subArray.length;j++){
-                    $scope.presetAlarmActionSelectShow[eventSource][j].selectShow=false;
-                    $scope.presetAlarmActionSelectShow[eventSource][j].inputShow=true;
+                    $scope.presetGotoSelectOptions[eventSource] = {Options:[]};
+                    $scope.presetGotoSelectOptions[eventSource].Options.push($scope.EventRules[i].PresetNumber);
                 }
             }
-            if(event != undefined){
-                var code = event.which;
-                if(code==32) event.preventDefault();
-                if(code==32||code==13||code==188||code==186){
-                    $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=false;
-                    $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=true;
-                    $timeout(function(){
-                        $('.presetSelectbox').focus();
-                    },100);
-                }
             }else{
-                $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=false;
-                $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=true;
-                $timeout(function(){
-                    $('.presetSelectbox').focus();
-                },100);
-            }
-        }else{
-            $scope.presetAlarmActionSelectShow[index][alarmIndex].selectShow=false;
-            $timeout(function(){
-                $scope.presetAlarmActionSelectShow[index][alarmIndex].inputShow=true;
-            },100);
-        }
-    };
-    
-    function initPresetSelectShow(){
-        $scope.presetGotoSelectShow = [];
-        $scope.presetAlarmActionSelectShow = [];
         for(var i=0;i<$scope.EventRules.length;i++){
+                if($scope.EventRules[i].presetActionSupported){
             var eventSource = $scope.EventRules[i].EventSource;
-            $scope.presetGotoSelectShow[eventSource] = {selectShow:false,inputShow:true};
-            var alarmOutArray = [];
-            for(var j=0;j<$scope.getAlarmOutArray.length;j++){
-                alarmOutArray.push({selectShow:false,inputShow:true});
+                    $scope.presetGotoSelectOptions[eventSource] = {Options:[]};
+                    $scope.presetGotoSelectOptions[eventSource].Options.push($scope.EventRules[i].PresetNumber);
             }
-            $scope.presetAlarmActionSelectShow[eventSource] = alarmOutArray;
         }
     }
+    }
 
-    function initPresetSelectShowForMultiChannel(){
-        $scope.presetGotoSelectShow = [];
-        $scope.presetAlarmActionSelectShow = [];
+    function resetPresetSelectOptions(){
+        //if(!(BrowserDetect.isIE ||BrowserDetect.isEdge)){
+        if(!BrowserDetect.isIE){
+            $timeout(function(){
+                if($scope.isMultiChannel && $scope.isEventActionSupported) {
         for(var i=0;i<$scope.CommonEventRules.length;i++){
+                        if($scope.CommonEventRules[i].presetActionSupported) {
             var eventSource = $scope.CommonEventRules[i].EventSource;
-            $scope.presetGotoSelectShow[eventSource] = {selectShow:false,inputShow:true};
-            var alarmOutArray = [];
-            for(var j=0;j<$scope.getAlarmOutArray.length;j++){
-                alarmOutArray.push({selectShow:false,inputShow:true});
+                            $scope.presetGotoSelectOptions[eventSource].Options = $scope.PresetOptions;
             }
-            $scope.presetAlarmActionSelectShow[eventSource] = alarmOutArray;
         }
         for(var i=0;i<$scope.ChannelEventRules.length;i++){
+                        if($scope.ChannelEventRules[i].presetActionSupported) {
             var eventSource = $scope.ChannelEventRules[i].EventSource;
-            $scope.presetGotoSelectShow[eventSource] = {selectShow:false,inputShow:true};
-            var alarmOutArray = [];
-            for(var j=0;j<$scope.getAlarmOutArray.length;j++){
-                alarmOutArray.push({selectShow:false,inputShow:true});
+                            $scope.presetGotoSelectOptions[eventSource].Options = $scope.PresetOptions;
             }
-            $scope.presetAlarmActionSelectShow[eventSource] = alarmOutArray;
+        }
+                }else{
+                    for(var i=0;i<$scope.EventRules.length;i++){
+                        if($scope.EventRules[i].presetActionSupported){
+                            var eventSource = $scope.EventRules[i].EventSource;
+                            $scope.presetGotoSelectOptions[eventSource].Options = $scope.PresetOptions;
+    }
+                    }
+                }
+            },100);
         }
     }
     
@@ -833,15 +708,17 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         getAttributes();
         if($scope.isMultiChannel && $scope.isEventActionSupported) {
             $q.seqAll([getEventActions, cameraView]).then(function(result) {
-                initPresetSelectShowForMultiChannel();
+                initPresetSelectOptions();
                 $scope.pageLoaded = true;
                 $rootScope.$emit('changeLoadingBar', false);
+                resetPresetSelectOptions();
             }, function(error) {});
         } else {
             $q.seqAll([getEventRules, cameraView]).then(function(result) {
-                initPresetSelectShow();
+                initPresetSelectOptions();
                 $scope.pageLoaded = true;
                 $rootScope.$emit('changeLoadingBar', false);
+                resetPresetSelectOptions();
             }, function(error) {});
         }
     }

@@ -84,7 +84,6 @@ function($q, DisplayService,CAMERA_TYPE,PLAYBACK_TYPE,PTZ_TYPE,
             scope.playControl.updatePlayIcon(scope.enablePlayback==='true'? true : false);
           }
           UniversialManagerService.setViewMode(CAMERA_STATUS.VIEW_MODE.CHANNEL);
-          scope.closeFullScreen();
           if(PTZContorlService.getManualTrackingMode() === "True") {
             PTZContorlService.setManualTrackingMode("False");
           }
@@ -270,7 +269,7 @@ function($q, DisplayService,CAMERA_TYPE,PLAYBACK_TYPE,PTZ_TYPE,
       }
 
       /**
-       * í”ŒëŸ¬ê·¸ì¸ì—ì„œ Full screen ë‹«ê¸°ë¥¼ ì ‘ê·¼ í•˜ê¸° ìœ„í•´ bindì„ í•´ì¤€ë‹¤.
+       * ?”Œ?Ÿ¬ê·¸ì¸?—?„œ Full screen ?‹«ê¸°ë?? ? ‘ê·? ?•˜ê¸? ?œ„?•´ bind?„ ?•´ì¤??‹¤.
        * @example
        *   $("#full-screen-channel").trigger("closefullscreen");
        */
@@ -307,16 +306,16 @@ function($q, DisplayService,CAMERA_TYPE,PLAYBACK_TYPE,PTZ_TYPE,
               return;
             }
             /**
-             * ì•„ë˜ ë¶€í„°ëŠ” Full Screen ì—ì„œ Detail Viewë¡œ ì´ë™í•  ë•Œ
-             * ì‹¤í–‰ë˜ëŠ” ë¡œì§ì´ë‹¤.
+             * ?•„?˜ ë¶??„°?Š” Full Screen ?—?„œ Detail Viewë¡? ?´?™?•  ?•Œ
+             * ?‹¤?–‰?˜?Š” ë¡œì§?´?‹¤.
              */
             event.stopPropagation();
 
             /**
-             * window.onresize ì‹œì—ëŠ” $digestê°€ ë˜ì§€ ì•Šì•„
-             * scopeê°€ viewì— ë°˜ì˜ì´ ë˜ì§€ ì•Šì€ ì´ìŠˆê°€ ìˆë‹¤.
-             * $scope.$apply()ëŠ” ì—ëŸ¬ê°€ ë°œìƒí•  ìˆ˜ ìˆëŠ” ë¦¬ìŠ¤íŠ¸ê°€ ìˆê¸° ë•Œë¬¸ì—
-             * $timeoutì„ í†µí•´ì„œ $digestë¥¼ í•œë‹¤.
+             * window.onresize ?‹œ?—?Š” $digestê°? ?˜ì§? ?•Š?•„
+             * scopeê°? view?— ë°˜ì˜?´ ?˜ì§? ?•Š??? ?´?Šˆê°? ?ˆ?‹¤.
+             * $scope.$apply()?Š” ?—?Ÿ¬ê°? ë°œìƒ?•  ?ˆ˜ ?ˆ?Š” ë¦¬ìŠ¤?Š¸ê°? ?ˆê¸? ?•Œë¬¸ì—
+             * $timeout?„ ?†µ?•´?„œ $digestë¥? ?•œ?‹¤.
              */
 
             $timeout(function(){

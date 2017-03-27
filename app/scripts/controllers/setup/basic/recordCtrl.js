@@ -1,5 +1,5 @@
 kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $rootScope, $location,
-    SunapiClient, Attributes, COMMONUtils, LogManager, SessionOfUserManager, CameraSpec, $q, $filter, $translate) {
+    SunapiClient, Attributes, COMMONUtils, LogManager, SessionOfUserManager, CameraSpec, $q, $filter, $translate, eventRuleService) {
 
     "use strict";
     $scope.pageLoaded = false;
@@ -319,17 +319,12 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     }
 
     function validatePage() {
-        var retVal = true;
-
-        if ($scope.RecordSchedule.Activate === 'Scheduled' && $scope.RecordSchedule.ScheduleIds.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
-            retVal = false;
+            return false;
         }
-
-        return retVal;
+        return true;
     }
-
-
 
     function view() {
         var promises = [];

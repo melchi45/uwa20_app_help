@@ -1263,6 +1263,7 @@
     "lang_serial_port_setup": "シリアルポート設定",
     "lang_analog_video": "アナログビデオ",
     "lang_msg_simple_focus_activated": "有効にすると、焦点ぼけが検知されるときに「単一フォーカス」が起動します。",
+    "lang_msg_auto_focus_activated": "有効にすると、焦点ぼけが検知されるときに「オートフォーカス」が起動します。",
     "lang_msg_defog_set_atuo_maintained": "有効にすると、霧が検知されるときに「曇り除去」機能が「自動」に設定され続けます。",
     "lang_msg_applied_only_when_fog_disabled": "ただし、これは「霧検知(Fog detection)」機能が無効にされたときのみ適用されます。",
     "lang_msg_check_host_name": "ホスト名を確認します。",

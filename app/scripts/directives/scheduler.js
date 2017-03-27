@@ -1,7 +1,7 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 kindFramework
-    .directive('scheduler', ['$rootScope', '$timeout', 'schedulerService', 'SunapiClient', '$translate', '$uibModal', '$window',
-    function($rootScope, $timeout, schedulerService, SunapiClient, $translate, $uibModal, $window){
+    .directive('scheduler', ['$rootScope', '$timeout', 'SunapiClient', '$translate', '$uibModal', '$window', 'eventRuleService',
+    function($rootScope, $timeout, SunapiClient, $translate, $uibModal, $window, eventRuleService){
     'use strict';
     return{
         restrict: 'E',
@@ -28,6 +28,7 @@ kindFramework
             var initializing = false;
             var currentUnit = '30';
             var prevChannel = 0;
+            var currentScheduleType = null;
 
             // eventObjs = setEventSources();
 
@@ -70,6 +71,8 @@ kindFramework
                 } else {
                     scope.EventRule.ScheduleIds = angular.copy(scheduleIds);
                 }
+
+                eventRuleService.setScheduleData({menu: activeMenu, type:currentScheduleType, data:scheduleIds});
                 // console.info('end of getEventSources ===================== ');
             }
 
@@ -730,6 +733,8 @@ kindFramework
 
             function setVisibility(value) {
                 var v = value;
+                currentScheduleType = value;
+                eventRuleService.setScheduleType(value);
                 if(value === "Always") {
                     v = "hidden";
                     $("#calendar").css({"display": "none"});

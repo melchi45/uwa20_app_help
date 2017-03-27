@@ -35,6 +35,7 @@ kindFramework.service('UniversialManagerService',
 		var alarmOutput = [false, false, false, false];
 		var pluginElem = null;
 		var isPixelCountOn = false;
+		var channelId = 0;
 
 		this.initialization = function()
 		{
@@ -468,5 +469,13 @@ kindFramework.service('UniversialManagerService',
 
 		this.getPixelCount = function() {
 			return isPixelCountOn;
+		}
+
+		this.setChannelId = function(value) {
+			channelId = value;
+		}
+
+		this.getChannelId = function() {
+			return channelId;
 		}
 }]);

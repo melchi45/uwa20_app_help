@@ -7,7 +7,10 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             pageData = {},
             previewData = {};
 
-    $rootScope.isCameraSetupPreview = true;
+    $rootScope.isCameraSetupPreview = false;
+    $rootScope.cameraSetupPreviewCount = 0;
+    $rootScope.cameraSetupPreviewMaxCount = 10;
+    $rootScope.cameraSetupToLive = false;
 
     pageData.recentUpdate = "None";
     $scope.sliderRefreshInProgress = false;
@@ -19,7 +22,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     $scope.presetTypeData.SelectedPresetType = 0;
     $scope.PresetImageConfig = [];
     $scope.disDisable = {};
-
+    $scope.ptzToPreset = false;
+    
     $scope.ImageEnhancements = {
         SharpnessEnable : false,
         Contrast : 0
@@ -319,6 +323,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     $scope.presetTypeData.PresetIndex = i;
                     $scope.presetTypeData.SelectedPreset = $scope.PresetNameValueOptions[i].Preset;
                     isCheck = true;
+                    $scope.ptzToPreset = true;
                     break;
                 }
             }
@@ -347,8 +352,9 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $scope.presetTypeData.PresetIndex = 0;
             if($scope.PresetNameValueOptions.length > 0) $scope.presetTypeData.SelectedPreset = $scope.PresetNameValueOptions[0].Preset;
             else $scope.presetTypeData.SelectedPreset = 0;
-            gotoPreset('Start',$scope.presetTypeData.SelectedPreset,false);
+            //gotoPreset('Start',$scope.presetTypeData.SelectedPreset,false);
         }
+        view();
     }
     $scope.onPresetTypeChange = onPresetTypeChange;
     $scope.$watch('presetTypeData.SelectedPresetType',function(newVal,oldVal){
@@ -360,6 +366,10 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     $scope.$watch('presetTypeData.SelectedPreset',function(newVal,oldVal){
         if(newVal > 0 && oldVal == 0) {
             if($scope.presetTypeData.SelectedPresetType==1){
+                if($scope.ptzToPreset == true){
+                    $scope.ptzToPreset = false;
+                    return;
+                }
                 gotoPreset('Start',newVal);
             }
         } else if(newVal > 0 && oldVal > 0) {
@@ -375,15 +385,17 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     });
     function gotoPreset(mode,Preset,presetChanged,oldPreset){
         var promises = [];
-        var setData = {};
 
-        if(oldPreset !== undefined){
-            promises.push(oldPresetStop);
-        }
         if(presetChanged == false){
             promises.push(cameraStop);
+        }else if(presetChanged == true){
+            if(oldPreset !== undefined){
+                promises.push(oldPresetStop);
+            }
         }
-        promises.push(newPreset);
+        if(presetChanged == false || typeof presetChanged == 'undefined'){
+            promises.push(newPreset);
+        }
         if(mode=='Stop'){
             promises.push(oldPresetGo);
         }
@@ -411,12 +423,17 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             stopData.Channel = 0;
             stopData.Preset = oldPreset;
             return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', stopData,
-                function (response){},
+                function (response){
+                    $timeout(function(){
+                        newPreset();
+                    },500);
+                },
                 function (errorData){
                 }, '', true);
 
         }
         function newPreset(){
+            var setData = {};
             setData.Channel = 0;
             setData.Preset = Preset==0 ? 1 : Preset;
             if(mode=='Start'){
@@ -3734,25 +3751,49 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 setData.Channel = 0;
                 setData.Preset = $scope.presetTypeData.SelectedPreset==0 ? 1 : $scope.presetTypeData.SelectedPreset;
                 SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', setData,
-                    function (response){},
+                    function (response){
+                        $rootScope.isCameraSetupPreview = false;
+                    },
                     function (errorData){
+                        $rootScope.isCameraSetupPreview = false;
                     }, '', asyncVal);
             }
         } else {
             SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set', setData,
-                    function (response) {},
+                    function (response) {
+                        $rootScope.isCameraSetupPreview = false;
+                    },
                     function (errorData) {
                         //console.log('Stop preview failed ', errorData);
                         //alert(errorData);
+                        $rootScope.isCameraSetupPreview = false;
                     }, '', asyncVal);
         }
     }
     $scope.livePreviewMode = livePreviewMode;
 
+    $scope.$watch(function() {
+        return $rootScope.cameraSetupToLive;
+    }, function(newVal, oldVal) {
+        if(newVal == true){
+            if ($scope.previewMode === true || $scope.previewTimer !== undefined) {
+                if ($scope.previewTimer !== undefined) {
+                    $timeout.cancel($scope.previewTimer);
+                    $scope.previewTimer = undefined;
+                }
+                if($scope.previewMode == false){
+                    $rootScope.isCameraSetupPreview = false;
+                }else{
+                    stopLivePreviewMode();
+                }
+            }
+        }
+    }, true);
+    
     $rootScope.$watch(function $locationWatch() {
         var changedUrl = $location.absUrl();
 
-        if ($scope.previewMode === true || $scope.previewTimer !== undefined) {
+        if (($rootScope.cameraSetupToLive != true) && ($scope.previewMode === true || $scope.previewTimer !== undefined)) {
             if (changedUrl.indexOf('videoAudio_cameraSetup') === -1) {
                 if ($scope.previewTimer !== undefined) {
                     //LogManager.debug(' Preview timer cancelled ');
@@ -4486,7 +4527,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     }
 
     $scope.$watch('previewMode', function (newVal, oldVal) {
-
+        if(newVal === true) $rootScope.isCameraSetupPreview = true;
+        if($rootScope.cameraSetupToLive == true) return;
         if (oldVal === false && newVal === true) {
             extendPreviewMode();
         }
@@ -6432,8 +6474,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                         }
                         $timeout(function(){
                             if($scope.presetTypeData.SelectedPresetType == 0){
-                                //livePreviewMode('Start');
-                                livePreviewMode('Stop');
+                                livePreviewMode('Start');
+                                //livePreviewMode('Stop');
                             }else{
                                 gotoPreset('Start',$scope.presetTypeData.SelectedPreset);
                             }

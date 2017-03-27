@@ -78,11 +78,8 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
         }        
     }
 
-    function validatePage() {
-        return true;
-    }
-
     function setSmartCodec() {
+        var deferred = $q.defer();
         var ignoredKeys = ['Areas'],
             functionList = [];
 
@@ -149,31 +146,40 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
         if(functionList.length > 0){
             $q.seqAll(functionList).then(
                 function () {
-                    if(!angular.equals(pageData.SmartCodec, $scope.SmartCodec)){
+                    if(checkChangedData()){
                         pageData.SmartCodec = angular.copy($scope.SmartCodec);
                     }
                     view();
+                    deferred.resolve(true);
                 },
-                function (errorData) {}
+                function (errorData) {
+                    deferred.reject(errorData);
+                }
             );
+        }else{
+            $timeout(function(){
+                deferred.resolve(true);
+            });
         }
+
+        return deferred.promise;
     }
 
     function saveSettings() {
-        if (!angular.equals(pageData.SmartCodec, $scope.SmartCodec)) {
+        if (checkChangedData()) {
             setSmartCodec();
         }
     }
 
-    function set() {
+    function getSketchbookData(){
         var smartCodecArray = sketchbookService.get();
 
         for (var i = 0; i < smartCodecArray.length; i++) {
-            if ($scope.SmartCodec[0].Areas == undefined) {
-                $scope.SmartCodec[0].Areas = new Array(smartCodecArray.length);
-            }
-
             if(smartCodecArray[i].isSet){
+                if ($scope.SmartCodec[0].Areas == undefined) {
+                    $scope.SmartCodec[0].Areas = new Array(smartCodecArray.length);
+                }
+
                 $scope.SmartCodec[0].Areas[i] = {
                     "Area": (i + 1),
                     "Coordinate": [{
@@ -186,11 +192,10 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
                 };
             }
         }
+    }
 
-        if (validatePage()) {
-
-            COMMONUtils.ApplyConfirmation(saveSettings);
-        }
+    function set() {
+        COMMONUtils.ApplyConfirmation(saveSettings);
     }
 
     function getFaceDetection() {
@@ -337,10 +342,32 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
         }
     })();
 
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+    function checkChangedData(){
+        getSketchbookData();
+        return !angular.equals(pageData.SmartCodec, $scope.SmartCodec);
+    }
+
+    function changeChannel(index){
+        $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
         $scope.channelSelectionSection.setCurrentChannel(index);
         view();
+    }
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        if(checkChangedData()){
+            COMMONUtils
+                .confirmChangeingChannel()
+                .then(function(){
+                    setSmartCodec().then(function(){
+                        changeChannel(index);
+                    });
+                }, function(){
+                    console.log("canceled");
+                });    
+        }else{
+            changeChannel(index);
+        }
     }, $scope);
 
     $scope.submit = set;

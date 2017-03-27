@@ -1,5 +1,5 @@
 /*global setTimeout */
-kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope, WISE_FACE_DETECTION) {
+kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope, WISE_FACE_DETECTION, eventRuleService) {
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
@@ -579,23 +579,21 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         sketchbookService.removeDrawingGeometry();
 
         if (validatePage()) {
-            if (checkChangedData()) {
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'views/setup/common/confirmMessage.html',
-                    controller: 'confirmMessageCtrl',
-                    size: 'sm',
-                    resolve: {
-                        Message: function() {
-                            return 'lang_apply_question';
-                        }
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'sm',
+                resolve: {
+                    Message: function() {
+                        return 'lang_apply_question';
                     }
-                });
-                modalInstance.result.then(setChangedData, function(){
-                    if(isEnable === true){
-                        $scope.FD.Enable = pageData.FD.Enable;
-                    }
-                });
-            }
+                }
+            });
+            modalInstance.result.then(setChangedData, function(){
+                if(isEnable === true){
+                    $scope.FD.Enable = pageData.FD.Enable;
+                }
+            });
         }
     }
 
@@ -1008,11 +1006,11 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function checkChangedData(){
-        return !angular.equals(pageData.FD, $scope.FD);
+        return !angular.equals(pageData.FD, $scope.FD) || eventRuleService.checkEventRuleValidation();
     }
 
     function validatePage() {
-        if ($scope.EventRule.ScheduleType === 'Scheduled' && $scope.EventRule.ScheduleIds.length === 0) {
+        if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             return false;
         }
