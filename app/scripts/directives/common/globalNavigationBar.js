@@ -9,6 +9,7 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
         replace: true,
         templateUrl: 'views/common/directives/globalNavigationBar.html',
         link: function(scope, element, attrs) {
+            $rootScope.isCameraSetupPreview = false;
             scope.globalNavigationBar = {
                 isSetup: false,
                 isLive : false,
@@ -70,22 +71,68 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                     }
                 },
                 goToLive: function(){
-                    scope.pageInit();
-                    scope.globalNavigationBar.isLive = true;
-                    scope.globalNavigationBar.isSetup = false;
-                    scope.globalNavigationBar.isPlayback = false;
-                    $rootScope.$emit('enablePlayback', false);
-                    $state.go('uni.channel');
-                    //workerManager.initVideo(false);
+                    if ($rootScope.isCameraSetupPreview === true) {
+                        $rootScope.cameraSetupToLive = true;
+                        if ($rootScope.cameraSetupPreviewCount < $rootScope.cameraSetupPreviewMaxCount) {
+                            $timeout(function () {
+                                scope.globalNavigationBar.goToLive();
+                            }, 100);
+                            $rootScope.cameraSetupPreviewCount++;
+                        } else {
+                            $rootScope.isCameraSetupPreview = false;
+                            $rootScope.cameraSetupToLive = false;
+
+                            scope.pageInit();
+                            scope.globalNavigationBar.isLive = true;
+                            scope.globalNavigationBar.isSetup = false;
+                            scope.globalNavigationBar.isPlayback = false;
+                            $rootScope.$emit('enablePlayback', false);
+                            $state.go('uni.channel');
+                            workerManager.initVideo(false);
+                        }
+                    } else {
+                        $rootScope.cameraSetupToLive = false;
+
+                        scope.pageInit();
+                        scope.globalNavigationBar.isLive = true;
+                        scope.globalNavigationBar.isSetup = false;
+                        scope.globalNavigationBar.isPlayback = false;
+                        $rootScope.$emit('enablePlayback', false);
+                        $state.go('uni.channel');
+                        workerManager.initVideo(false);
+                    }
                 },
                 goToPlayback: function(){
-                    scope.pageInit();
-                    //workerManager.setLiveMode("canvas");
-                    scope.globalNavigationBar.isPlayback = true;
-                    scope.globalNavigationBar.isSetup = false;
-                    scope.globalNavigationBar.isLive = false;
-                    $rootScope.$emit('enablePlayback', true);
-                    $state.go('uni.playbackChannel');
+                    if ($rootScope.isCameraSetupPreview === true) {
+                        $rootScope.cameraSetupToLive = true;
+                        if ($rootScope.cameraSetupPreviewCount < $rootScope.cameraSetupPreviewMaxCount) {
+                            $timeout(function () {
+                                scope.globalNavigationBar.goToPlayback();
+                            }, 100);
+                            $rootScope.cameraSetupPreviewCount++;
+                        } else {
+                            $rootScope.isCameraSetupPreview = false;
+                            $rootScope.cameraSetupToLive = false;
+
+                            scope.pageInit();
+                            workerManager.setLiveMode("canvas");
+                            scope.globalNavigationBar.isPlayback = true;
+                            scope.globalNavigationBar.isSetup = false;
+                            scope.globalNavigationBar.isLive = false;
+                            $rootScope.$emit('enablePlayback', true);
+                            $state.go('uni.playbackChannel');
+                        }
+                    } else {
+                        $rootScope.cameraSetupToLive = false;
+
+                        scope.pageInit();
+                        workerManager.setLiveMode("canvas");
+                        scope.globalNavigationBar.isPlayback = true;
+                        scope.globalNavigationBar.isSetup = false;
+                        scope.globalNavigationBar.isLive = false;
+                        $rootScope.$emit('enablePlayback', true);
+                        $state.go('uni.playbackChannel');
+                    }
                 }
             };
 

@@ -536,11 +536,13 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         } else {
             otherstorage = 0;
         }
-        if ($scope.Storageinfo.Storages[otherstorage].Type === 'NAS' && $scope.Storageinfo.Storages[otherstorage].Enable === 'On') {
-            if (checkNas(otherstorage) === false) {
-                retVal = false;
-            }
-        }
+
+        // if ($scope.Storageinfo.Storages[otherstorage].Type === 'NAS' && $scope.Storageinfo.Storages[otherstorage].Enable === 'On') {
+        //     if (checkNas(otherstorage) === false) {
+        //         retVal = false;
+        //     }
+        // }
+
         for (var i = 0; i < $scope.RecordSchedule.length; i++) {
             if ($scope.RecordSchedule[i].Activate === 'Scheduled' && $scope.RecordSchedule[i].ScheduleIds.length === 0) {
                 COMMONUtils.ShowError('lang_msg_checkthetable');
@@ -788,7 +790,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         promises.push(getRecordingSchedules);
         promises.push(getRecordProfile);
         promises.push(getRecordProfileDetails);
-        promises.push(getStorageSetup);
+        //promises.push(getStorageSetup);
         $q.seqAll(promises).then(function() {
             $scope.pageLoaded = true;
             $("#storagepage").show();

@@ -112,6 +112,36 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         view();
     }
 
+    function getInfoTableData() {
+        $scope.infoTableData = [];
+        var Profiles,
+            profCnt = 0;
+        var getData = {};
+
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData,
+            function (response) {
+                var videoProfiles = response.data.VideoProfiles;
+
+                for(var i = 0; i < videoProfiles.length; i++) {
+                    var data = {};
+                    data.name = videoProfiles[i].Name;
+                    data.resolution = videoProfiles[i].Resolution;
+                    data.frameRate = videoProfiles[i].FrameRate;
+                    data.bitrate = videoProfiles[i].Bitrate;
+                    data.codec = videoProfiles[i].EncodingType;
+                    data.GOVLength = '';
+                    var tName = data.name;
+                    var advanced = videoProfiles[i].tName;
+                    if(advanced !== undefined) {
+                        data.GOVLength = advanced.GOVLength;
+                    }
+                }
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    }
+
     function initMulticastDetails() {
 
         if (mAttr.SVNPMulticastPort !== undefined) {

@@ -3,7 +3,7 @@
         data-title="lang_menu_ptz">
     </wn5-setup-main-title>
 
-    <div class="wn5-setup-tab">
+    <div class="wn5-setup-tab" style="padding-bottom: 100px;">
         <ul class="wn5-setup-tab-list use-margin-top">
             <li
                 class="wn5-setup-tab-item"
@@ -86,41 +86,34 @@
                                                 <td width="7%" class="text-center"><input type="checkbox" ng-model="Preset.SelectedPreset" ng-click="presetCheckbox()"></td>
                                                 <td width="8%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Preset}}</a></td>
                                                 <td width="20%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Name}}</a></td>
-                                                <td width="15%" class="text-center">
-                                                    <input type="text" class="form-control preset-input presetAfterActionInput" value="{{getTranslatedOption(Preset.AfterAction)}}" readonly ng-mouseover="openAfterActionSelect($index,true)" ng-keyup="openAfterActionSelect($index,true)" ng-click="openAfterActionSelect($index,true)">
-                                                    <input type="hidden" ng-model="Preset.AfterAction">
-                                                </td>
-                                                <td width="15%" class="text-center">
-                                                    <input type="text" class="form-control preset-input presetAfterActionTrackingTimeInput" value="{{getTranslatedOption(Preset.AfterActionTrackingTime)}}" readonly ng-mouseover="openTrackingTimeSelect($index,true)" ng-keyup="openTrackingTimeSelect($index,true)" ng-click="openTrackingTimeSelect($index,true)">
-                                                    <input type="hidden" ng-model="Preset.AfterActionTrackingTime">
-                                                </td>
-                                                <td width="17%" class="text-center">
-                                                    <select class="form-control" style="text-align:center" ng-model="Preset.goMenu"  ng-options="menuOptions.indexOf(Option) as Option.menu for Option in menuOptions"></select>
-                                                </td>
-                                                <td width="3%" class="text-center">
-                                                    <a ng-click="onSelectedMenu(Preset.goMenu,Preset.Preset)">
-                                                        <i class="tui tui-wn5-toolbar-play" style="border: none;"></i>
-                                                    </a>
-                                                </td>
+                                                <td width="15%" class="text-center"><select class="form-control" ng-model="Preset.AfterAction" ng-options="Action as getTranslatedOption(Action) for Action in PresetActions"></select></td>
+                                                <td width="15%" class="text-center"><select class="form-control" ng-model="Preset.AfterActionTrackingTime" ng-options="Time as getTranslatedOption(Time) for Time in PresetTrackingTime"></select></td>
+                                                <td width="17%" class="text-center"><select class="form-control" ng-model="Preset.goMenu"  ng-options="menuOptions.indexOf(Option) as Option.menu for Option in menuOptions"></select></td>
+                                                <td width="3%" class="text-center"><a ng-click="onSelectedMenu(Preset.goMenu,Preset.Preset)"><i class="tui tui-wn5-toolbar-play" style="border: none;"></i></a></td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div ng-show="getPageCount('preset') > 1" class="text-center page-controller">
+                                        <a ng-click="getFirstPage('preset')"><i class="tui tui-left"></i><i class="tui tui-left"></i></a>
+                                        <a ng-click="getPrevPage('preset')"><i class="tui tui-left"></i></a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" class="text" ng-model="PTZPresetPage.pageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;line-height: normal;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{OnlyNumStr}}"/>
+                                        <label class="control-label">/ {{getPageCount('preset')}}</label>
+                                        <!-- 
+                                        <a ng-click="jumpToPage('preset')">
+                                            <i class="tui tui-ch-live-gotochannel"></i>
+                                        </a>
+                                        -->
+                                            <button type="button" class="btn btn-primary" ng-click="jumpToPage('preset')" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; margin-top:-4px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a ng-click="getNextPage('preset')"><i class="tui tui-right"></i></a>
+                                        <a ng-click="getLastPage('preset')"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div ng-show="getPageCount('preset') > 1" class="text-center page-controller">
-                            <a ng-click="getFirstPage('preset')"><i class="tui tui-left"></i><i class="tui tui-left"></i></a>
-                            <a ng-click="getPrevPage('preset')"><i class="tui tui-left"></i></a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" class="text" ng-model="PTZPresetPage.pageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{OnlyNumStr}}"/>
-                            <label class="control-label">/ {{getPageCount('preset')}}</label>
-                            <a ng-click="jumpToPage('preset')"><i class="tui tui-ch-live-gotochannel"></i></a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a ng-click="getNextPage('preset')"><i class="tui tui-right"></i></a>
-                            <a ng-click="getLastPage('preset')"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
-                        </div>
                 
-                        <hr calss="wn5-setup-hr">            
+                        <hr calss="wn5-setup-hr">
                 
                         <wn5-setup-common-button
                             data-submit-click="submit()"
@@ -150,16 +143,14 @@
                                         <thead>
                                             <th width="50%" height="40" style="text-align:center">{{ 'lang_from' | translate }} {{ 'lang_presetNo' | translate }}</th>
                                             <th width="50%" height="40" style="text-align:center">{{ 'lang_to' | translate }} {{ 'lang_presetNo' | translate }}</th>
-                                        </thead>                                                    
+                                        </thead>
                                         <tbody>
-                                            <tr>                                                                 
+                                            <tr>
                                                 <td width="50%">
-                                                    <input type="text" class="form-control preset-input swingsFromPreset" value="{{getTranslatedOption(getPresetNameWidthPresetNo(Swings[SwingMode.SelectedIndex].FromPreset))}}" readonly ng-mouseover="openPresetNoSelect('SwingsFromPreset',0,true)" ng-keyup="openPresetNoSelect('SwingsFromPreset',0,true)">
-                                                    <input type="hidden" ng-model="Swings[SwingMode.SelectedIndex].FromPreset">
+                                                    <select class="form-control" ng-model="Swings[SwingMode.SelectedIndex].FromPreset" ng-options="Option.preset as getTranslatedOption(Option.name) for Option in PresetNameOptions"></select>
                                                 </td>
                                                 <td width="50%">
-                                                    <input type="text" class="form-control preset-input swingsToPreset" value="{{getTranslatedOption(getPresetNameWidthPresetNo(Swings[SwingMode.SelectedIndex].ToPreset))}}" readonly ng-mouseover="openPresetNoSelect('SwingsToPreset',0,true,$index)" ng-keyup="openPresetNoSelect('SwingsToPreset',0,true,$index)">
-                                                    <input type="hidden" ng-model="Swings[SwingMode.SelectedIndex].ToPreset">
+                                                    <select class="form-control" ng-model="Swings[SwingMode.SelectedIndex].ToPreset" ng-options="Option.preset as getTranslatedOption(Option.name) for Option in PresetNameOptions"></select>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -173,14 +164,14 @@
                             <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="SwingMode.SelectedIndex" ng-options="SwingModes.indexOf(Option) as getTranslatedOption(Option) for Option in SwingModes"></select></div>
                         </div>
                         <div class="form-group">
-                            <div class="wn5-setup-section-article-heading">{{ 'lang_speed' | translate }}</div>                                            
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_speed' | translate }}</div>
                             <div class="wn5-setup-section-article-content">
                                 <input type="text" class="form-control" ng-model="Swings[SwingMode.SelectedIndex].Speed" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"/>
                                 <label class="col-lg-1 control-label" style="text-align:left">({{PresetMinSpeed}}~{{PresetMaxSpeed}})</label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="wn5-setup-section-article-heading">{{ 'lang_dwt' | translate }}</div>                                                
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_dwt' | translate }}</div>
                             <div class="wn5-setup-section-article-content">
                                 <input type="text" class="form-control" ng-model="Swings[SwingMode.SelectedIndex].DwellTime" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}"/>
                                 <label class="col-lg-2 control-label" style="text-align:left">({{DwellMinTime}}~{{DwellMaxTime}} {{ 'lang_sec' | translate }})</label>
@@ -192,12 +183,12 @@
                 </div>
 
                 <div ng-if="activeTab.title === 'Group'">
-                    <div class="wn5-setup-section-article">                                        
+                    <div class="wn5-setup-section-article">
                         <div class="form-group">
                             <div class="wn5-setup-section-article-heading">{{ 'lang_groupSetup' | translate }}</div>
                             <div class="wn5-setup-section-article-content">
                                 <div class="form-group">
-                                    <div style="display: inline-block;width: 150px;">
+                                    <div style="display: inline-block;width: 150px;vertical-align: middle;">
                                         <select class="form-control" ng-model="Group.SelectedIndex" ng-options="GroupOptions.indexOf(Option) as Option for Option in GroupOptions"></select>
                                     </div>
                                     <button type="button" class="btn btn-primary" ng-click="startStopGroup(0)">{{ 'lang_start' | translate }}</button>
@@ -233,14 +224,13 @@
                                                         <tr ng-repeat="Preset in PTZGroupPage.presetList[PTZGroupPage.currentPage-1]"> 
                                                             <td width="10%"><span style="text-align:center">{{($index + 1) + ((PTZGroupPage.currentPage-1)*PTZGroupPage.pageSize)}}</span></td>
                                                             <td width="40%">
-                                                                <input type="text" class="form-control preset-input groupPresetInput" value="{{getTranslatedOption(getPresetNameWidthPresetNo(Groups[Group.SelectedIndex].PresetList[Preset.index].SelectedPresetIndex))}}" readonly ng-mouseover="openPresetNoSelect('GroupPreset',Preset.index,true,$index)" ng-keyup="openPresetNoSelect('GroupPreset',Preset.index,true,$index)" ng-click="openPresetNoSelect('GroupPreset',Preset.index,true,$index)">
-                                                                <input type="hidden" ng-model="Groups[Group.SelectedIndex].PresetList[Preset.index].SelectedPresetIndex">
+                                                                <select class="form-control" ng-model="Groups[Group.SelectedIndex].PresetList[Preset.index].SelectedPresetIndex" ng-options="Option.preset as getTranslatedOption(Option.name) for Option in PresetNameOptions"></select>
                                                             </td>
                                                             <td width="25%"><input type="text" class="form-control" style="text-align:center" ng-model="Groups[Group.SelectedIndex].PresetList[Preset.index].Speed" ng-disabled="!Groups[Group.SelectedIndex].PresetList[Preset.index].SelectedPresetIndex" maxlength="2"  required ng-pattern-restrict="{{OnlyNumStr}}"/></td>
                                                             <td width="25%"><input type="text" class="form-control" style="text-align:center" ng-model="Groups[Group.SelectedIndex].PresetList[Preset.index].DwellTime" ng-disabled="!Groups[Group.SelectedIndex].PresetList[Preset.index].SelectedPresetIndex" maxlength="3"  required ng-pattern-restrict="{{OnlyNumStr}}"/></td>
                                                         </tr>   
                                                     </table>  
-                                                </div>                                                        
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -249,9 +239,14 @@
                                                     <a ng-click="getFirstPage('group')"><i class="tui tui-left"></i><i class="tui tui-left"></i></a>
                                                     <a ng-click="getPrevPage('group')"><i class="tui tui-left"></i></a>
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <input type="text" class="text" ng-model="PTZGroupPage.pageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{OnlyNumStr}}"/>
+                                                    <input type="text" class="text" ng-model="PTZGroupPage.pageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;line-height: normal;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{OnlyNumStr}}"/>
                                                     <label class="control-label">/ {{getPageCount('group')}}</label>
-                                                    <a ng-click="jumpToPage('group')"><i class="tui tui-ch-live-gotochannel"></i></a>
+                                                    <!-- 
+                                                    <a ng-click="jumpToPage('group')">
+                                                        <i class="tui tui-ch-live-gotochannel"></i>
+                                                    </a>
+                                                    -->
+                                                    <button type="button" class="btn btn-primary" ng-click="jumpToPage('group')" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; margin-top:-4px;height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                                     <a ng-click="getNextPage('group')"><i class="tui tui-right"></i></a>
                                                     <a ng-click="getLastPage('group')"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
@@ -337,8 +332,9 @@
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_number' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
-                                    <input type="text"  class="form-control" ng-model="AutoRun.ModePreset.Preset" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}">
-                                    <label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxPreset}})</label>
+                                    <select class="form-control" ng-model="AutoRun.ModePreset.Preset" ng-options="Option as Option for Option in PresetOptions"></select>
+                                    <!--<input type="text"  class="form-control" ng-model="AutoRun.ModePreset.Preset" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}">-->
+                                    <!--<label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxPreset}})</label>-->
                                 </div>
                             </div>    
                         </div>
@@ -366,8 +362,9 @@
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_number' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
-                                    <input type="text"  class="form-control" ng-model="AutoRun.ModeGroup.Group" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}">
-                                    <label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxGroupCount}})</label>
+                                    <select class="form-control" ng-model="AutoRun.ModeGroup.Group" ng-options="Option as Option for Option in GroupOptions"></select>
+                                    <!--<input type="text"  class="form-control" ng-model="AutoRun.ModeGroup.Group" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}">-->
+                                    <!--<label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxGroupCount}})</label>-->
                                 </div>
                             </div>
                         </div>   
@@ -389,8 +386,9 @@
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_number' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
-                                    <input type="text"  class="form-control" ng-model="AutoRun.ModeTrace.Trace" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}">
-                                    <label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxTraceCount}})</label>
+                                    <select class="form-control" ng-model="AutoRun.ModeTrace.Trace" ng-options="Option as Option for Option in TraceOptions"></select>
+                                    <!--<input type="text"  class="form-control" ng-model="AutoRun.ModeTrace.Trace" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}">-->
+                                    <!--<label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxTraceCount}})</label>-->
                                 </div>
                             </div>    
                         </div>
@@ -481,8 +479,9 @@
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Preset'">
         <label class="col-lg-3 control-label">{{ 'lang_number' | translate }}</label>                                                                                        
-        <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Preset" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
-        <label class="col-lg-1 control-label">({{1}}~{{MaxPreset}})</label>        
+        <div class="col-sm-6"><select class="form-control" ng-model="SelectedSchedule.Preset" ng-options="Option as Option for Option in PresetOptions"></select></div>
+        <!--<div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Preset" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}"></div>-->
+        <!--<label class="col-lg-1 control-label">({{1}}~{{MaxPreset}})</label>        -->
     </div>    
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Swing'">
         <label class="col-lg-3 control-label">{{ 'lang_swingMode' | translate }}</label>
@@ -490,13 +489,15 @@
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Group'">
         <label class="col-lg-3 control-label">{{ 'lang_number' | translate }}</label>
-        <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Group" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
-        <label class="col-lg-1 control-label">({{1}}~{{MaxGroupCount}})</label>        
+        <div class="col-sm-6"><select class="form-control" ng-model="SelectedSchedule.Group" ng-options="Option as Option for Option in GroupOptions"></select></div>
+        <!--<div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Group" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}"></div>-->
+        <!--<label class="col-lg-1 control-label">({{1}}~{{MaxGroupCount}})</label>        -->
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Trace'">
         <label class="col-lg-3 control-label">{{ 'lang_number' | translate }}</label>
-        <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Trace" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
-        <label class="col-lg-1 control-label">({{1}}~{{MaxTraceCount}})</label>        
+        <div class="col-sm-6"><select class="form-control" ng-model="SelectedSchedule.Trace" ng-options="Option as Option for Option in TraceOptions"></select></div>
+        <!--<div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Trace" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}"></div>-->
+        <!--<label class="col-lg-1 control-label">({{1}}~{{MaxTraceCount}})</label>        -->
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'AutoPan'">                                            
         <label class="col-lg-3 control-label">{{ 'lang_speed' | translate }}</label>

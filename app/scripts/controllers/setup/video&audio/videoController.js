@@ -17,6 +17,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
 
     var disValue = null;
+    var doNotMoveFunction = false;
 
     $scope.isMultiChannel = false;
     $scope.channelSelectionSection = (function(){
@@ -322,7 +323,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         else if( prevSelectedMaskCoordinate !== $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskCoordinate) {
                             if(mAttr.PTZModel || mAttr.ZoomOnlyModel){
                                 $scope.PrivacyMaskSelected = inputIndex;
-                                updatePrivacyMaskCoordinate(inputIndex);
+                                if(!doNotMoveFunction)updatePrivacyMaskCoordinate(inputIndex);
                             } else {
                                 updatePrivacyMaskCoordinate($scope.PrivacyMaskSelected);
                             }
@@ -519,6 +520,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         }
                     );
                 }else{
+                    doNotMoveFunction = true;
                     $("[type='radio'][name='VideoOutput']").prop("disabled", false);
                     privacyAreaView(setData["MaskIndex"]);
                     $scope.coordinates = {};
@@ -1013,7 +1015,12 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         });
 
         $scope.$watch('PrivacyMaskSelected', function(newVal, oldVal) {
-            updatePrivacyMaskCoordinate(newVal);
+            if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && doNotMoveFunction){
+                sketchbookService.set({name:"", color:"", x1:0, y1:0, x2:0, y2:0, selectedMask:true});
+                doNotMoveFunction = false;
+            } else {
+                updatePrivacyMaskCoordinate(newVal);
+            }
         });
     }
 

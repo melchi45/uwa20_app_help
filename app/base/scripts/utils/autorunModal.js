@@ -13,6 +13,9 @@ kindFramework.controller('autorunModalCtrl', function ($scope, $uibModalInstance
         $scope.MaxPreset = mAttr.MaxPreset;
         $scope.MaxGroupCount = mAttr.MaxGroupCount;
         $scope.MaxTraceCount = mAttr.MaxTraceCount;
+        $scope.PresetOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxPreset);
+        $scope.GroupOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxGroupCount);
+        $scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
 
         if (mAttr.AutoPanSpeed !== undefined)
         {

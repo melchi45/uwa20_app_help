@@ -2,8 +2,12 @@
   /* After active click Event button */
   /*  after active click backup button  */
 }
-.kind-responsive-playback .playback-channel-selector {
-  padding: 15px 18px 0 40px;
+.kind-responsive-playback #playback-channel-holder {
+  display: block;
+  float: left;
+}
+.kind-responsive-playback #playback-channel-holder .playback-channel-selector {
+  padding: 15px 18px 0 30px;
 }
 .kind-responsive-playback .cm-vline {
   margin-top: 12px;
@@ -32,7 +36,6 @@
   text-align: left;
 }
 .kind-responsive-playback #cm-playback-event {
-  margin-bottom: 10px;
   z-index: 1;
 }
 .kind-responsive-playback #cm-playback-event > .cm-center {
@@ -430,6 +433,7 @@
 @media (min-width: 2300px) and (min-height: 1294px) {
   .kind-responsive-playback {
     /* Main UI Style */
+    /* .cm-channel-selector .channel-selector li > button */
     /* Event-content UI style */
     /* Date-content UI style  */
   }
@@ -438,6 +442,26 @@
   }
   .kind-responsive-playback #cm-video.smaller {
     height: calc(100% - 160px) !important;
+  }
+  .kind-responsive-playback #playback-channel-holder {
+    display: block;
+    float: left;
+  }
+  .kind-responsive-playback #playback-channel-holder .playback-channel-selector {
+    padding: 20px 18px 0 25px;
+  }
+  .kind-responsive-playback #playback-channel-holder .playback-channel-selector .channel-selector li > button {
+    width: 45px;
+    height: 35px;
+    padding-left: 15px;
+    font-size: 19px;
+  }
+  .kind-responsive-playback #playback-channel-holder .playback-channel-selector .channel-selector li:first-child .channel-selector-title {
+    font-size: 19px;
+    line-height: 30px;
+  }
+  .kind-responsive-playback #playback-channel-holder .playback-channel-selector .channel-selector li:first-child ~ li {
+    margin-right: 8px;
   }
   .kind-responsive-playback #cm-bottom-menu {
     height: 75px;
@@ -546,7 +570,7 @@
     top: 15px;
   }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text.vis-minor {
-    font-size: 20px;
+    font-size: 17px;
   }
   .kind-responsive-playback .vis-custom-time div {
     width: 36px !important;
