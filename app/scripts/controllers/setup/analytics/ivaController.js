@@ -1446,7 +1446,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
                         if(queue.length > 0) {
                             sunapiQueueRequest(queue, function(){
-                                $rootScope.$emit("channelSelector:changeChannel", index);
+                                $rootScope.$emit("channelSelector:changeChannel", data);
                                 $scope.channelSelectionSection.setCurrentChannel(data);
                                 $scope.$emit('applied', true);
                                 $timeout(view);
@@ -1463,7 +1463,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
                 });
             } else {
-                $rootScope.$emit("channelSelector:changeChannel", index);
+                $rootScope.$emit("channelSelector:changeChannel", data);
                 $scope.channelSelectionSection.setCurrentChannel(data);
                 $scope.$emit('applied', true);
                 $timeout(view);

@@ -26,6 +26,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     $scope.maxChannel = mAttr.MaxChannel;
 
     $scope.isMultiChannel = false;
+    $scope.targetChannel = 0;
     $scope.channelSelectionSection = (function(){
         var currentChannel = 0;
 
@@ -124,17 +125,26 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
 
                 for(var i = 0; i < videoProfiles.length; i++) {
                     var data = {};
-                    data.name = videoProfiles[i].Name;
-                    data.resolution = videoProfiles[i].Resolution;
-                    data.frameRate = videoProfiles[i].FrameRate;
-                    data.bitrate = videoProfiles[i].Bitrate;
-                    data.codec = videoProfiles[i].EncodingType;
-                    data.GOVLength = '';
-                    var tName = data.name;
-                    var advanced = videoProfiles[i].tName;
-                    if(advanced !== undefined) {
-                        data.GOVLength = advanced.GOVLength;
+                    data.channel = videoProfiles[i].Channel;
+                    data.profiles = [];
+                    var profiles = angular.copy(videoProfiles[i].Profiles);
+                    for(var k = 0; k < profiles.length; k++) {
+                        var subData = {};
+                        var profile = profiles[k];
+                        subData.name = profile.Name;
+                        subData.resolution = profile.Resolution;
+                        subData.frameRate = profile.FrameRate;
+                        subData.bitrate = profile.Bitrate;
+                        subData.codec = profile.EncodingType;
+                        subData.GOVLength = '';
+                        if(subData.codec === "H264") {
+                            subData.GOVLength = profile.H264.GOVLength;
+                        } else if(subData.codec === "H265") {
+                            subData.GOVLength = profile.H265.GOVLength;
+                        }
+                        data.profiles.push(subData);
                     }
+                    $scope.infoTableData.push(data);
                 }
             },
             function (errorData) {
@@ -2788,11 +2798,16 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             promises.push(getFisheyeSetup);
         }
 
+        if($scope.isMultiChannel) {
+            promises.push(getInfoTableData);
+        }
+
         $q.seqAll(promises).then(
             function(result){
                 $scope.pageLoaded = true;
                 $("#profilepage").show();
                 $rootScope.$emit('changeLoadingBar', false);
+                $rootScope.$emit("channelSelector:changeChannel", $scope.targetChannel);
             },
             function(error){
         });
@@ -2806,6 +2821,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             Sometime is it not working, without delay */
             setVideoProfilePolicies().then(function (response) {
                     LogManager.debug("Set Video Profile policies succeded ");
+                    $scope.channelSelectionSection.setCurrentChannel($scope.targetChannel);
                     view();
                 },
                 function(error) {
@@ -2844,15 +2860,41 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     }
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
-        $scope.channelSelectionSection.setCurrentChannel(data);
-        $rootScope.$emit('changeLoadingBar', true);
-        view();
+        if (!angular.equals(pageData.VideoProfilePolicies, $scope.VideoProfilePolicies)
+            || !angular.equals(pageData.VideoProfiles, $scope.VideoProfiles)) {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'sm',
+                resolve: {
+                    Message: function() {
+                        return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
+                    }
+                }
+            });
+            modalInstance.result.then(function() {
+                if(validatePage()) {
+                    $rootScope.$emit('changeLoadingBar', true);
+                    $scope.targetChannel = data;
+                    saveSettings();
+                }
+            },
+            function() {
+            });
+        } else {
+            $rootScope.$emit('changeLoadingBar', true);
+            $scope.targetChannel = data;
+            $scope.channelSelectionSection.setCurrentChannel(data);
+            $rootScope.$emit("channelSelector:changeChannel", data);
+            view();
+        }
     }, $scope);
 
     $rootScope.$saveOn("channelSelector:showInfo", function(event, data){
         $uibModal.open({
             templateUrl: 'views/setup/basic/modal/ModalVideoProfileInfo.html',
-            controller: 'ModalInstanceVideoProfileInfoCtrl'
+            controller: 'ModalInstanceVideoProfileInfoCtrl',
+            resolve: $scope.infoTableData,
         });
     }, $scope);
 
