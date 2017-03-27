@@ -1263,6 +1263,7 @@
     "lang_serial_port_setup": "Setup des Serienanschlusses",
     "lang_analog_video": "Analoges Video",
     "lang_msg_simple_focus_activated": "Bei Aktivierung: Der 'Einfacher Fokus' wird aktiviert, wenn Unschärfe ermittelt wird.",
+    "lang_msg_auto_focus_activated": "Bei Aktivierung: Der 'Autom. Brennschärfe' wird aktiviert, wenn Unschärfe ermittelt wird.",
     "lang_msg_defog_set_atuo_maintained": "Bei Aktivierung: Die 'Entnebeln'-Funktion wird auf 'Automatisch' festgelegt und beibehalten, wenn Nebel ermittelt wird.",
     "lang_msg_applied_only_when_fog_disabled": "Dies gilt allerdings nur, wenn die 'Entnebeln'-Funktion deaktiviert wird.",
     "lang_msg_check_host_name": "Prüfen Sie den Host-namen.",

@@ -1263,6 +1263,7 @@
     "lang_serial_port_setup": "串行端口设置",
     "lang_analog_video": "模拟视频",
     "lang_msg_simple_focus_activated": "简单对焦'启用后，将在检测到散焦时激活。",
+    "lang_msg_auto_focus_activated": "自动对焦'启用后，将在检测到散焦时激活。",
     "lang_msg_defog_set_atuo_maintained": "透雾 (Defog)'功能启用后，将被设置为'自动'并在检测到烟雾时持续操作。",
     "lang_msg_applied_only_when_fog_disabled": "但是，此功能仅适用于“烟雾检测 (Fog detection)”功能被禁用的情况。",
     "lang_msg_check_host_name": "查看主机名称。",
