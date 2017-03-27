@@ -169,16 +169,33 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div style="float: left; margin-left: 30px;">
-                                        {{ lang.queueEventLevel.high | translate }}
-                                        <select 
-                                            class="cm_selectbox" 
-                                            ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[0].Count"
-                                            ng-change="queueLevelSection.reload()"
-                                            ng-options="maxData for maxData in queueLevelSection.maxArr"
-                                            style="margin: 0 7px;">
-                                        </select>
-                                        {{ lang.queueEventLevel.people | translate }}
+                                    <div style="float: left; margin-left: 50px; transform: translateY(-25%);">
+                                        <p>
+                                            <span style="display: inline-block; width: 100px;">
+                                                {{ lang.queueEventLevel.max | translate }}
+                                            </span>
+                                            <select 
+                                                class="cm_selectbox" 
+                                                ng-model="queueData.Queues[queueListSection.selectedQueueId].MaxPeople"
+                                                ng-change="queueLevelSection.reload('max')"
+                                                ng-options="maxValue for maxValue in maxValues"
+                                                style="margin: 0 7px; width: 60px;">
+                                            </select>
+                                            {{ lang.queueEventLevel.people | translate }}
+                                        </p>
+                                        <p>
+                                            <span style="display: inline-block; width: 100px;">
+                                                {{ lang.queueEventLevel.high | translate }}
+                                            </span>
+                                            <select 
+                                                class="cm_selectbox" 
+                                                ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[0].Count"
+                                                ng-change="queueLevelSection.reload()"
+                                                ng-options="maxData for maxData in queueLevelSection.maxArr"
+                                                style="margin: 0 7px; width: 60px;">
+                                            </select>
+                                            {{ lang.queueEventLevel.people | translate }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
