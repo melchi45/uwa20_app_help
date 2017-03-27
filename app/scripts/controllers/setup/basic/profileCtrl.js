@@ -2894,7 +2894,11 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         $uibModal.open({
             templateUrl: 'views/setup/basic/modal/ModalVideoProfileInfo.html',
             controller: 'ModalInstanceVideoProfileInfoCtrl',
-            resolve: $scope.infoTableData,
+            resolve: {
+                infoTableData: function(){
+                    return $scope.infoTableData;
+                }
+            }
         });
     }, $scope);
 
