@@ -301,7 +301,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 $scope.PrivacyMask = response.data.PrivacyMask;
                 pageData.PrivacyMask = angular.copy($scope.PrivacyMask);
 
-                if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && $scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined && $scope.PrivacyMask[$scope.SelectedChannel].Enable){
+                if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && $scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined /*&& $scope.PrivacyMask[$scope.SelectedChannel].Enable*/){
                     for(var i = 0; i < $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++){
                         if($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable == true){
                             $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "[ZOOM]";
