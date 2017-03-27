@@ -9672,6 +9672,7 @@ i.tui-ch-playback-stop {
 }
 .kind-responsive-playback .cm-playback-block.cm-datepicker-section {
   text-align: left;
+  margin: 0 10px 15px 10px;
 }
 .kind-responsive-playback #cm-playback-event {
   z-index: 1;
