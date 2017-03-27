@@ -66,7 +66,7 @@ kindFramework
                     pluginElement.SetWMDInitialize(Number(UniversialManagerService.getChannelId()), 1, "WebCamJSONEvent");
                   }
                   pluginElement.SetUserFps(fps);
-                  pluginElement.PlayLiveStream(rtspIP, Number(rtspPort), Number(currentProfile-1), userID, password, '');
+                  pluginElement.PlayLiveStream(rtspIP, Number(rtspPort), Number(currentProfile-1), userID, '', '');
                   $rootScope.$emit('changeLoadingBar', false);
                   $(pluginElement).removeClass("cm-visibility-hidden");
                   console.log("pluginControlService::startPluginStreaming() ===> PlugIn Streaming Started");
