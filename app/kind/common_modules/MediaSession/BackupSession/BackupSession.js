@@ -238,6 +238,7 @@ var BackupSession = function(_sendMessageCallback) {
 			}
 			else if( frameInfo.type === 'audio' ) {
 				//if( file_info === null ) return;
+				var header = null;
 				this.setAudioFrameInfo(frameInfo);
 				header = audioBackup.updateInfo(audioFrame, file_info, streamData, isPlayback);
 				if( header === null ) {
