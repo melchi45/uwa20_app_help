@@ -8,6 +8,7 @@ kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XM
     COMMONUtils.getResponsiveObjects($scope);
     var idx;
     var pageData = {};
+    $scope.EventSource = "FrostDetection";
 
     function getAttributes() {
         var defer = $q.defer();
