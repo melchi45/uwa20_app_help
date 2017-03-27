@@ -6,7 +6,7 @@
     <!--'cm-playback-menu' : domControls.enablePlayback -->
 
   <!--
-  Prev, Play, Next, ¹è¼Ó°ú °°Àº ¹öÆ° ¿µ¿ª
+  Prev, Play, Next, ï¿½ï¿½ï¿½Ó°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½
   -->
   <div class="cm-row" id="cm-icon-list" ng-show="enablePlayback">
     <div class="cm-center">
@@ -21,7 +21,7 @@
             <i class="tui" ng-class="showMenuContent? 'tui-down' : 'tui-top'"></i>
           </button>
         </li> 
-     </ul>
+      </ul>
       <span id="playback-channel-holder"></span>
 
       <ul class="cm-playback-block cm-control-icon cm-list-2">
@@ -98,7 +98,7 @@
         </li>
       </ul>
 
-      <div class="cm-vline cm-pc"></div>
+      <div class="cm-vline cm-pc" ng-show="maxAudioInput !== 0"></div>
 
       <div class="cm-playback-block cm-control-icon" id="volume-control" ng-show="maxAudioInput !== 0">
         <button 

@@ -690,9 +690,13 @@
 .kind-responsive-live.land-scape #cm-bottom-menu.cm-full-menu #cm-menu-content {
   top: 0;
   height: calc(100% - 50px);
+  border-left: 1px solid #333;
 }
 .kind-responsive-live.land-scape #cm-bottom-menu.cm-full-menu #cm-icon-list .info-toggle {
   top: calc(50% - 25px);
+}
+.kind-responsive-live.land-scape #cm-bottom-menu.cm-full-menu #cm-icon-list {
+  border-top: 1px solid #333;
 }
 .kind-responsive-live.land-scape #cm-ptz #ptz-components {
   padding: 0;
@@ -737,6 +741,9 @@
   .kind-responsive-live #cm-bottom-menu.cm-full-menu {
     height: 75px;
   }
+  .kind-responsive-live #cm-bottom-menu.cm-full-menu #cm-menu-content {
+    height: 275px;
+  }
   .kind-responsive-live #cm-bottom-menu.cm-full-menu.cm-show-menu {
     height: 350px;
   }
@@ -752,6 +759,7 @@
   }
   .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-setup .cm-setup-col {
     width: calc(60% - 10px);
+    margin-top: 20px;
   }
   .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-setup .cm-setup-col .cm-profile-sel {
     height: 40px;
@@ -772,6 +780,17 @@
   .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-status .cm-status-wrap .cm-table tbody {
     height: 150px !important;
     max-height: 150px !important;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li {
+    height: 25px;
+    line-height: 36px;
+    margin-top: 18px;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li h3 {
+    font-size: 16px;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li > span {
+    font-size: 16px;
   }
   .kind-responsive-live #cm-bottom-menu #cm-icon-list {
     height: 75px;

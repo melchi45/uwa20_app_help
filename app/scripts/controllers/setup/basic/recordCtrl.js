@@ -40,7 +40,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         $scope.Channel = 0;
         $scope.pro = 0;
         $scope.ActivateOptions = mAttr.ActivateOptions;
-        $scope.maxChannel = mAttr.MaxChannel;
+        $scope.MaxChannel = mAttr.MaxChannel;
 
         // enable setting types
         // 지정 가능한 세팅 종류
@@ -60,9 +60,8 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     }
 
     function getRecordGeneralDetails() {
-        var getData = {
-            Channel: $scope.Channel
-        };
+        var getData = {};
+        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
 
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=general&action=view', getData, function(response) {
             $scope.RecordGeneralInfo = response.data.RecordSetup[0];
@@ -75,9 +74,8 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     }
 
     function getRecordingSchedules() {
-        var getData = {
-            Channel: $scope.Channel
-        };
+        var getData = {};
+        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
         
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
             $rootScope.$emit('resetScheduleData', true);
@@ -93,9 +91,9 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     }
 
     function getProfileDetails() {
-        var getData = {
-            Channel: $scope.Channel
-        };
+        var getData = {};
+        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+
         // /stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view&Channel=0&SunapiSeqId=64
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
             $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
@@ -108,9 +106,8 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     }
 
     function getRecordProfile() {
-        var getData = {
-            Channel: $scope.Channel
-        }
+        var getData = {}
+        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
 
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', getData, function(response) {
             $scope.RecordProfileId = response.data.VideoProfilePolicies[0].RecordProfile;
@@ -141,12 +138,12 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
 
     function setRecordGeneralInfo(queue) {
         var setData = {
-            Channel : $scope.Channel,
             NormalMode : $scope.RecordGeneralInfo.NormalMode,
             EventMode : $scope.RecordGeneralInfo.EventMode,
             PreEventDuration : $scope.RecordGeneralInfo.PreEventDuration,
             PostEventDuration : $scope.RecordGeneralInfo.PostEventDuration
         };
+        if($scope.MaxChannel > 1) setData.Channel = $scope.Channel;
 
         console.log(setData, 'set record general');
 
@@ -167,9 +164,9 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     function setRecordSchedule(queue) {
         if (!angular.equals(pageData.RecordSchedule, $scope.RecordSchedule)) {
             var setData = {};
-            var promise;
-            setData.Channel = $scope.Channel;
+            if($scope.MaxChannel > 1) setData.Channel = $scope.Channel;
             setData.Activate = $scope.RecordSchedule.Activate;
+
             if ($scope.RecordSchedule.Activate === 'Scheduled')
             {
                 var diff = $(pageData.RecordSchedule.ScheduleIds).not($scope.RecordSchedule.ScheduleIds).get(),
@@ -296,11 +293,6 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
                     setData.SAT = 1;
                 }
             }
-            /*promise = SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=set', setData, function(response) {
-                console.info("Request","/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=set DONE");
-            }, function(errorData) {
-                console.log(errorData);
-            }, '', true);*/
             console.log(setData);
             queue.push({
                 url: '/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=set',
@@ -446,9 +438,6 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
                 COMMONUtils.ApplyConfirmation(saveRecord);
             });
         }
-
-        console.log($scope.RecordGeneralInfo);
-        // COMMONUtils.ApplyConfirmation(saveSettings);
     }
 
     function stopMonitoringStatus(){

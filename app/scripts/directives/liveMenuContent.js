@@ -124,7 +124,12 @@ kindFramework.directive('liveMenuContent', function(
 								.find(".cm-slider > div")
 								.slider({
 									disabled: false
-								});
+								})
+								.parent()
+								.parent()
+								.find("input[type='number']")
+									.removeClass("cm-opacity")
+									.prop("disabled", false);
 						} else {
 							$('#sharpness-enable')
 								.parent()
@@ -132,7 +137,12 @@ kindFramework.directive('liveMenuContent', function(
 								.find(".cm-slider > div")
 								.slider({
 									disabled: true
-								});
+								})
+								.parent()
+								.parent()
+								.find("input[type='number']")
+									.addClass("cm-opacity")
+									.prop("disabled", true);
 						}
 						scope.showImageController = true;
 					},
@@ -153,7 +163,12 @@ kindFramework.directive('liveMenuContent', function(
 						.find(".cm-slider > div")
 						.slider({
 							disabled: false
-						});
+						})
+						.parent()
+						.parent()
+						.find("input[type='number']")
+							.removeClass("cm-opacity")
+							.prop("disabled", false);
 				} else {
 					$(this)
 						.parent()
@@ -161,7 +176,12 @@ kindFramework.directive('liveMenuContent', function(
 						.find(".cm-slider > div")
 						.slider({
 							disabled: true
-						});
+						})
+						.parent()
+						.parent()
+						.find("input[type='number']")
+							.addClass("cm-opacity")
+							.prop("disabled", true);
 				}
 				setDisplay();
 			});

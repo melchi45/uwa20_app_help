@@ -882,10 +882,15 @@
                 #cm-menu-content {
                     top:0;
                     height: calc(~"100% - 50px");
+                    border-left: 1px solid #333;
                 }
 
                 #cm-icon-list .info-toggle {
                     top: calc(~"50% - 25px");
+                }
+
+                #cm-icon-list {
+                    border-top: 1px solid #333;
                 }
             }
         }
@@ -942,6 +947,10 @@
 
             &.cm-full-menu {
                 height: 75px;
+
+                #cm-menu-content {
+                    height: 275px;
+                }
                 
                 &.cm-show-menu {
                     height: 350px;
@@ -963,6 +972,7 @@
                 #cm-setup {
                     .cm-setup-col {
                         width: calc(~"60% - 10px");
+                        margin-top: 20px;
 
                         .cm-profile-sel {
                             height: 40px;
@@ -990,6 +1000,22 @@
                                 height: 150px !important;
                                 max-height: 150px !important;
                             }
+                        }
+                    }
+                }
+
+                #cm-display-slider {
+                    li {
+                        height: 25px;
+                        line-height: 36px;
+                        margin-top: 18px;
+
+                        h3 {
+                            font-size: 16px;
+                        }
+
+                        > span {
+                            font-size: 16px;
                         }
                     }
                 }
@@ -1101,6 +1127,7 @@
                 #cm-setup {
                     .cm-setup-col {
                         width: calc(~"60% - 10px");
+
 
                         .cm-profile-sel {
                             height: 60px;
