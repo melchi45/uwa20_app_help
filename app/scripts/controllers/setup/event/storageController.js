@@ -547,7 +547,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                 }
             }
             setStorageStatus();
-            pageData.Storageinfo = $scope.Storageinfo;
+            pageData.Storageinfo = angular.copy($scope.Storageinfo);
             startMonitoringStatus();
         }, function(errorData) {
             console.log(errorData);
