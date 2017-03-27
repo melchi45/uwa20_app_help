@@ -218,6 +218,7 @@
   background: #fff;
   border: 1px solid #ddd;
   padding: 1em 1.4em;
+  min-width: 360px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form > .form-group {
   margin-bottom: 10px;

@@ -18,20 +18,6 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     $scope.showAdvancedLabel = 'lang_show';
     $scope.getTranslatedOption = COMMONUtils.getTranslatedOption;
     $scope.RecordGeneralInfo = {};
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                $scope.Channel = currentChannel;
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                $scope.Channel = index;
-                currentChannel = index;
-            }
-        }
-    })();
 
     function getAttributes() {
         var defer = $q.defer();
@@ -66,8 +52,6 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=general&action=view', getData, function(response) {
             $scope.RecordGeneralInfo = response.data.RecordSetup[0];
             pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
-
-            console.log($scope.RecordGeneralInfo, 'general record data');
         }, function(errorData) {
             console.error(errorData);
         }, '', true);
@@ -82,8 +66,6 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
 
-            console.log($scope.RecordSchedule);
-
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
         }, function(errorData) {
             console.error(errorData);
@@ -94,14 +76,10 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         var getData = {};
         if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
 
-        // /stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view&Channel=0&SunapiSeqId=64
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
             $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
-            // console.info(response.data.VideoProfiles[0]);
-            // $scope.RecordProfileName = $scope.VideoProfile.Name;
-
         }, function(errorData) {
-            console.log(errorData);
+            console.error(errorData);
         }, '', true);
     }
 
@@ -112,7 +90,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', getData, function(response) {
             $scope.RecordProfileId = response.data.VideoProfilePolicies[0].RecordProfile;
         }, function(errorData) {
-            console.log(errorData);
+            console.error(errorData);
         }, '', true);
     }
 
@@ -293,7 +271,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
                     setData.SAT = 1;
                 }
             }
-            console.log(setData);
+
             queue.push({
                 url: '/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=set',
                 reqData: setData
@@ -453,8 +431,24 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     });
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
-        $scope.channelSelectionSection.setCurrentChannel(data);
-        $rootScope.$emit('changeLoadingBar', true);
+
+        // console.info(angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo));
+        // console.info(angular.equals(pageData.RecordSchedule, $scope.RecordSchedule));
+        // console.info($scope.Channel);
+
+        var okay = true;
+        if(pageData.RecordGeneralInfo.Activate == $scope.RecordGeneralInfo.Activate) {
+            var copyData = angular.copy(pageData.RecordSchedule.ScheduleIds),
+                copyScope = angular.copy($scope.RecordSchedule.ScheduleIds);
+            
+            copyData.sort();
+            var sor = copyScope.sort();
+
+            if(!angular.equals(copyData, copyScope)) okay = false;
+
+        } else okay = false;
+
+        // $rootScope.$emit('changeLoadingBar', true);
         
         view();
     }, $scope);
