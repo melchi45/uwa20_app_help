@@ -160,8 +160,6 @@ kindFramework
     var initializePlaybackPage = function() {
       var playData = new PlayDataModel();
       $rootScope.$emit('changeLoadingBar', true);
-      //TODO : below is only for test.
-      //sunapiAttributes.MaxChannel = 4;
       $scope.pageController.channelSelector(sunapiAttributes.MaxChannel > 1 ? true : false);
       ConnectionSettingService.SetMultiChannelSupport(
                     sunapiAttributes.MaxChannel > 1 ? true : false);
@@ -314,6 +312,21 @@ kindFramework
       UniversialManagerService.setLiveStreamStatus(false);
     };
 
+    /**
+     * check get all sunapi attributes or not
+     * @function : checkAttributes
+     */
+    var checkAttributes = function() {
+      if( !sunapiAttributes.AttributeSectionReady ) {
+        $timeout(function() {
+          sunapiAttributes = Attributes.get();
+          checkAttributes();
+        }, 500);
+      } else {
+        getCurrentDate();
+      }
+    };
+
     /*
     * get current date of camera
     * 
@@ -342,7 +355,7 @@ kindFramework
         waitingPlaybackPage = true;
         if( waitingPlaybackPage === true && isTimelineInit === true &&
             isChannelPlayerInit === true ) {
-          getCurrentDate();
+          checkAttributes();
         }
       }
     );
@@ -366,7 +379,7 @@ kindFramework
       isChannelPlayerInit = true;
       if( waitingPlaybackPage === true && isTimelineInit === true &&
           isChannelPlayerInit === true ) {
-        getCurrentDate();
+        checkAttributes();
       }
     }, $scope);
 
@@ -374,7 +387,7 @@ kindFramework
       isTimelineInit = true;
       if( waitingPlaybackPage === true && isTimelineInit === true &&
           isChannelPlayerInit === true ) {
-        getCurrentDate();
+        checkAttributes();
       }
     }, $scope);
 
