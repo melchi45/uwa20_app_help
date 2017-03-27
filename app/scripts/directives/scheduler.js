@@ -67,6 +67,8 @@ kindFramework
                 if(activeMenu === 'alarmInput') {
                     scope.EventRules[scope.AlarmData.SelectedAlarm].ScheduleIds = angular.copy(scheduleIds); // temporarily index 0
                 } else if(activeMenu === 'storage') {
+                    scope.RecordSchedule[0].ScheduleIds = angular.copy(scheduleIds);
+                } else if(activeMenu === 'record') {
                     scope.RecordSchedule.ScheduleIds = angular.copy(scheduleIds);
                 } else {
                     scope.EventRule.ScheduleIds = angular.copy(scheduleIds);
@@ -1317,7 +1319,7 @@ kindFramework
                 }
             }, true);
 
-            scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){
+            scope.$watch('RecordSchedule[0].Activate', function(newVal, oldVal){ // for storage controller
                 if(typeof newVal === "undefined"){
                     return;
                 }
@@ -1327,11 +1329,31 @@ kindFramework
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
                     if(!alreadyCreated) {
-                        initCalendar(scope.RecordSchedule);
+                        initCalendar(scope.RecordSchedule[0]);
                     }
                     // $timeout(function() {
                         setVisibility(newVal);
                     // });
+                }
+            }, true);
+
+            scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){ // for storage controller
+                if(typeof newVal === "undefined"){
+                    return;
+                }
+                if(scope.EventSource === 'Record') {
+                    activeMenu = 'record';
+                    if(newVal === 'Always') {
+                        // deleteAll();
+                        setVisibility(newVal);
+                    } else if(newVal === 'Scheduled') {
+                        if(!alreadyCreated) {
+                            initCalendar(scope.RecordSchedule);
+                        }
+                        // $timeout(function() {
+                            setVisibility(newVal);
+                        // });
+                    }
                 }
             }, true);
 

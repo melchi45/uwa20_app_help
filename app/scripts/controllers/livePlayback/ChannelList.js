@@ -9,6 +9,9 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
     var sunapiAttributes = Attributes.get()
     var videoMode = "video";
     var plugin = false;
+    var userID = "";
+    var ip;
+    var port;
 
     window.addEventListener('resize', resizeHandle);
 
@@ -82,22 +85,23 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
     var startVideoStreaming = function() {
         SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
             function (response) {
+                ip = RESTCLIENT_CONFIG.digest.rtspIp;
+                port = RESTCLIENT_CONFIG.digest.rtspPort;
                 for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
                     var MultiDirectionProfile = response.data.VideoProfiles[i].Profiles[1];
-                    var ip = RESTCLIENT_CONFIG.digest.rtspIp;
-                    var port = RESTCLIENT_CONFIG.digest.rtspPort;
                     MultiDirectionProfile.ChannelId = i;
                     var playerData = ConnectionSettingService.getPlayerData('live', 
                         MultiDirectionProfile, timeCallback, errorCallback, closeCallback, "video");
                     playerData.device.channelId = i;
+                    userID = playerData.device.user
                     if (plugin === false) {
                         kindStreamInterface.init(playerData, SunapiClient);
                         kindStreamInterface.changeStreamInfo(playerData);
                     } else {
                         var obejct = $('#channel' + i)[0];
-                        obejct.SetWMDInitialize(i, i + 1, "WebWMDCamEvent");
+                        obejct.SetWMDInitialize(i, i + 1, "PluginJSONEvent");
                         obejct.SetUserFps(Number(MultiDirectionProfile.FrameRate));
-                        obejct.PlayLiveStream(ip, port, 1, playerData.device.user, playerData.device.password, '');
+                        obejct.PlayLiveStream(ip, port, 1, userID, '', '');
                     }
                 }
             },
@@ -163,15 +167,47 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
         console.log("closeCallback msg =", e);
     }
 
-    function _WebWMDCamEvent(ch, evId, sdata) {
+    function _PluginJSONEvent(ch, evId, sdata) {
         console.log("WebWMDCamEvent ch, evId, sdata => ", ch, evId, sdata);
+        switch(evId) {
+            case 401:   //rtsp unauthorized(401)
+                $timeout(function(){
+                    if( sdata.type === 0 ) {
+                        rtspDigestAuth('live', (ch - 1));
+                    }
+                }, 100);
+            break;
+        }    
     }
 
-    function WebWMDCamEvent(ch, evId, sdata) {
-        setTimeout(function () {
-            _WebWMDCamEvent(ch, evId, sdata);
-        }, 0)
+    function rtspDigestAuth(mode, channelId){
+        var pluginElement = $('#channel' + channelId)[0];
+        var ip = RESTCLIENT_CONFIG.digest.rtspIp;
+        var port = RESTCLIENT_CONFIG.digest.rtspPort;
+        var getData = {};
+        getData.Method = 'OPTIONS';      
+        getData.Realm = pluginElement.GetRealm();
+        getData.Nonce = pluginElement.GetNonce();
+      
+        getData.Uri = encodeURIComponent(pluginElement.GetRtspUrl());
+
+        SunapiClient.get('/stw-cgi/security.cgi?msubmenu=digestauth&action=view', getData,
+            function(response) {
+                var responseValue = response.data.Response;
+                var fps = UniversialManagerService.getProfileInfo().FrameRate;
+                pluginElement.SetWMDInitialize(channelId, channelId + 1, "PluginJSONEvent");
+                pluginElement.PlayLiveStream(ip, port, 1, userID, '', responseValue);
+            },
+            function(errorData,errorCode) {
+                console.error(errorData);
+        },'',true);
     }    
+
+    window.PluginJSONEvent = function(ch, evId, sdata) {
+        setTimeout(function () {
+            _PluginJSONEvent(ch, evId, sdata);
+        }, 0)
+    }
 
     setTimeout(changeCanvas);
 });

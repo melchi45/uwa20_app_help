@@ -1,4 +1,4 @@
-kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate, $timeout, $q, $rootScope) {
+kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate, $timeout, $q, $rootScope, eventRuleService) {
     "use strict";
     var mAttr = Attributes.get();
     COMMONUtils.getResponsiveObjects($scope);
@@ -536,18 +536,14 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         } else {
             otherstorage = 0;
         }
-
-        // if ($scope.Storageinfo.Storages[otherstorage].Type === 'NAS' && $scope.Storageinfo.Storages[otherstorage].Enable === 'On') {
-        //     if (checkNas(otherstorage) === false) {
-        //         retVal = false;
-        //     }
-        // }
-
-        for (var i = 0; i < $scope.RecordSchedule.length; i++) {
-            if ($scope.RecordSchedule[i].Activate === 'Scheduled' && $scope.RecordSchedule[i].ScheduleIds.length === 0) {
-                COMMONUtils.ShowError('lang_msg_checkthetable');
+        if ($scope.Storageinfo.Storages[otherstorage].Type === 'NAS' && $scope.Storageinfo.Storages[otherstorage].Enable === 'On') {
+            if (checkNas(otherstorage) === false) {
                 retVal = false;
             }
+        }
+        if(!eventRuleService.checkSchedulerValidation()) {
+            COMMONUtils.ShowError('lang_msg_checkthetable');
+            retVal = false;
         }
         return retVal;
     }
@@ -642,7 +638,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             }
 
             setStorageStatus();
-            pageData.Storageinfo = angular.copy($scope.Storageinfo);
+            pageData.Storageinfo = $scope.Storageinfo;
             startMonitoringStatus();
         }, function(errorData) {
             console.log(errorData);
