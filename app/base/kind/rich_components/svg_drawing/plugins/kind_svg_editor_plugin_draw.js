@@ -1627,7 +1627,12 @@ KindSVGEditor.addPlugin('draw', function(options){
 					changedY2 = changedY1 + ((changedX2 - changedX1) * parentSvg.ratio[1] / parentSvg.ratio[0]);
 
 					//변경된좌표 체크
-					if(LineInformation.validateAxis(changedX2, changedY2) === false) return;
+					if(LineInformation.validateAxis(changedX2, changedY2) === false){
+						// console.log("Return:", changedX2, changedY2);
+						// return;
+						changedX2 = maxSize.width;
+						changedY2 = maxSize.height;
+					}
 
 					//Min, Max Validation
 					if(!LineInformation.validateGeometrySize(Math.abs(changedX1 - changedX2), Math.abs(changedY1 - changedY2))) return;

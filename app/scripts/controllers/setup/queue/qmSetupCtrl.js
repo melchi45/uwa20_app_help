@@ -59,6 +59,11 @@ kindFramework.controller('QMSetupCtrl',
         return pcSetupService.setMaxResolution(mAttr.EventSourceOptions);
 	}
 
+	$scope.maxValues = [];
+	for(var i = 0; i <= 50; i++){
+		$scope.maxValues[i] = i;
+	}
+
     function getAttributes() {
         var defer = $q.defer();
 
@@ -341,14 +346,24 @@ kindFramework.controller('QMSetupCtrl',
 
 			val = setInt(val);
 			if(type === 'max'){
+				if(val > 50){ val = 50; }
+				
 				$scope.queueData.Queues[id].MaxPeople = val;
+
+				if(val <= getPeopleData().high){
+					$scope.queueLevelSection.changeValue( 'high', (val - 1), id );
+				}
 			}else if(type === 'high'){
 				if(val >= data.max) { val = data.max - 1; }
 				if(val < 0){ val = 0; }
 				$scope.queueData.Queues[id].QueueLevels[0].Count = val;
 			}
 		},
-		reload: function(){
+		reload: function(type){
+			if(type === 'max'){
+				var max = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople;
+				$scope.queueLevelSection.changeValue( 'max', max );
+			}
 			$scope.queueLevelSection.getRange();
 			$scope.queueLevelSection.resetBar();
 			$scope.queueLevelSection.bindHtml();
@@ -684,9 +699,6 @@ kindFramework.controller('QMSetupCtrl',
 		for(var i = 0; i < queues.length; i++){
 			var max = getMax($scope.realtimeSection.coordinates[i].points);
 			$scope.queueLevelSection.changeValue( 'max', max, i );
-			if(max <= getPeopleData().high){
-				$scope.queueLevelSection.changeValue( 'high', (max - 1), i );
-			}
 		}
 		$scope.queueLevelSection.reload();
 	}
@@ -719,9 +731,6 @@ kindFramework.controller('QMSetupCtrl',
 
         	var max = getMax(modifiedPoints);
         	$scope.queueLevelSection.changeValue( 'max', max );
-        	if(max <= getPeopleData().high){
-        		$scope.queueLevelSection.changeValue( 'high', (max - 1) );
-        	}
 			$scope.queueLevelSection.reload();
         }else if($scope.currentTapStatus[1] === true){
         	// $scope.calibrationSection.coordinates = modifiedPoints;
@@ -772,7 +781,7 @@ kindFramework.controller('QMSetupCtrl',
 			var j = i - 1;
 			var queue = data.Queues[j];
 			setData['Queue.' + i + '.Enable'] = queue.Enable;
-			// setData['Queue.' + i + '.MaxPeople'] = queue.MaxPeople;
+			setData['Queue.' + i + '.MaxPeople'] = queue.MaxPeople;
 			setData['Queue.' + i + '.Name'] = queue.Name;
 			setData['Queue.' + i + '.Level.High.AlarmEnable'] = queue.QueueLevels[0].AlarmEnable;
 			setData['Queue.' + i + '.Level.High.Count'] = queue.QueueLevels[0].Count;
