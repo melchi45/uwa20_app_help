@@ -1493,7 +1493,7 @@ live-playback common {
 .cm-channel-selector .channel-selector li > button {
   width: 28px;
   border: solid 2px #4c4c4c;
-  color: #666;
+  color: #666666;
   line-height: 17px;
   font-size: 14px;
   padding-left: 1px;
@@ -1523,12 +1523,15 @@ live-playback common {
   float: left;
   width: 12px;
   height: 9px;
+  background-color: #ffffff;
   border-left: solid 1px #4c4c4c;
   border-top: solid 1px #4c4c4c;
+  border-right: 0;
+  border-bottom: 0;
 }
-.cm-channel-selector .cm-channel-selector-quad-btn:hover,
-.cm-channel-selector .cm-channel-selector-quad-btn:active {
-  background-color: #fff;
+.cm-channel-selector .cm-channel-selector-quad-btn:hover > div,
+.cm-channel-selector .cm-channel-selector-quad-btn:active > div {
+  background-color: #ccc;
 }
 [ng\:cloak],
 [ng-cloak],
@@ -10639,7 +10642,8 @@ i.tui-ch-playback-stop {
   padding-top: 100%;
 }
 .channellist-video-wrapper canvas,
-.channellist-video-wrapper video {
+.channellist-video-wrapper video,
+.channellist-video-wrapper object {
   position: absolute !important;
   top: 0;
   left: 0;
@@ -10647,11 +10651,20 @@ i.tui-ch-playback-stop {
   height: 100%;
   background-color: #555;
 }
-.channellist-channel-selector {
+#channellist-channel-selector {
   float: none;
   overflow: hidden;
   width: 163px;
   margin: 15px auto 0;
+}
+#channellist-channel-selector .active {
+  border-color: #4c4c4c;
+  color: #666666;
+  background-color: #ffffff;
+}
+#channellist-channel-selector button:hover {
+  color: #ffffff;
+  background-color: #4c4c4c;
 }
 #wn5-online-help-wrapper {
   width: 100%;
