@@ -182,6 +182,7 @@ kindFramework
           pluginElement.SetUserFps(30);
           pluginElement.OpenRecordStream(rtspIP, Number(rtspPort), userID, '', '', overlappedID, playbackTime, '', playbackMode);
           $rootScope.$emit('changeLoadingBar', false);
+          $(pluginElement).removeClass("cm_vn");
           console.log("pluginControlService::startPlayback() ===> PlugIn playback Started");       
         }catch(err){
           console.log("pluginControlService::startPlayback() ===> PlugIn is loading...");

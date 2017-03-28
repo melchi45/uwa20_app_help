@@ -124,14 +124,14 @@
                 </button>
             </div>
             <div id="ptz-control_preset-box" ng-if="showPTZControlPresetText" >
-                <button type="button" class="btn btn-primary" ng-click="showSetPreset()">
+                <button type="button" class="btn btn-primary" style="min-width: 110px;" ng-click="showSetPreset()">
                     {{'lang_setPreset' | translate}}
                 </button>
-                <button type="button" class="btn btn-primary" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
-                    {{'lang_goHomePosition' | translate}}
+                <button type="button" class="btn btn-primary" style="min-width: 110px;margin-bottom: 5px;" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                    {{'lang_goHome' | translate}}
                 </button>
-                <button type="button" class="btn btn-primary" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
-                    {{'lang_setHomePosition' | translate}}
+                <button type="button" class="btn btn-primary" style="min-width: 110px;" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                    {{'lang_setHome' | translate}}
                 </button>
             </div>
             <div id="ptz-control_at-right" ng-show="showPTZControlAT">
