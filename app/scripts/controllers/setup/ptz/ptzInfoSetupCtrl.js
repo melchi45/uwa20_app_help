@@ -1701,10 +1701,15 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                     rotate: rotate,
                     adjust: adjust
                 };
-
-                $scope.ptzinfo = {
-                    type: 'preset'
-                };
+                if($scope.activeTab.title == 'Preset'){
+                    $scope.ptzinfo = {
+                        type: 'preset'
+                    };
+                }else{
+                    $scope.ptzinfo = {
+                        type: 'none'
+                    };
+                }
             },
             function (errorData) {
                 //alert(errorData);
