@@ -44,6 +44,58 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
     var currentChannel = 0;
 
+    function getInfoTableData() {
+        
+        var getData = {};
+
+        $scope.infoTableData = [];
+
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=view', getData,
+            function (response) {
+                
+                var privacyMasks = response.data.PrivacyMask;
+
+                for(var i = 0; i < privacyMasks.length; i++) {
+
+                    var data = {};
+
+                    var privacyMask = privacyMasks[i];
+
+                    if($scope.Flip[$scope.SelectedChannel].VerticalFlipEnable) {
+                        data.flip = 'On';
+                    } else {
+                        data.flip = 'Off';
+                    }
+                    
+                    if($scope.Flip[$scope.SelectedChannel].HorizontalFlipEnable) {
+                        data.mirror = 'On';
+                    } else {
+                        data.mirror = 'Off';
+                    }
+                    
+                    data.hallwayView = $scope.Flip[$scope.SelectedChannel].Rotate;
+                    
+                    if($scope.VideoOutputs[$scope.SelectedChannel].Enable) {
+                        data.videoOutput = $scope.VideoOutputs[$scope.SelectedChannel].Type
+                    } else {
+                        data.videoOutput = 'Off';    
+                    }
+
+                    if(privacyMask.Masks.length > 0) {
+                        data.privacyMask = 'On';
+                    } else {
+                        data.privacyMask = 'Off';
+                    }
+
+                    $scope.infoTableData.push(data);
+                }
+            },
+            function (errorData) {
+                disValue = false;
+                console.log(errorData);                
+            },'',true);
+    }
+
     function getAttributes() {
         if(mAttr.MaxChannel > 1) {
             $scope.isMultiChannel = true;
@@ -770,6 +822,10 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
         if ($scope.cameraPositionList != undefined) {
             functionlist.push(fisheyeSetupView);
+        }
+
+        if($scope.isMultiChannel) {
+            functionlist.push(getInfoTableData);
         }
 
         getDisValue();
