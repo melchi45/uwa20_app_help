@@ -48,7 +48,7 @@ kindFramework
 
       if(PlugInPromise !== null)
       {
-        // pluginElement.PlayLiveStream ½ÇÇà µµ Áß Profile º¯°æ ¿äÃ»ÀÌ µé¾î¿Ã °æ¿ì
+        // pluginElement.PlayLiveStream ì‹¤í–‰ ë„ ì¤‘ Profile ë³€ê²½ ìš”ì²­ì´ ë“¤ì–´ì˜¬ ê²½ìš°
         $timeout.cancel(PlugInPromise);
       }
 
@@ -179,6 +179,7 @@ kindFramework
           pluginElement.SetUserFps(30);
           pluginElement.OpenRecordStream(rtspIP, Number(rtspPort), userID, '', '', overlappedID, playbackTime, '', playbackMode);
           $rootScope.$emit('changeLoadingBar', false);
+          $(pluginElement).removeClass("cm_vn");
           console.log("pluginControlService::startPlayback() ===> PlugIn playback Started");       
         }catch(err){
           console.log("pluginControlService::startPlayback() ===> PlugIn is loading...");
