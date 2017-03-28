@@ -1,7 +1,10 @@
 /*global workerManager*/
-kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootScope','$timeout', 'SessionOfUserManager', 'BrowserService', '$location', 'UniversialManagerService',
-    'CAMERA_STATUS','ONLINE_HELP_CONFIG','ROUTE_CONFIG','$translate','Attributes',
- function(SunapiClient, $state, $rootScope, $timeout, SessionOfUserManager, BrowserService, $location, UniversialManagerService, CAMERA_STATUS, ONLINE_HELP_CONFIG, ROUTE_CONFIG, $translate, Attributes) {
+kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootScope','$timeout', 
+    'SessionOfUserManager', 'BrowserService', '$location', 'UniversialManagerService',
+    'CAMERA_STATUS','ONLINE_HELP_CONFIG','ROUTE_CONFIG','$translate','Attributes', 'kindStreamInterface',
+ function(SunapiClient, $state, $rootScope, $timeout, SessionOfUserManager, BrowserService, $location, 
+    UniversialManagerService, CAMERA_STATUS, ONLINE_HELP_CONFIG, ROUTE_CONFIG, $translate, Attributes,
+     kindStreamInterface) {
     "use strict";
     return {
         restrict: 'E',
@@ -157,23 +160,23 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                 scope.globalNavigationBar.showFpsMeterNum++;
                 if (scope.globalNavigationBar.showFpsMeterNum > 3) {
                     //workerManager.openFPSmeter();
-                    this.controlWorker({'channelId':0, 'cmd':'openFPSmeter', 'data': []});
+                    kindStreamInterface.controlWorker({'channelId':0, 'cmd':'openFPSmeter', 'data': []});
                     scope.globalNavigationBar.showFpsMeterNum = 0;
                 } else {
                     //workerManager.closeFPSmeter();
-                    this.controlWorker({'channelId':0, 'cmd':'closeFPSmeter', 'data': []});
+                    kindStreamInterface.controlWorker({'channelId':0, 'cmd':'closeFPSmeter', 'data': []});
                 }
             };
 
             scope.closeFpsMeter = function() {
                 //workerManager.closeFPSmeter();
-                this.controlWorker({'channelId':0, 'cmd':'closeFPSmeter', 'data': []});
+                kindStreamInterface.controlWorker({'channelId':0, 'cmd':'closeFPSmeter', 'data': []});
             };
 
             scope.changeFpsFrame = function() {
                 console.log("fpsFrameNum = " + scope.globalNavigationBar.fpsFrameNum);
                 //workerManager.setFpsFrame(scope.globalNavigationBar.fpsFrameNum);
-                this.controlWorker({'channelId':0, 'cmd':'setFpsFrame', 'data': [scope.globalNavigationBar.fpsFrameNum]});
+                kindStreamInterface.controlWorker({'channelId':0, 'cmd':'setFpsFrame', 'data': [scope.globalNavigationBar.fpsFrameNum]});
             };
 
             function getSupportMenu(){

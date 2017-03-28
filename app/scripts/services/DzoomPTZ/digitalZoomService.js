@@ -29,14 +29,14 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     var zoom = 0;
     var videoElement = null;
     var prop = 'transform';
-    //for Video Tag
+    var data = {channelId:0, zoomArray : [zoomX, zoomY, zoomZ]};
 
     function init() {
       zoomX = 0.0;
       zoomY = 0.0;
       zoomZ = initZoomZ;
       movelimit = 5;
-      var data = {channelId:0, zoomArray : [zoomX, zoomY, zoomZ]};
+      data = {channelId:0, zoomArray : [zoomX, zoomY, zoomZ]};
       return data;
     }
 
