@@ -248,9 +248,11 @@ kindFramework
 
                 SunapiClient.get(url, setData,
                     function(response) {
+                        scope.$emit('setEventRuleCompleted', true);
                     },
                     function(errorData) {
                         console.log(errorData);
+                        scope.$emit('setEventRuleCompleted', true);
                     }, '', true);
 
                 pageData.EventRule = angular.copy(scope.EventRule);

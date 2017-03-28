@@ -633,7 +633,13 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             },'lang_set_question','sm');
         }
     };
-
+    $scope.setTraceRecordBtnText = function(){
+        if($scope.memorizeTraceMode == 'Start'){
+            return 'lang_set';
+        }else{
+            return 'lang_record';
+        }
+    };
     $scope.setTrace = function ()
     {
         $scope.memorizeTraceMode = $scope.memorizeTraceMode == 'Start' ? 'Stop' : 'Start';

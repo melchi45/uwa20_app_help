@@ -10,6 +10,7 @@
 #ptz-control.w310{width: 310px;}
 #ptz-control.w410{width: 410px;}
 #ptz-control.w510{width: 510px;}
+#ptz-control.w610{width: 610px;}
 
 #ptz-control_left-box{
 	width: 25px;
@@ -98,9 +99,17 @@
     float: left !important;
     padding: 15px 0 0 15px;
 }
+.at-box{
+	float: right !important;
+}
 @media (min-width: 1260px) {
 	#ptz-control.ptz-zoom-width{
 		width: 210px;
+	}
+}
+@media (min-width: 1278px) {
+	#ptz-control.ptz-ui-width{
+		width: 300px;
 	}
 }
 @media (min-width: 1020px) and (max-width: 1260px) {
@@ -111,6 +120,28 @@
 		width: 410px;
 	}
 	#ptz-control.ptz-zoom-width .zoompreset{
+		float: left !important;
+		padding: 5px 0;
+	}
+	#ptz-control.ptz-ui-width{
+		width: 610px;
+	}
+	#ptz-control.ptz-ui-width .zoomctrl{
+		width: 410px;
+	}
+	#ptz-control.ptz-ui-width .zoompreset{
+		float: left !important;
+		padding: 5px 0;
+	}
+}
+@media (max-width: 1020px) {
+	#ptz-control.ptz-ui-width{
+		width: 610px;
+	}
+	#ptz-control.ptz-ui-width .zoomctrl{
+		width: 410px;
+	}
+	#ptz-control.ptz-ui-width .zoompreset{
 		float: left !important;
 		padding: 5px 0;
 	}

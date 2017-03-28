@@ -270,7 +270,7 @@
                             </select>
                             <button type="button" class="btn btn-primary btn-margin-left" ng-click="startStopTrace(1)">{{ 'lang_start' | translate }}</button>
                             <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopTrace(0)">{{ 'lang_stop' | translate }}</button>
-                            <button type="button" class="btn btn-primary" ng-click="setTrace()">{{ 'lang_set' | translate }}</button>
+                            <button type="button" class="btn btn-primary" ng-click="setTrace()">{{ setTraceRecordBtnText() | translate }}</button>
                         </div>
                     </div>                           
                 </div>
@@ -300,11 +300,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="wn5-setup-section-article-heading">{{ 'lang_number' | translate }}</div>
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_preset' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
                                     <select class="form-control wp25" ng-model="AutoRun.ModePreset.Preset" ng-options="Option as Option for Option in PresetOptions"></select>
-                                    <!--<input type="text"  class="form-control" ng-model="AutoRun.ModePreset.Preset" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}">-->
-                                    <!--<label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxPreset}})</label>-->
                                 </div>
                             </div>    
                         </div>
@@ -330,11 +328,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="wn5-setup-section-article-heading">{{ 'lang_number' | translate }}</div>
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_group' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
                                     <select class="form-control wp25" ng-model="AutoRun.ModeGroup.Group" ng-options="Option as Option for Option in GroupOptions"></select>
-                                    <!--<input type="text"  class="form-control" ng-model="AutoRun.ModeGroup.Group" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}">-->
-                                    <!--<label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxGroupCount}})</label>-->
                                 </div>
                             </div>
                         </div>   
@@ -354,7 +350,7 @@
                                 </div>
                             </div>    
                             <div class="form-group">
-                                <div class="wn5-setup-section-article-heading">{{ 'lang_number' | translate }}</div>
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_trace' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
                                     <select class="form-control wp25" ng-model="AutoRun.ModeTrace.Trace" ng-options="Option as Option for Option in TraceOptions"></select>
                                     <!--<input type="text"  class="form-control" ng-model="AutoRun.ModeTrace.Trace" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}">-->
@@ -408,7 +404,7 @@
                                     </tr>                                
                                 </tbody>                               
                             </table>
-                            <div class="labelMinutesHour" style="float:right; margin-top:5px;">
+                            <div class="labelMinutesHour" style="float:left; margin-top:5px;">
                                 <table cellspacing="0" cellpadding="0" border="0" width="100%" style="text-align:center">
                                     <tbody>
                                         <tr>
@@ -439,7 +435,7 @@
 <script type="text/ng-template" id="autorunModal.html">
     <form name="scheduleForm" method="get" class="form-horizontal" novalidate>
     <div class="modal-header modal-setup">
-        <h3 class="applyColor">{{ 'lang_setup' | translate}}</h3>
+        <h3 class="applyColor">{{ 'lang_schedule' | translate}}</h3>
     </div>    
    <div class="modal-body modal-setup">
         <label class="col-lg-3 control-label">{{ 'lang_mode' | translate }}</label>
@@ -448,26 +444,20 @@
         </div>
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Preset'">
-        <label class="col-lg-3 control-label">{{ 'lang_number' | translate }}</label>                                                                                        
+        <label class="col-lg-3 control-label">{{ 'lang_preset' | translate }}</label>
         <div class="col-sm-6"><select class="form-control wp50" ng-model="SelectedSchedule.Preset" ng-options="Option as Option for Option in PresetOptions"></select></div>
-        <!--<div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Preset" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}"></div>-->
-        <!--<label class="col-lg-1 control-label">({{1}}~{{MaxPreset}})</label>        -->
-    </div>    
+    </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Swing'">
         <label class="col-lg-3 control-label pad0">{{ 'lang_swingMode' | translate }}</label>
         <div class="col-sm-6"><select class="form-control" ng-model="SelectedSchedule.SwingMode" ng-options="Mode as getTranslatedOption(Mode) for Mode in SwingModes"></select></div>
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Group'">
-        <label class="col-lg-3 control-label">{{ 'lang_number' | translate }}</label>
+        <label class="col-lg-3 control-label">{{ 'lang_group' | translate }}</label>
         <div class="col-sm-6"><select class="form-control wp50" ng-model="SelectedSchedule.Group" ng-options="Option as Option for Option in GroupOptions"></select></div>
-        <!--<div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Group" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}"></div>-->
-        <!--<label class="col-lg-1 control-label">({{1}}~{{MaxGroupCount}})</label>        -->
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Trace'">
-        <label class="col-lg-3 control-label">{{ 'lang_number' | translate }}</label>
+        <label class="col-lg-3 control-label">{{ 'lang_trace' | translate }}</label>
         <div class="col-sm-6"><select class="form-control wp50" ng-model="SelectedSchedule.Trace" ng-options="Option as Option for Option in TraceOptions"></select></div>
-        <!--<div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Trace" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}"></div>-->
-        <!--<label class="col-lg-1 control-label">({{1}}~{{MaxTraceCount}})</label>        -->
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'AutoPan'">                                            
         <label class="col-lg-3 control-label">{{ 'lang_speed' | translate }}</label>
