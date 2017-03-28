@@ -34,6 +34,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         }
     })();
 
+    $scope.infoTableData = [{},{},{},{}];
+
     $scope.getTranslatedOption = function (Option) {
         return COMMONUtils.getTranslatedOption(Option);
     };
@@ -44,11 +46,9 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
     var currentChannel = 0;
 
-    function getInfoTableData() {
+    function getPrivacyInfoData() {
         
         var getData = {};
-
-        $scope.infoTableData = [];
 
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=view', getData,
             function (response) {
@@ -57,42 +57,71 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
                 for(var i = 0; i < privacyMasks.length; i++) {
 
-                    var data = {};
-
                     var privacyMask = privacyMasks[i];
 
-                    if($scope.Flip[$scope.SelectedChannel].VerticalFlipEnable) {
-                        data.flip = 'On';
+                    if(privacyMask.Masks !== undefined && privacyMask.Masks.length > 0) {
+                        $scope.infoTableData[i].privacyMask = 'On';
                     } else {
-                        data.flip = 'Off';
+                        $scope.infoTableData[i].privacyMask = 'Off';
                     }
-                    
-                    if($scope.Flip[$scope.SelectedChannel].HorizontalFlipEnable) {
-                        data.mirror = 'On';
-                    } else {
-                        data.mirror = 'Off';
-                    }
-                    
-                    data.hallwayView = $scope.Flip[$scope.SelectedChannel].Rotate;
-                    
-                    if($scope.VideoOutputs[$scope.SelectedChannel].Enable) {
-                        data.videoOutput = $scope.VideoOutputs[$scope.SelectedChannel].Type
-                    } else {
-                        data.videoOutput = 'Off';    
-                    }
-
-                    if(privacyMask.Masks.length > 0) {
-                        data.privacyMask = 'On';
-                    } else {
-                        data.privacyMask = 'Off';
-                    }
-
-                    $scope.infoTableData.push(data);
                 }
             },
             function (errorData) {
                 disValue = false;
                 console.log(errorData);                
+            },'',true);
+    }
+
+    function getFlipInfoData() {
+
+        var getData = {};
+
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
+            function (response) {
+                
+                var flips = response.data.Flip;
+
+                for(var i = 0; i < flips.length; i ++) {
+                    if(flips[i].VerticalFlipEnable) {
+                        $scope.infoTableData[i].flip = 'On';
+                    } else {
+                        $scope.infoTableData[i].flip = 'Off';
+                    }
+                    
+                    if(flips[i].HorizontalFlipEnable) {
+                        $scope.infoTableData[i].mirror = 'On';
+                    } else {
+                        $scope.infoTableData[i].mirror = 'Off';
+                    }
+                    
+                    $scope.infoTableData[i].hallwayView = flips[i].Rotate;
+                }
+            },
+            function (errorData) {
+                console.log(errorData);
+            },'',true);
+    }
+
+    function getVideoOutputInfoData() {
+
+        var getData = {};
+        
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videooutput&action=view', getData,
+            function (response) {
+                
+                var videoOutputs = response.data.VideoOutputs;
+
+                for(var i = 0; i < videoOutputs.length; i++) {
+                    if(videoOutputs[i].Enable) {
+                        $scope.infoTableData[i].videoOutput = videoOutputs[i].Type
+                    } else {
+                        $scope.infoTableData[i].videoOutput = 'Off';    
+                    }
+                }
+                
+            },
+            function (errorData) {
+                console.log(errorData);
             },'',true);
     }
 
@@ -825,7 +854,9 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         }
 
         if($scope.isMultiChannel) {
-            functionlist.push(getInfoTableData);
+            functionlist.push(getFlipInfoData);
+            functionlist.push(getPrivacyInfoData);
+            functionlist.push(getVideoOutputInfoData);
         }
 
         getDisValue();
