@@ -207,6 +207,24 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
             SunapiClient.get('/stw-cgi/opensdk.cgi?msubmenu=apps&action=set', setData,
                 function (response) {                    
                     COMMONUtils.ShowDeatilInfo('lang_msg_settings_saved');
+                    if($scope.OpenSDK.Apps!== undefined)
+                    {
+                        for(index=0; index < $scope.OpenSDK.Apps.length; index = index + 1)
+                        {
+                            if ($scope.OpenSDK.Apps[index].Priority === 'High')
+                            {
+                                $scope.OpenSDK.Apps[index].PriorityOrder = 1;
+                            }
+                            else if ($scope.OpenSDK.Apps[index].Priority === 'Medium')
+                            {
+                                $scope.OpenSDK.Apps[index].PriorityOrder = 2;
+                            }
+                            else
+                            {
+                                $scope.OpenSDK.Apps[index].PriorityOrder = 3;
+                            }
+                        }
+                    }
                 },
                 function (errorData) {
                    //COMMONUtils.ShowError(errorData);

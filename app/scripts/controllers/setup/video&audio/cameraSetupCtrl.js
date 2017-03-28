@@ -670,18 +670,18 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 $scope.BLCBottomSliderOptions.ceil = $scope.BLCAbsMax;
             }
 
-            if ($scope.Camera.BLCAreaTop + $scope.minBlcHeightLength >= $scope.minBlcHeightLength) {
-                $scope.BLCBottomSliderOptions.floor = $scope.Camera.BLCAreaTop + $scope.minBlcHeightLength;
+            if ($scope.Camera.BLCAreaTop + $scope.minBLCHeightLength>= $scope.minBLCHeightLength) {
+                $scope.BLCBottomSliderOptions.floor = $scope.Camera.BLCAreaTop + $scope.minBLCHeightLength;
             } else {
-                $scope.BLCBottomSliderOptions.floor = $scope.minBlcHeightLength;
+                $scope.BLCBottomSliderOptions.floor = $scope.minBLCHeightLength;
             }
 
         } else if (direction == "blcAreaBottom") {
 
-            if ($scope.Camera.BLCAreaBottom - $scope.minBlcHeightLength <= $scope.BLCAbsMax - $scope.minBlcHeightLength) {
-                $scope.BLCTopSliderOptions.ceil = $scope.Camera.BLCAreaBottom - $scope.minBlcHeightLength;
+            if ($scope.Camera.BLCAreaBottom - $scope.minBLCHeightLength <= $scope.BLCAbsMax - $scope.minBLCHeightLength) {
+                $scope.BLCTopSliderOptions.ceil = $scope.Camera.BLCAreaBottom - $scope.minBLCHeightLength;
             } else {
-                $scope.BLCTopSliderOptions.ceil = $scope.BLCAbsMax - $scope.minBlcHeightLength;
+                $scope.BLCTopSliderOptions.ceil = $scope.BLCAbsMax - $scope.minBLCHeightLength;
             }
 
             if ($scope.Camera.BLCAreaBottom - $scope.maxBlcLength > 0) {
@@ -698,18 +698,18 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 $scope.BLCRightSliderOptions.ceil = $scope.BLCAbsMax;
             }
 
-            if ($scope.Camera.BLCAreaLeft + $scope.minBlcWidthLength >= $scope.minBlcWidthLength) {
-                $scope.BLCRightSliderOptions.floor = $scope.Camera.BLCAreaLeft + $scope.minBlcWidthLength;
+            if ($scope.Camera.BLCAreaLeft + $scope.minBLCWidthLength >= $scope.minBLCWidthLength) {
+                $scope.BLCRightSliderOptions.floor = $scope.Camera.BLCAreaLeft + $scope.minBLCWidthLength;
             } else {
-                $scope.BLCRightSliderOptions.floor = $scope.minBlcWidthLength;
+                $scope.BLCRightSliderOptions.floor = $scope.minBLCWidthLength;
             }
 
         } else if (direction == "blcAreaRight") {
 
-            if ($scope.Camera.BLCAreaRight - $scope.minBlcWidthLength <= $scope.BLCAbsMax - $scope.minBlcWidthLength) {
-                $scope.BLCLeftSliderOptions.ceil = $scope.Camera.BLCAreaRight - $scope.minBlcWidthLength;
+            if ($scope.Camera.BLCAreaRight - $scope.minBLCWidthLength <= $scope.BLCAbsMax - $scope.minBLCWidthLength) {
+                $scope.BLCLeftSliderOptions.ceil = $scope.Camera.BLCAreaRight - $scope.minBLCWidthLength;
             } else {
-                $scope.BLCLeftSliderOptions.ceil = $scope.BLCAbsMax - $scope.minBlcWidthLength;
+                $scope.BLCLeftSliderOptions.ceil = $scope.BLCAbsMax - $scope.minBLCWidthLength;
             }
 
             if ($scope.Camera.BLCAreaRight - $scope.maxBlcLength > 0) {
@@ -1677,7 +1677,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     $scope.isDisDisabled = function () {
         if(typeof $scope.ImageEnhancements == 'undefined') return;
         
-        if(mAttr.PTZModel){
+        if(mAttr.PTZModel || mAttr.ZoomOnlyModel){
             return ($scope.disDisable.TamperDetectEnable == true || $scope.disDisable.DetectionType != 'Off');
         } else {
             return false;
@@ -2033,7 +2033,14 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         $scope.PresetImageEnhaneWatcherReady = true;
 
         $scope.$watch('PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements', function (newVal, oldVal) {
-            presetImageenhancementsSet(true);
+            if (mAttr.PTZModel && typeof $scope.PresetImageConfig !== 'undefined'
+                && typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== 'undefined'
+                && typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements !== 'undefined'
+                && pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == false
+                && $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true){
+            }else{
+                presetImageenhancementsSet(true);
+            }
         }, true);
     }
     function presetImageenhancementsSet(isPreview) {
@@ -2209,6 +2216,15 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
         }
         presetCameraChangeHandler();
+    };
+    $scope.onPresetDISEnableChange = function () {
+        if (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings == 'undefined' 
+            || typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable == 'undefined')
+            return;
+        
+        if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true){
+            $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable = false;
+        }
     };
     $scope.isPresetSupportedDayNightMode = function (mode) {
         var retVal = true;
@@ -2470,6 +2486,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
         $scope.$watch('PresetImageConfig[presetTypeData.PresetIndex].PTZSettings', function (newVal, oldVal) {
             presetPtzsettingsSet(true);
+            if (mAttr.PTZModel && typeof $scope.PresetImageConfig !== 'undefined'
+                && typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== 'undefined'
+                && typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements !== 'undefined'
+                && pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == false
+                && $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true){
+                presetImageenhancementsSet(true);
+            }
         }, true);
     }
 
@@ -2697,6 +2720,16 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
         }
         cameraChangeHandler();
+    };
+    
+    $scope.onDISEnableChange = function () {
+        if (typeof $scope.PTZSettings == 'undefined' 
+            || typeof $scope.PTZSettings.DigitalZoomEnable == 'undefined')
+            return;
+        
+        if ($scope.ImageEnhancements.DISEnable == true){
+            $scope.PTZSettings.DigitalZoomEnable = false;
+        }
     };
 
     $scope.iSSupportedDayNightModeOption = function (mode) {
@@ -3844,11 +3877,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             functionList.push(cameraSet);
         }
 
-        if (mAttr.Brightness !== undefined) {
-            ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
-            functionList.push(imageenhancementsSet);
-        }
-
         if (mAttr.FocusModeOptions !== undefined && (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true)) {
             ///stw-cgi/image.cgi?msubmenu=focus&action=set
             functionList.push(focusSet);
@@ -3859,8 +3887,24 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
 
         if (mAttr.PTZModel === true) {
-            ///stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set
-            functionList.push(ptzsettingsSet);
+            if (typeof $scope.ImageEnhancements !== 'undefined' 
+                    && pageData.ImageEnhancements.DISEnable == false 
+                    && $scope.ImageEnhancements.DISEnable == true){
+                ///stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set
+                functionList.push(ptzsettingsSet);
+                if (mAttr.Brightness !== undefined) {
+                    ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
+                    functionList.push(imageenhancementsSet);
+                }
+            } else {
+                if (mAttr.Brightness !== undefined) {
+                    ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
+                    functionList.push(imageenhancementsSet);
+                }
+                ///stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set
+                functionList.push(ptzsettingsSet);
+            }
+            
 
             if($scope.presetTypeData.SelectedPresetType == 1){
                 if(mAttr.PresetSSDRLevel !== undefined){
@@ -3871,10 +3915,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
                     functionList.push(presetWhiteBalanceSet);
                 }
-                if(mAttr.PresetBrightness !== undefined){
-                    ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
-                    functionList.push(presetImageenhancementsSet);
-                }
                 if(mAttr.PresetAFLKModeOptions !== undefined){
                     ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
                     functionList.push(presetCameraSet);
@@ -3883,14 +3923,54 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
                     functionList.push(presetFocusSet);
                 }
-                if(mAttr.PresetMaxDigitalZoomOptions !== undefined){
-                    ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
-                    functionList.push(presetPtzsettingsSet);
+                if (typeof $scope.PresetImageConfig !== 'undefined' 
+                        && typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== 'undefined'
+                        && typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements !== 'undefined'
+                        && pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == false 
+                        && $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true){
+                    if(mAttr.PresetMaxDigitalZoomOptions !== undefined){
+                        ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
+                        functionList.push(presetPtzsettingsSet);
+                    }
+                    if(mAttr.PresetBrightness !== undefined){
+                        ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
+                        functionList.push(presetImageenhancementsSet);
+                    }
+                } else {
+                    if(mAttr.PresetBrightness !== undefined){
+                        ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
+                        functionList.push(presetImageenhancementsSet);
+                    }
+                    if(mAttr.PresetMaxDigitalZoomOptions !== undefined){
+                        ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
+                        functionList.push(presetPtzsettingsSet);
+                    }
                 }
                 functionList.push(presetAdd);
             }
         } else if (mAttr.ZoomOnlyModel === true) {
-            functionList.push(ptzsettingsSet);
+            if (typeof $scope.ImageEnhancements !== 'undefined' 
+                    && pageData.ImageEnhancements.DISEnable == false 
+                    && $scope.ImageEnhancements.DISEnable == true){
+                ///stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set
+                functionList.push(ptzsettingsSet);
+                if (mAttr.Brightness !== undefined) {
+                    ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
+                    functionList.push(imageenhancementsSet);
+                }
+            } else {
+                if (mAttr.Brightness !== undefined) {
+                    ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
+                    functionList.push(imageenhancementsSet);
+                }
+                ///stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set
+                functionList.push(ptzsettingsSet);
+            }
+        } else {
+            if (mAttr.Brightness !== undefined) {
+                ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
+                functionList.push(imageenhancementsSet);
+            }
         }
 
         if (mAttr.MaxOSDTitles) {
@@ -4790,7 +4870,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         $scope.ImageEnhaneWatcherReady = true;
 
         $scope.$watch('ImageEnhancements', function (newVal, oldVal) {
-            imageenhancementsSet(true);
+            if ((mAttr.ZoomOnlyModel || mAttr.PTZModel) && typeof $scope.ImageEnhancements !== 'undefined'
+                && pageData.ImageEnhancements.DISEnable == false && $scope.ImageEnhancements.DISEnable == true){
+            }else{
+                imageenhancementsSet(true);
+            }
         }, true);
     }
 
@@ -4916,6 +5000,10 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         $scope.PTZSettingWatcherReady = true;
         $scope.$watch('PTZSettings', function (newVal, oldVal) {
             ptzsettingsSet(true);
+            if ((mAttr.ZoomOnlyModel || mAttr.PTZModel) && typeof $scope.ImageEnhancements !== 'undefined'
+                && pageData.ImageEnhancements.DISEnable == false && $scope.ImageEnhancements.DISEnable == true){
+                imageenhancementsSet(true);
+            }
         }, true);
     }
     function parseIrledSchedule() {
