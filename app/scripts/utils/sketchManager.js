@@ -2722,6 +2722,7 @@ var SketchManager = (function() {
                                         kindSvgOptions.fillColor = coordinates[i].areaColor;
                                         kindSvgOptions.lineColor = coordinates[i].areaColor;
                                         kindSvgOptions.pointColor = coordinates[i].areaColor;
+                                        kindSvgOptions.fillOpacity = 0.3;
                                     }
                                 }
 
@@ -2759,10 +2760,10 @@ var SketchManager = (function() {
 
                         if(sketchInfo.workType === "qmArea"){
                             if("textInCircle" in data[i]){
-                                coordinates[i].textInCircle = data[i].textInCircle;   
+                                coordinates[i].textInCircle = data[i].textInCircle;
                             }
                             if("areaColor" in data[i]){
-                                coordinates[i].areaColor = data[i].areaColor;   
+                                coordinates[i].areaColor = data[i].areaColor;
                             }
                         }
 
