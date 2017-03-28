@@ -821,7 +821,7 @@
                                 <div class="form-group" ng-if="ImageEnhancements.DISEnable != undefined">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_dis' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
-                                        <select name="DISEnable" class="form-control" ng-model="ImageEnhancements.DISEnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="isDisDisabled()"></select>
+                                        <select name="DISEnable" class="form-control" ng-model="ImageEnhancements.DISEnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-change="onDISEnableChange()" ng-disabled="isDisDisabled()"></select>
                                     </div>
                                 </div>
                                 <div class="form-group" ng-if="PTZModel">
@@ -993,7 +993,7 @@
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DISEnable != undefined">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_dis' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
-                                        <select name="DISEnable" class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DISEnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="isPresetDisDisabled()"></select>
+                                        <select name="DISEnable" class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DISEnable" ng-change="onPresetDISEnableChange()" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="isPresetDisDisabled()"></select>
                                     </div>
                                 </div>
                                 <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode != undefined">

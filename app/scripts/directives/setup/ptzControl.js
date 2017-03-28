@@ -104,15 +104,19 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         $("#ptz-control_at-selectable").unbind();
 
                     if(ptzinfo.type==='preset'){
-                        scope.showPTZControlPreset = true;
+                        //scope.showPTZControlPreset = true;
+                        scope.showPTZControlPresetText = true;
                         scope.showPTZControlHome = true;
-                        scope.ptzControlClass = 'w310';
+                        scope.zoomPresetClass = 'zoompreset';
+                        scope.ptzControlClass = 'ptz-ui-width';
                         if(ptzinfo.disablePosition == true){
                             scope.disablePosition = true;
                         } else {
                             scope.disablePosition = false;
                         }
                     }else if(ptzinfo.type==='AT'){
+                        scope.ptzControlClass = 'w610';
+                        scope.zoomPresetClass = 'at-box';
                         scope.showPTZControlAT = true;
                         $("#ptz-control_at-selectable").selectable({
                             selected: function(event, ui) {

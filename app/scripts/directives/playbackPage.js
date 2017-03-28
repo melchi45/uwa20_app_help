@@ -294,6 +294,7 @@ kindFramework
           * If there is no any recording data, then disabled backup icon
           */
           $rootScope.$saveOn('app/scripts/directives/timeline.js::timelineDataCount', function(event, data) {
+            if( scope.disableButton === true ) return;
             if( data > 0 ) {
               scope.disableBackupIcon = false;
               /*Non plugin doesn't support backup*/
