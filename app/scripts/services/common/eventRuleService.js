@@ -44,9 +44,20 @@ kindFramework.factory('eventRuleService', function() {
             }
             return true;
         },
-        checkEventRuleValidation: function() {console.info(eventRuleDataObj);
-            if(!angular.equals(eventRuleDataObj.pageData, eventRuleDataObj.scopeData)) {
-                return true;
+        checkEventRuleValidation: function() {
+            var pScheduleIds = eventRuleDataObj.pageData.ScheduleIds;
+            var sScheduleIds = eventRuleDataObj.scopeData.ScheduleIds;
+
+            var isSame = (pScheduleIds.length == sScheduleIds.length) && pScheduleIds.every(function(element, index) {
+                return element === sScheduleIds[index]; 
+            });
+
+            if(isSame) {
+                if(!angular.equals(eventRuleDataObj.pageData, eventRuleDataObj.scopeData)) {
+                    return false;
+                } else {
+                    return true;
+                }
             } else {
                 return false;
             }
