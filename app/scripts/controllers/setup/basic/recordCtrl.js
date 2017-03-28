@@ -64,11 +64,12 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
             $rootScope.$emit('resetScheduleData', true);
+            
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
 
-            $rootScope.$emit('resetScheduleData', true);
+            
         }, function(errorData) {
             console.error(errorData);
         }, '', true);
@@ -454,8 +455,10 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
 
                 copyData.sort();
                 copyScope.sort();
+                console.info(copyData, copyScope);
 
                 if(!angular.equals(copyData, copyScope)) okay = false;
+                // if(okay === false) $rootScope.$emit('resetScheduleData', true);
 
                 // $rootScope.$emit('recordPageReloaded', $scope.RecordSchedule.Activate);
                 
