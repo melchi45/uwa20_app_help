@@ -20,14 +20,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.EventSource = "Storage";
     $scope.StorageInfo = {};
 
-    SunapiClient.get("/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view", '', function(response){
-        var deviceName = response.data.Model;
-        if( deviceName.indexOf("XNV") !== -1 || deviceName.indexOf("XNO") !== -1 || mAttr.MaxChannel > 1 ) {
-            $scope.isMultiChannel = true;
-        }else {
-            $scope.isMultiChannel = false;
-        }
-    })
+    
 
     // if(mAttr.MaxChannel > 1) {
     //     $scope.isMultiChannel = true;
@@ -219,6 +212,8 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         defer.resolve("success");
         return defer.promise;
     }
+
+
 
     function setRecordGeneralInfo(index, queue) {
         var setData = {};
@@ -539,6 +534,8 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             }
         }
 
+
+
         if ($scope.Storageinfo.Storages[$scope.SelectedStorage].Type === 'NAS' && $scope.Storageinfo.Storages[$scope.SelectedStorage].Enable === 'On') {
             if (checkNas($scope.SelectedStorage) === false) {
                 retVal = false;
@@ -551,11 +548,16 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         } else {
             otherstorage = 0;
         }
-        if ($scope.Storageinfo.Storages[otherstorage].Type === 'NAS' && $scope.Storageinfo.Storages[otherstorage].Enable === 'On') {
-            if (checkNas(otherstorage) === false) {
-                retVal = false;
+
+        if($scope.Storageinfo.Storages.length > 1) {
+            if ($scope.Storageinfo.Storages[otherstorage].Type === 'NAS' && $scope.Storageinfo.Storages[otherstorage].Enable === 'On') {
+                if (checkNas(otherstorage) === false) {
+                    retVal = false;
+                }
             }
         }
+            
+
         if(!eventRuleService.checkSchedulerValidation()) {
             COMMONUtils.ShowError('lang_msg_checkthetable');
             retVal = false;
@@ -1023,7 +1025,18 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                 wait();
             }, 500);
         } else {
-            getAttributes().finally(function() {
+            getAttributes().then(function() {
+                
+                SunapiClient.get("/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view", '', function(response){
+                    var deviceName = response.data.Model;
+                    if( deviceName.indexOf("XNV") !== -1 || deviceName.indexOf("XNO") !== -1 || mAttr.MaxChannel > 1 ) {
+                        $scope.isMultiChannel = true;
+                    }else {
+                        $scope.isMultiChannel = false;
+                    }
+                })
+
+            }).finally(function() {
                 view();
             });
         }

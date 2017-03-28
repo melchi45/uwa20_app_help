@@ -52,6 +52,12 @@ kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal,
         $scope.$emit('pageLoaded', true);
     }
 
+    $scope.$on('setEventRuleCompleted', function(event, data) {
+        if(data === true) {
+            view();
+        }
+    });
+
     function set() {
         if (validatePage()) {
             // if (!angular.equals(pageData.EventRule, $scope.EventRule)) {
@@ -67,7 +73,7 @@ kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal,
                 });
                 modalInstance.result.then(function() {
                     $scope.$emit('applied', true);
-                    view();
+                    //view();
                 }, function() {});
             // }
         }
