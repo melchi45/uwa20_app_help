@@ -1078,7 +1078,9 @@ kindFramework.directive('channelPlayer',
                         }
                         else
                         {
-                            //?
+                            stopStreaming(elem);
+                            elem.empty();
+                            createNoSupportPlaybackInPlugInElement();
                         }
                         break;
                     case BrowserService.BROWSER_TYPES.SAFARI:
@@ -1113,7 +1115,9 @@ kindFramework.directive('channelPlayer',
                         }
                         else
                         {
-                            //?
+                            stopStreaming(elem);
+                            elem.empty();
+                            createNoSupportPlaybackInPlugInElement();
                         }
                         break;
                     case BrowserService.BROWSER_TYPES.SAFARI:

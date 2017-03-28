@@ -5,6 +5,9 @@
     <div><h3>{{'lang_defaultProfile' | translate}}</h3></div>
     <div class="wn5-setup-table-responsive">
       <table class="table table-bordered wn5-setup-table">
+        <colgroup>
+          <col width="50px">
+        </colgroup>
         <thead>
           <tr>
             <th style="text-align:center">&nbsp;</th>
@@ -17,14 +20,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="i in [1,2,3,4]">
-            <td style="text-align:center">CH {{i}}</td>
-            <td style="text-align:center">xx</td>
-            <td style="text-align:center">xx</td>
-            <td style="text-align:center">xx</td>
-            <td style="text-align:center">xx</td>
-            <td style="text-align:center">xx</td>
-            <td style="text-align:center">xx</td>
+          <tr ng-repeat="item in infoTableData">
+            <td style="text-align:center">CH {{item.channel}}</td>
+            <td style="text-align:center" ng-repeat="keyName in defaultProfileOrder">{{item.profiles[0][keyName]}}</td>
           </tr>
         </tbody>
       </table>

@@ -198,12 +198,21 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
 
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-        $rootScope.$emit('changeLoadingBar', true);
-
-        $scope.channelSelectionSection.setCurrentChannel(index);
-
-        view();
-
+        if(checkChangedData()){
+            COMMONUtils
+                .confirmChangeingChannel()
+                .then(function(){
+                    if(validatePage() === true){
+                        setChangedData().then(function(){
+                            changeChannel(index);
+                        });
+                    }
+                }, function(){
+                    console.log("canceled");
+                });    
+        }else{
+            changeChannel(index);
+        }
     }, $scope);
 
 
@@ -473,6 +482,53 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         }
         return true;
     }
+
+
+
+
+    function changeChannel(index){
+        $rootScope.$emit("channelSelector:changeChannel", index);
+        $rootScope.$emit('changeLoadingBar', true);
+        $scope.channelSelectionSection.setCurrentChannel(index);
+        view();
+    }
+
+    function checkChangedData(){
+        return !angular.equals(pageData.FD, $scope.FD) || eventRuleService.checkEventRuleValidation();
+    }
+
+    function setChangedData() {
+        var deferred = $q.defer();
+        var queue = [];
+
+        if (!angular.equals(pageData.FD, $scope.FD)) {
+            setFaceDetection(queue);
+        }
+
+        if(queue.length > 0){
+            SunapiClient.sequence(queue, function(){
+                $scope.$emit('applied', true);
+                $timeout(function(){
+                    view();
+                    deferred.resolve(true);
+                });
+            }, function(errorData){
+                console.error(errorData);
+                deferred.reject(errorData);
+            });
+        } else {
+            $scope.$emit('applied', true);
+            $timeout(function(){
+                view();
+                deferred.resolve(true);
+            });
+        }
+
+        return deferred.promise;
+    }
+
+
+
 
     function view(data)
     {

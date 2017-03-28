@@ -1628,10 +1628,12 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 					//변경된좌표 체크
 					if(LineInformation.validateAxis(changedX2, changedY2) === false){
-						// console.log("Return:", changedX2, changedY2);
-						// return;
-						changedX2 = maxSize.width;
-						changedY2 = maxSize.height;
+						if(changedX1 === 0 & changedY1 === 0){
+							changedX2 = maxSize.width;
+							changedY2 = maxSize.height;
+						}else{
+							return;	
+						}
 					}
 
 					//Min, Max Validation

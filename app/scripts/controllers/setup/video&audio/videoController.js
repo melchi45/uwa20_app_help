@@ -20,6 +20,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     var doNotMoveFunction = false;
 
     $scope.isMultiChannel = false;
+    $scope.targetChannel = 0;
     $scope.channelSelectionSection = (function(){
         var currentChannel = 0;
 
@@ -300,7 +301,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 $scope.PrivacyMask = response.data.PrivacyMask;
                 pageData.PrivacyMask = angular.copy($scope.PrivacyMask);
 
-                if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && $scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined && $scope.PrivacyMask[$scope.SelectedChannel].Enable){
+                if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && $scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined /*&& $scope.PrivacyMask[$scope.SelectedChannel].Enable*/){
                     for(var i = 0; i < $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++){
                         if($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable == true){
                             $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "[ZOOM]";
@@ -534,18 +535,18 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         }
     });
 
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-        currentChannel = index;
+    // $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+    //     currentChannel = index;
 
-        $timeout(flipView);
-        $timeout(videoOutputView);
-        $timeout(privacyAreaView);
+    //     $timeout(flipView);
+    //     $timeout(videoOutputView);
+    //     $timeout(privacyAreaView);
 
-        $timeout(flipSet);
+    //     $timeout(flipSet);
 
         
 
-    }, $scope);
+    // }, $scope);
 
     $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
         $uibModal.open({
@@ -781,6 +782,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 showVideo();
                 $("#videosetuppage").show();
                 $rootScope.$emit('changeLoadingBar', false);
+                $rootScope.$emit("channelSelector:changeChannel", $scope.targetChannel);
+                $scope.channelSelectionSection.setCurrentChannel($scope.targetChannel);
             },
             function(errorData){
                 console.log(errorData);
@@ -901,6 +904,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         });
                         modalInstance.result.then(COMMONUtils.onLogout, COMMONUtils.onLogout);
                     }
+                    $scope.channelSelectionSection.setCurrentChannel($scope.targetChannel);
+                    view();
                 },
                 function(errorData){
                 }
@@ -1089,9 +1094,81 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     }
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
-        $rootScope.$emit('changeLoadingBar', true);
-        $scope.channelSelectionSection.setCurrentChannel(data);
-        view();
+        var tMessage = null;
+        var rotateChanged = false;
+        var flipChanged = false;
+        for (var i = 0 ; i < pageData.Flip.length && i < $scope.Flip.length; i++) {
+            if (pageData.Flip[i].Rotate !== $scope.Flip[i].Rotate) {
+                rotateChanged = true;
+            }
+            if (pageData.Flip[i].VerticalFlipEnable !== $scope.Flip[i].VerticalFlipEnable) {
+                flipChanged = true;
+            }
+            if (pageData.Flip[i].HorizontalFlipEnable !== $scope.Flip[i].HorizontalFlipEnable) {
+                flipChanged = true;
+            }
+        }
+
+        if(rotateChanged || 
+            flipChanged || 
+            !angular.equals(pageData.Flip, $scope.Flip) ||
+            !angular.equals(pageData.VideoOutputs, $scope.VideoOutputs) ||
+            !angular.equals(pageData.PrivacyMask, $scope.PrivacyMask) ||
+            ($scope.PTZModel === true && !angular.equals(pageData.PTZSettings, $scope.PTZSettings)))
+            {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'sm',
+                resolve: {
+                    Message: function() {
+                        return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
+                    }
+                }
+            });
+            modalInstance.result.then(function() {
+                if(flipChanged === true && rotateChanged === false) {
+                    tMessage = $translate.instant('lang_msg_initialized_video_rotation_changed').replace('[%1]', $translate.instant('lang_menu_iva')).replace('%1', $translate.instant('lang_filpMirror'));
+                } else if(flipChanged === true && rotateChanged === true) {
+                    tMessage = $translate.instant('lang_msg_initialized_video_rotation_changed').replace('[%1]', $translate.instant('lang_menu_iva') + ', ' + $translate.instant('lang_faceDetection')).replace('%1', $translate.instant('lang_videosrc'));
+                } else if(flipChanged === false && rotateChanged === true) {
+                    tMessage = $translate.instant('lang_msg_initialized_video_rotation_changed').replace('[%1]', $translate.instant('lang_menu_iva') + ', ' + $translate.instant('lang_faceDetection')).replace('%1', $translate.instant('lang_hallwayView'));
+                }
+                if(tMessage !== null) {
+                    var modalInstance = $uibModal.open({
+                        templateUrl: 'views/setup/common/errorMessage.html',
+                        controller: 'errorMessageCtrl',
+                        resolve: {
+                            Message: function () {
+                                return tMessage;
+                            },
+                            Header: function () {
+                                return 'lang_Confirm';
+                            }
+                        }
+                    });
+                    modalInstance.result.then(function() {
+                        $rootScope.$emit('changeLoadingBar', true);
+                        $scope.targetChannel = data;
+                        saveSettings();
+                    },
+                    function() {
+                    });
+                } else {
+                    $rootScope.$emit('changeLoadingBar', true);
+                    $scope.targetChannel = data;
+                    saveSettings();
+                }
+            },
+            function() {
+            });
+        } else {
+            $rootScope.$emit('changeLoadingBar', true);
+            $scope.targetChannel = data;
+            $scope.channelSelectionSection.setCurrentChannel(data);
+            $rootScope.$emit("channelSelector:changeChannel", data);
+            view();
+        }
     }, $scope);
 
     (function wait() {

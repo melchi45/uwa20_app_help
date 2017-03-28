@@ -4,6 +4,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
     var pageData = {};
     var BrowserDetect = COMMONUtils.getBrowserDetect();
 
+    $scope.targetChannel = 0;
     $scope.channelSelectionSection = (function(){
         var currentChannel = 0;
 
@@ -524,6 +525,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
         sunapiQueueRequest(queue, function(){
             pageData.EventRules = angular.copy($scope.EventRules); 
+            view();
         });
     }
 
@@ -625,6 +627,9 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         sunapiQueueRequest(queue, function(){
             pageData.CommonEventRules = angular.copy($scope.CommonEventRules);
             pageData.ChannelEventRules = angular.copy($scope.ChannelEventRules);
+            $scope.channelSelectionSection.setCurrentChannel($scope.targetChannel);
+            $rootScope.$emit("channelSelector:changeChannel", $scope.targetChannel);
+            view();
         });
     }
 
@@ -759,9 +764,32 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
     }, $scope);
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
-        $scope.channelSelectionSection.setCurrentChannel(data);
-        $rootScope.$emit('changeLoadingBar', true);
-        view()
+        if (!angular.equals(pageData.CommonEventRules, $scope.CommonEventRules) ||
+            !angular.equals(pageData.ChannelEventRules, $scope.ChannelEventRules)) {
+                var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'sm',
+                resolve: {
+                    Message: function() {
+                        return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
+                    }
+                }
+            });
+            modalInstance.result.then(function() {
+                $rootScope.$emit('changeLoadingBar', true);
+                $scope.targetChannel = data;
+                setEventActions();
+            },
+            function() {
+            });
+        } else {
+            $rootScope.$emit('changeLoadingBar', true);
+            $scope.targetChannel = data;
+            $scope.channelSelectionSection.setCurrentChannel(data);
+            $rootScope.$emit("channelSelector:changeChannel", data);
+            view();
+        }
     }, $scope);
 
     $scope.submit = set;

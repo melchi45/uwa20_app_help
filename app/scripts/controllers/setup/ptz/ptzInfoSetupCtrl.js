@@ -437,10 +437,10 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     {
         var groupId = parseInt($scope.GroupOptions[$scope.Group.SelectedIndex]);
 
-        if ($scope.GroupsSet.indexOf(groupId) !== -1)
-        {
+        //if ($scope.GroupsSet.indexOf(groupId) !== -1)
+        //{
             controlGroup(Option, groupId);
-        }
+        //}
     };
 
     $scope.startStopTour = function (Option)
