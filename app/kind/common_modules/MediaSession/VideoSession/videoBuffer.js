@@ -21,13 +21,13 @@ var videoBufferNode = (function () {
 
 function VideoBufferList() {
   var MAX_LENGTH,
-      BUFFERING = 180,
+      BUFFERING = 240,
       bufferFullCallback;
 
   function Constructor() {
       BufferList.call(this);
-      MAX_LENGTH = 240;
-      BUFFERING = 180;
+      MAX_LENGTH = 360;
+      BUFFERING = 240;
       bufferFullCallback = null;
       frameTimestamp = null;
   }
@@ -69,15 +69,15 @@ function VideoBufferList() {
     },
     setMaxLength: function (length) {
       MAX_LENGTH = length;
-      if(MAX_LENGTH > 240)
-        MAX_LENGTH = 240;
+      if(MAX_LENGTH > 360)
+        MAX_LENGTH = 360;
       else if(MAX_LENGTH < 30)
         MAX_LENGTH = 30;
     },
     setBUFFERING: function (interval) {
       BUFFERING = interval;
-      if(BUFFERING > 180)
-        BUFFERING = 180;
+      if(BUFFERING > 240)
+        BUFFERING = 240;
       else if(BUFFERING < 20)
         BUFFERING = 20;
     },
