@@ -729,13 +729,13 @@ kindFramework.controller('QMSetupCtrl',
 
         	$scope.realtimeSection.coordinates[modifiedIndex].points = modifiedPoints;
 
-        	var max = getMax(modifiedPoints);
-        	$scope.queueLevelSection.changeValue( 'max', max );
-			$scope.queueLevelSection.reload();
+        	// var max = getMax(modifiedPoints);
+        	// $scope.queueLevelSection.changeValue( 'max', max );
+			// $scope.queueLevelSection.reload();
         }else if($scope.currentTapStatus[1] === true){
         	// $scope.calibrationSection.coordinates = modifiedPoints;
 			updateCoordinatesForSunapi(modifiedPoints);
-			setAutoMaxPeople();
+			// setAutoMaxPeople();
         }
     }, $scope);
 
@@ -772,10 +772,12 @@ kindFramework.controller('QMSetupCtrl',
 		setData.Channel = channel;
 		setData.Enable = data.Enable;
 		setData.CalibrationMode = data.CalibrationMode;
-		setData.ObjectSizeCoordinates = [
-			$scope.calibrationSection.coordinates[0].join(),
-			$scope.calibrationSection.coordinates[2].join()
-		].join();
+		try{
+			setData.ObjectSizeCoordinates = [
+				$scope.calibrationSection.coordinates[0].join(),
+				$scope.calibrationSection.coordinates[2].join()
+			].join();
+		}catch(e){}
 
 		for(var i = 1; i <= data.Queues.length; i++){
 			var j = i - 1;
@@ -787,9 +789,10 @@ kindFramework.controller('QMSetupCtrl',
 			setData['Queue.' + i + '.Level.High.Count'] = queue.QueueLevels[0].Count;
 			setData['Queue.' + i + '.Level.High.Threshold'] = queue.QueueLevels[0].Threshold;
 			setData['Queue.' + i + '.Level.Medium.AlarmEnable'] = queue.QueueLevels[1].AlarmEnable;
-			// setData['Queue.' + i + '.Level.Medium.Count'] = queue.QueueLevels[1].Count;
 			setData['Queue.' + i + '.Level.Medium.Threshold'] = queue.QueueLevels[1].Threshold;
-			setData['Queue.' + i + '.Coordinates'] = $scope.realtimeSection.coordinates[j].points.join();
+			try{
+				setData['Queue.' + i + '.Coordinates'] = $scope.realtimeSection.coordinates[j].points.join();
+			}catch(e){}
 		}
 
 		return qmModel.setData(
