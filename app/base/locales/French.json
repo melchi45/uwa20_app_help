@@ -192,6 +192,8 @@
     "lang_msg_applying": "Application des régl cam en cours... Réessayez ds un moment.",
     "lang_goHomePosition": "Retourner à la position initiale",
     "lang_setHomePosition": "Régler la position initiale",
+    "lang_goHome": "Retourner à la position initiale",
+    "lang_setHome": "Régler la position initiale",
     "lang_presetSetup": "Configuration préréglée",
     "lang_number": "Nombre",
     "lang_num": "No.",

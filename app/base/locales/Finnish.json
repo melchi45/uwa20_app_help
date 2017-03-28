@@ -192,6 +192,8 @@
     "lang_msg_applying": "Kamera-asetuksia otetaan käyttöön… Yritä uudelleen muutaman minuutin kuluttua.",
     "lang_goHomePosition": "Siirry perusasentoon",
     "lang_setHomePosition": "Aseta perusasento",
+    "lang_goHome": "Siirry perusasentoon",
+    "lang_setHome": "Aseta perusasento",
     "lang_presetSetup": "Esiasetuksen asetus",
     "lang_number": "Numero",
     "lang_num": "Nro",
