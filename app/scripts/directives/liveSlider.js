@@ -73,9 +73,8 @@ kindFramework
 
 
                     function updateSliderModel(_value) {
-                        $timeout(function () {
+                        scope.$apply(function(){
                             scope.liveSliderModel[scope.modelName] = _value;
-                            scope.$apply();
                         });
                     }
 
