@@ -20,16 +20,6 @@ kindFramework.directive('liveIconList', function(
 		link: function(scope, element, attrs){
     		var mAttr = Attributes.get();
 
-        if(mAttr.MaxAudioInput !== undefined)
-        {
-            scope.MaxAudioInput = mAttr.MaxAudioInput;
-        }
-
-        if(mAttr.MaxAudioOutput !== undefined)
-        {
-            scope.MaxAudioOutput = mAttr.MaxAudioOutput;
-        }
-
     		scope.disableAlarmOutput = function() {
     			if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE &&
     				UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE ) {
@@ -312,6 +302,15 @@ kindFramework.directive('liveIconList', function(
 				scope.wisenetCameraFuntions2.ptz.show = (mAttr.ZoomOnlyModel || mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
         if(mAttr.MaxChannel > 1) {
             scope.isMultiChannel = true;
+        }
+        if(mAttr.MaxAudioInput !== undefined)
+        {
+            scope.MaxAudioInput = mAttr.MaxAudioInput;
+        }
+
+        if(mAttr.MaxAudioOutput !== undefined)
+        {
+            scope.MaxAudioOutput = mAttr.MaxAudioOutput;
         }				
 			}
 
