@@ -80,9 +80,20 @@
     }
 }
 
-.channellist-channel-selector {
+#channellist-channel-selector {
     float: none;
     overflow: hidden;
     width: 163px;
     margin: 15px auto 0;
+
+    .active {
+        border-color: @channel-selector-btn-border-color;
+        color: @channel-selector-btn-text-color;
+        background-color: @channel-selector-btn-background-color;
+    }
+
+    button:hover {
+        color: @channel-selector-btn-active-text-color;
+        background-color: @channel-selector-btn-border-color;
+    }
 }
