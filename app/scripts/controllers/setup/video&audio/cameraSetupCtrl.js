@@ -6596,6 +6596,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
         $scope.channelSelectionSection.setCurrentChannel(data);
         $rootScope.$emit('changeLoadingBar', true);
+        $rootScope.$emit("channelSelector:changeChannel", data);
         view();
     }, $scope);
 

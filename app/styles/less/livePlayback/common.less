@@ -1725,9 +1725,6 @@ live-playback common {
 }
 
 .cm-channel-selector {
-    @btn-active-text-color: #fff;
-    @btn-border-color: #4c4c4c;
-    @btn-active-color: #000;
 
     float: left;
     height: 51px;
@@ -1761,22 +1758,22 @@ live-playback common {
 
             > button {
                 width: 28px;
-                border: solid 2px @btn-border-color;
-                color: #666;
+                border: solid 2px @channel-selector-btn-border-color;
+                color: @channel-selector-btn-text-color;
                 line-height: 17px;
                 font-size: 14px;
                 padding-left: 1px; /* 텍스트가 중앙으로 정확히 맞지 않아 추가 */
 
                 &:hover {
-                    color: @btn-active-text-color;
-                    background-color: @btn-border-color;
+                    color: @channel-selector-btn-active-text-color;
+                    background-color: @channel-selector-btn-border-color;
                 }
 
                 &:active,
                 &.active {
-                    color: @btn-active-text-color;
-                    background-color: @btn-active-color;
-                    border-color: @btn-active-color;
+                    color: @channel-selector-btn-active-text-color;
+                    background-color: @channel-selector-btn-active-color;
+                    border-color: @channel-selector-btn-active-color;
                 }
             }
         }
@@ -1786,7 +1783,7 @@ live-playback common {
         width: 27px;
         float: left;
         margin-left: 4px;
-        border: solid 1px @btn-border-color;
+        border: solid 1px @channel-selector-btn-border-color;
         border-bottom-width: 2px;
         border-right-width: 2px;
         padding: 0;
@@ -1796,13 +1793,18 @@ live-playback common {
             float: left;
             width: 12px;
             height: 9px;
-            border-left: solid 1px @btn-border-color;
-            border-top: solid 1px @btn-border-color;
+            background-color: @channel-selector-btn-background-color;
+            border-left: solid 1px @channel-selector-btn-border-color;
+            border-top: solid 1px @channel-selector-btn-border-color;
+            border-right: 0;
+            border-bottom: 0;
         }
 
         &:hover,
         &:active {
-            background-color: #fff;
+            > div {
+                background-color: #ccc;
+            }
         }
     }
 }

@@ -88,7 +88,6 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                             scope.globalNavigationBar.isPlayback = false;
                             $rootScope.$emit('enablePlayback', false);
                             $state.go('uni.channel');
-                            workerManager.initVideo(false);
                         }
                     } else {
                         $rootScope.cameraSetupToLive = false;
@@ -99,7 +98,6 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                         scope.globalNavigationBar.isPlayback = false;
                         $rootScope.$emit('enablePlayback', false);
                         $state.go('uni.channel');
-                        workerManager.initVideo(false);
                     }
                 },
                 goToPlayback: function(){
@@ -115,7 +113,6 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                             $rootScope.cameraSetupToLive = false;
 
                             scope.pageInit();
-                            workerManager.setLiveMode("canvas");
                             scope.globalNavigationBar.isPlayback = true;
                             scope.globalNavigationBar.isSetup = false;
                             scope.globalNavigationBar.isLive = false;
@@ -126,7 +123,6 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                         $rootScope.cameraSetupToLive = false;
 
                         scope.pageInit();
-                        workerManager.setLiveMode("canvas");
                         scope.globalNavigationBar.isPlayback = true;
                         scope.globalNavigationBar.isSetup = false;
                         scope.globalNavigationBar.isLive = false;

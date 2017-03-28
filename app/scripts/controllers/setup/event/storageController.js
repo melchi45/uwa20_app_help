@@ -20,6 +20,21 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.EventSource = "Storage";
     $scope.StorageInfo = {};
 
+    SunapiClient.get("/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view", '', function(response){
+        var deviceName = response.data.Model;
+        if( deviceName.indexOf("XNV") !== -1 || deviceName.indexOf("XNO") !== -1 || mAttr.MaxChannel > 1 ) {
+            $scope.isMultiChannel = true;
+        }else {
+            $scope.isMultiChannel = false;
+        }
+    })
+
+    // if(mAttr.MaxChannel > 1) {
+    //     $scope.isMultiChannel = true;
+    // } else {
+    //     $scope.isMultiChannel = false;
+    // }
+
 
     /*
     ID : 숫자,알파벳,특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능.
@@ -638,7 +653,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             }
 
             setStorageStatus();
-            pageData.Storageinfo = $scope.Storageinfo;
+            pageData.Storageinfo = angular.copy($scope.Storageinfo);
             startMonitoringStatus();
         }, function(errorData) {
             console.log(errorData);
