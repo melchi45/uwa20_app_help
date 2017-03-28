@@ -60,13 +60,15 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     function getRecordingSchedules() {
         var getData = {};
         if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+        // console.info($scope.RecordSchedule.ScheduleIds, pageData.RecordSchedule.ScheduleIds);
         
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
             $rootScope.$emit('resetScheduleData', true);
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
-
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
+
+            $rootScope.$emit('resetScheduleData', true);
         }, function(errorData) {
             console.error(errorData);
         }, '', true);
@@ -142,7 +144,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     function setRecordSchedule(queue) {
         if (!angular.equals(pageData.RecordSchedule, $scope.RecordSchedule)) {
             var setData = {};
-            if($scope.MaxChannel > 1) setData.Channel = $scope.Channel;
+            if($scope.MaxChannel > 1) setData.Channel = angular.copy($scope.Channel);
             setData.Activate = $scope.RecordSchedule.Activate;
 
             if ($scope.RecordSchedule.Activate === 'Scheduled')
@@ -277,7 +279,6 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
                 reqData: setData
             });
         }
-        pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
     }
 
     function RefreshPage() {
@@ -302,7 +303,6 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         promises.push(getRecordGeneralDetails);
         promises.push(getProfileDetails);
         promises.push(getRecordProfile);
-
 
         $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
@@ -357,7 +357,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         return deferred.promise;
     }
 
-    function saveRecord() {
+    function saveRecord(newChannel) {
         var promises = [],
             queue = [],
             showMsg = true,
@@ -365,15 +365,27 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
             promise;
 
         function callSequence(){
+            $scope.pageLoaded = false;
+
             SunapiClient.sequence(queue, function(){
                 if (needRefresh) {
+                    console.info('refresh');
                     window.setTimeout(RefreshPage, 1000);
+                } else {
+                    $rootScope.$emit('changeLoadingBar', true);
+
+                    $timeout(function () {
+                        if(newChannel !== false) {
+                            $rootScope.$emit("channelSelector:changeChannel", newChannel);
+                            $scope.Channel = newChannel;
+                        }
+                        view();
+                    }, 1000);
                 }
             }, function(errorData) {});
         }
     
         if (!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) {
-            
             if ($scope.RecordGeneralInfo.RecordedVideoFileType !== pageData.RecordGeneralInfo.RecordedVideoFileType) {
                 showMsg = false;
                 $scope.DisplayMsg = $translate.instant('lang_msg_storage_format');
@@ -400,6 +412,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
                     function(errorData){}
                 );   
         }else{
+            console.info('is no modify');
             callSequence();            
         }
     }
@@ -410,10 +423,11 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     }
 
     function set() {
-        var modalInstance;
         if (validatePage()) {
             COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
-                COMMONUtils.ApplyConfirmation(saveRecord);
+                COMMONUtils.ApplyConfirmation(function () {
+                    saveRecord(false);
+                });
             });
         }
     }
@@ -431,26 +445,49 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
     });
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
-
-        // console.info(angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo));
-        // console.info(angular.equals(pageData.RecordSchedule, $scope.RecordSchedule));
-        // console.info($scope.Channel);
-
         var okay = true;
-        if(pageData.RecordGeneralInfo.Activate == $scope.RecordGeneralInfo.Activate) {
-            var copyData = angular.copy(pageData.RecordSchedule.ScheduleIds),
-                copyScope = angular.copy($scope.RecordSchedule.ScheduleIds);
-            
-            copyData.sort();
-            var sor = copyScope.sort();
 
-            if(!angular.equals(copyData, copyScope)) okay = false;
+        if(pageData.RecordSchedule.Activate == $scope.RecordSchedule.Activate) {
+            if(pageData.RecordSchedule.Activate != 'Always') {
+                var copyData = angular.copy(pageData.RecordSchedule.ScheduleIds),
+                    copyScope = angular.copy($scope.RecordSchedule.ScheduleIds);
 
+                copyData.sort();
+                copyScope.sort();
+
+                if(!angular.equals(copyData, copyScope)) okay = false;
+
+                // $rootScope.$emit('recordPageReloaded', $scope.RecordSchedule.Activate);
+                
+                console.info(copyData, copyScope);
+                console.info('record schedule okay', okay);
+            }
         } else okay = false;
 
-        // $rootScope.$emit('changeLoadingBar', true);
+        console.info('record activate okay', okay);
         
-        view();
+
+        if(!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) okay = false;
+
+        if(okay) {
+            $scope.Channel = data;
+            $rootScope.$emit("channelSelector:changeChannel", data);
+            $rootScope.$emit('changeLoadingBar', true);
+
+            view();
+        } else {
+            COMMONUtils
+                .confirmChangeingChannel()
+                .then(function () {
+                    if (validatePage()) {
+                        COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
+                            COMMONUtils.ApplyConfirmation(function () {
+                                saveRecord(data);
+                            });
+                        });
+                    }
+                });
+        }
     }, $scope);
 
     (function wait() {
