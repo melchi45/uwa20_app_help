@@ -218,6 +218,7 @@ kindFramework
       playerInfo.media.type = 'playback';
       playerInfo.media.requestInfo.cmd = 'seek';
       playerInfo.media.requestInfo.url = "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
+      playerInfo.media.requestInfo.dummy =( playerInfo.media.requestInfo.dummy === undefined ? 0 : playerInfo.media.requestInfo.dummy+1 );
       console.log("playback seek url : "+playerInfo.media.requestInfo.url);
       return playerInfo;
     };
