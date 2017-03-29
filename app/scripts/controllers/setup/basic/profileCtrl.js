@@ -113,7 +113,19 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         view();
     }
 
-    function getInfoTableData() {
+    function getProfilePolicyTableData() {
+        var getData = {};
+
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', getData,
+            function (response) {
+                $scope.videoProfilePoliciesArray = response.data.VideoProfilePolicies;
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    }
+
+    function getProfileTableData() {
         $scope.infoTableData = [];
         var Profiles,
             profCnt = 0;
@@ -129,20 +141,22 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                     data.profiles = [];
                     var profiles = angular.copy(videoProfiles[i].Profiles);
                     for(var k = 0; k < profiles.length; k++) {
-                        var subData = {};
-                        var profile = profiles[k];
-                        subData.name = profile.Name;
-                        subData.resolution = profile.Resolution;
-                        subData.frameRate = profile.FrameRate;
-                        subData.bitrate = profile.Bitrate;
-                        subData.codec = profile.EncodingType;
-                        subData.GOVLength = '';
-                        if(subData.codec === "H264") {
-                            subData.GOVLength = profile.H264.GOVLength;
-                        } else if(subData.codec === "H265") {
-                            subData.GOVLength = profile.H265.GOVLength;
+                        if(profiles[k].Profile === $scope.videoProfilePoliciesArray[i].DefaultProfile) {
+                            var subData = {};
+                            var profile = profiles[k];
+                            subData.name = profile.Name;
+                            subData.resolution = profile.Resolution;
+                            subData.frameRate = profile.FrameRate;
+                            subData.bitrate = profile.Bitrate;
+                            subData.codec = profile.EncodingType;
+                            subData.GOVLength = '';
+                            if(subData.codec === "H264") {
+                                subData.GOVLength = profile.H264.GOVLength;
+                            } else if(subData.codec === "H265") {
+                                subData.GOVLength = profile.H265.GOVLength;
+                            }
+                            data.profiles.push(subData);
                         }
-                        data.profiles.push(subData);
                     }
                     $scope.infoTableData.push(data);
                 }
@@ -2799,7 +2813,8 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         }
 
         if($scope.isMultiChannel) {
-            promises.push(getInfoTableData);
+            promises.push(getProfilePolicyTableData);
+            promises.push(getProfileTableData);
         }
 
         $q.seqAll(promises).then(
