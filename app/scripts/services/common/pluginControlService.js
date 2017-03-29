@@ -131,7 +131,10 @@ kindFramework
 
     this.startAudioTalk = function(){
       if(pluginElement !== null && pluginElement !== undefined){
-        pluginElement.StartTalk('');
+        var checkMic = pluginElement.StartTalk('');
+        if(parseInt(checkMic,10) !== 1){
+          liveStatusCallback(504);    //Talk service unavailable
+        }
         // var vol = UniversialManagerService.getMicVol() * 20;
         // pluginElement.SetAudioTalkVolume(vol);
         console.log("pluginControlService::startAudioTalk() ===> Plugin Audio talk Started");
