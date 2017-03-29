@@ -632,7 +632,12 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
         $uibModal.open({
             templateUrl: 'views/setup/video&audio/modal/ModalVideoSetupInfo.html',
-            controller: 'ModalInstanceVideoSetupInfoCtrl'
+            controller: 'ModalInstanceVideoSetupInfoCtrl',
+            resolve: {
+                infoTableData: function(){
+                    return $scope.infoTableData;
+                }
+            }
         });
     }, $scope);
 
