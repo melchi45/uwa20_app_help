@@ -1027,14 +1027,26 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         } else {
             getAttributes().then(function() {
                 
-                SunapiClient.get("/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view", '', function(response){
-                    var deviceName = response.data.Model;
-                    if( deviceName.indexOf("XNV") !== -1 || deviceName.indexOf("XNO") !== -1 || mAttr.MaxChannel > 1 ) {
-                        $scope.isMultiChannel = true;
-                    }else {
-                        $scope.isMultiChannel = false;
-                    }
-                })
+                // SunapiClient.get("/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view", '', function(response){
+                //     var deviceName = response.data.Model;
+                //     if( deviceName.indexOf("XNV") !== -1 || deviceName.indexOf("XNO") !== -1 || mAttr.MaxChannel > 1 ) {
+                //         $scope.isMultiChannel = true;
+                //     }else {
+                //         $scope.isMultiChannel = false;
+                //     }
+                // })
+
+                if(mAttr.MaxChannel > 1){
+                    $scope.isMultiChannel = true;
+                }else{
+                    $scope.isMultiChannel = false;
+                }
+
+                if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){
+                    $scope.disbledRecord = true;
+                }else{
+                    $scope.disbledRecord = false;
+                }
 
             }).finally(function() {
                 view();

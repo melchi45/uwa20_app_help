@@ -6082,7 +6082,7 @@ rzslider .rz-bubble {
 }
 #setup-channel-selector .setup-channel-selector-btns .setup-channel-selector-info {
   margin-left: 16px;
-  width: 68px;
+  min-width: 68px;
   font-size: 14px;
   border: solid 1px #a5a5a5;
   color: #333;
@@ -7498,7 +7498,7 @@ img[id^="hm-results-image-"] {
     font-size: 18px;
   }
   #setup-channel-selector .setup-channel-selector-btns .setup-channel-selector-info {
-    width: 86px;
+    min-width: 86px;
     height: 45px;
     font-size: 18px;
   }
@@ -8924,6 +8924,7 @@ i.tui-ch-playback-stop {
   background: #fff;
   border: 1px solid #ddd;
   padding: 1em 1.4em;
+  min-width: 360px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #live-ptz-add-form > .form-group {
   margin-bottom: 10px;
@@ -9180,6 +9181,20 @@ i.tui-ch-playback-stop {
     max-height: none;
     height: 150px;
   }
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div {
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    text-align: center;
+    border: none;
+  }
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > * {
+    display: inline-table;
+    float: none;
+  }
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > button {
+    margin-top: 8px;
+  }
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .info-toggle {
     width: 100vw;
     position: absolute;
@@ -9349,6 +9364,16 @@ i.tui-ch-playback-stop {
   border-top: 1px solid #ccc;
   line-height: 50px;
 }
+.kind-responsive-live.land-scape #cm-bottom-menu #cm-icon-list #playback-channel-holder > div {
+  padding: 0 20px;
+  height: 26px;
+  border: none;
+  border-right: 1px solid #ccc;
+  margin-top: 12px;
+}
+.kind-responsive-live.land-scape #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > * {
+  margin-top: 2px;
+}
 .kind-responsive-live.land-scape #cm-bottom-menu #cm-icon-list .info-toggle {
   position: fixed;
   top: 50%;
@@ -9371,6 +9396,10 @@ i.tui-ch-playback-stop {
 .kind-responsive-live.land-scape #cm-bottom-menu #cm-icon-list .cm-live-controller li {
   line-height: 50px;
   top: 0;
+  margin: 0 5px;
+}
+.kind-responsive-live.land-scape #cm-bottom-menu #cm-icon-list #alarm {
+  margin: 0 10px;
 }
 .kind-responsive-live.land-scape #cm-bottom-menu #cm-menu-content {
   position: fixed;
@@ -10642,8 +10671,7 @@ i.tui-ch-playback-stop {
   padding-top: 100%;
 }
 .channellist-video-wrapper canvas,
-.channellist-video-wrapper video,
-.channellist-video-wrapper object {
+.channellist-video-wrapper video {
   position: absolute !important;
   top: 0;
   left: 0;

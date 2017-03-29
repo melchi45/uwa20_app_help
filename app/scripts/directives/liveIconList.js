@@ -300,18 +300,17 @@ kindFramework.directive('liveIconList', function(
 
 			function loadedAttr(){
 				scope.wisenetCameraFuntions2.ptz.show = (mAttr.ZoomOnlyModel || mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
-        if(mAttr.MaxChannel > 1) {
-            scope.isMultiChannel = true;
-        }
-        if(mAttr.MaxAudioInput !== undefined)
-        {
-            scope.MaxAudioInput = mAttr.MaxAudioInput;
-        }
-
-        if(mAttr.MaxAudioOutput !== undefined)
-        {
-            scope.MaxAudioOutput = mAttr.MaxAudioOutput;
-        }				
+				if(mAttr.MaxChannel > 1) {
+					scope.isMultiChannel = true;
+				}
+				if(mAttr.MaxAudioInput !== undefined)
+				{
+					scope.MaxAudioInput = mAttr.MaxAudioInput;
+				}
+				if(mAttr.MaxAudioOutput !== undefined)
+				{
+					scope.MaxAudioOutput = mAttr.MaxAudioOutput;
+				}
 			}
 
 			function wait(){

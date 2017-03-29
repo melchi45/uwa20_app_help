@@ -34,6 +34,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         }
     })();
 
+    $scope.infoTableData = [{},{},{},{}];
+
     $scope.getTranslatedOption = function (Option) {
         return COMMONUtils.getTranslatedOption(Option);
     };
@@ -43,6 +45,85 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     };
 
     var currentChannel = 0;
+
+    function getPrivacyInfoData() {
+        
+        var getData = {};
+
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=view', getData,
+            function (response) {
+                
+                var privacyMasks = response.data.PrivacyMask;
+
+                for(var i = 0; i < privacyMasks.length; i++) {
+
+                    var privacyMask = privacyMasks[i];
+
+                    if(privacyMask.Masks !== undefined && privacyMask.Masks.length > 0) {
+                        $scope.infoTableData[i].privacyMask = 'On';
+                    } else {
+                        $scope.infoTableData[i].privacyMask = 'Off';
+                    }
+                }
+            },
+            function (errorData) {
+                disValue = false;
+                console.log(errorData);                
+            },'',true);
+    }
+
+    function getFlipInfoData() {
+
+        var getData = {};
+
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
+            function (response) {
+                
+                var flips = response.data.Flip;
+
+                for(var i = 0; i < flips.length; i ++) {
+                    if(flips[i].VerticalFlipEnable) {
+                        $scope.infoTableData[i].flip = 'On';
+                    } else {
+                        $scope.infoTableData[i].flip = 'Off';
+                    }
+                    
+                    if(flips[i].HorizontalFlipEnable) {
+                        $scope.infoTableData[i].mirror = 'On';
+                    } else {
+                        $scope.infoTableData[i].mirror = 'Off';
+                    }
+                    
+                    $scope.infoTableData[i].hallwayView = flips[i].Rotate;
+                }
+            },
+            function (errorData) {
+                console.log(errorData);
+            },'',true);
+    }
+
+    function getVideoOutputInfoData() {
+
+        var getData = {};
+        
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videooutput&action=view', getData,
+            function (response) {
+                
+                var videoOutputs = response.data.VideoOutputs;
+
+                for(var i = 0; i < videoOutputs.length; i++) {
+                    if(videoOutputs[i].Enable) {
+                        $scope.infoTableData[i].videoOutput = videoOutputs[i].Type
+                    } else {
+                        $scope.infoTableData[i].videoOutput = 'Off';    
+                    }
+                }
+                
+            },
+            function (errorData) {
+                console.log(errorData);
+            },'',true);
+    }
 
     function getAttributes() {
         if(mAttr.MaxChannel > 1) {
@@ -551,7 +632,12 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
         $uibModal.open({
             templateUrl: 'views/setup/video&audio/modal/ModalVideoSetupInfo.html',
-            controller: 'ModalInstanceVideoSetupInfoCtrl'
+            controller: 'ModalInstanceVideoSetupInfoCtrl',
+            resolve: {
+                infoTableData: function(){
+                    return $scope.infoTableData;
+                }
+            }
         });
     }, $scope);
 
@@ -770,6 +856,12 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
         if ($scope.cameraPositionList != undefined) {
             functionlist.push(fisheyeSetupView);
+        }
+
+        if($scope.isMultiChannel) {
+            functionlist.push(getFlipInfoData);
+            functionlist.push(getPrivacyInfoData);
+            functionlist.push(getVideoOutputInfoData);
         }
 
         getDisValue();

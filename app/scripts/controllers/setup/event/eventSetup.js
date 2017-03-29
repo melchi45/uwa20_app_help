@@ -18,6 +18,52 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         }
     })();
 
+    function getInfoTableData() {
+        $scope.infoTableData = [];
+        var getData = {};
+        var dataArray;
+        var resultArray = [];
+
+        return SunapiClient.get('/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view', getData,
+            function (response) {
+                
+                var eventActionList = response.data.ComplexActions;
+
+                var data = {};
+
+                for (var i = 0, len = eventActionList.length; i < len; i++) {
+
+                    var result = {};
+
+                    result.eventType = eventActionList[i].EventType;
+
+                    result.data = [];
+
+                    var actions = eventActionList[i].Actions;
+                    
+                    if(actions[0].Channel === undefined) {
+                        continue;
+                    }
+
+                    dataArray = new Array(actions.length);
+
+                    for(var k = 0; k < actions.length; k++) {
+                        var action = actions[k];
+                        dataArray[k] = {};
+                        dataArray[k].channel = action.Channel;
+                        dataArray[k].eventActions = action.EventActions;
+                    }
+
+                    result.data.push(dataArray);
+
+                    resultArray.push(result);
+                }
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    }
+
     function convertEventTypeToEventSource(eventType) {
         switch(eventType) {
             case 'Timer':
@@ -712,7 +758,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
     function view() {
         getAttributes();
         if($scope.isMultiChannel && $scope.isEventActionSupported) {
-            $q.seqAll([getEventActions, cameraView]).then(function(result) {
+            $q.seqAll([getEventActions, cameraView, getInfoTableData]).then(function(result) {
                 initPresetSelectOptions();
                 $scope.pageLoaded = true;
                 $rootScope.$emit('changeLoadingBar', false);
