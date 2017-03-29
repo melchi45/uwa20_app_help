@@ -443,10 +443,10 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
 
                 copyData.sort();
                 copyScope.sort();
-                console.info(eventRuleService.checkRecordSchedulerValidation());
+                if(!eventRuleService.checkRecordSchedulerValidation()) okay = false;
                 // if(eventRuleService.checkRecordSchedulerValidation()) okay = false;
 
-                if(!angular.equals(copyData, copyScope)) okay = false;
+                // if(!angular.equals(copyData, copyScope)) okay = false;
                 // if(okay === false) $rootScope.$emit('resetScheduleData', true);
 
                 console.info(copyData, copyScope);
