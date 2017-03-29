@@ -534,8 +534,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             }
         }
 
-
-
         if ($scope.Storageinfo.Storages[$scope.SelectedStorage].Type === 'NAS' && $scope.Storageinfo.Storages[$scope.SelectedStorage].Enable === 'On') {
             if (checkNas($scope.SelectedStorage) === false) {
                 retVal = false;
@@ -556,12 +554,16 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                 }
             }
         }
+
+        if( !$scope.disabledRecord ) {
+            if(!eventRuleService.checkSchedulerValidation()) {
+                COMMONUtils.ShowError('lang_msg_checkthetable');
+                retVal = false;
+            }
+        }
+
             
 
-        if(!eventRuleService.checkSchedulerValidation()) {
-            COMMONUtils.ShowError('lang_msg_checkthetable');
-            retVal = false;
-        }
         return retVal;
     }
     $scope.GetFormatButtonStatus = function(index) {
@@ -667,10 +669,17 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             idx = 0;
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
             $scope.RecordSchedule = response.data.RecordSchedule;
+
             for (idx = 0; idx < $scope.RecordSchedule.length; idx = idx + 1) {
                 $scope.RecordSchedule[idx].ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule[idx].Schedule));
             }
+
+            // if( mAttr.MaxChannel > 1) {
+            //     $scope.RecordSchedule[0].Activate = "Always";
+            // }
+
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
+
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
@@ -691,6 +700,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         var getData = {};
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=storage&action=view', getData, function(response) {
             $scope.RecordStorageInfo = response.data;
+
             pageData.RecordStorageInfo = angular.copy($scope.RecordStorageInfo);
         }, function(errorData) {
             console.log(errorData);
@@ -800,7 +810,9 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
         promises.push(getRecordingStorageDetails);
+
         promises.push(getRecordingSchedules);
+
         promises.push(getRecordProfile);
         promises.push(getRecordProfileDetails);
         //promises.push(getStorageSetup);
@@ -1043,9 +1055,9 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                 }
 
                 if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){
-                    $scope.disbledRecord = true;
+                    $scope.disabledRecord = true;
                 }else{
-                    $scope.disbledRecord = false;
+                    $scope.disabledRecord = false;
                 }
 
             }).finally(function() {
