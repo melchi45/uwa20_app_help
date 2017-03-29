@@ -61,15 +61,15 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         var getData = {};
         if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
         // console.info($scope.RecordSchedule.ScheduleIds, pageData.RecordSchedule.ScheduleIds);
+        console.info($scope.Channel);
         
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
             $rootScope.$emit('resetScheduleData', true);
-            
+            console.info(response.data.RecordSchedule[0]);
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
 
-            
         }, function(errorData) {
             console.error(errorData);
         }, '', true);
@@ -366,7 +366,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
             promise;
 
         function callSequence(){
-            $scope.pageLoaded = false;
+            // $scope.pageLoaded = false;
 
             SunapiClient.sequence(queue, function(){
                 if (needRefresh) {
@@ -433,18 +433,6 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         }
     }
 
-    function stopMonitoringStatus(){
-        if(monitoringTimer !== null){
-            destroyInterrupt = true;
-            $timeout.cancel(monitoringTimer);
-        }
-    }
-
-    $scope.$on("$destroy", function(){
-        destroyInterrupt = true;
-        stopMonitoringStatus();
-    });
-
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
         var okay = true;
 
@@ -455,13 +443,12 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
 
                 copyData.sort();
                 copyScope.sort();
-                console.info(copyData, copyScope);
+                console.info(eventRuleService.checkRecordSchedulerValidation());
+                // if(eventRuleService.checkRecordSchedulerValidation()) okay = false;
 
                 if(!angular.equals(copyData, copyScope)) okay = false;
                 // if(okay === false) $rootScope.$emit('resetScheduleData', true);
 
-                // $rootScope.$emit('recordPageReloaded', $scope.RecordSchedule.Activate);
-                
                 console.info(copyData, copyScope);
                 console.info('record schedule okay', okay);
             }
