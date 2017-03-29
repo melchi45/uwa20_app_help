@@ -23,6 +23,7 @@ kindFramework
             var defaultDate = '';
             var initialRendered = false;
             var merging = false;
+            var initialMerging = false;
             var deleting = false;
             var prevEventObjs = null;
             var initializing = false;
@@ -73,8 +74,12 @@ kindFramework
                 } else {
                     scope.EventRule.ScheduleIds = angular.copy(scheduleIds);
                 }
-
-                eventRuleService.setScheduleData({menu: activeMenu, type:currentScheduleType, data:scheduleIds});
+                
+                if(initialMerging) {
+                    eventRuleService.setInitialScheduleData({menu: activeMenu, type:currentScheduleType, data:scheduleIds});
+                } else {
+                    eventRuleService.setScheduleData({menu: activeMenu, type:currentScheduleType, data:scheduleIds});
+                }
                 // console.info('end of getEventSources ===================== ');
             }
 
@@ -89,6 +94,7 @@ kindFramework
                 var targetItemToMerge = [];
                 var curIndex = 0;
                 merging = true;
+                initialMerging = true;
 
                 for(var i = 0; i < tEventObjs.length; i++) {
                     if(i === 0) {
@@ -138,6 +144,7 @@ kindFramework
                     }
                 }
                 merging = false;
+                initialMerging = false;
             }
 
             function mergeTheDropped(start, end) {

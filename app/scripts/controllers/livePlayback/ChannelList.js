@@ -169,10 +169,18 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
 
     function _PluginJSONEvent(ch, evId, sdata) {
         console.log("WebWMDCamEvent ch, evId, sdata => ", ch, evId, sdata);
+        var jsonData = null;
+      
+        try{
+            jsonData = JSON.parse(sdata);   //safari
+        }catch(e){
+            jsonData = sdata;               //ie
+        }
+
         switch(evId) {
             case 401:   //rtsp unauthorized(401)
                 $timeout(function(){
-                    if( sdata.type === 0 ) {
+                    if( jsonData.type === 0 ) {
                         rtspDigestAuth('live', (ch - 1));
                     }
                 }, 100);

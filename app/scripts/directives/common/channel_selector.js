@@ -10,6 +10,11 @@
  * $rootScope.$saveOn("channelSelector:selectChannel", function(event, index){
  *    $rootScope.$emit('channelSelector:changeChannel', index);
  * }, $scope);
+ *
+ * Channel Selector Mount 확인
+ * $rootScope.$saveOn("channelSelector:mounted", function(){
+ *    //Mounted
+ * }, $scope);
  */
 kindFramework.directive('channelSelector', function($rootScope) {
     "use strict";
@@ -19,16 +24,23 @@ kindFramework.directive('channelSelector', function($rootScope) {
         scope: true,
         templateUrl: 'views/common/directives/channel_selector.html',
         link: function(scope, element, attrs){
+            var elem = element;
+
             scope.channelSelector = {
-                selectedChannel: 0,
+                selectedChannel: '',
                 selectChannel: function(index){
                     $rootScope.$emit("channelSelector:selectChannel", index);
                 }
             };
 
             $rootScope.$saveOn('channelSelector:changeChannel', function(event, index){
-                scope.channelSelector.selectedChannel = index;
+                elem.find("button").removeClass('active');
+                elem.find(" > li:nth-of-type(" + (index + 2) + ") > button").addClass('active');
             }, scope);
+
+            setTimeout(function(){
+                $rootScope.$emit('channelSelector:mounted', true);
+            });
         }
     };
 });
@@ -54,7 +66,7 @@ kindFramework.directive('channelSelector', function($rootScope) {
  *    //Go to Quad mode
  * }, $scope);
  */
-kindFramework.directive('livePlaybackChannelSelector', function($rootScope) {
+kindFramework.directive('livePlaybackChannelSelector', function($rootScope, UniversialManagerService) {
     "use strict";
     return {
         restrict: 'E',
@@ -67,7 +79,15 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope) {
                 changeQuadView: function(){
                     $rootScope.$emit("channelSelector:changeQuadView", true);
                 }
-            };   
+            };
+
+            $rootScope.$saveOn('channelSelector:mounted', function(event, index){
+                try {
+                    $rootScope.$emit('channelSelector:changeChannel', UniversialManagerService.getChannelId());   
+                }catch(e){
+                    $rootScope.$emit('channelSelector:changeChannel', 0);
+                }
+            }, scope);
 
             $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
                 $rootScope.$emit('channelSelector:changeChannel', index);
@@ -111,6 +131,8 @@ kindFramework.directive('setupChannelSelector', function($rootScope, SunapiClien
         scope: true,
         templateUrl: 'views/setup/common/setup_channel_selector.html',
         link: function(scope, element, attrs){
+            var defaultChannel = 0;
+
             scope.setupChannelSelector = {
                 useInfo: attrs.useInfo === 'true',
                 ProfileData: "",
@@ -124,6 +146,10 @@ kindFramework.directive('setupChannelSelector', function($rootScope, SunapiClien
                     $rootScope.$emit('channelSelector:changeChannel', index);
                 }, scope);
             }
+
+            $rootScope.$saveOn('channelSelector:mounted', function(event, index){
+                $rootScope.$emit('channelSelector:changeChannel', defaultChannel);
+            }, scope);
         }
     };
 });

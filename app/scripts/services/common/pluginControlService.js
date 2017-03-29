@@ -131,7 +131,10 @@ kindFramework
 
     this.startAudioTalk = function(){
       if(pluginElement !== null && pluginElement !== undefined){
-        pluginElement.StartTalk('');
+        var checkMic = pluginElement.StartTalk('');
+        if(parseInt(checkMic,10) !== 1){
+          liveStatusCallback(504);    //Talk service unavailable
+        }
         // var vol = UniversialManagerService.getMicVol() * 20;
         // pluginElement.SetAudioTalkVolume(vol);
         console.log("pluginControlService::startAudioTalk() ===> Plugin Audio talk Started");
@@ -663,6 +666,15 @@ kindFramework
     };
     function _WebCamJSONEvent(ch, evId, sdata) {
       console.log("WebCamJSONEvent ch, evId, sdata => ", ch, evId, sdata);
+
+      var jsonData = null;
+      
+      try{
+        jsonData = JSON.parse(sdata);   //safari
+      }catch(e){
+        jsonData = sdata;               //ie
+      }
+      
       switch(evId) {
           case 100:
               if (viewMode == '4ch') {
@@ -678,7 +690,7 @@ kindFramework
               }
               break;
           case 102:   //Instant recording end
-              /*  sdata
+              /*  jsonData
                   {
                       type: 종료type
                   }
@@ -690,7 +702,7 @@ kindFramework
               }
               break;
           case 103:   //Instant recording error
-              /*  sdata
+              /*  jsonData
                   {
                       type: 종료type
                   }
@@ -709,7 +721,7 @@ kindFramework
               }
               break;
           case 105:   //Playback Backup end
-              /*  sdata
+              /*  jsonData
                   {
                       type: 종료type
                   }
@@ -721,14 +733,14 @@ kindFramework
               }
               break;
           case 106:   //Playback Backup Error
-              /*  sdata
+              /*  jsonData
                   {
                       type: 종료type
                   }
               */                
               if( backupCallback !== null ) {
                   console.log("ErrorCallback Receive : Playback backup occurs error");
-                  if(sdata.type === 13 ) { //HT_CALLBACK_AVI_END_FILE_NO_SIZE
+                  if(jsonData.type === 13 ) { //HT_CALLBACK_AVI_END_FILE_NO_SIZE
                       backupCallback({'errorCode' : -3, 'description' : 'backup'});
                   }
                   else {
@@ -738,7 +750,7 @@ kindFramework
               }
               break;
           case 301:   //Event Notification
-              /*  sdata
+              /*  jsonData
                   {
                       data: Metadata,
                       type: metadata type
@@ -747,7 +759,7 @@ kindFramework
               // updatePluginEventNotification(lp, rp);
               break;
           case 311:   //AreaZoom
-              /*  sdata
+              /*  jsonData
                   {
                       x1: x1 좌표,
                       y1: y1 좌표,
@@ -758,7 +770,7 @@ kindFramework
               // runAreaZoom(lp, rp);
               break;
           case 312:   //Manual Tracking
-              /*  sdata
+              /*  jsonData
                   {
                       x1: x1 좌표,
                       y1: y1 좌표   
@@ -767,18 +779,18 @@ kindFramework
               // runManualTracking(lp, rp);
               break;
           case 351:   //playback timestamp
-              /*  sdata
+              /*  jsonData
                   {
                       gmp: GMP Data,
                       time: timeStamp
                   }
               */
               if( timelineCallback !== null ) {
-                timelineCallback({'timezone':sdata.gmp,'timestamp':sdata.time}, stepFlag !== undefined ? stepFlag : undefined);
+                timelineCallback({'timezone':jsonData.gmp,'timestamp':jsonData.time}, stepFlag !== undefined ? stepFlag : undefined);
               }
               break;
           case 352:   //streaming resolution info
-              /*  sdata
+              /*  jsonData
                   {
                       width: 1920,
                       height: 1080
@@ -791,19 +803,19 @@ kindFramework
               //     ModalManagerService.close();
               // }
 
-              pluginElement.width = sdata.width;
-              pluginElement.height = sdata.height;
+              pluginElement.width = jsonData.width;
+              pluginElement.height = jsonData.height;
               var viewMode = UniversialManagerService.getViewModeType();
               kindStreamInterface.setCanvasStyle(viewMode);
               break;
           case 400:   //rtsp connection success
-              /*  sdata
+              /*  jsonData
                   {
                       retrycnt: 접속 횟수,
                       type: 연결 타입
                   }
               */
-              if( sdata.type === 1 ) {
+              if( jsonData.type === 1 ) {
                   if( timelineCallback !== null ) {
                     pluginElement.PlayRecordStream(playbackTime, '', playSpeed);
                     if( playbackCallback !== null ) {
@@ -811,19 +823,19 @@ kindFramework
                     }              
                   }
               }
-              else if( sdata.type === 3 ) {
+              else if( jsonData.type === 3 ) {
                   pluginElement.StartBackupRecording(sunapiAttributes.ModelName+"_"+playbackTime, playbackTime, '');
               }
               break;
           case 401:   //rtsp unauthorized(401)
-              /*  sdata
+              /*  jsonData
                   {
                       retrycnt: 접속 횟수,
                       type: 연결 타입
                   }
               */                
               // $timeout(function(){
-                  if( sdata.type === 0 ) {
+                  if( jsonData.type === 0 ) {
                       rtspDigestAuth('live');
                       // $timeout(function(){
                       //     if(UniversialManagerService.isSpeakerOn()){
@@ -838,9 +850,9 @@ kindFramework
                       //     }
                       // },500);
                   }
-                  else if( sdata.type === 1 || sdata.type === 3) {
+                  else if( jsonData.type === 1 || jsonData.type === 3) {
                     rtspDigestAuth('playback');
-                  }else if( sdata.type === 2 ){
+                  }else if( jsonData.type === 2 ){
                       // rtspDigestAuth('audioTalk');
                   }
               // },100);
@@ -860,7 +872,7 @@ kindFramework
               // $rootScope.$emit("pluginControlService:updateEvent", data);        
               break;
           case 403:   //Rtsp 사용자 계정 블록?
-              /*  sdata
+              /*  jsonData
                   {
                       retrycnt: 접속 횟수,
                       type: 연결 타입
@@ -868,7 +880,7 @@ kindFramework
               */
               break;
           case 404:   //Rtsp not found(404)
-              /*  sdata
+              /*  jsonData
                   {
                       retrycnt: 접속 횟수,
                       type: 연결 타입
@@ -876,7 +888,7 @@ kindFramework
               */                    
               break;
           case 405:   //Rtsp client error
-              /*  sdata
+              /*  jsonData
                   {
                       retrycnt: 접속 횟수,
                       type: 연결 타입
@@ -888,7 +900,7 @@ kindFramework
           case 457:   //Rtsp range error
               break;                    
           case 503:   //Rtsp service not available(503)
-              /*  sdata
+              /*  jsonData
                   {
                       retrycnt: 접속 횟수,
                       type: 연결 타입
@@ -899,7 +911,7 @@ kindFramework
                       playbackCallback({'errorCode' : "503"});
                   }
               }else{
-                  if(sdata.type == 2){
+                  if(jsonData.type == 2){
                       liveStatusCallback(504);  //Talk service unavailable
                   }else{
                       liveStatusCallback(503);
@@ -907,13 +919,13 @@ kindFramework
               }
               break;
           case 600:   //Step busy event 
-              /*  sdata
+              /*  jsonData
                   {
                       busy: true/false
                   }
               */                
               // $rootScope.$emit('changeLoadingBar', (lp == 0 ? false : true));
-              $rootScope.$emit('changeLoadingBar', sdata.busy);
+              $rootScope.$emit('changeLoadingBar', jsonData.busy);
               break;
       }
     };

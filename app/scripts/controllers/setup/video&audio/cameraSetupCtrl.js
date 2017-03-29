@@ -23,6 +23,10 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     $scope.PresetImageConfig = [];
     $scope.disDisable = {};
     $scope.ptzToPreset = false;
+    $scope.disChanged = {
+        global: false,
+        preset: false
+    };
     
     $scope.ImageEnhancements = {
         SharpnessEnable : false,
@@ -418,6 +422,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 }, '', true);
         }
         function oldPresetStop(){
+            showLoadingBar(true);
             var stopData = {};
             stopData.ImagePreview = 'Stop';
             stopData.Channel = 0;
@@ -448,9 +453,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
             setData.ImagePreview = mode;
             return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', setData,
-                function (response){},
-                function (errorData){
-                }, '', true);
+                function (response){showLoadingBar(false);},
+                function (errorData){showLoadingBar(false);}, '', true);
         }
         function oldPresetGo(){
             var getData = {};
@@ -2033,11 +2037,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         $scope.PresetImageEnhaneWatcherReady = true;
 
         $scope.$watch('PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements', function (newVal, oldVal) {
-            if (mAttr.PTZModel && typeof $scope.PresetImageConfig !== 'undefined'
-                && typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== 'undefined'
-                && typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements !== 'undefined'
-                && pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == false
-                && $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true){
+            if (mAttr.PTZModel && $scope.disChanged.preset == true){
             }else{
                 presetImageenhancementsSet(true);
             }
@@ -2222,8 +2222,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             || typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable == 'undefined')
             return;
         
-        if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true){
+        if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true && $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable == true){
+            $scope.disChanged.preset = true;
             $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable = false;
+        } else {
+            $scope.disChanged.preset = false;
         }
     };
     $scope.isPresetSupportedDayNightMode = function (mode) {
@@ -2486,11 +2489,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
         $scope.$watch('PresetImageConfig[presetTypeData.PresetIndex].PTZSettings', function (newVal, oldVal) {
             presetPtzsettingsSet(true);
-            if (mAttr.PTZModel && typeof $scope.PresetImageConfig !== 'undefined'
-                && typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== 'undefined'
-                && typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements !== 'undefined'
-                && pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == false
-                && $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true){
+            if (mAttr.PTZModel && $scope.disChanged.preset == true){
                 presetImageenhancementsSet(true);
             }
         }, true);
@@ -2726,9 +2725,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if (typeof $scope.PTZSettings == 'undefined' 
             || typeof $scope.PTZSettings.DigitalZoomEnable == 'undefined')
             return;
-        
-        if ($scope.ImageEnhancements.DISEnable == true){
+        if ($scope.ImageEnhancements.DISEnable == true && $scope.PTZSettings.DigitalZoomEnable == true){
+            $scope.disChanged.global = true;
             $scope.PTZSettings.DigitalZoomEnable = false;
+        } else {
+            $scope.disChanged.global = false;
         }
     };
 
@@ -3846,6 +3847,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
 
     function saveSettings() {
+        showLoadingBar(true);
         var functionList = [];
         //if (mAttr.PTZModel !== true) {
             ///stw-cgi/media.cgi?msubmenu=videosource&action=set
@@ -4870,8 +4872,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         $scope.ImageEnhaneWatcherReady = true;
 
         $scope.$watch('ImageEnhancements', function (newVal, oldVal) {
-            if ((mAttr.ZoomOnlyModel || mAttr.PTZModel) && typeof $scope.ImageEnhancements !== 'undefined'
-                && pageData.ImageEnhancements.DISEnable == false && $scope.ImageEnhancements.DISEnable == true){
+            if ((mAttr.ZoomOnlyModel || mAttr.PTZModel) && $scope.disChanged.global == true){
             }else{
                 imageenhancementsSet(true);
             }
@@ -5000,8 +5001,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         $scope.PTZSettingWatcherReady = true;
         $scope.$watch('PTZSettings', function (newVal, oldVal) {
             ptzsettingsSet(true);
-            if ((mAttr.ZoomOnlyModel || mAttr.PTZModel) && typeof $scope.ImageEnhancements !== 'undefined'
-                && pageData.ImageEnhancements.DISEnable == false && $scope.ImageEnhancements.DISEnable == true){
+            if ((mAttr.ZoomOnlyModel || mAttr.PTZModel) && $scope.disChanged.global == true){
                 imageenhancementsSet(true);
             }
         }, true);
@@ -6480,9 +6480,14 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
     }
 
+    var showLoadingBar = function(_val) {
+        $rootScope.$emit('changeLoadingBar', _val);
+    };
+
     function view() {
         var promises = [];
         var isReady = false;
+        if($scope.pageLoaded==true && $scope.isLoading==false) showLoadingBar(true);
 
         showVideo();
 
@@ -6567,6 +6572,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                             }else{
                                 gotoPreset('Start',$scope.presetTypeData.SelectedPreset);
                             }
+                            showLoadingBar(false);
                         },500);
                         refreshSliders();
                         $("#camerasetuppage").show();

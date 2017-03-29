@@ -8,20 +8,21 @@
         <tr>
           <th style="text-align:center">&nbsp;</th>
           <th style="text-align:center">{{'lang_flip' | translate}}</th>
-          <th style="text-align:center">{{'lang_mirror' | translate}}(kbps)</th>
+          <th style="text-align:center">{{'lang_mirror' | translate}}</th>
           <th style="text-align:center">{{'lang_hallwayView' | translate}}</th>
           <th style="text-align:center">{{'lang_videoOutput' | translate}}</th>
           <th style="text-align:center">{{'lang_privacy' | translate}}</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="i in [1,2,3,4]">
-          <td style="text-align:center">CH {{i}}</td>
-          <td style="text-align:center">xx</td>
-          <td style="text-align:center">xx</td>
-          <td style="text-align:center">xx</td>
-          <td style="text-align:center">xx</td>
-          <td style="text-align:center">xx</td>
+        <tr ng-repeat="item in infoTableData">
+          <td style="text-align:center">CH {{$index}}</td>
+          <td style="text-align:center" ng-repeat="orderKey in tableDataOrder">
+            {{item[orderKey]}}
+            <span ng-if="orderKey === 'hallwayView'">
+               {{ 'lang_degree' | translate }} ({{ 'lang_clockwise' | translate }})
+            </span>
+          </td>
         </tr>
       </tbody>
     </table>

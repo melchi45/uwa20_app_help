@@ -195,27 +195,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         })();
     }
 
-
-
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-        if(checkChangedData()){
-            COMMONUtils
-                .confirmChangeingChannel()
-                .then(function(){
-                    if(validatePage() === true){
-                        setChangedData().then(function(){
-                            changeChannel(index);
-                        });
-                    }
-                }, function(){
-                    console.log("canceled");
-                });    
-        }else{
-            changeChannel(index);
-        }
-    }, $scope);
-
-
     function stopMonitoringTamperingLevel(){
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
@@ -475,17 +454,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         });
     };
 
-    function validatePage() {
-        if(!eventRuleService.checkSchedulerValidation()) {
-            COMMONUtils.ShowError('lang_msg_checkthetable');
-            return false;
-        }
-        return true;
-    }
-
-
-
-
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
@@ -494,7 +462,16 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     }
 
     function checkChangedData(){
+        
         return !angular.equals(pageData.FD, $scope.FD) || eventRuleService.checkEventRuleValidation();
+    }
+
+    function validatePage() {
+        if(!eventRuleService.checkSchedulerValidation()) {
+            COMMONUtils.ShowError('lang_msg_checkthetable');
+            return false;
+        }
+        return true;
     }
 
     function setChangedData() {
@@ -526,6 +503,25 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
         return deferred.promise;
     }
+
+
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        if(checkChangedData()){
+            COMMONUtils
+                .confirmChangeingChannel()
+                .then(function(){
+                    if(validatePage() === true){
+                        setChangedData().then(function(){
+                            changeChannel(index);
+                        });
+                    }
+                }, function(){
+                    console.log("canceled");
+                });    
+        }else{
+            changeChannel(index);
+        }
+    }, $scope);
 
 
 
