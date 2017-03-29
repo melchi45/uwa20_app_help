@@ -82,7 +82,11 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope, Univ
             };
 
             $rootScope.$saveOn('channelSelector:mounted', function(event, index){
-                $rootScope.$emit('channelSelector:changeChannel', UniversialManagerService.getChannelId());
+                try {
+                    $rootScope.$emit('channelSelector:changeChannel', UniversialManagerService.getChannelId());   
+                }catch(e){
+                    $rootScope.$emit('channelSelector:changeChannel', 0);
+                }
             }, scope);
 
             $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
