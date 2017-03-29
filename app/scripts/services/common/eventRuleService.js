@@ -2,10 +2,16 @@ kindFramework.factory('eventRuleService', function() {
     'use strict';
     var currentScheduleIds = [];
     var currentScheduleType = "Always";
+    var initialScheduleIds = [];
+    var initialScheduleType = "Always";
     var currentMenu = null;
     var scheduleDataObj = {
         type: currentScheduleType,
         data: currentScheduleIds,
+    };
+    var initialScheduleDataObj = {
+        type: initialScheduleType,
+        data: initialScheduleIds,
     };
     var eventRuleDataObj = {
         pageData: null,
@@ -13,11 +19,23 @@ kindFramework.factory('eventRuleService', function() {
         menu: null,
     };
 
-    var compareScheduleData = function() {
-        var pScheduleIds = eventRuleDataObj.pageData.ScheduleIds;
-        var sScheduleIds = eventRuleDataObj.scopeData.ScheduleIds;
-        var pScheduleType = eventRuleDataObj.pageData.ScheduleType;
-        var sScheduleType = eventRuleDataObj.scopeData.ScheduleType;
+    var compareScheduleData = function(isRecordPage) {
+        var pScheduleIds;
+        var sScheduleIds;
+        var pScheduleType;
+        var sScheduleType;
+        if(isRecordPage) {
+            pScheduleIds = initialScheduleIds;
+            sScheduleIds = currentScheduleIds;
+            pScheduleType = initialScheduleType;
+            sScheduleType = currentScheduleType;
+        } else {
+            pScheduleIds = eventRuleDataObj.pageData.ScheduleIds;
+            sScheduleIds = eventRuleDataObj.scopeData.ScheduleIds;
+            pScheduleType = eventRuleDataObj.pageData.ScheduleType;
+            sScheduleType = eventRuleDataObj.scopeData.ScheduleType;
+        }
+
         var isSame = false;
 
         if((pScheduleType === sScheduleType) && (pScheduleIds.length == sScheduleIds.length)) {
@@ -76,6 +94,17 @@ kindFramework.factory('eventRuleService', function() {
             currentScheduleType = obj.type;
             currentMenu = obj.menu;
         },
+        setInitialScheduleData: function(obj) {
+            initialScheduleDataObj = obj;
+            initialScheduleIds = obj.data;
+            initialScheduleType = obj.type;
+            currentMenu = obj.menu;
+
+            scheduleDataObj = obj;
+            currentScheduleIds = obj.data;
+            currentScheduleType = obj.type;
+            currentMenu = obj.menu;
+        },
         getEventRuleData: function() {
             return eventRuleDataObj;
         },
@@ -94,11 +123,14 @@ kindFramework.factory('eventRuleService', function() {
             return true;
         },
         checkEventRuleValidation: function() {
-            if(compareScheduleData() && compareEventActionData()) {
+            if(compareScheduleData(false) && compareEventActionData()) {
                 return true;
             } else {
                 return false;
             }
+        },
+        checkRecordSchedulerValidation: function() {
+            return compareScheduleData(true);
         }
     };
 });
