@@ -6082,7 +6082,7 @@ rzslider .rz-bubble {
 }
 #setup-channel-selector .setup-channel-selector-btns .setup-channel-selector-info {
   margin-left: 16px;
-  width: 68px;
+  min-width: 68px;
   font-size: 14px;
   border: solid 1px #a5a5a5;
   color: #333;
@@ -7498,7 +7498,7 @@ img[id^="hm-results-image-"] {
     font-size: 18px;
   }
   #setup-channel-selector .setup-channel-selector-btns .setup-channel-selector-info {
-    width: 86px;
+    min-width: 86px;
     height: 45px;
     font-size: 18px;
   }
