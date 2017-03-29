@@ -779,6 +779,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         $scope.prevMaxWidth = $scope.VA[0].MaxWidth;
         $scope.prevMaxHeight = $scope.VA[0].MaxHeight;
         convertSizeCoordinates(null, null);
+
+        pageData.VA[0] = angular.copy($scope.VA[0]);
     }
 
     function convertSizeCoordinates(data, flag) {
@@ -1204,6 +1206,32 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         });
     };
 
+    function comparePageData() {
+        var isSame = true;
+        if(!angular.equals(pageData.VA[0].DefinedAreas, $scope.VA[0].DefinedAreas)) {
+            isSame = false;
+        }
+        if(!angular.equals(pageData.VA[0].Lines, $scope.VA[0].Lines)) {
+            isSame = false;
+        }
+        if(!angular.equals(pageData.VA[0].MaxHeight, $scope.VA[0].MaxHeight)) {
+            isSame = false;
+        }
+        if(!angular.equals(pageData.VA[0].MinHeight, $scope.VA[0].MinHeight)) {
+            isSame = false;
+        }
+        if(!angular.equals(pageData.VA[0].MaxWidth, $scope.VA[0].MaxWidth)) {
+            isSame = false;
+        }
+        if(!angular.equals(pageData.VA[0].MinWidth, $scope.VA[0].MinWidth)) {
+            isSame = false;
+        }
+        if(!angular.equals(pageData.VA[0].SensitivityLevel, $scope.VA[0].SensitivityLevel)) {
+            isSame = false;
+        }
+        return isSame;
+    }
+
     function set(isEnabledChanged) {
         var queue = [];
         var detectionType = getCurrentDetectionType();
@@ -1416,10 +1444,9 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         // }
     }, $scope);
 
-    $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {console.info(angular.equals(pageData.VA, $scope.VA));
+    $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
         if($scope.channelSelectionSection.getCurrentChannel !== data) {
-            if(!angular.equals(pageData.VA, $scope.VA) ||
-                eventRuleService.checkEventRuleValidation()
+            if(!comparePageData() || !eventRuleService.checkEventRuleValidation()
                 ) {
                 var modalInstance = $uibModal.open({
                     templateUrl: 'views/setup/common/confirmMessage.html',
