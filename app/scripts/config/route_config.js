@@ -160,7 +160,7 @@ kindFramework.constant('ROUTE_CONFIG', {
                         },
                         {
                             urlName: 'record',
-                            name: 'lang_record',
+                            name: 'lang_menu_record',
                             templateUrl: 'views/setup/basic/record.html',
                             controller: 'recordCtrl'
                         },
