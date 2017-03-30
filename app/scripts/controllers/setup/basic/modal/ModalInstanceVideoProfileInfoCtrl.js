@@ -7,9 +7,9 @@ kindFramework.controller('ModalInstanceVideoProfileInfoCtrl', ['$scope', '$rootS
   		'name',
   		'codec',
   		'resolution',
-		'frameRate',
-		'bitrate',
-		'GOVLength'
+		  'frameRate',
+  		'bitrate',
+  		'GOVLength'
   	];
 
   	$scope.infoTableData = infoTableData;
