@@ -31,6 +31,8 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
                 var data = {};
 
+                console.log(eventActionList);
+
                 for (var i = 0, len = eventActionList.length; i < len; i++) {
 
                     var result = {};
@@ -51,6 +53,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
                         var action = actions[k];
                         dataArray[k] = {};
                         dataArray[k].channel = action.Channel;
+                        dataArray[k].enable = action.Enable;
                         dataArray[k].eventActions = action.EventActions;
                     }
 
@@ -58,6 +61,8 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
                     resultArray.push(result);
                 }
+
+                $scope.infoTableData = resultArray;
             },
             function (errorData) {
                 console.log(errorData);
@@ -805,7 +810,12 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
     $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
         $uibModal.open({
             templateUrl: 'views/setup/event/modal/ModalEventSetupInfo.html',
-            controller: 'ModalInstanceEventSetupInfoCtrl'
+            controller: 'ModalInstanceEventSetupInfoCtrl',
+            resolve: {
+                infoTableData: function(){
+                    return $scope.infoTableData;
+                }
+            }
         });
     }, $scope);
 

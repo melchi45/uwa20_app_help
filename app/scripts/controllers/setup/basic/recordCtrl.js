@@ -1,5 +1,5 @@
 kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $rootScope, $location,
-    SunapiClient, Attributes, COMMONUtils, LogManager, SessionOfUserManager, CameraSpec, $q, $filter, $translate, eventRuleService) {
+    SunapiClient, Attributes, COMMONUtils, LogManager, SessionOfUserManager, CameraSpec, $q, $filter, $translate, eventRuleService, $compile) {
 
     "use strict";
     $scope.pageLoaded = false;
@@ -64,7 +64,6 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         console.info($scope.Channel);
         
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
-            $rootScope.$emit('resetScheduleData', true);
             console.info(response.data.RecordSchedule[0]);
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
@@ -306,24 +305,25 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         promises.push(getRecordProfile);
 
         $q.seqAll(promises).then(setAttribute).then(function() {
+            var scheduler = $("#scheduler");
+            scheduler.html('');
+
+            console.info($scope.RecordSchedule);
+            console.info($scope.RecordSchedule.ScheduleIds);
+            
+            var status = eventRuleService.getScheduleData();
+            console.info(status);
+
             $scope.pageLoaded = true;
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
             $rootScope.$emit('changeLoadingBar', false);
+
+            var templete = angular.element("<scheduler></scheduler>");
+            $compile(templete)($scope);
+            scheduler.append(templete);
         }, function(errorData) {
             console.error(errorData);
         });
-    }
-
-    function findChannel (channel, structure) {
-        var is = false;
-        for(var i = 0; i < structure.length; i++) {
-            if(channel == structure[i].Channel) {
-                is = structure[i]
-                break;
-            }
-        }
-
-        return is;
     }
 
     function showModalDialog(callback, displaymsg, index, queue) {
@@ -366,7 +366,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
             promise;
 
         function callSequence(){
-            // $scope.pageLoaded = false;
+            $scope.pageLoaded = false;
 
             SunapiClient.sequence(queue, function(){
                 if (needRefresh) {
@@ -438,18 +438,12 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
 
         if(pageData.RecordSchedule.Activate == $scope.RecordSchedule.Activate) {
             if(pageData.RecordSchedule.Activate != 'Always') {
-                var copyData = angular.copy(pageData.RecordSchedule.ScheduleIds),
-                    copyScope = angular.copy($scope.RecordSchedule.ScheduleIds);
-
-                copyData.sort();
-                copyScope.sort();
                 if(!eventRuleService.checkRecordSchedulerValidation()) okay = false;
-                // if(eventRuleService.checkRecordSchedulerValidation()) okay = false;
 
                 // if(!angular.equals(copyData, copyScope)) okay = false;
                 // if(okay === false) $rootScope.$emit('resetScheduleData', true);
 
-                console.info(copyData, copyScope);
+                console.info(eventRuleService.checkRecordSchedulerValidation());
                 console.info('record schedule okay', okay);
             }
         } else okay = false;

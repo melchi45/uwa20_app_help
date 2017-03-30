@@ -240,7 +240,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
         {
             if (!angular.equals(pageData.AD, $scope.AD) || !angular.equals(pageData.EventRule, $scope.EventRule))
             {
-                stopMonitoringAudioLevel();
+                //stopMonitoringAudioLevel();
                 var modalInstance = $uibModal.open({
                     templateUrl: 'views/setup/common/confirmMessage.html',
                     controller: 'confirmMessageCtrl',
@@ -271,12 +271,12 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
                             }
                         ).finally(
                             function(){
-                                startMonitoringAudioLevel();
+                                //startMonitoringAudioLevel();
                             });
                     } else {
                         $scope.$emit('applied', true);
                         view();
-                        startMonitoringAudioLevel();
+                        //startMonitoringAudioLevel();
                     }
 
                 }, function ()
@@ -358,7 +358,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
                 function (errorData)
                 {
                     console.log("getAudioLevel Error : ", errorData);
-                    startMonitoringAudioLevel();
+                    //startMonitoringAudioLevel();
                 }, '', true);
     }
     $scope.submit = set;
