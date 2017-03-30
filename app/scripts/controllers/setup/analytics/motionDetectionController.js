@@ -35,6 +35,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     $scope.IPv6PatternStr = mAttr.IPv6PatternStr;
     $scope.OnlyNumStr = mAttr.OnlyNumStr;
     $scope.FriendlyNameCharSetExpandedStr2 = mAttr.FriendlyNameCharSetExpandedStr2;
+    $scope.PasswordCharSet = mAttr.PasswordCharSet;
 
     $scope.Handover = [{"HandoverList":[]}];
 
@@ -1838,7 +1839,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
 
         if(pageDataUserList.Password !== userList.Password){
-            setData.Password = userList.Password;
+            setData.Password = encodeURIComponent(userList.Password);
         }
 
         if(pageDataUserList.PresetNumber !== userList.PresetNumber){
@@ -1884,7 +1885,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
         setData.Port = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].Port;
         setData.Username = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].Username;
-        setData.Password = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].Password;
+        setData.Password = encodeURIComponent($scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].Password);
         setData.PresetNumber = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].PresetNumber;
         if (index > 0) {
             setData.PresetIndex = index;

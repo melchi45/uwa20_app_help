@@ -323,8 +323,7 @@
                                 <div class="form-group" ng-if="Camera.HLCMaskTone !== undefined && Camera.CompensationMode === 'HLC'">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_dimming' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-init="Camera.HLCDimming = HLCDimmingOptions[0]" ng-model="Camera.HLCDimming" ng-options="Mode as getTranslatedOption(Mode) for Mode in HLCDimmingOptions" ng-change="cameraChangeHandler()">
-                                        </select>
+                                        <input type="checkbox" ng-model="Camera.HLCDimming" ng-change="cameraChangeHandler()"> <label>{{ 'lang_enable' | translate }}</label>
                                     </div>
                                 </div>
                                 <div class="form-group" ng-if="!PTZModel && Camera.CompensationMode === 'HLC'">
@@ -332,7 +331,7 @@
                                     <div class="wn5-setup-section-article-content" align="left">
                                         <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
                                             <live_slider 
-                                                live-slider-model="Camera" 
+                                                live-slider-model="Camera"
                                                 live-slider-model-name="HLCAreaTop"
                                                 live-slider-property="HLCTopSliderOptions">
                                             </live_slider>
@@ -347,7 +346,7 @@
                                     <div class="wn5-setup-section-article-content" align="left">
                                         <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
                                             <live_slider 
-                                                live-slider-model="Camera" 
+                                                live-slider-model="Camera"
                                                 live-slider-model-name="HLCAreaBottom"
                                                 live-slider-property="HLCBottomSliderOptions">
                                             </live_slider>
