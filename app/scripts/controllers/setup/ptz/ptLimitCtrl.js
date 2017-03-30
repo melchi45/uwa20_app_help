@@ -43,8 +43,10 @@ kindFramework.controller('ptLimitCtrl', function ($scope, $timeout, $uibModal, S
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptlimits&action=view', getData,
             function (response) {
                 $scope.Use = [];
-                $scope.Use[$scope.PTLimitModes.indexOf('PanLimit')] = response.data.PTLimits[0].PanLimitEnable ? $scope.UseOptions[0] : $scope.UseOptions[1];
-                $scope.Use[$scope.PTLimitModes.indexOf('TiltLimit')] = response.data.PTLimits[0].TiltLimitEnable ? $scope.UseOptions[0] : $scope.UseOptions[1];
+                $scope.Use[$scope.PTLimitModes.indexOf('PanLimit')] = response.data.PTLimits[0].PanLimitEnable ? true : false;
+                $scope.Use[$scope.PTLimitModes.indexOf('TiltLimit')] = response.data.PTLimits[0].TiltLimitEnable ? true : false;
+                //$scope.Use[$scope.PTLimitModes.indexOf('PanLimit')] = response.data.PTLimits[0].PanLimitEnable ? $scope.UseOptions[0] : $scope.UseOptions[1];
+                //$scope.Use[$scope.PTLimitModes.indexOf('TiltLimit')] = response.data.PTLimits[0].TiltLimitEnable ? $scope.UseOptions[0] : $scope.UseOptions[1];
                 $scope.PTLimit = {};
                 $scope.PTLimit.TiltRange = response.data.PTLimits[0].TiltRange;
             },
@@ -71,8 +73,10 @@ kindFramework.controller('ptLimitCtrl', function ($scope, $timeout, $uibModal, S
         var setData = {};
 
         setData.Channel = 0;
-        setData.PanLimitEnable = $scope.Use[$scope.PTLimitModes.indexOf('PanLimit')] === $scope.UseOptions[0] ? true : false;
-        setData.TiltLimitEnable = $scope.Use[$scope.PTLimitModes.indexOf('TiltLimit')] === $scope.UseOptions[0] ? true : false;
+        setData.PanLimitEnable = $scope.Use[$scope.PTLimitModes.indexOf('PanLimit')];
+        setData.TiltLimitEnable = $scope.Use[$scope.PTLimitModes.indexOf('TiltLimit')];
+        //setData.PanLimitEnable = $scope.Use[$scope.PTLimitModes.indexOf('PanLimit')] === $scope.UseOptions[0] ? true : false;
+        //setData.TiltLimitEnable = $scope.Use[$scope.PTLimitModes.indexOf('TiltLimit')] === $scope.UseOptions[0] ? true : false;
         setData.TiltRange = $scope.PTLimit.TiltRange;
 
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptlimits&action=set', setData,
@@ -169,11 +173,13 @@ kindFramework.controller('ptLimitCtrl', function ($scope, $timeout, $uibModal, S
             }, '', true);
     }
 
+    $scope.isTiltShow = function(){
+        return $scope.PTLimitModes.indexOf('TiltLimit') == $scope.PTLimitMode.SelectedIndex;
+    };
     $scope.changePTLimit = function ()
     {
-        COMMONUtils.ShowInfo('lang_savingCompleted',function(){
-            setPTLimits();
-        });
+        setPTLimits();
+        COMMONUtils.ShowInfo('lang_savingCompleted');
     };
 
     $scope.startPTLimit = function ()
