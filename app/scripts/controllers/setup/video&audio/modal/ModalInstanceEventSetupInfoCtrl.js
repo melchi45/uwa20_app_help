@@ -10,6 +10,14 @@ kindFramework.controller('ModalInstanceEventSetupInfoCtrl', ['$scope', '$rootSco
 		'Record',
 		'Alarm output 1'
 	];
+
+  var eventActionTypeLive = [
+    'FTP',
+    'SNMP',
+    'Record',
+    'AlarmOutput'
+  ];
+  
   $scope.dataTypeLength = $scope.dataType.length;
 
   var PAGE_INDEX_LIST = {
@@ -57,7 +65,7 @@ kindFramework.controller('ModalInstanceEventSetupInfoCtrl', ['$scope', '$rootSco
           }
 
           if(dataSelf.enable === true){
-            eventActionData = dataSelf.eventActions.indexOf(dataTypeName) > -1 ? "On" : "Off";
+            eventActionData = dataSelf.eventActions.indexOf(eventActionTypeLive[i]) > -1 ? "On" : "Off";
           }
 
           $scope.channelItems[k].datas[pageIndex] = eventActionData;
