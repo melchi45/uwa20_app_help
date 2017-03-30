@@ -732,7 +732,6 @@ kindFramework
                 });
 
                 // setVisibility("Scheduled");
-                alreadyCreated = true;
             }
 
             function updateScheduler() { //console.info('updateScheduler');
@@ -1284,6 +1283,7 @@ kindFramework
             }
 
             function initCalendar(data) {
+                alreadyCreated = true;
                 EventRule = data;
                 ScheduleIds = EventRule.ScheduleIds;
                 getCameraDate();

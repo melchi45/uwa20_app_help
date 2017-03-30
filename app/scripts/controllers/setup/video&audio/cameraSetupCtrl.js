@@ -442,9 +442,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             setData.Channel = 0;
             setData.Preset = Preset==0 ? 1 : Preset;
             if(mode=='Start'){
-                if($scope.presetTypeData.SelectedPresetType == 1 && $scope.presetPreview == true && presetChanged !== true){
-                    return;
-                }
                 $scope.presetPreview = true;
                 $scope.previewMode = true;
                 extendPreviewMode();
@@ -584,11 +581,22 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     $scope.$watch('tabActiveData.backLight',function(newVal, oldVal){
         if(oldVal==false && newVal==true){
             $timeout(function(){
-                var disable = $scope.Camera.CompensationMode != 'BLC';
-                $scope.ptzinfo = {
-                    type: 'BLC',
-                    disable: disable
-                };
+                if($scope.Camera.CompensationMode == 'BLC'){
+                    $scope.ptzinfo = {
+                        type: 'BLC',
+                        disable: false
+                    };
+                }else if($scope.Camera.CompensationMode == 'HLC'){
+                    $scope.ptzinfo = {
+                        type: 'HLC',
+                        disable: false
+                    };
+                }else{
+                    $scope.ptzinfo = {
+                        type: 'BLC',
+                        disable: true
+                    };
+                }
             });
         }else if(oldVal==true && newVal==false){
             $scope.ptzinfo = {
@@ -611,53 +619,109 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     });
     $scope.$on('changeBlcArea', function(args, data){
         if(data.mode=='top'){
-            if(data.direction=='up'){
-                $scope.Camera.BLCAreaTop = $scope.Camera.BLCAreaTop + data.step;
-            }else if(data.direction=='down'){
-                $scope.Camera.BLCAreaTop = $scope.Camera.BLCAreaTop - data.step;
+            if(data.type=='BLC'){
+                if(data.direction=='up'){
+                    $scope.Camera.BLCAreaTop = $scope.Camera.BLCAreaTop + data.step;
+                }else if(data.direction=='down'){
+                    $scope.Camera.BLCAreaTop = $scope.Camera.BLCAreaTop - data.step;
+                }
+                if($scope.BLCTopSliderOptions.ceil <= $scope.Camera.BLCAreaTop){
+                    $scope.Camera.BLCAreaTop = $scope.BLCTopSliderOptions.ceil;
+                }else if($scope.BLCTopSliderOptions.floor >= $scope.Camera.BLCAreaTop){
+                    $scope.Camera.BLCAreaTop = $scope.BLCTopSliderOptions.floor;
+                }
+            }else{
+                if(data.direction=='up'){
+                    $scope.Camera.HLCAreaTop = $scope.Camera.HLCAreaTop + data.step;
+                }else if(data.direction=='down'){
+                    $scope.Camera.HLCAreaTop = $scope.Camera.HLCAreaTop - data.step;
+                }
+                if($scope.HLCTopSliderOptions.ceil <= $scope.Camera.HLCAreaTop){
+                    $scope.Camera.HLCAreaTop = $scope.HLCTopSliderOptions.ceil;
+                }else if($scope.HLCTopSliderOptions.floor >= $scope.Camera.HLCAreaTop){
+                    $scope.Camera.HLCAreaTop = $scope.HLCTopSliderOptions.floor;
+                }
             }
-            if($scope.BLCTopSliderOptions.ceil <= $scope.Camera.BLCAreaTop){
-                $scope.Camera.BLCAreaTop = $scope.BLCTopSliderOptions.ceil;
-            }else if($scope.BLCTopSliderOptions.floor >= $scope.Camera.BLCAreaTop){
-                $scope.Camera.BLCAreaTop = $scope.BLCTopSliderOptions.floor;
-            }
-            SetBlcRange('blcAreaTop');
+            //SetBlcRange('blcAreaTop');
+            SetAreaRange(data.type+'AreaTop');
         }else if(data.mode=='left'){
-            if(data.direction=='left'){
-                $scope.Camera.BLCAreaLeft = $scope.Camera.BLCAreaLeft - data.step;
-            }else if(data.direction=='right'){
-                $scope.Camera.BLCAreaLeft = $scope.Camera.BLCAreaLeft + data.step;
+            if(data.type=='BLC') {
+                if (data.direction == 'left') {
+                    $scope.Camera.BLCAreaLeft = $scope.Camera.BLCAreaLeft - data.step;
+                } else if (data.direction == 'right') {
+                    $scope.Camera.BLCAreaLeft = $scope.Camera.BLCAreaLeft + data.step;
+                }
+                if ($scope.BLCLeftSliderOptions.ceil <= $scope.Camera.BLCAreaLeft) {
+                    $scope.Camera.BLCAreaLeft = $scope.BLCLeftSliderOptions.ceil;
+                } else if ($scope.BLCLeftSliderOptions.floor >= $scope.Camera.BLCAreaLeft) {
+                    $scope.Camera.BLCAreaLeft = $scope.BLCLeftSliderOptions.floor;
+                }
+            }else{
+                if (data.direction == 'left') {
+                    $scope.Camera.HLCAreaLeft = $scope.Camera.HLCAreaLeft - data.step;
+                } else if (data.direction == 'right') {
+                    $scope.Camera.HLCAreaLeft = $scope.Camera.HLCAreaLeft + data.step;
+                }
+                if ($scope.HLCLeftSliderOptions.ceil <= $scope.Camera.HLCAreaLeft) {
+                    $scope.Camera.HLCAreaLeft = $scope.HLCLeftSliderOptions.ceil;
+                } else if ($scope.HLCLeftSliderOptions.floor >= $scope.Camera.HLCAreaLeft) {
+                    $scope.Camera.HLCAreaLeft = $scope.HLCLeftSliderOptions.floor;
+                }
             }
-            if($scope.BLCLeftSliderOptions.ceil <= $scope.Camera.BLCAreaLeft){
-                $scope.Camera.BLCAreaLeft = $scope.BLCLeftSliderOptions.ceil;
-            }else if($scope.BLCLeftSliderOptions.floor >= $scope.Camera.BLCAreaLeft){
-                $scope.Camera.BLCAreaLeft = $scope.BLCLeftSliderOptions.floor;
-            }
-            SetBlcRange('blcAreaLeft');
+            //SetBlcRange('blcAreaLeft');
+            SetAreaRange(data.type+'AreaLeft');
         }else if(data.mode=='right'){
-            if(data.direction=='left'){
-                $scope.Camera.BLCAreaRight = $scope.Camera.BLCAreaRight - data.step;
-            }else if(data.direction=='right'){
-                $scope.Camera.BLCAreaRight = $scope.Camera.BLCAreaRight + data.step;
+            if(data.type=='BLC') {
+                if (data.direction == 'left') {
+                    $scope.Camera.BLCAreaRight = $scope.Camera.BLCAreaRight - data.step;
+                } else if (data.direction == 'right') {
+                    $scope.Camera.BLCAreaRight = $scope.Camera.BLCAreaRight + data.step;
+                }
+                if ($scope.BLCRightSliderOptions.ceil <= $scope.Camera.BLCAreaRight) {
+                    $scope.Camera.BLCAreaRight = $scope.BLCRightSliderOptions.ceil;
+                } else if ($scope.BLCRightSliderOptions.floor >= $scope.Camera.BLCAreaRight) {
+                    $scope.Camera.BLCAreaRight = $scope.BLCRightSliderOptions.floor;
+                }
+            }else{
+                if (data.direction == 'left') {
+                    $scope.Camera.HLCAreaRight = $scope.Camera.HLCAreaRight - data.step;
+                } else if (data.direction == 'right') {
+                    $scope.Camera.HLCAreaRight = $scope.Camera.HLCAreaRight + data.step;
+                }
+                if ($scope.HLCRightSliderOptions.ceil <= $scope.Camera.HLCAreaRight) {
+                    $scope.Camera.HLCAreaRight = $scope.HLCRightSliderOptions.ceil;
+                } else if ($scope.HLCRightSliderOptions.floor >= $scope.Camera.HLCAreaRight) {
+                    $scope.Camera.HLCAreaRight = $scope.HLCRightSliderOptions.floor;
+                }
             }
-            if($scope.BLCRightSliderOptions.ceil <= $scope.Camera.BLCAreaRight){
-                $scope.Camera.BLCAreaRight = $scope.BLCRightSliderOptions.ceil;
-            }else if($scope.BLCRightSliderOptions.floor >= $scope.Camera.BLCAreaRight){
-                $scope.Camera.BLCAreaRight = $scope.BLCRightSliderOptions.floor;
-            }
-            SetBlcRange('blcAreaRight');
+            //SetBlcRange('blcAreaRight');
+            SetAreaRange(data.type+'AreaRight');
         }else if(data.mode=='bottom'){
-            if(data.direction=='up'){
-                $scope.Camera.BLCAreaBottom = $scope.Camera.BLCAreaBottom + data.step;
-            }else if(data.direction=='down'){
-                $scope.Camera.BLCAreaBottom = $scope.Camera.BLCAreaBottom - data.step;
+            if(data.type=='BLC') {
+                if (data.direction == 'up') {
+                    $scope.Camera.BLCAreaBottom = $scope.Camera.BLCAreaBottom + data.step;
+                } else if (data.direction == 'down') {
+                    $scope.Camera.BLCAreaBottom = $scope.Camera.BLCAreaBottom - data.step;
+                }
+                if ($scope.BLCBottomSliderOptions.ceil <= $scope.Camera.BLCAreaBottom) {
+                    $scope.Camera.BLCAreaBottom = $scope.BLCBottomSliderOptions.ceil;
+                } else if ($scope.BLCBottomSliderOptions.floor >= $scope.Camera.BLCAreaBottom) {
+                    $scope.Camera.BLCAreaBottom = $scope.BLCBottomSliderOptions.floor;
+                }
+            }else{
+                if (data.direction == 'up') {
+                    $scope.Camera.HLCAreaBottom = $scope.Camera.HLCAreaBottom + data.step;
+                } else if (data.direction == 'down') {
+                    $scope.Camera.HLCAreaBottom = $scope.Camera.HLCAreaBottom - data.step;
+                }
+                if ($scope.HLCBottomSliderOptions.ceil <= $scope.Camera.HLCAreaBottom) {
+                    $scope.Camera.HLCAreaBottom = $scope.HLCBottomSliderOptions.ceil;
+                } else if ($scope.HLCBottomSliderOptions.floor >= $scope.Camera.HLCAreaBottom) {
+                    $scope.Camera.HLCAreaBottom = $scope.HLCBottomSliderOptions.floor;
+                }
             }
-            if($scope.BLCBottomSliderOptions.ceil <= $scope.Camera.BLCAreaBottom){
-                $scope.Camera.BLCAreaBottom = $scope.BLCBottomSliderOptions.ceil;
-            }else if($scope.BLCBottomSliderOptions.floor >= $scope.Camera.BLCAreaBottom){
-                $scope.Camera.BLCAreaBottom = $scope.BLCBottomSliderOptions.floor;
-            }
-            SetBlcRange('blcAreaBottom');
+            //SetBlcRange('blcAreaBottom');
+            SetAreaRange(data.type+'AreaBottom');
         }
     });
     function SetBlcRange(direction) {
@@ -1037,11 +1101,22 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
 
         if($scope.tabActiveData.backLight){
-            var disable = $scope.Camera.CompensationMode != 'BLC';
-            $scope.ptzinfo = {
-                type: 'BLC',
-                disable: disable
-            };
+            if($scope.Camera.CompensationMode == 'BLC'){
+                $scope.ptzinfo = {
+                    type: 'BLC',
+                    disable: false
+                };
+            }else if($scope.Camera.CompensationMode == 'HLC'){
+                $scope.ptzinfo = {
+                    type: 'HLC',
+                    disable: false
+                };
+            }else{
+                $scope.ptzinfo = {
+                    type: 'BLC',
+                    disable: true
+                };
+            }
         }
 
         cameraChangeHandler();
@@ -1890,7 +1965,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -2021,7 +2096,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -2118,7 +2193,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -2335,7 +2410,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -2440,7 +2515,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -2475,7 +2550,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         },
         function (errorData) {
             //alert(errorData);
-            deferred.reject();
+            deferred.reject('Failure');
         }, '', true);
         return deferred.promise;
     }
@@ -2544,7 +2619,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -2896,7 +2971,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -3003,7 +3078,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -3056,7 +3131,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -3120,7 +3195,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -3281,7 +3356,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     setData.HLCMaskColor = $scope.Camera.HLCMaskColor;
                 }
                 setData.HLCMaskTone = $scope.Camera.HLCMaskTone;
-                setData.HLCDimming = $scope.Camera.HLCDimming;
+                setData.HLCDimming = ($scope.Camera.HLCDimming === true)? 'On' : 'Off';
                 setData.HLCAreaTop = $scope.Camera.HLCAreaTop;
                 setData.HLCAreaBottom = $scope.Camera.HLCAreaBottom;
                 setData.HLCAreaLeft = $scope.Camera.HLCAreaLeft;
@@ -3373,7 +3448,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -3499,7 +3574,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -3551,7 +3626,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -3596,7 +3671,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -3656,7 +3731,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -3741,7 +3816,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -3996,7 +4071,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     function () {
                         view();
                     },
-                    function (errorData) {}
+                    function (errorData) {showLoadingBar(false);}
             );
         }
     }
@@ -4640,7 +4715,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     }
 
     function videoSourceView() {
-        var deferred = $q.defer();
         var getData = {};
         if($scope.isMultiChannel) {
             var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
@@ -4661,7 +4735,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     registerVideoSourceWatcher();
                 },
                 function (errorData) {
-                    deferred.reject('Failure');
                     //alert(errorData);
                 }, '', true);
     }
@@ -4777,6 +4850,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     $scope.Camera.WDRSeamlessTransition = ($scope.Camera.WDRSeamlessTransition === 'On') ? true : false;
                     $scope.Camera.WDRLowLight = ($scope.Camera.WDRLowLight === 'On') ? true : false;
                     $scope.Camera.WDRIRLEDEnable = ($scope.Camera.WDRIRLEDEnable === 'On') ? true : false;
+                    $scope.Camera.HLCDimming = ($scope.Camera.HLCDimming === 'On') ? true : false;
 
                     pageData.Camera = angular.copy($scope.Camera);
                     previewData.Camera = angular.copy($scope.Camera);
@@ -5107,7 +5181,9 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     }
                 }
                 if($scope.presetTypeData.SelectedPresetType == 0){
-                    getSelectedPreset();
+                    $timeout(function(){
+                        getSelectedPreset();
+                    },500);
                 }
             },
             function (errorData) {
@@ -5813,7 +5889,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 },
                 function (errorData) {
                     //alert(errorData);
-                    deferred.reject();
+                    deferred.reject('Failure');
                 }, '', true);
         } else {
             deferred.resolve();
@@ -6493,7 +6569,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
         /** Image preset is shown first, so call it first  */
         if ($scope.ImagePresetModeOptions !== undefined) {
-            viewImagePreset();
+            promises.push(viewImagePreset);
         }
 
         /** Sensor mode menu is shown here only for Box Models
@@ -6538,27 +6614,22 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                         $scope.pageLoaded = true;
                         if(mAttr.PTZModel==true){
                             if($scope.tabActiveData.backLight){
-                                var disable = $scope.Camera.CompensationMode != 'BLC';
-                                $scope.ptzinfo = {
-                                    type: 'BLC',
-                                    disable: disable
-                                };
-                            }else if($scope.tabActiveData.osd){
-                                $scope.ptzinfo = {
-                                    type: 'OSD'
-                                };
-                            }
-                        }
-                        initShutterSpeeds(false);
-                        isReady = true;
-                        $scope.pageLoaded = true;
-                        if(mAttr.PTZModel==true){
-                            if($scope.tabActiveData.backLight){
-                                var disable = $scope.Camera.CompensationMode != 'BLC';
+                                if($scope.Camera.CompensationMode == 'BLC'){
                                     $scope.ptzinfo = {
-                                    type: 'BLC',
-                                    disable: disable
-                                };
+                                        type: 'BLC',
+                                        disable: false
+                                    };
+                                }else if($scope.Camera.CompensationMode == 'HLC'){
+                                    $scope.ptzinfo = {
+                                        type: 'HLC',
+                                        disable: false
+                                    };
+                                }else{
+                                    $scope.ptzinfo = {
+                                        type: 'BLC',
+                                        disable: true
+                                    };
+                                }
                             }else if($scope.tabActiveData.osd){
                                 $scope.ptzinfo = {
                                     type: 'OSD'

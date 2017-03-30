@@ -172,9 +172,9 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
             function (response) {
                 $scope.AutoTracking = response.data.AutoTracking[0];
                 $scope.AutoTracking.SliderLevel = parseInt($scope.AutoTracking.CameraHeight.split('cm')[0]);
-                $scope.AutoTracking.Zoom = $scope.AutoTracking.ZoomControl === 'On' ? 'Enable' : 'Disable';
-                $scope.AutoTracking.IndicatorDisplay = $scope.AutoTracking.DisplayIndicator === 'On' ? 'Enable' : 'Disable';
-                $scope.AutoTracking.AreaActivation = $scope.AutoTracking.TrackingAreaEnable ? 'Enable' : 'Disable';
+                $scope.AutoTracking.Zoom = $scope.AutoTracking.ZoomControl === 'On' ? true : false;
+                $scope.AutoTracking.IndicatorDisplay = $scope.AutoTracking.DisplayIndicator === 'On' ? true : false;
+                $scope.AutoTracking.AreaActivation = $scope.AutoTracking.TrackingAreaEnable ? true : false;
                 $scope.AutoTracking.AutoMode = $scope.AutoTracking.LostMode === 'Research' ? 'Unlimited' : 'LostEnd';
 
                 if (!$scope.AutoTracking.TrackingAreas) $scope.AutoTracking.TrackingAreas = [];
@@ -198,10 +198,10 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
 
         setData.Channel = 0;
         setData.CameraHeight = $scope.AutoTracking.SliderLevel + 'cm';
-        setData.ZoomControl = $scope.AutoTracking.Zoom === 'Enable' ? 'On' : 'Off';
+        setData.ZoomControl = $scope.AutoTracking.Zoom === true ? 'On' : 'Off';
         setData.ObjectSize = $scope.AutoTracking.ObjectSize;
-        setData.DisplayIndicator = $scope.AutoTracking.IndicatorDisplay === 'Enable' ? 'On' : 'Off';
-        setData.TrackingAreaEnable = $scope.AutoTracking.AreaActivation === 'Enable' ? true : false;
+        setData.DisplayIndicator = $scope.AutoTracking.IndicatorDisplay === true ? 'On' : 'Off';
+        setData.TrackingAreaEnable = $scope.AutoTracking.AreaActivation === true ? true : false;
         setData.LostMode = $scope.AutoTracking.AutoMode === 'Unlimited' ? 'Research' : 'Stop';
 
         SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=set', setData,

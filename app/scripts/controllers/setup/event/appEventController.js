@@ -52,11 +52,11 @@ kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal,
         $scope.$emit('pageLoaded', true);
     }
 
-    $scope.$on('setEventRuleCompleted', function(event, data) {
-        if(data === true) {
-            view();
-        }
-    });
+    // $scope.$on('setEventRuleCompleted', function(event, data) {
+    //     if(data === true) {
+    //         view();
+    //     }
+    // });
 
     function set() {
         if (validatePage()) {

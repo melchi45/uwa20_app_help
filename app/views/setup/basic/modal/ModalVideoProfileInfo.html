@@ -12,7 +12,7 @@
           <tr>
             <th style="text-align:center">&nbsp;</th>
             <th style="text-align:center">{{'lang_name' | translate}}</th>
-            <th style="text-align:center">{{'lang_codec' | translate}}(kbps)</th>
+            <th style="text-align:center">{{'lang_codec' | translate}}</th>
             <th style="text-align:center">{{'lang_resolution' | translate}}</th>
             <th style="text-align:center">{{'lang_framerate' | translate}}</th>
             <th style="text-align:center">{{'lang_max_bitrate' | translate}}</th>
@@ -22,7 +22,11 @@
         <tbody>
           <tr ng-repeat="item in infoTableData">
             <td style="text-align:center">CH {{item.channel}}</td>
-            <td style="text-align:center" ng-repeat="keyName in defaultProfileOrder">{{item.profiles[0][keyName]}}</td>
+            <td style="text-align:center" ng-repeat="keyName in defaultProfileOrder">
+              {{item.profiles[0][keyName]}}
+              <span ng-if="keyName === 'frameRate'">fps</span>
+              <span ng-if="keyName === 'bitrate'">kbps</span>
+            </td>
           </tr>
         </tbody>
       </table>
