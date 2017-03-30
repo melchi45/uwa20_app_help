@@ -504,7 +504,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         controller: ['$scope', '$uibModalInstance', '$timeout', 'sketchbookService', function(scope, $uibModalInstance, $timeout, sketchbookService){
                             scope.ok = function() {
                                 getZoomValue().then(function(returnZoomValue){
-                                    if(returnZoomValue >= $scope.MaxZoom){
+                                    if(returnZoomValue > $scope.MaxZoom){
                                         var modalInstance3 = $uibModal.open({
                                             templateUrl: "privacyPopup3.html",
                                             backdrop: false,

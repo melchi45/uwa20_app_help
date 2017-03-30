@@ -21,16 +21,7 @@
             <div class="wn5-setup-section-heading">
                 <h3>{{ 'lang_menu_ptztrackingsetup' | translate }}</h3>
             </div>
-            <div class="wn5-setup-section-article">
-                <div class="form-group">
-                    <div class="wn5-setup-section-article-heading">{{ 'lang_zoom' | translate }}</div>
-                    <div class="wn5-setup-section-article-content">
-                        <div class="col-sm-3 field-radio-wrapper" ng-repeat="Option1 in EnableOptions">
-                            {{getTranslatedOption(Option1)}}
-                            <input type="radio" class="radio" name="Option1" ng-model="$parent.AutoTracking.Zoom" ng-value="Option1">
-                        </div>                               
-                    </div>                     
-                </div>
+            <div class="wn5-setup-section-article">                
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_cameraHeight' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
@@ -39,6 +30,12 @@
                             <rzslider rz-slider-model="AutoTracking.SliderLevel" rz-slider-options="SensitivitySliderOptions"></rzslider>
                             <i class="fa fa-plus-square" style="font-size:20px;cursor: pointer;float:none" ng-click="IncreaseCamHeight()"></i>
                         </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_zoom' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="AutoTracking.Zoom"> <label>{{ 'lang_enable' | translate }}</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -53,19 +50,13 @@
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_indicatorDisplay' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <div class="col-sm-3 field-radio-wrapper" ng-repeat="Option2 in EnableOptions">
-                            {{getTranslatedOption(Option2)}}
-                            <input type="radio" class="radio" name="Option2" ng-model="$parent.AutoTracking.IndicatorDisplay" ng-value="Option2">
-                        </div>                                                    
+                        <input type="checkbox" ng-model="AutoTracking.IndicatorDisplay"> <label>{{ 'lang_enable' | translate }}</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_areaActivation' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <div class="col-sm-3 field-radio-wrapper" ng-repeat="Option3 in EnableOptions">
-                            {{getTranslatedOption(Option3)}}
-                            <input type="radio" class="radio" name="Option3" ng-model="$parent.AutoTracking.AreaActivation" ng-value="Option3">
-                        </div>                                                    
+                        <input type="checkbox" ng-model="AutoTracking.AreaActivation"> <label>{{ 'lang_enable' | translate }}</label>
                     </div>
                 </div>
                 <div class="form-group">

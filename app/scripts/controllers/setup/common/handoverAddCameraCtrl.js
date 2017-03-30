@@ -11,6 +11,7 @@ kindFramework.controller('handoverAddCameraCtrl', function ($scope, $uibModalIns
     $scope.HttpMaxPort = mAttr.Http.maxValue;
     $scope.OnlyNumStr = mAttr.OnlyNumStr;
     $scope.FriendlyNameCharSetExpandedStr2 = mAttr.FriendlyNameCharSetExpandedStr2;
+    $scope.PasswordCharSet = mAttr.PasswordCharSet;
 
     if (mAttr.IpFilterIPType !== undefined)
     {

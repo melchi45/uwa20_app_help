@@ -112,9 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                
                         <hr calss="wn5-setup-hr">
-                
                         <wn5-setup-common-button
                             data-submit-click="submit()"
                             data-cancel-click="view()">
@@ -133,9 +131,6 @@
                                     </button>
                                     <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopSwing(1)">
                                         {{ 'lang_stop' | translate }}
-                                    </button>
-                                    <button type="button" class="btn btn-primary" ng-click="setSwing()">
-                                        {{ 'lang_set' | translate }}
                                     </button>
                                 </div>
                                 <div class="form-group">
@@ -171,6 +166,13 @@
                             </div>
                         </div>
                     </div>
+                    <div style="width: 100%;position: relative;top: 20px;clear: both;">
+                    <hr calss="wn5-setup-hr">
+                    <wn5-setup-common-button
+                        data-submit-click="setSwing()"
+                        data-cancel-click="view()">
+                    </wn5-setup-common-button>
+                    </div>
                 </div>
 
                 <div ng-if="activeTab.title === 'Group'">
@@ -184,7 +186,6 @@
                                     </div>
                                     <button type="button" class="btn btn-primary" ng-click="startStopGroup(0)">{{ 'lang_start' | translate }}</button>
                                     <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopGroup(1)">{{ 'lang_stop' | translate }}</button>
-                                    <button type="button" class="btn btn-primary" ng-click="setGroup()">{{ 'lang_set' | translate }}</button>
                                     <button type="button" class="btn btn-primary" ng-click="removeGroups()">
                                         {{ 'lang_remove' | translate }}
                                     </button>
@@ -228,6 +229,13 @@
                             </div>
                         </div>
                     </div>
+                    <div style="width: 100%;position: relative;top: 20px;clear: both;">
+                    <hr calss="wn5-setup-hr">
+                    <wn5-setup-common-button
+                        data-submit-click="setGroup()"
+                        data-cancel-click="view()">
+                    </wn5-setup-common-button>
+                    </div>
                 </div>
 
                 <div ng-if="activeTab.title === 'Tour'">                                                 
@@ -238,7 +246,6 @@
                                 <div class="form-group">
                                     <button type="button" class="btn btn-primary" ng-click="startStopTour(0)">{{ 'lang_start' | translate }}</button>
                                     <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopTour(1)">{{ 'lang_stop' | translate }}</button>
-                                    <button type="button" class="btn btn-primary" ng-click="setTour()">{{ 'lang_set' | translate }}</button>
                                     <button type="button" class="btn btn-primary" ng-click="removeTours()">{{ 'lang_remove' | translate }}</button>
                                 </div>
                                 <div class="form-group">
@@ -257,6 +264,13 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div style="width: 100%;position: relative;top: 20px;clear: both;">
+                    <hr calss="wn5-setup-hr">
+                    <wn5-setup-common-button
+                        data-submit-click="setTour()"
+                        data-cancel-click="view()">
+                    </wn5-setup-common-button>
                     </div>
                 </div>
 
@@ -281,7 +295,6 @@
                             <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
                             <div class="wn5-setup-section-article-content">
                                 <select class="form-control wp25" ng-model="AutoRun.Mode" ng-options="Mode as getTranslatedOption(Mode) for Mode in AutoRunModes"></select>
-                                <button type="button" class="btn btn-primary" ng-click="setAutoRun()">{{ 'lang_set' | translate }}</button>
                             </div>
                         </div>
                         <div class="form-group" ng-if="AutoRun.Mode == 'Home'">
@@ -420,7 +433,14 @@
                                 </table>
                             </div>
                         </div>    
-                    </div>                    
+                    </div>
+                    <div style="width: 100%;position: relative;top: 20px;clear: both;">
+                    <hr calss="wn5-setup-hr">
+                    <wn5-setup-common-button
+                        data-submit-click="setAutoRun()"
+                        data-cancel-click="view()">
+                    </wn5-setup-common-button>
+                    </div>
                 </div>   
 
 
