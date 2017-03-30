@@ -930,19 +930,19 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             getWidth() < definedVideoInfo[0] || 
             getHeight() < definedVideoInfo[1] ){
             if($scope.videoinfo.flip === true){
-                points[2][0] = points[0][0] - definedVideoInfo[0];
-                points[3][0] = points[0][0] - definedVideoInfo[0];
+                points[2][0] = Math.abs(points[0][0] - definedVideoInfo[0]);
+                points[3][0] = Math.abs(points[0][0] - definedVideoInfo[0]);
             }else{
-                points[2][0] = points[0][0] + definedVideoInfo[0];
-                points[3][0] = points[0][0] + definedVideoInfo[0];   
+                points[2][0] = Math.abs(points[0][0] + definedVideoInfo[0]);
+                points[3][0] = Math.abs(points[0][0] + definedVideoInfo[0]);   
             }   
 
             if($scope.videoinfo.mirror === true){
-                points[1][1] = points[0][1] - definedVideoInfo[1];
-                points[2][1] = points[0][1] - definedVideoInfo[1];
+                points[1][1] = Math.abs(points[0][1] - definedVideoInfo[1]);
+                points[2][1] = Math.abs(points[0][1] - definedVideoInfo[1]);
             }else{
-                points[1][1] = points[0][1] + definedVideoInfo[1];
-                points[2][1] = points[0][1] + definedVideoInfo[1];   
+                points[1][1] = Math.abs(points[0][1] + definedVideoInfo[1]);
+                points[2][1] = Math.abs(points[0][1] + definedVideoInfo[1]);   
             }
         }
 
