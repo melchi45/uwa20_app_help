@@ -92,15 +92,8 @@ kindFramework
       		.then(function(value){
       			var itemSet = new ItemSetModel();
       			//value.OverlappedIDList format is = {1,0} 
-						var overlapList = [];
-
-						for( var i=0 ; i<value.OverlappedIDList.length ; i++ ) {
-							if( typeof(value.OverlappedIDList[i]) !== 'object' ) {
-								overlapList.push(value.OverlappedIDList[i]);
-							}
-						}
-      			if( overlapList.length > 0 ) {
-      				query.id = overlapList[overlapList.length-1];
+      			if( value.OverlappedIDList.length > 0 ) {
+      				query.id = value.OverlappedIDList[value.OverlappedIDList.length-1];
       			}
       			searchData.setOverlapId(query.id);
       			console.log(value);
