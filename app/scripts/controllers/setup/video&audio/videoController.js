@@ -308,7 +308,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         if(mAttr.PTZModel == true){
                             var setData = {};
                             setData["Mode"] = "Move";
-                            setData["MaskIndex"] = index-1;
+                            setData["MaskIndex"] = index;
                             if($scope.isMultiChannel) {
                                 var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
                                 setData.Channel = currentChannel;
