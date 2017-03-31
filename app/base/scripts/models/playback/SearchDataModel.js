@@ -152,20 +152,6 @@ kindFramework.factory(
       	return playbackType;
       };
 
-      /**
-      * (Currently, for plugin) save selected channel id for playback 
-      * @name : setChannelId
-      * @param : channel id
-      * 
-      */
-      this.setChannelId = function(id){
-        channelId = id;
-      };
-
-      this.getChannelId = function() {
-      	return channelId;
-      };
-
       this.setChannelIdList = function(idList) {
         channelIdList = idList;
       };
