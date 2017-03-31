@@ -920,9 +920,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         var ratio = definedVideoInfo[4];
         var currentRatio = parseFloat((ratio[1] * areaWidth / areaHeight).toFixed(3).substr(0,4));
 
-        // console.log("ratio:", ratio[0], ratio[1]);
-        // console.log("Current Ratio:", currentRatio);
-
         if(ratio[0] < currentRatio){
             points[2][0] -= 2;
             points[3][0] -= 2;
@@ -933,23 +930,21 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             getWidth() < definedVideoInfo[0] || 
             getHeight() < definedVideoInfo[1] ){
             if($scope.videoinfo.flip === true){
-                points[2][0] = points[1][0] - definedVideoInfo[0];
-                points[3][0] = points[1][0] - definedVideoInfo[0];
+                points[2][0] = Math.abs(points[0][0] - definedVideoInfo[0]);
+                points[3][0] = Math.abs(points[0][0] - definedVideoInfo[0]);
             }else{
-                points[2][0] = points[0][0] + definedVideoInfo[0];
-                points[3][0] = points[0][0] + definedVideoInfo[0];   
-            }
+                points[2][0] = Math.abs(points[0][0] + definedVideoInfo[0]);
+                points[3][0] = Math.abs(points[0][0] + definedVideoInfo[0]);   
+            }   
 
             if($scope.videoinfo.mirror === true){
-                points[0][1] = points[3][1] - definedVideoInfo[1];
-                points[1][1] = points[3][1] - definedVideoInfo[1];
+                points[1][1] = Math.abs(points[0][1] - definedVideoInfo[1]);
+                points[2][1] = Math.abs(points[0][1] - definedVideoInfo[1]);
             }else{
-                points[1][1] = points[0][1] + definedVideoInfo[1];
-                points[2][1] = points[0][1] + definedVideoInfo[1];   
+                points[1][1] = Math.abs(points[0][1] + definedVideoInfo[1]);
+                points[2][1] = Math.abs(points[0][1] + definedVideoInfo[1]);   
             }
         }
-
-        // console.log("Fixed Ratio: ", (ratio[1] * (points[2][0] - points[0][0]) / areaHeight).toFixed(2));
 
         return points;
     }
@@ -993,13 +988,13 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             var fdIndex = findFDIndex(roiIndex);
 
             if(modifiedType !== "delete"){
-                console.log(modifiedPoints.join(','));
+                // console.log(modifiedPoints.join(','));
                 modifiedPoints = fixRatioForCoordinates(modifiedPoints);   
-                console.log(modifiedPoints.join(','));
+                // console.log(modifiedPoints.join(','));
                 modifiedPoints = changeOnlyEvenNumberOfWiseFD(modifiedPoints);
-                console.log(modifiedPoints.join(','));
+                // console.log(modifiedPoints.join(','));
                 modifiedPoints = fixMaxResolution(modifiedPoints);
-                console.log(modifiedPoints.join(','));
+                // console.log(modifiedPoints.join(','));
             }
             
             if(modifiedType === "create" || fdIndex === null){
