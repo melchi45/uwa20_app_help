@@ -169,7 +169,7 @@ kindFramework
         ChannelIDList : query.channel
       };
       var def = $q.defer();
-      SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=timeline&action=view&OverlappedID=', 
+      SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=timeline&action=view', 
         updateDate,
         function (response) {
           if( response.data.TimeLineSearchResults === undefined || response.data.TimeLineSearchResults.length === 0 ) {
