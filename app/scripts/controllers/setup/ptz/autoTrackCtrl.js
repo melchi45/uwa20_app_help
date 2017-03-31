@@ -1,4 +1,4 @@
-kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, $q, sketchbookService)
+kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, $q, sketchbookService, $rootScope)
 {
     "use strict";
 
@@ -23,19 +23,19 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
 
     $scope.IncreaseCamHeight = function ()
     {
-        var sVal = $scope.AutoTracking.SliderLevel + sliderStep;
+        var sVal = $scope.AutoTracking.CameraHeight + sliderStep;
 
         if (sVal >= $scope.MinCameraHeight && sVal <= $scope.MaxCameraHeight){
-            $scope.AutoTracking.SliderLevel = sVal;
+            $scope.AutoTracking.CameraHeight = sVal;
         }
     };
 
     $scope.DecreaseCamHeight = function ()
     {
-        var sVal = $scope.AutoTracking.SliderLevel - sliderStep;
+        var sVal = $scope.AutoTracking.CameraHeight - sliderStep;
 
         if (sVal >= $scope.MinCameraHeight && sVal <= $scope.MaxCameraHeight){
-            $scope.AutoTracking.SliderLevel = sVal;
+            $scope.AutoTracking.CameraHeight = sVal;
         }
     };
 
@@ -43,7 +43,7 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
     {
         if(typeof $scope.AutoTracking !== 'undefined')
         {
-            return $scope.AutoTracking.SliderLevel / 100 + " m";
+            return $scope.AutoTracking.CameraHeight / 100 + " m";
         }
     };
 
@@ -76,10 +76,11 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
     
     $scope.$on('<app/scripts/directives>::<autoTrackingUpdate>', function (args, data)
     {
-    	if (data === null) {    //autoTracking setting cancel
+        if (data === null) {    //autoTracking setting cancel
     	} else {
-            var autotrackAdd = function(addData){
-                return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=add', addData,
+            var autotrackAdd = function(){
+                var setData = {'TrackingAreaID':data.name, 'Coordinate':data.position};
+                return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=add', setData,
                     function (response) {},
                     function (errorData) {
                         console.log(errorData);
@@ -100,9 +101,8 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
                         console.log(errorData);
                     },'',true);
             };
-            var setData = {'TrackingAreaID':data.name, 'Coordinate':data.position};
             var promises = [];
-            promises.push(autotrackAdd(setData));
+            promises.push(autotrackAdd);
             promises.push(autotrackingView);
             $q.seqAll(promises).then(
                 function(){
@@ -128,20 +128,10 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
 
         if (mAttr.CameraHeights !== undefined)
         {
-            $scope.MinCameraHeight = parseInt(mAttr.CameraHeights[0].split('cm')[0]);
-            $scope.MaxCameraHeight = parseInt(mAttr.CameraHeights[mAttr.CameraHeights.length - 1].split('cm')[0]);
-
-            $scope.SensitivitySliderOptions = {
-                floor: $scope.MinCameraHeight,
-                ceil: $scope.MaxCameraHeight,
-                step: sliderStep,
-                showSelectionBar: true,
-                translate: function(val){
-                    return val / 100 + ' m';
-                }
-            };
-
-            //refreshSensitivitySlider();
+            $scope.CameraHeights = {};
+            $scope.CameraHeights.minValue = parseInt(mAttr.CameraHeights[0].split('cm')[0]) / 100;
+            $scope.CameraHeights.maxValue = parseInt(mAttr.CameraHeights[mAttr.CameraHeights.length - 1].split('cm')[0]) / 100;
+            initCameraHeightsSlider();
         }
 
         if (mAttr.AutoTrackObjectSize !== undefined)
@@ -151,12 +141,18 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
     }
 
 
-    function refreshSensitivitySlider()
+    function initCameraHeightsSlider()
     {
-        $timeout(function () {
-            $scope.$broadcast('rzSliderForceRender');
-            $scope.$broadcast('reCalcViewDimensions');
-        });
+        if ($scope.CameraHeights !== undefined) {
+            $scope.CameraHeightsSliderOptions = {
+                floor: $scope.CameraHeights.minValue,
+                ceil: $scope.CameraHeights.maxValue,
+                showSelectionBar: true,
+                step: 0.1,
+                showInputBox: true,
+                vertical: false
+            };
+        }
     }
 
     function getSliderColor()
@@ -171,7 +167,7 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=view', getData,
             function (response) {
                 $scope.AutoTracking = response.data.AutoTracking[0];
-                $scope.AutoTracking.SliderLevel = parseInt($scope.AutoTracking.CameraHeight.split('cm')[0]);
+                $scope.AutoTracking.CameraHeight = parseInt($scope.AutoTracking.CameraHeight.split('cm')[0]) / 100;
                 $scope.AutoTracking.Zoom = $scope.AutoTracking.ZoomControl === 'On' ? true : false;
                 $scope.AutoTracking.IndicatorDisplay = $scope.AutoTracking.DisplayIndicator === 'On' ? true : false;
                 $scope.AutoTracking.AreaActivation = $scope.AutoTracking.TrackingAreaEnable ? true : false;
@@ -185,7 +181,7 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
                 };
 
                 pageData.AutoTracking = angular.copy($scope.AutoTracking);
-                refreshSensitivitySlider();
+                initCameraHeightsSlider();
             },
             function (errorData) {
                 console.log(errorData);
@@ -197,7 +193,7 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
         var setData = {};
 
         setData.Channel = 0;
-        setData.CameraHeight = $scope.AutoTracking.SliderLevel + 'cm';
+        setData.CameraHeight = ($scope.AutoTracking.CameraHeight * 100) + 'cm';
         setData.ZoomControl = $scope.AutoTracking.Zoom === true ? 'On' : 'Off';
         setData.ObjectSize = $scope.AutoTracking.ObjectSize;
         setData.DisplayIndicator = $scope.AutoTracking.IndicatorDisplay === true ? 'On' : 'Off';
@@ -233,7 +229,6 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
 
     function view()
     {
-        getAttributes();
         var promises = [];
         promises.push(getAutoTrackingSetup);
         $q.seqAll(promises).then(
@@ -242,9 +237,6 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
                 $scope.pageLoaded = true;
                 showVideo().finally(function(){
                     $("#autotrackpage").show();
-                    $timeout(function(){
-                        refreshSensitivitySlider();
-                    },100);
                 });
             },
             function(errorData){
@@ -318,6 +310,7 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
                 wait();
             }, 500);
         } else {
+            getAttributes();
             view();
         }
     })();
