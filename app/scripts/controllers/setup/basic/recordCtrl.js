@@ -308,19 +308,16 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
             var scheduler = $("#scheduler");
             scheduler.html('');
 
-            console.info($scope.RecordSchedule);
-            console.info($scope.RecordSchedule.ScheduleIds);
+            console.log($scope.RecordSchedule);
             
-            var status = eventRuleService.getScheduleData();
-            console.info(status);
-
             $scope.pageLoaded = true;
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
-            $rootScope.$emit('changeLoadingBar', false);
 
             var templete = angular.element("<scheduler></scheduler>");
             $compile(templete)($scope);
             scheduler.append(templete);
+
+            $rootScope.$emit('changeLoadingBar', false);
         }, function(errorData) {
             console.error(errorData);
         });
@@ -375,13 +372,11 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
                 } else {
                     $rootScope.$emit('changeLoadingBar', true);
 
-                    $timeout(function () {
-                        if(newChannel !== false) {
-                            $rootScope.$emit("channelSelector:changeChannel", newChannel);
-                            $scope.Channel = newChannel;
-                        }
-                        view();
-                    }, 1000);
+                    if(newChannel !== false) {
+                        $rootScope.$emit("channelSelector:changeChannel", newChannel);
+                        $scope.Channel = newChannel;
+                    }
+                    view();
                 }
             }, function(errorData) {});
         }
