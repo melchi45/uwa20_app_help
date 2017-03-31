@@ -385,7 +385,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && $scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined /*&& $scope.PrivacyMask[$scope.SelectedChannel].Enable*/){
                     for(var i = 0; i < $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++){
                         if($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable == true){
-                            $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "[ZOOM]";
+                            $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "["+$translate.instant('lang_zoom')+"]";
                         } else {
                             $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "";
                         }

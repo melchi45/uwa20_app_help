@@ -1,7 +1,8 @@
 kindFramework.directive('dateControl', ['$rootScope','TimelineService','SearchDataModel',
   'PlayDataModel','PLAYBACK_TYPE','ModalManagerService','PlaybackInterface','$timeout',
+  'UniversialManagerService',
   function($rootScope, TimelineService, SearchDataModel, PlayDataModel, PLAYBACK_TYPE,
-    ModalManagerService, PlaybackInterface, $timeout) {
+    ModalManagerService, PlaybackInterface, $timeout, UniversialManagerService) {
     'use strict';
     var searchedData = {};
     var pad = function(x){
@@ -109,7 +110,7 @@ kindFramework.directive('dateControl', ['$rootScope','TimelineService','SearchDa
             ' '+pad(endTime[0])+':'+pad(endTime[1])+':'+pad(endTime[2])+'+00:00');
           searchData.setSelectedDate(current.date);
           timelineCtrl.changeTimelineView(startWindow, endWindow);
-          var channelId = searchData.getChannelId();
+          var channelId = UniversialManagerService.getChannelId();
 
           var searchInfo = {
             'startTime' : current.startTime,

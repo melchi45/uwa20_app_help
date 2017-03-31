@@ -1,9 +1,9 @@
 /*global vis, setTimeout, clearTimeout*/
 kindFramework
   .factory('TimelineService', ['$rootScope','$filter', 'PlayDataModel', 'PLAYBACK_TYPE',
-    'SearchDataModel', 'ItemSetModel', '$timeout', 'ModalManagerService',
+    'SearchDataModel', 'ItemSetModel', '$timeout', 'ModalManagerService','UniversialManagerService',
       function($rootScope, $filter, PlayDataModel, PLAYBACK_TYPE, SearchDataModel,
-        ItemSetModel, $timeout, ModalManagerService) {
+        ItemSetModel, $timeout, ModalManagerService,UniversialManagerService) {
         "use strict";
         var TimelineService = function() {
           if( TimelineService._instance) {
@@ -266,7 +266,7 @@ kindFramework
         var getTimestamp = function(time, stepFlag) {
           if( time === null ) return;
           if( stopCallback && (stepFlag === undefined || stepFlag === false)) return;
-          if(playData.getIsMultiPlayback() && searchData.getChannelId() !== time.channel_index) return;
+          if(playData.getIsMultiPlayback() && UniversialManagerService.getChannelId() !== time.channel_index) return;
           /*
           * If end time reached, we need to manually stop the stream.
           */

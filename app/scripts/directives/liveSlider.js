@@ -55,7 +55,8 @@ kindFramework
                              * 소수점이 4.3999999999999995 또는 4.1000000000000005
                              * 이런 방식으로 나오는 것을 방지
                              */
-                            _value = parseFloat(_value.toFixed(3).substr(0,3));
+                            var tmpValue = _value.toFixed(3);
+                            _value = parseFloat(tmpValue.substr(0,(tmpValue.indexOf('.')+2)));
                         }
 
                         if(_value < scope.liveSliderProperty.floor)
