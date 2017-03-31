@@ -95,7 +95,7 @@ kindFramework
 				year : date.getFullYear(),
 				month : pad(date.getMonth()+1),
 				day : pad(date.getDate()),
-				channel : 0
+				channel : UniversialManagerService.getChannelId()
 			};
 		
 			myObj.getOverlappedId(query)
