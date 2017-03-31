@@ -382,7 +382,7 @@
         kindSVGEditor = new KindSVGEditor(svgTag);
     }
     constructor.prototype = {
-        init: function(sketchInfomation, videoInInfomation, updateCallback, privacyCallback, autoTrackingCallback, getZoomValueCallback) {
+        init: function(sketchInfomation, videoInInfomation, updateCallback, privacyCallback, getZoomValueCallback, autoTrackingCallback) {
             //init: function(sketchInfomation, videoInInfomation, updateCallback, privacyCallback, autoTrackingCallback){
             sketchInfo = sketchInfomation;
             videoInfo = videoInInfomation;
