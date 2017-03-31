@@ -81,9 +81,13 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         if(newVal === oldVal) {return;}
         
         if (newVal == 'Preset'){
+            var pst = false;
+            if (typeof $scope.LastPosition !== 'undefined'){
+                pst = $scope.LastPosition.RememberLastPosition;
+            }
             $scope.ptzinfo = {
                     type: 'preset',
-                    disablePosition: $scope.LastPosition.RememberLastPosition
+                    disablePosition: pst
                 };
         } else {
             $scope.ptzinfo = {
@@ -113,14 +117,17 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         gotoPreset(preset);
     };
     $scope.$on('changePTZPreset', function(args, preset){
+        showLoadingBar(true)
         var promises = [];
         promises.push(function(){return gotoPreset(preset)});
         promises.push(getPresetList);
         promises.push(getPresetImageConfig);
         $q.seqAll(promises).then(
                 function(){
+                    showLoadingBar(false)
                 },
                 function(errorData){
+                    showLoadingBar(false)
                 }
         );
 
@@ -182,6 +189,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     }
     function removePresets(presetFilter)
     {
+        showLoadingBar(true)
+        
         var getData = {};
 
         getData.Preset = presetFilter;
