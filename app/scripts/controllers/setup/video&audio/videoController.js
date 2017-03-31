@@ -385,7 +385,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && $scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined /*&& $scope.PrivacyMask[$scope.SelectedChannel].Enable*/){
                     for(var i = 0; i < $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++){
                         if($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable == true){
-                            $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "[ZOOM]";
+                            $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "["+$translate.instant('lang_zoom')+"]";
                         } else {
                             $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "";
                         }
@@ -504,7 +504,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         controller: ['$scope', '$uibModalInstance', '$timeout', 'sketchbookService', function(scope, $uibModalInstance, $timeout, sketchbookService){
                             scope.ok = function() {
                                 getZoomValue().then(function(returnZoomValue){
-                                    if(returnZoomValue >= $scope.MaxZoom){
+                                    if(returnZoomValue > $scope.MaxZoom){
                                         var modalInstance3 = $uibModal.open({
                                             templateUrl: "privacyPopup3.html",
                                             backdrop: false,

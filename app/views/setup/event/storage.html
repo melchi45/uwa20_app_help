@@ -58,7 +58,7 @@
                                         <!-- </label> -->
                                     </td>
                                     <td>
-                                        <select class="form-control" ng-change="OnStorageEnable(Storage.Enable)" ng-disabled="$parent.selected != $index && isLoading" ng-model="Storage.Enable" style="text-align:center">
+                                        <select class="form-control" ng-change="OnStorageEnable(Storage.Enable)" ng-disabled="$parent.selected != $index || isLoading" ng-model="Storage.Enable" style="text-align:center">
                                             <option ng-repeat="Enable in RecordEnableOptions track by Enable" ng-selected="Storage.Enable == Enable" value="{{Enable}}">
                                                 {{getTranslatedOption(Enable)}}
                                             </option>

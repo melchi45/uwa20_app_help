@@ -14,7 +14,9 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
 			scope.showPTZControlHome = false;
 			scope.showPTZControlAT = false;
 			scope.showPTZControlBLC = false;
+			scope.showPTZControlHLC = false;
 			scope.disablePTZControlBLC = true;
+			scope.disablePTZControlHLC = true;
             scope.showPTZControlBasicDPTZ = false;
             scope.showPTZControlFisheyeDPTZ = false;
             scope.showPTZControlEPTZ = false;
@@ -35,8 +37,10 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 scope.showPTZControlHome = false;
                 scope.showPTZControlAT = false;
                 scope.showPTZControlBLC = false;
+                scope.showPTZControlHLC = false;
                 scope.showPTZControlOSD = false;
                 scope.disablePTZControlBLC = true;
+                scope.disablePTZControlHLC = true;
                 scope.showPTZControlBasicDPTZ = false;
                 scope.showPTZControlFisheyeDPTZ = false;
                 scope.showPTZControlEPTZ = false;
@@ -138,16 +142,34 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
 	                        scope.TrackingAreas = angular.copy(ptzinfo.TrackingAreas);
                         }
 
-                    }else if(ptzinfo.type ==='BLC'){
+                    }else if(ptzinfo.type ==='BLC' || ptzinfo.type ==='HLC'){
                         if(mAttr.PTZModel) {
-                            scope.showPTZControlBLC = true;
+                            if(ptzinfo.type ==='BLC'){
+                                scope.showPTZControlBLC = true;
+                                scope.showPTZControlHLC = false;
+                            } else {
+                                scope.showPTZControlBLC = false;
+                                scope.showPTZControlHLC = true;
+                            }
                             scope.blcbox = {};
                             scope.blcbox.select = 5;
                             scope.blcbox.options = COMMONUtils.getArray(5, true);
                             if (ptzinfo.disable == undefined || (ptzinfo.disable !== undefined && ptzinfo.disable == true)) {
-                                scope.disablePTZControlBLC = true;
+                                if(ptzinfo.type ==='BLC'){
+                                    scope.disablePTZControlBLC = true;
+                                    scope.disablePTZControlHLC = false;
+                                } else {
+                                    scope.disablePTZControlBLC = false;
+                                    scope.disablePTZControlHLC = true;
+                                }
                             } else {
-                                scope.disablePTZControlBLC = false;
+                                if(ptzinfo.type ==='BLC'){
+                                    scope.disablePTZControlBLC = false;
+                                    scope.disablePTZControlHLC = true;
+                                } else {
+                                    scope.disablePTZControlBLC = true;
+                                    scope.disablePTZControlHLC = false;
+                                }
                             }
                             scope.ptzControlClass = 'w510';
                         }
@@ -181,6 +203,8 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 data.mode = mode;
                 data.direction = direction;
                 data.step = scope.blcbox.select;
+                if(scope.showPTZControlBLC) data.type='BLC';
+                else data.type='HLC';
                 scope.$emit('changeBlcArea',data);
             };
 

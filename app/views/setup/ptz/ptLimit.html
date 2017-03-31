@@ -25,18 +25,18 @@
             </div>
             <div class="wn5-setup-section-article">
                 <div class="form-group">
+                    <div class="wn5-setup-section-article-heading"></div>
+                    <div class="wn5-setup-section-article-content"><input type="checkbox" ng-model="Use[PTLimitMode.SelectedIndex]" ng-change="changePTLimit()"> <label>{{ 'lang_enable' | translate }}</label></div>
+                </div>
+                <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
                     <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="PTLimitMode.SelectedIndex" ng-options="PTLimitModes.indexOf(Option) as getTranslatedOption(Option) for Option in PTLimitModes"></select></div>
                 </div>
-                <div class="form-group">
-                    <div class="wn5-setup-section-article-heading">{{ 'lang_enable' | translate }}</div>
-                    <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="Use[PTLimitMode.SelectedIndex]" ng-change="changePTLimit()" ng-options="Option as getTranslatedOption(Option) for Option in UseOptions"></select></div>
-                </div>
-                <div class="form-group">
+                <div class="form-group" ng-show="isTiltShow()">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_tiltAngle' | translate }}</div>
                     <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="PTLimit.TiltRange" ng-change="changePTLimit()" ng-options="Option as getTranslatedOption(Option) for Option in TiltRangeOptions"></select></div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-top: 5px;">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_action' | translate }}</div>
                     <div calss="wn5-setup-section-article-content">
                         <table cellspacing="0" cellpadding="0" border="0" width="300px">

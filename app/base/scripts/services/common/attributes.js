@@ -77,6 +77,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
     mAttributes.FriendlyNameCharSetNoNewLineStr ="^[a-zA-Z0-9~`!@%&*#<>+=:'$()^ _\\-|\\[\\]{};,./?\"]*$";
     mAttributes.FriendlyNameCharSetSupportedStr ="^[\\r\\na-zA-Z0-9~`!@%&*#<>+=:'$()^ _\\-|\\[\\]{};,./?\"]*$";
     mAttributes.URLSet = "^[a-zA-Z0-9\\-.:\\[\\]{}/]*$";
+    mAttributes.PasswordCharSet = "^[a-zA-Z0-9~*`!@#$%()^_\\-\\+=|{}\\[\\].?/]*$";
 
     /**********************************************************/
 

@@ -1,4 +1,4 @@
-kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibModal, $timeout, $translate, SunapiClient, Attributes, COMMONUtils, $q)
+kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibModal, $timeout, $translate, SunapiClient, Attributes, COMMONUtils, $q, $rootScope)
 {
     "use strict";
 
@@ -81,8 +81,13 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         if(newVal === oldVal) {return;}
         
         if (newVal == 'Preset'){
+            var pst = false;
+            if (typeof $scope.LastPosition !== 'undefined'){
+                pst = $scope.LastPosition.RememberLastPosition;
+            }
             $scope.ptzinfo = {
-                    type: 'preset'
+                    type: 'preset',
+                    disablePosition: pst
                 };
         } else {
             $scope.ptzinfo = {
@@ -112,14 +117,17 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         gotoPreset(preset);
     };
     $scope.$on('changePTZPreset', function(args, preset){
+        showLoadingBar(true)
         var promises = [];
         promises.push(function(){return gotoPreset(preset)});
         promises.push(getPresetList);
         promises.push(getPresetImageConfig);
         $q.seqAll(promises).then(
                 function(){
+                    showLoadingBar(false)
                 },
                 function(errorData){
+                    showLoadingBar(false)
                 }
         );
 
@@ -145,13 +153,14 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         }
     };
     function getPresetImageConfig() {
-        $scope.PTZPresetPage.presetList = [];
-        $scope.PTZPresetPage.currentPage = 1;
-        $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
 
         var getData = {};
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=view', getData,
             function (response) {
+                //$scope.PTZPresetPage.presetList = [];
+                $scope.PTZPresetPage.currentPage = 1;
+                $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
+                
                 var PresetImageConfig;
                 if(typeof response.data.PresetImageConfig !== 'undefined'){
                     PresetImageConfig = response.data.PresetImageConfig[0].Presets;
@@ -173,23 +182,25 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                 $scope.PTZPresetPage.presetList = COMMONUtils.chunkArray($scope.PTZPresets, $scope.PTZPresetPage.pageSize);
             },
             function (errorData) {
-                if (errorData !== "Configuration Not Found") {
-                    console.log(errorData);
-                }
+                $scope.PTZPresetPage.presetList = [];
+                $scope.PTZPresetPage.currentPage = 1;
+                $scope.PTZPresetPage.pageIndex = $scope.PTZPresetPage.currentPage;
             }, '', true);
     }
     function removePresets(presetFilter)
     {
+        showLoadingBar(true)
+        
         var getData = {};
 
         getData.Preset = presetFilter;
 
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=remove', getData,
             function (response) {
-                view(true);
+                view();
             },
             function (errorData) {
-                view(true);
+                view();
                 console.log(errorData);
             }, '', true);
     }
@@ -228,15 +239,17 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         var jsonString = JSON.stringify(setData);
         var encodeddata = encodeURI(jsonString);
 
+        showLoadingBar(true)
         SunapiClient.post('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', {},
                 function (response)
                 {
-                    pageData.PTZPresets = angular.copy($scope.PTZPresets);
+                    view();
+                    //pageData.PTZPresets = angular.copy($scope.PTZPresets);
                 },
                 function (errorData)
                 {
-                    view(true);
-                    console.log(errorData);
+                    //console.log(errorData);
+                    view();
                 }, $scope, encodeddata, specialHeaders);
         
     }
@@ -526,8 +539,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                     var encodeddata = encodeURI(jsonString);
                     return SunapiClient.post('/stw-cgi/ptzconfig.cgi?msubmenu=group&action=set', {},
                         function (response) {
-                            $scope.pageLoaded = false;
-                            view(true);
+                            //$scope.pageLoaded = false;
+                            view();
                         },
                         function (errorData) {
                         }, $scope, encodeddata, specialHeaders);
@@ -622,8 +635,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                     var encodeddata = encodeURI(jsonString);
                     return SunapiClient.post('/stw-cgi/ptzconfig.cgi?msubmenu=tour&action=update', {},
                         function (response) {
-                            $scope.pageLoaded = false;
-                            view(true);
+                            //$scope.pageLoaded = false;
+                            view();
                         },
                         function (errorData) {
                         }, $scope, encodeddata, specialHeaders);
@@ -720,7 +733,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         return true;
     }
 
-    function getAttributes(isFirst)
+    function getAttributes()
     {
         $scope.tabs = [];
         $scope.MaxPreset = mAttr.MaxPreset;
@@ -882,7 +895,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
             $scope.WeekDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
         }
-        if (isFirst && ($scope.tabs.length > 0)){
+        if ($scope.tabs.length > 0){
             $scope.activeTab.title = $scope.tabs[0];
             $scope.activeTab.active = true;
             $scope.previousTab = angular.copy($scope.activeTab);
@@ -891,129 +904,173 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
     function getPresetList()
     {
-        $scope.PresetNameOptions = [];
-        $scope.PresetNameOptions.push({preset:0,name:'None'});
-
         var getData = {};
 
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=view', getData,
             function (response) {
+                var PresetNameOptionData = [];
+                PresetNameOptionData.push({preset:0,name:'None'});
+                
                 $scope.PTZPresets = response.data.PTZPresets[0].Presets;
                 for (var i = 0; i < response.data.PTZPresets[0].Presets.length; i++) {
                     var item = {
                         preset : response.data.PTZPresets[0].Presets[i].Preset,
                         name : response.data.PTZPresets[0].Presets[i].Preset + ' : ' + response.data.PTZPresets[0].Presets[i].Name
                     };
-                    $scope.PresetNameOptions.push(item);
+                    PresetNameOptionData.push(item);
                 }
+                
+                $scope.PresetNameOptions = angular.copy(PresetNameOptionData);
             },
             function (errorData) {
-                if (errorData !== "Configuration Not Found") {
-                    //console.log(errorData);
-                } else {
-                    $scope.PTZPresets = [];
-                    $scope.PTZPreset.checkAll = false;
-                }
+                $scope.PTZPresets = [];
+                $scope.PTZPreset.checkAll = false;
+                $scope.PresetNameOptions = [];
+                $scope.PresetNameOptions.push({preset:0,name:'None'});
             }, '', true);
     }
 
     function getGroups()
     {
-        $scope.GroupsSet = [];
-
+        $scope.Group.SelectedIndex = 0;
         var getData = {};
-
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=group&action=view', getData,
             function (response) {
                 var aGroups = response.data.PTZGroups[0].Groups;
-
+                var GroupData = [];
+                for (var g = 0; g < mAttr.MaxGroupCount; g++)
+                {
+                    GroupData[g] = {};
+                    GroupData[g].PresetList = [];
+                    for (var i = 0; i < $scope.MaxPresetsPerGroup; i++) {
+                        GroupData[g].PresetList[i] = {};
+                        GroupData[g].PresetList[i].SelectedPresetIndex = 0;
+                        GroupData[g].PresetList[i].Speed = mAttr.DefaultPresetSpeed;
+                        GroupData[g].PresetList[i].DwellTime = mAttr.DefaultDwellTime;
+                    }
+                }
+                var GroupsSetData = [];
                 for (var g = 0; g < aGroups.length; g++) {
-                    $scope.GroupsSet.push(aGroups[g].Group);
-
+                    GroupsSetData.push(aGroups[g].Group);
                     var gIndex = aGroups[g].Group - 1;
                     for (var p = 0; p < aGroups[g].PresetSequences.length; p++) {
                         var pIndex = aGroups[g].PresetSequences[p].PresetSequence - 1;
-
-                        $scope.Groups[gIndex].PresetList[pIndex].SelectedPresetIndex = aGroups[g].PresetSequences[p].Preset;
-                        $scope.Groups[gIndex].PresetList[pIndex].Speed = aGroups[g].PresetSequences[p].Speed;
-                        $scope.Groups[gIndex].PresetList[pIndex].DwellTime = aGroups[g].PresetSequences[p].DwellTime;
+                        GroupData[gIndex].PresetList[pIndex].SelectedPresetIndex = aGroups[g].PresetSequences[p].Preset;
+                        GroupData[gIndex].PresetList[pIndex].Speed = aGroups[g].PresetSequences[p].Speed;
+                        GroupData[gIndex].PresetList[pIndex].DwellTime = aGroups[g].PresetSequences[p].DwellTime;
                     }
                 }
-
-                pageData.Groups = angular.copy($scope.Groups);
+                $scope.GroupsSet = angular.copy(GroupsSetData);
+                $scope.Groups = angular.copy(GroupData);
+                pageData.Groups = angular.copy(GroupData);
             },
             function (errorData) {
-                if (errorData == "Configuration Not Found") {
-                    pageData.Groups = angular.copy($scope.Groups);
-                }else{
-                    //alert(errorData);
+                var GroupData = [];
+                for (var g = 0; g < mAttr.MaxGroupCount; g++)
+                {
+                    GroupData[g] = {};
+                    GroupData[g].PresetList = [];
+                    for (var i = 0; i < $scope.MaxPresetsPerGroup; i++) {
+                        GroupData[g].PresetList[i].SelectedPresetIndex = 0;
+                        GroupData[g].PresetLis[i].Speed = mAttr.DefaultPresetSpeed;
+                        GroupData[g].PresetLis[i].DwellTime = mAttr.DefaultDwellTime;
+                    }
                 }
+                $scope.GroupsSet = [];
+                $scope.Groups = angular.copy(GroupData);
+                pageData.Groups = angular.copy(GroupData);
             }, '', true);
     }
 
     function getSwings()
     {
+        $scope.SwingMode.SelectedIndex = 0;
         var getData = {};
-
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=swing&action=view', getData,
             function (response) {
                 var aSwings = response.data.PTZSwing[0].SwingSequence;
-
-                for (var s = 0; s < aSwings.length; s++) {
-                    var index = $scope.SwingModes.indexOf(aSwings[s].Mode);
-
-                    if (index !== -1) {
-                        $scope.Swings[index].Speed = aSwings[s].Speed;
-                        $scope.Swings[index].DwellTime = aSwings[s].DwellTime;
-                        $scope.Swings[index].FromPreset = aSwings[s].FromPreset;
-                        $scope.Swings[index].ToPreset = aSwings[s].ToPreset;
+                var SwingData = [];
+                for (var s = 0; s < mAttr.SwingModes.length; s++)
+                {
+                    var check = false;
+                    SwingData[s] = {};
+                    for (var i = 0; i < aSwings.length; i++) {
+                        if (aSwings[i].Mode == mAttr.SwingModes[s]){
+                            SwingData[s].Speed = aSwings[i].Speed;
+                            SwingData[s].DwellTime = aSwings[i].DwellTime;
+                            SwingData[s].FromPreset = aSwings[i].FromPreset;
+                            SwingData[s].ToPreset = aSwings[i].ToPreset;
+                            check = true;
+                            break;
+                        }
+                    }
+                    if (!check){
+                        SwingData[s].Speed = mAttr.DefaultPresetSpeed;
+                        SwingData[s].DwellTime = mAttr.DefaultDwellTime;
+                        SwingData[s].FromPreset = 0;
+                        SwingData[s].ToPreset = 0;
                     }
                 }
-
-                pageData.Swings = angular.copy($scope.Swings);
+                $scope.Swings = angular.copy(SwingData);
+                pageData.Swings = angular.copy(SwingData);
             },
             function (errorData) {
-                if (errorData == "Configuration Not Found") {
-                    pageData.Swings = angular.copy($scope.Swings);
-                }else{
-                    //alert(errorData);
+                var SwingData = [];
+                for (var s = 0; s < mAttr.SwingModes.length; s++)
+                {
+                    SwingData[s] = {};
+                    SwingData[s].Speed = mAttr.DefaultPresetSpeed;
+                    SwingData[s].DwellTime = mAttr.DefaultDwellTime;
+                    SwingData[s].FromPreset = 0;
+                    SwingData[s].ToPreset = 0;
                 }
+                $scope.Swings = angular.copy(SwingData);
+                pageData.Swings = angular.copy(SwingData);
             }, '', true);
     }
 
     function getTours()
     {
         $scope.TourGroupSequencesSet = [];
+        $scope.TourGroupOptions = ['None'];
         $scope.TourGroupOptions.push.apply($scope.TourGroupOptions, $scope.GroupsSet);
-
         var getData = {};
-
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=tour&action=view', getData,
             function (response) {
                 if (response.data.PTZTours[0].Tours.length) {
+                    var GroupSequenceData = [];
+                    for (var g = 0; g < mAttr.MaxGroupCount; g++)
+                    {
+                        GroupSequenceData[g] = {};
+                        GroupSequenceData[g].DwellTime = 1;
+                        GroupSequenceData[g].SelectedTourGroup = $scope.TourGroupOptions[0];
+                    }
                     var GroupSequences = response.data.PTZTours[0].Tours[0].GroupSequences;
-
                     for (var g = 0; g < GroupSequences.length; g++) {
                         var index = GroupSequences[g].GroupSequence - 1;
 
                         if ($scope.GroupsSet.indexOf(GroupSequences[g].Group) !== -1) {
                             $scope.TourGroupSequencesSet.push(GroupSequences[g].GroupSequence);
 
-                            $scope.GroupSequences[index] = {};
-                            $scope.GroupSequences[index].SelectedTourGroup = GroupSequences[g].Group;
+                            GroupSequenceData[index] = {};
+                            GroupSequenceData[index].SelectedTourGroup = GroupSequences[g].Group;
                         }
-                        $scope.GroupSequences[index].DwellTime = GroupSequences[g].DwellTime;
+                        GroupSequenceData[index].DwellTime = GroupSequences[g].DwellTime;
                     }
-
-                    pageData.GroupSequences = angular.copy($scope.GroupSequences);
+                    $scope.GroupSequences = angular.copy(GroupSequenceData);
+                    pageData.GroupSequences = angular.copy(GroupSequenceData);
                 }
             },
             function (errorData) {
-                if (errorData == "Configuration Not Found") {
-                    pageData.GroupSequences = angular.copy($scope.GroupSequences);
-                }else{
-                    //alert(errorData);
+                var GroupSequenceData = [];
+                for (var g = 0; g < mAttr.MaxGroupCount; g++)
+                {
+                    GroupSequenceData[g] = {};
+                    GroupSequenceData[g].DwellTime = 1;
+                    GroupSequenceData[g].SelectedTourGroup = $scope.TourGroupOptions[0];
                 }
+                $scope.GroupSequences = angular.copy(GroupSequenceData);
+                pageData.GroupSequences = angular.copy(GroupSequenceData);
             }, '', true);
     }
 
@@ -1140,8 +1197,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=swing&action=set', setData,
             function (response) {
-                $scope.pageLoaded = false;
-                view(true);
+                //$scope.pageLoaded = false;
+                view();
             },
             function (errorData) {
                 //alert(errorData);
@@ -1347,8 +1404,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=group&action=remove', setData,
             function (response) {
-                $scope.pageLoaded = false;
-                view(true);
+                //$scope.pageLoaded = false;
+                view();
             },
             function (errorData) {
                 //alert(errorData);
@@ -1364,8 +1421,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=tour&action=remove', setData,
             function (response) {
-                $scope.pageLoaded = false;
-                view(true);
+                //$scope.pageLoaded = false;
+                view();
             },
             function (errorData) {
                 //alert(errorData);
@@ -1384,8 +1441,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             function (response) {
                 if(Option=='Stop' && refreshMode){
                     COMMONUtils.ShowInfo('lang_savingCompleted',function(){
-                        $scope.pageLoaded = false;
-                        view(true);
+                        //$scope.pageLoaded = false;
+                        view();
                     });
                 }
             },
@@ -1511,8 +1568,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         }
         $q.seqAll(promises).then(
             function(){
-                $scope.pageLoaded = false;
-                view(true);
+                //$scope.pageLoaded = false;
+                view();
             },
             function(errorData){
                 //alert(errorData);
@@ -1570,7 +1627,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=tour&action=add', setData,
             function (response) {
                 $scope.TourGroupSequencesSet.push(GroupSequenceIndex + 1);
-                //view(true);
+                //view();
             },
             function (errorData) {
             }, '', true);
@@ -1596,7 +1653,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
         return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=tour&action=update', setData,
             function (response) {
-                //view(true);
+                //view();
             },
             function (errorData) {
             }, '', true);
@@ -1633,14 +1690,10 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         return true;
     }
 
-    function view(isCurrActiveTab)
+    function view()
     {
-        if (isCurrActiveTab != true){
-            getAttributes(true);
-        } else {
-            getAttributes();
-        }
-
+        if($scope.pageLoaded==true && $scope.isLoading==false) showLoadingBar(true);
+        
         var promises = [];
         promises.push(getPresetList);
         promises.push(getPresetImageConfig);
@@ -1670,9 +1723,11 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                 showVideo().finally(function(){
                     $("#ptzinfosetuppage").show();
                 });
+                showLoadingBar(false);
             },
             function(errorData){
                 //alert(errorData);
+                showLoadingBar(false);
             }
         );
     }
@@ -1703,7 +1758,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                 };
                 if($scope.activeTab.title == 'Preset'){
                     $scope.ptzinfo = {
-                        type: 'preset'
+                        type: 'preset',
+                        disablePosition: $scope.LastPosition.RememberLastPosition
                     };
                 }else{
                     $scope.ptzinfo = {
@@ -1723,7 +1779,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
     $scope.setAutoRun = function ()
     {
-        if (!angular.equals(pageData.AutoRun, $scope.AutoRun) || autoRunChangedCheck) {
+        if (!angular.equals(pageData.AutoRun, $scope.AutoRun) || autoRunChangedCheck()) {
             COMMONUtils.ShowConfirmation(function(){
                 if (validatePage())
                 {
@@ -1739,19 +1795,23 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                                     pageData.AutoRunScheduler[$scope.WeekDays[d]] = angular.copy($scope.AutoRunScheduler[$scope.WeekDays[d]]);
                                 }
 
-                                $scope.pageLoaded = false;
-                                view(true);
+                                //$scope.pageLoaded = false;
+                                view();
                             },
                             function(errorData){
                                 //alert(errorData);
+                                showLoadingBar(false);
                             }
                         );
                     };
 
                     if (!angular.equals(pageData.AutoRun, $scope.AutoRun)) {
+                        showLoadingBar(true);
                         setAutoRunMode(function(){
-                            if(autoRunChangedCheck){
+                            if(autoRunChangedCheck()){
                                 runPromises();
+                            } else {
+                                view();
                             }
                         });
                     }else{
@@ -1867,6 +1927,10 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         return presetName;
     };
 
+    var showLoadingBar = function(_val) {
+        $rootScope.$emit('changeLoadingBar', _val);
+    };
+    
     $scope.view = view;
 
     (function wait() {
@@ -1884,6 +1948,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             $scope.PTZGroupPage.presetList = COMMONUtils.chunkArray($scope.PTZPresetArray, $scope.PTZGroupPage.pageSize);
             $scope.PTZGroupArray = COMMONUtils.getArrayWithMinMax(0, mAttr.MaxGroupCount - 1);
             $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
+            getAttributes();
             view();
         }
     })();
