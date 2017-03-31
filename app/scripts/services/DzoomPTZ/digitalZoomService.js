@@ -247,8 +247,9 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
       }
       else
       {
-          var zoomArray = canvasEventHandler(event, "mousewheel", null);
-          kindStreamInterface.changeDrawInfo(zoomArray);
+          var zoomData = canvasEventHandler(event, "mousewheel", null);
+          zoomData.channelId = UniversialManagerService.getChannelId();
+          kindStreamInterface.changeDrawInfo(zoomData);
       }
     }
     function mouseDown(event) {
@@ -268,8 +269,9 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
       }
       else
       {
-          var zoomArray = canvasEventHandler(event, "mousemove", null);
-          kindStreamInterface.changeDrawInfo(zoomArray);
+          var zoomData = canvasEventHandler(event, "mousemove", null);
+          zoomData.channelId = UniversialManagerService.getChannelId();
+          kindStreamInterface.changeDrawInfo(zoomData);
       }
     }
     function mouseUp(event) {
