@@ -95,7 +95,7 @@ kindFramework
 				year : date.getFullYear(),
 				month : pad(date.getMonth()+1),
 				day : pad(date.getDate()),
-				channel : 0
+				channel : UniversialManagerService.getChannelId()
 			};
 		
 			myObj.getOverlappedId(query)
@@ -181,7 +181,7 @@ kindFramework
 				timeInfo.endTime = '23:59:59';
 			}
 			var overlappedId = typeof(inputData.id)==='undefined' ? 0 : inputData.id;
-			var channelId = searchData.getChannelId();
+			var channelId = UniversialManagerService.getChannelId();
 			var overlapInfo = {
 				'year' : inputData.date.getFullYear(),
 				'month' : pad(inputData.date.getMonth()+1),
