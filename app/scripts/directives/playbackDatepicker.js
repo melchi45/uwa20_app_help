@@ -137,7 +137,7 @@ kindFramework.directive('playbackDatepicker', function() {
             };
             var showRecordingDate = function(year, month) {
                 $scope.isLoading = true;
-                var channelId = searchData.getChannelId();
+                var channelId = UniversialManagerService.getChannelId();
                 var dateInfo = {
                     'year' : year,
                     'month' : month,

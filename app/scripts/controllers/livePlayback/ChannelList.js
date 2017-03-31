@@ -90,8 +90,9 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
                 for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
                     var MultiDirectionProfile = response.data.VideoProfiles[i].Profiles[1];
                     MultiDirectionProfile.ChannelId = i;
+                    MultiDirectionProfile.Name = "profile12";
                     var playerData = ConnectionSettingService.getPlayerData('live', 
-                        MultiDirectionProfile, timeCallback, errorCallback, closeCallback, "video");
+                        MultiDirectionProfile, timeCallback, errorCallback, closeCallback, videoMode);
                     playerData.device.channelId = i;
                     userID = playerData.device.user
                     if (plugin === false) {
@@ -204,7 +205,7 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
                 var responseValue = response.data.Response;
                 var fps = UniversialManagerService.getProfileInfo().FrameRate;
                 pluginElement.SetWMDInitialize(channelId, channelId + 1, "PluginJSONEvent");
-                pluginElement.PlayLiveStream(ip, port, 1, userID, '', responseValue);
+                pluginElement.PlayLiveStream(ip, port, 12, userID, '', responseValue);
             },
             function(errorData,errorCode) {
                 console.error(errorData);

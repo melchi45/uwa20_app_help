@@ -92,8 +92,15 @@ kindFramework
       		.then(function(value){
       			var itemSet = new ItemSetModel();
       			//value.OverlappedIDList format is = {1,0} 
-      			if( value.OverlappedIDList.length > 0 ) {
-      				query.id = value.OverlappedIDList[value.OverlappedIDList.length-1];
+						var overlapList = [];
+
+						for( var i=0 ; i<value.OverlappedIDList.length ; i++ ) {
+							if( typeof(value.OverlappedIDList[i]) !== 'object' ) {
+								overlapList.push(value.OverlappedIDList[i]);
+							}
+						}
+      			if( overlapList.length > 0 ) {
+      				query.id = overlapList[overlapList.length-1];
       			}
       			searchData.setOverlapId(query.id);
       			console.log(value);
@@ -174,7 +181,7 @@ kindFramework
 			this.playbackInfo.time = playData.getSelectTime();
 			this.playbackInfo.endTime = $filter('date')(playData.getEndTime(), 'yyyyMMddHHmmss');
 			this.playbackInfo.id = searchData.getOverlapId();
-			this.playbackInfo.channel =  searchData.getChannelId();
+			this.playbackInfo.channel =  UniversialManagerService.getChannelId();
 			$rootScope.$emit('app/scripts/services/playbackClass::disableButton', true);
 			$rootScope.$emit("channelPlayer:command", "playback", this.playbackInfo, 
 				{'timeCallback' : this.timelineCallback, 'errorCallback' : this.playbackErrorCallback});
@@ -196,7 +203,7 @@ kindFramework
 			this.playbackInfo.time = playData.getSelectTime();
 			this.playbackInfo.endTime = $filter('date')(playData.getEndTime(), 'yyyyMMddHHmmss');
 			this.playbackInfo.id = searchData.getOverlapId();
-			this.playbackInfo.channel =  searchData.getChannelId();
+			this.playbackInfo.channel =  UniversialManagerService.getChannelId();
 			this.playbackInfo.needToImmediate = playData.getNeedToImmediate();
 			playData.setNeedToImmediate(false);
 			$rootScope.$emit("channelPlayer:command", "resume", this.playbackInfo);
@@ -377,7 +384,7 @@ kindFramework
 			this.playbackInfo.rtspIP = rtspInfo.cameraUrl;
 			this.playbackInfo.rtspPort = rtspInfo.rtspPort;
 			this.playbackInfo.userID = rtspInfo.user;
-			this.playbackInfo.channel = searchData.getChannelId();
+			this.playbackInfo.channel = UniversialManagerService.getChannelId();
       		$rootScope.$emit("channelPlayer:command", "playbackBackup", this.playbackInfo, backupErrorCallback);
 		};
 		var checkEventSource = function() {
