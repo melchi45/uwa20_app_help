@@ -67,6 +67,8 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 					width: newSize.width + "px",
 					height: newSize.height + "px"
 				});
+
+				setPosition(newSize.width, newSize.height);
 	 		} else if (mode === 'fit') {
 	 			curViewMode = mode;
 	 			container.css("overflow", "hidden");
@@ -127,21 +129,20 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 										if(nowfull) {
 											$("#cm-video").css({ height: "calc(100% - 50px)" });
 											$(".full-screen").css({ height: "calc(100% - 50px)" });
-											$(".full-screen").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
 											$(".full-screen kind_stream").css({ height: "100%" });
-										}else {
-											$("#cm-video").css({ height: "calc(100% - 100px)" });
 										}
 
                                         if( $(".full-screen img").length || $(".full-screen object").length){
                                             $(".full-screen kind_stream").css({ width: "100%" });
+                                            $(".full-screen").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
                                         }else{
-                                            // $(".full-screen").css({ width: "100%" });
+                                            $(".full-screen").css({ width: "100%" });
                                         }
 
                                         if(UniversialManagerService.getViewMode() != 0){
                                             $("#cm-video").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
                                         }
+
                                     } else {
                                         $(".land-scape").removeClass('land-scape');
 
@@ -151,15 +152,17 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                        	  if(controlShow) bottomMenuHeight = 400;
                                           else bottomMenuHeight = 115;
                                        }else {
-											if(controlShow) bottomMenuHeight = 250;
+                                       	  if(controlShow) bottomMenuHeight = 250;
                                           else bottomMenuHeight = 50;
                                        }
 
                                        if (checkSize > 3000 && checkHeight > 1688) {
                                        	  if(controlShow) bottomMenuHeight = 500;
                                           else bottomMenuHeight = 145;
+
                                        }
                                         
+
                                         // Default Show 상태의 메뉴 > Responsive 상태일시 2줄
                                         // Live에서는 변경점  900
                                         if(checkSize < 800 || (checkSize < 900 && checkType)) bottomMenuHeight += 50;
@@ -172,10 +175,9 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
                                         $("#cm-video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
                                         if( $(".full-screen img").length || $(".full-screen object").length){
                                             $(".full-screen kind_stream").css({ height: "100%" });
-                                            $(".full-screen").css({ height: "calc(100% - "+ bottomMenuHeight +"px)", width: "100%" });
-											$(".full-screen").css({ height: "calc(100% - "+ bottomMenuHeight +"px)", width: "100%" });
+                                            $(".full-screen").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
                                         }else{
-                                            $(".full-screen").css({ height: "100%", width: "100%" });
+                                            $(".full-screen").css({ height: "100%" });
                                             $(".full-screen kind_stream").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
                                         }
 
@@ -188,6 +190,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 			function getSize(boxWidth, boxHeight){
 				// menu content margin
 				boxHeight -= 10;
+
   				var width, height;
   				if(streamCanvas[0]  !== undefined){
 	  				if(streamCanvas[0].id === "video-container"){
@@ -251,14 +254,38 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 							width: newSize.width + "px",
 							height: newSize.height + "px"
 						});
+
+						setPosition(newSize.width, newSize.height);
 					}
 				}
 			} //setCanvasBytestRatio
 			
 			if(streamCanvas[0] !== undefined && BrowserService.BrowserDetect !== BrowserService.BROWSER_TYPES.IE) {
-				$rootScope.$emit("pixelCount::setSize", streamCanvas[0].clientWidth, streamCanvas[0].clientHeight);
+                $rootScope.$emit("overlayCanvas::setSize", streamCanvas[0].clientWidth, streamCanvas[0].clientHeight);
 			}
 		}; //setCanvasStyle
+
+		function setPosition(width, height){
+			var boxSize = getBoxSize();
+			var top = (boxSize.height - height) / 2;
+			var left = (boxSize.width - width) / 2;
+
+			if(top <= 0){
+				top = 0;
+			}
+			if(left <= 0){
+				left = 0;
+			}
+
+			streamCanvas.css({
+				top: top + "px",
+				left: left + "px"
+			});
+			overlayCanvas.css({
+				top: (top+3) + "px",
+				left: (left+3) + "px"
+			});
+		}
 
 		function getBoxSize(){
 		  	var wWidth, wHeight;
