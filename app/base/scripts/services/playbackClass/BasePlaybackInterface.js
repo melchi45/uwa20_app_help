@@ -181,7 +181,7 @@ kindFramework
 				timeInfo.endTime = '23:59:59';
 			}
 			var overlappedId = typeof(inputData.id)==='undefined' ? 0 : inputData.id;
-			var channelId = searchData.getChannelId();
+			var channelId = UniversialManagerService.getChannelId();
 			var overlapInfo = {
 				'year' : inputData.date.getFullYear(),
 				'month' : pad(inputData.date.getMonth()+1),
