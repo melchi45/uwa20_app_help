@@ -25,6 +25,9 @@ kindFramework
             function getEventActions() {
                 var getData = {};
                 var url = '';
+                if(currentPage !== null) {
+                    scope.EventSource = currentPage;
+                }
                 if(scope.EventSource === 'VideoAnalysis'
                     || scope.EventSource === 'FogDetection'
                     || scope.EventSource === 'DefocusDetection'
