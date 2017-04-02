@@ -49,7 +49,7 @@ kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal,
         }
 
         $scope.pageLoaded = true;
-        $scope.$emit('pageLoaded', true);
+        $scope.$emit('pageLoaded', $scope.EventSource);
     }
 
     // $scope.$on('setEventRuleCompleted', function(event, data) {
