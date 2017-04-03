@@ -17,7 +17,7 @@
           </div>
         </div>
 
-        <div class="cm_vline"></div>
+        <div class="cm_vline" ng-show="MaxAudioInput !== 0"></div>
         
         <div class="cm_col" ng-if="alarmOutputUser()">
           <span 
@@ -26,13 +26,13 @@
             <span class="sr-only">{{ 'lang_alarmOutput' | translate }}</span>
             <i class="tui tui-wn5-toolbar-alarm"></i>
           </span>
-          <input id="output-{{$index}}" ng-repeat="n in alarmOutputMax() track by $index" type="button" ng-click="alarmOutput($index, $event)" 
+          <input id="output-{{$index}}" ng-repeat="n in alarmOutputMax track by $index" type="button" ng-click="alarmOutput($index, $event)" 
           class="cm_str-button cm_alarm-button" title="{{$index + 1}}" value="{{$index + 1}}" ng-disabled="disableAlarmOutput()">
         </div>
       </div>
     </div>
 
-    <div class="cm_vline"></div>
+    <div class="cm_vline" ng-show="alarmOutputUser() && alarmOutputMax.length"></div>
 
     <ul class="cm_col cm_margin10 cm_list-2 cm_col-100" style="margin-left: 0;">
       <li 
