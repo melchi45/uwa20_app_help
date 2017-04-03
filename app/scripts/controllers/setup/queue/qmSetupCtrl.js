@@ -137,7 +137,7 @@ kindFramework.controller('QMSetupCtrl',
 				$scope.changeTabStatus(activedTab);
 				//Shape active
 				$timeout(function(){
-					sketchbookService.activeShape($scope.queueListSection.selectedQueueId);
+					activeShape($scope.queueListSection.selectedQueueId);
 				});
 				//Report
 				$scope.reportSection.init();
@@ -186,7 +186,7 @@ kindFramework.controller('QMSetupCtrl',
 			$scope.queueListSection.selectedQueueId = id;
 			$scope.queueLevelSection.reload();
 			$timeout(function(){
-				sketchbookService.activeShape(id);
+				activeShape(id);
 				$scope.queueLevelSection.start();
 			});
 		},
@@ -217,6 +217,11 @@ kindFramework.controller('QMSetupCtrl',
 
 			$scope.queueListSection.allEnableStatus = isOk;
 		}
+    }
+
+    function activeShape(modifiedIndex){
+    	sketchbookService.activeShape(modifiedIndex);
+    	sketchbookService.moveTopLayer(modifiedIndex);
     }
 
     function getPercent(val, max){
@@ -541,12 +546,12 @@ kindFramework.controller('QMSetupCtrl',
 		if($scope.currentTapStatus[0] === true){
 			$scope.sketchinfo = getSketchinfo('area');
 			$timeout(function(){
-				sketchbookService.activeShape($scope.queueListSection.selectedQueueId);
+				activeShape($scope.queueListSection.selectedQueueId);
 			});
 		}else if($scope.currentTapStatus[1] === true){
 			$scope.sketchinfo = getSketchinfo('calibration');
 			$timeout(function(){
-				sketchbookService.activeShape(0);
+				activeShape(0);
 			});
 		}
 
@@ -723,7 +728,7 @@ kindFramework.controller('QMSetupCtrl',
         if($scope.currentTapStatus[0] === true){
 			$scope.queueListSection.selectedQueueId = modifiedIndex;
 			$timeout(function(){
-				sketchbookService.activeShape(modifiedIndex);
+				activeShape(modifiedIndex);
 				$scope.queueLevelSection.start();
 			});
 

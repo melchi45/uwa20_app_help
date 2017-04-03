@@ -250,7 +250,7 @@ kindFramework
 						if(blockWindowShiftTimeoutId === null && playData.getTimelineEnable()) {
 							itemFocusing(curTime);
 						}
-						setTimebarPosition(curTime.format(), convert_String_to_Date(endTarget));
+						setTimebarPosition(curTime.format(), convert_String_to_Date(endTarget), true);
 					}
 					timestamp = time.timestamp;
 				};
@@ -302,7 +302,7 @@ kindFramework
 					return true;
 				};
 
-				//startTime, endTime : Date obj -->dst Àû¿ë½Ã ¹Ù²ï Date
+				//startTime, endTime : Date obj -->dst ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ Date
 	      var setTimeRange = function(startTime, endTime) {
 	      	var startTimeString = convert_Date_to_String(startTime, true, 'rtsp' );
 	      	var endTimeString;
@@ -321,13 +321,15 @@ kindFramework
 	      };
 
 	      //timePosition is string type, endTime is Date type
-	      var setTimebarPosition = function(timePosition, endTime) {
+	      var setTimebarPosition = function(timePosition, endTime, discard) {
 					if( timeline === null ) return;
 					var playbackStatus = playData.getStatus();
-					if( playbackStatus === PLAY_CMD.STOP ||
-						 playbackStatus === PLAY_CMD.PAUSE ||
-						 playbackStatus === PLAY_CMD.PLAYPAGE) {
-						setTimeRange(convert_String_to_Date(timePosition), endTime);
+					if( discard !== true ) {
+						if( playbackStatus === PLAY_CMD.STOP ||
+							playbackStatus === PLAY_CMD.PAUSE ||
+							playbackStatus === PLAY_CMD.PLAYPAGE) {
+							setTimeRange(convert_String_to_Date(timePosition), endTime);
+						}
 					}
 
 	      	timeline.setCustomTime(timePosition, 't1');

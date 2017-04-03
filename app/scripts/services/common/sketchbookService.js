@@ -56,6 +56,11 @@ kindFramework.factory('sketchbookService', function() {
                 this.sketchManager.removeDrawingGeometry();
             }
         },
+        moveTopLayer: function(index){
+            if (this.sketchManager !== undefined){
+                this.sketchManager.moveTopLayer(index);
+            }  
+        },
         alignCenter: function(){
             if (this.sketchManager !== undefined){
                 this.sketchManager.alignCenter();
