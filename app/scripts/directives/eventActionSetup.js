@@ -20,10 +20,14 @@ kindFramework
             }
             var isEventActionSupported = mAttr.EventActionSupport;
             var pageData = {};
+            var currentPage = null;
 
             function getEventActions() {
                 var getData = {};
                 var url = '';
+                if(currentPage !== null) {
+                    scope.EventSource = currentPage;
+                }
                 if(scope.EventSource === 'VideoAnalysis'
                     || scope.EventSource === 'FogDetection'
                     || scope.EventSource === 'DefocusDetection'
@@ -57,8 +61,11 @@ kindFramework
 
             function getEventRules() {
                 var getData = {};
-                getData.EventSource = scope.EventSource;
-
+                if(currentPage === null) {
+                    getData.EventSource = scope.EventSource;
+                } else {
+                    getData.EventSource = currentPage;
+                }
                 return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=rules&action=view', getData,
                         function (response)
                         {
@@ -88,7 +95,11 @@ kindFramework
                     setData.Enable = scope.EventRule.Enable;
                 }
                 setData.RuleIndex = scope.EventRule.RuleIndex;
-                setData.EventSource = scope.EventSource;
+                if(currentPage === null) {
+                    setData.EventSource = scope.EventSource;
+                } else {
+                    setData.EventSource = currentPage;
+                }
 
                 setData.EventAction = "";
                 if (scope.EventRule.FtpEnable) {
@@ -261,6 +272,10 @@ kindFramework
             function setEventActions() {
                 var url = '';
                 var setData = {};
+
+                if(currentPage !== null) {
+                    scope.EventSource = currentPage;
+                }
 
                 if(scope.EventRule.EventType.substring(0,7) === 'Channel') {
                     var currentChannel = scope.channelSelectionSection.getCurrentChannel();
@@ -662,7 +677,7 @@ kindFramework
 
                 eventRuleService.setEventRuleData({pageData: scope.EventRule, scopeData: scope.EventRule, menu: scope.EventSource});
 
-                scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
+                // scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
             };
 
             function prepareEventActions(eventActions) {
@@ -781,13 +796,13 @@ kindFramework
 
                 eventRuleService.setEventRuleData({pageData: scope.EventRules, scopeData: scope.EventRules, menu: scope.EventSource});
 
-                scope.$emit('EventRulePrepared', scope.EventRules.ScheduleType);
+                // scope.$emit('EventRulePrepared', scope.EventRules.ScheduleType);
             }
 
             scope.$watch('pageLoaded', function(newVal, oldVal){
                 if(typeof newVal === "undefined"){
                     return;
-                }
+                }//console.info('eventactionsetup watch pageloaded : ');console.info(scope.EventSource);
                 if(newVal === true) {
                     if(isEventActionSupported && isMultiChannel) {
                         if(scope.EventSource !== 'AlarmInput') {
@@ -809,7 +824,7 @@ kindFramework
             scope.$watch('EventRule', function(newVal, oldVal){
                 if(typeof newVal === "undefined"){
                     return;
-                }
+                }//console.info('eventactionsetup watch EventRule : ');console.info(scope.EventSource);
                 var data = {
                     pageData: pageData.EventRule,
                     scopeData: scope.EventRule,
@@ -822,7 +837,7 @@ kindFramework
             scope.$watch('EventRules', function(newVal, oldVal){
                 if(typeof newVal === "undefined"){
                     return;
-                }
+                }//console.info('eventactionsetup watch EventRules : ');console.info(scope.EventSource);
                 var data = {
                     pageData: pageData.EventRules,
                     scopeData: scope.EventRules,
@@ -831,8 +846,9 @@ kindFramework
                 eventRuleService.setEventRuleData(data);
             }, true);
 
-            scope.$saveOn('pageLoaded', function(event, data) {
-                if(data === true) {
+            scope.$saveOn('pageLoaded', function(event, data) {//console.info('eventactionsetup saveon pageloaded : ');console.info(scope.EventSource);
+                currentPage = data;
+                if(currentPage === scope.EventSource) {
                     if(isEventActionSupported && isMultiChannel) {
                         if(scope.EventSource !== 'AlarmInput') {
                             getEventActions();
@@ -849,7 +865,7 @@ kindFramework
                 }
             });
 
-            scope.$saveOn('applied', function(event, data) {
+            scope.$saveOn('applied', function(event, data) {//console.info('eventactionsetup saveon applied : ');console.info(scope.EventSource);
                 if(data === true) {
                     if(scope.EventSource !== 'AlarmInput') {
                         if (!angular.equals(pageData.EventRule, scope.EventRule)) {

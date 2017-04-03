@@ -67,7 +67,7 @@ kindFramework.directive('playbackEventSorting', function() {
             $scope.showOverlap = true;
 
             $scope.getOverlappedId = function(){
-                var channelId = searchData.getChannelId();
+                var channelId = UniversialManagerService.getChannelId();
                 var query = {
                     year : $scope.recordedDate.getFullYear(),
                     month : pad($scope.recordedDate.getMonth() + 1),

@@ -185,10 +185,8 @@
                         <div class="wn5-setup-section-article">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-content">
-                                    <div style="display: inline-block;width: 150px;vertical-align: middle;float: left;">
-                                        <select class="form-control" ng-model="Group.SelectedIndex" ng-options="GroupOptions.indexOf(Option) as Option for Option in GroupOptions"></select>
-                                    </div>
-                                    <button type="button" class="btn btn-primary" ng-click="startStopGroup(0)">{{ 'lang_start' | translate }}</button>
+                                    <select class="form-control wp25" ng-model="Group.SelectedIndex" ng-options="GroupOptions.indexOf(Option) as Option for Option in GroupOptions"></select>
+                                    <button type="button" class="btn btn-primary btn-margin-left" ng-click="startStopGroup(0)">{{ 'lang_start' | translate }}</button>
                                     <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopGroup(1)">{{ 'lang_stop' | translate }}</button>
                                     <button type="button" class="btn btn-primary" ng-click="removeGroups()">
                                         {{ 'lang_remove' | translate }}

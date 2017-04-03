@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in infoTableData">
-          <td style="text-align:center">CH {{$index}}</td>
+          <td style="text-align:center">CH {{$index + 1}}</td>
           <td style="text-align:center" ng-repeat="orderKey in tableDataOrder">
             {{item[orderKey]}}
             <span ng-if="orderKey === 'hallwayView'">

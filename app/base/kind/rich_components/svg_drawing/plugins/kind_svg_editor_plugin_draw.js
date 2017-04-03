@@ -1686,7 +1686,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 				LineInformation.setAxis(selectedCircleIndex, xAxis, yAxis);
 			}
-		//영역을 선택하여 이동할 때
+		//라인을 선택하여 이동할 때
 		}else if(fill === true && selectedLineIndex !== null){
 			var startAxis = LineInformation.getAxis(selectedLineIndex);
 			var endAxisIndex = fill === true && selectedLineIndex === lines.length - 1 ? 0 : selectedLineIndex + 1;
@@ -1698,14 +1698,17 @@ KindSVGEditor.addPlugin('draw', function(options){
 			var changedY2 = endAxis[1] + movedYAxis;
 
 			/*
-			Line 이동 시 좌표 유효성 체크
-			움직였을 때의 거리를 계산하여 라인 양쪽에 Points 유효성을 체크한다.
-			*/
+			 * 라인 이동 시, 양쪽 끝의 유효성 체크하여
+			 * 변경이 불가능하면 기존 좌표로 한다.
+			 */
 			if(
 				LineInformation.validateAxis(changedX1, changedY1) === false ||
 				LineInformation.validateAxis(changedX2, changedY2) === false
 				){
-				return;
+				changedX1 = startAxis[0];
+				changedY1 = startAxis[1];
+				changedX2 = endAxis[0];
+				changedY2 = endAxis[1];
 			}
 
 			prevPoints = LineInformation.getAll().points;
@@ -1718,7 +1721,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 			LineInformation.setAxis(selectedLineIndex, changedX1, changedY1);
 			LineInformation.setAxis(endAxisIndex, changedX2, changedY2);
-		//선을 선택하여 이동할 때
+		//영역을 선택하여 이동할 때
 		}else if(fill === true || selectedLineIndex !== null){
 			var isMoveOk = false;
 

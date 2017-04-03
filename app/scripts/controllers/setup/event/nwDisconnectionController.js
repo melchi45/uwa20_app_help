@@ -76,13 +76,13 @@ kindFramework.controller('nwDisconnectionCtrl', function($scope, $uibModal, $tra
         if(promises.length > 0) {
             $q.seqAll(promises).then(function() {
                 $scope.pageLoaded = true;
-                $scope.$emit('pageLoaded', true);
+                $scope.$emit('pageLoaded', $scope.EventSource);
             }, function(errorData) {
                 console.log(errorData);
             });
         } else {
             $scope.pageLoaded = true;
-            $scope.$emit('pageLoaded', true);
+            $scope.$emit('pageLoaded', $scope.EventSource);
         }
     }
 

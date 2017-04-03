@@ -4344,6 +4344,13 @@ button.login-input + input.login-input {
 .wn5-setup-table input[type="radio"] {
   margin: 0 !important;
 }
+.wn5-setup-table .wn5-setup-table-nowrap {
+  white-space: nowrap;
+}
+.wn5-setup-table .wn5-setup-table-off {
+  color: #a1a1a1;
+  background-color: #f8f8f8;
+}
 /* thematic break */
 .wn5-setup-hr {
   clear: both;

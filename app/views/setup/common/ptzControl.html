@@ -103,11 +103,13 @@
         </div>
 
         <div id="ptz-control_at-left" ng-show="showPTZControlAT">
-            <button type="button" class="btn btn-primary" title="{{'lang_autotracking_on' | translate}}">
-                <i class="tui tui-ch-live-ptz-tracking-auto"></i>
+            <button type="button" style="margin-bottom: 5px;" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_autotracking_on' | translate}}"
+                    ng-click="onAutoTracking()">
+                <i class="tui tui-ch-live-ptz-tracking-auto-on"></i>
             </button>
-            <button type="button" class="btn btn-primary" title="{{'lang_autotracking_off' | translate}}">
-                <i class="tui tui-ch-live-ptz-tracking-auto"></i>
+            <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_autotracking_off' | translate}}"
+                    ng-click="offAutoTracking()">
+                <i class="tui tui-ch-live-ptz-tracking-auto-off"></i>
             </button>
         </div>
 
@@ -135,7 +137,7 @@
                 </button>
             </div>
             <div id="ptz-control_at-right" ng-show="showPTZControlAT">
-                <button type="button" class="btn btn-primary" title="{{'lang_delete' | translate}}" ng-click="deleteAutoTracking()">
+                <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_delete' | translate}}" ng-click="deleteAutoTracking()">
                     <i class="tui tui-delete"></i>
                 </button>
                 <ul id="ptz-control_at-selectable">

@@ -135,7 +135,7 @@ kindFramework
     */
     var initStreaming = function() {
       var def = $q.defer();
-      var channelId = searchData.getChannelId();
+      var channelId = UniversialManagerService.getChannelId();
       //1. close Live Stream.
       var playData = new PlayDataModel();
       playData.setPlaybackEnable(true);
@@ -422,7 +422,7 @@ kindFramework
 
     /* Channel Selector Direction */
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-      searchData.setChannelId(index);
+      UniversialManagerService.setChannelId(index);
       PlaybackInterface.preparePlayback(index);
     }, $scope);
 

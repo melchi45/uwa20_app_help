@@ -190,7 +190,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
         $q.seqAll(promises).then(
                 function () {
                     $scope.pageLoaded = true;
-                    $scope.$emit('pageLoaded', true);
+                    $scope.$emit('pageLoaded', $scope.EventSource);
                     $timeout(setSizeChart);
                 },
                 function (errorData) {

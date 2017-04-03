@@ -169,7 +169,7 @@ kindFramework
         ChannelIDList : query.channel
       };
       var def = $q.defer();
-      SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=timeline&action=view&OverlappedID=', 
+      SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=timeline&action=view', 
         updateDate,
         function (response) {
           if( response.data.TimeLineSearchResults === undefined || response.data.TimeLineSearchResults.length === 0 ) {
@@ -206,7 +206,17 @@ kindFramework
       var def = $q.defer();
       SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=overlapped&action=view', updateDate,
         function (response) {
-          def.resolve(response.data);
+          var results = {
+            'OverlappedIDList' : []
+          };
+          var overlapList = [];
+          for( var i=0 ; i<response.data.OverlappedIDList.length ; i++ ) {
+            if( typeof(response.data.OverlappedIDList[i]) !== 'object' ) {
+              overlapList.push(response.data.OverlappedIDList[i]);
+            }
+          }
+          results.OverlappedIDList = overlapList;
+          def.resolve(results);
         },
         function (errorData) {
           def.reject(errorData);

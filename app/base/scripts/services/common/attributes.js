@@ -727,6 +727,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                     mAttributes.NormalizedOSDRange = XMLParser.parseAttributeSection(response.data, 'Image/Support/NormalizedOSDRange');
                     mAttributes.PIris = XMLParser.parseAttributeSection(response.data, 'Image/Support/P-Iris');
                     mAttributes.ZoomAdjust = XMLParser.parseAttributeSection(response.data, 'Image/Support/ZoomAdjust');
+                    mAttributes.DIS = XMLParser.parseAttributeSection(response.data, 'Image/Support/DIS');
 
                     mAttributes.MaxSmartCodecArea = XMLParser.parseAttributeSection(response.data, 'Image/Limit/MaxSmartCodecArea');
                     mAttributes.MaxPrivacyMask = XMLParser.parseAttributeSection(response.data, 'Image/Limit/MaxPrivacyMask');

@@ -83,7 +83,7 @@ kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $transl
         promises.push(getTimer);
         $q.seqAll(promises).then(function() {
             $scope.pageLoaded = true;
-            $scope.$emit('pageLoaded', true);
+            $scope.$emit('pageLoaded', $scope.EventSource);
         }, function(errorData) {
             console.log(errorData);
         });

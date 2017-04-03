@@ -61,8 +61,7 @@ kindFramework.directive('liveIconList', function(
 		    };
 
 		    function backup() {
-		    	var searchData = new SearchDataModel();
-		    	var channelId = searchData.getChannelId();
+		    	var channelId = UniversialManagerService.getChannelId();
 		    	var recordInfo = {
 		    		'channel' : channelId,
 		    		'callback' : backupCallback
