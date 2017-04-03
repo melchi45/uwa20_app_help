@@ -281,8 +281,8 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 					return null;
 				}
 				
-
-				if($("#container")[0].clientWidth) {
+				console.info($("#container").length);
+				if($("#container").length) {
 					wWidth = $("#container")[0].clientWidth;
 					wHeight = $("#container")[0].clientHeight;
 				} else {
