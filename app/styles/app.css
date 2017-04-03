@@ -6095,6 +6095,13 @@ rzslider .rz-bubble {
   border: solid 1px #a5a5a5;
   color: #333;
 }
+.wn5-setup-info-vertical-middle {
+  vertical-align: middle !important;
+}
+.wn5-setup-info-ch {
+  vertical-align: middle !important;
+  font-weight: bold;
+}
 #wisenet-multi_imager-image_align {
   width: 100%;
   max-width: 640px;

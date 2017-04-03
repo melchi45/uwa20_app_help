@@ -2907,6 +2907,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
 
     $rootScope.$saveOn("channelSelector:showInfo", function(event, data){
         $uibModal.open({
+            size: 'lg',
             templateUrl: 'views/setup/basic/modal/ModalVideoProfileInfo.html',
             controller: 'ModalInstanceVideoProfileInfoCtrl',
             resolve: {
