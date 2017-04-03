@@ -216,6 +216,7 @@ kindFramework
 		PlaybackInterface.applyPlaySpeed = function(speed) {
 			this.playbackInfo.time = playData.getSelectTime();
 			this.playbackInfo.id = searchData.getOverlapId();
+			kindStreamInterface.controlWorker({'channelId':this.playbackInfo.channel, 'cmd':'playbackSpeed', 'data': speed});
 			$rootScope.$emit("channelPlayer:command", "speed", {'speed':speed, 'data':this.playbackInfo});
 		};
 
