@@ -2185,7 +2185,9 @@ KindSVGEditor.addPlugin('draw', function(options){
 		validateMinimumAngle: validateMinimumAngle,
 
 		stopEvent: unbindEvent,
-		startEvent: bindEvent
+		startEvent: bindEvent,
+
+		moveTopLayer: groupHelper.moveTopLayer
 	};
 
 	return drawObj;

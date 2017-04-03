@@ -664,6 +664,9 @@
                 }
             }
         },
+        moveTopLayer: function(index){
+            svgObjs[index].moveTopLayer();
+        },
         activeShape: function(index){
             if(kindSVGCustomObj !== null){
                 if(sketchInfo.workType === "vaPassing" || sketchInfo.workType === "peoplecount"){
