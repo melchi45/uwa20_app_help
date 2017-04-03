@@ -1,26 +1,26 @@
 <div class="modal-header modal-setup">
     <h3 class="applyColor">{{ 'lang_information' | translate }}</h3>
 </div>
-<div class="modal-body modal-setup" style="text-align:center">        
+<div class="modal-body modal-setup"> 
 	<div class="wn5-setup-table-responsive">
 		<table class="table table-bordered wn5-setup-table">
 			<thead>
 				<tr>
 					<th class="text-center" colspan="2">&nbsp;</th>
-					<th class="text-center wn5-setup-table-nowrap">{{'lang_menu_fogdetection' | translate}}</th>
-					<th class="text-center wn5-setup-table-nowrap">{{'lang_tampering' | translate}}(kbps)</th>
-					<th class="text-center wn5-setup-table-nowrap">{{'lang_defocus_detection' | translate}}</th>
-					<th class="text-center wn5-setup-table-nowrap">{{'lang_md' | translate}}</th>
-					<th class="text-center wn5-setup-table-nowrap">{{'lang_menu_iva' | translate}}</th>
-					<th class="text-center wn5-setup-table-nowrap">{{'lang_faceDetection' | translate}}</th>
+					<th class="text-center wn5-setup-info-vertical-middle">{{'lang_menu_fogdetection' | translate}}</th>
+					<th class="text-center wn5-setup-info-vertical-middle">{{'lang_tampering' | translate}}(kbps)</th>
+					<th class="text-center wn5-setup-info-vertical-middle">{{'lang_defocus_detection' | translate}}</th>
+					<th class="text-center wn5-setup-info-vertical-middle">{{'lang_md' | translate}}</th>
+					<th class="text-center wn5-setup-info-vertical-middle">{{'lang_menu_iva' | translate}}</th>
+					<th class="text-center wn5-setup-info-vertical-middle">{{'lang_faceDetection' | translate}}</th>
 				</tr>
 			</thead>
 			<tbody>
 			<tr ng-repeat="item in channelItems track by $index">
 				<td 
 					ng-if="item.ch !== undefined"
-					class="text-center wn5-setup-table-nowrap"
-					rowspan="{{dataType.length}}">CH {{item.ch}}</td>
+					class="text-center wn5-setup-info-ch"
+					rowspan="{{dataType.length}}">CH{{item.ch + 1}}</td>
 				<td class="wn5-setup-table-nowrap">{{item.dataType}}</td>
 				<td 
 					class="text-center"
@@ -35,6 +35,6 @@
 		</table>
 	</div>
 </div>
-<div class="modal-footer modal-setup" style="text-align:center">        
+<div class="modal-footer modal-setup" style="text-align: center;">
     <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ 'lang_close' | translate }}</button>        
 </div>

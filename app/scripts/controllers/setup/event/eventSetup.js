@@ -809,6 +809,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
     $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
         $uibModal.open({
+            size: 'lg',
             templateUrl: 'views/setup/event/modal/ModalEventSetupInfo.html',
             controller: 'ModalInstanceEventSetupInfoCtrl',
             resolve: {

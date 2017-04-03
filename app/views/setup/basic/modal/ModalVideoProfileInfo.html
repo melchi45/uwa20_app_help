@@ -7,19 +7,19 @@
       <table class="table table-bordered wn5-setup-table">
         <thead>
           <tr>
-            <th style="text-align:center">&nbsp;</th>
-            <th style="text-align:center">{{'lang_name' | translate}}</th>
-            <th style="text-align:center">{{'lang_codec' | translate}}</th>
-            <th style="text-align:center">{{'lang_resolution' | translate}}</th>
-            <th style="text-align:center">{{'lang_framerate' | translate}}</th>
-            <th style="text-align:center">{{'lang_max_bitrate' | translate}}</th>
-            <th style="text-align:center">{{'GOV' | translate}}</th>
+            <th class="text-center">&nbsp;</th>
+            <th class="text-center wn5-setup-info-vertical-middle">{{'lang_name' | translate}}</th>
+            <th class="text-center wn5-setup-info-vertical-middle">{{'lang_codec' | translate}}</th>
+            <th class="text-center wn5-setup-info-vertical-middle">{{'lang_resolution' | translate}}</th>
+            <th class="text-center wn5-setup-info-vertical-middle">{{'lang_framerate' | translate}}</th>
+            <th class="text-center wn5-setup-info-vertical-middle">{{'lang_max_bitrate' | translate}}</th>
+            <th class="text-center wn5-setup-info-vertical-middle">{{'GOV' | translate}}</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="item in infoTableData">
-            <td style="text-align:center">CH {{item.channel + 1}}</td>
-            <td style="text-align:center" ng-repeat="keyName in defaultProfileOrder">
+            <td class="text-center wn5-setup-info-ch">CH{{item.channel + 1}}</td>
+            <td class="text-center" ng-repeat="keyName in defaultProfileOrder">
               {{item.profiles[0][keyName]}}
               <span ng-if="keyName === 'frameRate'">fps</span>
               <span ng-if="keyName === 'bitrate'">kbps</span>
@@ -29,6 +29,6 @@
       </table>
     </div>
 </div>
-<div class="modal-footer modal-setup" style="text-align:center">        
+<div class="modal-footer modal-setup" style="text-align: center;">
     <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ 'lang_close' | translate }}</button>        
 </div>

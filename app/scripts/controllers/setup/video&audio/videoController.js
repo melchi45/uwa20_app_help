@@ -631,6 +631,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
     $rootScope.$saveOn('channelSelector:showInfo', function(event, response){
         $uibModal.open({
+            size: 'lg',
             templateUrl: 'views/setup/video&audio/modal/ModalVideoSetupInfo.html',
             controller: 'ModalInstanceVideoSetupInfoCtrl',
             resolve: {

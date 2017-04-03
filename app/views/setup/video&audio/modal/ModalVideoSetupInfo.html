@@ -1,23 +1,23 @@
 <div class="modal-header modal-setup">
     <h3 class="applyColor">{{ 'lang_information' | translate }}</h3>
 </div>
-<div class="modal-body modal-setup" style="text-align:center">        
+<div class="modal-body modal-setup">
   <div class="wn5-setup-table-responsive">
     <table class="table table-bordered wn5-setup-table">
       <thead>
         <tr>
-          <th style="text-align:center">&nbsp;</th>
-          <th style="text-align:center">{{'lang_flip' | translate}}</th>
-          <th style="text-align:center">{{'lang_mirror' | translate}}</th>
-          <th style="text-align:center">{{'lang_hallwayView' | translate}}</th>
-          <th style="text-align:center">{{'lang_videoOutput' | translate}}</th>
-          <th style="text-align:center">{{'lang_privacy' | translate}}</th>
+          <th class="text-center wn5-setup-info-vertical-middle">&nbsp;</th>
+          <th class="text-center wn5-setup-info-vertical-middle">{{'lang_flip' | translate}}</th>
+          <th class="text-center wn5-setup-info-vertical-middle">{{'lang_mirror' | translate}}</th>
+          <th class="text-center wn5-setup-info-vertical-middle">{{'lang_hallwayView' | translate}}</th>
+          <th class="text-center wn5-setup-info-vertical-middle">{{'lang_videoOutput' | translate}}</th>
+          <th class="text-center wn5-setup-info-vertical-middle">{{'lang_privacy' | translate}}</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="item in infoTableData">
-          <td style="text-align:center">CH {{$index + 1}}</td>
-          <td style="text-align:center" ng-repeat="orderKey in tableDataOrder">
+          <td class="text-center wn5-setup-info-ch">CH{{$index + 1}}</td>
+          <td class="text-center" ng-repeat="orderKey in tableDataOrder">
             {{item[orderKey]}}
             <span ng-if="orderKey === 'hallwayView'">
                {{ 'lang_degree' | translate }} ({{ 'lang_clockwise' | translate }})
@@ -28,6 +28,6 @@
     </table>
   </div>
 </div>
-<div class="modal-footer modal-setup" style="text-align:center">        
+<div class="modal-footer modal-setup" style="text-align: center;">
     <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ 'lang_close' | translate }}</button>        
 </div>
