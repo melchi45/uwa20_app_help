@@ -157,6 +157,37 @@
     }
 }
 
+.qm-set-value{
+	float: left; 
+	margin-left: 50px; 
+	transform: translateY(-25%);
+
+	p{
+		span.qm-title{
+			display: inline-block; 
+			width: 80px;
+			word-break: break-all;
+			line-height: 16px;
+		}
+		span.qm-people{
+			vertical-align: top;
+		}
+		select{
+			width: 60px;
+			margin: 0 7px;
+		}
+	}
+}
+
+@media(max-width: 1400px){
+	.qm-set-value{
+		width: 100%;
+		display: block;
+		margin-top: 90px;
+		margin-left: 0;
+	}
+}
+
 #qm-setup-collapse-calibration-icon {
 	width: 116px;
 	height: 99px;
