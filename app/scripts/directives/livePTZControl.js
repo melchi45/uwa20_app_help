@@ -173,8 +173,14 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}
 
 					UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
-					sunapiURI = '/stw-cgi/ptzcontrol.cgi?msubmenu=digitalautotracking&action=control&Mode=';
-					sunapiURI += (scope.autoTrackingFlag === scope.dptzMode.DIGITAL_PTZ) ? "Stop" : "Start";
+                    if (scope.ptzMode === 'dptz'){
+                        sunapiURI = '/stw-cgi/ptzcontrol.cgi?msubmenu=digitalautotracking&action=control&Mode=';
+                        sunapiURI += (scope.autoTrackingFlag === scope.dptzMode.DIGITAL_PTZ) ? "Stop" : "Start";
+                        
+                    } else {
+                        sunapiURI = '/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=set&Channel=0&Enable=';
+                        sunapiURI += (scope.autoTrackingFlag === scope.dptzMode.DIGITAL_PTZ) ? "False" : "True";
+                    }
 
 					execSunapi(sunapiURI);
 				};
@@ -214,7 +220,10 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                     scope.presetAddForm.show = true;
                 }else if(value === 'Add') {
                     sunapiURI = "/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=add&Preset="+scope.addPresetting.SelectedNumber+"&Name="+scope.addPresetting.SelectedName;
-                    execSunapi(sunapiURI, getSettingPresetList);
+                    execSunapi(sunapiURI, function(){
+                        run('preset', scope.addPresetting.SelectedNumber, 'Start');
+                        getSettingPresetList();
+                    });
 				}else{
 					throw "Wrong Argument";
 				}
