@@ -736,7 +736,7 @@ kindFramework.controller('QMSetupCtrl',
 
         	// var max = getMax(modifiedPoints);
         	// $scope.queueLevelSection.changeValue( 'max', max );
-			// $scope.queueLevelSection.reload();
+			$scope.queueLevelSection.reload();
         }
 		// else if($scope.currentTapStatus[1] === true){
         	// $scope.calibrationSection.coordinates = modifiedPoints;
