@@ -77,11 +77,11 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 					width: "100%",
 					height: "100%",
 					top: 0,
-					left: 0
+					// left: 0
 				});
 				overlayCanvas.css({
 					top: 3+"px",
-					left: 3+"px"
+					// left: 3+"px"
 				});
 
       			var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true : false;
@@ -102,89 +102,75 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 			$rootScope.$emit('update-dot-dptz', true);
 
 			function setContainerSize(controlShow){
-				// var checkLiveSize = (window.innerWidth < 800) && ($('.cm-live-icon-list').length);
-				// if(controlShow){
-				// 	bottomMenuHeight = checkLiveSize? 350 : 250;
-                                    // }else{
-                                    //      bottomMenuHeight = checkLiveSize? 150 : 50;
-                                    // }
+				var checkType = $('.cm-live-icon-list').length;
+				var checkSize = window.innerWidth;
+				var checkHeight = window.innerHeight;
+				var smallerHeight;
+				var nowfull = $("#cm-video").hasClass('cm-fullscreen');
 
-                                    var checkType = $('.cm-live-icon-list').length;
-                                    var checkSize = window.innerWidth;
-                                    var checkHeight = window.innerHeight;
-                                    var smallerHeight;
-									var nowfull = $("#cm-video").hasClass('cm-fullscreen');
+				if(checkHeight < 400) {
+					if($(".kind-responsive-live").length)   $(".kind-responsive-live").addClass('land-scape');
+					if($(".kind-responsive-playback").length)   $(".kind-responsive-playback").addClass('land-scape');
 
-                                    if(checkHeight < 400) {
-                                        if($(".kind-responsive-live").length)   $(".kind-responsive-live").addClass('land-scape');
-                                        if($(".kind-responsive-playback").length)   $(".kind-responsive-playback").addClass('land-scape');
+					// 하단 메뉴 On-Off시 width 차이
+					var bottomMenuWidth;
+					if(controlShow) bottomMenuWidth = 470;
+					else bottomMenuWidth = 70;
 
-                                       // 하단 메뉴 On-Off시 width 차이
-                                       var bottomMenuWidth;
-                                        if(controlShow) bottomMenuWidth = 470;
-                                        else bottomMenuWidth = 70;
+					$("#cm-video").removeAttr('style');
+					$("#cm-video").css({ width: "calc(100% - "+ (bottomMenuWidth) +"px)" });
+					if(nowfull) {
+						$("#cm-video").css({ width: "calc(100% - "+ (bottomMenuWidth) +"px)", height: "calc(100% - 50px)" });
+						$(".full-screen").css({ height: "calc(100% - 50px)" });
+						$(".full-screen kind_stream").css({ width: "calc(100% - "+ (bottomMenuWidth) +"px)", height: "100%" });
+					}
 
-                                        $("#cm-video").removeAttr('style');
-                                        $("#cm-video").css({ width: "calc(100% - "+ (bottomMenuWidth) +"px)" });
-										if(nowfull) {
-											$("#cm-video").css({ height: "calc(100% - 50px)" });
-											$(".full-screen").css({ height: "calc(100% - 50px)" });
-											$(".full-screen kind_stream").css({ height: "100%" });
-										}
+					if(UniversialManagerService.getViewMode() != 0){
+						$("#cm-video").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
+					}
 
-                                        if( $(".full-screen img").length || $(".full-screen object").length){
-                                            $(".full-screen kind_stream").css({ width: "100%" });
-                                            $(".full-screen").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
-                                        }else{
-                                            $(".full-screen").css({ width: "100%" });
-                                        }
+				} else {
+					$(".land-scape").removeClass('land-scape');
 
-                                        if(UniversialManagerService.getViewMode() != 0){
-                                            $("#cm-video").css({ width: "calc(100% - "+ bottomMenuWidth +"px)" });
-                                        }
+					// 하단 메뉴 On-Off시 height 차이
 
-                                    } else {
-                                        $(".land-scape").removeClass('land-scape');
+					if(checkSize > 2300 && checkHeight > 1294){
+						if(controlShow) bottomMenuHeight = 400;
+						else bottomMenuHeight = 115;
+					}else {
+						if(controlShow) bottomMenuHeight = 250;
+						else bottomMenuHeight = 50;
+					}
 
-                                       // 하단 메뉴 On-Off시 height 차이
+					if (checkSize > 3000 && checkHeight > 1688) {
+						if(controlShow) bottomMenuHeight = 500;
+						else bottomMenuHeight = 145;
 
-                                       if(checkSize > 2300 && checkHeight > 1294){
-                                       	  if(controlShow) bottomMenuHeight = 400;
-                                          else bottomMenuHeight = 115;
-                                       }else {
-                                       	  if(controlShow) bottomMenuHeight = 250;
-                                          else bottomMenuHeight = 50;
-                                       }
+					}
+					
 
-                                       if (checkSize > 3000 && checkHeight > 1688) {
-                                       	  if(controlShow) bottomMenuHeight = 500;
-                                          else bottomMenuHeight = 145;
+					// Default Show 상태의 메뉴 > Responsive 상태일시 2줄
+					// Live에서는 변경점  900
+					if(checkSize < 800 || (checkSize < 900 && checkType)) bottomMenuHeight += 50;
 
-                                       }
-                                        
-
-                                        // Default Show 상태의 메뉴 > Responsive 상태일시 2줄
-                                        // Live에서는 변경점  900
-                                        if(checkSize < 800 || (checkSize < 900 && checkType)) bottomMenuHeight += 50;
-
-                                        // live page 에서는 하단의 길이가 더 김
-                                        if(checkType && checkSize < 900) bottomMenuHeight += 50;
+					// live page 에서는 하단의 길이가 더 김
+					if(checkType && checkSize < 900) bottomMenuHeight += 50;
 
 
-                                        $("#cm-video").removeAttr('style');
-                                        $("#cm-video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
-                                        if( $(".full-screen img").length || $(".full-screen object").length){
-                                            $(".full-screen kind_stream").css({ height: "100%" });
-                                            $(".full-screen").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
-                                        }else{
-                                            $(".full-screen").css({ height: "100%" });
-                                            $(".full-screen kind_stream").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
-                                        }
+					$("#cm-video, .full-screen, kind_stream").removeAttr('style');
+					$("#cm-video").css({ height: "calc(100% - "+ (bottomMenuHeight + 50) +"px)" });
+					if( $(".full-screen img").length || $(".full-screen object").length){
+						$(".full-screen kind_stream").css({ height: "100%" });
+						$(".full-screen").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
+					}else{
+						$(".full-screen").css({ height: "100%" });
+						$(".full-screen kind_stream").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
+					}
 
-                                        if(UniversialManagerService.getViewMode() != 0){
-                                            $("#cm-video").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
-                                        }
-                                    }
+					if(UniversialManagerService.getViewMode() != 0){
+						$("#cm-video").css({ height: "calc(100% - "+ bottomMenuHeight +"px)" });
+					}
+				}
 			}
 
 			function getSize(boxWidth, boxHeight){
@@ -279,11 +265,11 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
 			streamCanvas.css({
 				top: top + "px",
-				left: left + "px"
+				// left: left + "px"
 			});
 			overlayCanvas.css({
 				top: (top+3) + "px",
-				left: (left+3) + "px"
+				// left: (left+3) + "px"
 			});
 		}
 
@@ -294,8 +280,15 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 				if(!$(".channel-container").length){
 					return null;
 				}
-				wWidth = $(".channel-container")[0].clientWidth;
-				wHeight = $(".channel-container")[0].clientHeight;
+				
+
+				if($("#container")[0].clientWidth) {
+					wWidth = $("#container")[0].clientWidth;
+					wHeight = $("#container")[0].clientHeight;
+				} else {
+					wWidth = $(".channel-container")[0].clientWidth;
+					wHeight = $(".channel-container")[0].clientHeight;
+				}
 
 				// when close full screen by esc key or by capture, use prev size to reset in main view
 				if (wWidth === 0 || wHeight === 0) { 

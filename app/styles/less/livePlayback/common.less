@@ -840,17 +840,29 @@ live-playback common {
         opacity: 1;
     } 
 
-    .cm-wisenet-channel{
+    .cm-wisenet-channel,
+    overlay-canvas{
         width: 100%;
         max-width: 100%;
         height: 100%;
         margin: 0;
     }
 
+    overlay-canvas {
+        position: absolute;
+        overflow: auto;
+    }
+
     &.cm-fullscreen {
         background-color: #000;
-        width: 100% !important; 
+        width: 100%; 
     }
+}
+
+#cm-livecanvas,
+#livecanvas {
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 
@@ -880,7 +892,6 @@ live-playback common {
     div {
         display: block;
         background-color: black;
-        overflow: hidden !important;
     } 
 }
 
