@@ -58,6 +58,12 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		 	UniversialManagerService.setViewModeType(mode);
 
 		 	var container = $("#container, .channel-container");
+
+			streamCanvas.css({
+				left: '50%',
+				transform: 'translateX(-50%)'
+			});
+
 	 		if (mode === 'originalsize') {
 	 			curViewMode = mode;
 	 			container.css("overflow", "auto");
@@ -65,7 +71,9 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 				var newSize = getSize();
 				streamCanvas.css({
 					width: newSize.width + "px",
-					height: newSize.height + "px"
+					height: newSize.height + "px",
+					left: 0,
+					transform: 'translateX(0)'
 				});
 
 				setPosition(newSize.width, newSize.height);
