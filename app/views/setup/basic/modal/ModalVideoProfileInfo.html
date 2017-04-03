@@ -5,9 +5,6 @@
     <div><h3>{{'lang_defaultProfile' | translate}}</h3></div>
     <div class="wn5-setup-table-responsive">
       <table class="table table-bordered wn5-setup-table">
-        <colgroup>
-          <col width="50px">
-        </colgroup>
         <thead>
           <tr>
             <th style="text-align:center">&nbsp;</th>
@@ -21,7 +18,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="item in infoTableData">
-            <td style="text-align:center">CH {{item.channel}}</td>
+            <td style="text-align:center">CH {{item.channel + 1}}</td>
             <td style="text-align:center" ng-repeat="keyName in defaultProfileOrder">
               {{item.profiles[0][keyName]}}
               <span ng-if="keyName === 'frameRate'">fps</span>

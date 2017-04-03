@@ -4,33 +4,31 @@
 <div class="modal-body modal-setup" style="text-align:center">        
 	<div class="wn5-setup-table-responsive">
 		<table class="table table-bordered wn5-setup-table">
-			<colgroup>
-				<col width="50px">
-			</colgroup>
 			<thead>
 				<tr>
-					<th style="text-align:center" colspan="2">&nbsp;</th>
-					<th style="text-align:center">{{'lang_menu_fogdetection' | translate}}</th>
-					<th style="text-align:center">{{'lang_tampering' | translate}}(kbps)</th>
-					<th style="text-align:center">{{'lang_defocus_detection' | translate}}</th>
-					<th style="text-align:center">{{'lang_md' | translate}}</th>
-					<th style="text-align:center">{{'lang_menu_iva' | translate}}</th>
-					<th style="text-align:center">{{'lang_faceDetection' | translate}}</th>
+					<th class="text-center" colspan="2">&nbsp;</th>
+					<th class="text-center wn5-setup-table-nowrap">{{'lang_menu_fogdetection' | translate}}</th>
+					<th class="text-center wn5-setup-table-nowrap">{{'lang_tampering' | translate}}(kbps)</th>
+					<th class="text-center wn5-setup-table-nowrap">{{'lang_defocus_detection' | translate}}</th>
+					<th class="text-center wn5-setup-table-nowrap">{{'lang_md' | translate}}</th>
+					<th class="text-center wn5-setup-table-nowrap">{{'lang_menu_iva' | translate}}</th>
+					<th class="text-center wn5-setup-table-nowrap">{{'lang_faceDetection' | translate}}</th>
 				</tr>
 			</thead>
 			<tbody>
 			<tr ng-repeat="item in channelItems track by $index">
 				<td 
 					ng-if="item.ch !== undefined"
-					style="text-align:center" 
+					class="text-center wn5-setup-table-nowrap"
 					rowspan="{{dataType.length}}">CH {{item.ch}}</td>
-				<td>{{item.dataType}}</td>
+				<td class="wn5-setup-table-nowrap">{{item.dataType}}</td>
 				<td 
-					style="text-align:center" 
+					class="text-center"
 					ng-repeat="data in item.datas track by $index"
 					ng-if="data !== ''"
+					ng-class="{'wn5-setup-table-off': data === LANG_OFF}"
 					rowspan="{{data === NONE_DATA ? dataTypeLength : 1}}">
-					{{data !== NONE_DATA ? data : ''}}
+					{{data !== NONE_DATA ? data : '' | translate}}
 				</td>
 			</tr>
 			</tbody>
