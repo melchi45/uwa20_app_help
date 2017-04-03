@@ -649,8 +649,9 @@ live-playback common {
 .cm-str-button:focus,
 .cm-str-button:hover *,
 .cm-str-button:focus * {
-  background-color: #4c4c4c;
-  color: #fff;
+  background-color: #d2d2d2;
+  border: 1px solid #a5a5a5;
+  color: #4c4c4c;
 }
 .cm-str-button:active,
 .cm-str-button.active,
