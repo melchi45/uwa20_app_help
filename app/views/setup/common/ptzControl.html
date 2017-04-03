@@ -103,10 +103,12 @@
         </div>
 
         <div id="ptz-control_at-left" ng-show="showPTZControlAT">
-            <button type="button" style="margin-bottom: 5px;" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_autotracking_on' | translate}}">
+            <button type="button" style="margin-bottom: 5px;" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_autotracking_on' | translate}}"
+                    ng-click="onAutoTracking()">
                 <i class="tui tui-ch-live-ptz-tracking-auto-on"></i>
             </button>
-            <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_autotracking_off' | translate}}">
+            <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_autotracking_off' | translate}}"
+                    ng-click="offAutoTracking()">
                 <i class="tui tui-ch-live-ptz-tracking-auto-off"></i>
             </button>
         </div>

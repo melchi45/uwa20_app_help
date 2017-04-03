@@ -528,6 +528,13 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 }
             };
 
+            scope.onAutoTracking = function(){
+            	execSunapi('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=set&Channel=0&Enable=True');
+            };
+            scope.offAutoTracking = function(){
+            	execSunapi('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=set&Channel=0&Enable=False');
+            };
+            
             scope.clickHomePosition = function(value) {
                 var callback;
                 if(value=='Set'){
