@@ -104,8 +104,6 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
 
             scope.$watch('ptzinfo', function(ptzinfo){
                 if(typeof ptzinfo !== 'undefined'){
-                    if($("#ptz-control_at-selectable").length>0)
-                        $("#ptz-control_at-selectable").unbind();
 
                     if(ptzinfo.type==='preset'){
                         //scope.showPTZControlPreset = true;
@@ -122,20 +120,6 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         scope.ptzControlClass = 'w610';
                         scope.zoomPresetClass = 'at-box';
                         scope.showPTZControlAT = true;
-                        $("#ptz-control_at-selectable").selectable({
-                            selected: function(event, ui) {
-                            	scope.selectTrackingArea = $(ui.selected).text();
-                            	moveAutoTracking(scope.selectTrackingArea);
-                                $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected").each(
-                                    function(key,value){
-                                        $(value).find('*').removeClass("ui-selected");
-                                    }
-                                );
-                            },
-                            unselected: function(){
-                            	scope.selectTrackingArea = '';
-                            }
-                        });
                         // autoTrackingList Data
                         if (ptzinfo.isViewTrackingData){
 	                        if(!ptzinfo.TrackingAreas) ptzinfo.TrackingAreas = [];
@@ -236,11 +220,10 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 return data;
             }
 
-            function moveAutoTracking(selectTrackingArea){
-            	if(!selectTrackingArea) return;
-            	//sunapiURI = '';
-            	//execSunapi(sunapiURI);
-            }
+            scope.moveAutoTracking = function(){
+                if(!scope.selectTrackingArea) return;
+                execSunapi('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=control&Mode=Move&TrackingAreaID='+scope.selectTrackingArea);
+            };
 
             scope.deleteAutoTracking = function(){
             	if(!scope.selectTrackingArea) return;

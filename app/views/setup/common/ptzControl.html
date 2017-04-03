@@ -140,9 +140,36 @@
                 <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_delete' | translate}}" ng-click="deleteAutoTracking()">
                     <i class="tui tui-delete"></i>
                 </button>
-                <ul id="ptz-control_at-selectable">
-					<li ng-repeat="TrackingArea in TrackingAreas" ng-model="TrackingAreas[$index]">{{TrackingArea.TrackingArea}}</li>
-				</ul>
+                <div id="ptz-control_at-selectable">
+                    <table class="table table-bordered wn5-setup-table video-setup-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>{{ 'lang_num' | translate }}</th>
+                            <th>{{ 'lang_name' | translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="TrackingArea in TrackingAreas" ng-class="{'wn5-setup-table-active': selectTrackingArea === TrackingArea.TrackingArea }">
+                            <td>
+                                <input
+                                        type="radio"
+                                        name="autotrackingButton"
+                                        ng-model="$parent.selectTrackingArea"
+                                        ng-click="moveAutoTracking()"
+                                        ng-value="TrackingArea.TrackingArea">
+                                </input>
+                            </td>
+                            <td>
+                                {{$index+1}}
+                            </td>
+                            <td>
+                                {{TrackingArea.TrackingArea}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div ng-show="showPTZControlOSD">
                 <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_setNorth' | translate}}" ng-click="setNorthView()">
