@@ -6,7 +6,7 @@
     <table class="table table-bordered wn5-setup-table">
       <thead>
         <tr>
-          <th class="text-center wn5-setup-info-vertical-middle">&nbsp;</th>
+          <th class="text-center">&nbsp;</th>
           <th class="text-center wn5-setup-info-vertical-middle">{{'lang_flip' | translate}}</th>
           <th class="text-center wn5-setup-info-vertical-middle">{{'lang_mirror' | translate}}</th>
           <th class="text-center wn5-setup-info-vertical-middle">{{'lang_hallwayView' | translate}}</th>
@@ -16,8 +16,8 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in infoTableData">
-          <td class="text-center wn5-setup-info-ch">CH{{$index + 1}}</td>
-          <td class="text-center" ng-repeat="orderKey in tableDataOrder">
+          <td class="wn5-setup-info-vertical-middle text-center wn5-setup-info-ch">CH{{$index + 1}}</td>
+          <td class="wn5-setup-info-vertical-middle text-center" ng-repeat="orderKey in tableDataOrder">
             {{item[orderKey]}}
             <span ng-if="orderKey === 'hallwayView'">
                {{ 'lang_degree' | translate }} ({{ 'lang_clockwise' | translate }})

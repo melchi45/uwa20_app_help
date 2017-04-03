@@ -18,8 +18,8 @@
         </thead>
         <tbody>
           <tr ng-repeat="item in infoTableData">
-            <td class="text-center wn5-setup-info-ch">CH{{item.channel + 1}}</td>
-            <td class="text-center" ng-repeat="keyName in defaultProfileOrder">
+            <td class="wn5-setup-info-vertical-middle text-center wn5-setup-info-ch">CH{{item.channel + 1}}</td>
+            <td class="wn5-setup-info-vertical-middle text-center" ng-repeat="keyName in defaultProfileOrder">
               {{item.profiles[0][keyName]}}
               <span ng-if="keyName === 'frameRate'">fps</span>
               <span ng-if="keyName === 'bitrate'">kbps</span>
