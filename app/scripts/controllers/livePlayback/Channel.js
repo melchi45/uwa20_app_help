@@ -598,7 +598,7 @@ kindFramework
         var isPlaybackEnable = playData.isPlaybackEnable();
         if( isPlaybackEnable === true ) return;
         var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true:false;
-        var ip = (plugin === true) ? RESTCLIENT_CONFIG.digest.hostName : RESTCLIENT_CONFIG.digest.rtspIp;
+        var ip = RESTCLIENT_CONFIG.digest.rtspIp;
         var port = RESTCLIENT_CONFIG.digest.rtspPort;
         var profile = _requestProfile.Profile;
         var id = SessionOfUserManager.getUsername();

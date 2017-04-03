@@ -742,7 +742,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                     {
                         mAttributes.ZoomOnlyModel = true;
                     }
-                    else if (mAttributes.AbsoluteZoom === false && mAttributes.AbsolutePan === false && mAttributes.AbsoluteTilt === false && mAttributes.RS485Support === true)
+                    else if (mAttributes.AbsoluteZoom === false && mAttributes.AbsolutePan === false && mAttributes.AbsoluteTilt === false && mAttributes.RS485Support === true && mAttributes.MaxGroupCount === 0)
                     {
                         mAttributes.ExternalPTZModel = true;
                     }
