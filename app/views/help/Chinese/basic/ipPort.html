@@ -1,4 +1,5 @@
-<h1 class="wn5-setup-main-title">IP &amp; 端口</h1>
+﻿
+<h1 class="wn5-setup-main-title">IP 与端口</h1>
 
 <div class="wn5-setup-section">
 	<p>输入 IP 地址和端口。可以在<strong class="UI">[IP 地址]</strong>选项栏中设置 IPv4 和 IPv6。可以在<strong class="UI">[端口]</strong>选项卡中为每个协议设置端口。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。点击<strong class="UI">[应用]</strong>按钮后，需要重新连接至 web 查看器。</p>
@@ -11,12 +12,12 @@
 		<h2>IPv4 设置</h2>
 	</div>
 	<div class="wn5-setup-section-article">
-		<div class="wn5-setup-section-article-content">
-			<p>可以查看或更改 IPv4 的属性，例如 IP 类型、MAC 地址、IP 地址、子网掩码、网关以及 DNS 信息。</p>
-		</div>
+        <div class="wn5-setup-section-article-content">
+            <p>可以查看或更改 IP 类型、MAC 地址、IP 地址、子网掩码、网关以及基于 IPv4 网络通信所用的 DNS 信息。</p>
+        </div>
 		<div class="wn5-setup-section-article-content">
 			<h3>IP 类型</h3>
-			<p>选择 IP 连接类型。默认值为 80 (TCP)。如果使用的是固定 IP 地址，将其设置为<strong class="UI">[手动]</strong>并输入相关信息。如果使用的是动态 IP 地址，将其设置为<strong class="UI">[DHCP]</strong>并只能输入 DNS 地址。如果使用的是<strong class="UI">[PPPoE]</strong>，输入 DNS 地址、ID 和密码。</p>
+			<p>选择 IP 连接类型。如果使用的是固定 IP 地址，将其设置为<strong class="UI">[手动]</strong>并输入相关信息。如果使用的是动态 IP 地址，将其设置为<strong class="UI">[DHCP]</strong>并只能输入 DNS 地址。如果使用的是<strong class="UI">[PPPoE]</strong>，输入 DNS 地址、ID 和密码。</p>
 			<ul>
 			<li><strong class="UI">手动</strong>：直接输入和设置 IP 地址、子网掩码、网关、DNS1 和 DNS2。</li>
 			<li><strong class="UI">DHCP</strong>: 设置 DNS1 和 DNS2。</li>
@@ -44,11 +45,14 @@
 			<h3>DNS1/DNS2</h3>
 			<p>显示的是 DNS（域名服务）服务器的地址。</p>
 		</div>
-		<div class="wn5-setup-section-article-content">		
+        <div class="wn5-setup-section-article-content">
+            <h3>主机名</h3>
+            <p>指用于检索 ONVIF GetHostname 指令中所用主机名的名称。首字符必须为字母，且只能输入字母字符。最多可输入 16 个字符。摄像机名称默认输入，并不一定需要填写，因此无需设置。 </p>
+        </div>
+<div class="wn5-setup-section-article-content">		
 			<h3>ID</h3>
 			<p>当<strong class="UI">[IP 类型]</strong>设置为<strong class="UI">[PPPoE]</strong>时，会显示此项。输入正确的 ID 进行连接。</p>
 		</div>
-
 		<div class="wn5-setup-section-article-content">
 			<h3>密码</h3>
 			<p>当<strong class="UI">[IP 类型]</strong>设置为<strong class="UI">[PPPoE]</strong>时，会显示此项。输入正确的密码进行连接。</p>
@@ -69,16 +73,16 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>IP 类型</h3>
 			<p>选择 IP 连接类型。默认值为<strong class="UI">[DHCP]</strong>。如未检测到 DHCP，该值会自动更改为之前的设置。</p>
-			<ul>
-				<li><strong class="UI">默认</strong>：显示的是当前 IPv6 地址。 </li>
-				<li><strong class="UI">DHCP</strong>: 显示的是通过 DHCP 分配的 IPv6 地址。</li>
-				<li><strong class="UI">手动</strong>：用户可以选择输入一个 IPv6 地址。</li>
-			</ul>
+            <ul>
+                <li><strong class="UI">DHCP</strong>: 显示的是通过 DHCP 分配的 IPv6 地址。</li>
+                <li><strong class="UI">手动</strong>：用户可以选择输入一个 IPv6 地址。</li>
+                <li><strong class="UI">默认</strong>：显示的是当前 IPv6 地址。  </li>
+            </ul>
 		</div>
-		<div class="wn5-setup-section-article-content">
-			<h3>IP 地址</h3>
-			<p>输入 IPv6 地址。</p>
-		</div>
+        <div class="wn5-setup-section-article-content">
+            <h3>IP 地址</h3>
+            <p>输入 IPv6 地址。</p>
+        </div>
 		<div class="wn5-setup-section-article-content">
 			<h3>前缀</h3>
 			<p>该值设定了 IP 的范围。如果<strong class="UI">[IP 类型]</strong>为<strong class="UI">[默认]</strong>，则<strong class="UI">[前缀]</strong>值为 64。如果 IP 类型为<strong class="UI">[手动]</strong>，则可以更改 <strong class="UI">[前缀]</strong>值。 </p>
@@ -97,10 +101,9 @@
 		<h2>端口</h2>
 	</div>
 	<div class="wn5-setup-section-article">
-		<div class="wn5-setup-section-article-content">
-			<p>端口是用来发送和接受数据的位置，点击<strong class="UI">[端口]</strong>选项卡，设置相应的项目，然后单击页面底部的<strong class="UI">[应用]</strong>按钮。建议使用 HTTPS 和 RTSP 以阻止图像信息恢复。</p>
-		</div>
-
+        <div class="wn5-setup-section-article-content">
+            <p>端口是用来发送和接受数据的位置，点击<strong class="UI">[端口]</strong>选项卡，设置相应的项目，然后单击页面底部的<strong class="UI">[应用]</strong>按钮。建议使用 HTTPS 和 RTSP 加强图像安全性。</p>
+        </div>
 		<div class="wn5-setup-section-article-content">
 			<h3>HTTP</h3>
 			<p>HTTP 端口使用 web 查看器连接至摄像机。默认值为 80 (TCP)。在 Safari、Google Chrome 等浏览器中进行连接时，因为浏览器的安全规定，HTTP 端口无法设置为 65535。当 HTTP 端口改变时，网页浏览器窗口将关闭。在 IP 地址后面输入新的 HTTP 端口，重新连接。当 HTTP 端口为80时，可以省略端口号。（比如：摄像机 IP 地址为192.168.1.100，如果 HTTP 端口为 8080 的话-&gt; http://192.168.1.100:8080）</p>
@@ -118,13 +121,9 @@
 
 		<div class="wn5-setup-section-article-content">
 			<h3>使用超时提示</h3>
-			<p>如需使用超时提示，请选择<strong class="UI">[启用]</strong>。当连接设置为 RTSP，且一段时间内没有反应时，请重置端口连接。</p>
+            <p>如需使用超时提示，请选择<strong class="UI">[启用]</strong>。当连接设置为 RTSP，且一段时间内没有反应时，请重置端口连接。</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content">
-			<h3>设备端口</h3>
-			<p>这是一个用于发送图像的端口，可设置为 Hanwha 协议。</p>
-		</div>
 	</div>
 </div>
 <hr class="wn5-setup-hr">
