@@ -130,7 +130,7 @@ kindFramework.controller('QMSetupCtrl',
 					$scope.queueLevelSection.bindHtml();
 					$scope.queueLevelSection.getRange();
 					//Calibration
-					$scope.calibrationSection.init();
+					// $scope.calibrationSection.init();
 				}
 				//Tab(Draw init)
 				var activedTab = $scope.currentTapStatus.indexOf(true);
@@ -396,46 +396,46 @@ kindFramework.controller('QMSetupCtrl',
 		}
 	};
 
-	$scope.calibrationSection = {
-		coordinates: [],
-		minSize: 0,
-		maxSize: 0,
-		init: function(){
-        	var data = $scope.queueData.ObjectSizeCoordinates;
-        	$scope.calibrationSection.coordinates = [
-        		[data[0].x, data[0].y],
-        		[data[0].x, data[1].y],
-        		[data[1].x, data[1].y],
-        		[data[1].x, data[0].y],
+	// $scope.calibrationSection = {
+	// 	coordinates: [],
+	// 	minSize: 0,
+	// 	maxSize: 0,
+	// 	init: function(){
+    //     	var data = $scope.queueData.ObjectSizeCoordinates;
+    //     	$scope.calibrationSection.coordinates = [
+    //     		[data[0].x, data[0].y],
+    //     		[data[0].x, data[1].y],
+    //     		[data[1].x, data[1].y],
+    //     		[data[1].x, data[0].y],
         		
-        	];
+    //     	];
 
-			//set Calibration Box
-			var defaultResolution = pcSetupService.getDefaultResolution();
-			var maxResolution = pcSetupService.getMaxResolution();
-			var minSize = 0;
-			var maxSize = 0;
+	// 		//set Calibration Box
+	// 		var defaultResolution = pcSetupService.getDefaultResolution();
+	// 		var maxResolution = pcSetupService.getMaxResolution();
+	// 		var minSize = 0;
+	// 		var maxSize = 0;
 
-			/*
-			Calibration guide box의 최소, 최대 크기는 다음과 같고, 최소보다 작거나 최대보다 크게 설정할 수 없다
+	// 		/*
+	// 		Calibration guide box의 최소, 최대 크기는 다음과 같고, 최소보다 작거나 최대보다 크게 설정할 수 없다
 
-			- 최소 : View 영상의 가로세로 중 짧은 길이의 10%
-			- 최대 : View 영상의 가로세로 중 긴 길이의 50%
+	// 		- 최소 : View 영상의 가로세로 중 짧은 길이의 10%
+	// 		- 최대 : View 영상의 가로세로 중 긴 길이의 50%
 
-			* GUI View 영상 640x480 경우
+	// 		* GUI View 영상 640x480 경우
 
-			- 최소 : 48 x 48 [pixels]
-			- 최대 : 320 x 320 [pixels]
-			*/
-			if(defaultResolution.height > defaultResolution.width){
-				$scope.calibrationSection.maxSize = maxResolution.height * 0.5;
-				$scope.calibrationSection.minSize = maxResolution.width * 0.1;
-			}else{
-				$scope.calibrationSection.maxSize = maxResolution.width * 0.5;
-				$scope.calibrationSection.minSize = maxResolution.height * 0.1;
-			}
-		}
-	};
+	// 		- 최소 : 48 x 48 [pixels]
+	// 		- 최대 : 320 x 320 [pixels]
+	// 		*/
+	// 		if(defaultResolution.height > defaultResolution.width){
+	// 			$scope.calibrationSection.maxSize = maxResolution.height * 0.5;
+	// 			$scope.calibrationSection.minSize = maxResolution.width * 0.1;
+	// 		}else{
+	// 			$scope.calibrationSection.maxSize = maxResolution.width * 0.5;
+	// 			$scope.calibrationSection.minSize = maxResolution.height * 0.1;
+	// 		}
+	// 	}
+	// };
 
 	$scope.reportSection = {
 		init: function(){
@@ -553,64 +553,64 @@ kindFramework.controller('QMSetupCtrl',
 		$scope.queueLevelSection.reload();
 	};
 
-	function getCoordinatesForSketchbook(){
-		var calibrationData = $scope.calibrationSection.coordinates;
-		var points = [[],[],[],[]];
+	// function getCoordinatesForSketchbook(){
+	// 	var calibrationData = $scope.calibrationSection.coordinates;
+	// 	var points = [[],[],[],[]];
 
-		if(calibrationData[0][0] < calibrationData[2][0]){
-			points[0][0] = calibrationData[0][0];
-			points[1][0] = calibrationData[0][0];
-			points[3][0] = calibrationData[2][0];
-			points[2][0] = calibrationData[2][0];
-		}else{
-			points[0][0] = calibrationData[2][0];
-			points[1][0] = calibrationData[2][0];
-			points[3][0] = calibrationData[0][0];
-			points[2][0] = calibrationData[0][0];
-		}
+	// 	if(calibrationData[0][0] < calibrationData[2][0]){
+	// 		points[0][0] = calibrationData[0][0];
+	// 		points[1][0] = calibrationData[0][0];
+	// 		points[3][0] = calibrationData[2][0];
+	// 		points[2][0] = calibrationData[2][0];
+	// 	}else{
+	// 		points[0][0] = calibrationData[2][0];
+	// 		points[1][0] = calibrationData[2][0];
+	// 		points[3][0] = calibrationData[0][0];
+	// 		points[2][0] = calibrationData[0][0];
+	// 	}
 
-		if(calibrationData[0][1] < calibrationData[2][1]){
-			points[0][1] = calibrationData[0][1];
-			points[1][1] = calibrationData[0][1];
-			points[3][1] = calibrationData[2][1];
-			points[2][1] = calibrationData[2][1];
-		}else{
-			points[0][1] = calibrationData[2][1];
-			points[1][1] = calibrationData[2][1];
-			points[3][1] = calibrationData[0][1];
-			points[2][1] = calibrationData[0][1];	
-		}
+	// 	if(calibrationData[0][1] < calibrationData[2][1]){
+	// 		points[0][1] = calibrationData[0][1];
+	// 		points[1][1] = calibrationData[0][1];
+	// 		points[3][1] = calibrationData[2][1];
+	// 		points[2][1] = calibrationData[2][1];
+	// 	}else{
+	// 		points[0][1] = calibrationData[2][1];
+	// 		points[1][1] = calibrationData[2][1];
+	// 		points[3][1] = calibrationData[0][1];
+	// 		points[2][1] = calibrationData[0][1];	
+	// 	}
 		
-		return points;
-	}
+	// 	return points;
+	// }
 	/**
 	 * Sketchbook에서 정상적인 모양으로 데이터를 넘겨주면
 	 * SUNAPI에서 받은 Calibration의 Coordinates 순서와 동일하게 변경한다.
 	 */
-	function updateCoordinatesForSunapi(pointsFromSketchbook){
-		var calibrationData = $scope.calibrationSection.coordinates;
-		var firstIndex = 0;
-		var secondIndex = 0;
+	// function updateCoordinatesForSunapi(pointsFromSketchbook){
+	// 	var calibrationData = $scope.calibrationSection.coordinates;
+	// 	var firstIndex = 0;
+	// 	var secondIndex = 0;
 
-		if(calibrationData[0][0] < calibrationData[2][0] && calibrationData[0][1] < calibrationData[2][1]){
-			firstIndex = 0;
-			secondIndex = 2;
-		}else if(calibrationData[0][0] > calibrationData[2][0] && calibrationData[0][1] > calibrationData[2][1]){
-			firstIndex = 2;
-			secondIndex = 0;
-		}else if(calibrationData[0][0] > calibrationData[2][0] && calibrationData[0][1] < calibrationData[2][1]){
-			firstIndex = 3;
-			secondIndex = 1;
-		}else if(calibrationData[0][0] < calibrationData[2][0] && calibrationData[0][1] > calibrationData[2][1]){
-			firstIndex = 1;
-			secondIndex = 3;
-		}
+	// 	if(calibrationData[0][0] < calibrationData[2][0] && calibrationData[0][1] < calibrationData[2][1]){
+	// 		firstIndex = 0;
+	// 		secondIndex = 2;
+	// 	}else if(calibrationData[0][0] > calibrationData[2][0] && calibrationData[0][1] > calibrationData[2][1]){
+	// 		firstIndex = 2;
+	// 		secondIndex = 0;
+	// 	}else if(calibrationData[0][0] > calibrationData[2][0] && calibrationData[0][1] < calibrationData[2][1]){
+	// 		firstIndex = 3;
+	// 		secondIndex = 1;
+	// 	}else if(calibrationData[0][0] < calibrationData[2][0] && calibrationData[0][1] > calibrationData[2][1]){
+	// 		firstIndex = 1;
+	// 		secondIndex = 3;
+	// 	}
 
-		calibrationData[0] = pointsFromSketchbook[firstIndex];
-		calibrationData[1] = [ pointsFromSketchbook[firstIndex][0], pointsFromSketchbook[secondIndex][1] ];
-		calibrationData[2] = pointsFromSketchbook[secondIndex];
-		calibrationData[1] = [ pointsFromSketchbook[secondIndex][0], pointsFromSketchbook[firstIndex][1] ];
-	}
+	// 	calibrationData[0] = pointsFromSketchbook[firstIndex];
+	// 	calibrationData[1] = [ pointsFromSketchbook[firstIndex][0], pointsFromSketchbook[secondIndex][1] ];
+	// 	calibrationData[2] = pointsFromSketchbook[secondIndex];
+	// 	calibrationData[1] = [ pointsFromSketchbook[secondIndex][0], pointsFromSketchbook[firstIndex][1] ];
+	// }
 
 	$scope.areaColor = [
 		{color: "#238bc1"},
@@ -643,65 +643,66 @@ kindFramework.controller('QMSetupCtrl',
         	sketchinfo.workType = 'qmArea';
         	sketchinfo.maxNumber = 3;
         	sketchinfo.color = 0;
-        //Calibration
-        } else if(flag === "calibration") {
-            $scope.coordinates = [
-            	{
-        			isSet: true, //true = 저장되어있음. false = 저장X
-        			enable: true,
-            		points: getCoordinatesForSketchbook()
-            	}
-            ];
+		}
+		//Calibration
+	 	// else if(flag === "calibration") {
+        //     $scope.coordinates = [
+        //     	{
+        // 			isSet: true, //true = 저장되어있음. false = 저장X
+        // 			enable: true,
+        //     		points: getCoordinatesForSketchbook()
+        //     	}
+        //     ];
 
-        	sketchinfo.workType = 'calibration';
-        	sketchinfo.maxNumber = 1;
+        // 	sketchinfo.workType = 'calibration';
+        // 	sketchinfo.maxNumber = 1;
 
-            /**
-            최대 사이즈는 영상의 가로, 세로 중 큰쪽의 50%,
-            최소 사이즈는 영상의 가로, 세로 중 작은 쪽의 3%
-            */
-            sketchinfo.minSize = {
-            	width: $scope.calibrationSection.minSize,
-            	height: $scope.calibrationSection.minSize
-            };
-            sketchinfo.maxSize = {
-            	width: $scope.calibrationSection.maxSize,
-            	height: $scope.calibrationSection.maxSize
-            };
-        }
+        //     /**
+        //     최대 사이즈는 영상의 가로, 세로 중 큰쪽의 50%,
+        //     최소 사이즈는 영상의 가로, 세로 중 작은 쪽의 3%
+        //     */
+        //     sketchinfo.minSize = {
+        //     	width: $scope.calibrationSection.minSize,
+        //     	height: $scope.calibrationSection.minSize
+        //     };
+        //     sketchinfo.maxSize = {
+        //     	width: $scope.calibrationSection.maxSize,
+        //     	height: $scope.calibrationSection.maxSize
+        //     };
+        // }
 
         return angular.copy(sketchinfo);
     }
 
-	function getMax(points) {
-	    var area = 0;
-	    var j = points.length - 1;
+	// function getMax(points) {
+	//     var area = 0;
+	//     var j = points.length - 1;
 
-	    for (var i = 0; i < points.length; i++)
-	    {
-	      area = area + (points[j][0] + points[i][0]) * (points[j][1] - points[i][1]); 
-	      j = i;
-	    }
+	//     for (var i = 0; i < points.length; i++)
+	//     {
+	//       area = area + (points[j][0] + points[i][0]) * (points[j][1] - points[i][1]); 
+	//       j = i;
+	//     }
 
-	    var areaSize = Math.ceil(Math.abs(area/2));
-		var coordinates = getCoordinatesForSketchbook();
-	    var calSize = {
-	    	width: (coordinates[2][0] - coordinates[0][0]),
-	    	height: (coordinates[2][1] - coordinates[0][1])
-	    };
+	//     var areaSize = Math.ceil(Math.abs(area/2));
+	// 	var coordinates = getCoordinatesForSketchbook();
+	//     var calSize = {
+	//     	width: (coordinates[2][0] - coordinates[0][0]),
+	//     	height: (coordinates[2][1] - coordinates[0][1])
+	//     };
 
-	    var max = areaSize / (calSize.width * calSize.height);
-	    return Math.ceil(max);
-	}
+	//     var max = areaSize / (calSize.width * calSize.height);
+	//     return Math.ceil(max);
+	// }
 
-	function setAutoMaxPeople(){
-		var queues = $scope.queueData.Queues;
-		for(var i = 0; i < queues.length; i++){
-			var max = getMax($scope.realtimeSection.coordinates[i].points);
-			$scope.queueLevelSection.changeValue( 'max', max, i );
-		}
-		$scope.queueLevelSection.reload();
-	}
+	// function setAutoMaxPeople(){
+	// 	var queues = $scope.queueData.Queues;
+	// 	for(var i = 0; i < queues.length; i++){
+	// 		var max = getMax($scope.realtimeSection.coordinates[i].points);
+	// 		$scope.queueLevelSection.changeValue( 'max', max, i );
+	// 	}
+	// 	$scope.queueLevelSection.reload();
+	// }
 
 	/* Collapse End
 	----------------------------------------------*/
@@ -725,18 +726,18 @@ kindFramework.controller('QMSetupCtrl',
 				sketchbookService.activeShape(modifiedIndex);
 				$scope.queueLevelSection.start();
 			});
-        	sketchbookService.activeShape(modifiedIndex);
 
         	$scope.realtimeSection.coordinates[modifiedIndex].points = modifiedPoints;
 
         	// var max = getMax(modifiedPoints);
         	// $scope.queueLevelSection.changeValue( 'max', max );
 			// $scope.queueLevelSection.reload();
-        }else if($scope.currentTapStatus[1] === true){
-        	// $scope.calibrationSection.coordinates = modifiedPoints;
-			updateCoordinatesForSunapi(modifiedPoints);
-			// setAutoMaxPeople();
         }
+		// else if($scope.currentTapStatus[1] === true){
+        	// $scope.calibrationSection.coordinates = modifiedPoints;
+			// updateCoordinatesForSunapi(modifiedPoints);
+			// setAutoMaxPeople();
+        // }
     }, $scope);
 
 	/* Destroy Area Start
@@ -771,13 +772,13 @@ kindFramework.controller('QMSetupCtrl',
 		var setData = {};
 		setData.Channel = channel;
 		setData.Enable = data.Enable;
-		setData.CalibrationMode = data.CalibrationMode;
-		try{
-			setData.ObjectSizeCoordinates = [
-				$scope.calibrationSection.coordinates[0].join(),
-				$scope.calibrationSection.coordinates[2].join()
-			].join();
-		}catch(e){}
+		// setData.CalibrationMode = data.CalibrationMode;
+		// try{
+		// 	setData.ObjectSizeCoordinates = [
+		// 		$scope.calibrationSection.coordinates[0].join(),
+		// 		$scope.calibrationSection.coordinates[2].join()
+		// 	].join();
+		// }catch(e){}
 
 		for(var i = 1; i <= data.Queues.length; i++){
 			var j = i - 1;
