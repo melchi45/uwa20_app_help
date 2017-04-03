@@ -58,7 +58,7 @@ function WorkerManager() {
   throughPutGOV = 30,
   videoTimeStamp = null,
   videoTagPlayFlag = false,
-  normalNumBox = (browser !== "chrome" ? 10 : 2),
+  normalNumBox = (browser !== "chrome" ? 10 : 5),
   speedNumBox = 1,
   speed = 1,
   numBox = normalNumBox,
@@ -182,7 +182,7 @@ function WorkerManager() {
               numBox = 10;
               break;
             default :
-              numBox = 2;
+              numBox = 5;
           }
         }
 
