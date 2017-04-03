@@ -1299,7 +1299,7 @@ kindFramework
 
             // in case of changing schedule type while you are in page
             scope.$watch('EventRule.ScheduleType', function(newVal, oldVal){
-                if(typeof newVal === "undefined"){
+                if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
                 }
                 activeMenu = null;
@@ -1317,7 +1317,7 @@ kindFramework
             });
 
             scope.$watch('RecordSchedule[0].Activate', function(newVal, oldVal){
-                if(typeof newVal === "undefined"){
+                if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
                 }
                 activeMenu = 'storage';
@@ -1335,7 +1335,7 @@ kindFramework
             });
 
             scope.$watch('EventRules[0].ScheduleType', function(newVal, oldVal){ // initial alarmInput
-                if(typeof newVal === "undefined"){
+                if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
                 }
                 activeMenu = 'alarmInput';

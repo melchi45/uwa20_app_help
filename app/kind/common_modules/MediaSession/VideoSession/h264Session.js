@@ -60,6 +60,8 @@ var H264Session = function () {
 	var durationCorrection = 0;
 	var preTimeStamp = null;
 	var frameDuration = 0;
+	var preRtpTimeStamp = null;
+	var rtpDuration = 0;
 
 	//media segment test
 	var segmentBuffer = new Uint8Array(size_1M),
@@ -270,12 +272,15 @@ var H264Session = function () {
 				}
 
 				if (preTimeStamp === null && playback === true) {
+					preRtpTimeStamp = (rtpTimeStamp / 90).toFixed(0);
 					preTimeStamp = (1000*timeData.timestamp) + timeData.timestamp_usec;
 					return null;
 				} else {
 					var curTimeStamp = (1000*timeData.timestamp) + timeData.timestamp_usec;
 					frameDuration = Math.abs(curTimeStamp - preTimeStamp) * 10;
+					rtpDuration = Math.abs((rtpTimeStamp / 90).toFixed(0) - preRtpTimeStamp) * 10;
 					preTimeStamp = curTimeStamp;
+					preRtpTimeStamp = (rtpTimeStamp / 90).toFixed(0);
 				}
 
 				if (decodeMode == "canvas") {
@@ -388,13 +393,20 @@ var H264Session = function () {
 
 				var size = width * height;
 				if (playback === true) {
+					var speedFlag = ((rtpDuration / frameDuration) * 100).toFixed(0) < 60 ? true : false;
+
 					if (size > videoTagLimitSize) {
 						if (frameDuration < 5000) {
 							changeMode("video");
 							data.decodeMode = "video";
 						} else {
-							changeMode("canvas");
-							data.decodeMode = "canvas";
+							if (speedFlag === true) {
+								changeMode("video");
+								data.decodeMode = "video";
+							} else {
+								changeMode("canvas");
+								data.decodeMode = "canvas";
+							}
 						}
 					} else {
 						changeMode("canvas");
