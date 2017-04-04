@@ -85,11 +85,9 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 					width: "100%",
 					height: "100%",
 					top: 0,
-					// left: 0
 				});
 				overlayCanvas.css({
 					top: 3+"px",
-					// left: 3+"px"
 				});
 
       			var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true : false;
@@ -98,12 +96,13 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 						height: (window.innerHeight - bottomMenuHeight) + "px"
 					});
 				}
-	 		} else if (mode === 'originalratio' || curViewMode === 'originalratio' || mode === 'resize') {
+	 		} else if (mode === 'originalratio' || curViewMode === 'originalratio' || mode === 'resize' || mode.type === 'resize') {
+				 // mode가 텍스트 뿐만아니라 객체.type 으로도 넘어옵니다
 	 			if (mode === 'originalratio') {
 	  				curViewMode = mode; // when dynamically browser size changed, check ratio mode with this var
 	  			}
 	  			container.css("overflow", "hidden");
-
+				  
 			    setCanvasBytestRatio();
 			}
 
@@ -125,6 +124,9 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 					if(controlShow) bottomMenuWidth = 470;
 					else bottomMenuWidth = 70;
 
+					// bottomMenuHeight로 풀스크린시 사이즈 별도계산
+					bottomMenuHeight = 55;
+
 					$("#cm-video").removeAttr('style');
 					$("#cm-video").css({ width: "calc(100% - "+ (bottomMenuWidth) +"px)" });
 					if(nowfull) {
@@ -141,7 +143,6 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 					$(".land-scape").removeClass('land-scape');
 
 					// 하단 메뉴 On-Off시 height 차이
-
 					if(checkSize > 2300 && checkHeight > 1294){
 						if(controlShow) bottomMenuHeight = 400;
 						else bottomMenuHeight = 115;
@@ -156,9 +157,8 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
 					}
 					
-
 					// Default Show 상태의 메뉴 > Responsive 상태일시 2줄
-					// Live에서는 변경점  900
+					// Live에서는 변경위치  900
 					if(checkSize < 800 || (checkSize < 900 && checkType)) bottomMenuHeight += 50;
 
 					// live page 에서는 하단의 길이가 더 김
@@ -231,7 +231,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
 	  		function setCanvasBytestRatio() {
 	  			var boxSize = getBoxSize();
-
+				
 				if(boxSize === null){
 					if (streamCanvas.hasClass('dptz') === false) {
 						streamCanvas.css({
@@ -243,6 +243,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		  			var wWidth = boxSize.width;
 		  			var wHeight = boxSize.height;
 					var newSize = getSize(wWidth, wHeight);
+					console.info(newSize);
 					if(newSize !== undefined){
 						streamCanvas.css({
 							width: newSize.width + "px",
@@ -289,14 +290,8 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 					return null;
 				}
 				
-				console.info($("#container").length);
-				if($("#container").length) {
-					wWidth = $("#container")[0].clientWidth;
-					wHeight = $("#container")[0].clientHeight;
-				} else {
-					wWidth = $(".channel-container")[0].clientWidth;
-					wHeight = $(".channel-container")[0].clientHeight;
-				}
+				wWidth = $(".channel-container")[0].clientWidth;
+				wHeight = $(".channel-container")[0].clientHeight;
 
 				// when close full screen by esc key or by capture, use prev size to reset in main view
 				if (wWidth === 0 || wHeight === 0) { 
