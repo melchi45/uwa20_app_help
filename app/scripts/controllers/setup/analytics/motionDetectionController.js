@@ -47,6 +47,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     $scope.VideoAnalysis2Support = false;
     $scope.va2CommonCmd = '/stw-cgi/eventsources.cgi?msubmenu=videoanalysis';
+    $scope.presetCmd = '/stw-cgi/ptzconfig.cgi?msubmenu=presetvideoanalysis2';
 
     $scope.EventSource = 'MotionDetection';
     $scope.EventRule = {};
@@ -63,6 +64,13 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             }
         }
     })();
+
+    $scope.presetData = {
+        type: null,
+        oldType: null,
+        preset: null,
+        oldPreset: null
+    };
     
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
         $rootScope.$emit('changeLoadingBar', true);
@@ -664,7 +672,12 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
             $scope.coordinates = null;
             $scope.sketchinfo = null;   
-            
+
+            $scope.indexNumber = [1, 2, 3, 4, 5, 6, 7, 8];
+
+            $scope.isSelectedIncludeIndex = "0";    // "0" means no selected
+            $scope.isSelectedExcludeIndex = "0";    // "0" means no selected
+
             $scope.selectInclude = [{"ROI":1},{"ROI":2},{"ROI":3},{"ROI":4},{"ROI":5},{"ROI":6},{"ROI":7},{"ROI":8}];
             $scope.selectExclude = [{"ROI":9},{"ROI":10},{"ROI":11},{"ROI":12},{"ROI":13},{"ROI":14},{"ROI":15},{"ROI":16}];
 
@@ -702,6 +715,19 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         promises.push(updateMotionDetectionData);
         promises.push(showVideo);
         promises.push(getHandoverSetting);
+        if($scope.PTZModel){
+            if($scope.presetData.preset === null){
+                promises.push(getPresetList);
+            }
+            if($scope.presetData.type === "Preset"){
+                promises.push(
+                    function(){
+                        //isPreset = true
+                        return updateMotionDetectionData(true);
+                    }
+                );
+            }
+        }
 
         $q.seqAll(promises).then(
             function(){
@@ -730,11 +756,11 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
     }
 
-    function getMotionDetectionData(successCallback){
+    function getMotionDetectionData(successCallback, isPreset){
         var getData = {
             Channel: $scope.channelSelectionSection.getCurrentChannel()
         };
-        var cmd = $scope.va2CommonCmd + '&action=view';
+        var cmd = (isPreset? $scope.presetCmd : $scope.va2CommonCmd) + '&action=view';
         return SunapiClient.get(cmd, getData,
                 successCallback,
                 function (errorData)
@@ -743,16 +769,33 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 }, '', true);
     }
 
-    function updateMotionDetectionData(){
+    function updateMotionDetectionData(isPreset){
         var successCallback = function(response){
-            prepareMotionDetectionData(response.data.VideoAnalysis[0]);
+            var data = null;
+            if(isPreset){
+                var presets = response.data.PresetVideoAnalysis[0].Presets;
+                for(var i = 0; i < presets.length; i++){
+                    if(presets[i].Preset === $scope.presetData.preset){
+                        data = presets[i];
+                    }
+                }
+            }else{
+                data = response.data.VideoAnalysis[0];
+            }
+
+            prepareMotionDetectionData(data, isPreset);
         };
 
-        return getMotionDetectionData(successCallback);
+        return getMotionDetectionData(successCallback, isPreset);
     }
 
-    function prepareMotionDetectionData(mdResponseData){
-        setMotionDetectionEnable(mdResponseData.DetectionType);
+    function prepareMotionDetectionData(mdResponseData, isPreset){
+        if(!isPreset){
+            setMotionDetectionEnable(mdResponseData.DetectionType);
+            if($scope.presetData.type === "Preset"){
+                return;
+            }
+        }
         setMotionDetectionRules(mdResponseData.ROIs);
     }
 
@@ -1088,6 +1131,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function saveSettings() {
+        var deferred = $q.defer();
         var functionlist = [];
         // SUNAPI SET
         ////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
@@ -1113,24 +1157,33 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     getHandoverList(view).then(
                         function() {
                             $scope.$emit('applied', true);
+                            deferred.resolve();
                         },
                         function(errorData) {
                             console.log(errorData);
+                            deferred.resolve();
                         });
                 },
                 function(errorData){
                     console.log(errorData);
+                    view();
+                    deferred.resolve();
                 }
             );
         } else {
             getHandoverList(view).then(
                 function() {
                     $scope.$emit('applied', true);
+                    deferred.resolve();
                 },
                 function(errorData) {
                     console.log(errorData);
+                    view();
+                    deferred.resolve();
             });
         }
+
+        return deferred.promise;
     }
 
     (function wait() {
@@ -1390,109 +1443,74 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
 
     function setEnable(){
-
-        //console.log(" ::::: SET ENABLE START ::::: ");
         var deferred = $q.defer();
-        var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
-        };
-        //getData.DetectionType = 'MotionDetection';
 
-        //return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=view', getData,
-        var cmd = $scope.va2CommonCmd + '&action=view';
-        SunapiClient.get(cmd, getData,
-        //SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=view', getData,
-                function (response)
-                {
-                    //console.log(" ::: response.data.VideoAnalysis[0]", response.data.VideoAnalysis[0].DetectionType);
-                    // DetectionType : MDAndIV, Off, MotionDetection, IntelligentVideo
+        setOnlyEnable().finally(function(){
+            var setData = {
+                Channel: $scope.channelSelectionSection.getCurrentChannel()
+            };
 
-                    var detectionType = response.data.VideoAnalysis[0].DetectionType;
-                    
-                    var setData = {
-                        Channel: $scope.channelSelectionSection.getCurrentChannel()
-                    };
-                    if($scope.MotionDetection.MotionDetectionEnable === true){
+            var unmodifiedROIIndex = getUnmodifiedROIIndex();
+            deleteRemovedROI().then(
+                function(deletedROIIndex){
+                    var modifiedIndex = getModifiedROIIndex(unmodifiedROIIndex, deletedROIIndex);
 
-                        if(detectionType === "Off" || detectionType === "MotionDetection"){
-                            setData.DetectionType = "MotionDetection";
-                        }
-                        if(detectionType === "IntelligentVideo" || detectionType === "MDAndIV"){
-                            setData.DetectionType = "MDAndIV";
-                        }
+                    if(modifiedIndex.length > 0){
+                        for(var i = 0, ii = modifiedIndex.length; i < ii; i++){
+                            var self = modifiedIndex[i];
+                            var property = '';
+                            var index = self - 1;
+                            if(self > 8){
+                                property = 'selectExclude';
+                                index -= 8;
+                            }else{
+                                property = 'selectInclude';
+                            }
+                            var data = $scope[property][index];
+                            var coor = [];
 
-                    } else {
+                            if(data.Mode !== undefined){
+                                if(data.Coordinates[0].toString() === "[object Object]"){
+                                    for(var j = 0, jj = data.Coordinates.length; j < jj; j++){
+                                        coor.push([
+                                            data.Coordinates[j].x,
+                                            data.Coordinates[j].y
+                                        ]);
+                                    }
+                                }else{
+                                    coor = data.Coordinates;
+                                }
 
-                        if(detectionType === "Off" || detectionType === "MotionDetection"){
-                            setData.DetectionType = "Off";
-                        }   
-                        if(detectionType === "IntelligentVideo" || detectionType === "MDAndIV"){
-                            setData.DetectionType = "IntelligentVideo";   
+                                setData['ROI.' + self + '.Coordinate'] = coor.join(',');
+                                setData['ROI.' + self + '.SensitivityLevel'] = data.SensitivityLevel;
+                                setData['ROI.' + self + '.ThresholdLevel'] = data.ThresholdLevel;   
+                            }
                         }
                     }
 
-                    var unmodifiedROIIndex = getUnmodifiedROIIndex();
-                    deleteRemovedROI().then(function(deletedROIIndex){
-                        var modifiedIndex = getModifiedROIIndex(unmodifiedROIIndex, deletedROIIndex);
-
-                        if(modifiedIndex.length > 0){
-                            for(var i = 0, ii = modifiedIndex.length; i < ii; i++){
-                                var self = modifiedIndex[i];
-                                var property = '';
-                                var index = self - 1;
-                                if(self > 8){
-                                    property = 'selectExclude';
-                                    index -= 8;
-                                }else{
-                                    property = 'selectInclude';
-                                }
-                                var data = $scope[property][index];
-                                var coor = [];
-
-                                if(data.Mode !== undefined){
-                                    if(data.Coordinates[0].toString() === "[object Object]"){
-                                        for(var j = 0, jj = data.Coordinates.length; j < jj; j++){
-                                            coor.push([
-                                                data.Coordinates[j].x,
-                                                data.Coordinates[j].y
-                                            ]);
-                                        }
-                                    }else{
-                                        coor = data.Coordinates;
-                                    }
-
-                                    setData['ROI.' + self + '.Coordinate'] = coor.join(',');
-                                    setData['ROI.' + self + '.SensitivityLevel'] = data.SensitivityLevel;
-                                    setData['ROI.' + self + '.ThresholdLevel'] = data.ThresholdLevel;   
-                                }
-                            }
-                        }
-
-                        //console.log(" ///// setData", setData);
-
-                        var cmd = $scope.va2CommonCmd + '&action=set';
-                        SunapiClient.get(cmd, setData,
-                        //SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=set', setData,
+                    var cmd = $scope.va2CommonCmd + '&action=set';
+                    // console.info($scope.presetData.oldType);
+                    if($scope.PTZModel && $scope.presetData.oldType === 'Preset'){
+                        setData.Preset = $scope.presetData.oldPreset;
+                        cmd = $scope.presetCmd + '&action=set';
+                    }
+                    // console.info(cmd);
+                    SunapiClient.get(cmd, setData,
                         function (response){
-                            // console.log("modified");
-                            //console.log(" ::::: SET ENABLE END ::::: ");
                             deferred.resolve();
                         },
                         function (errorData){
                             console.log(errorData);
                             deferred.reject(errorData);
-                        }, '', true);
-                    }, function(errorData){
-                        console.log(errorData);
-                        deferred.reject(errorData);
-                    }); // 삭제와 Get을 같이함.                    
-                },
-                function (errorData)
-                {
+                        }, 
+                    '', true);
+                }, 
+                function(errorData){
                     console.log(errorData);
                     deferred.reject(errorData);
-                }, '', true);
-
+                }
+            ); // 삭제와 Get을 같이함.   
+        });
 
         return deferred.promise;
     }
@@ -2257,5 +2275,128 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             $scope.handoverEnDisable = 'Enable';
         }
     };
+
+    function getPresetList() {
+        return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=view', '',
+            function (response) {
+                var data = response.data.PTZPresets[0].Presets;
+                $scope.presetList = [];
+                if (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        $scope.presetList[i] = {
+                            Preset : data[i].Preset,
+                            Name : data[i].Name,
+                            Text : data[i].Preset + ' : ' + data[i].Name
+                        };
+                    }
+                }
+
+                getSelectedPreset();
+            },
+            function (errorData) {
+                if (errorData !== "Configuration Not Found") {
+                    console.log(errorData);
+                } else {
+                    $scope.presetList = [];
+                }
+            }, '', true);
+    }
+
+    function getSelectedPreset() {
+        $scope.presetData.type = 'Global';
+        if($scope.presetList.length !== 0){
+            $scope.presetData.preset = $scope.presetList[0].Preset;
+        }
+    }
+
+    $scope.$watch('presetData.type',function(newVal, oldVal){
+        if(oldVal === null){
+            $scope.presetData.oldType = newVal;
+        }else{
+            // console.info(456);
+            // console.info(newVal, oldVal);
+            $scope.presetData.oldType = oldVal;
+
+            if(validatePage()){
+                $rootScope.$emit('changeLoadingBar', true);
+                sketchbookService.removeDrawingGeometry();
+                saveSettings().finally(
+                    function(){
+                        if(newVal === 'Global'){
+                            gotoPreset('Stop', $scope.presetData.oldPreset);
+                        }else{
+                            gotoPreset('Start', $scope.presetData.preset);
+                        }
+                    }
+                );
+            }
+        }
+    });
+
+    $scope.$watch('presetData.preset',function(newVal, oldVal){
+        if(oldVal === null){
+            $scope.presetData.oldPreset = newVal;
+        }else{
+            // console.info(123);
+            $scope.presetData.oldType = 'Preset';
+            $scope.presetData.oldPreset = oldVal;
+
+            if(validatePage()){
+                $rootScope.$emit('changeLoadingBar', true);
+                sketchbookService.removeDrawingGeometry();
+                saveSettings().finally(
+                    function(){
+                        gotoPreset('Start', newVal, true, oldVal);
+                    }
+                );
+            }
+        }
+    });
+
+    function setPreset(mode, preset){
+        var setData = {};
+        setData.Channel = 0;
+        setData.ImagePreview = mode;
+        setData.Preset = preset;
+
+        return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', setData,
+            function (response){},
+            function (errorData){}, 
+            '', true);
+    }
+
+    function gotoPreset(mode, preset, isChange, oldPreset){
+        var deferred = $q.defer();
+        var promises = [];
+
+        if(mode === 'Stop'){
+            promises.push(
+                function(){
+                    return setPreset(mode, preset);
+                }
+            );
+        }else{
+            if(isChange){
+                promises.push(
+                    function(){
+                        return setPreset('Stop', oldPreset);
+                    }
+                );
+            }
+            promises.push(
+                function(){
+                    return setPreset(mode, preset);
+                }
+            );
+        }
+        
+        $q.seqAll(promises).finally(
+            function(){
+                deferred.resolve();
+            }
+        );
+
+        return deferred.promise;
+    }
 
 });
