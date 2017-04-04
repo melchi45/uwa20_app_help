@@ -117,9 +117,9 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
         };
 
         /**
-         * Timeline Mode´Â ÃÑ 4°³°¡ ÀÖÀ¸¸ç,
-         * Timeline Mode°¡ ¹Ù²î¸é UI °¡ ¹Ù²ï´Ù.
-         * playback, backup, datepicker, eventsorting ÃÑ 4°³°¡ ÀÖ´Ù.
+         * Timeline Modeï¿½ï¿½ ï¿½ï¿½ 4ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,
+         * Timeline Modeï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ UI ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½.
+         * playback, backup, datepicker, eventsorting ï¿½ï¿½ 4ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
          */
         var timelineMode = [
           'playback',
@@ -147,10 +147,6 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           }
           else {
             $scope.visibility.backup = false;
-          }
-          if( index !== 1 ) {
-            // In case of Backup, other button to be disabled
-            $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
           }
         };
 
@@ -201,7 +197,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           switch( $scope.timelineControl.currentTimelineMode ) {
             case 'datepicker':
               var selectedDate = $scope.timelineControl.getSelectedDate();
-              /* ´Þ·Â ValidationÀÌ ½ÇÆÐ ÇßÀ» ¶§ */
+              /* ï¿½Þ·ï¿½ Validationï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ */
               if(selectedDate === false){
                 return;
               }
