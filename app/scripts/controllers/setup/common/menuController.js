@@ -13,6 +13,10 @@ kindFramework.controller('sideMenuCtrl', function ($scope, $rootScope, $state, M
 		var stateName = menuData.templateUrl !== null ? menuData.stateName : "#";
 	};
 
+	$scope.wasteValue = function(){
+		return Math.random();
+	};
+
 });
 
 kindFramework.controller('topNavCtrl', function ($scope, $rootScope, $state, MenuData) {
