@@ -11,7 +11,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-        	<p>El protocolo SNMP v1 no est&aacute; cifrado y no tiene casi ninguna funci&oacute;n de seguridad. Tambi&eacute;n tiende a utilizar un ancho de banda excesivo, as&iacute; que si hay muchos equipos, puede ser dif&iacute;cil de gestionar la red. Un algoritmo se ha a&ntilde;adido al protocolo SNMP v2c para los datos y seguridad de autenticaci&oacute;n, lo que permite un ancho de banda m&aacute;s eficiente que con SNMP v1.</p>
+        	<p>El protocolo SNMP v1 no est&aacute; cifrado y no tiene casi ninguna funci&oacute;n de seguridad. Tambi&eacute;n tiende a utilizar un ancho de banda excesivo, as&iacute; que si hay muchos equipos, puede ser dif&iacute;cil de gestionar la red. Un algoritmo se ha a&ntilde;adido al protocolo SNMP v2c para los bit de datos y seguridad de autenticaci&oacute;n, lo que permite un ancho de banda m&aacute;s eficiente que con SNMP v1.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -39,11 +39,11 @@
 <div class="wn5-setup-section">
 
     <div class="wn5-setup-section-heading">
-        <h2>SNMP v3</h2><small>(S&oacute;lo funciona cuando se autentica el SSL/TLS).</small></div>
+        <h2>SNMP v3</h2></div>
 
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-        	<p>La autentificaci&oacute;n SNMP v3 cuenta con una seguridad m&aacute;s fuerte que v1 y v2c; la transmisi&oacute;n sin transformaci&oacute;n de datos es posible. El paquete tambi&eacute;n est&aacute; cifrado para evitar que los usuarios no autorizados accedan a los datos. SNMP v3 se puede utilizar s&oacute;lo si se establece SSL/TLS.</p>
+        	<p>La autentificaci&oacute;n SNMP v3 cuenta con una seguridad m&aacute;s fuerte que v1 y v2c; la transmisi&oacute;n sin transformaci&oacute;n de bit de datos es posible. El paquete tambi&eacute;n est&aacute; cifrado para evitar que los usuarios no autorizados accedan a los bit de datos. SNMP v3 se puede ajustar s&oacute;lo cuando el <a class="wn5-online-help-link" href="ssl.html" ng-href="#/help/network_ssl"><strong class="UI">[Sistema de conexi&oacute;n segura]</strong></a> est&aacute; en modo <strong class="UI">[HTTPS]</strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -53,13 +53,13 @@
 
         <div class="wn5-setup-section-article-content">
             <h3>Contrase&ntilde;a</h3>
-            <p>Establezca la contrase&ntilde;a de usuario para SNMP v3. Las contrase&ntilde;as deben tener entre 8 y 16 caracteres. La contrase&ntilde;a por defecto es d&eacute;bil, por lo que cambiarla por una nueva contrase&ntilde;a es muy recomendable inmediatamente despu&eacute;s de instalar el producto. Aviso Importante: los usuarios son responsables de la seguridad y otros problemas debido a la continuaci&oacute;n del uso de la contrase&ntilde;a por defecto.</p>
+            <p>Establezca la contrase&ntilde;a de usuario para SNMP v3. Las contrase&ntilde;as deben tener entre 8 y 16 caracteres. La contrase&ntilde;a por defecto es d&eacute;bil, por lo que cambiarla por una nueva contrase&ntilde;a es muy recomendable inmediatamente despu&eacute;s de instalar el producto. Los usuarios son responsables de la seguridad y otros problemas debido a la continuaci&oacute;n del uso de la contrase&ntilde;a por defecto.</p>
         </div>
 
         <div class="wn5-online-help-info">
         	<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
         	<ul>
-        		<li>SNMP v3 se puede ajustar s&oacute;lo cuando el sistema de conexi&oacute;n segura est&aacute; en modo HTTPS.</li>
+        		
         		<li>Si no se utiliza SNMP v3 podr&iacute;a darse lugar a problemas de seguridad.</li>
         	</ul>
         </div>
@@ -88,8 +88,8 @@
             <h3>Direcci&oacute;n IP</h3>
             <p>Introduzca la direcci&oacute;n IP del usuario que env&iacute;a el mensaje.</p>
             <ul>
-                <li><span class="onlineHelp-padding"><strong class="UI">Fallo de autenticaci&oacute;n</strong>: Permite definir si entregar un evento o no al sistema de gesti&oacute;n cuando la informaci&oacute;n de la comunidad es incorrecta.</span></li>
-                <li><span class="onlineHelp-padding"><strong class="UI">Conexi&oacute;n de red</strong>: Permite definir si entregar un evento o no al sistema de gesti&oacute;n cuando la red desconectada se reconecta.</span></li>
+                <li><span class="onlineHelp-padding"><strong class="UI">Notificaci&oacute;n de fallo de autenticaci&oacute;n</strong>: Permite definir si transferir un evento o no al sistema de gesti&oacute;n cuando la informaci&oacute;n de la comunidad es incorrecta.</span></li>
+                <li><span class="onlineHelp-padding"><strong class="UI">Notificaci&oacute;n de conexi&oacute;n de red</strong>: Permite definir si transferir un evento o no al sistema de gesti&oacute;n cuando la red desconectada se reconecta.</span></li>
             </ul>
         </div>
     </div>

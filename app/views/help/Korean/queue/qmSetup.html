@@ -1,0 +1,159 @@
+﻿
+
+<h1 class="wn5-setup-main-title">설정</h1>
+<div class="wn5-setup-section">
+    <p>대기열 관리는&nbsp;카메라 영상 분석을 통해&nbsp;지정한 영역에 체류한 평균 인원수와 누적 체류 시간을 모니터링할 수 있는 기능입니다. 대기열 관리의 '설정' 페이지에서는 분석할 대기&nbsp;영역을 설정하고 분석 정확도를 높이기 위해 세부 사항을 설정합니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. </p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>설정</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>대기열 관리 사용</h3>
+            <p>대기열 관리 기능을&nbsp;사용하려면 <strong class="UI">[대기열 관리 사용]</strong>을 선택합니다. </p>
+        </div>
+	</div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h3>영역</h3>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>대기 인원이나 대기 시간을 분석할 대기열 영역을 설정합니다. 대기열&nbsp;영역은 3개까지 설정할 수 있습니다. </p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>대기열 관리 영역 설정하기</h4>
+            <p>대기열 관리 영역을 설정하려면, <strong class="UI">[번호] </strong>컬럼 앞의 체크박스를 선택합니다. 영상 화면에 대기열 관리 영역이 나타나면, 영역의 꼭지점을 마우스로 드래그하여 대기열 관리 영역의 크기와 모양을 조절합니다. <strong class="UI">[이름]</strong> 필드에 영역 이름을 입력합니다. 영역 이름은 영문자와 숫자만 15자까지 입력할 수 있습니다. 입력한 영역 이름은 <strong class="UI">[통계]</strong>&gt;<strong class="UI">[대기열 관리]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmStatistics.html"
+ng-href="#/help/queue_search">[검색]</a></strong>에 나타납니다.</p>
+        </div>
+		            <div class="wn5-online-help-action">
+                <h4>영역별 대기열 관리 분석&nbsp;활성화 및 비활성화하기</h4>
+                <p>대기열 관리 분석을 활성화하려면, 해당 <strong class="UI">[번호] </strong>컬럼 앞에 있는 체크박스를 선택합니다.</p>
+                  <p>대기열 관리 분석을 비활성화하려면, 해당&nbsp;<strong class="UI">[번호] </strong>컬럼&nbsp;앞에 있는 체크박스를 선택 해제합니다. 영역별 대기열 관리 분석 설정은 그대로 남아 있으므로, 체크상자를 다시 선택하면 동일한 설정으로 대기열 분석 기능이 활성화됩니다. </p>
+            </div>
+           </div>
+		 </div>
+		 
+		 <div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>대기열 이벤트</h2>
+        <p>대기열 이벤트가 발생하기 위한 조건을 설정합니다. </p>
+        <p><strong class="UI">[영역]</strong>영에서 설정한 대기열마다 각각 다르게 대기열 이벤트를 설정할 수 있습니다.</p>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3><a name="level"></a>감지 레벨</h3>
+            <p>감지 레벨은&nbsp;대기열 영역에 체류 중인 인원에 따라&nbsp;'높음'과 '중간'으로 분류됩니다. [최대]와 [높음] 인원수를 설정하면 '중간' 값은 자동으로 설정됩니다. </p>
+            <p>감지 레벨 '높음'은 '높음' 값 이상 '최대' 값 이하의 인원이&nbsp;감지된 상태입니다. 감지 레벨 '중간'은 '중간' 값 이상 '높음' 값 미만의 인원이 감지된 상태입니다. </p>
+            <p>예를 들어[최대] 값을 20으로 [높음] 값을 18로 설정한 경우, '중간' 값은 9로 자동으로 설정됩니다. 해당 대기열 영역에 18명 이상 20이하의 인원이 대기 중이면&nbsp;감지 레벨은&nbsp;'높음'으로 분석됩니다. 9명 이상 18명 미만의 인원이 대기 중이면 감지 레벨은 '중간'으로 분석됩니다.</p>
+        </div>
+		<div class="wn5-setup-section-article-content">
+            <h3>최소 관찰 시간</h3>
+            <p>감지 레벨별로 대기열 이벤트를 발생하기 위한 최소 대기&nbsp;시간을 설정할 수 있습니다. <strong class="UI">[감지 레벨]</strong>의 '높음'에 해당하는 인원이 <strong class="UI">[최소 관찰 시간]</strong>의 <strong class="UI">[높음]</strong>에 입력한 시간보다 더 많은 시간을 대기하면 대기열 이벤트가 발생합니다. &nbsp;</p>
+            <p>즉 <strong class="UI">[감지 레벨]</strong>에서 '높음'을 '18'명으로 설정하고&nbsp;<strong class="UI">[최소 관찰 시간]</strong>의 '높음'을 '90초'로 설정한 경우, 대기열 영역에 18명 이상의 인원이 90초 이상 동안 대기중이면 대기열 이벤트가 발생합니다. </p>
+		</div>
+        </div>
+</div>
+
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>캘리브레이션</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">	
+            <p>대기열 관리 기능에서&nbsp;대기 인원수 분석&nbsp;정확도를 향상시키기 위해 카메라 높이나 카운트할 사람의 크기를 설정합니다. 카메라 높이나 사람의 크기 중 하나만 선택하여 적용할 수 있습니다. 
+        </div>			
+        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+            <h3>카메라 높이</h3>
+            <p>실제 카메라가 설치된 높이를 지정합니다. + 나 - 표시를 클릭하여 값을 변경하거나 카메라 높이를 수치로 입력할 수 있습니다. 입력할 수 있는 값은 최소 2.5m, 최대 4.5m입니다. 카메라 설치 높이를 설정하면, 설치 높이를 기반으로 위치별로 대기 인원으로 분석할 사람의 크기를 자동으로 추정합니다. </p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+            <h3>크기</h3>
+            <p>대기 인원으로 분석할 사람의 크기를 직접&nbsp;지정합니다. 영상 화면에&nbsp;표시된 상자의 오른쪽 하단 모서리를 마우스로 드래그하여 크기를 조절할 수 있습니다. </p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li><strong class="UI">[피플 카운팅]</strong> &gt; <strong class="UI">[캘리브레이션]</strong>이나 <strong class="UI">[대기열 관리]</strong> &gt; <strong class="UI">[캘리브레이션]</strong>에서 설정한 값은 <strong class="UI">[피플 카운팅]</strong>과 <strong class="UI">[히트맵]</strong>, <strong class="UI">[대기열 관리]</strong> 기능에 모두 동일하게 적용됩니다.  </li>
+            </ul>
+		</div>
+        </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>리포트</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>사용</h3>
+            <p>주기적으로 대기열 데이터를 이메일과 FTP로&nbsp;수신하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
+            <p>FTP와 이메일에&nbsp;대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../event/ftpemail.html" ng-href="#/help/event_ftpemail">[FTP/이메일]</a></strong>에서 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>스케줄</h3>
+            <p>매일 동일한 시간에 대기열 데이터를&nbsp;수신하려면 <strong class="UI">[일간]</strong>을 선택한 후 시간을 선택합니다. </p>
+            <p>매주 동일한 요일과 시간에 대기열 데이터를 수신하려면 <strong class="UI">[주간]</strong>을 선택한 후 요일과 시간을 선택합니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>파일 이름</h3>
+            <p>FTP 서버나 이메일로 대기열&nbsp;데이터를 보낼&nbsp;파일 이름을 입력하고 파일 형식을 선택합니다. 파일 이름은 영문자와 숫자를 포함하여 최대 64자까지 입력할 수 있습니다.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>이벤트 동작</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>대기열 관리 이벤트가 발생했을 때 영상 이미지를 FTP 서버에 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. FTP에 대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/이메일]</strong></a>에서 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>이메일</h3>
+            <p>대기열 관리 이벤트가 발생했을 때 영상 이미지를 이메일로 전송하려면 <strong class="UI">[사용]</strong>을 선택합니다. 이메일에 대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/이메일]</strong></a>에서 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>알람 출력</h3>
+            <p>대기열 관리 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다.&nbsp;알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="PresetAction">
+            <h3>프리셋 이동</h3>
+                    <p>대기열 관리 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 프리셋 번호로 이동하도록 설정할 수 있습니다. 카메라 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[디지털 PTZ]</strong></a>나 <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[외부 PTZ]</a></strong>의 <strong class="UI">[프리셋]</strong>에서
+설정할 수 있습니다.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">        
+		<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>모든 데이터 삭제</h3>
+                <p>대기열 분석 데이터를 모두 삭제하려면 <strong class="UI">[모든 데이터 삭제]</strong>를 클릭합니다. </p>
+                <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+
+                    <ul>
+                        <li><strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong>에서 <strong class="UI">[상하 반전]</strong>이나 <strong class="UI">[좌우 반전]</strong> 설정을 변경한 경우, 대기열 관리에서 설정한 규칙이 모두 자동으로 초기화됩니다. 새 규칙에 맞춰 데이터를 다시 수집하려면 <strong class="UI">[모든 데이터 삭제]</strong>를 클릭하여 기존 데이터를 삭제하십시오.  </li>
+                    </ul>
+		</div>
+        </div>
+		</div>
+</div>
+
+<hr class="wn5-setup-hr">
