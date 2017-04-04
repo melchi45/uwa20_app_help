@@ -114,7 +114,7 @@ kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScop
         $q.seqAll(promises).then(function() {
             checkDayNightModeDependency();
             $scope.pageLoaded = true;
-            $scope.$emit('pageLoaded', true);
+            $scope.$emit('pageLoaded', $scope.EventSource);
         }, function(errorData) {
             console.log(errorData);
         });

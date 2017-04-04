@@ -13,7 +13,7 @@ kindFramework.controller('ModalInstanceEventSetupInfoCtrl', ['$scope', '$rootSco
 
   var eventActionTypeLive = [
     'FTP',
-    'SNMP',
+    'SMTP',
     'Record',
     'AlarmOutput'
   ];
@@ -31,6 +31,7 @@ kindFramework.controller('ModalInstanceEventSetupInfoCtrl', ['$scope', '$rootSco
 
   $scope.channelItems = [];
   $scope.NONE_DATA = 'None';
+  $scope.LANG_OFF = 'lang_off';
 
   try{
     for(var i = 0, ii = infoTableData.length; i < ii; i++){
@@ -65,7 +66,7 @@ kindFramework.controller('ModalInstanceEventSetupInfoCtrl', ['$scope', '$rootSco
           }
 
           if(dataSelf.enable === true){
-            eventActionData = dataSelf.eventActions.indexOf(eventActionTypeLive[i]) > -1 ? "On" : "Off";
+            eventActionData = dataSelf.eventActions.indexOf(eventActionTypeLive[l]) > -1 ? "lang_on" : "lang_off";
           }
 
           $scope.channelItems[k].datas[pageIndex] = eventActionData;

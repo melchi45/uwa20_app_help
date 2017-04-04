@@ -440,7 +440,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
             function(){
                 $rootScope.$emit('changeLoadingBar', false);
                 $scope.pageLoaded = true;
-                $scope.$emit('pageLoaded', true);
+                $scope.$emit('pageLoaded', $scope.EventSource);
                 $("#imagepage").show();
                 $timeout(setSizeChart);
             },

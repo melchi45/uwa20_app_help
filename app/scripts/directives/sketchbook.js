@@ -310,6 +310,24 @@ kindFramework
 
                 return BrowserDetectRes;
             }
+
+            function setDISOption(){
+                if(mAttr.DIS){
+                    SunapiClient.get(
+                        '/stw-cgi/image.cgi?msubmenu=imageenhancements&action=view',
+                        {
+                            Channel: currentChannel
+                        },
+                        function(response){
+                            sketchbookService.sketchManager.DISMode = response.data.ImageEnhancements[0].DISEnable;
+                        },
+                        function(errorData){
+                            console.error(errorData);
+                        }, '', true);
+                }
+            }
+
+            setDISOption();
         }
     };
 }]);

@@ -541,7 +541,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                 function () {
                     $rootScope.$emit('changeLoadingBar', false);
                     $scope.pageLoaded = true;
-                    $scope.$emit('pageLoaded', true);
+                    $scope.$emit('pageLoaded', $scope.EventSource);
                     $timeout(setSizeChart);
                 },
                 function (errorData) {

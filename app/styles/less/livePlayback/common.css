@@ -801,7 +801,7 @@ live-playback common {
 }
 #cm-video.cm-fullscreen {
   background-color: #000;
-  width: 100% !important;
+  width: 100%;
 }
 /* Full screen */
 #full-screen-functions .carousel-inner,

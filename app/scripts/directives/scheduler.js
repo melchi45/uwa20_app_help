@@ -1309,9 +1309,9 @@ kindFramework
 
             // in case of changing schedule type while you are in page
             scope.$watch('EventRule.ScheduleType', function(newVal, oldVal){
-                if(typeof newVal === "undefined"){
+                if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
-                }
+                }//console.info('scheduler watch EventRule.ScheduleType : ');console.info(newVal);
                 activeMenu = null;
                 if(newVal === 'Always') {
                     // deleteAll();
@@ -1327,9 +1327,9 @@ kindFramework
             }, true);
 
             scope.$watch('RecordSchedule[0].Activate', function(newVal, oldVal){ // for storage controller
-                if(typeof newVal === "undefined"){
+                if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
-                }
+                }//console.info('scheduler watch RecordSchedule[0].Activate : ');console.info(newVal);
                 activeMenu = 'storage';
                 if(newVal === 'Always') {
                     // deleteAll();
@@ -1345,9 +1345,9 @@ kindFramework
             }, true);
 
             scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){ // for storage controller
-                if(typeof newVal === "undefined"){
+                if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
-                }
+                }//console.info('scheduler watch RecordSchedule.Activate : ');console.info(newVal);
                 if(scope.EventSource === 'Record') {
                     activeMenu = 'record';
                     if(newVal === 'Always') {
@@ -1365,9 +1365,9 @@ kindFramework
             }, true);
 
             scope.$watch('EventRules[0].ScheduleType', function(newVal, oldVal){ // initial alarmInput
-                if(typeof newVal === "undefined"){
+                if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
-                }
+                }//console.info('scheduler watch EventRules[0].ScheduleType : ');console.info(newVal);
                 activeMenu = 'alarmInput';
                 if(newVal === 'Always') {
                     // deleteAll();
@@ -1386,7 +1386,7 @@ kindFramework
             scope.$watch('EventRules', function(newVal, oldVal){ // alarmInput
                 if(typeof newVal === "undefined" || activeMenu !== 'alarmInput'){
                     return;
-                }
+                }//console.info('scheduler watch EventRules : ');console.info(newVal);
                 if(newVal === 'Always') {
                     // deleteAll();
                     setVisibility(newVal);
@@ -1401,8 +1401,8 @@ kindFramework
             }, true);
 
 
-            // in case of event rules reset by sunapi call in eventActionSetup
-            scope.$saveOn('EventRulePrepared', function(event, data) {
+            // in case of event rules reset by sunapi call in eventActionSetup for multi channel
+            scope.$saveOn('EventRulePrepared', function(event, data) { // console.info('scheduler saveon EventRulePrepared : ');console.info(data);console.info(scope.EventSource);
                 var currentChannel = 0;
                 if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
                     currentChannel = scope.channelSelectionSection.getCurrentChannel();
@@ -1460,7 +1460,7 @@ kindFramework
             scope.$watch('pageLoaded', function(newVal, oldVal){
                 if(typeof newVal === "undefined"){
                     return;
-                }
+                }//console.info('scheduler watch pageloaded : ');console.info(scope.EventSource);
                 if(newVal === true) {
                     $timeout(function(){
                         $('#calendar').fullCalendar('render');
@@ -1468,7 +1468,7 @@ kindFramework
                 }
             }, true);
 
-            scope.$saveOn('pageLoaded', function(event, data) {
+            scope.$saveOn('pageLoaded', function(event, data) {//console.info('scheduler saveon pageloaded : ');console.info(scope.EventSource);
                 if(data === true) {
                     $timeout(function(){
                         $('#calendar').fullCalendar('render');
