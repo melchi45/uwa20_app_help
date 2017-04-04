@@ -971,9 +971,10 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                     GroupData[g] = {};
                     GroupData[g].PresetList = [];
                     for (var i = 0; i < $scope.MaxPresetsPerGroup; i++) {
+                        GroupData[g].PresetList[i] = {};
                         GroupData[g].PresetList[i].SelectedPresetIndex = 0;
-                        GroupData[g].PresetLis[i].Speed = mAttr.DefaultPresetSpeed;
-                        GroupData[g].PresetLis[i].DwellTime = mAttr.DefaultDwellTime;
+                        GroupData[g].PresetList[i].Speed = mAttr.DefaultPresetSpeed;
+                        GroupData[g].PresetList[i].DwellTime = mAttr.DefaultDwellTime;
                     }
                 }
                 $scope.GroupsSet = [];
