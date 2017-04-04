@@ -96,7 +96,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="form-group" ng-show="disbledRecord === false">
+                <div class="form-group" ng-show="disabledRecord === false">
                     <div class="wn5-setup-section-article-heading" style="text-align:left">
                         {{ 'lang_recordProfile' | translate }}
                     </div>
@@ -104,7 +104,7 @@
                         {{RecordProfileName}}
                     </div>
                 </div>
-                <div class="form-group" ng-show="disbledRecord === false">
+                <div class="form-group" ng-show="disabledRecord === false">
                     <div class="wn5-setup-section-article-heading" style="text-align:left">
                         {{ 'lang_normal_recording' | translate }}
                     </div>
@@ -116,7 +116,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group" ng-show="disbledRecord === false">
+                <div class="form-group" ng-show="disabledRecord === false">
                     <div class="wn5-setup-section-article-heading" style="text-align:left">
                         {{ 'lang_event_recording' | translate }}
                     </div>
@@ -128,7 +128,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group" ng-show="disbledRecord === false">
+                <div class="form-group" ng-show="disabledRecord === false">
                     <div class="wn5-setup-section-article-heading" style="text-align:left">
                         {{ 'lang_preEventDuration' | translate }}
                     </div>
@@ -140,7 +140,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group" ng-show="disbledRecord === false">
+                <div class="form-group" ng-show="disabledRecord === false">
                     <div class="wn5-setup-section-article-heading" style="text-align:left">
                         {{ 'lang_postEventDuration' | translate }}
                     </div>
@@ -152,7 +152,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group" ng-show="disbledRecord === false">
+                <div class="form-group" ng-show="disabledRecord === false">
                     <div class="wn5-setup-section-article-heading" style="text-align:left">
                         {{ 'lang_recordFileType' | translate }}
                     </div>
@@ -265,7 +265,7 @@
                 </div>
             </div>
         </div>
-        <div class="wn5-setup-section" ng-show="disbledRecord === false">
+        <div class="wn5-setup-section" ng-show="disabledRecord === false">
             <hr class="wn5-setup-hr">
             <div class="wn5-setup-section-heading">
                 <h3>
@@ -289,21 +289,22 @@
             </div>
         </div>
 
-        <scheduler ng-show="MaxChannel <= 1"></scheduler>
+        <!-- <scheduler ng-show="disabledRecord === false"></scheduler> -->
         
         <hr class="wn5-setup-hr">
 
         <wn5-setup-common-button
             data-submit-click="submit()"
             data-cancel-click="view(0)"
-            ng-show="disbledRecord === false">
+            ng-show="disabledRecord === false"
+           >
         </wn5-setup-common-button>
     </fieldset>
     </form>
 </div>
 
 
-<div id="recordpage" class="wrapper wrapper-content" ng-show='pageLoaded'>
+<div id="recordpage" class="wrapper wrapper-content" ng-show="disabledRecord === true">
     <form name="recordForm" method="get" class="form-horizontal">
         <wn5-setup-main-title 
             data-title="lang_menu_record">
@@ -420,8 +421,7 @@
 
         <!-- scheduler -->
         <!--<scheduler></scheduler>-->
-        <div id="scheduler">
-        </div>
+        <div id="scheduler"></div>
         
         <hr class="wn5-setup-hr">
 

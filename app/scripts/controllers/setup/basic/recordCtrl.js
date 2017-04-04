@@ -319,6 +319,7 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
             $rootScope.$emit('changeLoadingBar', false);
 
             var templete = angular.element("<scheduler></scheduler>");
+            console.info('되냐;');
             $compile(templete)($scope);
             scheduler.append(templete);
         }, function(errorData) {
@@ -433,46 +434,46 @@ kindFramework.controller('recordCtrl', function ($scope, $uibModal, $timeout, $r
         }
     }
 
-    $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
-        var okay = true;
+    // $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
+    //     var okay = true;
 
-        if(pageData.RecordSchedule.Activate == $scope.RecordSchedule.Activate) {
-            if(pageData.RecordSchedule.Activate != 'Always') {
-                if(!eventRuleService.checkRecordSchedulerValidation()) okay = false;
+    //     if(pageData.RecordSchedule.Activate == $scope.RecordSchedule.Activate) {
+    //         if(pageData.RecordSchedule.Activate != 'Always') {
+    //             if(!eventRuleService.checkRecordSchedulerValidation()) okay = false;
 
-                // if(!angular.equals(copyData, copyScope)) okay = false;
-                // if(okay === false) $rootScope.$emit('resetScheduleData', true);
+    //             // if(!angular.equals(copyData, copyScope)) okay = false;
+    //             // if(okay === false) $rootScope.$emit('resetScheduleData', true);
 
-                console.info(eventRuleService.checkRecordSchedulerValidation());
-                console.info('record schedule okay', okay);
-            }
-        } else okay = false;
+    //             console.info(eventRuleService.checkRecordSchedulerValidation());
+    //             console.info('record schedule okay', okay);
+    //         }
+    //     } else okay = false;
 
-        console.info('record activate okay', okay);
+    //     console.info('record activate okay', okay);
         
 
-        if(!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) okay = false;
+    //     if(!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) okay = false;
 
-        if(okay) {
-            $scope.Channel = data;
-            $rootScope.$emit("channelSelector:changeChannel", data);
-            $rootScope.$emit('changeLoadingBar', true);
+    //     if(okay) {
+    //         $scope.Channel = data;
+    //         $rootScope.$emit("channelSelector:changeChannel", data);
+    //         $rootScope.$emit('changeLoadingBar', true);
 
-            view();
-        } else {
-            COMMONUtils
-                .confirmChangeingChannel()
-                .then(function () {
-                    if (validatePage()) {
-                        COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
-                            COMMONUtils.ApplyConfirmation(function () {
-                                saveRecord(data);
-                            });
-                        });
-                    }
-                });
-        }
-    }, $scope);
+    //         view();
+    //     } else {
+    //         COMMONUtils
+    //             .confirmChangeingChannel()
+    //             .then(function () {
+    //                 if (validatePage()) {
+    //                     COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
+    //                         COMMONUtils.ApplyConfirmation(function () {
+    //                             saveRecord(data);
+    //                         });
+    //                     });
+    //                 }
+    //             });
+    //     }
+    // }, $scope);
 
     (function wait() {
         if (!mAttr.Ready) {
