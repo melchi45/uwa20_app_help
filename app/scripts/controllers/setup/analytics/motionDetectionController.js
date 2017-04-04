@@ -707,7 +707,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             function(){
                 $rootScope.$emit('changeLoadingBar', false);
                 $scope.pageLoaded = true;
-                $scope.$emit('pageLoaded', true);
+                $scope.$emit('pageLoaded', $scope.EventSource);
                 $("#imagepage").show();
                 $timeout(setDefaultArea);
                 $timeout(setSizeChart);

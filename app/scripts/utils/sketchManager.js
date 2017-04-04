@@ -382,6 +382,7 @@
         kindSVGEditor = new KindSVGEditor(svgTag);
     }
     constructor.prototype = {
+        DISMode: false,
         init: function(sketchInfomation, videoInInfomation, updateCallback, privacyCallback, getZoomValueCallback, autoTrackingCallback) {
             //init: function(sketchInfomation, videoInInfomation, updateCallback, privacyCallback, autoTrackingCallback){
             sketchInfo = sketchInfomation;
@@ -663,6 +664,9 @@
                 }
             }
         },
+        moveTopLayer: function(index){
+            svgObjs[index].moveTopLayer();
+        },
         activeShape: function(index){
             if(kindSVGCustomObj !== null){
                 if(sketchInfo.workType === "vaPassing" || sketchInfo.workType === "peoplecount"){
@@ -733,7 +737,7 @@
             }
 
             for(var i = 0, ii = metaData.length; i < ii; i++){
-                this.drawMetaData.apply(null, metaData[i]);
+                this.drawMetaData.apply(this, metaData[i]);
             }
 
             drawMetaDataTimer = setTimeout(clear, expireTime);
@@ -746,13 +750,22 @@
             var coordinateSystemWidth  = parseInt(( 1 - translate[0]) / scale[0]);
             var coordinateSystemHeight = parseInt((-1 - translate[1]) / scale[1]);
 
-            var ratioWidth  = videoInfo.width  / coordinateSystemWidth;
-            var ratioHeight = videoInfo.height / coordinateSystemHeight;
+            var magnification = this.DISMode ? 1.2 : 1;
 
-            var x1 = left * ratioWidth;
-            var y1 = top * ratioHeight;
-            var x2 = right * ratioWidth;
-            var y2 = bottom * ratioHeight;
+            var scaleZ = 1 / magnification;
+            var scaleViewWidth = videoInfo.width * scaleZ;
+            var scaleViewHeight = videoInfo.height * scaleZ;
+
+            var ratioX = scaleViewWidth / coordinateSystemWidth;
+            var ratioY = scaleViewHeight / coordinateSystemHeight;
+
+            var offsetX = (videoInfo.width - scaleViewWidth) / 2;
+            var offsetY = (videoInfo.height - scaleViewHeight) / 2;
+
+            var x1 = parseInt((left * ratioX) + offsetX);
+            var y1 = parseInt((top * ratioY) + offsetY);
+            var x2 = parseInt((right * ratioX) + offsetX);
+            var y2 = parseInt((bottom * ratioY) + offsetY);
 
             var startX = x1;
             var startY = y1;

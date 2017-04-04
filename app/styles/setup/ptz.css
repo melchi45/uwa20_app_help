@@ -310,11 +310,19 @@
 			background-color:#e5e5e5;
 		}
 		#ptz-control_at-selectable{
-			width: 150px;
+			width: 210px;
 			height: 138px;
 			background-color: #eee;
 			float:left;
             cursor: default;
+			overflow-y: hidden;
+			overflow-x: hidden;
+		}
+		#ptz-control_at-selectable .video-setup-table{
+			width: 100%;
+		}
+		#ptz-control_at-selectable .video-setup-table tbody{
+			height: 100px;
 		}
 		#ptz-control_at-selectable .ui-selected{
 			background-color:#ccc;
