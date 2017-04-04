@@ -475,18 +475,21 @@
     max-height: none;
     height: 150px;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div,
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .live-channel-selector {
     width: 100%;
     height: 40px;
     padding: 0;
     text-align: center;
     border: none;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > * {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > *,
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .live-channel-selector > * {
     display: inline-table;
     float: none;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > button {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > button,
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .live-channel-selector > button {
     margin-top: 8px;
   }
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .info-toggle {
