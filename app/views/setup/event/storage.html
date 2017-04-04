@@ -295,11 +295,146 @@
 
         <wn5-setup-common-button
             data-submit-click="submit()"
-            data-cancel-click="view(0)">
+            data-cancel-click="view(0)"
+            ng-show="disbledRecord === false">
         </wn5-setup-common-button>
     </fieldset>
     </form>
 </div>
+
+
+<div id="recordpage" class="wrapper wrapper-content" ng-show='pageLoaded'>
+    <form name="recordForm" method="get" class="form-horizontal">
+        <wn5-setup-main-title 
+            data-title="lang_menu_record">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section" ng-show="MaxChannel > 1">
+            <hr class="wn5-setup-hr">
+            <div class="form-group wn5-setup-section-article">
+                <setup-channel-selector
+                    use-confirm="true"
+                ></setup-channel-selector> 
+            </div>
+        </div>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_record_settings' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_recordProfile' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <!-- 선택중인 채널의 record profile 정보가 보일 곳-->
+                        {{ RecordProfileName }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_normal_recording' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select 
+                            name="NormalMode" 
+                            class="form-control"
+                            ng-model="RecordGeneralInfo.NormalMode">
+                                <option ng-repeat="option in RecNormalModeOptions" value="{{option}}">
+                                    {{option == 'Full'?getTranslatedOption('FullFrame'):option == 'Off'?getTranslatedOption('None'):getTranslatedOption(option)}}
+                                </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_event_recording' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select 
+                            name="eventRecording" 
+                            class="form-control"
+                            ng-model="RecordGeneralInfo.EventMode">
+                                <option ng-repeat="option in RecEventModeOptions" value="{{option}}">
+                                    {{option == 'Full'?getTranslatedOption('FullFrame'):option == 'Off'?getTranslatedOption('None'):getTranslatedOption(option)}}
+                                </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_preEventDuration' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select 
+                            name="preEvent" 
+                            class="form-control"
+                            ng-model="RecordGeneralInfo.PreEventDuration">
+                                <option ng-repeat="option in RecPreEventDurationOptions" value="{{ option }}">
+                                    {{ option.split('s')[0] }} {{'lang_seconds' | translate }}
+                                </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_postEventDuration' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select 
+                            name="postEvent" 
+                            class="form-control"
+                            ng-model="RecordGeneralInfo.PostEventDuration">
+                                <option ng-repeat="option in RecPostEventDurationOptions" value="{{ option }}">
+                                    {{ option.split('s')[0] }} {{'lang_seconds' | translate }}
+                                </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{'lang_recordFileType'| translate}}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select 
+                            name="fileType" 
+                            class="form-control"
+                            ng-model="RecordGeneralInfo.RecordedVideoFileType">
+                                <option ng-repeat="option in RecVideoFileTypeOptions" value="{{ option }}">
+                                    {{ option }}
+                                </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="wn5-setup-section">
+                    <hr class="wn5-setup-hr">
+                    <div class="wn5-setup-section-heading">
+                        <h3>
+                            {{ 'lang_normalRecordSetup' | translate }}
+                        </h3>
+                    </div>
+                    <div class="wn5-setup-section-article form-group">
+                        <div class="wn5-setup-section-article-content">
+                            <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
+                                <input class="radio" name="Activate" ng-model="RecordSchedule.Activate" ng-value="Activate" type="radio">
+                                <div ng-if="Activate === 'Scheduled'">
+                                {{ 'lang_recording_only_schedule' | translate }}
+                                </div>
+                                <div ng-if="Activate === 'Always'">
+                                    {{ 'lang_recording_always' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- scheduler -->
+        <!--<scheduler></scheduler>-->
+        <div id="scheduler">
+        </div>
+        
+        <hr class="wn5-setup-hr">
+
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>
+
+
+
+
 <!--script type="text/ng-template" id="modalrecordPopup.html">
     <div class="modal-header modal-setup">
         <h3>{{ SelectedDay | translate}}</h3>
