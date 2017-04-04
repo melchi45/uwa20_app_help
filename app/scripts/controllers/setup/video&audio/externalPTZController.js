@@ -63,10 +63,14 @@ kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiCl
             $scope.PTZModel = mAttr.PTZModel;
         }
 
-        if($scope.PTZModel){
-            $scope.getTitle = 'lang_menu_rs485';
-        }else{
+        if($scope.ExternalPTZModel){
             $scope.getTitle ='lang_external_PTZ';
+        }else{
+            if(mAttr.RS422Support !== undefined && mAttr.RS422Support == false) {
+                $scope.getTitle = 'RS 485';
+            }else{
+                $scope.getTitle = 'lang_menu_rs485';
+            }
         }
 
         if (mAttr.PresetNameMaxLen !== undefined) {
@@ -133,6 +137,12 @@ kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiCl
 
             if (pageData.Serial.StopBits !== $scope.Serial.StopBits) {
                 setData.StopBits = pageData.Serial.StopBits = $scope.Serial.StopBits;
+            }
+        }
+
+        if ($scope.PTZModel === true) {
+            if (pageData.Serial.SignalTermination !== $scope.Serial.SignalTermination) {
+                setData.SignalTermination = pageData.Serial.SignalTermination = $scope.Serial.SignalTermination;
             }
         }
 
@@ -438,13 +448,13 @@ kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiCl
                     rotate: rotate,
                     adjust: adjust
                 };
-                if($scope.PTZModel){
+                if($scope.ExternalPTZModel){
                     $scope.ptzinfo = {
-                        type: 'none'
+                        type: 'EPTZ'
                     };
                 }else{
                     $scope.ptzinfo = {
-                        type: 'EPTZ'
+                        type: 'none'
                     };
                 }
             },
