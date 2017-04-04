@@ -19,7 +19,6 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.storageDeviceType = false;
     $scope.EventSource = "Storage";
     $scope.StorageInfo = {};
-    $scope.channelSelector = 0;
     
 
     // if(mAttr.MaxChannel > 1) {
@@ -60,10 +59,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                 $scope.RecordStorageInfo.OverWrite = $scope.storageData[0].OverWrite;
                 $scope.RecordStorageInfo.AutoDeleteEnable = $scope.storageData[0].AutoDeleteEnable;
                 $scope.RecordStorageInfo.AutoDeleteDays = $scope.storageData[0].AutoDeleteDays;
-
-                if( mAttr.MaxChannel > 1 ) {
-                    $scope.RecordSchedule[0].Activate = "Always";
-                }
+                $scope.RecordSchedule.Activate = "Always";
             }, 
             function (errorData) {
                 console.log(errorData);
@@ -208,88 +204,59 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         $scope.MaxChannel = mAttr.MaxChannel;
 
 
-        if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){
-            $scope.disabledRecord = true;
-        }else{
-            $scope.disabledRecord = false;
-        }
-
-
+        // if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){
+        //     $scope.disabledRecord = true;
+        // }else{
+        //     $scope.disabledRecord = false;
+        // }
 
         defer.resolve("success");
         return defer.promise;
     }
 
 
-
     function setRecordGeneralInfo(queue) {
-        if( $scope.disabledRecord === false ) {
-            var setData = {};
+        var setData = {
+            NormalMode : $scope.RecordGeneralInfo.NormalMode,
+            EventMode : $scope.RecordGeneralInfo.EventMode,
+            PreEventDuration : $scope.RecordGeneralInfo.PreEventDuration,
+            PostEventDuration : $scope.RecordGeneralInfo.PostEventDuration
+        };
+        if($scope.MaxChannel > 1) setData.Channel = $scope.Channel;
 
-            setData.NormalMode = $scope.RecordGeneralInfo[$scope.Channel].NormalMode;
-            setData.EventMode = $scope.RecordGeneralInfo[$scope.Channel].EventMode;
-            setData.PreEventDuration = $scope.RecordGeneralInfo[$scope.Channel].PreEventDuration;
-            setData.PostEventDuration = $scope.RecordGeneralInfo[$scope.Channel].PostEventDuration;
-            if (pageData.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType !== $scope.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType) {
-                $scope.needReload = true;
-            }
-            setData.RecordedVideoFileType = $scope.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType;
-            /*var promise = SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=general&action=set', setData, function(response) {
-                console.info("Request","/stw-cgi/recording.cgi?msubmenu=general&action=set DONE");
-                pageData.RecordGeneralInfo[$scope.Channel] = angular.copy($scope.RecordGeneralInfo[$scope.Channel]);
-            }, function(errorData) {
-                pageData.RecordGeneralInfo[$scope.Channel] = angular.copy($scope.RecordGeneralInfo[$scope.Channel]);
-                console.log(errorData);
-            }, '', true);
-            promises.push(promise);*/
+        console.info(setData, 'set record general');
 
-            queue.push({
-                url: '/stw-cgi/recording.cgi?msubmenu=general&action=set',
-                reqData: setData,
-                successCallback: function(response) {
-                    pageData.RecordGeneralInfo[$scope.Channel] = angular.copy($scope.RecordGeneralInfo[$scope.Channel]);
-                }
-            });
-        } else {
-            var setData = {
-                NormalMode : $scope.RecordGeneralInfo.NormalMode,
-                EventMode : $scope.RecordGeneralInfo.EventMode,
-                PreEventDuration : $scope.RecordGeneralInfo.PreEventDuration,
-                PostEventDuration : $scope.RecordGeneralInfo.PostEventDuration,
-                Channel : $scope.channelSelector
-            };
-
-            if (pageData.RecordGeneralInfo.RecordedVideoFileType !== $scope.RecordGeneralInfo.RecordedVideoFileType) {
-                $scope.needReload = true;
-            }
-            setData.RecordedVideoFileType = $scope.RecordGeneralInfo.RecordedVideoFileType;
-
-            queue.push({
-                url: '/stw-cgi/recording.cgi?msubmenu=general&action=set',
-                reqData: setData,
-                successCallback: function(response) {
-                    pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
-                }
-            });
-
+        if (pageData.RecordGeneralInfo.RecordedVideoFileType !== $scope.RecordGeneralInfo.RecordedVideoFileType) {
+            $scope.needReload = true;
         }
+        setData.RecordedVideoFileType = $scope.RecordGeneralInfo.RecordedVideoFileType;
+
+        queue.push({
+            url: '/stw-cgi/recording.cgi?msubmenu=general&action=set',
+            reqData: setData,
+            successCallback: function(response) {
+                console.info(response, 'save gene');
+                pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
+            }
+        });
     }
 
     function setAttribute () {
         var defer = $q.defer();
 
-        for(var i = 0; i<$scope.VideoProfile.length; i++) {
-            if($scope.VideoProfile[i].Profile == $scope.RecordProfileId) {
-                $scope.RecordProfileName = $scope.VideoProfile[i].Name;
-            }
-        }
+        // for(var i = 0; i<$scope.VideoProfiles.length; i++) {
+        //     if($scope.VideoProfile[i].Profile == $scope.RecordProfileId[0].RecordProfile) {
+        //         $scope.RecordProfileName = $scope.VideoProfile[i].Name;
+        //     }
+        // }
+
+        console.info($scope.RecordGeneralInfo);
 
         $scope.RecordGeneralInfo.NormalMode = $scope.RecordGeneralInfo.NormalMode;
         $scope.RecordGeneralInfo.EventMode = $scope.RecordGeneralInfo.EventMode;
         $scope.RecordGeneralInfo.PreEventDuration = $scope.RecordGeneralInfo.PreEventDuration;
         $scope.RecordGeneralInfo.PostEventDuration = $scope.RecordGeneralInfo.PostEventDuration;
         $scope.RecordGeneralInfo.RecordedVideoFileType = $scope.RecordGeneralInfo.RecordedVideoFileType;
-        $scope.RecordSchedule.Activate = $scope.RecordSchedule.Activate;
 
         defer.resolve('Success');
         return defer.promise;
@@ -561,6 +528,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         if ($scope.needReload === true) {
             $scope.needReload = false;
             window.location.reload(true);
+            
         }
     }
 
@@ -598,11 +566,9 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             }
         }
 
-        if( !$scope.disabledRecord ) {
-            if(!eventRuleService.checkSchedulerValidation()) {
-                COMMONUtils.ShowError('lang_msg_checkthetable');
-                retVal = false;
-            }
+        if(!eventRuleService.checkSchedulerValidation()) {
+            COMMONUtils.ShowError('lang_msg_checkthetable');
+            retVal = false;
         }
 
 
@@ -662,7 +628,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     }
 
 
-
     function getStorageDetails() {
         var getData = {},
             idx = 0;
@@ -711,8 +676,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         var getData = {};
         if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
 
-        console.info(getData.Channel);
-        
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
@@ -723,25 +686,25 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     }
 
     function getRecordGeneralDetails() {
-        var getData = {},
-            idx = 0;
-            if( $scope.disabledRecord ){
-                getData.Channel = $scope.channelSelector;
-            }
+        var getData = {};
+        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
 
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=general&action=view', getData, function(response) {
-            $scope.RecordGeneralInfo = response.data.RecordSetup;
+            $scope.RecordGeneralInfo = response.data.RecordSetup[0];
             pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
-
-            if( $scope.disabledRecord ) {
-                $scope.RecordGeneralInfo = response.data.RecordSetup[0];
-                pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
-            }
-
-            console.log($scope.RecordGeneralInfo)
-
         }, function(errorData) {
             console.log(errorData);
+        }, '', true);
+    }
+
+    function getProfileDetails() {
+        var getData = {};
+        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
+            $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
+        }, function(errorData) {
+            console.error(errorData);
         }, '', true);
     }
 
@@ -749,7 +712,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         var getData = {};
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=storage&action=view', getData, function(response) {
             $scope.RecordStorageInfo = response.data;
-
             pageData.RecordStorageInfo = angular.copy($scope.RecordStorageInfo);
         }, function(errorData) {
             console.log(errorData);
@@ -758,21 +720,24 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
     function getRecordProfileDetails() {
         var getData = {};
-        getData.Profile = $scope.VideoProfilePolicies[$scope.Channel].RecordProfile;
+        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+
+        // getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
-            $scope.VideoProfile = response.data.VideoProfiles[$scope.Channel].Profiles[0];
-            $scope.RecordProfileName = $scope.VideoProfile.Name;
+            $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
+            console.info($scope.VideoProfilePolicies);
+            $scope.RecordProfileName = $scope.VideoProfile[$scope.VideoProfilePolicies.RecordProfile].Name;
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
     }
 
     function getRecordProfile() {
-        var getData = {},
-            recordProfile = 0;
+        var getData = {};
+        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+            
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', getData, function(response) {
-            $scope.VideoProfilePolicies = response.data.VideoProfilePolicies;
-            recordProfile = $scope.VideoProfilePolicies[$scope.Channel].RecordProfile;
+            $scope.VideoProfilePolicies = response.data.VideoProfilePolicies[0];
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
@@ -858,30 +823,32 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         promises.push(getRecordingSchedules);
         promises.push(getRecordProfile);
         promises.push(getRecordProfileDetails);
+        
 
-        $q.seqAll(promises).then(function() {
+        $q.seqAll(promises).then(setAttribute).then(function() {
             var scheduler = $("#scheduler");
             scheduler.html('');
-            console.info('is viewer');
 
-            $rootScope.$emit('changeLoadingBar', false);
             $scope.pageLoaded = true;
+
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
+            $rootScope.$emit('changeLoadingBar', false);
+            
 
             $("#storagepage").show();
 
             var templete = angular.element("<scheduler></scheduler>");
-            console.info();
             $compile(templete)($scope);
 
             console.info('is schedule', templete);
             scheduler.append(templete);
+
         }, function(errorData) {
             console.log(errorData);
         });
     }
 
-    function saveStorage() {
+    function saveStorage(newChannel) {
         var promises = [],
             queue = [],
             needRefresh = false,
@@ -893,7 +860,8 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             SunapiClient.sequence(queue, function(){
                 if (needRefresh) {
                     console.info('refresh');
-                    window.setTimeout(RefreshPage, 1000);
+                    $rootScope.$emit('changeLoadingBar', true);
+                    window.setTimeout(view, 1000);
                 } else {
                     $rootScope.$emit('changeLoadingBar', true);
 
@@ -930,9 +898,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                 return setRecordSchedule(queue);
             });
         }
-        
-
-
 
 
         if (!angular.equals(pageData.Storageinfo.Storages[$scope.SelectedStorage], $scope.Storageinfo.Storages[$scope.SelectedStorage])) {
@@ -1098,8 +1063,8 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
     function getCurrentStatus(func)
     {
-        var getData = {},
-        idx = 0;
+        var getData = {};
+
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData, function(response) {
         
             var tStorageinfo = response.data;
@@ -1112,30 +1077,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         }, '', true);
     }
 
-    (function wait() {
-        console.info('wait');
-        if (!mAttr.Ready) {
-            $timeout(function() {
-                mAttr = Attributes.get();
-                wait();
-            }, 500);
-        } else {
-            getAttributes().then(function() {
-                if(mAttr.MaxChannel > 1){
-                    $scope.isMultiChannel = true;
-                }else{
-                    $scope.isMultiChannel = false;
-                }
-                
-
-            }).finally(function() {
-                view();
-            });
-        }
-    })();
-    $scope.submit = set;
-    $scope.view = view;
-    $scope.validate = validatePage;
 
     $scope.OnStorageFormat = function(index) {
         if ($scope.Storageinfo.Storages[index].Enable === false) {
@@ -1222,8 +1163,31 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         }
     }, $scope);
 
-
+    (function wait() {
+        console.info('wait');
+        if (!mAttr.Ready) {
+            $timeout(function() {
+                mAttr = Attributes.get();
+                wait();
+            }, 500);
+        } else {
+            getAttributes().then(function() {
+                if(mAttr.MaxChannel > 1){
+                    $scope.isMultiChannel = true;
+                }else{
+                    $scope.isMultiChannel = false;
+                }
+            }).finally(function() {
+                view();
+            });
+        }
+    })();
+    
+    $scope.submit = set;
+    $scope.view = view;
+    $scope.validate = validatePage;
 });
+
 kindFramework.controller('ModalMsgCtrl', function($scope, $uibModalInstance, Attributes, Msg) {
     "use strict";
     $scope.DialogMessage = Msg;

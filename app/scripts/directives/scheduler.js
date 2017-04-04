@@ -1326,8 +1326,11 @@ kindFramework
             }, true);
 
             scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){ // for storage controller
+                console.info(newVal, oldVal);
                 if(typeof newVal === "undefined" || newVal === oldVal){
-                    return;
+                    if(newVal !== 'Scheduled' || oldVal !== 'Scheduled'){
+                        return;
+                    }
                 }//console.info('scheduler watch RecordSchedule.Activate : ');console.info(newVal);
                 if(scope.EventSource === 'Storage') {
                     activeMenu = 'storage';
