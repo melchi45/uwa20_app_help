@@ -1,4 +1,4 @@
-kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate, $timeout, $q, $rootScope, eventRuleService) {
+kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate, $timeout, $q, $rootScope, eventRuleService, $compile) {
     "use strict";
     var mAttr = Attributes.get();
     COMMONUtils.getResponsiveObjects($scope);
@@ -19,7 +19,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.storageDeviceType = false;
     $scope.EventSource = "Storage";
     $scope.StorageInfo = {};
-
+    $scope.channelSelector = 0;
     
 
     // if(mAttr.MaxChannel > 1) {
@@ -208,6 +208,13 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         $scope.MaxChannel = mAttr.MaxChannel;
 
 
+        if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){
+            $scope.disabledRecord = true;
+        }else{
+            $scope.disabledRecord = false;
+        }
+
+
 
         defer.resolve("success");
         return defer.promise;
@@ -215,184 +222,220 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
 
 
-    function setRecordGeneralInfo(index, queue) {
-        var setData = {};
-        setData.NormalMode = $scope.RecordGeneralInfo[$scope.Channel].NormalMode;
-        setData.EventMode = $scope.RecordGeneralInfo[$scope.Channel].EventMode;
-        setData.PreEventDuration = $scope.RecordGeneralInfo[$scope.Channel].PreEventDuration;
-        setData.PostEventDuration = $scope.RecordGeneralInfo[$scope.Channel].PostEventDuration;
-        if (pageData.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType !== $scope.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType) {
-            $scope.needReload = true;
-        }
-        setData.RecordedVideoFileType = $scope.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType;
-        /*var promise = SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=general&action=set', setData, function(response) {
-            console.info("Request","/stw-cgi/recording.cgi?msubmenu=general&action=set DONE");
-            pageData.RecordGeneralInfo[$scope.Channel] = angular.copy($scope.RecordGeneralInfo[$scope.Channel]);
-        }, function(errorData) {
-            pageData.RecordGeneralInfo[$scope.Channel] = angular.copy($scope.RecordGeneralInfo[$scope.Channel]);
-            console.log(errorData);
-        }, '', true);
-        promises.push(promise);*/
+    function setRecordGeneralInfo(queue) {
+        if( $scope.disabledRecord === false ) {
+            var setData = {};
 
-        queue.push({
-            url: '/stw-cgi/recording.cgi?msubmenu=general&action=set',
-            reqData: setData,
-            successCallback: function(response) {
-                pageData.RecordGeneralInfo[$scope.Channel] = angular.copy($scope.RecordGeneralInfo[$scope.Channel]);
+            setData.NormalMode = $scope.RecordGeneralInfo[$scope.Channel].NormalMode;
+            setData.EventMode = $scope.RecordGeneralInfo[$scope.Channel].EventMode;
+            setData.PreEventDuration = $scope.RecordGeneralInfo[$scope.Channel].PreEventDuration;
+            setData.PostEventDuration = $scope.RecordGeneralInfo[$scope.Channel].PostEventDuration;
+            if (pageData.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType !== $scope.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType) {
+                $scope.needReload = true;
             }
-        });
+            setData.RecordedVideoFileType = $scope.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType;
+            /*var promise = SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=general&action=set', setData, function(response) {
+                console.info("Request","/stw-cgi/recording.cgi?msubmenu=general&action=set DONE");
+                pageData.RecordGeneralInfo[$scope.Channel] = angular.copy($scope.RecordGeneralInfo[$scope.Channel]);
+            }, function(errorData) {
+                pageData.RecordGeneralInfo[$scope.Channel] = angular.copy($scope.RecordGeneralInfo[$scope.Channel]);
+                console.log(errorData);
+            }, '', true);
+            promises.push(promise);*/
+
+            queue.push({
+                url: '/stw-cgi/recording.cgi?msubmenu=general&action=set',
+                reqData: setData,
+                successCallback: function(response) {
+                    pageData.RecordGeneralInfo[$scope.Channel] = angular.copy($scope.RecordGeneralInfo[$scope.Channel]);
+                }
+            });
+        } else {
+            var setData = {
+                NormalMode : $scope.RecordGeneralInfo.NormalMode,
+                EventMode : $scope.RecordGeneralInfo.EventMode,
+                PreEventDuration : $scope.RecordGeneralInfo.PreEventDuration,
+                PostEventDuration : $scope.RecordGeneralInfo.PostEventDuration,
+                Channel : $scope.channelSelector
+            };
+
+            if (pageData.RecordGeneralInfo.RecordedVideoFileType !== $scope.RecordGeneralInfo.RecordedVideoFileType) {
+                $scope.needReload = true;
+            }
+            setData.RecordedVideoFileType = $scope.RecordGeneralInfo.RecordedVideoFileType;
+
+            queue.push({
+                url: '/stw-cgi/recording.cgi?msubmenu=general&action=set',
+                reqData: setData,
+                successCallback: function(response) {
+                    pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
+                }
+            });
+
+        }
+    }
+
+    function setAttribute () {
+        var defer = $q.defer();
+
+        for(var i = 0; i<$scope.VideoProfile.length; i++) {
+            if($scope.VideoProfile[i].Profile == $scope.RecordProfileId) {
+                $scope.RecordProfileName = $scope.VideoProfile[i].Name;
+            }
+        }
+
+        $scope.RecordGeneralInfo.NormalMode = $scope.RecordGeneralInfo.NormalMode;
+        $scope.RecordGeneralInfo.EventMode = $scope.RecordGeneralInfo.EventMode;
+        $scope.RecordGeneralInfo.PreEventDuration = $scope.RecordGeneralInfo.PreEventDuration;
+        $scope.RecordGeneralInfo.PostEventDuration = $scope.RecordGeneralInfo.PostEventDuration;
+        $scope.RecordGeneralInfo.RecordedVideoFileType = $scope.RecordGeneralInfo.RecordedVideoFileType;
+        $scope.RecordSchedule.Activate = $scope.RecordSchedule.Activate;
+
+        defer.resolve('Success');
+        return defer.promise;
     }
 
     function setRecordSchedule(queue) {
-        for (var i = 0; i < $scope.RecordSchedule.length; i++) {
-            if (!angular.equals(pageData.RecordSchedule[i], $scope.RecordSchedule[i])) {
-                var setData = {};
-                var promise;
-                setData.Activate = $scope.RecordSchedule[i].Activate;
-                //if ($scope.RecordSchedule[i].Activate === 'Scheduled')
-                {
-                    var diff = $(pageData.RecordSchedule[i].ScheduleIds).not($scope.RecordSchedule[i].ScheduleIds).get();
-                    var sun = 0,
-                        mon = 0,
-                        tue = 0,
-                        wed = 0,
-                        thu = 0,
-                        fri = 0,
-                        sat = 0;
-                    for (var s = 0; s < diff.length; s++) {
-                        var str = diff[s].split('.');
-                        for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                            if (str[0] === mAttr.WeekDays[d]) {
-                                switch (d) {
-                                    case 0:
-                                        sun = 1;
-                                        setData["SUN" + str[1]] = 0;
-                                        break;
-                                    case 1:
-                                        mon = 1;
-                                        setData["MON" + str[1]] = 0;
-                                        break;
-                                    case 2:
-                                        tue = 1;
-                                        setData["TUE" + str[1]] = 0;
-                                        break;
-                                    case 3:
-                                        wed = 1;
-                                        setData["WED" + str[1]] = 0;
-                                        break;
-                                    case 4:
-                                        thu = 1;
-                                        setData["THU" + str[1]] = 0;
-                                        break;
-                                    case 5:
-                                        fri = 1;
-                                        setData["FRI" + str[1]] = 0;
-                                        break;
-                                    case 6:
-                                        sat = 1;
-                                        setData["SAT" + str[1]] = 0;
-                                        break;
-                                    default:
-                                        break;
-                                }
+        if (!angular.equals(pageData.RecordSchedule, $scope.RecordSchedule)) {
+            var setData = {};
+            if($scope.MaxChannel > 1) setData.Channel = angular.copy($scope.Channel);
+            setData.Activate = $scope.RecordSchedule.Activate;
+
+            if ($scope.RecordSchedule.Activate === 'Scheduled')
+            {
+                var diff = $(pageData.RecordSchedule.ScheduleIds).not($scope.RecordSchedule.ScheduleIds).get(),
+                    sun = 0, mon = 0, tue = 0, wed = 0, thu = 0, fri = 0, sat = 0;
+
+
+                for (var s = 0; s < diff.length; s++) {
+                    var str = diff[s].split('.');
+                    for (var d = 0; d < mAttr.WeekDays.length; d++) {
+                        if (str[0] === mAttr.WeekDays[d]) {
+                            switch (d) {
+                                case 0:
+                                    sun = 1;
+                                    setData["SUN" + str[1]] = 0;
+                                    break;
+                                case 1:
+                                    mon = 1;
+                                    setData["MON" + str[1]] = 0;
+                                    break;
+                                case 2:
+                                    tue = 1;
+                                    setData["TUE" + str[1]] = 0;
+                                    break;
+                                case 3:
+                                    wed = 1;
+                                    setData["WED" + str[1]] = 0;
+                                    break;
+                                case 4:
+                                    thu = 1;
+                                    setData["THU" + str[1]] = 0;
+                                    break;
+                                case 5:
+                                    fri = 1;
+                                    setData["FRI" + str[1]] = 0;
+                                    break;
+                                case 6:
+                                    sat = 1;
+                                    setData["SAT" + str[1]] = 0;
+                                    break;
+                                default:
+                                    break;
                             }
                         }
-                    }
-                    for (var s = 0; s < $scope.RecordSchedule[i].ScheduleIds.length; s++) {
-                        var str = $scope.RecordSchedule[i].ScheduleIds[s].split('.');
-                        for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                            if (str[0] === mAttr.WeekDays[d]) {
-                                switch (d) {
-                                    case 0:
-                                        sun = 1;
-                                        setData["SUN" + str[1]] = 1;
-                                        if (str.length === 4) {
-                                            setData["SUN" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                        }
-                                        break;
-                                    case 1:
-                                        mon = 1;
-                                        setData["MON" + str[1]] = 1;
-                                        if (str.length === 4) {
-                                            setData["MON" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                        }
-                                        break;
-                                    case 2:
-                                        tue = 1;
-                                        setData["TUE" + str[1]] = 1;
-                                        if (str.length === 4) {
-                                            setData["TUE" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                        }
-                                        break;
-                                    case 3:
-                                        wed = 1;
-                                        setData["WED" + str[1]] = 1;
-                                        if (str.length === 4) {
-                                            setData["WED" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                        }
-                                        break;
-                                    case 4:
-                                        thu = 1;
-                                        setData["THU" + str[1]] = 1;
-                                        if (str.length === 4) {
-                                            setData["THU" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                        }
-                                        break;
-                                    case 5:
-                                        fri = 1;
-                                        setData["FRI" + str[1]] = 1;
-                                        if (str.length === 4) {
-                                            setData["FRI" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                        }
-                                        break;
-                                    case 6:
-                                        sat = 1;
-                                        setData["SAT" + str[1]] = 1;
-                                        if (str.length === 4) {
-                                            setData["SAT" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                        }
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            }
-                        }
-                    }
-                    if (sun) {
-                        setData.SUN = 1;
-                    }
-                    if (mon) {
-                        setData.MON = 1;
-                    }
-                    if (tue) {
-                        setData.TUE = 1;
-                    }
-                    if (wed) {
-                        setData.WED = 1;
-                    }
-                    if (thu) {
-                        setData.THU = 1;
-                    }
-                    if (fri) {
-                        setData.FRI = 1;
-                    }
-                    if (sat) {
-                        setData.SAT = 1;
                     }
                 }
-                /*promise = SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=set', setData, function(response) {
-                    console.info("Request","/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=set DONE");
-                }, function(errorData) {
-                    console.log(errorData);
-                }, '', true);*/
-                queue.push({
-                    url: '/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=set',
-                    reqData: setData
-                });
+                for (var s = 0; s < $scope.RecordSchedule.ScheduleIds.length; s++) {
+                    var str = $scope.RecordSchedule.ScheduleIds[s].split('.');
+                    for (var d = 0; d < mAttr.WeekDays.length; d++) {
+                        if (str[0] === mAttr.WeekDays[d]) {
+                            switch (d) {
+                                case 0:
+                                    sun = 1;
+                                    setData["SUN" + str[1]] = 1;
+                                    if (str.length === 4) {
+                                        setData["SUN" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                    }
+                                    break;
+                                case 1:
+                                    mon = 1;
+                                    setData["MON" + str[1]] = 1;
+                                    if (str.length === 4) {
+                                        setData["MON" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                    }
+                                    break;
+                                case 2:
+                                    tue = 1;
+                                    setData["TUE" + str[1]] = 1;
+                                    if (str.length === 4) {
+                                        setData["TUE" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                    }
+                                    break;
+                                case 3:
+                                    wed = 1;
+                                    setData["WED" + str[1]] = 1;
+                                    if (str.length === 4) {
+                                        setData["WED" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                    }
+                                    break;
+                                case 4:
+                                    thu = 1;
+                                    setData["THU" + str[1]] = 1;
+                                    if (str.length === 4) {
+                                        setData["THU" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                    }
+                                    break;
+                                case 5:
+                                    fri = 1;
+                                    setData["FRI" + str[1]] = 1;
+                                    if (str.length === 4) {
+                                        setData["FRI" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                    }
+                                    break;
+                                case 6:
+                                    sat = 1;
+                                    setData["SAT" + str[1]] = 1;
+                                    if (str.length === 4) {
+                                        setData["SAT" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                }
+                if (sun) {
+                    setData.SUN = 1;
+                }
+                if (mon) {
+                    setData.MON = 1;
+                }
+                if (tue) {
+                    setData.TUE = 1;
+                }
+                if (wed) {
+                    setData.WED = 1;
+                }
+                if (thu) {
+                    setData.THU = 1;
+                }
+                if (fri) {
+                    setData.FRI = 1;
+                }
+                if (sat) {
+                    setData.SAT = 1;
+                }
             }
+
+            queue.push({
+                url: '/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=set',
+                reqData: setData
+            });
         }
-        pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
     }
+
 
     function setRecordingStorageInfo(queue){
         var setData = {};
@@ -562,7 +605,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             }
         }
 
-            
 
         return retVal;
     }
@@ -624,6 +666,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     function getStorageDetails() {
         var getData = {},
             idx = 0;
+
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData, function(response) {
             $scope.Storageinfo = response.data;
 
@@ -665,32 +708,38 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     }
 
     function getRecordingSchedules() {
-        var getData = {},
-            idx = 0;
+        var getData = {};
+        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+
+        console.info(getData.Channel);
+        
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
-            $scope.RecordSchedule = response.data.RecordSchedule;
-
-            for (idx = 0; idx < $scope.RecordSchedule.length; idx = idx + 1) {
-                $scope.RecordSchedule[idx].ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule[idx].Schedule));
-            }
-
-            // if( mAttr.MaxChannel > 1) {
-            //     $scope.RecordSchedule[0].Activate = "Always";
-            // }
-
+            $scope.RecordSchedule = response.data.RecordSchedule[0];
+            $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
-
         }, function(errorData) {
-            console.log(errorData);
+            console.error(errorData);
         }, '', true);
     }
 
     function getRecordGeneralDetails() {
         var getData = {},
             idx = 0;
+            if( $scope.disabledRecord ){
+                getData.Channel = $scope.channelSelector;
+            }
+
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=general&action=view', getData, function(response) {
             $scope.RecordGeneralInfo = response.data.RecordSetup;
             pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
+
+            if( $scope.disabledRecord ) {
+                $scope.RecordGeneralInfo = response.data.RecordSetup[0];
+                pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
+            }
+
+            console.log($scope.RecordGeneralInfo)
+
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
@@ -802,23 +851,31 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     };
 
     function view(data) {
-        if(data === 0) {
-            $rootScope.$emit('resetScheduleData', true);
-        }
-
         var promises = [];
         promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
         promises.push(getRecordingStorageDetails);
-
         promises.push(getRecordingSchedules);
-
         promises.push(getRecordProfile);
         promises.push(getRecordProfileDetails);
-        //promises.push(getStorageSetup);
+
         $q.seqAll(promises).then(function() {
+            var scheduler = $("#scheduler");
+            scheduler.html('');
+            console.info('is viewer');
+
+            $rootScope.$emit('changeLoadingBar', false);
             $scope.pageLoaded = true;
+            $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
+
             $("#storagepage").show();
+
+            var templete = angular.element("<scheduler></scheduler>");
+            console.info();
+            $compile(templete)($scope);
+
+            console.info('is schedule', templete);
+            scheduler.append(templete);
         }, function(errorData) {
             console.log(errorData);
         });
@@ -831,29 +888,53 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             promise;
 
         function callSequence(){
+            $scope.pageLoaded = false;
+
             SunapiClient.sequence(queue, function(){
                 if (needRefresh) {
+                    console.info('refresh');
                     window.setTimeout(RefreshPage, 1000);
+                } else {
+                    $rootScope.$emit('changeLoadingBar', true);
+
+                    $timeout(function () {
+                        if(newChannel !== false) {
+                            $rootScope.$emit("channelSelector:changeChannel", newChannel);
+                            $scope.Channel = newChannel;
+                        }
+                        view();
+                    }, 1000);
                 }
             }, function(errorData) {});
         }
 
-        if (!angular.equals(pageData.RecordSchedule, $scope.RecordSchedule)) {
-            setRecordSchedule(queue);
-        }
-        if (!angular.equals(pageData.RecordGeneralInfo[$scope.Channel], $scope.RecordGeneralInfo[$scope.Channel])) {
-            if ($scope.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType !== pageData.RecordGeneralInfo[$scope.Channel].RecordedVideoFileType) {
-                $scope.DisplayMsg = $translate.instant('lang_msg_storage_format');
-                promises.push(function(){
-                    return showModalDialog("setRecordGeneralInfo", $scope.DisplayMsg, $scope.Channel, queue);
-                });
-            } else {
-                setRecordGeneralInfo($scope.Channel, queue);
-            }
-        }
+
         if (!angular.equals(pageData.RecordStorageInfo, $scope.RecordStorageInfo)) {
             setRecordingStorageInfo(queue);
         }
+
+        if (!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) {
+            if ($scope.RecordGeneralInfo.RecordedVideoFileType !== pageData.RecordGeneralInfo.RecordedVideoFileType) {
+                $scope.DisplayMsg = $translate.instant('lang_msg_storage_format');
+                promises.push(function(){
+                    return showModalDialog("setRecordGeneralInfo", $scope.DisplayMsg, queue);
+                });
+            } else {
+                setRecordGeneralInfo(queue);
+            }
+        }
+
+
+        if (!angular.equals(pageData.RecordSchedule, $scope.RecordSchedule)) {
+            promises.push(function(){
+                return setRecordSchedule(queue);
+            });
+        }
+        
+
+
+
+
         if (!angular.equals(pageData.Storageinfo.Storages[$scope.SelectedStorage], $scope.Storageinfo.Storages[$scope.SelectedStorage])) {
             if ($scope.Storageinfo.Storages[$scope.SelectedStorage].Type === 'SD') {
                 if (pageData.Storageinfo.Storages[$scope.SelectedStorage].FileSystem !== $scope.Storageinfo.Storages[$scope.SelectedStorage].FileSystem) {
@@ -908,6 +989,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                     function(errorData){}
                 );   
         }else{
+            console.info('is no modify');
             callSequence();            
         }
     }
@@ -1031,6 +1113,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     }
 
     (function wait() {
+        console.info('wait');
         if (!mAttr.Ready) {
             $timeout(function() {
                 mAttr = Attributes.get();
@@ -1038,27 +1121,12 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             }, 500);
         } else {
             getAttributes().then(function() {
-                
-                // SunapiClient.get("/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view", '', function(response){
-                //     var deviceName = response.data.Model;
-                //     if( deviceName.indexOf("XNV") !== -1 || deviceName.indexOf("XNO") !== -1 || mAttr.MaxChannel > 1 ) {
-                //         $scope.isMultiChannel = true;
-                //     }else {
-                //         $scope.isMultiChannel = false;
-                //     }
-                // })
-
                 if(mAttr.MaxChannel > 1){
                     $scope.isMultiChannel = true;
                 }else{
                     $scope.isMultiChannel = false;
                 }
-
-                if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){
-                    $scope.disabledRecord = true;
-                }else{
-                    $scope.disabledRecord = false;
-                }
+                
 
             }).finally(function() {
                 view();
@@ -1069,11 +1137,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     $scope.view = view;
     $scope.validate = validatePage;
 
-    $scope.clearAll = function() {
-        $timeout(function() {
-            $scope.RecordSchedule[$scope.Channel].ScheduleIds = [];
-        });
-    };
     $scope.OnStorageFormat = function(index) {
         if ($scope.Storageinfo.Storages[index].Enable === false) {
             COMMONUtils.ShowError('lang_msg_fail');
@@ -1106,9 +1169,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     $scope.storageDeviceTypeCheck = function(){
         SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', '', function(response) {
             //scope.globalNavigationBar.deviceModelName = response.data.Model;
-            
-            
-
             switch( response.data.Model ) {
                 case "PNM-9080QV" :
                     $scope.storageDeviceType = false;
@@ -1126,6 +1186,43 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
         return $scope.storageDeviceType;
     }
+
+    $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
+        var okay = true;
+
+        if(pageData.RecordSchedule.Activate == $scope.RecordSchedule.Activate) {
+            if(pageData.RecordSchedule.Activate != 'Always') {
+                if(!eventRuleService.checkRecordSchedulerValidation()) okay = false;
+            }
+        } else okay = false;
+
+        console.info('record activate okay', okay);
+        
+
+        if(!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) okay = false;
+
+        if(okay) {
+            $scope.Channel = data;
+            $rootScope.$emit("channelSelector:changeChannel", data);
+            $rootScope.$emit('changeLoadingBar', true);
+
+            view();
+        } else {
+            COMMONUtils
+                .confirmChangeingChannel()
+                .then(function () {
+                    if (validatePage()) {
+                        COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
+                            COMMONUtils.ApplyConfirmation(function () {
+                                saveStorage(data);
+                            });
+                        });
+                    }
+                });
+        }
+    }, $scope);
+
+
 });
 kindFramework.controller('ModalMsgCtrl', function($scope, $uibModalInstance, Attributes, Msg) {
     "use strict";
@@ -1137,3 +1234,4 @@ kindFramework.controller('ModalMsgCtrl', function($scope, $uibModalInstance, Att
         $uibModalInstance.dismiss('cancel');
     };
 });
+
