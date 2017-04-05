@@ -266,6 +266,9 @@ body .wrap {
 #video-container {
   overflow: hidden;
 }
+#container {
+  height: calc(100% - 5px);
+}
 #livevideo {
   width: 100%;
   height: 100%;
@@ -669,6 +672,8 @@ live-playback common {
 .cm-str-button.cm-disabled * {
   background-color: #d2d2d2 !important;
   color: #797979 !important;
+}
+.cm-str-button * {
   border: none !important;
 }
 .cm-str-button.cm-cancel-button {
@@ -803,6 +808,7 @@ live-playback common {
 }
 #cm-video overlay-canvas {
   position: absolute;
+  overflow: auto;
 }
 #cm-video.cm-fullscreen {
   background-color: #000;
@@ -812,6 +818,7 @@ live-playback common {
 #livecanvas {
   left: 50%;
   transform: translateX(-50%);
+  position: relative;
 }
 /* Full screen */
 #full-screen-functions .carousel-inner,
@@ -831,6 +838,9 @@ live-playback common {
 .full-screen #container {
   position: relative;
   height: 100%;
+}
+.full-screen #livecanvas {
+  position: absolute;
 }
 .full-screen div {
   display: block;
@@ -5727,6 +5737,21 @@ rzslider .rz-bubble {
   cursor: pointer;
   background-color: white;
 }
+.wn5-setup-section .wn5-gui-body-large {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.wn5-setup-section .form-group .wn5-setup-section-article-heading {
+  padding-left: 0px;
+  padding-right: 80px;
+}
+.wn5-setup-section .form-group .wn5-setup-section-article-content-type {
+  width: auto;
+}
+.wn5-setup-section .form-group .field-radio-wrapper {
+  float: left;
+  width: 200px;
+}
 .field-label {
   line-height: 34px;
   vertical-align: middle;
@@ -9059,22 +9084,6 @@ i.tui-ch-playback-stop {
   height: 1em;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-status .cm-status-wrap .cm-status-col .cm-table ::-webkit-scrollbar-button:vertical {
-  /*
-                                    background: url('https://pixabay.com/static/uploads/photo/2015/10/07/10/55/arrow-975992_960_720.png') no-repeat center center;
-                                    background-size:cover;
-                                    position: relative;
-
-                                    &::after {
-                                        content: "";
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        border-color: #505050 transparent;
-                                        border-left: 2px solid;
-                                        border-top: 3px solid;
-                                        border-right: 2px solid;
-                                    }
-                                    */
   background: #666;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-status .cm-status-wrap .cm-status-col .cm-table ::-webkit-scrollbar-track-piece {
@@ -9204,18 +9213,21 @@ i.tui-ch-playback-stop {
     max-height: none;
     height: 150px;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div,
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .live-channel-selector {
     width: 100%;
     height: 40px;
     padding: 0;
     text-align: center;
     border: none;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > * {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > *,
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .live-channel-selector > * {
     display: inline-table;
     float: none;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > button {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > button,
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .live-channel-selector > button {
     margin-top: 8px;
   }
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .info-toggle {
