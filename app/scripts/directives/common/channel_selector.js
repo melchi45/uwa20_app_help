@@ -38,6 +38,14 @@ kindFramework.directive('channelSelector', function($rootScope) {
                 elem.find(" > li:nth-of-type(" + (index + 2) + ") > button").addClass('active');
             }, scope);
 
+            $rootScope.$saveOn('channelSelector:off', function(event){
+                elem.find("button").attr("disabled", true);
+            }, scope);
+
+            $rootScope.$saveOn('channelSelector:on', function(event){
+                elem.find("button").removeAttr("disabled");
+            }, scope);
+
             setTimeout(function(){
                 $rootScope.$emit('channelSelector:mounted', true);
             });
