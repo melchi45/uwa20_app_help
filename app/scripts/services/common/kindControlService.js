@@ -300,6 +300,7 @@ kindFramework
       sunapiURI += "&FrameRate=20&CompressionLevel=10&Bitrate=2048&"; //AudioInputEnable=False";
       sunapiURI += "&H264.BitrateControlType=VBR&H264.PriorityType=FrameRate&H264.GOVLength=20";
       sunapiURI += "&H264.Profile=Main&H264.EntropyCoding=CABAC";
+      sunapiURI += "&Channel=" + UniversialManagerService.getChannelId();
 
       
 
@@ -379,6 +380,7 @@ kindFramework
       var deferred = $q.defer();
       ModalManagerService.open('message', { 'buttonCount': 0, 'message': 'Change PLUGINFREE Resolution' } );
       var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=update&FrameRate=20&EncodingType=H264&Resolution=" + NonPluginResolutionArray[NonPluginSelectNum] + "&Profile=" + (_profileIndex + 1);
+      sunapiURI += "&Channel=" + UniversialManagerService.getChannelId();
       SunapiClient.get(sunapiURI, '',
         function (response) {
           waitUWAProfile().then( function(_profileNumber){ deferred.resolve(_profileNumber); });
@@ -394,7 +396,9 @@ kindFramework
     }    
 
     function getResolutionListForRatio() {
-      SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videocodecinfo&action=view', '',
+      var sunapiURI = '/stw-cgi/media.cgi?msubmenu=videocodecinfo&action=view';
+      sunapiURI += "&Channel=" + UniversialManagerService.getChannelId();
+      SunapiClient.get(sunapiURI, '',
         function (response) {
           var VideoCodes = response.data.VideoCodecInfo[0].ViewModes[0].Codecs;
           for (var i = 0; i < VideoCodes.length; i++) {
