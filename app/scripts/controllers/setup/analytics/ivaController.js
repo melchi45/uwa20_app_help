@@ -188,7 +188,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
     function setVirtualLineMode(index){
         var lineIndex = findLinesIndex(index);
-        var line = $scope.VA[0].Lines[lineIndex];
+        var line = $scope.VA[$scope.presetTypeData.SelectedPreset].Lines[lineIndex];
         $scope.virtualLineMode.lineIndex = lineIndex;
         if(line.Coordinates.length > 0) {
             $scope.virtualLineMode.passing = true;
@@ -222,7 +222,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         changeSliderState(false);
 
         var defindAreaIndex = findAreasIndex(index);
-        var definedArea = $scope.VA[0].DefinedAreas[defindAreaIndex];
+        var definedArea = $scope.VA[$scope.presetTypeData.SelectedPreset].DefinedAreas[defindAreaIndex];
         var modes = definedArea.Mode;
 
         $scope.virtualAreaMode.defindAreasIndex = angular.copy(defindAreaIndex);
@@ -323,9 +323,9 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         }
 
         var lineIndex = findLinesIndex($scope.currentSelectedLineColumn + 1);
-        var line = $scope.VA[0].Lines[lineIndex];
+        var line = $scope.VA[$scope.presetTypeData.SelectedPreset].Lines[lineIndex];
         line.Mode = mode;
-        $scope.VA[0].Lines[lineIndex] = line;
+        $scope.VA[$scope.presetTypeData.SelectedPreset].Lines[lineIndex] = line;
     };
 
     $scope.changeVirtualAreaMode = function(){
@@ -333,8 +333,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         if(defindAreasIndex === null) {return;}
         var mode = [];
 
-        $scope.VA[0].DefinedAreas[defindAreasIndex].AppearanceDuration = $scope.virtualAreaMode.appearanceDuration;
-        $scope.VA[0].DefinedAreas[defindAreasIndex].LoiteringDuration = $scope.virtualAreaMode.loiteringDuration;
+        $scope.VA[$scope.presetTypeData.SelectedPreset].DefinedAreas[defindAreasIndex].AppearanceDuration = $scope.virtualAreaMode.appearanceDuration;
+        $scope.VA[$scope.presetTypeData.SelectedPreset].DefinedAreas[defindAreasIndex].LoiteringDuration = $scope.virtualAreaMode.loiteringDuration;
 
         if($scope.virtualAreaMode.appearDisappear === true){
             mode.push("AppearDisappear");
@@ -352,7 +352,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             mode.push("Loitering");
         }
 
-        $scope.VA[0].DefinedAreas[defindAreasIndex].Mode = mode;
+        $scope.VA[$scope.presetTypeData.SelectedPreset].DefinedAreas[defindAreasIndex].Mode = mode;
     };
 
     function changeSliderState(stateType){
@@ -429,29 +429,29 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         var minWidth = null;
         var minHeight = null;
 
-        minWidth = parseInt($scope.VA[0].MinWidth);
-        minHeight = parseInt($scope.VA[0].MinHeight);
-        maxWidth = parseInt($scope.VA[0].MaxWidth);
-        maxHeight = parseInt($scope.VA[0].MaxHeight);
+        minWidth = parseInt($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth);
+        minHeight = parseInt($scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight);
+        maxWidth = parseInt($scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth);
+        maxHeight = parseInt($scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight);
 
         if(minWidth > maxWidth || minHeight > maxHeight) { // min size must be small than max size
-            $scope.VA[0].MinWidth = $scope.prevMinWidth;
-            $scope.VA[0].MinHeight = $scope.prevMinHeight;
-            $scope.VA[0].MaxWidth = $scope.prevMaxWidth;
-            $scope.VA[0].MaxHeight = $scope.prevMaxHeight;
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth = $scope.prevMinWidth;
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight = $scope.prevMinHeight;
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth = $scope.prevMaxWidth;
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight = $scope.prevMaxHeight;
             return;
         }
         if(flag === 0) { // min
             if(sketchbookService.changeMinSizeOption(minWidth, minHeight) === false){
-                $scope.VA[0].MinHeight = $scope.prevMinHeight;
-                $scope.VA[0].MinWidth = $scope.prevMinWidth;
+                $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight = $scope.prevMinHeight;
+                $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth = $scope.prevMinWidth;
                 sketchbookService.changeRectangleToSize(0, $scope.prevMinWidth, $scope.prevMinHeight);
                 $scope.$apply();
                 return;
             }
 
-            $scope.VA[0].MinWidth = minWidth;
-            $scope.VA[0].MinHeight = minHeight;
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth = minWidth;
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight = minHeight;
 
             sketchbookService.changeRectangleToSize(0, minWidth, minHeight);
 
@@ -459,15 +459,15 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             $scope.prevMinHeight = minHeight;
         } else if(flag === 1) { // max
             if(sketchbookService.changeMaxSizeOption(maxWidth, maxHeight) === false){
-                $scope.VA[0].MaxHeight = $scope.prevMaxHeight;
-                $scope.VA[0].MaxWidth = $scope.prevMaxWidth;
+                $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight = $scope.prevMaxHeight;
+                $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth = $scope.prevMaxWidth;
                 sketchbookService.changeRectangleToSize(1, $scope.prevMaxWidth, $scope.prevMaxHeight);
                 $scope.$apply();
                 return;
             }
 
-            $scope.VA[0].MaxWidth = maxWidth;
-            $scope.VA[0].MaxHeight = maxHeight;
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth = maxWidth;
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight = maxHeight;
 
             sketchbookService.changeRectangleToSize(1, maxWidth, maxHeight);
 
@@ -513,7 +513,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     };
 
     $scope.$watch('presetTypeData.SelectedPreset',function(newVal,oldVal){
-        if(newVal === undefined) {
+        if(newVal === undefined || newVal === oldVal) {
             return;
         }
         if(newVal > 0 && oldVal == 0) {
@@ -534,6 +534,9 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 return;
             }
         }
+
+        setInitialObjectSize();
+        updateMDVARegion2($scope.activeTab);
         
         // if ($scope.HandoverSupport){
         //     if(typeof $scope.Handover[newVal] != 'undefined' 
@@ -799,13 +802,13 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             var indexKey = isArea ? "DefinedArea" : "Line";
             var removeIndexs = [];
 
-            for(var i = 0, ii = pageData.VA[0][obj].length; i < ii; i++){
-                var self = pageData.VA[0][obj][i];
+            for(var i = 0, ii = pageData.VA[$scope.presetTypeData.SelectedPreset][obj].length; i < ii; i++){
+                var self = pageData.VA[$scope.presetTypeData.SelectedPreset][obj][i];
                 removeIndexs.push(self[indexKey]);
             }
 
-            for(var i = 0, ii = $scope.VA[0][obj].length; i < ii; i++){
-                var self = $scope.VA[0][obj][i];
+            for(var i = 0, ii = $scope.VA[$scope.presetTypeData.SelectedPreset][obj].length; i < ii; i++){
+                var self = $scope.VA[$scope.presetTypeData.SelectedPreset][obj][i];
                 var pageDataLineIndex = removeIndexs.indexOf(self[indexKey]);
                 if(pageDataLineIndex > -1){
                     removeIndexs.splice(pageDataLineIndex, 1);
@@ -910,7 +913,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 //EnterExit, Appearing
                 if (!angular.equals(pageData.VA[index].DefinedAreas, $scope.VA[index].DefinedAreas)) {
                     if ($scope.VA[index].DefinedAreas.length) {
-                        for (var i = 0; i < $scope.VA[0].DefinedAreas.length; i++) {
+                        for (var i = 0; i < $scope.VA[$scope.presetTypeData.SelectedPreset].DefinedAreas.length; i++) {
                             var coor = [];
                             if($scope.VA[index].DefinedAreas[i] !== undefined) { 
                                 for (var j = 0, jLen = $scope.VA[index].DefinedAreas[i].Coordinates.length; j < jLen; j++) {
@@ -1342,14 +1345,14 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         if(data === null) {
             $scope.minSizeData.Coordinates = [];
             $scope.minSizeData.Coordinates.push([0,0]);
-            $scope.minSizeData.Coordinates.push([0,$scope.VA[0].MinHeight]);
-            $scope.minSizeData.Coordinates.push([$scope.VA[0].MinWidth,$scope.VA[0].MinHeight]);
-            $scope.minSizeData.Coordinates.push([$scope.VA[0].MinWidth,0]);
+            $scope.minSizeData.Coordinates.push([0,$scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight]);
+            $scope.minSizeData.Coordinates.push([$scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth,$scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight]);
+            $scope.minSizeData.Coordinates.push([$scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth,0]);
             $scope.maxSizeData.Coordinates = [];
             $scope.maxSizeData.Coordinates.push([0,0]);
-            $scope.maxSizeData.Coordinates.push([0,$scope.VA[0].MaxHeight]);
-            $scope.maxSizeData.Coordinates.push([$scope.VA[0].MaxWidth,$scope.VA[0].MaxHeight]);
-            $scope.maxSizeData.Coordinates.push([$scope.VA[0].MaxWidth,0]);
+            $scope.maxSizeData.Coordinates.push([0,$scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight]);
+            $scope.maxSizeData.Coordinates.push([$scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth,$scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight]);
+            $scope.maxSizeData.Coordinates.push([$scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth,0]);
         } else {
             var coordinates = data;
             if(flag === 'max') {
@@ -1851,10 +1854,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                         //         queue = queue.concat(setPresetVideoAnalysis(index));
                         //     }
                         // }
-                    } else {
-                        if (!angular.equals(pageData.VA[0], $scope.VA[0]) || detectionType !== pageDetectionType) {
-                            queue = queue.concat(setVideoAnalysis());
-                        }
                     }
 
                     if(queue.length > 0) {
@@ -2093,8 +2092,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     function findLinesIndex(lineIndex){
         var index = null;
 
-        for(var i = 0, ii = $scope.VA[0].Lines.length; i < ii; i++){
-            var self = $scope.VA[0].Lines[i];
+        for(var i = 0, ii = $scope.VA[$scope.presetTypeData.SelectedPreset].Lines.length; i < ii; i++){
+            var self = $scope.VA[$scope.presetTypeData.SelectedPreset].Lines[i];
             if(self.Line === lineIndex){
                 index = i;
                 break;
@@ -2107,8 +2106,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     function findAreasIndex(areaIndex){
         var index = null;
 
-        for(var i = 0; i < $scope.VA[0].DefinedAreas.length; i++){
-            var self = $scope.VA[0].DefinedAreas[i];
+        for(var i = 0; i < $scope.VA[$scope.presetTypeData.SelectedPreset].DefinedAreas.length; i++){
+            var self = $scope.VA[$scope.presetTypeData.SelectedPreset].DefinedAreas[i];
             if(self.DefinedArea === areaIndex){
                 index = i;
                 break;

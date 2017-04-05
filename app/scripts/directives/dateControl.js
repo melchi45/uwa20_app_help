@@ -137,6 +137,7 @@ kindFramework.directive('dateControl', ['$rootScope','TimelineService','SearchDa
           playData.setDefautPlaySpeed();
 
           var mode = scope.control.currentTimelineMode === 'backup' ? 4 : 2;
+          $rootScope.$emit('app/scripts/services/playbackClass::disableButton', true);
           scope.control.changeTimelineMode(mode);
 
           /*var successCallback = function(data) {
