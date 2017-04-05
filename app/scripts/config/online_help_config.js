@@ -11,9 +11,9 @@ kindFramework
         DEFAULT_LANGUAGE: 'English',
         SUPPORT_LANGUAGES: [
             'English',
-            'Korean'
-            // 'Spanish',
-            // 'Chinese'
+            'Korean',
+            'Spanish',
+            'Chinese'
         ],
         WIDTH: 1024,
         HEIGHT: 800,

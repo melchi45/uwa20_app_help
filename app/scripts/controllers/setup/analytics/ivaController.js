@@ -2,6 +2,18 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     "use strict";
     /*jshint sub:true*/
     COMMONUtils.getResponsiveObjects($scope);
+
+    $rootScope.isCameraSetupPreview = false;
+    $rootScope.cameraSetupPreviewCount = 0;
+    $rootScope.cameraSetupPreviewMaxCount = 10;
+    $rootScope.cameraSetupToLive = false;
+
+    $scope.PresetNameValueOptions = [];
+
+    $scope.previewMode = false;
+
+    $scope.viewEndFlag = '';
+
     var mAttr = Attributes.get();
     var pageData = {};
     pageData.VA = [];
@@ -485,10 +497,11 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     {
         if (Type === 'Global'){
             $scope.presetTypeData.SelectedPreset = 0;
+            gotoPreset('stop');
         } else {
             $scope.presetTypeData.SelectedPreset = 1;
             $scope.presetTypeData.PresetIndex = 0;
-            gotoPreset();
+            gotoPreset('Start',1);
         }
         $scope.changeMdVaType($scope.tabs[0]);
         $scope.tabs[0].active = true;
@@ -534,26 +547,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     var maxLine = 8;
 
     function gotoPreset(mode,Preset,presetChanged,oldPreset){
-        var promises = [];
-
-        if(presetChanged == false){
-        }else if(presetChanged == true){
-            if(oldPreset !== undefined){
-                promises.push(oldPresetStop);
-            }
-        }
-        if(presetChanged == false || typeof presetChanged == 'undefined'){
-            promises.push(newPreset);
-        }
-        if(mode=='Stop'){
-            promises.push(oldPresetGo);
-        }
-        $q.seqAll(promises).then(
-            function(){
-            },
-            function(errorData){
-            }
-        );
         function oldPresetStop(){
             showLoadingBar(true);
             var stopData = {};
@@ -568,17 +561,16 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 },
                 function (errorData){
                 }, '', true);
-
         }
         function newPreset(){
             var setData = {};
             setData.Channel = 0;
             setData.Preset = Preset==0 ? 1 : Preset;
             if(mode=='Start'){
-                //$scope.presetPreview = true;
+                $scope.presetPreview = true;
                 $scope.previewMode = true;
             }else{
-                //$scope.presetPreview = false;
+                $scope.presetPreview = false;
             }
             setData.ImagePreview = mode;
             return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', setData,
@@ -597,7 +589,29 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 function (response){},
                 function (errorData){
                 }, '', true);
-        }        
+        }
+
+        var promises = [];
+
+        if(presetChanged == false){
+
+        }else if(presetChanged == true){
+            if(oldPreset !== undefined){
+                promises.push(oldPresetStop);
+            }
+        }
+        if(presetChanged == false || typeof presetChanged == 'undefined'){
+            promises.push(newPreset);
+        }
+        if(mode=='Stop'){
+            promises.push(oldPresetGo);
+        }
+        $q.seqAll(promises).then(
+            function(){
+            },
+            function(errorData){
+            }
+        );
     }
     function findPresetNumber(presetIdx){
         var presetIndex = 0;
@@ -619,7 +633,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     $rootScope.$watch(function $locationWatch() {
         var changedUrl = $location.absUrl();
         //console.log(changedUrl);
-        if (changedUrl.indexOf('event_videoAnalytics') === -1) {
+        if (changedUrl.indexOf('analytics_iva') === -1) {
             if (($rootScope.cameraSetupToLive != true) && ($scope.previewMode === true)) {
                 stopLivePreviewMode();
             }
@@ -769,7 +783,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                             }
                             pageData.VA[index] = angular.copy($scope.VA[index]);
                         }                        
-
                         $scope.viewEndFlag = 'presetvideoanalysis';
                    },100);
                 },
@@ -779,7 +792,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 }, '', true);
     }
 
-    function setPresetVideoAnalysis(index)
+    function setPresetVideoAnalysis()
     {
         function getRemovedIndex(isArea){
             var obj = isArea ? "DefinedAreas" : "Lines";
@@ -803,170 +816,177 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         }
 
         var queue = [];
-        var index = i + 1;
-        var setData = {};
-        var removeData = {};
-        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-        setData.Channel = currentChannel;
-        var isRemoved = 0;
-        var isSetted = 0;
-        var detectionType = getCurrentDetectionType();
 
-        if (pageData.VA[index].DetectionResultOverlay !== $scope.VA[index].DetectionResultOverlay) {
-            setData.DetectionResultOverlay = $scope.VA[index].DetectionResultOverlay;
-            isSetted++;
-        }
+        for (var i = 0; i < $scope.VA.length - 1; i++) {
+            var index = i + 1;
+            var setData = {};
+            var removeData = {};
+            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            setData.Channel = currentChannel;
+            setData.Preset = $scope.VA[index].Preset;
+            var isRemoved = 0;
+            var isSetted = 0;
+            var detectionType = getCurrentDetectionType();
 
-        if ($scope.IntelligentVideoEnable !== false) {
-            if (pageData.VA[index].SensitivityLevel !== $scope.VA[index].SensitivityLevel) {
-                setData.SensitivityLevel = $scope.VA[index].SensitivityLevel;
+            if (pageData.VA[index].DetectionResultOverlay !== $scope.VA[index].DetectionResultOverlay) {
+                setData.DetectionResultOverlay = $scope.VA[index].DetectionResultOverlay;
                 isSetted++;
             }
-            if (pageData.VA[index].DisplayRules !== $scope.VA[index].DisplayRules) {
-                if ($scope.VA[index].DetectionType === "IntelligentVideo" || $scope.VA[index].DetectionType === "MDAndIV") {
-                    setData.DisplayRules = $scope.VA[index].DisplayRules;
+
+            if ($scope.IntelligentVideoEnable !== false) {
+                if (pageData.VA[index].SensitivityLevel !== $scope.VA[index].SensitivityLevel) {
+                    setData.SensitivityLevel = $scope.VA[index].SensitivityLevel;
                     isSetted++;
                 }
-            }
-            if (pageData.VA[index].ROIMode !== $scope.VA[index].ROIMode) {
-                setData.ROIMode = $scope.VA[index].ROIMode;
-                isSetted++;
-            }
-            if ((pageData.VA[index].MinWidth !== $scope.VA[index].MinWidth) || (pageData.VA[index].MinHeight !== $scope.VA[index].MinHeight)) {
-                if($scope.VA[index].MinWidth !== $scope.minWidthLimit) {
-                    $scope.VA[index].MinWidth -= 1;
+                if (pageData.VA[index].DisplayRules !== $scope.VA[index].DisplayRules) {
+                    if ($scope.VA[index].DetectionType === "IntelligentVideo" || $scope.VA[index].DetectionType === "MDAndIV") {
+                        setData.DisplayRules = $scope.VA[index].DisplayRules;
+                        isSetted++;
+                    }
                 }
-                if($scope.VA[index].MinHeight !== $scope.minWidthLimit) {
-                    $scope.VA[index].MinHeight -= 1;
+                if (pageData.VA[index].ROIMode !== $scope.VA[index].ROIMode) {
+                    setData.ROIMode = $scope.VA[index].ROIMode;
+                    isSetted++;
                 }
-                setData['DetectionType.IntelligentVideo.MinimumObjectSizeInPixels'] = $scope.VA[index].MinWidth + ',' + $scope.VA[index].MinHeight;
-                isSetted++;
-            }
-            if ((pageData.VA[index].MaxWidth !== $scope.VA[index].MaxWidth) || (pageData.VA[index].MaxHeight !== $scope.VA[index].MaxHeight)) {
-                if($scope.VA[index].MaxWidth !== $scope.minWidthLimit) {
-                    $scope.VA[index].MaxWidth -= 1;
+                if ((pageData.VA[index].MinWidth !== $scope.VA[index].MinWidth) || (pageData.VA[index].MinHeight !== $scope.VA[index].MinHeight)) {
+                    if($scope.VA[index].MinWidth !== $scope.minWidthLimit) {
+                        $scope.VA[index].MinWidth -= 1;
+                    }
+                    if($scope.VA[index].MinHeight !== $scope.minWidthLimit) {
+                        $scope.VA[index].MinHeight -= 1;
+                    }
+                    setData['DetectionType.IntelligentVideo.MinimumObjectSizeInPixels'] = $scope.VA[index].MinWidth + ',' + $scope.VA[index].MinHeight;
+                    isSetted++;
                 }
-                if($scope.VA[index].MaxHeight !== $scope.minWidthLimit) {
-                    $scope.VA[index].MaxHeight -= 1;
+                if ((pageData.VA[index].MaxWidth !== $scope.VA[index].MaxWidth) || (pageData.VA[index].MaxHeight !== $scope.VA[index].MaxHeight)) {
+                    if($scope.VA[index].MaxWidth !== $scope.minWidthLimit) {
+                        $scope.VA[index].MaxWidth -= 1;
+                    }
+                    if($scope.VA[index].MaxHeight !== $scope.minWidthLimit) {
+                        $scope.VA[index].MaxHeight -= 1;
+                    }
+                    setData['DetectionType.IntelligentVideo.MaximumObjectSizeInPixels'] = $scope.VA[index].MaxWidth + ',' + $scope.VA[index].MaxHeight;
+                    isSetted++;
                 }
-                setData['DetectionType.IntelligentVideo.MaximumObjectSizeInPixels'] = $scope.VA[index].MaxWidth + ',' + $scope.VA[index].MaxHeight;
-                isSetted++;
-            }
-            //Passing
-            if (!angular.equals(pageData.VA[index].Lines, $scope.VA[index].Lines)) {
-                if ($scope.VA[index].Lines.length) {
-                    for (var i = 0; i < $scope.VA[index].Lines.length; i++) {
-                        var coor = [];
+                //Passing
+                if (!angular.equals(pageData.VA[index].Lines, $scope.VA[index].Lines)) {
+                    if ($scope.VA[index].Lines.length) {
+                        for (var i = 0; i < $scope.VA[index].Lines.length; i++) {
+                            var coor = [];
 
-                        for (var j = 0, jLen = $scope.VA[index].Lines[i].Coordinates.length; j < jLen; j++) {
-                            coor.push([
-                                $scope.VA[index].Lines[i].Coordinates[j].x,
-                                $scope.VA[index].Lines[i].Coordinates[j].y
-                            ]);
+                            for (var j = 0, jLen = $scope.VA[index].Lines[i].Coordinates.length; j < jLen; j++) {
+                                coor.push([
+                                    $scope.VA[index].Lines[i].Coordinates[j].x,
+                                    $scope.VA[index].Lines[i].Coordinates[j].y
+                                ]);
+                            }
+
+                            var VA_Lines = coor.join(',');
+                            var lineIndex = $scope.VA[index].Lines[i].Line;
+                            setData["Line." + lineIndex + ".Coordinate"] = VA_Lines;
+                            setData["Line." + lineIndex + ".Mode"] = $scope.VA[index].Lines[i].Mode;
+                            // if (typeof $scope.VA[0].Lines[i].Mode[1] !== "undefined") {
+                            //     setData["Line." + lineIndex + ".Mode"] += "," + $scope.VA[0].Lines[i].Mode[1];
+                            // }
+
+
+                            var removeIndex = getRemovedIndex(false);
+
+                            if(removeIndex.length > 0){
+                                removeData["LineIndex"] = removeIndex.join(',');
+                                isRemoved++;
+                            }
                         }
-
-                        var VA_Lines = coor.join(',');
-                        var lineIndex = $scope.VA[index].Lines[i].Line;
-                        setData["Line." + lineIndex + ".Coordinate"] = VA_Lines;
-                        setData["Line." + lineIndex + ".Mode"] = $scope.VA[index].Lines[i].Mode;
-                        // if (typeof $scope.VA[0].Lines[i].Mode[1] !== "undefined") {
-                        //     setData["Line." + lineIndex + ".Mode"] += "," + $scope.VA[0].Lines[i].Mode[1];
-                        // }
-
-
-                        var removeIndex = getRemovedIndex(false);
-
-                        if(removeIndex.length > 0){
-                            removeData["LineIndex"] = removeIndex.join(',');
+                    } else {
+                        if (pageData.VA[index].Lines !== undefined) {
+                            removeData["LineIndex"] = 'All';
                             isRemoved++;
                         }
                     }
-                } else {
-                    if (pageData.VA[index].Lines !== undefined) {
-                        removeData["LineIndex"] = 'All';
-                        isRemoved++;
-                    }
+
+                    isSetted++;
+                    setData["DetectionType"] = detectionType;
                 }
+                //EnterExit, Appearing
+                if (!angular.equals(pageData.VA[index].DefinedAreas, $scope.VA[index].DefinedAreas)) {
+                    if ($scope.VA[index].DefinedAreas.length) {
+                        for (var i = 0; i < $scope.VA[0].DefinedAreas.length; i++) {
+                            var coor = [];
+                            if($scope.VA[index].DefinedAreas[i] !== undefined) { 
+                                for (var j = 0, jLen = $scope.VA[index].DefinedAreas[i].Coordinates.length; j < jLen; j++) {
+                                    coor.push([
+                                        $scope.VA[index].DefinedAreas[i].Coordinates[j].x,
+                                        $scope.VA[index].DefinedAreas[i].Coordinates[j].y
+                                    ]);
+                                }
 
-                isSetted++;
-                setData["DetectionType"] = detectionType;
-            }
-            //EnterExit, Appearing
-            if (!angular.equals(pageData.VA[index].DefinedAreas, $scope.VA[index].DefinedAreas)) {
-                if ($scope.VA[index].DefinedAreas.length) {
-                    for (var i = 0; i < $scope.VA[0].DefinedAreas.length; i++) {
-                        var coor = [];
+                                var VA_Defineds = coor.join(',');
+                                var definedAreaIndex = $scope.VA[index].DefinedAreas[i].DefinedArea;
 
-                        for (var j = 0, jLen = $scope.VA[index].DefinedAreas[i].Coordinates.length; j < jLen; j++) {
-                            coor.push([
-                                $scope.VA[index].DefinedAreas[i].Coordinates[j].x,
-                                $scope.VA[index].DefinedAreas[i].Coordinates[j].y
-                            ]);
+                                setData["DefinedArea." + definedAreaIndex + ".Coordinate"] = VA_Defineds;
+                                setData["DefinedArea." + definedAreaIndex + ".Type"] = $scope.VA[index].DefinedAreas[i].Type;
+                                
+                                if(definedAreaIndex < 9){
+                                    setData["DefinedArea." + definedAreaIndex + ".Mode"] = $scope.VA[index].DefinedAreas[i].Mode.join(',');
+                                    setData["DefinedArea." + definedAreaIndex + ".AppearanceDuration"] = $scope.VA[index].DefinedAreas[i].AppearanceDuration;
+                                    setData["DefinedArea." + definedAreaIndex + ".LoiteringDuration"] = $scope.VA[index].DefinedAreas[i].LoiteringDuration;   
+                                }
+                            }
                         }
 
-                        var VA_Defineds = coor.join(',');
-                        var definedAreaIndex = $scope.VA[index].DefinedAreas[i].DefinedArea;
+                        //removeData 찾기
+                        var removeIndex = getRemovedIndex(true);
 
-                        setData["DefinedArea." + definedAreaIndex + ".Coordinate"] = VA_Defineds;
-                        setData["DefinedArea." + definedAreaIndex + ".Type"] = $scope.VA[index].DefinedAreas[i].Type;
-                        
-                        if(definedAreaIndex < 9){
-                            setData["DefinedArea." + definedAreaIndex + ".Mode"] = $scope.VA[index].DefinedAreas[i].Mode.join(',');
-                            setData["DefinedArea." + definedAreaIndex + ".AppearanceDuration"] = $scope.VA[index].DefinedAreas[i].AppearanceDuration;
-                            setData["DefinedArea." + definedAreaIndex + ".LoiteringDuration"] = $scope.VA[index].DefinedAreas[i].LoiteringDuration;   
+                        if(removeIndex.length > 0){
+                            removeData["DefinedAreaIndex"] = removeIndex.join(',');
+                            isRemoved++;
+                        }
+                    } else {
+                        if (pageData.VA[index].DefinedAreas !== undefined) {
+                            removeData["DefinedAreaIndex"] = 'All';
+                            isRemoved++;
                         }
                     }
 
-                    //removeData 찾기
-                    var removeIndex = getRemovedIndex(true);
-
-                    if(removeIndex.length > 0){
-                        removeData["DefinedAreaIndex"] = removeIndex.join(',');
-                        isRemoved++;
-                    }
-                } else {
-                    if (pageData.VA[index].DefinedAreas !== undefined) {
-                        removeData["DefinedAreaIndex"] = 'All';
-                        isRemoved++;
-                    }
+                    setData["DetectionType"] = detectionType;
+                    isSetted++;
                 }
 
-                setData["DetectionType"] = detectionType;
+                setData['DetectionType'] = detectionType;
                 isSetted++;
-            }
 
-            setData['DetectionType'] = detectionType;
-            isSetted++;
+                if (isRemoved) {
+                    queue.push({
+                        // url: $scope.va2CommonCmd + '&action=remove',
+                        url: '/stw-cgi/ptzconfig.cgi?msubmenu=presetvideoanalysis2&action=remove',
+                        reqData: removeData
+                    });
+                }
 
-            if (isRemoved) {
-                queue.push({
-                    url: $scope.va2CommonCmd + '&action=remove',
-                    reqData: removeData
+                if (isSetted) {
+                    queue.push({
+                        // url: $scope.va2CommonCmd + '&action=set',
+                        url: '/stw-cgi/ptzconfig.cgi?msubmenu=presetvideoanalysis2&action=set',
+                        reqData: setData
+                    });
+                }
+            } else {
+                var url = '';
+                if($scope.orgDetectionType === "MDAndIV") {
+                    url = $scope.va2CommonCmd + '&action=set&DetectionType=MotionDetection';
+                } else if($scope.orgDetectionType === "IntelligentVideo" || $scope.orgDetectionType === "Off") {
+                    url = $scope.va2CommonCmd + '&action=set&DetectionType=Off';
+                }
+                var getData = {};
+                SunapiClient.get(url, getData, function(response) {
+                    // console.info(response);
+                    $scope.sketchinfo = {};
+                    // $scope.currentTableData = null;
+                },
+                function(errorData) {
+                    console.log(errorData);
                 });
             }
-
-            if (isSetted) {
-                queue.push({
-                    url: $scope.va2CommonCmd + '&action=set',
-                    reqData: setData
-                });
-            }
-        } else {
-            var url = '';
-            if($scope.orgDetectionType === "MDAndIV") {
-                url = $scope.va2CommonCmd + '&action=set&DetectionType=MotionDetection';
-            } else if($scope.orgDetectionType === "IntelligentVideo" || $scope.orgDetectionType === "Off") {
-                url = $scope.va2CommonCmd + '&action=set&DetectionType=Off';
-            }
-            var getData = {};
-            SunapiClient.get(url, getData, function(response) {
-                // console.info(response);
-                $scope.sketchinfo = {};
-                // $scope.currentTableData = null;
-            },
-            function(errorData) {
-                console.log(errorData);
-            });
         }
 
         return queue;
@@ -992,13 +1012,20 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                         $scope.VA[index] = angular.copy(response.data.PresetVideoAnalysis[0].Presets[0]);
                         $scope.VA[index].DetectionType = detectionPreset.DetectionType;
 
-                        var str = presetVA.MinimumObjectSizeInPixels.split(',');
+                        var str = presetVA.ObjectSizeByDetectionTypes[1].MinimumObjectSizeInPixels.split(',');
                         $scope.VA[index].MinWidth = Math.round(str[0]);
                         $scope.VA[index].MinHeight = Math.round(str[1]);
-
-                        var str = presetVA.MaximumObjectSizeInPixels.split(',');
+                        var str = presetVA.ObjectSizeByDetectionTypes[1].MaximumObjectSizeInPixels.split(',');
                         $scope.VA[index].MaxWidth = Math.round(str[0]);
                         $scope.VA[index].MaxHeight = Math.round(str[1]);
+
+                        // var str = presetVA.MinimumObjectSizeInPixels.split(',');
+                        // $scope.VA[index].MinWidth = Math.round(str[0]);
+                        // $scope.VA[index].MinHeight = Math.round(str[1]);
+
+                        // var str = presetVA.MaximumObjectSizeInPixels.split(',');
+                        // $scope.VA[index].MaxWidth = Math.round(str[0]);
+                        // $scope.VA[index].MaxHeight = Math.round(str[1]);
 
                         $scope.VA[index].MinWidthMin = $scope.EventSourceOption.MinimumObjectSizeInPixels.Width;
                         $scope.VA[index].MinWidthMax = $scope.VA[index].MaxWidth;
@@ -1552,7 +1579,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 console.log(errorData);
             });
         }
-        
+
         return queue;
     }
 
@@ -1618,7 +1645,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             if($scope.presetTypeData.SelectedPresetType == 0){
                 viewEndMax = 5;
             }else{
-                promises.push(getPresetVideoAnalysisDetectionPreset);
+                // promises.push(getPresetVideoAnalysisDetectionPreset);
                 viewEndMax = 6;
             }
         }
@@ -1815,15 +1842,15 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                     }
 
                     if ($scope.PTZModel && $scope.VA.length > 1) {
-                        // queue = queue.concat(setPresetVideoAnalysis());
-                        for (var i = 0; i < $scope.VA.length - 1; i++)
-                        {
-                            var index = i + 1;
-                            if (!angular.equals(pageData.VA[index], $scope.VA[index]))
-                            {
-                                queue = queue.concat(setPresetVideoAnalysis(index));
-                            }
-                        }
+                        queue = queue.concat(setPresetVideoAnalysis());
+                        // for (var i = 0; i < $scope.VA.length - 1; i++)
+                        // {
+                        //     var index = i + 1;
+                        //     if (!angular.equals(pageData.VA[index], $scope.VA[index]))
+                        //     {
+                        //         queue = queue.concat(setPresetVideoAnalysis(index));
+                        //     }
+                        // }
                     } else {
                         if (!angular.equals(pageData.VA[0], $scope.VA[0]) || detectionType !== pageDetectionType) {
                             queue = queue.concat(setVideoAnalysis());
@@ -2213,117 +2240,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     function setCommonMenuAbled() {
         $("#common").attr('disabled', false);
         $("#common .slider-fields").css("pointer-events", "auto");
-    }
-
-    function updateMDVARegion2(tabVal, changeOnlyTableData) { // According to tabVal, set $scope.tableData
-
-        function setTableBuffer(){
-            for(var i = 0; i < 8; i++){
-                result.push({
-                    index: null,
-                    Type: null,
-                    Mode: '',
-                    isEnabled: null,
-                    Coordinates: null
-                });
-            }
-        }
-
-        function updateTableData(startIndex, isArea){
-
-            setTableBuffer();
-
-            var obj = isArea ? definedAreas : lines;
-            var indexKey = isArea ? "DefinedArea" : "Line";
-
-            for(var i = 0, ii = obj.length; i < ii; i++){
-                var self = obj[i];
-                var index = self[indexKey];
-                if(index >= startIndex && index <= startIndex + 8){
-                    var isEnabled = true;
-                    // if($scope.currentTableData !== null) { // set as current isEnabled info except for initial setting when the info is null
-                    //     if($scope.currentTableData[i].isEnabled !== null) {
-                    //         isEnabled = $scope.currentTableData[i].isEnabled;
-                    //     }
-                    // }
-                    result[index - startIndex - 1] = {
-                        index: index,
-                        Type: self.Type,
-                        Mode: self.Mode,
-                        isEnabled: isEnabled,
-                        Coordinates: self.Coordinates
-                    };
-                }
-            }
-        }
-
-        var detectionType = getCurrentDetectionType();
-        if($scope.VA[$scope.presetTypeData.SelectedPreset] === undefined || detectionType === "Off" || detectionType === "MotionDetection") {
-            setCommonMenuDisabled();
-            $scope.sketchinfo = {}
-            var tTable = [];
-            for(var i = 0; i < 8; i++){
-                tTable.push({
-                    index: null,
-                    Type: null,
-                    Mode: '',
-                    isEnabled: null,
-                    Coordinates: null
-                });
-            }
-            $scope.currentTableData = tTable;
-            // return;
-        } else {
-            var result = [];
-            var startIndex = 0;
-            var va = $scope.VA[$scope.presetTypeData.SelectedPreset];console.info(va);
-            var definedAreas = va.DefinedAreas;
-            var lines = va.Lines;
-
-            if($scope.activeTab.title === "Virtual Area") {
-                if ($scope.VA.SelectedAnalysis === undefined) {
-                    $scope.VA.SelectedAnalysis = $scope.VideoAnalyticTypes[0];
-                }
-
-                updateTableData(0, true);
-
-                $scope.includeTableData = result;
-                $scope.currentTableData = $scope.includeTableData;
-                $scope.SelectedAnalysis = "Entering"; // set inital type
-                // console.info('updateMDVARegion2 :: Virtual Area');
-                if(changeOnlyTableData !== true){
-                    drawVaArea('Include'); 
-                }
-                $scope.selectColumn($scope.currentSelectedIncludeColumn);
-            } else if($scope.activeTab.title === "Excluded Area") {
-                updateTableData(8, true);
-
-                $scope.excludeTableData = result;
-                $scope.currentTableData = $scope.excludeTableData;
-
-                $scope.SelectedAnalysis = "Entering"; // set inital type
-                // console.info('updateMDVARegion2 :: Excluded Area');
-                if(changeOnlyTableData !== true){
-                    drawVaArea('Exclude');
-                }
-                $scope.selectColumn($scope.currentSelectedExcludeColumn);
-            } else if($scope.activeTab.title === "Virtual Line") {
-                updateTableData(0, false);
-
-                $scope.lineTableData = result;
-                $scope.currentTableData = $scope.lineTableData;
-                // console.info('updateMDVARegion2 :: Virtual Line');
-                $scope.SelectedAnalysis = "Passing"; // set inital type
-                if(changeOnlyTableData !== true){
-                    drawVaLine();
-                }
-                $scope.selectColumn($scope.currentSelectedLineColumn);
-            } else if($scope.activeTab.title === "Common") {
-                // setInitialObjectSize();
-                drawSizeArea();
-                setCommonMenuAbled();
-            }
-        }
     }
 
     function updateMDVARegion2(tabVal, changeOnlyTableData) { // According to tabVal, set $scope.tableData

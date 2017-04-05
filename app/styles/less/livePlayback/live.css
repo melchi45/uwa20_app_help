@@ -330,22 +330,6 @@
   height: 1em;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-status .cm-status-wrap .cm-status-col .cm-table ::-webkit-scrollbar-button:vertical {
-  /*
-                                    background: url('https://pixabay.com/static/uploads/photo/2015/10/07/10/55/arrow-975992_960_720.png') no-repeat center center;
-                                    background-size:cover;
-                                    position: relative;
-
-                                    &::after {
-                                        content: "";
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        border-color: #505050 transparent;
-                                        border-left: 2px solid;
-                                        border-top: 3px solid;
-                                        border-right: 2px solid;
-                                    }
-                                    */
   background: #666;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-status .cm-status-wrap .cm-status-col .cm-table ::-webkit-scrollbar-track-piece {
@@ -475,18 +459,21 @@
     max-height: none;
     height: 150px;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div,
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .live-channel-selector {
     width: 100%;
     height: 40px;
     padding: 0;
     text-align: center;
     border: none;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > * {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > *,
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .live-channel-selector > * {
     display: inline-table;
     float: none;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > button {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list #playback-channel-holder > div > button,
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .live-channel-selector > button {
     margin-top: 8px;
   }
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-icon-list .info-toggle {

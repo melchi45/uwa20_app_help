@@ -694,6 +694,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
 
                     mAttributes.MaxAlarmOutput = XMLParser.parseAttributeSection(response.data, 'IO/Limit/MaxAlarmOutput');
                     mAttributes.RS485Support = XMLParser.parseAttributeSection(response.data, 'IO/Support/RS485');
+                    mAttributes.RS422Support = XMLParser.parseAttributeSection(response.data, 'IO/Support/RS422');
 
                     mAttributes.MaxUser = XMLParser.parseAttributeSection(response.data, 'Security/Limit/MaxUser');
 

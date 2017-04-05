@@ -297,6 +297,14 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         {
           $scope.OSDCharSet = mAttr.OSDCharSet;
         }
+        $scope.defaultOSDPoint = {};
+        $scope.defaultOSDPoint.dateTime = {
+            pointX: 1,
+            pointY: 2
+        };
+        if($scope.PTZModel){
+            $scope.defaultOSDPoint.dateTime.pointY = 3;
+        }
 
         $scope.EnableOptions = mAttr.EnableOptions;
         $scope.EnableDropdownOptions = mAttr.EnableDropdownOptions;
@@ -3959,7 +3967,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             functionList.push(focusSet);
         }
 
-        if ($scope.HeaterSupport) {
+        if ($scope.HeaterSupport && $scope.PTZModel !== true) {
             functionList.push(heaterScheduleSet);
         }
 
@@ -5489,7 +5497,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 }
             }
 
-            var xCeil = 1;
+            var xCeil = $scope.defaultOSDPoint.dateTime.pointX;
 
             if ($scope.DateOSD[0].WeekDay) {
                 xCeil = $scope.dateMax.PositionX - $scope.OffsetToReduceOnWeekDay;
@@ -5507,7 +5515,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $scope.DatePositionYSliderOptions.floor = $scope.PositionY.minValue;
             $scope.DatePositionYSliderOptions.ceil = $scope.dateMax.PositionY;
 
-            var yFloor = 2;
+            var yFloor = $scope.defaultOSDPoint.dateTime.pointY;
 
             $scope.DateOSD[0].PositionX = $scope.DatePositionXSliderOptions.floor;
             $scope.DateOSD[0].PositionY = yFloor;
@@ -6583,7 +6591,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             promises.push(cameraView);
         }
 
-        if ($scope.HeaterSupport) {
+        if ($scope.HeaterSupport && $scope.PTZModel !== true) {
             promises.push(heaterScheduleView);
         }
 
