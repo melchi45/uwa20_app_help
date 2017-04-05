@@ -114,12 +114,15 @@
                     </div>
                 </div>
                 <div ng-show="tab === 'EventLog'">
-                    <div class="form-group" ng-if="ChannelTypes.length > 2">
+                    <div style="margin-left:15px" ng-if="isMultiChannel === true">
+                        <setup-channel-selector use-info="false"></setup-channel-selector>
+                    </div>
+                    <!-- <div class="form-group" ng-if="ChannelTypes.length > 2">
                         <div class="wn5-setup-section-article-heading">{{ 'lang_Channel' | translate }}</div>
                         <div class="col-xs-5">
                             <select class="form-control" id="ChannelId" ng-model="SelectedChannel" ng-change="onEvtLogChange()"><option ng-selected="SelectedChannel == Type" value={{Type}} ng-repeat="Type in ChannelTypes">{{getTranslatedOption(Type)}}</option></select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="wn5-setup-section-article form-group">
                         <div class="wn5-setup-section-article-heading">{{ 'lang_logType' | translate }}</div>
                         <div class="wn5-setup-section-article-content">
