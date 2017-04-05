@@ -293,24 +293,23 @@
                         </select>
                     </div>
                 </div>
-                <div class="wn5-setup-section">
-                    <hr class="wn5-setup-hr">
-                    <div class="wn5-setup-section-heading">
-                        <h3>
-                            {{ 'lang_normalRecordSetup' | translate }}
-                        </h3>
-                    </div>
-                    <div class="wn5-setup-section-article form-group">
-                        <div class="wn5-setup-section-article-content">
-                            <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
-                                <input class="radio" name="Activate" ng-model="RecordSchedule.Activate" ng-value="Activate" type="radio">
-                                <div ng-if="Activate === 'Scheduled'">
-                                {{ 'lang_recording_only_schedule' | translate }}
-                                </div>
-                                <div ng-if="Activate === 'Always'">
-                                    {{ 'lang_recording_always' | translate }}
-                                </div>
-                            </div>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_normalRecordSetup' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
+                        <input class="radio" name="Activate" ng-model="RecordSchedule.Activate" ng-value="Activate" type="radio">
+                        <div ng-if="Activate === 'Scheduled'">
+                        {{ 'lang_recording_only_schedule' | translate }}
+                        </div>
+                        <div ng-if="Activate === 'Always'">
+                            {{ 'lang_recording_always' | translate }}
                         </div>
                     </div>
                 </div>
