@@ -175,6 +175,7 @@ kindFramework
 			this.playbackInfo.endTime = $filter('date')(playData.getEndTime(), 'yyyyMMddHHmmss');
 			this.playbackInfo.id = searchData.getOverlapId();
 			this.playbackInfo.channel =  UniversialManagerService.getChannelId();
+			$rootScope.$emit('channelSelector:off', true);
 			$rootScope.$emit('app/scripts/services/playbackClass::disableButton', true);
 			$rootScope.$emit("channelPlayer:command", "playback", this.playbackInfo, 
 				{'timeCallback' : this.timelineCallback, 'errorCallback' : this.playbackErrorCallback});
@@ -269,6 +270,7 @@ kindFramework
 		};
 		PlaybackInterface.playbackErrorCallback = function(error) {
 			console.log("errorcode:", error.errorCode, "error string:", error.description);
+			$rootScope.$emit('channelSelector:on', true);
 		  $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
 		  var playData = new PlayDataModel();
 		  if (error.errorCode !== "200" && error.errorCode !== "777") {
@@ -321,6 +323,7 @@ kindFramework
 		};
 		var backupErrorCallback = function(error) {
 		  console.log("errorcode:", error.errorCode, "error string:", error.description);
+			$rootScope.$emit('channelSelector:on', true);
 		  $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
 		  $rootScope.$emit('app/scripts/services/playbackClass::setDefaultPlaybackMode');
 		  if( error.description === 'backup' ) {

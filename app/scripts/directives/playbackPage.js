@@ -50,15 +50,29 @@ kindFramework
           var playData = new PlayDataModel();
           var waitChangePlaySpeed = false;
           var delayOpenPopup = false;
+          var block = {
+            scenario : false,
+            browser : false,
+          };
           scope.disableButton = false;
           scope.disableSpeedIcon = true;
           scope.disableStepIcon = true;
           scope.disableBackupIcon = true;
+          var setButtonStatus = function(scenario, browser) {
+            block.scenario = scenario;
+            block.browser = browser;
+            if( block.scenario || block.browser ) {
+              scope.disableButton = true;
+            } else {
+              scope.disableButton = false;
+            }
+          };
           var PLAY_CMD = PLAYBACK_TYPE.playCommand;
           var playback = scope.playback = {
             isPlay: playData.getStatus() === PLAY_CMD.PLAY? true : false,
             visibilitySpeedPopup: false,
             play: function() {
+              if( scope.disableButton === true ) return;
               $rootScope.$emit('changeLoadingBar', false);
               $rootScope.$emit('blockTimebarInputField', true);
               playback.isPlay = scope.disableStepIcon = true;
@@ -140,7 +154,7 @@ kindFramework
             },
             backup : function() {
               scope.timelineController.changeTimelineMode(1);
-              scope.disableButton = true;
+              setButtonStatus(true,block.browser);
             },
             changeSpeaker: function(){
               if(UniversialManagerService.isSpeakerOn()){
@@ -261,17 +275,17 @@ kindFramework
           }, scope);
 
           $rootScope.$saveOn('app/scripts/services/playbackClass::disableButton', function(event, data) {
-            if( scope.disableButton !== data ) {
-              scope.disableButton = data;
+            if( block.scenario !== data ) {
+              setButtonStatus(data, block.browser);
             }
           }, scope);
 
           $rootScope.$saveOn('app/scripts/directives/channelPlayer.js:disablePlayback', function(event, data) {
             if( data === true ) {
-              scope.disableButton = true;
+              setButtonStatus(block.scenario, true);
               scope.disableBackupIcon = true;
             } else {
-              scope.disableButton = false;
+              setButtonStatus(block.scenario, false);
             }
           }, scope);
 
@@ -294,7 +308,7 @@ kindFramework
           * If there is no any recording data, then disabled backup icon
           */
           $rootScope.$saveOn('app/scripts/directives/timeline.js::timelineDataCount', function(event, data) {
-            if( scope.disableButton === true ) return;
+            if( block.browser === true ) return;
             if( data > 0 ) {
               scope.disableBackupIcon = false;
               /*Non plugin doesn't support backup*/
