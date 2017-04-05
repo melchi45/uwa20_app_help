@@ -167,12 +167,28 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         {
             retVal = mAttr.SimpleFocus;
         }
-        else if (menuId === "ptz" || menuId === "rs485" || menuId === "ptzInfoSetup" || menuId === "preset" || menuId === "sequence" || menuId === "ptLimit" || menuId === "autoTrack" || menuId === "autoTrackEvent")
+        else if (menuId === "ptz" || menuId === "ptzInfoSetup" || menuId === "preset" || menuId === "sequence" || menuId === "ptLimit" || menuId === "autoTrack" || menuId === "autoTrackEvent")
         {
             if (menuId === "preset" || menuId === "sequence"){ // -> page change : ptzInfoSetup 
                 retVal = false;
             } else {
                 retVal = mAttr.PTZModel;
+            }
+        }
+        else if (menuId === "rs485" || menuId === "rs485422")
+        {
+            if(menuId === "rs485"){
+                if(mAttr.PTZModel == true && mAttr.RS422Support == false){
+                    retVal = true;
+                }else{
+                    retVal = false;
+                }
+            }else{
+                if(mAttr.PTZModel == true && mAttr.RS422Support == false){
+                    retVal = false;
+                }else{
+                    retVal = true;
+                }
             }
         }
         else if (menuId === "presetZoom")

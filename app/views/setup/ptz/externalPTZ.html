@@ -101,6 +101,13 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group" ng-show="PTZModel">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_termination' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <input type="checkbox" name="Enable" ng-model="Serial.SignalTermination">
+                                            {{ 'lang_enable' | translate }}
+                                        </div>
+                                    </div>
                                     <div class="form-group" ng-show="ExternalPTZModel">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_dataBit' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
