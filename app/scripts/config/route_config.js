@@ -227,6 +227,12 @@ kindFramework.constant('ROUTE_CONFIG', {
                         },
                         {
                             urlName: 'rs485',
+                            name: 'RS 485',
+                            templateUrl: 'views/setup/ptz/externalPTZ.html',
+                            controller: 'externalPTZCtrl'
+                        },
+                        {
+                            urlName: 'rs485422',
                             name: 'lang_menu_rs485',
                             templateUrl: 'views/setup/ptz/externalPTZ.html',
                             controller: 'externalPTZCtrl'

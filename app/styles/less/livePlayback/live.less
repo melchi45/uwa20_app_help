@@ -415,22 +415,6 @@
                             }
                             ::-webkit-scrollbar-button {
                                 &:vertical {
-                                    /*
-                                    background: url('https://pixabay.com/static/uploads/photo/2015/10/07/10/55/arrow-975992_960_720.png') no-repeat center center;
-                                    background-size:cover;
-                                    position: relative;
-
-                                    &::after {
-                                        content: "";
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        border-color: #505050 transparent;
-                                        border-left: 2px solid;
-                                        border-top: 3px solid;
-                                        border-right: 2px solid;
-                                    }
-                                    */
                                     background: #666;
                                 }
                             }
@@ -607,22 +591,21 @@
                     max-height: none;
                     height: 150px;
 
-                    #playback-channel-holder {
-                        & > div {
-                            width: 100%;
-                            height: 40px;
-                            padding: 0;
-                            text-align: center;
-                            border: none;
+                    #playback-channel-holder > div,
+                    .live-channel-selector {
+                        width: 100%;
+                        height: 40px;
+                        padding: 0;
+                        text-align: center;
+                        border: none;
 
-                            & > * {
-                                display: inline-table;
-                                float: none;
-                            }
+                        & > * {
+                            display: inline-table;
+                            float: none;
+                        }
 
-                            & > button {
-                                margin-top: 8px;
-                            }
+                        & > button {
+                            margin-top: 8px;
                         }
                     }
 
