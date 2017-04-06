@@ -510,7 +510,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if($scope.PTZModel){
             // PTZ Model
             $scope.tabMenu.Sensor = true;
-            $scope.tabMenu.DayNight = false;
+            $scope.tabMenu.DayNight = true;
 
             if($scope.presetTypeData.SelectedPresetType==0){
                 //Global
@@ -522,14 +522,16 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 $scope.tabMenu.Special = true;
                 $scope.tabMenu.OSD = $scope.MaxOSDTitles ? true : false;
                 $scope.tabMenu.Focus = true;
-                $scope.tabMenu.Heater= $scope.HeaterSupport;
+                $scope.tabMenu.Heater = $scope.HeaterSupport;
                 $scope.tabMenu.IR = $scope.IRledModeOptions !== undefined ? true : false;
+                $scope.tabMenu.DayNight = true;
 
                 $scope.tabUI.SSDR = 0;
                 $scope.tabUI.WhiteBalance = 0;
                 $scope.tabUI.Exposure = 0;
                 $scope.tabUI.Special = 0;
                 $scope.tabUI.Focus = 0;
+                $scope.tabUI.DayNight = 0;
             }else{
                 //Preset
                 $scope.tabMenu.Sensor = false;
@@ -540,14 +542,16 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 $scope.tabMenu.Special = true;
                 $scope.tabMenu.OSD = false;
                 $scope.tabMenu.Focus = true;
-                $scope.tabMenu.Heater= $scope.HeaterSupport;
+                $scope.tabMenu.Heater = false;//$scope.HeaterSupport;
                 $scope.tabMenu.IR = false;
+                $scope.tabMenu.DayNight = true;
 
                 $scope.tabUI.SSDR = 1;
                 $scope.tabUI.WhiteBalance = 1;
                 $scope.tabUI.Exposure = 1;
                 $scope.tabUI.Special = 1;
                 $scope.tabUI.Focus = 1;
+                $scope.tabUI.DayNight = 1;
             }
         }else if($scope.ZoomOnlyModel){
             $scope.tabMenu.Sensor = true;
@@ -559,7 +563,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $scope.tabMenu.Special = true;
             $scope.tabMenu.OSD = $scope.MaxOSDTitles ? true : false;
             $scope.tabMenu.Focus = true;
-            $scope.tabMenu.Heater= $scope.HeaterSupport;
+            $scope.tabMenu.Heater = $scope.HeaterSupport;
             $scope.tabMenu.IR = $scope.IRledModeOptions !== undefined ? true : false;
 
             $scope.tabUI.SSDR = 0;
@@ -577,7 +581,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $scope.tabMenu.Special = true;
             $scope.tabMenu.OSD = $scope.MaxOSDTitles ? true : false;
             $scope.tabMenu.Focus = false;
-            $scope.tabMenu.Heater= $scope.HeaterSupport;
+            $scope.tabMenu.Heater = $scope.HeaterSupport;
             $scope.tabMenu.IR = $scope.IRledModeOptions !== undefined ? true : false;
 
             $scope.tabUI.SSDR = 0;
@@ -1260,13 +1264,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         $scope.minBLCWidthLength = $scope.BLCAreaRight.maxValue - $scope.BLCAreaLeft.maxValue;
         $scope.maxBLCLength = $scope.BLCAreaTop.maxValue;
 
-        if($scope.PTZModel){
-            if (rotate == '90' || rotate == '270'){
-                $scope.maxBlcLength = $scope.BLCAreaLeft.maxValue;
-            } else {
-                $scope.maxBlcLength = $scope.BLCAreaTop.maxValue;
-            }
-        }
+        //if($scope.PTZModel){
+        //    if (rotate == '90' || rotate == '270'){
+        //        $scope.maxBlcLength = $scope.BLCAreaLeft.maxValue;
+        //    } else {
+        //        $scope.maxBlcLength = $scope.BLCAreaTop.maxValue;
+        //    }
+        //}
     }
 
     function initHLCBoundary() {
@@ -1417,6 +1421,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         });
     };
 
+    $scope.getHeaterTranslation = function (option) {
+        if (mAttr.PTZModel && option == 'Heater') {
+            return COMMONUtils.getTranslatedOption('Heater / Pan');
+        } else {
+            return COMMONUtils.getTranslatedOption(option)
+        }
+    };
     $scope.heaterEveryDayChanged = function () {
 
         /** nothing to do while disabling daynight schedule  */
@@ -2230,6 +2241,15 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             vertical: false,
             disabled: false
         };
+        if($scope.PresetImageConfig.length > 0 
+                && (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] != 'undefined')){
+            if($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.SharpnessEnable === false){
+                $scope.PresetSharpnessSliderOptions.disabled = true;
+            } else {
+                $scope.PresetSharpnessSliderOptions.disabled = false;
+            }
+        }
+        
 
         $scope.PresetSaturationSliderOptions = {
             floor: $scope.PresetSaturation.minValue,
@@ -2256,7 +2276,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             if($scope.PresetImageConfig.length > 0 
                 && (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] != 'undefined')){
                 
-                if($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode === 'Off'){
+                
+                if($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode === 'Off' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode === 'Auto'){
                     $scope.PresetDefogLevelSliderOptions.disabled = true;
                 } else {
                     $scope.PresetDefogLevelSliderOptions.disabled = false;
@@ -2307,6 +2328,14 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         
         if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true && $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable == true){
             $scope.disChanged.preset = true;
+            $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable = false;
+        } else {
+            $scope.disChanged.preset = false;
+        }
+    };
+    $scope.onPresetDefogEnableChange = function () {
+        if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode == true){
+            $scope.PresetDefogLevel.preset = true;
             $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable = false;
         } else {
             $scope.disChanged.preset = false;
@@ -5138,6 +5167,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     $scope.getIRModeTranslation = function (option) {
         if (mAttr.PTZModel && option == 'Schedule') {
             return COMMONUtils.getTranslatedOption('Timed');
+        } else if (mAttr.PTZModel && option == 'Heater') {
+            return COMMONUtils.getTranslatedOption('Heater/Pan');
         } else {
             return COMMONUtils.getTranslatedOption(option)
         }
