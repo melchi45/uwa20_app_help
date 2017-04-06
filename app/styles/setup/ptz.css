@@ -312,17 +312,20 @@
 		#ptz-control_at-selectable{
 			width: 210px;
 			height: 138px;
-			background-color: #eee;
+			/*background-color: #eee;*/
 			float:left;
             cursor: default;
 			overflow-y: hidden;
 			overflow-x: hidden;
+			position: relative;
 		}
 		#ptz-control_at-selectable .video-setup-table{
 			width: 100%;
+			position: absolute;
+			bottom: 0;
 		}
 		#ptz-control_at-selectable .video-setup-table tbody{
-			height: 100px;
+			max-height: 100px;
 		}
 		#ptz-control_at-selectable .ui-selected{
 			background-color:#ccc;
@@ -480,3 +483,7 @@
 .wp25{width: 25% !important;}
 .wp50{width: 50% !important;}
 .pad0{padding: 0;}
+
+.tui-ch-live-ptz-tracking-auto-on.active {
+  color: #f37321;
+}

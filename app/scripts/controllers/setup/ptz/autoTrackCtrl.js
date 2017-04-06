@@ -94,7 +94,9 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
                         $scope.ptzinfo = {
                             type: 'AT',
                             TrackingAreas : angular.copy($scope.AutoTracking.TrackingAreas),
-                            isViewTrackingData : true
+                            isViewTrackingData : true,
+                            autoTrackingFlag : response.data.AutoTracking[0].Enable,
+                            selectTrackingArea : data.name
                         };
                     },
                     function (errorData) {
@@ -177,7 +179,8 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
                 $scope.ptzinfo = {
                     type: 'AT',
                     TrackingAreas: angular.copy($scope.AutoTracking.TrackingAreas),
-                    isViewTrackingData: true
+                    isViewTrackingData: true,
+                    autoTrackingFlag : response.data.AutoTracking[0].Enable
                 };
 
                 pageData.AutoTracking = angular.copy($scope.AutoTracking);
