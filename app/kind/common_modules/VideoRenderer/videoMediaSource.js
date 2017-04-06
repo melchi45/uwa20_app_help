@@ -180,7 +180,7 @@ function VideoMediaSource() {
           }
         }
       } else {
-        delay = (browserType === "chrome" ? 0.2 : 2);
+        delay = (browserType === "chrome" ? 0.5 : 2);
       }
 
       diffTime = (videoElement.currentTime === 0 ? endTime - startTime : endTime - (videoElement.currentTime + delay));
