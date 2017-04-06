@@ -224,8 +224,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         };
         if($scope.MaxChannel > 1) setData.Channel = $scope.Channel;
 
-        console.info(setData, 'set record general');
-
         if (pageData.RecordGeneralInfo.RecordedVideoFileType !== $scope.RecordGeneralInfo.RecordedVideoFileType) {
             $scope.needReload = true;
         }
@@ -235,7 +233,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             url: '/stw-cgi/recording.cgi?msubmenu=general&action=set',
             reqData: setData,
             successCallback: function(response) {
-                console.info(response, 'save gene');
                 pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
             }
         });
@@ -249,8 +246,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         //         $scope.RecordProfileName = $scope.VideoProfile[i].Name;
         //     }
         // }
-
-        console.info($scope.RecordGeneralInfo);
 
         $scope.RecordGeneralInfo.NormalMode = $scope.RecordGeneralInfo.NormalMode;
         $scope.RecordGeneralInfo.EventMode = $scope.RecordGeneralInfo.EventMode;
@@ -272,7 +267,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             {
                 var diff = $(pageData.RecordSchedule.ScheduleIds).not($scope.RecordSchedule.ScheduleIds).get(),
                     sun = 0, mon = 0, tue = 0, wed = 0, thu = 0, fri = 0, sat = 0;
-
 
                 for (var s = 0; s < diff.length; s++) {
                     var str = diff[s].split('.');
@@ -680,6 +674,8 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
+
+            console.info($scope.RecordSchedule);
         }, function(errorData) {
             console.error(errorData);
         }, '', true);
@@ -725,7 +721,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         // getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
             $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
-            console.info($scope.VideoProfilePolicies);
             $scope.RecordProfileName = $scope.VideoProfile[$scope.VideoProfilePolicies.RecordProfile].Name;
         }, function(errorData) {
             console.log(errorData);
@@ -840,7 +835,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             var templete = angular.element("<scheduler></scheduler>");
             $compile(templete)($scope);
 
-            console.info('is schedule', templete);
             scheduler.append(templete);
 
         }, function(errorData) {
@@ -859,7 +853,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
             SunapiClient.sequence(queue, function(){
                 if (needRefresh) {
-                    console.info('refresh');
                     $rootScope.$emit('changeLoadingBar', true);
                     window.setTimeout(view, 1000);
                 } else {
@@ -1128,6 +1121,8 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         return $scope.storageDeviceType;
     }
 
+
+
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
         var okay = true;
 
@@ -1136,8 +1131,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                 if(!eventRuleService.checkRecordSchedulerValidation()) okay = false;
             }
         } else okay = false;
-
-        console.info('record activate okay', okay);
         
 
         if(!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) okay = false;
@@ -1164,7 +1157,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     }, $scope);
 
     (function wait() {
-        console.info('wait');
         if (!mAttr.Ready) {
             $timeout(function() {
                 mAttr = Attributes.get();
