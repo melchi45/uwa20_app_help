@@ -248,6 +248,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
               timelineCtrl.resetTimeRange();
             break;
           }
+
           $rootScope.$emit('channelSelector:on', true);
           $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
           $scope.timelineControl.changeTimelineMode(mode);
@@ -351,6 +352,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
             'overlapList':overlapId,
             'recordedDate':recordedDate
           });
+
           $rootScope.$emit('channelSelector:off', true);
           $rootScope.$emit('app/scripts/services/playbackClass::disableButton', true);
           scope.control.changeTimelineMode(3);

@@ -28,9 +28,17 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						this.show = value;
 					},
 					apply: function(value){
-                        scope.ptzPreset("Add");
-						this.show = false;
-						$("#live-ptz-tabs").removeClass('cm-display-none');
+                        if(scope.addPresetting.SelectedName === null || scope.addPresetting.SelectedName === undefined)
+                        {
+                            var ErrorMessage = 'lang_msg_validPresetName';
+                            COMMONUtils.ShowError(ErrorMessage,'md');
+                        }
+                        else
+                        {
+                            scope.ptzPreset("Add");
+                            this.show = false;
+                            $("#live-ptz-tabs").removeClass('cm-display-none');
+                        }
 					},
 					cancel: function () {
 						this.show = false;
@@ -196,11 +204,11 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 							$("#live-ptz-tabs").addClass('cm-display-none');
 							scope.presetAddForm.show = true;
 						}else if(value === 'Add') {
-							sunapiURI = "/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=add&Preset="+scope.addPresetting.SelectedNumber+"&Name="+scope.addPresetting.SelectedName;
-							execSunapi(sunapiURI, function(){
-								run('preset', scope.addPresetting.SelectedNumber, 'Start');
-								getSettingPresetList();
-							});
+                            sunapiURI = "/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=add&Preset="+scope.addPresetting.SelectedNumber+"&Name="+scope.addPresetting.SelectedName;
+                            execSunapi(sunapiURI, function(){
+                                run('preset', scope.addPresetting.SelectedNumber, 'Start');
+                                getSettingPresetList();
+                            });
 						}else{
 							throw "Wrong Argument";
 						}

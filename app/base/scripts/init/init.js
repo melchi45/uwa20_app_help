@@ -8,7 +8,10 @@ var app = {
         window.isPhone = false;
         var documentUrl = document.URL;
         
-        if (documentUrl.indexOf("http://") === -1 && documentUrl.indexOf("https://") === -1) {
+        if (
+            documentUrl.indexOf("file://") === -1 &&
+            documentUrl.indexOf("http://") === -1 &&
+            documentUrl.indexOf("https://") === -1) {
             window.isPhone = true;
         }
         return window.isPhone;
