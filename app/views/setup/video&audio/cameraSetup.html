@@ -19,12 +19,6 @@
                     <!-- //PTZ Control End -->
                 </div>
 
-                <div class="form-group" ng-if="ImagePresetModeOptions && ImagePreset !== undefined && presetTypeData.SelectedPresetType == 0">
-                    <div id="ImagePresetModeLabel" class="wn5-setup-section-article-heading">{{ 'lang_imagePreset' | translate }}</div>
-                    <div class="wn5-setup-section-article-content">
-                        <select id="ImagePresetMode" class="form-control" ng-model="ImagePreset[ch].Mode" ng-change="handlePresetChange()" ng-options="Mode as getTranslatedOption(Mode) for Mode in ImagePresetModeOptions"></select>
-                    </div>
-                </div>
                 <div class="form-group" ng-if="PTZModel">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_type' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
@@ -35,6 +29,12 @@
                                 <select class="form-control" ng-model="presetTypeData.PresetIndex" ng-change="onPresetChange(presetTypeData.PresetIndex)" ng-options="PresetNameValueOptions.indexOf(Option) as Option.Text for Option in PresetNameValueOptions"></select>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="ImagePresetModeOptions && ImagePreset !== undefined && presetTypeData.SelectedPresetType == 0">
+                    <div id="ImagePresetModeLabel" class="wn5-setup-section-article-heading">{{ 'lang_imagePreset' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select id="ImagePresetMode" class="form-control" ng-model="ImagePreset[ch].Mode" ng-change="handlePresetChange()" ng-options="Mode as getTranslatedOption(Mode) for Mode in ImagePresetModeOptions"></select>
                     </div>
                 </div>
 
@@ -723,109 +723,10 @@
                             </div>
                         </uib-tab>
                         <uib-tab heading="{{getTranslatedOption('DayNight')}}" active="tabActiveData.dayNight" select="OnTabClick( 'DayNight')" ng-if="tabMenu.DayNight">
-                            <div class="wn5-setup-section-article wn5-setup-section-article-ratio-3-7">
-                                <div class="form-group" ng-show="Camera.DayNightMode != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-model="Camera.DayNightMode" ng-change="cameraChangeHandler()">
-                                            <option ng-selected="Camera.DayNightMode === Mode" value={{Mode}} ng-repeat="Mode in DayNightModeOptions" ng-disabled="!iSSupportedDayNightModeOption(Mode)">{{getTranslatedOption(Mode)}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group" ng-show="Camera.DayNightSwitchingTime != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_dwelltime' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-model="Camera.DayNightSwitchingTime" ng-disabled="Camera.DayNightMode != 'Auto' || Camera.AGCMode == 'Off'" ng-change="cameraChangeHandler()">
-                                            <option ng-selected="Camera.DayNightSwitchingTime === Mode" value={{Mode}} ng-repeat="Mode in DayNightSwitchingTimeOptions">{{getTranslatedOption(Mode)}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group" ng-show="Camera.DayNightSwitchingMode != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_duration' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-model="Camera.DayNightSwitchingMode" ng-disabled="Camera.DayNightMode != 'Auto' || Camera.AGCMode == 'Off'" ng-change="cameraChangeHandler()">
-                                            <option ng-selected="Camera.DayNightSwitchingMode === Mode" value={{Mode}} ng-repeat="Mode in DayNightSwitchingModeOptions">{{getTranslatedOption(Mode)}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group" ng-show="Camera.DayNightAlarmIn != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_alarmin' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-model="Camera.DayNightAlarmIn" ng-disabled="Camera.DayNightMode != 'ExternalBW'" ng-change="cameraChangeHandler()">
-                                            <option ng-selected="Camera.DayNightAlarmIn === Mode" value={{Mode}} ng-repeat="Mode in DayNightAlarmInOptions">{{getTranslatedOption(Mode)}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group" ng-show="Camera.SimpleFocus != undefined && isBoxModel == true">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_simplefocusafterdn' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <select 
-                                            class="form-control" 
-                                            ng-model="Camera.SimpleFocus" 
-                                            ng-change="cameraChangeHandler()" 
-                                            ng-options="option.value as option.text | translate for option in EnableDropdownOptions">
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div ng-if="Camera.DayNightModeSchedules != undefined" class="form-group use-margin-top">
-                                    <div class="form-group">
-                                        <div class="wn5-setup-section-article-heading">{{ 'lang_dnActivation_time' | translate }}</div>
-                                        <div class="wn5-setup-section-article-content">
-                                            <!-- <label class="control-label">{{ 'lang_startTime' | translate }} - {{ 'lang_endTime' | translate }}</label> -->
-                                            <span>{{ 'lang_startTime' | translate }} - {{ 'lang_endTime' | translate }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group" style="text-align: left">
-                                        <div class="wn5-setup-section">
-                                            <div class="wn5-setup-section-article-heading">
-                                                <input type="checkbox" ng-model="Camera.DayNightModeSchedules.EveryDay.DayNightSchedule" ng-disabled="Camera.DayNightMode != 'Schedule'" ng-change="dayNightEveryDayChanged()"> {{ 'lang_everyday' | translate }}
-                                            </div>
-                                            <div class="wn5-setup-section-article-content">
-                                                <input 
-                                                    name="EveryDay" 
-                                                    class="form-control no-clear-button" 
-                                                    type="text" 
-                                                    ng-model="Camera.DayNightModeSchedules.EveryDay.FromTo" 
-                                                    ng-disabled="Camera.DayNightMode !== 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule === false" 
-                                                    ng-readonly="Camera.DayNightMode === 'Schedule' && Camera.DayNightModeSchedules.EveryDay.DayNightSchedule !== false"
-                                                    ng-class="{'cm-readonly-click' : (Camera.DayNightMode === 'Schedule' && Camera.DayNightModeSchedules.EveryDay.DayNightSchedule !== false)}" 
-                                                    ng-click="dNScheduleUpdate('EveryDay')">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group" style="text-align: left" ng-repeat="dayName in dayNames">
-                                        <div class="wn5-setup-section">
-                                            <div class="wn5-setup-section-article-heading">
-                                                <input type="checkbox" ng-model="Camera.DayNightModeSchedules[dayName].DayNightSchedule" ng-disabled="Camera.DayNightMode !== 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true"> {{ prepareToTranslateDayName(dayName) | translate }}
-                                            </input>
-                                            </div>
-                                            <div class="wn5-setup-section-article-content">
-                                                <input 
-                                                    class="form-control no-clear-button" 
-                                                    type="text" 
-                                                    ng-model="Camera.DayNightModeSchedules[dayName].FromTo" 
-                                                    ng-disabled="Camera.DayNightMode != 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true || Camera.DayNightModeSchedules[dayName].DayNightSchedule == false" 
-                                                    ng-readonly="!(Camera.DayNightMode != 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true || Camera.DayNightModeSchedules[dayName].DayNightSchedule == false)" 
-                                                    ng-class="{'cm-readonly-click' : (!(Camera.DayNightMode != 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true || Camera.DayNightModeSchedules[dayName].DayNightSchedule == false))}"
-                                                    ng-click="dNScheduleUpdate(dayName)">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </uib-tab>
-                        <uib-tab heading="{{getTranslatedOption('Special')}}" active="tabActiveData.special" select="OnTabClick( 'Special')" ng-if="tabMenu.Special">
-                            <div ng-if="tabUI.Special === undefined || tabUI.Special == 0">
-                                <div class="form-group" ng-if="ImageEnhancements.DISEnable != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_dis' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <select name="DISEnable" class="form-control" ng-model="ImageEnhancements.DISEnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-change="onDISEnableChange()" ng-disabled="isDisDisabled()"></select>
-                                    </div>
-                                </div>
-                                <div class="form-group" ng-if="PTZModel">
+                            <div ng-if="tabUI.DayNight === undefined || tabUI.DayNight == 0">
+                                <div class="wn5-setup-section-article wn5-setup-section-article-ratio-3-7">
                                     <div class="form-group" ng-show="Camera.DayNightMode != undefined">
-                                        <div class="wn5-setup-section-article-heading">{{ 'lang_daynight' | translate }}</div>
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
                                             <select class="form-control" ng-model="Camera.DayNightMode" ng-change="cameraChangeHandler()" ng-disabled="!iSSupportedDayNightMode()">
                                                 <option ng-selected="Camera.DayNightMode === Mode" value={{Mode}} ng-repeat="Mode in DayNightModeOptions" ng-disabled="!iSSupportedDayNightModeOption(Mode)">{{getDayNightModeTranslatedOption(Mode)}}</option>
@@ -847,6 +748,109 @@
                                                 <option ng-selected="Camera.DayNightSwitchingMode === Mode" value={{Mode}} ng-repeat="Mode in DayNightSwitchingModeOptions">{{getTranslatedOption(Mode)}}</option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="form-group" ng-show="Camera.DayNightAlarmIn != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_alarmin' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Camera.DayNightAlarmIn" ng-disabled="Camera.DayNightMode != 'ExternalBW'" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="Camera.DayNightAlarmIn === Mode" value={{Mode}} ng-repeat="Mode in DayNightAlarmInOptions">{{getTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="Camera.SimpleFocus != undefined && isBoxModel == true">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_simplefocusafterdn' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select 
+                                                class="form-control" 
+                                                ng-model="Camera.SimpleFocus" 
+                                                ng-change="cameraChangeHandler()" 
+                                                ng-options="option.value as option.text | translate for option in EnableDropdownOptions">
+                                            </select>
+                                        </div>
+                                    </div>
+    
+                                    <div ng-if="Camera.DayNightModeSchedules != undefined" class="form-group use-margin-top">
+                                        <div class="form-group">
+                                            <div class="wn5-setup-section-article-heading">{{ 'lang_dnActivation_time' | translate }}</div>
+                                            <div class="wn5-setup-section-article-content">
+                                                <!-- <label class="control-label">{{ 'lang_startTime' | translate }} - {{ 'lang_endTime' | translate }}</label> -->
+                                                <span>{{ 'lang_startTime' | translate }} - {{ 'lang_endTime' | translate }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="text-align: left">
+                                            <div class="wn5-setup-section">
+                                                <div class="wn5-setup-section-article-heading">
+                                                    <input type="checkbox" ng-model="Camera.DayNightModeSchedules.EveryDay.DayNightSchedule" ng-disabled="Camera.DayNightMode != 'Schedule'" ng-change="dayNightEveryDayChanged()"> {{ 'lang_everyday' | translate }}
+                                                </div>
+                                                <div class="wn5-setup-section-article-content">
+                                                    <input 
+                                                        name="EveryDay" 
+                                                        class="form-control no-clear-button" 
+                                                        type="text" 
+                                                        ng-model="Camera.DayNightModeSchedules.EveryDay.FromTo" 
+                                                        ng-disabled="Camera.DayNightMode !== 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule === false" 
+                                                        ng-readonly="Camera.DayNightMode === 'Schedule' && Camera.DayNightModeSchedules.EveryDay.DayNightSchedule !== false"
+                                                        ng-class="{'cm-readonly-click' : (Camera.DayNightMode === 'Schedule' && Camera.DayNightModeSchedules.EveryDay.DayNightSchedule !== false)}" 
+                                                        ng-click="dNScheduleUpdate('EveryDay')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="text-align: left" ng-repeat="dayName in dayNames">
+                                            <div class="wn5-setup-section">
+                                                <div class="wn5-setup-section-article-heading">
+                                                    <input type="checkbox" ng-model="Camera.DayNightModeSchedules[dayName].DayNightSchedule" ng-disabled="Camera.DayNightMode !== 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true"> {{ prepareToTranslateDayName(dayName) | translate }}
+                                                </input>
+                                                </div>
+                                                <div class="wn5-setup-section-article-content">
+                                                    <input 
+                                                        class="form-control no-clear-button" 
+                                                        type="text" 
+                                                        ng-model="Camera.DayNightModeSchedules[dayName].FromTo" 
+                                                        ng-disabled="Camera.DayNightMode != 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true || Camera.DayNightModeSchedules[dayName].DayNightSchedule == false" 
+                                                        ng-readonly="!(Camera.DayNightMode != 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true || Camera.DayNightModeSchedules[dayName].DayNightSchedule == false)" 
+                                                        ng-class="{'cm-readonly-click' : (!(Camera.DayNightMode != 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true || Camera.DayNightModeSchedules[dayName].DayNightSchedule == false))}"
+                                                        ng-click="dNScheduleUpdate(dayName)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="tabUI.DayNight == 1">
+                                <div class="wn5-setup-section-article wn5-setup-section-article-ratio-3-7">
+                                    <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode" ng-change="presetCameraChangeHandler()" ng-disabled="!iSSupportedDayNightMode()">
+                                                <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightModeOptions" ng-disabled="!isPresetSupportedDayNightMode(Mode)">{{getDayNightModeTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_dwelltime' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime" ng-disabled="!iSSuportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
+                                                <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightSwitchingTimeOptions">{{getTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_duration' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode" ng-disabled="!iSSuportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
+                                                <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightSwitchingModeOptions">{{getTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="{{getTranslatedOption('Special')}}" active="tabActiveData.special" select="OnTabClick( 'Special')" ng-if="tabMenu.Special">
+                            <div ng-if="tabUI.Special === undefined || tabUI.Special == 0">
+                                <div class="form-group" ng-if="ImageEnhancements.DISEnable != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_dis' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select name="DISEnable" class="form-control" ng-model="ImageEnhancements.DISEnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-change="onDISEnableChange()" ng-disabled="isDisDisabled()"></select>
                                     </div>
                                 </div>
                                 <div class="form-group" ng-if="ImageEnhancements.SharpnessEnable != undefined">
@@ -995,34 +999,10 @@
                                         <select name="DISEnable" class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DISEnable" ng-change="onPresetDISEnableChange()" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="isPresetDisDisabled()"></select>
                                     </div>
                                 </div>
-                                <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_daynight' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode" ng-change="presetCameraChangeHandler()" ng-disabled="!iSSupportedDayNightMode()">
-                                            <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightModeOptions" ng-disabled="!isPresetSupportedDayNightMode(Mode)">{{getDayNightModeTranslatedOption(Mode)}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_dwelltime' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime" ng-disabled="!iSSuportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
-                                            <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightSwitchingTimeOptions">{{getTranslatedOption(Mode)}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_duration' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode" ng-disabled="!iSSuportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
-                                            <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightSwitchingModeOptions">{{getTranslatedOption(Mode)}}</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.SharpnessEnable != undefined">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_sharpness' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.SharpnessEnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.SharpnessEnable"  ng-change="initPresetExposureSliders()" ng-options="option.value as option.text | translate for option in EnableDropdownOptions">
                                         </select>
                                     </div>
                                 </div>
@@ -1057,7 +1037,7 @@
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogMode != undefined">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_defog' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogMode">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogMode" ng-change="initPresetExposureSliders()">
                                             <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogMode == option" value={{option}} ng-repeat="option in PresetDefogModeOptions"> {{ getTranslatedOption(option)}} </option>
                                         </select>
                                     </div>
@@ -1377,7 +1357,7 @@
                                 </div>
                             </div>
                         </uib-tab>
-                        <uib-tab heading="{{getTranslatedOption('Heater')}}" active="tabActiveData.heater" ng-if="tabMenu.Heater">
+                        <uib-tab heading="{{getHeaterTranslation('Heater')}}" active="tabActiveData.heater" ng-if="tabMenu.Heater">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_onetime_act' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">
