@@ -891,13 +891,13 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         {
             var functionList = [];
             mAttributes.GetFail = false;
-
+ 
             if (!mAttributes.DeviceInfoReady)
             {
                 functionList.push(this.getDeviceInfo);
             }
 
-            if (!mAttributes.EventSourceOptionsReady))
+            if (!mAttributes.EventSourceOptionsReady)
             {
                 functionList.push(this.getEventSourceOptions);
             }
