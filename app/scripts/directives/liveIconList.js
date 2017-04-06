@@ -269,6 +269,10 @@ kindFramework.directive('liveIconList', function(
 			function loadedAttr(){
 				scope.wisenetCameraFuntions2.ptz.show = (mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
 
+				if (AccountService.isPTZAble() === false) {
+					scope.wisenetCameraFuntions2.ptz.show = false;
+				}
+
         if(mAttr.MaxAudioInput !== undefined)
         {
             scope.MaxAudioInput = mAttr.MaxAudioInput;
