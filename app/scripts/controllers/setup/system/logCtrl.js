@@ -231,6 +231,7 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
                 getSystemLog,
                 getEventLog
             ]).then(function(){
+                $rootScope.$emit('changeLoadingBar', false);
                 $scope.pageLoaded = true;
                 $("#systemlogpage").show();
             }, function(errorData){
@@ -668,6 +669,7 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
     };
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
+        $rootScope.$emit('changeLoadingBar', true);
         $rootScope.$emit("channelSelector:changeChannel", data);
         $scope.channelSelectionSection.setCurrentChannel(data);
         $timeout(view);
