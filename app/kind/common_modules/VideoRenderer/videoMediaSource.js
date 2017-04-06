@@ -171,7 +171,8 @@ function VideoMediaSource() {
       var delay = 0;
 
       if (playbackFlag === true) {
-        delay = (browserType === "chrome" ? 2 : 4);
+        //delay = (browserType === "chrome" ? 2 : 4);
+        delay = 4;
         if (boxSize === 1) {
           if (browserType === "edge") {
             delay = 18;
