@@ -14,7 +14,7 @@
             <div class="wn5-setup-section-article-heading">
                 {{ 'lang_type' | translate }}
             </div>
-            <div class="wn5-setup-section-article-content">
+            <div class="wn5-setup-section-article-content wn5-setup-section-article-content-type">
                 <div class="field-radio-wrapper" ng-repeat="Type in PresetTypes">
                     <input class="radio" id="{{Type}}" name="Type" ng-change="onPresetTypeChange(Type)" ng-disabled="Type == 'Preset' && !PresetNameValueOptions.length" ng-model="presetTypeData.SelectedPresetType" ng-value="{{PresetTypes.indexOf(Type)}}" type="radio">
                         <label for="{{Type}}">
@@ -303,12 +303,14 @@
                 {{ 'lang_activation_time' | translate }}
             </h3>
         </div>
-        <div class="wn5-setup-section-article form-group">
-            <div class="wn5-setup-section-article-content">
-                <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
-                    {{getTranslatedOption(Activate)}}
-                    <input class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate" type="radio">
-                    </input>
+        <div class="wn5-setup-section-article">
+            <div class="form-group">
+                <div class="wn5-setup-section-article-content">
+                    <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
+                        {{getTranslatedOption(Activate)}}
+                        <input class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate" type="radio">
+                        </input>
+                    </div>
                 </div>
             </div>
         </div>

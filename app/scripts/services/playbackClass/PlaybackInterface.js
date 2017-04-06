@@ -23,6 +23,7 @@ kindFramework
     var support_defocus_detection = false;
     var support_fog_detection = false;
     var support_audio_analysis = false;
+		var support_auto_tracking = false;
     var self = this;
     var openErrorPopup = false;
     var defaultSpeed = 1;
@@ -175,6 +176,7 @@ kindFramework
 			this.playbackInfo.endTime = $filter('date')(playData.getEndTime(), 'yyyyMMddHHmmss');
 			this.playbackInfo.id = searchData.getOverlapId();
 			this.playbackInfo.channel =  UniversialManagerService.getChannelId();
+			$rootScope.$emit('channelSelector:off', true);
 			$rootScope.$emit('app/scripts/services/playbackClass::disableButton', true);
 			$rootScope.$emit("channelPlayer:command", "playback", this.playbackInfo, 
 				{'timeCallback' : this.timelineCallback, 'errorCallback' : this.playbackErrorCallback});
@@ -269,6 +271,7 @@ kindFramework
 		};
 		PlaybackInterface.playbackErrorCallback = function(error) {
 			console.log("errorcode:", error.errorCode, "error string:", error.description);
+			$rootScope.$emit('channelSelector:on', true);
 		  $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
 		  var playData = new PlayDataModel();
 		  if (error.errorCode !== "200" && error.errorCode !== "777") {
@@ -321,6 +324,7 @@ kindFramework
 		};
 		var backupErrorCallback = function(error) {
 		  console.log("errorcode:", error.errorCode, "error string:", error.description);
+			$rootScope.$emit('channelSelector:on', true);
 		  $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
 		  $rootScope.$emit('app/scripts/services/playbackClass::setDefaultPlaybackMode');
 		  if( error.description === 'backup' ) {
@@ -419,6 +423,9 @@ kindFramework
 				else if( indexOf.call(eventType, "AudioAnalysis") !== -1 ) {
 					support_audio_analysis = true;
 				}
+				else if( indexOf.call(eventType, "Tracking") !== -1 ) {
+					support_auto_tracking = true;
+				}
 			}
 			if( typeof(mAttr.MotionDetectModes) !== 'undefined' && mAttr.MotionDetectModes !== null ) {
 				for( var index = 0 ; index < mAttr.MotionDetectModes.length ; index++ ) {
@@ -465,6 +472,9 @@ kindFramework
 			}
 			if( support_audio_analysis ) {
 				push.call(eventList, {name: "lang_menu_soundclassification", event:"AudioAnalysis", selected:true, enable:false});
+			}
+			if( support_auto_tracking ) {
+				push.call(eventList, {name : "lang_autotracking", event:"Tracking", selected:true, enabled:false});
 			}
 		};
 

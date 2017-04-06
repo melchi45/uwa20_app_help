@@ -1,4 +1,4 @@
-kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, $q)
+kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $rootScope)
 {
     "use strict";
 
@@ -24,6 +24,21 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
 
     $scope.MaxDate = COMMONUtils.getFormatedInteger($scope.CurrentDate.getFullYear(), 4).toString() + "-" + COMMONUtils.getFormatedInteger($scope.CurrentDate.getMonth() + 1, 2).toString() + "-" + COMMONUtils.getFormatedInteger($scope.CurrentDate.getDate(), 2).toString();
 
+    $scope.isMultiChannel = false;
+
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+
     $scope.today = function ()
     {
         $scope.CurrentDate = new Date();
@@ -36,6 +51,9 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
 
     function getAttributes()
     {
+        if(mAttr.MaxChannel > 1) {
+            $scope.isMultiChannel = true;
+        }
         $scope.DeviceType = mAttr.DeviceType;
         $scope.ModelName = mAttr.ModelName;
 
@@ -151,7 +169,8 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
 
     function getEventLog(dateReq)
     {
-        $scope.ChannelEvents = [];
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+        // $scope.ChannelEvents = [];
         $scope.AlarmEvents = [];
         $scope.EventLog = [];
         $scope.EL = [];
@@ -175,8 +194,8 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
                     {
                         for (var i = 0; i < response.data.ChannelEventLog.length; i++)
                         {
-                            $scope.EventLog.push.apply($scope.EventLog, response.data.ChannelEventLog[i].EventLog);
-                            $scope.ChannelEvents.push(response.data.ChannelEventLog[i]);
+                            // $scope.EventLog.push.apply($scope.EventLog, response.data.ChannelEventLog[i].EventLog);
+                            $scope.EventLog.push(response.data.ChannelEventLog[i].EventLog);
                         }
                     }
 
@@ -192,7 +211,8 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
                     /*$scope.EventLog = $scope.EventLog.sort(COMMONUtils.sortArray('Date', true, function (a) {
                         return a.toUpperCase();
                     }));*/
-                    $scope.EL = COMMONUtils.chunkArray($scope.EventLog, $scope.pageSize);
+                    // $scope.EL = COMMONUtils.chunkArray($scope.EventLog, $scope.pageSize);
+                    $scope.EL = COMMONUtils.chunkArray($scope.EventLog[currentChannel], $scope.pageSize);
                 },
                 function (errorData)
                 {
@@ -601,15 +621,16 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
 
     $scope.onEvtLogChange = function (Option)
     {
+        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
         $scope.EL = [];
         $scope.currentEventLogPage = 1;
         if (Option === 'All')
         {
-            $scope.EL = COMMONUtils.chunkArray($scope.EventLog, $scope.pageSize);
+            $scope.EL = COMMONUtils.chunkArray($scope.EventLog[currentChannel], $scope.pageSize);
         }
         else
         {
-            $scope.EL = COMMONUtils.chunkArray(COMMONUtils.filterArrayByObject($scope.EventLog, Option), $scope.pageSize);
+            $scope.EL = COMMONUtils.chunkArray(COMMONUtils.filterArrayByObject($scope.EventLog[currentChannel], Option), $scope.pageSize);
         }
 
         $scope.data.EventLogPageIndex = $scope.currentEventLogPage;
@@ -645,6 +666,12 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
             alert("Future Date");
         }
     };
+
+    $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
+        $rootScope.$emit("channelSelector:changeChannel", data);
+        $scope.channelSelectionSection.setCurrentChannel(data);
+        $timeout(view);
+    }, $scope);
 
 
     (function wait()
