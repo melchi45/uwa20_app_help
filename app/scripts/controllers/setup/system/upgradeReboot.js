@@ -88,7 +88,7 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
     var cancelTimer = null;
     $scope.updateFirmware = function ()
     {
-        COMMONUtils.ShowConfirmation(updateFirmwareCallback, 'If you proceed with the firmware update, all the values ​​you have set will be initialized. Would you like to continue?', 'lg');
+        COMMONUtils.ShowConfirmation(updateFirmwareCallback, 'lang_msg_upgrade_removed_statistics_data', 'lg');
 
         function updateFirmwareCallback()
         {
