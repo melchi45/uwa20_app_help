@@ -1,3 +1,4 @@
+﻿
 <h1 class="wn5-setup-main-title">网络断开连接</h1>
 
 <div class="wn5-setup-section">
@@ -28,12 +29,17 @@
             <ul>
                 <p><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --></p>
             </ul>
-            <h3>录制</h3>
+            <h3>正在录制</h3>
             <p>创建网络断开连接事件时，如需将图像保存至 SD 卡或 NAS 中，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>警报输出</h3>
             <p>可设置创建网络断开连接事件时警报输出的具体警报数。选择警报输出编号后，如果不希望输出任何警报，请选择<strong class="UI">[关]</strong>，如果希望输出警报，则选择输出时间。用户将警报关闭之前，可以设选择<strong class="UI">[始终]</strong>设置连续警报，或将警报输出时间设置为 5、10 或 15 秒。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html"  ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a>完成具体的警报输出设置。</p>
+           
+            <div class="wn5-setup-section-article-content" ng-if="PresetAction">
+                <h3>转至预设位</h3>
+                <p>可更改设置，以便在出现网络断开连接事件时，将摄像机视图位置切换至一个（提前设置的）预设编号。可在 <strong class="UI">[PTZ]</strong>&nbsp;&gt; <a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a>或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[外部 PTZ]</a></strong> &gt; <strong class="UI">[预设]</strong>选项卡中设置摄像机预设。</p>
+            </div>
         </div>
     </div>
 </div>

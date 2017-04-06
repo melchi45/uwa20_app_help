@@ -202,6 +202,7 @@ function AudioPlayerGxx() {
 			if(videoStatus == "init"){
 				// console.log("audioBuffering :: init time =" + videoTime);
 				initVideoTimeStamp = videoTime;
+				bufferingFlag = true;
 			}else{
 				if(bufferingFlag){
 					// console.log("audioBuffering :: currentTime = " + videoTime);

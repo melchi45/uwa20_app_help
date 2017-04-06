@@ -39,7 +39,7 @@
             </sketchbook>
 
             <div class="wn5-setup-preview-table">
-                <div ng-show="currentTapStatus[1] === true">
+                <!--<div ng-show="currentTapStatus[1] === true">
                     <section class="form-group">
                         <div class="wn5-setup-preview-heading">
                             <label>
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </section>
-                </div>
+                </div>-->
                 <div ng-show="currentTapStatus[0] === true">
                     <section 
                         ng-show="queueData.Enable"
@@ -169,32 +169,34 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div style="float: left; margin-left: 50px; transform: translateY(-25%);">
+                                    <div class="qm-set-value">
                                         <p>
-                                            <span style="display: inline-block; width: 100px;">
+                                            <span class="qm-title">
                                                 {{ lang.queueEventLevel.max | translate }}
                                             </span>
                                             <select 
                                                 class="cm_selectbox" 
                                                 ng-model="queueData.Queues[queueListSection.selectedQueueId].MaxPeople"
                                                 ng-change="queueLevelSection.reload('max')"
-                                                ng-options="maxValue for maxValue in maxValues"
-                                                style="margin: 0 7px; width: 60px;">
+                                                ng-options="maxValue for maxValue in maxValues">
                                             </select>
-                                            {{ lang.queueEventLevel.people | translate }}
+                                            <span class="qm-people">
+                                                {{ lang.queueEventLevel.people | translate }}
+                                            </span>
                                         </p>
                                         <p>
-                                            <span style="display: inline-block; width: 100px;">
+                                            <span class="qm-title">
                                                 {{ lang.queueEventLevel.high | translate }}
                                             </span>
                                             <select 
                                                 class="cm_selectbox" 
                                                 ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[0].Count"
                                                 ng-change="queueLevelSection.reload()"
-                                                ng-options="maxData for maxData in queueLevelSection.maxArr"
-                                                style="margin: 0 7px; width: 60px;">
+                                                ng-options="maxData for maxData in queueLevelSection.maxArr">
                                             </select>
-                                            {{ lang.queueEventLevel.people | translate }}
+                                            <span class="qm-people">
+                                                {{ lang.queueEventLevel.people | translate }}
+                                            </span>
                                         </p>
                                     </div>
                                 </div>

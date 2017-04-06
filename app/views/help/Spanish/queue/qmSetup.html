@@ -1,0 +1,157 @@
+﻿
+
+<h1 class="wn5-setup-main-title">Configuraci&oacute;n</h1>
+<div class="wn5-setup-section">
+    <p>La Gesti&oacute;n de colas es una funci&oacute;n que se utiliza para supervisar el n&uacute;mero medio de personas que permanecen en un &aacute;rea especificada y el tiempo total de permanencia a trav&eacute;s de un an&aacute;lisis de las im&aacute;genes de las c&aacute;maras. Defina el &aacute;rea de cola que desea analizar y los elementos detallados para mejor la precisi&oacute;n del an&aacute;lisis en la p&aacute;gina de &apos;Configuraci&oacute;n&apos; de gesti&oacute;n de colas. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. </p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Configuraci&oacute;n</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Habilitar la gesti&oacute;n de colas</h3>
+            <p>Para utilizar la funci&oacute;n de gesti&oacute;n de colas, seleccione <strong class="UI">[Habilitar la gesti&oacute;n de colas]</strong>. </p>
+        </div>
+	</div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h3>&Aacute;rea</h3>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Defina el &aacute;rea de cola para la que desee analizar el n&uacute;mero de personas haciendo cola o el tiempo de cola. Se pueden configurar hasta 3 &aacute;reas de cola. </p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Defina el &aacute;rea de gesti&oacute;n de colas</h4>
+            <p>Para definir el &aacute;rea de gesti&oacute;n de colas, coloque una marca de verificaci&oacute;n en la casilla en frente de la columna <strong class="UI">[N.º] </strong> Cuando el &aacute;rea de gesti&oacute;n de colas se muestre en la pantalla de la imagen, ajuste el tama&ntilde;o y forma del &aacute;rea de Gesti&oacute;n de colas, arrastrando la esquina del &aacute;rea con el rat&oacute;n. Introduzca el nombre del &aacute;rea en el campo <strong class="UI">[Nombre]</strong>. Hasta 15 caracteres, incluyendo letras y n&uacute;meros, se pueden introducir para el nombre del &aacute;rea. El nombre introducido se muestra en <strong class="UI">[Estad&iacute;sticas]</strong>&gt;<strong class="UI">[Gesti&oacute;n de colas]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmStatistics.html"
+ng-href="#/help/queue_search">[Buscar]</a></strong>.</p>
+        </div>
+		            <div class="wn5-online-help-action">
+                <h4>Active y desactive el an&aacute;lisis de gesti&oacute;n de colas para cada &aacute;rea</h4>
+                <p>Para activar el an&aacute;lisis de gesti&oacute;n de colas, seleccione la casilla de verificaci&oacute;n frente a la columna <strong class="UI">[N.º] </strong> relevante.</p>
+                  <p>Para activar el an&aacute;lisis de Gesti&oacute;n de colas, deseleccione la casilla de verificaci&oacute;n frente a la columna <strong class="UI">[N.º] </strong> relevante. La configuraci&oacute;n del an&aacute;lisis de gesti&oacute;n de colas para cada &aacute;rea se mantiene intacta, lo cual significa que si usted selecciona la casilla de verificaci&oacute;n otra vez, la funci&oacute;n de an&aacute;lisis de gesti&oacute;n de colas se activar&aacute; en la misma configuraci&oacute;n. </p>
+            </div>
+           </div>
+		 </div>
+		 
+		 <div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Eventos de cola</h2>
+        <p>Defina las condiciones para crear un evento de cola. </p>
+        <p>Se puede definir un evento de cola diferente para cada cola definida en <strong class="UI">[&Aacute;rea]</strong>.</p>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3><a name="level"></a>Nivel de detecci&oacute;n</h3>
+            <p>El nivel de detecci&oacute;n se clasifica en &apos;Alto&apos; y &apos;Medio&apos;, de acuerdo con el n&uacute;mero de personas de un &aacute;rea de cola dada. Cuando se definen &apos;Tama&ntilde;o m&aacute;ximo&apos; y &apos;Alto&apos; para el n&uacute;mero de personas, el valor &apos;Medio&apos; se define autom&aacute;ticamente. </p>
+            <p>&apos;Alto&apos; para el nivel de detecci&oacute;n se refiere al estado en el cual el n&uacute;mero de personas supera el valor &apos;Alto&apos; y se detecta un valor inferior al &apos;Tama&ntilde;o m&aacute;ximo&apos;. &apos;Medio&apos; para el nivel de detecci&oacute;n se refiere al estado en el cual el n&uacute;mero de personas supera el valor &apos;Medio&apos; y se detecta un valor inferior al &apos;Alto&apos;. </p>
+            <p>Por ejemplo, si se define 20 para el valor [Tama&ntilde;o m&aacute;ximo] y 18 para el valor [Alto], se definir&aacute; 9 autom&aacute;ticamente para el valor &apos;Medio&apos;. Si el n&uacute;mero de personas haciendo cola en el &aacute;rea de cola relevante es mayor de 18 y menor de 20, el nivel de detecci&oacute;n ser&aacute; &apos;Alto&apos;. Si el n&uacute;mero de personas haciendo cola en el &aacute;rea de cola relevante es mayor de 9 y menor de 18, el nivel de detecci&oacute;n ser&aacute; &apos;Medio&apos;.</p>
+        </div>
+		<div class="wn5-setup-section-article-content">
+            <h3>Duraci&oacute;n m&iacute;nima</h3>
+            <p>Se puede definir el tiempo de cola m&iacute;nimo para crear un evento de Cola seg&uacute;n el nivel de detecci&oacute;n. Se crea un evento de cola cuando el n&uacute;mero de personas correspondientes a &lsquo;Alto&rsquo; de <strong class="UI">[Nivel de detecci&oacute;n]</strong> de colas es mayor que el tiempo introducido en <strong class="UI">[Alto]</strong> de <strong class="UI">[Duraci&oacute;n m&iacute;nima]</strong>. &nbsp;</p>
+            <p>En otras palabras, cuando &lsquo;18&rsquo; se define para &lsquo;Alto&rsquo; de <strong class="UI">[Nivel de detecci&oacute;n]</strong> y &apos;90 segundos&rsquo; se define para &lsquo;Alto&apos; de <strong class="UI">[Duraci&oacute;n m&iacute;nima]</strong>, se crea un evento de cola si 18 o m&aacute;s personas est&aacute;n haciendo cola en el &aacute;rea de cola durante 90 segundos o m&aacute;s. </p>
+		</div>
+        </div>
+</div>
+
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Calibraci&oacute;n</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">	
+            <p>Defina la altura de la c&aacute;mara o tama&ntilde;o de las personas a contar para mejorar la precisi&oacute;n del an&aacute;lisis del n&uacute;mero de personas haciendo cola en la funci&oacute;n de gesti&oacute;n de colas. Solo se pueden seleccionar y aplicar la altura de la c&aacute;mara o el tama&ntilde;o de las personas.</div>			
+        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+            <h3>Altura de c&aacute;mara</h3>
+            <p>Especificar la altura real donde est&eacute; instalada la c&aacute;mara. Puede cambiar el valor haga clic en + o -, o introduzca un valor num&eacute;rico para la altura de la c&aacute;mara. Se puede introducir un valor entre 2,5 m como m&iacute;nimo y 4,5 m como tama&ntilde;o m&aacute;ximo. Cuando se ajusta la altura de instalaci&oacute;n de la c&aacute;mara, el tama&ntilde;o corporal de las personas a analizar como n&uacute;mero de personas haciendo cola para cada lugar, se asumir&aacute; autom&aacute;ticamente en base a la altura de instalaci&oacute;n de la c&aacute;mara. </p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+            <h3>Tama&ntilde;o</h3>
+            <p>Especifique el tama&ntilde;o de las personas a analizar como el n&uacute;mero de personas haciendo cola. Se puede ajustar la altura arrastrando la esquina en la parte inferior derecha del cuadro que aparece en la pantalla de la imagen. </p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>El valor definido en <strong class="UI">[Recuento de personas]</strong> &gt; <strong class="UI">[Calibraci&oacute;n]</strong> o <strong class="UI">[Gesti&oacute;n de colas]</strong> &gt; <strong class="UI">[Calibraci&oacute;n]</strong> se aplica igualmente a las funciones de <strong class="UI">[Recuento de personas]</strong> y <strong class="UI">[Mapa de calor]</strong> y <strong class="UI">[Gesti&oacute;n de colas]</strong>.  </li>
+            </ul>
+		</div>
+        </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Informe</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Activar</h3>
+            <p>Para recibir datos de colas peri&oacute;dicamente a trav&eacute;s de E-mail y FTP, seleccione <strong class="UI">[Activar]</strong>. </p>
+            <p>Se pueden hacer ajustes detallados para FTP y E-mail desde <strong class="UI">[Evento]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../event/ftpemail.html" ng-href="#/help/event_ftpemail">[FTP/E-mail]</a></strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Programaci&oacute;n</h3>
+            <p>Para recibir datos de colas a la misma hora todos los d&iacute;as, seleccione <strong class="UI">[Diariamente]</strong> y elija una hora. </p>
+            <p>Para recibir datos de colas el mismo d&iacute;a de la semana y hora cada semana, seleccione <strong class="UI">[Semanal]</strong> y seleccione un d&iacute;a de la semana y una hora. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>N. de archivo</h3>
+            <p>Introduzca el n. de archivo para enviar datos de colas a trav&eacute;s de un servidor FTP o E-mail y seleccione el formato de archivo. Hasta 64 caracteres, incluyendo letras y n&uacute;meros, se pueden introducir para el nombre del archivo.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Acci&oacute;n de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de gesti&oacute;n de colas, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>Para enviar una imagen por e-mail cuando se crea un evento de gesti&oacute;n de colas, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Salida de alarma</h3>
+            <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de gesti&oacute;n de colas.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salida de alarma, seleccione <strong class="UI">[Des]</strong> si no desea utilizar la alarma. Si no desea utilizar la alarma, seleccione el tiempo de salida. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="PresetAction">
+            <h3>Ir a predefinido.</h3>
+                    <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de gesti&oacute;n de colas. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI">[Predefinido]</strong> de <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[PTZ externa]</a></strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">        
+		<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Borrar datos</h3>
+                <p>Para borrar todos los datos de an&aacute;lisis de colas, haga clic en <strong class="UI">[Borrar datos]</strong>. </p>
+                <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+
+                    <ul>
+                        <li>Si usted cambia la configuraci&oacute;n de <strong class="UI">[Modo de volteo]</strong> o <strong class="UI">[Modo de espejo]</strong> en <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Conf. de v&iacute;deo]</strong> &gt; <strong class="UI">[Fuente de video]</strong>, todas las reglas definidas en la Gesti&oacute;n de colas se inicializar&aacute;n autom&aacute;ticamente. Para recopilar datos de acuerdo con la nueva regla, borre los datos existentes haciendo clic en <strong class="UI">[Borrar datos]</strong>.  </li>
+                    </ul>
+		</div>
+        </div>
+		</div>
+</div>
+
+<hr class="wn5-setup-hr">

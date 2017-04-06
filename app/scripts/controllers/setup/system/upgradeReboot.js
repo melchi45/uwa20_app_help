@@ -85,9 +85,14 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
         COMMONUtils.onLogout();
     }
 
-
+    var cancelTimer = null;
     $scope.updateFirmware = function ()
     {
+        if(cancelTimer !== null){
+            clearTimeout(cancelTimer);
+            cancelTimer = null;
+        }
+
         $scope.ProgressBar = 0;
         var file = $scope.FirmwareFile;
         var epochTicks = 621355968000000000;
@@ -154,7 +159,11 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                         $scope.ProgressVisible = false;
                     }, $scope, fileToPost, specialHeaders);
                     
-                    
+            cancelTimer = setTimeout(function(){
+                if($scope.ProgressVisible === true && $scope.IsFWUpdating === true){
+                    $scope.CancelEvent();
+                }
+            }, 420000);
         }
         else
         {
@@ -481,8 +490,7 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                         $scope.ProgressVisible = false;
                     }, $scope, btoa(fileToPost), specialHeaders);
         };
-    }
-    ;
+    };
 
     function updateProgress(TimeDelay, ProgressBarName, MaxValue)
     {

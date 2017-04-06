@@ -2,7 +2,7 @@
 
 <h1 class="wn5-setup-main-title">설정</h1>
 <div class="wn5-setup-section">
-    <p>대기열 관리는&nbsp;카메라 영상 분석을 통해&nbsp;대기열을 모니터링할 수 있는 기능입니다. 대기열 관리의 '설정' 페이지에서는 대기열의 인원을 분석할 영역을 설정하고 분석 정확도를 높이기 위한 세부 사항을 설정합니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. </p>
+    <p>대기열 관리는&nbsp;카메라 영상 분석을 통해&nbsp;지정한 영역에 체류한 평균 인원수와 누적 체류 시간을 모니터링할 수 있는 기능입니다. 대기열 관리의 '설정' 페이지에서는 분석할 대기&nbsp;영역을 설정하고 분석 정확도를 높이기 위해 세부 사항을 설정합니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. </p>
 </div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -23,7 +23,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>대기열 인원수를 분석할 영역을 설정합니다. 대기열 관리 영역은 3개까지 설정할 수 있습니다. </p>
+            <p>대기 인원이나 대기 시간을 분석할 대기열 영역을 설정합니다. 대기열&nbsp;영역은 3개까지 설정할 수 있습니다. </p>
         </div>
         <div class="wn5-online-help-action">
             <h4>대기열 관리 영역 설정하기</h4>
@@ -41,17 +41,20 @@ ng-href="#/help/queue_search">[검색]</a></strong>에 나타납니다.</p>
 		 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>대기열 이벤트</h2>
-        <p>대기열 영역의 대기 인원수와 대기 시간을 모두 충족하면 대기열 이벤트가 발생합니다. 즉 [감지 레벨]에서 '높음'을 '20'명으로 [최소 관찰 시간]의 '높음' 수준의 시간을 '90초'로 설정한 경우, 대기열 영역에 20명 이상의 인원이 90초 이상 동안 대기중이면 대기열 알람이 발생합니다. </p>
+        <p>대기열 이벤트가 발생하기 위한 조건을 설정합니다. </p>
+        <p><strong class="UI">[영역]</strong>영에서 설정한 대기열마다 각각 다르게 대기열 이벤트를 설정할 수 있습니다.</p>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content"> 			
+        <div class="wn5-setup-section-article-content">
             <h3><a name="level"></a>감지 레벨</h3>
-            <p>대기열에서 대기하고 있는 인원수에 따라 대기 수준을 '높음'이나 '중간'으로 분류합니다. 대기 수준을 '높음'으로 구분할 인원수를 [높음]에서 설정합니다. 설정한 '높음'의 1/2 값이 '중간' 값으로 자동으로 설정됩니다. 예를 들어 [높음]에서 '20'을 입력하면 '중간'값은 자동으로 '10'으로 설정됩니다. '높음' 값이 '21'인 경우에는 반올림되어 '11'로 설정됩니다. </p>
-		</div>
+            <p>감지 레벨은&nbsp;대기열 영역에 체류 중인 인원에 따라&nbsp;'높음'과 '중간'으로 분류됩니다. [최대]와 [높음] 인원수를 설정하면 '중간' 값은 자동으로 설정됩니다. </p>
+            <p>감지 레벨 '높음'은 '높음' 값 이상 '최대' 값 이하의 인원이&nbsp;감지된 상태입니다. 감지 레벨 '중간'은 '중간' 값 이상 '높음' 값 미만의 인원이 감지된 상태입니다. </p>
+            <p>예를 들어[최대] 값을 20으로 [높음] 값을 18로 설정한 경우, '중간' 값은 9로 자동으로 설정됩니다. 해당 대기열 영역에 18명 이상 20이하의 인원이 대기 중이면&nbsp;감지 레벨은&nbsp;'높음'으로 분석됩니다. 9명 이상 18명 미만의 인원이 대기 중이면 감지 레벨은 '중간'으로 분석됩니다.</p>
+        </div>
 		<div class="wn5-setup-section-article-content">
             <h3>최소 관찰 시간</h3>
-            <p>감지 레벨의 '높음'과 '중간' 각 수준별로 대기열 이벤트를 발생하기 위한 최대 대기 시간을 설정할 수 있습니다. '높음'과 '중간'에 감지 레벨별로 최소 관찰 시간을 입력 상자에 입력합니다. [높음]의 대기 시간을 '90'초로 설정한 경우 90초 동안 '높음' 수준의 인원이 대기하는 경우 대기열 이벤트가 발생하게 됩니다.</p>
-            <p>대기열 영역의 대기 인원수와 대기 시간을 모두 충족하면 대기열 이벤트가 발생합니다. 즉 [감지 레벨]에서 '높음'을 '20'명으로 [최소 관찰 시간]의 '높음' 수준의 시간을 '90초'로 설정한 경우, 대기열 영역에 20명 이상의 인원이 90초 이상 동안 대기중이면 대기열 이벤트가 발생합니다. 대기열 이벤트가 발생했을 때 어떤 동작이 일어날 지 이벤트 동작에서 설정할 수 있습니다.</p>
+            <p>감지 레벨별로 대기열 이벤트를 발생하기 위한 최소 대기&nbsp;시간을 설정할 수 있습니다. <strong class="UI">[감지 레벨]</strong>의 '높음'에 해당하는 인원이 <strong class="UI">[최소 관찰 시간]</strong>의 <strong class="UI">[높음]</strong>에 입력한 시간보다 더 많은 시간을 대기하면 대기열 이벤트가 발생합니다. &nbsp;</p>
+            <p>즉 <strong class="UI">[감지 레벨]</strong>에서 '높음'을 '18'명으로 설정하고&nbsp;<strong class="UI">[최소 관찰 시간]</strong>의 '높음'을 '90초'로 설정한 경우, 대기열 영역에 18명 이상의 인원이 90초 이상 동안 대기중이면 대기열 이벤트가 발생합니다. </p>
 		</div>
         </div>
 </div>
@@ -133,6 +136,24 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></
 설정할 수 있습니다.</p>
         </div>
     </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">        
+		<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>모든 데이터 삭제</h3>
+                <p>대기열 분석 데이터를 모두 삭제하려면 <strong class="UI">[모든 데이터 삭제]</strong>를 클릭합니다. </p>
+                <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+
+                    <ul>
+                        <li><strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong>에서 <strong class="UI">[상하 반전]</strong>이나 <strong class="UI">[좌우 반전]</strong> 설정을 변경한 경우, 대기열 관리에서 설정한 규칙이 모두 자동으로 초기화됩니다. 새 규칙에 맞춰 데이터를 다시 수집하려면 <strong class="UI">[모든 데이터 삭제]</strong>를 클릭하여 기존 데이터를 삭제하십시오.  </li>
+                    </ul>
+		</div>
+        </div>
+		</div>
 </div>
 
 <hr class="wn5-setup-hr">

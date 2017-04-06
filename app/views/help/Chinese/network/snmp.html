@@ -1,3 +1,4 @@
+﻿
 <h1 class="wn5-setup-main-title">SNMP</h1>
 <div class="wn5-setup-section">
 	<p>SNMP（简单网络管理协议）是一种可以从网络上的设备收集信息并管理网络的网络管理协议。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。</p>
@@ -43,9 +44,8 @@
 
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-        	<p>SNMP v3 验证比 v1 和 v2c 更安全，无需数据转换即可进行传输。此外，数据包进行了加密，防止未授权用户访问数据。只有在设置了 SSL/TLS 的情况下才能使用 SNMP v3。</p>
+            <p>SNMP v3 验证比 v1 和 v2c 更安全，无需数据转换即可进行传输。此外，数据包进行了加密，防止未授权用户访问数据。仅当安全连接系统为 HTTPS 模式时，才可以设置 SNMP v3。</p>
         </div>
-
         <div class="wn5-setup-section-article-content">
             <h3>SNMP v3  </h3>
             <p>如需使用 SNMP v3，请选择<strong class="UI">[启用]</strong>。</p>
@@ -53,15 +53,14 @@
 
         <div class="wn5-setup-section-article-content">
             <h3>密码</h3>
-            <p>为 SNMP v3 设置用户密码。密码必须为 8-16 个字符。默认密码的安全性较低，因此强烈建议在安装产品后，立即更改密码。重要提示：用户自行负责密码的安全以及因继续使用默认密码而引发的其它问题。</p>
+            <p>为 SNMP v3 设置用户密码。密码必须为 8-16 个字符。默认密码的安全性较低，因此强烈建议在安装产品后，立即更改密码。用户自行负责密码的安全以及因继续使用默认密码而引发的其它问题。</p>
         </div>
 
         <div class="wn5-online-help-info">
         	<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
-        	<ul>
-        		<li>仅当安全连接系统为 HTTPS 模式时，才可以设置 SNMP v3。 </li>
-        		<li>不使用 SNMP v3 可导致安全问题。</li>
-        	</ul>
+            <ul>
+                <li>不使用 SNMP v3 可导致安全问题。</li>
+            </ul>
         </div>
     </div>
 </div>
@@ -88,8 +87,8 @@
             <h3>IP 地址</h3>
             <p>输入消息发送用户的 IP 地址。</p>
             <ul>
-                <li><span class="onlineHelp-padding"><strong class="UI">认证失败</strong>：设置是否当社区信息不正确时向管理系统发送一个事件。</span></li>
-                <li><span class="onlineHelp-padding"><strong class="UI">网络连接</strong>：设置是否重新连接已断开网络时向管理系统发送一个事件。</span></li>
+                <li><span class="onlineHelp-padding"><strong class="UI">认证失败通知</strong>：设置是否当社区信息不正确时向管理系统发送一个事件。</span></li>
+                <li><span class="onlineHelp-padding"><strong class="UI">网络连接通知</strong>：设置是否重新连接已断开网络时向管理系统发送一个事件。</span></li>
             </ul>
         </div>
     </div>
