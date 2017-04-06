@@ -871,15 +871,17 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                 {
                     if (mAttributes.DeviceType === 'NWC')
                     {
-                        mAttributes.GetFail = true;
-                        console.log("EventSourceOptions : ", errorData);
+                        if(errorData !== 'Not Authorized')
+                        {
+                            mAttributes.GetFail = true;
+                            console.log("EventSourceOptions : ", errorData);
+                        }
                     }
                     else
                     {
                         mAttributes.EventSourceOptionsReady = true;
                     }
                 },'',true);
-
     };
 
 
@@ -895,7 +897,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                 functionList.push(this.getDeviceInfo);
             }
 
-            if ((!mAttributes.EventSourceOptionsReady) && isAdmin())
+            if (!mAttributes.EventSourceOptionsReady))
             {
                 functionList.push(this.getEventSourceOptions);
             }
