@@ -724,21 +724,10 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}
 				}
 
-                $rootScope.$saveOn('PTZMoveStatus', function(event, obj) {
+                $rootScope.$saveOn('AutoTrackingStatus', function(event, obj) {
                     switch(obj.type) {
-                        case "MoveStatus:PanTilt":
-                            if (obj.value === "MOVING")
-                            {
-                                if(scope.modePTZ.AutoTracking === scope.dptzMode.DIGITAL_AUTO_TRACKING)
-                                {
-                                    // Turn Off AutoTracking
-                                    scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
-                                    UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
-                                }
-                            }
-                            break;
-                        case "MoveStatus:Zoom":
-                            if (obj.value === "MOVING")
+                        case "DigitalAutoTracking":
+                            if (obj.value === 'false')
                             {
                                 if(scope.modePTZ.AutoTracking === scope.dptzMode.DIGITAL_AUTO_TRACKING)
                                 {
