@@ -90,11 +90,10 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						case CAMERA_STATUS.PTZ_MODE.OPTICAL:
                             getSettingPresetList();
                             getSettingGroupList();
+                            getAutoTrackingStatus();
 
                             // scope.modePTZ.AreaZoom = false;
                             $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
-
-
 							break;
 						case CAMERA_STATUS.PTZ_MODE.ZOOMONLY:
 							scope.ptzMode = "zoomonly";
@@ -135,7 +134,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                             scope.modePTZ.AreaZoom = false;
                             break;
                         case "manualTracking" :
-                            scope.autoTrackingFlag = scope.dptzMode.DIGITAL_PTZ;
+                            //scope.autoTrackingFlag = scope.dptzMode.DIGITAL_PTZ;
                             break;
                         case "areaZoomMode":
                             break;
@@ -576,6 +575,13 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					DigitalPTZContorlService.getSettingList(groupListCallback, 'group');
 				}
 
+				function getAutoTrackingStatus(){
+                    sunapiURI = "/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=view";
+                    execSunapi(sunapiURI, function(response){
+                        scope.autoTrackingFlag = response.AutoTracking[0].Enable ? scope.dptzMode.DIGITAL_AUTO_TRACKING : scope.dptzMode.DIGITAL_PTZ;
+					});
+				}
+
 				scope.ptzControlZoom = function(value){
 					if(value=='Stop'){
 						if (UniversialManagerService.getDigitalPTZ() !== CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING) {
@@ -712,6 +718,27 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 							}, '', true);
 					}
 				}
+
+                $rootScope.$saveOn('PTZMoveStatus', function(event, obj) {
+                    switch(obj.type) {
+                        case "MoveStatus:PanTilt":
+                            if (obj.value === "MOVING")
+                            {
+                                // Turn Off AutoTracking
+                                scope.autoTrackingFlag = scope.dptzMode.DIGITAL_PTZ;
+                                UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
+                            }
+                            break;
+                        case "MoveStatus:Zoom":
+                            if (obj.value === "MOVING")
+                            {
+                                // Turn Off AutoTracking
+                                scope.autoTrackingFlag = scope.dptzMode.DIGITAL_PTZ;
+                                UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
+                            }
+                            break;
+                    }
+                });
 
                 (function wait() {
                     if (!mAttr.Ready) {
