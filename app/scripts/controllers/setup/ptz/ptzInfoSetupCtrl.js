@@ -117,7 +117,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         gotoPreset(preset);
     };
     $scope.$on('changePTZPreset', function(args, preset){
-        showLoadingBar(true)
+        showLoadingBar(true);
         var promises = [];
         promises.push(function(){return gotoPreset(preset)});
         promises.push(getPresetList);
@@ -189,7 +189,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     }
     function removePresets(presetFilter)
     {
-        showLoadingBar(true)
+        showLoadingBar(true);
         
         var getData = {};
 
@@ -239,17 +239,17 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         var jsonString = JSON.stringify(setData);
         var encodeddata = encodeURI(jsonString);
 
-        showLoadingBar(true)
+        showLoadingBar(true);
         SunapiClient.post('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', {},
                 function (response)
                 {
-                    view();
+                    //view();
                     //pageData.PTZPresets = angular.copy($scope.PTZPresets);
                 },
                 function (errorData)
                 {
                     //console.log(errorData);
-                    view();
+                    //view();
                 }, $scope, encodeddata, specialHeaders);
         
     }
@@ -304,24 +304,15 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                 {
                 }, '', true);
     }
-    $scope.setLastPosition = function(){
-        if (!angular.equals(pageData.LastPosition, $scope.LastPosition))
-        {
-            COMMONUtils.ShowConfirmation(function(){
-                if(validationLastPosition()){
-                    setPresetLastPosition();
-                }
-            }, 'lang_set_question', 'sm');
-        }
-    };
     function setPresetLastPosition(){
+        showLoadingBar(true);
         var setData = {};
         setData.RememberLastPosition = $scope.LastPosition.RememberLastPosition; 
         setData.RememberLastPositionDuration = $scope.LastPosition.RememberLastPositionDuration;
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set', setData,
                 function (response)
                 {
-                    pageData.LastPosition = angular.copy($scope.LastPosition);
+                    //pageData.LastPosition = angular.copy($scope.LastPosition);
                 },
                 function (errorData)
                 {
@@ -393,9 +384,35 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     
     function set()
     {
-        if (!angular.equals(pageData.PTZPresets, $scope.PTZPresets))
+        if ((!angular.equals(pageData.PTZPresets, $scope.PTZPresets))
+                || (!angular.equals(pageData.LastPosition, $scope.LastPosition)))
         {
-            COMMONUtils.ApplyConfirmation(setPresetImageConfig);
+            COMMONUtils.ApplyConfirmation(function(){
+                var promises = [];
+                if (typeof mAttr.RememberLastPosition !== 'undefined'){
+                    if (!angular.equals(pageData.LastPosition, $scope.LastPosition)){
+                        if(validationLastPosition()){
+                            promises.push(setPresetLastPosition);
+                        } else {
+                            return;
+                        }
+                    }
+                }
+                if(!angular.equals(pageData.PTZPresets, $scope.PTZPresets)){
+                    promises.push(setPresetImageConfig);
+                }
+                if(promises.length > 0){
+                    $q.seqAll(promises).then(
+                            function(){
+                                view();
+                            },
+                            function(errorData){
+                                view();
+                                //alert(errorData);
+                            }
+                    );
+                }
+            });
         }
     }
     function remove()

@@ -4,4 +4,3 @@
 [submodule "languages"]
 	path = languages
 	url = ssh://ctf1.stw.net:29418/uwa_base
-	branch = develop
