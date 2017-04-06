@@ -462,8 +462,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     }
 
     function checkChangedData(){
-        
-        return !angular.equals(pageData.FD, $scope.FD) || eventRuleService.checkEventRuleValidation();
+        return !angular.equals(pageData.TamperDetect, $scope.TamperDetect) || eventRuleService.checkEventRuleValidation();
     }
 
     function validatePage() {

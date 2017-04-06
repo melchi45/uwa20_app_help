@@ -64,9 +64,11 @@
                 <h3>{{ 'lang_activation_time' | translate }}</h3>
             </div>
 
-            <div class="wn5-setup-section-article form-group">
-                <div class="wn5-setup-section-article-content">
-                    <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">{{getTranslatedOption(Activate)}}<input type="radio" class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate"></div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">{{getTranslatedOption(Activate)}}<input type="radio" class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate"></div>
+                    </div>
                 </div>
             </div>
         </div>
