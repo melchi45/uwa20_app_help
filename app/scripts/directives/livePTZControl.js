@@ -729,17 +729,23 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                         case "MoveStatus:PanTilt":
                             if (obj.value === "MOVING")
                             {
-                                // Turn Off AutoTracking
-                                scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
-                                UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
+                                if(scope.modePTZ.AutoTracking === scope.dptzMode.DIGITAL_AUTO_TRACKING)
+                                {
+                                    // Turn Off AutoTracking
+                                    scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
+                                    UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
+                                }
                             }
                             break;
                         case "MoveStatus:Zoom":
                             if (obj.value === "MOVING")
                             {
-                                // Turn Off AutoTracking
-                                scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
-                                UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
+                                if(scope.modePTZ.AutoTracking === scope.dptzMode.DIGITAL_AUTO_TRACKING)
+                                {
+                                    // Turn Off AutoTracking
+                                    scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
+                                    UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
+                                }
                             }
                             break;
                     }
