@@ -720,8 +720,9 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
         // getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
+
             $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
-            $scope.RecordProfileName = $scope.VideoProfile[$scope.VideoProfilePolicies.RecordProfile].Name;
+            $scope.RecordProfileName = $scope.VideoProfile[$scope.Channel].Name;
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
@@ -1137,6 +1138,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
         if(okay) {
             $scope.Channel = data;
+
             $rootScope.$emit("channelSelector:changeChannel", data);
             $rootScope.$emit('changeLoadingBar', true);
 
