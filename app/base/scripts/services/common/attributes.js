@@ -1111,7 +1111,14 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         }
         else
         {
-            return true;
+            if(SessionOfUserManager.getUsername()==='admin')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     };
 
