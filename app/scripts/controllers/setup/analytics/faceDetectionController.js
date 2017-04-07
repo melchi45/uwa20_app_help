@@ -1006,7 +1006,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function checkChangedData(){
-        return !angular.equals(pageData.FD, $scope.FD) || eventRuleService.checkEventRuleValidation();
+        return !angular.equals(pageData.FD, $scope.FD) || !eventRuleService.checkEventRuleValidation();
     }
 
     function validatePage() {
