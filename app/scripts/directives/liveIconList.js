@@ -302,6 +302,9 @@ kindFramework.directive('liveIconList', function(
 				if(mAttr.MaxChannel > 1) {
 					scope.isMultiChannel = true;
 				}
+                if (AccountService.isPTZAble() === false) {
+                    scope.wisenetCameraFuntions2.ptz.show = false;
+                }
 				if(mAttr.MaxAudioInput !== undefined)
 				{
 					scope.MaxAudioInput = mAttr.MaxAudioInput;

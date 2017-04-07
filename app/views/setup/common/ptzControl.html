@@ -66,6 +66,10 @@
             <button type="button" class="cm-icon-button-s" title="{{'lang_far' | translate}}" ng-mousedown="clickPtzFocus('Far')" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
                 <i class="tui tui-wn5-ptz-far"></i>
             </button>
+            <button ng-show="showPTZControlAT" type="button" ng-click="clickAutoTracking()" class="cm-icon-button-s" title="{{'lang_autotracking_on' | translate}}">
+              <span class="sr-only">{{ 'lang_autotracking_on' | translate }}</span>
+              <i class="tui" ng-class="autoTrackingFlag === false ? 'tui-ch-live-ptz-tracking-auto-off' : 'tui-ch-live-ptz-tracking-auto-on active'"></i>
+            </button>
             <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="clickPtzFocus('Auto');">
                 <i class="tui tui-wn5-simple-focus"></i>
             </button>
@@ -102,16 +106,6 @@
             </div>
         </div>
 
-        <div id="ptz-control_at-left" ng-show="showPTZControlAT">
-            <button type="button" style="margin-bottom: 5px;" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_autotracking_on' | translate}}"
-                    ng-click="onAutoTracking()">
-                <i class="tui tui-ch-live-ptz-tracking-auto-on"></i>
-            </button>
-            <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_autotracking_off' | translate}}"
-                    ng-click="offAutoTracking()">
-                <i class="tui tui-ch-live-ptz-tracking-auto-off"></i>
-            </button>
-        </div>
 
         <div id="ptz-control_right-box" ng-class="zoomPresetClass">
             <div id="ptz-control_preset-box" ng-if="showPTZControlPreset" >
@@ -137,8 +131,8 @@
                 </button>
             </div>
             <div id="ptz-control_at-right" ng-show="showPTZControlAT">
-                <button type="button" class="wn5-icon-button-xs btn btn-primary" title="{{'lang_delete' | translate}}" ng-click="deleteAutoTracking()">
-                    <i class="tui tui-delete"></i>
+                <button type="button" class="btn btn-primary" style="min-width: 110px;" title="{{'lang_delete' | translate}}" ng-click="deleteAutoTracking()">
+                    {{'lang_delete' | translate}}
                 </button>
                 <div id="ptz-control_at-selectable">
                     <table class="table table-bordered wn5-setup-table video-setup-table">

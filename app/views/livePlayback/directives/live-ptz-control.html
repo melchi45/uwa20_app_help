@@ -38,7 +38,7 @@
           ng-class="{'cm-ptz-at' : currentPtzType === ptzType.OPTICAL}"
           title="{{'lang_autotracking_on' | translate}}">
           <span class="sr-only">{{ 'lang_autotracking_on' | translate }}</span>
-          <i class="tui" ng-class="autoTrackingFlag === dptzMode.DIGITAL_PTZ ? 'tui-ch-live-ptz-tracking-auto-off' : 'tui-ch-live-ptz-tracking-auto-on'"></i>
+          <i class="tui" ng-class="modePTZ.AutoTracking === dptzMode.DIGITAL_PTZ ? 'tui-ch-live-ptz-tracking-auto-off' : 'tui-ch-live-ptz-tracking-auto-on'"></i>
         </button>
         <button 
           ng-if="ptzMode === 'external' || currentPtzType === ptzType.OPTICAL"
