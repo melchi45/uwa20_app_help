@@ -22,7 +22,7 @@ function AudioPlayerGxx() {
 	var playBuffer = new Float32Array(80000);
 	var readLength = 0;
 
-	function playAudioIn(data, rtpTimestamp) {
+	function playAudioIn(data, rtpTimestamp, videoCodec) {
 		var timegap = rtpTimestamp - preTimeStamp;
 
 		if(timegap > 200 || timegap < 0){	// under 2000ms
@@ -168,9 +168,9 @@ function AudioPlayerGxx() {
 			gainInNode.gain.value = 0;
 			nextStartTime = 0;
 		},
-		BufferAudio: function(data, rtpTimestamp) {
+		BufferAudio: function(data, rtpTimestamp, videoCodec) {
 			if(isRunning){
-				playAudioIn(data, rtpTimestamp);
+				playAudioIn(data, rtpTimestamp, videoCodec);
 			}
 		},		
 		ControlVolumn: function(vol) {			

@@ -146,7 +146,7 @@ function AudioPlayerAAC(){
 			// 	sourceBuffer = null;
 			// }
 		},
-		BufferAudio: function(data, rtpTimestamp) {
+		BufferAudio: function(data, rtpTimestamp, videoCodec) {
 			isStopped = false;
 			var timegap = rtpTimestamp - preTimeStamp;
 
@@ -195,13 +195,22 @@ function AudioPlayerAAC(){
  							}
 						}else{
 							sourceBuffer.appendBuffer(segmentBuffer);
+							
 							if(videoDiffTime === null){
 								if(sourceBuffer.buffered.length > 0){
-									if(sourceBuffer.buffered.end(0) - audio.currentTime > 1){
-										audio.currentTime = sourceBuffer.buffered.end(0);
+									if(videoCodec === "mjpeg"){
+										if(parseFloat(sourceBuffer.buffered.end(0) - audio.currentTime) > parseFloat(2.0)){
+											audio.currentTime = sourceBuffer.buffered.end(0);
+										}										
+									}else{
+										if(parseFloat(sourceBuffer.buffered.end(0) - audio.currentTime) > parseFloat(1.0)){
+											audio.currentTime = sourceBuffer.buffered.end(0);
+										}
 									}
+
 								}								
 							}
+							
 						}
 
 						segmentBuffer = new Uint8Array();

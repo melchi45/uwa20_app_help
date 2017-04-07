@@ -29,7 +29,7 @@ function WorkerManager() {
   var browser = BrowserDetect();
 
   //video
-  var videoInfo,
+  var videoInfo = null,
   SDPInfo = null,
   frameRate = 0,
   govLength = null,
@@ -409,7 +409,11 @@ function WorkerManager() {
       }
 
       if(audioRenderer !== null){
-        audioRenderer.BufferAudio(message.data, message.rtpTimeStamp);
+        if(videoInfo === null || videoInfo === undefined){
+          audioRenderer.BufferAudio(message.data, message.rtpTimeStamp, null);
+        }else{
+          audioRenderer.BufferAudio(message.data, message.rtpTimeStamp, videoInfo.codecType);
+        }
       }
       break;
       case 'backup':
