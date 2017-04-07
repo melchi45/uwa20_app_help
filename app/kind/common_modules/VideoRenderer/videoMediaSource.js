@@ -171,7 +171,8 @@ function VideoMediaSource() {
       var delay = 0;
 
       if (playbackFlag === true) {
-        delay = (browserType === "chrome" ? 2 : 4);
+        //delay = (browserType === "chrome" ? 2 : 4);
+        delay = 4;
         if (boxSize === 1) {
           if (browserType === "edge") {
             delay = 18;
@@ -180,7 +181,7 @@ function VideoMediaSource() {
           }
         }
       } else {
-        delay = (browserType === "chrome" ? 0.2 : 2);
+        delay = (browserType === "chrome" ? 0.5 : 2);
       }
 
       diffTime = (videoElement.currentTime === 0 ? endTime - startTime : endTime - (videoElement.currentTime + delay));
