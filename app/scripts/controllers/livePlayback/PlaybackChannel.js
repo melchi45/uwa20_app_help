@@ -423,7 +423,9 @@ kindFramework
 
     /* Channel Selector Direction */
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+      var playData = new PlayDataModel();
       UniversialManagerService.setChannelId(index);
+      playData.setStatus(PLAY_CMD.STOP);
       PlaybackInterface.preparePlayback(index);
     }, $scope);
 
