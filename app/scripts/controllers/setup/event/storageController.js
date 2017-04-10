@@ -578,7 +578,6 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
 
-            console.info($scope.RecordSchedule.ScheduleIds);
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
         }, function(errorData) {
             console.error(errorData);
