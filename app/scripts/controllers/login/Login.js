@@ -135,6 +135,11 @@ kindFramework.controller('LoginCtrl',
       };
 
       var timeOutflag = true;
+
+      if($scope.desktopAppInfo.isDesktopApp === true){
+        RESTCLIENT_CONFIG['digest'].hostName = $scope.desktopAppInfo.ipAddress;
+      }
+
       UniversialManagerService.setServiceType(CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB);
       SessionOfUserManager.AddSession($scope.loginInfo.id, $scope.loginInfo.password, $scope.loginInfo.serviceType);
       SessionOfUserManager.SetLogin();
@@ -156,4 +161,8 @@ kindFramework.controller('LoginCtrl',
     }
 
 
+    $scope.desktopAppInfo = {
+      isDesktopApp: window.isDesktopApp,
+      ipAddress: ""
+    };
 }]);
