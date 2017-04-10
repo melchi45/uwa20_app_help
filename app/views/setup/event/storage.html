@@ -12,7 +12,7 @@
                     {{ 'lang_storageActionSetup' | translate }}
                 </h3>
             </div>
-            <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article wn5-setup-section">
                 <div class="form-group">
                     <div class="wn5-setup-section-article-content wn5-setup-table-responsive">
                         <table class="table table-bordered table-editor wn5-setup-table" style="text-align:center; margin-bottom: 20px;">
@@ -44,7 +44,11 @@
                                     ng-repeat="Storage in Storageinfo.Storages"
                                     ng-class="{'wn5-setup-table-active': selected === $index }">
                                     <td>
-                                        <input ng-change="OnStorageSelection($index)" ng-model="$parent.selected" ng-value="$index" type="radio">
+                                        <input 
+                                            ng-change="OnStorageSelection($index)" 
+                                            ng-model="$parent.selected" 
+                                            ng-value="$index" 
+                                            type="radio">
                                         </input>
                                     </td>
                                     <td>
@@ -58,8 +62,16 @@
                                         <!-- </label> -->
                                     </td>
                                     <td>
-                                        <select class="form-control" ng-change="OnStorageEnable(Storage.Enable)" ng-disabled="$parent.selected != $index || isLoading" ng-model="Storage.Enable" style="text-align:center">
-                                            <option ng-repeat="Enable in RecordEnableOptions track by Enable" ng-selected="Storage.Enable == Enable" value="{{Enable}}">
+                                        <select 
+                                            class="form-control" 
+                                            ng-change="OnStorageEnable(Storage.Enable)" 
+                                            ng-disabled="$parent.selected != $index || isLoading" 
+                                            ng-model="Storage.Enable" 
+                                            style="text-align:center">
+                                            <option 
+                                                ng-repeat="Enable in RecordEnableOptions track by Enable" 
+                                                ng-selected="Storage.Enable == Enable" 
+                                                value="{{Enable}}">
                                                 {{getTranslatedOption(Enable)}}
                                             </option>
                                         </select>
@@ -96,72 +108,6 @@
                         </table>
                     </div>
                 </div>
-                <!-- <div class="form-group">
-                    <div class="wn5-setup-section-article-heading" style="text-align:left">
-                        {{ 'lang_recordProfile' | translate }}
-                    </div>
-                    <div class="wn5-setup-section-article-content">
-                        {{RecordProfileName}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="wn5-setup-section-article-heading" style="text-align:left">
-                        {{ 'lang_normal_recording' | translate }}
-                    </div>
-                    <div class="wn5-setup-section-article-content">
-                        <select class="form-control" ng-disabled="Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordGeneralInfo[Channel].NormalMode">
-                            <option ng-repeat="NormalMode in RecNormalModeOptions" ng-selected="RecordGeneralInfo[Channel].NormalMode == NormalMode" value="{{NormalMode}}">
-                                {{NormalMode == 'Full'?getTranslatedOption('FullFrame'):NormalMode == 'Off'?getTranslatedOption('None'):getTranslatedOption(NormalMode)}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="wn5-setup-section-article-heading" style="text-align:left">
-                        {{ 'lang_event_recording' | translate }}
-                    </div>
-                    <div class="wn5-setup-section-article-content">
-                        <select class="form-control" ng-disabled="Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordGeneralInfo[Channel].EventMode">
-                            <option ng-repeat="EventMode in RecEventModeOptions" ng-selected="RecordGeneralInfo[Channel].EventMode == EventMode" value="{{EventMode}}">
-                                {{EventMode == 'Full'?getTranslatedOption('FullFrame'):getTranslatedOption(EventMode)}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="wn5-setup-section-article-heading" style="text-align:left">
-                        {{ 'lang_preEventDuration' | translate }}
-                    </div>
-                    <div class="wn5-setup-section-article-content">
-                        <select class="form-control" ng-disabled="Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordGeneralInfo[Channel].PreEventDuration">
-                            <option ng-repeat="PreEventDuration in RecPreEventDurationOptions" ng-selected="RecordGeneralInfo[Channel].PreEventDuration == PreEventDuration" value="{{PreEventDuration}}">
-                                {{ PreEventDuration.split('s')[0]}} {{'lang_seconds' | translate }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="wn5-setup-section-article-heading" style="text-align:left">
-                        {{ 'lang_postEventDuration' | translate }}
-                    </div>
-                    <div class="wn5-setup-section-article-content">
-                        <select class="form-control" ng-disabled="Storageinfo.Storages[SelectedStorage].Enable === 'Off'" ng-model="RecordGeneralInfo[Channel].PostEventDuration">
-                            <option ng-repeat="PostEventDuration in RecPostEventDurationOptions" ng-selected="RecordGeneralInfo[Channel].PostEventDuration == PostEventDuration" value="{{PostEventDuration}}">
-                                {{ PostEventDuration.split('s')[0]}} {{'lang_seconds' | translate }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="wn5-setup-section-article-heading" style="text-align:left">
-                        {{ 'lang_recordFileType' | translate }}
-                    </div>
-                    <div class="wn5-setup-section-article-content">
-                        <select class="form-control" ng-disabled="(Storageinfo.Storages[SelectedStorage].Enable === 'Off') || (pageData.Storageinfo.Storages[SelectedStorage].Enable === 'Off')" ng-model="RecordGeneralInfo[Channel].RecordedVideoFileType" ng-options="FileType for FileType in RecVideoFileTypeOptions track by FileType" type="text">
-                        </select>
-                    </div>
-                </div> -->
-
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading" style="text-align:left">
                         {{ 'lang_overwrite' | translate }}
@@ -173,7 +119,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 20px;">
                     <div class="wn5-setup-section-article-content wn5-setup-section-article-heading-offset">
                         <div class="wn5-setup-preview-table-col-4 wn5-setup-storage-auto-delete">
                             <input ng-disabled="(!RecordStorageInfo.OverWrite) || (Storageinfo.Storages[SelectedStorage].Enable === 'Off')" ng-model="RecordStorageInfo.AutoDeleteEnable" type="checkbox" ng-click="tests()">
@@ -189,7 +135,7 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="Storageinfo.Storages[SelectedStorage].Type === 'SD'" class="wn5-setup-section">
+            <div ng-show="Storageinfo.Storages[SelectedStorage].Type === 'SD'">
                 <hr class="wn5-setup-hr">
                 <div class="wn5-setup-section-heading">
                     <h3>
@@ -206,7 +152,7 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="Storageinfo.Storages[SelectedStorage].Type === 'NAS'" class="wn5-setup-section">
+            <div ng-show="Storageinfo.Storages[SelectedStorage].Type === 'NAS'">
                 <hr class="wn5-setup-hr">
                 <div class="wn5-setup-section-heading">
                     <h3>
@@ -225,7 +171,14 @@
                             {{ 'lang_IPAddress' | translate }}
                         </div>
                         <div class="wn5-setup-section-article-content">
-                            <input class="form-control" maxlength="{{NASIPMaxLen}}" name="NASIP" ng-disabled="!(Storageinfo.Storages[SelectedStorage].Status === 'None')" ng-model="Storageinfo.Storages[SelectedStorage].NASConfig.NASIP" ng-pattern-restrict="{{IPv4PatternStr}}" type="text">
+                            <input 
+                                class="form-control" 
+                                maxlength="{{NASIPMaxLen}}" 
+                                name="NASIP" 
+                                ng-disabled="!(Storageinfo.Storages[SelectedStorage].Status === 'None')" 
+                                ng-model="Storageinfo.Storages[SelectedStorage].NASConfig.NASIP" 
+                                ng-pattern-restrict="{{IPv4PatternStr}}" 
+                                type="text">
                             </input>
                         </div>
                     </div>
@@ -265,13 +218,17 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-        <hr class="wn5-setup-hr">
+        <hr 
+            class="wn5-setup-hr"
+            ng-show="MaxChannel > 1">
 
     </fieldset>
 
         <wn5-setup-main-title 
-            data-title="lang_menu_record">
+            data-title="lang_menu_record" 
+            ng-show="MaxChannel > 1">
         </wn5-setup-main-title>
         <div class="wn5-setup-section" ng-show="MaxChannel > 1">
             <hr class="wn5-setup-hr">
@@ -382,49 +339,17 @@
                 </div>
             </div>
         </div>
-        <scheduler></scheduler>
 
+        <div id="scheduler"></div>
         
         <hr class="wn5-setup-hr">
 
         <wn5-setup-common-button
             data-submit-click="submit()"
-            data-cancel-click="view(0)"
-           >
-
+            data-cancel-click="view(0)">
         </wn5-setup-common-button>
     </form>
 </div>
-
-<!--script type="text/ng-template" id="modalrecordPopup.html">
-    <div class="modal-header modal-setup">
-        <h3>{{ SelectedDay | translate}}</h3>
-    </div>
-    <div class="modal-body modal-setup">
-        <div class="form-group">
-            <label class="col-lg-1 control-label">{{ 'lang_from' | translate }}</label>
-            <div class="col-sm-2">
-                <select class="form-control" ng-model="SelectedHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-disabled="true"></select>
-            </div>
-            <div class="col-sm-2">
-                <select class="form-control" ng-model="SelectedFromMinute" ng-options="Minute for Minute in MinuteOptions track by Minute"></select>
-            </div>
-            <label class="col-lg-1 control-label">{{ 'lang_to' | translate }}</label>
-            <div class="col-sm-2">
-                <select class="form-control" ng-model="SelectedHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-disabled="true"></select>
-            </div>
-            <div class="col-sm-2">
-                <select class="form-control" ng-model="SelectedToMinute" ng-options="Minute for Minute in MinuteOptions track by Minute"></select>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="modal-footer modal-setup" style="text-align:center">
-        <button type="button" class="btn btn-primary" type="button" ng-click="ok()">{{ 'lang_ok' | translate }}</button>
-        <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>
-        <button type="button" class="btn btn-warning" type="button" ng-click="delete()">{{ 'lang_delete' | translate }}</button>
-    </div>
-</script-->
 
 <script id="modalContent.html" type="text/ng-template">
     <div class="modal-header modal-setup">

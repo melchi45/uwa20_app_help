@@ -519,6 +519,14 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         });
     }
 
+    function validatePage() {
+        if(!eventRuleService.checkSchedulerValidation()) {
+            COMMONUtils.ShowError('lang_msg_checkthetable');
+            return false;
+        }
+        return true;
+    }
+
     function view(data) {
         if(data === 0) {
             $rootScope.$emit('resetScheduleData', true);
@@ -1018,6 +1026,8 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function setChangedData() {
+        $rootScope.$emit('changeLoadingBar', true);
+        
         var deferred = $q.defer();
         var queue = [];
 

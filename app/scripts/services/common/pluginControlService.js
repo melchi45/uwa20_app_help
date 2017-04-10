@@ -453,6 +453,11 @@ kindFramework
           $rootScope.$emit('PTZMoveStatus', {type: 'MoveStatus:PanTilt', value:'IDLE'});
           $rootScope.$emit('PTZMoveStatus', {type: 'MoveStatus:Zoom', value:'IDLE'});
           break;
+        case 14 :                                              //QueueManagement : status == 10  ==> Level : High, status : false
+          data.type = 'Queue';                                 //                  status == 11  ==> Level : High, status : true
+          data.value = (status % 10 === 0) ? 'false': 'true';  //                  status == 20  ==> Level : Middle, status : false
+          data.eventId = parseInt((status / 10), 10);          //                  status == 21  ==> Level : Middle, status : true
+          break;  
       }
 
       EventNotificationService.updateEventStatus(data);

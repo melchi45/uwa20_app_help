@@ -6,7 +6,10 @@
         <div class="wn5-setup-section" style="margin-bottom: 15px;">
             <hr class="wn5-setup-hr">
             
-            <setup-channel-selector ng-show="MaxChannel > 1"></setup-channel-selector> 
+            <setup-channel-selector
+                ng-show="MaxChannel > 1"
+                use-confirm="true">
+            </setup-channel-selector> 
             
             <div class="wn5-gui-body-large">
                 <input 
@@ -107,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="width: 100%; float:left; margin: 10px 0;" ng-if="activeTab.title == 'Include'">                    
+                <div style="width: 100%; float:left; margin: 10px 0;" ng-if="activeTab.title == 'Include'" ng-hide="MaxChannel > 1">                    
                     <div 
                         class="wn5-setup-section" 
                         ng-if="activeTab.title == 'Include'">

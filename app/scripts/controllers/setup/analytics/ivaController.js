@@ -2072,6 +2072,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                                 console.error(errorData);
                             });
                         } else {
+                            $rootScope.$emit("channelSelector:changeChannel", data);
+                            $scope.channelSelectionSection.setCurrentChannel(data);
                             $scope.$emit('applied', true);
                             $timeout(view);
                         }
@@ -2081,6 +2083,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
                 });
             } else {
+                $rootScope.$emit('changeLoadingBar', true);
                 $rootScope.$emit("channelSelector:changeChannel", data);
                 $scope.channelSelectionSection.setCurrentChannel(data);
                 $scope.$emit('applied', true);

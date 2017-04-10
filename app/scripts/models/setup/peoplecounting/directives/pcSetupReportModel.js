@@ -33,7 +33,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 				description: 'lang_description',
 				subject: 'lang_subject',
 				fileNameInfo: 'lang_msg_filename_info',
-				ftpEmailInfo: 'lang_msg_ftpemail_info',
+				ftpEmailInfo: 'lang_msg_ftpemail',
 				extensionList: {
 					pc: [
 						'xlsx',
@@ -79,7 +79,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 						deferred.resolve(responseData.data.PeopleCount[0]);
 					}
 				},
-				errorCallback: function(errorData){
+				failCallback: function(errorData){
 					deferred.reject(errorData);
 				}
 			};
@@ -110,12 +110,12 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 					if(type === "hm"){
 						deferred.resolve(responseData.data.HeatMap[0]);
 					}else if(type === "qm"){
-						deferred.resolve(responseData.data.QueueManagementSetup[0]);
+						deferred.resolve(responseData.data.QueueManagement[0]);
 					}else{
 						deferred.resolve(responseData.data.PeopleCount[0]);
 					}
 				},
-				errorCallback: function(errorData){
+				failCallback: function(errorData){
 					deferred.reject(errorData);
 				}
 			};
@@ -147,7 +147,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 				successCallback: function(responseData){
 					deferred.resolve('Success');
 				},
-				errorCallback: function(errorData){
+				failCallback: function(errorData){
 					deferred.reject(errorData);
 				}
 			};
@@ -185,7 +185,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 				successCallback: function(responseData){
 					deferred.resolve('Success');
 				},
-				errorCallback: function(errorData){
+				failCallback: function(errorData){
 					deferred.reject(errorData);
 				}
 			};
