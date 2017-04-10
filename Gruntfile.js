@@ -8,7 +8,7 @@ module.exports = function (grunt) {
 			InjectionHelper.data[name] = value;
 		}
 	};
-	
+	/**/
 	InjectionHelper.add("grunt", grunt);
 	
 	grunt.file.defaultEncoding = 'utf8';
