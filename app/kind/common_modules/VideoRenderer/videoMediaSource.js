@@ -171,7 +171,8 @@ function VideoMediaSource() {
       var delay = 0;
 
       if (playbackFlag === true) {
-        delay = (browserType === "chrome" ? 2 : 4);
+        //delay = (browserType === "chrome" ? 2 : 4);
+        delay = 4;
         if (boxSize === 1) {
           if (browserType === "edge") {
             delay = 18;
@@ -180,7 +181,7 @@ function VideoMediaSource() {
           }
         }
       } else {
-        delay = (browserType === "chrome" ? 0.2 : 2);
+        delay = (browserType === "chrome" ? 0.5 : 2);
       }
 
       diffTime = (videoElement.currentTime === 0 ? endTime - startTime : endTime - (videoElement.currentTime + delay));
@@ -273,12 +274,16 @@ function VideoMediaSource() {
 
     //console.log("duration, currentTime, receiveTimeStamp.timestamp, calcTimeStamp = ", duration, currentTime, receiveTimeStamp.timestamp, calcTimeStamp);    
 
+    if (currentTime === 0 || isNaN(duration)) return;
+    if (Math.abs(duration - currentTime) > 4) return;
+
+    //console.log("duration, currentTime, receiveTimeStamp.timestamp, calcTimeStamp = ", duration, currentTime, receiveTimeStamp.timestamp, calcTimeStamp);    
     if (!videoElement.paused) {
       if (preVideoTimeStamp === null) {
         preVideoTimeStamp = sendTimeStamp;
       } else if ((preVideoTimeStamp.timestamp <= sendTimeStamp.timestamp && speedValue >= 1) ||
           (preVideoTimeStamp.timestamp > sendTimeStamp.timestamp && speedValue < 1)) {
-        if(playbackFlag){
+        if(playbackFlag){          
           workerManager.timeStamp(sendTimeStamp);
         }
         preVideoTimeStamp = sendTimeStamp;

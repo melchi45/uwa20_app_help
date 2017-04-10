@@ -88,52 +88,56 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
         COMMONUtils.onLogout();
     }
 
-
+    var cancelTimer = null;
     $scope.updateFirmware = function ()
     {
-        $scope.ProgressBar = 0;
-        var file = $scope.FirmwareFile;
-        var epochTicks = 621355968000000000;
-        var ticksPerMillisecond = 10000;
-        var yourTicks = epochTicks + ((new Date).getTime() * ticksPerMillisecond);
+        COMMONUtils.ShowConfirmation(updateFirmwareCallback, 'lang_msg_upgrade_removed_statistics_data', 'lg');
 
-        var boundary = '*****mgd*****' + yourTicks;
-        var header = "--" + boundary + "\r\n";
-        var footer = "\r\n--" + boundary + "--\r\n";
-
-        var specialHeaders = [];
-
-        specialHeaders[0] = {};
-        specialHeaders[0].Type = 'Content-Type';
-        specialHeaders[0].Header = "multipart/form-data; boundary=" + boundary;
-
-        var contents = header + "Content-Disposition: form-data; name=\"File\"; filename=\"" + file.name + "\"\r\n\r\n";
-        //contents += "Content-Transfer-Encoding: binary\r\n";
-        //contents += "Content-Type: application/octect-stream\r\n\r\n";
-
-        var fileToPost = new Blob([contents, file.slice(0, file.size), footer]);
-
-        if (fileToPost.size)
+        function updateFirmwareCallback()
         {
+            $scope.ProgressBar = 0;
+            var file = $scope.FirmwareFile;
+            var epochTicks = 621355968000000000;
+            var ticksPerMillisecond = 10000;
+            var yourTicks = epochTicks + ((new Date()).getTime() * ticksPerMillisecond);
 
-            var div= document.createElement("div");
-            div.setAttribute("id","notallow")
-            div.className += "disabledom";
-            document.body.appendChild(div);
+            var boundary = '*****mgd*****' + yourTicks;
+            var header = "--" + boundary + "\r\n";
+            var footer = "\r\n--" + boundary + "--\r\n";
 
-            console.log("FW File Size = ", fileToPost.size);
+            var specialHeaders = [];
 
-            $scope.IsFWUpdating = true;
+            specialHeaders[0] = {};
+            specialHeaders[0].Type = 'Content-Type';
+            specialHeaders[0].Header = "multipart/form-data; boundary=" + boundary;
 
-            var setData = {};
+            var contents = header + "Content-Disposition: form-data; name=\"File\"; filename=\"" + file.name + "\"\r\n\r\n";
+            //contents += "Content-Transfer-Encoding: binary\r\n";
+            //contents += "Content-Type: application/octect-stream\r\n\r\n";
 
-            setData.Type = 'Normal';
-            setData.IgnoreMultipartResponse = true;
+            var fileToPost = new Blob([contents, file.slice(0, file.size), footer]);
+
+            if (fileToPost.size)
+            {
+
+                var div= document.createElement("div");
+                div.setAttribute("id","notallow")
+                div.className += "disabledom";
+                document.body.appendChild(div);
+
+                console.log("FW File Size = ", fileToPost.size);
+
+                $scope.IsFWUpdating = true;
+
+                var setData = {};
+
+                setData.Type = 'Normal';
+                setData.IgnoreMultipartResponse = true;
 
 
-            
 
-            SunapiClient.post('/stw-cgi/system.cgi?msubmenu=firmwareupdate&action=control', setData,
+
+                SunapiClient.post('/stw-cgi/system.cgi?msubmenu=firmwareupdate&action=control', setData,
                     function (response)
                     {
                     },
@@ -161,15 +165,26 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                         $scope.IsFWUpdating = false;
                         $scope.ProgressVisible = false;
                     }, $scope, fileToPost, specialHeaders);
-                    
-                    
-        }
-        else
-        {
-             COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
-             console.log("Empty File");
+
+                cancelTimer = setTimeout(function(){
+                    if($scope.ProgressVisible === true && $scope.IsFWUpdating === true){
+                        $scope.CancelEvent();
+                    }
+                }, 420000);
+            }
+            else
+            {
+                COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
+                console.log("Empty File");
+            }
+
+            if(cancelTimer !== null){
+                clearTimeout(cancelTimer);
+                cancelTimer = null;
+            }
         }
     };
+
 
     $scope.backupConfig = function ()
     {
@@ -489,8 +504,7 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                         $scope.ProgressVisible = false;
                     }, $scope, btoa(fileToPost), specialHeaders);
         };
-    }
-    ;
+    };
 
     function updateProgress(TimeDelay, ProgressBarName, MaxValue)
     {

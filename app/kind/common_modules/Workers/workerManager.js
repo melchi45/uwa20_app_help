@@ -29,7 +29,7 @@ function WorkerManager() {
   var browser = BrowserDetect();
 
   //video
-  var videoInfo,
+  var videoInfo = null,
   SDPInfo = null,
   frameRate = 0,
   govLength = null,
@@ -161,17 +161,16 @@ function WorkerManager() {
         }
         
         if(message.data.frame_time_stamp == null) {
-          message.data.frame_duration = 10*Math.round(1000/frameRate);
+          message.data.frame_duration = 10* Math.round(1000/frameRate);
         }
 
         if (speed !== 1) {
-          message.data.frame_duration = 10*1000/Math.abs(speed);			
+          message.data.frame_duration = 10*(1000/Math.abs(speed));			
         }
 
         mediaInfo.samples[mediaSegmentNum++] = message.data;
         curbaseMediaDecoderTime += message.data.frame_duration;
-        sumDuration +=message.data.frame_duration;
-
+        sumDuration+=message.data.frame_duration;
         if(mediaInfo.samples[0].frame_duration > 5000 && mediaInfo.samples[0].frame_duration <= 30000){
           numBox = 1;
         } else{
@@ -407,7 +406,11 @@ function WorkerManager() {
       }
 
       if(audioRenderer !== null){
-        audioRenderer.BufferAudio(message.data, message.rtpTimeStamp);
+        if(videoInfo === null || videoInfo === undefined){
+          audioRenderer.BufferAudio(message.data, message.rtpTimeStamp, null);
+        }else{
+          audioRenderer.BufferAudio(message.data, message.rtpTimeStamp, videoInfo.codecType);
+      }
       }
       break;
       case 'backup':

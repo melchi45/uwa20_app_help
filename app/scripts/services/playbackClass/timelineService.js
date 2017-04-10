@@ -25,7 +25,7 @@ kindFramework
           var timestamp = 0;
           var stopCallback = false;
           var calculatedTimezone = false;
-          var endTarget = -1;
+				var endTarget = undefined;
           var selectedID = -1;
 
           var DUPLICATE_CLASS_NAME = 'vis-duplicate-view';

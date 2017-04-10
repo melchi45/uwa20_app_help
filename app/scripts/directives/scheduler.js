@@ -1382,6 +1382,7 @@ kindFramework
                 }
             }, true);
             //---------------------------------------------------------
+            //---------------------------------------------------------
 
             scope.$watch('EventRules', function(newVal, oldVal){ // alarmInput
                 if(typeof newVal === "undefined" || activeMenu !== 'alarmInput'){

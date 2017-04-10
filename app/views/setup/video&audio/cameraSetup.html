@@ -323,7 +323,8 @@
                                 <div class="form-group" ng-if="Camera.HLCMaskTone !== undefined && Camera.CompensationMode === 'HLC'">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_dimming' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
-                                        <input type="checkbox" ng-model="Camera.HLCDimming" ng-change="cameraChangeHandler()"> <label>{{ 'lang_enable' | translate }}</label>
+                                        <select class="form-control" ng-model="Camera.HLCDimming" ng-options="Mode as getTranslatedOption(Mode) for Mode in HLCDimmingOptions" ng-change="cameraChangeHandler()">
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group" ng-if="!PTZModel && Camera.CompensationMode === 'HLC'">
