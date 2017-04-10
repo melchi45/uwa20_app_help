@@ -93,8 +93,7 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
     {
         COMMONUtils.ShowConfirmation(updateFirmwareCallback, 'lang_msg_upgrade_removed_statistics_data', 'lg');
 
-        function updateFirmwareCallback()
-        {
+        function updateFirmwareCallback() {
             $scope.ProgressBar = 0;
             var file = $scope.FirmwareFile;
             var epochTicks = 621355968000000000;
@@ -117,11 +116,10 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
 
             var fileToPost = new Blob([contents, file.slice(0, file.size), footer]);
 
-            if (fileToPost.size)
-            {
+            if (fileToPost.size) {
 
-                var div= document.createElement("div");
-                div.setAttribute("id","notallow")
+                var div = document.createElement("div");
+                div.setAttribute("id", "notallow")
                 div.className += "disabledom";
                 document.body.appendChild(div);
 
@@ -135,30 +133,24 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                 setData.IgnoreMultipartResponse = true;
 
 
-
-
                 SunapiClient.post('/stw-cgi/system.cgi?msubmenu=firmwareupdate&action=control', setData,
-                    function (response)
-                    {
+                    function (response) {
                     },
-                    function (errorData,errorCode)
-                    {
-                        if(errorCode === 604)
-                        {
+                    function (errorData, errorCode) {
+                        if (errorCode === 604) {
                             COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
-                            var div= document.getElementById("notallow");
-                            if(typeof div !== 'undefined')
-                            {
+                            var div = document.getElementById("notallow");
+                            if (typeof div !== 'undefined') {
                                 document.body.removeChild(div);
                             }
                         }
-                        else{
-                            if(errorData.indexOf('HTTP Error') !== -1){
+                        else {
+                            if (errorData.indexOf('HTTP Error') !== -1) {
                                 var msg = $translate.instant('lang_msg_upgrading_was_failed');
                                 alert(msg);
                                 logout();
-                            }else{
-                                COMMONUtils.ShowInfo('lang_msg_upgrading_was_failed',logout);
+                            } else {
+                                COMMONUtils.ShowInfo('lang_msg_upgrading_was_failed', logout);
                             }
                         }
                         $scope.IsRestoreRunning = false;

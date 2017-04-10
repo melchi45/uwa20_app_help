@@ -425,6 +425,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
         modalInstance.result.then(
             function (){
+                $rootScope.$emit('changeLoadingBar', true);
                 var setData = {};
 
                 setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
@@ -437,10 +438,12 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                 return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=tamperingdetection&action=set', setData,
                     function ()
                     {
+                        $rootScope.$emit('changeLoadingBar', false);
                         pageData.TamperDetect.Enable = angular.copy($scope.TamperDetect.Enable);
                     },
                     function (errorData)
                     {
+                        $rootScope.$emit('changeLoadingBar', false);
                         $scope.TamperDetect.Enable = angular.copy(pageData.TamperDetect.Enable);
                         console.log(errorData);
                     }, '', true);
@@ -462,7 +465,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     }
 
     function checkChangedData(){
-        return !angular.equals(pageData.TamperDetect, $scope.TamperDetect) || eventRuleService.checkEventRuleValidation();
+        return !angular.equals(pageData.TamperDetect, $scope.TamperDetect) || !eventRuleService.checkEventRuleValidation();
     }
 
     function validatePage() {
@@ -545,6 +548,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                     $timeout(setSizeChart);
                 },
                 function (errorData) {
+                    $rootScope.$emit('changeLoadingBar', false);
                     console.log(errorData);
                 }
         );

@@ -223,20 +223,32 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
                 }, '', true);
     }
 
-    function view()
+    function view(onlyEventLog)
     {
-        getAttributes();
-        $q.seqAll([
-                getAccessLog,
-                getSystemLog,
-                getEventLog
-            ]).then(function(){
-                $rootScope.$emit('changeLoadingBar', false);
-                $scope.pageLoaded = true;
-                $("#systemlogpage").show();
-            }, function(errorData){
-                //alert(errorData);
-            });
+        if(onlyEventLog) {
+            $q.seqAll([
+                    getEventLog
+                ]).then(function(){
+                    $rootScope.$emit('changeLoadingBar', false);
+                    $scope.pageLoaded = true;
+                    $("#systemlogpage").show();
+                }, function(errorData){
+                    //alert(errorData);
+                });
+        } else {
+            getAttributes();
+            $q.seqAll([
+                    getAccessLog,
+                    getSystemLog,
+                    getEventLog
+                ]).then(function(){
+                    $rootScope.$emit('changeLoadingBar', false);
+                    $scope.pageLoaded = true;
+                    $("#systemlogpage").show();
+                }, function(errorData){
+                    //alert(errorData);
+                });
+        }
     }
 
     $scope.backup = function (Option)
@@ -672,7 +684,9 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
         $rootScope.$emit('changeLoadingBar', true);
         $rootScope.$emit("channelSelector:changeChannel", data);
         $scope.channelSelectionSection.setCurrentChannel(data);
-        $timeout(view);
+        $timeout(function() {
+            view(true);
+        });
     }, $scope);
 
 

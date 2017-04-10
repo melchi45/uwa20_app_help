@@ -63,7 +63,7 @@ kindFramework
       }
 
       function drawEventNoti(data) {
-        // console.log("event.type: " + data.type + " , event.value: " + data.value + ", event.eventId: " + data.eventId);
+         console.log("event.type: " + data.type + " , event.value: " + data.value + ", event.eventId: " + data.eventId);
         var targetData = data;
 
         if(!(currentEventPage === 'live' || (currentEventPage === targetData.type))){
@@ -74,6 +74,7 @@ kindFramework
           case "MoveStatus:PanTilt":
           case "MoveStatus:Zoom":
           case "DigitalAutoTracking":
+          case "AutoTracking":
           updatePtzEvent(targetData);
           break;
           case "DigitalInput":
@@ -191,6 +192,8 @@ kindFramework
                 UniversialManagerService.setDigitalPTZ(CAMERA_STATUS.DPTZ_MODE.DIGITAL_PTZ);
                 at_icon.removeClass().addClass('tui tui-ch-live-ptz-tracking-auto-off');
             }
+            break;
+          case "AutoTracking":
             break;
       }
       $timeout(function() { $rootScope.$apply(); } );

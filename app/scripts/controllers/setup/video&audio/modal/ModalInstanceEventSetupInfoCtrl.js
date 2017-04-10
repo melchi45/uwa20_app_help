@@ -4,6 +4,7 @@ kindFramework.controller('ModalInstanceEventSetupInfoCtrl', ['$scope', '$rootSco
   function ($scope, $rootScope, $uibModalInstance, $timeout, infoTableData) {
 
   console.log(infoTableData);
+
 	$scope.dataType = [
 		'FTP',
 		'E-Mail',
@@ -15,7 +16,7 @@ kindFramework.controller('ModalInstanceEventSetupInfoCtrl', ['$scope', '$rootSco
     'FTP',
     'SMTP',
     'Record',
-    'AlarmOutput'
+    'AlarmOutput.1'
   ];
   
   $scope.dataTypeLength = $scope.dataType.length;
@@ -66,7 +67,13 @@ kindFramework.controller('ModalInstanceEventSetupInfoCtrl', ['$scope', '$rootSco
           }
 
           if(dataSelf.enable === true){
-            eventActionData = dataSelf.eventActions.indexOf(eventActionTypeLive[l]) > -1 ? "lang_on" : "lang_off";
+            eventActionData = dataSelf.eventActions.indexOf(eventActionTypeLive[l]) > -1 ?
+              (
+                l === $scope.dataTypeLength - 1 ?
+                dataSelf.alarmOutputDuration :
+                "lang_on"
+              ) :
+              "lang_off";
           }
 
           $scope.channelItems[k].datas[pageIndex] = eventActionData;
@@ -78,8 +85,6 @@ kindFramework.controller('ModalInstanceEventSetupInfoCtrl', ['$scope', '$rootSco
   }catch(e){
     console.error(e);
   }
-
-  console.log($scope.channelItems);
 
   $scope.cancel = function() {
     $uibModalInstance.close();

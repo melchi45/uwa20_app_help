@@ -67,9 +67,7 @@ kindFramework
                 }
                 if(activeMenu === 'alarmInput') {
                     scope.EventRules[scope.AlarmData.SelectedAlarm].ScheduleIds = angular.copy(scheduleIds); // temporarily index 0
-                } else if(activeMenu === 'storage') {
-                    scope.RecordSchedule[0].ScheduleIds = angular.copy(scheduleIds);
-                } else if(activeMenu === 'record') {
+                } else if(activeMenu == 'storage') {
                     scope.RecordSchedule.ScheduleIds = angular.copy(scheduleIds);
                 } else {
                     scope.EventRule.ScheduleIds = angular.copy(scheduleIds);
@@ -741,6 +739,7 @@ kindFramework
 
             function setVisibility(value) {
                 var v = value;
+
                 currentScheduleType = value;
                 eventRuleService.setScheduleType(value);
                 if(value === "Always") {
@@ -1326,30 +1325,16 @@ kindFramework
                 }
             }, true);
 
-            scope.$watch('RecordSchedule[0].Activate', function(newVal, oldVal){ // for storage controller
-                if(typeof newVal === "undefined" || newVal === oldVal){
-                    return;
-                }//console.info('scheduler watch RecordSchedule[0].Activate : ');console.info(newVal);
-                activeMenu = 'storage';
-                if(newVal === 'Always') {
-                    // deleteAll();
-                    setVisibility(newVal);
-                } else if(newVal === 'Scheduled') {
-                    if(!alreadyCreated) {
-                        initCalendar(scope.RecordSchedule[0]);
-                    }
-                    // $timeout(function() {
-                        setVisibility(newVal);
-                    // });
-                }
-            }, true);
-
             scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){ // for storage controller
+                console.info(newVal, oldVal);
                 if(typeof newVal === "undefined" || newVal === oldVal){
-                    return;
+                    if(newVal !== 'Scheduled' || oldVal !== 'Scheduled'){
+                        return;
+                    }
                 }//console.info('scheduler watch RecordSchedule.Activate : ');console.info(newVal);
-                if(scope.EventSource === 'Record') {
-                    activeMenu = 'record';
+                if(scope.EventSource === 'Storage') {
+                    activeMenu = 'storage';
+
                     if(newVal === 'Always') {
                         // deleteAll();
                         setVisibility(newVal);

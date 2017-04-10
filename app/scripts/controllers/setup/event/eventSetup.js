@@ -55,6 +55,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
                         dataArray[k].channel = action.Channel;
                         dataArray[k].enable = action.Enable;
                         dataArray[k].eventActions = action.EventActions;
+                        dataArray[k].alarmOutputDuration = action.AlarmOutputs[0].Duration;
                     }
 
                     result.data.push(dataArray);
