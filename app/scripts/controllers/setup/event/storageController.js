@@ -855,6 +855,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             SunapiClient.sequence(queue, function(){
                 if (needRefresh) {
                     $rootScope.$emit('changeLoadingBar', true);
+                    $rootScope.$emit("channelSelector:changeChannel", newChannel);
                     window.setTimeout(view, 1000);
                 } else {
                     $rootScope.$emit('changeLoadingBar', true);
