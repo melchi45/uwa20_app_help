@@ -1018,6 +1018,8 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     }
 
     function setChangedData() {
+        $rootScope.$emit('changeLoadingBar', true);
+        
         var deferred = $q.defer();
         var queue = [];
 
