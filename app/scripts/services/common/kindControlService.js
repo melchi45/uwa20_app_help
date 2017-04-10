@@ -297,7 +297,7 @@ kindFramework
       var deferred = $q.defer();
       var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=add&Name=" + NonPluginProfile + "&EncodingType=H264";
       sunapiURI += "&ATCTrigger=Network&ATCMode=Disabled&Resolution=" + resolution;
-      sunapiURI += "&FrameRate=20&CompressionLevel=10&Bitrate=2048&AudioInputEnable=False";
+      sunapiURI += "&FrameRate=20&CompressionLevel=10&Bitrate=2048";
       sunapiURI += "&H264.BitrateControlType=VBR&H264.PriorityType=FrameRate&H264.GOVLength=20";
       sunapiURI += "&H264.Profile=Main&H264.EntropyCoding=CABAC";
 

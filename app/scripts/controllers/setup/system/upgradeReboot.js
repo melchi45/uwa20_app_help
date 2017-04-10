@@ -88,7 +88,7 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
         COMMONUtils.onLogout();
     }
 
-
+    var cancelTimer = null;
     $scope.updateFirmware = function ()
     {
         COMMONUtils.ShowConfirmation(updateFirmwareCallback, 'lang_msg_upgrade_removed_statistics_data', 'lg');
@@ -158,14 +158,25 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                         $scope.ProgressVisible = false;
                     }, $scope, fileToPost, specialHeaders);
 
-
+                cancelTimer = setTimeout(function(){
+                    if($scope.ProgressVisible === true && $scope.IsFWUpdating === true){
+                        $scope.CancelEvent();
+                    }
+                }, 420000);
             }
-            else {
+            else
+            {
                 COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
                 console.log("Empty File");
             }
+
+            if(cancelTimer !== null){
+                clearTimeout(cancelTimer);
+                cancelTimer = null;
+            }
         }
     };
+
 
     $scope.backupConfig = function ()
     {
@@ -485,8 +496,7 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                         $scope.ProgressVisible = false;
                     }, $scope, btoa(fileToPost), specialHeaders);
         };
-    }
-    ;
+    };
 
     function updateProgress(TimeDelay, ProgressBarName, MaxValue)
     {

@@ -341,7 +341,11 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           }
         }
         else if(menuId === "queue" || menuId === "statistics"){
-          retVal = true;
+          if(mAttr.QueueManagement){
+            retVal = true;
+          }else{
+            retVal = false;
+          }
         }
         else if(menuId === "heatmap" || menuId === "statistics"){
           if(mAttr.HeatMap){
@@ -365,7 +369,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           }
         }
         else if(menuId === "record"){
-          if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){ //2.5.3 ë²„ì „ ì´ìƒì¼ ë•Œ
+          if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){ //2.5.3 ¹öÀü ÀÌ»óÀÏ ¶§
             retVal = true;
           }else{
             retVal = false;

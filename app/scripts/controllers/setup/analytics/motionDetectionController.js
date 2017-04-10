@@ -1259,6 +1259,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     }
 
+    ////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
+
     function deleteRemovedROI(){
         //삭제된 Index 찾아서 삭제 요청
         var deferred = $q.defer();
@@ -1593,6 +1595,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             $scope.EventRule.ScheduleIds = [];
         });
     };
+
+    ////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

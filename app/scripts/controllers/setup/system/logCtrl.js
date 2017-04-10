@@ -180,6 +180,7 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
         $('#EventTypeId').val($scope.EventLogTypes[0]);
 
         var getData = {};
+        getData.Channel = currentChannel;
 
         if (typeof dateReq !== 'undefined')
         {
@@ -212,7 +213,7 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
                         return a.toUpperCase();
                     }));*/
                     // $scope.EL = COMMONUtils.chunkArray($scope.EventLog, $scope.pageSize);
-                    $scope.EL = COMMONUtils.chunkArray($scope.EventLog[currentChannel], $scope.pageSize);
+                    $scope.EL = COMMONUtils.chunkArray($scope.EventLog[0], $scope.pageSize);
                 },
                 function (errorData)
                 {
@@ -643,7 +644,7 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
         }
         else
         {
-            $scope.EL = COMMONUtils.chunkArray(COMMONUtils.filterArrayByObject($scope.EventLog[currentChannel], Option), $scope.pageSize);
+            $scope.EL = COMMONUtils.chunkArray(COMMONUtils.filterArrayByObject($scope.EventLog[0], Option), $scope.pageSize);
         }
 
         $scope.data.EventLogPageIndex = $scope.currentEventLogPage;

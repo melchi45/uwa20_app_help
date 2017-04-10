@@ -136,6 +136,8 @@ function MetaDataParser(callback) {
               eventName = "SoundClassification"; break;
             case "tns1:VideoSource/tnssamsung:QueueManagement" :
               eventName = "Queue"; break;
+            case "tns1:VideoSource/tnssamsung:AutoTracking" :
+              eventName = "AutoTracking"; break;
             default :
               eventName = "Unknown Event";
           }
@@ -171,7 +173,7 @@ function MetaDataParser(callback) {
             "id":1,
             "type": eventName,
             "value": value,
-            "eventId": eventId,
+            "eventId": eventId
           };
 
           dataList.push(data);

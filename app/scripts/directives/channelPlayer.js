@@ -1174,16 +1174,16 @@ kindFramework.directive('channelPlayer',
                    elem.empty();
                   if(BrowserService.PlugInSupport && BrowserService.PlugInDetect)
                   {
-                      //IE ?ï¿½ï¿½?ï¿½ï¿½ê·¸ì¸ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ // PlugIn Off ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ H264, H265 ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½
+                      //IE ??????±×ÀÎ ????????? // PlugIn Off ???????????? H264, H265 ????? ???
                       $rootScope.$emit("channel:setPlugin");
                   }
                   else {
-                      //?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ë¦¬ì˜¤
+                      //????? ??????¸®¿À
                       createPlugInInstallElement();
                       $rootScope.$emit('changeLoadingBar', false);
                   }
 
-                  //NonPlugIn ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ë¦¬ì˜¤
+                  //NonPlugIn ?????? ??????¸®¿À
                   //requestAvailableProfile(profile);
                   return;
                 }

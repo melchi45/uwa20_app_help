@@ -745,6 +745,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                     mAttributes.MaxPreset = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Limit/MaxPreset');
 
                     mAttributes.RecordStreamLimitation = XMLParser.parseAttributeSection(response.data, 'Recording/Support/RecordStreamLimitation');
+                    mAttributes.QueueManagement = XMLParser.parseAttributeSection(response.data, 'Recording/Support/QueueManagement');
                     mAttributes.isDigitalPTZ = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Support/DigitalPTZ');
                     mAttributes.MaxGroupCount = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Limit/MaxGroupCount');
                     mAttributes.MaxPresetsPerGroup = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Limit/MaxPresetCountPerGroup');
@@ -899,7 +900,6 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                         mAttributes.EventSourceOptionsReady = true;
                     }
                 },'',true);
-
     };
 
 
@@ -909,7 +909,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         {
             var functionList = [];
             mAttributes.GetFail = false;
-
+ 
             if (!mAttributes.DeviceInfoReady)
             {
                 functionList.push(this.getDeviceInfo);

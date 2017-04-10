@@ -1,6 +1,6 @@
 <div class="wrapper wrapper-content ng-hide" ng-show="pageLoaded">
     <wn5-setup-main-title
-        data-title="lang_setup">
+        data-title="{{lang.setupTitle}}">
     </wn5-setup-main-title>
 
     <div class="wn5-setup-section">
@@ -21,14 +21,14 @@
                     {{ lang.setupTabTitle.configuration | translate}}
                 </button>
             </li>
-            <li class="wn5-setup-tab-item">
+            <!--<li class="wn5-setup-tab-item">
                 <button 
                     ng-class="{'active': currentTapStatus[1] === true }"
                     ng-click="changeTabStatus(1)" 
                     type="button">
                     {{ lang.setupTabTitle.calibration | translate }}
                 </button>
-            </li>
+            </li>-->
         </ul>
         <div class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
             <sketchbook 
@@ -39,12 +39,29 @@
             </sketchbook>
 
             <div class="wn5-setup-preview-table">
+                <!--<div ng-show="currentTapStatus[1] === true">
+                    <section class="form-group">
+                        <div class="wn5-setup-preview-heading">
+                            <label>
+                                {{ 'lang_size' | translate }}
+                            </label>
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <div class="wn5-setup-section-article-content">
+                                <p ng-bind-html="lang.calibration.message"></p>
+                            </div>
+                            <div class="wn5-setup-section-article-content">
+                                <figure id="pc-setup-collapse-calibration-icon"></figure>
+                            </div>
+                        </div>
+                    </section>
+                </div>-->
                 <div ng-show="currentTapStatus[0] === true">
                     <section 
                         ng-show="queueData.Enable"
                         class="form-group">
                         <div class="wn5-setup-preview-heading">
-                            <label>{{ lang.queueList.title | translate }}</label>
+                            <label>{{ lang.areaList.title | translate }}</label>
                             <!-- <button 
                                     type="button" 
                                     class="pc-question-button tui tui-ch-live-info" 
@@ -67,8 +84,8 @@
                                                 ng-change="queueListSection.enableStatusAll()"
                                                 ng-model="queueListSection.allEnableStatus">
                                         </th>
-                                        <th class="text-center">{{ lang.queueList.no | translate }}</th>
-                                        <th class="text-center">{{ lang.queueList.name | translate }}</th>
+                                        <th class="text-center">{{ lang.areaList.no | translate }}</th>
+                                        <th class="text-center">{{ lang.areaList.name | translate }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,7 +98,7 @@
                                                 ng-change="queueListSection.changeUseState($index, true)"
                                                 ng-model="data.Enable">
                                         </td>
-                                        <td>{{$index + 1}}</td>
+                                        <td ng-style="areaColor[$index]">{{$index + 1}}</td>
                                         <td>
                                             <input 
                                                 type="text" 
@@ -94,23 +111,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </section>
-                </div>
-                <div ng-show="currentTapStatus[1] === true">
-                    <section class="form-group">
-                        <div class="wn5-setup-preview-heading">
-                            <label>
-                                {{ 'lang_size' | translate }}
-                            </label>
-                        </div>
-                        <div class="wn5-setup-preview-content">
-                            <div class="wn5-setup-section-article-content">
-                                <p ng-bind-html="lang.calibration.message"></p>
-                            </div>
-                            <div class="wn5-setup-section-article-content">
-                                <figure id="pc-setup-collapse-calibration-icon"></figure>
-                            </div>
                         </div>
                     </section>
                 </div>
@@ -132,150 +132,195 @@
             </section>
 
             <section class="wn5-setup-section" ng-show="currentTapStatus[0] === true && queueData.Enable" style="margin-top: 30px;">
-                <div class="wn5-setup-section-heading">
-                    <h3>
-                        {{ lang.queueLevel.title | translate }}
-                    </h3>
-                </div>
-
-                <div class="wn5-setup-section-article">
-                    <div class="form-group">
-                        <div class="wn5-setup-section-article-content" style="margin-bottom: 60px;">
-                            <div class="qm-bar-wrap qm-bar-setup" id="qm-bar" style="float: left;">
-                                <div class="qm-bar-num qm-bar-mid">
-                                    <span></span>
-                                    <div>{{ lang.queueLevel.mid | translate }}</div>
-                                </div>
-                                <div class="qm-bar-num qm-bar-high">
-                                    {{ lang.queueLevel.high | translate }}
-                                    <span></span>
-                                </div>
-                                <div class="qm-bar-num qm-bar-max">
-                                    <span></span>
-                                    <div>{{ lang.queueLevel.max | translate }}</div>
-                                </div>
-                                <div class="qm-bar-radius">
-                                    <div class="qm-bar-mask-image"></div>
-                                    <div class="qm-bar-mask"></div>
-                                    <div class="qm-bar">
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="float: left; margin-left: 30px;">
-                                {{ lang.queueLevel.high | translate }}
-                                <select 
-                                    class="cm-selectbox" 
-                                    ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[0].Count"
-                                    ng-change="queueLevelSection.changeValue()"
-                                    ng-options="maxData for maxData in queueLevelSection.maxArr"
-                                    style="margin: 0 7px;">
-                                </select>
-                                {{ lang.queueLevel.people | translate }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="wn5-setup-section" ng-show="currentTapStatus[0] === true && queueData.Enable" ng-if="queueData.dataLoad">
-                <hr class="wn5-setup-hr">
-                <div class="wn5-setup-section-heading">
+                <div class="wn5-setup-section-heading" style="margin-bottom:50px;">
                     <h3>
                         {{ lang.queueEvent.title | translate }}
                     </h3>
                 </div>
 
                 <div class="wn5-setup-section-article">
-                    <div class="form-group">
-                        <div class="wn5-setup-section-article-content">
-                            <input 
-                                type="checkbox"
-                                ng-model="queueData.Queues[queueList.selectedQueueId].QueueTypes[0].AlarmEnable">
-                            <span style="display: inline-block; width: 60px;">
-                                {{ lang.queueEvent.high | translate }}
-                            </span>
-                            <div style="display: inline-block; width: 100%; max-width: 300px;">
-                                <live_slider 
-                                    live-slider-property="queueEventSection.high.sliderProperty" 
-                                    live-slider-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[0]"
-                                    live-slider-model-name="Threshold">
-                                </live_slider>
+                    <section class="wn5-setup-section" ng-show="currentTapStatus[0] === true && queueData.Enable">
+                        <div class="wn5-setup-section-heading" style="margin-bottom:50px;">
+                            <h3>
+                                {{ lang.queueEventLevel.title | translate }}
+                            </h3>
+                        </div>
+
+                        <div class="wn5-setup-section-article">
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-content" style="margin-bottom: 60px;">
+                                    <div class="qm-bar-wrap qm-bar-setup" id="qm-bar" style="float: left;">
+                                        <div class="qm-bar-num qm-bar-mid">
+                                            <span></span>
+                                            <div>{{ lang.queueEventLevel.medium | translate }}</div>
+                                        </div>
+                                        <div class="qm-bar-num qm-bar-high">
+                                            {{ lang.queueEventLevel.high | translate }}
+                                            <span></span>
+                                        </div>
+                                        <div class="qm-bar-num qm-bar-max">
+                                            <span></span>
+                                            <div>{{ lang.queueEventLevel.max | translate }}</div>
+                                        </div>
+                                        <div class="qm-bar-radius">
+                                            <div class="qm-bar-mask-image"></div>
+                                            <div class="qm-bar-mask"></div>
+                                            <div class="qm-bar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="qm-set-value">
+                                        <p>
+                                            <span class="qm-title">
+                                                {{ lang.queueEventLevel.max | translate }}
+                                            </span>
+                                            <select 
+                                                class="cm_selectbox" 
+                                                ng-model="queueData.Queues[queueListSection.selectedQueueId].MaxPeople"
+                                                ng-change="queueLevelSection.reload('max')"
+                                                ng-options="maxValue for maxValue in maxValues">
+                                            </select>
+                                            <span class="qm-people">
+                                                {{ lang.queueEventLevel.people | translate }}
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span class="qm-title">
+                                                {{ lang.queueEventLevel.high | translate }}
+                                            </span>
+                                            <select 
+                                                class="cm_selectbox" 
+                                                ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[0].Count"
+                                                ng-change="queueLevelSection.reload()"
+                                                ng-options="maxData for maxData in queueLevelSection.maxArr">
+                                            </select>
+                                            <span class="qm-people">
+                                                {{ lang.queueEventLevel.people | translate }}
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            {{ lang.queueEvent.sec | translate }}
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="wn5-setup-section-article-content">
-                            <input 
-                                type="checkbox"
-                                ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[1].AlarmEnable">
-                            <span style="display: inline-block; width: 60px;">
-                                {{ lang.queueEvent.mid | translate }}
-                            </span>
-                            <div style="display: inline-block; width: 100%; max-width: 300px;">
-                                <live_slider 
-                                    live-slider-property="queueEventSection.mid.sliderProperty" 
-                                    live-slider-model="queueData.Queues[queueListSection.selectedQueueId].QueueTypes[1]"
-                                    live-slider-model-name="Threshold">
-                                </live_slider>
+                    </section>
+
+                    <section class="wn5-setup-section" ng-show="currentTapStatus[0] === true && queueData.Enable" ng-if="queueData.dataLoad">
+                        <!--<hr class="wn5-setup-hr">-->
+                        <div class="wn5-setup-section-heading">
+                            <h3>
+                                {{ lang.queueEventDuration.title | translate }}
+                            </h3>
+                        </div>
+
+                        <div class="wn5-setup-section-article">
+                            <div class="form-group" style="margin-top: -7px;">
+                                <div class="wn5-setup-section-article-content">
+                                    <input 
+                                        type="checkbox"
+                                        ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[0].AlarmEnable"
+                                        style="vertical-align: middle;">
+                                    <span style="display: inline-block; width: 60px;">
+                                        {{ lang.queueEventDuration.high | translate }}
+                                    </span>
+                                    <div style="display: inline-block; width: 100%; max-width: 300px; transform: translateY(3px);">
+                                        <live_slider 
+                                            live-slider-property="queueEventSection.high.sliderProperty" 
+                                            live-slider-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[0]"
+                                            live-slider-model-name="Threshold">
+                                        </live_slider>
+                                    </div>
+                                    {{ lang.queueEventDuration.sec | translate }}
+                                </div>
                             </div>
-                            {{ lang.queueEvent.sec | translate }}
+                            <div class="form-group" style="margin-top: -7px;">
+                                <div class="wn5-setup-section-article-content">
+                                    <input 
+                                        type="checkbox"
+                                        ng-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[1].AlarmEnable"
+                                        style="vertical-align: middle;">
+                                    <span style="display: inline-block; width: 60px;">
+                                        {{ lang.queueEventDuration.medium | translate }}
+                                    </span>
+                                    <div style="display: inline-block; width: 100%; max-width: 300px; transform: translateY(3px);">
+                                        <live_slider 
+                                            live-slider-property="queueEventSection.medium.sliderProperty" 
+                                            live-slider-model="queueData.Queues[queueListSection.selectedQueueId].QueueLevels[1]"
+                                            live-slider-model-name="Threshold">
+                                        </live_slider>
+                                    </div>
+                                    {{ lang.queueEventDuration.sec | translate }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-content">
+                                    {{ lang.queueEventDuration.message | translate }}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="wn5-setup-section-article-content">
-                            {{ lang.queueEvent.message | translate }}
-                        </div>
-                    </div>
+                    </section>
+                    
                 </div>
             </section>
+
         </div>
     </div>
 
     <hr class="wn5-setup-hr">
 
-    <pc-setup-report page-type="hm"></pc-setup-report>
+    <pc-setup-report page-type="qm"></pc-setup-report>
 
     <hr class="wn5-setup-hr">
 
-    <div class="wn5-setup-section">
+    <div class="wn5-setup-section" style="margin-top: 20px;">
         <div class="wn5-setup-section-heading">
             <h3>
                 {{ 'lang_eventActionSetup' | translate }}
             </h3>
         </div>
         <div class="wn5-setup-section-article">
-            <div class="form-group">
+            <div class="form-group" ng-if="eventSection.EventActions.indexOf('FTP') !== -1">
                 <div class="wn5-setup-section-article-heading">
                     FTP
                 </div>
                 <div class="wn5-setup-section-article-content">
-                    <input type="checkbox">
+                    <input ng-model="eventSection.data.FtpEnable" type="checkbox">
                         <label>
                             {{'lang_enable' | translate}}
                         </label>
                     </input>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-if="eventSection.EventActions.indexOf('SMTP') !== -1">
                 <div class="wn5-setup-section-article-heading">
                     {{ 'lang_email' | translate }}
                 </div>
                 <div class="wn5-setup-section-article-content">
-                    <input type="checkbox">
+                    <input ng-model="eventSection.data.SmtpEnable" type="checkbox">
                         <label>
                             {{'lang_enable' | translate}}
                         </label>
                     </input>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-if="eventSection.EventActions.indexOf('Record') !== -1">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_record' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <input ng-model="eventSection.data.RecordEnable" type="checkbox">
+                        <label>
+                            {{'lang_enable' | translate}}
+                        </label>
+                    </input>
+                </div>
+            </div>
+            <div class="form-group" ng-if="eventSection.EventActions.indexOf('AlarmOutput') !== -1" ng-repeat="n in eventSection.getAlarmOutArray">
                 <div class="wn5-setup-section-article-heading">
                     {{ 'lang_alarmOutput' | translate }} {{n + 1}}
                 </div>
                 <div class="wn5-setup-section-article-content">
-                    <select class="form-control">
-                        <option ng-repeat="Duration in AlarmoutDurationOptions" value="{{Duration}}">
+                    <select class="form-control" ng-model="eventSection.data.AlarmOutputs[n].Duration">
+                        <option ng-repeat="Duration in AlarmoutDurationOptions" ng-selected="eventSection.data.AlarmOutputs[n].Duration == Duration" value="{{Duration}}">
                             {{getTranslatedOption(Duration)}}
                         </option>
                     </select>
@@ -295,9 +340,8 @@
         pcCameraManagement Directive uses its parent scope.
         scope.pcCameraManagement of pcCameraManagement Directive is used in parent Controller.
         -->
-        <!-- <pc-camera-management 
-            page-type="pc"
-            ng-hide="currentTapStatus[1]">
-        </pc-camera-management> -->
+        <pc-camera-management 
+            page-type="qm">
+        </pc-camera-management> 
     </div>
 </div>

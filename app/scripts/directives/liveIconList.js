@@ -20,16 +20,6 @@ kindFramework.directive('liveIconList', function(
 		link: function(scope, element, attrs){
     		var mAttr = Attributes.get();
 
-        if(mAttr.MaxAudioInput !== undefined)
-        {
-            scope.MaxAudioInput = mAttr.MaxAudioInput;
-        }
-
-        if(mAttr.MaxAudioOutput !== undefined)
-        {
-            scope.MaxAudioOutput = mAttr.MaxAudioOutput;
-        }        
-
     		scope.disableAlarmOutput = function() {
     			if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE &&
     				UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE ) {
@@ -43,7 +33,7 @@ kindFramework.directive('liveIconList', function(
     			return AccountService.isAlarmOutputAble();
     		}
 
-    		scope.alarmOutputMax = function() {
+				scope.alarmOutputMax = function() {
     			return new Array(mAttr.MaxAlarmOutput);
     		};
 
@@ -228,11 +218,6 @@ kindFramework.directive('liveIconList', function(
 			      ptz: {
 			        'label': 'lang_PTZ',
 			        'action': function() {
-						// if (scope.channelBasicFunctions.overlayCanvas) {
-						// 	scope.channelBasicFunctions.overlayCanvas = false;
-						// } else {
-						// 	scope.channelBasicFunctions.overlayCanvas = true;
-						// }
 			          toggleChannelFunctions('ptz');
 			        },
 			        'class': 'tui-wn5-toolbar-ptz',
@@ -309,6 +294,20 @@ kindFramework.directive('liveIconList', function(
 
 			function loadedAttr(){
 				scope.wisenetCameraFuntions2.ptz.show = (mAttr.ZoomOnlyModel || mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
+
+				if (AccountService.isPTZAble() === false) {
+					scope.wisenetCameraFuntions2.ptz.show = false;
+				}
+
+        if(mAttr.MaxAudioInput !== undefined)
+        {
+            scope.MaxAudioInput = mAttr.MaxAudioInput;
+        }
+
+        if(mAttr.MaxAudioOutput !== undefined)
+        {
+            scope.MaxAudioOutput = mAttr.MaxAudioOutput;
+        }
 
 				if (AccountService.isPTZAble() === false) {
 					scope.wisenetCameraFuntions2.ptz.show = false;
