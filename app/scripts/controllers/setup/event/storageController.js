@@ -674,8 +674,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
             pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
-
-            console.info($scope.RecordSchedule);
         }, function(errorData) {
             console.error(errorData);
         }, '', true);
@@ -717,12 +715,14 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     function getRecordProfileDetails() {
         var getData = {};
         if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+        
+        getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
 
-        // getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
 
             $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
-            $scope.RecordProfileName = $scope.VideoProfile[$scope.Channel].Name;
+            $scope.RecordProfileName = $scope.VideoProfile[0].Name;
+            
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
@@ -819,6 +819,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         promises.push(getRecordingSchedules);
         promises.push(getRecordProfile);
         promises.push(getRecordProfileDetails);
+        promises.push(changeVideoProfilePolicies);
         
 
         $q.seqAll(promises).then(setAttribute).then(function() {
@@ -1102,6 +1103,19 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         }, '', true);
     }
 
+    function changeVideoProfilePolicies() {
+        var getData = {};
+        if( $scope.MaxChannel > 1 ) getData = $scope.Channel;
+
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', getData, function(response) {
+            $scope.VideoProfilePolicies.RecordProfile = response.data.VideoProfilePolicies;
+
+            console.log($scope.VideoProfilePolicies);
+        }, function(errorData) {
+            console.log(errorData);
+        }, '', true);
+    }
+
     $scope.storageDeviceTypeCheck = function(){
         SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', '', function(response) {
             //scope.globalNavigationBar.deviceModelName = response.data.Model;
@@ -1140,6 +1154,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         if(okay) {
             $scope.Channel = data;
 
+            
             $rootScope.$emit("channelSelector:changeChannel", data);
             $rootScope.$emit('changeLoadingBar', true);
 
@@ -1151,6 +1166,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                     if (validatePage()) {
                         COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
                             COMMONUtils.ApplyConfirmation(function () {
+                                
                                 saveStorage(data);
                             });
                         });
