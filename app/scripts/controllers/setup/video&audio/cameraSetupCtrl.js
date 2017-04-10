@@ -3393,7 +3393,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     setData.HLCMaskColor = $scope.Camera.HLCMaskColor;
                 }
                 setData.HLCMaskTone = $scope.Camera.HLCMaskTone;
-                setData.HLCDimming = ($scope.Camera.HLCDimming === true)? 'On' : 'Off';
+                // setData.HLCDimming = ($scope.Camera.HLCDimming === true)? 'On' : 'Off';
                 setData.HLCAreaTop = $scope.Camera.HLCAreaTop;
                 setData.HLCAreaBottom = $scope.Camera.HLCAreaBottom;
                 setData.HLCAreaLeft = $scope.Camera.HLCAreaLeft;
@@ -4887,7 +4887,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     $scope.Camera.WDRSeamlessTransition = ($scope.Camera.WDRSeamlessTransition === 'On') ? true : false;
                     $scope.Camera.WDRLowLight = ($scope.Camera.WDRLowLight === 'On') ? true : false;
                     $scope.Camera.WDRIRLEDEnable = ($scope.Camera.WDRIRLEDEnable === 'On') ? true : false;
-                    $scope.Camera.HLCDimming = ($scope.Camera.HLCDimming === 'On') ? true : false;
+                    // $scope.Camera.HLCDimming = ($scope.Camera.HLCDimming === 'On') ? true : false;
 
                     pageData.Camera = angular.copy($scope.Camera);
                     previewData.Camera = angular.copy($scope.Camera);
