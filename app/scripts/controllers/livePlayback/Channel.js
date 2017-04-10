@@ -530,7 +530,13 @@ kindFramework
       //var DEFAULT_CHANNEL=0;
       return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', '',
         function (response) {
-          defaultProfileID = response.data.VideoProfilePolicies[channelId].DefaultProfile;
+          if(sunapiAttributes.MaxChannel > 1){
+            for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
+              UniversialManagerService.setDefaultProfileIndex(response.data.VideoProfilePolicies[i].DefaultProfile, i);
+            }
+          } else {
+            defaultProfileID = response.data.VideoProfilePolicies[channelId].DefaultProfile;
+          }
         },
         function (errorData) {
           ModalManagerService.open('message', { 'buttonCount': 0, 'message': errorData } );
@@ -745,7 +751,15 @@ kindFramework
       //var DEFAULT_CHANNEL=0;
       return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
         function (response) {
-          var ProfileList = response.data.VideoProfiles[channelId].Profiles;
+          var ProfileList;
+          if (sunapiAttributes.MaxChannel > 1) {
+            for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
+              ProfileList = response.data.VideoProfiles[i].Profiles;
+              UniversialManagerService.setProfileList(ProfileList, i);
+            }
+          }
+
+          ProfileList = response.data.VideoProfiles[channelId].Profiles;
           if(ProfileList.length > 1 && ProfileList[1].IsDigitalPTZProfile !== undefined)
           {
             sunapiAttributes.isDigitalPTZ = true;
@@ -1020,12 +1034,15 @@ kindFramework
 
     /* Channel Selector Direction */
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-      console.log(index);
+      console.log("Select Channel Id = " + index);
       $rootScope.$emit('channelPlayer:command', 'stopLive', false);
       channelId = index;
       UniversialManagerService.setChannelId(channelId);
 
-      setProfileInfo();
+      var RequestProfile = getProfileByIndex(UniversialManagerService.getProfileList(index), 
+        UniversialManagerService.getDefaultProfileIndex(index));
+      startStreaming(RequestProfile);
+      $rootScope.$emit('changeLoadingBar', true);
     }, $scope);
 
     $rootScope.$saveOn('channelSelector:changeQuadView', function(event, response){
