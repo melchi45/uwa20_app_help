@@ -6798,10 +6798,36 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     };
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
-        $scope.channelSelectionSection.setCurrentChannel(data);
-        $rootScope.$emit('changeLoadingBar', true);
-        $rootScope.$emit("channelSelector:changeChannel", data);
-        view();
+        if (($scope.ImagePresetModeOptions !== undefined && !angular.equals(pageData.ImagePreset, $scope.ImagePreset))
+            || !angular.equals(pageData.VideoSources, $scope.VideoSources)
+            || (mAttr.CompensationModeOptions !== undefined && !angular.equals(pageData.Camera, $scope.Camera))
+            || ($scope.HeaterSupport && $scope.PTZModel !== true && !angular.equals(pageData.HeaterSchedules, $scope.HeaterSchedules))) {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'sm',
+                resolve: {
+                    Message: function() {
+                        return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
+                    }
+                }
+            });
+            modalInstance.result.then(function() {
+                if(validatePage()) {
+                    $rootScope.$emit('changeLoadingBar', true);
+                    $scope.targetChannel = data;
+                    saveSettings();
+                }
+            },
+            function() {
+            });
+        } else {
+            $rootScope.$emit('changeLoadingBar', true);
+            // $scope.targetChannel = data;
+            $scope.channelSelectionSection.setCurrentChannel(data);
+            $rootScope.$emit("channelSelector:changeChannel", data);
+            view();
+        }
     }, $scope);
 
 
