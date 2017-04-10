@@ -194,6 +194,7 @@ kindFramework
             }
             break;
           case "AutoTracking":
+            $rootScope.$emit('AutoTrackingStatus', eventObj);
             break;
       }
       $timeout(function() { $rootScope.$apply(); } );
