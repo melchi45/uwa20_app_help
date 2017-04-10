@@ -1779,10 +1779,10 @@ KindSVGEditor.addPlugin('draw', function(options){
 	function bindEvent(){
 		if(useResizeRectangle === true || useEvent === true || customDraw === true){
 			parentSvg.startAxis = null;
-			eventCtrl.bind('mousedown', parentSVGMouseDownHandle);	
-			eventCtrl.bind('mousemove', parentSVGMouseMoveHandle);	
-			eventCtrl.bind('mouseup', parentSVGMouseUpHandle);
-			eventCtrl.bind('mouseleave', parentSVGMouseUpHandle);
+			eventCtrl.bindBodyEvent('mousedown', parentSVGMouseDownHandle);	
+			eventCtrl.bindBodyEvent('mousemove', parentSVGMouseMoveHandle);	
+			eventCtrl.bindBodyEvent('mouseup', parentSVGMouseUpHandle);
+			eventCtrl.bindBodyEvent('mouseleave', parentSVGMouseUpHandle);
 
 			// document.documentElement.addEventListener('mouseup', documentElementMouseMoveHandle);
 		}		
@@ -1865,10 +1865,10 @@ KindSVGEditor.addPlugin('draw', function(options){
 	}
 
 	function unbindEvent(){
-		eventCtrl.unbind('mousedown', parentSVGMouseDownHandle);	
-		eventCtrl.unbind('mousemove', parentSVGMouseMoveHandle);	
-		eventCtrl.unbind('mouseup', parentSVGMouseUpHandle);
-		eventCtrl.unbind('mouseleave', parentSVGMouseUpHandle);
+		eventCtrl.unbindBodyEvent('mousedown', parentSVGMouseDownHandle);	
+		eventCtrl.unbindBodyEvent('mousemove', parentSVGMouseMoveHandle);	
+		eventCtrl.unbindBodyEvent('mouseup', parentSVGMouseUpHandle);
+		eventCtrl.unbindBodyEvent('mouseleave', parentSVGMouseUpHandle);
 		// document.documentElement.removeEventListener('mouseup', documentElementMouseMoveHandle);
 	}
 

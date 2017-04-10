@@ -43,7 +43,7 @@ KindSVGEditor.addPlugin('customEditor', function(options){
 		};
 
 		var callStartEvent = function(){
-			eventCtrl.bind("contextmenu", removeDrawingGeometry);
+			eventCtrl.bindParentEvent("contextmenu", removeDrawingGeometry);
 			isDrawing = true;
 			if("start" in customEvent){
 				customEvent.start(svgObj[currentSvgObjIndex]);
@@ -51,7 +51,7 @@ KindSVGEditor.addPlugin('customEditor', function(options){
 		};
 
 		var callEndEvent = function(){
-			eventCtrl.unbind("contextmenu", removeDrawingGeometry);
+			eventCtrl.unbindParentEvent("contextmenu", removeDrawingGeometry);
 			isDrawing = false;
 			if("end" in customEvent){
 				customEvent.end(svgObj[currentSvgObjIndex]);
@@ -163,11 +163,11 @@ KindSVGEditor.addPlugin('customEditor', function(options){
 	bindEvent();
 
 	function unbindEvent(){
-		eventCtrl.unbind('click', parentSVGClickHandle);			
+		eventCtrl.unbindParentEvent('click', parentSVGClickHandle);			
 	}
 
 	function bindEvent(){
-		eventCtrl.bind('click', parentSVGClickHandle);
+		eventCtrl.bindParentEvent('click', parentSVGClickHandle);
 	}
 
 	function removeDrawingGeometry(){

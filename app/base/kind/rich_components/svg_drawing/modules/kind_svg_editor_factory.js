@@ -19,11 +19,17 @@ function KindSVGEditorFactory(svgTag){
 	svgTag.style.msUserSelect = 'none';
 
 	self.eventController = {
-		bind: function(name, callback){
+		bindParentEvent: function(name, callback){
 			self.PARENT_SVG_TAG.addEventListener(name, callback);
 		},
-		unbind: function(name, callback){
+		unbindParentEvent: function(name, callback){
 			self.PARENT_SVG_TAG.removeEventListener(name, callback);
+		},
+		bindBodyEvent: function(name, callback){
+			document.body.addEventListener(name, callback);
+		},
+		unbindBodyEvent: function(name, callback){
+			document.body.removeEventListener(name, callback);
 		}
 	};
 
