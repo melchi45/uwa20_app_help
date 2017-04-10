@@ -20,11 +20,18 @@
 						 ng-disabled="btnDisabled" 
 						 ng-hide="visiblityIDInputBox">
       <input 
-						 type="password" 
-						 class="login-input text" 
-						 placeholder="Password" 
-						 ng-model="loginInfo.password" 
-						 ng-disabled="btnDisabled">
+             type="password" 
+             class="login-input text" 
+             placeholder="Password" 
+             ng-model="loginInfo.password" 
+             ng-disabled="btnDisabled">
+      <input 
+             type="text" 
+             class="login-input text" 
+             placeholder="IP Address" 
+             ng-if="desktopAppInfo.isDesktopApp"
+             ng-model="desktopAppInfo.ipAddress"
+             ng-disabled="btnDisabled">
       <input 
 						 type="submit" 
 						 value="LOGIN" 
