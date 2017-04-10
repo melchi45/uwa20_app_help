@@ -539,6 +539,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         promises.push(showVideo);
         promises.push(getTamperingLevel);
 
+        if(promises.length > 0) {
         $q.seqAll(promises).then(
                 function () {
                     $rootScope.$emit('changeLoadingBar', false);
@@ -551,6 +552,10 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                     console.log(errorData);
                 }
         );
+        } else {
+            $scope.pageLoaded = true;
+            $timeout(setSizeChart);
+    }
     }
 
     function set()

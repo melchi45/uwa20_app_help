@@ -164,7 +164,8 @@ kindFramework
       $scope.pageController.channelSelector(sunapiAttributes.MaxChannel > 1 ? true : false);
       ConnectionSettingService.SetMultiChannelSupport(
                     sunapiAttributes.MaxChannel > 1 ? true : false);
-      
+      var playData = new PlayDataModel();
+      playData.setPlaybackEnable(true);
       initStreaming()
       .then(function() {
         //Check Browser
@@ -411,19 +412,22 @@ kindFramework
 
     $rootScope.$saveOn('channel:reloadStreaming', function() {
       var playData = new PlayDataModel();
-      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH )
+      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && playData.getStatus() === PLAY_CMD.PLAY )
       {
         $scope.playPlayback(PLAY_CMD.STOP);
+        playData.setStatus(PLAY_CMD.PLAY);
         $timeout(function(){
           $scope.timelineController.resetTimeRange();
           $scope.playPlayback(PLAY_CMD.PLAY);
-        },100);
+        },500);
       }
     }, $scope);
 
     /* Channel Selector Direction */
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+      var playData = new PlayDataModel();
       UniversialManagerService.setChannelId(index);
+      playData.setStatus(PLAY_CMD.STOP);
       PlaybackInterface.preparePlayback(index);
     }, $scope);
 

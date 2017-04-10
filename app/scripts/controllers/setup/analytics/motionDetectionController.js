@@ -64,11 +64,29 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
     })();
     
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-        $rootScope.$emit('changeLoadingBar', true);
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){        
+        if(validatePage()){
+            COMMONUtils
+                .confirmChangeingChannel()
+                .then(function(){
+                    $rootScope.$emit('changeLoadingBar', true);
+                    saveSettings().then(function(){
+                        changeChannel(index);
+                    });
+                }, function(){
+                    console.log("canceled");
+                });    
+        }else{
+            $rootScope.$emit('changeLoadingBar', true);
+            changeChannel(index);
+        }
+    }, $scope);
+
+    function changeChannel(index){
+        $rootScope.$emit("channelSelector:changeChannel", index);
         $scope.channelSelectionSection.setCurrentChannel(index);
         view();
-    }, $scope);
+    }
 
     function getCommonCmd(){
         if($scope.VideoAnalysis2Support !== undefined && $scope.VideoAnalysis2Support === true){
@@ -1014,6 +1032,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         });
 
         modalInstance.result.then(function(){
+            $rootScope.$emit('changeLoadingBar', true);
+            
             var functionlist = [];
             functionlist.push(setOnlyEnable);
             $q.seqAll(functionlist).then(
@@ -1088,6 +1108,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function saveSettings() {
+        var deferred = $q.defer();
         var functionlist = [];
         // SUNAPI SET
         ////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
@@ -1113,24 +1134,31 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     getHandoverList(view).then(
                         function() {
                             $scope.$emit('applied', true);
+                            deferred.resolve(true);
                         },
                         function(errorData) {
                             console.log(errorData);
+                            deferred.resolve(true);
                         });
                 },
                 function(errorData){
                     console.log(errorData);
+                    deferred.resolve(true);
                 }
             );
         } else {
             getHandoverList(view).then(
                 function() {
                     $scope.$emit('applied', true);
+                    deferred.resolve(true);
                 },
                 function(errorData) {
                     console.log(errorData);
+                    deferred.resolve(true);
             });
         }
+
+        return deferred.promise;
     }
 
     (function wait() {
@@ -1195,7 +1223,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         var queue = [];
         globalQueue = [];
 
-        if ($scope.HandoverSupport && !angular.equals(pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList, $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList))
+        if ($scope.HandoverSupport && pageData.Handover && !angular.equals(pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList, $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList))
         {
             for (var i = 0; i < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList.length; i++)
             {
@@ -1258,6 +1286,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         // }
 
     }
+
+    ////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
 
     function deleteRemovedROI(){
         //삭제된 Index 찾아서 삭제 요청
@@ -1593,6 +1623,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             $scope.EventRule.ScheduleIds = [];
         });
     };
+
+    ////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -111,6 +111,8 @@ kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScop
         promises.push(getAlarmInputs);
         promises.push(cameraView);
         getSelectedAlarm();
+
+        if(promises.length > 0) {
         $q.seqAll(promises).then(function() {
             checkDayNightModeDependency();
             $scope.pageLoaded = true;
@@ -118,6 +120,10 @@ kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScop
         }, function(errorData) {
             console.log(errorData);
         });
+        } else {
+            checkDayNightModeDependency();
+            $scope.pageLoaded = true;
+    }
     }
 
     function set() {

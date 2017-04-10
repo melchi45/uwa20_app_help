@@ -6,6 +6,8 @@ var app = {
 	// Check if app is running on browser on device
     setDevice: function () {
         window.isPhone = false;
+        window.isDesktopApp = false;
+
         var documentUrl = document.URL;
         
         if (
@@ -14,6 +16,11 @@ var app = {
             documentUrl.indexOf("https://") === -1) {
             window.isPhone = true;
         }
+
+        if(documentUrl.indexOf("file://") > -1){
+            window.isDesktopApp = true;
+        }
+
         return window.isPhone;
     },
 	

@@ -5,6 +5,8 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
     COMMONUtils.getResponsiveObjects($scope);
     $scope.ch = 0;
     var pageData = {};
+    $scope.qSetData = null;
+    $scope.pSetData = null;
 
     $scope.channelSelectionSection = (function(){
         var currentChannel = 0;
@@ -76,6 +78,28 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
         if (mAttr.MaxSmartCodecArea !== undefined) {
             $scope.MaxSmartCodecArea = mAttr.MaxSmartCodecArea;
         }        
+    }
+
+    function setQuality() {
+        var setData = $scope.qSetData;
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=set', setData,
+            function (response) {
+                if(!angular.equals(pageData.SmartCodec, $scope.SmartCodec)){
+                    pageData.SmartCodec = angular.copy($scope.SmartCodec);
+                }
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    }
+
+    function setPOI() {
+        var setData = $scope.pSetData;
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=add', setData,
+            function (response) {},
+            function (errorData) {
+                console.log(errorData);
+                }, '', true);
     }
 
     function setSmartCodec() {

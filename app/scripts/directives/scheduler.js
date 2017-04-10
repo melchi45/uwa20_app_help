@@ -82,6 +82,7 @@ kindFramework
             }
 
             function mergeTheInitial() {//console.info('mergeTheInitial :: ');console.info('before merge : ');
+                console.info('merge');
                 var tEventObjs = eventObjs;
                 var prevEvent;
                 var tDay;
@@ -1339,6 +1340,7 @@ kindFramework
                         // deleteAll();
                         setVisibility(newVal);
                     } else if(newVal === 'Scheduled') {
+                        console.info(alreadyCreated);
                         if(!alreadyCreated) {
                             initCalendar(scope.RecordSchedule);
                         }
@@ -1366,6 +1368,7 @@ kindFramework
                     // });
                 }
             }, true);
+            //---------------------------------------------------------
             //---------------------------------------------------------
 
             scope.$watch('EventRules', function(newVal, oldVal){ // alarmInput

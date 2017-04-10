@@ -33,7 +33,7 @@ kindFramework.directive('liveIconList', function(
     			return AccountService.isAlarmOutputAble();
     		}
 
-    		scope.alarmOutputMax = function() {
+				scope.alarmOutputMax = function() {
     			return new Array(mAttr.MaxAlarmOutput);
     		};
 
@@ -218,11 +218,6 @@ kindFramework.directive('liveIconList', function(
 			      ptz: {
 			        'label': 'lang_PTZ',
 			        'action': function() {
-						// if (scope.channelBasicFunctions.overlayCanvas) {
-						// 	scope.channelBasicFunctions.overlayCanvas = false;
-						// } else {
-						// 	scope.channelBasicFunctions.overlayCanvas = true;
-						// }
 			          toggleChannelFunctions('ptz');
 			        },
 			        'class': 'tui-wn5-toolbar-ptz',
