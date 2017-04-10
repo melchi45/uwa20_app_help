@@ -91,9 +91,7 @@ kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $transl
         } else {
             $scope.pageLoaded = true;
             $scope.$emit('pageLoaded', $scope.EventSource);
-        }, function(errorData) {
-            console.log(errorData);
-        });
+        }
     }
 
     function set() {

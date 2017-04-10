@@ -33,6 +33,10 @@ kindFramework.directive('liveIconList', function(
     			return AccountService.isAlarmOutputAble();
     		}
 
+				scope.alarmOutputMax = function() {
+    			return new Array(mAttr.MaxAlarmOutput);
+    		};
+
 		    var backupCallback = function(data) {
 		      if( data.errorCode === BACKUP_STATUS.MODE.RECORDING ) {
 		        $timeout(function(){
@@ -317,12 +321,6 @@ kindFramework.directive('liveIconList', function(
         if(mAttr.MaxAudioOutput !== undefined)
         {
             scope.MaxAudioOutput = mAttr.MaxAudioOutput;
-        }
-
-				scope.alarmOutputMax = [];
-        if(mAttr.MaxAlarmOutput !== undefined)
-        {
-            scope.alarmOutputMax = new Array(mAttr.MaxAlarmOutput);
         }
 			}
 
