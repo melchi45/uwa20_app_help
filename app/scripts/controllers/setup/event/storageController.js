@@ -707,8 +707,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         
 
         $q.seqAll(promises).then(setAttribute).then(function() {
-            var scheduler = $("#scheduler");
-            scheduler.html('');
+            // var scheduler = $("#scheduler");
+            // scheduler.html('');
 
             $scope.pageLoaded = true;
 
@@ -718,10 +718,10 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
             $("#storagepage").show();
 
-            var templete = angular.element("<scheduler></scheduler>");
-            $compile(templete)($scope);
+            // var templete = angular.element("<scheduler></scheduler>");
+            // $compile(templete)($scope);
 
-            scheduler.append(templete);
+            // scheduler.append(templete);
 
         }, function(errorData) {
             console.log(errorData);
