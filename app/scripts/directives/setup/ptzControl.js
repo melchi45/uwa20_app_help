@@ -113,11 +113,11 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         scope.showPTZControlHome = true;
                         scope.zoomPresetClass = 'zoompreset';
                         scope.ptzControlClass = 'ptz-ui-width';
-                        if(ptzinfo.disablePosition == true){
-                            scope.disablePosition = true;
-                        } else {
-                            scope.disablePosition = false;
-                        }
+                        //if(ptzinfo.disablePosition == true){
+                        //    scope.disablePosition = true;
+                        //} else {
+                        //    scope.disablePosition = false;
+                        //}
                     }else if(ptzinfo.type==='AT'){
                         scope.ptzControlClass = 'w610';
                         scope.zoomPresetClass = 'at-box';
@@ -175,11 +175,11 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         scope.showPTZControlPresetText = true;
                         scope.showPTZControlHome = false;
                         scope.zoomPresetClass = 'zoompreset';
-                        if(ptzinfo.disablePosition == true){
-                            scope.disablePosition = true;
-                        } else {
-                            scope.disablePosition = false;
-                        }
+                        //if(ptzinfo.disablePosition == true){
+                        //    scope.disablePosition = true;
+                        //} else {
+                        //    scope.disablePosition = false;
+                        //}
                     }else{
                         initControlUI();
                     }
