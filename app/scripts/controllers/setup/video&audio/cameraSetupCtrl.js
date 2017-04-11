@@ -983,6 +983,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
     function initSSDRSettings() {
         $scope.SensorModeOptions = mAttr.SensorModeOptions;
+        $scope.MaxSensorFrameRate = parseInt($scope.SensorModeOptions[$scope.SensorModeOptions.length-1]);
         $scope.SSDRDynamicRangeOptions = mAttr.SSDRDynamicRangeOptions;
         $scope.SSDRLevel = mAttr.SSDRLevel;
 
@@ -1483,8 +1484,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                                     LogManager.debug("Min Shutter Adjusted ", $scope.Camera.AutoShortShutterSpeed, " -> ", modeDetails.DefaultAutoShortShutterSpeed);
                                     LogManager.debug("Max Shutter Adjusted ", $scope.Camera.AutoLongShutterSpeed, " -> ", modeDetails.DefaultAutoLongShutterSpeed);
                                     LogManager.debug("Prefer Shutter Adjusted ", $scope.Camera.PreferShutterSpeed, " -> ", modeDetails.DefaultPreferShutterSpeed);
-                                    $scope.Camera.AutoShortShutterSpeed = modeDetails.DefaultAutoShortShutterSpeed;
-                                    $scope.Camera.AutoLongShutterSpeed = modeDetails.DefaultAutoLongShutterSpeed;
+                                    //$scope.Camera.AutoShortShutterSpeed = modeDetails.DefaultAutoShortShutterSpeed;
+                                    //$scope.Camera.AutoLongShutterSpeed = modeDetails.DefaultAutoLongShutterSpeed;
+                                    var defaultShutterSpeed = CameraSpec.getDefaultShutterSpeed($scope.MaxSensorFrameRate).ShutterSpeedDetails.CompensationModes[compModeCnt];
+                                    $scope.Camera.AutoShortShutterSpeed = defaultShutterSpeed.SensorCaptureFrameRates[sensorModeCnt].DefaultAutoShortShutterSpeed;
+                                    $scope.Camera.AutoLongShutterSpeed = defaultShutterSpeed.SensorCaptureFrameRates[sensorModeCnt].DefaultAutoLongShutterSpeed;
                                     $scope.Camera.PreferShutterSpeed = modeDetails.SensorCaptureFrameRates[sensorModeCnt].DefaultPreferShutterSpeed;
                                     changePreferShutterByFPS();
                                 }

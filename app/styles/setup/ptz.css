@@ -234,6 +234,9 @@
 .ptz-control_horizontal {
 	margin-left: 4px;
 }
+.ptz-control_horizontal.popup_zoom {
+	margin-left: 0 !important;
+}
 .ptz-control_horizontal-item{
 	vertical-align: middle;
 	float: left;
@@ -250,7 +253,9 @@
 .ptz-control_horizontal-item.item-button{
 	padding: 0 10px 0 0;
 }
-
+button[disabled].ptz-control_horizontal-item.slider-button{
+	opacity: .35;
+}
 .ptz-control_horizontal-slider{
     width: 100px;
 }
@@ -273,6 +278,15 @@
     font-size: 36px;
     cursor:pointer;
 }
+
+.ptz-privacy-zoom-slider{
+    width: 100px;
+}
+.ptz-privacy-zoom-.slider-cursor-btn .ui-state-default{
+	top: 13px !important;
+	margin-left: -6px !important;
+}
+
 
 #ptz-control_right-box{
 	float:right;

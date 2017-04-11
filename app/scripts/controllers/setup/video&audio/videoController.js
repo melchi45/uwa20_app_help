@@ -495,88 +495,30 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 setData.Channel = currentChannel;
             }
 
-            SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=add', setData,
-            function (response) {
-                if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && data.thresholdEnable){
-                    var modalInstance2 = $uibModal.open({
-                        templateUrl: "privacyPopup2.html",
-                        backdrop: false,
-                        controller: ['$scope', '$uibModalInstance', '$timeout', 'sketchbookService', function(scope, $uibModalInstance, $timeout, sketchbookService){
-                            scope.ok = function() {
-                                getZoomValue().then(function(returnZoomValue){
-                                    if(returnZoomValue > $scope.MaxZoom){
-                                        var modalInstance3 = $uibModal.open({
-                                            templateUrl: "privacyPopup3.html",
-                                            backdrop: false,
-                                            controller: ['$scope', '$uibModalInstance', '$timeout', 'Attributes', 'COMMONUtils', 'sketchbookService', function($scope, $uibModalInstance, $timeout, Attributes, COMMONUtils, sketchbookService){
-                                                $scope.message = getMessagePrivacyZoom();
-                                                $scope.ok = function() {
-                                                    var coordinates = {};
-                                                    coordinates = {name:"", color:"", selectedMask: true, x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
-                                                    sketchbookService.set(coordinates);
-                                                    $uibModalInstance.dismiss();
-                                                };
-                                                $timeout(function(){
-                                                    var privacyDialog = $("#privacy-popup-3");
-                                                    var width = (privacyDialog.parent().width() + 30);
-                                                    var height = (privacyDialog.parent().height() + 30);
-                                                    privacyDialog
-                                                    .parents(".modal")
-                                                    .draggable()
-                                                    .css({
-                                                        width: (privacyDialog.width() + 30) + "px",
-                                                        height: (privacyDialog.height() + 30) + "px",
-                                                        top: "calc(50% - " + (height/2) + "px)",
-                                                        left: "calc(50% - " + (width/2) + "px)"
-                                                    })
-                                                        .find(".modal-dialog")
-                                                        .css({
-                                                            margin: 0
-                                                        });
-                                                });
-                                            }]
-                                        });
-                                        modalInstance3.result.finally(
-                                            function() {
-                                                $("[type='radio'][name='VideoOutput']").prop("disabled", false);
-                                                bContext.clearRect(0, 0, videoInfo.width, videoInfo.height);
-                                            }
-                                        );
-                                    } else {
-                                        var updateData = {};
-                                        updateData["MaskIndex"] = setData["MaskIndex"];
-                                        updateData["ZoomThresholdEnable"] = data.thresholdEnable;
-
-                                        if($scope.isMultiChannel) {
-                                            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-                                            updateData.Channel = currentChannel;
-                                        }
-                                        SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=update', updateData,
-                                        function (response) {
-                                            privacyAreaView(setData["MaskIndex"]);
-                                            $uibModalInstance.close();
-                                        },
-                                        function (errorData) {
-                                            console.log(errorData);
-                                        },'',true);
-                                    }
-                                });
-                            };
-
-                            scope.cancel = function() {
-                                $uibModalInstance.dismiss();
-                            };
-
-                            $timeout(function(){
-                                var privacyDialog = $("#privacy-popup-2");
-                                var width = (privacyDialog.parent().width() + 30);
-                                var height = (privacyDialog.parent().height() + 30);
-                                privacyDialog
+            if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && data.thresholdEnable){
+                getZoomValue().then(function(returnZoomValue){
+                    if(returnZoomValue > $scope.MaxZoom){
+                        var modalInstance3 = $uibModal.open({
+                            templateUrl: "privacyPopup3.html",
+                            backdrop: false,
+                            controller: ['$scope', '$uibModalInstance', '$timeout', 'Attributes', 'COMMONUtils', 'sketchbookService', function($scope, $uibModalInstance, $timeout, Attributes, COMMONUtils, sketchbookService){
+                                $scope.message = getMessagePrivacyZoom();
+                                $scope.ok = function() {
+                                    var coordinates = {};
+                                    coordinates = {name:"", color:"", selectedMask: true, x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
+                                    sketchbookService.set(coordinates);
+                                    $uibModalInstance.dismiss();
+                                };
+                                $timeout(function(){
+                                    var privacyDialog = $("#privacy-popup-3");
+                                    var width = (privacyDialog.parent().width() + 30);
+                                    var height = (privacyDialog.parent().height() + 30);
+                                    privacyDialog
                                     .parents(".modal")
                                     .draggable()
                                     .css({
                                         width: (privacyDialog.width() + 30) + "px",
-                                        height: (privacyDialog.height() + 30) + "px",                                        
+                                        height: (privacyDialog.height() + 30) + "px",
                                         top: "calc(50% - " + (height/2) + "px)",
                                         left: "calc(50% - " + (width/2) + "px)"
                                     })
@@ -584,35 +526,61 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                                         .css({
                                             margin: 0
                                         });
-                            });
-                        }]
-                    });
-                    
-                    modalInstance2.result.then(
-                        function(){
-                            $("[type='radio'][name='VideoOutput']").prop("disabled", false);
-                            $scope.coordinates = {};
-                            $scope.coordinates = {name:"", color:"", x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
-                        }
-                        , function(){
-                            $scope.deletePrivacy(setData["MaskIndex"]);
-                            var coordinates = {};
-                            coordinates = {name:"", color:"", selectedMask: true, x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
-                            sketchbookService.set(coordinates);
-                        }
-                    );
-                }else{
+                                });
+                            }]
+                        });
+                        modalInstance3.result.finally(
+                            function() {
+                                $("[type='radio'][name='VideoOutput']").prop("disabled", false);
+                                bContext.clearRect(0, 0, videoInfo.width, videoInfo.height);
+                            }
+                        );
+                    } else {
+                        SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=add', setData,
+                        function (response) {
+                            var updateData = {};
+                            updateData["MaskIndex"] = setData["MaskIndex"];
+                            updateData["ZoomThresholdEnable"] = data.thresholdEnable;
+
+                            if($scope.isMultiChannel) {
+                                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                                updateData.Channel = currentChannel;
+                            }
+                            SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=update', updateData,
+                            function (response) {
+                                privacyAreaView(setData["MaskIndex"]);
+                                $("[type='radio'][name='VideoOutput']").prop("disabled", false);
+                                $scope.coordinates = {};
+                                $scope.coordinates = {name:"", color:"", x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
+                            },
+                            function (errorData) {
+                                console.log(errorData);
+                                $scope.deletePrivacy(setData["MaskIndex"]);
+                                var coordinates = {};
+                                coordinates = {name:"", color:"", selectedMask: true, x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
+                                sketchbookService.set(coordinates);
+                            },'',true);
+                        },
+                        function (errorData) {
+                            console.log(errorData);
+                        },'',true);
+                        
+                    }
+                });
+            }else{
+                SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=add', setData,
+                function (response) {
                     doNotMoveFunction = true;
                     $("[type='radio'][name='VideoOutput']").prop("disabled", false);
                     privacyAreaView(setData["MaskIndex"]);
                     $scope.coordinates = {};
                     $scope.coordinates = {name:"", color:"", x1:0, y1:0, x2:0, y2:0, x3:0, y3:0, x4:0, y4:0};
-                }
-            },
-            function (errorData) {
-                console.log(errorData);
-            },'',true);
-
+                },
+                function (errorData) {
+                    console.log(errorData);
+                },'',true);
+                
+            }
         }
     });
 
