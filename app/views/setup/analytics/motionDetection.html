@@ -20,7 +20,45 @@
                 <label>{{ 'lang_enable_feature_motion_detection' | translate }}</label>
             </div>
         </div>
-        
+
+        <div 
+            class="wn5-setup-section" 
+            ng-if="PTZModel"
+            ng-show="MotionDetection.MotionDetectionEnable">
+            <div class="wn5-setup-section-article-content">
+                <div ng-class="RadioClassSm">
+                    <input 
+                        type="radio" 
+                        name="preset-mode" 
+                        value="Global"
+                        ng-model="presetData.type">
+                    {{ 'lang_global' | translate }}
+                </div>
+                <div class="col-sm-9 col-xs-6 field-radio-wrapper control-label">
+                    <input 
+                        type="radio" 
+                        name="preset-mode" 
+                        value="Preset"
+                        ng-model="presetData.type"
+                        ng-disabled="presetList.length === 0">
+                    {{ 'lang_preset' | translate }}
+                    <select 
+                        class="form-control" 
+                        ng-options="item.Preset as item.Text for item in presetList"
+                        ng-model="presetData.preset"
+                        ng-hide="presetData.type !== 'Preset'"
+                        style="display: inline-block; width: auto; padding: 0 10px; margin-left: 10px; min-width: 150px;">
+                    </select>
+                    <!--<select 
+                        class="form-control" 
+                        ng-model="presetTypeData.PresetIndex" 
+                        ng-change="onPresetChange(presetTypeData.PresetIndex)" 
+                        ng-options="PresetNameValueOptions.indexOf(Option) as Option.Text for Option in PresetNameValueOptions">
+                    </select>-->
+                </div>
+            </div>
+        </div>
+
         <div class="wn5-setup-tab">
             <ul class="wn5-setup-tab-list use-margin-top">
                 <li 

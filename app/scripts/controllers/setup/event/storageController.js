@@ -717,27 +717,29 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     function getRecordProfileDetails() {
         var getData = {};
         if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+        getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
 
         // getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
 
             $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
-            $scope.RecordProfileName = $scope.VideoProfile[$scope.Channel].Name;
+            $scope.RecordProfileName = $scope.VideoProfile[0].Name;
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
     }
 
-    function getRecordProfile() {
+    function changeVideoProfilePolicies() {
         var getData = {};
-        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
-            
+
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', getData, function(response) {
-            $scope.VideoProfilePolicies = response.data.VideoProfilePolicies[0];
+            $scope.VideoProfilePolicies = response.data.VideoProfilePolicies[$scope.Channel];
+
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
     }
+
     $scope.OnStorageSelection = function(index) {
         $scope.SelectedStorage = index;
     };
@@ -813,6 +815,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
     function view(data) {
         var promises = [];
+        promises.push(changeVideoProfilePolicies);
         promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
         promises.push(getRecordingStorageDetails);
@@ -822,8 +825,8 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         
 
         $q.seqAll(promises).then(setAttribute).then(function() {
-            var scheduler = $("#scheduler");
-            scheduler.html('');
+            // var scheduler = $("#scheduler");
+            // scheduler.html('');
 
             $scope.pageLoaded = true;
 
@@ -833,10 +836,10 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
             $("#storagepage").show();
 
-            var templete = angular.element("<scheduler></scheduler>");
-            $compile(templete)($scope);
+            // var templete = angular.element("<scheduler></scheduler>");
+            // $compile(templete)($scope);
 
-            scheduler.append(templete);
+            // scheduler.append(templete);
 
         }, function(errorData) {
             console.log(errorData);
