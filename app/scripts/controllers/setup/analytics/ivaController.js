@@ -489,8 +489,10 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         for (var i = 1; i < $scope.tabs.length; i++) {
             $scope.tabs[i].active = false;
         }
-        setInitialObjectSize();
-        updateMDVARegion2($scope.activeTab);
+        if($scope.IVAPresetReady !== undefined && $scope.IVAPresetReady === true) {
+            setInitialObjectSize();
+            updateMDVARegion2($scope.activeTab);
+        }
     };
 
     $scope.onPresetTypeChange = function (Type)
@@ -508,8 +510,10 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         for (var i = 1; i < $scope.tabs.length; i++) {
             $scope.tabs[i].active = false;
         }
-        setInitialObjectSize();
-        updateMDVARegion2($scope.activeTab);
+        if($scope.IVAPresetReady !== undefined && $scope.IVAPresetReady === true) {
+            setInitialObjectSize();
+            updateMDVARegion2($scope.activeTab);
+        }
     };
 
     $scope.$watch('presetTypeData.SelectedPreset',function(newVal,oldVal){
@@ -535,8 +539,10 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             }
         }
 
-        setInitialObjectSize();
-        updateMDVARegion2($scope.activeTab);
+        if($scope.IVAPresetReady !== undefined && $scope.IVAPresetReady === true) {
+            setInitialObjectSize();
+            updateMDVARegion2($scope.activeTab);
+        }
         
         // if ($scope.HandoverSupport){
         //     if(typeof $scope.Handover[newVal] != 'undefined' 
@@ -787,6 +793,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                             pageData.VA[index] = angular.copy($scope.VA[index]);
                         }                        
                         $scope.viewEndFlag = 'presetvideoanalysis';
+                        $scope.IVAPresetReady = true;
                    },100);
                 },
                 function (errorData)
@@ -913,7 +920,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 //EnterExit, Appearing
                 if (!angular.equals(pageData.VA[index].DefinedAreas, $scope.VA[index].DefinedAreas)) {
                     if ($scope.VA[index].DefinedAreas.length) {
-                        for (var i = 0; i < $scope.VA[$scope.presetTypeData.SelectedPreset].DefinedAreas.length; i++) {
+                        for (var i = 0; i < $scope.VA[index].DefinedAreas.length; i++) {
                             var coor = [];
                             if($scope.VA[index].DefinedAreas[i] !== undefined) { 
                                 for (var j = 0, jLen = $scope.VA[index].DefinedAreas[i].Coordinates.length; j < jLen; j++) {
@@ -972,7 +979,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                         url: '/stw-cgi/ptzconfig.cgi?msubmenu=presetvideoanalysis2&action=set',
                         reqData: setData
                     });
-                }
+                }console.info(queue);
             } else {
                 var url = '';
                 if($scope.orgDetectionType === "MDAndIV") {
@@ -980,6 +987,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 } else if($scope.orgDetectionType === "IntelligentVideo" || $scope.orgDetectionType === "Off") {
                     url = $scope.va2CommonCmd + '&action=set&DetectionType=Off';
                 }
+
                 var getData = {};
                 SunapiClient.get(url, getData, function(response) {
                     // console.info(response);
