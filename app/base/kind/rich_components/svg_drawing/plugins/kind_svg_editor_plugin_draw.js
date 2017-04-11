@@ -1454,7 +1454,16 @@ KindSVGEditor.addPlugin('draw', function(options){
 		}
 	}
 
+	function toggleDraggingStatus(statusType){
+		var method = statusType === true ? "add" : "remove";
+		var className = "kind-svg-editor-drawing";
+
+		document.body.classList[method](className);
+	}
+
 	function parentSVGMouseUpHandle(){
+		toggleDraggingStatus(false);
+
 		if(selectedCircleIndex !== null && circleHelper.isMouseLeave()){
 			circleHelper.update();
 		}
@@ -1474,6 +1483,8 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 	/* mousedown에 세팅한 값은 항상 mouseup에 리셋을 해줘야 한다. */
 	function parentSVGMouseDownHandle(event){
+		toggleDraggingStatus(true);
+		
 		parentSvg.startAxis = commonFunc.getPageAxis(event);
 
 		for(var i = 0, len = circles.length; i < len; i++){
