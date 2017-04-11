@@ -65,11 +65,14 @@ kindFramework.controller('externalPTZCtrl', function ($scope, $timeout, SunapiCl
 
         if($scope.ExternalPTZModel){
             $scope.getTitle ='lang_external_PTZ';
+            $scope.getSerialSetup = 'lang_serialSetup';
         }else{
             if(mAttr.RS422Support !== undefined && mAttr.RS422Support == false) {
-                $scope.getTitle = 'RS 485';
+                $scope.getTitle = 'RS-485';
+                $scope.getSerialSetup = 'RS-485 setup';
             }else{
                 $scope.getTitle = 'lang_menu_rs485';
+                $scope.getSerialSetup = 'RS-485/422 setup';
             }
         }
 
