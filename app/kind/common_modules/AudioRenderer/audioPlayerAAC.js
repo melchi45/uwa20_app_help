@@ -199,7 +199,7 @@ function AudioPlayerAAC(){
 							if(videoDiffTime === null){
 								if(sourceBuffer.buffered.length > 0){
 									if(videoCodec === "mjpeg"){
-										if(parseFloat(sourceBuffer.buffered.end(0) - audio.currentTime) > parseFloat(2.0)){
+										if(parseFloat(sourceBuffer.buffered.end(0) - audio.currentTime) > parseFloat(2.5)){
 											audio.currentTime = sourceBuffer.buffered.end(0);
 										}										
 									}else{
