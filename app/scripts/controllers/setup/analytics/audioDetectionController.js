@@ -187,6 +187,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
         promises.push(getAudioDetection);
         promises.push(getAudioLevel);
 
+        if(promises.length > 0) {
         $q.seqAll(promises).then(
                 function () {
                     $scope.pageLoaded = true;
@@ -197,6 +198,9 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
                     //alert(errorData);
                 }
         );
+        } else {
+            $scope.pageLoaded = true;
+    }
     }
 
     function set(isEnabledChanged)

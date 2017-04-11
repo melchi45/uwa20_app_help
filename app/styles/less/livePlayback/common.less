@@ -698,8 +698,11 @@ live-playback common {
         * {
             background-color: #d2d2d2 !important;
             color: #797979 !important;
-            border: none !important;
         }
+    }
+
+    * {
+        border: none !important;
     }
 
     &.cm-cancel-button {
@@ -835,7 +838,7 @@ live-playback common {
             i {
                 margin-right: 6px;
             }
-        } 
+        }
     } 
 
     #cm-livecanvas {
@@ -903,6 +906,30 @@ live-playback common {
         display: block;
         background-color: black;
     } 
+
+    .cm-plugin-msg {
+        width: 100%;
+        max-width: 700px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -7%);
+        text-align: center;
+        
+        a {
+            display: inline-block;
+            width: 110px;
+            height: 30px;
+            line-height: 28px;
+            border: 1px solid #f8aa7a;
+            color: #f37321;
+            margin-top: 20px;
+
+            i {
+                margin-right: 6px;
+            }
+        }
+    }
 }
 
 #cm-bottom-menu.cm-full-menu{

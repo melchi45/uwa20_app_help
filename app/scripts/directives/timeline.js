@@ -117,9 +117,9 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
         };
 
         /**
-         * Timeline Mode�� �� 4���� ������,
-         * Timeline Mode�� �ٲ��� UI �� �ٲ���.
-         * playback, backup, datepicker, eventsorting �� 4���� �ִ�.
+         * Timeline Mode?? ?? 4???? ??????,
+         * Timeline Mode?? ????? UI ?? ?????.
+         * playback, backup, datepicker, eventsorting ?? 4???? ???.
          */
         var timelineMode = [
           'playback',
@@ -197,7 +197,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           switch( $scope.timelineControl.currentTimelineMode ) {
             case 'datepicker':
               var selectedDate = $scope.timelineControl.getSelectedDate();
-              /* �޷� Validation�� ���� ���� �� */
+              /* ??? Validation?? ???? ???? ?? */
               if(selectedDate === false){
                 return;
               }
@@ -248,6 +248,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
               timelineCtrl.resetTimeRange();
             break;
           }
+          $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
           $scope.timelineControl.changeTimelineMode(mode);
         };
 
@@ -264,6 +265,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
               timelineCtrl.resetTimeRange();
             break;
           }
+          $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
           $scope.timelineControl.changeTimelineMode(0);
           $timeout(function(){
             timelineCtrl.redraw();
@@ -347,7 +349,7 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
             'overlapList':overlapId,
             'recordedDate':recordedDate
           });
-
+          $rootScope.$emit('app/scripts/services/playbackClass::disableButton', true);
           scope.control.changeTimelineMode(3);
         };
 

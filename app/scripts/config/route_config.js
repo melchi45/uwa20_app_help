@@ -158,12 +158,12 @@ kindFramework.constant('ROUTE_CONFIG', {
                             templateUrl: 'views/setup/basic/profile.html',
                             controller: 'profileCtrl'
                         },
-                        {
-                            urlName: 'record',
-                            name: 'lang_menu_record',
-                            templateUrl: 'views/setup/basic/record.html',
-                            controller: 'recordCtrl'
-                        },
+                        // {
+                        //     urlName: 'record',
+                        //     name: 'lang_menu_record',
+                        //     templateUrl: 'views/setup/basic/record.html',
+                        //     controller: 'recordCtrl'
+                        // },
                         {
                             urlName: 'user',
                             name: 'lang_menu_user',
@@ -498,7 +498,7 @@ kindFramework.constant('ROUTE_CONFIG', {
                     },
                     {
                         urlName: 'queue',
-                        name: 'Queue management',
+                        name: 'lang_queue_management',
                         iconClass: 'tui tui-wn5-ptz-near',
                         childs: [
                             {

@@ -8,15 +8,17 @@
             <div class="wn5-setup-section-heading">
                 <h3> {{'lang_filteringType'| translate}} </h3>
             </div>
-            <div class="wn5-setup-section-article form-group" ng-show="data.DeviceType === 'NWC'">
-                <div class="wn5-setup-section-article-heading">{{'lang_filteringType'| translate}}</div>
-                <div class="wn5-setup-section-article-content">
-                    <label class="col-lg-5 field-radio-wrapper control-label">
-                        <input type="radio" ng-model="data.AccessType" value="Deny"> <span>{{ 'lang_deny'| translate}}</span>
-                    </label> &nbsp;&nbsp;
-                    <label class="col-lg-5 field-radio-wrapper control-label">
-                        <input type="radio" ng-model="data.AccessType" value="Allow"> <span>{{'lang_allow'| translate}}</span>
-                    </label>
+            <div class="wn5-setup-section-article" ng-show="data.DeviceType === 'NWC'">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{'lang_filteringType'| translate}}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <label class="col-lg-5 field-radio-wrapper control-label">
+                            <input type="radio" ng-model="data.AccessType" value="Deny"> <span>{{ 'lang_deny'| translate}}</span>
+                        </label> &nbsp;&nbsp;
+                        <label class="col-lg-5 field-radio-wrapper control-label">
+                            <input type="radio" ng-model="data.AccessType" value="Allow"> <span>{{'lang_allow'| translate}}</span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>

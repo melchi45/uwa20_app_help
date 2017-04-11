@@ -902,7 +902,8 @@ kindFramework
         }
       };
 
-      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI){        if( $scope.channelBasicFunctions.rec === true ){
+      if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI){
+        if( $scope.channelBasicFunctions.rec === true ){
           $rootScope.$emit('channelPlayer:command', 'record', 'stop', backupCallback);
         }
       }

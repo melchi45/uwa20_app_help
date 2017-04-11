@@ -64,24 +64,30 @@
 }
 .wn5-setup-section {
 	.wn5-gui-body-large {
-		font-size: 16px;
+		font-size: 14px;
 		margin-bottom: 10px;
 	}
 
 	.form-group {
 		.wn5-setup-section-article-heading {
-			padding-left: 0px;
+			padding-left: 15px;
 			padding-right: 80px;
+
+			&.wn5-outline-title {
+				padding-left: 0;
+			}
 		}
 
 		.wn5-setup-section-article-content-type {
 			width: auto;
+
+			.field-radio-wrapper {
+				float: left;
+				width: 250px;
+			}
 		}
 
-		.field-radio-wrapper {
-			float: left;
-			width: 200px;
-		}
+		
 	}	
 }
 
@@ -538,4 +544,15 @@
 .wn5-setup-info-ch {
 	.wn5-setup-info-vertical-middle();
 	font-weight: bold;
+}
+
+/* For Sketchbook */
+body.kind-svg-editor-drawing {
+	.wn5-setup-preview-table,
+	.channel-content {
+		user-select: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+	}
 }

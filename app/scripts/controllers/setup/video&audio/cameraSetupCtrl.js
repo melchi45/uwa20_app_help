@@ -510,7 +510,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if($scope.PTZModel){
             // PTZ Model
             $scope.tabMenu.Sensor = true;
-            $scope.tabMenu.DayNight = false;
+            $scope.tabMenu.DayNight = true;
 
             if($scope.presetTypeData.SelectedPresetType==0){
                 //Global
@@ -522,14 +522,16 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 $scope.tabMenu.Special = true;
                 $scope.tabMenu.OSD = $scope.MaxOSDTitles ? true : false;
                 $scope.tabMenu.Focus = true;
-                $scope.tabMenu.Heater= $scope.HeaterSupport;
+                $scope.tabMenu.Heater = $scope.HeaterSupport;
                 $scope.tabMenu.IR = $scope.IRledModeOptions !== undefined ? true : false;
+                $scope.tabMenu.DayNight = true;
 
                 $scope.tabUI.SSDR = 0;
                 $scope.tabUI.WhiteBalance = 0;
                 $scope.tabUI.Exposure = 0;
                 $scope.tabUI.Special = 0;
                 $scope.tabUI.Focus = 0;
+                $scope.tabUI.DayNight = 0;
             }else{
                 //Preset
                 $scope.tabMenu.Sensor = false;
@@ -540,14 +542,16 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 $scope.tabMenu.Special = true;
                 $scope.tabMenu.OSD = false;
                 $scope.tabMenu.Focus = true;
-                $scope.tabMenu.Heater= $scope.HeaterSupport;
+                $scope.tabMenu.Heater = false;//$scope.HeaterSupport;
                 $scope.tabMenu.IR = false;
+                $scope.tabMenu.DayNight = true;
 
                 $scope.tabUI.SSDR = 1;
                 $scope.tabUI.WhiteBalance = 1;
                 $scope.tabUI.Exposure = 1;
                 $scope.tabUI.Special = 1;
                 $scope.tabUI.Focus = 1;
+                $scope.tabUI.DayNight = 1;
             }
         }else if($scope.ZoomOnlyModel){
             $scope.tabMenu.Sensor = true;
@@ -559,7 +563,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $scope.tabMenu.Special = true;
             $scope.tabMenu.OSD = $scope.MaxOSDTitles ? true : false;
             $scope.tabMenu.Focus = true;
-            $scope.tabMenu.Heater= $scope.HeaterSupport;
+            $scope.tabMenu.Heater = $scope.HeaterSupport;
             $scope.tabMenu.IR = $scope.IRledModeOptions !== undefined ? true : false;
 
             $scope.tabUI.SSDR = 0;
@@ -577,7 +581,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $scope.tabMenu.Special = true;
             $scope.tabMenu.OSD = $scope.MaxOSDTitles ? true : false;
             $scope.tabMenu.Focus = false;
-            $scope.tabMenu.Heater= $scope.HeaterSupport;
+            $scope.tabMenu.Heater = $scope.HeaterSupport;
             $scope.tabMenu.IR = $scope.IRledModeOptions !== undefined ? true : false;
 
             $scope.tabUI.SSDR = 0;
@@ -1260,13 +1264,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         $scope.minBLCWidthLength = $scope.BLCAreaRight.maxValue - $scope.BLCAreaLeft.maxValue;
         $scope.maxBLCLength = $scope.BLCAreaTop.maxValue;
 
-        if($scope.PTZModel){
-            if (rotate == '90' || rotate == '270'){
-                $scope.maxBlcLength = $scope.BLCAreaLeft.maxValue;
-            } else {
-                $scope.maxBlcLength = $scope.BLCAreaTop.maxValue;
-            }
-        }
+        //if($scope.PTZModel){
+        //    if (rotate == '90' || rotate == '270'){
+        //        $scope.maxBlcLength = $scope.BLCAreaLeft.maxValue;
+        //    } else {
+        //        $scope.maxBlcLength = $scope.BLCAreaTop.maxValue;
+        //    }
+        //}
     }
 
     function initHLCBoundary() {
@@ -1417,6 +1421,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         });
     };
 
+    $scope.getHeaterTranslation = function (option) {
+        if (mAttr.PTZModel && option == 'Heater') {
+            return COMMONUtils.getTranslatedOption('Heater / Pan');
+        } else {
+            return COMMONUtils.getTranslatedOption(option)
+        }
+    };
     $scope.heaterEveryDayChanged = function () {
 
         /** nothing to do while disabling daynight schedule  */
@@ -2230,6 +2241,15 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             vertical: false,
             disabled: false
         };
+        if($scope.PresetImageConfig.length > 0 
+                && (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] != 'undefined')){
+            if($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.SharpnessEnable === false){
+                $scope.PresetSharpnessSliderOptions.disabled = true;
+            } else {
+                $scope.PresetSharpnessSliderOptions.disabled = false;
+            }
+        }
+        
 
         $scope.PresetSaturationSliderOptions = {
             floor: $scope.PresetSaturation.minValue,
@@ -2256,7 +2276,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             if($scope.PresetImageConfig.length > 0 
                 && (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] != 'undefined')){
                 
-                if($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode === 'Off'){
+                
+                if($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode === 'Off' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode === 'Auto'){
                     $scope.PresetDefogLevelSliderOptions.disabled = true;
                 } else {
                     $scope.PresetDefogLevelSliderOptions.disabled = false;
@@ -2307,6 +2328,14 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         
         if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true && $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable == true){
             $scope.disChanged.preset = true;
+            $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable = false;
+        } else {
+            $scope.disChanged.preset = false;
+        }
+    };
+    $scope.onPresetDefogEnableChange = function () {
+        if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode == true){
+            $scope.PresetDefogLevel.preset = true;
             $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable = false;
         } else {
             $scope.disChanged.preset = false;
@@ -3364,7 +3393,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     setData.HLCMaskColor = $scope.Camera.HLCMaskColor;
                 }
                 setData.HLCMaskTone = $scope.Camera.HLCMaskTone;
-                setData.HLCDimming = ($scope.Camera.HLCDimming === true)? 'On' : 'Off';
+                // setData.HLCDimming = ($scope.Camera.HLCDimming === true)? 'On' : 'Off';
                 setData.HLCAreaTop = $scope.Camera.HLCAreaTop;
                 setData.HLCAreaBottom = $scope.Camera.HLCAreaBottom;
                 setData.HLCAreaLeft = $scope.Camera.HLCAreaLeft;
@@ -4858,7 +4887,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     $scope.Camera.WDRSeamlessTransition = ($scope.Camera.WDRSeamlessTransition === 'On') ? true : false;
                     $scope.Camera.WDRLowLight = ($scope.Camera.WDRLowLight === 'On') ? true : false;
                     $scope.Camera.WDRIRLEDEnable = ($scope.Camera.WDRIRLEDEnable === 'On') ? true : false;
-                    $scope.Camera.HLCDimming = ($scope.Camera.HLCDimming === 'On') ? true : false;
+                    // $scope.Camera.HLCDimming = ($scope.Camera.HLCDimming === 'On') ? true : false;
 
                     pageData.Camera = angular.copy($scope.Camera);
                     previewData.Camera = angular.copy($scope.Camera);
@@ -5138,6 +5167,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     $scope.getIRModeTranslation = function (option) {
         if (mAttr.PTZModel && option == 'Schedule') {
             return COMMONUtils.getTranslatedOption('Timed');
+        } else if (mAttr.PTZModel && option == 'Heater') {
+            return COMMONUtils.getTranslatedOption('Heater/Pan');
         } else {
             return COMMONUtils.getTranslatedOption(option)
         }
@@ -6767,10 +6798,36 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     };
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
-        $scope.channelSelectionSection.setCurrentChannel(data);
-        $rootScope.$emit('changeLoadingBar', true);
-        $rootScope.$emit("channelSelector:changeChannel", data);
-        view();
+        if (($scope.ImagePresetModeOptions !== undefined && !angular.equals(pageData.ImagePreset, $scope.ImagePreset))
+            || !angular.equals(pageData.VideoSources, $scope.VideoSources)
+            || (mAttr.CompensationModeOptions !== undefined && !angular.equals(pageData.Camera, $scope.Camera))
+            || ($scope.HeaterSupport && $scope.PTZModel !== true && !angular.equals(pageData.HeaterSchedules, $scope.HeaterSchedules))) {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'sm',
+                resolve: {
+                    Message: function() {
+                        return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
+                    }
+                }
+            });
+            modalInstance.result.then(function() {
+                if(validatePage()) {
+                    $rootScope.$emit('changeLoadingBar', true);
+                    $scope.targetChannel = data;
+                    saveSettings();
+                }
+            },
+            function() {
+            });
+        } else {
+            $rootScope.$emit('changeLoadingBar', true);
+            // $scope.targetChannel = data;
+            $scope.channelSelectionSection.setCurrentChannel(data);
+            $rootScope.$emit("channelSelector:changeChannel", data);
+            view();
+        }
     }, $scope);
 
 

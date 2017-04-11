@@ -2140,13 +2140,13 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             if ($scope.rotate === "0") {
                 cropSize = cropInitSize_5M.x + "," + cropInitSize_5M.y + "," + (cropInitSize_5M.x + cropInitSize_5M.width) + "," + (cropInitSize_5M.y + cropInitSize_5M.height);
             } else {
-                cropSize = cropInitSize_5M.x + "," + cropInitSize_5M.y + "," + (cropInitSize_5M.x + cropInitSize_5M.height) + "," + (cropInitSize_5M.y + cropInitSize_5M.width);                
+                cropSize = cropInitSize_5M.y + "," + cropInitSize_5M.x + "," + (cropInitSize_5M.y + cropInitSize_5M.height) + "," + (cropInitSize_5M.x + cropInitSize_5M.width);                
             }
         } else {    //2M
             if ($scope.rotate === "0") {
                 cropSize = cropInitSize_2M.x + "," + cropInitSize_2M.y + "," + (cropInitSize_2M.x + cropInitSize_2M.width) + "," + (cropInitSize_2M.y + cropInitSize_2M.height);
             } else {
-                cropSize = cropInitSize_2M.x + "," + cropInitSize_2M.y + "," + (cropInitSize_2M.x + cropInitSize_2M.height) + "," + (cropInitSize_2M.y + cropInitSize_2M.width);                
+                cropSize = cropInitSize_2M.y + "," + cropInitSize_2M.x + "," + (cropInitSize_2M.y + cropInitSize_2M.height) + "," + (cropInitSize_2M.x + cropInitSize_2M.width);                
             }
         }
         return cropSize;

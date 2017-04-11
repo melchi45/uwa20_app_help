@@ -319,6 +319,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
         promises.push(showVideo);
         promises.push(getDefocusDetection);
 
+        if(promises.length > 0) {
         $q.seqAll(promises).then(
             function () {
                 $timeout(function(){
@@ -333,6 +334,12 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                 console.log(errorData);
             }
         );
+        } else {
+            $timeout(function(){
+                $scope.pageLoaded = true;
+                $timeout(setSizeChart);
+            });
+    }
     }
 
     function set()

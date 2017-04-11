@@ -325,6 +325,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     $scope.setFogDetectionEnable = function () {
         stopMonitoringFogLevel();
         var successCallback = function (){
+            $rootScope.$emit('changeLoadingBar', true);
             var setData = {};
 
             setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
@@ -337,11 +338,13 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
             return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=fogdetection&action=set', setData,
                 function (response)
                 {
+                    $rootScope.$emit('changeLoadingBar', false);
                     pageData.FogDetect.Enable = angular.copy($scope.FogDetect.Enable);
                     startMonitoringFogLevel();
                 },
                 function (errorData)
                 {
+                    $rootScope.$emit('changeLoadingBar', false);
                     $scope.FogDetect.Enable = angular.copy(pageData.FogDetect.Enable);
                     startMonitoringFogLevel();
                     console.log(errorData);

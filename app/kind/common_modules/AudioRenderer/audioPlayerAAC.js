@@ -107,7 +107,7 @@ function AudioPlayerAAC(){
 	function sourceAbortCallback() { console.info('abort'); }
 
 	function Constructor() {}
-	
+
 	Constructor.prototype = inheritObject(new AudioPlayer(), {
 		audioInit: function(volume){
 			createAudio();
@@ -146,7 +146,7 @@ function AudioPlayerAAC(){
 			// 	sourceBuffer = null;
 			// }
 		},
-		BufferAudio: function(data, rtpTimestamp) {
+		BufferAudio: function(data, rtpTimestamp, videoCodec) {
 			isStopped = false;
 			var timegap = rtpTimestamp - preTimeStamp;
 
@@ -154,9 +154,15 @@ function AudioPlayerAAC(){
 				segmentBuffer = new Uint8Array();
 				startPosArray = new Array();
 				bufferingFlag = true;
+				if(sourceBuffer !== null){
+					audio.pause();
+					if(sourceBuffer.buffered.length > 0){
+						audio.currentTime = sourceBuffer.buffered.end(0);
+					}
+				}
 				// console.log("audioBuffering :: bufferingStart AAC!!!!!!!!!!!!");
 			}
-
+				
 			if(bufferingFlag){
 				startPosArray.push(startPos);
 				startPos += data.length;
@@ -164,7 +170,7 @@ function AudioPlayerAAC(){
 
 			preTimeStamp = rtpTimestamp;
 			segmentBuffer = appendBuffer(segmentBuffer, data);
-
+			
 			if (sourceBuffer !== null && !bufferingFlag) {
 				if(!sourceBuffer.updating){ // if true, sourcebuffer is unusable
 					try {
@@ -189,6 +195,22 @@ function AudioPlayerAAC(){
  							}
 						}else{
 							sourceBuffer.appendBuffer(segmentBuffer);
+							
+							if(videoDiffTime === null){
+								if(sourceBuffer.buffered.length > 0){
+									if(videoCodec === "mjpeg"){
+										if(parseFloat(sourceBuffer.buffered.end(0) - audio.currentTime) > parseFloat(2.0)){
+											audio.currentTime = sourceBuffer.buffered.end(0);
+										}										
+									}else{
+										if(parseFloat(sourceBuffer.buffered.end(0) - audio.currentTime) > parseFloat(1.0)){
+											audio.currentTime = sourceBuffer.buffered.end(0);
+										}
+									}
+
+								}								
+							}
+							
 						}
 
 						segmentBuffer = new Uint8Array();
@@ -227,6 +249,7 @@ function AudioPlayerAAC(){
 			if(videoStatus == "init"){
 				// console.log("audioBuffering :: init time =" + videoTime);
 				initVideoTimeStamp = videoTime;
+				bufferingFlag = true;
 			}else{
 				if(bufferingFlag){
 					// console.log("audioBuffering :: currentTime = " + videoTime);

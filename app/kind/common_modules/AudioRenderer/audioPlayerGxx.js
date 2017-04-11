@@ -23,7 +23,7 @@ function AudioPlayerGxx() {
 	var readLength = 0;
 	var sourceNode = null;
 
-	function playAudioIn(data, rtpTimestamp) {
+	function playAudioIn(data, rtpTimestamp, videoCodec) {
 		var timegap = rtpTimestamp - preTimeStamp;
 
 		if(timegap > 200 || timegap < 0){	// under 2000ms
@@ -172,9 +172,9 @@ function AudioPlayerGxx() {
 			gainInNode.gain.value = 0;
 			nextStartTime = 0;
 		},
-		BufferAudio: function(data, rtpTimestamp) {
+		BufferAudio: function(data, rtpTimestamp, videoCodec) {
 			if(isRunning){
-				playAudioIn(data, rtpTimestamp);
+				playAudioIn(data, rtpTimestamp, videoCodec);
 			}
 		},		
 		ControlVolumn: function(vol) {			
@@ -206,6 +206,7 @@ function AudioPlayerGxx() {
 			if(videoStatus == "init"){
 				// console.log("audioBuffering :: init time =" + videoTime);
 				initVideoTimeStamp = videoTime;
+				bufferingFlag = true;
 			}else{
 				if(bufferingFlag){
 					// console.log("audioBuffering :: currentTime = " + videoTime);
