@@ -2132,8 +2132,8 @@ var SketchManager = (function() {
                         $("[type='radio'][name='VideoOutput']").prop("disabled", true);
                         var modalInstance = dialog.open({
                             templateUrl: sketchInfo.modalId,
-                            backdrop: false,
-                            controller: ['$scope', '$uibModalInstance', '$timeout', 'Attributes', 'COMMONUtils', 'sketchbookService', function($scope, $uibModalInstance, $timeout, Attributes, COMMONUtils, sketchbookService) {
+                            backdrop: true,
+                            controller: ['$scope', '$uibModalInstance', '$timeout', 'Attributes', 'COMMONUtils', 'sketchbookService', '$interval', 'SunapiClient', 'CAMERA_STATUS', 'UniversialManagerService', function($scope, $uibModalInstance, $timeout, Attributes, COMMONUtils, sketchbookService, $interval, SunapiClient, CAMERA_STATUS, UniversialManagerService) {
                                 var mAttr = Attributes.get("image");
                                 $scope.modalValue = {};
                                 $scope.ColorOptions = mAttr.ColorOptions;
@@ -2150,6 +2150,114 @@ var SketchManager = (function() {
                                     value: false
                                 }];
                                 $scope.modalValue.ThresholdEnable = false;
+
+                                if($scope.IsPTZ || $scope.IsZoomOnly){
+                                    var ptzJogTimer = null;
+                                    var isJogUpdating = false;
+                                    var isPtzControlStart = false;
+                                    $scope.showPTZControlFisheyeDPTZ = false;
+                                    
+                                    var ptzStop = function(){
+                                        if (ptzJogTimer !== null) {
+                                            $interval.cancel(ptzJogTimer);
+                                            ptzJogTimer = null;
+                                        }
+                                        if(!isPtzControlStart) return;
+                                        var setData = {};
+                                        setData.Channel = 0;
+                                        setData.OperationType = 'All';
+                                        if($scope.showPTZControlFisheyeDPTZ === true)
+                                        {
+                                            setData.SubViewIndex = $scope.quadrant.select;
+                                        }
+                                        isPtzControlStart = false;
+                                        SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control', setData,
+                                            function (response) {
+                                            },
+                                            function (errorData) {
+                                            },'', true);
+                                    };
+                                    
+                                    $scope.ptzControlZoom = function(value){
+                                        if(value=='Stop'){
+                                            if (UniversialManagerService.getDigitalPTZ() !== CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING) {
+                                                ptzStop();
+                                            }
+                                        }else{
+                                            var setData = {};
+                                            setData.Channel = 0;
+                                            setData.NormalizedSpeed = 'True';
+                                            setData.Zoom = value;
+
+                                            if($scope.showPTZControlFisheyeDPTZ === true)
+                                            {
+                                                setData.SubViewIndex = $scope.quadrant.select;
+                                            }
+                                            isPtzControlStart = true;
+                                            SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control', setData,
+                                                function (response) {
+                                                },
+                                                function (errorData) {
+                                                },'', true);
+                                        }
+                                    };
+                                    
+                                    var makeJogTimer = function() {
+                                        ptzJogTimer = $interval(function() {
+                                            isJogUpdating = false;
+                                        }, 100);
+                                    };
+                                    (function wait(){
+                                        if ($("#ptz-privacy-zoom-slider").length == 0) {
+                                            $timeout(function () {
+                                                wait();
+                                            }, 100);
+                                        } else {
+                                            $("#ptz-privacy-zoom-slider").slider({
+                                                orientation: "horizontal",
+                                                min: -100,
+                                                max: 100,
+                                                value: 0,
+                                                revert: true,
+                                                slide: function(event, ui){
+                                                    if(ptzJogTimer === null) {
+                                                        makeJogTimer();
+                                                    }
+
+                                                    if(isJogUpdating === false) {
+                                                        var setData = {};
+                                                        setData.Channel = 0;
+                                                        setData.NormalizedSpeed = 'True';
+                                                        setData.Zoom = ui.value;
+
+                                                        isPtzControlStart = true;
+                                                        SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control', setData,
+                                                            function (response) {
+                                                            },
+                                                            function (errorData) {
+                                                            },'', true);
+                                                        isJogUpdating = true;
+                                                    }
+                                                },
+                                                stop: function(){
+                                                    $( "#ptz-privacy-zoom-slider" ).slider('value', 0);
+                                                    ptzStop();
+                                                }
+                                            });
+                                            $("#ptz-privacy-zoom-slider").slider('disable');
+                                        }
+                                    })();
+                                    $scope.$watch('modalValue.ThresholdEnable',function(newVal, oldVal){
+                                        if(newVal != oldVal){
+                                            if(newVal == true){
+                                                $("#ptz-privacy-zoom-slider").slider('enable');
+                                            }else{
+                                                $("#ptz-privacy-zoom-slider").slider('disable');
+                                            }
+                                        }
+                                    });
+                                }
+
                                 $scope.getTranslatedOption = function(Option) {
                                     return COMMONUtils.getTranslatedOption(Option);
                                 };
@@ -2194,7 +2302,7 @@ var SketchManager = (function() {
                                     sketchbookService.set(coordinates);
                                     $uibModalInstance.dismiss();
                                 };
-                                if ($scope.IsPTZ) {
+                                if ($scope.IsPTZ  || $scope.IsZoomOnly) {
                                     $timeout(function() {
                                         var privacyDialog = $("#privacy-popup-1");
                                         var width = (privacyDialog.parent().width() + 30);
@@ -3707,7 +3815,7 @@ var SketchManager = (function() {
                         $uibModalInstance.result.then(function() {
                             clearRect(1);
                         }, function() {
-                            privacyUpdate(null);
+                            autoTrackingUpdate(null);
                             clearRect(1);
                         });
                     }]
