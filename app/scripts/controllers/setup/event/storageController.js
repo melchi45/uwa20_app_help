@@ -610,14 +610,29 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     function getRecordProfileDetails() {
         var getData = {};
         if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+        getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
 
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
             $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
-            $scope.RecordProfileName = $scope.VideoProfile[$scope.Channel].Name;
+            $scope.RecordProfileName = $scope.VideoProfile[0].Name;
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
     }
+
+    function changeVideoProfilePolicies() {
+        var getData = {};
+
+        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', getData, function(response) {
+            $scope.VideoProfilePolicies = response.data.VideoProfilePolicies[$scope.Channel];
+
+        }, function(errorData) {
+            console.log(errorData);
+        }, '', true);
+    }
+
+ 
+
 
     $scope.OnStorageSelection = function(index) {
         $scope.SelectedStorage = index;
@@ -683,6 +698,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
     function view(data) {
         var promises = [];
+        promises.push(changeVideoProfilePolicies);
         promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
         promises.push(getRecordingStorageDetails);
@@ -691,8 +707,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         
 
         $q.seqAll(promises).then(setAttribute).then(function() {
-            var scheduler = $("#scheduler");
-            scheduler.html('');
+            // var scheduler = $("#scheduler");
+            // scheduler.html('');
 
             $scope.pageLoaded = true;
 
@@ -702,10 +718,10 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
             $("#storagepage").show();
 
-            var templete = angular.element("<scheduler></scheduler>");
-            $compile(templete)($scope);
+            // var templete = angular.element("<scheduler></scheduler>");
+            // $compile(templete)($scope);
 
-            scheduler.append(templete);
+            // scheduler.append(templete);
 
         }, function(errorData) {
             console.log(errorData);

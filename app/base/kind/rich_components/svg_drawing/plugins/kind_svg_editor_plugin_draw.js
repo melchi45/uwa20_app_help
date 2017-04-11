@@ -1454,7 +1454,16 @@ KindSVGEditor.addPlugin('draw', function(options){
 		}
 	}
 
+	function toggleDraggingStatus(statusType){
+		var method = statusType === true ? "add" : "remove";
+		var className = "kind-svg-editor-drawing";
+
+		document.body.classList[method](className);
+	}
+
 	function parentSVGMouseUpHandle(){
+		toggleDraggingStatus(false);
+
 		if(selectedCircleIndex !== null && circleHelper.isMouseLeave()){
 			circleHelper.update();
 		}
@@ -1474,6 +1483,8 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 	/* mousedown에 세팅한 값은 항상 mouseup에 리셋을 해줘야 한다. */
 	function parentSVGMouseDownHandle(event){
+		toggleDraggingStatus(true);
+		
 		parentSvg.startAxis = commonFunc.getPageAxis(event);
 
 		for(var i = 0, len = circles.length; i < len; i++){
@@ -1779,10 +1790,10 @@ KindSVGEditor.addPlugin('draw', function(options){
 	function bindEvent(){
 		if(useResizeRectangle === true || useEvent === true || customDraw === true){
 			parentSvg.startAxis = null;
-			eventCtrl.bind('mousedown', parentSVGMouseDownHandle);	
-			eventCtrl.bind('mousemove', parentSVGMouseMoveHandle);	
-			eventCtrl.bind('mouseup', parentSVGMouseUpHandle);
-			eventCtrl.bind('mouseleave', parentSVGMouseUpHandle);
+			eventCtrl.bindBodyEvent('mousedown', parentSVGMouseDownHandle);	
+			eventCtrl.bindBodyEvent('mousemove', parentSVGMouseMoveHandle);	
+			eventCtrl.bindBodyEvent('mouseup', parentSVGMouseUpHandle);
+			eventCtrl.bindBodyEvent('mouseleave', parentSVGMouseUpHandle);
 
 			// document.documentElement.addEventListener('mouseup', documentElementMouseMoveHandle);
 		}		
@@ -1865,10 +1876,10 @@ KindSVGEditor.addPlugin('draw', function(options){
 	}
 
 	function unbindEvent(){
-		eventCtrl.unbind('mousedown', parentSVGMouseDownHandle);	
-		eventCtrl.unbind('mousemove', parentSVGMouseMoveHandle);	
-		eventCtrl.unbind('mouseup', parentSVGMouseUpHandle);
-		eventCtrl.unbind('mouseleave', parentSVGMouseUpHandle);
+		eventCtrl.unbindBodyEvent('mousedown', parentSVGMouseDownHandle);	
+		eventCtrl.unbindBodyEvent('mousemove', parentSVGMouseMoveHandle);	
+		eventCtrl.unbindBodyEvent('mouseup', parentSVGMouseUpHandle);
+		eventCtrl.unbindBodyEvent('mouseleave', parentSVGMouseUpHandle);
 		// document.documentElement.removeEventListener('mouseup', documentElementMouseMoveHandle);
 	}
 

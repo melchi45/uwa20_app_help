@@ -243,6 +243,7 @@ kindFramework
 
     this.applyStepCommand = function(data) {
       var playdata = new PlayDataModel();
+      playdata.setDefautPlaySpeed();
       var time = playdata.getCurrentPosition();
 
       if( pluginElement !== null && pluginElement !== undefined) {

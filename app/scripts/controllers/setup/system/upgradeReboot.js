@@ -91,7 +91,14 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
     var cancelTimer = null;
     $scope.updateFirmware = function ()
     {
-        COMMONUtils.ShowConfirmation(updateFirmwareCallback, 'lang_msg_upgrade_removed_statistics_data', 'lg');
+        if(mAttr.PeopleCount || mAttr.HeatMap || mAttr.QueueManagement)
+        {
+            COMMONUtils.ShowConfirmation(updateFirmwareCallback, 'lang_msg_upgrade_removed_statistics_data', 'lg');
+        }
+        else
+        {
+            updateFirmwareCallback();
+        }
 
         function updateFirmwareCallback() {
             $scope.ProgressBar = 0;
