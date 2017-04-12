@@ -1308,25 +1308,27 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         $scope.maxWidthLimit = Math.ceil(mAttr.MaxROICoordinateX) + 1;
         $scope.maxHeightLimit = Math.ceil(mAttr.MaxROICoordinateY) + 1;
 
-        if($scope.rotate !== "0") {
-            var temp;
-            temp = $scope.maxWidthLimit;
-            $scope.maxWidthLimit = $scope.maxHeightLimit;
-            $scope.maxHeightLimit = temp;
+        if($scope.rotate !== 'undefined') {
+            if($scope.rotate !== '0') {
+                var temp;
+                temp = $scope.maxWidthLimit;
+                $scope.maxWidthLimit = $scope.maxHeightLimit;
+                $scope.maxHeightLimit = temp;
+            }
         }
 
-        if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth += 1;
-        }
-        if($scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight += 1;
-        }
-        if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth += 1;
-        }
-        if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight += 1;
-        }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth += 1;
+        // }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight += 1;
+        // }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth += 1;
+        // }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight += 1;
+        // }
 
         if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth < $scope.minWidthLimit) {
             $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth = $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidthMin;
