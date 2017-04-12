@@ -409,6 +409,10 @@ kindFramework
                             target = tEventObjs[i];
                             if(target.id !== id) {
                                 // except between
+                                if(moment(target.start).format('HH:mm') === '00:00' && moment(target.end).format('HH:mm') === '00:00' && moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) {
+                                    // 00:00 ~ 00:00 & 00:00 ~ 00:00
+                                    return 'exception';
+                                }
                                 if(moment(target.start).format('YYYY-MM-DDTHH:mm') === moment(end).format('YYYY-MM-DDTHH:mm')) { // merging case
                                     return true;
                                 } else if(moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) { // merging case
@@ -623,6 +627,7 @@ kindFramework
                     selectable: true,
                     selectHelper: true,
                     editable: true,
+                    eventDurationEditable: true,
                     dayNames: ['','','','','','',''],
                     dayNamesShort:['','','','','','',''],
 
@@ -638,7 +643,7 @@ kindFramework
                     },
                     selectOverlap: false,
                     events: eventObjs,
-                    select: function(start, end, jsEvent, view, resource) {
+                    select: function(start, end, jsEvent, view, resource) {//console.info('select');console.info(moment(start).format('YYYY-MM-DDTHH:mm'));console.info(moment(end).format('YYYY-MM-DDTHH:mm'));
                         if(currentUnit === '60') {
                             mergeTheSelected(start, end);
                         } else {
@@ -650,7 +655,7 @@ kindFramework
                             }
                         }
                     },
-                    eventAfterAllRender: function(view) {
+                    eventAfterAllRender: function(view) {//console.info('eventAfterAllRender');
                         if(!initialRendered) {
                             initialRendered = true;
                             $('#calendar').fullCalendar('unselect'); // to visually update all rendered things, it should be called...
@@ -661,6 +666,7 @@ kindFramework
                             eventObjs = angular.copy($('#calendar').fullCalendar('clientEvents'));
                             updateScheduler();
                         }
+                        resized = false;
                     },
                     eventAfterRender: function(event, $el, view) {
                         // Triggered after an event has been placed on the calendar in its final position.
@@ -703,6 +709,8 @@ kindFramework
                                 }
                             } else if(result === false) {
                                 revertFunc();
+                            } else if(result === 'exception') {
+                                // exception in case of event drop to handle later
                             }
                         } 
                     },
@@ -1327,7 +1335,6 @@ kindFramework
             }, true);
 
             scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){ // for storage controller
-                console.info(newVal, oldVal);
                 if(typeof newVal === "undefined" || newVal === oldVal){
                     if(newVal !== 'Scheduled' || oldVal !== 'Scheduled'){
                         return;
@@ -1340,7 +1347,6 @@ kindFramework
                         // deleteAll();
                         setVisibility(newVal);
                     } else if(newVal === 'Scheduled') {
-                        console.info(alreadyCreated);
                         if(!alreadyCreated) {
                             initCalendar(scope.RecordSchedule);
                         }
@@ -1420,6 +1426,10 @@ kindFramework
                     }
                 }
                 prevChannel = currentChannel;
+            });
+
+            scope.$saveOn('alreadyCreatedFalse', function () {
+                alreadyCreated = false;
             });
 
             scope.$saveOn('recordPageLoaded', function(event, data) {

@@ -34,6 +34,19 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.NASPasswordPattern = "^[a-zA-Z0-9~!@$^*_\\-{}\\[\\]./?]*$";
     $scope.NASFolderPattern = "^[a-zA-Z0-9_\\-.]*$";
 
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
+
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
     };
@@ -696,7 +709,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         }, '', true);
     };
 
-    function view(data) {
+    function view() {
         var promises = [];
         promises.push(changeVideoProfilePolicies);
         promises.push(getStorageDetails);
@@ -707,22 +720,13 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         
 
         $q.seqAll(promises).then(setAttribute).then(function() {
-            // var scheduler = $("#scheduler");
-            // scheduler.html('');
-
             $scope.pageLoaded = true;
+            $scope.channelSelectionSection.setCurrentChannel($scope.Channel);
 
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
             $rootScope.$emit('changeLoadingBar', false);
-            
 
             $("#storagepage").show();
-
-            // var templete = angular.element("<scheduler></scheduler>");
-            // $compile(templete)($scope);
-
-            // scheduler.append(templete);
-
         }, function(errorData) {
             console.log(errorData);
         });
@@ -741,6 +745,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                     $rootScope.$emit("channelSelector:changeChannel", newChannel);
                     $scope.Channel = newChannel;
                 }
+                $scope.$emit('alreadyCreatedFalse', true);
+                
                 window.setTimeout(view, 1000);
             }, function(errorData) {
                 console.error(errorData);
@@ -983,7 +989,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         
 
         if(!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) okay = false;
-
+        
         if(okay) {
             $scope.Channel = data;
 

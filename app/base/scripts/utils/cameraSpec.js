@@ -266,6 +266,146 @@ kindFramework.factory('CameraSpec', function (Attributes, SunapiClient, COMMONUt
         return ShutterSpeedDetails;
     };
 
+    cameraSpec.getDefaultShutterSpeed = function(maxSensorFrameRate){
+        var ShutterSpeedDetails = {};
+
+        if(maxSensorFrameRate == 60){
+            ShutterSpeedDetails = {
+                "ShutterSpeedDetails": {
+                    "CompensationModes": [{
+                        "CompensationMode": "Off",
+                        "SensorCaptureFrameRates": [{
+                            "SensorCaptureFrameRate": "25",
+                            "DefaultAutoShortShutterSpeed": "1/25",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "30",
+                            "DefaultAutoShortShutterSpeed": "1/30",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "50",
+                            "DefaultAutoShortShutterSpeed": "1/50",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "60",
+                            "DefaultAutoShortShutterSpeed": "1/60",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        }]
+                    },{
+                        "CompensationMode": "BLC",
+                        "SensorCaptureFrameRates": [{
+                            "SensorCaptureFrameRate": "25",
+                            "DefaultAutoShortShutterSpeed": "1/25",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "30",
+                            "DefaultAutoShortShutterSpeed": "1/30",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "50",
+                            "DefaultAutoShortShutterSpeed": "1/50",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "60",
+                            "DefaultAutoShortShutterSpeed": "1/60",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        }]
+                    },{
+                        "CompensationMode": "HLC",
+                        "SensorCaptureFrameRates": [{
+                            "SensorCaptureFrameRate": "25",
+                            "DefaultAutoShortShutterSpeed": "1/25",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "30",
+                            "DefaultAutoShortShutterSpeed": "1/30",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "50",
+                            "DefaultAutoShortShutterSpeed": "1/50",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "60",
+                            "DefaultAutoShortShutterSpeed": "1/60",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        }]
+                    },{
+                        "CompensationMode": "WDR",
+                        "SensorCaptureFrameRates": [{
+                            "SensorCaptureFrameRate": "25",
+                            "DefaultAutoShortShutterSpeed": "1/100",
+                            "DefaultAutoLongShutterSpeed": "1/1500"
+                        },{
+                            "SensorCaptureFrameRate": "30",
+                            "DefaultAutoShortShutterSpeed": "1/120",
+                            "DefaultAutoLongShutterSpeed": "1/1500"
+                        },{
+                            "SensorCaptureFrameRate": "50",
+                            "DefaultAutoShortShutterSpeed": "1/100",
+                            "DefaultAutoLongShutterSpeed": "1/1500"
+                        },{
+                            "SensorCaptureFrameRate": "60",
+                            "DefaultAutoShortShutterSpeed": "1/120",
+                            "DefaultAutoLongShutterSpeed": "1/1500"
+                        }]
+                    }]
+                }
+            };
+        }else{
+            ShutterSpeedDetails = {
+                "ShutterSpeedDetails": {
+                    "CompensationModes": [{
+                        "CompensationMode": "Off",
+                        "SensorCaptureFrameRates": [{
+                            "SensorCaptureFrameRate": "25",
+                            "DefaultAutoShortShutterSpeed": "1/25",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "30",
+                            "DefaultAutoShortShutterSpeed": "1/30",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        }]
+                    },{
+                        "CompensationMode": "BLC",
+                        "SensorCaptureFrameRates": [{
+                            "SensorCaptureFrameRate": "25",
+                            "DefaultAutoShortShutterSpeed": "1/25",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "30",
+                            "DefaultAutoShortShutterSpeed": "1/30",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        }]
+                    },{
+                        "CompensationMode": "HLC",
+                        "SensorCaptureFrameRates": [{
+                            "SensorCaptureFrameRate": "25",
+                            "DefaultAutoShortShutterSpeed": "1/25",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        },{
+                            "SensorCaptureFrameRate": "30",
+                            "DefaultAutoShortShutterSpeed": "1/30",
+                            "DefaultAutoLongShutterSpeed": "1/12000"
+                        }]
+                    },{
+                        "CompensationMode": "WDR",
+                        "SensorCaptureFrameRates": [{
+                            "SensorCaptureFrameRate": "25",
+                            "DefaultAutoShortShutterSpeed": "1/50",
+                            "DefaultAutoLongShutterSpeed": "1/1500"
+                        },{
+                            "SensorCaptureFrameRate": "30",
+                            "DefaultAutoShortShutterSpeed": "1/60",
+                            "DefaultAutoLongShutterSpeed": "1/1500"
+                        }]
+                    }]
+                }
+            };
+        }
+
+        return ShutterSpeedDetails;
+    };
+
 
     /******************************** OSD Related end ******************************************/
 

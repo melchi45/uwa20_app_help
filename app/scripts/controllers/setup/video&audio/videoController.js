@@ -500,8 +500,93 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 if((mAttr.PTZModel || mAttr.ZoomOnlyModel) && data.thresholdEnable){
                     var modalInstance2 = $uibModal.open({
                         templateUrl: "privacyPopup2.html",
-                        backdrop: false,
-                        controller: ['$scope', '$uibModalInstance', '$timeout', 'sketchbookService', function(scope, $uibModalInstance, $timeout, sketchbookService){
+                        backdrop: true,
+                        controller: ['$scope', '$uibModalInstance', '$timeout', 'sketchbookService', '$interval', 'CAMERA_STATUS', 'UniversialManagerService', 'SunapiClient', function(scope, $uibModalInstance, $timeout, sketchbookService, $interval, CAMERA_STATUS, UniversialManagerService,SunapiClient){
+                            var ptzJogTimer = null;
+                            var isJogUpdating = false;
+                            var isPtzControlStart = false;
+
+                            var ptzStop = function(){
+                                if (ptzJogTimer !== null) {
+                                    $interval.cancel(ptzJogTimer);
+                                    ptzJogTimer = null;
+                                }
+                                if(!isPtzControlStart) return;
+                                var setData = {};
+                                setData.Channel = 0;
+                                setData.OperationType = 'All';
+                                isPtzControlStart = false;
+                                SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control', setData,
+                                    function (response) {
+                                    },
+                                    function (errorData) {
+                                    },'', true);
+                            };
+
+                            scope.ptzControlZoom = function(value){
+                                if(value=='Stop'){
+                                    if (UniversialManagerService.getDigitalPTZ() !== CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING) {
+                                        ptzStop();
+                                    }
+                                }else{
+                                    var setData = {};
+                                    setData.Channel = 0;
+                                    setData.NormalizedSpeed = 'True';
+                                    setData.Zoom = value;
+
+                                    isPtzControlStart = true;
+                                    SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control', setData,
+                                        function (response) {
+                                        },
+                                        function (errorData) {
+                                        },'', true);
+                                }
+                            };
+
+                            var makeJogTimer = function() {
+                                ptzJogTimer = $interval(function() {
+                                    isJogUpdating = false;
+                                }, 100);
+                            };
+                            (function wait(){
+                                if ($("#ptz-privacy-zoom-slider").length == 0) {
+                                    $timeout(function () {
+                                        wait();
+                                    }, 100);
+                                } else {
+                                    $("#ptz-privacy-zoom-slider").slider({
+                                        orientation: "horizontal",
+                                        min: -100,
+                                        max: 100,
+                                        value: 0,
+                                        revert: true,
+                                        slide: function(event, ui){
+                                            if(ptzJogTimer === null) {
+                                                makeJogTimer();
+                                            }
+
+                                            if(isJogUpdating === false) {
+                                                var setData = {};
+                                                setData.Channel = 0;
+                                                setData.NormalizedSpeed = 'True';
+                                                setData.Zoom = ui.value;
+
+                                                isPtzControlStart = true;
+                                                SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control', setData,
+                                                    function (response) {
+                                                    },
+                                                    function (errorData) {
+                                                    },'', true);
+                                                isJogUpdating = true;
+                                            }
+                                        },
+                                        stop: function(){
+                                            $( "#ptz-privacy-zoom-slider" ).slider('value', 0);
+                                            ptzStop();
+                                        }
+                                    });
+                                }
+                            })();
                             scope.ok = function() {
                                 getZoomValue().then(function(returnZoomValue){
                                     if(returnZoomValue > $scope.MaxZoom){
@@ -576,7 +661,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                                     .draggable()
                                     .css({
                                         width: (privacyDialog.width() + 30) + "px",
-                                        height: (privacyDialog.height() + 30) + "px",                                        
+                                        height: (privacyDialog.height() + 30) + "px",
                                         top: "calc(50% - " + (height/2) + "px)",
                                         left: "calc(50% - " + (width/2) + "px)"
                                     })
@@ -587,7 +672,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                             });
                         }]
                     });
-                    
+
                     modalInstance2.result.then(
                         function(){
                             $("[type='radio'][name='VideoOutput']").prop("disabled", false);

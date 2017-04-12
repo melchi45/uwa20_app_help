@@ -27,6 +27,14 @@ kindFramework
 
         };
 
+        this.accountReady = function() {
+            if (currentAccount !== null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         this.isAudioInAble = function() {
             if(typeof audioInAccess === 'string')
                 audioInAccess = (audioInAccess === 'True')? true:false;

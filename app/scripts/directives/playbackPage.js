@@ -153,6 +153,7 @@ kindFramework
               }
             },
             backup : function() {
+              if( scope.disableBackupIcon === true ) return;
               scope.timelineController.changeTimelineMode(1);
               setButtonStatus(true,block.browser);
             },

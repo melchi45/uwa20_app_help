@@ -1,4 +1,4 @@
-kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate)
+kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils)
 {
     "use strict";
 
@@ -8,13 +8,10 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
 
     $scope.getTranslatedOption = function (Option)
     {
-        if (Option == 'Network') {
-            if (mAttr.OpenSDKSupport) {
-                return COMMONUtils.getTranslatedOption("ExcludeNetworkOpenPlatform");
-            } else {
-                return COMMONUtils.getTranslatedOption("ExcludeNetwork");
-            }
-        }
+         if(Option=='Network' && mAttr.OpenSDKSupport)
+          {
+               return COMMONUtils.getTranslatedOption("ExcludeNetworkOpenPlatform");
+          }
         return COMMONUtils.getTranslatedOption(Option);
     };
 
@@ -91,99 +88,89 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
     var cancelTimer = null;
     $scope.updateFirmware = function ()
     {
-        if(mAttr.PeopleCount || mAttr.HeatMap || mAttr.QueueManagement)
-        {
-            COMMONUtils.ShowConfirmation(updateFirmwareCallback, 'lang_msg_upgrade_removed_statistics_data', 'lg');
-        }
-        else
-        {
-            updateFirmwareCallback();
+        if(cancelTimer !== null){
+            clearTimeout(cancelTimer);
+            cancelTimer = null;
         }
 
-        function updateFirmwareCallback() {
-            $scope.ProgressBar = 0;
-            var file = $scope.FirmwareFile;
-            var epochTicks = 621355968000000000;
-            var ticksPerMillisecond = 10000;
-            var yourTicks = epochTicks + ((new Date()).getTime() * ticksPerMillisecond);
+        $scope.ProgressBar = 0;
+        var file = $scope.FirmwareFile;
+        var epochTicks = 621355968000000000;
+        var ticksPerMillisecond = 10000;
+        var yourTicks = epochTicks + ((new Date).getTime() * ticksPerMillisecond);
 
-            var boundary = '*****mgd*****' + yourTicks;
-            var header = "--" + boundary + "\r\n";
-            var footer = "\r\n--" + boundary + "--\r\n";
+        var boundary = '*****mgd*****' + yourTicks;
+        var header = "--" + boundary + "\r\n";
+        var footer = "\r\n--" + boundary + "--\r\n";
 
-            var specialHeaders = [];
+        var specialHeaders = [];
 
-            specialHeaders[0] = {};
-            specialHeaders[0].Type = 'Content-Type';
-            specialHeaders[0].Header = "multipart/form-data; boundary=" + boundary;
+        specialHeaders[0] = {};
+        specialHeaders[0].Type = 'Content-Type';
+        specialHeaders[0].Header = "multipart/form-data; boundary=" + boundary;
 
-            var contents = header + "Content-Disposition: form-data; name=\"File\"; filename=\"" + file.name + "\"\r\n\r\n";
-            //contents += "Content-Transfer-Encoding: binary\r\n";
-            //contents += "Content-Type: application/octect-stream\r\n\r\n";
+        var contents = header + "Content-Disposition: form-data; name=\"File\"; filename=\"" + file.name + "\"\r\n\r\n";
+        //contents += "Content-Transfer-Encoding: binary\r\n";
+        //contents += "Content-Type: application/octect-stream\r\n\r\n";
 
-            var fileToPost = new Blob([contents, file.slice(0, file.size), footer]);
+        var fileToPost = new Blob([contents, file.slice(0, file.size), footer]);
 
-            if (fileToPost.size) {
+        if (fileToPost.size)
+        {
 
-                var div = document.createElement("div");
-                div.setAttribute("id", "notallow")
-                div.className += "disabledom";
-                document.body.appendChild(div);
+            var div= document.createElement("div");
+            div.setAttribute("id","notallow")
+            div.className += "disabledom";
+            document.body.appendChild(div);
 
-                console.log("FW File Size = ", fileToPost.size);
+            console.log("FW File Size = ", fileToPost.size);
 
-                $scope.IsFWUpdating = true;
+            $scope.IsFWUpdating = true;
 
-                var setData = {};
+            var setData = {};
 
-                setData.Type = 'Normal';
-                setData.IgnoreMultipartResponse = true;
+            setData.Type = 'Normal';
+            setData.IgnoreMultipartResponse = true;
 
 
-                SunapiClient.post('/stw-cgi/system.cgi?msubmenu=firmwareupdate&action=control', setData,
-                    function (response) {
+
+
+            SunapiClient.post('/stw-cgi/system.cgi?msubmenu=firmwareupdate&action=control', setData,
+                    function (response)
+                    {
                     },
-                    function (errorData, errorCode) {
-                        if (errorCode === 604) {
+                    function (errorData,errorCode)
+                    {
+                        if(errorCode === 604)
+                        {
                             COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
-                            var div = document.getElementById("notallow");
-                            if (typeof div !== 'undefined') {
+                            var div= document.getElementById("notallow");
+                            if(typeof div !== 'undefined')
+                            {
                                 document.body.removeChild(div);
                             }
                         }
-                        else {
-                            if (errorData.indexOf('HTTP Error') !== -1) {
-                                var msg = $translate.instant('lang_msg_upgrading_was_failed');
-                                alert(msg);
-                                logout();
-                            } else {
-                                COMMONUtils.ShowInfo('lang_msg_upgrading_was_failed', logout);
-                            }
+                        else{
+                            //alert(errorData);
+                            COMMONUtils.ShowInfo('lang_msg_upgrading_was_failed',logout);
                         }
                         $scope.IsRestoreRunning = false;
                         $scope.IsFWUpdating = false;
                         $scope.ProgressVisible = false;
                     }, $scope, fileToPost, specialHeaders);
 
-                cancelTimer = setTimeout(function(){
-                    if($scope.ProgressVisible === true && $scope.IsFWUpdating === true){
-                        $scope.CancelEvent();
-                    }
-                }, 420000);
-            }
-            else
-            {
-                COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
-                console.log("Empty File");
-            }
-
-            if(cancelTimer !== null){
-                clearTimeout(cancelTimer);
-                cancelTimer = null;
-            }
+            cancelTimer = setTimeout(function(){
+                if($scope.ProgressVisible === true && $scope.IsFWUpdating === true){
+                    $scope.CancelEvent();
+                }
+            }, 420000);
+        }
+        else
+        {
+             COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
+             console.log("Empty File");
         }
     };
-
 
     $scope.backupConfig = function ()
     {

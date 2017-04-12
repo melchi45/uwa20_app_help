@@ -2132,8 +2132,8 @@ var SketchManager = (function() {
                         $("[type='radio'][name='VideoOutput']").prop("disabled", true);
                         var modalInstance = dialog.open({
                             templateUrl: sketchInfo.modalId,
-                            backdrop: false,
-                            controller: ['$scope', '$uibModalInstance', '$timeout', 'Attributes', 'COMMONUtils', 'sketchbookService', function($scope, $uibModalInstance, $timeout, Attributes, COMMONUtils, sketchbookService) {
+                            backdrop: true,
+                            controller: ['$scope', '$uibModalInstance', '$timeout', 'Attributes', 'COMMONUtils', 'sketchbookService', '$interval', 'SunapiClient', 'CAMERA_STATUS', 'UniversialManagerService', function($scope, $uibModalInstance, $timeout, Attributes, COMMONUtils, sketchbookService, $interval, SunapiClient, CAMERA_STATUS, UniversialManagerService) {
                                 var mAttr = Attributes.get("image");
                                 $scope.modalValue = {};
                                 $scope.ColorOptions = mAttr.ColorOptions;
@@ -2194,7 +2194,7 @@ var SketchManager = (function() {
                                     sketchbookService.set(coordinates);
                                     $uibModalInstance.dismiss();
                                 };
-                                if ($scope.IsPTZ) {
+                                if ($scope.IsPTZ  || $scope.IsZoomOnly) {
                                     $timeout(function() {
                                         var privacyDialog = $("#privacy-popup-1");
                                         var width = (privacyDialog.parent().width() + 30);
@@ -3707,7 +3707,7 @@ var SketchManager = (function() {
                         $uibModalInstance.result.then(function() {
                             clearRect(1);
                         }, function() {
-                            privacyUpdate(null);
+                            autoTrackingUpdate(null);
                             clearRect(1);
                         });
                     }]
