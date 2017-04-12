@@ -9,6 +9,9 @@
 .kind-responsive-playback #playback-channel-holder .playback-channel-selector {
   padding: 15px 18px 0 30px;
 }
+.kind-responsive-playback .cm-str-button * {
+  border: none !important;
+}
 .kind-responsive-playback .cm-vline {
   margin-top: 12px;
 }
