@@ -409,6 +409,10 @@ kindFramework
                             target = tEventObjs[i];
                             if(target.id !== id) {
                                 // except between
+                                if(moment(target.start).format('HH:mm') === '00:00' && moment(target.end).format('HH:mm') === '00:00' && moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) {
+                                    // 00:00 ~ 00:00 & 00:00 ~ 00:00
+                                    return 'exception';
+                                }
                                 if(moment(target.start).format('YYYY-MM-DDTHH:mm') === moment(end).format('YYYY-MM-DDTHH:mm')) { // merging case
                                     return true;
                                 } else if(moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) { // merging case
@@ -705,6 +709,8 @@ kindFramework
                                 }
                             } else if(result === false) {
                                 revertFunc();
+                            } else if(result === 'exception') {
+                                // exception in case of event drop to handle later
                             }
                         } 
                     },
@@ -1329,7 +1335,6 @@ kindFramework
             }, true);
 
             scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){ // for storage controller
-                console.info(newVal, oldVal);
                 if(typeof newVal === "undefined" || newVal === oldVal){
                     if(newVal !== 'Scheduled' || oldVal !== 'Scheduled'){
                         return;
@@ -1342,7 +1347,6 @@ kindFramework
                         // deleteAll();
                         setVisibility(newVal);
                     } else if(newVal === 'Scheduled') {
-                        console.info(alreadyCreated);
                         if(!alreadyCreated) {
                             initCalendar(scope.RecordSchedule);
                         }
