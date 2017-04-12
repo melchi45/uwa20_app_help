@@ -480,8 +480,8 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         var deferred = $q.defer();
         var queue = [];
 
-        if (!angular.equals(pageData.FD, $scope.FD)) {
-            setFaceDetection(queue);
+        if (!angular.equals(pageData.TamperDetect, $scope.TamperDetect)) {
+            setTamperDetection();
         }
 
         if(queue.length > 0){

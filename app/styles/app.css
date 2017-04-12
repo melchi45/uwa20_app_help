@@ -5745,12 +5745,15 @@ rzslider .rz-bubble {
   padding-left: 0px;
   padding-right: 80px;
 }
+.wn5-setup-section .form-group .tab-content .wn5-setup-section-article-heading {
+  padding-left: 20px;
+}
 .wn5-setup-section .form-group .wn5-setup-section-article-content-type {
   width: auto;
 }
-.wn5-setup-section .form-group .field-radio-wrapper {
+.wn5-setup-section .form-group .wn5-setup-section-article-content-type .field-radio-wrapper {
   float: left;
-  width: 200px;
+  width: 250px;
 }
 .field-label {
   line-height: 34px;
@@ -7416,7 +7419,7 @@ img[id^="hm-results-image-"] {
   }
   .main.setup-wrapper input[type=checkbox],
   .main.setup-wrapper input[type=radio] {
-    transform: scale(1.5);
+    transform: scale(1.2);
   }
   .main.setup-wrapper label {
     font-size: 19px;
@@ -7499,7 +7502,7 @@ img[id^="hm-results-image-"] {
     font-size: 19px !important;
   }
   .wn5-setup-preview-heading:first-of-type {
-    margin-top: 30px;
+    margin-top: 10px;
   }
   .wn5-setup-wrapper .btn.wn5-btn-small-square {
     height: 36px !important;
@@ -7533,6 +7536,9 @@ img[id^="hm-results-image-"] {
   .modal-sm .modal-content .modal-footer button {
     padding: 10px 40px !important;
     font-size: 19px;
+  }
+  #setup-channel-selector .setup-channel-selector-heading {
+    width: 23%;
   }
   #setup-channel-selector .setup-channel-selector-heading h3 {
     font-size: 21px;
