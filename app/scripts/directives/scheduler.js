@@ -623,6 +623,7 @@ kindFramework
                     selectable: true,
                     selectHelper: true,
                     editable: true,
+                    eventDurationEditable: true,
                     dayNames: ['','','','','','',''],
                     dayNamesShort:['','','','','','',''],
 
@@ -638,7 +639,7 @@ kindFramework
                     },
                     selectOverlap: false,
                     events: eventObjs,
-                    select: function(start, end, jsEvent, view, resource) {
+                    select: function(start, end, jsEvent, view, resource) {//console.info('select');console.info(moment(start).format('YYYY-MM-DDTHH:mm'));console.info(moment(end).format('YYYY-MM-DDTHH:mm'));
                         if(currentUnit === '60') {
                             mergeTheSelected(start, end);
                         } else {
@@ -650,7 +651,7 @@ kindFramework
                             }
                         }
                     },
-                    eventAfterAllRender: function(view) {
+                    eventAfterAllRender: function(view) {//console.info('eventAfterAllRender');
                         if(!initialRendered) {
                             initialRendered = true;
                             $('#calendar').fullCalendar('unselect'); // to visually update all rendered things, it should be called...
@@ -661,6 +662,7 @@ kindFramework
                             eventObjs = angular.copy($('#calendar').fullCalendar('clientEvents'));
                             updateScheduler();
                         }
+                        resized = false;
                     },
                     eventAfterRender: function(event, $el, view) {
                         // Triggered after an event has been placed on the calendar in its final position.
