@@ -315,10 +315,15 @@ function VideoMediaSource() {
   		  videoElement.autoplay = false; 	  
   	  }
       
+      var img = './base/images/loading.gif';
+      if ($("channel_player.full-screen").length) {
+        img = './base/images/loading_b.gif';
+      }
+
       videoElement.controls = false;
       videoElement.preload = "auto";
       videoElement.poster = "./base/images/video_poster.png";
-      videoElement.style.background = "url('./base/images/loading.gif') no-repeat center center";
+      videoElement.style.background = "url("+img+") no-repeat center center";
       videoElement.style.backgroundSize = "48px 48px";
       videoDigitalPtz.setVideoElement(videoElement);
       AddVideoEventListener(videoElement);
