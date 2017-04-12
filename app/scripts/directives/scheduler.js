@@ -409,8 +409,10 @@ kindFramework
                             target = tEventObjs[i];
                             if(target.id !== id) {
                                 // except between
-                                if(moment(target.start).format('HH:mm') === '00:00' && moment(target.end).format('HH:mm') === '00:00' && moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) {
-                                    // 00:00 ~ 00:00 & 00:00 ~ 00:00
+                                // if(moment(target.start).format('HH:mm') === '00:00' && moment(target.end).format('HH:mm') === '00:00' && (moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm') || moment(target.start).format('YYYY-MM-DDTHH:mm') === moment(end).format('YYYY-MM-DDTHH:mm'))) {
+                                if(moment(target.start).format('HH:mm') === '00:00' && moment(end).format('HH:mm') === '00:00'
+                                    || moment(target.end).format('HH:mm') === '00:00' && moment(start).format('HH:mm') === '00:00') {
+                                    // 00:00 ~ 00:00 || 00:00 ~ 00:00
                                     return 'exception';
                                 }
                                 if(moment(target.start).format('YYYY-MM-DDTHH:mm') === moment(end).format('YYYY-MM-DDTHH:mm')) { // merging case

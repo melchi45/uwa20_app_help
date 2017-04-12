@@ -673,9 +673,6 @@ live-playback common {
   background-color: #d2d2d2 !important;
   color: #797979 !important;
 }
-.cm-str-button * {
-  border: none !important;
-}
 .cm-str-button.cm-cancel-button {
   width: 100px;
 }
@@ -845,6 +842,27 @@ live-playback common {
 .full-screen div {
   display: block;
   background-color: black;
+}
+.full-screen .cm-plugin-msg {
+  width: 100%;
+  max-width: 700px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -7%);
+  text-align: center;
+}
+.full-screen .cm-plugin-msg a {
+  display: inline-block;
+  width: 110px;
+  height: 30px;
+  line-height: 28px;
+  border: 1px solid #f8aa7a;
+  color: #f37321;
+  margin-top: 20px;
+}
+.full-screen .cm-plugin-msg a i {
+  margin-right: 6px;
 }
 #cm-bottom-menu.cm-full-menu {
   background-color: #000;
@@ -4300,14 +4318,14 @@ button.login-input + input.login-input {
   padding-right: 0;
 }
 .wn5-setup-section-article .wn5-setup-section-article-heading {
-  width: 25%;
+  width: 27%;
 }
 .wn5-setup-section-article .wn5-setup-section-article-heading + .wn5-setup-section-article-content,
 .wn5-setup-section-article .wn5-setup-section-article-heading + div .wn5-setup-section-article-content {
-  width: 75%;
+  width: 73%;
 }
 .wn5-setup-section-article .wn5-setup-section-article-content.wn5-setup-section-article-heading-offset {
-  padding-left: calc(25% + 15px);
+  padding-left: calc(27% + 15px);
 }
 .wn5-setup-section-article.wn5-setup-section-article-ratio-3-7 .wn5-setup-section-article-heading {
   width: 30%;
@@ -4961,9 +4979,9 @@ fieldset .btn-white.wn5-btn-hover,
 fieldset .btn-primary.wn5-btn-hover,
 .wn5-setup-wrapper .wn5-btn.wn5-btn-hover,
 fieldset .wn5-btn.wn5-btn-hover {
-  background-color: #4c4c4c !important;
-  border-color: #4c4c4c !important;
-  color: #ffffff;
+  background-color: #d2d2d2 !important;
+  border-color: #a5a5a5 !important;
+  color: #4c4c4c;
 }
 .wn5-setup-wrapper .btn-white:hover i,
 fieldset .btn-white:hover i,
@@ -4977,7 +4995,7 @@ fieldset .btn-white.wn5-btn-hover i,
 fieldset .btn-primary.wn5-btn-hover i,
 .wn5-setup-wrapper .wn5-btn.wn5-btn-hover i,
 fieldset .wn5-btn.wn5-btn-hover i {
-  color: #ffffff;
+  color: #4c4c4c;
 }
 .wn5-setup-wrapper .btn-white:active,
 fieldset .btn-white:active,
@@ -5092,15 +5110,15 @@ fieldset .wn5-setup-common-button .btn-black i {
 fieldset .confirm-button-area .btn-black:hover,
 .wn5-setup-wrapper .wn5-setup-common-button .btn-black:hover,
 fieldset .wn5-setup-common-button .btn-black:hover {
-  background-color: #4c4c4c !important;
-  border-color: #4c4c4c !important;
-  color: #ffffff;
+  background-color: #d2d2d2 !important;
+  border-color: #a5a5a5 !important;
+  color: #4c4c4c;
 }
 .wn5-setup-wrapper .confirm-button-area .btn-black:hover i,
 fieldset .confirm-button-area .btn-black:hover i,
 .wn5-setup-wrapper .wn5-setup-common-button .btn-black:hover i,
 fieldset .wn5-setup-common-button .btn-black:hover i {
-  color: #ffffff;
+  color: #4c4c4c;
 }
 .wn5-setup-wrapper .confirm-button-area .btn-black:active,
 fieldset .confirm-button-area .btn-black:active,
@@ -5738,12 +5756,15 @@ rzslider .rz-bubble {
   background-color: white;
 }
 .wn5-setup-section .wn5-gui-body-large {
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 10px;
 }
 .wn5-setup-section .form-group .wn5-setup-section-article-heading {
-  padding-left: 0px;
+  padding-left: 15px;
   padding-right: 80px;
+}
+.wn5-setup-section .form-group .wn5-setup-section-article-heading.wn5-outline-title {
+  padding-left: 0;
 }
 .wn5-setup-section .form-group .tab-content .wn5-setup-section-article-heading {
   padding-left: 20px;
@@ -6137,6 +6158,14 @@ rzslider .rz-bubble {
 .wn5-setup-info-ch {
   vertical-align: middle !important;
   font-weight: bold;
+}
+/* For Sketchbook */
+body.kind-svg-editor-drawing .wn5-setup-preview-table,
+body.kind-svg-editor-drawing .channel-content {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 #wisenet-multi_imager-image_align {
   width: 100%;
@@ -9738,6 +9767,9 @@ i.tui-ch-playback-stop {
 }
 .kind-responsive-playback #playback-channel-holder .playback-channel-selector {
   padding: 15px 18px 0 30px;
+}
+.kind-responsive-playback .cm-str-button * {
+  border: none !important;
 }
 .kind-responsive-playback .cm-vline {
   margin-top: 12px;

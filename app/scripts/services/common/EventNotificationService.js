@@ -13,8 +13,8 @@ kindFramework
   	var currentEventPage = null;	//MotionDetection, TamperingDetection, DefocusDetection, Fog, FaceDetection, Queue
   	var isDetect = false;
 
-  	var commonBorderCSS = "3px solid white",
-  		fullscreenBorderCSS = "3px solid black",
+  	var commonBorderCSS = "3px solid transparent",
+  		fullscreenBorderCSS = "3px solid transparent",
   		detectBorderCSS = "3px solid red";
 
   	this.setBorderElement = function(element, currentPage){		//element type: jquery obj
