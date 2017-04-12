@@ -492,9 +492,6 @@ kindFramework
 				}
 			})();
 
-		// workerManager.setCallback('timeStamp', PlaybackInterface.timelineCallback);
-		// workerManager.setCallback('stepRequest', PlaybackInterface.stepRequestCallback);
-		kindStreamInterface.controlWorker({'channelId':0, 'cmd':'setCallback', 'data': ['timeStamp', PlaybackInterface.timelineCallback]});
 		kindStreamInterface.controlWorker({'channelId':0, 'cmd':'setCallback', 'data': ['stepRequest', PlaybackInterface.stepRequestCallback, PlaybackInterface]});
     return PlaybackInterface;
 }]);

@@ -28,7 +28,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						this.show = value;
 					},
 					apply: function(value){
-                        if(scope.addPresetting.SelectedName === null || scope.addPresetting.SelectedName === undefined)
+                        if(scope.addPresetting.SelectedName === null || scope.addPresetting.SelectedName === undefined || scope.addPresetting.SelectedName === "")
                         {
                             var ErrorMessage = 'lang_msg_validPresetName';
                             COMMONUtils.ShowError(ErrorMessage,'md');

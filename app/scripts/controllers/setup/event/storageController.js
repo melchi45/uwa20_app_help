@@ -16,23 +16,15 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.OnlyNumStr = mAttr.OnlyNumStr;
     $scope.IPv4PatternStr = mAttr.IPv4PatternStr;
     $scope.FriendlyNameCharSetNoNewLineStr = mAttr.FriendlyNameCharSetNoNewLineStr;
-    $scope.storageDeviceType = false;
     $scope.EventSource = "Storage";
     $scope.StorageInfo = {};
-    
-
-    // if(mAttr.MaxChannel > 1) {
-    //     $scope.isMultiChannel = true;
-    // } else {
-    //     $scope.isMultiChannel = false;
-    // }
 
 
     /*
-    ID : 숫자,알파벳,특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능.
-Password : 숫자,알파벳,특수문자(~ ! @ $ ^ * _ - { } [ ] . / ?) 입력가능하고 이외 문자는 설정 불가능
-Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능
-*/
+     ID : 숫자,알파벳,특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능.
+     Password : 숫자,알파벳,특수문자(~ ! @ $ ^ * _ - { } [ ] . / ?) 입력가능하고 이외 문자는 설정 불가능
+     Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능
+     */
     //$scope.NASUserIDPattern = "^[a-zA-Z0-9~`!@$^*()_\\-|{}\\[\\];,./?]*$";
     /** Password and ID has same pattern - ~`!@$^*()_-|{}[];,./? */
     //$scope.NASPasswordPattern = $scope.NASUserIDPattern;
@@ -41,6 +33,19 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     $scope.NASUserIDPattern = "^[a-zA-Z0-9_\\-.]*$";
     $scope.NASPasswordPattern = "^[a-zA-Z0-9~!@$^*_\\-{}\\[\\]./?]*$";
     $scope.NASFolderPattern = "^[a-zA-Z0-9_\\-.]*$";
+
+    $scope.channelSelectionSection = (function(){
+        var currentChannel = 0;
+
+        return {
+            getCurrentChannel: function(){
+                return currentChannel;
+            },
+            setCurrentChannel: function(index){
+                currentChannel = index;
+            }
+        }
+    })();
 
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
@@ -51,7 +56,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             Channel : 0
         };
 
-        return SunapiClient.get("/stw-cgi/recording.cgi?msubmenu=storage&action=view", getData, 
+        return SunapiClient.get("/stw-cgi/recording.cgi?msubmenu=storage&action=view", getData,
             function (response) {
                 $scope.storageData = response.data.storage;
                 $scope.pageData.storageData = angular.copy($scope.storageData[0]);
@@ -60,36 +65,11 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                 $scope.RecordStorageInfo.AutoDeleteEnable = $scope.storageData[0].AutoDeleteEnable;
                 $scope.RecordStorageInfo.AutoDeleteDays = $scope.storageData[0].AutoDeleteDays;
                 $scope.RecordSchedule.Activate = "Always";
-            }, 
+            },
             function (errorData) {
                 console.log(errorData);
             }, '', true);
     }
-
-    // $scope.setStorageSetup = function () {
-    //     var setData = {};
-
-    //     setData.Channel = 0;
-    //     setData.AutoDeleteEnable = false;
-    //     setData.AutoDeleteDays = 1;
-    //     setData.OverWrite = $scope.RecordStorageInfo.OverWrite;
-
-    //     if( $scope.pageData.storageData.OverWrite === true ) {
-    //         setData.AutoDeleteEnable = $scope.pageData.storageData.AutoDeleteEnable;
-    //         if( $scope.pageData.storageData.AutoDeleteEnable === true ) {
-    //             setData.AutoDeleteDays = $scope.pageData.storageData.AutoDeleteDays;
-    //         }
-    //     }
-
-    //     return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=storage&action=set', setData,
-    //         function () {
-    //             $scope.pageData.storageData = angular.copy($scope.storageData);
-    //         },
-    //         function (errorData) {
-    //             $scope.pageData.storageData = angular.copy($scope.storageData);
-    //             console.log(errorData);
-    //         }, '', true)
-    // }
 
     function setStorageSetup() {
         var setData = {};
@@ -203,13 +183,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
         $scope.MaxChannel = mAttr.MaxChannel;
 
-
-        // if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){
-        //     $scope.disabledRecord = true;
-        // }else{
-        //     $scope.disabledRecord = false;
-        // }
-
         defer.resolve("success");
         return defer.promise;
     }
@@ -240,12 +213,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
     function setAttribute () {
         var defer = $q.defer();
-
-        // for(var i = 0; i<$scope.VideoProfiles.length; i++) {
-        //     if($scope.VideoProfile[i].Profile == $scope.RecordProfileId[0].RecordProfile) {
-        //         $scope.RecordProfileName = $scope.VideoProfile[i].Name;
-        //     }
-        // }
 
         $scope.RecordGeneralInfo.NormalMode = $scope.RecordGeneralInfo.NormalMode;
         $scope.RecordGeneralInfo.EventMode = $scope.RecordGeneralInfo.EventMode;
@@ -404,9 +371,9 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         setData.OverWrite = $scope.RecordStorageInfo.OverWrite;
         setData.AutoDeleteEnable = $scope.RecordStorageInfo.AutoDeleteEnable;
         if(!($scope.RecordStorageInfo.AutoDeleteDays == undefined || $scope.RecordStorageInfo.AutoDeleteDays == '')){
-        setData.AutoDeleteDays = $scope.RecordStorageInfo.AutoDeleteDays;
+            setData.AutoDeleteDays = $scope.RecordStorageInfo.AutoDeleteDays;
         }
-        
+
         queue.push({
             url: '/stw-cgi/recording.cgi?msubmenu=storage&action=set',
             reqData: setData,
@@ -414,13 +381,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                 pageData.RecordStorageInfo = angular.copy($scope.RecordStorageInfo);
             }
         });
-        /*return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=storage&action=set', setData, function(response) {
-            console.info("Request","/stw-cgi/recording.cgi?msubmenu=storage&action=set DONE");
-            pageData.RecordStorageInfo = angular.copy($scope.RecordStorageInfo);
-        }, function(errorData) {
-            pageData.RecordStorageInfo = angular.copy($scope.RecordStorageInfo);
-            console.log(errorData);
-        }, '', true);*/
     }
     $scope.setStorageInfoData = function(index) {
         var setData = {};
@@ -455,16 +415,9 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
 
     function storageinfoSet(otherStorage, queue) {
         var setData = $scope.setStorageInfoData(otherStorage);
-        /*var promise = SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=set', setData, function(response) {
-            console.info("Request","/stw-cgi/system.cgi?msubmenu=storageinfo&action=set DONE storageinfoSet");
-            pageData.Storageinfo.Storages[otherStorage] = angular.copy($scope.Storageinfo.Storages[otherStorage]);
-            //window.setTimeout(RefreshPage, 1000);
-        }, function(errorData) {
-            console.log(errorData);
-        }, '', true);
-        promises.push(promise);*/
+
         queue.push({
-            url: '/stw-cgi/system.cgi?msubmenu=storageinfo&action=set', 
+            url: '/stw-cgi/system.cgi?msubmenu=storageinfo&action=set',
             reqData: setData,
             successCallback: function(response) {
                 pageData.Storageinfo.Storages[otherStorage] = angular.copy($scope.Storageinfo.Storages[otherStorage]);
@@ -475,54 +428,21 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     function setStorageInfo(index, queue) {
         var setData = {};
         setData = $scope.setStorageInfoData(index);
-        /*var promise = SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=set', setData, function(response) {
-            console.info("Request","/stw-cgi/system.cgi?msubmenu=storageinfo&action=set DONE setStorageInfo");
-            //$timeout(view,4000);
-            pageData.Storageinfo.Storages[index] = angular.copy($scope.Storageinfo.Storages[index]);
-            var otherStorage;
-            if (index === 1) {
-                otherStorage = 0;
-            } else {
-                otherStorage = 1;
-            }
-            if ($scope.Storageinfo.Storages[otherStorage] !== undefined && !angular.equals(pageData.Storageinfo.Storages[otherStorage], $scope.Storageinfo.Storages[otherStorage])) {
-                storageinfoSet(otherStorage, promises);
-            } else {
-                //window.setTimeout(RefreshPage, 1000);
-            }
-        }, function(errorData) {
-            console.log(errorData);
-        }, '', true);
-        promises.push(promise);
-*/
+
         queue.push({
             url: '/stw-cgi/system.cgi?msubmenu=storageinfo&action=set',
             reqData: setData,
             successCallback: function(response) {
-                //$timeout(view,4000);
                 pageData.Storageinfo.Storages[index] = angular.copy($scope.Storageinfo.Storages[index]);
             }
         });
 
         var otherStorage;
-        if (index === 1) {
-            otherStorage = 0;
-        } else {
-            otherStorage = 1;
-        }
+        if (index === 1) otherStorage = 0;
+        else otherStorage = 1;
+
         if ($scope.Storageinfo.Storages[otherStorage] !== undefined && !angular.equals(pageData.Storageinfo.Storages[otherStorage], $scope.Storageinfo.Storages[otherStorage])) {
             storageinfoSet(otherStorage, queue);
-        } else {
-            //window.setTimeout(RefreshPage, 1000);
-        }
-    }
-
-    function RefreshPage() {
-        //window.location.href = $scope.relocateUrl;
-        if ($scope.needReload === true) {
-            $scope.needReload = false;
-            window.location.reload(true);
-            
         }
     }
 
@@ -629,9 +549,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData, function(response) {
             $scope.Storageinfo = response.data;
 
-            // $scope.Storageinfo.Storages = [];
-            
-
             for (idx = 0; idx < $scope.Storageinfo.Storages.length; idx = idx + 1) {
                 if ($scope.Storageinfo.Storages[idx].Enable === true) {
                     $scope.Storageinfo.Storages[idx].Enable = "On";
@@ -673,9 +590,8 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
             $scope.RecordSchedule = response.data.RecordSchedule[0];
             $scope.RecordSchedule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds($scope.RecordSchedule.Schedule));
-            pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
 
-            console.info($scope.RecordSchedule);
+            pageData.RecordSchedule = angular.copy($scope.RecordSchedule);
         }, function(errorData) {
             console.error(errorData);
         }, '', true);
@@ -693,19 +609,9 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         }, '', true);
     }
 
-    function getProfileDetails() {
-        var getData = {};
-        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
-
-        return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
-            $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
-        }, function(errorData) {
-            console.error(errorData);
-        }, '', true);
-    }
-
     function getRecordingStorageDetails() {
         var getData = {};
+
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=storage&action=view', getData, function(response) {
             $scope.RecordStorageInfo = response.data;
             pageData.RecordStorageInfo = angular.copy($scope.RecordStorageInfo);
@@ -719,9 +625,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
         getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
 
-        // getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
-
             $scope.VideoProfile = response.data.VideoProfiles[0].Profiles;
             $scope.RecordProfileName = $scope.VideoProfile[0].Name;
         }, function(errorData) {
@@ -739,6 +643,9 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             console.log(errorData);
         }, '', true);
     }
+
+
+
 
     $scope.OnStorageSelection = function(index) {
         $scope.SelectedStorage = index;
@@ -761,17 +668,6 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             COMMONUtils.ShowError('lang_msg_invalid_idpw');
             return false;
         }
-        /*if(!($scope.Storageinfo.Storages[$scope.SelectedStorage].NASConfig.NASPassword.length === 0 && NASPWset) && !NASPWInit)
-        {
-            if($scope.Storageinfo.Storages[$scope.SelectedStorage].NASConfig.NASPassword !== '')
-            {
-                if(!TypeCheck($scope.Storageinfo.Storages[$scope.SelectedStorage].NASConfig.NASPassword, COMMONUtils.getALPHA()+COMMONUtils.getNUM()+COMMONUtils.getSIM()))
-                {
-                    COMMONUtils.ShowError('lang_msg_invalid_idpw');
-                    return false;
-                }
-            }
-        }*/
         if ($scope.Storageinfo.Storages[storageIndex].NASConfig.NASPassword !== '') {
             if (!COMMONUtils.TypeCheck($scope.Storageinfo.Storages[storageIndex].NASConfig.NASPassword, COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getSIM())) {
                 COMMONUtils.ShowError('lang_msg_invalid_idpw');
@@ -803,7 +699,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         if ($scope.Storageinfo.Storages[$scope.SelectedStorage].NASConfig.NASPasswordInit === false) {
             setData.NASPassword = encodeURIComponent($scope.Storageinfo.Storages[$scope.SelectedStorage].NASConfig.NASPasswordNew);
         }
-        //else
+
         /** If nas password is not entered by user, if any password already stored in the camera it will be used */
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=control', setData, function(response) {
             $scope.NASTestStatus = response.data.Status;
@@ -813,34 +709,24 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         }, '', true);
     };
 
-    function view(data) {
+    function view() {
         var promises = [];
         promises.push(changeVideoProfilePolicies);
         promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
         promises.push(getRecordingStorageDetails);
         promises.push(getRecordingSchedules);
-        promises.push(getRecordProfile);
         promises.push(getRecordProfileDetails);
-        
+
 
         $q.seqAll(promises).then(setAttribute).then(function() {
-            // var scheduler = $("#scheduler");
-            // scheduler.html('');
-
             $scope.pageLoaded = true;
+            $scope.channelSelectionSection.setCurrentChannel($scope.Channel);
 
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
             $rootScope.$emit('changeLoadingBar', false);
-            
 
             $("#storagepage").show();
-
-            // var templete = angular.element("<scheduler></scheduler>");
-            // $compile(templete)($scope);
-
-            // scheduler.append(templete);
-
         }, function(errorData) {
             console.log(errorData);
         });
@@ -849,29 +735,22 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
     function saveStorage(newChannel) {
         var promises = [],
             queue = [],
-            needRefresh = false,
             promise;
 
         function callSequence(){
-            $scope.pageLoaded = false;
+            $rootScope.$emit('changeLoadingBar', true);
 
             SunapiClient.sequence(queue, function(){
-                if (needRefresh) {
-                    $rootScope.$emit('changeLoadingBar', true);
+                if(newChannel !== undefined) {
                     $rootScope.$emit("channelSelector:changeChannel", newChannel);
-                    window.setTimeout(view, 1000);
-                } else {
-                    $rootScope.$emit('changeLoadingBar', true);
-
-                    $timeout(function () {
-                        if(newChannel !== false) {
-                            $rootScope.$emit("channelSelector:changeChannel", newChannel);
-                            $scope.Channel = newChannel;
-                        }
-                        view();
-                    }, 1000);
+                    $scope.Channel = newChannel;
                 }
-            }, function(errorData) {});
+                $scope.$emit('alreadyCreatedFalse', true);
+
+                window.setTimeout(view, 1000);
+            }, function(errorData) {
+                console.error(errorData);
+            });
         }
 
 
@@ -908,14 +787,11 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                     promises.push(function(){
                         return showModalDialog("setStorageInfo", $scope.DisplayMsg, $scope.SelectedStorage, queue);
                     });
-                    needRefresh = true;
                 } else {
                     setStorageInfo($scope.SelectedStorage, queue);
-                    needRefresh = true;
                 }
             } else {
                 setStorageInfo($scope.SelectedStorage, queue);
-                needRefresh = true;
             }
         } else {
             //check for other storage
@@ -932,14 +808,11 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                         promises.push(function(){
                             return showModalDialog("setStorageInfo", $scope.DisplayMsg, otherstorage, queue);
                         });
-                        needRefresh = true;
                     } else {
                         setStorageInfo(otherstorage, queue);
-                        needRefresh = true;
                     }
                 } else {
                     setStorageInfo(otherstorage, queue);
-                    needRefresh = true;
                 }
             }
         }
@@ -948,12 +821,12 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             $q
                 .seqAll(promises)
                 .then(
-                    callSequence, 
+                    callSequence,
                     function(errorData){}
-                );   
+                );
         }else{
             console.info('is no modify');
-            callSequence();            
+            callSequence();
         }
     }
 
@@ -1064,11 +937,11 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         var getData = {};
 
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData, function(response) {
-        
+
             var tStorageinfo = response.data;
-        
+
             func(tStorageinfo);
-        
+
         }, function(errorData) {
             console.log(errorData);
             startMonitoringStatus();
@@ -1099,34 +972,11 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
         setData.Mode = "Format";
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=control', setData, function(response) {
             $scope.needReload = true;
-            window.setTimeout(RefreshPage, 1000);
+            window.setTimeout(view, 1000);
         }, function(errorData) {
             console.log(errorData);
         }, '', true);
     }
-
-    $scope.storageDeviceTypeCheck = function(){
-        SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', '', function(response) {
-            //scope.globalNavigationBar.deviceModelName = response.data.Model;
-            switch( response.data.Model ) {
-                case "PNM-9080QV" :
-                    $scope.storageDeviceType = false;
-                    break;
-
-                case "PNM-9020V" :
-                    $scope.storageDeviceType = false;
-                    break;
-
-                default :
-                    $scope.storageDeviceType = true;
-                    break;
-            }
-        });  
-
-        return $scope.storageDeviceType;
-    }
-
-
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
         var okay = true;
@@ -1136,7 +986,7 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
                 if(!eventRuleService.checkRecordSchedulerValidation()) okay = false;
             }
         } else okay = false;
-        
+
 
         if(!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) okay = false;
 
@@ -1170,17 +1020,11 @@ Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이�
             }, 500);
         } else {
             getAttributes().then(function() {
-                if(mAttr.MaxChannel > 1){
-                    $scope.isMultiChannel = true;
-                }else{
-                    $scope.isMultiChannel = false;
-                }
-            }).finally(function() {
                 view();
             });
         }
     })();
-    
+
     $scope.submit = set;
     $scope.view = view;
     $scope.validate = validatePage;

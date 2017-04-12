@@ -311,7 +311,7 @@ kindFramework.directive('liveIconList', function(
 			}
 
 			function wait(){
-		        if (!mAttr.Ready) {
+		        if (!mAttr.Ready || !AccountService.accountReady()) {
 		            $timeout(function () {
 		                mAttr = Attributes.get();
 		                wait();

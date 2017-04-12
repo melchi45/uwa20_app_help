@@ -81,13 +81,13 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         if(newVal === oldVal) {return;}
         
         if (newVal == 'Preset'){
-            var pst = false;
-            if (typeof $scope.LastPosition !== 'undefined'){
-                pst = $scope.LastPosition.RememberLastPosition;
-            }
+            //var pst = false;
+            //if (typeof $scope.LastPosition !== 'undefined'){
+            //    pst = $scope.LastPosition.RememberLastPosition;
+            //}
             $scope.ptzinfo = {
-                    type: 'preset',
-                    disablePosition: pst
+                    type: 'preset'
+                    //disablePosition: pst
                 };
         } else {
             $scope.ptzinfo = {
@@ -281,14 +281,14 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         return true;
     }
     
-    $scope.$watch('LastPosition.RememberLastPosition',function(newVal, oldVal){
-        if (typeof newVal !== 'undefined'){
-            $scope.ptzinfo = {
-                type: 'preset',
-                disablePosition: newVal
-            };
-        }
-    });
+    //$scope.$watch('LastPosition.RememberLastPosition',function(newVal, oldVal){
+    //    if (typeof newVal !== 'undefined'){
+    //        $scope.ptzinfo = {
+    //            type: 'preset',
+    //            disablePosition: newVal
+    //        };
+    //    }
+    //});
     
     function getLastPosition(){
         var getData = {}; 
@@ -1776,8 +1776,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                 };
                 if($scope.activeTab.title == 'Preset'){
                     $scope.ptzinfo = {
-                        type: 'preset',
-                        disablePosition: $scope.LastPosition.RememberLastPosition
+                        type: 'preset'
+                        //disablePosition: $scope.LastPosition.RememberLastPosition
                     };
                 }else{
                     $scope.ptzinfo = {
