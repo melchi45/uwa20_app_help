@@ -2332,6 +2332,29 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         if($scope.presetList.length !== 0){
             $scope.presetData.preset = $scope.presetList[0].Preset;
         }
+
+        $timeout(function(){
+            if ( !(typeof mAttr.DefaultPresetNumber === undefined || !mAttr.DefaultPresetNumber) ) {
+                $scope.presetData.type = 'Preset';
+
+                $timeout(function(){
+                    var isCheck = false;
+                    for (var i = 0; i < $scope.presetList.length; i++) {
+                        var Preset = $scope.presetList[i].Preset;
+                        if ( mAttr.DefaultPresetNumber === parseInt(Preset, 10) ) {
+                            $scope.presetData.preset = Preset;
+                            isCheck = true;
+                            break;
+                        }
+                    }
+                    if (!isCheck) {
+                        $scope.presetData.preset = 0;
+                    }
+                    
+                    Attributes.setDefaultPresetNumber(0);
+                });
+            }
+        });
     }
 
     $scope.$watch('presetData.type',function(newVal, oldVal){
