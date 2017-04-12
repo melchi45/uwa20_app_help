@@ -245,19 +245,25 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 					var newSize = getSize(wWidth, wHeight);
 					console.info(newSize);
 					if(newSize !== undefined){
+
+						//when Canvas size is changed. overlayCanvas need to be resized.
+						if(newSize.width !== streamCanvas[0].offsetWidth && newSize.height !== streamCanvas[0].offsetHeight)
+						{
+                            if(BrowserService.BrowserDetect !== BrowserService.BROWSER_TYPES.IE) {
+                                $rootScope.$emit("overlayCanvas::setSize", newSize.width, newSize.height);
+                            }
+						}
+
 						streamCanvas.css({
 							width: newSize.width + "px",
 							height: newSize.height + "px"
 						});
-
 						setPosition(newSize.width, newSize.height);
 					}
 				}
 			} //setCanvasBytestRatio
 			
-			if(streamCanvas[0] !== undefined && BrowserService.BrowserDetect !== BrowserService.BROWSER_TYPES.IE) {
-                $rootScope.$emit("overlayCanvas::setSize", streamCanvas[0].clientWidth, streamCanvas[0].clientHeight);
-			}
+
 		}; //setCanvasStyle
 
 		function setPosition(width, height){
