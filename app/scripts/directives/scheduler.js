@@ -1422,6 +1422,10 @@ kindFramework
                 prevChannel = currentChannel;
             });
 
+            scope.$saveOn('alreadyCreatedFalse', function () {
+                alreadyCreated = false;
+            });
+
             scope.$saveOn('recordPageLoaded', function(event, data) {
                 var currentChannel = 0;
                 if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
