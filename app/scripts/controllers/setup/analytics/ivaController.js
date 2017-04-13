@@ -2096,7 +2096,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 $rootScope.$emit('changeLoadingBar', true);
                 $rootScope.$emit("channelSelector:changeChannel", data);
                 $scope.channelSelectionSection.setCurrentChannel(data);
-                $scope.$emit('applied', true);
                 $timeout(view);
             }
         }
