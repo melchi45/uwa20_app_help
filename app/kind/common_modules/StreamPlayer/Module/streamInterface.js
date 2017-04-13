@@ -15,6 +15,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		var bottomMenuHeight = 50;
 		var currentPage = null;
 		var tagType = null;
+		var borderSize = 3;
 
 		var loadingBar = function(flag) {
 			$rootScope.$emit('changeLoadingBar', flag);
@@ -73,8 +74,8 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 				});
 
 				overlayCanvas.attr({
-					width: newSize.width + "px",
-					height: newSize.height + "px",
+					width: (newSize.width - borderSize*2) + "px",
+					height: (newSize.height - borderSize*2) + "px",
 				});
 
 				setPosition(newSize.width, newSize.height);
@@ -91,16 +92,20 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 					left: 0
 				});
 				overlayCanvas.attr({
-					width: streamCanvas.width() + 6,
-					height: streamCanvas.height() + 6
+					width: streamCanvas.width(),
+					height: streamCanvas.height()
 				}).css({
-					left: 0	
+					top: borderSize + 'px',
+					left: borderSize + 'px'
 				});
 
       			var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true : false;
 				if(plugin && !(UniversialManagerService.getViewMode() == 0 || UniversialManagerService.getIsCapturedScreen())){
 					streamCanvas.css({
 						height: (window.innerHeight - bottomMenuHeight) + "px"
+					});
+					overlayCanvas.attr({
+						height: (window.innerHeight - bottomMenuHeight - borderSize*2)
 					});
 				}
 	 		} else if (mode === 'originalratio' || (curViewMode === 'originalratio' && (mode === 'resize' || mode.type === 'resize') ) ) {
@@ -245,6 +250,10 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 							width: "100%",
 							height: "100%"
 						});
+						overlayCanvas.attr({
+							width: streamCanvas.width(),
+							height: streamCanvas.height()
+						});
 					}
 				}else{
 		  			var wWidth = boxSize.width;
@@ -257,7 +266,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 						if(newSize.width !== streamCanvas[0].offsetWidth && newSize.height !== streamCanvas[0].offsetHeight)
 						{
                             if(BrowserService.BrowserDetect !== BrowserService.BROWSER_TYPES.IE) {
-                                $rootScope.$emit("overlayCanvas::setSize", newSize.width, newSize.height);
+                                $rootScope.$emit("overlayCanvas::setSize", (newSize.width - borderSize*2), (newSize.height - borderSize*2));
                             }
 						}
 
@@ -267,8 +276,8 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 						});
 
 						overlayCanvas.attr({
-							width: newSize.width,
-							height: newSize.height
+							width: newSize.width - borderSize*2,
+							height: newSize.height - borderSize*2
 						});
 						setPosition(newSize.width, newSize.height);
 					}
@@ -295,10 +304,8 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 				left: left + "px"
 			});
 			overlayCanvas.css({
-				// top: (top+3) + "px",
-				// left: (left+3) + "px"
-				top: top + "px",
-				left: left + "px"
+				top: (top + borderSize) + "px",
+				left: (left + borderSize) + "px"
 			});
 		}
 
