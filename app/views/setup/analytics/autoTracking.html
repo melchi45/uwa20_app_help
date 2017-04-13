@@ -1,36 +1,32 @@
 <div class="wrapper wrapper-content" ng-if='pageLoaded'>
-    <div class="row">
+    <form name="autoTrackForm" method="get" class="form-horizontal" novalidate>
         <wn5-setup-main-title
             data-title="lang_autotracking">
         </wn5-setup-main-title>
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">                
-                <div class="ibox-content">
-                    <form name="autoTrackForm" method="get" class="form-horizontal" novalidate>
 
-                    <event-action-setup></event-action-setup>   
+        <hr class="wn5-setup-hr">
+        <event-action-setup></event-action-setup>
+        <hr class="wn5-setup-hr">
 
-                        <div class="wn5-setup-section">
-                            <hr class="wn5-setup-hr">
-                                <div class="wn5-setup-section-heading">
-                                <h3>{{ 'lang_activation_time' | translate }}</h3>
-                                <div class="form-group">
-                                    <div class="wn5-setup-section-article-content">
-                                        <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">{{getTranslatedOption(Activate)}}<input type="radio" class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate"></div>                            
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <scheduler></scheduler>
-
-                        <div class="confirm-button-area">
-                            <button type="button" class="btn btn-orange" ng-click="submit()">{{ 'lang_apply' | translate }}</button>
-                            <button type="button" class="btn btn-black" ng-click="view()">{{ 'lang_cancel' | translate }}</button>
-                        </div>
-                    </form>
+        <div class="wn5-setup-section">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_activation_time' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article" >
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">{{getTranslatedOption(Activate)}}<input type="radio" class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <scheduler></scheduler>
+        <hr class="wn5-setup-hr">
+        <div class="confirm-button-area">
+            <button type="button" class="btn btn-orange" ng-click="submit()">{{ 'lang_apply' | translate }}</button>
+            <button type="button" class="btn btn-black" ng-click="view()">{{ 'lang_cancel' | translate }}</button>
+        </div>
+
+    </form>
 </div>

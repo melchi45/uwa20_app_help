@@ -745,7 +745,6 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                     $rootScope.$emit("channelSelector:changeChannel", newChannel);
                     $scope.Channel = newChannel;
                 }
-                $scope.$emit('alreadyCreatedFalse', true);
                 
                 window.setTimeout(view, 1000);
             }, function(errorData) {
