@@ -259,7 +259,6 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 		  			var wWidth = boxSize.width;
 		  			var wHeight = boxSize.height;
 					var newSize = getSize(wWidth, wHeight);
-					console.info(newSize);
 					if(newSize !== undefined){
 
 						//when Canvas size is changed. overlayCanvas need to be resized.
