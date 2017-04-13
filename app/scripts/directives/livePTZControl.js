@@ -343,7 +343,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 
 						scope.addPresetting = {};
 						scope.addPresetting.PresetList = new Array(mAttr.MaxPreset);
-						for(var i=0, j=0; i<mAttr.MaxPreset; i++)
+						for(var i=0; i<mAttr.MaxPreset; i++)
 						{
 							scope.addPresetting.PresetList[i] =  {
 								'Number' : i+1,
@@ -356,8 +356,16 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 							scope.addPresetting.PresetList[PresetObj.value-1].Name = PresetObj.name;
 						});
 
-						scope.addPresetting.SelectedName = scope.addPresetting.PresetList[0].Name;
-						scope.addPresetting.SelectedNumber = scope.addPresetting.PresetList[0].Number;
+						//Select first smpty preset
+						for(var j=0; j<scope.addPresetting.PresetList.length; j++)
+						{
+                            if(scope.addPresetting.PresetList[j].Name === '')
+							{
+                                scope.addPresetting.SelectedName = scope.addPresetting.PresetList[j].Name;
+                                scope.addPresetting.SelectedNumber = scope.addPresetting.PresetList[j].Number;
+                                break;
+							}
+						}
 					}
 				};
 
