@@ -151,6 +151,10 @@ kindFramework
                         videoinfo.maxHeight = temp;
                     }
 
+                    if (videoinfo.channelId !== undefined) {
+                        currentChannel = videoinfo.channelId;
+                    }
+
                     elem.css({
                         "width": videoinfo.width,
                         "height": videoinfo.height,
