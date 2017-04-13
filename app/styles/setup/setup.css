@@ -49,6 +49,7 @@ select option:disabled {
 
 .order-btn i {
     float: left;
+    cursor: default;
 }
 
 #setup-border-box {

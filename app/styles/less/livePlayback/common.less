@@ -701,10 +701,6 @@ live-playback common {
         }
     }
 
-    * {
-        border: none !important;
-    }
-
     &.cm-cancel-button {
         width: 100px;
     }
@@ -845,6 +841,7 @@ live-playback common {
         background-color: transparent;
         z-index: 102;
         opacity: 1;
+        border: 3px solid transparent;
     } 
 
     .cm-wisenet-channel,
@@ -868,8 +865,6 @@ live-playback common {
 
 #cm-livecanvas,
 #livecanvas {
-    left: 50%;
-    transform: translateX(-50%);
     position: relative;
 }
 

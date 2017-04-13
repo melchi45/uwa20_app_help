@@ -782,13 +782,17 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                             $scope.VA[index].SensitivityLevel = presetVA.SensitivityLevel;
                             if($scope.VA[index].SensitivityLevel <= 0) {
                                 $scope.VA[index].SensitivityLevel = 80;
-                                $scope.ivaDurationSliderModel = {
-                                    data : $scope.VA[index].SensitivityLevel
-                                };
+                                if($scope.presetTypeData.SelectedPreset !== 0) {
+                                    $scope.ivaDurationSliderModel = {
+                                        data : $scope.VA[index].SensitivityLevel
+                                    };
+                                }
                             } else {
-                                $scope.ivaDurationSliderModel = {
-                                    data: $scope.VA[index].SensitivityLevel
-                                };
+                                if($scope.presetTypeData.SelectedPreset !== 0) {
+                                    $scope.ivaDurationSliderModel = {
+                                        data: $scope.VA[index].SensitivityLevel
+                                    };
+                                }
                             }
                             pageData.VA[index] = angular.copy($scope.VA[index]);
                         }                        
@@ -1286,13 +1290,17 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             $scope.VA[0].MaxHeightMax = $scope.EventSourceOption.MaximumObjectSizeInPixels.Height;
             if($scope.VA[0].SensitivityLevel <= 0) {
                 $scope.VA[0].SensitivityLevel = 80;
-                $scope.ivaDurationSliderModel = {
-                    data : $scope.VA[0].SensitivityLevel
-                };
+                if($scope.presetTypeData.SelectedPreset === 0) {
+                    $scope.ivaDurationSliderModel = {
+                        data : $scope.VA[0].SensitivityLevel
+                    };
+                }
             } else {
-                $scope.ivaDurationSliderModel = {
-                    data: $scope.VA[0].SensitivityLevel
-                };
+                if($scope.presetTypeData.SelectedPreset === 0) {
+                    $scope.ivaDurationSliderModel = {
+                        data: $scope.VA[0].SensitivityLevel
+                    };
+                }
             }
             // setInitialObjectSize();
             pageData.VA[0] = angular.copy($scope.VA[0]);
@@ -1308,25 +1316,27 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         $scope.maxWidthLimit = Math.ceil(mAttr.MaxROICoordinateX) + 1;
         $scope.maxHeightLimit = Math.ceil(mAttr.MaxROICoordinateY) + 1;
 
-        if($scope.rotate !== "0") {
-            var temp;
-            temp = $scope.maxWidthLimit;
-            $scope.maxWidthLimit = $scope.maxHeightLimit;
-            $scope.maxHeightLimit = temp;
+        if($scope.rotate !== 'undefined') {
+            if($scope.rotate !== '0') {
+                var temp;
+                temp = $scope.maxWidthLimit;
+                $scope.maxWidthLimit = $scope.maxHeightLimit;
+                $scope.maxHeightLimit = temp;
+            }
         }
 
-        if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth += 1;
-        }
-        if($scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight += 1;
-        }
-        if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth += 1;
-        }
-        if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight += 1;
-        }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth += 1;
+        // }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight += 1;
+        // }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth += 1;
+        // }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight += 1;
+        // }
 
         if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth < $scope.minWidthLimit) {
             $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth = $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidthMin;
@@ -2094,7 +2104,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 $rootScope.$emit('changeLoadingBar', true);
                 $rootScope.$emit("channelSelector:changeChannel", data);
                 $scope.channelSelectionSection.setCurrentChannel(data);
-                $scope.$emit('applied', true);
                 $timeout(view);
             }
         }
@@ -2235,6 +2244,9 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     });
 
     $scope.$watch('ivaDurationSliderModel.data', function(newVal, oldVal) {
+        if(typeof newVal === "undefined"){
+            return;
+        }
         if(newVal) {
             if($scope.VA[$scope.presetTypeData.SelectedPreset] !== undefined) {
                 $scope.VA[$scope.presetTypeData.SelectedPreset].SensitivityLevel = $scope.ivaDurationSliderModel.data;
