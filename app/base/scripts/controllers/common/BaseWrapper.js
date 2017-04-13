@@ -354,12 +354,26 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
             retVal = false;
           }
         }
+        else if(menuId === "snmp") {
+            if (mAttr.SNMPVersion1 || mAttr.SNMPVersion2 || mAttr.SNMPVersion3 || mAttr.SNMPTrapEnable) {
+                retVal = true;
+            } else {
+                retVal = false;
+            }
+        }
         else if(menuId === "audioSetup"){
           if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
             retVal = false;
           } else {
             retVal = true;
           }
+        }
+        else if(menuId === "storage"){
+            if(mAttr.StorageEnable) {
+                retVal = true;
+            } else {
+                retVal = false;
+            }
         }
         else if(menuId === "soundClassification"){
           if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
@@ -369,7 +383,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           }
         }
         else if(menuId === "record"){
-          if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){ //2.5.3 ¹öÀü ÀÌ»óÀÏ ¶§
+          if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){ //2.5.3 ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½
             retVal = true;
           }else{
             retVal = false;

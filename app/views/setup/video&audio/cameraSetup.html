@@ -22,7 +22,7 @@
                 <div class="form-group" ng-if="PTZModel">
                     <div class="wn5-setup-section-article-heading wn5-outline-title">{{ 'lang_type' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <div class="field-radio-wrapper" ng-repeat="Type in PresetTypes">
+                        <div class="field-radio-wrapper" ng-repeat="Type in PresetTypes" style="width: 40%;float: left;">
                             <input type="radio" class="radio" id="{{Type}}" name="Type" ng-model="presetTypeData.SelectedPresetType" ng-value="PresetTypes.indexOf(Type)" ng-disabled="Type == 'Preset' && !PresetNameValueOptions.length" ng-change="onPresetTypeChange(Type)">
                             <label for="{{Type}}">{{getTranslatedOption(Type)}}</label>
                             <div class="preset-selectbox" ng-if="Type == 'Preset' && presetTypeData.SelectedPresetType && PresetNameValueOptions.length">
@@ -487,12 +487,12 @@
                                     <div class="form-group">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_minshutter' | translate }}</div>
                                         <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
-                                            <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].AutoShortShutterSpeed" ng-disabled="isNotUserpresetMode() || Camera.AFLKMode !== 'Off'" ng-change="cameraChangeHandler()">
+                                            <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].AutoShortShutterSpeed" ng-disabled="isShutterSpeedDisabled()" ng-change="cameraChangeHandler()">
                                                 <option ng-selected="ImageOptions.ImagePresetModes[ImageOptionsIndex].AutoShortShutterSpeed === option" value={{option}} ng-repeat="option in MinShutterOptions" ng-disabled="isSupportesShutterSpeed(option, 'min')"> {{ option}}</option>
                                             </select>
                                         </div>
                                         <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
-                                            <select class="form-control" ng-model="Camera.AutoShortShutterSpeed" ng-disabled="isNotUserpresetMode() || Camera.AFLKMode !== 'Off'" ng-change="cameraChangeHandler()">
+                                            <select class="form-control" ng-model="Camera.AutoShortShutterSpeed" ng-disabled="isShutterSpeedDisabled()" ng-change="cameraChangeHandler()">
                                                 <option ng-selected="Camera.AutoShortShutterSpeed === option" value={{option}} ng-repeat="option in MinShutterOptions" ng-disabled="isSupportesShutterSpeed(option, 'min')"> {{ option}}</option>
                                             </select>
                                         </div>
@@ -500,12 +500,12 @@
                                     <div class="form-group">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_maxshutter' | translate }}</div>
                                         <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
-                                            <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].AutoLongShutterSpeed" ng-disabled="isNotUserpresetMode() || Camera.AFLKMode !== 'Off'" ng-change="cameraChangeHandler()">
+                                            <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].AutoLongShutterSpeed" ng-disabled="isShutterSpeedDisabled()" ng-change="cameraChangeHandler()">
                                                 <option ng-selected="ImageOptions.ImagePresetModes[ImageOptionsIndex].AutoLongShutterSpeed === option" value={{option}} ng-repeat="option in MaxShutterOptions" ng-disabled="isSupportesShutterSpeed(option, 'max')"> {{ option}}</option>
                                             </select>
                                         </div>
                                         <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
-                                            <select class="form-control" ng-model="Camera.AutoLongShutterSpeed" ng-disabled="isNotUserpresetMode() || Camera.AFLKMode !== 'Off'" ng-change="cameraChangeHandler()">
+                                            <select class="form-control" ng-model="Camera.AutoLongShutterSpeed" ng-disabled="isShutterSpeedDisabled()" ng-change="cameraChangeHandler()">
                                                 <option ng-selected="Camera.AutoLongShutterSpeed === option" value={{option}} ng-repeat="option in MaxShutterOptions" ng-disabled="isSupportesShutterSpeed(option, 'max')"> {{ option}}</option>
                                             </select>
                                         </div>
@@ -690,6 +690,21 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable != undefined" ng-show="Camera.SSNR2DLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }} 2D {{ 'lang_level' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNR2DLevel" ng-disabled="isPresetSSNRLevelDisabled()"  ng-options="option for option in PresetSSNRLevel" ng-change="presetCameraChangeHandler()">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable != undefined" ng-show="Camera.SSNR3DLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }} 3D {{ 'lang_level' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNR3DLevel" ng-disabled="isPresetSSNRLevelDisabled()" ng-options="option for option in PresetSSNRLevel" ng-change="presetCameraChangeHandler()">
+                                        </select>
+                                    </div>
+                                </div>
+<!--
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable != undefined" ng-show="Camera.SSNRLevel !== undefined">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_ssnrlevel' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
@@ -697,6 +712,7 @@
                                         </select>
                                     </div>
                                 </div>
+-->
                                 <div class="form-group" ng-show="IrisModeOptions !== undefined">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_iris' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
