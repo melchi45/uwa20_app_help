@@ -154,14 +154,6 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                         $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
 					}
 
-
-					if (UniversialManagerService.getDigitalPTZ() === scope.dptzMode.DIGITAL_PTZ) {
-						scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_AUTO_TRACKING;
-					} else {
-						scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
-					}
-
-					UniversialManagerService.setDigitalPTZ(scope.modePTZ.AutoTracking);
                     if (scope.ptzMode === 'dptz'){
                         sunapiURI = '/stw-cgi/ptzcontrol.cgi?msubmenu=digitalautotracking&action=control&Mode=';
                         sunapiURI += (scope.modePTZ.AutoTracking === scope.dptzMode.DIGITAL_PTZ) ? "Stop" : "Start";
@@ -729,13 +721,32 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                         case "AutoTracking":
                             if (obj.value === 'false')
                             {
-                                if(scope.modePTZ.AutoTracking === scope.dptzMode.DIGITAL_AUTO_TRACKING)
+                                if(UniversialManagerService.getDigitalPTZ() === scope.dptzMode.DIGITAL_AUTO_TRACKING)
                                 {
                                     // Turn Off AutoTracking
                                     scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
-                                    UniversialManagerService.setDigitalPTZ(scope.autoTrackingFlag);
+                                    UniversialManagerService.setDigitalPTZ(scope.modePTZ.AutoTracking);
                                 }
                             }
+                            else
+							{
+								//Turn Off AreaZoom
+                                if(scope.modePTZ.AreaZoom)
+                                {
+                                    //Disable Area Zoom
+                                    scope.modePTZ.AreaZoom = false;
+                                    $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
+                                }
+
+
+                                if (UniversialManagerService.getDigitalPTZ() === scope.dptzMode.DIGITAL_PTZ) {
+                                    scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_AUTO_TRACKING;
+                                } else {
+                                    scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
+                                }
+
+                                UniversialManagerService.setDigitalPTZ(scope.modePTZ.AutoTracking);
+							}
                             break;
                     }
                 });
