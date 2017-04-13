@@ -4,47 +4,6 @@ kindFramework
     function($rootScope, $timeout, SunapiClient, $translate, $uibModal, $window, eventRuleService, $compile){
     'use strict';
 
-    var deregistraionService = {
-        data: [],
-        /**
-         * @param {Function} listener this is return value of watcher.
-         */
-        add: function(listener){
-            deregistraionService.data.push(listener);
-        },
-        clear: function(){
-            var data = deregistraionService.data;
-            try {
-                for(var i = 0, ii = data.length; i < ii; i++){
-                    data[i]();
-                }
-            }catch(e){
-                console.error(e);
-            }
-        }
-    };
-
-    var schedulerWrapperId = 'scheduler-wrapper';
-
-    $rootScope.$on("scheduler::reCreate", function(event, scope){
-        var templete = angular.element("<scheduler></scheduler>");
-
-        $compile(templete)(scope);
-        $('#' + schedulerWrapperId).append(templete);
-    });
-
-    $rootScope.$on("scheduler::remove", function(){
-        var schedulerElement = $('scheduler');
-        var schedulerWrapper = $('#' + schedulerWrapperId);
-
-        if(schedulerWrapper.length === 0){
-            schedulerElement.before('<div id="' + schedulerWrapperId + '"></div>');
-            schedulerElement.remove();
-        }else{
-            schedulerWrapper.html('');
-        }
-    });
-
     return{
         restrict: 'E',
         scope: false,
@@ -1359,7 +1318,7 @@ kindFramework
             }
 
             // in case of changing schedule type while you are in page
-            deregistraionService.add(scope.$watch('EventRule.ScheduleType', function(newVal, oldVal){
+            scope.$watch('EventRule.ScheduleType', function(newVal, oldVal){
                 if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
                 }
@@ -1376,9 +1335,9 @@ kindFramework
                         alreadyCreated = false;
                     }
                 }
-            }, true));
+            }, true);
 
-            deregistraionService.add(scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){ // for storage controller
+            scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){ // for storage controller
                 console.info(newVal, oldVal);
                 if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
@@ -1400,9 +1359,9 @@ kindFramework
                         }
                     }
                 }
-            }, true));
+            }, true);
 
-            deregistraionService.add(scope.$watch('EventRules[0].ScheduleType', function(newVal, oldVal){ // initial alarmInput
+            scope.$watch('EventRules[0].ScheduleType', function(newVal, oldVal){ // initial alarmInput
                 if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
                 }
@@ -1419,11 +1378,11 @@ kindFramework
                         alreadyCreated = false;
                     }
                 }
-            }, true));
+            }, true);
             //---------------------------------------------------------
             //---------------------------------------------------------
 
-            deregistraionService.add(scope.$watch('EventRules', function(newVal, oldVal){ // alarmInput
+            scope.$watch('EventRules', function(newVal, oldVal){ // alarmInput
                 if(typeof newVal === "undefined" || activeMenu !== 'alarmInput'){
                     return;
                 }
@@ -1439,7 +1398,7 @@ kindFramework
                         alreadyCreated = false;
                     }
                 }
-            }, true));
+            }, true);
 
 
             // in case of event rules reset by sunapi call in eventActionSetup for multi channel
@@ -1507,7 +1466,7 @@ kindFramework
 
             //---------------------------------------------------------
 
-            deregistraionService.add(scope.$watch('pageLoaded', function(newVal, oldVal){
+            scope.$watch('pageLoaded', function(newVal, oldVal){
                 if(typeof newVal === "undefined"){
                     return;
                 }
@@ -1516,7 +1475,7 @@ kindFramework
                         $('#calendar').fullCalendar('render');
                     });
                 }
-            }, true));
+            }, true);
 
             scope.$saveOn('pageLoaded', function(event, data) {
                 if(data === true) {
@@ -1535,10 +1494,6 @@ kindFramework
                 }
                 mergeTheInitial();
             }, scope);
-
-            elem.one("$destory", function(){
-                deregistraionService.clear();
-            });
         }
     };
 }]);

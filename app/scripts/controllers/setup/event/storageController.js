@@ -718,8 +718,6 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         promises.push(getRecordingSchedules);
         promises.push(getRecordProfileDetails);
 
-        $rootScope.$emit("scheduler::remove", true);
-
         $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
             $scope.channelSelectionSection.setCurrentChannel($scope.Channel);
@@ -728,8 +726,6 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             $rootScope.$emit('changeLoadingBar', false);
             
             $("#storagepage").show();
-
-            $rootScope.$emit("scheduler::reCreate", $scope);
         }, function(errorData) {
             console.log(errorData);
         });
