@@ -8,10 +8,13 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
 
     $scope.getTranslatedOption = function (Option)
     {
-         if(Option=='Network' && mAttr.OpenSDKSupport)
-          {
-               return COMMONUtils.getTranslatedOption("ExcludeNetworkOpenPlatform");
-          }
+        if (Option == 'Network') {
+            if (mAttr.OpenSDKSupport) {
+                return COMMONUtils.getTranslatedOption("ExcludeNetworkOpenSDK");
+            } else {
+                return COMMONUtils.getTranslatedOption("ExcludeNetwork");
+            }
+        }
         return COMMONUtils.getTranslatedOption(Option);
     };
 

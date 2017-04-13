@@ -5348,6 +5348,13 @@ fieldset .fa.fa-plus-square.cm-slider-disabled {
   color: #d2d2d2 !important;
   cursor: default !important;
 }
+.wn5-setup-wrapper .tui.tui-wn5-minus.cm-slider-disabled,
+fieldset .tui.tui-wn5-minus.cm-slider-disabled,
+.wn5-setup-wrapper .tui.tui-wn5-add.cm-slider-disabled,
+fieldset .tui.tui-wn5-add.cm-slider-disabled {
+  opacity: .35;
+  filter: alpha(opacity=35);
+}
 .wn5-setup-wrapper rzslider .rz-bubble,
 fieldset rzslider .rz-bubble {
   bottom: 13px !important;

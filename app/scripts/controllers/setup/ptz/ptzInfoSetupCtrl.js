@@ -72,6 +72,17 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
     $scope.changeCurrentTab = function(tab) {
         if ($scope.previousTab.title == tab) return;
+        if($scope.previousTab.title == 'Trace'){
+            if($scope.memorizeTraceMode == 'Start'){
+                $scope.memorizeTraceMode = 'Stop';
+                var promises = [];
+                promises.push(function(){return memorizeTrace($scope.memorizeTraceMode, false);});
+                $q.seqAll(promises).then(
+                    function(){},
+                    function(){}
+                );
+            }
+        }
         $scope.activeTab.title = tab;
         $scope.activeTab.active = true;
         $scope.previousTab = angular.copy($scope.activeTab);
@@ -684,6 +695,23 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         );
     };
 
+    $rootScope.$watch(function $locationWatch() {
+        var changedUrl = $location.absUrl();
+
+        if (changedUrl.indexOf('ptzSetup_ptzInfoSetup') === -1 && $scope.memorizeTraceMode == 'Start') {
+            $scope.memorizeTraceMode = 'Stop';
+            var promises = [];
+            promises.push(function(){return memorizeTrace($scope.memorizeTraceMode, false);});
+            $q.seqAll(promises).then(
+                function(){
+                },
+                function(errorData){
+                    //alert(errorData);
+                }
+            );
+        }
+    });
+
     function validateGroupSequence(GroupSequenceIndex)
     {
         if ((typeof $scope.GroupSequences[GroupSequenceIndex].DwellTime === 'undefined') || 
@@ -730,17 +758,17 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     {
         for (var p = 0; p < $scope.MaxPresetsPerGroup; p++)
         {
-            if ((typeof $scope.Groups[GroupIndex].PresetList[p].Speed === 'undefined') || 
+            if ($scope.Groups[GroupIndex].PresetList[p].SelectedPresetIndex && ((typeof $scope.Groups[GroupIndex].PresetList[p].Speed === 'undefined') ||
                     $scope.Groups[GroupIndex].PresetList[p].Speed < $scope.PresetMinSpeed ||
-                    $scope.Groups[GroupIndex].PresetList[p].Speed > $scope.PresetMaxSpeed)
+                    $scope.Groups[GroupIndex].PresetList[p].Speed > $scope.PresetMaxSpeed))
             {
                 COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.PresetMinSpeed).replace('%2', $scope.PresetMaxSpeed));
                 return false;
             }
 
-            if ((typeof $scope.Groups[GroupIndex].PresetList[p].DwellTime === 'undefined') || 
+            if ($scope.Groups[GroupIndex].PresetList[p].SelectedPresetIndex && ((typeof $scope.Groups[GroupIndex].PresetList[p].DwellTime === 'undefined') ||
                     $scope.Groups[GroupIndex].PresetList[p].DwellTime < $scope.DwellMinTime || 
-                    $scope.Groups[GroupIndex].PresetList[p].DwellTime > $scope.DwellMaxTime)
+                    $scope.Groups[GroupIndex].PresetList[p].DwellTime > $scope.DwellMaxTime))
             {
                 COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.DwellMinTime).replace('%2', $scope.DwellMaxTime));
                 return false;
