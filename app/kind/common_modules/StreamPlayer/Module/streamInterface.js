@@ -59,35 +59,42 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
 		 	var container = $("#container, .channel-container");
 
-			streamCanvas.css({
-				left: '50%',
-				transform: 'translateX(-50%)'
-			});
 
-	 		if (mode === 'originalsize') {
-	 			curViewMode = mode;
+	 		if (mode === 'originalsize' || (curViewMode === 'originalsize' && (mode === 'resize' || mode.type === 'resize') ) ) {
+				 if(mode === 'originalsize'){
+					curViewMode = mode;
+				 }
 	 			container.css("overflow", "auto");
 
 				var newSize = getSize();
 				streamCanvas.css({
 					width: newSize.width + "px",
 					height: newSize.height + "px",
-					left: 0,
-					transform: 'translateX(0)'
+				});
+
+				overlayCanvas.attr({
+					width: newSize.width + "px",
+					height: newSize.height + "px",
 				});
 
 				setPosition(newSize.width, newSize.height);
-	 		} else if (mode === 'fit') {
-	 			curViewMode = mode;
+	 		} else if (mode === 'fit' || (curViewMode === 'fit' && (mode === 'resize' || mode.type === 'resize') ) ) {
+	 			if(mode === 'fit'){
+					curViewMode = mode;
+				}
 	 			container.css("overflow", "hidden");
 
 				streamCanvas.css({
 					width: "100%",
 					height: "100%",
 					top: 0,
+					left: 0
 				});
-				overlayCanvas.css({
-					top: 3+"px",
+				overlayCanvas.attr({
+					width: streamCanvas.width() + 6,
+					height: streamCanvas.height() + 6
+				}).css({
+					left: 0	
 				});
 
       			var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true : false;
@@ -96,7 +103,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 						height: (window.innerHeight - bottomMenuHeight) + "px"
 					});
 				}
-	 		} else if (mode === 'originalratio' || curViewMode === 'originalratio' || mode === 'resize' || mode.type === 'resize') {
+	 		} else if (mode === 'originalratio' || (curViewMode === 'originalratio' && (mode === 'resize' || mode.type === 'resize') ) ) {
 				 // mode가 텍스트 뿐만아니라 객체.type 으로도 넘어옵니다
 	 			if (mode === 'originalratio') {
 	  				curViewMode = mode; // when dynamically browser size changed, check ratio mode with this var
@@ -258,6 +265,11 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 							width: newSize.width + "px",
 							height: newSize.height + "px"
 						});
+
+						overlayCanvas.attr({
+							width: newSize.width,
+							height: newSize.height
+						});
 						setPosition(newSize.width, newSize.height);
 					}
 				}
@@ -280,11 +292,13 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 
 			streamCanvas.css({
 				top: top + "px",
-				// left: left + "px"
+				left: left + "px"
 			});
 			overlayCanvas.css({
-				top: (top+3) + "px",
+				// top: (top+3) + "px",
 				// left: (left+3) + "px"
+				top: top + "px",
+				left: left + "px"
 			});
 		}
 
