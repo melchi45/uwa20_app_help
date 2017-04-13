@@ -91,11 +91,6 @@ function($q, DisplayService,CAMERA_TYPE,PLAYBACK_TYPE,PTZ_TYPE,
             PTZContorlService.setAutoTrackingMode("False");
           }
 
-          //Cancel Safari block user input
-          if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH) {
-            $rootScope.$emit('blockTimebarInputField', false);
-          }
-
           $timeout(function(){
             $rootScope.$emit('channel:changeFullSetRec');
             $rootScope.$emit('channel:reloadStreaming');
@@ -269,7 +264,7 @@ function($q, DisplayService,CAMERA_TYPE,PLAYBACK_TYPE,PTZ_TYPE,
       }
 
       /**
-       * ?”Œ?Ÿ¬ê·¸ì¸?—?„œ Full screen ?‹«ê¸°ë?? ? ‘ê·? ?•˜ê¸? ?œ„?•´ bind?„ ?•´ì¤??‹¤.
+       * ?ï¿½ï¿½?ï¿½ï¿½ê·¸ì¸?ï¿½ï¿½?ï¿½ï¿½ Full screen ?ï¿½ï¿½ê¸°ï¿½?? ?ï¿½ï¿½ï¿½ï¿½? ?ï¿½ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ bind?ï¿½ï¿½ ?ï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½.
        * @example
        *   $("#full-screen-channel").trigger("closefullscreen");
        */
@@ -306,16 +301,16 @@ function($q, DisplayService,CAMERA_TYPE,PLAYBACK_TYPE,PTZ_TYPE,
               return;
             }
             /**
-             * ?•„?˜ ë¶??„°?Š” Full Screen ?—?„œ Detail Viewë¡? ?´?™?•  ?•Œ
-             * ?‹¤?–‰?˜?Š” ë¡œì§?´?‹¤.
+             * ?ï¿½ï¿½?ï¿½ï¿½ ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½ Full Screen ?ï¿½ï¿½?ï¿½ï¿½ Detail Viewï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½
+             * ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë¡œì§?ï¿½ï¿½?ï¿½ï¿½.
              */
             event.stopPropagation();
 
             /**
-             * window.onresize ?‹œ?—?Š” $digestê°? ?˜ì§? ?•Š?•„
-             * scopeê°? view?— ë°˜ì˜?´ ?˜ì§? ?•Š??? ?´?Šˆê°? ?ˆ?‹¤.
-             * $scope.$apply()?Š” ?—?Ÿ¬ê°? ë°œìƒ?•  ?ˆ˜ ?ˆ?Š” ë¦¬ìŠ¤?Š¸ê°? ?ˆê¸? ?•Œë¬¸ì—
-             * $timeout?„ ?†µ?•´?„œ $digestë¥? ?•œ?‹¤.
+             * window.onresize ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ $digestï¿½ï¿½? ?ï¿½ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
+             * scopeï¿½ï¿½? view?ï¿½ï¿½ ë°˜ì˜?ï¿½ï¿½ ?ï¿½ï¿½ï¿½ï¿½? ?ï¿½ï¿½??? ?ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½.
+             * $scope.$apply()?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½? ë°œìƒ?ï¿½ï¿½ ?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ë¦¬ìŠ¤?ï¿½ï¿½ï¿½ï¿½? ?ï¿½ï¿½ï¿½ï¿½? ?ï¿½ï¿½ë¬¸ì—
+             * $timeout?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ $digestï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½.
              */
 
             $timeout(function(){
