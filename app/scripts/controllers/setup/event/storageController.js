@@ -717,10 +717,9 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         promises.push(getRecordingStorageDetails);
         promises.push(getRecordingSchedules);
         promises.push(getRecordProfileDetails);
-        
 
         $rootScope.$emit("scheduler::remove", true);
-        
+
         $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
             $scope.channelSelectionSection.setCurrentChannel($scope.Channel);

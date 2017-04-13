@@ -37,8 +37,6 @@ kindFramework
         var schedulerElement = $('scheduler');
         var schedulerWrapper = $('#' + schedulerWrapperId);
 
-        deregistraionService.clear();
-
         if(schedulerWrapper.length === 0){
             schedulerElement.before('<div id="' + schedulerWrapperId + '"></div>');
             schedulerElement.remove();
@@ -1537,6 +1535,10 @@ kindFramework
                 }
                 mergeTheInitial();
             }, scope);
+
+            elem.one("$destory", function(){
+                deregistraionService.clear();
+            });
         }
     };
 }]);
