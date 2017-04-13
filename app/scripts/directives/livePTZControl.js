@@ -160,7 +160,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                         
                     } else {
                         sunapiURI = '/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=set&Channel=0&Enable=';
-                        sunapiURI += (scope.modePTZ.AutoTracking === scope.dptzMode.DIGITAL_PTZ) ? "False" : "True";
+                        sunapiURI += (scope.modePTZ.AutoTracking === scope.dptzMode.DIGITAL_PTZ) ? "True" : "False";
                     }
 
 					execSunapi(sunapiURI);
