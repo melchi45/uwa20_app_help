@@ -1,8 +1,9 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 kindFramework
-    .directive('scheduler', ['$rootScope', '$timeout', 'SunapiClient', '$translate', '$uibModal', '$window', 'eventRuleService',
-    function($rootScope, $timeout, SunapiClient, $translate, $uibModal, $window, eventRuleService){
+    .directive('scheduler', ['$rootScope', '$timeout', 'SunapiClient', '$translate', '$uibModal', '$window', 'eventRuleService','$compile',
+    function($rootScope, $timeout, SunapiClient, $translate, $uibModal, $window, eventRuleService, $compile){
     'use strict';
+
     return{
         restrict: 'E',
         scope: false,
@@ -1337,6 +1338,7 @@ kindFramework
             }, true);
 
             scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){ // for storage controller
+                console.info(newVal, oldVal);
                 if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
                 }
