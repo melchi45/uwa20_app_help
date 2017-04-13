@@ -322,7 +322,12 @@ kindFramework.directive('channelPlayer',
                     }
                     else
                     {
-                      ModalManagerService.open('message', { 'buttonCount': 0, 'message': "lang_service_unavailable" } );
+                      if (typeof document.createElement('a').download !== "undefined") {
+                        KindControlService.capture(scope);
+                        ModalManagerService.open('message', { 'buttonCount': 0, 'message': "lang_capture_image_saved" } );
+                      } else {
+                        ModalManagerService.open('message', { 'buttonCount': 0, 'message': "lang_service_unavailable" } );
+                      }
                     }
                     break;
                   case BrowserService.BROWSER_TYPES.CHROME:
@@ -1174,16 +1179,16 @@ kindFramework.directive('channelPlayer',
                    elem.empty();
                   if(BrowserService.PlugInSupport && BrowserService.PlugInDetect)
                   {
-                      //IE ??????±×ÀÎ ????????? // PlugIn Off ???????????? H264, H265 ????? ???
+                      //IE ??????ï¿½ï¿½ï¿½ï¿½ ????????? // PlugIn Off ???????????? H264, H265 ????? ???
                       $rootScope.$emit("channel:setPlugin");
                   }
                   else {
-                      //????? ??????¸®¿À
+                      //????? ??????ï¿½ï¿½ï¿½ï¿½
                       createPlugInInstallElement();
                       $rootScope.$emit('changeLoadingBar', false);
                   }
 
-                  //NonPlugIn ?????? ??????¸®¿À
+                  //NonPlugIn ?????? ??????ï¿½ï¿½ï¿½ï¿½
                   //requestAvailableProfile(profile);
                   return;
                 }
