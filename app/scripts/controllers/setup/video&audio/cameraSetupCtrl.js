@@ -6710,11 +6710,12 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                         },500);
                         refreshSliders();
                         $("#camerasetuppage").show();
-                        $rootScope.$emit('changeLoadingBar', false);
+                        //$rootScope.$emit('changeLoadingBar', false);
                     }
                 },
                 function (errorData) {
                     //alert(errorData);
+                    showLoadingBar(false);
                 }
         );
     }
