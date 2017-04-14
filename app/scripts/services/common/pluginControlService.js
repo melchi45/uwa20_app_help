@@ -496,7 +496,6 @@ kindFramework
       setData.TileHeight = pluginElement.offsetHeight;
 
       PTZContorlService.setPTZAreaZoom("start");
-      PTZContorlService.setAreaZoomCheck(true);
 
       SunapiClient.get("/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=ZoomIn", setData,
           function () {},
