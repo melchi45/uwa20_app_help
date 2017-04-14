@@ -43,14 +43,15 @@ kindFramework
             var getPlayerData = function(){
                 if(mAttr.MaxChannel > 1){
                     profileInfo.ChannelId = currentChannel;
+                    ConnectionSettingService.SetMultiChannelSupport(true);
                 }else{
                     profileInfo.ChannelId = null;
                 }
-
                 console.log(profileInfo.ChannelId);
+
                 return ConnectionSettingService.getPlayerData('live', profileInfo, timeCallback, errorCallback, closeCallback);
             };
-
+            
             var errorCallback = function(error) {
               console.log("errorcode:", error.errorCode, "error string:", error.description, "error place:", error.place);
               if(error.errorCode === "200"){
@@ -224,14 +225,40 @@ kindFramework
                         
                         window.setTimeout(function(){
                             scope.$apply(function(){
-                                scope.playerdata = getPlayerData();
-                                scope.isReady = true;
+                                if(RESTCLIENT_CONFIG.digest.rtspIp === "" || RESTCLIENT_CONFIG.digest.rtspIp === null){
+                                    getRtspIpMac().then(
+                                        function(response){
+                                            scope.playerdata = getPlayerData();
+                                            scope.isReady = true;
+                                        },
+                                        function(errorData){
+                                            console.log(errorData);
+                                        }
+                                    );
+                                }
+                                else{
+                                    scope.playerdata = getPlayerData();
+                                    scope.isReady = true;
+                                }
                             });
                         },1000);
                     }
                 }
             });
-
+            
+            function getRtspIpMac() {
+                return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=interface&action=view',
+                {},
+                function(response) {
+                    var rtspIp = response.data.NetworkInterfaces[0].IPv4Address;
+                    var macIp = response.data.NetworkInterfaces[0].MACAddress;
+                    ConnectionSettingService.SetRtspIpMac(rtspIp,macIp);
+                },
+                function(errorData,errorCode) {
+                    console.error(errorData);
+                }, '', true);
+            }
+            
             scope.$watch('sketchinfo', function(sketchinfo){
                 if(typeof sketchinfo === "undefined"){
                     console.log("sketchinfo is required");
