@@ -394,8 +394,6 @@ kindFramework
     this.setAreaZoomAction = function(_command)
     {
       try{
-          if(PTZContorlService.getAreaZoomCheck()) return;
-
           switch (_command)
           {
               case '1X':

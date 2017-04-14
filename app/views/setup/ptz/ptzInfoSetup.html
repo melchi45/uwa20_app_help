@@ -32,30 +32,6 @@
 
         <div class="form-group"></div>
                 <div ng-if="activeTab.title === 'Preset'">
-                    <form name="ptzLastPositionForm" ng-if="LastPositionAttr.RememberLastPosition !== undefined" method="get" class="form-horizontal" novalidate>
-                        <hr class="wn5-setup-hr">
-                        <div class="wn5-setup-section">
-                            <div class="wn5-setup-section-heading">
-                                <h3>{{ 'lang_lastPosition' | translate }}</h3> 
-                            </div>
-                            <div class="wn5-setup-section-article">
-                                <div class="form-group">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_lastPosition' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <input type="checkbox" ng-model="LastPosition.RememberLastPosition" />
-                                        {{'lang_enable' | translate}}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
-                                    <div class="wn5-setup-section-article-content">
-                                        <input type="text" class="form-control wp25" ng-model="LastPosition.RememberLastPositionDuration" maxlength="{{LastPositionAttr.DurLen}}" required ng-pattern-restrict="{{OnlyNumStr}}"/>
-                                        <label class="col-lg-2 control-label" style="text-align:left">({{LastPositionAttr.RememberLastPositionDuration.minValue}}~{{LastPositionAttr.RememberLastPositionDuration.maxValue}} {{ 'lang_sec' | translate }})</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                     <form name="ptzForm" method="get" class="form-horizontal" novalidate>
                         <hr class="wn5-setup-hr">
                         <div class="wn5-setup-section">
@@ -107,6 +83,28 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a ng-click="getNextPage('preset')"><i class="tui tui-right"></i></a>
                                         <a ng-click="getLastPage('preset')"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="wn5-setup-hr">
+                        <div class="wn5-setup-section" ng-if="LastPositionAttr.RememberLastPosition !== undefined">
+                            <div class="wn5-setup-section-heading">
+                                <h3>{{ 'lang_lastPosition' | translate }}</h3>
+                            </div>
+                            <div class="wn5-setup-section-article">
+                                <div class="form-group">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_lastPosition' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <input type="checkbox" ng-model="LastPosition.RememberLastPosition" />
+                                        {{'lang_enable' | translate}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <input type="text" class="form-control wp25" ng-model="LastPosition.RememberLastPositionDuration" maxlength="{{LastPositionAttr.DurLen}}" required ng-pattern-restrict="{{OnlyNumStr}}"/>
+                                        <label class="col-lg-2 control-label" style="text-align:left">({{LastPositionAttr.RememberLastPositionDuration.minValue}}~{{LastPositionAttr.RememberLastPositionDuration.maxValue}} {{ 'lang_sec' | translate }})</label>
                                     </div>
                                 </div>
                             </div>
@@ -284,9 +282,9 @@
                         <div class="wn5-setup-section-article">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-content">
-                                    <select class="form-control wp25" ng-model="Trace.SelectedIndex" ng-options="TraceOptions.indexOf(Option) as Option for Option in TraceOptions"></select>
-                                    <button type="button" class="btn btn-primary btn-margin-left" ng-click="startStopTrace(1)">{{ 'lang_start' | translate }}</button>
-                                    <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopTrace(0)">{{ 'lang_stop' | translate }}</button>
+                                    <select class="form-control wp25" ng-model="Trace.SelectedIndex" ng-options="TraceOptions.indexOf(Option) as Option for Option in TraceOptions" ng-disabled="memorizeTraceMode == 'Start'"></select>
+                                    <button type="button" class="btn btn-primary btn-margin-left" ng-click="startStopTrace(1)" ng-disabled="memorizeTraceMode == 'Start'">{{ 'lang_start' | translate }}</button>
+                                    <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopTrace(0)" ng-disabled="memorizeTraceMode == 'Start'">{{ 'lang_stop' | translate }}</button>
                                     <button type="button" class="btn btn-primary" ng-click="setTrace()">{{ setTraceRecordBtnText() | translate }}</button>
                                 </div>
                             </div>

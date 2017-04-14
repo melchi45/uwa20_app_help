@@ -34,10 +34,10 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
         var deferred = $q.defer();
 
         if (mAttr.YearOptions !== undefined) {
-            $scope.YeaMin = parseInt(mAttr.YearOptions.minValue, 10);
+            $scope.YearMin = parseInt(mAttr.YearOptions.minValue, 10);
             $scope.YearMax = parseInt(mAttr.YearOptions.maxValue, 10);
             $scope.YearOptions = [];
-            for (idx = $scope.YeaMin; idx <= $scope.YearMax; idx = idx + 1) {
+            for (idx = $scope.YearMin; idx <= $scope.YearMax; idx = idx + 1) {
                 $scope.YearOptions.push(idx);
             }
 
@@ -336,7 +336,7 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
             if ($scope.DateTime.SyncType === 'Manual') {
                 if ($scope.SyncPc === true) {
                     var currentTime = new Date();
-                    if (currentTime.getFullYear() > $scope.YearMax || currentTime.getFullYear() < $scope.YeaMin) {
+                    if (currentTime.getFullYear() > $scope.YearMax || currentTime.getFullYear() < $scope.YearMin) {
                         invalid_year = true;
                         valid = false;
                     }
@@ -662,7 +662,7 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
     //     $scope.isCameraOvertimeErr = false;
     // }
 
-//     if ((currentTime.getFullYear() < $scope.YeaMin) || (currentTime.getFullYear() > $scope.YearMax)) {
+//     if ((currentTime.getFullYear() < $scope.YearMin) || (currentTime.getFullYear() > $scope.YearMax)) {
 //         if ($scope.isShowedOvertimeErr === false) {
 //             var ErrorMessage = 'lang_msg_overtime';
 //             COMMONUtils.ShowError(ErrorMessage);
@@ -815,7 +815,7 @@ kindFramework.controller('datetimeCtrl', function ($scope, SunapiClient, $timeou
         }
 
 
-        if ((currentTime.getFullYear() < $scope.YeaMin) || (currentTime.getFullYear() > $scope.YearMax)) {
+        if ((currentTime.getFullYear() < $scope.YearMin) || (currentTime.getFullYear() > $scope.YearMax)) {
             if ($scope.isShowedOvertimeErr === false) {
                 var ErrorMessage = 'lang_msg_overtime';
                 COMMONUtils.ShowError(ErrorMessage);
