@@ -105,6 +105,7 @@ kindFramework.directive('liveIconList', function(
 		    }
 
 		    function toggleChannelFunctions(type){
+		    	var PrevShowStatus = scope.channelSetFunctions["show"];
 		       if(scope.channelSetFunctions["show"] === false || scope.channelSetFunctions[type] === true){
 		         scope.channelSetFunctions["show"] = !scope.channelSetFunctions["show"];
 		       }
@@ -126,11 +127,15 @@ kindFramework.directive('liveIconList', function(
 		        }
 		      }
 
-		      $timeout(scope.setChannelSize);
+		      if(scope.channelSetFunctions["show"] !== PrevShowStatus)
+			  {
+                  $timeout(scope.setChannelSize);
+			  }
 		    }
-				$rootScope.$saveOn('liveIconList:setProfileAccessInfo', function(event){
-					setProfileAccessInfo();
-				});
+		    
+			$rootScope.$saveOn('liveIconList:setProfileAccessInfo', function(event){
+				setProfileAccessInfo();
+			});
 
 		    function setProfileAccessInfo(){
 		      return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=profileaccessinfo&action=view', '',
