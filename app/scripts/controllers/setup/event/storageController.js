@@ -717,7 +717,6 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         promises.push(getRecordingStorageDetails);
         promises.push(getRecordingSchedules);
         promises.push(getRecordProfileDetails);
-        
 
         $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
@@ -725,7 +724,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
             $rootScope.$emit('changeLoadingBar', false);
-
+            
             $("#storagepage").show();
         }, function(errorData) {
             console.log(errorData);
@@ -745,7 +744,6 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                     $rootScope.$emit("channelSelector:changeChannel", newChannel);
                     $scope.Channel = newChannel;
                 }
-                $scope.$emit('alreadyCreatedFalse', true);
                 
                 window.setTimeout(view, 1000);
             }, function(errorData) {
