@@ -6,9 +6,6 @@
         <hr class="wn5-setup-hr">
         <setup-channel-selector use-info="false" ng-if="isMultiChannel === true" use-confirm="true"></setup-channel-selector>
         <div class="wn5-setup-section">
-            <div class="wn5-setup-section-heading">
-                <h3>{{ 'lang_menu_camera' | translate }}</h3>
-            </div>
             <div class="wn5-setup-section-article">
                 <div class="form-group" style="margin: 20px 0 15px 0;">
                     <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : ''" videoinfo='videoinfo'></sketchbook>

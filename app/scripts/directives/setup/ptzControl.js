@@ -106,7 +106,6 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
 
             scope.$watch('ptzinfo', function(ptzinfo){
                 if(typeof ptzinfo !== 'undefined'){
-
                     if(ptzinfo.type==='preset'){
                         //scope.showPTZControlPreset = true;
                         scope.showPTZControlPresetText = true;
@@ -119,7 +118,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         //    scope.disablePosition = false;
                         //}
                     }else if(ptzinfo.type==='AT'){
-                        scope.ptzControlClass = 'w610';
+                        // scope.ptzControlClass = 'w610';
                         scope.zoomPresetClass = 'at-box';
                         scope.showPTZControlAT = true;
                         // autoTrackingList Data
