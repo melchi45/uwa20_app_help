@@ -127,10 +127,9 @@ kindFramework.directive('liveIconList', function(
 		        }
 		      }
 
-		      if(scope.channelSetFunctions["show"] !== PrevShowStatus)
-			  {
-                  $timeout(scope.setChannelSize);
-			  }
+		      if(scope.channelSetFunctions["show"] !== PrevShowStatus){
+		      	$timeout(scope.setChannelSize);
+		      }
 		    }
 		    
 			$rootScope.$saveOn('liveIconList:setProfileAccessInfo', function(event){

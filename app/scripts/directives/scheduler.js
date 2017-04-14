@@ -1293,10 +1293,12 @@ kindFramework
             }
 
             function initCalendar(data) {
-                alreadyCreated = true;
-                EventRule = data;
-                ScheduleIds = EventRule.ScheduleIds;
-                getCameraDate();
+                if(typeof data != 'undefined') {
+                    alreadyCreated = true;
+                    EventRule = data;
+                    ScheduleIds = EventRule.ScheduleIds;
+                    getCameraDate();
+                }
             }
 
             function getCameraDate() {
@@ -1324,21 +1326,14 @@ kindFramework
                 }
                 activeMenu = null;
                 if(newVal === 'Always') {
-                    // deleteAll();
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
-                    if(!alreadyCreated) {
-                        $('#calendar').fullCalendar('destroy');
-                        initCalendar(scope.EventRule);
-                        setVisibility(newVal);
-                    } else {
-                        alreadyCreated = false;
-                    }
+                    initCalendar(scope.EventRule);
+                    setVisibility(newVal);
                 }
             }, true);
 
             scope.$watch('RecordSchedule.Activate', function(newVal, oldVal){ // for storage controller
-                console.info(newVal, oldVal);
                 if(typeof newVal === "undefined" || newVal === oldVal){
                     return;
                 }
@@ -1346,17 +1341,10 @@ kindFramework
                     activeMenu = 'storage';
 
                     if(newVal === 'Always') {
-                        // deleteAll();
                         setVisibility(newVal);
                     } else if(newVal === 'Scheduled') {
-                        if(!alreadyCreated) {
-                            $('#calendar').fullCalendar('destroy');
-                            initialRendered = false;
-                            initCalendar(scope.RecordSchedule);
-                            setVisibility(newVal);
-                        } else {
-                            alreadyCreated = false;
-                        }
+                        initCalendar(scope.RecordSchedule);
+                        setVisibility(newVal);
                     }
                 }
             }, true);
@@ -1367,16 +1355,10 @@ kindFramework
                 }
                 activeMenu = 'alarmInput';
                 if(newVal === 'Always') {
-                    // deleteAll();
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
-                    if(!alreadyCreated) {
-                        $('#calendar').fullCalendar('destroy');
-                        initCalendar(scope.EventRules[0]);
-                        setVisibility(newVal);
-                    } else {
-                        alreadyCreated = false;
-                    }
+                    initCalendar(scope.EventRules[0]);
+                    setVisibility(newVal);
                 }
             }, true);
             //---------------------------------------------------------
@@ -1387,15 +1369,12 @@ kindFramework
                     return;
                 }
                 if(newVal === 'Always') {
-                    // deleteAll();
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
                     if(!alreadyCreated) {
                         $('#calendar').fullCalendar('destroy');
                         initCalendar(scope.EventRules[scope.AlarmData.SelectedAlarm]);
                         setVisibility(newVal);
-                    } else {
-                        alreadyCreated = false;
                     }
                 }
             }, true);
@@ -1418,9 +1397,6 @@ kindFramework
                             initCalendar(scope.EventRules[0]);
                             setVisibility(data);
                         }
-                        if(alreadyCreated) {
-                            alreadyCreated = false;
-                        }
                     }
                 } else {
                     if(data === 'Always') {
@@ -1431,9 +1407,6 @@ kindFramework
                             initialRendered = false;
                             initCalendar(scope.EventRule);
                             setVisibility(data);
-                        }
-                        if(alreadyCreated) {
-                            alreadyCreated = false;
                         }
                     }
                 }
@@ -1455,9 +1428,6 @@ kindFramework
                             initialRendered = false;
                             initCalendar(scope.RecordSchedule);
                             setVisibility(data);
-                        }
-                        if(alreadyCreated) {
-                            alreadyCreated = false;
                         }
                     }
                 }
