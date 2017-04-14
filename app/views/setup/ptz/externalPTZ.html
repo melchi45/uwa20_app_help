@@ -3,20 +3,19 @@
         <wn5-setup-main-title
             data-title="{{getTitle}}">
         </wn5-setup-main-title>
+        <hr class="wn5-setup-hr">
+        
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content" style="background-color: #fbfbfb;">
                     <form name="externalPTZForm" method="get" class="form-horizontal" novalidate>
                         <fieldset class="ptz-control_external-fieldset">
-                            <div class="wn5-setup-section">
-                                <hr class="wn5-setup-hr">
-                            </div>
-
-                            <div class="wn5-setup-section" style="margin-top: 10px;">
-                                <sketchbook class="wn5-setup-preview-video" videoinfo='videoinfo'></sketchbook>
-                                <div class="wn5-setup-preview">
+                            <div class="preset-setup-fieldset">
+                                <div class="wn5-setup-section" style="margin-top: 10px;">
+                                    <sketchbook sketchinfo='sketchinfo' videoinfo='videoinfo'></sketchbook>
+                                    
                                     <!-- PTZ Control -->
-                                    <div class="ptz-control_box ptz-control_dptz-width">
+                                    <div class="ptz-control_box">
                                         <ptz-control ptzinfo='ptzinfo'></ptz-control>
                                     </div>
                                     <!-- //PTZ Control End -->

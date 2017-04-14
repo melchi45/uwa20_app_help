@@ -2,19 +2,19 @@
     <wn5-setup-main-title
         data-title="lang_menu_ptzlimit">
     </wn5-setup-main-title>
-    <div class="form-group setup-border-box-padding">
-        <div align="center">
+    <hr class="wn5-setup-hr">
+
+    <fieldset class="preset-setup-fieldset">
+        <div class="wn5-setup-section" style="margin-top: 10px;">
             <sketchbook sketchinfo='sketchinfo' videoinfo='videoinfo'></sketchbook>
+            
+            <!-- PTZ Control -->
+            <div class="ptz-control_box">
+                <ptz-control ptzinfo='ptzinfo'></ptz-control>
+            </div>
+            <!-- //PTZ Control End -->
         </div>
-    </div>
-
-    <div class="form-group"></div>
-
-    <!-- PTZ Control -->
-    <div class="ptz-control_box ptz-control_ptz-menu-width">
-        <ptz-control ptzinfo='ptzinfo'></ptz-control>
-    </div>
-    <!-- //PTZ Control End -->
+    </fieldset>
     
     <form name="ptLimitsForm" method="get" class="form-horizontal" novalidate>
 
