@@ -334,7 +334,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
                 }
             }
             mRule.AlarmOutputs = [];
-            if (typeof eventAction[currentChannel].AlarmOutputs[0].Duration === 'undefined' || eventAction[0].AlarmOutputs[0].Duration === 'None') {
+            if (typeof eventAction[currentChannel].AlarmOutputs[0].Duration === 'undefined' || eventAction[currentChannel].AlarmOutputs[0].Duration === 'None') {
                 mRule.AlarmOutputs = [];
                 for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
                     mRule.AlarmOutputs[ao] = {
