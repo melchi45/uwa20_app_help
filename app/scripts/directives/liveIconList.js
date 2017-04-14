@@ -105,9 +105,11 @@ kindFramework.directive('liveIconList', function(
 		    }
 
 		    function toggleChannelFunctions(type){
-		       if(scope.channelSetFunctions["show"] === false || scope.channelSetFunctions[type] === true){
-		         scope.channelSetFunctions["show"] = !scope.channelSetFunctions["show"];
-		       }
+		      var PrevShowStatus = scope.channelSetFunctions["show"];
+
+		      if(scope.channelSetFunctions["show"] === false || scope.channelSetFunctions[type] === true){
+		        scope.channelSetFunctions["show"] = !scope.channelSetFunctions["show"];
+		      }
 
 		      for(var key in scope.channelSetFunctions){
 		        if(key !== "show"){
@@ -126,7 +128,9 @@ kindFramework.directive('liveIconList', function(
 		        }
 		      }
 
-		      $timeout(scope.setChannelSize);
+		      if(scope.channelSetFunctions["show"] !== PrevShowStatus){
+		      	$timeout(scope.setChannelSize);
+		      }
 		    }
 
 		    function setProfileAccessInfo(){
