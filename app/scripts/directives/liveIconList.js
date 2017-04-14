@@ -105,6 +105,7 @@ kindFramework.directive('liveIconList', function(
 		    }
 
 		    function toggleChannelFunctions(type){
+		    	var PrevShowStatus = scope.channelSetFunctions["show"];
 		       if(scope.channelSetFunctions["show"] === false || scope.channelSetFunctions[type] === true){
 		         scope.channelSetFunctions["show"] = !scope.channelSetFunctions["show"];
 		       }
@@ -126,14 +127,21 @@ kindFramework.directive('liveIconList', function(
 		        }
 		      }
 
-		      $timeout(scope.setChannelSize);
+		      if(scope.channelSetFunctions["show"] !== PrevShowStatus){
+		      	$timeout(scope.setChannelSize);
+		      }
 		    }
+		    
+			$rootScope.$saveOn('liveIconList:setProfileAccessInfo', function(event){
+				setProfileAccessInfo();
+			});
 
 		    function setProfileAccessInfo(){
 		      return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=profileaccessinfo&action=view', '',
 		        function (response) {
 		          scope.$apply(function(){
-		            scope.profileAccessInfoList = response.data.ProfileAccessInfo.ProfileInfo[0].Profiles;
+								var channelId = UniversialManagerService.getChannelId();
+		            scope.profileAccessInfoList = response.data.ProfileAccessInfo.ProfileInfo[channelId].Profiles;
 		            scope.profileAccessUserList = response.data.ProfileAccessInfo.Users;
 		            for (var index=0; index < scope.profileAccessInfoList.length ; index++)
 		            {

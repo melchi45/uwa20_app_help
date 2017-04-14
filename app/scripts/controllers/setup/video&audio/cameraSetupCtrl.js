@@ -6707,6 +6707,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                                 gotoPreset('Start',$scope.presetTypeData.SelectedPreset);
                             }
                             showLoadingBar(false);
+                            // for multi channel selection, copy final page data to detect changes 
+                            if($scope.isMultiChannel) {
+                                pageData.ImagePreset = angular.copy($scope.ImagePreset);
+                                pageData.Camera = angular.copy($scope.Camera);
+                            }
                         },500);
                         refreshSliders();
                         $("#camerasetuppage").show();

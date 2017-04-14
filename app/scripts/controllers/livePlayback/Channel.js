@@ -1039,10 +1039,11 @@ kindFramework
       $rootScope.$emit('channelPlayer:command', 'stopLive', false);
       channelId = index;
       UniversialManagerService.setChannelId(channelId);
+      setProfileInfo();
+      if($scope.channelSetFunctions['show'] === true && $scope.channelSetFunctions['status'] === true){
+        $rootScope.$emit('liveIconList:setProfileAccessInfo', true);
+      }
 
-      var RequestProfile = getProfileByIndex(UniversialManagerService.getProfileList(index), 
-        UniversialManagerService.getDefaultProfileIndex(index));
-      startStreaming(RequestProfile);
       $rootScope.$emit('changeLoadingBar', true);
     }, $scope);
 
