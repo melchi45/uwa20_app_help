@@ -64,9 +64,6 @@ kindFramework.factory('eventRuleService', function() {
         var scopeData = eventRuleDataObj.scopeData;
         var isSame = true;
 
-        console.info(pageData);
-        console.info(scopeData);
-
         if(!angular.equals(pageData.AlarmOutputs, scopeData.AlarmOutputs)) {
             isSame = false;
         }

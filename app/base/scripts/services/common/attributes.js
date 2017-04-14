@@ -108,6 +108,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
             mAttributes.SecondOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/date/Second/int');
             mAttributes.ExcludeSettings = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/factoryreset/ExcludeSettings/csv');
             mAttributes.RestoreExclusions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/configrestore/ExcludeSettings/csv');
+            mAttributes.StorageEnable = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/storageinfo/Enable/bool');
             mAttributes.FileSystemTypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/storageinfo/Storage.#.FileSystem/enum');
             mAttributes.DefaultFolderMaxLen = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/storageinfo/DefaultFolder/string');
             mAttributes.NASIPMaxLen = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/storageinfo/NASIP/string');
@@ -224,9 +225,13 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
             mAttributes.QoSIndexRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/qos/Index/int');
             mAttributes.DSCPRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/qos/DSCP/int');
             mAttributes.QOSIPType = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/qos/IPType/enum');
+            mAttributes.SNMPVersion1 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/Version1/bool');
+            mAttributes.SNMPVersion2 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/Version2/bool');
+            mAttributes.SNMPVersion3 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/Version3/bool');
             mAttributes.ReadCommunity = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/ReadCommunity/string');
             mAttributes.WriteCommunity = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/WriteCommunity/string');
             mAttributes.UserPassword = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/UserPassword/string');
+            mAttributes.SNMPTrapEnable = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Enable/bool');
             mAttributes.TrapCommunity = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.Community/string');
             mAttributes.TrapAuthentificationFailure = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.AuthenticationFailure/bool');
             mAttributes.TrapLinkUp = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.LinkUp/bool');

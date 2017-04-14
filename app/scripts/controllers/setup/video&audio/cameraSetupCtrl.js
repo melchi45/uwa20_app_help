@@ -1506,6 +1506,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     }
     $scope.initShutterSpeeds = initShutterSpeeds;
 
+    $scope.isShutterSpeedDisabled = function(){
+        if(isNotUserpresetMode() || $scope.Camera.AFLKMode !== 'Off'){
+            return true;
+        }
+        return false;
+    };
+
     function isSupportesShutterSpeed(shutterSpeed, type) {
         if ($scope.selectedShutterDetails !== undefined) {
             var minShutterList = {},
@@ -3164,8 +3171,12 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=set', setData,
                 function (response) {
                     if (isPreview === true) {
+                        $scope.isChangedSensorCaptureFrameRate = previewData.VideoSources.SensorCaptureFrameRate !== $scope.VideoSources.SensorCaptureFrameRate;
+                        if($scope.isChangedSensorCaptureFrameRate === true) $timeout(function(){cameraChangeHandler();},300);
                         COMMONUtils.updatePageData($scope.VideoSources, previewData.VideoSources, '');
                     } else {
+                        $scope.isChangedSensorCaptureFrameRate = pageData.VideoSources.SensorCaptureFrameRate !== $scope.VideoSources.SensorCaptureFrameRate;
+                        if($scope.isChangedSensorCaptureFrameRate === true) $timeout(function(){cameraSet();},300);
                         COMMONUtils.updatePageData($scope.VideoSources, pageData.VideoSources, '');
                     }
                     deferred.resolve();
@@ -3276,11 +3287,11 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             scheduleList = [];
 
         if (isPreview === true) {
-            if (angular.equals(previewData.Camera, $scope.Camera)) {
+            if (angular.equals(previewData.Camera, $scope.Camera) && $scope.isChangedSensorCaptureFrameRate !== true) {
                 return;
             }
         } else {
-            if (angular.equals(pageData.Camera, $scope.Camera)) {
+            if (angular.equals(pageData.Camera, $scope.Camera) && $scope.isChangedSensorCaptureFrameRate !== true) {
                 return;
             }
         }
@@ -3355,6 +3366,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         } else {
             changed = COMMONUtils.fillSetData(setData, $scope.Camera, pageData.Camera,
                     ignoredKeys, false);
+        }
+        if($scope.isChangedSensorCaptureFrameRate === true){
+            changed = true;
+            $scope.isChangedSensorCaptureFrameRate = false;
+            setData.AutoShortShutterSpeed = $scope.Camera.AutoShortShutterSpeed;
+            setData.AutoLongShutterSpeed = $scope.Camera.AutoLongShutterSpeed;
+            setData.PreferShutterSpeed = $scope.Camera.PreferShutterSpeed;
         }
 
         if (($scope.Camera.DayNightModeSchedules !== undefined) && (isPreview !== true || isPreview === undefined)) {
@@ -5273,6 +5291,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                         AFLKMode : $scope.PresetImageConfig[index].AFLKMode,
                         SSNREnable : $scope.PresetImageConfig[index].SSNREnable,
                         SSNRLevel : $scope.PresetImageConfig[index].SSNRLevel,
+                        SSNR2DLevel : $scope.PresetImageConfig[index].SSNR2DLevel,
+                        SSNR3DLevel : $scope.PresetImageConfig[index].SSNR3DLevel,
                         IrisMode : $scope.PresetImageConfig[index].IrisMode,
                         IrisFno : $scope.PresetImageConfig[index].IrisFno,
                         AGCMode : $scope.PresetImageConfig[index].AGCMode,
@@ -6690,11 +6710,12 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                         },500);
                         refreshSliders();
                         $("#camerasetuppage").show();
-                        $rootScope.$emit('changeLoadingBar', false);
+                        //$rootScope.$emit('changeLoadingBar', false);
                     }
                 },
                 function (errorData) {
                     //alert(errorData);
+                    showLoadingBar(false);
                 }
         );
     }

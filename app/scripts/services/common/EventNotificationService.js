@@ -63,7 +63,7 @@ kindFramework
       }
 
       function drawEventNoti(data) {
-         console.log("event.type: " + data.type + " , event.value: " + data.value + ", event.eventId: " + data.eventId);
+         //console.log("event.type: " + data.type + " , event.value: " + data.value + ", event.eventId: " + data.eventId);
         var targetData = data;
 
         if(!(currentEventPage === 'live' || (currentEventPage === targetData.type))){

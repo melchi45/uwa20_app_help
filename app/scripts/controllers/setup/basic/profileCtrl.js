@@ -2211,7 +2211,8 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                         'message': 'lang_crop_set_area',
                         'cropArea': cropArea,
                         'cropRatio': cropRatio,
-                        'cropEnable': cropEnable
+                        'cropEnable': cropEnable,
+                        'channelId': $scope.channelSelectionSection.getCurrentChannel()
                     };
                 }
             }
@@ -2696,7 +2697,16 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             }
 
         } else {
-            ErrorMessage = "lang_invalide_bitrate";
+            if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType === 'VBR')
+            {
+                ErrorMessage = $filter('translate')("lang_msg_maximum_bitrate0") + $scope.BitRateRange.Min + $filter('translate')("lang_msg_maximum_bitrate1")
+                    + $scope.BitRateRange.Max + $filter('translate')("lang_msg_maximum_bitrate2");
+            }
+            else
+            {
+                ErrorMessage = $filter('translate')("lang_msg_target_bitrate0") + $scope.BitRateRange.Min + $filter('translate')("lang_msg_target_bitrate1")
+                    + $scope.BitRateRange.Max + $filter('translate')("lang_msg_target_bitrate2");
+            }
             retVal = false;
             COMMONUtils.ShowError(ErrorMessage);
             return retVal;

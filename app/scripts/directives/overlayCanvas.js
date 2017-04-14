@@ -88,9 +88,6 @@ kindFramework.directive('overlayCanvas', function(
       }
 
       $rootScope.$saveOn("overlayCanvas::setSize", function(event, width, height) {
-          //StreamInterface.js pass 'overlayCanvas::setSize' event when canvas size isn't changed.
-          if(cvs.width === width && cvs.height === height) return;
-
           cvs.width = width;
           cvs.height = height;
 
