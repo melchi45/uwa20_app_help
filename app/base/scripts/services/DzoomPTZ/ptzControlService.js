@@ -170,11 +170,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
                         curY = event.offsetY;
                     }
 
-                    sunapiURI += "&X1=" + curX + "&Y1=" + curY + "&X2=" + event.offsetX + "&Y2=" + event.offsetY;
-                    sunapiURI += "&TileWidth=" + overlayCanvas.offsetWidth + "&TileHeight=" + overlayCanvas.offsetHeight;
-                    ptzAreaZoomStart =  true;
-                    turnOffTracking();
-                    return execSunapi(sunapiURI, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; setPTZAreaZoom("start"); blnSavePTZCoordinate = true; });
+                    return runPTZAreaZoom(curX, curY, event.offsetX, event.offsetY, overlayCanvas.offsetWidth, overlayCanvas.offsetHeight);
                 }
             }
             return null;
@@ -269,6 +265,16 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
                 ptzAreaZoomStart =  false;
                 blnSavePTZCoordinate = false;
             });
+        }
+
+        function runPTZAreaZoom(X1, Y1, X2, Y2, TileWidth, TileHeight)
+        {
+            sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=areazoom&action=control&Channel=0&Type=ZoomIn";
+            sunapiURI += "&X1=" + X1 + "&Y1=" + Y1 + "&X2=" + X2 + "&Y2=" + Y2;
+            sunapiURI += "&TileWidth=" + TileWidth + "&TileHeight=" + TileHeight;
+            ptzAreaZoomStart =  true;
+            turnOffTracking();
+            return execSunapi(sunapiURI, function() { PTStatus = "MOVING"; ZStatus = "MOVING"; setPTZAreaZoom("start"); blnSavePTZCoordinate = true; });
         }
 
         function getPTZAreaZoomURI(mode){
@@ -539,6 +545,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
             getMaxGroup : getMaxGroup,
             getMaxTour : getMaxTour,
             getMaxTrace : getMaxTrace,
-            extendExecute : extendExecute
+            extendExecute : extendExecute,
+            runPTZAreaZoom : runPTZAreaZoom
         };
     }]);
