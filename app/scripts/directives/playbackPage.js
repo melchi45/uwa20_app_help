@@ -311,11 +311,9 @@ kindFramework
             if( block.browser === true ) return;
             if( data > 0 ) {
               scope.disableBackupIcon = false;
-              /*Non plugin doesn't support backup*/
-              if( BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI ) {
-                if( UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE ) {
-                  scope.disableBackupIcon = true;
-                }
+              if( UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE && 
+                  typeof (document.createElement('a').download) === "undefined") {
+                scope.disableBackupIcon = true;
               }
             }
             else {

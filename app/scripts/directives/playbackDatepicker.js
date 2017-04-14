@@ -383,9 +383,6 @@ kindFramework.directive('playbackDatepicker', function() {
                 showRecordingDate(currentDate.getFullYear(), pad(currentDate.getMonth() + 1));
             }, $scope);
 
-            $rootScope.$saveOn('blockTimebarInputField', function(event, data) {
-              $scope.blockTimeInput = data;
-            }, $scope);
             /*
              * @author Yongku Cho
              * @desc Add key event
