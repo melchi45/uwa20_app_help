@@ -499,3 +499,6 @@ button[disabled].ptz-control_horizontal-item.slider-button{
 .tui-ch-live-ptz-tracking-auto-on.active {
   color: #f37321;
 }
+.tui.tui-wn5-ptz-handle {
+	cursor: default;
+}
