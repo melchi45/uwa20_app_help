@@ -118,7 +118,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         //    scope.disablePosition = false;
                         //}
                     }else if(ptzinfo.type==='AT'){
-                        // scope.ptzControlClass = 'w610';
+                        scope.ptzControlClass = 'w610';
                         scope.zoomPresetClass = 'at-box';
                         scope.showPTZControlAT = true;
                         // autoTrackingList Data
