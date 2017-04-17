@@ -2,19 +2,18 @@
     <wn5-setup-main-title
         data-title="lang_menu_ptztrackingsetup">
     </wn5-setup-main-title>
-    <hr class="wn5-setup-hr">
-
-    <fieldset class="preset-setup-fieldset">
-        <div class="wn5-setup-section" style="margin-top: 10px;">
+    <div class="form-group setup-border-box-padding">
+        <div align="center">
             <sketchbook sketchinfo='sketchinfo' videoinfo='videoinfo'></sketchbook>
-            
-            <!-- PTZ Control -->
-            <div class="ptz-control_box">
-                <ptz-control ptzinfo='ptzinfo'></ptz-control>
-            </div>
-            <!-- //PTZ Control End -->
         </div>
-    </fieldset>
+    </div>
+    
+    <div class="form-group"></div>
+    <!-- PTZ Control -->
+    <div class="ptz-control_box ptz-control_ptz-menu-width">
+        <ptz-control ptzinfo='ptzinfo'></ptz-control>
+    </div>
+    <!-- //PTZ Control End -->
     
     <form name="autoTrackForm" method="get" class="form-horizontal" novalidate>
         <hr class="wn5-setup-hr">
