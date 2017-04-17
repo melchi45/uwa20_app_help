@@ -622,7 +622,7 @@ kindFramework.controller('ipPortCtrl', function ($scope, $timeout, $uibModal, $t
 
         if(HTTPPort === HTTPSPort || HTTPPort === RTSPPort || RTSPPort === HTTPSPort)
         {
-            var ErrorMessage = 'Duplicated port setting is not available';
+            var ErrorMessage = 'lang_msg_errDuplicatedPort';
             COMMONUtils.ShowError(ErrorMessage,'lg');
             return false;
         }

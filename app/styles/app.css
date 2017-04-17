@@ -643,17 +643,24 @@ live-playback common {
   border: 1px solid #a5a5a5;
   color: #4c4c4c;
   box-sizing: border-box;
+  /**
+     * @date 2017-04-17
+     * Live / Video setup / Display 에 Reset 버튼 확인필요.
+     */
 }
 .cm-str-button.cm-cancel-button {
   width: 100px;
   font-size: 14px;
 }
 .cm-str-button:hover,
-.cm-str-button:focus,
+.cm-str-button:focus {
+  background-color: #d2d2d2;
+  color: #4c4c4c;
+  border: 1px solid #a5a5a5;
+}
 .cm-str-button:hover *,
 .cm-str-button:focus * {
   background-color: #d2d2d2;
-  border: 1px solid #a5a5a5;
   color: #4c4c4c;
 }
 .cm-str-button:active,
@@ -5611,6 +5618,8 @@ rzslider .rz-bubble {
 }
 #sketchbook {
   position: relative;
+  float: left;
+  margin-bottom: 10px;
 }
 #sketchbook #sketchbook_svg {
   overflow: visible;
