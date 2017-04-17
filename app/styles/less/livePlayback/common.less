@@ -672,13 +672,24 @@ live-playback common {
         font-size: 14px;
     }
 
+    /**
+     * @date 2017-04-17
+     * Live / Video setup / Display 에 Reset 버튼 확인필요.
+     */
+    .hover-and-focus() {
+        background-color: #d2d2d2;
+        color: #4c4c4c;
+    }
+
     &:hover, 
-    &:focus,
+    &:focus, {
+        .hover-and-focus();
+        border: 1px solid #a5a5a5;
+    }
+
     &:hover *,
     &:focus * {
-        background-color: #d2d2d2;
-        border: 1px solid #a5a5a5;
-        color: #4c4c4c;
+        .hover-and-focus();
     }
 
     &:active,
