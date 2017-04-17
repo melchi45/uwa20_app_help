@@ -329,6 +329,24 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                 }
             });
 
+            $rootScope.$saveOn('DigitalAutoTrackingStatus', function(event, obj) {
+                switch(obj.type) {
+                    case "DigitalAutoTracking":
+                        if (obj.value === 'false')
+                        {
+                            scope.DATFlag = false;
+                            UniversialManagerService.setDigitalPTZ(CAMERA_STATUS.DPTZ_MODE.DIGITAL_PTZ);
+                        }
+                        else
+                        {
+                            scope.DATFlag = true;
+                            UniversialManagerService.setDigitalPTZ(CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING);
+                        }
+                        scope.$digest();
+                        break;
+                }
+            });
+
             $("#ptz-control_move-btn").unbind();
             $("#ptz-control_box").unbind();
             $("#ptz-control_slider").unbind();

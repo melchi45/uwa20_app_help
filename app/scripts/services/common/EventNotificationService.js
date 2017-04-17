@@ -181,17 +181,7 @@ kindFramework
             $rootScope.$emit('PTZMoveStatus', eventObj);
             break;
           case "DigitalAutoTracking":
-            var at_icon = $('[class*="tui-ch-live-ptz-tracking-auto"]');
-            if(eventObj.value === 'true')
-            {
-                UniversialManagerService.setDigitalPTZ(CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING);
-                at_icon.removeClass().addClass('tui tui-ch-live-ptz-tracking-auto-on');
-            }
-            else if(eventObj.value === 'false')
-            {
-                UniversialManagerService.setDigitalPTZ(CAMERA_STATUS.DPTZ_MODE.DIGITAL_PTZ);
-                at_icon.removeClass().addClass('tui tui-ch-live-ptz-tracking-auto-off');
-            }
+            $rootScope.$emit('DigitalAutoTrackingStatus', eventObj);
             break;
           case "AutoTracking":
             $rootScope.$emit('AutoTrackingStatus', eventObj);
