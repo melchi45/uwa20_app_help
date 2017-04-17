@@ -1,4 +1,4 @@
-kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal,$state,$timeout,COMMONUtils, $interval, CAMERA_STATUS, UniversialManagerService){
+kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal,$state,$timeout,COMMONUtils, $interval, CAMERA_STATUS, UniversialManagerService, $rootScope, DigitalPTZContorlService){
 	"use strict";
 	return {
 		restrict: 'E',
@@ -313,6 +313,21 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         },100);
                     },'', true);
             }
+
+            $rootScope.$saveOn('AutoTrackingStatus', function(event, obj) {
+                switch(obj.type) {
+                    case "AutoTracking":
+                        if (obj.value === 'false')
+                        {
+                            scope.autoTrackingFlag = false;
+                        }
+                        else
+                        {
+                            scope.autoTrackingFlag = true;
+                        }
+                        break;
+                }
+            });
 
             $("#ptz-control_move-btn").unbind();
             $("#ptz-control_box").unbind();

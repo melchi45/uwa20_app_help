@@ -270,7 +270,8 @@ kindFramework.controller('autoTrackCtrl', function ($scope, $timeout, $uibModal,
                     mirror: mirror,
                     support_ptz: false,
                     rotate: rotate,
-                    adjust: adjust
+                    adjust: adjust,
+                    currentPage: "AutoTracking"
                 };
 
                 $scope.ptzinfo = {

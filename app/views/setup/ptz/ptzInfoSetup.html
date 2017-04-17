@@ -277,16 +277,15 @@
                     <hr class="wn5-setup-hr">
                     <div class="wn5-setup-section">
                         <div class="wn5-setup-section-heading">
-                            <!--<h3>{{ 'lang_traceNo' | translate }}</h3> -->
-                            <h3>Trace setup</h3>
+                            <h3>{{ 'lang_trace_setup' | translate }}</h3>
                         </div>
                         <div class="wn5-setup-section-article">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-content">
-                                    <select class="form-control wp25" ng-model="Trace.SelectedIndex" ng-options="TraceOptions.indexOf(Option) as Option for Option in TraceOptions" ng-disabled="memorizeTraceMode == 'Start'"></select>
-                                    <button type="button" class="btn btn-primary btn-margin-left" ng-click="startStopTrace(1)" ng-disabled="memorizeTraceMode == 'Start'">{{ 'lang_start' | translate }}</button>
-                                    <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopTrace(0)" ng-disabled="memorizeTraceMode == 'Start'">{{ 'lang_stop' | translate }}</button>
-                                    <button type="button" class="btn btn-primary" ng-click="setTrace()">{{ setTraceRecordBtnText() | translate }}</button>
+                                    <select class="form-control wp25" ng-model="Trace.SelectedIndex" ng-options="TraceOptions.indexOf(Option) as Option for Option in TraceOptions"></select>
+                                    <button type="button" class="btn btn-primary btn-margin-left" ng-click="startStopTrace(1)">{{ 'lang_start' | translate }}</button>
+                                    <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopTrace(0)">{{ 'lang_stop' | translate }}</button>
+                                    <button type="button" class="btn btn-primary" ng-click="setTrace()">{{ 'lang_set' | translate }}</button>
                                 </div>
                             </div>
                         </div>

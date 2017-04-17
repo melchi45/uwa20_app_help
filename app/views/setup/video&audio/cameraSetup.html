@@ -95,10 +95,10 @@
                             </div>
                             <div ng-show="SSDRTabReady" ng-if="PresetImageConfig !== undefined && tabUI.SSDR == 1">
                                 <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].SSDR.Enable !== undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_enable' | translate }}</div>
-                                    <div ng-class="RadioClassSm" ng-repeat="Enable in EnableOptions">
-                                        <input type="radio" name="SSDREnable" ng-model="PresetImageConfig[presetTypeData.PresetIndex].SSDR.Enable" ng-value="Enable" ng-change="initPresetSSDRSettings()">
-                                        <label>{{getTranslatedOption(Enable)}}</label>
+                                    <div class="wn5-setup-section-article-heading">SSDR</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <input type="checkbox" name="Enable" ng-model="PresetImageConfig[presetTypeData.PresetIndex].SSDR.Enable" ng-change="initPresetSSDRSettings()">
+                                        <label>{{ 'lang_enable' | translate }}</label>
                                     </div>
                                 </div>
                                 <div class="form-group" ng-show="PresetSSDRLevel !== undefined">
@@ -110,10 +110,10 @@
                                                 live-slider-model-name="Level"
                                                 live-slider-property="PresetSSDRSliderOptions">
                                             </live_slider>
-                                        </div>    
-                                        <label class="cm-slider-label"> 
-                                            ({{PresetSSDRLevel.minValue}} ~ {{PresetSSDRLevel.maxValue}}) 
-                                        </label>
+                                            <label class="cm-slider-label"> 
+                                                ({{PresetSSDRLevel.minValue}} ~ {{PresetSSDRLevel.maxValue}}) 
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group" ng-show="PresetDynamicRangeOptions != undefined && PresetImageConfig[presetTypeData.PresetIndex].SSDR.DynamicRange !== undefined">
@@ -1037,15 +1037,17 @@
                                 </div>
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.Saturation != undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_colorlevel' | translate }} </div>
-                                    <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
-                                        <live_slider 
-                                            live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements" 
-                                            live-slider-model-name="Saturation"
-                                            live-slider-property="PresetSaturationSliderOptions">
-                                        </live_slider>
-                                        <label class="cm-slider-label"> 
-                                            ({{PresetSaturation.minValue}} ~ {{PresetSaturation.maxValue}}) 
-                                        </label>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements" 
+                                                live-slider-model-name="Saturation"
+                                                live-slider-property="PresetSaturationSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{PresetSaturation.minValue}} ~ {{PresetSaturation.maxValue}}) 
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogMode != undefined">
