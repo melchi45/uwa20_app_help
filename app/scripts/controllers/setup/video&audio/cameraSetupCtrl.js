@@ -6715,7 +6715,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                         },500);
                         refreshSliders();
                         $("#camerasetuppage").show();
-                        //$rootScope.$emit('changeLoadingBar', false);
                     }
                 },
                 function (errorData) {
@@ -6845,7 +6844,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             modalInstance.result.then(function() {
                 if(validatePage()) {
                     $rootScope.$emit('changeLoadingBar', true);
-                    $scope.targetChannel = data;
+                    $rootScope.$emit("channelSelector:changeChannel", data);
                     saveSettings();
                 }
             },
@@ -6853,7 +6852,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             });
         } else {
             $rootScope.$emit('changeLoadingBar', true);
-            // $scope.targetChannel = data;
             $scope.channelSelectionSection.setCurrentChannel(data);
             $rootScope.$emit("channelSelector:changeChannel", data);
             view();

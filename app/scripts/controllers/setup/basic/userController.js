@@ -257,7 +257,8 @@ kindFramework.controller('userCtrl', function ($scope, SunapiClient, Attributes,
                     setData.VideoProfileAccess =  false;
                 }
 
-                if(mAttr.PTZModel === true || mAttr.ExternalPTZModel === true || mAttr.FisheyeLens === true)
+                //if(mAttr.PTZModel === true || mAttr.ExternalPTZModel === true || mAttr.FisheyeLens === true)
+                if(mAttr.ContinousZoom !== undefined)
                 {
                     setData.PTZAccess = $scope.Users[idx].PTZAccess;
                 }
@@ -299,7 +300,8 @@ kindFramework.controller('userCtrl', function ($scope, SunapiClient, Attributes,
                     setData.VideoProfileAccess =  false;
                 }
 
-                if(mAttr.PTZModel === true || mAttr.ExternalPTZModel === true || mAttr.FisheyeLens === true)
+                //if(mAttr.PTZModel === true || mAttr.ExternalPTZModel === true || mAttr.FisheyeLens === true)
+                if(mAttr.ContinousZoom !== undefined)
                 {
                     setData.PTZAccess = $scope.Users[idx].PTZAccess;
                 }
