@@ -218,8 +218,6 @@
 .ptz-control_ptz-menu-width{
 	width:100%;
 	max-width: 640px;
-	margin: 0 auto;
-	/*margin: 0 calc( (100% - 640px) / 2 );*/
 }
 .ptz-control_ptz-menu-width.max_none{
 	max-width:none !important;
