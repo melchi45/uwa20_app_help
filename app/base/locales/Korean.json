@@ -1327,5 +1327,6 @@
     "lang_termination": "종료",
     "lang_boxstep": "Box 단계",
     "lang_heater_pan": "히터\/팬",
-    "lang_trace_setup": "추적 설정"
+    "lang_trace_setup": "추적 설정",
+    "lang_msg_errDuplicatedPort": "포트는 중복하여 설정할 수 없습니다."
 }
