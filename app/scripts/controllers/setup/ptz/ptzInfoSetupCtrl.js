@@ -72,17 +72,6 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
 
     $scope.changeCurrentTab = function(tab) {
         if ($scope.previousTab.title == tab) return;
-        if($scope.previousTab.title == 'Trace'){
-            if($scope.memorizeTraceMode == 'Start'){
-                $scope.memorizeTraceMode = 'Stop';
-                var promises = [];
-                promises.push(function(){return memorizeTrace($scope.memorizeTraceMode, false);});
-                $q.seqAll(promises).then(
-                    function(){},
-                    function(){}
-                );
-            }
-        }
         $scope.activeTab.title = tab;
         $scope.activeTab.active = true;
         $scope.previousTab = angular.copy($scope.activeTab);
@@ -674,13 +663,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             },'lang_set_question','sm');
         }
     };
-    $scope.setTraceRecordBtnText = function(){
-        if($scope.memorizeTraceMode == 'Start'){
-            return 'lang_set';
-        }else{
-            return 'lang_record';
-        }
-    };
+
     $scope.setTrace = function ()
     {
         $scope.memorizeTraceMode = $scope.memorizeTraceMode == 'Start' ? 'Stop' : 'Start';
@@ -694,23 +677,6 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
             }
         );
     };
-
-    $rootScope.$watch(function $locationWatch() {
-        var changedUrl = $location.absUrl();
-
-        if (changedUrl.indexOf('ptzSetup_ptzInfoSetup') === -1 && $scope.memorizeTraceMode == 'Start') {
-            $scope.memorizeTraceMode = 'Stop';
-            var promises = [];
-            promises.push(function(){return memorizeTrace($scope.memorizeTraceMode, false);});
-            $q.seqAll(promises).then(
-                function(){
-                },
-                function(errorData){
-                    //alert(errorData);
-                }
-            );
-        }
-    });
 
     function validateGroupSequence(GroupSequenceIndex)
     {
