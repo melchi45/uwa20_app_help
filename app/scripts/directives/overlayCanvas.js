@@ -66,7 +66,7 @@ kindFramework.directive('overlayCanvas', function(
 
           PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
           PTZContorlService.setManualTrackingMode("True");
-          $rootScope.$emit('livePTZControl::command', "manualTracking", true);
+          $rootScope.$emit('livePTZControl:command', "manualTracking", true);
 
           var canvas = document.getElementsByTagName("channel_player")[0].getElementsByTagName("canvas")[0];
           var xPos = event.offsetX;
@@ -141,7 +141,7 @@ kindFramework.directive('overlayCanvas', function(
                     ExtendChannelContainerService.setDigitalZoomService(true);
                  }
 
-                 $rootScope.$emit('livePTZControl::command', "pixelCount", boolEnable);
+                 $rootScope.$emit('livePTZControl:command', "pixelCount", boolEnable);
                 break;
               case "manualTracking" :
                  ExtendChannelContainerService.setManualTrackingService(boolEnable, callbackManualTracking);

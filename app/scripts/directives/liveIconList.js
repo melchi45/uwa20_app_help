@@ -78,9 +78,10 @@ kindFramework.directive('liveIconList', function(
 		      };
 
 		      $rootScope.$emit('channelPlayer:command', 'pixelCount', command);
+		      $rootScope.$emit('livePTZControl:command', 'pixelCount', command);
 		    }
 
-            $rootScope.$saveOn("overlayCanvas::command", function(event, mode, boolEnable) {
+            $rootScope.$saveOn("liveIconList:command", function(event, mode, boolEnable) {
                 switch (mode)
                 {
                     case "pixelCount" :
@@ -91,7 +92,7 @@ kindFramework.directive('liveIconList', function(
                         scope.channelBasicFunctions.pixelCount = false;
                         break;
                 }
-            });
+            }, scope);
 
 		    function openFullscreenButton(e){
 		      e.fullButton = true;
