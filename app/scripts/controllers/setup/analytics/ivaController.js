@@ -1325,18 +1325,18 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             }
         }
 
-        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth !== $scope.minWidthLimit) {
-        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth += 1;
-        // }
-        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight !== $scope.minWidthLimit) {
-        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight += 1;
-        // }
-        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth !== $scope.minWidthLimit) {
-        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth += 1;
-        // }
-        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight !== $scope.minWidthLimit) {
-        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight += 1;
-        // }
+        if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth !== $scope.minWidthLimit) {
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth += 1;
+        }
+        if($scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight !== $scope.minWidthLimit) {
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight += 1;
+        }
+        if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth !== $scope.minWidthLimit) {
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth += 1;
+        }
+        if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight !== $scope.minWidthLimit) {
+            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight += 1;
+        }
 
         if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth < $scope.minWidthLimit) {
             $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth = $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidthMin;
