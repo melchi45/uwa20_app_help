@@ -401,7 +401,8 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                         FastAutoFocusDefined: (cameraAttributes.FastAutoFocusEnable !== undefined),
                         ZoomOptionsDefined: (cameraAttributes.SimpleZoomOptions !== undefined),
                         PTZMode: (cameraAttributes.RS485Support && cameraAttributes.isDigitalPTZ && (cameraAttributes.MaxPreset >0)),
-                        FisheyeLens: cameraAttributes.FisheyeLens
+                        FisheyeLens: cameraAttributes.FisheyeLens,
+                        Focus: (cameraAttributes.PTZModel === true || cameraAttributes.ZoomOnlyModel === true)
                     };
                 }catch(e){
                     console.error(e);

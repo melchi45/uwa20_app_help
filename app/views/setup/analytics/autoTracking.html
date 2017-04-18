@@ -2,19 +2,17 @@
     <wn5-setup-main-title
         data-title="lang_autotracking">
     </wn5-setup-main-title>
-    <div class="form-group setup-border-box-padding">
-        <div align="center">
-            <sketchbook sketchinfo='sketchinfo' videoinfo='videoinfo'></sketchbook>
+    <div class="wn5-setup-section">
+        <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'" sketchinfo='sketchinfo' videoinfo='videoinfo'></sketchbook>
+        <!-- PTZ Control -->
+        <div class="ptz-control_box">
+            <ptz-control ptzinfo='ptzinfo'></ptz-control>
         </div>
+        <!-- //PTZ Control End -->
     </div>
     
     <div class="form-group"></div>
-    <!-- PTZ Control -->
-    <div class="ptz-control_box ptz-control_ptz-menu-width">
-        <ptz-control ptzinfo='ptzinfo'></ptz-control>
-    </div>
-    <!-- //PTZ Control End -->
-    
+
     <form name="autoTrackForm" method="get" class="form-horizontal" novalidate>
         <hr class="wn5-setup-hr">
         <div class="wn5-setup-section">
