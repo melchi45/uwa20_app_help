@@ -127,13 +127,16 @@ kindFramework
               if (eventTimer !== undefined || eventTimer !== null) {
                 window.clearTimeout(eventTimer);
               }
-
-              eventTimer = window.setTimeout(function() {
+              
+              var closeBorder = function() {
                 if (!checkEventStatusList() || currentEventPage !== 'live') {
                   updateEventBorder(false);
+                  eventTimer = null;
+                } else {
+                  window.setTimeout(closeBorder, 15000);
                 }
-                eventTimer = null;
-              }, 15000);
+              }
+              eventTimer = window.setTimeout(closeBorder, 15000);              
             }
           break;
         }
