@@ -35,8 +35,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					apply: function(value){
                         if(scope.addPresetting.SelectedName === null || scope.addPresetting.SelectedName === undefined || scope.addPresetting.SelectedName === "")
                         {
-                            var ErrorMessage = 'lang_msg_validPresetName';
-                            COMMONUtils.ShowError(ErrorMessage,'md');
+                            ModalManagerService.open('message', { 'buttonCount': 1, 'message': $translate.instant('lang_msg_validPresetName') } );
                         }
                         else
                         {
