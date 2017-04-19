@@ -63,7 +63,7 @@ kindFramework
       }
 
       function drawEventNoti(data) {
-         //console.log("event.type: " + data.type + " , event.value: " + data.value + ", event.eventId: " + data.eventId);
+        //  console.log("event.type: " + data.type + " , event.value: " + data.value + ", event.eventId: " + data.eventId);
         var targetData = data;
 
         if(!(currentEventPage === 'live' || (currentEventPage === targetData.type))){
@@ -74,44 +74,35 @@ kindFramework
           case "MoveStatus:PanTilt":
           case "MoveStatus:Zoom":
           case "DigitalAutoTracking":
+            updatePtzEvent(targetData);
+            break;
           case "AutoTracking":
-          updatePtzEvent(targetData);
-          break;
+            updatePtzEvent(targetData);
+            if (targetData.value == 'true') {
+              setTimeoutEventNoti();
+            }
+            break;
           case "DigitalInput":
-          if (targetData.value == 'true') {
-            setEventStatusList("DigitalInput", true);
-            updateEventBorder(true);
-            if (eventTimer !== undefined || eventTimer !== null) {
-              window.clearTimeout(eventTimer);
+            if (targetData.value == 'true') {
+              setEventStatusList("DigitalInput", true);
+              setTimeoutEventNoti();
+            } else {
+              setEventStatusList("DigitalInput", false);
             }
-
-            var closeBorder = function() {
-              if (!checkEventStatusList()) {
-                updateEventBorder(false);
-                eventTimer = null;
-              } else {
-                window.setTimeout(closeBorder, 15000);
-              }
-            }
-
-            eventTimer = window.setTimeout(closeBorder, 15000);
-          } else {
-            setEventStatusList("DigitalInput", false);
-          }
           break;
           case "AudioDetection":
-          if (targetData.value == 'true') {
-            setEventStatusList("AudioDetection", true);
-            updateEventBorder(true);
-          } else {
-            setEventStatusList("AudioDetection", false);
-            if (eventTimer === null || eventTimer === undefined) {
-              if (!checkEventStatusList()) {
-                updateEventBorder(false);
+            if (targetData.value == 'true') {
+              setEventStatusList("AudioDetection", true);
+              updateEventBorder(true);
+            } else {
+              setEventStatusList("AudioDetection", false);
+              if (eventTimer === null || eventTimer === undefined) {
+                if (!checkEventStatusList()) {
+                  updateEventBorder(false);
+                }
               }
             }
-          }
-          break;
+            break;
           case "Relay":
             UniversialManagerService.setAlarmOutput((targetData.eventId-1), targetData.value == "false" ? false : true);
             var outputElement = $('#output-' + (targetData.eventId -1))[0];
@@ -122,24 +113,28 @@ kindFramework
                 $('#output-' + (targetData.eventId -1)).addClass('cm-on');
             }
           default:
-            if (targetData.value == 'true') {
-              updateEventBorder(true);
-              if (eventTimer !== undefined || eventTimer !== null) {
-                window.clearTimeout(eventTimer);
-              }
-              
-              var closeBorder = function() {
-                if (!checkEventStatusList() || currentEventPage !== 'live') {
-                  updateEventBorder(false);
-                  eventTimer = null;
-                } else {
-                  window.setTimeout(closeBorder, 15000);
-                }
-              }
-              eventTimer = window.setTimeout(closeBorder, 15000);              
+            if (targetData.value === 'true') {
+              setTimeoutEventNoti();
             }
-          break;
+            break;
         }
+      }
+
+      function setTimeoutEventNoti(){
+          updateEventBorder(true);
+          if (eventTimer !== undefined || eventTimer !== null) {
+            window.clearTimeout(eventTimer);
+          }
+          
+          var closeBorder = function() {
+            if (!checkEventStatusList() || currentEventPage !== 'live') {
+              updateEventBorder(false);
+              eventTimer = null;
+            } else {
+              window.setTimeout(closeBorder, 15000);
+            }
+          }
+          eventTimer = window.setTimeout(closeBorder, 15000);              
       }
 
       function drawVAObject(data) {
