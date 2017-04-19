@@ -453,7 +453,11 @@ kindFramework
           data.type = 'Queue';                                 //                  status == 11  ==> Level : High, status : true
           data.value = (status % 10 === 0) ? 'false': 'true';  //                  status == 20  ==> Level : Middle, status : false
           data.eventId = parseInt((status / 10), 10);          //                  status == 21  ==> Level : Middle, status : true
-          break;  
+          break;
+        case 15 :
+          data.type = 'AutoTracking';
+          $rootScope.$emit('AutoTrackingStatus', {type: 'AutoTracking', value: data.value});
+          break;
       }
 
       EventNotificationService.updateEventStatus(data);
