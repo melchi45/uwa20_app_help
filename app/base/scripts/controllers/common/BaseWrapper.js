@@ -169,7 +169,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         }
         else if (menuId === "ptz" || menuId === "ptzInfoSetup" || menuId === "preset" || menuId === "sequence" || menuId === "ptLimit" || menuId === "autoTrack" || menuId === "autoTrackEvent")
         {
-            if (menuId === "preset" || menuId === "sequence"){ // -> page change : ptzInfoSetup 
+            if (menuId === "preset" || menuId === "sequence" || menuId === "autoTrack"){ // -> page change : ptzInfoSetup 
                 retVal = false;
             } else {
                 retVal = mAttr.PTZModel;

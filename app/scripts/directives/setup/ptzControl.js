@@ -118,8 +118,8 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         //    scope.disablePosition = false;
                         //}
                     }else if(ptzinfo.type==='AT'){
-                        scope.ptzControlClass = 'w610';
-                        scope.zoomPresetClass = 'at-box';
+                        scope.ptzControlClass = 'ptz-ui-width';
+                        scope.zoomPresetClass = 'zoompreset';
                         scope.showPTZControlAT = true;
                         // autoTrackingList Data
                         if (ptzinfo.isViewTrackingData){
@@ -325,6 +325,24 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         {
                             scope.autoTrackingFlag = true;
                         }
+                        break;
+                }
+            });
+
+            $rootScope.$saveOn('DigitalAutoTrackingStatus', function(event, obj) {
+                switch(obj.type) {
+                    case "DigitalAutoTracking":
+                        if (obj.value === 'false')
+                        {
+                            scope.DATFlag = false;
+                            UniversialManagerService.setDigitalPTZ(CAMERA_STATUS.DPTZ_MODE.DIGITAL_PTZ);
+                        }
+                        else
+                        {
+                            scope.DATFlag = true;
+                            UniversialManagerService.setDigitalPTZ(CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING);
+                        }
+                        scope.$digest();
                         break;
                 }
             });

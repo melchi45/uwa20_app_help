@@ -131,7 +131,7 @@
 	}
 	#ptz-control.ptz-ui-width .zoompreset{
 		float: left !important;
-		padding: 5px 0;
+		padding: 5px 0 5px 50px;
 	}
 }
 @media (max-width: 1020px) {
@@ -143,7 +143,7 @@
 	}
 	#ptz-control.ptz-ui-width .zoompreset{
 		float: left !important;
-		padding: 5px 0;
+		padding: 5px 0 5px 50px;
 	}
 }
 @media (min-width: 930px) and (max-width: 1020px) {
@@ -218,8 +218,6 @@
 .ptz-control_ptz-menu-width{
 	width:100%;
 	max-width: 640px;
-	margin: 0 auto;
-	/*margin: 0 calc( (100% - 640px) / 2 );*/
 }
 .ptz-control_ptz-menu-width.max_none{
 	max-width:none !important;
@@ -326,8 +324,6 @@ button[disabled].ptz-control_horizontal-item.slider-button{
 		#ptz-control_at-selectable{
 			width: 210px;
 			height: 138px;
-			/*background-color: #eee;*/
-			float:left;
             cursor: default;
 			overflow-y: hidden;
 			overflow-x: hidden;
@@ -336,7 +332,7 @@ button[disabled].ptz-control_horizontal-item.slider-button{
 		#ptz-control_at-selectable .video-setup-table{
 			width: 100%;
 			position: absolute;
-			bottom: 0;
+			top: 0;
 		}
 		#ptz-control_at-selectable .video-setup-table tbody{
 			max-height: 100px;
@@ -345,9 +341,8 @@ button[disabled].ptz-control_horizontal-item.slider-button{
 			background-color:#ccc;
 		}
 		#ptz-control_at-right > button{
-			float:left;
 			margin-right: 10px;
-			margin-top: 103px;
+			margin-bottom: 10px;
 		}
 
 	#ptz-control_blc-left{
@@ -500,4 +495,7 @@ button[disabled].ptz-control_horizontal-item.slider-button{
 
 .tui-ch-live-ptz-tracking-auto-on.active {
   color: #f37321;
+}
+.tui.tui-wn5-ptz-handle {
+	cursor: default;
 }
