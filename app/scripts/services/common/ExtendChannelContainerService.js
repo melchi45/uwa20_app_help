@@ -35,7 +35,7 @@ kindFramework
           if (canvasElem !== null) {
               PixelCounterService.setElementEvent(canvasElem);
               PixelCounterService.setCallbackFunc(callbackFunc);
-              $rootScope.$emit('livePTZControl::command', "pixelCount", true);
+              $rootScope.$emit('livePTZControl:command', "pixelCount", true);
           }
       }
       else

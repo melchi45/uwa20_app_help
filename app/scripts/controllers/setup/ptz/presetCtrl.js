@@ -230,7 +230,7 @@ kindFramework.controller('presetCtrl', function ($scope, $location, $timeout, $u
     }
     function validationLastPosition()
     {
-        if ((Number($scope.LastPosition.RememberLastPositionDuration) < 1) || (Number($scope.LastPosition.RememberLastPositionDuration) >
+        if ($scope.LastPosition.RememberLastPositionDuration === undefined || (Number($scope.LastPosition.RememberLastPositionDuration) < 1) || (Number($scope.LastPosition.RememberLastPositionDuration) >
             Number($scope.LastPositionAttr.RememberLastPositionDuration.maxValue))){
             COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', 1).replace('%2', $scope.LastPositionAttr.RememberLastPositionDuration.maxValue));
             return false;

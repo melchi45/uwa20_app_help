@@ -14,7 +14,12 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                 scope.modePTZ =  {
                     AreaZoom : false,
 					Home: false,
-                    AutoTracking: false
+                    AutoTracking: false,
+					DigitalAutoTracking : false
+				};
+
+                scope.show = {
+                    DigitalAutoTracking : false,
 				};
 
 				scope.dptzMode = CAMERA_STATUS.DPTZ_MODE;
@@ -30,8 +35,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					apply: function(value){
                         if(scope.addPresetting.SelectedName === null || scope.addPresetting.SelectedName === undefined || scope.addPresetting.SelectedName === "")
                         {
-                            var ErrorMessage = 'lang_msg_validPresetName';
-                            COMMONUtils.ShowError(ErrorMessage,'md');
+                            ModalManagerService.open('message', { 'buttonCount': 1, 'message': $translate.instant('lang_msg_validPresetName') } );
                         }
                         else
                         {
@@ -73,7 +77,8 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				scope.openPTZ = function() {
 					init();
 					scope.currentPtzType = UniversialManagerService.getIsPtzType();
-					scope.modePTZ.AutoTracking = UniversialManagerService.getDigitalPTZ();
+					scope.modePTZ.DigitalAutoTracking = (UniversialManagerService.getDigitalPTZ() === scope.dptzMode.DIGITAL_AUTO_TRACKING) ? true : false;
+
 					console.log("livePTZControl::open currentPtzType = " + scope.currentPtzType);
 
 					switch (scope.currentPtzType) {
@@ -91,8 +96,6 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                             getSettingPresetList();
                             getSettingGroupList();
                             getAutoTrackingStatus();
-
-                            // scope.modePTZ.AreaZoom = false;
                             $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
 							break;
 						case CAMERA_STATUS.PTZ_MODE.ZOOMONLY:
@@ -127,24 +130,27 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					}
 				};
 
-                $rootScope.$saveOn("livePTZControl::command", function(event, mode, boolEnable) {
+                $rootScope.$saveOn("livePTZControl:command", function(event, mode, boolEnable) {
                     switch (mode)
                     {
                         case "pixelCount" :
-                            scope.modePTZ.AreaZoom = false;
+                            $timeout(function () {
+                                // Turn Off AreaZoom
+                            	scope.modePTZ.AreaZoom = false;
+                                scope.$digest();
+                            });
                             break;
                         case "manualTracking" :
                             $timeout(function () {
                                 // Turn Off AutoTracking
-                                scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
-                                UniversialManagerService.setDigitalPTZ(scope.modePTZ.AutoTracking);
+                                scope.modePTZ.AutoTracking = false;
                                 scope.$digest();
                             });
                             break;
                         case "areaZoomMode":
                             break;
                     }
-                });
+                }, scope);
 
 				scope.autoTracking = function() {
 					if(scope.modePTZ.AreaZoom)
@@ -154,16 +160,24 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                         $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
 					}
 
-                    if (scope.ptzMode === 'dptz'){
-                        sunapiURI = '/stw-cgi/ptzcontrol.cgi?msubmenu=digitalautotracking&action=control&Mode=';
-                        sunapiURI += (scope.modePTZ.AutoTracking === scope.dptzMode.DIGITAL_PTZ) ? "Stop" : "Start";
-                        
-                    } else {
-                        sunapiURI = '/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=set&Channel=0&Enable=';
-                        sunapiURI += (scope.modePTZ.AutoTracking === scope.dptzMode.DIGITAL_PTZ) ? "True" : "False";
-                    }
+                    sunapiURI = '/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=set&Channel=0&Enable=';
+                    sunapiURI += (scope.modePTZ.AutoTracking === false) ? "True" : "False";
 
 					execSunapi(sunapiURI);
+				};
+
+				scope.digitalAutoTracking = function() {
+                    if(scope.modePTZ.AreaZoom)
+                    {
+                        //Disable Area Zoom
+                        scope.modePTZ.AreaZoom = false;
+                        $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
+                    }
+
+                    sunapiURI = '/stw-cgi/ptzcontrol.cgi?msubmenu=digitalautotracking&action=control&Mode=';
+                    sunapiURI += (scope.modePTZ.DigitalAutoTracking === false) ? "Start" : "Stop";
+
+                    execSunapi(sunapiURI);
 				};
 
 				scope.modeChange = function(value) {
@@ -282,19 +296,23 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 
 				scope.areaZoomMode = function () {
 					try {
-						//Disable Auto Tracking
-						scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
-						UniversialManagerService.setDigitalPTZ(scope.modePTZ.AutoTracking);
+						//Turn Off Auto Tracking
+						if(scope.modePTZ.AutoTracking)
+						{
+                            scope.autoTracking();
+						}
 
 						if(scope.modePTZ.AreaZoom)
 						{
 							scope.modePTZ.AreaZoom = false;
 							$rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
+							$rootScope.$emit('liveIconList:command', "areaZoomMode", false);
 						}
 						else
 						{
 							scope.modePTZ.AreaZoom = true;
 							$rootScope.$emit('channelPlayer:command', 'areaZoomMode', true);
+							$rootScope.$emit('liveIconList:command', "areaZoomMode", true);
 						}
 					}catch(e)
 					{
@@ -421,6 +439,9 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					{
                         scope.modePTZ.Home = mAttr.HomeSupport;
 					}
+
+                    scope.show.DigitalAutoTracking = mAttr.isDigitalPTZ;
+                    scope.show.AutoTracking = mAttr.PTZModel;
 				}
 
 				/*ZOOM*/
@@ -583,7 +604,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 				function getAutoTrackingStatus(){
                     sunapiURI = "/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=view";
                     execSunapi(sunapiURI, function(response){
-                        scope.modePTZ.AutoTracking = response.AutoTracking[0].Enable ? scope.dptzMode.DIGITAL_AUTO_TRACKING : scope.dptzMode.DIGITAL_PTZ;
+                        scope.modePTZ.AutoTracking = response.AutoTracking[0].Enable;
 					});
 				}
 
@@ -729,11 +750,10 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                         case "AutoTracking":
                             if (obj.value === 'false')
                             {
-                                if(UniversialManagerService.getDigitalPTZ() === scope.dptzMode.DIGITAL_AUTO_TRACKING)
+                                if(scope.modePTZ.AutoTracking === true)
                                 {
                                     // Turn Off AutoTracking
-                                    scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
-                                    UniversialManagerService.setDigitalPTZ(scope.modePTZ.AutoTracking);
+                                    scope.modePTZ.AutoTracking = false;
                                 }
                             }
                             else
@@ -746,18 +766,40 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                                     $rootScope.$emit('channelPlayer:command', 'areaZoomMode', false);
                                 }
 
-
-                                if (UniversialManagerService.getDigitalPTZ() === scope.dptzMode.DIGITAL_PTZ) {
-                                    scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_AUTO_TRACKING;
-                                } else {
-                                    scope.modePTZ.AutoTracking = scope.dptzMode.DIGITAL_PTZ;
+                                if(scope.modePTZ.AutoTracking === false)
+                                {
+                                    // Turn Off AutoTracking
+                                    scope.modePTZ.AutoTracking = true;
                                 }
-
-                                UniversialManagerService.setDigitalPTZ(scope.modePTZ.AutoTracking);
 							}
                             break;
                     }
-                });
+                }, scope);
+
+                $rootScope.$saveOn('DigitalAutoTrackingStatus', function(event, obj) {
+                    switch(obj.type) {
+                        case "DigitalAutoTracking":
+                            if (obj.value === 'false')
+                            {
+                                if(scope.modePTZ.DigitalAutoTracking === true)
+                                {
+                                    // Turn Off AutoTracking
+                                    scope.modePTZ.DigitalAutoTracking = false;
+                                    UniversialManagerService.setDigitalPTZ(CAMERA_STATUS.DPTZ_MODE.DIGITAL_PTZ);
+                                }
+                            }
+                            else
+                            {
+                                if(scope.modePTZ.DigitalAutoTracking === false)
+                                {
+                                    // Turn Off AutoTracking
+                                    scope.modePTZ.DigitalAutoTracking = true;
+                                    UniversialManagerService.setDigitalPTZ(CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING);
+                                }
+                            }
+                            break;
+                    }
+                }, scope);
 
                 (function wait() {
                     if (!mAttr.Ready) {

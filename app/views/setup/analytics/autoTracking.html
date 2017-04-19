@@ -1,8 +1,76 @@
-<div class="wrapper wrapper-content" ng-if='pageLoaded'>
+<div id="imagepage" class="wrapper wrapper-content" ng-if='pageLoaded'>
+    <wn5-setup-main-title
+        data-title="lang_autotracking">
+    </wn5-setup-main-title>
+    <div class="wn5-setup-section">
+        <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'" sketchinfo='sketchinfo' videoinfo='videoinfo'></sketchbook>
+        <!-- PTZ Control -->
+        <div class="ptz-control_box">
+            <ptz-control ptzinfo='ptzinfo'></ptz-control>
+        </div>
+        <!-- //PTZ Control End -->
+    </div>
+    
+    <div class="form-group"></div>
+
     <form name="autoTrackForm" method="get" class="form-horizontal" novalidate>
-        <wn5-setup-main-title
-            data-title="lang_autotracking">
-        </wn5-setup-main-title>
+        <hr class="wn5-setup-hr">
+        <div class="wn5-setup-section">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_menu_ptztrackingsetup' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">                
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_cameraHeight' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div style="width: 60%;min-width: 250px;" class="slider-fields live-slider-field" ng-if="AutoTracking !== undefined">
+                            <live_slider
+                                    live-slider-model="AutoTracking"
+                                    live-slider-model-name="CameraHeight"
+                                    live-slider-property="CameraHeightsSliderOptions">
+                            </live_slider>
+                            <label class="cm-slider-label" style="padding-left: 5px;">m</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_zoom' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="AutoTracking.Zoom"> <label>{{ 'lang_enable' | translate }}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_maintainSize' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <span style="float: left;padding-right: 20px;" class="field-radio-wrapper" ng-repeat="Size in AutoTrackObjectSize">
+                            <input type="radio" class="radio" name="Size" ng-model="$parent.AutoTracking.ObjectSize" ng-value="Size" ng-disabled="$parent.AutoTracking.Zoom == 'Disable'">
+                            <label>{{getTranslatedMaintainSizeOption(Size)}}</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_indicatorDisplay' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="AutoTracking.IndicatorDisplay"> <label>{{ 'lang_enable' | translate }}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_areaActivation' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="AutoTracking.AreaActivation"> <label>{{ 'lang_enable' | translate }}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_automode' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div style="float: left;width: 100%;" class="field-radio-wrapper" ng-repeat="Mode in AutoModes">
+                            <input type="radio" class="radio" name="Mode" ng-model="$parent.AutoTracking.AutoMode" ng-value="Mode">
+                            <label>{{getTranslatedOption(Mode)}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <hr class="wn5-setup-hr">
         <event-action-setup></event-action-setup>
@@ -30,3 +98,19 @@
 
     </form>
 </div>
+<script type="text/ng-template" id="autoTrackingPopup.html">
+    <div class="modal-header modal-setup">
+        <h3 class="applyColor">{{ 'lang_autotracking' | translate }}</h3>
+    </div>
+    <div class="modal-body modal-setup">
+        <label class="col-sm-3 control-label">{{ 'lang_name' | translate }}</label>
+        <div class="col-sm-6">
+            <input class="form-control autoTracking-name-input" type="text" ng-model="AutoTrackingName" required ng-pattern-restrict="{{AlphaNumericStr}}" ng-maxlength="AutoTrackingNameMaxLen" maxlength="{{AutoTrackingNameMaxLen}}">
+        </div>
+    </div>
+    <div class="modal-body modal-setup"></div>
+    <div class="modal-footer modal-setup" style="text-align:center">
+        <button type="button" class="btn btn-primary" type="button" ng-click="ok()">{{ "lang_ok" | translate }}</button>
+        <button type="button" class="btn btn-white" type="button" ng-click="cancel()">{{ "lang_cancel" | translate }}</button>
+    </div>
+</script>
