@@ -36,6 +36,8 @@ kindFramework.directive('channelSelector', function($rootScope) {
             $rootScope.$saveOn('channelSelector:changeChannel', function(event, index){
                 elem.find("button").removeClass('active');
                 elem.find(" > li:nth-of-type(" + (index + 2) + ") > button").addClass('active');
+
+                $rootScope.$emit("channelSelector:changedChannel", index);
             }, scope);
 
             $rootScope.$saveOn('channelSelector:off', function(event){
