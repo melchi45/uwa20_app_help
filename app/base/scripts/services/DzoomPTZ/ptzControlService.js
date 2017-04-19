@@ -400,6 +400,12 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
                     if (obj.value === "MOVING")
                     {
                         PTStatus = "MOVING";
+                        //AreaZoom 모드이면서 일반 PTZ 동작 중일때
+                        if(ptzMode === ptzModeList.AREAZOOM)
+                        {
+                            setPTZAreaZoom("start");
+                            ptzAreaZoomStart =  true;
+                        }
                     }
                     else if (obj.value === "IDLE")
                     {
@@ -410,6 +416,12 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
                     if (obj.value === "MOVING")
                     {
                         ZStatus = "MOVING";
+                        //AreaZoom 모드이면서 일반 PTZ 동작 중일때
+                        if(ptzMode === ptzModeList.AREAZOOM)
+                        {
+                            setPTZAreaZoom("start");
+                            ptzAreaZoomStart =  true;
+                        }
                     }
                     else if (obj.value === "IDLE")
                     {
@@ -429,6 +441,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
                     else
                     {
                         //Prev, Next Action don't need to save coordinate
+                        //AreaZoom 모드이면서 일반 PTZ 동작 중일때
                         setPTZAreaZoom("end");
                         ptzAreaZoomStart =  false;
                     }

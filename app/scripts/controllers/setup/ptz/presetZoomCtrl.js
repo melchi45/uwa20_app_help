@@ -1,4 +1,4 @@
-kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, $q, $translate, XMLParser)
+kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, $q, $translate, XMLParser, $rootScope)
 {
     "use strict";
 
@@ -183,9 +183,11 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
                 showVideo().finally(function(){
                     $("#presetzoompage").show();
                 });
+                showLoadingBar(false);
             },
             function(errorData){
                 console.log(errorData);
+                showLoadingBar(false);
             }
         );
     }
@@ -226,7 +228,7 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
   
     function validationLastPosition()
     {
-        if ((Number($scope.LastPosition.RememberLastPositionDuration) < 1) || (Number($scope.LastPosition.RememberLastPositionDuration) >
+        if ($scope.LastPosition.RememberLastPositionDuration === undefined || (Number($scope.LastPosition.RememberLastPositionDuration) < 1) || (Number($scope.LastPosition.RememberLastPositionDuration) >
             Number($scope.LastPositionAttr.RememberLastPositionDuration.maxValue))){
             COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', 1).replace('%2', $scope.LastPositionAttr.RememberLastPositionDuration.maxValue));
             return false;
@@ -248,28 +250,51 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
                 {
                 }, '', true);
     }
-    $scope.setLastPosition = function(){
-        if (!angular.equals(pageData.LastPosition, $scope.LastPosition))
-        {
-            COMMONUtils.ShowConfirmation(function(){
-                if(validationLastPosition()){
-                    setPresetLastPosition();
-                }
-            }, 'lang_set_question', 'sm');
-        }
-    };
+
     function setPresetLastPosition(){
+        showLoadingBar(true);
         var setData = {};
         setData.RememberLastPosition = $scope.LastPosition.RememberLastPosition; 
         setData.RememberLastPositionDuration = $scope.LastPosition.RememberLastPositionDuration;
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set', setData,
                 function (response)
                 {
-                    pageData.LastPosition = angular.copy($scope.LastPosition);
+                    //pageData.LastPosition = angular.copy($scope.LastPosition);
                 },
                 function (errorData)
                 {
                 }, '', true);
+    }
+    
+    function set()
+    {
+        if (!angular.equals(pageData.LastPosition, $scope.LastPosition))
+        {
+            COMMONUtils.ApplyConfirmation(function(){
+                var promises = [];
+                if (typeof mAttr.RememberLastPosition !== 'undefined'){
+                    if (!angular.equals(pageData.LastPosition, $scope.LastPosition)){
+                        if(validationLastPosition()){
+                            promises.push(setPresetLastPosition);
+                        } else {
+                            return;
+                        }
+                    }
+                }
+
+                if(promises.length > 0){
+                    $q.seqAll(promises).then(
+                            function(){
+                                view();
+                            },
+                            function(errorData){
+                                view();
+                                //alert(errorData);
+                            }
+                    );
+                }
+            });
+        }
     }
     
     $scope.presetSelected = function (preset)
@@ -335,6 +360,11 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
         return $scope.PTZPresetPage.currentPage;
     };
     
+var showLoadingBar = function(_val) {
+    $rootScope.$emit('changeLoadingBar', _val);
+};
+    
+$scope.submit = set;
 $scope.remove = remove;
 $scope.view = view;
 

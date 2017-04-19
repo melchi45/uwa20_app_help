@@ -622,7 +622,7 @@ kindFramework.controller('ipPortCtrl', function ($scope, $timeout, $uibModal, $t
 
         if(HTTPPort === HTTPSPort || HTTPPort === RTSPPort || RTSPPort === HTTPSPort)
         {
-            var ErrorMessage = 'lang_msg_errDuplicatedPort';
+            var ErrorMessage = 'lang_msg_portOverlap';
             COMMONUtils.ShowError(ErrorMessage,'lg');
             return false;
         }
