@@ -18,6 +18,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.FriendlyNameCharSetNoNewLineStr = mAttr.FriendlyNameCharSetNoNewLineStr;
     $scope.EventSource = "Storage";
     $scope.StorageInfo = {};
+
+
     
     
     /*
@@ -50,6 +52,93 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
     };
+
+    function getStorageTableData() {
+        $scope.infoTableData = [];
+        var Profiles,
+            profCnt = 0;
+        var getData = {};
+
+        return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData,
+            function (response) {
+                var aaa = [
+                    {
+                        "Channel": 0,
+                        "UsedSpace": "1488",
+                        "TotalSpace": "30420",
+                        "FileSystem": "VFAT",
+                        "Enable": true,
+                        "Status": "Active"
+                    },
+                    {
+                        "Channel": 1,
+                        "UsedSpace": "2152",
+                        "TotalSpace": "30420",
+                        "FileSystem": "VFAT",
+                        "Enable": false,
+                        "Status": "Normal"
+                    },
+                    {
+                        "Channel": 2,
+                        "UsedSpace": "571",
+                        "TotalSpace": "30420",
+                        "FileSystem": "VFAT",
+                        "Enable": false,
+                        "Status": "Active"
+                    },
+                    {
+                        "Channel": 3,
+                        "UsedSpace": "15000",
+                        "TotalSpace": "30420",
+                        "FileSystem": "VFAT",
+                        "Enable": false,
+                        "Status": ""
+                    }
+                ];
+
+                $.each(aaa,function(index, element) {
+
+                    var totalSpace = parseInt(element.TotalSpace);
+                    var usedSpace = totalSpace - parseInt(element.UsedSpace);
+                    var status = element.Status;
+
+                    element.Enable = element.Enable ? "On" : "Off";
+
+                    if (usedSpace < 1024) {
+                        element.UsedSpace = usedSpace + "MB"
+                    } else if (usedSpace >= 1024 && usedSpace < 1024*1024 ) {
+                        element.UsedSpace = (usedSpace/1024).toFixed(2) + "GB"
+                    } else if (usedSpace >= 1024*1024 && usedSpace < 1024*1024*1024) {
+                        element.UsedSpace = (usedSpace/(1024*1024)).toFixed(2) + "TB"
+                    }
+
+                    if (totalSpace < 1024) {
+                        element.TotalSpace = totalSpace + "MB"
+                    } else if (totalSpace >= 1024 && usedSpace < 1024*1024 ) {
+                        element.TotalSpace = (totalSpace/1024).toFixed(2) + "GB"
+                    } else if (totalSpace >= 1024*1024 && usedSpace < 1024*1024*1024) {
+                        element.TotalSpace = (totalSpace/(1024*1024)).toFixed(2) + "TB"
+                    }
+
+                    if (status === "") {
+                        element.Status = "None";
+                    } else if (status === "Normal") {
+                        element.Status = "Ready";
+                    } else if (status === "Active") {
+                        element.Status = "Recording";
+                    }
+
+                })
+
+                $scope.infoTableData = aaa;
+
+                console.log($scope.infoTableData);
+
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    }
 
     function getStorageSetup() {
         var getData = {
@@ -711,6 +800,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
     function view() {
         var promises = [];
+        promises.push(getStorageTableData);
         promises.push(changeVideoProfilePolicies);
         promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
@@ -1008,6 +1098,19 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                     }
                 });
         }
+    }, $scope);
+
+    $rootScope.$saveOn("channelSelector:showInfo", function(event, data){
+        $uibModal.open({
+            size: 'lg',
+            templateUrl: 'views/setup/event/modal/ModalStorageInfo.html',
+            controller: 'ModalInstanceStorageInfoCtrl',
+            resolve: {
+                infoTableData: function(){
+                    return $scope.infoTableData;
+                }
+            }
+        });
     }, $scope);
 
     (function wait() {
