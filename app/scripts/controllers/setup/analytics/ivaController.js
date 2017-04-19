@@ -1846,7 +1846,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             });
         },
         function() {
-
+            $scope.IntelligentVideoEnable = !$scope.IntelligentVideoEnable;
         });
     };
 
