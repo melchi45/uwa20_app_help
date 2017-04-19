@@ -19,6 +19,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     pageData.VA = [];
     $scope.VA = [];
     $scope.tVA = []; // for common object
+    $scope.orgDetectionType = [];
     $scope.presetTypeData = {};
     $scope.presetTypeData.PresetIndex = 0;
     $scope.presetTypeData.SelectedPreset = 0;
@@ -493,6 +494,11 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         if($scope.IVAPresetReady !== undefined && $scope.IVAPresetReady === true) {
             setInitialObjectSize();
             updateMDVARegion2($scope.activeTab);
+            if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "MotionDetection" || $scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "Off") {
+                $scope.IntelligentVideoEnable = false;
+            } else if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "MDAndIV" || $scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "IntelligentVideo"){
+                $scope.IntelligentVideoEnable = true;
+            }
         }
     };
 
@@ -514,6 +520,11 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         if($scope.IVAPresetReady !== undefined && $scope.IVAPresetReady === true) {
             setInitialObjectSize();
             updateMDVARegion2($scope.activeTab);
+            if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "MotionDetection" || $scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "Off") {
+                $scope.IntelligentVideoEnable = false;
+            } else if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "MDAndIV" || $scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "IntelligentVideo"){
+                $scope.IntelligentVideoEnable = true;
+            }
         }
     };
 
@@ -766,6 +777,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                             $scope.VA[index] = presetVA;
                             $scope.tVA[index] = presetVA;
 
+                            $scope.orgDetectionType[index] = $scope.VA[index].DetectionType;
+
                             var str = presetVA.ObjectSizeByDetectionTypes[1].MinimumObjectSizeInPixels.split(',');
                             $scope.tVA[index].MinWidth = Math.round(str[0]);
                             $scope.tVA[index].MinHeight = Math.round(str[1]);
@@ -988,9 +1001,9 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 }
             } else {
                 var url = '';
-                if($scope.orgDetectionType === "MDAndIV") {
+                if($scope.orgDetectionType[index] === "MDAndIV") {
                     url = $scope.va2CommonCmd + '&action=set&DetectionType=MotionDetection';
-                } else if($scope.orgDetectionType === "IntelligentVideo" || $scope.orgDetectionType === "Off") {
+                } else if($scope.orgDetectionType[index] === "IntelligentVideo" || $scope.orgDetectionType[index] === "Off") {
                     url = $scope.va2CommonCmd + '&action=set&DetectionType=Off';
                 }
 
@@ -1266,14 +1279,14 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             $scope.VA[0] = videoAnalysis;
             $scope.tVA[0] = videoAnalysis;
 
-            $scope.orgDetectionType = $scope.VA[0].DetectionType;
+            $scope.orgDetectionType[0] = $scope.VA[0].DetectionType;
             if (detectionType) {
                 $scope.VA[0].DetectionType = detectionType;
             } else {
-                if($scope.orgDetectionType === "MotionDetection" || $scope.orgDetectionType === "Off") {
+                if($scope.orgDetectionType[0] === "MotionDetection" || $scope.orgDetectionType[0] === "Off") {
                     // $scope.VA[0].DetectionType = "Off"
                     $scope.IntelligentVideoEnable = false;
-                } else if($scope.orgDetectionType === "MDAndIV" || $scope.orgDetectionType === "IntelligentVideo"){
+                } else if($scope.orgDetectionType[0] === "MDAndIV" || $scope.orgDetectionType[0] === "IntelligentVideo"){
                     // $scope.VA[0].DetectionType = orgDetectionType;
                     $scope.IntelligentVideoEnable = true;
                 }
@@ -1606,9 +1619,9 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             }
         } else {
             var url = '';
-            if($scope.orgDetectionType === "MDAndIV") {
+            if($scope.orgDetectionType[0] === "MDAndIV") {
                 url = $scope.va2CommonCmd + '&action=set&DetectionType=MotionDetection';
-            } else if($scope.orgDetectionType === "IntelligentVideo" || $scope.orgDetectionType === "Off") {
+            } else if($scope.orgDetectionType[0] === "IntelligentVideo" || $scope.orgDetectionType[0] === "Off") {
                 url = $scope.va2CommonCmd + '&action=set&DetectionType=Off';
             }
             var getData = {};
@@ -1754,7 +1767,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
     function getCurrentDetectionType(){
         var detectionType = null;
-        var pageDetectionType = pageData.VA[0].DetectionType;
+        var pageDetectionType = pageData.VA[$scope.presetTypeData.SelectedPreset].DetectionType;
 
         if($scope.IntelligentVideoEnable){
             if(pageDetectionType === "Off"){
@@ -1791,22 +1804,39 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         modalInstance.result.then(function() {
             var url = '';
             if($scope.IntelligentVideoEnable === true) {
-                if($scope.orgDetectionType === "MotionDetection") {
-                    url = $scope.va2CommonCmd + '&action=set&DetectionType=MDAndIV';
-                } else if($scope.orgDetectionType === "Off") {
-                    url = $scope.va2CommonCmd + '&action=set&DetectionType=IntelligentVideo';
+                if($scope.presetTypeData.SelectedPreset === 0) { // global type
+                    if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "MotionDetection") {
+                        url = $scope.va2CommonCmd + '&action=set&DetectionType=MDAndIV';
+                    } else if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "Off") {
+                        url = $scope.va2CommonCmd + '&action=set&DetectionType=IntelligentVideo';
+                    }
+                } else { // preset type
+                    if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "MotionDetection") {
+                        url =  '/stw-cgi/ptzconfig.cgi?msubmenu=presetvideoanalysis2&action=set&DetectionType=MDAndIV';
+                    } else if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "Off") {
+                        url =  '/stw-cgi/ptzconfig.cgi?msubmenu=presetvideoanalysis2&action=set&DetectionType=IntelligentVideo';
+                    }
                 }
             } else {
-                if($scope.orgDetectionType === "MDAndIV") {
-                    url = $scope.va2CommonCmd + '&action=set&DetectionType=MotionDetection';
-                } else if($scope.orgDetectionType === "IntelligentVideo" || $scope.orgDetectionType === "Off") {
-                    url = $scope.va2CommonCmd + '&action=set&DetectionType=Off';
+                if($scope.presetTypeData.SelectedPreset === 0) { // global type
+                    if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "MDAndIV") {
+                        url = $scope.va2CommonCmd + '&action=set&DetectionType=MotionDetection';
+                    } else if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "IntelligentVideo" || $scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "Off") {
+                        url = $scope.va2CommonCmd + '&action=set&DetectionType=Off';
+                    }
+                } else { // preset type
+                    if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "MDAndIV") {
+                        url = '/stw-cgi/ptzconfig.cgi?msubmenu=presetvideoanalysis2&action=set&DetectionType=MotionDetection';
+                    } else if($scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "IntelligentVideo" || $scope.orgDetectionType[$scope.presetTypeData.SelectedPreset] === "Off") {
+                        url = '/stw-cgi/ptzconfig.cgi?msubmenu=presetvideoanalysis2&action=set&DetectionType=Off';
+                    }
                 }
             }
-            var getData = {};
+            var setData = {};
             var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
-            getData.Channel = currentChannel;
-            SunapiClient.get(url, getData, function(response) {
+            setData.Channel = currentChannel;
+            setData.Preset = $scope.VA[$scope.presetTypeData.SelectedPreset].Preset;
+            SunapiClient.get(url, setData, function(response) {
                 // $scope.sketchinfo = {};
                 // $scope.currentTableData = null;
                 view();
@@ -1849,14 +1879,14 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     function set(isEnabledChanged) {
         var queue = [];
         var detectionType = getCurrentDetectionType();
-        var pageDetectionType = pageData.VA[0].DetectionType;
+        var pageDetectionType = pageData.VA[$scope.presetTypeData.SelectedPreset].DetectionType;
 
         sketchbookService.removeDrawingGeometry();
 
         if (validatePage()) {
             if (
                 !angular.equals(pageData.VA, $scope.VA) ||
-                !angular.equals(pageData.EventRule, $scope.EventRule) || (detectionType !== $scope.orgDetectionType)
+                !angular.equals(pageData.EventRule, $scope.EventRule) || (detectionType !== $scope.orgDetectionType[$scope.presetTypeData.SelectedPreset])
                 ) {
                 // !angular.equals(pageData.VA, $scope.VA) ||
                 // !angular.equals(pageData.EventRule, $scope.EventRule) ||
