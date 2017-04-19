@@ -283,9 +283,8 @@ kindFramework
                 }
             });
 
-            $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+            $rootScope.$saveOn('channelSelector:changedChannel', function(event, index){
                 scope.playerdata.media.requestInfo.cmd = 'close';
-
                 currentChannel = index;
                 $timeout(function(){
                     scope.playerdata = getPlayerData();
