@@ -256,7 +256,7 @@ kindFramework.controller('presetZoomCtrl', function ($scope, $location, $timeout
         var setData = {};
         setData.RememberLastPosition = $scope.LastPosition.RememberLastPosition; 
         setData.RememberLastPositionDuration = $scope.LastPosition.RememberLastPositionDuration;
-        SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set', setData,
+        return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set', setData,
                 function (response)
                 {
                     //pageData.LastPosition = angular.copy($scope.LastPosition);
