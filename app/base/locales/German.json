@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Zoom-Geschwindigkeit",
     "lang_initLens": "Init. Objektiv",
     "lang_tracking": "Nachverfolgen",
-    "lang_autoTrack": "Auto-Track",
     "lang_dayDisplay": "Tag",
     "lang_ptzPosition": "PTZ-Position",
     "lang_presetName": "Voreingestellter Name",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Hochladen",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Vorbeigehen",
     "lang_entering": "Betreten",
     "lang_exiting": "Verlassen",
-    "lang_appear_disappear": "Einblenden(Ausblenden)",
     "lang_entering_exiting": "Betreten\/Verlassen",
     "lang_appearing_disappearing": "Erscheinen (Verschwinden)",
     "lang_virtual_line_based": "Regeln für virt. Bereich",
@@ -860,8 +858,8 @@
     "lang_msg_install_error": "Fehler bei der installation",
     "lang_msg_uninstall_error": "Fehler bei der deinstallation",
     "lang_msg_uninstall_success": "Deinstalliert",
-    "lang_msg_start_error": "Fehler beim Starten der Anwendung.\t",
-    "lang_msg_stop_error": "Fehler beim stoppen der anwendung.\t",
+    "lang_msg_start_error": "Fehler beim Starten der Anwendung. ",
+    "lang_msg_stop_error": "Fehler beim stoppen der anwendung. ",
     "lang_msg_health_error": "Fehler bei der Gesundheitsstatus-Anzeige",
     "lang_health2": "Anwendung gesundheit",
     "lang_cpuUsage": "CPU-Nutzung",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

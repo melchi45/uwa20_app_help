@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Nagyítási sebesség",
     "lang_initLens": "Lencsék alapállapotba",
     "lang_tracking": "Követés",
-    "lang_autoTrack": "Automatikus követés",
     "lang_dayDisplay": "Nap",
     "lang_ptzPosition": "PTZ helyzet",
     "lang_presetName": "Előbeállított név",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Feltöltés",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -416,7 +415,7 @@
     "lang_eventActionSetup": "Esemény művelet beállítás",
     "lang_alarmOutput": "Riasztás kimenet",
     "lang_email": "E-mail",
-    "lang_gotoPreset": "vrijednost\tUgrás beállításra",
+    "lang_gotoPreset": "vrijednost Ugrás beállításra",
     "lang_sensitivity": "Érzékenység",
     "lang_minimumSize": "Minimum méret",
     "lang_maximumSize": "Maximum méret",
@@ -548,7 +547,6 @@
     "lang_passing": "Elhalad",
     "lang_entering": "Belép",
     "lang_exiting": "Kilépés",
-    "lang_appear_disappear": "Megjelenés(eltűnés)",
     "lang_entering_exiting": "Belép\/kilép",
     "lang_appearing_disappearing": "Megjelenés (eltűnés)",
     "lang_virtual_line_based": "Virtuális vonalon alapuló szabályok",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

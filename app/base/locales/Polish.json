@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Prędkość zoomu",
     "lang_initLens": "Obiektyw pocz.",
     "lang_tracking": "Śledzenie:",
-    "lang_autoTrack": "Śledzenie auto",
     "lang_dayDisplay": "Dzień",
     "lang_ptzPosition": "Pozycja PTZ ",
     "lang_presetName": "Nazwa presetu",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Wyślij",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Przech.",
     "lang_entering": "Wchodz",
     "lang_exiting": "Wychodzenie",
-    "lang_appear_disappear": "Pojawianie się(znikanie)",
     "lang_entering_exiting": "Wchodz\/Wych.",
     "lang_appearing_disappearing": "Pojawianie się (Znikanie)",
     "lang_virtual_line_based": "Zasady wirtualnej linii",
@@ -718,7 +716,7 @@
     "lang_v3Pass": "Hasło",
     "lang_enableTrap": "Włącz SNMP Trap",
     "lang_community": "Społeczność",
-    "lang_authfail": "Błąd uwierzytelnienia\t",
+    "lang_authfail": "Błąd uwierzytelnienia  ",
     "lang_linkup": "Połączenie sieciowe",
     "lang_alarmInput": "Wejście alarmu",
     "lang_msg_invalid_pw": "Nieprawidłowe hasło.",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Zoom fart",
     "lang_initLens": "Init. Linse",
     "lang_tracking": "Sporing",
-    "lang_autoTrack": "Auto-sporing",
     "lang_dayDisplay": "Dag",
     "lang_ptzPosition": "PTZ posisjon",
     "lang_presetName": "Forhåndsinnstilt navn",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Upload",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Passerer",
     "lang_entering": "Går inn",
     "lang_exiting": "Går ut",
-    "lang_appear_disappear": "Dukker opp(forsvinner)",
     "lang_entering_exiting": "Går inn\/går ut",
     "lang_appearing_disappearing": "Dukker opp (forsvinner)",
     "lang_virtual_line_based": "Regler basert på virtuelle linjer",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

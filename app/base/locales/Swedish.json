@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Zoomhastighet",
     "lang_initLens": "Init. lins",
     "lang_tracking": "Sökning",
-    "lang_autoTrack": "Autospårning",
     "lang_dayDisplay": "Dag",
     "lang_ptzPosition": "PTZ-position",
     "lang_presetName": "Förinställningsnamn",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Ladda upp",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -425,7 +424,7 @@
     "lang_detectionArea": "Rörelselarmområde",
     "lang_detection_resullang_overlay": "Detekteringsresultat överlagt",
     "lang_area_configuration": "Områdeskonfiguration",
-    "lang_msg_checkthetable": "För att ange aktiveringstiden ska du välja minst en cell i tabellen.\t",
+    "lang_msg_checkthetable": "För att ange aktiveringstiden ska du välja minst en cell i tabellen. ",
     "lang_SmsConfiguration": "SMS-konfiguration",
     "lang_SmsUserID": "användar-ID för ppurio-plats",
     "lang_SmsPassword": "lösenord för ppurio-plats",
@@ -548,7 +547,6 @@
     "lang_passing": "Passering",
     "lang_entering": "Ingång",
     "lang_exiting": "Lämnar",
-    "lang_appear_disappear": "Syns(försvinner)",
     "lang_entering_exiting": "Ingång\/utgång",
     "lang_appearing_disappearing": "Syns (försvinner)",
     "lang_virtual_line_based": "Regler för virtuella linjer",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

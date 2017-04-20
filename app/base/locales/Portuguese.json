@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Velocidade de zoom",
     "lang_initLens": "Iniciar lente",
     "lang_tracking": "Rastrear",
-    "lang_autoTrack": "Rastrear automaticamente",
     "lang_dayDisplay": "Dia",
     "lang_ptzPosition": "Posição PTZ",
     "lang_presetName": "Nome predefinido",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Carregar",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Passando",
     "lang_entering": "Entrando",
     "lang_exiting": "Saindo",
-    "lang_appear_disappear": "Aparecendo(desaparecendo)",
     "lang_entering_exiting": "Entrando\/Saindo",
     "lang_appearing_disappearing": "Aparecimento (Desaparecimento)",
     "lang_virtual_line_based": "Regras baseadas em linha virtual",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Rychlost přiblížení",
     "lang_initLens": "Výchozí objektiv",
     "lang_tracking": "Sledování",
-    "lang_autoTrack": "Automatické sledování",
     "lang_dayDisplay": "Den",
     "lang_ptzPosition": "Pozice PTZ",
     "lang_presetName": "Název předvolby",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Nahrát",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Průchod",
     "lang_entering": "Vstup",
     "lang_exiting": "Odchod",
-    "lang_appear_disappear": "Objevení se(Zmizení)",
     "lang_entering_exiting": "Vstup\/odchod",
     "lang_appearing_disappearing": "Objevení se (Zmizení)",
     "lang_virtual_line_based": "Pravidla založená na virtuální linii",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }
