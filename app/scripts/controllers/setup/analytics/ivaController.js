@@ -2264,13 +2264,17 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     },true);
 
     function setCommonMenuDisabled() {
-        $("#common").attr('disabled', true);
-        $("#common .slider-fields").css("pointer-events", "none");
+        $("#iva-setup-tab-size button").attr('disabled', true);
+        $("#iva-setup-tab-sensitivity .slider-fields")
+            .css("pointer-events", "none")
+            .addClass("cm-opacity");
     }
 
     function setCommonMenuAbled() {
-        $("#common").attr('disabled', false);
-        $("#common .slider-fields").css("pointer-events", "auto");
+        $("#iva-setup-tab-size button").attr('disabled', false);
+        $("#iva-setup-tab-sensitivity .slider-fields")
+            .css("pointer-events", "auto")
+            .removeClass("cm-opacity");
     }
 
     function updateMDVARegion2(tabVal, changeOnlyTableData) { // According to tabVal, set $scope.tableData

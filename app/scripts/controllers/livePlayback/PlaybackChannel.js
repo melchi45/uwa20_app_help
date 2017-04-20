@@ -424,6 +424,7 @@ kindFramework
       var playData = new PlayDataModel();
       UniversialManagerService.setChannelId(index);
       playData.setStatus(PLAY_CMD.STOP);
+      $scope.timelineController.clear();
       PlaybackInterface.preparePlayback(index);
     }, $scope);
 
