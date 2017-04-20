@@ -375,7 +375,7 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
 
     $scope.OnOpenSDKAppUninstall = function (AppID) {
 
-        var conf_message = $translate.instant('lang_uninstall') + ":" + AppID + "<br><br>" + $translate.instant('lang_msg_ok');
+        var conf_message = $translate.instant('lang_msg_ok');
         
         ShowModalDialog("OpenSDKAppUninstallConfirm",conf_message,AppID);
     };
