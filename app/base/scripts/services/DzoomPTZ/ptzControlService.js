@@ -244,7 +244,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
             }
         }
 
-        function savePTZAreaZoomList(){
+        function savePTZAreaZoomList(callback){
             execSunapi("/stw-cgi/ptzcontrol.cgi?msubmenu=query&action=view&Channel=0&Query=Pan,Tilt,Zoom", function(getData){
                 if(ptzAreaZoomCurrent !== ptzAreaZoomList.length - 1){
                     ptzAreaZoomList = ptzAreaZoomList.splice(0, ptzAreaZoomCurrent + 1);
@@ -261,9 +261,10 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
 
                 ptzAreaZoomCurrent = ptzAreaZoomList.length - 1;
 
-                setPTZAreaZoom("end");
-                ptzAreaZoomStart =  false;
-                blnSavePTZCoordinate = false;
+                if(callback)
+                {
+                    callback();
+                }
             });
         }
 
@@ -394,6 +395,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
             }
         }
 
+        var PTZStatusMutex = true;
         $rootScope.$saveOn('PTZMoveStatus', function(event, obj) {
             switch(obj.type) {
                 case "MoveStatus:PanTilt":
@@ -431,21 +433,41 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
             }
             if( PTStatus === "IDLE" && ZStatus === "IDLE")
             {
-                if(ptzAreaZoomStart)
+                //PTZZStatusMutex is used for calling savePTZAreaZoomList double time.
+                //PTStatus :: MOVING
+                //ZStatus :: IDEL
+                //PTStatus :: IDEL  -- savePTZAreaZoomList called.
+                //ZStatus :: IDEL -- savePTZAreaZoomList called.
+                if(PTZStatusMutex)
                 {
-                    if(blnSavePTZCoordinate)
+                    PTZStatusMutex = false;
+                    if(ptzAreaZoomStart)
                     {
-                        //Manual AreaZoom, 1X action need to save coordinate
-                        savePTZAreaZoomList();
+                        if(blnSavePTZCoordinate)
+                        {
+                            //Manual AreaZoom, 1X action need to save coordinate
+                            savePTZAreaZoomList(function(){
+                                setPTZAreaZoom("end");
+                                ptzAreaZoomStart =  false;
+                                blnSavePTZCoordinate = false;
+                                PTZStatusMutex = true;
+                            });
+                        }
+                        else
+                        {
+                            //Prev, Next Action don't need to save coordinate
+                            //AreaZoom 모드이면서 일반 PTZ 동작 중일때
+                            setPTZAreaZoom("end");
+                            ptzAreaZoomStart =  false;
+                            PTZStatusMutex = true;
+                        }
                     }
                     else
                     {
-                        //Prev, Next Action don't need to save coordinate
-                        //AreaZoom 모드이면서 일반 PTZ 동작 중일때
-                        setPTZAreaZoom("end");
-                        ptzAreaZoomStart =  false;
+                        PTZStatusMutex = true;
                     }
                 }
+
             }
         });
 
