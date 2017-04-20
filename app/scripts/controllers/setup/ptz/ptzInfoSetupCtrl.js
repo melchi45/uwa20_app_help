@@ -240,7 +240,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         var encodeddata = encodeURI(jsonString);
 
         showLoadingBar(true);
-        SunapiClient.post('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', {},
+        return SunapiClient.post('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', {},
                 function (response)
                 {
                     //view();
@@ -309,7 +309,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         var setData = {};
         setData.RememberLastPosition = $scope.LastPosition.RememberLastPosition; 
         setData.RememberLastPositionDuration = $scope.LastPosition.RememberLastPositionDuration;
-        SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set', setData,
+        return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set', setData,
                 function (response)
                 {
                     //pageData.LastPosition = angular.copy($scope.LastPosition);

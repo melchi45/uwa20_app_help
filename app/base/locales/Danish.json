@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Zoomhastighed",
     "lang_initLens": "Init. linse",
     "lang_tracking": "Sporing",
-    "lang_autoTrack": "Spor automatisk",
     "lang_dayDisplay": "Dag",
     "lang_ptzPosition": "PTZ-position",
     "lang_presetName": "Forudindstillet navn",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Upload",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Pass.",
     "lang_entering": "Går ind",
     "lang_exiting": "Udgående",
-    "lang_appear_disappear": "Vises(skjules)",
     "lang_entering_exiting": "Går ind\/går ud",
     "lang_appearing_disappearing": "Vises (skjules)",
     "lang_virtual_line_based": "Regler baseret på virtuel linje",
@@ -751,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Fratid' skal være forskellig fra 'Tiltid'.",
     "lang_msg_From_To_Late": "'Fratid' skal være senere end 'Tiltid'.",
     "lang_msg_no_result": "Intet resutat fundet",
-    "lang_msg_search_range": "Søgeområde bør være mindre end 31 dage.",
+    "lang_msg_search_range": "Søgeområde bør være mindre end %1 dage.",
     "lang_msg_XMLdataError": "Søg efter datafejl",
     "lang_msg_sdWait": "Vent, mens den optagede video downloades ",
     "lang_msg_timebackupDateError": "Vælg dato, der findes optagede data fra.",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

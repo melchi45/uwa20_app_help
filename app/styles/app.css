@@ -609,11 +609,13 @@ live-playback common {
   padding: 0;
   margin-top: 16px;
   border-radius: 100%;
-}
-#cm-icon-list .cm-alarm-button:focus {
-  background-color: #fff;
-  border: 1px solid #a5a5a5;
-  color: #4c4c4c;
+  /*
+            &:focus {
+                background-color: #fff;
+                border: 1px solid #a5a5a5;
+                color: #4c4c4c;
+            }
+            */
 }
 #cm-icon-list .cm-alarm-button:hover {
   background-color: #4c4c4c;
@@ -652,14 +654,12 @@ live-playback common {
   width: 100px;
   font-size: 14px;
 }
-.cm-str-button:hover,
-.cm-str-button:focus {
+.cm-str-button:hover {
   background-color: #d2d2d2;
   color: #4c4c4c;
   border: 1px solid #a5a5a5;
 }
-.cm-str-button:hover *,
-.cm-str-button:focus * {
+.cm-str-button:hover * {
   background-color: #d2d2d2;
   color: #4c4c4c;
 }
@@ -695,8 +695,7 @@ live-playback common {
   color: #f37321;
   border: 1px solid #f8ab7a;
 }
-.cm-submit-button:hover,
-.cm-submit-button:focus {
+.cm-submit-button:hover {
   background-color: #f37321;
   border: 1px solid #f37321;
   color: #fff;
@@ -951,9 +950,7 @@ live-playback common {
   color: #fff;
 }
 #cm-bottom-menu.cm-full-menu .cm-str-button:hover,
-#cm-bottom-menu.cm-full-menu .cm-str-button:focus,
-#cm-bottom-menu.cm-full-menu .cm-str-button:hover *,
-#cm-bottom-menu.cm-full-menu .cm-str-button:focus * {
+#cm-bottom-menu.cm-full-menu .cm-str-button:hover * {
   background-color: #d2d2d2;
   color: #000;
 }
@@ -980,8 +977,7 @@ live-playback common {
   color: #f37321;
   border: 1px solid #c25c1a;
 }
-#cm-bottom-menu.cm-full-menu .cm-submit-button:hover,
-#cm-bottom-menu.cm-full-menu .cm-submit-button:focus {
+#cm-bottom-menu.cm-full-menu .cm-submit-button:hover {
   background-color: #f37321;
   border: 1px solid #f37321;
   color: #fff;
@@ -1053,11 +1049,13 @@ live-playback common {
 }
 #cm-bottom-menu.cm-full-menu #cm-icon-list .cm-alarm-button {
   border: 1px solid #a5a5a5;
-}
-#cm-bottom-menu.cm-full-menu #cm-icon-list .cm-alarm-button:focus {
-  background-color: #262626;
-  border: 1px solid #797979;
-  color: #fff;
+  /*
+            &:focus {
+                background-color: #262626;
+                border: 1px solid #797979;
+                color: #fff;
+            }
+            */
 }
 #cm-bottom-menu.cm-full-menu #cm-icon-list .cm-alarm-button:hover {
   background-color: #d2d2d2;

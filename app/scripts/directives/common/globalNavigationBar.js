@@ -405,7 +405,8 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                         ZoomOptionsDefined: (cameraAttributes.SimpleZoomOptions !== undefined),
                         PTZMode: (cameraAttributes.RS485Support && cameraAttributes.isDigitalPTZ && (cameraAttributes.MaxPreset >0)),
                         FisheyeLens: cameraAttributes.FisheyeLens,
-                        Focus: (cameraAttributes.PTZModel === true || cameraAttributes.ZoomOnlyModel === true)
+                        Focus: (cameraAttributes.PTZModel === true || cameraAttributes.ZoomOnlyModel === true),
+                        Zoom: (cameraAttributes.ZoomOnlyModel === true)
                     };
                 }catch(e){
                     console.error(e);

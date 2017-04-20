@@ -31,6 +31,7 @@ kindFramework
             var currentUnit = '30';
             var prevChannel = 0;
             var currentScheduleType = null;
+            var tPageLoaded = false;
 
             // eventObjs = setEventSources();
 
@@ -45,6 +46,11 @@ kindFramework
                 if(initializing) {
                     initializing = false;
                     prevEventObjs = angular.copy(eventObjs);
+                }
+                if(initialMerging) {
+                    eventRuleService.setInitialScheduleData({menu: activeMenu, type:currentScheduleType, data:ScheduleIds});
+                } else {
+                    eventRuleService.setScheduleData({menu: activeMenu, type:currentScheduleType, data:ScheduleIds});
                 }
                 // console.info('end of setEventSources ===================== ');
             }
@@ -1294,6 +1300,8 @@ kindFramework
 
             function initCalendar(data) {
                 if(typeof data != 'undefined') {
+                    $('#calendar').fullCalendar('destroy');
+                    initialRendered = false;
                     alreadyCreated = true;
                     EventRule = data;
                     ScheduleIds = EventRule.ScheduleIds;
@@ -1328,8 +1336,11 @@ kindFramework
                 if(newVal === 'Always') {
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
-                    initCalendar(scope.EventRule);
                     setVisibility(newVal);
+                    if(tPageLoaded) {
+                        initCalendar(scope.EventRule);
+                        tPageLoaded = false;
+                    }
                 }
             }, true);
 
@@ -1343,8 +1354,11 @@ kindFramework
                     if(newVal === 'Always') {
                         setVisibility(newVal);
                     } else if(newVal === 'Scheduled') {
-                        initCalendar(scope.RecordSchedule);
                         setVisibility(newVal);
+                        if(tPageLoaded) {
+                            initCalendar(scope.RecordSchedule);
+                            tPageLoaded = false;
+                        }
                     }
                 }
             }, true);
@@ -1357,8 +1371,11 @@ kindFramework
                 if(newVal === 'Always') {
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
-                    initCalendar(scope.EventRules[0]);
                     setVisibility(newVal);
+                    if(tPageLoaded) {
+                        initCalendar(scope.EventRules[0]);
+                        tPageLoaded = false;
+                    }
                 }
             }, true);
             //---------------------------------------------------------
@@ -1372,7 +1389,7 @@ kindFramework
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
                     if(!alreadyCreated) {
-                        $('#calendar').fullCalendar('destroy');
+                        // $('#calendar').fullCalendar('destroy');
                         initCalendar(scope.EventRules[scope.AlarmData.SelectedAlarm]);
                         setVisibility(newVal);
                     }
@@ -1392,8 +1409,8 @@ kindFramework
                         setVisibility(data);
                     } else if(data === 'Scheduled') {
                         if(!alreadyCreated || prevChannel !== currentChannel) {
-                            $('#calendar').fullCalendar('destroy');
-                            initialRendered = false;
+                            // $('#calendar').fullCalendar('destroy');
+                            // initialRendered = false;
                             initCalendar(scope.EventRules[0]);
                             setVisibility(data);
                         }
@@ -1403,8 +1420,8 @@ kindFramework
                         setVisibility(data);
                     } else if(data === 'Scheduled') {
                         if(!alreadyCreated || prevChannel !== currentChannel) {
-                            $('#calendar').fullCalendar('destroy');
-                            initialRendered = false;
+                            // $('#calendar').fullCalendar('destroy');
+                            // initialRendered = false;
                             initCalendar(scope.EventRule);
                             setVisibility(data);
                         }
@@ -1424,8 +1441,8 @@ kindFramework
                         setVisibility(data);
                     } else if(data === 'Scheduled') {
                         if(!alreadyCreated || prevChannel !== currentChannel) {
-                            $('#calendar').fullCalendar('destroy');
-                            initialRendered = false;
+                            // $('#calendar').fullCalendar('destroy');
+                            // initialRendered = false;
                             initCalendar(scope.RecordSchedule);
                             setVisibility(data);
                         }
@@ -1436,12 +1453,13 @@ kindFramework
 
             //---------------------------------------------------------
 
-            scope.$watch('pageLoaded', function(newVal, oldVal){
+            scope.$watch('pageLoaded', function(newVal, oldVal){ // called once when page loaded at first
                 if(typeof newVal === "undefined"){
                     return;
                 }
                 if(newVal === true) {
                     $timeout(function(){
+                        tPageLoaded = true;
                         $('#calendar').fullCalendar('render');
                     });
                 }

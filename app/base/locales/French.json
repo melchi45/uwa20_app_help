@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Vitesse du zoom",
     "lang_initLens": "Lentille Init.",
     "lang_tracking": "Suivi",
-    "lang_autoTrack": "Suivi automatique",
     "lang_dayDisplay": "Jour",
     "lang_ptzPosition": "Position PTZ",
     "lang_presetName": "Prérégler nom",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Upload",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Passage",
     "lang_entering": "Entrée",
     "lang_exiting": "Sortie",
-    "lang_appear_disappear": "Apparition(Disparition)",
     "lang_entering_exiting": "Entrée\/Sortie",
     "lang_appearing_disappearing": "Apparition (Disparition)",
     "lang_virtual_line_based": "Règl basées ligne virt",
@@ -751,7 +749,7 @@
     "lang_msg_From_To_Diff": "« De heure » doit être diff de « Vers heure ».",
     "lang_msg_From_To_Late": "« Vers heure » doit être diff de « De heure ».",
     "lang_msg_no_result": "Aucun résultat de rech.",
-    "lang_msg_search_range": "Gamme de Recherche doit être inférieure à 31 jours.",
+    "lang_msg_search_range": "Gamme de Recherche doit être inférieure à %1 jours.",
     "lang_msg_XMLdataError": "Rechercher des erreurs de données",
     "lang_msg_sdWait": "Veuillez patienter pendant le téléchargement de la vidéo.",
     "lang_msg_timebackupDateError": "Sélectionnez une date comportant des données.",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

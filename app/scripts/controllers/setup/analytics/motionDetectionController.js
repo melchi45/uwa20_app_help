@@ -2386,27 +2386,39 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         });
     }
 
+    function changePresetType(newVal, oldVal){
+        if(newVal === 'Global'){
+            gotoPreset('Stop', $scope.presetData.oldPreset);
+        }else{
+            gotoPreset('Start', $scope.presetData.preset);
+        }
+    }
+
     $scope.$watch('presetData.type',function(newVal, oldVal){
         if(oldVal === null){
             $scope.presetData.oldType = newVal;
         }else{
             $scope.presetData.oldType = oldVal;
 
-            if(validatePage()){
-                $rootScope.$emit('changeLoadingBar', true);
-                sketchbookService.removeDrawingGeometry();
-                saveSettings().finally(
-                    function(){
-                        if(newVal === 'Global'){
-                            gotoPreset('Stop', $scope.presetData.oldPreset);
-                        }else{
-                            gotoPreset('Start', $scope.presetData.preset);
+            if($scope.MotionDetection.MotionDetectionEnable === true){
+                if(validatePage()){
+                    $rootScope.$emit('changeLoadingBar', true);
+                    sketchbookService.removeDrawingGeometry();
+                    saveSettings().finally(
+                        function(){
+                            changePresetType(newVal, oldVal);
                         }
-                    }
-                );
+                    );
+                }
+            }else{
+                changePresetType(newVal, oldVal);
             }
         }
     });
+
+    function changePreset(newVal, oldVal){
+        gotoPreset('Start', newVal, true, oldVal);
+    }
 
     $scope.$watch('presetData.preset',function(newVal, oldVal){
         if(oldVal === null){
@@ -2415,14 +2427,18 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             $scope.presetData.oldType = 'Preset';
             $scope.presetData.oldPreset = oldVal;
 
-            if(validatePage()){
-                $rootScope.$emit('changeLoadingBar', true);
-                sketchbookService.removeDrawingGeometry();
-                saveSettings().finally(
-                    function(){
-                        gotoPreset('Start', newVal, true, oldVal);
-                    }
-                );
+            if($scope.MotionDetection.MotionDetectionEnable === true){
+                if(validatePage()){
+                    $rootScope.$emit('changeLoadingBar', true);
+                    sketchbookService.removeDrawingGeometry();
+                    saveSettings().finally(
+                        function(){
+                            changePreset(newVal, oldVal);
+                        }
+                    );
+                }
+            }else{
+                changePreset(newVal, oldVal);
             }
         }
     });
