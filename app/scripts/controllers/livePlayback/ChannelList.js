@@ -21,28 +21,42 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
             plugin = true;
         }
 
-        var section = $('#channellist-containner');
-        for (var i = 0; i < sunapiAttributes.MaxChannel; i++ ) {
-            var figure = document.createElement('figure');
-            var div = document.createElement('div');
-            $(div).addClass('channellist-video-wrapper ratio-16-9');
-            if (plugin === false) {
-                var videoElement = document.createElement(videoMode);
-                $(videoElement).attr('id', "live" + videoMode + i);
-                $(videoElement).attr('kind-channel-id', i);
-                $(section).append($(figure).append($(div).append(videoElement)));
-            } else {
-                var object = '';
-                if(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) {
-                    object = '<object classid="clsid:FC4C00B9-5A98-461C-88E8-B24B528DDBF5" width="100%" height="100%" name="channel'+i+'" id="channel'+i+'"></object>';
+      SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', '',
+        function (response) {
+            UniversialManagerService.setRotate();
+            var section = $('#channellist-containner');
+            for (var i = 0; i < sunapiAttributes.MaxChannel; i++ ) {
+                var figure = document.createElement('figure');
+                var div = document.createElement('div');
+                if (response.data.Flip[i].Rotate === "0" || response.data.Flip[i].Rotate === "180") {
+                    $(div).addClass('channellist-video-wrapper ratio-4-3');
                 } else {
-                    object = '<object type="application/HTWisenetViewer-plugin" width="100%" height="100%" name="channel'+i+'" id="channel'+i+'"></object>';
+                    $(div).addClass('channellist-video-wrapper ratio-3-4');
                 }
-                div.innerHTML = object;
-                $(section).append($(figure).append($(div)));
+                if (plugin === false) {
+                    var videoElement = document.createElement(videoMode);
+                    $(videoElement).attr('id', "live" + videoMode + i);
+                    $(videoElement).attr('kind-channel-id', i);
+                    $(section).append($(figure).append($(div).append(videoElement)));
+                } else {
+                    var object = '';
+                    if(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) {
+                        object = '<object classid="clsid:FC4C00B9-5A98-461C-88E8-B24B528DDBF5" width="100%" height="100%" name="channel'+i+'" id="channel'+i+'"></object>';
+                    } else {
+                        object = '<object type="application/HTWisenetViewer-plugin" width="100%" height="100%" name="channel'+i+'" id="channel'+i+'"></object>';
+                    }
+                    div.innerHTML = object;
+                    $(section).append($(figure).append($(div)));
+                }
             }
-        }
-        startVideoStreaming();
+            startVideoStreaming();
+            setTimeout(changeCanvas);
+        },
+          function (errorData) {
+          console.log(errorData);
+      }, '', true);
+
+
     });
     
     $scope.$on("$destroy", function(){
@@ -217,6 +231,4 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout,  $rootSco
             _PluginJSONEvent(ch, evId, sdata);
         }, 0)
     }
-
-    setTimeout(changeCanvas);
 });
