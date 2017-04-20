@@ -18,7 +18,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     var pageData = {};
     pageData.VA = [];
     $scope.VA = [];
-    $scope.tVA = []; // for common object
     $scope.orgDetectionType = [];
     $scope.presetTypeData = {};
     $scope.presetTypeData.PresetIndex = 0;
@@ -775,16 +774,15 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                             }
 
                             $scope.VA[index] = presetVA;
-                            $scope.tVA[index] = presetVA;
 
                             $scope.orgDetectionType[index] = $scope.VA[index].DetectionType;
 
                             var str = presetVA.ObjectSizeByDetectionTypes[1].MinimumObjectSizeInPixels.split(',');
-                            $scope.tVA[index].MinWidth = Math.round(str[0]);
-                            $scope.tVA[index].MinHeight = Math.round(str[1]);
+                            $scope.VA[index].MinWidth = Math.round(str[0]);
+                            $scope.VA[index].MinHeight = Math.round(str[1]);
                             var str = presetVA.ObjectSizeByDetectionTypes[1].MaximumObjectSizeInPixels.split(',');
-                            $scope.tVA[index].MaxWidth = Math.round(str[0]);
-                            $scope.tVA[index].MaxHeight = Math.round(str[1]);
+                            $scope.VA[index].MaxWidth = Math.round(str[0]);
+                            $scope.VA[index].MaxHeight = Math.round(str[1]);
                             $scope.VA[index].MinWidthMin = $scope.EventSourceOption.MinimumObjectSizeInPixels.Width; // eventsourceoption is undefined !
                             $scope.VA[index].MinWidthMax = $scope.VA[index].MaxWidth;
                             $scope.VA[index].MinHeightMin = $scope.EventSourceOption.MinimumObjectSizeInPixels.Height;
@@ -878,22 +876,10 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                     isSetted++;
                 }
                 if ((pageData.VA[index].MinWidth !== $scope.VA[index].MinWidth) || (pageData.VA[index].MinHeight !== $scope.VA[index].MinHeight)) {
-                    if($scope.VA[index].MinWidth !== $scope.minWidthLimit) {
-                        $scope.VA[index].MinWidth -= 1;
-                    }
-                    if($scope.VA[index].MinHeight !== $scope.minWidthLimit) {
-                        $scope.VA[index].MinHeight -= 1;
-                    }
                     setData['DetectionType.IntelligentVideo.MinimumObjectSizeInPixels'] = $scope.VA[index].MinWidth + ',' + $scope.VA[index].MinHeight;
                     isSetted++;
                 }
                 if ((pageData.VA[index].MaxWidth !== $scope.VA[index].MaxWidth) || (pageData.VA[index].MaxHeight !== $scope.VA[index].MaxHeight)) {
-                    if($scope.VA[index].MaxWidth !== $scope.minWidthLimit) {
-                        $scope.VA[index].MaxWidth -= 1;
-                    }
-                    if($scope.VA[index].MaxHeight !== $scope.minWidthLimit) {
-                        $scope.VA[index].MaxHeight -= 1;
-                    }
                     setData['DetectionType.IntelligentVideo.MaximumObjectSizeInPixels'] = $scope.VA[index].MaxWidth + ',' + $scope.VA[index].MaxHeight;
                     isSetted++;
                 }
@@ -1277,7 +1263,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             }
 
             $scope.VA[0] = videoAnalysis;
-            $scope.tVA[0] = videoAnalysis;
 
             $scope.orgDetectionType[0] = $scope.VA[0].DetectionType;
             if (detectionType) {
@@ -1292,11 +1277,11 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 }
             }
             var str = response.data.VideoAnalysis[0].ObjectSizeByDetectionTypes[1].MinimumObjectSizeInPixels.split(',');
-            $scope.tVA[0].MinWidth = Math.round(str[0]);
-            $scope.tVA[0].MinHeight = Math.round(str[1]);
+            $scope.VA[0].MinWidth = Math.round(str[0]);
+            $scope.VA[0].MinHeight = Math.round(str[1]);
             var str = response.data.VideoAnalysis[0].ObjectSizeByDetectionTypes[1].MaximumObjectSizeInPixels.split(',');
-            $scope.tVA[0].MaxWidth = Math.round(str[0]);
-            $scope.tVA[0].MaxHeight = Math.round(str[1]);
+            $scope.VA[0].MaxWidth = Math.round(str[0]);
+            $scope.VA[0].MaxHeight = Math.round(str[1]);
             $scope.VA[0].MinWidthMin = $scope.EventSourceOption.MinimumObjectSizeInPixels.Width; // eventsourceoption is undefined !
             $scope.VA[0].MinWidthMax = $scope.VA[0].MaxWidth;
             $scope.VA[0].MinHeightMin = $scope.EventSourceOption.MinimumObjectSizeInPixels.Height;
@@ -1330,8 +1315,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     function setInitialObjectSize() {
         $scope.minHeightLimit = Math.ceil(mAttr.MaxROICoordinateY * 0.022);
         $scope.minWidthLimit = $scope.minHeightLimit;
-        $scope.maxWidthLimit = Math.ceil(mAttr.MaxROICoordinateX) + 1;
-        $scope.maxHeightLimit = Math.ceil(mAttr.MaxROICoordinateY) + 1;
+        $scope.maxWidthLimit = Math.ceil(mAttr.MaxROICoordinateX);
+        $scope.maxHeightLimit = Math.ceil(mAttr.MaxROICoordinateY);
 
         if($scope.rotate !== 'undefined') {
             if($scope.rotate !== '0') {
@@ -1342,26 +1327,18 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             }
         }
 
-        if($scope.tVA[$scope.presetTypeData.SelectedPreset].MinWidth !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth = $scope.tVA[$scope.presetTypeData.SelectedPreset].MinWidth + 1;
-        } else {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth = $scope.tVA[$scope.presetTypeData.SelectedPreset].MinWidth;
-        }
-        if($scope.tVA[$scope.presetTypeData.SelectedPreset].MinHeight !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight = $scope.tVA[$scope.presetTypeData.SelectedPreset].MinHeight + 1;
-        } else {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight = $scope.tVA[$scope.presetTypeData.SelectedPreset].MinHeight;
-        }
-        if($scope.tVA[$scope.presetTypeData.SelectedPreset].MaxWidth !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth = $scope.tVA[$scope.presetTypeData.SelectedPreset].MaxWidth + 1;
-        } else {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth = $scope.tVA[$scope.presetTypeData.SelectedPreset].MaxWidth;
-        }
-        if($scope.tVA[$scope.presetTypeData.SelectedPreset].MaxHeight !== $scope.minWidthLimit) {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight = $scope.tVA[$scope.presetTypeData.SelectedPreset].MaxHeight + 1;
-        } else {
-            $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight = $scope.tVA[$scope.presetTypeData.SelectedPreset].MaxHeight;
-        }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth += 1;
+        // }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MinHeight += 1;
+        // }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth += 1;
+        // }
+        // if($scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight !== $scope.minWidthLimit) {
+        //     $scope.VA[$scope.presetTypeData.SelectedPreset].MaxHeight += 1;
+        // }
 
         if($scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth < $scope.minWidthLimit) {
             $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth = $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidthMin;
@@ -1468,7 +1445,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         var isSetted = 0;
         var detectionType = getCurrentDetectionType();
         var pageDetectionType = pageData.VA[0].DetectionType;
-        var objectSize = {};
 
         if (pageData.VA[0].DetectionResultOverlay !== $scope.VA[0].DetectionResultOverlay) {
             setData.DetectionResultOverlay = $scope.VA[0].DetectionResultOverlay;
@@ -1491,31 +1467,11 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 isSetted++;
             }
             if ((pageData.VA[0].MinWidth !== $scope.VA[0].MinWidth) || (pageData.VA[0].MinHeight !== $scope.VA[0].MinHeight)) {
-                if($scope.VA[0].MinWidth !== $scope.minWidthLimit) {
-                    objectSize.MinWidth = $scope.VA[0].MinWidth - 1;
-                } else {
-                    objectSize.MinWidth = $scope.VA[0].MinWidth;
-                }
-                if($scope.VA[0].MinHeight !== $scope.minWidthLimit) {
-                    objectSize.MinHeight = $scope.VA[0].MinHeight - 1;
-                } else {
-                    objectSize.MinHeight = $scope.VA[0].MinHeight;
-                }
-                setData['DetectionType.IntelligentVideo.MinimumObjectSizeInPixels'] = objectSize.MinWidth + ',' + objectSize.MinHeight;
+                setData['DetectionType.IntelligentVideo.MinimumObjectSizeInPixels'] = $scope.VA[0].MinWidth + ',' + $scope.VA[0].MinHeight;
                 isSetted++;
             }
             if ((pageData.VA[0].MaxWidth !== $scope.VA[0].MaxWidth) || (pageData.VA[0].MaxHeight !== $scope.VA[0].MaxHeight)) {
-                if($scope.VA[0].MaxWidth !== $scope.minWidthLimit) {
-                    objectSize.MaxWidth = $scope.VA[0].MaxWidth - 1;
-                } else {
-                    objectSize.MaxWidth = $scope.VA[0].MaxWidth;
-                }
-                if($scope.VA[0].MaxHeight !== $scope.minWidthLimit) {
-                    objectSize.MaxHeight = $scope.VA[0].MaxHeight - 1;
-                } else {
-                    objectSize.MaxHeight = $scope.VA[0].MaxHeight;
-                }
-                setData['DetectionType.IntelligentVideo.MaximumObjectSizeInPixels'] = objectSize.MaxWidth + ',' + objectSize.MaxHeight;
+                setData['DetectionType.IntelligentVideo.MaximumObjectSizeInPixels'] = $scope.VA[0].MaxWidth + ',' + $scope.VA[0].MaxHeight;
                 isSetted++;
             }
             //Passing
