@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "開始時間と終了時間は一致しないよう設定してください。",
     "lang_msg_From_To_Late": "開始時間は終了時間の以降に設定してください。",
     "lang_msg_no_result": "検索結果がありません。",
-    "lang_msg_search_range": "検索範囲は、31日未満にする必要があります。",
+    "lang_msg_search_range": "検索範囲は、%1日未満にする必要があります。",
     "lang_msg_XMLdataError": "検索データエラー",
     "lang_msg_sdWait": "少々お待ちください。録画したビデオをダウンロードしています。",
     "lang_msg_timebackupDateError": "録画データが存在する日付を選択してください。",

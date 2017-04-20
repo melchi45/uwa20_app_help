@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Vreme od' mora se razlikovati od vredn. 'Vreme do'.",
     "lang_msg_From_To_Late": "'Vreme do' mora se razlikovati od vredn.'Vreme od'.",
     "lang_msg_no_result": "Nema rezultata pretrage.",
-    "lang_msg_search_range": "Тражи опсег треба да буде мањи од 31 дана.",
+    "lang_msg_search_range": "Тражи опсег треба да буде мањи од %1 дана.",
     "lang_msg_XMLdataError": "Greška prilikom pretraživanja podataka",
     "lang_msg_sdWait": "Molimo sačekajte da se snimljeni video zapis preuzme.",
     "lang_msg_timebackupDateError": "Izaberite datum za koji postoje snimljeni podaci.",

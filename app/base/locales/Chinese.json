@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'起始时间'与'结束时间'应不同。",
     "lang_msg_From_To_Late": "'结束时间'应比'起始时间'晚。",
     "lang_msg_no_result": "找不到搜索结果。",
-    "lang_msg_search_range": "搜寻范围应超过31天以内。",
+    "lang_msg_search_range": "搜寻范围应超过%1天以内。",
     "lang_msg_XMLdataError": "搜索数据错误",
     "lang_msg_sdWait": "正在下载录制的视频，请等待",
     "lang_msg_timebackupDateError": "请选择存在已录制数据的日期。",

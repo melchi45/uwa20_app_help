@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "A kezdési idő legyen eltérő a befejezési időtől.",
     "lang_msg_From_To_Late": "A befejezési idő legyen később mint a kezdési idő.",
     "lang_msg_no_result": "Nincs keresési eredmény.",
-    "lang_msg_search_range": "Keresés a tartományban kell lennie legalább 31 nap.",
+    "lang_msg_search_range": "Keresés a tartományban kell lennie legalább %1 nap.",
     "lang_msg_XMLdataError": "Adathiba keresése",
     "lang_msg_sdWait": "Várja meg, amíg a rögzített videó letöltődik.",
     "lang_msg_timebackupDateError": "Válassza ki a rögzített adatok dátumát.",

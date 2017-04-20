@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "Vrijednost 'Od vremena' mora biti različita od vrijednosti 'Do vremena'.",
     "lang_msg_From_To_Late": "Vrijednost 'Do vremena' mora biti veća od vrijednosti 'Od vremena'.",
     "lang_msg_no_result": "Nema rezul.pretraživanja.",
-    "lang_msg_search_range": "Traži raspon bi trebao biti manji od 31 dana.",
+    "lang_msg_search_range": "Traži raspon bi trebao biti manji od %1 dana.",
     "lang_msg_XMLdataError": "Greška u pretraživanju podataka",
     "lang_msg_sdWait": "Pričekajte da se snimljeni videozapis preuzme.",
     "lang_msg_timebackupDateError": "Odaberite datum na koji postoje zabilježeni podaci.",

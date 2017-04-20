@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "„Čas od“ se musí lišit od „Času do“.",
     "lang_msg_From_To_Late": "„Čas do“ se musí lišit od „Času od“.",
     "lang_msg_no_result": "Hledání je bez výsledku.",
-    "lang_msg_search_range": "Hledat rozsah by měl být méně než 31 dnů.",
+    "lang_msg_search_range": "Hledat rozsah by měl být méně než %1 dnů.",
     "lang_msg_XMLdataError": "Chyba při hledání dat",
     "lang_msg_sdWait": "Prosím počkejte na stažení nahraného videa. ",
     "lang_msg_timebackupDateError": "Vyberte datum, pro které existují zaznamenaná data",

@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Oră începere' trebuie să difere faţă de 'Oră terminare'.",
     "lang_msg_From_To_Late": "'Oră terminare' trebuie să fie după 'Oră începere'.",
     "lang_msg_no_result": "Nu s-au găsit rezultate pentru căutare.",
-    "lang_msg_search_range": "gama de căutare ar trebui să fie mai mică de 31 de zile.",
+    "lang_msg_search_range": "gama de căutare ar trebui să fie mai mică de %1 de zile.",
     "lang_msg_XMLdataError": "Eroare date căutare",
     "lang_msg_sdWait": "Aşteptaţi descărcarea clipului înregistrat. ",
     "lang_msg_timebackupDateError": "Selectaţi data la care există înreggistrări.",

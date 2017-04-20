@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Fratid' skal være forskellig fra 'Tiltid'.",
     "lang_msg_From_To_Late": "'Fratid' skal være senere end 'Tiltid'.",
     "lang_msg_no_result": "Intet resutat fundet",
-    "lang_msg_search_range": "Søgeområde bør være mindre end 31 dage.",
+    "lang_msg_search_range": "Søgeområde bør være mindre end %1 dage.",
     "lang_msg_XMLdataError": "Søg efter datafejl",
     "lang_msg_sdWait": "Vent, mens den optagede video downloades ",
     "lang_msg_timebackupDateError": "Vælg dato, der findes optagede data fra.",

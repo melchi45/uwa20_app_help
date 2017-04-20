@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Başlangıç Saati', 'Bitiş Saati'nden farklı olmalıdır.",
     "lang_msg_From_To_Late": "'Bitiş Saati', 'Başlangıç Saati'nden sonraki bir saat olmalıdır.",
     "lang_msg_no_result": "Arama sonucu yok.",
-    "lang_msg_search_range": "Arama aralığı 31 gün daha az olmalıdır.",
+    "lang_msg_search_range": "Arama aralığı %1 gün daha az olmalıdır.",
     "lang_msg_XMLdataError": "Arama verisi hatası",
     "lang_msg_sdWait": "Lütfen kaydedilen video indirilirken bekleyin.",
     "lang_msg_timebackupDateError": "Lütfen kaydedilmiş verilerin bulunduğu tarihi seçin.",

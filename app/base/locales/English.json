@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "Please set the start time and end time as different times.",
     "lang_msg_From_To_Late": "Set with the end time larger than the start time.",
     "lang_msg_no_result": "Your search has returned no results.",
-    "lang_msg_search_range": "Search range should be less than 31 days.",
+    "lang_msg_search_range": "Search range should be less than %1 days.",
     "lang_msg_XMLdataError": "XML parse error!",
     "lang_msg_sdWait": "Please wait for while recorded video is downloading.",
     "lang_msg_timebackupDateError": "There is no recorded video for the date selected. Please select a date for which there is recorded video.",

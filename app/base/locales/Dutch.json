@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Begintijd' moet afwijken van 'Eindtijd'.",
     "lang_msg_From_To_Late": "'Eindtijd' moet na 'Begintijd' volgen.",
     "lang_msg_no_result": "Geen zoekresultaat gevonden.",
-    "lang_msg_search_range": "Zoekbereik moet minder dan 31 dagen.",
+    "lang_msg_search_range": "Zoekbereik moet minder dan %1 dagen.",
     "lang_msg_XMLdataError": "Fout in zoekdata",
     "lang_msg_sdWait": "Een ogenblik geduld. De opgenomen video wordt gedownload.",
     "lang_msg_timebackupDateError": "Selecteer een datum waarop opnamegegevens bestaan.",

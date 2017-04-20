@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Fra-tid' må være forskjellig fra 'Til-tid'.",
     "lang_msg_From_To_Late": "'Fra-tid' må være forskjellig fra 'Til-tid'.",
     "lang_msg_no_result": "Ingen søkeresultater funnet.",
-    "lang_msg_search_range": "Søkeområdet må være mindre enn 31 dager.",
+    "lang_msg_search_range": "Søkeområdet må være mindre enn %1 dager.",
     "lang_msg_XMLdataError": "Feil i søkedata",
     "lang_msg_sdWait": "Vent mens videoopptaket lastes ned. ",
     "lang_msg_timebackupDateError": "Velg dato som det finnes opptak for.",

@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "„Od” powinno się różnić od „Do”.",
     "lang_msg_From_To_Late": "„Do” powinno być późniejsze niż „Od”.",
     "lang_msg_no_result": "Brak wyników wyszuk.",
-    "lang_msg_search_range": "Szukaj zakres powinien być krótszy niż 31 dni.",
+    "lang_msg_search_range": "Szukaj zakres powinien być krótszy niż %1 dni.",
     "lang_msg_XMLdataError": "Błąd wyszukiwania.",
     "lang_msg_sdWait": "Czekaj, aż nagrane wideo zostanie pobrane.",
     "lang_msg_timebackupDateError": "Wybierz datę nagranych danych.",

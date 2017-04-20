@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "« De heure » doit être diff de « Vers heure ».",
     "lang_msg_From_To_Late": "« Vers heure » doit être diff de « De heure ».",
     "lang_msg_no_result": "Aucun résultat de rech.",
-    "lang_msg_search_range": "Gamme de Recherche doit être inférieure à 31 jours.",
+    "lang_msg_search_range": "Gamme de Recherche doit être inférieure à %1 jours.",
     "lang_msg_XMLdataError": "Rechercher des erreurs de données",
     "lang_msg_sdWait": "Veuillez patienter pendant le téléchargement de la vidéo.",
     "lang_msg_timebackupDateError": "Sélectionnez une date comportant des données.",

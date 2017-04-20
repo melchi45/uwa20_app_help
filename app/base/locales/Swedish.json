@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Från tid' får inte vara samma som 'Till tid'.",
     "lang_msg_From_To_Late": "'Från tid' måste vara senare än 'Till tid'.",
     "lang_msg_no_result": "Inga resultat hittades.",
-    "lang_msg_search_range": "Sök intervall bör vara mindre än 31 dagar.",
+    "lang_msg_search_range": "Sök intervall bör vara mindre än %1 dagar.",
     "lang_msg_XMLdataError": "Sök datafel",
     "lang_msg_sdWait": "Vänta medan den inspelade videon hämtas.",
     "lang_msg_timebackupDateError": "Välj det datum där det finns lagrade data.",

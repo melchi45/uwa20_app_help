@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'From Time' unterscheidet sich von 'To Time'.",
     "lang_msg_From_To_Late": "'To Time' sollte später als 'From Time'.",
     "lang_msg_no_result": "K.Suchresultate gefund.",
-    "lang_msg_search_range": "Suchbereich sollte weniger als 31 Tagen.",
+    "lang_msg_search_range": "Suchbereich sollte weniger als %1 Tagen.",
     "lang_msg_XMLdataError": "Suchdatenfehler",
     "lang_msg_sdWait": "Bitte warten, bis das Video heruntergeladen ist.",
     "lang_msg_timebackupDateError": "Bitte das Datum wählen, für das Aufnahmedaten vorliegen.",

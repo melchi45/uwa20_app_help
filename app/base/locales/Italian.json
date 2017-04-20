@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Da ora' deve essere diverso da 'A ora'.",
     "lang_msg_From_To_Late": "'A ora' deve essere successivo a 'Da ora'.",
     "lang_msg_no_result": "Nessun risultato ricerca trovato.",
-    "lang_msg_search_range": "Periodo di ricerca deve essere inferiore a 31 giorni.",
+    "lang_msg_search_range": "Periodo di ricerca deve essere inferiore a %1 giorni.",
     "lang_msg_XMLdataError": "Errore ricerca dati",
     "lang_msg_sdWait": "Attendere lo scaricamento del file",
     "lang_msg_timebackupDateError": "Selezionare la data in cui esistono dei dati registrati.",

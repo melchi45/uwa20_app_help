@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "La 'hora de inicio' debe ser diferente de la 'hora de fin'.",
     "lang_msg_From_To_Late": "La 'hora de fin' debe ser posterior a la 'hora de inicio'.",
     "lang_msg_no_result": "No hay resultados de búsqueda.",
-    "lang_msg_search_range": "El rango de la búsqueda debe ser inferior a 31 días.",
+    "lang_msg_search_range": "El rango de la búsqueda debe ser inferior a %1 días.",
     "lang_msg_XMLdataError": "Búsqueda de errores de datos",
     "lang_msg_sdWait": "Espere mientras se descarga el video grabado.",
     "lang_msg_timebackupDateError": "Seleccione la fecha en la que existen datos grabados.",

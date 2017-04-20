@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Lähdeajan' on erottava 'kohdeajasta'.",
     "lang_msg_From_To_Late": "'Kohdeajan' on oltava myöhemmin kuin 'lähdeaika'.",
     "lang_msg_no_result": "Ei hakutuloksia.",
-    "lang_msg_search_range": "Hakuvälin tulee olla alle 31 päivää.",
+    "lang_msg_search_range": "Hakuvälin tulee olla alle %1 päivää.",
     "lang_msg_XMLdataError": "Virhe hakutiedoissa",
     "lang_msg_sdWait": "Odota, tallennettua videota ladataan. ",
     "lang_msg_timebackupDateError": "Valitse päivämäärä, jossa tallennettu tieto on.",

@@ -749,7 +749,7 @@
     "lang_msg_From_To_Diff": "시작 시간과 종료 시간을 다르게 설정하십시오.",
     "lang_msg_From_To_Late": "종료 시간은 시작 시간보다 크게 설정하십시오.",
     "lang_msg_no_result": "검색 결과가 없습니다.",
-    "lang_msg_search_range": "검색 날짜는 31일 이내로 설정해야 합니다.",
+    "lang_msg_search_range": "검색 날짜는 %1일 이내로 설정해야 합니다.",
     "lang_msg_XMLdataError": "검색 데이터 오류",
     "lang_msg_sdWait": "영상 녹화 자료를 다운로드하는 동안 잠시 기다려 주십시오.",
     "lang_msg_timebackupDateError": "선택한 날짜에는 저장 영상이 없습니다. 저장 영상이 있는 날짜를 선택하십시오.",
