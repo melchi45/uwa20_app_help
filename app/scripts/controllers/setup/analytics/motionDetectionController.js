@@ -13,6 +13,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     pageData.MotionDetection = {};
     pageData.rois = {};
     pageData.MotionDetectionEnable = {};
+    pageData.Handover = [{"HandoverList":[]}];
 
     var defaultSensitivity = 80;
     var defaultThreshold = 50;
@@ -72,21 +73,46 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         oldPreset: null
     };
     
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){        
-        if(validatePage()){
-            COMMONUtils
-                .confirmChangeingChannel()
-                .then(function(){
-                    $rootScope.$emit('changeLoadingBar', true);
-                    saveSettings().then(function(){
-                        changeChannel(index);
-                    });
-                }, function(){
-                    console.log("canceled");
-                });    
-        }else{
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        var changeVA = angular.equals(pageData.VA, $scope.VA);
+        // 멀티디렉셔널 Handover 미지원
+        // var changeHandover = angular.equals(pageData.Handover, $scope.Handover);
+
+        var scopeRois = [];
+        for(var i = 0; i < $scope.selectInclude.length; i++){
+            var self = $scope.selectInclude[i];
+            if('Coordinates' in self){
+                delete self.isEnable;
+                scopeRois.push(self);
+            }
+        }
+        for(var i = 0; i < $scope.selectExclude.length; i++){
+            var self = $scope.selectExclude[i];
+            if('Coordinates' in self){
+                delete self.isEnable;
+                scopeRois.push(self);
+            }
+        }
+        var changeRois = angular.equals(pageData.rois, scopeRois);
+        
+        // 멀티디렉셔널 Handover 미지원
+        //  && changeHandover
+        if(changeVA && changeRois){
             $rootScope.$emit('changeLoadingBar', true);
             changeChannel(index);
+        }else{
+            if(validatePage()){
+                COMMONUtils
+                    .confirmChangeingChannel()
+                    .then(function(){
+                        $rootScope.$emit('changeLoadingBar', true);
+                        saveSettings().then(function(){
+                            changeChannel(index);
+                        });
+                    }, function(){
+                        console.log("canceled");
+                    });    
+            }
         }
     }, $scope);
 
@@ -686,6 +712,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 resetTabData();
             }
 
+            pageData.rois = [];
+
             $scope.Handover = [{"HandoverList":[]}];
 
             $scope.coordinates = null;
@@ -865,11 +893,13 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function setMotionDetectionRules(rois){
-       var updatedROIData = [];
+        var updatedROIData = [];
+        $scope.resetVariable();
 
-       if(prevMotionDetectionEnable === "Off" || prevMotionDetectionEnable === "IntelligentVideo"){
+        if(prevMotionDetectionEnable === "Off" || prevMotionDetectionEnable === "IntelligentVideo"){
             return;
-       }
+        }
+
         if(rois !== undefined ){
             updatedROIData = updateROIData(rois);
             $scope.changeSelectedIncludeIndex(updatedROIData[0]);
@@ -1511,12 +1541,11 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     }
 
                     var cmd = $scope.va2CommonCmd + '&action=set';
-                    // console.info($scope.presetData.oldType);
                     if($scope.PTZModel && $scope.presetData.oldType === 'Preset'){
                         setData.Preset = $scope.presetData.oldPreset;
                         cmd = $scope.presetCmd + '&action=set';
                     }
-                    // console.info(cmd);
+                    
                     SunapiClient.get(cmd, setData,
                         function (response){
                             deferred.resolve();
@@ -2361,8 +2390,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         if(oldVal === null){
             $scope.presetData.oldType = newVal;
         }else{
-            // console.info(456);
-            // console.info(newVal, oldVal);
             $scope.presetData.oldType = oldVal;
 
             if(validatePage()){
@@ -2385,7 +2412,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         if(oldVal === null){
             $scope.presetData.oldPreset = newVal;
         }else{
-            // console.info(123);
             $scope.presetData.oldType = 'Preset';
             $scope.presetData.oldPreset = oldVal;
 
