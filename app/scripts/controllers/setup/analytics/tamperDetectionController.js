@@ -189,6 +189,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                             }
                         }
                     }
+
                     monitoringTimer = $timeout(update,300); //300 msec
                 }
             });
@@ -225,7 +226,9 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     {       
         var newTamperLevel = {};
 
-        var getData = {};
+        var getData = {
+            Channel: $scope.channelSelectionSection.getCurrentChannel()
+        };
 
         getData.MaxSamples = maxSample;
         getData.EventSourceType = 'TamperingDetection';
@@ -237,7 +240,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         return SunapiClient.get(sunapiURL, getData,
                 function (response)
                 {
-
+                    console.info(response);
 
                     newTamperLevel = angular.copy(response.data.TamperingDetection[0].Samples);
                     if (func !== undefined) {

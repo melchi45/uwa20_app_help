@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Brzina zumiranja",
     "lang_initLens": "Inic. objektiva",
     "lang_tracking": "Praćenje",
-    "lang_autoTrack": "Automatsko praćenje",
     "lang_dayDisplay": "Dan",
     "lang_ptzPosition": "PTZ položaj",
     "lang_presetName": "Zadani naziv",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Upload",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Prolazak",
     "lang_entering": "Ulazak",
     "lang_exiting": "Izlazak",
-    "lang_appear_disappear": "Pojavljivanje(nestajanje)",
     "lang_entering_exiting": "Ulazak\/izlazak",
     "lang_appearing_disappearing": "Pojavljivanje (nestajanje)",
     "lang_virtual_line_based": "Pravila na temelju virtualne linije",
@@ -751,7 +749,7 @@
     "lang_msg_From_To_Diff": "Vrijednost 'Od vremena' mora biti različita od vrijednosti 'Do vremena'.",
     "lang_msg_From_To_Late": "Vrijednost 'Do vremena' mora biti veća od vrijednosti 'Od vremena'.",
     "lang_msg_no_result": "Nema rezul.pretraživanja.",
-    "lang_msg_search_range": "Traži raspon bi trebao biti manji od 31 dana.",
+    "lang_msg_search_range": "Traži raspon bi trebao biti manji od %1 dana.",
     "lang_msg_XMLdataError": "Greška u pretraživanju podataka",
     "lang_msg_sdWait": "Pričekajte da se snimljeni videozapis preuzme.",
     "lang_msg_timebackupDateError": "Odaberite datum na koji postoje zabilježeni podaci.",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

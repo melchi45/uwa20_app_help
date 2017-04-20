@@ -1040,6 +1040,7 @@ kindFramework
       channelId = index;
       UniversialManagerService.setChannelId(channelId);
       setProfileInfo();
+      kindStreamInterface.setTagType(null);
       if($scope.channelSetFunctions['show'] === true && $scope.channelSetFunctions['status'] === true){
         $rootScope.$emit('liveIconList:setProfileAccessInfo', true);
       }

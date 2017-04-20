@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Zoom hızı",
     "lang_initLens": "Lens başlat",
     "lang_tracking": "İzleme",
-    "lang_autoTrack": "Otomatik İzleme",
     "lang_dayDisplay": "Gün",
     "lang_ptzPosition": "PTZ konumu",
     "lang_presetName": "Önceden ayarlanmış ad",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Yükle",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Geçiş",
     "lang_entering": "Giriş",
     "lang_exiting": "Çıkış",
-    "lang_appear_disappear": "Görünme(Kaybolma)",
     "lang_entering_exiting": "Giriş\/Çıkış",
     "lang_appearing_disappearing": "Görünme (Kaybolma)",
     "lang_virtual_line_based": "Sanal hat tabanlı kurallar",
@@ -751,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Başlangıç Saati', 'Bitiş Saati'nden farklı olmalıdır.",
     "lang_msg_From_To_Late": "'Bitiş Saati', 'Başlangıç Saati'nden sonraki bir saat olmalıdır.",
     "lang_msg_no_result": "Arama sonucu yok.",
-    "lang_msg_search_range": "Arama aralığı 31 gün daha az olmalıdır.",
+    "lang_msg_search_range": "Arama aralığı %1 gün daha az olmalıdır.",
     "lang_msg_XMLdataError": "Arama verisi hatası",
     "lang_msg_sdWait": "Lütfen kaydedilen video indirilirken bekleyin.",
     "lang_msg_timebackupDateError": "Lütfen kaydedilmiş verilerin bulunduğu tarihi seçin.",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

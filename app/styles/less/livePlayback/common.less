@@ -625,11 +625,13 @@ live-playback common {
             margin-top: 16px;
             border-radius: 100%;
 
+            /*
             &:focus {
                 background-color: #fff;
                 border: 1px solid #a5a5a5;
                 color: #4c4c4c;
             }
+            */
 
             &:hover {
                 background-color: #4c4c4c;
@@ -681,14 +683,12 @@ live-playback common {
         color: #4c4c4c;
     }
 
-    &:hover, 
-    &:focus, {
+    &:hover {
         .hover-and-focus();
         border: 1px solid #a5a5a5;
     }
 
-    &:hover *,
-    &:focus * {
+    &:hover * {
         .hover-and-focus();
     }
 
@@ -729,8 +729,7 @@ live-playback common {
     color: #f37321;
     border: 1px solid #f8ab7a;
 
-    &:hover,
-    &:focus {
+    &:hover {
         background-color: #f37321;
         border: 1px solid #f37321;
         color: #fff;
@@ -1031,9 +1030,7 @@ live-playback common {
         color: #fff;
 
         &:hover,
-        &:focus,
-        &:hover *,
-        &:focus * {
+        &:hover * {
             background-color: #d2d2d2;
             color: #000;
         }
@@ -1065,7 +1062,7 @@ live-playback common {
         color: #f37321;
         border: 1px solid #c25c1a;
 
-        &:hover, &:focus {
+        &:hover {
             background-color: #f37321;
             border: 1px solid #f37321;
             color: #fff;
@@ -1175,11 +1172,13 @@ live-playback common {
         .cm-alarm-button {
             border: 1px solid #a5a5a5;
                 
+            /*
             &:focus {
                 background-color: #262626;
                 border: 1px solid #797979;
                 color: #fff;
             }
+            */
 
             &:hover {
                 background-color: #d2d2d2;

@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Zoomausnopeus",
     "lang_initLens": "Objektiivin alustus",
     "lang_tracking": "Seuranta",
-    "lang_autoTrack": "Automaattinen seuranta",
     "lang_dayDisplay": "Päivä",
     "lang_ptzPosition": "PTZ-asento",
     "lang_presetName": "Esiasetuksen nimi",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Upload",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Ohitus",
     "lang_entering": "Syöttö",
     "lang_exiting": "Poistuminen",
-    "lang_appear_disappear": "Ilmestyy(katoaa)",
     "lang_entering_exiting": "Syöttö\/Poistuminen",
     "lang_appearing_disappearing": "Ilmestyy (katoaa)",
     "lang_virtual_line_based": "Virtuaaliseen riviin perustuvat säännöt",
@@ -751,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Lähdeajan' on erottava 'kohdeajasta'.",
     "lang_msg_From_To_Late": "'Kohdeajan' on oltava myöhemmin kuin 'lähdeaika'.",
     "lang_msg_no_result": "Ei hakutuloksia.",
-    "lang_msg_search_range": "Hakuvälin tulee olla alle 31 päivää.",
+    "lang_msg_search_range": "Hakuvälin tulee olla alle %1 päivää.",
     "lang_msg_XMLdataError": "Virhe hakutiedoissa",
     "lang_msg_sdWait": "Odota, tallennettua videota ladataan. ",
     "lang_msg_timebackupDateError": "Valitse päivämäärä, jossa tallennettu tieto on.",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }
