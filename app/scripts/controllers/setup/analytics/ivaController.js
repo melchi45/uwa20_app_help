@@ -1835,7 +1835,9 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             var setData = {};
             var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
             setData.Channel = currentChannel;
-            setData.Preset = $scope.VA[$scope.presetTypeData.SelectedPreset].Preset;
+            if($scope.presetTypeData.SelectedPreset > 0) {
+                setData.Preset = $scope.VA[$scope.presetTypeData.SelectedPreset].Preset;
+            }
             SunapiClient.get(url, setData, function(response) {
                 // $scope.sketchinfo = {};
                 // $scope.currentTableData = null;
