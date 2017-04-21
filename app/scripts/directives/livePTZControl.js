@@ -1,9 +1,9 @@
 "use strict";
 kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerService', 
 	'SunapiClient', '$timeout', 'DigitalPTZContorlService', 'ModalManagerService', '$translate',
-	'$interval','Attributes', 'COMMONUtils', 'PTZContorlService', '$rootScope',
+	'$interval','Attributes', 'COMMONUtils', 'PTZContorlService', '$rootScope', 'BrowserService',
 	function(CAMERA_STATUS, UniversialManagerService, SunapiClient, $timeout, DigitalPTZContorlService,
-		ModalManagerService, $translate, $interval, Attributes, COMMONUtils, PTZContorlService, $rootScope) {
+		ModalManagerService, $translate, $interval, Attributes, COMMONUtils, PTZContorlService, $rootScope, BrowserService) {
 		return {
 			restrict: 'E',
 			scope: false,
@@ -471,6 +471,13 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 						isDrag = true;
 						isMove = false;
 						var offset = $(this).position();
+
+						if(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE)
+						{
+							offset.left += 1;
+							offset.top -= 1;
+						}
+
 						var xPos = (offset.left);
 						var yPos = (offset.top);
 						xPos *= PAN_RATIO;
