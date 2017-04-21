@@ -6817,7 +6817,17 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if (($scope.ImagePresetModeOptions !== undefined && !angular.equals(pageData.ImagePreset, $scope.ImagePreset))
             || !angular.equals(pageData.VideoSources, $scope.VideoSources)
             || (mAttr.CompensationModeOptions !== undefined && !angular.equals(pageData.Camera, $scope.Camera))
-            || ($scope.HeaterSupport && $scope.PTZModel !== true && !angular.equals(pageData.HeaterSchedules, $scope.HeaterSchedules))) {
+            || ($scope.HeaterSupport && $scope.PTZModel !== true && !angular.equals(pageData.HeaterSchedules, $scope.HeaterSchedules))
+            || !angular.equals(pageData.SSDR, $scope.SSDR)
+            || !angular.equals(pageData.WhiteBalance, $scope.WhiteBalance)
+            || !angular.equals(pageData.ImageEnhancements, $scope.ImageEnhancements)
+            || !angular.equals(pageData.Flip, $scope.Flip)
+            || !angular.equals(pageData.TitleOSD, $scope.TitleOSD)
+            || !angular.equals(pageData.DateOSD, $scope.DateOSD)
+            || !angular.equals(pageData.OSDFontSize, $scope.OSD.FontSize)
+            || !angular.equals(pageData.OSDColor, $scope.OSD.Color)
+            // || !angular.equals(pageData.IRled, $scope.IRled)
+            || !angular.equals(pageData.OSDTransparency, $scope.OSD.Transparency)) {
             var modalInstance = $uibModal.open({
                 templateUrl: 'views/setup/common/confirmMessage.html',
                 controller: 'confirmMessageCtrl',
