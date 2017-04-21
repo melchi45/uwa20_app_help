@@ -1,4 +1,4 @@
-kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $rootScope)
+kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $rootScope, UniversialManagerService)
 {
     "use strict";
 
@@ -25,19 +25,6 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
     $scope.MaxDate = COMMONUtils.getFormatedInteger($scope.CurrentDate.getFullYear(), 4).toString() + "-" + COMMONUtils.getFormatedInteger($scope.CurrentDate.getMonth() + 1, 2).toString() + "-" + COMMONUtils.getFormatedInteger($scope.CurrentDate.getDate(), 2).toString();
 
     $scope.isMultiChannel = false;
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     $scope.today = function ()
     {
@@ -169,7 +156,7 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
 
     function getEventLog(dateReq)
     {
-        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+        var currentChannel = UniversialManagerService.getChannelId();
         // $scope.ChannelEvents = [];
         $scope.AlarmEvents = [];
         $scope.EventLog = [];
@@ -635,7 +622,7 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
 
     $scope.onEvtLogChange = function (Option)
     {
-        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+        var currentChannel = UniversialManagerService.getChannelId();
         $scope.EL = [];
         $scope.currentEventLogPage = 1;
         if (Option === 'All')
@@ -684,7 +671,7 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
         $rootScope.$emit('changeLoadingBar', true);
         $rootScope.$emit("channelSelector:changeChannel", data);
-        $scope.channelSelectionSection.setCurrentChannel(data);
+        UniversialManagerService.setChannelId(data);
         $timeout(function() {
             view(true);
         });

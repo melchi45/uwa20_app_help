@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, sketchbookService, $translate, $uibModal, eventRuleService) {
+kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, sketchbookService, $translate, $uibModal, eventRuleService, UniversialManagerService) {
 "use strict";
 
     var mAttr = Attributes.get();
@@ -54,19 +54,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     $scope.EventSource = 'MotionDetection';
     $scope.EventRule = {};
 
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
-
     $scope.presetData = {
         type: null,
         oldType: null,
@@ -94,7 +81,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }
 
@@ -786,7 +773,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function getMotionDetectionData(successCallback, isPreset){
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         var cmd = (isPreset? $scope.presetCmd : $scope.va2CommonCmd) + '&action=view';
 
@@ -954,7 +941,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function showVideo(){
 
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
                 function (response) {
@@ -1030,7 +1017,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         var newMotionLevel = {};
 
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         getData.MaxSamples = maxSample;
@@ -1106,7 +1093,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function setOnlyEnable(){
         var deferred = $q.defer();
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         var cmd = $scope.va2CommonCmd + '&action=view';
@@ -1116,7 +1103,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 var detectionType = response.data.VideoAnalysis[0].DetectionType;
                 
                 var setData = {
-                    Channel: $scope.channelSelectionSection.getCurrentChannel()
+                    Channel: UniversialManagerService.getChannelId()
                 };
                 if($scope.MotionDetection.MotionDetectionEnable === true){
                     if(detectionType === "Off" || detectionType === "MotionDetection"){
@@ -1263,7 +1250,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function sunapiQueueRequest(queue, callback){
         var currentItem = queue.shift();
-        currentItem.reqData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        currentItem.reqData.Channel = UniversialManagerService.getChannelId();
         SunapiClient.get(
             currentItem.url, 
             currentItem.reqData, 
@@ -1400,7 +1387,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             SunapiClient.get(cmd,            
             //SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=remove', 
                 {
-                    Channel: $scope.channelSelectionSection.getCurrentChannel(),
+                    Channel: UniversialManagerService.getChannelId(),
                     ROIIndex: removedROIIndex.join(',')
                 },
                 function (response){
@@ -1506,7 +1493,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
         setOnlyEnable().finally(function(){
             var setData = {
-                Channel: $scope.channelSelectionSection.getCurrentChannel()
+                Channel: UniversialManagerService.getChannelId()
             };
 
             var unmodifiedROIIndex = getUnmodifiedROIIndex();
@@ -1678,7 +1665,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     var getHandoverList = function(successCallback){
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=view', getData,
                 function (response){
@@ -1733,7 +1720,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     var getPresetHandoverList = function()
     {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         getData.PresetIndex = "All";
         
@@ -1843,7 +1830,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         // if ($scope.Handover[index].HandoverList[handoverlistIndex] !== undefined)
         // {
         var setData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         try{
             setData.ROIIndex = $scope.Handover[index].HandoverList[handoverlistIndex].ROIIndex;   
@@ -1944,7 +1931,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
         if (typeof index == 'undefined') index = 0;
         var setData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         //var areaIndex = roiIndex - 1;
@@ -1987,7 +1974,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function removeUserFromHandover(roiIndex, userIndexArray, index)
     {
         var setData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         setData.ROIIndex = roiIndex;

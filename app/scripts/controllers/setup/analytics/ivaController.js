@@ -1,4 +1,4 @@
-kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $rootScope, $q, eventRuleService, $location) {
+kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $rootScope, $q, eventRuleService, $location, UniversialManagerService) {
     "use strict";
     /*jshint sub:true*/
     COMMONUtils.getResponsiveObjects($scope);
@@ -133,19 +133,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     $scope.EventRule = {};
 
     $scope.isMultiChannel = false;
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     var LINE_MODE = {
         RIGHT: 'Right',
@@ -848,7 +835,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             var index = i + 1;
             var setData = {};
             var removeData = {};
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
             setData.Preset = $scope.VA[index].Preset;
             var isRemoved = 0;
@@ -1247,7 +1234,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         }
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
 
@@ -1439,7 +1426,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         var setData = {};
         var removeData = {};
         var queue = [];
-        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+        var currentChannel = UniversialManagerService.getChannelId();
         setData.Channel = currentChannel;
         var isRemoved = 0;
         var isSetted = 0;
@@ -1680,7 +1667,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
     function showVideo() {
         var getData = {};
-        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+        var currentChannel = UniversialManagerService.getChannelId();
         getData.Channel = currentChannel;
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
             var viewerWidth = 640;
@@ -1789,7 +1776,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 }
             }
             var setData = {};
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
             if($scope.presetTypeData.SelectedPreset > 0) {
                 setData.Preset = $scope.VA[$scope.presetTypeData.SelectedPreset].Preset;
@@ -2063,7 +2050,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     }, $scope);
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
-        if($scope.channelSelectionSection.getCurrentChannel !== data) {
+        if(UniversialManagerService.getChannelId() !== data) {
             if(!comparePageData() || !eventRuleService.checkEventRuleValidation()
                 ) {
                 var modalInstance = $uibModal.open({
@@ -2092,7 +2079,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                         if(queue.length > 0) {
                             sunapiQueueRequest(queue, function(){
                                 $rootScope.$emit("channelSelector:changeChannel", data);
-                                $scope.channelSelectionSection.setCurrentChannel(data);
+                                UniversialManagerService.setChannelId(data);
                                 $scope.$emit('applied', true);
                                 $timeout(view);
                             }, function(errorData){
@@ -2100,7 +2087,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                             });
                         } else {
                             $rootScope.$emit("channelSelector:changeChannel", data);
-                            $scope.channelSelectionSection.setCurrentChannel(data);
+                            UniversialManagerService.setChannelId(data);
                             $scope.$emit('applied', true);
                             $timeout(view);
                         }
@@ -2112,7 +2099,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             } else {
                 $rootScope.$emit('changeLoadingBar', true);
                 $rootScope.$emit("channelSelector:changeChannel", data);
-                $scope.channelSelectionSection.setCurrentChannel(data);
+                UniversialManagerService.setChannelId(data);
                 $timeout(view);
             }
         }

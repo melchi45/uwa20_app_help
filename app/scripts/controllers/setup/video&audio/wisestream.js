@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $q, $rootScope) {
+kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $q, $rootScope, UniversialManagerService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -11,19 +11,6 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
     COMMONUtils.getResponsiveObjects($scope);
     var idx;
     var pageData = {};
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     function getAttributes() {
         $scope.MaxChannel = mAttr.MaxChannel;
@@ -45,7 +32,7 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
 
     function wisestreamView(){
          var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
          };
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=wisestream&action=view', getData,
             function (response) {
@@ -86,7 +73,7 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
         var setData = {};
 
         setData.Mode = $scope.wisestreamMode;
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = UniversialManagerService.getChannelId();
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=wisestream&action=set', setData,
             function (response) {
                 view();
@@ -126,7 +113,7 @@ kindFramework.controller('wiseStreamCtrl', function ($scope, SunapiClient, XMLPa
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }
 

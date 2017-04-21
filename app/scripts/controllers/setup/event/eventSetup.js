@@ -1,22 +1,10 @@
-kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, $q, $rootScope, ModalManagerService) {
+kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, $q, $rootScope, ModalManagerService, UniversialManagerService) {
     "use strict";
     var mAttr = Attributes.get();
     var pageData = {};
     var BrowserDetect = COMMONUtils.getBrowserDetect();
 
     $scope.targetChannel = 0;
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     function getInfoTableData() {
         $scope.infoTableData = [];
@@ -307,7 +295,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         for (var i = 0, len = eventActionList.length; i < len; i++) {
             var mRule = {};
             var eventAction = eventActionList[i].Actions;
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             if(eventAction[currentChannel] === undefined) {
                 currentChannel = 0;
             }
@@ -457,7 +445,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
     function cameraView() {
         var getData = {};
-        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+        var currentChannel = UniversialManagerService.getChannelId();
         getData.Channel = currentChannel;
         return SunapiClient.get(
             '/stw-cgi/image.cgi?msubmenu=camera&action=view', 
@@ -667,7 +655,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
                     setData.EventAction.push('None');
                 }
 
-                setData.EventType = 'Channel.' + $scope.channelSelectionSection.getCurrentChannel() + '.' + tEventRule.EventSource; // EventType=Channel.0.MotionDetection
+                setData.EventType = 'Channel.' + UniversialManagerService.getChannelId() + '.' + tEventRule.EventSource; // EventType=Channel.0.MotionDetection
 
                 queue.push({
                     url: '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set',
@@ -679,7 +667,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         sunapiQueueRequest(queue, function(){
             pageData.CommonEventRules = angular.copy($scope.CommonEventRules);
             pageData.ChannelEventRules = angular.copy($scope.ChannelEventRules);
-            $scope.channelSelectionSection.setCurrentChannel($scope.targetChannel);
+            UniversialManagerService.setChannelId($scope.targetChannel);
             $rootScope.$emit("channelSelector:changeChannel", $scope.targetChannel);
             view();
         });
@@ -844,7 +832,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         } else {
             $rootScope.$emit('changeLoadingBar', true);
             $scope.targetChannel = data;
-            $scope.channelSelectionSection.setCurrentChannel(data);
+            UniversialManagerService.setChannelId(data);
             $rootScope.$emit("channelSelector:changeChannel", data);
             view();
         }

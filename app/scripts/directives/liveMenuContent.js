@@ -4,7 +4,8 @@ kindFramework.directive('liveMenuContent', function(
 	Attributes,
 	SunapiClient,
 	CameraService,
-	AccountService
+	AccountService,
+	UniversialManagerService
 	){
 	"use strict";
 	return {
@@ -16,10 +17,17 @@ kindFramework.directive('liveMenuContent', function(
 			var mAttr = Attributes.get();
 			var display = null;
 			scope.showImageController = false;
+			var isMultiChannel = false;
+			if(mAttr.MaxChannel > 1) {
+	            isMultiChannel = true;
+	        }
 
 			scope.resetDisplay = function(){
 				var setData = {};
 				setData.Reset = true;
+				if(isMultiChannel) {
+					setData.Channel = UniversialManagerService.getChannelId();
+				}
         		return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=control', setData,
                 function (response)
                 {
@@ -45,15 +53,27 @@ kindFramework.directive('liveMenuContent', function(
 					setData.SharpnessEnable = true;
 				}
 
+				if(isMultiChannel) {
+					setData.Channel = UniversialManagerService.getChannelId();
+				}
+
 		        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=set', setData,
 	                function (response) {
-						return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set&ImagePreview=Start',
+	                	var setData = {};
+	                	if(isMultiChannel) {
+							setData.Channel = UniversialManagerService.getChannelId();
+						}
+						return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set&ImagePreview=Start', setData,
 							function (response) {}, function (errorData) {}, '', true);
 					}, function (errorData) {}, '', true);
 			}
 
 			function initDisplay(){
-				return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=view', '', 
+				var setData = {};
+				if(isMultiChannel) {
+					setData.Channel = UniversialManagerService.getChannelId();
+				}
+				return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=view', setData, 
 					function (response) {
 						display = {
 							Contrast: {
