@@ -568,7 +568,9 @@ KindSVGEditor.addPlugin('draw', function(options){
 			
 			if(fixedRatio !== true){
 				circleElement.customContextmenu = removeCircle;
-				// circleElement.addEventListener('contextmenu', removeCircle);
+				circleElement.addEventListener('contextmenu', function(event){
+					event.preventDefault();
+				});
 				circleElement.addEventListener('mouseover', showDeleteIcon);
 				circleElement.addEventListener('mouseout', hideDeleteIconWithDelay);
 				circleElement.addEventListener('mousedown', hideDeleteIcon);
