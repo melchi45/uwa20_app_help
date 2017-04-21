@@ -43,7 +43,8 @@ KindSVGEditor.addPlugin('customEditor', function(options){
 		};
 
 		var callStartEvent = function(){
-			eventCtrl.bindParentEvent("contextmenu", removeDrawingGeometry);
+			bindContextMenu();
+			bindESCkeyEvent();
 			isDrawing = true;
 			if("start" in customEvent){
 				customEvent.start(svgObj[currentSvgObjIndex]);
@@ -51,7 +52,8 @@ KindSVGEditor.addPlugin('customEditor', function(options){
 		};
 
 		var callEndEvent = function(){
-			eventCtrl.unbindParentEvent("contextmenu", removeDrawingGeometry);
+			unbindContextMenu();
+			unbindESCkeyEvent();
 			isDrawing = false;
 			if("end" in customEvent){
 				customEvent.end(svgObj[currentSvgObjIndex]);
@@ -170,9 +172,33 @@ KindSVGEditor.addPlugin('customEditor', function(options){
 		eventCtrl.bindParentEvent('click', parentSVGClickHandle);
 	}
 
+	function handleESCKey(event){
+		if(event.keyCode === 27){
+			removeDrawingGeometry();
+		}
+	}
+
+	function bindContextMenu(){
+		eventCtrl.bindParentEvent("contextmenu", removeDrawingGeometry);	
+	}
+
+	function unbindContextMenu(){
+		eventCtrl.unbindParentEvent("contextmenu", removeDrawingGeometry);
+	}
+
+	function bindESCkeyEvent(){
+		document.addEventListener('keyup', handleESCKey);
+	}
+
+	function unbindESCkeyEvent(){
+		document.removeEventListener('keyup', handleESCKey);
+	}
+
 	function removeDrawingGeometry(){
 		if(isDrawing){
 			svgObj[currentSvgObjIndex].destroy();
+			unbindESCkeyEvent();
+			unbindContextMenu();
 			currentPoint = 0;
 		}
 	}
