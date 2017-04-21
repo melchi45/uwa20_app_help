@@ -1,4 +1,4 @@
-kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $interval, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, $rootScope, eventRuleService)
+kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $interval, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, $rootScope, eventRuleService, UniversialManagerService)
 {   
 
     "use strict";
@@ -52,19 +52,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
     $scope.EventRule = {};
 
-    $scope.channelSelectionSection = (function() {
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel : function() {
-                return currentChannel;
-            },
-            setCurrentChannel : function(index) {
-                currentChannel = index;
-            }
-        }
-    })();
-
     function setSizeChart(){
         var chart = "#tamper-line-chart";
         var width = $(chart).parent().width();
@@ -94,7 +81,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
     function showVideo(){
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
@@ -227,7 +214,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         var newTamperLevel = {};
 
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         getData.MaxSamples = maxSample;
@@ -339,7 +326,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     function getTamperDetection()
     {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
 
@@ -396,7 +383,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
             setData.DarknessDetection = $scope.TamperDetect.DarknessDetection;
         }
 
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = UniversialManagerService.getChannelId();
 
 
 
@@ -431,7 +418,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                 $rootScope.$emit('changeLoadingBar', true);
                 var setData = {};
 
-                setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+                setData.Channel = UniversialManagerService.getChannelId();
 
                 if (pageData.TamperDetect.Enable !== $scope.TamperDetect.Enable)
                 {
@@ -463,7 +450,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }
 

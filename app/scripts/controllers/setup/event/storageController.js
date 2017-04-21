@@ -1,4 +1,4 @@
-kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate, $timeout, $q, $rootScope, eventRuleService, $compile) {
+kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate, $timeout, $q, $rootScope, eventRuleService, $compile, UniversialManagerService) {
     "use strict";
     var mAttr = Attributes.get();
     COMMONUtils.getResponsiveObjects($scope);
@@ -6,7 +6,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
     $scope.RecordEnableOptions = ["Off", "On"];
     $scope.SelectedStorage = 0;
-    $scope.Channel = 0;
+    $scope.Channel = UniversialManagerService.getChannelId();
     $scope.NASTestStatus = "";
     $scope.NASTimerId = null;
     $scope.selected = 0;
@@ -35,19 +35,6 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.NASUserIDPattern = "^[a-zA-Z0-9_\\-.]*$";
     $scope.NASPasswordPattern = "^[a-zA-Z0-9~!@$^*_\\-{}\\[\\]./?]*$";
     $scope.NASFolderPattern = "^[a-zA-Z0-9_\\-.]*$";
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
@@ -810,7 +797,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
         $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
-            $scope.channelSelectionSection.setCurrentChannel($scope.Channel);
+            UniversialManagerService.setChannelId($scope.Channel);
 
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
             $rootScope.$emit('changeLoadingBar', false);

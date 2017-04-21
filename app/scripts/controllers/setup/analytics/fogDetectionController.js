@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $interval, $q, ConnectionSettingService, kindStreamInterface, SessionOfUserManager, AccountService, $uibModal, $rootScope, $translate, eventRuleService) {
+kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $interval, $q, ConnectionSettingService, kindStreamInterface, SessionOfUserManager, AccountService, $uibModal, $rootScope, $translate, eventRuleService, UniversialManagerService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -10,19 +10,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     COMMONUtils.getResponsiveObjects($scope);
     var idx;
     var pageData = {};
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     //sketchbook 에서 쓰이는 미사용 변수
     $scope.coordinates = null;
@@ -96,7 +83,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
     function showVideo(){
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
             function (response) {
@@ -230,7 +217,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
         getData.EventSourceType = 'FogDetection';
         
-        getData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        getData.Channel = UniversialManagerService.getChannelId();
 
         var sunapiURL = '/stw-cgi/eventsources.cgi?msubmenu=samples&action=check';
 
@@ -252,7 +239,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     function getFogDetection()
     {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=fogdetection&action=view', getData,
@@ -275,7 +262,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     {
         var setData = {};
 
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = UniversialManagerService.getChannelId();
 
         if (pageData.FogDetect.Enable !== $scope.FogDetect.Enable)
         {
@@ -328,7 +315,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
             $rootScope.$emit('changeLoadingBar', true);
             var setData = {};
 
-            setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+            setData.Channel = UniversialManagerService.getChannelId();
 
             if (pageData.FogDetect.Enable !== $scope.FogDetect.Enable)
             {
@@ -501,7 +488,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }
 

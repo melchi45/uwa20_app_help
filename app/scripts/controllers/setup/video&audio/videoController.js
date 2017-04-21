@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, sketchbookService, $uibModal, $uibModalStack, $q, $translate, $rootScope, ModalManagerService) {
+kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, sketchbookService, $uibModal, $uibModalStack, $q, $translate, $rootScope, ModalManagerService, UniversialManagerService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -21,18 +21,6 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
     $scope.isMultiChannel = false;
     $scope.targetChannel = 0;
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     $scope.infoTableData = [{},{},{},{}];
 
@@ -168,7 +156,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     function getDisValue() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             var getData = {
                     Channel: currentChannel
             };
@@ -218,7 +206,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     function videoOutputView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             var getData = {
                     Channel: currentChannel
             };
@@ -236,7 +224,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     function flipView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             var getData = {
                     Channel: currentChannel
             };
@@ -265,7 +253,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     function videoSourceView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             var getData = {
                     Channel: currentChannel
             };
@@ -310,7 +298,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                             setData["Mode"] = "Move";
                             setData["MaskIndex"] = index;
                             if($scope.isMultiChannel) {
-                                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                                var currentChannel = UniversialManagerService.getChannelId();
                                 setData.Channel = currentChannel;
                             }
                             SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=control', setData,
@@ -354,7 +342,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     function privacyAreaView(inputIndex) {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             var getData = {
                     Channel: currentChannel
             };
@@ -433,7 +421,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             setData["MaskCoordinate"] = coordi.x1 + "," + coordi.y1 + "," + coordi.x2 + "," + coordi.y2;
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
             SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=control', setData,
@@ -491,7 +479,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             setData["MaskCoordinate"] = data.position;
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -633,7 +621,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                                         updateData["ZoomThresholdEnable"] = data.thresholdEnable;
 
                                         if($scope.isMultiChannel) {
-                                            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                                            var currentChannel = UniversialManagerService.getChannelId();
                                             updateData.Channel = currentChannel;
                                         }
                                         SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=update', updateData,
@@ -746,7 +734,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         setData.SensorCaptureFrameRate = pageData.VideoSources[$scope.SelectedChannel].SensorCaptureFrameRate = $scope.VideoSources[$scope.SelectedChannel].SensorCaptureFrameRate;
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=set', setData,
@@ -769,7 +757,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
         if (changed) {
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
             return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=set', setData,
@@ -795,7 +783,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         }
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
 
@@ -824,7 +812,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         }
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
 
@@ -893,7 +881,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 }
 
                 if($scope.isMultiChannel) {
-                    var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                    var currentChannel = UniversialManagerService.getChannelId();
                     setData.Channel = currentChannel;
                 }
 
@@ -961,7 +949,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 $("#videosetuppage").show();
                 $rootScope.$emit('changeLoadingBar', false);
                 $rootScope.$emit("channelSelector:changeChannel", $scope.targetChannel);
-                $scope.channelSelectionSection.setCurrentChannel($scope.targetChannel);
+                UniversialManagerService.setChannelId($scope.targetChannel);
             },
             function(errorData){
                 console.log(errorData);
@@ -1082,7 +1070,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         });
                         modalInstance.result.then(COMMONUtils.onLogout, COMMONUtils.onLogout);
                     }
-                    $scope.channelSelectionSection.setCurrentChannel($scope.targetChannel);
+                    UniversialManagerService.setChannelId($scope.targetChannel);
                     view();
                 },
                 function(errorData){
@@ -1103,7 +1091,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             setData["MaskIndex"] = maskIndex? maskIndex : $scope.PrivacyMaskSelected;
             
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -1343,7 +1331,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         } else {
             $rootScope.$emit('changeLoadingBar', true);
             $scope.targetChannel = data;
-            $scope.channelSelectionSection.setCurrentChannel(data);
+            UniversialManagerService.setChannelId(data);
             $rootScope.$emit("channelSelector:changeChannel", data);
             view();
         }
