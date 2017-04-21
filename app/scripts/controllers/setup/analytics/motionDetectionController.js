@@ -11,13 +11,15 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     var idx;
     var pageData = {};
     pageData.MotionDetection = {};
-    pageData.rois = {};
+    pageData.rois = [];
     pageData.MotionDetectionEnable = {};
 
     var defaultSensitivity = 80;
     var defaultThreshold = 50;
 
     var mLastSequenceLevel = 0;
+
+    $scope.checkApplyButtonClick = false;
 
     ////////////////////////////////////////////////////////////////
     pageData.VA = [];
@@ -666,7 +668,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     }else{
                         $scope['changeSelected' + title + 'Index'](0);   
                     }
-                    deleteRemovedROI().then(function(){getHandoverList();}, saveSettings);
+                    deleteRemovedROI($scope.presetData.type).then(function(){getHandoverList();}, saveSettings);
                 }
             }else if(modifiedType === "mouseup"){
                 activeShape(modifiedIndex);
@@ -685,6 +687,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             if($scope.MotionDetection.MotionDetectionEnable === false){
                 resetTabData();
             }
+
+            pageData.rois = [];
 
             $scope.Handover = [{"HandoverList":[]}];
 
@@ -730,7 +734,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         $scope.resetVariable();
 
         var promises = [];
-        promises.push(updateMotionDetectionData);
+        if( !$scope.PTZModel || ($scope.presetData.type !== "Preset") ){
+            promises.push(updateMotionDetectionData);
+        }
         promises.push(showVideo);
         promises.push(getHandoverSetting);
         if($scope.PTZModel){
@@ -779,6 +785,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             Channel: $scope.channelSelectionSection.getCurrentChannel()
         };
         var cmd = (isPreset? $scope.presetCmd : $scope.va2CommonCmd) + '&action=view';
+
         return SunapiClient.get(cmd, getData,
                 successCallback,
                 function (errorData)
@@ -819,7 +826,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     var prevMotionDetectionEnable = null;
     function setMotionDetectionEnable(detectionType){
-
         prevMotionDetectionEnable = detectionType;
         // DetectionType : MDAndIV, Off, MotionDetection, IntelligentVideo
 
@@ -833,7 +839,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
 
         pageData.MotionDetection.MotionDetectionEnable = $scope.MotionDetection.MotionDetectionEnable;
-
     }
 
     function updateROIData(rois){
@@ -1146,11 +1151,32 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function set() {
         if(validatePage()){
             sketchbookService.removeDrawingGeometry();
-            COMMONUtils.ApplyConfirmation(saveSettings);   
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'sm',
+                resolve: {
+                    Message: function () {
+                        return 'lang_apply_question';
+                    }
+                }
+            });
+
+            modalInstance.result.then(
+                function(){
+                    $scope.checkApplyButtonClick = true;
+                    saveSettings();
+                }, 
+                function () {
+                    $scope.checkApplyButtonClick = false;
+                }
+            );
         }
     }
 
     function saveSettings() {
+        $rootScope.$emit('changeLoadingBar', true);
+        
         var deferred = $q.defer();
         var functionlist = [];
         // SUNAPI SET
@@ -1170,6 +1196,11 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             saveHandoverFunction(functionlist);
         }
 
+        var endSettings = function(){
+            deferred.resolve(true);
+            $scope.checkApplyButtonClick = false;
+        };
+
         //functionlist.push(view);
         if(functionlist.length > 0) {
             $q.seqAll(functionlist).then(
@@ -1177,30 +1208,32 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     getHandoverList(view).then(
                         function() {
                             $scope.$emit('applied', true);
-                            deferred.resolve(true);
+                            endSettings();
                         },
                         function(errorData) {
                             console.log(errorData);
-                            deferred.resolve(true);
-                        });
+                            endSettings();
+                        }
+                    );
                 },
                 function(errorData){
                     console.log(errorData);
                     view();
-                    deferred.resolve();
+                    endSettings();
                 }
             );
         } else {
             getHandoverList(view).then(
                 function() {
                     $scope.$emit('applied', true);
-                    deferred.resolve(true);
+                    endSettings();
                 },
                 function(errorData) {
                     console.log(errorData);
                     view();
-                    deferred.resolve();
-            });
+                    endSettings();
+                }
+            );
         }
 
         return deferred.promise;
@@ -1334,7 +1367,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     ////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
 
-    function deleteRemovedROI(){
+    function deleteRemovedROI(checkPresetType){
         //삭제된 Index 찾아서 삭제 요청
         var deferred = $q.defer();
         var removedROIIndex = [];
@@ -1359,7 +1392,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
 
         if(removedROIIndex.length > 0){
-            var cmd = $scope.va2CommonCmd + '&action=remove';
+            var isPreset = $scope.PTZModel && (checkPresetType === "Preset");
+            var cmd = (isPreset? $scope.presetCmd : $scope.va2CommonCmd) + '&action=remove';
             SunapiClient.get(cmd,            
             //SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=remove', 
                 {
@@ -1473,7 +1507,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             };
 
             var unmodifiedROIIndex = getUnmodifiedROIIndex();
-            deleteRemovedROI().then(
+            var setPresetType = $scope.checkApplyButtonClick? $scope.presetData.type : $scope.presetData.oldType;
+            deleteRemovedROI(setPresetType).then(
                 function(deletedROIIndex){
                     var modifiedIndex = getModifiedROIIndex(unmodifiedROIIndex, deletedROIIndex);
 
@@ -1511,12 +1546,11 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     }
 
                     var cmd = $scope.va2CommonCmd + '&action=set';
-                    // console.info($scope.presetData.oldType);
-                    if($scope.PTZModel && $scope.presetData.oldType === 'Preset'){
-                        setData.Preset = $scope.presetData.oldPreset;
+                    if($scope.PTZModel && setPresetType === 'Preset'){
+                        setData.Preset = $scope.checkApplyButtonClick? $scope.presetData.preset : $scope.presetData.oldPreset;
                         cmd = $scope.presetCmd + '&action=set';
                     }
-                    // console.info(cmd);
+
                     SunapiClient.get(cmd, setData,
                         function (response){
                             deferred.resolve();
@@ -2395,7 +2429,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         if(oldVal === null){
             $scope.presetData.oldPreset = newVal;
         }else{
-            // console.info(123);
             $scope.presetData.oldType = 'Preset';
             $scope.presetData.oldPreset = oldVal;
 
