@@ -744,13 +744,17 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             function(){
                 $rootScope.$emit('changeLoadingBar', false);
                 $scope.pageLoaded = true;
-                $scope.$emit('pageLoaded', $scope.EventSource);
                 $("#imagepage").show();
-                $timeout(setDefaultArea);
-                $timeout(setSizeChart);
+                $timeout(function(){
+                    $scope.$emit('pageLoaded', $scope.EventSource);
+                    setDefaultArea();
+                    setSizeChart();
+                });
             },
             function(errorData){
                 $rootScope.$emit('changeLoadingBar', false);
+                $scope.pageLoaded = true;
+                $scope.$emit('pageLoaded', $scope.EventSource);
                 alert(errorData);
             }
         );
@@ -1184,6 +1188,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
 
         var endSettings = function(){
+            $scope.$emit('applied', true);
             deferred.resolve(true);
             $scope.checkApplyButtonClick = false;
         };
@@ -1194,7 +1199,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 function(){
                     getHandoverList(view).then(
                         function() {
-                            $scope.$emit('applied', true);
                             endSettings();
                         },
                         function(errorData) {
@@ -1212,7 +1216,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         } else {
             getHandoverList(view).then(
                 function() {
-                    $scope.$emit('applied', true);
                     endSettings();
                 },
                 function(errorData) {
