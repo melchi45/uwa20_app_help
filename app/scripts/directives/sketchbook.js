@@ -257,7 +257,7 @@ kindFramework
                 $timeout(function(){
                     scope.playerdata = getPlayerData();
                 });
-            });
+            }, scope);
 
             function updateCoordinates(data){
                 scope.$emit('<app/scripts/directives>::<updateCoordinates>', data);
