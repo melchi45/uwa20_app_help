@@ -605,6 +605,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
                     sunapiURI = "/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=view";
                     execSunapi(sunapiURI, function(response){
                         scope.modePTZ.AutoTracking = response.AutoTracking[0].Enable;
+                        scope.$digest();
 					});
 				}
 

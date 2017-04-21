@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Zoom-snelheid",
     "lang_initLens": "Init. Lens",
     "lang_tracking": "Tracking",
-    "lang_autoTrack": "Auto-Track",
     "lang_dayDisplay": "Dag",
     "lang_ptzPosition": "PTZ positie",
     "lang_presetName": "Preset-naam",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Upload",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Voorbijgaan",
     "lang_entering": "Activeren",
     "lang_exiting": "Afsluiten",
-    "lang_appear_disappear": "Verschijnen(Verdwijnen)",
     "lang_entering_exiting": "Activeren\/Afsluiten",
     "lang_appearing_disappearing": "Verschijnen (Verdwijnen)",
     "lang_virtual_line_based": "Regels op basis van virtuele lijn",
@@ -751,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Begintijd' moet afwijken van 'Eindtijd'.",
     "lang_msg_From_To_Late": "'Eindtijd' moet na 'Begintijd' volgen.",
     "lang_msg_no_result": "Geen zoekresultaat gevonden.",
-    "lang_msg_search_range": "Zoekbereik moet minder dan 31 dagen.",
+    "lang_msg_search_range": "Zoekbereik moet minder dan %1 dagen.",
     "lang_msg_XMLdataError": "Fout in zoekdata",
     "lang_msg_sdWait": "Een ogenblik geduld. De opgenomen video wordt gedownload.",
     "lang_msg_timebackupDateError": "Selecteer een datum waarop opnamegegevens bestaan.",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

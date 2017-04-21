@@ -142,9 +142,13 @@ kindFramework.directive('setupChannelSelector', function($rootScope, SunapiClien
         templateUrl: 'views/setup/common/setup_channel_selector.html',
         link: function(scope, element, attrs){
             var defaultChannel = 0;
+            var useChannel = true;
+
+            if(attrs.useChannel == 'false') useChannel = false;
 
             scope.setupChannelSelector = {
                 useInfo: attrs.useInfo === 'true',
+                useChannel: useChannel,
                 ProfileData: "",
                 showInfo: function(){
                     $rootScope.$emit("channelSelector:showInfo", true);

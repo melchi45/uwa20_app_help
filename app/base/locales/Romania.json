@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "Viteză zoom",
     "lang_initLens": "Lentilă iniţ.",
     "lang_tracking": "Urmărire",
-    "lang_autoTrack": "Urmărire automată",
     "lang_dayDisplay": "Zi",
     "lang_ptzPosition": "Poziţie PTZ",
     "lang_presetName": "Nume presetat",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "Image overlay",
     "lang_upImage": "Upload image",
     "lang_upload": "Upload",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "Trecere",
     "lang_entering": "Intrare",
     "lang_exiting": "Ieşire",
-    "lang_appear_disappear": "Apariţie(Dispariţie)",
     "lang_entering_exiting": "Intrare\/Ieşire",
     "lang_appearing_disappearing": "Apariţie (Dispariţie)",
     "lang_virtual_line_based": "Reguli bazate pe linie virtuală",
@@ -751,7 +749,7 @@
     "lang_msg_From_To_Diff": "'Oră începere' trebuie să difere faţă de 'Oră terminare'.",
     "lang_msg_From_To_Late": "'Oră terminare' trebuie să fie după 'Oră începere'.",
     "lang_msg_no_result": "Nu s-au găsit rezultate pentru căutare.",
-    "lang_msg_search_range": "gama de căutare ar trebui să fie mai mică de 31 de zile.",
+    "lang_msg_search_range": "gama de căutare ar trebui să fie mai mică de %1 de zile.",
     "lang_msg_XMLdataError": "Eroare date căutare",
     "lang_msg_sdWait": "Aşteptaţi descărcarea clipului înregistrat. ",
     "lang_msg_timebackupDateError": "Selectaţi data la care există înreggistrări.",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }

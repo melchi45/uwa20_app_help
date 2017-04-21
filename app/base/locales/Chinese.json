@@ -136,7 +136,6 @@
     "lang_zoomSpeed": "缩放速度",
     "lang_initLens": "初始化镜头",
     "lang_tracking": "跟踪中",
-    "lang_autoTrack": "自动跟踪",
     "lang_dayDisplay": "天",
     "lang_ptzPosition": "PTZ 位置",
     "lang_presetName": "预设名称",
@@ -172,7 +171,7 @@
     "lang_imgOverlay": "图像重叠",
     "lang_upImage": "上传图像",
     "lang_upload": "上传",
-    "lang_maximum": "128x128px",
+    "lang_maximum": "128x128 pixels",
     "lang_del_error": "Remove Fail",
     "lang_msg_file_format_error": "File format error",
     "lang_msg_file_error": "File error",
@@ -548,7 +547,6 @@
     "lang_passing": "通过",
     "lang_entering": "进入",
     "lang_exiting": "离开",
-    "lang_appear_disappear": "出现(消失)",
     "lang_entering_exiting": "进入\/离开",
     "lang_appearing_disappearing": "出现 (消失)",
     "lang_virtual_line_based": "基于虚拟线的规则",
@@ -751,7 +749,7 @@
     "lang_msg_From_To_Diff": "'起始时间'与'结束时间'应不同。",
     "lang_msg_From_To_Late": "'结束时间'应比'起始时间'晚。",
     "lang_msg_no_result": "找不到搜索结果。",
-    "lang_msg_search_range": "搜寻范围应超过31天以内。",
+    "lang_msg_search_range": "搜寻范围应超过%1天以内。",
     "lang_msg_XMLdataError": "搜索数据错误",
     "lang_msg_sdWait": "正在下载录制的视频，请等待",
     "lang_msg_timebackupDateError": "请选择存在已录制数据的日期。",
@@ -1328,5 +1326,5 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_msg_errDuplicatedPort": "Duplicated port setup is not available."
+    "lang_play_button": "Play"
 }
