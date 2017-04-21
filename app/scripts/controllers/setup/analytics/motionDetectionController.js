@@ -1181,6 +1181,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function saveSettings() {
+        $rootScope.$emit('changeLoadingBar', true);
         var deferred = $q.defer();
         var functionlist = [];
         // SUNAPI SET
@@ -1200,36 +1201,40 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             saveHandoverFunction(functionlist);
         }
 
+        function endSettings(){
+            $scope.$emit('applied', true);
+            deferred.resolve(true);
+        }
+
         //functionlist.push(view);
         if(functionlist.length > 0) {
             $q.seqAll(functionlist).then(
                 function(){
                     getHandoverList(view).then(
                         function() {
-                            $scope.$emit('applied', true);
-                            deferred.resolve(true);
+                            endSettings();
                         },
                         function(errorData) {
                             console.log(errorData);
-                            deferred.resolve(true);
+                            endSettings();
+                            view();
                         });
                 },
                 function(errorData){
                     console.log(errorData);
+                    endSettings();
                     view();
-                    deferred.resolve();
                 }
             );
         } else {
             getHandoverList(view).then(
                 function() {
-                    $scope.$emit('applied', true);
-                    deferred.resolve(true);
+                    endSettings();
                 },
                 function(errorData) {
                     console.log(errorData);
+                    endSettings();
                     view();
-                    deferred.resolve();
             });
         }
 
@@ -2402,7 +2407,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
             if($scope.MotionDetection.MotionDetectionEnable === true){
                 if(validatePage()){
-                    $rootScope.$emit('changeLoadingBar', true);
                     sketchbookService.removeDrawingGeometry();
                     saveSettings().finally(
                         function(){
@@ -2429,7 +2433,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
             if($scope.MotionDetection.MotionDetectionEnable === true){
                 if(validatePage()){
-                    $rootScope.$emit('changeLoadingBar', true);
                     sketchbookService.removeDrawingGeometry();
                     saveSettings().finally(
                         function(){
