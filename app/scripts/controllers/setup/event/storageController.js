@@ -525,7 +525,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     function validatePage() {
         var retVal = true;
         if ($scope.storageForm.AutoDeleteDays.$valid === false) {
-            COMMONUtils.ShowError('lang_msg_invalidValue');
+            COMMONUtils.ShowError('lang_msg_chkPeriodRange');
             retVal = false;
         }
         if ($scope.RecordStorageInfo.AutoDeleteEnable === true) {

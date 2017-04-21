@@ -4209,7 +4209,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
         //Check for file extension validity.
         if (ext.toUpperCase() != "BMP") {
-            COMMONUtils.ShowError('lang_msg_wrong_file');
+            COMMONUtils.ShowError('lang_msg_no_bitmap_file');
             $scope.ImageFile = "";
             $scope.ImageFileFull = {};
             //reset the file name after remove
