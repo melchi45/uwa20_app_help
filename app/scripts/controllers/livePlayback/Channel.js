@@ -840,6 +840,9 @@ kindFramework
       $q.seqAll([getDefaultProfileIndex, getVideoProfile]).then(
             function(){
               console.info('video profile successfully set in live page');
+              if(sunapiAttributes.MaxChannel > 1){
+                  defaultProfileID = UniversialManagerService.getDefaultProfileIndex(channelId);
+              }
               var RequestProfile = getProfileByIndex($scope.profileList, defaultProfileID);
               startStreaming(RequestProfile);
               if(sunapiAttributes.MaxAudioOutput !== undefined && sunapiAttributes.MaxAudioOutput !== 0) {
