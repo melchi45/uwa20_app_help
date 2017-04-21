@@ -1458,8 +1458,8 @@ kindFramework
                     return;
                 }
                 if(newVal === true) {
+                    tPageLoaded = true;
                     $timeout(function(){
-                        tPageLoaded = true;
                         $('#calendar').fullCalendar('render');
                     });
                 }
