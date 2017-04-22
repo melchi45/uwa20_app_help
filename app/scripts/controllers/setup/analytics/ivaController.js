@@ -764,6 +764,14 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
                             $scope.orgDetectionType[index] = $scope.VA[index].DetectionType;
 
+                            if(index === $scope.presetTypeData.SelectedPreset) { // when enable of current preset changed, in order to update enable with new data, reset enable UI 
+                                if($scope.orgDetectionType[index] === "MotionDetection" || $scope.orgDetectionType[index] === "Off") {
+                                    $scope.IntelligentVideoEnable = false;
+                                } else if($scope.orgDetectionType[index] === "MDAndIV" || $scope.orgDetectionType[index] === "IntelligentVideo"){
+                                    $scope.IntelligentVideoEnable = true;
+                                }
+                            }
+
                             var str = presetVA.ObjectSizeByDetectionTypes[1].MinimumObjectSizeInPixels.split(',');
                             $scope.VA[index].MinWidth = Math.round(str[0]);
                             $scope.VA[index].MinHeight = Math.round(str[1]);
@@ -1255,12 +1263,14 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             if (detectionType) {
                 $scope.VA[0].DetectionType = detectionType;
             } else {
-                if($scope.orgDetectionType[0] === "MotionDetection" || $scope.orgDetectionType[0] === "Off") {
-                    // $scope.VA[0].DetectionType = "Off"
-                    $scope.IntelligentVideoEnable = false;
-                } else if($scope.orgDetectionType[0] === "MDAndIV" || $scope.orgDetectionType[0] === "IntelligentVideo"){
-                    // $scope.VA[0].DetectionType = orgDetectionType;
-                    $scope.IntelligentVideoEnable = true;
+                if($scope.presetTypeData.SelectedPreset === 0) {
+                    if($scope.orgDetectionType[0] === "MotionDetection" || $scope.orgDetectionType[0] === "Off") {
+                        // $scope.VA[0].DetectionType = "Off"
+                        $scope.IntelligentVideoEnable = false;
+                    } else if($scope.orgDetectionType[0] === "MDAndIV" || $scope.orgDetectionType[0] === "IntelligentVideo"){
+                        // $scope.VA[0].DetectionType = orgDetectionType;
+                        $scope.IntelligentVideoEnable = true;
+                    }
                 }
             }
             var str = response.data.VideoAnalysis[0].ObjectSizeByDetectionTypes[1].MinimumObjectSizeInPixels.split(',');
