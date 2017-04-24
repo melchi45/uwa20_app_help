@@ -992,35 +992,38 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     {
         mStopMonotoringMotionLevel = false;
 
-        (function update()
+        if(monitoringTimer === null)
         {
-            getMotionLevel(function (data, index) {
-                if(destroyInterrupt) return;
-                var newMotionLevel = angular.copy(data);
+            (function update()
+            {
+                getMotionLevel(function (data, index) {
+                    if(destroyInterrupt) return;
+                    var newMotionLevel = angular.copy(data);
 
-                if (!mStopMonotoringMotionLevel)
-                {
-                    if(newMotionLevel.length >= maxSample)
+                    if (!mStopMonotoringMotionLevel)
                     {
-                        var index = newMotionLevel.length;
-
-                        while(index--)
+                        if(newMotionLevel.length >= maxSample)
                         {
-                            var level = newMotionLevel[index].Level;
+                            var index = newMotionLevel.length;
 
-                            if(level === null) continue;
-
-                            if($scope.MDv2ChartOptions.EnqueueData)
+                            while(index--)
                             {
-                                $scope.MDv2ChartOptions.EnqueueData(level);
+                                var level = newMotionLevel[index].Level;
+
+                                if(level === null) continue;
+
+                                if($scope.MDv2ChartOptions.EnqueueData)
+                                {
+                                    $scope.MDv2ChartOptions.EnqueueData(level);
+                                }
                             }
                         }
-                    }
 
-                    monitoringTimer = $timeout(update, 500); //500 msec
-                }
-            });
-        })();
+                        monitoringTimer = $timeout(update, 500); //500 msec
+                    }
+                });
+            })();
+        }
     }
 
     function getMotionLevel(func)
@@ -1048,6 +1051,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 function (errorData)
                 {
                     console.log("getMotionLevel Error : ", errorData);
+                    stopMonitoringMotionLevel();
                     startMonitoringMotionLevel();
                 }, '', true);
     }
@@ -1057,6 +1061,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
+            monitoringTimer = null;
         }
     }
 

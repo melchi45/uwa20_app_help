@@ -139,6 +139,15 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
                     function (response)
                     {
                         pageData.SoundClassfication.Enable = angular.copy($scope.SoundClassfication.Enable);
+
+                        if($scope.SoundClassfication.Enable)
+                        {
+                            startMonitoringSoundLevel();
+                        }
+                        else
+                        {
+                            stopMonitoringSoundLevel();
+                        }
                     },
                     function (errorData)
                     {
@@ -166,6 +175,15 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
                 $scope.$emit('pageLoaded', $scope.EventSource);
                 $("#imagepage").show();
                 $timeout(setSizeChart);
+
+                if($scope.SoundClassfication.Enable)
+                {
+                    startMonitoringSoundLevel();
+                }
+                else
+                {
+                    stopMonitoringSoundLevel();
+                }
             },
             function(errorData){
                 alert(errorData);
@@ -273,39 +291,47 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
 
     function startMonitoringSoundLevel()
     {
-        (function update()
+        mStopMonotoringSoundLevel = false;
+
+        if(monitoringTimer === null)
         {
-            getSoundLevel(function (data) {
-                if(destroyInterrupt) return;
-                var newSoundLevel = angular.copy(data);
+            (function update()
+            {
+                getSoundLevel(function (data) {
+                    if(destroyInterrupt) return;
+                    var newSoundLevel = angular.copy(data);
 
-                if (!mStopMonotoringSoundLevel)
-                {
-                    if (newSoundLevel.length >= maxSample)
+                    if (!mStopMonotoringSoundLevel)
                     {
-                        var index = newSoundLevel.length;
-
-                        while(index--)
+                        if (newSoundLevel.length >= maxSample)
                         {
-                            var level = validateLevel(newSoundLevel[index]);
+                            var index = newSoundLevel.length;
 
-                            if(level === null) continue;
-
-                            if($scope.SoundClassificationtChartOptions.EnqueueData)
+                            while(index--)
                             {
-                                $scope.SoundClassificationtChartOptions.EnqueueData(level);
+                                var level = validateLevel(newSoundLevel[index]);
+
+                                if(level === null) continue;
+
+                                if($scope.SoundClassificationtChartOptions.EnqueueData)
+                                {
+                                    $scope.SoundClassificationtChartOptions.EnqueueData(level);
+                                }
                             }
                         }
+                        monitoringTimer = $timeout(update, 500); //300 msec
                     }
-                    monitoringTimer = $timeout(update, 500); //300 msec
-                }
-            });
-        })();
+                });
+            })();
+        }
     }
 
     function stopMonitoringSoundLevel(){
+        mStopMonotoringSoundLevel = true;
+        
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
+            monitoringTimer = null;
         }
     }
 
@@ -345,6 +371,7 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
             function (errorData)
             {
                 console.log("getSoundLevel Error : ", errorData);
+                stopMonitoringSoundLevel();
                 startMonitoringSoundLevel();
             }, '', true);
     }
@@ -355,12 +382,10 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
     }
 
     function saveSettings() {   // soundClassification set -> event set
-        stopMonitoringSoundLevel();
         setSoundClassificationData(
             function(){
                 $scope.$emit('applied', true);
                 view();
-                startMonitoringSoundLevel();
             }
         );
     }
@@ -426,7 +451,6 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
         } else {
             getAttributes();
             view();
-            startMonitoringSoundLevel();
         }
     })();
 
