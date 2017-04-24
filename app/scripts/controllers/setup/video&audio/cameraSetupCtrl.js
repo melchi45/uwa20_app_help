@@ -1,4 +1,4 @@
-kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibModalStack, SunapiClient, Attributes, COMMONUtils, LogManager, CameraSpec, $timeout, $location, MultiLanguage, $rootScope, $q) {
+kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibModalStack, SunapiClient, Attributes, COMMONUtils, LogManager, CameraSpec, $timeout, $location, MultiLanguage, $rootScope, $q, UniversialManagerService) {
     "use strict";
 
     $scope.isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
@@ -96,19 +96,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     };
 
     $scope.isMultiChannel = false;
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     $scope.HLCOnOffChange = function(){
         if($scope.Camera.HLCOnOff ===  undefined){
@@ -421,7 +408,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             var setData = {};
             setData.ImagePreview = 'Stop';
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
             return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set', setData,
@@ -3004,7 +2991,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -3108,7 +3095,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -3164,7 +3151,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -3227,7 +3214,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -3482,7 +3469,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -3530,7 +3517,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
 
@@ -3616,7 +3603,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -3670,7 +3657,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -3719,7 +3706,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             });
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -3860,7 +3847,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             }
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
 
@@ -3886,7 +3873,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         var setData = {};
         setData.Channel = 0;
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
         SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=control&Mode=LensInitialize', setData,
@@ -3909,7 +3896,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
         var setData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
         setData.ImagePreview = mode;
@@ -4128,6 +4115,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if(functionList.length > 0){
             $q.seqAll(functionList).then(
                     function () {
+                        UniversialManagerService.setChannelId($scope.targetChannel);
                         view();
                     },
                     function (errorData) {showLoadingBar(false);}
@@ -4222,7 +4210,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
         //Check for file extension validity.
         if (ext.toUpperCase() != "BMP") {
-            COMMONUtils.ShowError('lang_msg_wrong_file');
+            COMMONUtils.ShowError('lang_msg_no_bitmap_file');
             $scope.ImageFile = "";
             $scope.ImageFileFull = {};
             //reset the file name after remove
@@ -4776,12 +4764,12 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function videoSourceView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
 
@@ -4812,7 +4800,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function viewSSDR() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ssdr&action=view', getData,
@@ -4847,7 +4835,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function viewImagePreset() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imagepreset&action=view', getData,
@@ -4870,7 +4858,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function whitebalanceView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=whitebalance&action=view', getData,
@@ -4888,7 +4876,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function cameraView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=view', getData,
@@ -4926,7 +4914,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function flipView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
@@ -4945,7 +4933,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function heaterScheduleView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=scheduler&action=view', '',
@@ -5015,7 +5003,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function imageenhancementsView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=view', getData,
@@ -5039,7 +5027,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function imageOptionsView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageoptions&action=view', getData,
@@ -5067,7 +5055,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function focusView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=view', getData,
@@ -5170,7 +5158,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function irLEDView() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=irled&action=view', getData,
@@ -5334,7 +5322,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function getTamperDetection(){
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=tamperingdetection&action=view', getData,
@@ -5352,7 +5340,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         var getData = {};
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get(cmd, getData,
@@ -5938,7 +5926,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                 setData.ImagePreview = 'Start';
             }
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
             SunapiClient.get('/stw-cgi/image.cgi?msubmenu=overlay&action=set', setData,
@@ -5989,7 +5977,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
 
@@ -6051,7 +6039,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         setData.Transparency = $scope.OSD.Transparency;
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
 
@@ -6120,7 +6108,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         setData.Transparency = $scope.OSD.Transparency;
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
 
@@ -6171,7 +6159,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function getMultiLineOSD() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=multilineosd&action=view', getData,
@@ -6333,7 +6321,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function getOverlay(){
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=overlay&action=view', getData,
@@ -6727,7 +6715,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function showVideo() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
@@ -6826,11 +6814,64 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         return option;
     };
 
+    function detectOSDChanges() {
+        var isChanged = false;
+
+        if(!angular.equals(pageData.TitleOSD['Enable'], $scope.TitleOSD['Enable'])) {
+            isChanged = true;
+        } else {
+            for(var i = 0; i < $scope.TitleOSD.length; i++) {
+                if(typeof $scope.TitleOSD[i] === 'object' && typeof pageData.TitleOSD[i] === 'object') {
+                    var osd = $scope.TitleOSD[i];
+                    var pageOsd = pageData.TitleOSD[i];
+                    if(!angular.equals(osd.Enable, pageOsd.Enable)
+                        || !angular.equals(osd.FontSize, pageOsd.FontSize)
+                        || !angular.equals(osd.Transparency, pageOsd.Transparency)
+                        || !angular.equals(osd.OSDColor, pageOsd.OSDColor)
+                        || !angular.equals(osd.PositionX, pageOsd.PositionX)
+                        || !angular.equals(osd.PositionY, pageOsd.PositionY)
+                        || !angular.equals(osd.OSD, pageOsd.OSD)) {
+                        isChanged = true;
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+
+        if(!angular.equals(pageData.DateOSD['Enable'], $scope.DateOSD['Enable'])) {
+            isChanged = true;
+        } else {
+            if(typeof $scope.DateOSD[0] === 'object' && typeof pageData.DateOSD[0] === 'object') {
+                var osd = $scope.DateOSD[0];
+                var pageOsd = pageData.DateOSD[0];
+                if(!angular.equals(osd.Enable, pageOsd.Enable)
+                    || !angular.equals(osd.DateFormat, pageOsd.DateFormat)
+                    || !angular.equals(osd.Transparency, pageOsd.Transparency)
+                    || !angular.equals(osd.OSDColor, pageOsd.OSDColor)
+                    || !angular.equals(osd.PositionX, pageOsd.PositionX)
+                    || !angular.equals(osd.PositionY, pageOsd.PositionY)
+                    || !angular.equals(osd.WeekDay, pageOsd.WeekDay)
+                    || !angular.equals(osd.FontSize, pageOsd.FontSize)) {
+                    isChanged = true;
+                }
+            }
+        }
+
+        return isChanged;
+    }
+
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
         if (($scope.ImagePresetModeOptions !== undefined && !angular.equals(pageData.ImagePreset, $scope.ImagePreset))
             || !angular.equals(pageData.VideoSources, $scope.VideoSources)
             || (mAttr.CompensationModeOptions !== undefined && !angular.equals(pageData.Camera, $scope.Camera))
-            || ($scope.HeaterSupport && $scope.PTZModel !== true && !angular.equals(pageData.HeaterSchedules, $scope.HeaterSchedules))) {
+            || ($scope.HeaterSupport && $scope.PTZModel !== true && !angular.equals(pageData.HeaterSchedules, $scope.HeaterSchedules))
+            || !angular.equals(pageData.SSDR, $scope.SSDR)
+            || !angular.equals(pageData.WhiteBalance, $scope.WhiteBalance)
+            || !angular.equals(pageData.ImageEnhancements, $scope.ImageEnhancements)
+            || !angular.equals(pageData.Flip, $scope.Flip)
+            // || !angular.equals(pageData.IRled, $scope.IRled)
+            || detectOSDChanges()) {
             var modalInstance = $uibModal.open({
                 templateUrl: 'views/setup/common/confirmMessage.html',
                 controller: 'confirmMessageCtrl',
@@ -6843,16 +6884,16 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             });
             modalInstance.result.then(function() {
                 if(validatePage()) {
-                    $rootScope.$emit('changeLoadingBar', true);
                     $rootScope.$emit("channelSelector:changeChannel", data);
+                    $scope.targetChannel = data;
                     saveSettings();
                 }
             },
             function() {
             });
         } else {
-            $rootScope.$emit('changeLoadingBar', true);
-            $scope.channelSelectionSection.setCurrentChannel(data);
+            showLoadingBar(true);
+            UniversialManagerService.setChannelId(data);
             $rootScope.$emit("channelSelector:changeChannel", data);
             view();
         }

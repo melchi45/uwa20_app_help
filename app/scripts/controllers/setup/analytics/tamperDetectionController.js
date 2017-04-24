@@ -1,4 +1,4 @@
-kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $interval, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, $rootScope, eventRuleService)
+kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, $interval, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, $rootScope, eventRuleService, UniversialManagerService)
 {   
 
     "use strict";
@@ -52,19 +52,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
     $scope.EventRule = {};
 
-    $scope.channelSelectionSection = (function() {
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel : function() {
-                return currentChannel;
-            },
-            setCurrentChannel : function(index) {
-                currentChannel = index;
-            }
-        }
-    })();
-
     function setSizeChart(){
         var chart = "#tamper-line-chart";
         var width = $(chart).parent().width();
@@ -94,7 +81,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
     function showVideo(){
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
@@ -165,6 +152,8 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     var maxSample = 6;
     function startMonitoringTamperingLevel()
     {
+        mStopMonotoringTamperingLevel = false;
+
         (function update()
         {
             getTamperingLevel(function (data) {
@@ -190,13 +179,15 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                         }
                     }
 
-                    monitoringTimer = $timeout(update,300); //300 msec
+                    monitoringTimer = $timeout(update, 500); //500 msec
                 }
             });
         })();
     }
 
     function stopMonitoringTamperingLevel(){
+        mStopMonotoringTamperingLevel = true;
+
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
         }
@@ -227,7 +218,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         var newTamperLevel = {};
 
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         getData.MaxSamples = maxSample;
@@ -339,7 +330,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     function getTamperDetection()
     {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
 
@@ -396,7 +387,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
             setData.DarknessDetection = $scope.TamperDetect.DarknessDetection;
         }
 
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = UniversialManagerService.getChannelId();
 
 
 
@@ -431,7 +422,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                 $rootScope.$emit('changeLoadingBar', true);
                 var setData = {};
 
-                setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+                setData.Channel = UniversialManagerService.getChannelId();
 
                 if (pageData.TamperDetect.Enable !== $scope.TamperDetect.Enable)
                 {
@@ -443,6 +434,15 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                     {
                         $rootScope.$emit('changeLoadingBar', false);
                         pageData.TamperDetect.Enable = angular.copy($scope.TamperDetect.Enable);
+
+                        if($scope.TamperDetect.Enable)
+                        {
+                            startMonitoringTamperingLevel();
+                        }
+                        else
+                        {
+                            stopMonitoringTamperingLevel();
+                        }
                     },
                     function (errorData)
                     {
@@ -455,15 +455,13 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
             {
                 $scope.TamperDetect.Enable = angular.copy(pageData.TamperDetect.Enable);
             }
-         ).finally(function(){
-           startMonitoringTamperingLevel();
-        });
+         );
     };
 
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }
 
@@ -549,6 +547,15 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                     $scope.pageLoaded = true;
                     $scope.$emit('pageLoaded', $scope.EventSource);
                     $timeout(setSizeChart);
+
+                    if($scope.TamperDetect.Enable)
+                    {
+                        startMonitoringTamperingLevel();
+                    }
+                    else
+                    {
+                        stopMonitoringTamperingLevel();
+                    }
                 },
                 function (errorData) {
                     $rootScope.$emit('changeLoadingBar', false);
@@ -600,13 +607,10 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                             function (errorData) {
                                 console.log(errorData);
                             }
-                        ).finally(function(){
-                            startMonitoringTamperingLevel();
-                        });
+                        );
                     } else {
                         $scope.$emit('applied', true);
                         view();
-                        startMonitoringTamperingLevel();
                     }
 
                 }, function ()

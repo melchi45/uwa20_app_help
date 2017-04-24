@@ -1,7 +1,7 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 kindFramework
-    .directive('scheduler', ['$rootScope', '$timeout', 'SunapiClient', '$translate', '$uibModal', '$window', 'eventRuleService','$compile',
-    function($rootScope, $timeout, SunapiClient, $translate, $uibModal, $window, eventRuleService, $compile){
+    .directive('scheduler', ['$rootScope', '$timeout', 'SunapiClient', '$translate', '$uibModal', '$window', 'eventRuleService','$compile', 'UniversialManagerService',
+    function($rootScope, $timeout, SunapiClient, $translate, $uibModal, $window, eventRuleService, $compile, UniversialManagerService){
     'use strict';
 
     return{
@@ -1400,9 +1400,7 @@ kindFramework
             // in case of event rules reset by sunapi call in eventActionSetup for multi channel
             scope.$saveOn('EventRulePrepared', function(event, data) { // console.info('scheduler saveon EventRulePrepared : ');console.info(data);console.info(scope.EventSource);
                 var currentChannel = 0;
-                if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
-                    currentChannel = scope.channelSelectionSection.getCurrentChannel();
-                }
+                currentChannel = UniversialManagerService.getChannelId();
                 if(scope.EventSource === 'AlarmInput') {
                     activeMenu = 'alarmInput';
                     if(data === 'Always') {
@@ -1432,9 +1430,7 @@ kindFramework
 
             scope.$saveOn('recordPageLoaded', function(event, data) {
                 var currentChannel = 0;
-                if(scope.channelSelectionSection !== undefined && scope.channelSelectionSection !== null) {
-                    currentChannel = scope.channelSelectionSection.getCurrentChannel();
-                }
+                currentChannel = UniversialManagerService.getChannelId();
                 if(scope.EventSource === 'Storage') {
                     activeMenu = 'storage';
                     if(data === 'Always') {
@@ -1458,8 +1454,8 @@ kindFramework
                     return;
                 }
                 if(newVal === true) {
+                    tPageLoaded = true;
                     $timeout(function(){
-                        tPageLoaded = true;
                         $('#calendar').fullCalendar('render');
                     });
                 }
