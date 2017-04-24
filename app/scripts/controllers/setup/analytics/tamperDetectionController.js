@@ -179,7 +179,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                         }
                     }
 
-                    monitoringTimer = $timeout(update,300); //300 msec
+                    monitoringTimer = $timeout(update, 500); //500 msec
                 }
             });
         })();
