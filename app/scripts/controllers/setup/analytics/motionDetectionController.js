@@ -539,9 +539,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         같은 탭을 두번 누를 때 백업하는 순간 문제가 발생하므로
         현재 탭을 누를 때는 실행하지 않는 다.
         */
-        if(($scope.activeTab.title === title && isDefault === undefined) ||
-           prevMotionDetectionEnable === "Off" ||
-           prevMotionDetectionEnable === "IntelligentVideo"){
+        if(($scope.activeTab.title === title && isDefault === undefined) || $scope.MotionDetection.MotionDetectionEnable === false){
             // console.log("Return", $scope.activeTab.title, isDefault, prevMotionDetectionEnable);
             return;
         }
@@ -698,12 +696,14 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     };
 
     function setDefaultArea(){
-        if(prevMotionDetectionEnable === "MotionDetection" || prevMotionDetectionEnable === "MDAndIV"){
+        if($scope.MotionDetection.MotionDetectionEnable === true){
             $scope.changeMotionDetectionType($scope.activeTab, true);
         }
     }
 
     function view(data) {
+        $rootScope.$emit('changeLoadingBar', true);
+        
         if(data === 0) {
             try{
                 $rootScope.$emit('resetScheduleData', true);
@@ -817,9 +817,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function prepareMotionDetectionData(mdResponseData, isPreset){
         if(!isPreset){
             setMotionDetectionEnable(mdResponseData.DetectionType);
-            if($scope.presetData.type === "Preset"){
-                return;
-            }
         }
         setMotionDetectionRules(mdResponseData.ROIs);
     }
@@ -872,7 +869,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function setMotionDetectionRules(rois){
        var updatedROIData = [];
 
-       if(prevMotionDetectionEnable === "Off" || prevMotionDetectionEnable === "IntelligentVideo"){
+       if($scope.MotionDetection.MotionDetectionEnable === false){
             return;
        }
         if(rois !== undefined ){
@@ -1201,6 +1198,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
 
         var endSettings = function(){
+            $rootScope.$emit('changeLoadingBar', false);
             $scope.$emit('applied', true);
             deferred.resolve(true);
             $scope.checkApplyButtonClick = false;
@@ -1377,7 +1375,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
         // console.log(pageData.rois);
 
-        if(!(prevMotionDetectionEnable === "Off" || prevMotionDetectionEnable === "IntelligentVideo")){
+        if(!($scope.MotionDetection.MotionDetectionEnable === false)){
             for(var i = 0, ii = pageData.rois.length; i < ii; i++){
                 var roi = pageData.rois[i].ROI;
                 var self = null;
@@ -1399,7 +1397,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 ROIIndex: removedROIIndex.join(',')
             };
             var cmd = $scope.va2CommonCmd + '&action=remove';
-            if( $scope.PTZModel && ($scope.presetData.type === "Preset") ){
+            if( $scope.PTZModel && (checkPresetType === "Preset") ){
                 cmd = $scope.presetCmd + '&action=remove';
                 setData.Preset = $scope.presetData.preset;
             }
