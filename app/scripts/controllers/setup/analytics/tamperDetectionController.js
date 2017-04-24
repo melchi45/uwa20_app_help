@@ -612,13 +612,10 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                             function (errorData) {
                                 console.log(errorData);
                             }
-                        ).finally(function(){
-                            startMonitoringTamperingLevel();
-                        });
+                        );
                     } else {
                         $scope.$emit('applied', true);
                         view();
-                        startMonitoringTamperingLevel();
                     }
 
                 }, function ()
