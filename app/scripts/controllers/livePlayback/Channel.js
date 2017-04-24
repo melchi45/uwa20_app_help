@@ -638,7 +638,6 @@ kindFramework
 
         streamtagtype = checkStreamTagType(_requestProfile);
 
-        $rootScope.$emit('changeLoadingBar', true);
         $rootScope.$emit('channelPlayer:play', plugin, ip, port, profile, id, password, streamtagtype, liveStatusCallback, isReconnect);
 
         ptzTypeCheck();
