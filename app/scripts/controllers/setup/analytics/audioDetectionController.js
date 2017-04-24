@@ -188,19 +188,28 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
         promises.push(getAudioLevel);
 
         if(promises.length > 0) {
-        $q.seqAll(promises).then(
-                function () {
-                    $scope.pageLoaded = true;
-                    $scope.$emit('pageLoaded', $scope.EventSource);
-                    $timeout(setSizeChart);
-                },
-                function (errorData) {
-                    //alert(errorData);
-                }
-        );
+            $q.seqAll(promises).then(
+                    function () {
+                        $scope.pageLoaded = true;
+                        $scope.$emit('pageLoaded', $scope.EventSource);
+                        $timeout(setSizeChart);
+
+                        if($scope.AD.Enable)
+                        {
+                            startMonitoringAudioLevel();
+                        }
+                        else
+                        {
+                            stopMonitoringAudioLevel();
+                        }
+                    },
+                    function (errorData) {
+                        //alert(errorData);
+                    }
+            );
         } else {
             $scope.pageLoaded = true;
-    }
+        }
     }
 
     function set(isEnabledChanged)
@@ -226,6 +235,14 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
                 SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=audiodetection&action=set', setData,
                     function (response)
                     {
+                        if($scope.AD.Enable)
+                        {
+                            startMonitoringAudioLevel();
+                        }
+                        else
+                        {
+                            stopMonitoringAudioLevel();
+                        }
                     },
                     function (errorData)
                     {
@@ -273,14 +290,10 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
                             },function(errorData){
                                 console.log(errorData);
                             }
-                        ).finally(
-                            function(){
-                                //startMonitoringAudioLevel();
-                            });
+                        )
                     } else {
                         $scope.$emit('applied', true);
                         view();
-                        //startMonitoringAudioLevel();
                     }
 
                 }, function ()
@@ -296,6 +309,8 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
     var maxSample = 6;
     function startMonitoringAudioLevel()
     {
+        mStopMonotoringAudioLevel = false;
+
         (function update()
         {
             getAudioLevel(function (data) {
@@ -327,6 +342,8 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
     }
 
     function stopMonitoringAudioLevel(){
+        mStopMonotoringAudioLevel = true;
+
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
         }
@@ -382,7 +399,6 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
         {
             getAttributes().finally(function () {
                 view();
-                startMonitoringAudioLevel();
             });
         }
     })();
