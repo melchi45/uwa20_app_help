@@ -1,4 +1,4 @@
-kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope) {
+kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope, UniversialManagerService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -8,24 +8,11 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
     $scope.qSetData = null;
     $scope.pSetData = null;
 
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
-
     $scope.clearAll = function ()
     {
         var removeSetData = {};
         removeSetData['Area'] = 'All';
-        removeSetData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        removeSetData.Channel = UniversialManagerService.getChannelId();
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=remove',removeSetData,
             function (response) {
                 view();
@@ -116,7 +103,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
                 changed++;
             });
             if (changed != 0) {
-                setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+                setData.Channel = UniversialManagerService.getChannelId();
                 return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=set', setData,
                     function (response) {},
                     function (errorData) {
@@ -158,7 +145,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
             }
 
             if (changed != 0) {
-                setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+                setData.Channel = UniversialManagerService.getChannelId();
                 return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=add', setData,
                     function (response) {},
                     function (errorData) {
@@ -224,7 +211,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
 
     function getFaceDetection() {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=view', getData,
             function (response) {
@@ -238,7 +225,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
 
     function getSmartCodec() {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=view', getData,
             function (response) {
@@ -276,7 +263,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
 
     function showVideo(){
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
             function (response) {
@@ -374,7 +361,7 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }
 

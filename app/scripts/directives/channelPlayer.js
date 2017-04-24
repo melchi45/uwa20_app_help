@@ -1,23 +1,23 @@
 "use strict";
 kindFramework.directive('channelPlayer', 
-    ['BrowserService', '$window', 'UniversialManagerService', 'CAMERA_STATUS', 
+    ['BrowserService', 'UniversialManagerService', 'CAMERA_STATUS',
     '$rootScope', '$compile', 'PluginControlService', 'KindControlService', 
-    'MJPEGPollingControlService', 'ExtendChannelContainerService', 'kindStreamInterface', 
+    'MJPEGPollingControlService', 'kindStreamInterface',
     '$timeout', 'ModalManagerService','$translate',
-    function (BrowserService, $window, UniversialManagerService, CAMERA_STATUS, 
+    function (BrowserService, UniversialManagerService, CAMERA_STATUS,
       $rootScope, $compile, PluginControlService, KindControlService, 
-      MJPEGPollingControlService, ExtendChannelContainerService, kindStreamInterface, 
+      MJPEGPollingControlService, kindStreamInterface,
       $timeout, ModalManagerService,$translate) {
     return {
         restrict: 'E',
         scope: {
             'playinfo': '='
         },
-        link: function (scope, elem, attrs) {
+        link: function (scope, elem) {
             var channelPlayerObj = null;
             scope.child = {};
             $rootScope.$emit('channelPlayer::initialized');
-            scope.$on('$destroy', function(event) {
+            scope.$on('$destroy', function() {
               if(channelPlayerObj !== null)
               {
                   channelPlayerObj.stopStreaming();
@@ -102,7 +102,7 @@ kindFramework.directive('channelPlayer',
 
                 if(channelPlayerObj === null)
                 {
-                    var isPluginMode = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true:false;
+                    var isPluginMode = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
                     channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);    
                 }
 
@@ -182,13 +182,6 @@ kindFramework.directive('channelPlayer',
 
             var ChannelPlayer = function(BrowserType, isPluginMode){
                 function PlugIn(){
-                    function checkNeedToSpeakerStatus() {
-                        if( UniversialManagerService.isSpeakerOn()) {
-                            speakerStatusON();
-                            changeSpeakerVolume(UniversialManagerService.getSpeakerVol());
-                        }
-                    }
-
                     function createActiveXElement() {
                         var ElementTemplate = UniversialManagerService.getPluginElement();
                         if(ElementTemplate === null){
@@ -219,22 +212,25 @@ kindFramework.directive('channelPlayer',
                         {
                             createNPAPIElement();
                         }
-                    }
+                    };
 
+                    /**
+                     * @return {boolean}
+                     */
                     this.StreamElementDetect = function(){
-                        return ((elem.find('object').length !== 0) ? true : false);
-                    }
+                        return (elem.find('object').length !== 0);
+                    };
 
-                    this.startStreaming = function(_pluginMode, _ip, _port, _profile, _id, _password, _streamtagtype, statusCallback, isReconnect){
+                    this.startStreaming = function(_pluginMode, _ip, _port, _profile, _id, _password, _streamtagtype, statusCallback){
                         var pluginObj = elem[0].getElementsByTagName('object')[0];
                         $(pluginObj).addClass("cm-vn");
                         PluginControlService.startPluginStreaming(pluginObj, _ip, _port, _profile, _id, _password, statusCallback);
-                    }
+                    };
 
                     this.capture = function() {
                         var strPath = PluginControlService.capture();
                         ModalManagerService.open('message', { 'buttonCount': 0, 'message': $translate.instant('lang_capture_image_saved')+"\n"+strPath } );
-                    }
+                    };
 
                     this.record = function(recordInfo) {
                         if(recordInfo.command === 'start')
@@ -245,48 +241,48 @@ kindFramework.directive('channelPlayer',
                         {
                             PluginControlService.stopRecord(recordInfo.callback);
                         }
-                    }
+                    };
 
                     this.setAreaZoomAction = function(_command){
                         PluginControlService.setAreaZoomAction(_command);
-                    }
+                    };
 
                     this.setAreaZoomMode = function(_mode){
                         PluginControlService.setAreaZoomMode(_mode);
-                    }
+                    };
 
                     this.setManualTrackingMode = function(_mode) {
                         PluginControlService.setManualTrackingMode(_mode);
-                    }
+                    };
 
                     this.step = function(_data) {
                         PluginControlService.applyStepCommand(_data);
-                    }
+                    };
 
                     this.changeMicVolume = function(_command) {
                         UniversialManagerService.setMicVol(_command);
                         PluginControlService.setAudioTalkVolume(_command);
-                    }
+                    };
 
                     this.micStatusOFF = function(_command) {
                         UniversialManagerService.setMicOn(_command);
                         PluginControlService.stopAudioTalk();
-                    }
+                    };
 
                     this.micStatusON = function(_command) {
                         UniversialManagerService.setMicOn(_command);
                         PluginControlService.startAudioTalk();
-                    }
+                    };
 
                     this.changeSpeakerVolume = function(_command) {
                         UniversialManagerService.setSpeakerVol(_command);
                         PluginControlService.setAudioVolume(_command);
-                    }
+                    };
 
                     this.speakerStatusOFF = function() {
                         UniversialManagerService.setSpeakerOn(false);
                         PluginControlService.stopAudioListen();
-                    }
+                    };
 
                     this.speakerStatusON = function() {
                         UniversialManagerService.setSpeakerOn(true);
@@ -294,39 +290,45 @@ kindFramework.directive('channelPlayer',
                         $timeout(function(){
                             PluginControlService.setAudioVolume(UniversialManagerService.getSpeakerVol());
                         },500);
-                    }
+                    };
 
                     this.pixelCount = function(_type, _command) {
                         UniversialManagerService.setPixelCount(_command.cmd);
                         PluginControlService.pixcelCount(_command);
-                    }
+                    };
 
                     this.closePlayback = function() {
                         $rootScope.$emit('blockTimebarInputField', false);
                         PluginControlService.closePlaybackSession();
                         elem.empty();
-                    }
+                    };
 
                     this.pause = function() {
                         PluginControlService.applyPauseCommand();
-                    }
+                    };
 
                     this.seek = function(_data) {
                         PluginControlService.applySeekCommand(_data);
-                    }
+                    };
 
                     this.resume = function(_data) {
                         PluginControlService.applyResumeCommand(_data);
-                    }
+                    };
 
                     this.playback = function(_data, _timeCallback, _errorCallback) {
                         this.createStreamElement();
                         var pluginObj = elem[0].getElementsByTagName('object')[0];
                         PluginControlService.startPlayback(pluginObj, _data, _timeCallback, _errorCallback);
                         $timeout(function(){
-                            checkNeedToSpeakerStatus();
-                        });
-                    }
+                            if( UniversialManagerService.isSpeakerOn()) {
+                                try{
+                                    this.speakerStatusON();
+                                    this.changeSpeakerVolume(UniversialManagerService.getSpeakerVol());
+                                }catch(e){
+                                    console.error(e);
+                                }
+                        }}.bind(this));
+                    };
 
                     this.playbackBackup = function(_data, _callback) {
                         this.createStreamElement();
@@ -342,22 +344,25 @@ kindFramework.directive('channelPlayer',
                     }
 
                     this.createStreamElement = function() {
-                        var ElementTemplate = $compile('<img cursor="default" zIndex="10" draggable="false"></img>')(scope);
-                        elem.append(ElementTemplate);
-                        setElement(ElementTemplate);
-                    }
+                        var Element = $compile("<img cursor='default' zIndex='10' draggable='false'>")(scope);
+                        elem.append(Element);
+                        setElement(Element);
+                    };
 
+                    /**
+                     * @return {boolean}
+                     */
                     this.StreamElementDetect = function(){
-                        return ((elem.find('image').length !== 0) ? true : false);
-                    }
+                        return (elem.find('image').length !== 0);
+                    };
 
-                    this.startStreaming = function(_pluginMode, _ip, _port, _profile, _id, _password, _streamtagtype, statusCallback, isReconnect){
+                    this.startStreaming = function(){
                         MJPEGPollingControlService.startMJPEGStreaming(elem);
-                    }
+                    };
 
                     this.capture = function() {
                         MJPEGPollingControlService.capture();
-                    }
+                    };
 
                     this.record = stopAndNotSupport;
 
@@ -396,25 +401,21 @@ kindFramework.directive('channelPlayer',
                     this.playbackBackup = stopAndNotSupport;
                 }
                 function Kind(){
-                    function checkNeedToSpeakerStatus() {
-                        if( UniversialManagerService.isSpeakerOn()) {
-                            speakerStatusON();
-                            changeSpeakerVolume(UniversialManagerService.getSpeakerVol());
-                        }
-                    }
-
                     this.createStreamElement = function() {
                         var ElementTemplate = '<kind_stream class="channel-content" kindplayer="playerdata" display="displayInfo"></kind_stream>';
                         elem.append($compile(ElementTemplate)(scope));
-                    }
+                    };
 
+                    /**
+                     * @return {boolean}
+                     */
                     this.StreamElementDetect = function() {
-                        return ((elem.find('kind_stream').length !== 0) ? true : false);
-                    }
+                        return (elem.find('kind_stream').length !== 0);
+                    };
 
                     this.startStreaming = function(_pluginMode, _ip, _port, _profile, _id, _password, _streamtagtype, statusCallback, isReconnect){
                         KindControlService.startKindStreaming(scope, _profile, _streamtagtype, statusCallback,isReconnect);
-                    }
+                    };
 
                     this.capture = function() {
                         if (typeof document.createElement('a').download !== "undefined") {
@@ -423,7 +424,7 @@ kindFramework.directive('channelPlayer',
                         } else {
                             ModalManagerService.open('message', { 'buttonCount': 0, 'message': "lang_service_unavailable" } );
                         }
-                    }
+                    };
 
                     this.record = function(recordInfo) {
                         if(recordInfo.command === 'start')
@@ -434,59 +435,59 @@ kindFramework.directive('channelPlayer',
                         {
                             KindControlService.stopRecord(scope, recordInfo);
                         }
-                    }
+                    };
 
                     this.setAreaZoomAction = function(_command) {
                         KindControlService.setAreaZoomAction(_command);
-                    }
+                    };
 
                     this.setAreaZoomMode = function(_mode) {
                         KindControlService.setAreaZoomMode(_mode);
-                    }
+                    };
 
                     this.setManualTrackingMode = function(_mode) {
                         KindControlService.setManualTrackingMode(_mode);
-                    }
+                    };
 
                     this.step = function(_data) {
                         $rootScope.$emit('app/scripts/directives/channelPlayer.js:step', _data);
-                    }
+                    };
 
                     this.changeMicVolume = function(_command) {
                         UniversialManagerService.setMicVol(_command);
                         kindStreamInterface.controlAudioOut(_command);
-                    }
+                    };
 
                     this.micStatusOFF = function(_command) {
                         UniversialManagerService.setMicOn(_command);
                         kindStreamInterface.controlAudioOut('off');
-                    }
+                    };
 
                     this.micStatusON = function(_command) {
                         UniversialManagerService.setMicOn(_command);
                         kindStreamInterface.controlAudioOut('on');
-                    }
+                    };
 
                     this.changeSpeakerVolume = function(_command) {
                         UniversialManagerService.setSpeakerVol(_command);
                         kindStreamInterface.controlAudioIn(_command);
-                    }
+                    };
 
                     this.speakerStatusOFF = function() {
                         UniversialManagerService.setSpeakerOn(false);
                         kindStreamInterface.controlAudioIn('off');
-                    }
+                    };
 
                     this.speakerStatusON = function() {
                         UniversialManagerService.setSpeakerOn(true);
                         kindStreamInterface.controlAudioIn(UniversialManagerService.getSpeakerVol());
-                    }
+                    };
 
                     this.pixelCount = function(_type, _command) {
                         UniversialManagerService.setPixelCount(_command.cmd);
                         $rootScope.$emit('channel:overlayCanvas', _command.cmd);
                         $rootScope.$emit('overlayCanvas::command', _type, _command.cmd);
-                    }
+                    };
 
                     this.closePlayback = function() {
                         KindControlService.closePlaybackSession(scope);
@@ -494,32 +495,38 @@ kindFramework.directive('channelPlayer',
                         if( scope.child.$destroy !== undefined ) {
                           scope.child.$destroy();
                         }
-                    }
+                    };
 
                     this.pause = function() {
                         KindControlService.applyPauseCommand(scope);
-                    }
+                    };
 
                     this.seek = function(_data) {
                         KindControlService.applySeekCommand(scope, _data);
-                    }
+                    };
 
                     this.resume = function(_data) {
                         KindControlService.applyResumeCommand(scope, _data);
-                    }
+                    };
 
                     this.playback = function(_data, _timeCallback, _errorCallback) {
                         this.createStreamElement();
                         KindControlService.startPlayback(scope, _data, _timeCallback, _errorCallback);
                         $timeout(function(){
-                            checkNeedToSpeakerStatus();
-                        });
-                    }
+                            if( UniversialManagerService.isSpeakerOn()) {
+                                try{
+                                    this.speakerStatusON();
+                                    this.changeSpeakerVolume(UniversialManagerService.getSpeakerVol());
+                                }catch(e){
+                                    console.error(e);
+                                }
+                            }}.bind(this));
+                    };
 
                     this.playbackBackup = function(_data, _callback) {
                         this.createStreamElement();
                         KindControlService.startPlaybackBackup(scope, _data, _callback);
-                    }
+                    };
                 }
 
                 function Player(){
@@ -541,14 +548,7 @@ kindFramework.directive('channelPlayer',
                                 else
                                 {
                                     var MJPEG_PROFILE_NUM = 1; // 1 is MJPEG
-                                    if(intProfileNumber === MJPEG_PROFILE_NUM)
-                                    {
-                                        return true;
-                                    }
-                                    else
-                                    {
-                                        return false;
-                                    }
+                                    return (intProfileNumber === MJPEG_PROFILE_NUM);
                                 }
                                 break;
                             case BrowserService.BROWSER_TYPES.SAFARI:
@@ -559,27 +559,16 @@ kindFramework.directive('channelPlayer',
                             /* jshint ignore:start */
                             default :
                                 /* jshint ignore:end */
-                                if(isPluginMode === true)
-                                {
-                                    return false;
-                                }
-                                else
-                                {
-                                    return true;
-                                    /* This is for PLUGINFREE Profile
-                                     _profile = UniversialManagerService.getProfileInfo();
-                                     return ProfileCheckService.availableCheck(_profile);
-                                     */
-                                }
+                                return !(isPluginMode);
                                 break;
                         }
-                    }
+                    };
 
                     this.createPlugInInstallElement = function() {
                         var ElementTemplate = '<div class="cm-plugin-msg">{{ "lang_msg_plugin_install2" | translate }}<br><a href=' + BrowserService.PlugInPath +'><i class="tui tui-wn5-download cm-icon-x15"></i>Plugin</a></div>';
                         elem.append($compile(ElementTemplate)(scope));
                         $rootScope.$emit('NeedToInstallPlugIn', true);
-                    }
+                    };
 
                     this.deleteStreamElement = function(){
                         angular.element(elem.find('kind_stream')).remove();
@@ -587,25 +576,32 @@ kindFramework.directive('channelPlayer',
                         if( scope.child.$destroy !== undefined ) {
                             scope.child.$destroy();
                         }
-                    }
+                    };
                 }
 
                 (function constructor(){
                     switch (BrowserType)
                     {
                         case BrowserService.BROWSER_TYPES.IE:
-                            if(isPluginMode === false)
+                            if(isPluginMode)
+                            {
+                                Player.prototype = new PlugIn();
+                            }
+                            else
                             {
                                 Player.prototype = new MJPEG();
-                                break;
+
                             }
+                            break;
                         case BrowserService.BROWSER_TYPES.SAFARI:
-                            if(isPluginMode === false)
+                            if(isPluginMode)
+                            {
+                                Player.prototype = new PlugIn();
+                            }
+                            else
                             {
                                 Player.prototype = new Kind();
-                                break;
                             }
-                            Player.prototype = new PlugIn();
                             break;
                         case BrowserService.BROWSER_TYPES.CHROME:
                         case BrowserService.BROWSER_TYPES.EDGE:
@@ -663,7 +659,7 @@ kindFramework.directive('channelPlayer',
 
             function stopLiveForPlayback(_streamingmode, isPlaybackMode ) {
               /*Previously check plugin mode*/
-              var pluginMode = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true:false;
+              var pluginMode = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
               if( (pluginMode === true) && (BrowserService.PlugInDetect === false)) {
                 UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
                 _streamingmode = CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE;

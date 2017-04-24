@@ -1,4 +1,4 @@
-kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location, $scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, eventRuleService)
+kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location, $scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, $q, eventRuleService, UniversialManagerService)
 {
     "use strict";
 
@@ -7,19 +7,6 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     var mAttr = Attributes.get();
 
     var pageData = {};
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     $scope.EventSource = 'DefocusDetection';
 
@@ -183,7 +170,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     function getDefocusDetection()
     {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=defocusdetection&action=view', getData,
@@ -225,7 +212,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     {
         var setData = {};
 
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = UniversialManagerService.getChannelId();
 
         if (pageData.DefocusDetect.Enable !== $scope.DefocusDetect.Enable)
         {
@@ -275,7 +262,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
 
     function showVideo(){
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
                 function (response) {
@@ -328,6 +315,15 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                     $scope.$emit('pageLoaded', $scope.EventSource);
                     $timeout(setSizeChart);
                 });
+
+                if($scope.DefocusDetect.Enable)
+                {
+                    startMonitoringDefocusLevel();
+                }
+                else
+                {
+                    stopMonitoringDefocusLevel();
+                }
             },
             function (errorData) {
                 $rootScope.$emit('changeLoadingBar', false);
@@ -405,6 +401,8 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     var maxSample = 6;
     function startMonitoringDefocusLevel()
     {
+        mStopMonotoringDefocusLevel = false;
+
         (function update()
         {
             getDefocusLevel(function (data) {
@@ -429,7 +427,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                             }
                         }
                     }
-                    monitoringTimer = $timeout(update,300); //300 msec
+                    monitoringTimer = $timeout(update, 500); //300 msec
                 }
             });
         })();
@@ -454,7 +452,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
         var newDefocusLevel = {};
 
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         getData.MaxSamples = maxSample;
@@ -478,6 +476,8 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     }
 
     function stopMonitoringDefocusLevel(){
+        mStopMonotoringDefocusLevel = true;
+
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
         }
@@ -491,7 +491,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
 
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
         $rootScope.$emit('changeLoadingBar', true);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }, $scope);
 
@@ -514,7 +514,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
         modalInstance.result.then(function ()
         {
             var setData = {
-                Channel: $scope.channelSelectionSection.getCurrentChannel(),
+                Channel: UniversialManagerService.getChannelId(),
                 Enable: $scope.DefocusDetect.Enable
             };
 
@@ -522,6 +522,15 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                     function (response)
                     {
                         pageData.DefocusDetect.Enable = $scope.DefocusDetect.Enable;
+
+                        if($scope.DefocusDetect.Enable)
+                        {
+                            startMonitoringDefocusLevel();
+                        }
+                        else
+                        {
+                            stopMonitoringDefocusLevel();
+                        }
                     },
                     function (errorData)
                     {
@@ -545,7 +554,6 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
         {
             getAttributes().finally(function () {
                 view();
-                startMonitoringDefocusLevel();
             });
         }
     })();

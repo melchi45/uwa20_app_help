@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attributes, $timeout, COMMONUtils, sketchbookService, $q, $rootScope) {
+kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attributes, $timeout, COMMONUtils, sketchbookService, $q, $rootScope, UniversialManagerService) {
     "use strict";
 
     $scope.FastAutoFocusDefined = true;
@@ -10,19 +10,6 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     $scope.FastAutoFocus = true;
 
     $scope.PageData = {};
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     var mAttr = Attributes.get();
     COMMONUtils.getResponsiveObjects($scope);
@@ -66,7 +53,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         var setData = {};
 
         setData.Focus = level;
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = UniversialManagerService.getChannelId();
 
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=control', setData,
             function (response) {},
@@ -79,7 +66,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         var setData = {};
 
         setData.Zoom = level;
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = UniversialManagerService.getChannelId();
 
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=control', setData,
             function (response) {},
@@ -92,7 +79,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         var setData = {};
 
         setData.Mode = mode;
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = UniversialManagerService.getChannelId();
 
         var coordi = sketchbookService.get();
         if(coordi[0].isSet){
@@ -110,7 +97,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     function SaveFAFSettings() {
         var setData = {};
         setData.FastAutoFocus = $scope.FastAutoFocus;
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = UniversialManagerService.getChannelId();
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=set', setData,
             function (response) {
                 view();
@@ -129,7 +116,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
     function focusView(){
         var jData = {};
-        jData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        jData.Channel = UniversialManagerService.getChannelId();
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=view', jData,
             function (response) {
                 $scope.PageData = response.data;
@@ -160,7 +147,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
     function showVideo(){
         var getData = {};
-        getData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        getData.Channel = UniversialManagerService.getChannelId();
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
             function (response) {
                 var viewerWidth = 640;
@@ -201,7 +188,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
         $rootScope.$emit('changeLoadingBar', true);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }, $scope);
 
