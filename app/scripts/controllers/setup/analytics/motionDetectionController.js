@@ -1394,14 +1394,18 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
 
         if(removedROIIndex.length > 0){
-            var isPreset = $scope.PTZModel && (checkPresetType === "Preset");
-            var cmd = (isPreset? $scope.presetCmd : $scope.va2CommonCmd) + '&action=remove';
+            var setData = {
+                Channel: UniversialManagerService.getChannelId(),
+                ROIIndex: removedROIIndex.join(',')
+            };
+            var cmd = $scope.va2CommonCmd + '&action=remove';
+            if( $scope.PTZModel && (checkPresetType === "Preset") ){
+                cmd = $scope.presetCmd + '&action=remove';
+                setData.Preset = $scope.presetData.preset;
+            }
             SunapiClient.get(cmd,            
             //SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=remove', 
-                {
-                    Channel: UniversialManagerService.getChannelId(),
-                    ROIIndex: removedROIIndex.join(',')
-                },
+                setData,
                 function (response){
                     // console.log("removed");
                     deferred.resolve(removedROIIndex);
