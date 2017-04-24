@@ -4115,6 +4115,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if(functionList.length > 0){
             $q.seqAll(functionList).then(
                     function () {
+                        UniversialManagerService.setChannelId($scope.targetChannel);
                         view();
                     },
                     function (errorData) {showLoadingBar(false);}
@@ -6813,6 +6814,53 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         return option;
     };
 
+    function detectOSDChanges() {
+        var isChanged = false;
+
+        if(!angular.equals(pageData.TitleOSD['Enable'], $scope.TitleOSD['Enable'])) {
+            isChanged = true;
+        } else {
+            for(var i = 0; i < $scope.TitleOSD.length; i++) {
+                if(typeof $scope.TitleOSD[i] === 'object' && typeof pageData.TitleOSD[i] === 'object') {
+                    var osd = $scope.TitleOSD[i];
+                    var pageOsd = pageData.TitleOSD[i];
+                    if(!angular.equals(osd.Enable, pageOsd.Enable)
+                        || !angular.equals(osd.FontSize, pageOsd.FontSize)
+                        || !angular.equals(osd.Transparency, pageOsd.Transparency)
+                        || !angular.equals(osd.OSDColor, pageOsd.OSDColor)
+                        || !angular.equals(osd.PositionX, pageOsd.PositionX)
+                        || !angular.equals(osd.PositionY, pageOsd.PositionY)
+                        || !angular.equals(osd.OSD, pageOsd.OSD)) {
+                        isChanged = true;
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+
+        if(!angular.equals(pageData.DateOSD['Enable'], $scope.DateOSD['Enable'])) {
+            isChanged = true;
+        } else {
+            if(typeof $scope.DateOSD[0] === 'object' && typeof pageData.DateOSD[0] === 'object') {
+                var osd = $scope.DateOSD[0];
+                var pageOsd = pageData.DateOSD[0];
+                if(!angular.equals(osd.Enable, pageOsd.Enable)
+                    || !angular.equals(osd.DateFormat, pageOsd.DateFormat)
+                    || !angular.equals(osd.Transparency, pageOsd.Transparency)
+                    || !angular.equals(osd.OSDColor, pageOsd.OSDColor)
+                    || !angular.equals(osd.PositionX, pageOsd.PositionX)
+                    || !angular.equals(osd.PositionY, pageOsd.PositionY)
+                    || !angular.equals(osd.WeekDay, pageOsd.WeekDay)
+                    || !angular.equals(osd.FontSize, pageOsd.FontSize)) {
+                    isChanged = true;
+                }
+            }
+        }
+
+        return isChanged;
+    }
+
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
         if (($scope.ImagePresetModeOptions !== undefined && !angular.equals(pageData.ImagePreset, $scope.ImagePreset))
             || !angular.equals(pageData.VideoSources, $scope.VideoSources)
@@ -6822,12 +6870,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             || !angular.equals(pageData.WhiteBalance, $scope.WhiteBalance)
             || !angular.equals(pageData.ImageEnhancements, $scope.ImageEnhancements)
             || !angular.equals(pageData.Flip, $scope.Flip)
-            || !angular.equals(pageData.TitleOSD, $scope.TitleOSD)
-            || !angular.equals(pageData.DateOSD, $scope.DateOSD)
-            || !angular.equals(pageData.OSDFontSize, $scope.OSD.FontSize)
-            || !angular.equals(pageData.OSDColor, $scope.OSD.Color)
             // || !angular.equals(pageData.IRled, $scope.IRled)
-            || !angular.equals(pageData.OSDTransparency, $scope.OSD.Transparency)) {
+            || detectOSDChanges()) {
             var modalInstance = $uibModal.open({
                 templateUrl: 'views/setup/common/confirmMessage.html',
                 controller: 'confirmMessageCtrl',
@@ -6840,15 +6884,15 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             });
             modalInstance.result.then(function() {
                 if(validatePage()) {
-                    $rootScope.$emit('changeLoadingBar', true);
                     $rootScope.$emit("channelSelector:changeChannel", data);
+                    $scope.targetChannel = data;
                     saveSettings();
                 }
             },
             function() {
             });
         } else {
-            $rootScope.$emit('changeLoadingBar', true);
+            showLoadingBar(true);
             UniversialManagerService.setChannelId(data);
             $rootScope.$emit("channelSelector:changeChannel", data);
             view();
