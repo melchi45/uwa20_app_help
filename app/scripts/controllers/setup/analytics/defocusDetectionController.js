@@ -315,6 +315,15 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                     $scope.$emit('pageLoaded', $scope.EventSource);
                     $timeout(setSizeChart);
                 });
+
+                if($scope.DefocusDetect.Enable)
+                {
+                    startMonitoringDefocusLevel();
+                }
+                else
+                {
+                    stopMonitoringDefocusLevel();
+                }
             },
             function (errorData) {
                 $rootScope.$emit('changeLoadingBar', false);
@@ -392,6 +401,8 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     var maxSample = 6;
     function startMonitoringDefocusLevel()
     {
+        mStopMonotoringDefocusLevel = false;
+
         (function update()
         {
             getDefocusLevel(function (data) {
@@ -465,6 +476,8 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     }
 
     function stopMonitoringDefocusLevel(){
+        mStopMonotoringDefocusLevel = true;
+
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
         }
@@ -509,6 +522,15 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                     function (response)
                     {
                         pageData.DefocusDetect.Enable = $scope.DefocusDetect.Enable;
+
+                        if($scope.DefocusDetect.Enable)
+                        {
+                            startMonitoringDefocusLevel();
+                        }
+                        else
+                        {
+                            stopMonitoringDefocusLevel();
+                        }
                     },
                     function (errorData)
                     {
@@ -532,7 +554,6 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
         {
             getAttributes().finally(function () {
                 view();
-                startMonitoringDefocusLevel();
             });
         }
     })();

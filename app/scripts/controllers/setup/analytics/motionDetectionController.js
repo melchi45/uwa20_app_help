@@ -750,6 +750,15 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     setDefaultArea();
                     setSizeChart();
                 });
+
+                if($scope.MotionDetection.MotionDetectionEnable)
+                {
+                    startMonitoringMotionLevel();
+                }
+                else
+                {
+                    stopMonitoringMotionLevel();
+                }
             },
             function(errorData){
                 $rootScope.$emit('changeLoadingBar', false);
@@ -981,6 +990,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     var maxSample = 6;
     function startMonitoringMotionLevel()
     {
+        mStopMonotoringMotionLevel = false;
+
         (function update()
         {
             getMotionLevel(function (data, index) {
@@ -1042,6 +1053,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function stopMonitoringMotionLevel(){
+        mStopMonotoringMotionLevel = true;
+
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
         }
@@ -1240,7 +1253,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             getAttributes();
             getCommonCmd();
             view();
-            startMonitoringMotionLevel();
         }
     })();
 

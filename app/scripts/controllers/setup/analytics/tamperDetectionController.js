@@ -152,6 +152,8 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     var maxSample = 6;
     function startMonitoringTamperingLevel()
     {
+        mStopMonotoringTamperingLevel = false;
+
         (function update()
         {
             getTamperingLevel(function (data) {
@@ -184,6 +186,8 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     }
 
     function stopMonitoringTamperingLevel(){
+        mStopMonotoringTamperingLevel = true;
+
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
         }
@@ -430,6 +434,15 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                     {
                         $rootScope.$emit('changeLoadingBar', false);
                         pageData.TamperDetect.Enable = angular.copy($scope.TamperDetect.Enable);
+
+                        if($scope.TamperDetect.Enable)
+                        {
+                            startMonitoringTamperingLevel();
+                        }
+                        else
+                        {
+                            stopMonitoringTamperingLevel();
+                        }
                     },
                     function (errorData)
                     {
@@ -442,9 +455,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
             {
                 $scope.TamperDetect.Enable = angular.copy(pageData.TamperDetect.Enable);
             }
-         ).finally(function(){
-           startMonitoringTamperingLevel();
-        });
+         );
     };
 
     function changeChannel(index){
@@ -536,6 +547,15 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                     $scope.pageLoaded = true;
                     $scope.$emit('pageLoaded', $scope.EventSource);
                     $timeout(setSizeChart);
+
+                    if($scope.TamperDetect.Enable)
+                    {
+                        startMonitoringTamperingLevel();
+                    }
+                    else
+                    {
+                        stopMonitoringTamperingLevel();
+                    }
                 },
                 function (errorData) {
                     $rootScope.$emit('changeLoadingBar', false);

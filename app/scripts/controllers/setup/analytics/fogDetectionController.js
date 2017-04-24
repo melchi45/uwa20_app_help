@@ -153,6 +153,8 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     var maxSample = 6;
     function startMonitoringFogLevel()
     {
+        mStopMonotoringFogLevel = false;
+
         (function update()
         {
             getFogLevel(function (data) {
@@ -182,6 +184,8 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     }
 
     function stopMonitoringFogLevel(){
+        mStopMonotoringFogLevel = true;
+
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
         }
@@ -310,7 +314,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     };
 
     $scope.setFogDetectionEnable = function () {
-        stopMonitoringFogLevel();
         var successCallback = function (){
             $rootScope.$emit('changeLoadingBar', true);
             var setData = {};
@@ -327,20 +330,26 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                 {
                     $rootScope.$emit('changeLoadingBar', false);
                     pageData.FogDetect.Enable = angular.copy($scope.FogDetect.Enable);
-                    startMonitoringFogLevel();
+
+                    if($scope.FogDetect.Enable)
+                    {
+                        startMonitoringFogLevel();
+                    }
+                    else
+                    {
+                        stopMonitoringFogLevel();
+                    }
                 },
                 function (errorData)
                 {
                     $rootScope.$emit('changeLoadingBar', false);
                     $scope.FogDetect.Enable = angular.copy(pageData.FogDetect.Enable);
-                    startMonitoringFogLevel();
                     console.log(errorData);
                 }, '', true);
         };
         var errorCallback = function ()
         {
             $scope.FogDetect.Enable = angular.copy(pageData.FogDetect.Enable);
-            startMonitoringFogLevel();
         };
 
         COMMONUtils.ShowConfirmation(successCallback, 'lang_apply_question','sm', errorCallback);
@@ -433,6 +442,15 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                 $scope.$emit('pageLoaded', $scope.EventSource);
                 $("#imagepage").show();
                 $timeout(setSizeChart);
+
+                if($scope.FogDetect.Enable)
+                {
+                    startMonitoringFogLevel();
+                }
+                else
+                {
+                    stopMonitoringFogLevel();
+                }
             },
             function(errorData){
                 $rootScope.$emit('changeLoadingBar', false);
@@ -461,7 +479,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
     function setChangedData(){
         var deferred = $q.defer();
-        stopMonitoringFogLevel();
 
         setFogDetection().then(
             function () {
@@ -473,9 +490,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                 console.log(errorData);
                 deferred.reject(errorData);
             }
-        ).finally(function(){
-            startMonitoringFogLevel();
-        });
+        );
 
         return deferred.promise;
     }
@@ -520,7 +535,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
         } else {
             getAttributes();
             view();
-            startMonitoringFogLevel();
         }
     })();
 
