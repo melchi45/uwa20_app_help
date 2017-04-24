@@ -290,7 +290,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
                             },function(errorData){
                                 console.log(errorData);
                             }
-                        )
+                        );
                     } else {
                         $scope.$emit('applied', true);
                         view();
