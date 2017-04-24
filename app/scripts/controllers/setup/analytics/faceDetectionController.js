@@ -1,22 +1,9 @@
 /*global setTimeout */
-kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope, WISE_FACE_DETECTION, eventRuleService) {
+kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope, WISE_FACE_DETECTION, eventRuleService, UniversialManagerService) {
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
     var pageData = {};
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     var DetectionModes = ['Inside', 'Outside'];
     $scope.tabs = [{
@@ -367,7 +354,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
     function getFaceDetection() {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=view', getData, function(response) {
             $scope.FD = response.data.FaceDetection[0];
@@ -395,7 +382,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             DetectionAreaIndex: null
         };
         var removeIndex = [];
-        var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+        var currentChannel = UniversialManagerService.getChannelId();
 
         setData.Channel = currentChannel;
         if (pageData.FD.Enable !== $scope.FD.Enable) {
@@ -552,7 +539,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
     function showVideo() {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
             var viewerWidth = 640;
@@ -1009,7 +996,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }
 

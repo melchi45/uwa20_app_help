@@ -1,7 +1,7 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 kindFramework
-    .directive('eventActionSetup', ['LoggingService', 'COMMONUtils', 'Attributes', 'SunapiClient', '$rootScope', 'eventRuleService',
-    function(LoggingService, COMMONUtils, Attributes, SunapiClient, $rootScope, eventRuleService){
+    .directive('eventActionSetup', ['LoggingService', 'COMMONUtils', 'Attributes', 'SunapiClient', '$rootScope', 'eventRuleService', 'UniversialManagerService',
+    function(LoggingService, COMMONUtils, Attributes, SunapiClient, $rootScope, eventRuleService, UniversialManagerService){
     'use strict';
     return{
         restrict: 'E',
@@ -36,7 +36,7 @@ kindFramework
                     || scope.EventSource === 'VideoAnalysis'
                     || scope.EventSource === 'MotionDetection'
                     || scope.EventSource === 'TamperingDetection') {
-                    var currentChannel = scope.channelSelectionSection.getCurrentChannel(); 
+                    var currentChannel = UniversialManagerService.getChannelId(); 
                     url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
                     getData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
                 } else {
@@ -278,7 +278,7 @@ kindFramework
                 }
 
                 if(scope.EventRule.EventType.substring(0,7) === 'Channel') {
-                    var currentChannel = scope.channelSelectionSection.getCurrentChannel();
+                    var currentChannel = UniversialManagerService.getChannelId();
                     url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
                     setData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
                 } else {

@@ -14,7 +14,7 @@ kindFramework
                     var mAttr = Attributes.get();
                     var margin = {top: 35, right: 27, bottom: 40, left: 40};
                     var limit = 100;
-                    var duration = 50;
+                    var duration = 100;
                     var now = new Date(Date.now() - duration);
                     var DataQueue = [];
                     var svg;

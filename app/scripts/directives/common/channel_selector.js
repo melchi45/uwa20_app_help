@@ -84,6 +84,7 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope, Univ
         scope: true,
         templateUrl: 'views/livePlayback/directives/live-playback-channel-selector.html',
         link: function(scope, element, attrs){
+            var DEFAULT_CHANNEL = 0;
             scope.livePlaybackChannelSelector = {
                 useQuadView: attrs.useQuadView === 'true',
                 changeQuadView: function(){
@@ -95,7 +96,7 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope, Univ
                 try {
                     $rootScope.$emit('channelSelector:changeChannel', UniversialManagerService.getChannelId());   
                 }catch(e){
-                    $rootScope.$emit('channelSelector:changeChannel', 0);
+                    $rootScope.$emit('channelSelector:changeChannel', DEFAULT_CHANNEL);
                 }
             }, scope);
 
@@ -132,7 +133,7 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope, Univ
  *    //Open popup
  * }, $scope);
  */
-kindFramework.directive('setupChannelSelector', function($rootScope, SunapiClient){
+kindFramework.directive('setupChannelSelector', function($rootScope, UniversialManagerService){
     "use strict";
 
     return {
@@ -141,7 +142,7 @@ kindFramework.directive('setupChannelSelector', function($rootScope, SunapiClien
         scope: true,
         templateUrl: 'views/setup/common/setup_channel_selector.html',
         link: function(scope, element, attrs){
-            var defaultChannel = 0;
+            var DEFAULT_CHANNEL = 0;
             var useChannel = true;
 
             if(attrs.useChannel == 'false') useChannel = false;
@@ -162,7 +163,11 @@ kindFramework.directive('setupChannelSelector', function($rootScope, SunapiClien
             }
 
             $rootScope.$saveOn('channelSelector:mounted', function(event, index){
-                $rootScope.$emit('channelSelector:changeChannel', defaultChannel);
+                try {
+                    $rootScope.$emit('channelSelector:changeChannel', UniversialManagerService.getChannelId());   
+                }catch(e){
+                    $rootScope.$emit('channelSelector:changeChannel', DEFAULT_CHANNEL);
+                }
             }, scope);
         }
     };

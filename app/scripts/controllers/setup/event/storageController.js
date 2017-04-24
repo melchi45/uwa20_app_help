@@ -1,4 +1,4 @@
-kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate, $timeout, $q, $rootScope, eventRuleService, $compile) {
+kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate, $timeout, $q, $rootScope, eventRuleService, $compile, UniversialManagerService) {
     "use strict";
     var mAttr = Attributes.get();
     COMMONUtils.getResponsiveObjects($scope);
@@ -6,7 +6,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
     $scope.RecordEnableOptions = ["Off", "On"];
     $scope.SelectedStorage = 0;
-    $scope.Channel = 0;
+    $scope.Channel = UniversialManagerService.getChannelId();
     $scope.NASTestStatus = "";
     $scope.NASTimerId = null;
     $scope.selected = 0;
@@ -33,19 +33,6 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.NASPasswordPattern = "^[a-zA-Z0-9~!@$^*_\\-{}\\[\\]./?]*$";
     $scope.NASFolderPattern = "^[a-zA-Z0-9_\\-.]*$";
 
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
-
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
     };
@@ -56,65 +43,33 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             profCnt = 0;
         var getData = {};
 
-        return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData,
+        return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=sdcardinfo&action=view', getData,
             function (response) {
-                var aaa = [
-                    {
-                        "Channel": 0,
-                        "UsedSpace": "1488",
-                        "TotalSpace": "30420",
-                        "FileSystem": "VFAT",
-                        "Enable": true,
-                        "Status": "Active"
-                    },
-                    {
-                        "Channel": 1,
-                        "UsedSpace": "2152",
-                        "TotalSpace": "30420",
-                        "FileSystem": "VFAT",
-                        "Enable": false,
-                        "Status": "Normal"
-                    },
-                    {
-                        "Channel": 2,
-                        "UsedSpace": "571",
-                        "TotalSpace": "30420",
-                        "FileSystem": "VFAT",
-                        "Enable": false,
-                        "Status": "Active"
-                    },
-                    {
-                        "Channel": 3,
-                        "UsedSpace": "15000",
-                        "TotalSpace": "30420",
-                        "FileSystem": "VFAT",
-                        "Enable": false,
-                        "Status": ""
-                    }
-                ];
+                
+                var TableData = response.data;
 
-                $.each(aaa,function(index, element) {
+                $.each(TableData,function(index, element) {
 
                     var totalSpace = parseInt(element.TotalSpace);
                     var usedSpace = totalSpace - parseInt(element.UsedSpace);
                     var status = element.Status;
 
-                    element.Enable = element.Enable ? "On" : "Off";
+                    element.Enable = element.Enable === true ? "On" : "Off";
 
                     if (usedSpace < 1024) {
-                        element.UsedSpace = usedSpace + "MB"
+                        element.UsedSpace = usedSpace + " MB"
                     } else if (usedSpace >= 1024 && usedSpace < 1024*1024 ) {
-                        element.UsedSpace = (usedSpace/1024).toFixed(2) + "GB"
+                        element.UsedSpace = (usedSpace/1024).toFixed(2) + " GB"
                     } else if (usedSpace >= 1024*1024 && usedSpace < 1024*1024*1024) {
-                        element.UsedSpace = (usedSpace/(1024*1024)).toFixed(2) + "TB"
+                        element.UsedSpace = (usedSpace/(1024*1024)).toFixed(2) + " TB"
                     }
 
                     if (totalSpace < 1024) {
-                        element.TotalSpace = totalSpace + "MB"
+                        element.TotalSpace = totalSpace + " MB"
                     } else if (totalSpace >= 1024 && usedSpace < 1024*1024 ) {
-                        element.TotalSpace = (totalSpace/1024).toFixed(2) + "GB"
+                        element.TotalSpace = (totalSpace/1024).toFixed(2) + " GB"
                     } else if (totalSpace >= 1024*1024 && usedSpace < 1024*1024*1024) {
-                        element.TotalSpace = (totalSpace/(1024*1024)).toFixed(2) + "TB"
+                        element.TotalSpace = (totalSpace/(1024*1024)).toFixed(2) + " TB"
                     }
 
                     if (status === "") {
@@ -127,9 +82,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
                 })
 
-                $scope.infoTableData = aaa;
-
-                console.log($scope.infoTableData);
+                $scope.infoTableData = TableData;
 
             },
             function (errorData) {
@@ -535,7 +488,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     function validatePage() {
         var retVal = true;
         if ($scope.storageForm.AutoDeleteDays.$valid === false) {
-            COMMONUtils.ShowError('lang_msg_invalidValue');
+            COMMONUtils.ShowError('lang_msg_chkPeriodRange');
             retVal = false;
         }
         if ($scope.RecordStorageInfo.AutoDeleteEnable === true) {
@@ -807,7 +760,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
         $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
-            $scope.channelSelectionSection.setCurrentChannel($scope.Channel);
+            UniversialManagerService.setChannelId($scope.Channel);
 
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
             $rootScope.$emit('changeLoadingBar', false);

@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, sketchbookService, $translate, $uibModal, eventRuleService) {
+kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, SunapiClient, XMLParser, Attributes, COMMONUtils, $timeout, CameraSpec, $q, ConnectionSettingService, SessionOfUserManager, kindStreamInterface, AccountService, sketchbookService, $translate, $uibModal, eventRuleService, UniversialManagerService) {
 "use strict";
 
     var mAttr = Attributes.get();
@@ -11,7 +11,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     var idx;
     var pageData = {};
     pageData.MotionDetection = {};
-    pageData.rois = {};
+    pageData.rois = [];
     pageData.MotionDetectionEnable = {};
     pageData.Handover = [{"HandoverList":[]}];
 
@@ -19,6 +19,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     var defaultThreshold = 50;
 
     var mLastSequenceLevel = 0;
+
+    $scope.checkApplyButtonClick = false;
 
     ////////////////////////////////////////////////////////////////
     pageData.VA = [];
@@ -52,19 +54,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     $scope.EventSource = 'MotionDetection';
     $scope.EventRule = {};
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     $scope.presetData = {
         type: null,
@@ -118,7 +107,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }
 
@@ -692,7 +681,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     }else{
                         $scope['changeSelected' + title + 'Index'](0);   
                     }
-                    deleteRemovedROI().then(function(){getHandoverList();}, saveSettings);
+                    deleteRemovedROI($scope.presetData.type).then(function(){getHandoverList();}, saveSettings);
                 }
             }else if(modifiedType === "mouseup"){
                 activeShape(modifiedIndex);
@@ -758,7 +747,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         $scope.resetVariable();
 
         var promises = [];
-        promises.push(updateMotionDetectionData);
+        if( !$scope.PTZModel || ($scope.presetData.type !== "Preset") ){
+            promises.push(updateMotionDetectionData);
+        }
         promises.push(showVideo);
         promises.push(getHandoverSetting);
         if($scope.PTZModel){
@@ -779,13 +770,26 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             function(){
                 $rootScope.$emit('changeLoadingBar', false);
                 $scope.pageLoaded = true;
-                $scope.$emit('pageLoaded', $scope.EventSource);
                 $("#imagepage").show();
-                $timeout(setDefaultArea);
-                $timeout(setSizeChart);
+                $timeout(function(){
+                    $scope.$emit('pageLoaded', $scope.EventSource);
+                    setDefaultArea();
+                    setSizeChart();
+                });
+
+                if($scope.MotionDetection.MotionDetectionEnable)
+                {
+                    startMonitoringMotionLevel();
+                }
+                else
+                {
+                    stopMonitoringMotionLevel();
+                }
             },
             function(errorData){
                 $rootScope.$emit('changeLoadingBar', false);
+                $scope.pageLoaded = true;
+                $scope.$emit('pageLoaded', $scope.EventSource);
                 alert(errorData);
             }
         );
@@ -804,9 +808,10 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function getMotionDetectionData(successCallback, isPreset){
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         var cmd = (isPreset? $scope.presetCmd : $scope.va2CommonCmd) + '&action=view';
+
         return SunapiClient.get(cmd, getData,
                 successCallback,
                 function (errorData)
@@ -847,7 +852,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     var prevMotionDetectionEnable = null;
     function setMotionDetectionEnable(detectionType){
-
         prevMotionDetectionEnable = detectionType;
         // DetectionType : MDAndIV, Off, MotionDetection, IntelligentVideo
 
@@ -861,7 +865,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
 
         pageData.MotionDetection.MotionDetectionEnable = $scope.MotionDetection.MotionDetectionEnable;
-
     }
 
     function updateROIData(rois){
@@ -975,7 +978,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function showVideo(){
 
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
                 function (response) {
@@ -1015,6 +1018,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     var maxSample = 6;
     function startMonitoringMotionLevel()
     {
+        mStopMonotoringMotionLevel = false;
+
         (function update()
         {
             getMotionLevel(function (data, index) {
@@ -1040,7 +1045,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                         }
                     }
 
-                    monitoringTimer = $timeout(update, 300); //300 msec
+                    monitoringTimer = $timeout(update, 500); //500 msec
                 }
             });
         })();
@@ -1051,7 +1056,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         var newMotionLevel = {};
 
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         getData.MaxSamples = maxSample;
@@ -1076,6 +1081,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function stopMonitoringMotionLevel(){
+        mStopMonotoringMotionLevel = true;
+
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
         }
@@ -1127,7 +1134,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function setOnlyEnable(){
         var deferred = $q.defer();
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         var cmd = $scope.va2CommonCmd + '&action=view';
@@ -1137,7 +1144,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 var detectionType = response.data.VideoAnalysis[0].DetectionType;
                 
                 var setData = {
-                    Channel: $scope.channelSelectionSection.getCurrentChannel()
+                    Channel: UniversialManagerService.getChannelId()
                 };
                 if($scope.MotionDetection.MotionDetectionEnable === true){
                     if(detectionType === "Off" || detectionType === "MotionDetection"){
@@ -1176,11 +1183,31 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function set() {
         if(validatePage()){
             sketchbookService.removeDrawingGeometry();
-            COMMONUtils.ApplyConfirmation(saveSettings);   
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/setup/common/confirmMessage.html',
+                controller: 'confirmMessageCtrl',
+                size: 'sm',
+                resolve: {
+                    Message: function () {
+                        return 'lang_apply_question';
+                    }
+                }
+            });
+
+            modalInstance.result.then(
+                function(){
+                    $scope.checkApplyButtonClick = true;
+                    saveSettings();
+                }, 
+                function () {
+                    $scope.checkApplyButtonClick = false;
+                }
+            );
         }
     }
 
     function saveSettings() {
+        $rootScope.$emit('changeLoadingBar', true);
         var deferred = $q.defer();
         var functionlist = [];
         // SUNAPI SET
@@ -1200,39 +1227,43 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             saveHandoverFunction(functionlist);
         }
 
+        var endSettings = function(){
+            $scope.$emit('applied', true);
+            deferred.resolve(true);
+            $scope.checkApplyButtonClick = false;
+        };
+
         //functionlist.push(view);
         if(functionlist.length > 0) {
             $q.seqAll(functionlist).then(
                 function(){
                     getHandoverList(view).then(
                         function() {
-                            $scope.$emit('applied', true);
-                            deferred.resolve(true);
+                            endSettings();
                         },
                         function(errorData) {
                             console.log(errorData);
-                            deferred.resolve(true);
+                            endSettings();
+                            view();
                         });
                 },
                 function(errorData){
                     console.log(errorData);
+                    endSettings();
                     view();
-                    deferred.resolve();
                 }
             );
         } else {
             getHandoverList(view).then(
                 function() {
-                    $scope.$emit('applied', true);
-                    deferred.resolve(true);
+                    endSettings();
                 },
                 function(errorData) {
                     console.log(errorData);
+                    endSettings();
                     view();
-                    deferred.resolve();
             });
         }
-
         return deferred.promise;
     }
 
@@ -1247,7 +1278,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             getAttributes();
             getCommonCmd();
             view();
-            startMonitoringMotionLevel();
         }
     })();
 
@@ -1257,7 +1287,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function sunapiQueueRequest(queue, callback){
         var currentItem = queue.shift();
-        currentItem.reqData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        currentItem.reqData.Channel = UniversialManagerService.getChannelId();
         SunapiClient.get(
             currentItem.url, 
             currentItem.reqData, 
@@ -1364,7 +1394,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     ////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
 
-    function deleteRemovedROI(){
+    function deleteRemovedROI(checkPresetType){
         //삭제된 Index 찾아서 삭제 요청
         var deferred = $q.defer();
         var removedROIIndex = [];
@@ -1389,13 +1419,18 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }
 
         if(removedROIIndex.length > 0){
+            var setData = {
+                Channel: UniversialManagerService.getChannelId(),
+                ROIIndex: removedROIIndex.join(',')
+            };
             var cmd = $scope.va2CommonCmd + '&action=remove';
+            if( $scope.PTZModel && (checkPresetType === "Preset") ){
+                cmd = $scope.presetCmd + '&action=remove';
+                setData.Preset = $scope.presetData.preset;
+            }
             SunapiClient.get(cmd,            
             //SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=remove', 
-                {
-                    Channel: $scope.channelSelectionSection.getCurrentChannel(),
-                    ROIIndex: removedROIIndex.join(',')
-                },
+                setData,
                 function (response){
                     // console.log("removed");
                     deferred.resolve(removedROIIndex);
@@ -1499,11 +1534,12 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
         setOnlyEnable().finally(function(){
             var setData = {
-                Channel: $scope.channelSelectionSection.getCurrentChannel()
+                Channel: UniversialManagerService.getChannelId()
             };
 
             var unmodifiedROIIndex = getUnmodifiedROIIndex();
-            deleteRemovedROI().then(
+            var setPresetType = $scope.checkApplyButtonClick? $scope.presetData.type : $scope.presetData.oldType;
+            deleteRemovedROI(setPresetType).then(
                 function(deletedROIIndex){
                     var modifiedIndex = getModifiedROIIndex(unmodifiedROIIndex, deletedROIIndex);
 
@@ -1541,11 +1577,10 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     }
 
                     var cmd = $scope.va2CommonCmd + '&action=set';
-                    if($scope.PTZModel && $scope.presetData.oldType === 'Preset'){
-                        setData.Preset = $scope.presetData.oldPreset;
+                    if($scope.PTZModel && setPresetType === 'Preset'){
+                        setData.Preset = $scope.checkApplyButtonClick? $scope.presetData.preset : $scope.presetData.oldPreset;
                         cmd = $scope.presetCmd + '&action=set';
                     }
-                    
                     SunapiClient.get(cmd, setData,
                         function (response){
                             deferred.resolve();
@@ -1670,7 +1705,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     var getHandoverList = function(successCallback){
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=view', getData,
                 function (response){
@@ -1725,7 +1760,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     var getPresetHandoverList = function()
     {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         getData.PresetIndex = "All";
         
@@ -1835,7 +1870,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         // if ($scope.Handover[index].HandoverList[handoverlistIndex] !== undefined)
         // {
         var setData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         try{
             setData.ROIIndex = $scope.Handover[index].HandoverList[handoverlistIndex].ROIIndex;   
@@ -1936,7 +1971,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
         if (typeof index == 'undefined') index = 0;
         var setData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         //var areaIndex = roiIndex - 1;
@@ -1979,7 +2014,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function removeUserFromHandover(roiIndex, userIndexArray, index)
     {
         var setData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         setData.ROIIndex = roiIndex;
@@ -2402,7 +2437,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
             if($scope.MotionDetection.MotionDetectionEnable === true){
                 if(validatePage()){
-                    $rootScope.$emit('changeLoadingBar', true);
                     sketchbookService.removeDrawingGeometry();
                     saveSettings().finally(
                         function(){
@@ -2429,7 +2463,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
             if($scope.MotionDetection.MotionDetectionEnable === true){
                 if(validatePage()){
-                    $rootScope.$emit('changeLoadingBar', true);
                     sketchbookService.removeDrawingGeometry();
                     saveSettings().finally(
                         function(){

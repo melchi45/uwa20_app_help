@@ -1,5 +1,5 @@
 kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $cookieStore, $rootScope, $location,
-    SunapiClient, XMLParser, Attributes, COMMONUtils, LogManager, SessionOfUserManager, ModalManagerService, CameraSpec, $q, $filter) {
+    SunapiClient, XMLParser, Attributes, COMMONUtils, LogManager, SessionOfUserManager, ModalManagerService, CameraSpec, $q, $filter, UniversialManagerService) {
 
     "use strict";
     $scope.pageLoaded = false;
@@ -27,18 +27,6 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
 
     $scope.isMultiChannel = false;
     $scope.targetChannel = 0;
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
 
     function getAttributes() {
@@ -1444,7 +1432,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     function getVideoSource() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=view', getData,
@@ -1485,7 +1473,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             ignoredKeys;
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
         ignoredKeys = [];
@@ -1531,7 +1519,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         var getData = {};
         getData.ViewMode = "All";
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videocodecinfo&action=view', getData,
@@ -1567,7 +1555,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     function getVideoProfilePolicies() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', getData,
@@ -1586,7 +1574,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     function getVideoRotate() {
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
@@ -1693,7 +1681,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             profCnt = 0;
         var getData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             getData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData,
@@ -2115,7 +2103,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     function del_profile() {
         var setData = {};
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
         if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined) {
@@ -2479,7 +2467,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             }
 
             if($scope.isMultiChannel) {
-                var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+                var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
             }
             return SunapiClient.get(url, setData,
@@ -2516,7 +2504,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         }
 
         if($scope.isMultiChannel) {
-            var currentChannel = $scope.channelSelectionSection.getCurrentChannel();
+            var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
         }
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=set', setData,
@@ -2846,7 +2834,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
             Sometime is it not working, without delay */
             setVideoProfilePolicies().then(function (response) {
                     LogManager.debug("Set Video Profile policies succeded ");
-                    $scope.channelSelectionSection.setCurrentChannel($scope.targetChannel);
+                    UniversialManagerService.setChannelId($scope.targetChannel);
                     view();
                 },
                 function(error) {
@@ -2909,7 +2897,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         } else {
             $rootScope.$emit('changeLoadingBar', true);
             $scope.targetChannel = data;
-            $scope.channelSelectionSection.setCurrentChannel(data);
+            UniversialManagerService.setChannelId(data);
             $rootScope.$emit("channelSelector:changeChannel", data);
             view();
         }

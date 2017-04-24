@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $interval, $q, ConnectionSettingService, kindStreamInterface, SessionOfUserManager, AccountService, $uibModal, $rootScope, $translate, eventRuleService) {
+kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XMLParser, Attributes,COMMONUtils, $timeout, CameraSpec, $interval, $q, ConnectionSettingService, kindStreamInterface, SessionOfUserManager, AccountService, $uibModal, $rootScope, $translate, eventRuleService, UniversialManagerService) {
     "use strict";
 
     var mAttr = Attributes.get();
@@ -10,19 +10,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     COMMONUtils.getResponsiveObjects($scope);
     var idx;
     var pageData = {};
-
-    $scope.channelSelectionSection = (function(){
-        var currentChannel = 0;
-
-        return {
-            getCurrentChannel: function(){
-                return currentChannel;
-            },
-            setCurrentChannel: function(index){
-                currentChannel = index;
-            }
-        }
-    })();
 
     //sketchbook 에서 쓰이는 미사용 변수
     $scope.coordinates = null;
@@ -96,7 +83,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
     function showVideo(){
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
             function (response) {
@@ -166,6 +153,8 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     var maxSample = 6;
     function startMonitoringFogLevel()
     {
+        mStopMonotoringFogLevel = false;
+
         (function update()
         {
             getFogLevel(function (data) {
@@ -188,13 +177,15 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                             }
                         }
                     }
-                    monitoringTimer = $timeout(update, 300); //300 msec
+                    monitoringTimer = $timeout(update, 500); //300 msec
                 }
             });
         })();
     }
 
     function stopMonitoringFogLevel(){
+        mStopMonotoringFogLevel = true;
+
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
         }
@@ -230,7 +221,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
         getData.EventSourceType = 'FogDetection';
         
-        getData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        getData.Channel = UniversialManagerService.getChannelId();
 
         var sunapiURL = '/stw-cgi/eventsources.cgi?msubmenu=samples&action=check';
 
@@ -252,7 +243,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     function getFogDetection()
     {
         var getData = {
-            Channel: $scope.channelSelectionSection.getCurrentChannel()
+            Channel: UniversialManagerService.getChannelId()
         };
 
         return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=fogdetection&action=view', getData,
@@ -275,7 +266,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     {
         var setData = {};
 
-        setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+        setData.Channel = UniversialManagerService.getChannelId();
 
         if (pageData.FogDetect.Enable !== $scope.FogDetect.Enable)
         {
@@ -323,12 +314,11 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     };
 
     $scope.setFogDetectionEnable = function () {
-        stopMonitoringFogLevel();
         var successCallback = function (){
             $rootScope.$emit('changeLoadingBar', true);
             var setData = {};
 
-            setData.Channel = $scope.channelSelectionSection.getCurrentChannel();
+            setData.Channel = UniversialManagerService.getChannelId();
 
             if (pageData.FogDetect.Enable !== $scope.FogDetect.Enable)
             {
@@ -340,20 +330,26 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                 {
                     $rootScope.$emit('changeLoadingBar', false);
                     pageData.FogDetect.Enable = angular.copy($scope.FogDetect.Enable);
-                    startMonitoringFogLevel();
+
+                    if($scope.FogDetect.Enable)
+                    {
+                        startMonitoringFogLevel();
+                    }
+                    else
+                    {
+                        stopMonitoringFogLevel();
+                    }
                 },
                 function (errorData)
                 {
                     $rootScope.$emit('changeLoadingBar', false);
                     $scope.FogDetect.Enable = angular.copy(pageData.FogDetect.Enable);
-                    startMonitoringFogLevel();
                     console.log(errorData);
                 }, '', true);
         };
         var errorCallback = function ()
         {
             $scope.FogDetect.Enable = angular.copy(pageData.FogDetect.Enable);
-            startMonitoringFogLevel();
         };
 
         COMMONUtils.ShowConfirmation(successCallback, 'lang_apply_question','sm', errorCallback);
@@ -446,6 +442,15 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                 $scope.$emit('pageLoaded', $scope.EventSource);
                 $("#imagepage").show();
                 $timeout(setSizeChart);
+
+                if($scope.FogDetect.Enable)
+                {
+                    startMonitoringFogLevel();
+                }
+                else
+                {
+                    stopMonitoringFogLevel();
+                }
             },
             function(errorData){
                 $rootScope.$emit('changeLoadingBar', false);
@@ -474,7 +479,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
     function setChangedData(){
         var deferred = $q.defer();
-        stopMonitoringFogLevel();
 
         setFogDetection().then(
             function () {
@@ -486,9 +490,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                 console.log(errorData);
                 deferred.reject(errorData);
             }
-        ).finally(function(){
-            startMonitoringFogLevel();
-        });
+        );
 
         return deferred.promise;
     }
@@ -501,7 +503,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        $scope.channelSelectionSection.setCurrentChannel(index);
+        UniversialManagerService.setChannelId(index);
         view();
     }
 
@@ -533,7 +535,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
         } else {
             getAttributes();
             view();
-            startMonitoringFogLevel();
         }
     })();
 
