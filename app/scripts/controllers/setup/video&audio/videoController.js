@@ -1215,7 +1215,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             support_ptz: mAttr.PTZModel,
             support_zoomOnly: mAttr.ZoomOnlyModel,
             rotate: rotate,
-            adjust: adjust
+            adjust: adjust,
+            channelId: UniversialManagerService.getChannelId()
         };
         $scope.ptzinfo = {
             type: 'none'

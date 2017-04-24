@@ -6738,7 +6738,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                         mirror: mirror,
                         support_ptz: false,
                         rotate: rotate,
-                        adjust: adjust
+                        adjust: adjust,
+                        channelId: UniversialManagerService.getChannelId()
                     };
 
                     $scope.ptzinfo = {

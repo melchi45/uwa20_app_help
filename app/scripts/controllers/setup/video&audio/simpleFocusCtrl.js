@@ -168,7 +168,8 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                     mirror: mirror,
                     support_ptz: false,
                     rotate: rotate,
-                    adjust: adjust
+                    adjust: adjust,
+                    channelId: UniversialManagerService.getChannelId()
                 };
 
                 $scope.coordinates = new Array(1);

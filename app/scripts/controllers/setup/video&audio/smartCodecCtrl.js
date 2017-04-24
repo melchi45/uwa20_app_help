@@ -285,7 +285,8 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
                     mirror: mirror,
                     support_ptz: false,
                     rotate: rotate,
-                    adjust: adjust
+                    adjust: adjust,
+                    channelId: UniversialManagerService.getChannelId()
                 };
                 $scope.ptzinfo = {
                     type: 'none'

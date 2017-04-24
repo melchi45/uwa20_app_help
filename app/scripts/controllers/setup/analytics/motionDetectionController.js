@@ -1001,7 +1001,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                         support_ptz: false,
                         rotate: rotate,
                         adjust: adjust,
-                        currentPage: 'MotionDetection'
+                        currentPage: 'MotionDetection',
+                        channelId: UniversialManagerService.getChannelId()
                     };
                     $scope.ptzinfo = {
                         type: 'none'

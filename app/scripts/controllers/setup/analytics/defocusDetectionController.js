@@ -285,7 +285,8 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                         support_ptz: false,
                         rotate: rotate,
                         adjust: adjust,
-                        currentPage: 'DefocusDetection'
+                        currentPage: 'DefocusDetection',
+                        channelId: UniversialManagerService.getChannelId()
                     };
                     $scope.ptzinfo = {
                         type: 'none'
