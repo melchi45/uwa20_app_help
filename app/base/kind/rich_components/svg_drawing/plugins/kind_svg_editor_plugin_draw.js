@@ -1641,7 +1641,16 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 					//변경된좌표 체크
 					if(LineInformation.validateAxis(changedX2, changedY2) === false){
-						if(changedX1 === 0 & changedY1 === 0){
+						/**
+						 * @date 2017-04-24
+						 * maxSize로 적용한 것은 최대 사이즈로 정상 적용을 위해서 이다.
+						 * 두번재 (x,y)가 0 보다 작을 때는 최소 사이즈보다 작을 때 이므로,
+						 * 분기를 추가 한다.
+						 */
+						if(
+							(changedX1 === 0 && changedY1 === 0) &&
+							(changedX2 > 0 && changedY2 > 0)
+							){
 							changedX2 = maxSize.width;
 							changedY2 = maxSize.height;
 						}else{
