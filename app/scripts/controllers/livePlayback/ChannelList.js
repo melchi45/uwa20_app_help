@@ -21,7 +21,7 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
         H264: {
             GOVLength: 60
         }
-    }
+    };
     var reconnectionTimeout = null;
     var xmlHttp = new XMLHttpRequest();
     var reconnectCheck = false;
@@ -244,49 +244,49 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
     xmlHttp.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status == 200) {
-                if (xmlHttp.responseText == "OK") {)
-                window.setTimeout(RefreshPage, 500);
+                if (xmlHttp.responseText == "OK") {
+                    window.setTimeout(RefreshPage, 500);
+                } else {
+                    startVideoStreaming();
+                }
+            } else if (this.status == 401) {
+                var unAuthHtml = "<html><head><title>401 - Unauthorized</title></head><body><h1>401 - Unauthorized</h1></body></html>";
+                document.write(unAuthHtml);
+            } else if (this.status == 490) {
+                var blockHtml = "<html><head><title>Account Blocked</title></head><body><h1>You have exceeded the maximum number of login attempts, please try after some time.</h1></body></html>";
+                document.write(blockHtml);
             } else {
-                startVideoStreaming();
+                reconnect();
             }
-        } else if (this.status == 401) {
-            var unAuthHtml = "<html><head><title>401 - Unauthorized</title></head><body><h1>401 - Unauthorized</h1></body></html>";
-            document.write(unAuthHtml);
-        } else if (this.status == 490) {
-            var blockHtml = "<html><head><title>Account Blocked</title></head><body><h1>You have exceeded the maximum number of login attempts, please try after some time.</h1></body></html>";
-            document.write(blockHtml);
-        } else {
-            reconnect();
         }
     }
-}
 
-function rtspDigestAuth(mode, channelId) {
-    var pluginElement = $('#channel' + channelId)[0];
-    var ip = RESTCLIENT_CONFIG.digest.rtspIp;
-    var port = RESTCLIENT_CONFIG.digest.rtspPort;
-    var getData = {};
-    getData.Method = 'OPTIONS';
-    getData.Realm = pluginElement.GetRealm();
-    getData.Nonce = pluginElement.GetNonce();
+    function rtspDigestAuth(mode, channelId) {
+        var pluginElement = $('#channel' + channelId)[0];
+        var ip = RESTCLIENT_CONFIG.digest.rtspIp;
+        var port = RESTCLIENT_CONFIG.digest.rtspPort;
+        var getData = {};
+        getData.Method = 'OPTIONS';
+        getData.Realm = pluginElement.GetRealm();
+        getData.Nonce = pluginElement.GetNonce();
 
-    getData.Uri = encodeURIComponent(pluginElement.GetRtspUrl());
+        getData.Uri = encodeURIComponent(pluginElement.GetRtspUrl());
 
-    SunapiClient.get('/stw-cgi/security.cgi?msubmenu=digestauth&action=view', getData,
-        function (response) {
-            var responseValue = response.data.Response;
-            var fps = UniversialManagerService.getProfileInfo().FrameRate;
-            pluginElement.SetWMDInitialize(channelId, channelId + 1, "PluginJSONEvent");
-            pluginElement.PlayLiveStream(ip, port, 12, userID, '', responseValue);
-        },
-        function (errorData, errorCode) {
-            console.error(errorData);
-        }, '', true);
-}
+        SunapiClient.get('/stw-cgi/security.cgi?msubmenu=digestauth&action=view', getData,
+            function (response) {
+                var responseValue = response.data.Response;
+                var fps = UniversialManagerService.getProfileInfo().FrameRate;
+                pluginElement.SetWMDInitialize(channelId, channelId + 1, "PluginJSONEvent");
+                pluginElement.PlayLiveStream(ip, port, 12, userID, '', responseValue);
+            },
+            function (errorData, errorCode) {
+                console.error(errorData);
+            }, '', true);
+    }
 
-window.PluginJSONEvent = function (ch, evId, sdata) {
-    setTimeout(function () {
-        _PluginJSONEvent(ch, evId, sdata);
-    }, 0)
-}
+    window.PluginJSONEvent = function (ch, evId, sdata) {
+        setTimeout(function () {
+            _PluginJSONEvent(ch, evId, sdata);
+        }, 0)
+    }
 });
