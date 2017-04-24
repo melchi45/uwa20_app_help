@@ -1,8 +1,5 @@
-<style>
-	.cm-recording-color{color: blue;}
-</style>
 <div class="modal-header modal-setup">
-    <h3 class="applyColor">{{ 'lang_information' | translate }} Prototype</h3>
+    <h3 class="applyColor">{{ 'lang_information' | translate }}</h3>
 </div>
 <div class="modal-body modal-setup"> 
 	<div class="wn5-setup-table-responsive">
@@ -11,7 +8,7 @@
 				<tr>
 					<th class="text-center wn5-setup-info-vertical-middle">Channel</th>
 					<th class="text-center wn5-setup-info-vertical-middle">{{ 'lang_enable' | translate}}</th>
-					<th class="text-center wn5-setup-info-vertical-middle">{{ 'lang_system' | translate}}</th>
+					<th class="text-center wn5-setup-info-vertical-middle">{{ 'lang_left_system' | translate}}</th>
 					<th class="text-center wn5-setup-info-vertical-middle">{{ 'lang_status' | translate}}</th>
 					<th class="text-center wn5-setup-info-vertical-middle">{{ 'lang_totalSize' | translate}}</th>
 					<th class="text-center wn5-setup-info-vertical-middle">{{ 'lang_freeSize' | translate}}</th>
@@ -20,8 +17,14 @@
 			<tbody>
 			<tr ng-repeat="item in infoTableData">
 				<td class="text-center wn5-setup-info-vertical-middle" ng-repeat="data in defaultStorageOrder">
-					<span ng-if="data === 'Channel'">CH.</span>
-					<span ng-class="{'cm-recording-color': data === 'Status' && item[data] === 'Recording' } ">{{ item[data] }}</span>
+					<span ng-if="data === 'Channel'" 
+						  style="font-weight: bold;">
+						  	CH{{ item[data] }}
+					</span>
+					<span ng-if="data !== 'Channel'" 
+						  ng-class="{'cm-recording-color': data === 'Status' && item[data] === 'Recording' }">
+						  	{{ item[data] }}
+					</span>
 				</td>
 			</tr>
 			</tbody>
