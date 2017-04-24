@@ -1424,7 +1424,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 ROIIndex: removedROIIndex.join(',')
             };
             var cmd = $scope.va2CommonCmd + '&action=remove';
-            if( $scope.PTZModel && (checkPresetType === "Preset") ){
+            if( $scope.PTZModel && ($scope.presetData.type === "Preset") ){
                 cmd = $scope.presetCmd + '&action=remove';
                 setData.Preset = $scope.presetData.preset;
             }
@@ -1707,6 +1707,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         var getData = {
             Channel: UniversialManagerService.getChannelId()
         };
+        if( $scope.PTZModel && ($scope.presetData.type === "Preset") ){
+            getData.PresetIndex = $scope.presetData.preset;
+        }
         return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=view', getData,
                 function (response){
                     //Enable이 비활성화 일 때 Handover는 필요없으므로 Return
@@ -1880,8 +1883,12 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
         setData.Enable = ($scope.handoverEnDisable === $scope.HandoverEnableOptions[0]) ? true : false;
 
-        if (index > 0){
-            setData.PresetIndex = index;
+        // if (index > 0){
+        //     setData.PresetIndex = index;
+        // }
+
+        if( $scope.PTZModel && ($scope.presetData.type === "Preset") ){
+            setData.PresetIndex = $scope.presetData.preset;
         }
 
         //console.log(" ::: setData", setData);
@@ -1953,8 +1960,12 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             setData.PresetNumber = userList.PresetNumber;   
         }
 
-        if (index > 0) {
-            setData.PresetIndex = index;
+        // if (index > 0) {
+        //     setData.PresetIndex = index;
+        // }
+        
+        if( $scope.PTZModel && ($scope.presetData.type === "Preset") ){
+            setData.PresetIndex = $scope.presetData.preset;
         }
 
         //console.log(" ::::: setData", setData);
@@ -1994,8 +2005,12 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         setData.Username = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].Username;
         setData.Password = encodeURIComponent($scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].Password);
         setData.PresetNumber = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].PresetNumber;
-        if (index > 0) {
-            setData.PresetIndex = index;
+        // if (index > 0) {
+        //     setData.PresetIndex = index;
+        // }
+        
+        if( $scope.PTZModel && ($scope.presetData.type === "Preset") ){
+            setData.PresetIndex = $scope.presetData.preset;
         }
 
         //console.log(" ::: setData", setData);
@@ -2033,8 +2048,12 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 setData.HandoverIndex = setData.HandoverIndex.substring(0, setData.HandoverIndex.length - 1);
             }
         }
-        if (index > 0){
-            setData.PresetIndex = index;
+        // if (index > 0){
+        //     setData.PresetIndex = index;
+        // }
+        
+        if( $scope.PTZModel && ($scope.presetData.type === "Preset") ){
+            setData.PresetIndex = $scope.presetData.preset;
         }
 
         return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=remove', setData,
