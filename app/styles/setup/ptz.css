@@ -499,3 +499,8 @@ button[disabled].ptz-control_horizontal-item.slider-button{
 .tui.tui-wn5-ptz-handle {
 	cursor: default;
 }
+
+.ptz-preset-zoom #ptz-control{
+	float: left !important;
+	overflow: visible !important;
+}
