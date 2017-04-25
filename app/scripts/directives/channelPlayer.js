@@ -307,8 +307,8 @@ kindFramework.directive('channelPlayer',
                         PluginControlService.applyPauseCommand();
                     };
 
-                    this.speed = function(_speed, _speed) {
-                        PluginControlService.applyPlaySpeed(_speed, _speed);
+                    this.speed = function(_speed, _data) {
+                        PluginControlService.applyPlaySpeed(_speed, _data);
                     };
 
                     this.seek = function(_data) {
