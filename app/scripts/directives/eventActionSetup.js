@@ -269,16 +269,21 @@ kindFramework
                 pageData.EventRule = angular.copy(scope.EventRule);
             };
 
-            function setEventActions() {
+            function setEventActions(channel) {
                 var url = '';
                 var setData = {};
+                var currentChannel = 0;
 
                 if(currentPage !== null) {
                     scope.EventSource = currentPage;
                 }
 
                 if(scope.EventRule.EventType.substring(0,7) === 'Channel') {
-                    var currentChannel = UniversialManagerService.getChannelId();
+                    if(channel === null) { // no channel selection page.
+                        currentChannel = UniversialManagerService.getChannelId();
+                    } else { // channel selection page.
+                        currentChannel = channel;
+                    }
                     url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=set';
                     setData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
                 } else {
@@ -866,23 +871,25 @@ kindFramework
             });
 
             scope.$saveOn('applied', function(event, data) {//console.info('eventactionsetup saveon applied : ');console.info(scope.EventSource);
-                if(data === true) {
-                    if(scope.EventSource !== 'AlarmInput') {
-                        if (!angular.equals(pageData.EventRule, scope.EventRule)) {
-                            if(isEventActionSupported && isMultiChannel) {
-                                setEventActions();
-                            } else {
-                                setEventRules();
+                var channel = null;
+                if(data !== true) { // target channel to set passed as parameter.
+                    channel = data;
+                }
+                if(scope.EventSource !== 'AlarmInput') {
+                    if (!angular.equals(pageData.EventRule, scope.EventRule)) {
+                        if(isEventActionSupported && isMultiChannel) {
+                            setEventActions(channel);
+                        } else {
+                            setEventRules();
+                        }
+                    }
+                } else {
+                    if (!angular.equals(pageData.EventRules, scope.EventRules)) {
+                        scope.EventRules.forEach(function(elem, index){
+                            if (!angular.equals(pageData.EventRules[index], scope.EventRules[index])) {
+                                setEventRulesByIndex(index);
                             }
-                        }
-                    } else {
-                        if (!angular.equals(pageData.EventRules, scope.EventRules)) {
-                            scope.EventRules.forEach(function(elem, index){
-                                if (!angular.equals(pageData.EventRules[index], scope.EventRules[index])) {
-                                    setEventRulesByIndex(index);
-                                }
-                            });
-                        }
+                        });
                     }
                 }
             });

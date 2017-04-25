@@ -2079,17 +2079,17 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
                         if(queue.length > 0) {
                             sunapiQueueRequest(queue, function(){
+                                $scope.$emit('applied', UniversialManagerService.getChannelId());
                                 $rootScope.$emit("channelSelector:changeChannel", data);
                                 UniversialManagerService.setChannelId(data);
-                                $scope.$emit('applied', true);
                                 $timeout(view);
                             }, function(errorData){
                                 console.error(errorData);
                             });
                         } else {
+                            $scope.$emit('applied', UniversialManagerService.getChannelId())
                             $rootScope.$emit("channelSelector:changeChannel", data);
                             UniversialManagerService.setChannelId(data);
-                            $scope.$emit('applied', true);
                             $timeout(view);
                         }
                     }
