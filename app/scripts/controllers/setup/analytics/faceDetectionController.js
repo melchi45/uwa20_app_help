@@ -1025,7 +1025,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
         if(queue.length > 0){
             SunapiClient.sequence(queue, function(){
-                $scope.$emit('applied', true);
+                $scope.$emit('applied', UniversialManagerService.getChannelId());
                 $timeout(function(){
                     view();
                     deferred.resolve(true);
@@ -1035,7 +1035,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
                 deferred.reject(errorData);
             });
         } else {
-            $scope.$emit('applied', true);
+            $scope.$emit('applied', UniversialManagerService.getChannelId());
             $timeout(function(){
                 view();
                 deferred.resolve(true);

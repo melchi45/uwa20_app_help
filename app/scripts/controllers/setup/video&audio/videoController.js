@@ -1283,17 +1283,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             !angular.equals(pageData.PrivacyMask, $scope.PrivacyMask) ||
             ($scope.PTZModel === true && !angular.equals(pageData.PTZSettings, $scope.PTZSettings)))
             {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'views/setup/common/confirmMessage.html',
-                controller: 'confirmMessageCtrl',
-                size: 'sm',
-                resolve: {
-                    Message: function() {
-                        return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
-                    }
-                }
-            });
-            modalInstance.result.then(function() {
+            COMMONUtils
+                .confirmChangeingChannel().then(function() {
                 if(flipChanged === true && rotateChanged === false) {
                     tMessage = $translate.instant('lang_msg_initialized_video_rotation_changed').replace('[%1]', $translate.instant('lang_menu_iva')).replace('%1', $translate.instant('lang_filpMirror'));
                 } else if(flipChanged === true && rotateChanged === true) {
