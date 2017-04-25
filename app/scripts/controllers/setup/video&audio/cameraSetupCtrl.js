@@ -6872,17 +6872,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             || !angular.equals(pageData.Flip, $scope.Flip)
             // || !angular.equals(pageData.IRled, $scope.IRled)
             || detectOSDChanges()) {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'views/setup/common/confirmMessage.html',
-                controller: 'confirmMessageCtrl',
-                size: 'sm',
-                resolve: {
-                    Message: function() {
-                        return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
-                    }
-                }
-            });
-            modalInstance.result.then(function() {
+            COMMONUtils
+                .confirmChangeingChannel().then(function() {
                 if(validatePage()) {
                     $rootScope.$emit("channelSelector:changeChannel", data);
                     $scope.targetChannel = data;
