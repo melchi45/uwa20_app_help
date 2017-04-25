@@ -19,7 +19,7 @@
 				<td class="text-center wn5-setup-info-vertical-middle" ng-repeat="data in defaultStorageOrder">
 					<span ng-if="data === 'Channel'" 
 						  style="font-weight: bold;">
-						  	CH{{ item[data] }}
+						  	CH {{ item[data]+1 }}
 					</span>
 					<span ng-if="data !== 'Channel'" 
 						  ng-class="{'cm-recording-color': data === 'Status' && item[data] === 'Recording' }">

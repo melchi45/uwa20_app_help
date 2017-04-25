@@ -487,7 +487,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
         if(queue.length > 0){
             SunapiClient.sequence(queue, function(){
-                $scope.$emit('applied', true);
+                $scope.$emit('applied', UniversialManagerService.getChannelId());
                 $timeout(function(){
                     view();
                     deferred.resolve(true);
@@ -497,7 +497,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                 deferred.reject(errorData);
             });
         } else {
-            $scope.$emit('applied', true);
+            $scope.$emit('applied', UniversialManagerService.getChannelId());
             $timeout(function(){
                 view();
                 deferred.resolve(true);
