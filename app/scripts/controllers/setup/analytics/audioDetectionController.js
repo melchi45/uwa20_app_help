@@ -311,34 +311,37 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
     {
         mStopMonotoringAudioLevel = false;
 
-        (function update()
+        if(monitoringTimer == null)
         {
-            getAudioLevel(function (data) {
-                if(destroyInterrupt) return;
-                var newAudioLevel = angular.copy(data);
+            (function update()
+            {
+                getAudioLevel(function (data) {
+                    if(destroyInterrupt) return;
+                    var newAudioLevel = angular.copy(data);
 
-                if (!mStopMonotoringAudioLevel)
-                {
-                    if (newAudioLevel.length >= maxSample)
+                    if (!mStopMonotoringAudioLevel)
                     {
-                        var index = newAudioLevel.length;
-
-                        while(index--)
+                        if (newAudioLevel.length >= maxSample)
                         {
-                            var level = newAudioLevel[index].Level;
+                            var index = newAudioLevel.length;
 
-                            if(level === null) continue;
-
-                            if($scope.AudioDetectChartOptions.EnqueueData)
+                            while(index--)
                             {
-                                $scope.AudioDetectChartOptions.EnqueueData(level);
+                                var level = newAudioLevel[index].Level;
+
+                                if(level === null) continue;
+
+                                if($scope.AudioDetectChartOptions.EnqueueData)
+                                {
+                                    $scope.AudioDetectChartOptions.EnqueueData(level);
+                                }
                             }
                         }
+                        monitoringTimer = $timeout(update, 500);
                     }
-                    monitoringTimer = $timeout(update, 500);
-                }
-            });
-        })();
+                });
+            })();
+        }
     }
 
     function stopMonitoringAudioLevel(){
@@ -346,6 +349,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
 
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
+            monitoringTimer = null;
         }
     }
 
@@ -379,7 +383,8 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
                 function (errorData)
                 {
                     console.log("getAudioLevel Error : ", errorData);
-                    //startMonitoringAudioLevel();
+                    stopMonitoringAudioLevel();
+                    startMonitoringAudioLevel();
                 }, '', true);
     }
     $scope.submit = set;
