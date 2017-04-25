@@ -182,6 +182,9 @@ kindFramework
     function openStream() {
       PlugInPromise = $timeout(function(){
         try{
+          if(sunapiAttributes.MaxChannel > 1) {
+            pluginElement.SetWMDInitialize(Number(UniversialManagerService.getChannelId()), 1, "WebCamJSONEvent");
+          }
           pluginElement.SetUserFps(30);
           pluginElement.OpenRecordStream(rtspIP, Number(rtspPort), userID, '', '', overlappedID, playbackTime, '', playbackMode);
           $rootScope.$emit('changeLoadingBar', false);

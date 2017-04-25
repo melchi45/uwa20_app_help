@@ -482,11 +482,11 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
         setFogDetection().then(
             function () {
-                $scope.$emit('applied', true);
+                $scope.$emit('applied', UniversialManagerService.getChannelId());
                 view();
                 deferred.resolve(true);
             },
-            function (errorData) {
+            function (errorData) {console.info(11);
                 console.log(errorData);
                 deferred.reject(errorData);
             }
@@ -496,7 +496,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     }
 
     function checkChangedData(){
-        $scope.$emit('applied', true);
         return !angular.equals(pageData.FogDetect, $scope.FogDetect);
     }
 
@@ -508,7 +507,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     }
 
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-        if(checkChangedData()){
+        if(checkChangedData() || !eventRuleService.checkEventRuleValidation()){
             COMMONUtils
                 .confirmChangeingChannel()
                 .then(function(){
