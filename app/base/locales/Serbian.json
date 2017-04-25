@@ -1326,5 +1326,6 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_play_button": "Play"
+    "lang_play_button": "Play",
+    "lang_msg_enter_email": "Please enter the e-mail address."
 }
