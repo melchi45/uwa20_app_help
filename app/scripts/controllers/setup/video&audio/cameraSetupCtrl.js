@@ -6820,22 +6820,26 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if(!angular.equals(pageData.TitleOSD['Enable'], $scope.TitleOSD['Enable'])) {
             isChanged = true;
         } else {
-            for(var i = 0; i < $scope.TitleOSD.length; i++) {
-                if(typeof $scope.TitleOSD[i] === 'object' && typeof pageData.TitleOSD[i] === 'object') {
-                    var osd = $scope.TitleOSD[i];
-                    var pageOsd = pageData.TitleOSD[i];
-                    if(!angular.equals(osd.Enable, pageOsd.Enable)
-                        || !angular.equals(osd.FontSize, pageOsd.FontSize)
-                        || !angular.equals(osd.Transparency, pageOsd.Transparency)
-                        || !angular.equals(osd.OSDColor, pageOsd.OSDColor)
-                        || !angular.equals(osd.PositionX, pageOsd.PositionX)
-                        || !angular.equals(osd.PositionY, pageOsd.PositionY)
-                        || !angular.equals(osd.OSD, pageOsd.OSD)) {
-                        isChanged = true;
+            if($scope.TitleOSD.length === pageData.TitleOSD.length) {
+                for(var i = 0; i < $scope.TitleOSD.length; i++) {
+                    if(typeof $scope.TitleOSD[i] === 'object' && typeof pageData.TitleOSD[i] === 'object') {
+                        var osd = $scope.TitleOSD[i];
+                        var pageOsd = pageData.TitleOSD[i];
+                        if(!angular.equals(osd.Enable, pageOsd.Enable)
+                            || !angular.equals(osd.FontSize, pageOsd.FontSize)
+                            || !angular.equals(osd.Transparency, pageOsd.Transparency)
+                            || !angular.equals(osd.OSDColor, pageOsd.OSDColor)
+                            || !angular.equals(osd.PositionX, pageOsd.PositionX)
+                            || !angular.equals(osd.PositionY, pageOsd.PositionY)
+                            || !angular.equals(osd.OSD, pageOsd.OSD)) {
+                            isChanged = true;
+                        }
+                    } else {
+                        break;
                     }
-                } else {
-                    break;
                 }
+            } else {
+                isChanged = true;
             }
         }
 
