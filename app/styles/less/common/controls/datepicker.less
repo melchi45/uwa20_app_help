@@ -3,6 +3,24 @@
     margin: 0 auto;
     border: 0;
     color: @font-color;
+
+    .datepicker-active(){
+      background-color: #ff9832 !important;
+      border-color: #ff9832;
+      .box-shadow(none);
+      span {
+        color: white;
+      }
+    }
+    td {
+      &.today {
+        .btn.btn-default {
+          &.active {
+            .datepicker-active();
+          }
+        }
+      }
+    }
     .btn.btn-default {
       border: 0;
       border-radius: 0;
@@ -10,12 +28,10 @@
       font-size: 12px;
       background-color: #fff;
       &.active {
-        background-color: #ff9832 !important;
-        border-color: #ff9832;
         .box-shadow(none);
-        span {
-          color: white;
-        }
+      }
+      &:active {
+        .datepicker-active();
       }
       &.btn-sm {
         padding: 5px 8px;
