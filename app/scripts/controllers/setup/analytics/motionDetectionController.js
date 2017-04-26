@@ -813,9 +813,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function prepareMotionDetectionData(mdResponseData, isPreset){
-        if(!isPreset){
-            setMotionDetectionEnable(mdResponseData.DetectionType);
-        }
+        setMotionDetectionEnable(mdResponseData.DetectionType);
         setMotionDetectionRules(mdResponseData.ROIs);
     }
 
@@ -1084,19 +1082,23 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         });
 
         modalInstance.result.then(function(){
+            $scope.checkApplyButtonClick = true;
             $rootScope.$emit('changeLoadingBar', true);
             
             var functionlist = [];
             functionlist.push(setOnlyEnable);
             $q.seqAll(functionlist).then(
                 function(){
+                    $scope.checkApplyButtonClick = false;
                     view();
                 },
                 function(errorData){
+                    $scope.checkApplyButtonClick = false;
                     console.log(errorData);
                 }
             );
         }, function (){
+            $scope.checkApplyButtonClick = false;
             $scope.MotionDetection.MotionDetectionEnable = pageData.MotionDetection.MotionDetectionEnable;
         });
     };
@@ -1109,11 +1111,23 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             Channel: UniversialManagerService.getChannelId()
         };
 
+        var checkPresetType = $scope.checkApplyButtonClick? $scope.presetData.type : $scope.presetData.oldType;
+        var isPreset = $scope.PTZModel && (checkPresetType === "Preset");
+
         var cmd = $scope.va2CommonCmd + '&action=view';
+        if( isPreset ){
+            cmd = $scope.presetCmd + '&action=view';
+            getData.Preset = $scope.presetData.preset;
+        }
         SunapiClient.get(cmd, getData,
             function (response)
             {
-                var detectionType = response.data.VideoAnalysis[0].DetectionType;
+                var detectionType = null;
+                if(isPreset){
+                    detectionType = response.data.PresetVideoAnalysis[0].Presets[0].DetectionType;
+                }else{
+                    detectionType = response.data.VideoAnalysis[0].DetectionType;
+                }
                 
                 var setData = {
                     Channel: UniversialManagerService.getChannelId()
@@ -1136,6 +1150,11 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 }
 
                 var cmd = $scope.va2CommonCmd + '&action=set';
+                if( $scope.PTZModel && (checkPresetType === "Preset") ){
+                    cmd = $scope.presetCmd + '&action=set';
+                    setData.Preset = $scope.presetData.preset;
+                }
+
                 SunapiClient.get(cmd, setData,
                 function (response){
                     deferred.resolve();
@@ -2428,9 +2447,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function changePresetType(newVal, oldVal){
         if(newVal === 'Global'){
-            gotoPreset('Stop', $scope.presetData.oldPreset);
+            return gotoPreset('Stop', $scope.presetData.oldPreset);
         }else{
-            gotoPreset('Start', $scope.presetData.preset);
+            return gotoPreset('Start', $scope.presetData.preset);
         }
     }
 
@@ -2451,13 +2470,13 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     );
                 }
             }else{
-                changePresetType(newVal, oldVal);
+                changePresetType(newVal, oldVal).finally(view);
             }
         }
     });
 
     function changePreset(newVal, oldVal){
-        gotoPreset('Start', newVal, true, oldVal);
+        return gotoPreset('Start', newVal, true, oldVal);
     }
 
     $scope.$watch('presetData.preset',function(newVal, oldVal){
@@ -2478,7 +2497,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     );
                 }
             }else{
-                changePreset(newVal, oldVal);
+                changePreset(newVal, oldVal).finally(view);
             }
         }
     });
