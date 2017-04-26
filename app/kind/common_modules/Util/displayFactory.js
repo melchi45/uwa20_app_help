@@ -23,7 +23,7 @@ KindDisplay
             };
 
             var fullSize = function(element,stage){  
-								element.find(' > div').css('overflow', '');
+				element.find(' > div').css('overflow', '');
 							
                 var canvas  = $('canvas',element);
                 style = canvas.attr('style');
@@ -55,7 +55,7 @@ KindDisplay
                 
                 time = new Date().getTime();
                 element.after("<span data-full-screen='"+previous+"'></span>");
-                stage.prepend(element);
+                // stage.prepend(element);
 
                 if(divisionSize(size.tw,size.th,size.sw,size.sh)){
                     canvas.addClass('full-screen-set-width');
