@@ -951,7 +951,11 @@ kindFramework
     }
 
     $scope.checkPlugin = function() {
-      return UniversialManagerService.getStreamingMode() == CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE ? false : true;
+      if(UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE)
+      {
+          return (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) ? false : true;
+      }
+      return true;
     };
 
     $rootScope.$saveOn("channel:setPlugin", function() {
