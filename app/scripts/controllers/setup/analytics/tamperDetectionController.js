@@ -154,35 +154,38 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     {
         mStopMonotoringTamperingLevel = false;
 
-        (function update()
+        if(monitoringTimer == null)
         {
-            getTamperingLevel(function (data) {
-                if(destroyInterrupt) return;
-                var newTamperLevel = angular.copy(data);
+            (function update()
+            {
+                getTamperingLevel(function (data) {
+                    if(destroyInterrupt) return;
+                    var newTamperLevel = angular.copy(data);
 
-                if (!mStopMonotoringTamperingLevel)
-                {
-                    var index = newTamperLevel.length;
-
-                    if(newTamperLevel.length >= maxSample)
+                    if (!mStopMonotoringTamperingLevel)
                     {
-                        while(index--)
+                        var index = newTamperLevel.length;
+
+                        if(newTamperLevel.length >= maxSample)
                         {
-                            var level = validateLevel(newTamperLevel[index]);
-
-                            if(level === null) continue;
-
-                            if($scope.TamperDetectChartOptions.EnqueueData)
+                            while(index--)
                             {
-                                $scope.TamperDetectChartOptions.EnqueueData(level);
+                                var level = validateLevel(newTamperLevel[index]);
+
+                                if(level === null) continue;
+
+                                if($scope.TamperDetectChartOptions.EnqueueData)
+                                {
+                                    $scope.TamperDetectChartOptions.EnqueueData(level);
+                                }
                             }
                         }
-                    }
 
-                    monitoringTimer = $timeout(update, 500); //500 msec
-                }
-            });
-        })();
+                        monitoringTimer = $timeout(update, 500); //500 msec
+                    }
+                });
+            })();
+        }
     }
 
     function stopMonitoringTamperingLevel(){
@@ -190,6 +193,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
+            monitoringTimer = null;
         }
     }
 
@@ -241,6 +245,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                 function (errorData)
                 {
                     console.log("getTamperingLevel Error : ", errorData);
+                    stopMonitoringTamperingLevel();
                     startMonitoringTamperingLevel();
                 }, '', true);
     }    
