@@ -1110,14 +1110,15 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         var getData = {
             Channel: UniversialManagerService.getChannelId()
         };
-
+        
         var checkPresetType = $scope.checkApplyButtonClick? $scope.presetData.type : $scope.presetData.oldType;
+        var presetNo = $scope.checkApplyButtonClick? $scope.presetData.preset : $scope.presetData.oldPreset;
         var isPreset = $scope.PTZModel && (checkPresetType === "Preset");
 
         var cmd = $scope.va2CommonCmd + '&action=view';
         if( isPreset ){
             cmd = $scope.presetCmd + '&action=view';
-            getData.Preset = $scope.presetData.preset;
+            getData.Preset = presetNo;
         }
         SunapiClient.get(cmd, getData,
             function (response)
@@ -1152,7 +1153,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 var cmd = $scope.va2CommonCmd + '&action=set';
                 if( $scope.PTZModel && (checkPresetType === "Preset") ){
                     cmd = $scope.presetCmd + '&action=set';
-                    setData.Preset = $scope.presetData.preset;
+                    setData.Preset = presetNo;
                 }
 
                 SunapiClient.get(cmd, setData,
