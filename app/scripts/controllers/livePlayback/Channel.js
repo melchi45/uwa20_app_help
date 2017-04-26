@@ -953,7 +953,7 @@ kindFramework
     $scope.checkPlugin = function() {
       if(UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE)
       {
-          return (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) ? false : true;
+          return (BrowserService.PlugInSupport && !BrowserService.PlugInDetect) ? false : true;
       }
       return true;
     };
