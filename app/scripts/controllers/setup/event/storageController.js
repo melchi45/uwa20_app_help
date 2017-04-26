@@ -753,7 +753,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
     function view() {
         var promises = [];
-        promises.push(getStorageTableData);
+        promises.push(getStorageTableData); 
         promises.push(changeVideoProfilePolicies);
         promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
@@ -764,7 +764,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
             UniversialManagerService.setChannelId($scope.Channel);
-
+            
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
             $rootScope.$emit('changeLoadingBar', false);
             
@@ -788,6 +788,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                     $scope.Channel = newChannel;
                 }
                 
+                $scope.$emit("offAlreadyCreated", true);
                 window.setTimeout(view, 1000);
             }, function(errorData) {
                 console.error(errorData);
@@ -1080,7 +1081,12 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     })();
     
     $scope.submit = set;
-    $scope.view = view;
+    $scope.view = function () {
+        $rootScope.$emit("changeLoadingBar", true);
+        $scope.$emit("offAlreadyCreated", true);
+        
+        view();
+    }
     $scope.validate = validatePage;
 });
 
