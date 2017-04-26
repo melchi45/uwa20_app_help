@@ -2875,17 +2875,8 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
         if (!angular.equals(pageData.VideoProfilePolicies, $scope.VideoProfilePolicies)
             || !angular.equals(pageData.VideoProfiles, $scope.VideoProfiles)) {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'views/setup/common/confirmMessage.html',
-                controller: 'confirmMessageCtrl',
-                size: 'sm',
-                resolve: {
-                    Message: function() {
-                        return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
-                    }
-                }
-            });
-            modalInstance.result.then(function() {
+            COMMONUtils
+                .confirmChangeingChannel().then(function() {
                 if(validatePage()) {
                     $rootScope.$emit('changeLoadingBar', true);
                     $scope.targetChannel = data;

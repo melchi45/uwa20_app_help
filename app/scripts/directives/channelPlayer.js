@@ -307,6 +307,10 @@ kindFramework.directive('channelPlayer',
                         PluginControlService.applyPauseCommand();
                     };
 
+                    this.speed = function(_speed, _data) {
+                        PluginControlService.applyPlaySpeed(_speed, _data);
+                    };
+
                     this.seek = function(_data) {
                         PluginControlService.applySeekCommand(_data);
                     };
@@ -391,6 +395,8 @@ kindFramework.directive('channelPlayer',
                     this.closePlayback = stopAndNotSupport;
 
                     this.pause = stopAndNotSupport;
+
+                    this.speed = stopAndNotSupport;
 
                     this.seek = stopAndNotSupport;
 
@@ -499,6 +505,10 @@ kindFramework.directive('channelPlayer',
 
                     this.pause = function() {
                         KindControlService.applyPauseCommand(scope);
+                    };
+
+                    this.speed = function(_speed, _data) {
+                        KindControlService.applyPlaySpeed(scope, _speed, _data);
                     };
 
                     this.seek = function(_data) {

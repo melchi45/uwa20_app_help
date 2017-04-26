@@ -2063,17 +2063,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         if(UniversialManagerService.getChannelId() !== data) {
             if(!comparePageData() || !eventRuleService.checkEventRuleValidation()
                 ) {
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'views/setup/common/confirmMessage.html',
-                    controller: 'confirmMessageCtrl',
-                    size: 'sm',
-                    resolve: {
-                        Message: function() {
-                            return '변경된 설정값이 있습니다. 저장하고, 다른 CH로 이동하시겠습니까?';
-                        }
-                    }
-                });
-                modalInstance.result.then(function() {
+                COMMONUtils
+                .confirmChangeingChannel().then(function() {
                     var queue = [];
                     var detectionType = getCurrentDetectionType();
                     var pageDetectionType = pageData.VA[0].DetectionType;
@@ -2088,17 +2079,17 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
                         if(queue.length > 0) {
                             sunapiQueueRequest(queue, function(){
+                                $scope.$emit('applied', UniversialManagerService.getChannelId());
                                 $rootScope.$emit("channelSelector:changeChannel", data);
                                 UniversialManagerService.setChannelId(data);
-                                $scope.$emit('applied', true);
                                 $timeout(view);
                             }, function(errorData){
                                 console.error(errorData);
                             });
                         } else {
+                            $scope.$emit('applied', UniversialManagerService.getChannelId())
                             $rootScope.$emit("channelSelector:changeChannel", data);
                             UniversialManagerService.setChannelId(data);
-                            $scope.$emit('applied', true);
                             $timeout(view);
                         }
                     }

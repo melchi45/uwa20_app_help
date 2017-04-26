@@ -1018,7 +1018,7 @@
     "lang_NoListFound": "There are no items configured in the list. Please configure the items.",
     "lang_TraceNoSupport": "TRACE is not supported.",
     "lang_videoplaydifficult": "Video cannot be played back with the configured profile. ",
-    "lang_defaultprofileapplied": "The default profile will be applied.",
+    "lang_defaultprofileapplied": "The PLUGINFREE profile will be applied.",
     "lang_capture_image_saved": "Captured video has been saved as an image file.",
     "lang_exceeds_performance_spec_nonplugin": "This exceeds the performance specifications that are supported in nonplugin.",
     "lang_install_plugin_for_video": "Please install the plugin to play the video.",
@@ -1141,7 +1141,7 @@
     "lang_msg_mountModeChange_Profile": "Changing the camera mounting mode will change the settings for video profile and restart the camera system. Do you wish to continue?",
     "lang_range_alert": "Please enter the number between %1 and %2.",
     "lang_peoplecount_guideline_msg": "Please set the counting rule inside the circular guideline.",
-    "lang_lastPosition": "Last Position",
+    "lang_lastPosition": "Last position",
     "lang_configuration": "Configuration",
     "lang_left_va": "Video & Audio",
     "lang_menu_fogdetection": "Fog detection",
@@ -1326,5 +1326,6 @@
     "lang_boxstep": "Box step",
     "lang_heater_pan": "Heater\/Pan",
     "lang_trace_setup": "Trace setup",
-    "lang_play_button": "Play"
+    "lang_play_button": "Play",
+    "lang_msg_enter_email": "Please enter the e-mail address."
 }
