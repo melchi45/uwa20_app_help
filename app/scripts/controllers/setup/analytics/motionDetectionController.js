@@ -702,8 +702,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function view(data) {
-        $rootScope.$emit('changeLoadingBar', true);
-        
         if(data === 0) {
             try{
                 $rootScope.$emit('resetScheduleData', true);
@@ -1687,7 +1685,13 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=view', getData,
                 function (response){
                     //Enable이 비활성화 일 때 Handover는 필요없으므로 Return
-                    if($scope.MotionDetection.MotionDetectionEnable === false) return;
+                    if($scope.MotionDetection.MotionDetectionEnable === false) {
+                        if(successCallback !== undefined){
+                            successCallback();
+                        }
+                        
+                        return;
+                    }
 
                     $scope.Handover[0].HandoverList = response.data.Handover[0].HandoverList;
 
@@ -1731,6 +1735,9 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                     }*/
                     $scope.Handover[0].HandoverList = [];
                     pageData.Handover = angular.copy($scope.Handover);
+                    if(successCallback !== undefined){
+                        successCallback();
+                    }
                 }, '', true);
     };
     
