@@ -955,7 +955,7 @@ kindFramework
       {
           return (BrowserService.PlugInSupport && !BrowserService.PlugInDetect) ? false : true;
       }
-      return true;
+      return false;
     };
 
     $rootScope.$saveOn("channel:setPlugin", function() {
