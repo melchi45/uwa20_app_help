@@ -835,28 +835,27 @@ kindFramework
                       type: 연결 타입
                   }
               */                
-              // $timeout(function(){
-                  if( jsonData.type === 0 ) {
-                      rtspDigestAuth('live');
-                      // $timeout(function(){
-                      //     if(UniversialManagerService.isSpeakerOn()){
-                      //         _self.startAudioListen();
-                      //         _self.setAudioVolume(UniversialManagerService.getSpeakerVol());
-                      //     }
-                      //     if(UniversialManagerService.isMicOn()){
-                      //         _self.startAudioTalk();
-                      //     }
-                      //     if (UniversialManagerService.getPixelCount()) {
-                      //         _self.pixcelCount({cmd:true});
-                      //     }
-                      // },500);
-                  }
-                  else if( jsonData.type === 1 || jsonData.type === 3) {
-                    rtspDigestAuth('playback');
-                  }else if( jsonData.type === 2 ){
-                      // rtspDigestAuth('audioTalk');
-                  }
-              // },100);
+              $timeout(function(){
+                if( jsonData.type === 0 ) {
+                  rtspDigestAuth('live');
+                  $timeout(function() {
+                      if(UniversialManagerService.isSpeakerOn()){
+                          _self.startAudioListen();
+                          _self.setAudioVolume(UniversialManagerService.getSpeakerVol());
+                      }
+                      if(UniversialManagerService.isMicOn()){
+                          _self.startAudioTalk();
+                      }
+                      if (UniversialManagerService.getPixelCount()) {
+                          _self.pixcelCount({cmd:true});
+                      }
+                  },500);
+                } else if( jsonData.type === 1 || jsonData.type === 3) {
+                  rtspDigestAuth('playback');
+                } else if( jsonData.type === 2 ) {
+                  rtspDigestAuth('audioTalk');
+                }
+              },100);
               break;
           case 402:   //rtsp disconnection(5초간 미수신시)
               console.log("402 error :: try reconnect");
