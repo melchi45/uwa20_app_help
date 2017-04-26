@@ -1941,16 +1941,6 @@ input[type='text'] {
   border: 0;
   color: #4c4c4c;
 }
-.ua-datepicker table td.today .btn.btn-default.active {
-  background-color: #ff9832 !important;
-  border-color: #ff9832;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.ua-datepicker table td.today .btn.btn-default.active span {
-  color: white;
-}
 .ua-datepicker table .btn.btn-default {
   border: 0;
   border-radius: 0;
@@ -1959,18 +1949,13 @@ input[type='text'] {
   background-color: #fff;
 }
 .ua-datepicker table .btn.btn-default.active {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.ua-datepicker table .btn.btn-default:active {
   background-color: #ff9832 !important;
   border-color: #ff9832;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 }
-.ua-datepicker table .btn.btn-default:active span {
+.ua-datepicker table .btn.btn-default.active span {
   color: white;
 }
 .ua-datepicker table .btn.btn-default.btn-sm {
@@ -4819,9 +4804,6 @@ button.login-input + input.login-input {
   .wn5-setup-realtime-chart.wn5-setup-preview-content {
     margin-left: 0;
   }
-}
-.cm-recording-color {
-  color: blue;
 }
 fieldset[disabled] .btn {
   background-color: #d2d2d2 !important;
@@ -9864,10 +9846,7 @@ i.tui-ch-playback-stop {
   float: left;
 }
 .kind-responsive-playback #cm-playback-backup .cm-date-textbox {
-  width: 150px;
-  height: 51px;
-  line-height: 51px;
-  font-size: 17px;
+  width: 120px;
   text-align: center;
 }
 .kind-responsive-playback .cm-playback-duplicate-items {
@@ -10420,9 +10399,6 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback #cm-bottom-menu #cm-menu-content #backup {
     margin-left: 45px;
   }
-  .kind-responsive-playback #cm-bottom-menu #cm-menu-content .cm-playback-range {
-    line-height: 51px;
-  }
   .kind-responsive-playback .cm-str-button {
     height: 51px;
     line-height: 51px;
@@ -10436,13 +10412,8 @@ i.tui-ch-playback-stop {
     top: 2px !important;
     height: 50px !important;
   }
-  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly .vis-item-overflow {
-    height: 30px;
-    top: 15px;
-  }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly.vis-item-normal .vis-item-overflow {
-    height: 30px;
-    top: 15px;
+    height: 23px;
   }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-background.vis-vertical .vis-time-axis {
     top: 15px;
@@ -10495,14 +10466,9 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback #cm-menu-content .overlap-search-container label {
     font-size: 17px;
   }
-  .kind-responsive-playback #cm-menu-content .cm-timeboxes {
-    line-height: 51px !important;
-    margin-bottom: 20px;
-  }
   .kind-responsive-playback #cm-menu-content .cm-timeboxes input {
-    width: 67.5px !important;
-    height: 51px !important;
-    font-size: 20px !important;
+    width: 52px;
+    height: 42px;
   }
   .kind-responsive-playback .cm-submit-button {
     width: 150px;
@@ -10534,9 +10500,6 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback #cm-playback-datepicker .cm-center .cm-datepicker-section:last-child .cm-playback-all-day {
     font-size: 16px;
   }
-  .kind-responsive-playback .cm-backup-button {
-    margin-top: 50px;
-  }
 }
 @media (min-width: 3000px) and (min-height: 1688px) {
   .kind-responsive-playback #cm-video {
@@ -10544,16 +10507,6 @@ i.tui-ch-playback-stop {
   }
   .kind-responsive-playback #cm-video.smaller {
     height: calc(100% - 190px) !important;
-  }
-  .kind-responsive-playback #cm-playback-backup {
-    float: left;
-  }
-  .kind-responsive-playback #cm-playback-backup .cm-date-textbox {
-    width: 180px;
-    height: 59.5px;
-    line-height: 59.5px;
-    font-size: 21px;
-    text-align: center;
   }
   .kind-responsive-playback #cm-bottom-menu.cm-show-menu {
     height: 525px;
@@ -10613,7 +10566,7 @@ i.tui-ch-playback-stop {
     margin-top: 18px;
   }
   .kind-responsive-playback #cm-bottom-menu #timeline-setting {
-    height: 84px;
+    height: 75px;
   }
   .kind-responsive-playback #cm-bottom-menu #cm-menu-content {
     height: 350px;
@@ -10635,9 +10588,6 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback #cm-bottom-menu #cm-menu-content #backup {
     margin-left: 52.5px;
   }
-  .kind-responsive-playback #cm-bottom-menu #cm-menu-content .cm-playback-range {
-    line-height: 59.5px;
-  }
   .kind-responsive-playback .cm-str-button {
     height: 59.5px;
     line-height: 59.5px;
@@ -10651,35 +10601,30 @@ i.tui-ch-playback-stop {
     top: 2px !important;
     height: 60px !important;
   }
-  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly .vis-item-overflow {
-    height: 35px;
-    top: 18px;
-  }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly.vis-item-normal .vis-item-overflow {
-    height: 35px;
-    top: 18px;
+    height: 28px;
   }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-background.vis-vertical .vis-time-axis {
-    top: 25px;
+    top: 20px;
   }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text.vis-minor {
-    font-size: 22px;
+    font-size: 25px;
   }
   .kind-responsive-playback .vis-custom-time div {
-    width: 50px !important;
-    height: 50px !important;
-    margin-top: 46px;
+    width: 40px !important;
+    height: 40px !important;
+    margin-top: 42px;
   }
   .kind-responsive-playback .vis-custom-time div:after {
-    left: 18px;
-    top: 13px;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 15px solid #797979;
+    left: 14px;
+    top: 11px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 12px solid #797979;
   }
   .kind-responsive-playback .cm-playback-duplicate-items > div {
     padding: 15px 15px;
-    margin-top: 38px;
+    margin-top: 20px;
   }
   .kind-responsive-playback .cm-playback-duplicate-items .event-type {
     font-size: 21px;
@@ -10711,9 +10656,9 @@ i.tui-ch-playback-stop {
     font-size: 21px;
   }
   .kind-responsive-playback #cm-menu-content .cm-timeboxes input {
-    width: 78.75px !important;
-    height: 59.5px !important;
-    font-size: 20px !important;
+    width: 67px;
+    height: 50px;
+    font-size: 19px;
   }
   .kind-responsive-playback .cm-submit-button {
     width: 175px;
@@ -10745,9 +10690,6 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback #cm-playback-datepicker .cm-center .cm-datepicker-section:last-child .cm-playback-all-day {
     font-size: 21px;
   }
-}
-.kind-responsive-playback .cm-backup-button {
-  margin-top: 70px;
 }
 #channellist-containner {
   height: calc(100% - 50px);
