@@ -1447,6 +1447,10 @@ kindFramework
                 prevChannel = currentChannel;
             });
 
+            scope.$saveOn('offAlreadyCreated', function () {
+                alreadyCreated = false;
+            });
+
             //---------------------------------------------------------
 
             scope.$watch('pageLoaded', function(newVal, oldVal){ // called once when page loaded at first

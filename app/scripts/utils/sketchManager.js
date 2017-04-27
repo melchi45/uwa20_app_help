@@ -2207,6 +2207,186 @@ var SketchManager = (function() {
                                         }).find(".modal-dialog").css({
                                             margin: 0
                                         });
+                                                                                                                                                                
+                                        // ptz privacy popup jog
+                                        $("#ptz-control_move-btn-popup").unbind();
+                                        $("#ptz-control_box-popup").unbind();
+                                        var isDrag = false;
+                                        var isMove = false;
+                                        var animateDuration = 50;
+                                        var PAN_RATIO = 1.495;
+                                        var TILT_RATIO = 1.790;
+                                        var downTimer = null;
+                                        var ptzJogTimer = null;
+                                        var isJogUpdating = false;
+                                        var isPtzControlStart = false;
+
+                                        function ptzStop(){
+                                            if (ptzJogTimer !== null) {
+                                                $interval.cancel(ptzJogTimer);
+                                                ptzJogTimer = null;
+                                            }
+                                            if(!isPtzControlStart) return;
+                                            var setData = {};
+                                            setData.Channel = 0;
+                                            setData.OperationType = 'All';
+
+                                            isPtzControlStart = false;
+                                            SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control', setData,
+                                                function (response) {
+                                                },
+                                                function (errorData) {
+                                                },'', true);
+                                        }
+
+                                        function makeJogTimer() {
+                                            ptzJogTimer = $interval(function() {
+                                                isJogUpdating = false;
+                                            }, 100);
+                                        }
+
+                                        function ptzLimitCheck(data) {
+                                            if (data > 100) { data = 100; }
+                                            else if (data < -100) { data = -100; }
+
+                                            return data;
+                                        }
+
+                                        function ptzJogMove(xPos, yPos){
+                                            var setData = {};
+                                            setData.Channel = 0;
+                                            setData.NormalizedSpeed = 'True';
+                                            setData.Pan = ptzLimitCheck(xPos);
+                                            setData.Tilt = ptzLimitCheck(yPos);
+                                            setData.Zoom = 0;
+
+                                            if(ptzJogTimer === null) {
+                                                makeJogTimer();
+                                            }
+
+                                            if(isJogUpdating === false) {
+                                                isPtzControlStart = true;
+                                                SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control', setData,
+                                                    function (response) {
+                                                    },
+                                                    function (errorData) {
+                                                    },'', true);
+
+                                                isJogUpdating = true;
+                                            }
+                                        }
+                                        
+                                        $("#ptz-control_move-btn-popup").draggable({
+                                            containment: "parent",
+                                            revert: false,
+                                            revertDuration: 100,
+                                            drag: function(){
+                                                isDrag = true;
+                                                isMove = false;
+                                                var offset = $(this).position();
+                                                var xPos = (offset.left);
+                                                var yPos = (offset.top);
+                                                xPos *= PAN_RATIO;
+                                                yPos *= TILT_RATIO;
+
+                                                xPos = parseInt(xPos,10) - 100;
+                                                yPos = -(parseInt(yPos,10) - 100);
+                                                if (-4 < yPos && yPos < 4) yPos = 0;
+                                                if (-2 < xPos && xPos < 2) xPos = 0;
+                                                ptzJogMove(xPos, yPos);
+                                            },
+                                            stop: function(){
+                                                if(!isDrag && !isMove){
+                                                }else{
+                                                    isDrag = false;
+                                                    isMove = false;
+                                                    var moveAreaWidth = $('#ptz-control_box-popup').width();
+                                                    var moveAreaHeight = $('#ptz-control_box-popup').height();
+                                                    $('#ptz-control_move-btn-popup').animate({
+                                                        top: (moveAreaHeight/2-12),
+                                                        left: (moveAreaWidth/2-12)
+                                                    }, animateDuration, function(){
+                                                        ptzStop();
+                                                    });
+                                                }
+                                            }
+                                        });
+                                        $("#ptz-control_box-wrap").mousedown(function(e){
+                                           e.stopPropagation();
+                                        });
+                                        $("#ptz-control_box-popup").mousedown(function(e){
+                                            if(isDrag || isMove || e.which != 1)
+                                                return;
+                                            isMove = true;
+                                            var jogWidth = $('#ptz-control_move-btn-popup').width()/2;
+
+                                            var moveAreaPos = $('#ptz-control_box-popup').offset();
+                                            var moveAreaWidth = $('#ptz-control_box-popup').width();
+                                            var moveAreaHeight = $('#ptz-control_box-popup').height();
+                                            var jogPos = $('#ptz-control_move-btn-popup').offset();
+                                            var jog_Left = jogPos.left + jogWidth;
+                                            var jog_Top = jogPos.top + jogWidth;
+                                            var xPos = e.pageX;
+                                            var yPos = e.pageY;
+
+                                            if (window.navigator.msPointerEnabled) {
+                                                if($(window).scrollLeft() != 0 && e.pageX == e.clientX){
+                                                    xPos = xPos + $(window).scrollLeft();
+                                                }
+                                                if($(window).scrollTop() != 0 && e.pageY == e.clientY){
+                                                    yPos = yPos + $(window).scrollTop();
+                                                }
+                                            }
+                                            if(xPos <= (moveAreaPos.left + jogWidth))
+                                                xPos = (moveAreaPos.left + jogWidth);
+                                            else if(xPos >= (moveAreaWidth + moveAreaPos.left - jogWidth))
+                                                xPos = moveAreaWidth + moveAreaPos.left - jogWidth;
+
+                                            if(yPos <= (moveAreaPos.top + jogWidth))
+                                                yPos = moveAreaPos.top + jogWidth;
+                                            else if(yPos >= (moveAreaPos.top + moveAreaHeight - jogWidth))
+                                                yPos = moveAreaPos.top + moveAreaHeight - jogWidth;
+
+                                            xPos = xPos- jog_Left;
+                                            yPos = jog_Top - yPos;
+                                            if (-4 <= xPos && xPos <= 4) xPos = 0;
+                                            if (-2 <= yPos && yPos <= 2) yPos = 0;
+
+                                            $('#ptz-control_move-btn-popup').animate({
+                                                top: (moveAreaHeight/2-12)-yPos,
+                                                left: (moveAreaWidth/2-12)+xPos
+                                            }, animateDuration, function() {
+                                                xPos *= PAN_RATIO;
+                                                yPos *= TILT_RATIO;
+
+                                                ptzJogMove(xPos, yPos);
+                                                if(isMove == true) {
+                                                    clearTimeout(downTimer);
+                                                    downTimer = setTimeout(function(){
+                                                        $('#ptz-control_move-btn-popup').trigger(e);
+                                                    },animateDuration);
+                                                }
+                                            });
+                                            e.preventDefault();
+                                        });
+                                        $('#ptz-control_box-popup,#ptz-control_move-btn-popup').mouseup(function(e) {
+                                            clearTimeout(downTimer);
+                                            e.preventDefault();
+                                            if(!isDrag && !isMove){
+                                            }else{
+                                                isDrag = false;
+                                                isMove = false;
+                                                var moveAreaWidth = $('#ptz-control_box-popup').width();
+                                                var moveAreaHeight = $('#ptz-control_box-popup').height();
+                                                $('#ptz-control_move-btn-popup').animate({
+                                                    top: (moveAreaHeight/2-12),
+                                                    left: (moveAreaWidth/2-12)
+                                                }, animateDuration, function(){
+                                                    ptzStop();
+                                                });
+                                            }
+                                        });
+                                        // ptz privacy popup jog end
                                     });
                                 }
                             }]

@@ -414,34 +414,37 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     {
         mStopMonotoringDefocusLevel = false;
 
-        (function update()
+        if(monitoringTimer == null)
         {
-            getDefocusLevel(function (data) {
-                if(destroyInterrupt) return;
-                var newDefocusLevel = angular.copy(data);
+            (function update()
+            {
+                getDefocusLevel(function (data) {
+                    if(destroyInterrupt) return;
+                    var newDefocusLevel = angular.copy(data);
 
-                if (!mStopMonotoringDefocusLevel)
-                {
-                    if(newDefocusLevel.length >= maxSample)
+                    if (!mStopMonotoringDefocusLevel)
                     {
-                        var index = newDefocusLevel.length;
-
-                        while(index--)
+                        if(newDefocusLevel.length >= maxSample)
                         {
-                            var level = validateLevel(newDefocusLevel[index]);
+                            var index = newDefocusLevel.length;
 
-                            if(level === null) continue;
-
-                            if($scope.DefocusChartOptions.EnqueueData)
+                            while(index--)
                             {
-                                $scope.DefocusChartOptions.EnqueueData(level);
+                                var level = validateLevel(newDefocusLevel[index]);
+
+                                if(level === null) continue;
+
+                                if($scope.DefocusChartOptions.EnqueueData)
+                                {
+                                    $scope.DefocusChartOptions.EnqueueData(level);
+                                }
                             }
                         }
+                        monitoringTimer = $timeout(update, 500); //300 msec
                     }
-                    monitoringTimer = $timeout(update, 500); //300 msec
-                }
-            });
-        })();
+                });
+            })();
+        }
     }
 
     var mLastSequenceLevel = 0;
@@ -482,6 +485,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                 function (errorData)
                 {
                     console.log("getDefocusLevel Error : ", errorData);
+                    stopMonitoringDefocusLevel();
                     startMonitoringDefocusLevel();
                 }, '', true);
     }
@@ -491,6 +495,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
 
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
+            monitoringTimer = null;
         }
     }
 
