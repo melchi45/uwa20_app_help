@@ -753,15 +753,15 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
     function view() {
         var promises = [];
-        promises.push(getStorageTableData); 
+        promises.push(getStorageTableData);
         promises.push(changeVideoProfilePolicies);
         promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
         promises.push(getRecordingStorageDetails);
         promises.push(getRecordingSchedules);
-        promises.push(getRecordProfileDetails);
+        //promises.push(getRecordProfileDetails);
 
-        $q.seqAll(promises).then(setAttribute).then(function() {
+        $q.seqAll(promises).then(getRecordProfileDetails).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
             UniversialManagerService.setChannelId($scope.Channel);
             
