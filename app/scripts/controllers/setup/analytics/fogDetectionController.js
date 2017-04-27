@@ -156,32 +156,35 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     {
         mStopMonotoringFogLevel = false;
 
-        (function update()
+        if(monitoringTimer == null)
         {
-            getFogLevel(function (data) {
-                if(destroyInterrupt) return;
-                var newFogLevel = angular.copy(data);
-                if (!mStopMonotoringFogLevel)
-                {
-                    if (newFogLevel.length >= maxSample)
+            (function update()
+            {
+                getFogLevel(function (data) {
+                    if(destroyInterrupt) return;
+                    var newFogLevel = angular.copy(data);
+                    if (!mStopMonotoringFogLevel)
                     {
-                        var index = newFogLevel.length;
-                        while(index--)
+                        if (newFogLevel.length >= maxSample)
                         {
-                            var level = validateLevel(newFogLevel[index]);
-
-                            if(level === null) continue;
-
-                            if($scope.FogDetectChartOptions.EnqueueData)
+                            var index = newFogLevel.length;
+                            while(index--)
                             {
-                                $scope.FogDetectChartOptions.EnqueueData(level);
+                                var level = validateLevel(newFogLevel[index]);
+
+                                if(level === null) continue;
+
+                                if($scope.FogDetectChartOptions.EnqueueData)
+                                {
+                                    $scope.FogDetectChartOptions.EnqueueData(level);
+                                }
                             }
                         }
+                        monitoringTimer = $timeout(update, 500); //300 msec
                     }
-                    monitoringTimer = $timeout(update, 500); //300 msec
-                }
-            });
-        })();
+                });
+            })();
+        }
     }
 
     function stopMonitoringFogLevel(){
@@ -189,6 +192,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
 
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
+            monitoringTimer = null;
         }
     }
 
@@ -237,6 +241,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                 function (errorData)
                 {
                     console.log("getFogLevel Error : ", errorData);
+                    stopMonitoringFogLevel();
                     startMonitoringFogLevel();
                 }, '', true);
     }     

@@ -23,12 +23,17 @@ kindFramework.directive('wn5SetupCommonButton', function() {
         link: function(scope, element, attrs){
             var cancelClick = attrs.cancelClick;
             var submitClick = attrs.submitClick;
-            
+            var removeFocus = function(){
+                element.find("button").blur();
+            };
+
             scope.wn5SetupCommonButton = {
-                submit: function(){
+                submit: function(event){
+                    removeFocus();
                     scope.$parent.$eval(submitClick);
                 },
-                cancel: function(){
+                cancel: function(event){
+                    removeFocus();
                     scope.$parent.$eval(cancelClick);
                 }
             };   

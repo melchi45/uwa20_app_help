@@ -59,12 +59,12 @@ kindFramework.controller('ModalInstnceMessageCtrl',
           .parent()
           .parent()
           .parent()
+          .parent()
           .remove();
-      }else{
-        $uibModalInstance.close();
       }
       
       $('.modal-backdrop').remove();
+      $uibModalInstance.close();
     };
 
     /**

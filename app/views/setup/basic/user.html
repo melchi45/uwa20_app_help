@@ -92,7 +92,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="user in Users"
+                                <tr ng-repeat="user in Users track by $index"
                                     ng-class="{'wn5-setup-table-active': $parent.selected === $index }">
                                     <td>
                                         <input type="radio" ng-model="$parent.selected" ng-value="$index"></input>

@@ -19,6 +19,9 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.EventSource = "Storage";
     $scope.StorageInfo = {};
 
+
+
+
     /*
      ID : 숫자,알파벳,특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능.
      Password : 숫자,알파벳,특수문자(~ ! @ $ ^ * _ - { } [ ] . / ?) 입력가능하고 이외 문자는 설정 불가능
@@ -45,7 +48,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=sdcardinfo&action=view', getData,
             function (response) {
-                
+
                 var TableData = response.data;
 
                 $.each(TableData,function(index, element) {
@@ -756,15 +759,15 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         promises.push(getRecordGeneralDetails);
         promises.push(getRecordingStorageDetails);
         promises.push(getRecordingSchedules);
-        promises.push(getRecordProfileDetails);
+        //promises.push(getRecordProfileDetails);
 
-        $q.seqAll(promises).then(setAttribute).then(function() {
+        $q.seqAll(promises).then(getRecordProfileDetails).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
             UniversialManagerService.setChannelId($scope.Channel);
 
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
             $rootScope.$emit('changeLoadingBar', false);
-            
+
             $("#storagepage").show();
         }, function(errorData) {
             console.log(errorData);
@@ -784,8 +787,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                     $rootScope.$emit("channelSelector:changeChannel", newChannel);
                     $scope.Channel = newChannel;
                 }
-                $scope.$emit('alreadyCreatedFalse', true);
 
+                $scope.$emit("offAlreadyCreated", true);
                 window.setTimeout(view, 1000);
             }, function(errorData) {
                 console.error(errorData);
@@ -1078,7 +1081,12 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     })();
 
     $scope.submit = set;
-    $scope.view = view;
+    $scope.view = function () {
+        $rootScope.$emit("changeLoadingBar", true);
+        $scope.$emit("offAlreadyCreated", true);
+
+        view();
+    }
     $scope.validate = validatePage;
 });
 

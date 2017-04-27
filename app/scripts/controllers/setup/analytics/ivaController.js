@@ -1936,7 +1936,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                         case 'L':
                             mode = LINE_MODE.LEFT;
                         break;
-                        case 'null':
+                        case null:
                             mode = LINE_MODE.OFF;
                         break;
                     }
