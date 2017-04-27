@@ -99,11 +99,24 @@ kindFramework.directive('channelPlayer',
 
             $rootScope.$saveOn('channelPlayer:command', function(event, type, command, callback) {
                 console.log("Requested command {  Type : " + type + " }");
+                var isPluginMode = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
 
                 if(channelPlayerObj === null)
                 {
-                    var isPluginMode = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
-                    channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);    
+                    channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);
+                }
+                else
+                {
+                    if( (isPluginMode === true) && (BrowserService.PlugInDetect === false)) {
+                        UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
+                        isPluginMode = false;
+                    }
+
+                    if(channelPlayerObj.getPluginMode() !== isPluginMode)
+                    {
+                        channelPlayerObj.stopStreaming();
+                        channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);
+                    }
                 }
 
                 switch(type)
@@ -115,7 +128,7 @@ kindFramework.directive('channelPlayer',
                         channelPlayerObj.record(command);
                         break;
                     case 'stopLive' :
-                        stopLiveForPlayback(UniversialManagerService.getStreamingMode(), command);
+                        channelPlayerObj.stopLiveForPlayback(command);
                         break;
                     case 'playbackBackup':
                         channelPlayerObj.playbackBackup(command, callback);
@@ -338,7 +351,16 @@ kindFramework.directive('channelPlayer',
                         this.createStreamElement();
                         var pluginObj = elem[0].getElementsByTagName('object')[0];
                         PluginControlService.startPlaybackBackup(pluginObj, _data, _callback);
-                    }
+                    };
+
+                    this.stopLiveForPlayback = function(_isPlaybackMode ) {
+                        PluginControlService.stopStreaming();
+
+                        if(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE)
+                        {
+                            $rootScope.$emit('app/scripts/directives/channelPlayer.js:disablePlayback', false);
+                        }
+                    };
                 }
                 function MJPEG(){
                     function stopAndNotSupport() {
@@ -405,6 +427,15 @@ kindFramework.directive('channelPlayer',
                     this.playback = stopAndNotSupport;
 
                     this.playbackBackup = stopAndNotSupport;
+
+                    this.stopLiveForPlayback = function(_isPlaybackMode) {
+                        MJPEGPollingControlService.stopStreaming();
+
+                        if( _isPlaybackMode === true ) {
+                            createNoSupportPlaybackInPlugInElement();
+                            $rootScope.$emit('app/scripts/directives/channelPlayer.js:disablePlayback', true);
+                        }
+                    };
                 }
                 function Kind(){
                     this.createStreamElement = function() {
@@ -537,6 +568,11 @@ kindFramework.directive('channelPlayer',
                         this.createStreamElement();
                         KindControlService.startPlaybackBackup(scope, _data, _callback);
                     };
+
+                    this.stopLiveForPlayback = function() {
+                        KindControlService.stopStreaming(elem);
+                        elem.empty();
+                    };
                 }
 
                 function Player(){
@@ -586,6 +622,10 @@ kindFramework.directive('channelPlayer',
                         if( scope.child.$destroy !== undefined ) {
                             scope.child.$destroy();
                         }
+                    };
+
+                    this.getPluginMode = function(){
+                      return (this instanceof PlugIn) ? true : false;
                     };
                 }
 
@@ -664,53 +704,6 @@ kindFramework.directive('channelPlayer',
                     */
                     $rootScope.$emit('channelPlayer:stopped', 'NOT_AVAIALBE', _profile, CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
                     break;
-              }
-            }                                  
-
-            function stopLiveForPlayback(_streamingmode, isPlaybackMode ) {
-              /*Previously check plugin mode*/
-              var pluginMode = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
-              if( (pluginMode === true) && (BrowserService.PlugInDetect === false)) {
-                UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
-                _streamingmode = CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE;
-              }
-              switch(BrowserService.BrowserDetect)
-              {
-                case BrowserService.BROWSER_TYPES.IE:
-                  if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE)
-                  {
-                    channelPlayerObj.stopStreaming();
-                    $rootScope.$emit('app/scripts/directives/channelPlayer.js:disablePlayback', false);
-                  }
-                  else
-                  {
-                    channelPlayerObj.stopStreaming();
-                    if( isPlaybackMode === true ) {
-                      createNoSupportPlaybackInPlugInElement();
-                      $rootScope.$emit('app/scripts/directives/channelPlayer.js:disablePlayback', true);
-                    }
-                  }
-                  break;
-                case BrowserService.BROWSER_TYPES.SAFARI:
-                  if(_streamingmode === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE)
-                  {
-                    channelPlayerObj.stopStreaming();
-                  }
-                  else
-                  {
-                    KindControlService.closeStream(elem, scope);
-                    elem.empty();
-                  }
-                  break;
-                case BrowserService.BROWSER_TYPES.FIREFOX:
-                case BrowserService.BROWSER_TYPES.CHROME:
-                case BrowserService.BROWSER_TYPES.EDGE:
-                /* jshint ignore:start */
-                default :
-                /* jshint ignore:end */
-                  KindControlService.closeStream(elem, scope);
-                  elem.empty();
-                  break;
               }
             }
         }
