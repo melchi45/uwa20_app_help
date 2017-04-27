@@ -379,7 +379,6 @@ kindFramework.directive('playbackDatepicker', function() {
                 $scope.errorMessage = "";
             };
             $rootScope.$saveOn('onChangedMonth', function(event, data) {
-                $scope.playback.search.selectedDate =  currentDate = data;
                 showRecordingDate(currentDate.getFullYear(), pad(currentDate.getMonth() + 1));
             }, $scope);
 

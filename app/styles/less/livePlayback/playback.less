@@ -97,7 +97,10 @@
         float: left;
 
         .cm-date-textbox{
-            width: 120px;
+            width: 150px;
+            height: 51px;
+            line-height: 51px;
+            font-size: 17px;
             text-align: center;
         }
     }
@@ -489,7 +492,7 @@
             margin-bottom: 0;
         }
 
-        #cm-bottom-menu {
+        #cm-bottom-menu { 
             height: 50px !important; 
 
             #cm-icon-list {
@@ -733,6 +736,8 @@
             }
         }
 
+        // #cm-bottom-menu #cm-menu-content .cm-playback-range
+
         #cm-bottom-menu {
             height: 75px;
         
@@ -847,6 +852,10 @@
                     margin-left: 45px;
                 }
 
+                .cm-playback-range {
+                    line-height: 51px;
+                }
+
             }
         }
 
@@ -856,7 +865,8 @@
             padding: 0 15px;
             font-size: 17px;
         }
-
+        
+        // .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly .vis-item-overflow
 
         .vis-timeline {
         &.vis-bottom {
@@ -875,12 +885,20 @@
                                     top: 2px !important;
                                     height: 50px !important;
 
+                                    .vis-item-overflow {
+                                        height: 30px;
+                                        top: 15px;
+                                    }
+
                                     &.vis-item-normal {
                                         .vis-item-overflow {
-                                            height: 23px;
+                                            height: 30px;
+                                            top: 15px;
                                         }
                                     }
                                 }
+
+
                             }
                         }
                     }
@@ -981,9 +999,13 @@
             }
 
             .cm-timeboxes {
+                line-height: 51px !important;
+                margin-bottom: 20px; 
+
                 input {
-                    width: 52px;
-                    height: 42px;
+                    width: 67.5px !important;
+                    height: 51px !important;
+                    font-size: 20px !important;
                 }
             }
         }
@@ -1033,6 +1055,10 @@
             }
         }
 
+        .cm-backup-button {
+            margin-top: 50px;
+        }
+
     }
 
 
@@ -1046,8 +1072,20 @@
             }
         }
 
+        #cm-playback-backup{
+            float: left;
 
-        #cm-bottom-menu {     
+            .cm-date-textbox{
+                width: 180px;
+                height: 59.5px;
+                line-height: 59.5px;
+                font-size: 21px;
+                text-align: center;
+            }
+        }
+
+
+        #cm-bottom-menu {   
             &.cm-show-menu {
                 height: 525px;
             }
@@ -1124,7 +1162,7 @@
             }
 
             #timeline-setting {
-                height: 75px;
+                height: 84px;
             }
 
             #cm-menu-content {
@@ -1152,6 +1190,10 @@
 
                 #backup {
                     margin-left: 52.5px;
+                }
+
+                .cm-playback-range {
+                    line-height: 59.5px;
                 }
 
             }
@@ -1182,9 +1224,15 @@
                                     top: 2px !important;
                                     height: 60px !important;
 
+                                    .vis-item-overflow {
+                                        height: 35px;
+                                        top: 18px;
+                                    }
+
                                     &.vis-item-normal {
                                         .vis-item-overflow {
-                                            height: 28px;
+                                            height: 35px;
+                                            top: 18px;
                                         }
                                     }
                                 }
@@ -1197,7 +1245,7 @@
             &.vis-background {
                 &.vis-vertical {
                     .vis-time-axis {
-                        top: 20px;
+                        top: 25px;
                     }
                 }
             }
@@ -1208,7 +1256,7 @@
                 &.vis-foreground {
                   .vis-text {
                     &.vis-minor {
-                      font-size: 25px;
+                      font-size: 22px;
                     }
                   }
                 }
@@ -1222,16 +1270,16 @@
 
         .vis-custom-time {
             div {
-                width: 40px !important;
-                height: 40px !important;
-                margin-top: 42px;
+                width: 50px !important;
+                height: 50px !important;
+                margin-top: 46px;
 
                 &:after {
-                    left: 14px;
-                    top: 11px;
-                    border-top: 8px solid transparent;
-                    border-bottom: 8px solid transparent;
-                    border-left: 12px solid #797979;
+                    left: 18px;
+                    top: 13px;
+                    border-top: 10px solid transparent;
+                    border-bottom: 10px solid transparent;
+                    border-left: 15px solid #797979;
                 }
             }
         }
@@ -1239,7 +1287,7 @@
         .cm-playback-duplicate-items {
             & > div {
                 padding: 15px 15px;
-                margin-top: 20px;
+                margin-top: 38px;
             }
 
             .event-type {
@@ -1287,9 +1335,9 @@
 
             .cm-timeboxes {
                 input {
-                    width: 67px;
-                    height: 50px;
-                    font-size: 19px;
+                    width: 78.75px !important;
+                    height: 59.5px !important;
+                    font-size: 20px !important;
                 }
             }
         }
@@ -1339,6 +1387,10 @@
                 }
             }
         }
+    }
+
+    .cm-backup-button {
+        margin-top: 70px;
     }
 
 }
