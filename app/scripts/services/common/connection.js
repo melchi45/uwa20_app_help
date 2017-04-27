@@ -394,6 +394,10 @@ kindFramework
     var SetMultiChannelSupport = function(support) {
       cameraInfo.supportMultiChannel = support;
     };
+
+    var changeServerAddress = function(cameraIp) {
+      deviceInfo.server_address = cameraIp;
+    };
     return {
         setConnectionInfo: setConnectionInfo,
         getPlayerData: getPlayerData,
@@ -412,6 +416,7 @@ kindFramework
         playbackBackup : playbackBackup,
         SetRtspPort : SetRtspPort,
         SetRtspIpMac : SetRtspIpMac,
-        SetMultiChannelSupport : SetMultiChannelSupport
+        SetMultiChannelSupport : SetMultiChannelSupport,
+        changeServerAddress : changeServerAddress
     };
 }]);
