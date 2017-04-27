@@ -33,6 +33,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         Contrast : 0
     };
 
+    $scope.targetChannel = UniversialManagerService.getChannelId();
+
     /**
      * 탭 사용 조건 정의
      */

@@ -55,7 +55,6 @@ KindDisplay
                 
                 time = new Date().getTime();
                 element.after("<span data-full-screen='"+previous+"'></span>");
-                // stage.prepend(element);
 
                 if(divisionSize(size.tw,size.th,size.sw,size.sh)){
                     canvas.addClass('full-screen-set-width');
@@ -98,7 +97,6 @@ KindDisplay
 								element.find(' > div').css('overflow', 'auto');
                 var canvas  = $('canvas',element);
                 if(span.length != 0){
-                    span.after(element).remove();
                     element.removeClass('full-screen');
                     
                     if (document.exitFullscreen) {

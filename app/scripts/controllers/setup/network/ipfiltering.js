@@ -724,7 +724,9 @@ kindFramework.controller('ipfilteringCtrl', function ($scope, $timeout, COMMONUt
             COMMONUtils.ShowError('lang_msg_chkIPAddress');
         } else
         {
-            COMMONUtils.ShowConfirmation(del_filter4, 'lang_msg_confirm_remove_profile');
+            if($scope.FilterIPv4.length > 0) {
+                COMMONUtils.ShowConfirmation(del_filter4, 'lang_msg_confirm_remove_profile');
+            }
         }
     }
 
@@ -735,7 +737,9 @@ kindFramework.controller('ipfilteringCtrl', function ($scope, $timeout, COMMONUt
             COMMONUtils.ShowError('lang_msg_chkIPAddress');
         } else
         {
-            COMMONUtils.ShowConfirmation(del_filter6, 'lang_msg_confirm_remove_profile');
+            if($scope.FilterIPv6.length > 0) {
+                COMMONUtils.ShowConfirmation(del_filter6, 'lang_msg_confirm_remove_profile');
+            }
         }
     }
 
