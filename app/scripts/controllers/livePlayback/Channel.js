@@ -568,7 +568,7 @@ kindFramework
       var resolutionSize = resolution[0] * resolution[1];
       var rec = $(".cm-live-rec");
       if (resolutionSize > videoLimitSize && profile.EncodingType === "H264" && profile.FrameRate >= videoLimitFPS
-        /*&& BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.CHROME*/) {
+        && BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.CHROME) {
         return 'video';
       } else {
         rec
@@ -844,6 +844,11 @@ kindFramework
               }
               var RequestProfile = getProfileByIndex($scope.profileList, defaultProfileID);
               startStreaming(RequestProfile);
+
+              if($scope.channelSetFunctions['show'] === true && $scope.channelSetFunctions['status'] === true){
+                $rootScope.$emit('liveIconList:setProfileAccessInfo', true);
+              }
+              
               if(sunapiAttributes.MaxAudioOutput !== undefined && sunapiAttributes.MaxAudioOutput !== 0) {
                 switch(UniversialManagerService.getUserId())
                 {
@@ -1047,9 +1052,6 @@ kindFramework
       UniversialManagerService.setChannelId(channelId);
       setProfileInfo();
       kindStreamInterface.setTagType(null);
-      if($scope.channelSetFunctions['show'] === true && $scope.channelSetFunctions['status'] === true){
-        $rootScope.$emit('liveIconList:setProfileAccessInfo', true);
-      }
 
       $rootScope.$emit('changeLoadingBar', true);
     }, $scope);

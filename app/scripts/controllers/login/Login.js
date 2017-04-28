@@ -94,6 +94,9 @@ kindFramework.controller('LoginCtrl',
               MultiLanguage.setLanguage($scope.currentLanguage);
               console.log(" -- Current Login language = [ " + $scope.currentLanguage + " ]");
               _self.successLogin();
+              if($scope.desktopAppInfo.isDesktopApp === true){
+                ConnectionSettingService.changeServerAddress($scope.desktopAppInfo.ipAddress);
+              }
               ConnectionSettingService.setConnectionInfo($scope.loginInfo);
               UniversialManagerService.setUserId($scope.loginInfo.id);
               $state.go('uni.channel');

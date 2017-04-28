@@ -90,6 +90,15 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         }
         return option;
     };
+    
+    $scope.isAutotracking = function(name) {
+        if (name === 'Tracking') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
 
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
