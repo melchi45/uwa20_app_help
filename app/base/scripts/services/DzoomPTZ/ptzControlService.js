@@ -183,6 +183,9 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
         function mouseLeave(event) { eventHandler(event,"mouseleave", null); }
 
         function setElementEvent(element) {
+            // Removed Duplicated Event Listener
+            deleteElementEvent(element);
+
             element.addEventListener('mousewheel', mouseWheel);
             element.addEventListener('mousedown', mouseDown);
             element.addEventListener('mousemove', mouseMove);
@@ -383,7 +386,6 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
                 SunapiClient.get(uri, getData,
                     function (response) { if (callback !== null && callback !== undefined) { callback(response.data); } },
                     function (errorData) {
-                        console.log("에러다");
                         console.log(errorData);
                         if (callback !== null && callback !== undefined) {
                             callback(errorData);
