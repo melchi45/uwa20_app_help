@@ -51,8 +51,13 @@ kindFramework
         if(mode)
         {
             if (canvasElem !== null) {
+                /* it blocked multi added eventlistener */
+
+                canvasElem.removeEventListener('mouseup', callbackFunc);
+
                 PTZContorlService.setMode(PTZ_TYPE.ptzCommand.TRACKING);
                 PTZContorlService.setManualTrackingMode("True");
+
                 canvasElem.addEventListener('mouseup', callbackFunc);
             }
         }
