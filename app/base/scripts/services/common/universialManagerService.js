@@ -185,10 +185,12 @@ kindFramework.service('UniversialManagerService',
 		};
 
 		this.setProfileList = function(_profileList, channelId) {
+			if(!channelId) channelId = 0;
 			ProfileList[channelId] = _profileList;
 		};
 
 		this.getProfileList = function(channelId) {
+			if(!channelId) channelId = 0;
 			return ProfileList[channelId];
 		};
 
