@@ -43,7 +43,8 @@
                             <tbody>
                                 <tr height="50" ng-repeat="Rule in EventRules | orderBy: 'EventOrder' track by $index" ng-show="isSupportedEventSource(Rule)">
                                     <td class="text-center" width="8%">
-                                        <input ng-model="Rule.Enable" type="checkbox"/>
+                                        <input ng-model="Rule.Enable" type="checkbox" ng-if="!isAutotracking(Rule.EventSource)"/>
+                                        <input type="checkbox" ng-if="isAutotracking(Rule.EventSource)" checked="checked" disabled="disabled"/>
                                     </td>
                                     <td class="event-type-td" width="28%">
                                         <a class="event-setup-link" ng-click="sourceSelected(Rule.EventSource)" ng-href="">

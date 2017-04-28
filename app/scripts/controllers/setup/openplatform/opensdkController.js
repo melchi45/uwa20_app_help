@@ -527,8 +527,7 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
          
         if(mAttr.OpenSDKMaxApps !== undefined && $scope.OpenSDK.InstalledApps ==  mAttr.OpenSDKMaxApps)
          {
-            var msg = "maximum count of installed applications reached";          
-            COMMONUtils.ShowDeatilInfo(msg);
+            COMMONUtils.ShowInfo('lang_installed_max_app');
             return;
          }
 
@@ -536,8 +535,7 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
         document.getElementById('f1_upload_process').style.display = 'block';
         var opensdkfileelm = document.getElementById("opensdkfileupload");
         if ($scope.CertificateFile === "") {
-            var msg = $translate.instant('lang_msg_uploadError_Invalid_File');
-            alert(msg);
+            COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
             document.getElementById('f1_upload_process').style.display = 'none';
             return;
         }       
@@ -586,13 +584,35 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
                 permissionsMsg += $translate.instant('lang_msg_permission2');
                 ShowModalDialog("OpenSDKInstallConfirmMsg",permissionsMsg,response.data.ApplicationSessionId, response.data.InstallType);
             },
-            function (errorData,errorCode) {
-                document.getElementById('f1_upload_process').style.display = 'none';                
-                if(errorCode === 607 || errorCode === 604)
-                {
-                    var msg = $translate.instant('lang_msg_error_upload') + " : " + $translate.instant('lang_sameVersionInstalled');
-                    COMMONUtils.ShowError(msg);                 
+            function (errorData,errorCode,openSDKError) {
+                document.getElementById('f1_upload_process').style.display = 'none';
+                var errorMsg;
+                switch (openSDKError){
+                    case 66 : errorMsg = 'lang_tempUnavailable'; break;
+                    case 100 : errorMsg = 'lang_appAlreadyRunning'; break;
+                    case 101 : errorMsg = 'lang_appStartFailed'; break;
+                    case 102 : errorMsg = 'lang_appStopFailed'; break;
+                    case 103 : errorMsg = 'lang_appUploadFailed'; break;
+                    case 104 : errorMsg = 'lang_notEnoughSpace'; break;
+                    case 105 : errorMsg = 'lang_invalidAppPackage'; break;
+                    case 106 : errorMsg = 'lang_sameVersionInstalled'; break;
+                    case 107 : errorMsg = 'lang_installationFailed'; break;
+                    case 108 : errorMsg = 'APP UNINSTALL FAIL'; break;
+                    case 109 : errorMsg = 'lang_appNotFound'; break;
+                    case 110 : errorMsg = 'lang_appRecordRunning'; break;
+                    case 111 : errorMsg = 'lang_appNotRunning'; break;
+                    case 112 : errorMsg = 'lang_debugViewerRunning'; break;
+                    case 113 : errorMsg = 'lang_invalidCameraPlatform'; break;
+                    case 114 : errorMsg = 'lang_cameraPlatformMismatch'; break;
+                    case 115 : errorMsg = 'lang_systemRecoverDBError'; break;
+                    case 116 : errorMsg = 'lang_parallelinstallInProgress'; break;
+                    case 117 : errorMsg = 'lang_CPULimitReached'; break;
+                    case 118 : errorMsg = 'lang_memoryLimitReached'; break;
+                    case 119 : errorMsg = 'lang_SDKVersionNotSupported'; break;
+                    default: errorMsg = 'lang_installationFailed'; break;
                 }
+                var msg = $translate.instant('lang_msg_error_upload') + " : " + $translate.instant(errorMsg);
+                COMMONUtils.ShowError(msg);
                 opensdkfileelm.value = "";
             }, $scope, fileToPost, specialHeaders);
 
