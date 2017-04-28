@@ -531,7 +531,7 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
             return;
          }
 
-        document.getElementById("f1_upload_process").innerHTML = '<p>File upload in progress. Please wait ...!<br/><img src="base/images/loader.gif" /><br/></p>';
+        document.getElementById("f1_upload_process").innerHTML = '<p>'+$translate.instant('lang_msg_uploadProgress')+'<br/><img src="base/images/loader.gif" /><br/></p>';
         document.getElementById('f1_upload_process').style.display = 'block';
         var opensdkfileelm = document.getElementById("opensdkfileupload");
         if ($scope.CertificateFile === "") {

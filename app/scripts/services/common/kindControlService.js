@@ -79,6 +79,12 @@ kindFramework
             case '200':
               $rootScope.$emit('changeLoadingBar', false);
               ModalManagerService.close();
+
+              //ManualTracking is Always On for PTZ model
+              if(sunapiAttributes.PTZModel)
+              {
+                  $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
+              }
             break;
             case '999':
               console.log("disconnect detected");
