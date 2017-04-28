@@ -18,6 +18,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.FriendlyNameCharSetNoNewLineStr = mAttr.FriendlyNameCharSetNoNewLineStr;
     $scope.EventSource = "Storage";
     $scope.StorageInfo = {};
+    $scope.sdcardEnable = false;
 
 
 
@@ -48,17 +49,17 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=sdcardinfo&action=view', getData,
             function (response) {
-
+                var idx = 0;
                 var TableData = response.data;
+                var MultiChannelEnableData = $scope.Storageinfo.Storages[idx].Enable;
 
                 $.each(TableData,function(index, element) {
 
                     var totalSpace = parseInt(element.TotalSpace);
                     var usedSpace = totalSpace - parseInt(element.UsedSpace);
                     var status = element.Status;
-
-                    element.Enable = element.Enable === true ? "On" : "Off";
-
+                    element.Enable = MultiChannelEnableData;
+                    
                     if (usedSpace < 1024) {
                         element.UsedSpace = usedSpace + " MB"
                     } else if (usedSpace >= 1024 && usedSpace < 1024*1024 ) {
@@ -84,6 +85,11 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                     }
 
                 })
+
+                setTimeout(function() {
+                    console.info($scope.Storageinfo);
+                },200);
+                
 
                 $scope.infoTableData = TableData;
 
@@ -591,6 +597,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData, function(response) {
             $scope.Storageinfo = response.data;
 
+
+
             for (idx = 0; idx < $scope.Storageinfo.Storages.length; idx = idx + 1) {
                 if ($scope.Storageinfo.Storages[idx].Enable === true) {
                     $scope.Storageinfo.Storages[idx].Enable = "On";
@@ -753,15 +761,16 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
     function view() {
         var promises = [];
-        promises.push(getStorageTableData);
+        
         promises.push(changeVideoProfilePolicies);
         promises.push(getStorageDetails);
         promises.push(getRecordGeneralDetails);
         promises.push(getRecordingStorageDetails);
         promises.push(getRecordingSchedules);
-        //promises.push(getRecordProfileDetails);
+        promises.push(getRecordProfileDetails);
+        promises.push(getStorageTableData);
 
-        $q.seqAll(promises).then(getRecordProfileDetails).then(setAttribute).then(function() {
+        $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
             UniversialManagerService.setChannelId($scope.Channel);
 

@@ -86,7 +86,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         
         // 멀티디렉셔널 Handover 미지원
         //  && changeHandover
-        if(changeVA && changeRois){
+        if(changeVA && changeRois && eventRuleService.checkEventRuleValidation()){
             $rootScope.$emit('changeLoadingBar', true);
             changeChannel(index);
         }else{

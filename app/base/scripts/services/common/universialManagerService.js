@@ -405,8 +405,9 @@ kindFramework.service('UniversialManagerService',
 			rotate = tRotate;
 		};
 
-		this.getRotate = function(){
-			return rotate;
+		this.getRotate = function(channelId){
+			if(!channelId) channelId = 0;
+			return rotate[channelId].Rotate;
 		};
 
 		this.setIsCaptured = function(flag){
