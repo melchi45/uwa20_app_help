@@ -86,6 +86,7 @@ kindFramework
         PlugInPromise = null;
       }
       if(pluginElement !== null && pluginElement !== undefined ){
+        $(pluginElement).css("border", "3px solid transparent");
         if(UniversialManagerService.isSpeakerOn()){
           pluginElement.StopAudio();
         }

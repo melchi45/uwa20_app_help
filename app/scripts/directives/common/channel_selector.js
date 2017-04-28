@@ -156,7 +156,7 @@ kindFramework.directive('setupChannelSelector', function($rootScope, UniversialM
                 }
             };
 
-            if(attrs.useConfirm !== "true"){
+            if(attrs.useConfirm !== "true" && useChannel === true){
                 $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
                     $rootScope.$emit('channelSelector:changeChannel', index);
                 }, scope);
