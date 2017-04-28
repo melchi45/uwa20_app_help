@@ -34,7 +34,7 @@
                         <input style="visibility: hidden; position: relative; display:none" id="opensdkfileupload" class="form-control" type="file" name="opensdkfileupload" ng-disabled="IsCerticateInstalled()"  ng-model-instant accept=".cap"  onchange="angular.element(this).scope().setOpenSDKFile(this)">
                     </div>
                     <div class="wn5-setup-preview-table-col-2">
-                        <button type="button" class="btn btn-primary btn-margin-left" style="float:left" ng-click="OnOpenSDKInstall()">{{ 'lang_install' | translate }}</button>
+                        <button type="button" class="btn btn-primary btn-margin-left" style="float:left" ng-click="OnOpenSDKInstall()" ng-disabled="!CertificateFile">{{ 'lang_install' | translate }}</button>
                     </div>
                     <div class="wn5-setup-preview-table-col-6 text-right">
                         {{'lang_version' | translate }} : {{DeviceInfo.OpenSDKVersion}}
