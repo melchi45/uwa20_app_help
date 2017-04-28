@@ -774,7 +774,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         });
     }
 
-    function saveStorage(newChannel) {
+    function saveStorage() {
+        var deferred = $q.defer();
         var promises = [],
             queue = [],
             promise;
@@ -783,14 +784,10 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             $rootScope.$emit('changeLoadingBar', true);
 
             SunapiClient.sequence(queue, function(){
-                if(newChannel !== undefined) {
-                    $rootScope.$emit("channelSelector:changeChannel", newChannel);
-                    $scope.Channel = newChannel;
-                }
-                
                 $scope.$emit("offAlreadyCreated", true);
-                window.setTimeout(view, 1000);
+                deferred.resolve();
             }, function(errorData) {
+                deferred.reject(errorData);
                 console.error(errorData);
             });
         }
@@ -864,15 +861,20 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                 .seqAll(promises)
                 .then(
                     callSequence, 
-                    function(errorData){}
+                    function(errorData){
+                        deferred.reject(errorData);
+                    }
                 );   
         }else{
             console.info('is no modify');
             callSequence();            
         }
+
+        return deferred.promise;
     }
 
     function set() {
+        var deferred = $q.defer();
         var modalInstance;
         if (validatePage()) {
             var otherstorage;
@@ -883,12 +885,24 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             }
             if (typeof mAttr.RecordStreamLimitation !== 'undefined' && mAttr.RecordStreamLimitation === true && ((($scope.Storageinfo.Storages[$scope.SelectedStorage].Enable !== pageData.Storageinfo.Storages[$scope.SelectedStorage].Enable) && $scope.Storageinfo.Storages[$scope.SelectedStorage].Enable === 'On') || (($scope.Storageinfo.Storages[otherstorage].Enable !== pageData.Storageinfo.Storages[otherstorage].Enable) && $scope.Storageinfo.Storages[otherstorage].Enable === 'On'))) {
                 COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
-                    COMMONUtils.ApplyConfirmation(saveStorage);
+                    COMMONUtils.ApplyConfirmation(function(){
+                        saveStorage().then(function(){
+                            deferred.resolve();
+                            window.setTimeout(view, 1000);
+                        }, deferred.reject);
+                    });
                 });
             } else {
-                COMMONUtils.ApplyConfirmation(saveStorage);
+                COMMONUtils.ApplyConfirmation(function(){
+                    saveStorage().then(function(){
+                        deferred.resolve();
+                        window.setTimeout(view, 1000);
+                    }, deferred.reject);
+                });
             }
         }
+
+        return deferred.promise;
     }
 
     $scope.isLoading = false;
@@ -1043,13 +1057,12 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             COMMONUtils
                 .confirmChangeingChannel()
                 .then(function () {
-                    if (validatePage()) {
-                        COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
-                            COMMONUtils.ApplyConfirmation(function () {
-                                saveStorage(data);
-                            });
-                        });
-                    }
+                    set().then(function(){
+                        if(data !== undefined) {
+                            $rootScope.$emit("channelSelector:changeChannel", data);
+                            $scope.Channel = data;
+                        }
+                    });
                 });
         }
     }, $scope);
