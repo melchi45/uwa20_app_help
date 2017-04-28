@@ -40,6 +40,25 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.getTranslatedOption = function(Option) {
         return COMMONUtils.getTranslatedOption(Option);
     };
+    $scope.checkNASStatus = function(status) {
+        var statusMsg;
+        switch (status) {
+            case 'Fail':
+                statusMsg = $translate.instant('lang_msg_test_fail');
+                break;
+            case 'Success':
+                statusMsg = $translate.instant('lang_msg_test_success');
+                break;
+            case 'Trying':
+            case 'Connecting':
+                statusMsg = $translate.instant('lang_msg_test_connecting');
+                break;
+            default :
+                statusMsg = COMMONUtils.getTranslatedOption(status);
+                break;
+        }
+        return statusMsg;
+    };
 
     function getStorageTableData() {
         $scope.infoTableData = [];
