@@ -595,16 +595,26 @@ kindFramework
           kindStreamInterface.setCanvasStyle(viewMode);
           break;
         case 400:
-          if( rp === 1 ) {
-            if( timelineCallback !== null ) {
-              pluginElement.PlayRecordStream(playbackTime, '', playSpeed);
-              if( playbackCallback !== null ) {
-                playbackCallback({'errorCode':"200"});
-              }              
-            }
-          }
-          else if( rp === 3 ) {
-            pluginElement.StartBackupRecording(sunapiAttributes.ModelName+"_"+playbackTime, playbackTime, '');
+          switch(rp)
+          {
+            case 0:  // RTSP Live Stream is connected
+              //ManualTracking is Always On for PTZ model
+              if(sunapiAttributes.PTZModel)
+              {
+                $rootScope.$emit('channelPlayer:command', 'manualTracking', true);
+              }
+              break;
+            case 1:
+              if( timelineCallback !== null ) {
+                pluginElement.PlayRecordStream(playbackTime, '', playSpeed);
+                if( playbackCallback !== null ) {
+                  playbackCallback({'errorCode':"200"});
+                }
+              }
+              break;
+            case 3:
+              pluginElement.StartBackupRecording(sunapiAttributes.ModelName+"_"+playbackTime, playbackTime, '');
+              break;
           }
           break;
         case 401:

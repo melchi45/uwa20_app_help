@@ -7,7 +7,7 @@
 /*global console */
 /*global setTimeout */
 /*global alert */
-kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient, XMLParser, Attributes, COMMONUtils, $uibModal, $q) {
+kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient, XMLParser, Attributes, COMMONUtils, $uibModal, $q, $translate) {
     "use strict";
     var mAttr = Attributes.get();
     COMMONUtils.getResponsiveObjects($scope);
@@ -395,10 +395,28 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
         }
     }
 
+    function checkStatus(status){
+        var statusMsg;
+        switch (status) {
+            case 'Fail':
+                statusMsg = $translate.instant('lang_msg_test_fail');
+                break;
+            case 'Success':
+                statusMsg = $translate.instant('lang_msg_test_success');
+                break;
+            case 'Trying':
+                statusMsg = $translate.instant('lang_msg_test_connecting');
+                break;
+            default :
+                statusMsg = status;
+                break;
+        }
+        return statusMsg;
+    }
     function updateSMTPStatus() {
         var jData;
         return SunapiClient.get('/stw-cgi/transfer.cgi?msubmenu=smtp&action=test', jData, function(response) {
-            $scope.smtpStatus = response.data.Status;
+            $scope.smtpStatus = checkStatus(response.data.Status);
             $scope.$apply();
             if ($scope.DeviceType === 'NWC') {
                 if (response.data.Status === 'Trying') {
@@ -411,7 +429,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
     function updateFTPStatus() {
         var jData;
         return SunapiClient.get('/stw-cgi/transfer.cgi?msubmenu=ftp&action=test', jData, function(response) {
-            $scope.ftpStatus = response.data.Status;
+            $scope.ftpStatus = checkStatus(response.data.Status);
             $scope.$apply();
             if (response.data.Status === 'Trying') {
                 setTimeout(updateFTPStatus, 1000);
