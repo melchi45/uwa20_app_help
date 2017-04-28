@@ -705,6 +705,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 					if (ptzJogTimer !== null) {
 						$interval.cancel(ptzJogTimer);
 						ptzJogTimer = null;
+						isJogUpdating = false;
 					}
 					if(!isPtzControlStart) return;
 					sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control&Channel=0&OperationType=All";
