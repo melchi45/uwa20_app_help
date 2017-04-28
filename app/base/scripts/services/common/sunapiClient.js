@@ -592,7 +592,11 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
 
                 if (result.data.Response === "Fail")
                 {
-                    failFn(result.data.Error.Details,result.data.Error.Code);
+                    if(typeof result.data.OpenSDKError == 'undefined'){
+                        failFn(result.data.Error.Details,result.data.Error.Code);
+                    }else{
+                        failFn(result.data.Error.Details,result.data.Error.Code,result.data.OpenSDKError);
+                    }
                 }
                 else
                 {
@@ -671,7 +675,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         }
         else
         {
-            xhr.timeout = 5000;
+            xhr.timeout = 10000;
         }
 
         if (url.indexOf("configbackup") !== -1)
