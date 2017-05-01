@@ -1550,6 +1550,7 @@ live-playback common {
   border-color: #000000;
 }
 .cm-channel-selector .cm-channel-selector-quad-btn {
+  position: relative;
   width: 27px;
   float: left;
   margin-left: 4px;
@@ -1560,6 +1561,7 @@ live-playback common {
   /* Quad view의 Channel 표시 */
 }
 .cm-channel-selector .cm-channel-selector-quad-btn > div {
+  position: absolute;
   float: left;
   width: 12px;
   height: 9px;
@@ -1568,6 +1570,22 @@ live-playback common {
   border-top: solid 1px #4c4c4c;
   border-right: 0;
   border-bottom: 0;
+}
+.cm-channel-selector .cm-channel-selector-quad-btn > div:nth-of-type(1) {
+  left: 0;
+  top: 0;
+}
+.cm-channel-selector .cm-channel-selector-quad-btn > div:nth-of-type(2) {
+  left: 12px;
+  top: 0;
+}
+.cm-channel-selector .cm-channel-selector-quad-btn > div:nth-of-type(3) {
+  left: 0;
+  top: 9px;
+}
+.cm-channel-selector .cm-channel-selector-quad-btn > div:nth-of-type(4) {
+  left: 12px;
+  top: 9px;
 }
 .cm-channel-selector .cm-channel-selector-quad-btn:hover > div,
 .cm-channel-selector .cm-channel-selector-quad-btn:active > div {

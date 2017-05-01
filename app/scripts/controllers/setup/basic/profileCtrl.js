@@ -26,7 +26,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
     $scope.maxChannel = mAttr.MaxChannel;
 
     $scope.isMultiChannel = false;
-    $scope.targetChannel = 0;
+    $scope.targetChannel = UniversialManagerService.getChannelId();
 
 
     function getAttributes() {
