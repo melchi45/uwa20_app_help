@@ -4,7 +4,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
     var pageData = {};
     var BrowserDetect = COMMONUtils.getBrowserDetect();
 
-    $scope.targetChannel = 0;
+    $scope.targetChannel = UniversialManagerService.getChannelId();;
 
     function getInfoTableData() {
         $scope.infoTableData = [];
