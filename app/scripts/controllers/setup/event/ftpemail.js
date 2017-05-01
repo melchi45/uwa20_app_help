@@ -152,12 +152,15 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
         if ($scope.SMTPPasswordDummy.length !== 0) {
             $scope.SMTPPassword = $scope.SMTPPasswordDummy;
         }
-        if (typeof $scope.SMTPHost === 'undefined' || $scope.SMTPHost === "") {
+        if (
+            typeof $scope.SMTPHost === 'undefined' ||
+            $scope.SMTPHost === ""
+            ) {
             ErrorMessage = 'lang_msg_InputSMTPServerAddress';
             retVal = false;
             COMMONUtils.ShowError(ErrorMessage);
             return retVal;
-        } else if (COMMONUtils.CheckAddrKorean($scope.SMTPHost)) {
+        } else if (validateServerAddress($scope.SMTPHost)) {
             ErrorMessage = 'lang_msg_invalid_server_addr';
             retVal = false;
             COMMONUtils.ShowError(ErrorMessage);
@@ -243,7 +246,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
             COMMONUtils.ShowError(ErrorMessage);
             return retVal;
         }
-        if ($scope.FTPHost === '0.0.0.0' || $scope.FTPHost === '255.255.255.255' || $scope.FTPHost === '' || !COMMONUtils.TypeCheck($scope.FTPHost, COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getSIM())) {
+        if (validateServerAddress($scope.FTPHost)) {
             ErrorMessage = 'lang_msg_invalid_server_addr';
             retVal = false;
             COMMONUtils.ShowError(ErrorMessage);
@@ -281,6 +284,18 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
             return retVal;
         }
         return retVal;
+    }
+
+    function validateServerAddress(address){
+        var reg = COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getSIM();
+        return (
+            address === '0.0.0.0' ||
+            address === '255.255.255.255' ||
+            address === '' ||
+            !COMMONUtils.TypeCheck(address, reg) ||
+            !COMMONUtils.CheckValidIPv4Address(address) ||
+            COMMONUtils.CheckAddrKorean(address)
+        );
     }
 
     function saveFTP() {

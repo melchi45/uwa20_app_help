@@ -1,7 +1,7 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 kindFramework
-    .directive('sketchbook', ['$rootScope','$location','sketchbookService','SessionOfUserManager','ConnectionSettingService','kindStreamInterface', 'SunapiClient', 'PTZ_TYPE', 'PTZContorlService', 'DigitalPTZContorlService', 'Attributes', 'RESTCLIENT_CONFIG','$timeout',
-    function($rootScope, $location, sketchbookService, SessionOfUserManager, ConnectionSettingService, kindStreamInterface, SunapiClient, PTZ_TYPE, PTZContorlService, DigitalPTZContorlService, Attributes, RESTCLIENT_CONFIG, $timeout){
+    .directive('sketchbook', ['$rootScope','$location','sketchbookService','SessionOfUserManager','ConnectionSettingService','kindStreamInterface', 'SunapiClient', 'PTZ_TYPE', 'PTZContorlService', 'DigitalPTZContorlService', 'Attributes', 'RESTCLIENT_CONFIG','$timeout', 'UniversialManagerService',
+    function($rootScope, $location, sketchbookService, SessionOfUserManager, ConnectionSettingService, kindStreamInterface, SunapiClient, PTZ_TYPE, PTZContorlService, DigitalPTZContorlService, Attributes, RESTCLIENT_CONFIG, $timeout, UniversialManagerService){
     'use strict';
     return{
         restrict:'E',
@@ -32,7 +32,7 @@ kindFramework
         link:function(scope, elem, attrs){
             var mAttr = Attributes.get();
             var profileInfo = {};
-            var currentChannel = 0; //Default 0 CH
+            var currentChannel = UniversialManagerService.getChannelId(); //Default 0 CH
             var timeCallback = function(){};
             var closeCallback = function(){};
 
@@ -47,8 +47,6 @@ kindFramework
                 }else{
                     profileInfo.ChannelId = null;
                 }
-                console.log(profileInfo.ChannelId);
-
                 return ConnectionSettingService.getPlayerData('live', profileInfo, timeCallback, errorCallback, closeCallback);
             };
             

@@ -20,7 +20,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     var doNotMoveFunction = false;
 
     $scope.isMultiChannel = false;
-    $scope.targetChannel = 0;
+    $scope.targetChannel = UniversialManagerService.getChannelId();
 
     $scope.infoTableData = [{},{},{},{}];
 

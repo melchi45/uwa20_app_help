@@ -116,10 +116,14 @@ kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $transl
                     if(promises.length > 0) {
                         $q.seqAll(promises).then(function() {
                             $scope.$emit('applied', true);
+                            $scope.$emit("offAlreadyCreated", true);
+                            $scope.pageLoaded = false;
                             view();
                         }, function(errorData) {});
                     } else {
                         $scope.$emit('applied', true);
+                        $scope.$emit("offAlreadyCreated", true);
+                        $scope.pageLoaded = false;
                         view();
                     }
                 }, function() {});
