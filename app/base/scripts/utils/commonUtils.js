@@ -1057,6 +1057,10 @@ kindFramework.factory('COMMONUtils', function ($translate, $location,  $uibModal
         }
     };
 
+    commonUtils.CheckValidHostName = function(address){
+        return /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/.test(address);
+    };
+
     commonUtils.CheckValidIPv6Address = function(ip) {
         var digits = "0123456789abcdef";
         var check_digit = false;
