@@ -1438,6 +1438,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         var queue = [];
         var currentChannel = UniversialManagerService.getChannelId();
         setData.Channel = currentChannel;
+        removeData.Channel = currentChannel;
         var isRemoved = 0;
         var isSetted = 0;
         var detectionType = getCurrentDetectionType();
@@ -1578,6 +1579,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 url = $scope.va2CommonCmd + '&action=set&DetectionType=Off';
             }
             var getData = {};
+            var currentChannel = UniversialManagerService.getChannelId();
+            getData.Channel = currentChannel;
             SunapiClient.get(url, getData, function(response) {
                 // console.info(response);
                 $scope.sketchinfo = {};
@@ -2011,8 +2014,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                         var w = null;
                         var h = null;
                         if(modifiedIndex === 0) { // min
-                            w = coordinates[2].x - coordinates[0].x + 1;
-                            h = coordinates[2].y - coordinates[0].y + 1;
+                            w = coordinates[2].x - coordinates[0].x;
+                            h = coordinates[2].y - coordinates[0].y;
                             if(w > $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth){
                                 w = $scope.VA[$scope.presetTypeData.SelectedPreset].MaxWidth;
                             }
@@ -2026,8 +2029,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                             $scope.prevMinHeight = h;
                             convertSizeCoordinates(coordinates, 'min');
                         } else if(modifiedIndex === 1) { // max
-                            w = coordinates[2].x - coordinates[0].x + 1;
-                            h = coordinates[2].y - coordinates[0].y + 1;
+                            w = coordinates[2].x - coordinates[0].x;
+                            h = coordinates[2].y - coordinates[0].y;
                             if(w < $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth){
                                 w = $scope.VA[$scope.presetTypeData.SelectedPreset].MinWidth;
                             }

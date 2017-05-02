@@ -108,12 +108,11 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                 })
 
                 setTimeout(function() {
-                    console.info($scope.Storageinfo);
+                    console.info(TableData);
                 },200);
                 
 
                 $scope.infoTableData = TableData;
-
             },
             function (errorData) {
                 console.log(errorData);
@@ -897,7 +896,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                 );   
         }else{
             console.info('is no modify');
-            callSequence();            
+            callSequence();        
         }
 
         return deferred.promise;
@@ -1098,16 +1097,19 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     }, $scope);
 
     $rootScope.$saveOn("channelSelector:showInfo", function(event, data){
-        $uibModal.open({
-            size: 'lg',
-            templateUrl: 'views/setup/event/modal/ModalStorageInfo.html',
-            controller: 'ModalInstanceStorageInfoCtrl',
-            resolve: {
-                infoTableData: function(){
-                    return $scope.infoTableData;
+        getStorageTableData().then(function(){
+            $uibModal.open({
+                size: 'lg',
+                templateUrl: 'views/setup/event/modal/ModalStorageInfo.html',
+                controller: 'ModalInstanceStorageInfoCtrl',
+                resolve: {
+                    infoTableData: function(){
+                        return $scope.infoTableData;
+                    }
                 }
-            }
-        });
+            });
+        })
+        
     }, $scope);
 
     (function wait() {
