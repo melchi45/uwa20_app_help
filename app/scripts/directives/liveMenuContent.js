@@ -288,6 +288,11 @@ kindFramework.directive('liveMenuContent', function(
 
 			$rootScope.$saveOn('liveMenuContent:setTableSize', setTableSize);
 
+			$rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
+                UniversialManagerService.setChannelId(data);
+                view();
+		    }, scope);
+
 			window.addEventListener('resize', setTableSize);
 			scope.$on("$destroy", function(){
 				window.removeEventListener('resize', setTableSize);
