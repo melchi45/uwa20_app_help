@@ -398,7 +398,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             promises.push(newPreset);
         }
         if(mode=='Stop'){
-            promises.push(oldPresetGo);
+            //promises.push(oldPresetGo);
         }
         $q.seqAll(promises).then(
             function(){
