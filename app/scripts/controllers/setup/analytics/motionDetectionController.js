@@ -1055,6 +1055,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
             monitoringTimer = null;
+            $scope.MDv2ChartOptions.EnqueueData(0);
         }
     }
 
