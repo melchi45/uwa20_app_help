@@ -6891,6 +6891,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         } else {
             showLoadingBar(true);
             UniversialManagerService.setChannelId(data);
+            $scope.targetChannel = data;
             $rootScope.$emit("channelSelector:changeChannel", data);
             view();
         }
