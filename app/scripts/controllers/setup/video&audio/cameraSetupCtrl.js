@@ -398,7 +398,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             promises.push(newPreset);
         }
         if(mode=='Stop'){
-            promises.push(oldPresetGo);
+            //promises.push(oldPresetGo);
         }
         $q.seqAll(promises).then(
             function(){
@@ -6892,6 +6892,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         } else {
             showLoadingBar(true);
             UniversialManagerService.setChannelId(data);
+            $scope.targetChannel = data;
             $rootScope.$emit("channelSelector:changeChannel", data);
             view();
         }

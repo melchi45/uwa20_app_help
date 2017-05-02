@@ -122,7 +122,7 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
             var obejct = $('#channel' + channelId)[0];
             obejct.SetWMDInitialize(channelId, channelId + 1, "PluginJSONEvent");
             obejct.SetUserFps(Number(MultiDirectionProfile.FrameRate));
-            obejct.PlayLiveStream(ip, port, 1, userID, '', '');
+            obejct.PlayLiveStream(ip, port, 13, userID, '', '');
         }
     }
 
