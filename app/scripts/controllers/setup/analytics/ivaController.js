@@ -1438,6 +1438,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         var queue = [];
         var currentChannel = UniversialManagerService.getChannelId();
         setData.Channel = currentChannel;
+        removeData.Channel = currentChannel;
         var isRemoved = 0;
         var isSetted = 0;
         var detectionType = getCurrentDetectionType();
@@ -1578,6 +1579,8 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                 url = $scope.va2CommonCmd + '&action=set&DetectionType=Off';
             }
             var getData = {};
+            var currentChannel = UniversialManagerService.getChannelId();
+            getData.Channel = currentChannel;
             SunapiClient.get(url, getData, function(response) {
                 // console.info(response);
                 $scope.sketchinfo = {};
