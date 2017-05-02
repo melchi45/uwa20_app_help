@@ -69,6 +69,13 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
     {
         return COMMONUtils.getTranslatedOption(Option);
     };
+    $scope.getAfterActionTranslatedOption = function (Option)
+    {
+        if(mAttr.PTZModel){
+            if(Option == 'Tracking') return COMMONUtils.getTranslatedOption('AutoTracking');
+        }
+        return COMMONUtils.getTranslatedOption(Option);
+    };
 
     $scope.changeCurrentTab = function(tab) {
         if ($scope.previousTab.title == tab) return;
