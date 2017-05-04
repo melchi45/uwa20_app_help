@@ -4118,7 +4118,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $q.seqAll(functionList).then(
                     function () {
                         UniversialManagerService.setChannelId($scope.targetChannel);
-                        view();
+                        var promise = getAttributes();
+                        promise.then(function () { view();});
                     },
                     function (errorData) {showLoadingBar(false);}
             );
@@ -6893,7 +6894,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             UniversialManagerService.setChannelId(data);
             $scope.targetChannel = data;
             $rootScope.$emit("channelSelector:changeChannel", data);
-            view();
+            var promise = getAttributes();
+            promise.then(function () { view();});
         }
     }, $scope);
 
