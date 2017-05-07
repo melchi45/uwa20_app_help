@@ -496,6 +496,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
             monitoringTimer = null;
+            $scope.DefocusChartOptions.EnqueueData(0);
         }
     }
 

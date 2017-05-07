@@ -15,7 +15,7 @@ kindFramework
             var eventCount = 0;
             var EventRule;// = scope.$parent.EventRule;
             var ScheduleIds;// = EventRule.ScheduleIds;
-            var visibility;
+            var visibility = null;
             var resized = false;
             var cleaning = false;
             var curDuration = '00:30:00';
@@ -31,7 +31,6 @@ kindFramework
             var currentUnit = '30';
             var prevChannel = 0;
             var currentScheduleType = null;
-            var tPageLoaded = false;
 
             // eventObjs = setEventSources();
 
@@ -1336,11 +1335,10 @@ kindFramework
                 if(newVal === 'Always') {
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
-                    setVisibility(newVal);
-                    if(tPageLoaded) {
+                    if(visibility === null || alreadyCreated === false) {
                         initCalendar(scope.EventRule);
-                        tPageLoaded = false;
                     }
+                    setVisibility(newVal);
                 }
             }, true);
 
@@ -1354,11 +1352,10 @@ kindFramework
                     if(newVal === 'Always') {
                         setVisibility(newVal);
                     } else if(newVal === 'Scheduled') {
-                        setVisibility(newVal);
-                        if(tPageLoaded) {
+                        if(visibility === null || alreadyCreated === false) {
                             initCalendar(scope.RecordSchedule);
-                            tPageLoaded = false;
                         }
+                        setVisibility(newVal);
                     }
                 }
             }, true);
@@ -1371,11 +1368,10 @@ kindFramework
                 if(newVal === 'Always') {
                     setVisibility(newVal);
                 } else if(newVal === 'Scheduled') {
-                    setVisibility(newVal);
-                    if(tPageLoaded) {
+                    if(visibility === null || alreadyCreated === false) {
                         initCalendar(scope.EventRules[0]);
-                        tPageLoaded = false;
                     }
+                    setVisibility(newVal);
                 }
             }, true);
             //---------------------------------------------------------
@@ -1398,7 +1394,7 @@ kindFramework
 
 
             // in case of event rules reset by sunapi call in eventActionSetup for multi channel
-            scope.$saveOn('EventRulePrepared', function(event, data) { // console.info('scheduler saveon EventRulePrepared : ');console.info(data);console.info(scope.EventSource);
+            scope.$on('EventRulePrepared', function(event, data) { // console.info('scheduler saveon EventRulePrepared : ');console.info(data);console.info(scope.EventSource);
                 var currentChannel = 0;
                 currentChannel = UniversialManagerService.getChannelId();
                 if(scope.EventSource === 'AlarmInput') {
@@ -1428,7 +1424,7 @@ kindFramework
                 prevChannel = currentChannel;
             });
 
-            scope.$saveOn('recordPageLoaded', function(event, data) {
+            scope.$on('recordPageLoaded', function(event, data) {
                 var currentChannel = 0;
                 currentChannel = UniversialManagerService.getChannelId();
                 if(scope.EventSource === 'Storage') {
@@ -1458,22 +1454,21 @@ kindFramework
                     return;
                 }
                 if(newVal === true) {
-                    tPageLoaded = true;
                     $timeout(function(){
                         $('#calendar').fullCalendar('render');
                     });
                 }
             }, true);
 
-            scope.$saveOn('pageLoaded', function(event, data) {
-                if(data === true) {
+            scope.$on('pageLoaded', function(event, data) {
+                // if(data === true) {
                     $timeout(function(){
                         $('#calendar').fullCalendar('render');
                     });
-                }
+                // }
             });
 
-            $rootScope.$saveOn('resetScheduleData', function(){
+            $rootScope.$on('resetScheduleData', function(){
                 deleteAll();
                 if(prevEventObjs !== null){
                     for(var i = 0; i < prevEventObjs.length; i++) {

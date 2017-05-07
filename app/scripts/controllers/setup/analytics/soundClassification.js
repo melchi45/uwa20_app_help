@@ -332,6 +332,7 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
             monitoringTimer = null;
+            $scope.SoundClassificationtChartOptions.EnqueueData(0);
         }
     }
 

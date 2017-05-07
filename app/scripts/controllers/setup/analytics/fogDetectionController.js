@@ -192,6 +192,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
             monitoringTimer = null;
+            $scope.FogDetectChartOptions.EnqueueData(0)
         }
     }
 
