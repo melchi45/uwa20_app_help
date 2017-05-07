@@ -195,6 +195,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
             monitoringTimer = null;
+            $scope.TamperDetectChartOptions.EnqueueData(0);
         }
     }
 

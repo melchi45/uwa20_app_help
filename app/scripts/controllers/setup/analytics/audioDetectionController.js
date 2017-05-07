@@ -350,6 +350,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
             monitoringTimer = null;
+            $scope.AudioDetectChartOptions.EnqueueData(0);
         }
     }
 
