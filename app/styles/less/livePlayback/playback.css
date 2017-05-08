@@ -39,6 +39,9 @@
   text-align: left;
   margin: 0 10px 15px 10px;
 }
+.kind-responsive-playback .cm-backup-button {
+  margin-top: 20px;
+}
 .kind-responsive-playback #cm-playback-event {
   z-index: 1;
 }
@@ -76,7 +79,7 @@
   float: left;
 }
 .kind-responsive-playback #cm-playback-backup .cm-date-textbox {
-  width: 120px;
+  width: 150px;
   text-align: center;
 }
 .kind-responsive-playback .cm-playback-duplicate-items {
@@ -272,6 +275,9 @@
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-event > .cm-center {
     width: 100%;
   }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content .cm-backup-button {
+    margin-top: 0px;
+  }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-backup {
     width: 100%;
     text-align: center;
@@ -288,7 +294,6 @@
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-block#backup-date {
     width: 100%;
     text-align: center;
-    margin-bottom: 10px;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-range {
     float: none;
@@ -486,7 +491,6 @@
 .kind-responsive-playback.land-scape #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-block#backup-date {
   width: 100%;
   text-align: center;
-  margin-bottom: 10px;
 }
 .kind-responsive-playback.land-scape #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-range {
   float: none;
@@ -629,6 +633,9 @@
   .kind-responsive-playback #cm-bottom-menu #cm-menu-content #backup {
     margin-left: 45px;
   }
+  .kind-responsive-playback #cm-bottom-menu #cm-menu-content .cm-playback-range {
+    line-height: 51px;
+  }
   .kind-responsive-playback .cm-str-button {
     height: 51px;
     line-height: 51px;
@@ -642,8 +649,13 @@
     top: 2px !important;
     height: 50px !important;
   }
+  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly .vis-item-overflow {
+    height: 30px;
+    top: 15px;
+  }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly.vis-item-normal .vis-item-overflow {
-    height: 23px;
+    height: 30px;
+    top: 15px;
   }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-background.vis-vertical .vis-time-axis {
     top: 15px;
@@ -696,9 +708,14 @@
   .kind-responsive-playback #cm-menu-content .overlap-search-container label {
     font-size: 17px;
   }
+  .kind-responsive-playback #cm-menu-content .cm-timeboxes {
+    line-height: 51px !important;
+    margin-bottom: 20px;
+  }
   .kind-responsive-playback #cm-menu-content .cm-timeboxes input {
-    width: 52px;
-    height: 42px;
+    width: 67.5px !important;
+    height: 51px !important;
+    font-size: 20px !important;
   }
   .kind-responsive-playback .cm-submit-button {
     width: 150px;
@@ -730,6 +747,9 @@
   .kind-responsive-playback #cm-playback-datepicker .cm-center .cm-datepicker-section:last-child .cm-playback-all-day {
     font-size: 16px;
   }
+  .kind-responsive-playback .cm-backup-button {
+    margin-top: 50px;
+  }
 }
 @media (min-width: 3000px) and (min-height: 1688px) {
   .kind-responsive-playback #cm-video {
@@ -737,6 +757,16 @@
   }
   .kind-responsive-playback #cm-video.smaller {
     height: calc(100% - 190px) !important;
+  }
+  .kind-responsive-playback #cm-playback-backup {
+    float: left;
+  }
+  .kind-responsive-playback #cm-playback-backup .cm-date-textbox {
+    width: 180px;
+    height: 59.5px;
+    line-height: 59.5px;
+    font-size: 21px;
+    text-align: center;
   }
   .kind-responsive-playback #cm-bottom-menu.cm-show-menu {
     height: 525px;
@@ -796,7 +826,7 @@
     margin-top: 18px;
   }
   .kind-responsive-playback #cm-bottom-menu #timeline-setting {
-    height: 75px;
+    height: 84px;
   }
   .kind-responsive-playback #cm-bottom-menu #cm-menu-content {
     height: 350px;
@@ -818,6 +848,9 @@
   .kind-responsive-playback #cm-bottom-menu #cm-menu-content #backup {
     margin-left: 52.5px;
   }
+  .kind-responsive-playback #cm-bottom-menu #cm-menu-content .cm-playback-range {
+    line-height: 59.5px;
+  }
   .kind-responsive-playback .cm-str-button {
     height: 59.5px;
     line-height: 59.5px;
@@ -831,30 +864,35 @@
     top: 2px !important;
     height: 60px !important;
   }
+  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly .vis-item-overflow {
+    height: 35px;
+    top: 18px;
+  }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly.vis-item-normal .vis-item-overflow {
-    height: 28px;
+    height: 35px;
+    top: 18px;
   }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-background.vis-vertical .vis-time-axis {
-    top: 20px;
+    top: 25px;
   }
   .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text.vis-minor {
-    font-size: 25px;
+    font-size: 22px;
   }
   .kind-responsive-playback .vis-custom-time div {
-    width: 40px !important;
-    height: 40px !important;
-    margin-top: 42px;
+    width: 50px !important;
+    height: 50px !important;
+    margin-top: 46px;
   }
   .kind-responsive-playback .vis-custom-time div:after {
-    left: 14px;
-    top: 11px;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-left: 12px solid #797979;
+    left: 18px;
+    top: 13px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid #797979;
   }
   .kind-responsive-playback .cm-playback-duplicate-items > div {
     padding: 15px 15px;
-    margin-top: 20px;
+    margin-top: 38px;
   }
   .kind-responsive-playback .cm-playback-duplicate-items .event-type {
     font-size: 21px;
@@ -886,9 +924,9 @@
     font-size: 21px;
   }
   .kind-responsive-playback #cm-menu-content .cm-timeboxes input {
-    width: 67px;
-    height: 50px;
-    font-size: 19px;
+    width: 78.75px !important;
+    height: 59.5px !important;
+    font-size: 20px !important;
   }
   .kind-responsive-playback .cm-submit-button {
     width: 175px;
