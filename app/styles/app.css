@@ -9865,14 +9865,14 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback #cm-playback-event .cm-event-list-wrap > div label.available-check-event {
   font-weight: bold;
 }
+.kind-responsive-playback .cm-backup-button {
+  margin-top: 20px;
+}
 .kind-responsive-playback #cm-playback-backup {
   float: left;
 }
 .kind-responsive-playback #cm-playback-backup .cm-date-textbox {
   width: 150px;
-  height: 51px;
-  line-height: 51px;
-  font-size: 17px;
   text-align: center;
 }
 .kind-responsive-playback .cm-playback-duplicate-items {
@@ -10068,6 +10068,9 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-event > .cm-center {
     width: 100%;
   }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content .cm-backup-button {
+    margin-top: 0px;
+  }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-backup {
     width: 100%;
     text-align: center;
@@ -10084,7 +10087,7 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-block#backup-date {
     width: 100%;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px !important;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-range {
     float: none;
@@ -10282,7 +10285,7 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback.land-scape #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-block#backup-date {
   width: 100%;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px !important;
 }
 .kind-responsive-playback.land-scape #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-range {
   float: none;
@@ -10751,9 +10754,6 @@ i.tui-ch-playback-stop {
     font-size: 21px;
   }
 }
-.kind-responsive-playback .cm-backup-button {
-  margin-top: 70px;
-}
 #channellist-containner {
   height: calc(100% - 50px);
   overflow-x: hidden;
@@ -10818,7 +10818,8 @@ i.tui-ch-playback-stop {
   padding-top: 100%;
 }
 .channellist-video-wrapper canvas,
-.channellist-video-wrapper video {
+.channellist-video-wrapper video,
+.channellist-video-wrapper object {
   position: absolute !important;
   top: 0;
   left: 0;
