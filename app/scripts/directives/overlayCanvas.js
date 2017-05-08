@@ -111,7 +111,7 @@ kindFramework.directive('overlayCanvas', function(
                   ExtendChannelContainerService.setDigitalZoomService(true);
                   break;    
           }
-      });
+      }, scope);
 
       $rootScope.$saveOn("overlayCanvas::command", function(event, mode, boolEnable) {
           //Set OverlayCanvas Mode
@@ -166,7 +166,7 @@ kindFramework.directive('overlayCanvas', function(
                  }
                 break;
           }
-      });
+      }, scope);
     }
   };
 });

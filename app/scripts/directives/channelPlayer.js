@@ -103,7 +103,16 @@ kindFramework.directive('channelPlayer',
 
                 if(channelPlayerObj === null)
                 {
-                    channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);
+                    if(isPluginMode && BrowserService.PlugInSupport && BrowserService.PlugInDetect)
+                    {
+                        channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);
+                    }
+                    else
+                    {
+                        UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
+                        isPluginMode = false;
+                        channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);
+                    }
                 }
                 else
                 {
@@ -429,7 +438,7 @@ kindFramework.directive('channelPlayer',
                     this.playbackBackup = stopAndNotSupport;
 
                     this.stopLiveForPlayback = function(_isPlaybackMode) {
-                        MJPEGPollingControlService.stopStreaming();
+                        MJPEGPollingControlService.stopStreaming(elem);
 
                         if( _isPlaybackMode === true ) {
                             createNoSupportPlaybackInPlugInElement();
