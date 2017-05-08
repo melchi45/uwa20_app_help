@@ -294,7 +294,6 @@
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-block#backup-date {
     width: 100%;
     text-align: center;
-    margin-bottom: 5px !important;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-range {
     float: none;
@@ -492,7 +491,6 @@
 .kind-responsive-playback.land-scape #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-block#backup-date {
   width: 100%;
   text-align: center;
-  margin-bottom: 5px !important;
 }
 .kind-responsive-playback.land-scape #cm-bottom-menu #cm-menu-content #cm-playback-backup .cm-playback-range {
   float: none;
