@@ -296,131 +296,128 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             if($scope.MaxChannel > 1) setData.Channel = angular.copy($scope.Channel);
             setData.Activate = $scope.RecordSchedule.Activate;
 
-            if ($scope.RecordSchedule.Activate === 'Scheduled')
-            {
-                var diff = $(pageData.RecordSchedule.ScheduleIds).not($scope.RecordSchedule.ScheduleIds).get(),
-                    sun = 0, mon = 0, tue = 0, wed = 0, thu = 0, fri = 0, sat = 0;
+            var diff = $(pageData.RecordSchedule.ScheduleIds).not($scope.RecordSchedule.ScheduleIds).get(),
+                sun = 0, mon = 0, tue = 0, wed = 0, thu = 0, fri = 0, sat = 0;
 
-                for (var s = 0; s < diff.length; s++) {
-                    var str = diff[s].split('.');
-                    for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                        if (str[0] === mAttr.WeekDays[d]) {
-                            switch (d) {
-                                case 0:
-                                    sun = 1;
-                                    setData["SUN" + str[1]] = 0;
-                                    break;
-                                case 1:
-                                    mon = 1;
-                                    setData["MON" + str[1]] = 0;
-                                    break;
-                                case 2:
-                                    tue = 1;
-                                    setData["TUE" + str[1]] = 0;
-                                    break;
-                                case 3:
-                                    wed = 1;
-                                    setData["WED" + str[1]] = 0;
-                                    break;
-                                case 4:
-                                    thu = 1;
-                                    setData["THU" + str[1]] = 0;
-                                    break;
-                                case 5:
-                                    fri = 1;
-                                    setData["FRI" + str[1]] = 0;
-                                    break;
-                                case 6:
-                                    sat = 1;
-                                    setData["SAT" + str[1]] = 0;
-                                    break;
-                                default:
-                                    break;
-                            }
+            for (var s = 0; s < diff.length; s++) {
+                var str = diff[s].split('.');
+                for (var d = 0; d < mAttr.WeekDays.length; d++) {
+                    if (str[0] === mAttr.WeekDays[d]) {
+                        switch (d) {
+                            case 0:
+                                sun = 1;
+                                setData["SUN" + str[1]] = 0;
+                                break;
+                            case 1:
+                                mon = 1;
+                                setData["MON" + str[1]] = 0;
+                                break;
+                            case 2:
+                                tue = 1;
+                                setData["TUE" + str[1]] = 0;
+                                break;
+                            case 3:
+                                wed = 1;
+                                setData["WED" + str[1]] = 0;
+                                break;
+                            case 4:
+                                thu = 1;
+                                setData["THU" + str[1]] = 0;
+                                break;
+                            case 5:
+                                fri = 1;
+                                setData["FRI" + str[1]] = 0;
+                                break;
+                            case 6:
+                                sat = 1;
+                                setData["SAT" + str[1]] = 0;
+                                break;
+                            default:
+                                break;
                         }
                     }
                 }
-                for (var s = 0; s < $scope.RecordSchedule.ScheduleIds.length; s++) {
-                    var str = $scope.RecordSchedule.ScheduleIds[s].split('.');
-                    for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                        if (str[0] === mAttr.WeekDays[d]) {
-                            switch (d) {
-                                case 0:
-                                    sun = 1;
-                                    setData["SUN" + str[1]] = 1;
-                                    if (str.length === 4) {
-                                        setData["SUN" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                    }
-                                    break;
-                                case 1:
-                                    mon = 1;
-                                    setData["MON" + str[1]] = 1;
-                                    if (str.length === 4) {
-                                        setData["MON" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                    }
-                                    break;
-                                case 2:
-                                    tue = 1;
-                                    setData["TUE" + str[1]] = 1;
-                                    if (str.length === 4) {
-                                        setData["TUE" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                    }
-                                    break;
-                                case 3:
-                                    wed = 1;
-                                    setData["WED" + str[1]] = 1;
-                                    if (str.length === 4) {
-                                        setData["WED" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                    }
-                                    break;
-                                case 4:
-                                    thu = 1;
-                                    setData["THU" + str[1]] = 1;
-                                    if (str.length === 4) {
-                                        setData["THU" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                    }
-                                    break;
-                                case 5:
-                                    fri = 1;
-                                    setData["FRI" + str[1]] = 1;
-                                    if (str.length === 4) {
-                                        setData["FRI" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                    }
-                                    break;
-                                case 6:
-                                    sat = 1;
-                                    setData["SAT" + str[1]] = 1;
-                                    if (str.length === 4) {
-                                        setData["SAT" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
+            }
+            for (var s = 0; s < $scope.RecordSchedule.ScheduleIds.length; s++) {
+                var str = $scope.RecordSchedule.ScheduleIds[s].split('.');
+                for (var d = 0; d < mAttr.WeekDays.length; d++) {
+                    if (str[0] === mAttr.WeekDays[d]) {
+                        switch (d) {
+                            case 0:
+                                sun = 1;
+                                setData["SUN" + str[1]] = 1;
+                                if (str.length === 4) {
+                                    setData["SUN" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                }
+                                break;
+                            case 1:
+                                mon = 1;
+                                setData["MON" + str[1]] = 1;
+                                if (str.length === 4) {
+                                    setData["MON" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                }
+                                break;
+                            case 2:
+                                tue = 1;
+                                setData["TUE" + str[1]] = 1;
+                                if (str.length === 4) {
+                                    setData["TUE" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                }
+                                break;
+                            case 3:
+                                wed = 1;
+                                setData["WED" + str[1]] = 1;
+                                if (str.length === 4) {
+                                    setData["WED" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                }
+                                break;
+                            case 4:
+                                thu = 1;
+                                setData["THU" + str[1]] = 1;
+                                if (str.length === 4) {
+                                    setData["THU" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                }
+                                break;
+                            case 5:
+                                fri = 1;
+                                setData["FRI" + str[1]] = 1;
+                                if (str.length === 4) {
+                                    setData["FRI" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                }
+                                break;
+                            case 6:
+                                sat = 1;
+                                setData["SAT" + str[1]] = 1;
+                                if (str.length === 4) {
+                                    setData["SAT" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                                }
+                                break;
+                            default:
+                                break;
                         }
                     }
                 }
-                if (sun) {
-                    setData.SUN = 1;
-                }
-                if (mon) {
-                    setData.MON = 1;
-                }
-                if (tue) {
-                    setData.TUE = 1;
-                }
-                if (wed) {
-                    setData.WED = 1;
-                }
-                if (thu) {
-                    setData.THU = 1;
-                }
-                if (fri) {
-                    setData.FRI = 1;
-                }
-                if (sat) {
-                    setData.SAT = 1;
-                }
+            }
+            if (sun) {
+                setData.SUN = 1;
+            }
+            if (mon) {
+                setData.MON = 1;
+            }
+            if (tue) {
+                setData.TUE = 1;
+            }
+            if (wed) {
+                setData.WED = 1;
+            }
+            if (thu) {
+                setData.THU = 1;
+            }
+            if (fri) {
+                setData.FRI = 1;
+            }
+            if (sat) {
+                setData.SAT = 1;
             }
 
             queue.push({
