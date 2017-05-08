@@ -951,11 +951,16 @@ kindFramework
     }
 
     $scope.checkPlugin = function() {
-      if(UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE)
+      //OverlayCanvas should be showed up only for Kind Stream Mode
+      if(BrowserService.PlugInSupport)
       {
-          return (BrowserService.PlugInSupport && !BrowserService.PlugInDetect) ? false : true;
+          if(UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE)
+          {
+              return true;
+          }
+          return false;
       }
-      return false;
+      return true;
     };
 
     $rootScope.$saveOn("channel:setPlugin", function() {
