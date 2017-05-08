@@ -39,6 +39,9 @@
   text-align: left;
   margin: 0 10px 15px 10px;
 }
+.kind-responsive-playback .cm-backup-button {
+  margin-top: 20px;
+}
 .kind-responsive-playback #cm-playback-event {
   z-index: 1;
 }
