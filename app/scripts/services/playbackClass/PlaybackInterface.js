@@ -350,7 +350,7 @@ kindFramework
 		  		else if( error.errorCode === BACKUP_STATUS.MODE.NO_FILE_CREATED){
 					ModalManagerService.open(
 		      			'message',
-		      			{'message':"lang_msg_downloadingFail", 'buttonCount':0}
+		      			{'message':"lang_msg_not_export_saved_file", 'buttonCount':0}
 		      		);
 		  		}
 		  		else if( error.errorCode === BACKUP_STATUS.MODE.CODEC_CHANGED || 

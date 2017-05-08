@@ -2806,7 +2806,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             {
                 if (typeof $scope.TitleOSD[i].OSD === 'undefined' || !$scope.TitleOSD[i].OSD.length)
                 {
-                    COMMONUtils.ShowError("lang_msg_invalidValue");
+                    COMMONUtils.ShowError("lang_msg_enter_osd");
                     return false;
                 }
             }
