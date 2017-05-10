@@ -627,7 +627,7 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
         $scope.currentEventLogPage = 1;
         if (Option === 'All')
         {
-            $scope.EL = COMMONUtils.chunkArray($scope.EventLog[currentChannel], $scope.pageSize);
+            $scope.EL = COMMONUtils.chunkArray($scope.EventLog[0], $scope.pageSize);
         }
         else
         {
