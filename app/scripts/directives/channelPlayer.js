@@ -536,6 +536,7 @@ kindFramework.directive('channelPlayer',
                     };
 
                     this.closePlayback = function() {
+                        $rootScope.$emit('blockTimebarInputField', false);
                         KindControlService.closePlaybackSession(scope);
                         angular.element(elem.find('kind_stream')).remove();
                         if( scope.child.$destroy !== undefined ) {
