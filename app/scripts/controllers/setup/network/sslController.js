@@ -168,7 +168,7 @@ kindFramework.controller('sslCtrl', function ($rootScope, $scope, $location, Sun
 
         //Check for file extension validity.
         if (ext != "crt") {
-            var ErrorMessage = 'lang_msg_wrong_file';
+            var ErrorMessage = 'lang_msg_cert_file_error';
             COMMONUtils.ShowError(ErrorMessage);
             return;
         }
@@ -178,7 +178,7 @@ kindFramework.controller('sslCtrl', function ($rootScope, $scope, $location, Sun
         ext = fileName.split('.').pop();
 
         if (ext != "key") {
-            var ErrorMessage = 'lang_msg_wrong_file';
+            var ErrorMessage = 'lang_msg_key_file_error';
             COMMONUtils.ShowError(ErrorMessage);
             return;
         }
@@ -240,12 +240,12 @@ kindFramework.controller('sslCtrl', function ($rootScope, $scope, $location, Sun
                     };
 
                 } else {
-                    var ErrorMessage = 'lang_msg_wrong_file';
+                    var ErrorMessage = 'lang_msg_key_file_error';
                     COMMONUtils.ShowError(ErrorMessage);
                 }
             };
         } else {
-            var ErrorMessage = 'lang_msg_wrong_file';
+            var ErrorMessage = 'lang_msg_cert_file_error';
             COMMONUtils.ShowError(ErrorMessage);
         }
 
