@@ -542,7 +542,7 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
 
         var confirm_result;
 
-        var permissionsMsg = $translate.instant('lang_msg_permission') + "<br>";
+        var permissionsMsg = "";
 
         var setData = {},
             postData;
@@ -574,15 +574,30 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
 
         SunapiClient.post('/stw-cgi/opensdk.cgi?msubmenu=apps&action=install&IgnoreCookie=True', setData,
             function (response) {
-                if (response.data.Permission !== 'undefined') {
-                    //console.log("App Premisssion", response.data.Permission);
-                    var idx;
-                    for (idx = 0; idx < response.data.Permission.length; idx = idx + 1) {
-                        permissionsMsg += (response.data.Permission[idx] + "<br>");
-                    }
+                // console.info(response.data);
+                if (response.data.Permission[0] === 'None') {
+                    permissionsMsg = $translate.instant('lang_msg_permission2');
+                    ShowModalDialog("OpenSDKInstallConfirmMsg",permissionsMsg,response.data.ApplicationSessionId, response.data.InstallType);
                 }
-                permissionsMsg += $translate.instant('lang_msg_permission2');
-                ShowModalDialog("OpenSDKInstallConfirmMsg",permissionsMsg,response.data.ApplicationSessionId, response.data.InstallType);
+                else {
+                    if (response.data.Permission !== 'undefined') {
+                        //console.log("App Premisssion", response.data.Permission);
+                        var func = new Array;
+                        for (idx = 0; idx < response.data.Permission.length; idx = idx + 1) {
+                            // permissionsMsg += (response.data.Permission[idx] + "<br>");
+                            func.push(response.data.Permission[idx]);
+                        }
+                        func.join(', ');
+
+                        // lang_msg_install_application_activation    
+                        permissionsMsg = $translate.instant('lang_msg_install_application_activation').replace('%1', func) + "<br>"
+                    }
+
+                    // %1 use case
+                    // msg = $translate.instant('lang_msg_privacy_Zoom_variable_magnification').replace('%1', mAttr.MaxZoom.maxValue);
+                    permissionsMsg += $translate.instant('lang_msg_permission2');
+                    ShowModalDialog("OpenSDKInstallConfirmMsg",permissionsMsg,response.data.ApplicationSessionId, response.data.InstallType);
+                }
             },
             function (errorData,errorCode,openSDKError) {
                 document.getElementById('f1_upload_process').style.display = 'none';
