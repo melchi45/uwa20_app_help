@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Si le mot de passe est de 10 à 15 lettres, alors il devrait être une combinaison d'au moins deux types de lettres majuscules \/ minuscules, contenir des chiffres et des caractères spéciaux.",
     "lang_msg_pw_rule7_s1": "Si le mot de passe est de 10 à 16 lettres, alors il devrait être une combinaison d'au moins deux types de lettres majuscules \/ minuscules, contenir des chiffres et des caractères spéciaux.",
     "lang_msg_pw_rule8": "Le nom d'utilisateur doit être différent du mot de passe.",
-    "lang_msg_pw_rule9": "Les caractères spéciaux suivants sont disponibles. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "Les caractères spéciaux suivants sont disponibles. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Ne pas utiliser plus de 4 caractères consécutifs. (exemples : 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Ne pas utiliser plus de 3 caractères consécutifs. (exemples : 123, abc)",
     "lang_msg_pw_rule11": "Ne pas utiliser plus de 4 caractères répétés. (exemples : !!!!, 1111, aaaa)",

@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Se a senha tiver 10 a 15 caracteres, deverá incluir uma combinação de, pelo menos, dois tipos de maiúsculas\/minúsculas, números e caracteres especiais.",
     "lang_msg_pw_rule7_s1": "Se a senha tiver 10 a 16 caracteres, deverá incluir uma combinação de, pelo menos, dois tipos de maiúsculas\/minúsculas, números e caracteres especiais.",
     "lang_msg_pw_rule8": "O nome de usuário deverá ser diferente da senha.",
-    "lang_msg_pw_rule9": "Estão disponíveis para uso os seguintes caracteres especiais. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "Estão disponíveis para uso os seguintes caracteres especiais. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Não use 4 ou mais caracteres consecutivos juntos. (exemplos : 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Não use 3 ou mais caracteres consecutivos juntos. (exemplos : 123, abc)",
     "lang_msg_pw_rule11": "Não use 4 ou mais caracteres repetidos. (exemplos : !!!!, 1111, aaaa)",

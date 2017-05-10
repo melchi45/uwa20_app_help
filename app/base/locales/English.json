@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "If the password is longer than 10 characters, then it must include a combination of at least 2 of the following character types: alphabet letters with uppercase or lowercase, numbers, and special characters.",
     "lang_msg_pw_rule7_s1": "If the password is 10 to 16 letters long, then it should be a combination of at least two types upper\/lower case alphabets, numbers and special characters.",
     "lang_msg_pw_rule8": "User name may not be used as password.",
-    "lang_msg_pw_rule9": "The following special characters can be used: ~`!@#$%^*()_-+=|{}[].?\\\/.",
+    "lang_msg_pw_rule9": "The following special characters can be used: ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "You may not use more than 4 consecutive characters. (example: 1234, abcd, etc.)",
     "lang_msg_pw_rule10_s1": "Don't use 3 or more characters consecutive together. (examples : 123, abc)",
     "lang_msg_pw_rule11": "You may not use the same character 4 or more times consecutively. (example: !!!!, 1111, aaaa, etc.)",

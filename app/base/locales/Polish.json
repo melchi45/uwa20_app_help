@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Jeżeli hasło ma 10 do 15 znaków, musi zawierać kombinację co najmniej dwu typów spośród:małe\/wielkie litery, cyfry i znaki specjalne.",
     "lang_msg_pw_rule7_s1": "Jeżeli hasło ma 10 do 16 znaków, musi zawierać kombinację co najmniej dwu typów spośród:małe\/wielkie litery, cyfry i znaki specjalne.",
     "lang_msg_pw_rule8": "Nazwa użytkownika musi być inna niż hasło.",
-    "lang_msg_pw_rule9": "Można korzystać następujących znaków specjalnych. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "Można korzystać następujących znaków specjalnych. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Nie należy używać 4 lub więcej kolejnych znaków (np.: 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Nie należy używać 3 lub więcej kolejnych znaków (np.: 123, abc)",
     "lang_msg_pw_rule11": "Nie należy używać 4 lub więcej powtarzających się znaków (np.: !!!!, 1111, aaaa)",
