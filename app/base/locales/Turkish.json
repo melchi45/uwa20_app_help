@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Şifre 10 ila 15 harften oluşuyorsa, en az iki tip büyük\/küçük harf, sayı ve özel karakter kombinasyonuna sahip olmalıdır.",
     "lang_msg_pw_rule7_s1": "Şifre 10 ila 16 harften oluşuyorsa, en az iki tip büyük\/küçük harf, sayı ve özel karakter kombinasyonuna sahip olmalıdır.",
     "lang_msg_pw_rule8": "Kullanıcı adının şifreden farklı olması gerekir.",
-    "lang_msg_pw_rule9": "Aşağıdaki özel karakterler kullanılabilir. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "Aşağıdaki özel karakterler kullanılabilir. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "4 veya daha fazla ardışık karakter kullanmayın. (örnekler: 1234, abcd)",
     "lang_msg_pw_rule10_s1": "3 veya daha fazla ardışık karakter kullanmayın. (örnekler: 123, abc)",
     "lang_msg_pw_rule11": "4 veya daha fazla tekrarlayan karakter kullanmayın. (örnekler: !!!!, 1111, aaaa)",

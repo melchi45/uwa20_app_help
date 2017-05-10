@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Hvis passordet er 10 til 15 bokstaver langt, så må det bestå av en kombinasjon av minst to typer store\/små bokstaver, tall og spesialtegn.",
     "lang_msg_pw_rule7_s1": "Hvis passordet er 10 til 16 bokstaver langt, så må det bestå av en kombinasjon av minst to typer store\/små bokstaver, tall og spesialtegn.",
     "lang_msg_pw_rule8": "Brukernavnet må være ulikt passordet.",
-    "lang_msg_pw_rule9": "De følgende spesialtegnene er tilgjengelig for bruk. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "De følgende spesialtegnene er tilgjengelig for bruk. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Ikke bruk 4 eller flere sammenhengende tegn (eksempler: 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Ikke bruk 3 eller flere sammenhengende tegn (eksempler: 123, abc)",
     "lang_msg_pw_rule11": "Ikke bruk 4 eller flere gjentatte tegn. (eksempler: !!!!, 1111, aaaa)",

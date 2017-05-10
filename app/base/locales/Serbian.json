@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Ako je lozinka dužine 10 do 15 znakova, trebalo bi da predstavlja kombinaciju najmanje dve od navedene tri vrsta znakova: velika\/mala slova, cifre i posebni znakovi.",
     "lang_msg_pw_rule7_s1": "Ako je lozinka dužine 10 do 16 znakova, trebalo bi da predstavlja kombinaciju najmanje dve od navedene tri vrsta znakova: velika\/mala slova, cifre i posebni znakovi.",
     "lang_msg_pw_rule8": "Korisničko ime i lozinka bi trebalo da se razlikuju.",
-    "lang_msg_pw_rule9": "Na raspolaganju su vam sledeći posebni znakovi: ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "Na raspolaganju su vam sledeći posebni znakovi: ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Nemojte koristiti 4 ili više uzastopnih znakova zajedno. (primeri : 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Nemojte koristiti 3 ili više uzastopnih znakova zajedno. (primeri : 123, abc)",
     "lang_msg_pw_rule11": "Nemojte koristiti 4 ili više puta ponovljen isti znak. (primeri : !!!!, 1111, aaaa)",
