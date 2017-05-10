@@ -597,7 +597,7 @@ kindFramework
                                     size: 'sm',
                                     resolve: {
                                         Message: function() {
-                                            return 'lang_msg_system_management_info';
+                                            return 'lang_msg_initialize_event_action_schedule';
                                         }
                                     }
                                 });

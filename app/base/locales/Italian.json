@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Se la password ha una lunghezza compresa tra 10-15 cifre, deve includere 2 dei seguenti parametri:lettere maiuscole\/minuscole, numeri e caratteri speciali.",
     "lang_msg_pw_rule7_s1": "Se la password ha una lunghezza compresa tra 10-16 cifre, deve includere 2 dei seguenti parametri:lettere maiuscole\/minuscole, numeri e caratteri speciali.",
     "lang_msg_pw_rule8": "Il nome utente deve essere diverso dalla password.",
-    "lang_msg_pw_rule9": "È possibile utilizzare i seguenti caratteri speciali: ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "È possibile utilizzare i seguenti caratteri speciali: ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Non utilizzare 4 o più caratteri consecutivi (Es. 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Non utilizzare 3 o più caratteri consecutivi (Es. 123, abc)",
     "lang_msg_pw_rule11": "Non utilizzare 4 o più caratteri ripetuti (Es. !!!!, 1111, aaaa)",

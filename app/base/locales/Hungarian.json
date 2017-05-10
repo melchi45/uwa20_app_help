@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Ha a jelszó hossza 10-15 betű, legalább két típusú karakterből (kisbetű\/nagybetű, szám, különleges karakter) kell állnia.",
     "lang_msg_pw_rule7_s1": "Ha a jelszó hossza 10-16 betű, legalább két típusú karakterből (kisbetű\/nagybetű, szám, különleges karakter) kell állnia.",
     "lang_msg_pw_rule8": "A felhasználónév nem lehet azonos a jelszóval.",
-    "lang_msg_pw_rule9": "A következő karakterek használhatók: ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "A következő karakterek használhatók: ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Ne használjon 4, egymást követő karaktert (pl. 1234,abcd)",
     "lang_msg_pw_rule10_s1": "Ne használjon 3, egymást követő karaktert (pl. 123,abc)",
     "lang_msg_pw_rule11": "Ne használjon 4-szer ismétlődő karaktert (pl. !!!!, aaaa)",

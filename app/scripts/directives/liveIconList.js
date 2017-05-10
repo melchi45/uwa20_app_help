@@ -134,16 +134,33 @@ kindFramework.directive('liveIconList', function(
 		    }
 		    
 			$rootScope.$saveOn('liveIconList:setProfileAccessInfo', function(event){
-				setProfileAccessInfo();
+				$timeout(setProfileAccessInfo, 1000);
 			});
 
 		    function setProfileAccessInfo(){
 		      return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=profileaccessinfo&action=view', '',
 		        function (response) {
 		          scope.$apply(function(){
+								scope.profileAccessUserList = {};
 								var channelId = UniversialManagerService.getChannelId();
 		            scope.profileAccessInfoList = response.data.ProfileAccessInfo.ProfileInfo[channelId].Profiles;
-		            scope.profileAccessUserList = response.data.ProfileAccessInfo.Users;
+								var currentUsers = response.data.ProfileAccessInfo.Users;
+								if(scope.isMultiChannel){
+									for(var index = 0; index < currentUsers.length; index++){
+										if(currentUsers[index].ChannelBasedUserProfile !== undefined){
+											for(var j=0; j < currentUsers[index].ChannelBasedUserProfile.length; j++){
+												if(currentUsers[index].ChannelBasedUserProfile[j].Channel === channelId){
+													currentUsers[index].ProfileNameList = currentUsers[index].ChannelBasedUserProfile[j].ProfileNameList;
+												}
+											}
+										}
+										if(currentUsers[index].ProfileNameList.length === 0){
+											currentUsers.splice(index, index);
+										}
+									}
+								}
+
+		            scope.profileAccessUserList = currentUsers;
 		            for (var index=0; index < scope.profileAccessInfoList.length ; index++)
 		            {
 		              scope.profileAccessInfoList[index].Name = scope.profileList[index].Name;

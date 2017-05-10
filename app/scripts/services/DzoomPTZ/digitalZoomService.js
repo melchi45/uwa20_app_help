@@ -95,10 +95,12 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
         data.zoomArray = [zoomX, zoomY, zoomZ];
         return data;
       } else if (eventType === "mousedown") {
+        event.preventDefault ();
         downCheck = true;
         curX = event.clientX;
         curY = event.clientY;
       } else if (eventType === "mousemove") {
+        event.preventDefault ();
         if(downCheck && movelimit > 5) {
           var tempZoomX = 0;
           var tempZoomY = 0;

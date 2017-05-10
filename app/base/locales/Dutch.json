@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Als het wachtwoord 10 tot 15 tekens lang is, dan moet het een combinatie zijn van tenminste twee typen hoofd-\/kleine letters, cijfers en speciale tekens.",
     "lang_msg_pw_rule7_s1": "Als het wachtwoord 10 tot 16 tekens lang is, dan moet het een combinatie zijn van tenminste twee typen hoofd-\/kleine letters, cijfers en speciale tekens.",
     "lang_msg_pw_rule8": "Gebruikersnaam moet anders zijn dan het wachtwoord.",
-    "lang_msg_pw_rule9": "De volgende speciale tekens zijn beschikbaar om te gebruiken. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "De volgende speciale tekens zijn beschikbaar om te gebruiken. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Gebruik geen 4 of meer achtereenvolgende tekens samen. (voorbeelden: 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Gebruik geen 3 of meer achtereenvolgende tekens samen. (voorbeelden: 123, abc)",
     "lang_msg_pw_rule11": "Gebruik niet 4 of meer herhaalde tekens. (voorbeelden: !!!!, 1111, aaaa)",
