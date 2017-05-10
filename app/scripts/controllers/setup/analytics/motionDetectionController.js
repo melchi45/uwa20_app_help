@@ -539,7 +539,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         같은 탭을 두번 누를 때 백업하는 순간 문제가 발생하므로
         현재 탭을 누를 때는 실행하지 않는 다.
         */
-        if(($scope.activeTab.title === title && isDefault === undefined) || $scope.MotionDetection.MotionDetectionEnable === false){
+        if($scope.activeTab.title === title && isDefault === undefined){
             // console.log("Return", $scope.activeTab.title, isDefault, prevMotionDetectionEnable);
             return;
         }
@@ -567,6 +567,11 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             if(prevData !== undefined){
                 backupCoordinates[prevTag] = prevData;
             }
+        }
+
+        if($scope.MotionDetection.MotionDetectionEnable === false){
+            // console.log("Return", $scope.activeTab.title, isDefault, prevMotionDetectionEnable);
+            return;
         }
 
         /**
