@@ -85,9 +85,10 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
           }
         }
 
-        zoomData = [zoomX, zoomY, zoomZ];        
+        zoomData = [zoomX, zoomY, zoomZ];
         return zoomData;
       } else if (eventType === "mousedown") {
+        event.preventDefault();
         //마우스 왼쪽 버튼만 허용
         if(event.button !== 0) return;
 
@@ -95,6 +96,7 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
         curX = event.offsetX;
         curY = event.offsetY;
       } else if (eventType === "mousemove") {
+        event.preventDefault();
         if(downCheck) {
           var tempZoomX = 0;
           var tempZoomY = 0;
@@ -105,7 +107,7 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
           //console.log("pixelCounterService::X = " + Math.abs(moveX) + "px, Y = " + Math.abs(moveY) + "px");
           callbackFunc(curX, curY, moveX, moveY);
         }         
-      } else if (eventType === "mouseup" || eventType === "mouseleave") {
+      } else if (eventType === "mouseup") {
         downCheck = false;
       }
     }
@@ -118,6 +120,9 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
     function mouseMove(event) { eventHandler(event, "mousemove", null); }
     function mouseUp(event) { eventHandler(event,"mouseup", null); }
     function mouseLeave(event) { eventHandler(event,"mouseleave", null); }  
+    function setMouseDown(){
+      downCheck = false;
+    }
 
     var agent = navigator.userAgent.toLowerCase();
     function setElementEvent(element) {
@@ -130,6 +135,8 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
       element.addEventListener('mousemove', mouseMove);
       element.addEventListener('mouseup', mouseUp);
       element.addEventListener('mouseleave', mouseLeave);
+      document.body.addEventListener('mouseup', setMouseDown);
+      document.body.addEventListener('mouseleave', setMouseDown);
     }
 
     function deleteElementEvent(element) {
@@ -142,6 +149,8 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
       element.removeEventListener('mousemove', mouseMove);
       element.removeEventListener('mouseup', mouseUp);
       element.removeEventListener('mouseleave', mouseLeave);
+      document.body.removeEventListener('mouseup', setMouseDown);
+      document.body.removeEventListener('mouseleave', setMouseDown);
     }
 
     function setCallbackFunc(func) {
@@ -153,6 +162,6 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
       eventHandler : eventHandler,
       setElementEvent : setElementEvent,
       deleteElementEvent : deleteElementEvent,
-      setCallbackFunc : setCallbackFunc,
+      setCallbackFunc : setCallbackFunc
     };
 }]);
