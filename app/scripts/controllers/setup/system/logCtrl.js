@@ -201,6 +201,10 @@ kindFramework.controller('logCtrl', function ($scope, $timeout, SunapiClient, At
                     }));*/
                     // $scope.EL = COMMONUtils.chunkArray($scope.EventLog, $scope.pageSize);
                     $scope.EL = COMMONUtils.chunkArray($scope.EventLog[0], $scope.pageSize);
+
+                    if($scope.data.SelectedEventLog !== null && $scope.data.SelectedEventLog !== undefined) {
+                        $scope.onEvtLogChange($scope.data.SelectedEventLog);
+                    }
                 },
                 function (errorData)
                 {
