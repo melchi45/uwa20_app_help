@@ -202,14 +202,14 @@ kindFramework.controller('8021xCtrl', function ($scope, SunapiClient, COMMONUtil
 
         if ($type === 0) {
             if (!$scope.cacerfile) {
-                var ErrorMessage = 'lang_msg_wrong_file';
+                var ErrorMessage = 'lang_msg_cert_file_error';
                 COMMONUtils.ShowError(ErrorMessage);
                 return;
             }
             fileName = certfileelm.value.split('/').pop().split('\\').pop();
             ext = fileName.split('.').pop();
             if (requiredextn != ext) {
-                var ErrorMessage = 'lang_msg_wrong_file';
+                var ErrorMessage = 'lang_msg_cert_file_error';
                 COMMONUtils.ShowError(ErrorMessage);
                 return false;
             }
@@ -218,14 +218,14 @@ kindFramework.controller('8021xCtrl', function ($scope, SunapiClient, COMMONUtil
             cerfilesize = $scope.cacerfilesize;
         } else if ($type === 1) {
             if (!$scope.clientcerfile) {
-                var ErrorMessage = 'lang_msg_wrong_file';
+                var ErrorMessage = 'lang_msg_cert_file_error';
                 COMMONUtils.ShowError(ErrorMessage);
                 return;
             }
             fileName = clientertfileelm.value.split('/').pop().split('\\').pop();
             ext = fileName.split('.').pop();
             if (requiredextn != ext) {
-                var ErrorMessage = 'lang_msg_wrong_file';
+                var ErrorMessage = 'lang_msg_cert_file_error';
                 COMMONUtils.ShowError(ErrorMessage);
                 return false;
             }
@@ -234,7 +234,7 @@ kindFramework.controller('8021xCtrl', function ($scope, SunapiClient, COMMONUtil
             cerfilesize = $scope.clientfilesize;
         } else if ($type === 2) {
             if (!$scope.clientkeyfile) {
-                var ErrorMessage = 'lang_msg_wrong_file';
+                var ErrorMessage = 'lang_msg_key_file_error';
                 COMMONUtils.ShowError(ErrorMessage);
                 return;
             }
@@ -242,7 +242,7 @@ kindFramework.controller('8021xCtrl', function ($scope, SunapiClient, COMMONUtil
             fileName = keyfileelm.value.split('/').pop().split('\\').pop();
             ext = fileName.split('.').pop();
             if (requiredextn != ext) {
-                var ErrorMessage = 'lang_msg_wrong_file';
+                var ErrorMessage = 'lang_msg_key_file_error';
                 COMMONUtils.ShowError(ErrorMessage);
                 return false;
             }
