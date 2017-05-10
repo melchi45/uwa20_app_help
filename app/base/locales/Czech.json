@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Pokud je délka hesla 10 až 15 znaků, musí se skládat z kombinace minimálně dvou typů velkých a malých písmen, čísel a speciálních znaků.",
     "lang_msg_pw_rule7_s1": "Pokud je délka hesla 10 až 16 znaků, musí se skládat z kombinace minimálně dvou typů velkých a malých písmen, čísel a speciálních znaků.",
     "lang_msg_pw_rule8": "Jméno uživatele musí být jiné, než je heslo.",
-    "lang_msg_pw_rule9": "K dispozici jsou následující speciální znaky. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "K dispozici jsou následující speciální znaky. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Nepoužívejte čtyři nebo více po sobě jdoucích znaků. (příklady: 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Nepoužívejte čtyři nebo více po sobě jdoucích znaků. (příklady: 123, abc)",
     "lang_msg_pw_rule11": "Nepoužívejte čtyři nebo více po sobě se opakujících znaků. (příklady: !!!!, 1111, aaaa)",

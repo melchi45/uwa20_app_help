@@ -146,7 +146,7 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                     {
                         if(errorCode === 604)
                         {
-                            COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
+                            COMMONUtils.ShowError('lang_msg_upgrade_failed_software');
                             var div= document.getElementById("notallow");
                             if(typeof div !== 'undefined')
                             {
@@ -170,7 +170,7 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
         }
         else
         {
-             COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
+             COMMONUtils.ShowError('lang_msg_upgrade_failed_software');
              console.log("Empty File");
         }
     };
@@ -733,7 +733,7 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                 resolve: {
                     Message: function ()
                     {
-                        return 'lang_msg_downloadingFail';
+                        return 'lang_msg_upgrading_was_failed';
                     },
                     Header: function ()
                     {
@@ -783,7 +783,7 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                 resolve: {
                     Message: function ()
                     {
-                        return 'lang_msg_downloadingFail';
+                        return 'lang_msg_upgrading_was_failed';
                     },
                     Header: function ()
                     {

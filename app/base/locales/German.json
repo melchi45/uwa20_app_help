@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Besteht das Passwort aus 10-15 Buchstaben, sollte es aus einer Kombination vib mindestens zwei Typen, alphabetischen Groß-\/Kleinbuchstaben, Zahlen und Sonderzeichen bestehen.",
     "lang_msg_pw_rule7_s1": "Besteht das Passwort aus 10-16 Buchstaben, sollte es aus einer Kombination vib mindestens zwei Typen, alphabetischen Groß-\/Kleinbuchstaben, Zahlen und Sonderzeichen bestehen.",
     "lang_msg_pw_rule8": "Der Benutzername sollte sich vom Passwort unterscheiden.",
-    "lang_msg_pw_rule9": "Folgende Sonderzeichen können genutzt werden. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "Folgende Sonderzeichen können genutzt werden. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Verwende nicht 4 oder mehr aufeinander folgende Zeichen. (Beispiele: 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Verwende nicht 3 oder mehr aufeinander folgende Zeichen. (Beispiele: 123, abc)",
     "lang_msg_pw_rule11": "Verwende nicht 4 oder mehr sich wiederholende Zeichen. (Beispiele: !!!!, 1111, aaaa)",

@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Om lösenordet är 10 till 15 tecken långt ska det innehålla en kombination av minst två typer versaler\/gemener, siffror och specialtecken.",
     "lang_msg_pw_rule7_s1": "Om lösenordet är 10 till 16 tecken långt ska det innehålla en kombination av minst två typer versaler\/gemener, siffror och specialtecken.",
     "lang_msg_pw_rule8": "Användarnamnet får inte vara identiskt med lösenordet.",
-    "lang_msg_pw_rule9": "Följande specialtecken kan användas. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "Följande specialtecken kan användas. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Använd inte 4 eller fler tecken i följd. (exempel : 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Använd inte 3 eller fler tecken i följd. (exempel : 123, abc)",
     "lang_msg_pw_rule11": "Använd inte 4 eller fler tecken upprepat. (exempel : !!!!, 1111, aaaa)",

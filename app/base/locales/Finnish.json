@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Mikäli salasana on 10-15 merkkiä pitkä, sen tulee sisältää vähintään isoja\/pieniä kirjaimia, numeroita ja erikoismerkkejä.",
     "lang_msg_pw_rule7_s1": "Mikäli salasana on 10-16 merkkiä pitkä, sen tulee sisältää vähintään isoja\/pieniä kirjaimia, numeroita ja erikoismerkkejä.",
     "lang_msg_pw_rule8": "Käyttäjätunnus ja salasana eivät saa olla samat.",
-    "lang_msg_pw_rule9": "Voidaan käyttää seuraavia erikoismerkkejä. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "Voidaan käyttää seuraavia erikoismerkkejä. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Älä käytä 4 tai useampaa peräkkäistä merkkiä (esim. 1234, abcd).",
     "lang_msg_pw_rule10_s1": "Älä käytä 3 tai useampaa peräkkäistä merkkiä (esim. 123, abc).",
     "lang_msg_pw_rule11": "Älä käytä 4 tai useampaa toistuvaa merkkiä (esim. !!!!, 1111, aaaa).",

@@ -41,7 +41,7 @@ kindFramework.factory('PcCameraManagementModel', function($q, pcSetupService, $t
 			systemManagement: {
 				title: 'lang_system_management',
 				dataRemove: {
-					description: 'lang_msg_system_management_info',
+					description: 'lang_msg_delete_all_data_question',
 					button: 'lang_data_delete'
 				}
 			},

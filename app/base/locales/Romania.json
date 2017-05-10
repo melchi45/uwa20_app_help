@@ -968,7 +968,7 @@
     "lang_msg_pw_rule7": "Dacă parola este de 10 sau 15 caractere, atunci trebuie să fie o combinaţie de cel puţin două tipuride litere mari\/mici, cifre şi caractere speciale.",
     "lang_msg_pw_rule7_s1": "Dacă parola este de 10 sau 16 caractere, atunci trebuie să fie o combinaţie de cel puţin două tipuride litere mari\/mici, cifre şi caractere speciale.",
     "lang_msg_pw_rule8": "Numele de utilizator trebuie să fie diferit de parolă.",
-    "lang_msg_pw_rule9": "Pot fi utilizate următoarele caractere speciale. ~`!@#$%^*()_-+=|{}[].?\/",
+    "lang_msg_pw_rule9": "Pot fi utilizate următoarele caractere speciale. ~`!@#$%^*()_-+=|{}[].?/",
     "lang_msg_pw_rule10": "Nu folosiţi în acelaşi timp 4 sau mai multe caractere consecutive. (exemple: 1234, abcd)",
     "lang_msg_pw_rule10_s1": "Nu folosiţi în acelaşi timp 3 sau mai multe caractere consecutive. (exemple: 123, abc)",
     "lang_msg_pw_rule11": "Nu folosiţi 4 sau mai multe caractere repetate. (exemple: !!!!, 1111, aaaa)",

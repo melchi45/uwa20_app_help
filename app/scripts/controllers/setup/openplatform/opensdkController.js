@@ -535,7 +535,7 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
         document.getElementById('f1_upload_process').style.display = 'block';
         var opensdkfileelm = document.getElementById("opensdkfileupload");
         if ($scope.CertificateFile === "") {
-            COMMONUtils.ShowError('lang_msg_uploadError_Invalid_File');
+            COMMONUtils.ShowError('lang_msg_install_file_correct_check');
             document.getElementById('f1_upload_process').style.display = 'none';
             return;
         }       
