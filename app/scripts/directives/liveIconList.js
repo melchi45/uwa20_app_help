@@ -148,14 +148,15 @@ kindFramework.directive('liveIconList', function(
 								if(scope.isMultiChannel){
 									for(var index = 0; index < currentUsers.length; index++){
 										if(currentUsers[index].ChannelBasedUserProfile !== undefined){
+											currentUsers[index].ProfileNameList = {};
 											for(var j=0; j < currentUsers[index].ChannelBasedUserProfile.length; j++){
 												if(currentUsers[index].ChannelBasedUserProfile[j].Channel === channelId){
 													currentUsers[index].ProfileNameList = currentUsers[index].ChannelBasedUserProfile[j].ProfileNameList;
 												}
 											}
-										}
-										if(currentUsers[index].ProfileNameList.length === 0){
-											currentUsers.splice(index, index);
+											if(currentUsers[index].ProfileNameList.length === 0){
+												currentUsers.splice(index, 1);
+											}
 										}
 									}
 								}
