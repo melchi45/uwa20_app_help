@@ -13,7 +13,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     $scope.PrivacyMaskListCheck = false;
     $scope.PrivacyMaskSelected = null;
     $scope.DefaultSelectedData = null;
-
+    $scope.deletingPrivacy = false;
 
 
     var disValue = null;
@@ -1087,6 +1087,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
     $scope.deletePrivacy = function(maskIndex) {
         if($scope.PrivacyMaskSelected || maskIndex){
+            $scope.deletingPrivacy = true;
             var setData = {};
             setData["MaskIndex"] = maskIndex? maskIndex : $scope.PrivacyMaskSelected;
             
@@ -1103,9 +1104,11 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                     if(!mAttr.PTZModel){
                         sketchbookService.set($scope.coordinates);
                     }
+                    $scope.deletingPrivacy = false;
                 },
                 function (errorData) {
                     console.log(errorData);
+                    $scope.deletingPrivacy = false;
                 },'',true);
         }
     }
