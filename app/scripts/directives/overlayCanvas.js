@@ -38,7 +38,8 @@ kindFramework.directive('overlayCanvas', function(
 
         ctx.clearRect(0, 0, parseInt(cvs.width, 10), parseInt(cvs.height, 10));
 
-        var rotate = UniversialManagerService.getRotate();
+        var channelId = UniversialManagerService.getChannelId();
+        var rotate = UniversialManagerService.getRotate(channelId);
         if (rotate === "90" || rotate === "270") {
           rotateCheck = true;
         }
@@ -73,7 +74,8 @@ kindFramework.directive('overlayCanvas', function(
           var yPos = event.offsetY;
 
           if(xPos >=0  && yPos >= 0) {
-              var rotate = UniversialManagerService.getRotate();
+              var channelId = UniversialManagerService.getChannelId();
+              var rotate = UniversialManagerService.getRotate(channelId);
 
               if(rotate === '90' || rotate === '270') {
                   xPos = Math.ceil(xPos*(10000 / canvas.offsetHeight));
