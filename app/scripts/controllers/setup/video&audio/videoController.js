@@ -293,7 +293,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             if ($scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined) {
                 for (var i = 0; i < $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++) {
                     if ($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].MaskIndex == index) {
-                        if(mAttr.PTZModel == true){
+                        if(mAttr.PTZModel == true || mAttr.ZoomOnlyModel == true){
                             var setData = {};
                             setData["Mode"] = "Move";
                             setData["MaskIndex"] = index;
@@ -308,8 +308,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                             function (errorData) {
                                 console.log(errorData);
                             },'',true);
-                        } else if(mAttr.ZoomOnlyModel == true){
-                            sketchbookService.set({name:"", color:"", x1:0, y1:0, x2:0, y2:0, selectedMask:true});
+                        //} else if(mAttr.ZoomOnlyModel == true){
+                        //    sketchbookService.set({name:"", color:"", x1:0, y1:0, x2:0, y2:0, selectedMask:true});
                         } else {
                             var maskCoor = $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].MaskCoordinate;
                             $scope.coordinates.x1 = maskCoor[0].x;
