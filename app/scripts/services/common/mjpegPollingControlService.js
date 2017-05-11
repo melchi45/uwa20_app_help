@@ -15,7 +15,8 @@ kindFramework
 
       MJPEGIntervalPromise = $interval(function(){
           MJPEG_SUNAPI_URL = getMJPEGPollingURL(_sequencenum);
-          var rotate = UniversialManagerService.getRotate(),
+          var channelId = UniversialManagerService.getChannelId();
+          var rotate = UniversialManagerService.getRotate(channelId),
             rotateCheck = false;
           if (rotate === "90" || rotate === "270") {
             rotateCheck = true;

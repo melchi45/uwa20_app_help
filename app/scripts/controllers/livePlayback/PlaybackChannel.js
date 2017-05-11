@@ -343,10 +343,21 @@ kindFramework
         function(errorDate){
         }, '', true);      
     }
+
+    function GetFlipMirror() {
+      return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', '',
+        function (response) {
+          UniversialManagerService.setRotate(response.data.Flip);
+        },
+          function (errorData) {
+          console.log(errorData);
+      }, '', true);
+    }
     
     // When connect to PlaybackChannel at first,
     $scope.$on('$stateChangeSuccess', 
       function(event, toState, toParams, fromState, fromParams){
+        GetFlipMirror();
         console.log(fromState," :->", toState);
         getStreamingInfo();
         self.resetUI();
