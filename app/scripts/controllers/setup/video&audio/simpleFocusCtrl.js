@@ -198,7 +198,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=view', '',
             function (response) {
                 $scope.Camera = response.data.Camera[0];
-                $scope.Lens = angular.copy($scope.Camera.IrisMode);console.info($scope.Lens.substring(0,3));
+                $scope.Lens = angular.copy($scope.Camera.IrisMode);
                 if($scope.Lens.substring(0,3) === 'ICS') {
                     $scope.Lens = 'ICS';
                 }
