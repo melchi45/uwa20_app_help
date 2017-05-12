@@ -36,7 +36,10 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             $scope.IRShiftOptions = mAttr.IRShiftOptions;
             for(var i = 0; i < $scope.IRShiftOptions.length; i++) {
                 if($scope.IRShiftOptions[i] !== 'Off') {
-                    $scope.IRShiftOptions[i] += 'nm';
+                    var option = $scope.IRShiftOptions[i];
+                    if(option.indexOf('nm') === -1) {
+                        $scope.IRShiftOptions[i] = angular.copy(option + 'nm');
+                    }
                 }
             }
         }
@@ -195,7 +198,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=view', '',
             function (response) {
                 $scope.Camera = response.data.Camera[0];
-                $scope.Lens = angular.copy($scope.Camera.IrisMode);
+                $scope.Lens = angular.copy($scope.Camera.IrisMode);console.info($scope.Lens.substring(0,3));
                 if($scope.Lens.substring(0,3) === 'ICS') {
                     $scope.Lens = 'ICS';
                 }
