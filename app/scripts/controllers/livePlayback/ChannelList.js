@@ -263,7 +263,7 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
 
     function rtspDigestAuth(mode, channelId) {
         var pluginElement = $('#channel' + channelId)[0];
-        var ip = RESTCLIENT_CONFIG.digest.rtspIp;
+        var ip = RESTCLIENT_CONFIG.digest.hostName;
         var port = RESTCLIENT_CONFIG.digest.rtspPort;
         var getData = {};
         getData.Method = 'OPTIONS';

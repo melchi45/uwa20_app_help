@@ -280,10 +280,9 @@ kindFramework
         if(UniversialManagerService.isSpeakerOn()){
           pluginElement.StopAudio();
         }
-        pluginElement.CloseStream();
+        _self.stopStreaming();
         timelineCallback = null;
         playbackCallback = null;
-        pluginElement = null;
         console.log("pluginControlService::closePlaybackSession()");
       }
     };
