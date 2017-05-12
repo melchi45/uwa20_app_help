@@ -281,10 +281,9 @@ kindFramework
         if(UniversialManagerService.isSpeakerOn()){
           pluginElement.StopAudio();
         }
-        pluginElement.CloseStream();
+        _self.stopStreaming();
         timelineCallback = null;
         playbackCallback = null;
-        pluginElement = null;
         console.log("pluginControlService::closePlaybackSession()");
       }
     };
@@ -492,7 +491,7 @@ kindFramework
         }
     }
 
-    function runAreaZoom(Pos1, Pos2)
+    function runAreaZoom_string(Pos1, Pos2)
     {
       var setData = {};
       var pluginElement = document.getElementsByTagName("channel_player")[0].getElementsByTagName("object")[0];
@@ -511,6 +510,14 @@ kindFramework
       PTZContorlService.setPTZAreaZoom("start");
       PTZContorlService.runPTZAreaZoom(setData.X1, setData.Y1, setData.X2, setData.Y2, setData.TileWidth, setData.TileHeight);
     }
+
+    function runAreaZoom(x1, y1, x2, y2)
+    {
+      var pluginElement = document.getElementsByTagName("channel_player")[0].getElementsByTagName("object")[0];
+
+      PTZContorlService.setPTZAreaZoom("start");
+      PTZContorlService.runPTZAreaZoom(x1, y1, x2, y2, pluginElement.offsetWidth, pluginElement.offsetHeight);
+    }    
 
     var reconnectionTimeout = null;
     window.WebCamEvent = function(evId, lp, rp) {
@@ -573,7 +580,7 @@ kindFramework
           updatePluginEventNotification(lp, rp);
           break;
         case 311: //AreaZoom
-            runAreaZoom(lp, rp);
+            runAreaZoom_string(lp, rp);
             break;
         case 312: //Manual Tracking
             runManualTracking(lp, rp);
@@ -773,7 +780,7 @@ kindFramework
                       type: metadata type
                   }
               */
-              // updatePluginEventNotification(lp, rp);
+              updatePluginEventNotification(jsonData.type, jsonData.data);
               break;
           case 311:   //AreaZoom
               /*  jsonData
@@ -784,7 +791,7 @@ kindFramework
                       y2: y2 좌표
                   }
               */                
-              // runAreaZoom(lp, rp);
+              runAreaZoom(jsonData.x1, jsonData.y1, jsonData.x2, jsonData.y2);
               break;
           case 312:   //Manual Tracking
               /*  jsonData
