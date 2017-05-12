@@ -152,6 +152,9 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                             {
                                 document.body.removeChild(div);
                             }
+                            window.open('', '_self');
+                            window.close();
+                            COMMONUtils.onLogout();
                         }
                         else{
                             //alert(errorData);

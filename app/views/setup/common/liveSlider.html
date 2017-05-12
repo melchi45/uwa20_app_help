@@ -1,4 +1,5 @@
-<div class="cm-slider_wrap" 
+<div ng-show="liveSliderModel[modelName] && liveSliderProperty">
+<div class="cm-slider_wrap"
 	ng-class="{'horizontal':liveSliderProperty.vertical === false,'vertical':liveSliderProperty.vertical === true}" >
 	<i ng-class="{
 		'tui tui-wn5-add cm-left' : liveSliderProperty.vertical,
@@ -31,4 +32,5 @@
 		ng-change="InputBox_onChangeEventHandler()"
 		ng-disabled="liveSliderProperty.disabled"
 		>
+</div>
 </div>

@@ -58,7 +58,8 @@
                             <button 
                                 type="button" 
                                 class="btn btn-primary ng-binding" 
-                                ng-click="deletePrivacy()">
+                                ng-click="deletePrivacy()"
+                                ng-disabled="deletingPrivacy===true">
                                 {{ 'lang_delete' | translate }}
                             </button>
                         </div>

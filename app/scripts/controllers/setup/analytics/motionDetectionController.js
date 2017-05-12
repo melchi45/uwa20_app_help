@@ -238,6 +238,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function activeShape(index){
         sketchbookService.activeShape(index);
+        sketchbookService.moveTopLayer(index);
     }
 
     $scope.$watch('MDv2ChartOptions.ThresholdLevel', function (newVal, oldVal) {
@@ -294,7 +295,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     $scope.selectTableColumn = function(tableIndex, $event){
          if($event !== undefined){
             if($event.target.nodeName === 'BUTTON'){
-                activeShape(tableIndex);
                 $scope['changeSelected' + $scope.activeTab.title + 'Index'](tableIndex);
                 // toggleCheckbox(tableIndex);
                 // $scope.checkCurrentEnableState();
@@ -671,7 +671,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                         Coordinates: points,
                         isEnable: true
                     };
-
                     activeShape(modifiedIndex);
                     $scope['changeSelected' + title + 'Index'](modifiedIndex + 1);
                 }else if(modifiedType === "delete"){

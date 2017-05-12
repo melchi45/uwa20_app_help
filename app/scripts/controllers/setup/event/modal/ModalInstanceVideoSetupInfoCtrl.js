@@ -4,8 +4,8 @@ kindFramework.controller('ModalInstanceVideoSetupInfoCtrl', ['$scope', '$rootSco
   function ($scope, $rootScope, $uibModalInstance, $timeout, infoTableData) {
 
 	$scope.tableDataOrder = [
-		'mirror',
 		'flip',
+		'mirror',
 		'hallwayView',
 		'videoOutput',
 		'privacyMask'

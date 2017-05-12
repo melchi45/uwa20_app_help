@@ -1187,12 +1187,12 @@
                                                     <td width="20%" height="60" style="text-align:center">
                                                         <input type="checkbox" style="text-align:center" ng-model="Date.WeekDay" ng-disabled="!DateOSD.Enable" ng-change="OSDDateChanged()">
                                                     </td>
-                                                    <td width="30%" height="60" style="text-align:center">
+                                                    <td width="20%" height="60" style="text-align:center">
                                                         <select class="form-control" ng-model="Date.DateFormat" ng-options="option for option in TimeFormatOptions" ng-disabled="!DateOSD.Enable" ng-change="OSDDateChanged()">
                                                             {{ option}}
                                                         </select>
                                                     </td>
-                                                    <td width="25%" height="60">
+                                                    <td width="30%" height="60">
                                                         <div ng-class="TableSliderClass" class="slider-fields live-slider-field cm-osd-slider-wrap">
                                                             <!-- <rzslider 
                                                                 rz-slider-model="Date.PositionX" 
@@ -1205,7 +1205,7 @@
                                                             </live_slider>
                                                         </div>
                                                     </td>
-                                                    <td width="25%" height="60">
+                                                    <td width="30%" height="60">
                                                         <div ng-class="TableSliderClass" class="slider-fields live-slider-field cm-osd-slider-wrap">
                                                             <!-- <rzslider 
                                                                 rz-slider-model="Date.PositionY" 

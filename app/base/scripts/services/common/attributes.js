@@ -511,6 +511,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
             mAttributes.FocusModeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/focus/Mode/enum');
             mAttributes.ZoomTrackingModeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/focus/ZoomTrackingMode/enum');
             mAttributes.ZoomTrackingSpeedOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/focus/ZoomTrackingSpeed/enum');
+            mAttributes.IRShiftOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/focus/IRShift/enum');
 
             /** Overlay Start */
             mAttributes.PTZPositionEnable = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/overlay/PTZPositionEnable/bool');

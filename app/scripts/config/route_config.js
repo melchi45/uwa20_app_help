@@ -453,6 +453,12 @@ kindFramework.constant('ROUTE_CONFIG', {
                             controller: 'ivaCtrl'
                         },
                         {
+                            urlName: 'autoTrackEvent',
+                            name: 'lang_autotracking',
+                            templateUrl: 'views/setup/analytics/autoTracking.html',
+                            controller: 'autoTrackEventCtrl'
+                        },
+                        {
                             urlName: 'audioDetection',
                             name: 'lang_menu_audiodetection',
                             templateUrl: 'views/setup/analytics/audioDetection.html',
@@ -463,12 +469,6 @@ kindFramework.constant('ROUTE_CONFIG', {
                             name: 'lang_menu_soundclassification',
                             templateUrl: 'views/setup/analytics/soundClassification.html',
                             controller: 'soundClassificationCtrl'
-                        },
-                        {
-                            urlName: 'autoTrackEvent',
-                            name: 'lang_autotracking',
-                            templateUrl: 'views/setup/analytics/autoTracking.html',
-                            controller: 'autoTrackEventCtrl'
                         },
                     ]
                 },

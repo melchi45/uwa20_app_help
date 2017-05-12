@@ -390,6 +390,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
 
     function activeShape(index){
         sketchbookService.activeShape(index);
+        sketchbookService.moveTopLayer(index);
     }
 
     $scope.IncreaseSlider = function (key){

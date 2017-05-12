@@ -1138,6 +1138,10 @@ kindFramework.factory('COMMONUtils', function ($translate, $location,  $uibModal
         if(addr == '') return false;
 
         var ipArray;
+
+        var textCheck = isNaN(addr.split(/\./)[0]);
+        if (textCheck === true) return true;
+
         if (addr.search(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/) != -1) {
          ipArray = addr.split(/\./);
          }
