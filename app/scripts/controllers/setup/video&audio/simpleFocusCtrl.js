@@ -2,7 +2,7 @@
 /*global console */
 /*global alert */
 
-kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attributes, $timeout, COMMONUtils, sketchbookService, $q, $rootScope, UniversialManagerService) {
+kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attributes, $timeout, COMMONUtils, sketchbookService, $q, $rootScope, UniversialManagerService, $uibModal) {
     "use strict";
 
     $scope.FastAutoFocusDefined = true;
@@ -13,6 +13,12 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
     var mAttr = Attributes.get();
     COMMONUtils.getResponsiveObjects($scope);
+
+    $scope.Lens = null;
+    $scope.IRShiftOptions = [];
+    $scope.FBAdjustEnable = false;
+    $scope.TCEnable = false;
+    $scope.IRShift = '';
 
     function getAttributes() {
         var defer = $q.defer();
@@ -27,7 +33,12 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                 $scope.ZoomOptionsDefined = false;
             }
             $scope.FocusModeOptions = mAttr.FocusModeOptions;
-            $scope.MaxChannel = mAttr.MaxChannel;
+            $scope.IRShiftOptions = mAttr.IRShiftOptions;
+            for(var i = 0; i < $scope.IRShiftOptions.length; i++) {
+                if($scope.IRShiftOptions[i] !== 'Off') {
+                    $scope.IRShiftOptions[i] += 'nm';
+                }
+            }
         }
         
         defer.resolve("success");
@@ -79,8 +90,6 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         var setData = {};
 
         setData.Mode = mode;
-        setData.Channel = UniversialManagerService.getChannelId();
-
         var coordi = sketchbookService.get();
         if(coordi[0].isSet){
             setData.FocusAreaCoordinate = coordi[0].x1 + "," + coordi[0].y1 + "," + coordi[0].x2 + "," + coordi[0].y2;
@@ -109,9 +118,61 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     }
 
 
-
     function setFastAutoFocus() {
-        COMMONUtils.ApplyConfirmation(SaveFAFSettings);
+        // COMMONUtils.ApplyConfirmation(SaveFAFSettings);
+        var modalInstance = $uibModal.open({
+            templateUrl: 'views/setup/common/confirmMessage.html',
+            controller: 'confirmMessageCtrl',
+            size: 'sm',
+            resolve: {
+                Message: function() {
+                    return 'lang_apply_question';
+                }
+            }
+        });
+        modalInstance.result.then(function() {
+            SaveFAFSettings();
+        }, function() {
+            $scope.FastAutoFocus = !$scope.FastAutoFocus;
+        });
+    }
+
+    function setFBEnable() {
+        // COMMONUtils.ApplyConfirmation(SaveFBEnable);
+        var modalInstance = $uibModal.open({
+            templateUrl: 'views/setup/common/confirmMessage.html',
+            controller: 'confirmMessageCtrl',
+            size: 'sm',
+            resolve: {
+                Message: function() {
+                    return 'lang_apply_question';
+                }
+            }
+        });
+        modalInstance.result.then(function() {
+            SaveFBEnable();
+        }, function() {
+            $scope.FBAdjustEnable = !$scope.FBAdjustEnable;
+        });
+    }
+
+    function setTCEnable() {
+        // COMMONUtils.ApplyConfirmation(SaveTCEnable);
+        var modalInstance = $uibModal.open({
+            templateUrl: 'views/setup/common/confirmMessage.html',
+            controller: 'confirmMessageCtrl',
+            size: 'sm',
+            resolve: {
+                Message: function() {
+                    return 'lang_apply_question';
+                }
+            }
+        });
+        modalInstance.result.then(function() {
+            SaveTCEnable();
+        }, function() {
+            $scope.TCEnable = !$scope.TCEnable;
+        });
     }
 
     function focusView(){
@@ -125,10 +186,83 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             function (errorData) {}, '', true);
     }
 
+    function cameraView() {
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=view', '',
+            function (response) {
+                $scope.Camera = response.data.Camera[0];
+                $scope.Lens = angular.copy($scope.Camera.IrisMode);
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    }
+
+    function flangeBackView() {
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flangeback&action=view', '',
+            function (response) {
+                $scope.FlangeBack = response.data.FlangeBack[0];
+                $scope.FBAdjustEnable = angular.copy($scope.FlangeBack.Enable);
+                $scope.TCEnable = angular.copy($scope.FlangeBack.TemperatureCompensationEnable);
+                $scope.IRShift = angular.copy($scope.FlangeBack.IRShift);
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    }
+
+    function SaveFBEnable() {
+        var setData = {};
+        setData.Enable = $scope.FBAdjustEnable;
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flangeback&action=set', setData,
+            function (response) {
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    };
+
+    function SaveTCEnable() {
+        var setData = {};
+        setData.TemperatureCompensationEnable = $scope.TCEnable;
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flangeback&action=set', setData,
+            function (response) {
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    };
+
+    $scope.IRShiftChange = function() {
+        var setData = {};
+        setData.IRShift = $scope.IRShift;
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flangeback&action=set', setData,
+            function (response) {
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    };
+
+    $scope.FBAdjust = function(level) {
+        var setData = {};
+        setData.FocalLength = level;
+
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flangeback&action=control', setData,
+            function (response) {
+            },
+            function (errorData) {
+                console.log(errorData);
+            }, '', true);
+    };
+
     function view() {
         var promises = [];
 
         promises.push(focusView);
+
+        promises.push(cameraView);
+
+        promises.push(flangeBackView);
 
         $q.seqAll(promises).then(
             function(){
@@ -209,5 +343,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     $scope.manualZoom = manualZoom;
     $scope.focusMode = focusMode;
     $scope.setFastAutoFocus = setFastAutoFocus;
+    $scope.setFBEnable = setFBEnable;
+    $scope.setTCEnable = setTCEnable;
 
 });
