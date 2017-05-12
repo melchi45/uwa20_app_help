@@ -137,10 +137,19 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                             subData.frameRate = profile.FrameRate;
                             subData.bitrate = profile.Bitrate;
                             subData.codec = profile.EncodingType;
+                            if (profile.EncodingType === 'MJPEG') {
+                                subData.codec = 'MJPEG';
+                            } else if (profile.EncodingType === 'MPEG4') {
+                                subData.codec = 'MPEG4';
+                            } else if (profile.EncodingType === 'H264') {
+                                subData.codec = 'H.264';
+                            } else if (profile.EncodingType === 'H265') {
+                                subData.codec = 'H.265';
+                            }
                             subData.GOVLength = '';
-                            if(subData.codec === "H264") {
+                            if(subData.codec === "H.264") {
                                 subData.GOVLength = profile.H264.GOVLength;
-                            } else if(subData.codec === "H265") {
+                            } else if(subData.codec === "H.265") {
                                 subData.GOVLength = profile.H265.GOVLength;
                             }
                             data.profiles.push(subData);
