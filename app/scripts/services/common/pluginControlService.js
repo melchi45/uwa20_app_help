@@ -771,7 +771,7 @@ kindFramework
                       type: metadata type
                   }
               */
-              // updatePluginEventNotification(lp, rp);
+              updatePluginEventNotification(jsonData.type, jsonData.data);
               break;
           case 311:   //AreaZoom
               /*  jsonData
