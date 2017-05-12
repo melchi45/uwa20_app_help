@@ -1,5 +1,5 @@
 kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStreamInterface', 'UniversialManagerService',
-  function($q, LoggingService, kindStreamInterface, UniversialManagerService) {
+  function ($q, LoggingService, kindStreamInterface, UniversialManagerService) {
     "use strict";
 
     var downCheck = false;
@@ -26,31 +26,37 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     var topLimit = 0;
 
     var rotate = 0;
-    var zoom = 0;
+    var zoom = 1;
     var videoElement = null;
     var prop = 'transform';
-    var data = {channelId:0, zoomArray : [zoomX, zoomY, zoomZ]};
+    var data = {
+      channelId: 0,
+      zoomArray: [zoomX, zoomY, zoomZ]
+    };
 
     function init() {
       zoomX = 0.0;
       zoomY = 0.0;
       zoomZ = initZoomZ;
       movelimit = 5;
-      data = {channelId:0, zoomArray : [zoomX, zoomY, zoomZ]};
+      data = {
+        channelId: 0,
+        zoomArray: [zoomX, zoomY, zoomZ]
+      };
       return data;
     }
 
-    function canvasEventHandler(event,eventType,element) {
+    function canvasEventHandler(event, eventType, element) {
       if (!event) {
         event = window.event;
       }
       if (eventType === "mousewheel") {
         event.stopPropagation();
-        event.preventDefault ();
+        event.preventDefault();
         var zoomChange = false;
         var delta = event.wheelDelta ? event.wheelDelta : -event.detail;
-        delta = delta/120;
-        if(delta > 0 && zoomZ <= maxZoomZLevel) {
+        delta = delta / 120;
+        if (delta > 0 && zoomZ <= maxZoomZLevel) {
           zoomChange = true;
           zoomZ += zoomScale;
         } else if (delta < 0 && zoomZ >= minZoomZLevel) {
@@ -71,7 +77,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
               zoomY += zoomValue / 1000;
             }
           }
-        } 
+        }
 
         if (zoomZ <= initZoomZ) {
           zoomX = 0;
@@ -95,13 +101,13 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
         data.zoomArray = [zoomX, zoomY, zoomZ];
         return data;
       } else if (eventType === "mousedown") {
-        event.preventDefault ();
+        event.preventDefault();
         downCheck = true;
         curX = event.clientX;
         curY = event.clientY;
       } else if (eventType === "mousemove") {
-        event.preventDefault ();
-        if(downCheck && movelimit > 5) {
+        event.preventDefault();
+        if (downCheck && movelimit > 5) {
           var tempZoomX = 0;
           var tempZoomY = 0;
 
@@ -109,9 +115,9 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
           moveY = curY - event.clientY;
 
           curX = event.clientX;
-          curY = event.clientY;          
-          
-          if (moveX < 0 ) { //left -> right
+          curY = event.clientY;
+
+          if (moveX < 0) { //left -> right
             if (zoomX * 1000 < movelimit) {
               tempZoomX = zoomX - moveX / 1000;
               if (tempZoomX * 1000 < movelimit) {
@@ -131,15 +137,15 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
             }
           }
 
-          if (moveY < 0 ) { //top -> bottom
+          if (moveY < 0) { //top -> bottom
             if (zoomY * 1000 > -movelimit) {
               tempZoomY = zoomY + moveY / 1000;
               if (tempZoomY * 1000 > -movelimit) {
-                zoomY += moveY / 1000; 
+                zoomY += moveY / 1000;
               } else {
                 zoomY = -(movelimit / 1000);
               }
-            }            
+            }
           } else { //bottom -> top
             if (zoomY * 1000 < movelimit) {
               tempZoomY = zoomY + moveY / 1000;
@@ -158,150 +164,144 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
       }
     }
 
-    function videoEventHandler(event,eventType,element) {
-          switch(eventType) {
-              case "mousewheel":
-                  event.stopPropagation();
-                  event.preventDefault ();
-                  var delta = event.wheelDelta ? event.wheelDelta : -event.detail;
-                  delta = delta/120;
-                  if(delta > 0 && zoom < 16) {
-                      zoom = zoom + 0.1;
-                  } else if (delta < 0 && zoom > 1) {
-                      zoom = zoom - 0.1;
-                      var moveClac = (videoElement.clientWidth * 0.1) / 2;
-                      if (zoom !== 1) {
-                          if (parseInt(videoElement.style.left,10) < 0) {
-                              videoElement.style.left = (parseInt(videoElement.style.left,10) + moveClac) + 'px';
-                          } else {
-                              videoElement.style.left = (parseInt(videoElement.style.left,10) - moveClac) + 'px';
-                          }
+    function videoEventHandler(event, eventType, element) {
+      switch (eventType) {
+        case "mousewheel":
+          event.stopPropagation();
+          event.preventDefault();
+          var delta = event.wheelDelta ? event.wheelDelta : -event.detail;
+          delta = delta / 120;
+          if (delta > 0 && zoom < 16) {
+            zoom = zoom + 0.1;
+          } else if (delta < 0 && zoom > 1) {
+            zoom = zoom - 0.1;
+            var moveClac = ((videoElement.clientWidth * 0.1) / 2 ) - 1;
+            if (zoom !== 1) {
+              if (parseInt(videoElement.style.left, 10) < 0) {
+                var left = (parseInt(videoElement.style.left, 10) + moveClac);
+                videoElement.style.left = (left < 0 ? left : 0) + 'px';
+              } else if (parseInt(videoElement.style.left, 10) > 0) {
+                var left = (parseInt(videoElement.style.left, 10) - moveClac);
+                videoElement.style.left = (left > 0 ? left : 0) + 'px';
+              }
 
-                          if (parseInt(videoElement.style.top,10) < 0) {
-                              videoElement.style.top = (parseInt(videoElement.style.top,10) + moveClac) + 'px';
-                          } else {
-                              videoElement.style.top = (parseInt(videoElement.style.top,10) - moveClac) + 'px';
-                          }
-                      } else {
-                          videoElement.style.left = '0px';
-                          videoElement.style.top = '0px';
-                      }
-                  }
-
-                  leftLimit = parseInt(((videoElement.clientWidth * (zoom - 1)) / 2), 10);
-                  topLimit = parseInt(((videoElement.clientHeight * (zoom - 1)) / 2), 10);
-
-                  videoElement.style[prop] = 'scale('+zoom+') rotate('+rotate+'deg)';
-                  break;
-              case "mousedown":
-                  downCheck = true;
-                  curX = event.clientX;
-                  curY = event.clientY;
-                  break;
-              case "mouseup":
-              case "mouseleave":
-                  downCheck = false;
-                  break;
-              case "mousemove":
-                  if(downCheck) {
-                      moveX = curX - event.clientX;
-                      moveY = curY - event.clientY;
-
-                      curX = event.clientX;
-                      curY = event.clientY;
-
-                      if (moveX < 0 ) { //left -> right
-                          if (parseInt(videoElement.style.left,10) < leftLimit) {
-                              videoElement.style.left = (parseInt(videoElement.style.left,10) - moveX) + 'px';
-                          } else if (parseInt(videoElement.style.left,10) != leftLimit) {
-                              videoElement.style.left = leftLimit + 'px';
-                          }
-                      } else if (moveX > 0) {	//right -> left
-                          if (parseInt(videoElement.style.left,10) > -leftLimit) {
-                              videoElement.style.left = (parseInt(videoElement.style.left, 10) - moveX) + 'px';
-                          } else if (parseInt(videoElement.style.left,10) != -leftLimit) {
-                              videoElement.style.left = -leftLimit + 'px';
-                          }
-                      }
-
-                      if (moveY < 0 ) { //top -> bottom
-                          if (parseInt(videoElement.style.top,10) < parseInt(topLimit, 10))
-                              videoElement.style.top = (parseInt(videoElement.style.top,10) - moveY) + 'px';
-                          else if (parseInt(videoElement.style.top,10) != topLimit)
-                              videoElement.style.top = topLimit + 'px';
-                      } else if (moveY > 0) {	// bottom -> top
-                          if (parseInt(videoElement.style.top,10) > -topLimit)
-                              videoElement.style.top = (parseInt(videoElement.style.top,10) - moveY) + 'px';
-                          else if (parseInt(videoElement.style.top,10) != -topLimit)
-                              videoElement.style.top = -topLimit + 'px';
-                      }
-                  }
-                  break;
-              default:
-                  break;
+              if (parseInt(videoElement.style.top, 10) < 0) {
+                var top = (parseInt(videoElement.style.top, 10) + moveClac);
+                videoElement.style.top = (top < 0 ? top : 0) + 'px';
+              } else if (parseInt(videoElement.style.top, 10) > 0) {
+                var top = (parseInt(videoElement.style.top, 10) - moveClac);
+                videoElement.style.top = (top > 0 ? top : 0) + 'px';
+              }
+            } else {
+              videoElement.style.left = '0px';
+              videoElement.style.top = '0px';
+            }
           }
+
+          leftLimit = parseInt(((videoElement.clientWidth * (zoom - 1)) / 2), 10);
+          topLimit = parseInt(((videoElement.clientHeight * (zoom - 1)) / 2), 10);
+
+          videoElement.style[prop] = 'scale(' + zoom + ') rotate(' + rotate + 'deg)';
+          break;
+        case "mousedown":
+          downCheck = true;
+          curX = event.clientX;
+          curY = event.clientY;
+          break;
+        case "mouseup":
+        case "mouseleave":
+          downCheck = false;
+          break;
+        case "mousemove":
+          if (downCheck) {
+            moveX = curX - event.clientX;
+            moveY = curY - event.clientY;
+
+            curX = event.clientX;
+            curY = event.clientY;
+
+            if (moveX < 0) { //left -> right
+              if (parseInt(videoElement.style.left, 10) < leftLimit) {
+                videoElement.style.left = (parseInt(videoElement.style.left, 10) - moveX) + 'px';
+              } else if (parseInt(videoElement.style.left, 10) != leftLimit) {
+                videoElement.style.left = leftLimit + 'px';
+              }
+            } else if (moveX > 0) { //right -> left
+              if (parseInt(videoElement.style.left, 10) > -leftLimit) {
+                videoElement.style.left = (parseInt(videoElement.style.left, 10) - moveX) + 'px';
+              } else if (parseInt(videoElement.style.left, 10) != -leftLimit) {
+                videoElement.style.left = -leftLimit + 'px';
+              }
+            }
+
+            if (moveY < 0) { //top -> bottom
+              if (parseInt(videoElement.style.top, 10) < parseInt(topLimit, 10))
+                videoElement.style.top = (parseInt(videoElement.style.top, 10) - moveY) + 'px';
+              else if (parseInt(videoElement.style.top, 10) != topLimit)
+                videoElement.style.top = topLimit + 'px';
+            } else if (moveY > 0) { // bottom -> top
+              if (parseInt(videoElement.style.top, 10) > -topLimit)
+                videoElement.style.top = (parseInt(videoElement.style.top, 10) - moveY) + 'px';
+              else if (parseInt(videoElement.style.top, 10) != -topLimit)
+                videoElement.style.top = -topLimit + 'px';
+            }
+          }
+          break;
+        default:
+          break;
       }
+    }
 
     function mouseWheel(event) {
-      if(videoElement !== null)
-      {
-          videoEventHandler(event,"mousewheel", null);
-      }
-      else
-      {
-          var zoomData = canvasEventHandler(event, "mousewheel", null);
-          zoomData.channelId = UniversialManagerService.getChannelId();
-          kindStreamInterface.changeDrawInfo(zoomData);
+      if (videoElement !== null) {
+        videoEventHandler(event, "mousewheel", null);
+      } else {
+        var zoomData = canvasEventHandler(event, "mousewheel", null);
+        zoomData.channelId = UniversialManagerService.getChannelId();
+        kindStreamInterface.changeDrawInfo(zoomData);
       }
     }
+
     function mouseDown(event) {
-      if(videoElement !== null)
-      {
-        videoEventHandler(event,"mousedown", null);
-      }
-      else
-      {
-        canvasEventHandler(event,"mousedown", null);
+      if (videoElement !== null) {
+        videoEventHandler(event, "mousedown", null);
+      } else {
+        canvasEventHandler(event, "mousedown", null);
       }
     }
+
     function mouseMove(event) {
-      if(videoElement !== null)
-      {
-          videoEventHandler(event,"mousemove", null);
-      }
-      else
-      {
-          var zoomData = canvasEventHandler(event, "mousemove", null);
-          zoomData.channelId = UniversialManagerService.getChannelId();
-          kindStreamInterface.changeDrawInfo(zoomData);
+      if (videoElement !== null) {
+        videoEventHandler(event, "mousemove", null);
+      } else {
+        var zoomData = canvasEventHandler(event, "mousemove", null);
+        zoomData.channelId = UniversialManagerService.getChannelId();
+        kindStreamInterface.changeDrawInfo(zoomData);
       }
     }
+
     function mouseUp(event) {
-        if(videoElement !== null)
-        {
-            videoEventHandler(event,"mouseup", null);
-        }
-        else
-        {
-            canvasEventHandler(event, "mouseup", null);
-        }
+      if (videoElement !== null) {
+        videoEventHandler(event, "mouseup", null);
+      } else {
+        canvasEventHandler(event, "mouseup", null);
+      }
     }
+
     function mouseLeave(event) {
-        if(videoElement != null)
-        {
-            videoEventHandler(event,"mouseleave", null);
-        }
-        else
-        {
-            canvasEventHandler(event, "mouseleave", null);
-        }
-     }
+      if (videoElement != null) {
+        videoEventHandler(event, "mouseleave", null);
+      } else {
+        canvasEventHandler(event, "mouseleave", null);
+      }
+    }
 
     var agent = navigator.userAgent.toLowerCase();
+
     function setElementEvent(element) {
-      if(agent.indexOf("firefox") !== -1) {
+      if (agent.indexOf("firefox") !== -1) {
         element.addEventListener('DOMMouseScroll', mouseWheel);
-      }else{
+      } else {
         element.addEventListener('mousewheel', mouseWheel);
       }
       element.addEventListener('mousedown', mouseDown);
@@ -309,19 +309,18 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
       element.addEventListener('mouseup', mouseUp);
       element.addEventListener('mouseleave', mouseLeave);
 
-      if(UniversialManagerService.getVideoMode() === 'video')
-      {
-          videoElement = document.getElementById("livevideo");
-          videoElement.style.left = 0;
-          videoElement.style.top = 0;
-          videoElement.style.position = 'relative';
+      if (UniversialManagerService.getVideoMode() === 'video') {
+        videoElement = document.getElementById("livevideo");
+        videoElement.style.left = 0;
+        videoElement.style.top = 0;
+        videoElement.style.position = 'relative';
       }
     }
 
     function deleteElementEvent(element) {
-      if(agent.indexOf("firefox") !== -1) {
+      if (agent.indexOf("firefox") !== -1) {
         element.removeEventListener('DOMMouseScroll', mouseWheel);
-      }else{
+      } else {
         element.removeEventListener('mousewheel', mouseWheel);
       }
       element.removeEventListener('mousedown', mouseDown);
@@ -331,8 +330,9 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     }
 
     return {
-      init : init,
-      setElementEvent : setElementEvent,
-      deleteElementEvent : deleteElementEvent
+      init: init,
+      setElementEvent: setElementEvent,
+      deleteElementEvent: deleteElementEvent
     };
-}]);
+  }
+]);
