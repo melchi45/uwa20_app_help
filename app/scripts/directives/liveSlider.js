@@ -13,14 +13,13 @@ kindFramework
                     var mAttr = Attributes.get();
                     var slider = elem.find(".cm-slider div");
                     var checkLoad = false;
+                    var checkModel = false;
+                    var checkProperty = false;
                     var inputOnChange = false;
                     var isFloat = false;
                     var OnlyNumberRegExp = /^[0-9]+$/;
 
                     scope.levelPattern = mAttr.OnlyNumStr;
-                    scope.maxLength = String(scope.liveSliderProperty.ceil).length;
-                    scope.modelName = attrs.liveSliderModelName ? attrs.liveSliderModelName : "data";
-                    scope.ThreshValue = scope.liveSliderModel[scope.modelName];
 
                     function changePatternToFloat(){
                         isFloat = true;
@@ -138,6 +137,7 @@ kindFramework
                     };
 
                     function init(){
+                        if(!(checkModel && checkProperty)) return;
                         checkLoad = true;
 
                         // Slider UI 초기화
@@ -199,6 +199,12 @@ kindFramework
                     }
 
                     scope.$watch('liveSliderProperty', function(newValue, oldValue){
+                        if( !checkLoad && scope.liveSliderProperty ){
+                            checkProperty = true;
+                            scope.maxLength = String(scope.liveSliderProperty.ceil).length;
+                            init();
+                        }
+
                         if(checkLoad && newValue !== oldValue)
                         {
                             if('floor' in newValue)
@@ -228,11 +234,18 @@ kindFramework
                     },true);
 
                     scope.$watch('liveSliderModel', function (newVal, oldVal) {
-                        if( !checkLoad && scope.liveSliderModel[scope.modelName] ){
-                            init();
+                        if (!checkLoad) {
+                            if(scope.liveSliderModel){
+                                scope.modelName = attrs.liveSliderModelName ? attrs.liveSliderModelName : "data";
+                                if(scope.liveSliderModel[scope.modelName]){
+                                    scope.ThreshValue = scope.liveSliderModel[scope.modelName];
+                                    checkModel = true;
+                                    init();
+                                }
+                            }
                         }
 
-                        if(newVal !== oldVal)
+                        if(checkLoad && newVal !== oldVal)
                         {
                             if(newVal[scope.modelName])
                             {
@@ -250,9 +263,10 @@ kindFramework
                         }
                     }, true);
 
-                    if( !checkLoad && scope.liveSliderModel[scope.modelName] ){
-                        init();
-                    }
+                    //if( !checkLoad && scope.liveSliderModel[scope.modelName] ){
+                    //    console.log('---------------------------0',scope.modelName);
+                    //    init();
+                    //}
                 }
             };
         }]);

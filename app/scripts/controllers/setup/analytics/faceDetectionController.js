@@ -762,6 +762,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
     function activeShape(index){
         sketchbookService.activeShape(index);
+        sketchbookService.moveTopLayer(index);
     }
 
     function setEnable(index, val){

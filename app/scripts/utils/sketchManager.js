@@ -665,7 +665,9 @@ var SketchManager = (function() {
             }
         },
         moveTopLayer: function(index){
-            svgObjs[index].moveTopLayer();
+            if(svgObjs.length !== 0 && index in svgObjs && "moveTopLayer" in svgObjs[index]){
+                svgObjs[index].moveTopLayer();
+            }
         },
         activeShape: function(index){
             if(kindSVGCustomObj !== null){

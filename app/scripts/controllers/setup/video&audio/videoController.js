@@ -13,7 +13,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     $scope.PrivacyMaskListCheck = false;
     $scope.PrivacyMaskSelected = null;
     $scope.DefaultSelectedData = null;
-
+    $scope.deletingPrivacy = false;
 
 
     var disValue = null;
@@ -293,7 +293,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             if ($scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined) {
                 for (var i = 0; i < $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++) {
                     if ($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].MaskIndex == index) {
-                        if(mAttr.PTZModel == true){
+                        if(mAttr.PTZModel == true || mAttr.ZoomOnlyModel == true){
                             var setData = {};
                             setData["Mode"] = "Move";
                             setData["MaskIndex"] = index;
@@ -308,8 +308,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                             function (errorData) {
                                 console.log(errorData);
                             },'',true);
-                        } else if(mAttr.ZoomOnlyModel == true){
-                            sketchbookService.set({name:"", color:"", x1:0, y1:0, x2:0, y2:0, selectedMask:true});
+                        //} else if(mAttr.ZoomOnlyModel == true){
+                        //    sketchbookService.set({name:"", color:"", x1:0, y1:0, x2:0, y2:0, selectedMask:true});
                         } else {
                             var maskCoor = $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].MaskCoordinate;
                             $scope.coordinates.x1 = maskCoor[0].x;
@@ -950,6 +950,12 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 $rootScope.$emit('changeLoadingBar', false);
                 $rootScope.$emit("channelSelector:changeChannel", $scope.targetChannel);
                 UniversialManagerService.setChannelId($scope.targetChannel);
+
+                
+                // IE접속 후 패턴 9개 이상 등록 후 (패턴 선택 탭에서 스크롤이 생길 시) 채널 이동 시 Height 값이 무한대로 늘어나는 이슈
+                // 관리자 모드에서 Height, Display 속성을 취소하고 다시 적용하면 원래대로 돌아옴.
+                // IE11 이슈해결 코드
+                $(".video-setup-table tbody").css("display","block");
             },
             function(errorData){
                 console.log(errorData);
@@ -1087,6 +1093,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
 
     $scope.deletePrivacy = function(maskIndex) {
         if($scope.PrivacyMaskSelected || maskIndex){
+            $scope.deletingPrivacy = true;
             var setData = {};
             setData["MaskIndex"] = maskIndex? maskIndex : $scope.PrivacyMaskSelected;
             
@@ -1103,9 +1110,11 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                     if(!mAttr.PTZModel){
                         sketchbookService.set($scope.coordinates);
                     }
+                    $scope.deletingPrivacy = false;
                 },
                 function (errorData) {
                     console.log(errorData);
+                    $scope.deletingPrivacy = false;
                 },'',true);
         }
     }
@@ -1261,6 +1270,11 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     }
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
+        // IE접속 후 패턴 9개 이상 등록 후 (패턴 선택 탭에서 스크롤이 생길 시) 채널 이동 시 Height 값이 무한대로 늘어나는 이슈
+        // 관리자 모드에서 Height, Display 속성을 취소하고 다시 적용하면 원래대로 돌아옴.
+        // IE11 이슈해결 코드
+        $(".video-setup-table tbody").css("display","none");
+
         var tMessage = null;
         var rotateChanged = false;
         var flipChanged = false;

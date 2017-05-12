@@ -1239,6 +1239,8 @@ live-playback common {
 .cm-osd-slider-wrap .cm-slider_wrap {
   width: calc(100% - 80px);
   display: inline-block;
+  position: relative;
+  top: 4px;
 }
 .cm-osd-slider-wrap .cm-slider {
   width: calc(100% - 70px) !important;
@@ -5626,6 +5628,7 @@ rzslider .rz-bubble {
 }
 .live-slider-field live_slider .input-align {
   width: 50px;
+  vertical-align: middle;
 }
 .live-slider-field live_slider .input-align input[type="text"] {
   width: 50px;
