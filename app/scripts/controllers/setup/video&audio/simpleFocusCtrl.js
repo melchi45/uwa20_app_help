@@ -182,6 +182,11 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             function (response) {
                 $scope.PageData = response.data;
                 $scope.FastAutoFocus = response.data.Focus[0].FastAutoFocus;
+                $scope.TCEnable = angular.copy(response.data.Focus[0].TemperatureCompensationEnable);
+                $scope.IRShift = angular.copy(response.data.Focus[0].IRShift);
+                if($scope.IRShift !== 'Off') {
+                    $scope.IRShift += 'nm';
+                }
             },
             function (errorData) {}, '', true);
     }
@@ -191,6 +196,9 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             function (response) {
                 $scope.Camera = response.data.Camera[0];
                 $scope.Lens = angular.copy($scope.Camera.IrisMode);
+                if($scope.Lens.substring(0,3) === 'ICS') {
+                    $scope.Lens = 'ICS';
+                }
             },
             function (errorData) {
                 console.log(errorData);
@@ -202,8 +210,6 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             function (response) {
                 $scope.FlangeBack = response.data.FlangeBack[0];
                 $scope.FBAdjustEnable = angular.copy($scope.FlangeBack.Enable);
-                $scope.TCEnable = angular.copy($scope.FlangeBack.TemperatureCompensationEnable);
-                $scope.IRShift = angular.copy($scope.FlangeBack.IRShift);
             },
             function (errorData) {
                 console.log(errorData);
@@ -224,7 +230,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     function SaveTCEnable() {
         var setData = {};
         setData.TemperatureCompensationEnable = $scope.TCEnable;
-        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flangeback&action=set', setData,
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=set', setData,
             function (response) {
             },
             function (errorData) {
@@ -234,8 +240,16 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
     $scope.IRShiftChange = function() {
         var setData = {};
-        setData.IRShift = $scope.IRShift;
-        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flangeback&action=set', setData,
+        var IRShift = null;
+        if($scope.IRShift !== 'Off') {
+            IRShift = $scope.IRShift;
+            IRShift = IRShift.replace('nm','');
+            setData.IRShift = IRShift;
+        } else {
+            setData.IRShift = $scope.IRShift;
+        }
+
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=set', setData,
             function (response) {
             },
             function (errorData) {
