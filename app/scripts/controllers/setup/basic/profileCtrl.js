@@ -2209,7 +2209,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                         'cropArea': cropArea,
                         'cropRatio': cropRatio,
                         'cropEnable': cropEnable,
-                        'channelId': $scope.channelSelectionSection.getCurrentChannel()
+                        'channelId': UniversialManagerService.getChannelId()
                     };
                 }
             }
