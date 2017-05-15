@@ -154,10 +154,11 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
 
     $scope.isShowMenu = function (id)
     {
-      var mAttr = Attributes.get("attr");
       var retVal = false;
 
-      mAttr = Attributes.get("eventsources");
+      var mAttr1 = Attributes.get("eventsources");
+      var mAttr2 = Attributes.get("system");
+      var mAttr = $.extend(mAttr1, mAttr2);
 
       var menuId = getId(id);
 
@@ -369,6 +370,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           }
         }
         else if(menuId === "storage"){
+            console.info(menuId, mAttr.StorageEnable);
             if(mAttr.StorageEnable) {
                 retVal = true;
             } else {
