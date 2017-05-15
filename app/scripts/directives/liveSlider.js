@@ -72,10 +72,14 @@ kindFramework
                     }
 
 
-                    function updateSliderModel(_value) {
-                        scope.$apply(function(){
+                    function updateSliderModel(_value,applySkip) {
+                        if(applySkip){
                             scope.liveSliderModel[scope.modelName] = _value;
-                        });
+                        }else{
+                            scope.$apply(function(){
+                                scope.liveSliderModel[scope.modelName] = _value;
+                            });
+                        }
                     }
 
                     function updateInputBox(_value) {
@@ -132,7 +136,7 @@ kindFramework
                         }
                         else
                         {
-                            updateSliderModel(SliderValue);
+                            updateSliderModel(SliderValue, true);
                         }
                     };
 
