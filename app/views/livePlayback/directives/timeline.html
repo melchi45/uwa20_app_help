@@ -71,8 +71,9 @@
 
 <div 
   ng-show="timelineControl.currentTimelineMode !== 'playback' && timelineControl.currentTimelineMode !== 'datepicker'"
-  class="cm-row cm-backup-button" 
-  style="padding: 15px 0 5px 0;">
+  class="cm-row" 
+  style="padding: 10px 0;"
+  ng-class="{'cm-backup-button' : timelineControl.currentTimelineMode === 'backup'}">
   <div class="cm-center">
     <button 
       ng-click="timelineControl.submit()"

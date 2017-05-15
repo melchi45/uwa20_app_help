@@ -40,7 +40,7 @@
   margin: 0 10px 15px 10px;
 }
 .kind-responsive-playback .cm-backup-button {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 .kind-responsive-playback #cm-playback-event {
   z-index: 1;
@@ -276,7 +276,7 @@
     width: 100%;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content .cm-backup-button {
-    margin-top: 0px;
+    margin-top: 5px;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-backup {
     width: 100%;
@@ -748,7 +748,7 @@
     font-size: 16px;
   }
   .kind-responsive-playback .cm-backup-button {
-    margin-top: 50px;
+    margin-top: 55px;
   }
 }
 @media (min-width: 3000px) and (min-height: 1688px) {
