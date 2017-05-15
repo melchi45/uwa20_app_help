@@ -99,6 +99,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
     $scope.isMultiChannel = false;
 
+    $scope.channelChanged = false;
+
     $scope.HLCOnOffChange = function(){
         if($scope.Camera.HLCOnOff ===  undefined){
             $scope.Camera.HLCOnOff = 'HLCOff';
@@ -1727,7 +1729,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
 
         $scope.refreshSliders();
-        cameraChangeHandler();
+        //cameraChangeHandler();
     }
 
     $scope.initExposureSliders = initExposureSliders;
@@ -4118,8 +4120,12 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $q.seqAll(functionList).then(
                     function () {
                         UniversialManagerService.setChannelId($scope.targetChannel);
-                        var promise = getAttributes();
-                        promise.then(function () { view();});
+                        if($scope.isMultiChannel && $scope.channelChanged){
+                            var promise = getAttributes();
+                            promise.then(function () { view();});
+                        } else {
+                            view();
+                        }
                     },
                     function (errorData) {showLoadingBar(false);}
             );
@@ -6617,6 +6623,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     function view() {
         var promises = [];
         var isReady = false;
+        $scope.channelChanged = false;
         if($scope.pageLoaded==true && $scope.isLoading==false) showLoadingBar(true);
 
         showVideo();
@@ -6692,8 +6699,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                         }
                         $timeout(function(){
                             if($scope.presetTypeData.SelectedPresetType == 0){
-                                livePreviewMode('Start');
-                                //livePreviewMode('Stop');
+                                //livePreviewMode('Start');
                             }else{
                                 gotoPreset('Start',$scope.presetTypeData.SelectedPreset);
                             }
@@ -6869,6 +6875,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
     }
 
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
+        $scope.channelChanged = true;
         if (($scope.ImagePresetModeOptions !== undefined && !angular.equals(pageData.ImagePreset, $scope.ImagePreset))
             || !angular.equals(pageData.VideoSources, $scope.VideoSources)
             || (mAttr.CompensationModeOptions !== undefined && !angular.equals(pageData.Camera, $scope.Camera))

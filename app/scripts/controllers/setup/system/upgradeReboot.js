@@ -146,15 +146,16 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
                     {
                         if(errorCode === 604)
                         {
-                            COMMONUtils.ShowError('lang_msg_upgrade_failed_software');
+                            COMMONUtils.ShowError('lang_msg_upgrade_failed_software','sm',function(){
+                                window.open('', '_self');
+                                window.close();
+                                COMMONUtils.onLogout();
+                            });
                             var div= document.getElementById("notallow");
                             if(typeof div !== 'undefined')
                             {
                                 document.body.removeChild(div);
                             }
-                            window.open('', '_self');
-                            window.close();
-                            COMMONUtils.onLogout();
                         }
                         else{
                             //alert(errorData);

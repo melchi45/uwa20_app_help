@@ -125,6 +125,7 @@ kindFramework.controller('autoTrackEventCtrl', function ($scope, $uibModal, $tra
     {
         if (data === null) {
         } else {
+            $scope.AutoTracking.TrackingAreas = data;
             $scope.sketchinfo.currentNumber = parseInt(data.length, 10);
         }
     });

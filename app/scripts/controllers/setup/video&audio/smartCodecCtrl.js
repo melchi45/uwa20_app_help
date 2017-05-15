@@ -184,23 +184,48 @@ kindFramework.controller('smartCodecCtrl', function ($scope, $timeout, SunapiCli
 
     function getSketchbookData(){
         var smartCodecArray = sketchbookService.get();
+        var errorRange = sketchbookService.getErrorRange();
+        var validateErrorRange = function(criterion, obj, errorRange){
+            return (
+                criterion >= obj - errorRange && 
+                criterion <= obj + errorRange
+            );
+        };
 
         for (var i = 0; i < smartCodecArray.length; i++) {
+            var areaSelf = null;
             if(smartCodecArray[i].isSet){
                 if ($scope.SmartCodec[0].Areas == undefined) {
                     $scope.SmartCodec[0].Areas = new Array(smartCodecArray.length);
                 }
 
-                $scope.SmartCodec[0].Areas[i] = {
-                    "Area": (i + 1),
-                    "Coordinate": [{
-                        "x": smartCodecArray[i].x1,
-                        "y": smartCodecArray[i].y1
-                    }, {
-                        "x": smartCodecArray[i].x2,
-                        "y": smartCodecArray[i].y2
-                    }]
-                };
+                areaSelf = $scope.SmartCodec[0].Areas[i];
+
+                /*
+                * Areas가 새로 정의되어 Area 파라미터가 없거나,
+                * 오차 범위 값내에 변경 되었을 때만 수정 되었다고 판단한다.
+                */
+                if(
+                    areaSelf === undefined ||
+                    !(
+                        validateErrorRange(smartCodecArray[i].x1, areaSelf.Coordinate[0].x, errorRange) &&
+                        validateErrorRange(smartCodecArray[i].y1, areaSelf.Coordinate[0].y, errorRange) &&
+                        validateErrorRange(smartCodecArray[i].x2, areaSelf.Coordinate[1].x, errorRange) &&
+                        validateErrorRange(smartCodecArray[i].y2, areaSelf.Coordinate[1].y, errorRange)
+                    )
+                    ){
+
+                    $scope.SmartCodec[0].Areas[i] = {
+                        "Area": (i + 1),
+                        "Coordinate": [{
+                            "x": smartCodecArray[i].x1,
+                            "y": smartCodecArray[i].y1
+                        }, {
+                            "x": smartCodecArray[i].x2,
+                            "y": smartCodecArray[i].y2
+                        }]
+                    };
+                }
             }
         }
     }
