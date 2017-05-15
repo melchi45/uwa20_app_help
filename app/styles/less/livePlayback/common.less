@@ -1057,6 +1057,38 @@ live-playback common {
         }
     }
 
+    .cm-channel-selector-quad-btn {
+        background-color: #262626;
+        border-color: #797979;
+        color: #fff;
+
+        > div {
+            border-color: #797979;
+        }
+
+        &:hover {
+            > div {
+                background-color: #d2d2d2;
+                color: #000;
+            }
+        }
+
+        &:active {
+            > div {
+                background-color: #fff;
+                color: #000;
+            }
+        }
+
+        &:hover,
+        &:active {
+            border-color: #262626;
+            > div {
+                border-color: #262626;
+            }
+        }
+    }
+
     .cm-submit-button {
         background-color: #262626;
         color: #f37321;
@@ -1834,11 +1866,17 @@ live-playback common {
         }
     }
 
-    .cm-channel-selector-quad-btn {
-        position: relative;
+    .cm-channel-selector-quad-btn-wrapper {
         width: 27px;
         float: left;
         margin-left: 4px;
+    }
+
+    .cm-channel-selector-quad-btn {
+        position: relative;
+        width: 100%;
+        float: left;
+        background: none;
         border: solid 1px @channel-selector-btn-border-color;
         border-bottom-width: 2px;
         border-right-width: 2px;
@@ -1850,7 +1888,6 @@ live-playback common {
             float: left;
             width: 12px;
             height: 9px;
-            background-color: @channel-selector-btn-background-color;
             border-left: solid 1px @channel-selector-btn-border-color;
             border-top: solid 1px @channel-selector-btn-border-color;
             border-right: 0;

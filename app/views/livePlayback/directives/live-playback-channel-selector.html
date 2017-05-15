@@ -1,11 +1,13 @@
 <div class="cm-channel-selector">
 	<channel-selector></channel-selector>
-	<button class="cm-channel-selector-quad-btn"
-		ng-if="livePlaybackChannelSelector.useQuadView"
-		ng-click="livePlaybackChannelSelector.changeQuadView()">
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-	</button>
+	<div class="cm-channel-selector-quad-btn-wrapper">
+		<button class="cm-channel-selector-quad-btn"
+			ng-if="livePlaybackChannelSelector.useQuadView"
+			ng-click="livePlaybackChannelSelector.changeQuadView()">
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+		</button>
+	</div>
 </div>
