@@ -34,6 +34,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                 $scope.ZoomOptionsDefined = false;
             }
             $scope.FocusModeOptions = mAttr.FocusModeOptions;
+            $scope.MaxChannel = mAttr.MaxChannel;
             $scope.IRShiftOptions = mAttr.IRShiftOptions;
 
             if($scope.IRShiftOptions !== undefined){
