@@ -207,7 +207,8 @@ function($q, DisplayService,CAMERA_TYPE,PLAYBACK_TYPE,PTZ_TYPE,
               if(xPos < 0 || yPos < 0 || xPos > canvas.offsetWidth || yPos > canvas.offsetHeight) { // out of frame
                 return;
               } else {
-                var rotate = UniversialManagerService.getRotate();
+                var channelId = UniversialManagerService.getChannelId();
+                var rotate = UniversialManagerService.getRotate(channelId);
                 if(rotate === '90' || rotate === '270') {
                   xPos = Math.ceil(xPos*(10000 / canvas.offsetHeight));
                   yPos = Math.ceil(yPos*(10000 / canvas.offsetWidth));

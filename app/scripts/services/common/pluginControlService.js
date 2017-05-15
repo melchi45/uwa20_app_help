@@ -166,7 +166,8 @@ kindFramework
     };
 
     this.pixcelCount = function(command) {
-      var rotate = UniversialManagerService.getRotate();
+      var channelId = UniversialManagerService.getChannelId();
+      var rotate = UniversialManagerService.getRotate(channelId);
       var resolution = UniversialManagerService.getProfileInfo().Resolution.split("x");
       var width = parseInt(resolution[0], 10);
       var height = parseInt(resolution[1], 10);
@@ -477,7 +478,8 @@ kindFramework
         PTZContorlService.setManualTrackingMode("True");
 
         if(xPos >=0  && yPos >= 0) {
-            var rotate = UniversialManagerService.getRotate();
+          var channelId = UniversialManagerService.getChannelId();
+            var rotate = UniversialManagerService.getRotate(channelId);
             if(rotate === '90' || rotate === '270') {
                 xPos = Math.ceil(xPos*(10000 / pluginElement.offsetHeight));
                 yPos = Math.ceil(yPos*(10000 / pluginElement.offsetWidth));
