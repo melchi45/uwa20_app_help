@@ -370,7 +370,6 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           }
         }
         else if(menuId === "storage"){
-            console.info(menuId, mAttr.StorageEnable);
             if(mAttr.StorageEnable) {
                 retVal = true;
             } else {
