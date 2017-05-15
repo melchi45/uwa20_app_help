@@ -6,7 +6,7 @@
         <div class="wn5-setup-section">
             <hr class="wn5-setup-hr">
             
-            <setup-channel-selector ng-show="MaxChannel > 1"></setup-channel-selector> 
+            <setup-channel-selector use-info="false" ng-if="MaxChannel > 1" use-confirm="true"></setup-channel-selector>
 
             <div class="form-group" ng-show="FocusModeOptions !== undefined && isSupportedFocusMode('Reset')">
                 <button 

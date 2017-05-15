@@ -36,8 +36,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             $scope.FocusModeOptions = mAttr.FocusModeOptions;
             $scope.MaxChannel = mAttr.MaxChannel;
             $scope.IRShiftOptions = mAttr.IRShiftOptions;
-
-            if($scope.IRShiftOptions !== undefined){
+            if (typeof $scope.IRShiftOptions !== 'undefined') {
                 for(var i = 0; i < $scope.IRShiftOptions.length; i++) {
                     if($scope.IRShiftOptions[i] !== 'Off') {
                         var option = $scope.IRShiftOptions[i];
@@ -47,7 +46,6 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                     }
                 }
             }
-
             $scope.IrisModeOptions = mAttr.IrisModeOptions;
             checkICSLensSupport();
         }
@@ -359,6 +357,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
         $rootScope.$emit('changeLoadingBar', true);
         UniversialManagerService.setChannelId(index);
+        $rootScope.$emit("channelSelector:changeChannel", index);
         view();
     }, $scope);
 

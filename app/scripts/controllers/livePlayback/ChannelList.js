@@ -114,6 +114,7 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
         var playerData = ConnectionSettingService.getPlayerData('live',
             MultiDirectionProfile, timeCallback, errorCallback, closeCallback, videoMode);
         playerData.device.channelId = channelId;
+        playerData.media.checkDelay = false;
         userID = playerData.device.user;
         if (plugin === false) {
             kindStreamInterface.init(playerData, SunapiClient);
