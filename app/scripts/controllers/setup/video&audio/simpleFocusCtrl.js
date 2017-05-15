@@ -35,11 +35,14 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             }
             $scope.FocusModeOptions = mAttr.FocusModeOptions;
             $scope.IRShiftOptions = mAttr.IRShiftOptions;
-            for(var i = 0; i < $scope.IRShiftOptions.length; i++) {
-                if($scope.IRShiftOptions[i] !== 'Off') {
-                    var option = $scope.IRShiftOptions[i];
-                    if(option.indexOf('nm') === -1) {
-                        $scope.IRShiftOptions[i] = angular.copy(option + 'nm');
+
+            if($scope.IRShiftOptions !== undefined){
+                for(var i = 0; i < $scope.IRShiftOptions.length; i++) {
+                    if($scope.IRShiftOptions[i] !== 'Off') {
+                        var option = $scope.IRShiftOptions[i];
+                        if(option.indexOf('nm') === -1) {
+                            $scope.IRShiftOptions[i] = angular.copy(option + 'nm');
+                        }
                     }
                 }
             }
