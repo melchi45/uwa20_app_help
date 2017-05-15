@@ -16,7 +16,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     pageData.Handover = [{"HandoverList":[]}];
 
     var defaultSensitivity = 80;
-    var defaultThreshold = 50;
+    var defaultThreshold = 5;
 
     var mLastSequenceLevel = 0;
 
@@ -250,7 +250,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     $scope.MDv2ChartData = 0;
     $scope.MDv2ChartOptions = {
         showInputBox : true,       // true = show / false = unshow
-        ThresholdLevel : 50,        // thresholdLevel value
+        ThresholdLevel : 5,        // thresholdLevel value
         floor: 1,                   // min value of Y axis
         ceil: 100,                  // max value of Y axis
         width: 400,                 // width of chart
@@ -719,7 +719,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             $scope.selectExclude = [{"ROI":9},{"ROI":10},{"ROI":11},{"ROI":12},{"ROI":13},{"ROI":14},{"ROI":15},{"ROI":16}];
 
             $scope.SensitivitySliderModel.data = 80;
-            $scope.MDv2ChartOptions.ThresholdLevel = 50;
+            $scope.MDv2ChartOptions.ThresholdLevel = 5;
         }catch(e){
             console.error(e);
         }
