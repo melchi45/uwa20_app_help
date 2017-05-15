@@ -1727,7 +1727,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         }
 
         $scope.refreshSliders();
-        cameraChangeHandler();
+        //cameraChangeHandler();
     }
 
     $scope.initExposureSliders = initExposureSliders;
@@ -4118,8 +4118,12 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             $q.seqAll(functionList).then(
                     function () {
                         UniversialManagerService.setChannelId($scope.targetChannel);
-                        var promise = getAttributes();
-                        promise.then(function () { view();});
+                        if($scope.isMultiChannel){
+                            var promise = getAttributes();
+                            promise.then(function () { view();});
+                        }else{
+                            view();
+                        }
                     },
                     function (errorData) {showLoadingBar(false);}
             );
@@ -6692,8 +6696,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                         }
                         $timeout(function(){
                             if($scope.presetTypeData.SelectedPresetType == 0){
-                                livePreviewMode('Start');
-                                //livePreviewMode('Stop');
+                                //livePreviewMode('Start');
                             }else{
                                 gotoPreset('Start',$scope.presetTypeData.SelectedPreset);
                             }
