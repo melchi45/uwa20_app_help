@@ -300,6 +300,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                                 scope.TrackingAreas = angular.copy(response.data.AutoTracking[0].TrackingAreas);
                                 scope.selectTrackingArea = '';
                                 scope.autoTrackingFlag = response.data.AutoTracking[0].Enable;
+                                scope.$emit('changeAutoTracking',response.data.AutoTracking[0].TrackingAreas);
                             } catch (e) {}
                         },100);
                     },
@@ -309,6 +310,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                                 scope.TrackingAreas = [];
                                 scope.selectTrackingArea = '';
                                 scope.autoTrackingFlag = false;
+                                scope.$emit('changeAutoTracking',scope.TrackingAreas);
                             } catch (e) {}
                         },100);
                     },'', true);
