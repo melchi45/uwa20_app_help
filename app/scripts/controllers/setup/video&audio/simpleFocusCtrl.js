@@ -19,6 +19,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     $scope.FBAdjustEnable = false;
     $scope.TCEnable = false;
     $scope.IRShift = '';
+    $scope.ICSLensSupport = false;
 
     function getAttributes() {
         var defer = $q.defer();
@@ -42,6 +43,9 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                     }
                 }
             }
+
+            $scope.IrisModeOptions = mAttr.IrisModeOptions;
+            checkICSLensSupport();
         }
         
         defer.resolve("success");
@@ -206,6 +210,16 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             function (errorData) {
                 console.log(errorData);
             }, '', true);
+    }
+
+    function checkICSLensSupport() {
+        for(var i = 0; i < $scope.IrisModeOptions.length; i++) {
+            var option = $scope.IrisModeOptions[i];
+            if(option.indexOf('ICS') !== -1) {
+                $scope.ICSLensSupport = true;
+                return;
+            }
+        }
     }
 
     function flangeBackView() {
