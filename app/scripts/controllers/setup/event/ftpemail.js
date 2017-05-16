@@ -286,6 +286,13 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
         return retVal;
     }
 
+    function CheckValidIPv4Address(address){
+        var textCheck = isNaN(address.split(/\./)[0]);
+        if (textCheck === true) return true;
+
+        return COMMONUtils.CheckValidIPv4Address(address);
+    }
+
     function validateServerAddress(address){
         var reg = COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getSIM();
         return (
@@ -293,7 +300,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
             address === '255.255.255.255' ||
             address === '' ||
             !COMMONUtils.TypeCheck(address, reg) ||
-            !COMMONUtils.CheckValidIPv4Address(address) ||
+            !CheckValidIPv4Address(address) ||
             COMMONUtils.CheckAddrKorean(address)
         );
     }
