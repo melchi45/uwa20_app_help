@@ -63,7 +63,7 @@ kindFramework
       }
 
       function drawEventNoti(data) {
-        //  console.log("event.type: " + data.type + " , event.value: " + data.value + ", event.eventId: " + data.eventId);
+        // console.log("event.type: " + data.type + " , event.value: " + data.value + ", event.eventId: " + data.eventId);
         var targetData = data;
 
         if(!(currentEventPage === 'live' || (currentEventPage === targetData.type))){
@@ -74,13 +74,8 @@ kindFramework
           case "MoveStatus:PanTilt":
           case "MoveStatus:Zoom":
           case "DigitalAutoTracking":
+          case "TrackingEnable":
             updatePtzEvent(targetData);
-            break;
-          case "AutoTracking":
-            updatePtzEvent(targetData);
-            if (targetData.value == 'true') {
-              setTimeoutEventNoti();
-            }
             break;
           case "DigitalInput":
             if (targetData.value == 'true') {
@@ -89,7 +84,7 @@ kindFramework
             } else {
               setEventStatusList("DigitalInput", false);
             }
-          break;
+            break;
           case "AudioDetection":
             if (targetData.value == 'true') {
               setEventStatusList("AudioDetection", true);
@@ -181,7 +176,7 @@ kindFramework
           case "DigitalAutoTracking":
             $rootScope.$emit('DigitalAutoTrackingStatus', eventObj);
             break;
-          case "AutoTracking":
+          case "TrackingEnable":
             $rootScope.$emit('AutoTrackingStatus', eventObj);
             break;
       }

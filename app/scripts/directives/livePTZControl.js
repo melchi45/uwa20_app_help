@@ -756,7 +756,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
 
                 $rootScope.$saveOn('AutoTrackingStatus', function(event, obj) {
                     switch(obj.type) {
-                        case "AutoTracking":
+                        case "TrackingEnable":
                             if (obj.value === 'false')
                             {
                                 if(scope.modePTZ.AutoTracking === true)
