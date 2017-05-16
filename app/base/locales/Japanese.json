@@ -1324,7 +1324,7 @@
     "lang_setHome": "ホームを設定する",
     "lang_termination": "終了",
     "lang_boxstep": "Box手順",
-    "lang_heater_pan": "ヒーター\/パン",
+    "lang_heater_fan": "ヒーター\/ファン",
     "lang_trace_setup": "トレース設定",
     "lang_play_button": "再生",
     "lang_msg_enter_email": "電子メールアドレスを入力してください。",
@@ -1345,5 +1345,6 @@
     "lang_msg_last_position_save": "最終位置として保存",
     "lang_msg_saving_satus": "保存ステータス",
     "lang_msg_saving_interval": "保存間隔",
-    "lang_msg_preset_position_list": "プリセット位置リスト"
+    "lang_msg_preset_position_list": "プリセット位置リスト",
+    "lang_fan": "ファン"
 }

@@ -1324,7 +1324,7 @@
     "lang_setHome": "Задать главную",
     "lang_termination": "Завершение",
     "lang_boxstep": "Окно шага",
-    "lang_heater_pan": "Подогреватель\/Панорамирование",
+    "lang_heater_fan": "Подогреватель\/вентилятор",
     "lang_trace_setup": "Настройка маршрута",
     "lang_play_button": "Воспроизвести",
     "lang_msg_enter_email": "Введите адрес электронной почты.",
@@ -1345,5 +1345,6 @@
     "lang_msg_last_position_save": "Сохранить как последнее положение",
     "lang_msg_saving_satus": "Сохранение состояния",
     "lang_msg_saving_interval": "Сохранение интервала",
-    "lang_msg_preset_position_list": "Список положение предустановок"
+    "lang_msg_preset_position_list": "Список положение предустановок",
+    "lang_fan": "вентилятор"
 }

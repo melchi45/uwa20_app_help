@@ -1324,7 +1324,7 @@
     "lang_setHome": "设置始位",
     "lang_termination": "终止",
     "lang_boxstep": "方块步",
-    "lang_heater_pan": "加热器\/平移",
+    "lang_heater_fan": "加热器\/风扇",
     "lang_trace_setup": "跟踪设置",
     "lang_play_button": "播放",
     "lang_msg_enter_email": "请输入电子邮件地址。",
@@ -1345,5 +1345,6 @@
     "lang_msg_last_position_save": "另存为最后使用的位置",
     "lang_msg_saving_satus": "保存状态",
     "lang_msg_saving_interval": "保存间隔",
-    "lang_msg_preset_position_list": "预设位位置列表"
+    "lang_msg_preset_position_list": "预设位位置列表",
+    "lang_fan": "风扇"
 }

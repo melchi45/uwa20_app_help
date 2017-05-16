@@ -1415,7 +1415,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
     $scope.getHeaterTranslation = function (option) {
         if (mAttr.PTZModel && option == 'Heater') {
-            return COMMONUtils.getTranslatedOption('Heater/Pan');
+            return COMMONUtils.getTranslatedOption('Fan');
         } else {
             return COMMONUtils.getTranslatedOption(option)
         }
@@ -5187,7 +5187,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if (mAttr.PTZModel && option == 'Schedule') {
             return COMMONUtils.getTranslatedOption('Timed');
         } else if (mAttr.PTZModel && option == 'Heater') {
-            return COMMONUtils.getTranslatedOption('Heater/Pan');
+            return COMMONUtils.getTranslatedOption('Heater/Fan');
         } else {
             return COMMONUtils.getTranslatedOption(option)
         }

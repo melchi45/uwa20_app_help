@@ -296,12 +296,16 @@ kindFramework.controller('qosCtrl', function ($scope, $timeout, COMMONUtils, Sun
 
     function deleteQOS4()
     {
-        COMMONUtils.ShowConfirmation(del_QOS4,'lang_msg_confirm_remove_profile');
+        if($scope.IPListV4.length > 0) {
+            COMMONUtils.ShowConfirmation(del_QOS4,'lang_msg_confirm_remove_profile');
+        }
     }
 
     function deleteQOS6()
     {
-        COMMONUtils.ShowConfirmation(del_QOS6,'lang_msg_confirm_remove_profile');
+        if($scope.IPListV6.length > 0) {
+            COMMONUtils.ShowConfirmation(del_QOS6,'lang_msg_confirm_remove_profile');
+        }
     }
 
     function validate() {
