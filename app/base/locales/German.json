@@ -1324,7 +1324,7 @@
     "lang_setHome": "Als Startseite festlegen",
     "lang_termination": "Beendigung",
     "lang_boxstep": "Feldschritt",
-    "lang_heater_pan": "Heizung\/Schwenk",
+    "lang_heater_fan": "Heizung\/Fan",
     "lang_trace_setup": "Verfolgungseinrichtung",
     "lang_play_button": "Abspielen",
     "lang_msg_enter_email": "Bitte geben Sie die E-Mail-Adresse ein.",
@@ -1345,5 +1345,6 @@
     "lang_msg_last_position_save": "Als letzte Position speichern",
     "lang_msg_saving_satus": "Speicherstatus",
     "lang_msg_saving_interval": "Speicherintervall",
-    "lang_msg_preset_position_list": "Positionsliste der Voreinstellung"
+    "lang_msg_preset_position_list": "Positionsliste der Voreinstellung",
+    "lang_fan": "Fan"
 }

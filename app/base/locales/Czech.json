@@ -1324,7 +1324,7 @@
     "lang_setHome": "Nastavit úvodní stránku",
     "lang_termination": "Ukončení",
     "lang_boxstep": "Krok v poli",
-    "lang_heater_pan": "Ohřívač\/Sklon",
+    "lang_heater_fan": "Ohřívač\/větrák",
     "lang_trace_setup": "Nastavení sledování",
     "lang_play_button": "Hraní",
     "lang_msg_enter_email": "Zadejte e-mailovou adresu, prosím.",
@@ -1345,5 +1345,6 @@
     "lang_msg_last_position_save": "Uložit jako poslední pozici",
     "lang_msg_saving_satus": "Stav ukládání",
     "lang_msg_saving_interval": "Interval ukládání",
-    "lang_msg_preset_position_list": "Seznam přednastavených pozic"
+    "lang_msg_preset_position_list": "Seznam přednastavených pozic",
+    "lang_fan": "větrák"
 }

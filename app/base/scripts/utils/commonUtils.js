@@ -643,7 +643,8 @@ kindFramework.factory('COMMONUtils', function ($translate, $location,  $uibModal
         json.NightOnly = 'lang_night_only';
         json.AllDay = 'lang_all_day';
         json.Heater = 'lang_heater';
-        json['Heater/Pan'] = 'lang_heater_pan';
+        json['Heater/Fan'] = 'lang_heater_fan';
+        json['Fan'] = 'lang_fan';
 
         //SSDR
         json.Narrow = 'lang_narrow';
