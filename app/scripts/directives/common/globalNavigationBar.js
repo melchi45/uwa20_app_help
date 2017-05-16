@@ -309,6 +309,16 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                                 onlyMenuName = route.urlName;
                             }else{
                                 urlName = route.urlName;
+
+                                for(var replaceUrlName in ONLINE_HELP_CONFIG.REPLACE_TEMPLATE){
+                                    var selfTemplate = null;
+                                    if(urlName === replaceUrlName){
+                                        selfTemplate = ONLINE_HELP_CONFIG.REPLACE_TEMPLATE[replaceUrlName];
+                                        route.templateUrl = route.templateUrl.replace(selfTemplate.from, selfTemplate.to);
+                                        break;
+                                    }
+                                }
+
                                 if(onlyMenuParentName){
                                     urlName = onlyMenuParentName + '_' + urlName;
                                 }
