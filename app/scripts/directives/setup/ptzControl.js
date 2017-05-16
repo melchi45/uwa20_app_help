@@ -318,7 +318,7 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
 
             $rootScope.$saveOn('AutoTrackingStatus', function(event, obj) {
                 switch(obj.type) {
-                    case "AutoTracking":
+                    case "TrackingEnable":
                         if (obj.value === 'false')
                         {
                             scope.autoTrackingFlag = false;

@@ -138,6 +138,8 @@ function MetaDataParser(callback) {
               eventName = "Queue"; break;
             case "tns1:VideoSource/tnssamsung:AutoTracking" :
               eventName = "AutoTracking"; break;
+            case "tns1:VideoSource/tnssamsung:TrackingEnable" :
+              eventName = "TrackingEnable"; break;              
             default :
               eventName = "Unknown Event";
           }
