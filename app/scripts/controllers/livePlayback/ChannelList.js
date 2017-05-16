@@ -142,8 +142,14 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
         }
 
         reconnectionTimeout = $timeout(function () {
+            var getData = null;
             if (RESTCLIENT_CONFIG.serverType === 'grunt') {
-                startVideoStreaming();
+                SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, 
+                    function(response) {
+                        startVideoStreaming();
+                    }, function(errorData) {
+                        reconnect();
+                    });
             } else {
                 try {
                     xmlHttp.open("POST", "../home/pw_check.cgi", true); // false for synchronous request
@@ -235,6 +241,16 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
                     }
                 }, 100);
                 break;
+            case 402:
+                var pluginElement = $('#channel' + (ch - 1))[0];
+                pluginElement.CloseStream();
+
+                if (reconnectCheck === false) {
+                    reconnectCheck = true;
+                    reconnect();
+                }
+                break;
+
         }
     }
 
