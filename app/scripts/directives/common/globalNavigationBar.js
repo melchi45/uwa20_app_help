@@ -158,7 +158,7 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
             };
 
             scope.toggleFpsMeter = function() {
-                scope.globalNavigationBar.showFpsMeterNum++;
+                //scope.globalNavigationBar.showFpsMeterNum++;
                 if (scope.globalNavigationBar.showFpsMeterNum > 3) {
                     workerManager.openFPSmeter();
                     scope.globalNavigationBar.showFpsMeterNum = 0;
