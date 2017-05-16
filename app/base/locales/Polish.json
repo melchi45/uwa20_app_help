@@ -1324,7 +1324,7 @@
     "lang_setHome": "Ustaw stronę główną",
     "lang_termination": "Zakończenie",
     "lang_boxstep": "Stopień obudowy",
-    "lang_heater_pan": "Nagrzewnica\/panorama",
+    "lang_heater_fan": "Nagrzewnica\/Wentylator",
     "lang_trace_setup": "Ustawienia trasy",
     "lang_play_button": "Odtwarzaj",
     "lang_msg_enter_email": "Wprowadź adres e-mail.",
@@ -1345,5 +1345,6 @@
     "lang_msg_last_position_save": "Zapisz jako ostatnią pozycję",
     "lang_msg_saving_satus": "Stan zapisu",
     "lang_msg_saving_interval": "Interwał zapisu",
-    "lang_msg_preset_position_list": "Lista pozycji presetów"
+    "lang_msg_preset_position_list": "Lista pozycji presetów",
+    "lang_fan": "Wentylator"
 }

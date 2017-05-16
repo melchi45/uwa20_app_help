@@ -1324,7 +1324,7 @@
     "lang_setHome": "Establecer inicio",
     "lang_termination": "Terminación",
     "lang_boxstep": "Paso de caja",
-    "lang_heater_pan": "Calentador\/panorámica",
+    "lang_heater_fan": "Calentador\/Ventilador",
     "lang_trace_setup": "Configuración de rastreo",
     "lang_play_button": "Reproducir",
     "lang_msg_enter_email": "Por favor, introduzca la dirección de correo electrónico.",
@@ -1345,5 +1345,6 @@
     "lang_msg_last_position_save": "Guardar como última posición",
     "lang_msg_saving_satus": "Guardar estado",
     "lang_msg_saving_interval": "Guardar intervalo",
-    "lang_msg_preset_position_list": "Lista de posiciones predefinidas"
+    "lang_msg_preset_position_list": "Lista de posiciones predefinidas",
+    "lang_fan": "Ventilador"
 }

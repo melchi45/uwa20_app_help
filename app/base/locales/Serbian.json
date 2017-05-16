@@ -1324,7 +1324,7 @@
     "lang_setHome": "Set home",
     "lang_termination": "Termination",
     "lang_boxstep": "Box step",
-    "lang_heater_pan": "Heater\/Pan",
+    "lang_heater_fan": "Heater\/Fan",
     "lang_trace_setup": "Trace setup",
     "lang_play_button": "Play",
     "lang_msg_enter_email": "Please enter the e-mail address.",
@@ -1345,5 +1345,6 @@
     "lang_msg_last_position_save": "Save as last position",
     "lang_msg_saving_satus": "Saving status",
     "lang_msg_saving_interval": "Saving interval",
-    "lang_msg_preset_position_list": "Preset position list"
+    "lang_msg_preset_position_list": "Preset position list",
+    "lang_fan": "Fan"
 }

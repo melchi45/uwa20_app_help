@@ -1324,7 +1324,7 @@
     "lang_setHome": "Ορισμός αρχής",
     "lang_termination": "Τερματισμός",
     "lang_boxstep": "Βήμα πλαισίου",
-    "lang_heater_pan": "Θερμαντήρας\/οριζόντια σάρωση",
+    "lang_heater_fan": "Θερμαντήρας\/ανεμιστήρας",
     "lang_trace_setup": "Ρύθμιση ανίχνευσης",
     "lang_play_button": "Αναπαραγωγή",
     "lang_msg_enter_email": "Καταχωρίστε τη διεύθυνση e-mail.",
@@ -1345,5 +1345,6 @@
     "lang_msg_last_position_save": "Αποθήκευση ως τελευταία θέση",
     "lang_msg_saving_satus": "Αποθηκεύεται η κατάσταση",
     "lang_msg_saving_interval": "Αποθηκεύεται το διάστημα",
-    "lang_msg_preset_position_list": "Λίστα προρρυθμισμένων θέσεων"
+    "lang_msg_preset_position_list": "Λίστα προρρυθμισμένων θέσεων",
+    "lang_fan": "ανεμιστήρας"
 }

@@ -1324,7 +1324,7 @@
     "lang_setHome": "홈 설정",
     "lang_termination": "종료",
     "lang_boxstep": "Box 단계",
-    "lang_heater_pan": "히터\/팬",
+    "lang_heater_fan": "히터\/팬",
     "lang_trace_setup": "추적 설정",
     "lang_play_button": "재생",
     "lang_msg_enter_email": "이메일 주소를 입력하십시오.",
@@ -1345,5 +1345,6 @@
     "lang_msg_last_position_save": "마지막 위치 저장",
     "lang_msg_saving_satus": "저장 여부",
     "lang_msg_saving_interval": "저장 간격",
-    "lang_msg_preset_position_list": "프리셋 위치 목록"
+    "lang_msg_preset_position_list": "프리셋 위치 목록",
+    "lang_fan": "팬"
 }
