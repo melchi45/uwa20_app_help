@@ -43,7 +43,8 @@ kindFramework
             UniversialManagerService.setSpeakerOn($scope.speakerStatus);
             $rootScope.$emit('channelPlayer:command', 'speakerStatus', $scope.speakerStatus);
           }
-          kindStreamInterface.setCanvasStyle('fit'); // when go to setup page, set view mode as fit
+          // kindStreamInterface.setCanvasStyle('fit'); // when go to setup page, set view mode as fit
+          kindStreamInterface.locChangeViewmode();
           DigitalZoomService.init();
         
           $rootScope.$emit("channelPlayer:command", "close");
