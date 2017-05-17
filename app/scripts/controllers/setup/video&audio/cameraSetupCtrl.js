@@ -4119,7 +4119,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if(functionList.length > 0){
             $q.seqAll(functionList).then(
                     function () {
-                        UniversialManagerService.setChannelId($scope.targetChannel);
                         if($scope.isMultiChannel && $scope.channelChanged){
                             var promise = getAttributes();
                             promise.then(function () { view();});
@@ -6899,7 +6898,6 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             });
         } else {
             showLoadingBar(true);
-            UniversialManagerService.setChannelId(data);
             $scope.targetChannel = data;
             $rootScope.$emit("channelSelector:changeChannel", data);
             var promise = getAttributes();

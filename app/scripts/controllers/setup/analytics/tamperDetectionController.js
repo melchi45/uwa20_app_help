@@ -467,7 +467,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        UniversialManagerService.setChannelId(index);
         view();
     }
 

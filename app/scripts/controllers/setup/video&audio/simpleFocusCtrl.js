@@ -337,7 +337,6 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
         $rootScope.$emit('changeLoadingBar', true);
-        UniversialManagerService.setChannelId(index);
         $rootScope.$emit("channelSelector:changeChannel", index);
         view();
     }, $scope);

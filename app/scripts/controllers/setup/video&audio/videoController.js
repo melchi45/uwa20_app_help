@@ -948,8 +948,6 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 showVideo();
                 $("#videosetuppage").show();
                 $rootScope.$emit('changeLoadingBar', false);
-                $rootScope.$emit("channelSelector:changeChannel", $scope.targetChannel);
-                UniversialManagerService.setChannelId($scope.targetChannel);
 
                 
                 // IE접속 후 패턴 9개 이상 등록 후 (패턴 선택 탭에서 스크롤이 생길 시) 채널 이동 시 Height 값이 무한대로 늘어나는 이슈
@@ -1076,7 +1074,6 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         });
                         modalInstance.result.then(COMMONUtils.onLogout, COMMONUtils.onLogout);
                     }
-                    UniversialManagerService.setChannelId($scope.targetChannel);
                     view();
                 },
                 function(errorData){
@@ -1322,6 +1319,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                     modalInstance.result.then(function() {
                         $rootScope.$emit('changeLoadingBar', true);
                         $scope.targetChannel = data;
+                        $rootScope.$emit("channelSelector:changeChannel", data);
                         saveSettings();
                     },
                     function() {
@@ -1329,6 +1327,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 } else {
                     $rootScope.$emit('changeLoadingBar', true);
                     $scope.targetChannel = data;
+                    $rootScope.$emit("channelSelector:changeChannel", data);
                     saveSettings();
                 }
             },
@@ -1337,7 +1336,6 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         } else {
             $rootScope.$emit('changeLoadingBar', true);
             $scope.targetChannel = data;
-            UniversialManagerService.setChannelId(data);
             $rootScope.$emit("channelSelector:changeChannel", data);
             view();
         }

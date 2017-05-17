@@ -509,7 +509,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        UniversialManagerService.setChannelId(index);
         view();
     }
 

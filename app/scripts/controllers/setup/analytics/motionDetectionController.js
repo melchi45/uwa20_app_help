@@ -107,7 +107,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
-        UniversialManagerService.setChannelId(index);
         view();
     }
 

@@ -998,7 +998,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        UniversialManagerService.setChannelId(index);
         view();
     }
 

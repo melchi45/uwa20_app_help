@@ -532,7 +532,6 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     function changeChannel(index){
         // $rootScope.$emit('changeLoadingBar', true);
         $rootScope.$emit("channelSelector:changeChannel", index);
-        UniversialManagerService.setChannelId(index);
         view();
     }
 

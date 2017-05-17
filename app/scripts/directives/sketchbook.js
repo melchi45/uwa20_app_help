@@ -284,6 +284,8 @@ kindFramework
             $rootScope.$saveOn('channelSelector:changedChannel', function(event, index){
                 scope.playerdata.media.requestInfo.cmd = 'close';
                 currentChannel = index;
+                console.log("streamPlayer:: ", index);
+                UniversialManagerService.setChannelId(index);
                 $timeout(function(){
                     scope.playerdata = getPlayerData();
                 });
