@@ -825,7 +825,9 @@ kindFramework
       $q.seqAll([getDefaultProfileIndex, getVideoProfile]).then(
             function(){
               console.info('video profile successfully set in live page');
+
               var RequestProfile = getProfileByIndex($scope.profileList, defaultProfileID);
+              UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
               startStreaming(RequestProfile);
               if(sunapiAttributes.MaxAudioOutput !== undefined && sunapiAttributes.MaxAudioOutput !== 0) {
                 switch(UniversialManagerService.getUserId())
