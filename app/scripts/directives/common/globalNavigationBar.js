@@ -157,25 +157,20 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
             };
 
             scope.toggleFpsMeter = function() {
-                scope.globalNavigationBar.showFpsMeterNum++;
+                //scope.globalNavigationBar.showFpsMeterNum++;
                 if (scope.globalNavigationBar.showFpsMeterNum > 3) {
-                    //workerManager.openFPSmeter();
                     kindStreamInterface.controlWorker({'channelId':0, 'cmd':'openFPSmeter', 'data': []});
                     scope.globalNavigationBar.showFpsMeterNum = 0;
                 } else {
-                    //workerManager.closeFPSmeter();
                     kindStreamInterface.controlWorker({'channelId':0, 'cmd':'closeFPSmeter', 'data': []});
                 }
             };
 
             scope.closeFpsMeter = function() {
-                //workerManager.closeFPSmeter();
                 kindStreamInterface.controlWorker({'channelId':0, 'cmd':'closeFPSmeter', 'data': []});
             };
 
             scope.changeFpsFrame = function() {
-                console.log("fpsFrameNum = " + scope.globalNavigationBar.fpsFrameNum);
-                //workerManager.setFpsFrame(scope.globalNavigationBar.fpsFrameNum);
                 kindStreamInterface.controlWorker({'channelId':0, 'cmd':'setFpsFrame', 'data': [scope.globalNavigationBar.fpsFrameNum]});
             };
 
