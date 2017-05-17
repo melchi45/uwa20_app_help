@@ -35,16 +35,6 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             }
             $scope.FocusModeOptions = mAttr.FocusModeOptions;
             $scope.IRShiftOptions = mAttr.IRShiftOptions;
-            if (typeof $scope.IRShiftOptions !== 'undefined') {
-                for(var i = 0; i < $scope.IRShiftOptions.length; i++) {
-                    if($scope.IRShiftOptions[i] !== 'Off') {
-                        var option = $scope.IRShiftOptions[i];
-                        if(option.indexOf('nm') === -1) {
-                            $scope.IRShiftOptions[i] = angular.copy(option + 'nm');
-                        }
-                    }
-                }
-            }
             $scope.MaxChannel = mAttr.MaxChannel;
             $scope.IrisModeOptions = mAttr.IrisModeOptions;
             checkICSLensSupport();
@@ -99,6 +89,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         var setData = {};
 
         setData.Mode = mode;
+        setData.Channel = UniversialManagerService.getChannelId();
         var coordi = sketchbookService.get();
         if(coordi[0].isSet){
             setData.FocusAreaCoordinate = coordi[0].x1 + "," + coordi[0].y1 + "," + coordi[0].x2 + "," + coordi[0].y2;
@@ -193,9 +184,6 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                 $scope.FastAutoFocus = response.data.Focus[0].FastAutoFocus;
                 $scope.TCEnable = angular.copy(response.data.Focus[0].TemperatureCompensationEnable);
                 $scope.IRShift = angular.copy(response.data.Focus[0].IRShift);
-                if($scope.IRShift !== 'Off') {
-                    $scope.IRShift += 'nm';
-                }
             },
             function (errorData) {}, '', true);
     }
@@ -259,14 +247,7 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
     $scope.IRShiftChange = function() {
         var setData = {};
-        var IRShift = null;
-        if($scope.IRShift !== 'Off') {
-            IRShift = $scope.IRShift;
-            IRShift = IRShift.replace('nm','');
-            setData.IRShift = IRShift;
-        } else {
-            setData.IRShift = $scope.IRShift;
-        }
+        setData.IRShift = $scope.IRShift;
 
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=set', setData,
             function (response) {

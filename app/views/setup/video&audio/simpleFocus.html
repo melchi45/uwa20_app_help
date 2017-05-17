@@ -24,7 +24,7 @@
                     coordinates='coordinates'>
                 </sketchbook>
                 <div class="wn5-setup-preview">
-                    <div class="form-group" ng-show="FastAutoFocusDefined">
+                    <div class="form-group" ng-show="FastAutoFocusDefined && Lens !== 'ICS'">
                         <div class="wn5-setup-preview-heading">{{ 'lang_fastmode' | translate }} </div>
                         <div class="wn5-setup-preview-content">
                             <input type="checkbox" ng-model="FastAutoFocus" ng-change="setFastAutoFocus()">
@@ -60,23 +60,7 @@
                     
                     <div class="form-group" ng-if="Lens=='ICS'">
                         <div class="form-group">
-                            <div class="wn5-setup-preview-heading"> {{ 'FB(Flange Back) Adjust' }} </div>
-                            <div class="wn5-setup-preview-content">
-                                <input type="checkbox" ng-model="$parent.FBAdjustEnable" ng-change="setFBEnable()">
-                                <label>{{'lang_enable'|translate}}</label>
-                            </div>
-                        </div>
-                        <div class="form-group btn-list" ng-show="FBAdjustEnable===true">
-                            <div class="simple-focus-icon">
-                                <span class="tui tui-wn5-ptz-near"></span>
-                            </div>
-                            <input class="btn btn-white" type="button" name="FocusLevel" ng-model="AdjustLevel" ng-value="option" ng-repeat="option in SimpleFocusOptions" ng-click="FBAdjust(option)">
-                            <div class="simple-focus-icon">
-                                <span class="tui tui-wn5-ptz-far"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="wn5-setup-preview-heading">{{ 'IR Shift' }}</div>
+                            <div class="wn5-setup-preview-heading">{{ 'IR Corrected' }}</div>
                             <div class="wn5-setup-preview-content">
                                 <select 
                                     class="form-control video-pattern" 
