@@ -48,8 +48,8 @@ kindFramework.directive('channelPlayer',
                     {
                         elem.empty();
                         createPlugInInstallElement();
-                        $rootScope.$emit('changeLoadingBar', false);
                     }
+                    $rootScope.$emit('changeLoadingBar', false);
                     return;
                 }
 
