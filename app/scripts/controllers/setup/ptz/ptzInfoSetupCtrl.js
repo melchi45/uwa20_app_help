@@ -1155,8 +1155,10 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
                 }
                 else
                 {
-                    schedule.AutoPanSpeed = $scope.AutoRun.ModeAutoPan.AutoPanSpeed;
-                    schedule.AutoPanTiltAngle = $scope.AutoRun.ModeAutoPan.AutoPanTiltAngle;
+                    if ($scope.AutoRun.ModeAutoPan != undefined) {
+                        schedule.AutoPanSpeed = $scope.AutoRun.ModeAutoPan.AutoPanSpeed;
+                        schedule.AutoPanTiltAngle = $scope.AutoRun.ModeAutoPan.AutoPanTiltAngle;
+                    }
                 }
 
                 break;
@@ -1262,9 +1264,11 @@ kindFramework.controller('ptzInfoSetupCtrl', function ($scope, $location, $uibMo
         }
         else if ($scope.AutoRun.Mode === 'AutoPan')
         {
-            setData.ActivationTime = $scope.AutoRun.ModeAutoPan.ActivationTime;
-            setData.AutoPanSpeed = $scope.AutoRun.ModeAutoPan.AutoPanSpeed;
-            setData.AutoPanTiltAngle = $scope.AutoRun.ModeAutoPan.AutoPanTiltAngle;
+            if ($scope.AutoRun.ModeAutoPan != undefined) {
+                setData.ActivationTime = $scope.AutoRun.ModeAutoPan.ActivationTime;
+                setData.AutoPanSpeed = $scope.AutoRun.ModeAutoPan.AutoPanSpeed;
+                setData.AutoPanTiltAngle = $scope.AutoRun.ModeAutoPan.AutoPanTiltAngle;
+            }
         }
         else if ($scope.AutoRun.Mode === 'Schedule')
         {

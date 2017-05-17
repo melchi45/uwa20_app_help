@@ -3859,13 +3859,42 @@ var SketchManager = (function() {
             openDialog: function(index, type) {
                 var modalInstance = dialog.open({
                     templateUrl: sketchInfo.modalId,
-                    controller: ['$scope', '$uibModalInstance', 'Attributes', 'COMMONUtils', function($scope, $uibModalInstance, Attributes, COMMONUtils) {
+                    controller: ['$scope', '$uibModalInstance', 'Attributes', 'COMMONUtils', 'SunapiClient', function($scope, $uibModalInstance, Attributes, COMMONUtils, SunapiClient) {
                         var mAttr = Attributes.get();
                         $scope.AlphaNumericStr = mAttr.AlphaNumericStr;
                         $scope.AutoTrackingNameMaxLen = 10;
+                        $scope.autotrackingDataReady = true;
+                        var autotrackingView = function(){
+                            SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=view', {},
+                                function (response) {
+                                    $scope.AutoTrackingAreas = response.data.AutoTracking[0].TrackingAreas;
+                                    if(!$scope.AutoTrackingAreas) $scope.AutoTrackingAreas = [];
+                                    $scope.autotrackingDataReady = false;
+                                },
+                                function (errorData) {
+                                    $scope.AutoTrackingAreas = [];
+                                    $scope.autotrackingDataReady = false;
+                                },'',true);
+                        };
+                        autotrackingView();
+                        var autorackingNameCheck = function(name){
+                            var name_duplication = false;
+                            for(var i = 0; i<$scope.AutoTrackingAreas.length; i++){
+                                var _tmpArea = $scope.AutoTrackingAreas[i];
+                                if(name == _tmpArea.TrackingArea) {
+                                    name_duplication = true;
+                                    break;
+                                }
+                            }
+                            return name_duplication;
+                        };
                         $scope.ok = function() {
                             var autoName = $(".autoTracking-name-input").val();
                             if (!autoName) return;
+                            if (autorackingNameCheck(autoName) === true) {
+                                COMMONUtils.ShowError('lang_msg_id_duplicate');
+                                return;
+                            }
                             var coor = autoTracking.get();
                             var autoTrackingData = {};
                             if (sketchInfo.shape === 0) {
