@@ -457,7 +457,10 @@ kindFramework
           break;
         case 15 :
           data.type = 'AutoTracking';
-          $rootScope.$emit('AutoTrackingStatus', {type: 'AutoTracking', value: data.value});
+          // $rootScope.$emit('AutoTrackingStatus', {type: 'AutoTracking', value: data.value});
+          break;
+        case 16 :
+          data.type = 'TrackingEnable';
           break;
       }
 
