@@ -64,6 +64,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 	 		if (mode === 'originalsize' || (curViewMode === 'originalsize' && (mode === 'resize' || mode.type === 'resize') ) ) {
 				 if(mode === 'originalsize'){
 					curViewMode = mode;
+					$rootScope.curViewMode = mode;
 				 }
 	 			container.css("overflow", "auto");
 
@@ -82,6 +83,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 	 		} else if (mode === 'fit' || (curViewMode === 'fit' && (mode === 'resize' || mode.type === 'resize') ) ) {
 	 			if(mode === 'fit'){
 					curViewMode = mode;
+					$rootScope.curViewMode = mode;
 				}
 	 			container.css("overflow", "hidden");
 
@@ -112,6 +114,7 @@ kindStreamModule.factory('kindStreamInterface', function(ConnectionSettingServic
 				 // mode가 텍스트 뿐만아니라 객체.type 으로도 넘어옵니다
 	 			if (mode === 'originalratio') {
 	  				curViewMode = mode; // when dynamically browser size changed, check ratio mode with this var
+					$rootScope.curViewMode = mode;
 	  			}
 	  			container.css("overflow", "hidden");
 				  
@@ -491,6 +494,9 @@ return {
     },
     getIspreview: function() {
     	return ispreview;
-    }
+    },
+	locChangeViewmode: function () {
+		setCanvasStyle($rootScope.curViewMode);
+	}
   };
 });
