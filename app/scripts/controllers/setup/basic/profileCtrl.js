@@ -2208,7 +2208,8 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
                         'message': 'lang_crop_set_area',
                         'cropArea': cropArea,
                         'cropRatio': cropRatio,
-                        'cropEnable': cropEnable
+                        'cropEnable': cropEnable,
+                        'channelId': UniversialManagerService.getChannelId()
                     };
                 }
             }

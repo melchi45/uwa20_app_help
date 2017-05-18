@@ -21,13 +21,13 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.sdcardEnable = false;
 
 
-    
-    
+
+
     /*
-    ID : 숫자,알파벳,특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능.
-    Password : 숫자,알파벳,특수문자(~ ! @ $ ^ * _ - { } [ ] . / ?) 입력가능하고 이외 문자는 설정 불가능
-    Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능
-    */
+     ID : 숫자,알파벳,특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능.
+     Password : 숫자,알파벳,특수문자(~ ! @ $ ^ * _ - { } [ ] . / ?) 입력가능하고 이외 문자는 설정 불가능
+     Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능
+     */
     //$scope.NASUserIDPattern = "^[a-zA-Z0-9~`!@$^*()_\\-|{}\\[\\];,./?]*$";
     /** Password and ID has same pattern - ~`!@$^*()_-|{}[];,./? */
     //$scope.NASPasswordPattern = $scope.NASUserIDPattern;
@@ -67,10 +67,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         var getData = {};
 
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=sdcardinfo&action=view', getData,
-            function (response) {  
-
+            function (response) {
                 var idx = 0;
-                
                 var TableData = response.data;
                 var MultiChannelEnableData = $scope.Storageinfo.Storages[idx].Enable;
 
@@ -124,7 +122,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             Channel : 0
         };
 
-        return SunapiClient.get("/stw-cgi/recording.cgi?msubmenu=storage&action=view", getData, 
+        return SunapiClient.get("/stw-cgi/recording.cgi?msubmenu=storage&action=view", getData,
             function (response) {
                 $scope.storageData = response.data.storage;
                 $scope.pageData.storageData = angular.copy($scope.storageData[0]);
@@ -133,7 +131,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                 $scope.RecordStorageInfo.AutoDeleteEnable = $scope.storageData[0].AutoDeleteEnable;
                 $scope.RecordStorageInfo.AutoDeleteDays = $scope.storageData[0].AutoDeleteDays;
                 $scope.RecordSchedule.Activate = "Always";
-            }, 
+            },
             function (errorData) {
                 console.log(errorData);
             }, '', true);
@@ -436,9 +434,9 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         setData.OverWrite = $scope.RecordStorageInfo.OverWrite;
         setData.AutoDeleteEnable = $scope.RecordStorageInfo.AutoDeleteEnable;
         if(!($scope.RecordStorageInfo.AutoDeleteDays == undefined || $scope.RecordStorageInfo.AutoDeleteDays == '')){
-        setData.AutoDeleteDays = $scope.RecordStorageInfo.AutoDeleteDays;
+            setData.AutoDeleteDays = $scope.RecordStorageInfo.AutoDeleteDays;
         }
-        
+
         queue.push({
             url: '/stw-cgi/recording.cgi?msubmenu=storage&action=set',
             reqData: setData,
@@ -482,7 +480,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         var setData = $scope.setStorageInfoData(otherStorage);
 
         queue.push({
-            url: '/stw-cgi/system.cgi?msubmenu=storageinfo&action=set', 
+            url: '/stw-cgi/system.cgi?msubmenu=storageinfo&action=set',
             reqData: setData,
             successCallback: function(response) {
                 pageData.Storageinfo.Storages[otherStorage] = angular.copy($scope.Storageinfo.Storages[otherStorage]);
@@ -493,7 +491,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     function setStorageInfo(index, queue) {
         var setData = {};
         setData = $scope.setStorageInfoData(index);
-        
+
         queue.push({
             url: '/stw-cgi/system.cgi?msubmenu=storageinfo&action=set',
             reqData: setData,
@@ -711,7 +709,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         }, '', true);
     }
 
- 
+
 
 
     $scope.OnStorageSelection = function(index) {
@@ -790,17 +788,18 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         $q.seqAll(promises).then(setAttribute).then(function() {
             $scope.pageLoaded = true;
             UniversialManagerService.setChannelId($scope.Channel);
-            
+
             $scope.$emit('recordPageLoaded', $scope.RecordSchedule.Activate);
             $rootScope.$emit('changeLoadingBar', false);
-            
+
             $("#storagepage").show();
         }, function(errorData) {
             console.log(errorData);
         });
     }
 
-    function saveStorage(newChannel) {
+    function saveStorage() {
+        var deferred = $q.defer();
         var promises = [],
             queue = [],
             promise;
@@ -809,14 +808,10 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             $rootScope.$emit('changeLoadingBar', true);
 
             SunapiClient.sequence(queue, function(){
-                if(newChannel !== undefined) {
-                    $rootScope.$emit("channelSelector:changeChannel", newChannel);
-                    $scope.Channel = newChannel;
-                }
-                
                 $scope.$emit("offAlreadyCreated", true);
-                window.setTimeout(view, 1000);
+                deferred.resolve();
             }, function(errorData) {
+                deferred.reject(errorData);
                 console.error(errorData);
             });
         }
@@ -889,16 +884,21 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             $q
                 .seqAll(promises)
                 .then(
-                    callSequence, 
-                    function(errorData){}
-                );   
+                    callSequence,
+                    function(errorData){
+                        deferred.reject(errorData);
+                    }
+                );
         }else{
             console.info('is no modify');
-            callSequence();        
+            callSequence();
         }
+
+        return deferred.promise;
     }
 
     function set() {
+        var deferred = $q.defer();
         var modalInstance;
         if (validatePage()) {
             var otherstorage;
@@ -909,12 +909,24 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             }
             if (typeof mAttr.RecordStreamLimitation !== 'undefined' && mAttr.RecordStreamLimitation === true && ((($scope.Storageinfo.Storages[$scope.SelectedStorage].Enable !== pageData.Storageinfo.Storages[$scope.SelectedStorage].Enable) && $scope.Storageinfo.Storages[$scope.SelectedStorage].Enable === 'On') || (($scope.Storageinfo.Storages[otherstorage].Enable !== pageData.Storageinfo.Storages[otherstorage].Enable) && $scope.Storageinfo.Storages[otherstorage].Enable === 'On'))) {
                 COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
-                    COMMONUtils.ApplyConfirmation(saveStorage);
+                    COMMONUtils.ApplyConfirmation(function(){
+                        saveStorage().then(function(){
+                            deferred.resolve();
+                            window.setTimeout(view, 1000);
+                        }, deferred.reject);
+                    });
                 });
             } else {
-                COMMONUtils.ApplyConfirmation(saveStorage);
+                COMMONUtils.ApplyConfirmation(function(){
+                    saveStorage().then(function(){
+                        deferred.resolve();
+                        window.setTimeout(view, 1000);
+                    }, deferred.reject);
+                });
             }
         }
+
+        return deferred.promise;
     }
 
     $scope.isLoading = false;
@@ -1005,11 +1017,11 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         var getData = {};
 
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData, function(response) {
-        
+
             var tStorageinfo = response.data;
-        
+
             func(tStorageinfo);
-        
+
         }, function(errorData) {
             console.log(errorData);
             startMonitoringStatus();
@@ -1054,10 +1066,10 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                 if(!eventRuleService.checkRecordSchedulerValidation()) okay = false;
             }
         } else okay = false;
-        
+
 
         if(!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) okay = false;
-        
+
         if(okay) {
             $scope.Channel = data;
 
@@ -1069,13 +1081,12 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             COMMONUtils
                 .confirmChangeingChannel()
                 .then(function () {
-                    if (validatePage()) {
-                        COMMONUtils.ShowInfo('lang_msg_SDCapabilityLimit', function() {
-                            COMMONUtils.ApplyConfirmation(function () {
-                                saveStorage(data);
-                            });
-                        });
-                    }
+                    set().then(function(){
+                        if(data !== undefined) {
+                            $rootScope.$emit("channelSelector:changeChannel", data);
+                            $scope.Channel = data;
+                        }
+                    });
                 });
         }
     }, $scope);
@@ -1108,12 +1119,12 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             });
         }
     })();
-    
+
     $scope.submit = set;
     $scope.view = function () {
         $rootScope.$emit("changeLoadingBar", true);
         $scope.$emit("offAlreadyCreated", true);
-        
+
         view();
     }
     $scope.validate = validatePage;

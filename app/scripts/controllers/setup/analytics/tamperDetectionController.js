@@ -105,7 +105,8 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                         support_ptz: false,
                         rotate: rotate,
                         adjust: adjust,
-                        currentPage: 'TamperingDetection'
+                        currentPage: 'TamperingDetection',
+                        channelId: UniversialManagerService.getChannelId()
                     };
                     $scope.ptzinfo = {
                         type: 'none'
@@ -466,7 +467,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        UniversialManagerService.setChannelId(index);
         view();
     }
 

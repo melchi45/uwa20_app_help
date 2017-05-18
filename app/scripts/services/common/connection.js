@@ -244,7 +244,7 @@ kindFramework
         newUrl += data.channel +"/";
       }
       newUrl += "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp";
-      workerManager.playbackSeek();
+      //workerManager.playbackSeek();
       playerInfo.media.type = 'playback';
       playerInfo.media.requestInfo.cmd = 'seek';
       playerInfo.media.requestInfo.url = newUrl;
@@ -292,7 +292,7 @@ kindFramework
         newUrl += data.channel +"/";
       }
       newUrl += "recording/"+data.time+"/OverlappedID="+data.id+"/play.smp"; 
-      workerManager.playbackSpeed(speed);
+      //workerManager.playbackSpeed(speed);
       /*
       * If speed direction changed, send seek command instead of speed command.
       */

@@ -7,6 +7,7 @@ kindFramework.controller('ModalInstnceCropCtrl',
     var cropArea = data.cropArea.split(",");
     var cropRatio = data.cropRatio;
     var cropEnable = data.cropEnable;
+    var channelId = data.channelId;
     var mAttr = Attributes.get();
     var viewerWidth = 640;
     var viewerHeight = 360;
@@ -122,6 +123,7 @@ kindFramework.controller('ModalInstnceCropCtrl',
                   adjust: adjust,
                   minCropResolution : minCropResolution,
                   maxCropResolution : maxCropResolution,
+                  channelId : channelId
                 };
 
                 $scope.sketchinfo = {

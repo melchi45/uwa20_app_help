@@ -948,8 +948,6 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                 showVideo();
                 $("#videosetuppage").show();
                 $rootScope.$emit('changeLoadingBar', false);
-                $rootScope.$emit("channelSelector:changeChannel", $scope.targetChannel);
-                UniversialManagerService.setChannelId($scope.targetChannel);
 
                 
                 // IE접속 후 패턴 9개 이상 등록 후 (패턴 선택 탭에서 스크롤이 생길 시) 채널 이동 시 Height 값이 무한대로 늘어나는 이슈
@@ -1009,7 +1007,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     }
 
     function saveSettings() {
-
+        var deferred = $q.defer();
         var rotateChanged = false;
         var mountModeChanged = false;
         var functionlist = [];
@@ -1053,7 +1051,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         if(functionlist.length > 0){
             $q.seqAll(functionlist).then(
                 function() {
-
+                    deferred.resolve();
                     if ($scope.cameraPositionList !== undefined) {
                         if (!angular.equals(pageData.viewModes, $scope.viewModes)) {
                             COMMONUtils.ShowConfirmation(changeMountMode, 'lang_msg_mountModeChange_Profile', 'md');
@@ -1076,13 +1074,19 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                         });
                         modalInstance.result.then(COMMONUtils.onLogout, COMMONUtils.onLogout);
                     }
-                    UniversialManagerService.setChannelId($scope.targetChannel);
                     view();
                 },
                 function(errorData){
+                    deferred.reject(errorData);
                 }
             );
+        }else{
+            setTimeout(function(){
+                deferred.resolve();
+            });
         }
+
+        return deferred.promise;
     }
 
 
@@ -1224,7 +1228,8 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
             support_ptz: mAttr.PTZModel,
             support_zoomOnly: mAttr.ZoomOnlyModel,
             rotate: rotate,
-            adjust: adjust
+            adjust: adjust,
+            channelId: UniversialManagerService.getChannelId()
         };
         $scope.ptzinfo = {
             type: 'none'
@@ -1321,14 +1326,18 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                     modalInstance.result.then(function() {
                         $rootScope.$emit('changeLoadingBar', true);
                         $scope.targetChannel = data;
-                        saveSettings();
+                        saveSettings().then(function(){
+                            $rootScope.$emit("channelSelector:changeChannel", data);
+                        });
                     },
                     function() {
                     });
                 } else {
                     $rootScope.$emit('changeLoadingBar', true);
                     $scope.targetChannel = data;
-                    saveSettings();
+                    saveSettings().then(function(){
+                        $rootScope.$emit("channelSelector:changeChannel", data);
+                    });
                 }
             },
             function() {
@@ -1336,7 +1345,6 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         } else {
             $rootScope.$emit('changeLoadingBar', true);
             $scope.targetChannel = data;
-            UniversialManagerService.setChannelId(data);
             $rootScope.$emit("channelSelector:changeChannel", data);
             view();
         }

@@ -1,5 +1,5 @@
 [
-	"kind/common_modules/**",
+	"media/**",
 	"views/**",
 	"*.html",
 	"*.js",

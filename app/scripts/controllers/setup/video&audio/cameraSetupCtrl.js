@@ -3973,6 +3973,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
 
     function saveSettings() {
         showLoadingBar(true);
+
+        var deferred = $q.defer();
         var functionList = [];
         //if (mAttr.PTZModel !== true) {
             ///stw-cgi/media.cgi?msubmenu=videosource&action=set
@@ -4119,7 +4121,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         if(functionList.length > 0){
             $q.seqAll(functionList).then(
                     function () {
-                        UniversialManagerService.setChannelId($scope.targetChannel);
+                        deferred.resolve();
                         if($scope.isMultiChannel && $scope.channelChanged){
                             var promise = getAttributes();
                             promise.then(function () { view();});
@@ -4127,9 +4129,18 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                             view();
                         }
                     },
-                    function (errorData) {showLoadingBar(false);}
+                    function (errorData) {
+                        deferred.reject(errorData);
+                        showLoadingBar(false);
+                    }
             );
+        }else{
+            setTimeout(function(){
+                deferred.resolve();
+            });
         }
+
+        return deferred.promise;
     }
 
     function set() {
@@ -6747,7 +6758,8 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                         mirror: mirror,
                         support_ptz: false,
                         rotate: rotate,
-                        adjust: adjust
+                        adjust: adjust,
+                        channelId: UniversialManagerService.getChannelId()
                     };
 
                     $scope.ptzinfo = {
@@ -6889,16 +6901,16 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
             COMMONUtils
                 .confirmChangeingChannel().then(function() {
                 if(validatePage()) {
-                    $rootScope.$emit("channelSelector:changeChannel", data);
                     $scope.targetChannel = data;
-                    saveSettings();
+                    saveSettings().then(function(){
+                        $rootScope.$emit("channelSelector:changeChannel", data);
+                    });
                 }
             },
             function() {
             });
         } else {
             showLoadingBar(true);
-            UniversialManagerService.setChannelId(data);
             $scope.targetChannel = data;
             $rootScope.$emit("channelSelector:changeChannel", data);
             var promise = getAttributes();

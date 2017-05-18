@@ -285,7 +285,8 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                         support_ptz: false,
                         rotate: rotate,
                         adjust: adjust,
-                        currentPage: 'DefocusDetection'
+                        currentPage: 'DefocusDetection',
+                        channelId: UniversialManagerService.getChannelId()
                     };
                     $scope.ptzinfo = {
                         type: 'none'
@@ -335,14 +336,42 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                 $scope.pageLoaded = true;
                 $timeout(setSizeChart);
             });
+        }
     }
+
+    function saveSettings(){
+        var deferred = $q.defer();
+        var promises = [];
+
+        if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect))
+        {
+            promises.push(setDefocusDetection);
+        }
+
+        var endSettings = function(){
+            $scope.$emit('applied', true);
+            deferred.resolve(true);
+            view();
+        };
+
+        if(promises.length > 0){
+            $q.seqAll(promises).then(function(){
+                endSettings();
+            }, function(errorData){
+                console.error(errorData);
+            });
+        } else {
+            endSettings();
+        }
+
+        return deferred.promise;
     }
 
     function set()
     {
         if (validatePage())
         {
-            if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect) || !angular.equals(pageData.EventRule, $scope.EventRule))
+            if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect) || !eventRuleService.checkEventRuleValidation())
             {
                 var modalInstance = $uibModal.open({
                     templateUrl: 'views/setup/common/confirmMessage.html',
@@ -358,24 +387,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
 
                 modalInstance.result.then(function ()
                 {
-                    var promises = [];
-
-                    if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect))
-                    {
-                        promises.push(setDefocusDetection);
-                    }
-
-                    if(promises.length > 0){
-                        $q.seqAll(promises).then(function(){
-                            $scope.$emit('applied', true);
-                            view();
-                        }, function(errorData){
-                            console.error(errorData);
-                        });
-                    } else {
-                        $scope.$emit('applied', true);
-                        view();
-                    }
+                    saveSettings();
                 }, function ()
                 {
 
@@ -496,10 +508,32 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     });
 
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-        $rootScope.$emit('changeLoadingBar', true);
-        UniversialManagerService.setChannelId(index);
-        view();
+
+        if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect) || !eventRuleService.checkEventRuleValidation()){
+            if(validatePage()){
+                COMMONUtils
+                    .confirmChangeingChannel()
+                    .then(function(){
+                        $rootScope.$emit('changeLoadingBar', true);
+                        saveSettings().then(function(){
+                            changeChannel(index);
+                        });
+                    }, function(){
+                        console.log("canceled");
+                    });    
+            }
+        }else{
+            $rootScope.$emit('changeLoadingBar', true);
+            changeChannel(index);
+        }
+
     }, $scope);
+
+    function changeChannel(index){
+        // $rootScope.$emit('changeLoadingBar', true);
+        $rootScope.$emit("channelSelector:changeChannel", index);
+        view();
+    }
 
     $scope.submit = set;
     $scope.view = view;

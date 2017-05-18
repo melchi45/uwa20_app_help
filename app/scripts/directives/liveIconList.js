@@ -106,11 +106,10 @@ kindFramework.directive('liveIconList', function(
 		    }
 
 		    function toggleChannelFunctions(type){
-		      var PrevShowStatus = scope.channelSetFunctions["show"];
-
-		      if(scope.channelSetFunctions["show"] === false || scope.channelSetFunctions[type] === true){
-		        scope.channelSetFunctions["show"] = !scope.channelSetFunctions["show"];
-		      }
+		    	var PrevShowStatus = scope.channelSetFunctions["show"];
+		       if(scope.channelSetFunctions["show"] === false || scope.channelSetFunctions[type] === true){
+		         scope.channelSetFunctions["show"] = !scope.channelSetFunctions["show"];
+		       }
 
 		      for(var key in scope.channelSetFunctions){
 		        if(key !== "show"){
@@ -133,13 +132,36 @@ kindFramework.directive('liveIconList', function(
 		      	$timeout(scope.setChannelSize);
 		      }
 		    }
+		    
+			$rootScope.$saveOn('liveIconList:setProfileAccessInfo', function(event){
+				$timeout(setProfileAccessInfo, 1000);
+			});
 
 		    function setProfileAccessInfo(){
 		      return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=profileaccessinfo&action=view', '',
 		        function (response) {
 		          scope.$apply(function(){
-		            scope.profileAccessInfoList = response.data.ProfileAccessInfo.ProfileInfo[0].Profiles;
-		            scope.profileAccessUserList = response.data.ProfileAccessInfo.Users;
+								scope.profileAccessUserList = {};
+								var channelId = UniversialManagerService.getChannelId();
+		            scope.profileAccessInfoList = response.data.ProfileAccessInfo.ProfileInfo[channelId].Profiles;
+								var currentUsers = response.data.ProfileAccessInfo.Users;
+								if(scope.isMultiChannel){
+									for(var index = 0; index < currentUsers.length; index++){
+										if(currentUsers[index].ChannelBasedUserProfile !== undefined){
+											currentUsers[index].ProfileNameList = {};
+											for(var j=0; j < currentUsers[index].ChannelBasedUserProfile.length; j++){
+												if(currentUsers[index].ChannelBasedUserProfile[j].Channel === channelId){
+													currentUsers[index].ProfileNameList = currentUsers[index].ChannelBasedUserProfile[j].ProfileNameList;
+												}
+											}
+											if(currentUsers[index].ProfileNameList.length === 0){
+												currentUsers.splice(index, 1);
+											}
+										}
+									}
+								}
+
+		            scope.profileAccessUserList = currentUsers;
 		            for (var index=0; index < scope.profileAccessInfoList.length ; index++)
 		            {
 		              scope.profileAccessInfoList[index].Name = scope.profileList[index].Name;
@@ -299,34 +321,20 @@ kindFramework.directive('liveIconList', function(
 
 			function loadedAttr(){
 				scope.wisenetCameraFuntions2.ptz.show = (mAttr.ZoomOnlyModel || mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
-
-				if (AccountService.isPTZAble() === false) {
-					scope.wisenetCameraFuntions2.ptz.show = false;
+				if(mAttr.MaxChannel > 1) {
+					scope.isMultiChannel = true;
 				}
-
-        if(mAttr.MaxAudioInput !== undefined)
-        {
-            scope.MaxAudioInput = mAttr.MaxAudioInput;
-        }
-
-        if(mAttr.MaxAudioOutput !== undefined)
-        {
-            scope.MaxAudioOutput = mAttr.MaxAudioOutput;
-        }
-
-				if (AccountService.isPTZAble() === false) {
-					scope.wisenetCameraFuntions2.ptz.show = false;
+                if (AccountService.isPTZAble() === false) {
+                    scope.wisenetCameraFuntions2.ptz.show = false;
+                }
+				if(mAttr.MaxAudioInput !== undefined)
+				{
+					scope.MaxAudioInput = mAttr.MaxAudioInput;
 				}
-
-        if(mAttr.MaxAudioInput !== undefined)
-        {
-            scope.MaxAudioInput = mAttr.MaxAudioInput;
-        }
-
-        if(mAttr.MaxAudioOutput !== undefined)
-        {
-            scope.MaxAudioOutput = mAttr.MaxAudioOutput;
-        }
+				if(mAttr.MaxAudioOutput !== undefined)
+				{
+					scope.MaxAudioOutput = mAttr.MaxAudioOutput;
+				}
 			}
 
 			function wait(){

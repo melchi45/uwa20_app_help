@@ -560,7 +560,8 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
                 support_ptz: false,
                 rotate: rotate,
                 adjust: adjust,
-                currentPage: 'FaceDetection'
+                currentPage: 'FaceDetection',
+                channelId: UniversialManagerService.getChannelId()
             };
             $scope.ptzinfo = {
                 type: 'none'
@@ -997,7 +998,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        UniversialManagerService.setChannelId(index);
         view();
     }
 

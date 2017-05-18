@@ -13,6 +13,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     pageData.MotionDetection = {};
     pageData.rois = [];
     pageData.MotionDetectionEnable = {};
+    pageData.Handover = [{"HandoverList":[]}];
 
     var defaultSensitivity = 80;
     var defaultThreshold = 5;
@@ -61,27 +62,51 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         oldPreset: null
     };
     
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){        
-        if(validatePage()){
-            COMMONUtils
-                .confirmChangeingChannel()
-                .then(function(){
-                    $rootScope.$emit('changeLoadingBar', true);
-                    saveSettings().then(function(){
-                        changeChannel(index);
-                    });
-                }, function(){
-                    console.log("canceled");
-                });    
-        }else{
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        var changeVA = angular.equals(pageData.VA, $scope.VA);
+        // 멀티디렉셔널 Handover 미지원
+        // var changeHandover = angular.equals(pageData.Handover, $scope.Handover);
+
+        var scopeRois = [];
+        for(var i = 0; i < $scope.selectInclude.length; i++){
+            var self = $scope.selectInclude[i];
+            if('Coordinates' in self){
+                delete self.isEnable;
+                scopeRois.push(self);
+            }
+        }
+        for(var i = 0; i < $scope.selectExclude.length; i++){
+            var self = $scope.selectExclude[i];
+            if('Coordinates' in self){
+                delete self.isEnable;
+                scopeRois.push(self);
+            }
+        }
+        var changeRois = angular.equals(pageData.rois, scopeRois);
+        
+        // 멀티디렉셔널 Handover 미지원
+        //  && changeHandover
+        if(changeVA && changeRois && eventRuleService.checkEventRuleValidation()){
             $rootScope.$emit('changeLoadingBar', true);
             changeChannel(index);
+        }else{
+            if(validatePage()){
+                COMMONUtils
+                    .confirmChangeingChannel()
+                    .then(function(){
+                        $rootScope.$emit('changeLoadingBar', true);
+                        saveSettings().then(function(){
+                            changeChannel(index);
+                        });
+                    }, function(){
+                        console.log("canceled");
+                    });    
+            }
         }
     }, $scope);
 
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
-        UniversialManagerService.setChannelId(index);
         view();
     }
 
@@ -867,11 +892,13 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     }
 
     function setMotionDetectionRules(rois){
-       var updatedROIData = [];
+        var updatedROIData = [];
+        $scope.resetVariable();
 
        if($scope.MotionDetection.MotionDetectionEnable === false){
             return;
-       }
+        }
+
         if(rois !== undefined ){
             updatedROIData = updateROIData(rois);
             $scope.changeSelectedIncludeIndex(updatedROIData[0]);
@@ -970,7 +997,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                         support_ptz: false,
                         rotate: rotate,
                         adjust: adjust,
-                        currentPage: 'MotionDetection'
+                        currentPage: 'MotionDetection',
+                        channelId: UniversialManagerService.getChannelId()
                     };
                     $scope.ptzinfo = {
                         type: 'none'
@@ -1205,7 +1233,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function saveSettings() {
         $rootScope.$emit('changeLoadingBar', true);
-        
         var deferred = $q.defer();
         var functionlist = [];
         // SUNAPI SET
@@ -1243,13 +1270,13 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                         function(errorData) {
                             console.log(errorData);
                             endSettings();
-                        }
-                    );
+                            view();
+                        });
                 },
                 function(errorData){
                     console.log(errorData);
-                    view();
                     endSettings();
+                    view();
                 }
             );
         } else {
@@ -1259,12 +1286,10 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                 },
                 function(errorData) {
                     console.log(errorData);
-                    view();
                     endSettings();
-                }
-            );
+                    view();
+            });
         }
-
         return deferred.promise;
     }
 
@@ -1582,7 +1607,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                         setData.Preset = $scope.checkApplyButtonClick? $scope.presetData.preset : $scope.presetData.oldPreset;
                         cmd = $scope.presetCmd + '&action=set';
                     }
-
                     SunapiClient.get(cmd, setData,
                         function (response){
                             deferred.resolve();
@@ -2467,7 +2491,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
             if($scope.MotionDetection.MotionDetectionEnable === true){
                 if(validatePage()){
-                    $rootScope.$emit('changeLoadingBar', true);
                     sketchbookService.removeDrawingGeometry();
                     saveSettings().finally(
                         function(){
@@ -2494,7 +2517,6 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
             if($scope.MotionDetection.MotionDetectionEnable === true){
                 if(validatePage()){
-                    $rootScope.$emit('changeLoadingBar', true);
                     sketchbookService.removeDrawingGeometry();
                     saveSettings().finally(
                         function(){

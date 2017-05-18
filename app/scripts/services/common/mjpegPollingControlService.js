@@ -15,7 +15,8 @@ kindFramework
 
       MJPEGIntervalPromise = $interval(function(){
           MJPEG_SUNAPI_URL = getMJPEGPollingURL(_sequencenum);
-          var rotate = UniversialManagerService.getRotate(),
+          var channelId = UniversialManagerService.getChannelId();
+          var rotate = UniversialManagerService.getRotate(channelId),
             rotateCheck = false;
           if (rotate === "90" || rotate === "270") {
             rotateCheck = true;
@@ -56,12 +57,13 @@ kindFramework
     }
 
     function getMJPEGPollingURL(_sequencenum) {
+        var channelId = UniversialManagerService.getChannelId();
         var restClientConfig = RESTCLIENT_CONFIG.digest;
         var server = restClientConfig.protocol + '://' +  restClientConfig.hostName;
         if (typeof restClientConfig.port !== 'undefined' && restClientConfig.port !== null && restClientConfig.port !== ''){
             server += ':' + restClientConfig.port;
         }
-        return server + '/stw-cgi/video.cgi?msubmenu=snapshot&action=view&Profile=1&SunapiSeqId=' + _sequencenum;
+        return server + '/stw-cgi/video.cgi?msubmenu=snapshot&action=view&Profile=1&Channel=' + channelId + '&SunapiSeqId=' + _sequencenum;
     }
 
     function leadingZeros(n, digits) 

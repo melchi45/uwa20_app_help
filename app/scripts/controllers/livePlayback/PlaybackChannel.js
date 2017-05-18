@@ -145,7 +145,8 @@ kindFramework
       });
       kindStreamInterface.setResizeEvent();
       kindStreamInterface.setCanvasStyle($scope.viewMode, 'Playback');
-      workerManager.initVideo(false);
+      //workerManager.initVideo(false);
+      kindStreamInterface.controlWorker({'channelId':0, 'cmd':'initVideo', 'data': [false]});
       return def.promise;
     };
 
@@ -343,10 +344,21 @@ kindFramework
         function(errorDate){
         }, '', true);      
     }
+
+    function GetFlipMirror() {
+      return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', '',
+        function (response) {
+          UniversialManagerService.setRotate(response.data.Flip);
+        },
+          function (errorData) {
+          console.log(errorData);
+      }, '', true);
+    }
     
     // When connect to PlaybackChannel at first,
     $scope.$on('$stateChangeSuccess', 
       function(event, toState, toParams, fromState, fromParams){
+        GetFlipMirror();
         console.log(fromState," :->", toState);
         getStreamingInfo();
         self.resetUI();
@@ -421,7 +433,10 @@ kindFramework
 
     /* Channel Selector Direction */
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+      var playData = new PlayDataModel();
       UniversialManagerService.setChannelId(index);
+      playData.setStatus(PLAY_CMD.STOP);
+      $scope.timelineController.clear();
       PlaybackInterface.preparePlayback(index);
     }, $scope);
 

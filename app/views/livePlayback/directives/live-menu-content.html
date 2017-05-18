@@ -151,7 +151,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="Users in profileAccessUserList">
-                <td>{{Users.ProfileNameList[0]}}</td>
+                <td><div ng-repeat="profileName in Users.ProfileNameList track by $index">{{profileName}}</div></td>
                 <td>{{Users.ClientBitrate}}</td>
                 <td>{{Users.ClientNetworkConnectionStatus}}</td>
                 <td>{{Users.ClientIPAddress}}</td>

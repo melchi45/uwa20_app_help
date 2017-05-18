@@ -106,7 +106,8 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                     support_ptz: false,
                     rotate: rotate,
                     adjust: adjust,
-                    currentPage: 'Fog'
+                    currentPage: 'Fog',
+                    channelId: UniversialManagerService.getChannelId()
                 };
                 $scope.ptzinfo = {
                     type: 'none'
@@ -508,7 +509,6 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     function changeChannel(index){
         $rootScope.$emit("channelSelector:changeChannel", index);
         $rootScope.$emit('changeLoadingBar', true);
-        UniversialManagerService.setChannelId(index);
         view();
     }
 
