@@ -67,7 +67,11 @@ kindFramework
         var targetData = data;
 
         if(!(currentEventPage === 'live' || (currentEventPage === targetData.type))){
-          return;
+          if(currentEventPage === 'AutoTracking' && targetData.type === 'TrackingEnable'){
+
+          }else{
+            return;
+          }
         }
 
         switch (targetData.type) {

@@ -47,9 +47,9 @@ kindFramework.directive('channelPlayer',
                     else
                     {
                         elem.empty();
-                        channelPlayerObj.createPlugInInstallElement();
-                        $rootScope.$emit('changeLoadingBar', false);
+                        createPlugInInstallElement();
                     }
+                    $rootScope.$emit('changeLoadingBar', false);
                     return;
                 }
 
@@ -66,7 +66,7 @@ kindFramework.directive('channelPlayer',
                     }
                     else {
                         //????? ??????����
-                        channelPlayerObj.createPlugInInstallElement();
+                        createPlugInInstallElement();
                         $rootScope.$emit('changeLoadingBar', false);
                     }
 
@@ -89,7 +89,7 @@ kindFramework.directive('channelPlayer',
                 if((isPluginMode === true) && (BrowserService.PlugInVersionCheck(elem) === false))
                 {
                     channelPlayerObj.stopStreaming();
-                    channelPlayerObj.createPlugInInstallElement();
+                    createPlugInInstallElement();
                     return;
                 }
 
@@ -98,7 +98,7 @@ kindFramework.directive('channelPlayer',
             }, scope);
 
             $rootScope.$saveOn('channelPlayer:command', function(event, type, command, callback) {
-                console.log("Requested command {  Type : " + type + " }");
+                console.log("Requested command {  Type : " + type + ", Value : " + command +"}");
                 var isPluginMode = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
 
                 if(channelPlayerObj === null)
@@ -372,10 +372,14 @@ kindFramework.directive('channelPlayer',
                     };
                 }
                 function MJPEG(){
-                    function stopAndNotSupport() {
+                    function stopAndNotSupport(_isNeedPlugIn) {
                         MJPEGPollingControlService.stopStreaming(elem);
                         elem.empty();
-                        createNoSupportPlaybackInPlugInElement();
+
+                        if(_isNeedPlugIn)
+                        {
+                            createPlugInInstallElement();
+                        }
                     }
 
                     this.createStreamElement = function() {
@@ -620,12 +624,6 @@ kindFramework.directive('channelPlayer',
                         }
                     };
 
-                    this.createPlugInInstallElement = function() {
-                        var ElementTemplate = '<div class="cm-plugin-msg">{{ "lang_msg_plugin_install2" | translate }}<br><a href=' + BrowserService.PlugInPath +'><i class="tui tui-wn5-download cm-icon-x15"></i>Plugin</a></div>';
-                        elem.append($compile(ElementTemplate)(scope));
-                        $rootScope.$emit('NeedToInstallPlugIn', true);
-                    };
-
                     this.deleteStreamElement = function(){
                         angular.element(elem.find('kind_stream')).remove();
                         elem.empty();
@@ -675,6 +673,12 @@ kindFramework.directive('channelPlayer',
 
                 return new Player();
             };
+
+            function createPlugInInstallElement(){
+                var ElementTemplate = '<div class="cm-plugin-msg">{{ "lang_msg_plugin_install2" | translate }}<br><a href=' + BrowserService.PlugInPath +'><i class="tui tui-wn5-download cm-icon-x15"></i>Plugin</a></div>';
+                elem.append($compile(ElementTemplate)(scope));
+                $rootScope.$emit('NeedToInstallPlugIn', true);
+            }
 
             function createNoSupportPlaybackInPlugInElement(){
                 var ElementTemplate = '<div class="cm-plugin-msg">{{ "lang_msg_plugin_only_support_ie" | translate }}</div>';
