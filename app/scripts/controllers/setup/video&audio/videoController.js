@@ -1007,7 +1007,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
     }
 
     function saveSettings() {
-
+        var deferred = $q.defer();
         var rotateChanged = false;
         var mountModeChanged = false;
         var functionlist = [];
@@ -1051,7 +1051,7 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
         if(functionlist.length > 0){
             $q.seqAll(functionlist).then(
                 function() {
-
+                    deferred.resolve();
                     if ($scope.cameraPositionList !== undefined) {
                         if (!angular.equals(pageData.viewModes, $scope.viewModes)) {
                             COMMONUtils.ShowConfirmation(changeMountMode, 'lang_msg_mountModeChange_Profile', 'md');
@@ -1077,9 +1077,16 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                     view();
                 },
                 function(errorData){
+                    deferred.reject(errorData);
                 }
             );
+        }else{
+            setTimeout(function(){
+                deferred.resolve();
+            });
         }
+
+        return deferred.promise;
     }
 
 
@@ -1319,16 +1326,18 @@ kindFramework.controller('videoCtrl', function ($scope, SunapiClient, XMLParser,
                     modalInstance.result.then(function() {
                         $rootScope.$emit('changeLoadingBar', true);
                         $scope.targetChannel = data;
-                        $rootScope.$emit("channelSelector:changeChannel", data);
-                        saveSettings();
+                        saveSettings().then(function(){
+                            $rootScope.$emit("channelSelector:changeChannel", data);
+                        });
                     },
                     function() {
                     });
                 } else {
                     $rootScope.$emit('changeLoadingBar', true);
                     $scope.targetChannel = data;
-                    $rootScope.$emit("channelSelector:changeChannel", data);
-                    saveSettings();
+                    saveSettings().then(function(){
+                        $rootScope.$emit("channelSelector:changeChannel", data);
+                    });
                 }
             },
             function() {
