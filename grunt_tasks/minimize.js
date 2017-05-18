@@ -7,6 +7,7 @@ module.exports = function(injection){
 					//Mobile, 9081
 					task = [
 							'shell:less', //less 파일은 css로 바꿈
+							'shell:updateUWAVersion',
 							'clean:temp', //.tmp폴더 삭제
 							'clean:www', //www폴더 비우기
 							'useminPrepare:html', //usemin prepare 모듈 사용
@@ -24,6 +25,7 @@ module.exports = function(injection){
 					//9081
 					task = [
 							'shell:less',
+							'shell:updateUWAVersion',
 							'clean:temp',
 							'clean:www',
 							'useminPrepare:html',

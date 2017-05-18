@@ -202,6 +202,29 @@ module.exports = function(injection){
 						stderr: false
 				}
 		},
+		updateUWAVersion: {
+			command: function(){
+				try {
+					var versionFilePath = './version.txt';
+					var versionData = grunt.file.read(versionFilePath);
+					var uwaConfigPath = './app/base/scripts/config/application_config.js';
+					var uwaConfigData = grunt.file.read(uwaConfigPath);
+
+					versionData = versionData.split(/\r?\n/);
+
+					uwaConfigData = uwaConfigData
+										.replace(/(BRANCH:)([\s]{0,})([\'\"]{1}[0-9a-zA-Z\/\-\_]{0,40}[\'\"]{1})/, "BRANCH: '" + versionData[0] + "'")
+										.replace(/(OPTION:)([\s]{0,})([\'\"]{1}[0-9a-zA-Z\/\-\_]{0,20}[\'\"]{1})/, "OPTION: '" + versionData[1] + "'")
+										.replace(/(VERSION:)([\s]{0,})([\'\"]{1}[0-9a-zA-Z.]{0,15}[\'\"]{1})/, "VERSION: '" + versionData[2] + "'")
+					
+					grunt.file.write(uwaConfigPath, uwaConfigData);
+				}catch(e){
+					console.log(e);
+				}
+
+				return '';
+			}
+		},
 		less: {
 				command: 'node node_modules/less/bin/lessc ' + projectStructure.appCssPath + '/less/app.less ' + projectStructure.appCssPath + '/app.css'
 		}

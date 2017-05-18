@@ -1,10 +1,17 @@
-kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils)
+kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, APP_CONFIG)
 {
     "use strict";
 
     COMMONUtils.getResponsiveObjects($scope);
 
     var mAttr = Attributes.get();
+
+    $scope.UWAVersion = [
+        APP_CONFIG.BRANCH,
+        APP_CONFIG.OPTION,
+        APP_CONFIG.VERSION
+    ].join(' ');
+
 
     $scope.getTranslatedOption = function (Option)
     {
