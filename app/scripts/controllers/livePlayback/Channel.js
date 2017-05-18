@@ -843,6 +843,7 @@ kindFramework
                   defaultProfileID = UniversialManagerService.getDefaultProfileIndex(channelId);
               }
               var RequestProfile = getProfileByIndex($scope.profileList, defaultProfileID);
+              UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
               startStreaming(RequestProfile);
 
               if($scope.channelSetFunctions['show'] === true && $scope.channelSetFunctions['status'] === true){

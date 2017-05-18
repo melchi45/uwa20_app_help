@@ -203,11 +203,13 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
     }
 
     function checkICSLensSupport() {
-        for(var i = 0; i < $scope.IrisModeOptions.length; i++) {
-            var option = $scope.IrisModeOptions[i];
-            if(option.indexOf('ICS') !== -1) {
-                $scope.ICSLensSupport = true;
-                return;
+        if($scope.IrisModeOptions !== undefined) {
+            for(var i = 0; i < $scope.IrisModeOptions.length; i++) {
+                var option = $scope.IrisModeOptions[i];
+                if(option.indexOf('ICS') !== -1) {
+                    $scope.ICSLensSupport = true;
+                    return;
+                }
             }
         }
     }
