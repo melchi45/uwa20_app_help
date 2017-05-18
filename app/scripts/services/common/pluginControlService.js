@@ -9,6 +9,7 @@ kindFramework
         rtspIP = null,
         rtspPort = null,
         userID = null,
+        password = null,
         currentProfile = null;
     var backupCallback = null;
     var PlugInPromise = null;
@@ -35,6 +36,7 @@ kindFramework
       rtspIP = RESTCLIENT_CONFIG.digest.hostName;
       rtspPort = _port;
       userID = _id;
+      password = _password;
       currentProfile = _profile;
       liveStatusCallback = statusCallback;
 
@@ -60,6 +62,9 @@ kindFramework
 
           PlugInPromise = $timeout(function(){
               try{
+                  if(sunapiAttributes.MaxChannel > 1) {
+                    pluginElement.SetWMDInitialize(Number(UniversialManagerService.getChannelId()), 1, "WebCamJSONEvent");
+                  }
                   pluginElement.SetUserFps(fps);
                   pluginElement.PlayLiveStream(rtspIP, Number(rtspPort), Number(currentProfile-1), userID, '', '');
                   $rootScope.$emit('changeLoadingBar', false);
@@ -73,8 +78,6 @@ kindFramework
       }
       startPlay();
     };
-
-
 
     this.stopStreaming = function()
     {
@@ -163,7 +166,8 @@ kindFramework
     };
 
     this.pixcelCount = function(command) {
-      var rotate = UniversialManagerService.getRotate();
+      var channelId = UniversialManagerService.getChannelId();
+      var rotate = UniversialManagerService.getRotate(channelId);
       var resolution = UniversialManagerService.getProfileInfo().Resolution.split("x");
       var width = parseInt(resolution[0], 10);
       var height = parseInt(resolution[1], 10);
@@ -180,6 +184,9 @@ kindFramework
     function openStream() {
       PlugInPromise = $timeout(function(){
         try{
+          if(sunapiAttributes.MaxChannel > 1) {
+            pluginElement.SetWMDInitialize(Number(UniversialManagerService.getChannelId()), 1, "WebCamJSONEvent");
+          }
           pluginElement.SetUserFps(30);
           pluginElement.OpenRecordStream(rtspIP, Number(rtspPort), userID, '', '', overlappedID, playbackTime, '', playbackMode);
           $rootScope.$emit('changeLoadingBar', false);
@@ -274,10 +281,9 @@ kindFramework
         if(UniversialManagerService.isSpeakerOn()){
           pluginElement.StopAudio();
         }
-        pluginElement.CloseStream();
+        _self.stopStreaming();
         timelineCallback = null;
         playbackCallback = null;
-        pluginElement = null;
         console.log("pluginControlService::closePlaybackSession()");
       }
     };
@@ -475,7 +481,8 @@ kindFramework
         PTZContorlService.setManualTrackingMode("True");
 
         if(xPos >=0  && yPos >= 0) {
-            var rotate = UniversialManagerService.getRotate();
+          var channelId = UniversialManagerService.getChannelId();
+            var rotate = UniversialManagerService.getRotate(channelId);
             if(rotate === '90' || rotate === '270') {
                 xPos = Math.ceil(xPos*(10000 / pluginElement.offsetHeight));
                 yPos = Math.ceil(yPos*(10000 / pluginElement.offsetWidth));
@@ -487,7 +494,7 @@ kindFramework
         }
     }
 
-    function runAreaZoom(Pos1, Pos2)
+    function runAreaZoom_string(Pos1, Pos2)
     {
       var setData = {};
       var pluginElement = document.getElementsByTagName("channel_player")[0].getElementsByTagName("object")[0];
@@ -507,11 +514,21 @@ kindFramework
       PTZContorlService.runPTZAreaZoom(setData.X1, setData.Y1, setData.X2, setData.Y2, setData.TileWidth, setData.TileHeight);
     }
 
+    function runAreaZoom(x1, y1, x2, y2)
+    {
+      var pluginElement = document.getElementsByTagName("channel_player")[0].getElementsByTagName("object")[0];
+
+      PTZContorlService.setPTZAreaZoom("start");
+      PTZContorlService.runPTZAreaZoom(x1, y1, x2, y2, pluginElement.offsetWidth, pluginElement.offsetHeight);
+    }    
+
     var reconnectionTimeout = null;
     window.WebCamEvent = function(evId, lp, rp) {
-      $timeout(function(){window._WebCamEvent(evId, lp, rp);},0);
+      $timeout(function(){
+        _WebCamEvent(evId, lp, rp);
+      },0);
     };
-    window._WebCamEvent = function(evId, lp, rp) {
+    function _WebCamEvent(evId, lp, rp) {
       console.log("Plugin WebEvent callback =======> EventID :"+ evId +" Lparam : " + lp + "  Rparam : " + rp);
       switch(evId) {
         case 100:
@@ -566,7 +583,7 @@ kindFramework
           updatePluginEventNotification(lp, rp);
           break;
         case 311: //AreaZoom
-            runAreaZoom(lp, rp);
+            runAreaZoom_string(lp, rp);
             break;
         case 312: //Manual Tracking
             runManualTracking(lp, rp);
@@ -666,6 +683,276 @@ kindFramework
         case 600:
           $rootScope.$emit('changeLoadingBar', (lp == 0 ? false : true));
           break;
+      }
+    };
+
+    window.WebCamJSONEvent = function(ch, evId, sdata) {  //Mutl-directional Plugin webEvent
+        setTimeout(function () {
+            _WebCamJSONEvent(ch, evId, sdata);
+        }, 0)
+    };
+    function _WebCamJSONEvent(ch, evId, sdata) {
+      console.log("WebCamJSONEvent ch, evId, sdata => ", ch, evId, sdata);
+
+      var jsonData = null;
+      
+      try{
+        jsonData = JSON.parse(sdata);   //safari
+      }catch(e){
+        jsonData = sdata;               //ie
+      }
+      
+      switch(evId) {
+          case 100:
+              if (viewMode == '4ch') {
+                  viewer_mode_change(1, ch);
+              } else {
+                  viewer_mode_change(4, ch);
+              }                
+              break;
+          case 101:   //Instant recording start
+              if( backupCallback !== null ) {
+                  console.log("ErrorCallback Receive : Instant recording start");
+                  backupCallback({'errorCode' : 0});
+              }
+              break;
+          case 102:   //Instant recording end
+              /*  jsonData
+                  {
+                      type: 종료type
+                  }
+              */
+              if( backupCallback !== null ) {
+                  console.log("ErrorCallback Receive : Instant recording end");
+                  backupCallback({'errorCode' : 1});
+                  backupCallback = null;
+              }
+              break;
+          case 103:   //Instant recording error
+              /*  jsonData
+                  {
+                      type: 종료type
+                  }
+              */                
+              if( backupCallback !== null ) {
+                  console.log("ErrorCallback Receive : Instant recording has error");
+                  backupCallback({'errorCode' : 1});
+                  backupCallback = null;
+              }
+              break;
+          case 104:   //Playback Backup start
+              if( backupCallback !== null ) {
+                  console.log("ErrorCallback Receive : Playback backup start");
+                  $rootScope.$emit('changeLoadingBar', true);
+                  backupCallback({'errorCode' : 0, 'description' : 'backup'});
+              }
+              break;
+          case 105:   //Playback Backup end
+              /*  jsonData
+                  {
+                      type: 종료type
+                  }
+              */                
+              if( backupCallback !== null ) {
+                  console.log("ErrorCallback Receive : Playback backup end");
+                  backupCallback({'errorCode' : 1, 'description' : 'backup'});
+                  backupCallback = null;
+              }
+              break;
+          case 106:   //Playback Backup Error
+              /*  jsonData
+                  {
+                      type: 종료type
+                  }
+              */                
+              if( backupCallback !== null ) {
+                  console.log("ErrorCallback Receive : Playback backup occurs error");
+                  if(jsonData.type === 13 ) { //HT_CALLBACK_AVI_END_FILE_NO_SIZE
+                      backupCallback({'errorCode' : -3, 'description' : 'backup'});
+                  }
+                  else {
+                      backupCallback({'errorCode' : -1, 'description' : 'backup'});
+                  }
+                  backupCallback = null;
+              }
+              break;
+          case 301:   //Event Notification
+              /*  jsonData
+                  {
+                      data: Metadata,
+                      type: metadata type
+                  }
+              */
+              updatePluginEventNotification(jsonData.type, jsonData.data);
+              break;
+          case 311:   //AreaZoom
+              /*  jsonData
+                  {
+                      x1: x1 좌표,
+                      y1: y1 좌표,
+                      x2: x2 좌표,
+                      y2: y2 좌표
+                  }
+              */                
+              runAreaZoom(jsonData.x1, jsonData.y1, jsonData.x2, jsonData.y2);
+              break;
+          case 312:   //Manual Tracking
+              /*  jsonData
+                  {
+                      x1: x1 좌표,
+                      y1: y1 좌표   
+                  }
+              */
+              // runManualTracking(lp, rp);
+              break;
+          case 351:   //playback timestamp
+              /*  jsonData
+                  {
+                      gmp: GMP Data,
+                      time: timeStamp
+                  }
+              */
+              if( timelineCallback !== null ) {
+                timelineCallback({'timezone':jsonData.gmp,'timestamp':jsonData.time}, stepFlag !== undefined ? stepFlag : undefined);
+              }
+              break;
+          case 352:   //streaming resolution info
+              /*  jsonData
+                  {
+                      width: 1920,
+                      height: 1080
+                  }
+              */                
+              // if(reconnectionTimeout !== null)
+              // {
+              //     $timeout.cancel(reconnectionTimeout);
+              //     $rootScope.$emit('changeLoadingBar', false);
+              //     ModalManagerService.close();
+              // }
+
+              pluginElement.width = jsonData.width;
+              pluginElement.height = jsonData.height;
+              var viewMode = UniversialManagerService.getViewModeType();
+              kindStreamInterface.setCanvasStyle(viewMode);
+              break;
+          case 400:   //rtsp connection success
+              /*  jsonData
+                  {
+                      retrycnt: 접속 횟수,
+                      type: 연결 타입
+                  }
+              */
+              if( jsonData.type === 1 ) {
+                  if( timelineCallback !== null ) {
+                    pluginElement.PlayRecordStream(playbackTime, '', playSpeed);
+                    if( playbackCallback !== null ) {
+                        playbackCallback({'errorCode':"200"});
+                    }              
+                  }
+              }
+              else if( jsonData.type === 3 ) {
+                  pluginElement.StartBackupRecording(sunapiAttributes.ModelName+"_"+playbackTime, playbackTime, '');
+              }
+              break;
+          case 401:   //rtsp unauthorized(401)
+              /*  jsonData
+                  {
+                      retrycnt: 접속 횟수,
+                      type: 연결 타입
+                  }
+              */                
+              $timeout(function(){
+                if( jsonData.type === 0 ) {
+                  rtspDigestAuth('live');
+                  $timeout(function() {
+                      if(UniversialManagerService.isSpeakerOn()){
+                          _self.startAudioListen();
+                          _self.setAudioVolume(UniversialManagerService.getSpeakerVol());
+                      }
+                      if(UniversialManagerService.isMicOn()){
+                          _self.startAudioTalk();
+                      }
+                      if (UniversialManagerService.getPixelCount()) {
+                          _self.pixcelCount({cmd:true});
+                      }
+                  },500);
+                } else if( jsonData.type === 1 || jsonData.type === 3) {
+                  rtspDigestAuth('playback');
+                } else if( jsonData.type === 2 ) {
+                  rtspDigestAuth('audioTalk');
+                }
+              },100);
+              break;
+          case 402:   //rtsp disconnection(5초간 미수신시)
+              console.log("402 error :: try reconnect");
+              pluginElement.CloseStream();
+              if(reconnectionTimeout !== null)
+              {
+                  $timeout.cancel(reconnectionTimeout);
+              }
+
+              reconnectionTimeout = $timeout(liveStatusCallback, 5000, false, 999);
+
+              $rootScope.$emit('changeLoadingBar', true);
+              updatePluginEventNotification(12, 1);
+              // $rootScope.$emit("pluginControlService:updateEvent", data);        
+              break;
+          case 403:   //Rtsp 사용자 계정 블록?
+              /*  jsonData
+                  {
+                      retrycnt: 접속 횟수,
+                      type: 연결 타입
+                  }
+              */
+              break;
+          case 404:   //Rtsp not found(404)
+              /*  jsonData
+                  {
+                      retrycnt: 접속 횟수,
+                      type: 연결 타입
+                  }
+              */                    
+              break;
+          case 405:   //Rtsp client error
+              /*  jsonData
+                  {
+                      retrycnt: 접속 횟수,
+                      type: 연결 타입
+                  }
+              */                    
+              break;
+          case 455:   //Call invalid rtsp method 
+              break;                    
+          case 457:   //Rtsp range error
+              break;                    
+          case 503:   //Rtsp service not available(503)
+              /*  jsonData
+                  {
+                      retrycnt: 접속 횟수,
+                      type: 연결 타입
+                  }
+              */                
+              if( UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK){
+                  if( playbackCallback !== null ) {
+                      playbackCallback({'errorCode' : "503"});
+                  }
+              }else{
+                  if(jsonData.type == 2){
+                      liveStatusCallback(504);  //Talk service unavailable
+                  }else{
+                      liveStatusCallback(503);
+                  }
+              }
+              break;
+          case 600:   //Step busy event 
+              /*  jsonData
+                  {
+                      busy: true/false
+                  }
+              */                
+              // $rootScope.$emit('changeLoadingBar', (lp == 0 ? false : true));
+              $rootScope.$emit('changeLoadingBar', jsonData.busy);
+              break;
       }
     };
 

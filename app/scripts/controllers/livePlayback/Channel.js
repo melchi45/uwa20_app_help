@@ -28,11 +28,12 @@ kindFramework
     var StreamTagType = 'canvas';
     var pageData = {};
     $scope.sliderRefreshInProgress = false;
-    var DEFAULT_CHANNEL=0;
+    //var DEFAULT_CHANNEL=0;
     var cameraMicEnable = false;
     var videoLimitFPS = 3;
     var videoLimitSize = 1920 * 1080;
     var audioEncodingType = null;
+    var channelId = UniversialManagerService.getChannelId();
 
     BaseChannel.prototype.resetSetting = function() {
       if(UniversialManagerService.isSpeakerOn()){
@@ -245,7 +246,7 @@ kindFramework
     function GetFlipMirror() {
       return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', '',
         function (response) {
-          UniversialManagerService.setRotate(response.data.Flip[0].Rotate);
+          UniversialManagerService.setRotate(response.data.Flip);
         },
           function (errorData) {
           console.log(errorData);
@@ -294,7 +295,7 @@ kindFramework
       
       return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=view', '',
         function (response) {
-            $scope.ImageEnhancements = response.data.ImageEnhancements[DEFAULT_CHANNEL];
+            $scope.ImageEnhancements = response.data.ImageEnhancements[channelId];
             pageData.ImageEnhancements = angular.copy($scope.ImageEnhancements);
             initImageEnhancementSettings();
         },
@@ -526,10 +527,16 @@ kindFramework
     };
 
     var getDefaultProfileIndex = function() {
-      var DEFAULT_CHANNEL=0;
+      //var DEFAULT_CHANNEL=0;
       return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', '',
         function (response) {
-          defaultProfileID = response.data.VideoProfilePolicies[DEFAULT_CHANNEL].DefaultProfile;
+          if(sunapiAttributes.MaxChannel > 1){
+            for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
+              UniversialManagerService.setDefaultProfileIndex(response.data.VideoProfilePolicies[i].DefaultProfile, i);
+            }
+          } else {
+            defaultProfileID = response.data.VideoProfilePolicies[channelId].DefaultProfile;
+          }
         },
         function (errorData) {
           ModalManagerService.open('message', { 'buttonCount': 0, 'message': errorData } );
@@ -612,7 +619,7 @@ kindFramework
         $scope.domControls.profileInfo = $scope.profileInfo = _requestProfile;
         $scope.selectedProfile = getProfileIndex(_requestProfile.Profile);
         if(sunapiAttributes.MaxChannel > 1){
-          $scope.profileInfo.ChannelId = 0;
+          $scope.profileInfo.ChannelId = channelId;
           ConnectionSettingService.SetMultiChannelSupport(true);
         }else{
           $scope.profileInfo.ChannelId = null;
@@ -631,7 +638,6 @@ kindFramework
 
         streamtagtype = checkStreamTagType(_requestProfile);
 
-        $rootScope.$emit('changeLoadingBar', true);
         $rootScope.$emit('channelPlayer:play', plugin, ip, port, profile, id, password, streamtagtype, liveStatusCallback, isReconnect);
 
         ptzTypeCheck();
@@ -741,10 +747,18 @@ kindFramework
     }    
 
     var getVideoProfile = function() {
-      var DEFAULT_CHANNEL=0;
+      //var DEFAULT_CHANNEL=0;
       return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
         function (response) {
-          var ProfileList = response.data.VideoProfiles[DEFAULT_CHANNEL].Profiles;
+          var ProfileList;
+          if (sunapiAttributes.MaxChannel > 1) {
+            for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
+              ProfileList = response.data.VideoProfiles[i].Profiles;
+              UniversialManagerService.setProfileList(ProfileList, i);
+            }
+          }
+
+          ProfileList = response.data.VideoProfiles[channelId].Profiles;
           if(ProfileList.length > 1 && ProfileList[1].IsDigitalPTZProfile !== undefined)
           {
             sunapiAttributes.isDigitalPTZ = true;
@@ -798,10 +812,10 @@ kindFramework
     };
 
     var getAudioOutEnabled = function(){
-      var DEFAULT_CHANNEL=0;
+      //var DEFAULT_CHANNEL=0;
       return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=audiooutput&action=view', '',
         function (response) {
-          var isEnabled = response.data.AudioOutputs[DEFAULT_CHANNEL].Enable;
+          var isEnabled = response.data.AudioOutputs[channelId].Enable;
           setAudioOutEnable(isEnabled);
           cameraMicEnable = isEnabled;
         },
@@ -811,10 +825,10 @@ kindFramework
     };
 
     var getAudioInEncodingType = function(){
-      var DEFAULT_CHANNEL=0;
+      //var DEFAULT_CHANNEL=0;
       return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=audioinput&action=view', '',
         function (response) {
-          audioEncodingType = response.data.AudioInputs[DEFAULT_CHANNEL].EncodingType;
+          audioEncodingType = response.data.AudioInputs[channelId].EncodingType;
         },
         function (errorData) {
 
@@ -825,10 +839,17 @@ kindFramework
       $q.seqAll([getDefaultProfileIndex, getVideoProfile]).then(
             function(){
               console.info('video profile successfully set in live page');
-
+              if(sunapiAttributes.MaxChannel > 1){
+                  defaultProfileID = UniversialManagerService.getDefaultProfileIndex(channelId);
+              }
               var RequestProfile = getProfileByIndex($scope.profileList, defaultProfileID);
               UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
               startStreaming(RequestProfile);
+
+              if($scope.channelSetFunctions['show'] === true && $scope.channelSetFunctions['status'] === true){
+                $rootScope.$emit('liveIconList:setProfileAccessInfo', true);
+              }
+              
               if(sunapiAttributes.MaxAudioOutput !== undefined && sunapiAttributes.MaxAudioOutput !== 0) {
                 switch(UniversialManagerService.getUserId())
                 {
@@ -1034,11 +1055,19 @@ kindFramework
 
     /* Channel Selector Direction */
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
-      console.log(index);
+      console.log("Select Channel Id = " + index);
+      $rootScope.$emit('channelPlayer:command', 'stopLive', false);
+      channelId = index;
+      UniversialManagerService.setChannelId(channelId);
+      setProfileInfo();
+      kindStreamInterface.setTagType(null);
+
+      $rootScope.$emit('changeLoadingBar', true);
     }, $scope);
 
     $rootScope.$saveOn('channelSelector:changeQuadView', function(event, response){
       console.log(response);
+      $state.go('uni.channellist');
     }, $scope);
 
     $scope.$watch('channelBasicFunctions.speakerStatus', function(newVal, oldVal){

@@ -145,14 +145,14 @@ kindFramework
             playData.setStatus(PLAY_CMD.LIVE);
 			return ConnectionSettingService.closePlaybackSession();
 		};
-		PlaybackInterface.stepRequestCallback = function(result, obj) {
+		PlaybackInterface.stepRequestCallback = function(result, interfaceObj) {
 			if (result === "request") {
 				var playData = new PlayDataModel();
 				playData.setDefautPlaySpeed();
-	      obj.playbackInfo.time = playData.getCurrentPosition();
-	      obj.playbackInfo.id = searchData.getOverlapId();
-	      obj.playbackInfo.speed = playData.getPlaySpeed();
-	      ConnectionSettingService.applyStepCommand("step", obj.playbackInfo);
+	      interfaceObj.playbackInfo.time = playData.getCurrentPosition();
+	      interfaceObj.playbackInfo.id = searchData.getOverlapId();
+	      interfaceObj.playbackInfo.speed = playData.getPlaySpeed();
+	      ConnectionSettingService.applyStepCommand("step", interfaceObj.playbackInfo);
 	      $rootScope.$emit('changeLoadingBar', true);
     	} else {
     		ConnectionSettingService.applyPauseCommand();
@@ -169,7 +169,6 @@ kindFramework
 				return null;
 			}
 			var rtspInfo = ConnectionSettingService.getConnectionSetting();
-//			workerManager.playToggle();
 			this.playbackInfo.rtspIP = rtspInfo.rtspIp;
 			this.playbackInfo.rtspPort = rtspInfo.rtspPort;
 			this.playbackInfo.userID = rtspInfo.user;
@@ -177,6 +176,7 @@ kindFramework
 			this.playbackInfo.endTime = $filter('date')(playData.getEndTime(), 'yyyyMMddHHmmss');
 			this.playbackInfo.id = searchData.getOverlapId();
 			this.playbackInfo.channel =  UniversialManagerService.getChannelId();
+			$rootScope.$emit('channelSelector:off', true);
 			$rootScope.$emit('app/scripts/services/playbackClass::disableButton', true);
 			$rootScope.$emit("channelPlayer:command", "playback", this.playbackInfo, 
 				{'timeCallback' : this.timelineCallback, 'errorCallback' : this.playbackErrorCallback});
@@ -186,7 +186,6 @@ kindFramework
 			if(UniversialManagerService.isSpeakerOn()){
 				kindStreamInterface.controlAudioIn('off');
 			}
-//			workerManager.playToggle();
 			$rootScope.$emit("channelPlayer:command", "pause");
 		};
 		PlaybackInterface.resume = function() {
@@ -196,7 +195,6 @@ kindFramework
           		kindStreamInterface.controlAudioIn(vol);
           		UniversialManagerService.setSpeakerVol(vol);
 			}
-//      workerManager.playToggle();
 			this.playbackInfo.time = playData.getSelectTime();
 			this.playbackInfo.endTime = $filter('date')(playData.getEndTime(), 'yyyyMMddHHmmss');
 			this.playbackInfo.id = searchData.getOverlapId();
@@ -207,7 +205,8 @@ kindFramework
 		};
 		PlaybackInterface.stop = function() {
 			playData.setDefautPlaySpeed();
-			workerManager.playbackSpeed(defaultSpeed);
+			//workerManager.playbackSpeed(defaultSpeed);
+			kindStreamInterface.controlWorker({'channelId':this.playbackInfo.channel, 'cmd':'playbackSpeed', 'data': [defaultSpeed]});
 			$rootScope.$emit('changeLoadingBar', false);
 			$rootScope.$emit("channelPlayer:command", "close");
 		};
@@ -219,6 +218,7 @@ kindFramework
 		PlaybackInterface.applyPlaySpeed = function(speed) {
 			this.playbackInfo.time = playData.getSelectTime();
 			this.playbackInfo.id = searchData.getOverlapId();
+			kindStreamInterface.controlWorker({'channelId':this.playbackInfo.channel, 'cmd':'playbackSpeed', 'data': speed});
 			$rootScope.$emit("channelPlayer:command", "speed", {'speed':speed, 'data':this.playbackInfo});
 		};
 
@@ -265,24 +265,13 @@ kindFramework
       this.playbackInfo.speed = playData.getPlaySpeed();
       if( command === PLAY_CMD.STEPBACKWARD ) {
         ConnectionSettingService.applyStepCommand("backward", this.playbackInfo);
-        // if (pbStep.getSettingCheck() === false || pbStep.getBackwardEmpty() === true) {
-        //   pbStep.init();
-        //   return ConnectionSettingService.applyStepCommand("backward", this.playbackInfo);
-        // } else {
-        //   playStepFrame(command);
-        // }
       } else {
         ConnectionSettingService.applyStepCommand("forward", this.playbackInfo);
-        // if (pbStep.getSettingCheck() === false || pbStep.getForwardEmpty() === true) {
-        //   pbStep.init();
-        //   return ConnectionSettingService.applyStepCommand("forward", this.playbackInfo);
-        // } else {
-        //   playStepFrame(command);
-        // }
       }
 		};
 		PlaybackInterface.playbackErrorCallback = function(error) {
 			console.log("errorcode:", error.errorCode, "error string:", error.description);
+			$rootScope.$emit('channelSelector:on', true);
 		  $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
 		  var playData = new PlayDataModel();
 		  if (error.errorCode !== "200" && error.errorCode !== "777") {
@@ -335,6 +324,7 @@ kindFramework
 		};
 		var backupErrorCallback = function(error) {
 		  console.log("errorcode:", error.errorCode, "error string:", error.description);
+			$rootScope.$emit('channelSelector:on', true);
 		  $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
 		  $rootScope.$emit('app/scripts/services/playbackClass::setDefaultPlaybackMode');
 		  if( error.description === 'backup' ) {
@@ -502,8 +492,6 @@ kindFramework
 				}
 			})();
 
-		workerManager.setCallback('timeStamp', PlaybackInterface.timelineCallback);
-		workerManager.setCallback('stepRequest', PlaybackInterface.stepRequestCallback);
-		workerManager.setPlaybackservice(PlaybackInterface);
+		kindStreamInterface.controlWorker({'channelId':0, 'cmd':'setCallback', 'data': ['stepRequest', PlaybackInterface.stepRequestCallback, PlaybackInterface]});
     return PlaybackInterface;
 }]);

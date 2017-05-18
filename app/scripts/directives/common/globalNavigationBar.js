@@ -1,7 +1,10 @@
 /*global workerManager*/
-kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootScope','$timeout', 'SessionOfUserManager', 'BrowserService', '$location', 'UniversialManagerService',
-    'CAMERA_STATUS','ONLINE_HELP_CONFIG','ROUTE_CONFIG','$translate','Attributes',
- function(SunapiClient, $state, $rootScope, $timeout, SessionOfUserManager, BrowserService, $location, UniversialManagerService, CAMERA_STATUS, ONLINE_HELP_CONFIG, ROUTE_CONFIG, $translate, Attributes) {
+kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootScope','$timeout', 
+    'SessionOfUserManager', 'BrowserService', '$location', 'UniversialManagerService',
+    'CAMERA_STATUS','ONLINE_HELP_CONFIG','ROUTE_CONFIG','$translate','Attributes', 'kindStreamInterface',
+ function(SunapiClient, $state, $rootScope, $timeout, SessionOfUserManager, BrowserService, $location, 
+    UniversialManagerService, CAMERA_STATUS, ONLINE_HELP_CONFIG, ROUTE_CONFIG, $translate, Attributes,
+     kindStreamInterface) {
     "use strict";
     return {
         restrict: 'E',
@@ -88,7 +91,6 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                             scope.globalNavigationBar.isPlayback = false;
                             $rootScope.$emit('enablePlayback', false);
                             $state.go('uni.channel');
-                            workerManager.initVideo(false);
                         }
                     } else {
                         $rootScope.cameraSetupToLive = false;
@@ -99,7 +101,6 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                         scope.globalNavigationBar.isPlayback = false;
                         $rootScope.$emit('enablePlayback', false);
                         $state.go('uni.channel');
-                        workerManager.initVideo(false);
                     }
                 },
                 goToPlayback: function(){
@@ -115,7 +116,6 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                             $rootScope.cameraSetupToLive = false;
 
                             scope.pageInit();
-                            workerManager.setLiveMode("canvas");
                             scope.globalNavigationBar.isPlayback = true;
                             scope.globalNavigationBar.isSetup = false;
                             scope.globalNavigationBar.isLive = false;
@@ -126,7 +126,6 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
                         $rootScope.cameraSetupToLive = false;
 
                         scope.pageInit();
-                        workerManager.setLiveMode("canvas");
                         scope.globalNavigationBar.isPlayback = true;
                         scope.globalNavigationBar.isSetup = false;
                         scope.globalNavigationBar.isLive = false;
@@ -160,20 +159,19 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state','$rootS
             scope.toggleFpsMeter = function() {
                 //scope.globalNavigationBar.showFpsMeterNum++;
                 if (scope.globalNavigationBar.showFpsMeterNum > 3) {
-                    workerManager.openFPSmeter();
+                    kindStreamInterface.controlWorker({'channelId':0, 'cmd':'openFPSmeter', 'data': []});
                     scope.globalNavigationBar.showFpsMeterNum = 0;
                 } else {
-                    workerManager.closeFPSmeter();
+                    kindStreamInterface.controlWorker({'channelId':0, 'cmd':'closeFPSmeter', 'data': []});
                 }
             };
 
             scope.closeFpsMeter = function() {
-                workerManager.closeFPSmeter();
+                kindStreamInterface.controlWorker({'channelId':0, 'cmd':'closeFPSmeter', 'data': []});
             };
 
             scope.changeFpsFrame = function() {
-                console.log("fpsFrameNum = " + scope.globalNavigationBar.fpsFrameNum);
-                workerManager.setFpsFrame(scope.globalNavigationBar.fpsFrameNum);
+                kindStreamInterface.controlWorker({'channelId':0, 'cmd':'setFpsFrame', 'data': [scope.globalNavigationBar.fpsFrameNum]});
             };
 
             function getSupportMenu(){

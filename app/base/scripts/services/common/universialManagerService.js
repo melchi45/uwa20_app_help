@@ -36,6 +36,7 @@ kindFramework.service('UniversialManagerService',
 		var pluginElem = null;
 		var isPixelCountOn = false;
 		var channelId = 0;
+		var defaultProfileIndex;
 
 		this.initialization = function()
 		{
@@ -62,6 +63,7 @@ kindFramework.service('UniversialManagerService',
 			gotLiveStream = false;
 			streamingMode = CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE;
 			isPtzType = CAMERA_STATUS.PTZ_MODE.NONE;
+			defaultProfileIndex = {};
 		};
 		self.initialization();
 
@@ -182,12 +184,14 @@ kindFramework.service('UniversialManagerService',
 			return ProfileInfo;
 		};
 
-		this.setProfileList = function(_profileList) {
-			ProfileList = _profileList;
+		this.setProfileList = function(_profileList, channelId) {
+			if(!channelId) channelId = 0;
+			ProfileList[channelId] = _profileList;
 		};
 
-		this.getProfileList = function() {
-			return ProfileList;
+		this.getProfileList = function(channelId) {
+			if(!channelId) channelId = 0;
+			return ProfileList[channelId];
 		};
 
 		this.setPlayMode = function(_playMode){
@@ -403,8 +407,9 @@ kindFramework.service('UniversialManagerService',
 			rotate = tRotate;
 		};
 
-		this.getRotate = function(){
-			return rotate;
+		this.getRotate = function(channelId){
+			if(!channelId) channelId = 0;
+			return rotate[channelId].Rotate;
 		};
 
 		this.setIsCaptured = function(flag){
@@ -477,5 +482,13 @@ kindFramework.service('UniversialManagerService',
 
 		this.getChannelId = function() {
 			return channelId;
+		}
+
+		this.setDefaultProfileIndex = function(index, channelId) {
+			defaultProfileIndex[channelId] = index;
+		}
+
+		this.getDefaultProfileIndex = function(channelId) {
+			return defaultProfileIndex[channelId];
 		}
 }]);

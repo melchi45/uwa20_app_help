@@ -9871,6 +9871,9 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback #cm-playback-event .cm-event-list-wrap > div label.available-check-event {
   font-weight: bold;
 }
+.kind-responsive-playback .cm-backup-button {
+  margin-top: 20px;
+}
 .kind-responsive-playback #cm-playback-backup {
   float: left;
 }
@@ -10819,7 +10822,8 @@ i.tui-ch-playback-stop {
   padding-top: 100%;
 }
 .channellist-video-wrapper canvas,
-.channellist-video-wrapper video {
+.channellist-video-wrapper video,
+.channellist-video-wrapper object {
   position: absolute !important;
   top: 0;
   left: 0;

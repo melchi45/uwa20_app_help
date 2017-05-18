@@ -34,8 +34,8 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                 $scope.ZoomOptionsDefined = false;
             }
             $scope.FocusModeOptions = mAttr.FocusModeOptions;
-            $scope.IRShiftOptions = mAttr.IRShiftOptions;
             $scope.MaxChannel = mAttr.MaxChannel;
+            $scope.IRShiftOptions = mAttr.IRShiftOptions;
             $scope.IrisModeOptions = mAttr.IrisModeOptions;
             checkICSLensSupport();
         }
@@ -318,7 +318,8 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                     mirror: mirror,
                     support_ptz: false,
                     rotate: rotate,
-                    adjust: adjust
+                    adjust: adjust,
+                    channelId: UniversialManagerService.getChannelId()
                 };
 
                 $scope.coordinates = new Array(1);
@@ -338,7 +339,6 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
         $rootScope.$emit('changeLoadingBar', true);
-        UniversialManagerService.setChannelId(index);
         $rootScope.$emit("channelSelector:changeChannel", index);
         view();
     }, $scope);

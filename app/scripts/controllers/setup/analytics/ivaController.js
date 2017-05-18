@@ -2085,7 +2085,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                             sunapiQueueRequest(queue, function(){
                                 $scope.$emit('applied', UniversialManagerService.getChannelId());
                                 $rootScope.$emit("channelSelector:changeChannel", data);
-                                UniversialManagerService.setChannelId(data);
                                 $timeout(view);
                             }, function(errorData){
                                 console.error(errorData);
@@ -2093,7 +2092,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
                         } else {
                             $scope.$emit('applied', UniversialManagerService.getChannelId())
                             $rootScope.$emit("channelSelector:changeChannel", data);
-                            UniversialManagerService.setChannelId(data);
                             $timeout(view);
                         }
                     }
@@ -2104,7 +2102,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             } else {
                 $rootScope.$emit('changeLoadingBar', true);
                 $rootScope.$emit("channelSelector:changeChannel", data);
-                UniversialManagerService.setChannelId(data);
                 $timeout(view);
             }
         }

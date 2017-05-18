@@ -299,6 +299,9 @@ kindFramework.directive('liveMenuContent', function(
 			});
 
 			function view(){
+				if(mAttr.MaxChannel > 1) {
+					isMultiChannel = true;
+				}
 				initDisplay();
 			}
 
