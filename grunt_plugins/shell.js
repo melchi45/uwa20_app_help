@@ -214,7 +214,7 @@ module.exports = function(injection){
 
 					uwaConfigData = uwaConfigData
 										.replace(/(BRANCH:)([\s]{0,})([\'\"]{1}[0-9a-zA-Z\/\-\_]{0,40}[\'\"]{1})/, "BRANCH: '" + versionData[0] + "'")
-										.replace(/(OPTION:)([\s]{0,})([\'\"]{1}[0-9a-zA-Z\/\-\_]{0,20}[\'\"]{1})/, "OPTION: '" + versionData[1] + "'")
+										.replace(/(CODE:)([\s]{0,})([\'\"]{1}[0-9]{0,5}[\'\"]{1})/, "CODE: '" + versionData[1] + "'")
 										.replace(/(VERSION:)([\s]{0,})([\'\"]{1}[0-9a-zA-Z.]{0,15}[\'\"]{1})/, "VERSION: '" + versionData[2] + "'")
 					
 					grunt.file.write(uwaConfigPath, uwaConfigData);

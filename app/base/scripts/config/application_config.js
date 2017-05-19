@@ -2,7 +2,7 @@ kindFramework.constant('APP_CONFIG',
 	{
 		DEBUG : true,
 		BRANCH: 'develop',
-		OPTION: '002',
+		CODE: '61120',
 		VERSION: '2.2.1'
 	}
 );

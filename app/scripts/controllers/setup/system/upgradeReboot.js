@@ -7,8 +7,8 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
     var mAttr = Attributes.get();
 
     $scope.UWAVersion = [
-        APP_CONFIG.BRANCH,
-        APP_CONFIG.OPTION,
+        APP_CONFIG.CODE,
+        '_',
         APP_CONFIG.VERSION
     ].join(' ');
 
