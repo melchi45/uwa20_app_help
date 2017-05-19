@@ -7,10 +7,10 @@ kindFramework.controller('upgradeRebootCtrl', function ($scope, $timeout, $uibMo
     var mAttr = Attributes.get();
 
     $scope.UWAVersion = [
-        APP_CONFIG.CODE,
+        APP_CONFIG.VERSION,
         '_',
-        APP_CONFIG.VERSION
-    ].join(' ');
+        APP_CONFIG.CODE
+    ].join('');
 
 
     $scope.getTranslatedOption = function (Option)
