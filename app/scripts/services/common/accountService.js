@@ -55,8 +55,12 @@ kindFramework
         };
 
         this.isPTZAble = function() {
-            if(typeof ptzAccess === 'string')
+            if (ptzAccess === undefined) {
+                ptzAccess = false;
+            } else if(typeof ptzAccess === 'string') {
                 ptzAccess = (ptzAccess === 'True')? true:false;
+            }
+
             return ptzAccess;
         };
         /* jshint ignore:start */
