@@ -42,6 +42,7 @@ kindFramework.controller('profileCtrl', function ($scope, $uibModal, $timeout, $
         $scope.MaxProfileName = mAttr.ProfileName.maxLength;
         $scope.cropSupport = mAttr.CropSupport;
         $scope.ATCTrigger = mAttr.ATCTrigger;
+        $scope.ATCModes = mAttr.ATCModes;
         $scope.SensorCaptureSize = mAttr.SensorCaptureSize;
         $scope.OnlyNumStr = mAttr.OnlyNumStr;
         $scope.AlphaNumericStr = mAttr.AlphaNumericStr;

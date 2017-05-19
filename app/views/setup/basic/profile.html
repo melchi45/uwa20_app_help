@@ -204,7 +204,7 @@
                         </input>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-if="ATCModes !== undefined">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_atcmode' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
                         <div class="form-group" ng-show="VideoProfiles[ch].Profiles[selectedProfile].ATCMode != undefined">
