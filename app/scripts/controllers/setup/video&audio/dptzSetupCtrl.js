@@ -302,7 +302,10 @@ kindFramework.controller('dptzSetupCtrl', function ($scope, $interval, $timeout,
         })();
     });
 
-
+    $scope.$on("$destroy", function(){
+        object = $("channel_player object");
+        object.removeClass('dptz');
+    });
 
   $scope.getPresetNameWithIndex = function( presetInfo){
     return presetInfo.id +" : "+presetInfo.name;
@@ -327,7 +330,6 @@ kindFramework.controller('dptzSetupCtrl', function ($scope, $interval, $timeout,
 
     $timeout(function() {
       object = $("channel_player object");
-      console.log(object);
       object.addClass('dptz');
       setObjectSize(object);
     });
