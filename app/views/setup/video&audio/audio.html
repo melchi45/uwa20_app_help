@@ -42,7 +42,7 @@
                             <div class="col-sm-6 col-xs-12">
                                 <span ng-show = "AudioInputs[SelectedChannel].PowerOnExternalMIC !== undefined">
                                     &nbsp;
-                                    <input type="checkbox" ng-model="AudioInputs[SelectedChannel].PowerOnExternalMIC" ng-disabled="AudioInputs[SelectedChannel].Source!='ExternalMIC'"> <label>{{'lang_bias_on' | translate}}</label>
+                                    <input type="checkbox" ng-model="AudioInputs[SelectedChannel].PowerOnExternalMIC" ng-disabled="AudioInputs[SelectedChannel].Source!='ExternalMIC'"> <label style="max-width: calc(100% - 30px);">{{'lang_bias_on' | translate}}</label>
                                 </span>
                             </div>
                         </div>
