@@ -284,6 +284,7 @@ kindFramework.controller('autoTrackEventCtrl', function ($scope, $uibModal, $tra
             function(){
                 runWatcher();
                 $scope.pageLoaded = true;
+                $scope.$emit('pageLoaded', $scope.EventSource);
                 showVideo().finally(function(){
                     $("#imagepage").show();
                 });
