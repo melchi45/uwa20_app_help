@@ -1,0 +1,31 @@
+<div id="ptrzsetuppage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+
+    <!-- Title -->
+    <wn5-setup-main-title
+        data-title="PTRZ Setup">
+    </wn5-setup-main-title>
+    <!-- Title -->
+
+    <!-- Head Line -->
+    <div class="wn5-setup-section">
+        <hr class="wn5-setup-hr">
+    </div>
+    <!-- Head Line -->
+
+    <div class="wn5-setup-section">
+        <sketchbook class="wn5-setup-preview-video"
+                    sketchinfo='sketchinfo'
+                    videoinfo='videoinfo'
+                    coordinates='coordinates'>
+        </sketchbook>
+        <!-- PTZ Control -->
+        <div class="ptz-control_box">
+            <ptz-control ptzinfo='ptzinfo'></ptz-control>
+        </div>
+    </div>
+
+    <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view(0)">
+    </wn5-setup-common-button>
+</div>

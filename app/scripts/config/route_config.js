@@ -248,6 +248,12 @@ kindFramework.constant('ROUTE_CONFIG', {
                             name: 'lang_digital_PTZ',
                             templateUrl: 'views/setup/ptz/dptzSetup.html',
                             controller: 'dptzSetupCtrl'
+                        },
+                        {
+                            urlName: 'ptrzSetup',
+                            name: 'PTRZ Setup',
+                            templateUrl: 'views/setup/ptz/ptrzSetup.html',
+                            controller: 'ptrzSetupCtrl'
                         }
                     ]
                  },

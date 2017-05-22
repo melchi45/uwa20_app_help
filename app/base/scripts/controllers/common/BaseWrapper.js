@@ -96,6 +96,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
       "autoTrack": "NWC",
       "rs485": "NWC",
       "dptzSetup": "NWC",
+      'ptrzSetup': "NWC",
       //Audio & Video
       "videoSetup": "NWC",
       "dewarpSetup": "NWC",
@@ -332,6 +333,10 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           else{
             retVal = false;
           }
+        }
+        else if ( menuId === "ptrzSetup")
+        {
+            retVal = false;
         }
         else if (menuId === "peoplecounting" || menuId === "statistics")
         {

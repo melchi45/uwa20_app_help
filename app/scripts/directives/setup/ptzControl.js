@@ -170,6 +170,10 @@ kindFramework.directive('ptzControl', function(Attributes,SunapiClient,$uibModal
                         scope.DATFlag = true;
                     }else if(ptzinfo.type ==='EPTZ'){
                         scope.showPTZControlEPTZ = true;
+                    }else if(ptzinfo.type === 'PTRZ'){
+                        scope.showPTZControlHome = true;
+                        scope.isShowPTZControl = true;
+                        scope.showPTZControlFocus = true;
                     }else if(ptzinfo.type ==='presetZoom'){
                         scope.showPTZControlPresetText = true;
                         scope.showPTZControlHome = false;
