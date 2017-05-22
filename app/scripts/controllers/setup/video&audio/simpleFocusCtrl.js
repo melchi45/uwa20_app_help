@@ -35,7 +35,8 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             }
             $scope.FocusModeOptions = mAttr.FocusModeOptions;
             $scope.MaxChannel = mAttr.MaxChannel;
-            $scope.IRShiftOptions = mAttr.IRShiftOptions;
+            // $scope.IRShiftOptions = mAttr.IRShiftOptions;
+            $scope.IRShiftOptions = ["Off","On"];
             $scope.IrisModeOptions = mAttr.IrisModeOptions;
             checkICSLensSupport();
         }
@@ -184,6 +185,9 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
                 $scope.FastAutoFocus = response.data.Focus[0].FastAutoFocus;
                 $scope.TCEnable = angular.copy(response.data.Focus[0].TemperatureCompensationEnable);
                 $scope.IRShift = angular.copy(response.data.Focus[0].IRShift);
+                if($scope.IRShift !== "Off") {
+                    $scope.IRShift = "On";
+                }
             },
             function (errorData) {}, '', true);
     }
@@ -214,28 +218,6 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         }
     }
 
-    function flangeBackView() {
-        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flangeback&action=view', '',
-            function (response) {
-                $scope.FlangeBack = response.data.FlangeBack[0];
-                $scope.FBAdjustEnable = angular.copy($scope.FlangeBack.Enable);
-            },
-            function (errorData) {
-                console.log(errorData);
-            }, '', true);
-    }
-
-    function SaveFBEnable() {
-        var setData = {};
-        setData.Enable = $scope.FBAdjustEnable;
-        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flangeback&action=set', setData,
-            function (response) {
-            },
-            function (errorData) {
-                console.log(errorData);
-            }, '', true);
-    };
-
     function SaveTCEnable() {
         var setData = {};
         setData.TemperatureCompensationEnable = $scope.TCEnable;
@@ -249,21 +231,13 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
 
     $scope.IRShiftChange = function() {
         var setData = {};
-        setData.IRShift = $scope.IRShift;
+        if($scope.IRShift !== "Off") {
+            setData.IRShift = "850";
+        } else {
+            setData.IRShift = $scope.IRShift;
+        }
 
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=set', setData,
-            function (response) {
-            },
-            function (errorData) {
-                console.log(errorData);
-            }, '', true);
-    };
-
-    $scope.FBAdjust = function(level) {
-        var setData = {};
-        setData.FocalLength = level;
-
-        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flangeback&action=control', setData,
             function (response) {
             },
             function (errorData) {
@@ -277,8 +251,6 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
         promises.push(focusView);
 
         promises.push(cameraView);
-
-        promises.push(flangeBackView);
 
         $q.seqAll(promises).then(
             function(){
