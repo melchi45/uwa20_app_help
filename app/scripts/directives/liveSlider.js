@@ -21,10 +21,10 @@ kindFramework
 
                     scope.levelPattern = mAttr.OnlyNumStr;
 
-                    function changePatternToFloat(){
+                    function changePatternToFloat(maxlength){
                         isFloat = true;
-                        scope.levelPattern = "^[0-9.]*$";
-                        OnlyNumberRegExp = /^[0-9.]*$/;
+                        scope.levelPattern = "^$|^[0-9]{1}$|^[0-9]{1}[.]{1}[0-9]{0,1}$|^[1-9]{1}[0-9]{0,"+String(maxlength - 1)+"}[.]{1}[0-9]{0,1}$|^[1-9]{1}[0-9]{0,"+String(maxlength - 1)+"}$";
+                        OnlyNumberRegExp = /^$|^[0-9]{1}$|^[0-9]{1}[.]{1}[0-9]{0,1}$|^[1-9]{1}[0-9]{0,/+String(maxlength - 1)+/}[.]{0,1}[0-9]{0,1}$|^[1-9]{1}[0-9]{0,/+String(maxlength - 1)+/}$/;
                     }
 
                     function changePatternToInt(){
@@ -163,7 +163,7 @@ kindFramework
 
                             if(scope.liveSliderProperty.step > 0 && scope.liveSliderProperty.step < 1)
                             {
-                                changePatternToFloat();
+                                changePatternToFloat(String(scope.liveSliderProperty.ceil).length);
                             }
                             else
                             {
@@ -205,7 +205,11 @@ kindFramework
                     scope.$watch('liveSliderProperty', function(newValue, oldValue){
                         if( !checkLoad && scope.liveSliderProperty ){
                             checkProperty = true;
-                            scope.maxLength = String(scope.liveSliderProperty.ceil).length;
+                            if(scope.liveSliderProperty.step > 0 && scope.liveSliderProperty.step < 1){
+                                
+                            } else {
+                                scope.maxLength = String(scope.liveSliderProperty.ceil).length;
+                            }
                             init();
                         }
 
