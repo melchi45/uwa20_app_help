@@ -3,11 +3,11 @@ kindFramework.directive('channelPlayer',
     ['BrowserService', 'UniversialManagerService', 'CAMERA_STATUS',
     '$rootScope', '$compile', 'PluginControlService', 'KindControlService', 
     'MJPEGPollingControlService', 'kindStreamInterface',
-    '$timeout', 'ModalManagerService','$translate',
+    '$timeout', 'ModalManagerService','$translate', 'PluginModel',
     function (BrowserService, UniversialManagerService, CAMERA_STATUS,
       $rootScope, $compile, PluginControlService, KindControlService, 
       MJPEGPollingControlService, kindStreamInterface,
-      $timeout, ModalManagerService,$translate) {
+      $timeout, ModalManagerService,$translate, PluginModel) {
     return {
         restrict: 'E',
         scope: {
@@ -207,7 +207,7 @@ kindFramework.directive('channelPlayer',
                     function createActiveXElement() {
                         var ElementTemplate = UniversialManagerService.getPluginElement();
                         if(ElementTemplate === null){
-                            ElementTemplate = $compile('<object classid="clsid:FC4C00B9-5A98-461C-88E8-B24B528DDBF5" zIndex="10"></object>')(scope);
+                            ElementTemplate = $compile('<object classid="clsid:' + PluginModel.ActiveX.ObjectID +'" zIndex="10"></object>')(scope);
                             UniversialManagerService.setPluginElement(ElementTemplate);
                         }
 
@@ -218,7 +218,7 @@ kindFramework.directive('channelPlayer',
                     function createNPAPIElement() {
                         var ElementTemplate = UniversialManagerService.getPluginElement();
                         if(ElementTemplate === null){
-                            ElementTemplate = $compile('<object type="application/HTWisenetViewer-plugin"></object>')(scope);
+                            ElementTemplate = $compile('<object type="' + PluginModel.NPAPI.ObjectID +'"></object>')(scope);
                             UniversialManagerService.setPluginElement(ElementTemplate);
                         }
 
