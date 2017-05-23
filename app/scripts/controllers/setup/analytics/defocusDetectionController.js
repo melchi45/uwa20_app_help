@@ -371,8 +371,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     {
         if (validatePage())
         {
-            if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect) || !eventRuleService.checkEventRuleValidation())
-            {
+            // if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect) || !eventRuleService.checkEventRuleValidation()){
                 var modalInstance = $uibModal.open({
                     templateUrl: 'views/setup/common/confirmMessage.html',
                     controller: 'confirmMessageCtrl',
@@ -392,7 +391,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                 {
 
                 });
-            }
+            // }
         }
     }
 
