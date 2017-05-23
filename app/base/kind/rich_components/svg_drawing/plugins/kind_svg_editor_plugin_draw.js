@@ -1484,9 +1484,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 	// }
 
 	/* mousedown에 세팅한 값은 항상 mouseup에 리셋을 해줘야 한다. */
-	function parentSVGMouseDownHandle(event){
-		toggleDraggingStatus(true);
-		
+	function parentSVGMouseDownHandle(event){		
 		parentSvg.startAxis = commonFunc.getPageAxis(event);
 
 		for(var i = 0, len = circles.length; i < len; i++){
@@ -1524,6 +1522,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 		if(customDraw === true){
 			selectedCircleIndex = useOnlyRectangle === true ? 2 : circles.length - 1;
+			toggleDraggingStatus(true);
 		}else if(
 			(customDraw === false) &&
 			selectedCircleIndex !== null ||
@@ -1531,6 +1530,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 			selectedPolygon !== null
 			){
 			elemCtrl.setParentSvgAttr(parentSvgMovedAttr, true);
+			toggleDraggingStatus(true);
 		}
 	}
 
