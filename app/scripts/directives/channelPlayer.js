@@ -468,7 +468,8 @@ kindFramework.directive('channelPlayer',
                     };
 
                     this.capture = function() {
-                        if (typeof document.createElement('a').download !== "undefined") {
+                        if (typeof document.createElement('a').download !== "undefined" &&
+                        !(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI && UniversialManagerService.getVideoMode() === "video")) {
                             KindControlService.capture(scope);
                             ModalManagerService.open('message', { 'buttonCount': 0, 'message': "lang_capture_image_saved" } );
                         } else {
