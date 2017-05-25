@@ -63,7 +63,7 @@
                                         <td width="8%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Preset}}</a></td>
                                         <td width="20%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Name}}</a></td>
                                         <td width="15%" class="text-center"><select class="form-control" ng-model="Preset.AfterAction" ng-options="Action as getAfterActionTranslatedOption(Action) for Action in PresetActions"></select></td>
-                                        <td width="15%" class="text-center"><select class="form-control" ng-model="Preset.AfterActionTrackingTime" ng-options="Time as getTranslatedOption(Time) for Time in PresetTrackingTime"></select></td>
+                                        <td width="15%" class="text-center"><select class="form-control" ng-model="Preset.AfterActionTrackingTime" ng-options="Time as getTranslatedOption(Time) for Time in PresetTrackingTime" ng-disabled="!iSSupportedAutoTracking(Preset.AfterAction)"></select></td>
                                         <td width="17%" class="text-center"><select class="form-control" ng-model="Preset.goMenu"  ng-options="menuOptions.indexOf(Option) as Option.menu for Option in menuOptions"></select></td>
                                         <td width="3%" class="text-center"><a ng-click="onSelectedMenu(Preset.goMenu,Preset.Preset)"><i class="tui tui-wn5-toolbar-play" style="border: none;"></i></a></td>
                                     </tr>

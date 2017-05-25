@@ -24,7 +24,7 @@ kindFramework
                     function changePatternToFloat(maxlength){
                         isFloat = true;
                         scope.levelPattern = "^$|^[0-9]{1}$|^[0-9]{1}[.]{1}[0-9]{0,1}$|^[1-9]{1}[0-9]{0,"+String(maxlength - 1)+"}[.]{1}[0-9]{0,1}$|^[1-9]{1}[0-9]{0,"+String(maxlength - 1)+"}$";
-                        OnlyNumberRegExp = /^$|^[0-9]{1}$|^[0-9]{1}[.]{1}[0-9]{0,1}$|^[1-9]{1}[0-9]{0,/+String(maxlength - 1)+/}[.]{0,1}[0-9]{0,1}$|^[1-9]{1}[0-9]{0,/+String(maxlength - 1)+/}$/;
+                        OnlyNumberRegExp = /^[0-9.]*$/;
                     }
 
                     function changePatternToInt(){
