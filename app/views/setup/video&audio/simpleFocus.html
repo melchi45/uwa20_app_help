@@ -1,7 +1,7 @@
 <div id="simplefocuspage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
     <form name="smartCodecForm" method="get" class="form-horizontal" novalidate>
         <wn5-setup-main-title
-            data-title="lang_menu_focus">
+                data-title="{{getTitle}}">
         </wn5-setup-main-title>
         <div class="wn5-setup-section">
             <hr class="wn5-setup-hr">
@@ -31,7 +31,103 @@
                             <label>{{'lang_enable'|translate}}</label>
                         </div>
                     </div>
-                    <div class="form-group btn-list">
+                    <!-- PTR Setup -->
+                    <div class="form-group" ng-show="supportPTRZ">
+                        <div class="wn5-setup-preview-heading">
+                            {{ 'PTR Setup' | translate }}
+                            <button
+                                    type="button"
+                                    class="btn btn-white"
+                                    ng-click="focusMode('AutoRoll')" >
+                                    {{'Auto Roll' | translate}}
+                            </button>
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <div class="form-group btn-list">
+                                <div class="simple-focus-icon">
+                                    <label>{{'lang_pan'|translate}}</label>
+                                </div>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -100 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -10 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -1 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > 10 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > 100 </button>
+                            </div>
+                        </div>
+                        <div class="wn5-setup-preview-content">
+
+                            <div class="form-group btn-list">
+                                <div class="simple-focus-icon">
+                                    <label>{{'lang_tilt'|translate}}</label>
+                                </div>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -100 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -10 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -1 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > 10 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > 100 </button>
+                            </div>
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <div class="form-group btn-list">
+                                <div class="simple-focus-icon">
+                                    <span class="tui tui-wn5-ptz-minus"></span>
+                                </div>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -100 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -10 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -1 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > 10 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > 100 </button>
+                                <div class="simple-focus-icon">
+                                    <span class="tui tui-wn5-ptz-plus"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PTR Setup -->
+                    <!-- Zoom Focus Setup -->
+                    <div class="form-group" ng-show="supportPTRZ">
+                        <div class="wn5-setup-preview-heading">
+                            {{ 'Zoom Focus Setup' | translate }}
+                            <button
+                                    type="button"
+                                    class="btn btn-white"
+                                    ng-click="focusMode('Reset')" >
+                                {{'lang_reset' | translate}}
+                            </button>
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <div class="form-group btn-list">
+                                <div class="simple-focus-icon">
+                                    <span class="tui tui-wn5-ptz-minus"></span>
+                                </div>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -100 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -10 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -1 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > 10 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > 100 </button>
+                                <div class="simple-focus-icon">
+                                    <span class="tui tui-wn5-ptz-plus"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <div class="form-group btn-list">
+                                <div class="simple-focus-icon">
+                                    <span class="tui tui-wn5-ptz-near"></span>
+                                </div>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -100 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -10 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > -1 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > 10 </button>
+                                <button type="button" class="btn btn-white" ng-click="focusMode('AutoRoll')" > 100 </button>
+                                <div class="simple-focus-icon">
+                                    <span class="tui tui-wn5-ptz-far"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Zoom Focus Setup -->
+                    <div class="form-group btn-list"  ng-show="!supportPTRZ">
                         <div class="simple-focus-icon">
                             <span class="tui tui-wn5-ptz-near"></span>
                         </div>
@@ -41,7 +137,7 @@
                         </div>
                     </div>
                     <!-- <div class="form-group btn-list" ng-show="(!ICSLensSupport && ZoomOptionsDefined) || (ZoomOptionsDefined && ICSLensSupport && Lens === 'ICS')"> -->
-                    <div class="form-group btn-list" ng-show="ZoomOptionsDefined">
+                    <div class="form-group btn-list" ng-show="ZoomOptionsDefined && !supportPTRZ">
                         <div class="simple-focus-icon">
                             <span class="tui tui-wn5-ptz-minus"></span>
                         </div>
