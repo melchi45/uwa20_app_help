@@ -248,12 +248,6 @@ kindFramework.constant('ROUTE_CONFIG', {
                             name: 'lang_digital_PTZ',
                             templateUrl: 'views/setup/ptz/dptzSetup.html',
                             controller: 'dptzSetupCtrl'
-                        },
-                        {
-                            urlName: 'ptrzSetup',
-                            name: 'PTRZ Setup',
-                            templateUrl: 'views/setup/ptz/ptrzSetup.html',
-                            controller: 'ptrzSetupCtrl'
                         }
                     ]
                  },
@@ -296,6 +290,12 @@ kindFramework.constant('ROUTE_CONFIG', {
                          {
                             urlName: 'simpleFocus',
                             name: 'lang_menu_focus',
+                            templateUrl: 'views/setup/video&audio/simpleFocus.html',
+                            controller: 'simpleFocusCtrl'
+                        },
+                        {
+                            urlName: 'ptrzSetup',
+                            name: 'PTRZ Setup',
                             templateUrl: 'views/setup/video&audio/simpleFocus.html',
                             controller: 'simpleFocusCtrl'
                         },

@@ -5,6 +5,8 @@
 kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attributes, $timeout, COMMONUtils, sketchbookService, $q, $rootScope, UniversialManagerService, $uibModal) {
     "use strict";
 
+    $scope.supportPTRZ = false;  // Temporal Variable
+
     $scope.FastAutoFocusDefined = true;
     $scope.ZoomOptionsDefined = true;
     $scope.FastAutoFocus = true;
@@ -39,6 +41,12 @@ kindFramework.controller('simpleFocusCtrl', function ($scope, SunapiClient, Attr
             $scope.IRShiftOptions = ["Off","On"];
             $scope.IrisModeOptions = mAttr.IrisModeOptions;
             checkICSLensSupport();
+        }
+
+        if($scope.supportPTRZ){
+            $scope.getTitle ='PTRZ Setup';
+        }else{
+            $scope.getTitle ='lang_menu_focus';
         }
         
         defer.resolve("success");
