@@ -574,7 +574,6 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
 
         SunapiClient.post('/stw-cgi/opensdk.cgi?msubmenu=apps&action=install&IgnoreCookie=True', setData,
             function (response) {
-                // console.info(response.data);
                 if (response.data.Permission[0] === 'None') {
                     permissionsMsg = $translate.instant('lang_msg_permission2');
                     ShowModalDialog("OpenSDKInstallConfirmMsg",permissionsMsg,response.data.ApplicationSessionId, response.data.InstallType);
@@ -583,7 +582,7 @@ kindFramework.controller('opensdkCtrl', function ($scope, SunapiClient, Attribut
                     if (response.data.Permission !== 'undefined') {
                         //console.log("App Premisssion", response.data.Permission);
                         var func = new Array;
-                        for (idx = 0; idx < response.data.Permission.length; idx = idx + 1) {
+                        for (var idx = 0; idx < response.data.Permission.length; idx = idx + 1) {
                             // permissionsMsg += (response.data.Permission[idx] + "<br>");
                             func.push(response.data.Permission[idx]);
                         }

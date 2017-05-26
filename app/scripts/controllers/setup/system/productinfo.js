@@ -111,6 +111,7 @@ kindFramework.controller('productinfo', function ($scope, $timeout, $uibModal, $
 
     function validDeviceName(){
         var val = $scope.Info.DeviceName;
+        if($.trim(val).length === 0) return false; // only white space
         var len = val.length;
         for(var i = 0; i < val.length; i++){
             var str = val[i];

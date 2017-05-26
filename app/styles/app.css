@@ -972,6 +972,30 @@ live-playback common {
   background-color: #191919 !important;
   color: #333 !important;
 }
+#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn {
+  background-color: #262626;
+  border-color: #797979;
+  color: #fff;
+}
+#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn > div {
+  border-color: #797979;
+}
+#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:hover > div {
+  background-color: #d2d2d2;
+  color: #000;
+}
+#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:active > div {
+  background-color: #fff;
+  color: #000;
+}
+#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:hover,
+#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:active {
+  border-color: #262626;
+}
+#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:hover > div,
+#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:active > div {
+  border-color: #262626;
+}
 #cm-bottom-menu.cm-full-menu .cm-submit-button {
   background-color: #262626;
   color: #f37321;
@@ -1551,11 +1575,16 @@ live-playback common {
   background-color: #000000;
   border-color: #000000;
 }
-.cm-channel-selector .cm-channel-selector-quad-btn {
-  position: relative;
+.cm-channel-selector .cm-channel-selector-quad-btn-wrapper {
   width: 27px;
   float: left;
   margin-left: 4px;
+}
+.cm-channel-selector .cm-channel-selector-quad-btn {
+  position: relative;
+  width: 100%;
+  float: left;
+  background: none;
   border: solid 1px #4c4c4c;
   border-bottom-width: 2px;
   border-right-width: 2px;
@@ -1567,7 +1596,6 @@ live-playback common {
   float: left;
   width: 12px;
   height: 9px;
-  background-color: #ffffff;
   border-left: solid 1px #4c4c4c;
   border-top: solid 1px #4c4c4c;
   border-right: 0;
@@ -3287,7 +3315,7 @@ body.kind-responsive-playback {
   min-width: 400px;
 }
 body.kind-responsive-setup {
-  min-width: 400px;
+  min-width: 730px;
 }
 .side-nav-wrapper {
   list-style: none;
@@ -5647,65 +5675,63 @@ rzslider .rz-bubble {
 #sketchbook #sketchbook_svg {
   overflow: visible;
 }
-@media (max-width: 700px) {
-  #sketchbook canvas {
-    width: 100% !important;
-    height: 100% !important;
-    display: block;
-  }
-  /* Can't use sketchbook in Mobile Device */
-  #sketchbook canvas,
-  #sketchbook_svg {
-    pointer-events: none;
-  }
-  #container,
-  #sketchbook {
-    width: 100% !important;
-    /* 영상 비율별 height 설정 */
-    /* 1:1 */
-    /* 21:9 */
-    /* 4:3 */
-    /* 16:9 */
-    /* 4096x2160 */
-    /* 2592x1520 */
-  }
-  #container[style*="height: 640px"],
-  #sketchbook[style*="height: 640px"],
-  #container[height="640"],
-  #sketchbook[height="640"] {
-    height: 100% !important;
-  }
-  #container[style*="height: 278px"],
-  #sketchbook[style*="height: 278px"],
-  #container[height="278"],
-  #sketchbook[height="278"] {
-    height: 43.4375% !important;
-  }
-  #container[style*="height: 480px"],
-  #sketchbook[style*="height: 480px"],
-  #container[height="480"],
-  #sketchbook[height="480"] {
-    height: 75% !important;
-  }
-  #container[style*="height: 360px"],
-  #sketchbook[style*="height: 360px"],
-  #container[height="360"],
-  #sketchbook[height="360"] {
-    height: 56.25% !important;
-  }
-  #container[style*="height: 337px"],
-  #sketchbook[style*="height: 337px"],
-  #container[height="337"],
-  #sketchbook[height="337"] {
-    height: 52.65625% !important;
-  }
-  #container[style*="height: 376px"],
-  #sketchbook[style*="height: 376px"],
-  #container[height="376"],
-  #sketchbook[height="376"] {
-    height: 58.75% !important;
-  }
+/*
+@media(max-width: @setup-mobile-max-width){
+	#sketchbook canvas {
+		width: 100% !important;
+		height: 100% !important;
+		display: block;
+	}
+
+	// Can't use sketchbook in Mobile Device
+	#sketchbook canvas,
+	#sketchbook_svg {
+		pointer-events: none;
+	}
+
+	#container,
+	#sketchbook {
+		width: 100% !important;
+
+		// 영상 비율별 height 설정 
+		// 1:1 
+		&[style*="height: 640px"],
+		&[height="640"],{
+			height: 100% !important;
+		}
+		
+		// 21:9 
+		&[style*="height: 278px"],
+		&[height="278"],{
+			height: 43.4375% !important;
+		}
+		
+		// 4:3 
+		&[style*="height: 480px"],
+		&[height="480"],{
+			height: 75% !important;
+		}
+
+		// 16:9 
+		&[style*="height: 360px"],
+		&[height="360"],{
+			height: 56.25% !important;
+		}
+
+		// 4096x2160 
+		&[style*="height: 337px"],
+		&[height="337"],{
+			height: 52.65625% !important;
+		}
+
+		// 2592x1520 
+		&[style*="height: 376px"],
+		&[height="376"],{
+			height: 58.75% !important;
+		}
+	}
 }
+*/
 .ibox-content .nav > li {
   width: 200px;
   display: inline-block;
@@ -6195,6 +6221,14 @@ rzslider .rz-bubble {
 .wn5-setup-info-ch {
   vertical-align: middle !important;
   font-weight: bold;
+}
+.wn5-setup-info-msg {
+  color: #f37321;
+  margin-top: 5px;
+}
+.wn5-setup-info-msg .tui-wn5-toolbar-status {
+  margin-right: 0;
+  font-size: 14px;
 }
 /* For Sketchbook */
 body.kind-svg-editor-drawing .wn5-setup-preview-table,
@@ -9836,7 +9870,7 @@ i.tui-ch-playback-stop {
   margin: 0 10px 15px 10px;
 }
 .kind-responsive-playback .cm-backup-button {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 .kind-responsive-playback #cm-playback-event {
   z-index: 1;
@@ -10075,7 +10109,7 @@ i.tui-ch-playback-stop {
     width: 100%;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content .cm-backup-button {
-    margin-top: 0px;
+    margin-top: 5px;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #cm-menu-content #cm-playback-backup {
     width: 100%;
@@ -10547,7 +10581,7 @@ i.tui-ch-playback-stop {
     font-size: 16px;
   }
   .kind-responsive-playback .cm-backup-button {
-    margin-top: 50px;
+    margin-top: 55px;
   }
 }
 @media (min-width: 3000px) and (min-height: 1688px) {

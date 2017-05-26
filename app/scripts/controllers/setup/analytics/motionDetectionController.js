@@ -2477,7 +2477,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function changePresetType(newVal, oldVal){
         if(newVal === 'Global'){
-            return gotoPreset('Stop', $scope.presetData.oldPreset);
+            return gotoPreset('Stop', $scope.presetData.preset);
         }else{
             return gotoPreset('Start', $scope.presetData.preset);
         }

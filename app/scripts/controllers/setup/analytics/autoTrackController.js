@@ -211,7 +211,7 @@ kindFramework.controller('autoTrackEventCtrl', function ($scope, $uibModal, $tra
                 $scope.AutoTracking.Zoom = $scope.AutoTracking.ZoomControl === 'On' ? true : false;
                 $scope.AutoTracking.IndicatorDisplay = $scope.AutoTracking.DisplayIndicator === 'On' ? true : false;
                 $scope.AutoTracking.AreaActivation = $scope.AutoTracking.TrackingAreaEnable ? true : false;
-                $scope.AutoTracking.AutoMode = $scope.AutoTracking.LostMode === 'Research' ? 'Unlimited' : 'LostEnd';
+                $scope.AutoTracking.AutoMode = $scope.AutoTracking.LostMode === 'Research' ? true : false;
 
                 if (!$scope.AutoTracking.TrackingAreas) $scope.AutoTracking.TrackingAreas = [];
                 $scope.ptzinfo = {
@@ -239,7 +239,7 @@ kindFramework.controller('autoTrackEventCtrl', function ($scope, $uibModal, $tra
         setData.ObjectSize = $scope.AutoTracking.ObjectSize;
         setData.DisplayIndicator = $scope.AutoTracking.IndicatorDisplay === true ? 'On' : 'Off';
         setData.TrackingAreaEnable = $scope.AutoTracking.AreaActivation === true ? true : false;
-        setData.LostMode = $scope.AutoTracking.AutoMode === 'Unlimited' ? 'Research' : 'Stop';
+        setData.LostMode = $scope.AutoTracking.AutoMode === true ? 'Research' : 'Stop';
 
         SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=set', setData,
             function (response) {

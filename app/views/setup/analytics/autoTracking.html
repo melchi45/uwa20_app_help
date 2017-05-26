@@ -43,10 +43,7 @@
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_maintainSize' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <span style="float: left;padding-right: 20px;" class="field-radio-wrapper" ng-repeat="Size in AutoTrackObjectSize">
-                            <input type="radio" class="radio" name="Size" ng-model="$parent.AutoTracking.ObjectSize" ng-value="Size" ng-disabled="$parent.AutoTracking.Zoom == 'Disable'">
-                            <label>{{getTranslatedMaintainSizeOption(Size)}}</label>
-                        </span>
+                        <select class="form-control" ng-model="AutoTracking.ObjectSize" ng-options="Size for Size in AutoTrackObjectSize" ng-disabled="AutoTracking.Zoom == false"></select>
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,10 +61,7 @@
                 <div class="form-group">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_automode' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <div style="float: left;width: 100%;" class="field-radio-wrapper" ng-repeat="Mode in AutoModes">
-                            <input type="radio" class="radio" name="Mode" ng-model="$parent.AutoTracking.AutoMode" ng-value="Mode">
-                            <label>{{getTranslatedOption(Mode)}}</label>
-                        </div>
+                        <input type="checkbox" ng-model="AutoTracking.AutoMode"> <label>{{ 'lang_enable' | translate }}</label>
                     </div>
                 </div>
             </div>
