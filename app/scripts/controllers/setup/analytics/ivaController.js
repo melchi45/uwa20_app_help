@@ -1311,10 +1311,14 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
     }
 
     function setInitialObjectSize() {
-        $scope.minHeightLimit = Math.ceil(mAttr.MaxROICoordinateY * 0.022);
+        var maxResolution = mAttr.MaxResolution;
+        maxResolution = maxResolution.split('x');
+        var maxWidth = parseInt(maxResolution[0]);
+        var maxHeight = parseInt(maxResolution[1]);
+        $scope.minHeightLimit = Math.round(maxHeight * 0.022);
         $scope.minWidthLimit = $scope.minHeightLimit;
-        $scope.maxWidthLimit = Math.ceil(mAttr.MaxROICoordinateX);
-        $scope.maxHeightLimit = Math.ceil(mAttr.MaxROICoordinateY);
+        $scope.maxWidthLimit = Math.ceil(maxWidth);
+        $scope.maxHeightLimit = Math.ceil(maxHeight);
 
         if($scope.rotate !== 'undefined') {
             if($scope.rotate !== '0') {
