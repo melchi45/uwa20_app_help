@@ -136,8 +136,8 @@
                             <span class="tui tui-wn5-ptz-far"></span>
                         </div>
                     </div>
-                    <!-- <div class="form-group btn-list" ng-show="(!ICSLensSupport && ZoomOptionsDefined) || (ZoomOptionsDefined && ICSLensSupport && Lens === 'ICS')"> -->
-                    <div class="form-group btn-list" ng-show="ZoomOptionsDefined && !supportPTRZ">
+                    <div class="form-group btn-list" ng-show="(!ICSLensSupport && ZoomOptionsDefined && !supportPTRZ) || (ZoomOptionsDefined && ICSLensSupport && Lens === 'ICS')">
+
                         <div class="simple-focus-icon">
                             <span class="tui tui-wn5-ptz-minus"></span>
                         </div>
