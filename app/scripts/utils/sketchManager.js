@@ -1717,6 +1717,7 @@ var SketchManager = (function() {
                 if (!isInit) {
                     bContext.globalAlpha = alphaFactory.enabled.fill;
                     bContext.fillRect(coordinates.x1, coordinates.y1, coordinates.x2 - coordinates.x1, coordinates.y2 - coordinates.y1);
+                    bContext.globalAlpha = alphaFactory.enabled.stroke;
                 }
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
                     if(!isInit && sketchInfo.disValue !== undefined && !sketchInfo.disValue){
@@ -1963,6 +1964,7 @@ var SketchManager = (function() {
                 if (!isInit) {
                     bContext.globalAlpha = alphaFactory.enabled.fill;
                     bContext.fillPolygon(polygonPoints, colorFactory.blue, colorFactory.blue);
+                    bContext.globalAlpha = alphaFactory.enabled.stroke;
                 }
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
                     if (!isInit) updateCoordinates();
