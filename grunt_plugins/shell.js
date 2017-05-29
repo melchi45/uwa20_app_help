@@ -227,6 +227,9 @@ module.exports = function(injection){
 		},
 		less: {
 				command: 'node node_modules/less/bin/lessc ' + projectStructure.appCssPath + '/less/app.less ' + projectStructure.appCssPath + '/app.css'
+		},
+		languages: {
+				command: 'node languages/UWA2_vba/Check_languages'
 		}
 	};
 };
