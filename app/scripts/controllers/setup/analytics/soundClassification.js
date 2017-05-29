@@ -379,7 +379,9 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
 
 
     function set() {
-        COMMONUtils.ApplyConfirmation(saveSettings);
+        if(validatePage()){
+            COMMONUtils.ApplyConfirmation(saveSettings);
+        }
     }
 
     function saveSettings() {   // soundClassification set -> event set
