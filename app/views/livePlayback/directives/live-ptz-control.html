@@ -32,10 +32,10 @@
           <i class="tui tui-wn5-ptz-near"></i>
         </button>
         <button 
-          ng-if="show.DigitalAutoTracking"
+          ng-if="show.DigitalAutoTracking && ptzMode !== 'external'"
           ng-click="digitalAutoTracking()"
           class="cm-icon-button-s cm-at"
-          ng-class="{'cm-ptz-at' : currentPtzType === ptzType.OPTICAL || currentPtzType === ptzType.EXTERNAL }"
+          ng-class="{'cm-ptz-at' : currentPtzType === ptzType.OPTICAL}"
           title="{{'lang_autotracking_on' | translate}}">
           <span class="sr-only">{{ 'lang_autotracking_on' | translate }}</span>
           <i class="tui" ng-class="modePTZ.DigitalAutoTracking ? 'tui-ch-live-ptz-tracking-auto-on' : 'tui-ch-live-ptz-tracking-auto-off'"></i>
