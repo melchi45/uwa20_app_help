@@ -538,6 +538,8 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
     $scope.view = view;
 
     $scope.submitEnable = function(){
+        stopMonitoringDefocusLevel();
+
         var modalInstance = $uibModal.open({
             templateUrl: 'views/setup/common/confirmMessage.html',
             controller: 'confirmMessageCtrl',
@@ -566,17 +568,21 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
                         {
                             startMonitoringDefocusLevel();
                         }
-                        else
-                        {
-                            stopMonitoringDefocusLevel();
-                        }
                     },
                     function (errorData)
                     {
+                        if($scope.DefocusDetect.Enable)
+                        {
+                            startMonitoringDefocusLevel();
+                        }
                     }, '', true);
         }, function ()
         {
             $scope.DefocusDetect.Enable = pageData.DefocusDetect.Enable;
+            if($scope.DefocusDetect.Enable)
+            {
+                startMonitoringDefocusLevel();
+            }
         });
     };
 

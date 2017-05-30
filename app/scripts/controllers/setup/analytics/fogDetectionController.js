@@ -321,7 +321,19 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     };
 
     $scope.setFogDetectionEnable = function () {
-        var successCallback = function (){
+        stopMonitoringFogLevel();
+        var modalInstance = $uibModal.open({
+            templateUrl: 'views/setup/common/confirmMessage.html',
+            controller: 'confirmMessageCtrl',
+            size: 'sm',
+            resolve: {
+                Message: function ()
+                {
+                    return 'lang_apply_question';
+                }
+            }
+        });
+        modalInstance.result.then(function () {
             $rootScope.$emit('changeLoadingBar', true);
             var setData = {};
 
@@ -337,29 +349,27 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
                 {
                     $rootScope.$emit('changeLoadingBar', false);
                     pageData.FogDetect.Enable = angular.copy($scope.FogDetect.Enable);
-
                     if($scope.FogDetect.Enable)
                     {
                         startMonitoringFogLevel();
-                    }
-                    else
-                    {
-                        stopMonitoringFogLevel();
                     }
                 },
                 function (errorData)
                 {
                     $rootScope.$emit('changeLoadingBar', false);
                     $scope.FogDetect.Enable = angular.copy(pageData.FogDetect.Enable);
-                    console.log(errorData);
+                    if($scope.FogDetect.Enable)
+                    {
+                        startMonitoringFogLevel();
+                    }
                 }, '', true);
-        };
-        var errorCallback = function ()
-        {
+        }, function () {
             $scope.FogDetect.Enable = angular.copy(pageData.FogDetect.Enable);
-        };
-
-        COMMONUtils.ShowConfirmation(successCallback, 'lang_apply_question','sm', errorCallback);
+            if($scope.FogDetect.Enable)
+            {
+                startMonitoringFogLevel();
+            }
+        });
     };
 
     function getAttributes() {

@@ -1102,6 +1102,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     };
 
     $scope.submitEnable = function(){
+        stopMonitoringMotionLevel();
         var modalInstance = $uibModal.open({
             templateUrl: 'views/setup/common/confirmMessage.html',
             controller: 'confirmMessageCtrl',
@@ -1122,6 +1123,11 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
             functionlist.push(setOnlyEnable);
             $q.seqAll(functionlist).then(
                 function(){
+                    if($scope.MotionDetection.MotionDetectionEnable)
+                    {
+                        startMonitoringMotionLevel();
+                    }
+
                     $scope.checkApplyButtonClick = false;
                     view();
                 },
@@ -1133,6 +1139,11 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         }, function (){
             $scope.checkApplyButtonClick = false;
             $scope.MotionDetection.MotionDetectionEnable = pageData.MotionDetection.MotionDetectionEnable;
+
+            if($scope.MotionDetection.MotionDetectionEnable)
+            {
+                startMonitoringMotionLevel();
+            }
         });
     };
 

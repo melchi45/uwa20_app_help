@@ -237,8 +237,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         return SunapiClient.get(sunapiURL, getData,
                 function (response)
                 {
-                    console.info(response);
-
                     newTamperLevel = angular.copy(response.data.TamperingDetection[0].Samples);
                     if (func !== undefined) {
                         func(newTamperLevel);
@@ -411,6 +409,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     }
 
     $scope.setTamperDetectionEnable = function() {
+        stopMonitoringTamperingLevel();
         var modalInstance = $uibModal.open({
             templateUrl: 'views/setup/common/confirmMessage.html',
             controller: 'confirmMessageCtrl',
@@ -445,21 +444,25 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
                         {
                             startMonitoringTamperingLevel();
                         }
-                        else
-                        {
-                            stopMonitoringTamperingLevel();
-                        }
                     },
                     function (errorData)
                     {
+                        if($scope.TamperDetect.Enable)
+                        {
+                            startMonitoringTamperingLevel();
+                        }
+
                         $rootScope.$emit('changeLoadingBar', false);
                         $scope.TamperDetect.Enable = angular.copy(pageData.TamperDetect.Enable);
-                        console.log(errorData);
                     }, '', true);
             },
             function ()
             {
                 $scope.TamperDetect.Enable = angular.copy(pageData.TamperDetect.Enable);
+                if($scope.TamperDetect.Enable)
+                {
+                    startMonitoringTamperingLevel();
+                }
             }
          );
     };

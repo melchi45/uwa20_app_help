@@ -215,6 +215,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
     function set(isEnabledChanged)
     {
         if(isEnabledChanged) { // when enable checkbox changed.
+            stopMonitoringAudioLevel();
             var modalInstance = $uibModal.open({
                     templateUrl: 'views/setup/common/confirmMessage.html',
                     controller: 'confirmMessageCtrl',
@@ -239,18 +240,22 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
                         {
                             startMonitoringAudioLevel();
                         }
-                        else
-                        {
-                            stopMonitoringAudioLevel();
-                        }
                     },
                     function (errorData)
                     {
-                        console.log(errorData);
+                        if($scope.AD.Enable)
+                        {
+                            startMonitoringAudioLevel();
+                        }
                     }, '', true);
             }, function() {
                 if(isEnabledChanged) {
                     $scope.AD.Enable = !$scope.AD.Enable;
+
+                    if($scope.AD.Enable)
+                    {
+                        startMonitoringAudioLevel();
+                    }
                 }
             });
 
