@@ -62,7 +62,7 @@
 				</article>
 			</section>
 			<section>
-				<h1>[MD, IVA] ROI</h1>
+				<h1>[MD, IVA] ROI v2</h1>
 				<article>
 					<figure>
 						<svg 
@@ -109,6 +109,7 @@
 
 		<script src="../plugins/kind_svg_editor_plugin_draw.js"></script>
 		<script src="../plugins/kind_svg_editor_plugin_customeditor.js"></script>
+		<script src="../plugins/kind_svg_editor_plugin_customeditor_v2.js"></script>
 
 		<script>
 			var colorFactory = {
@@ -225,7 +226,7 @@
 					}
 				};
 
-				roiEditor.customEditor(roiOptions);
+				roiEditor.customEditorV2(roiOptions);
 				for(var i = 0, ii = defaultROIPoints.length; i < ii; i++){
 					roiOptions.points = defaultROIPoints[i];
 					roiOptions.fillColor = i === 0 ? colorFactory.includeArea.fill : colorFactory.excludeArea.fill;

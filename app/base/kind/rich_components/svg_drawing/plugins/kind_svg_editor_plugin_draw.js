@@ -57,6 +57,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 	var notUseMoveTopLayer = options.notUseMoveTopLayer === undefined ? false : options.notUseMoveTopLayer;
 	var useCursor = options.useCursor === undefined ? false : options.useCursor;
 	var useOnlyRectangle = options.useOnlyRectangle === undefined ? false : options.useOnlyRectangle;
+	var useRectangleForCustomDraw = options.useRectangleForCustomDraw === undefined ? false : options.useRectangleForCustomDraw;
 	var fill = options.fill === undefined ? false : options.fill;
 	var fillOpacity = options.fillOpacity === undefined ? .5 : parseFloat(options.fillOpacity);
 	var fixedRatio = options.fixedRatio === undefined ? false : options.fixedRatio;
@@ -1521,7 +1522,10 @@ KindSVGEditor.addPlugin('draw', function(options){
 		}
 
 		if(customDraw === true){
-			selectedCircleIndex = useOnlyRectangle === true ? 2 : circles.length - 1;
+			selectedCircleIndex = 
+				(useOnlyRectangle === true || useRectangleForCustomDraw === true)? 
+				2 : 
+				circles.length - 1;
 			toggleDraggingStatus(true);
 		}else if(
 			(customDraw === false) &&
@@ -1590,7 +1594,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 			}*/
 
 			//사각형 리사이징
-			if(fixedRatio === true){
+			if(fixedRatio === true || useRectangleForCustomDraw == true){
 
 				var changedX1 = 0;
 				var changedX2 = 0;
@@ -1598,7 +1602,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 				var changedY2 = 0;
 
 				//사각형
-				if(useOnlyRectangle === true){
+				if(useOnlyRectangle === true || useRectangleForCustomDraw == true){
 					changedX1 = firstPoint[0];
 					changedX2 = xAxis;
 					changedY1 = firstPoint[1];
@@ -1896,6 +1900,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 	function endDraw(){
 		customDraw = false;
+		useRectangleForCustomDraw = false;
 		resetElementStatus();
 		resetParentSvgAttr();
 	}
