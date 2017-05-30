@@ -5700,6 +5700,10 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         updateMultiLineOSD($scope.DateOSD[0].Index, 'Date', true);
     };
 
+    $scope.OnOSDBlinkStatusChange = function() {
+        updateMultiLineOSD($scope.DateOSD[0].Index, 'Date', false);
+    };
+
     function getTitleSliderDisableColor() {
         return mAttr.sliderDisableColor;
     }

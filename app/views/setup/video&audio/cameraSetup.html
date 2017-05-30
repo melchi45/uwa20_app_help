@@ -1084,11 +1084,12 @@
                                             <input 
                                                 type="checkbox" 
                                                 ng-model="OSD.OSDBlink" 
+                                                ng-change="OnOSDBlinkStatusChange()"
                                                 > 
                                                 <label>{{ 'lang_enable' | translate }} </label>
                                         </div>
                                     </div>
-                                    <div class="wn5-setup-section-article-content wn5-gui-text-orange-100" style="padding-left: 0;">
+                                    <div class="wn5-setup-section-article-content wn5-gui-text-orange-100" style="padding-left: 20px;">
                                         <i class="tui tui-wn5-toolbar-status" style="margin-right: 5px; transform: scale(1.3);"></i>
                                         <span>It is applied at HDMI and can be confirmed with the PVM monitor</span>
                                     </div>
