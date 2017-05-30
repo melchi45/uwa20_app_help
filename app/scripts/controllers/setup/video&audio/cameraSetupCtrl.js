@@ -5391,6 +5391,7 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         $scope.PositionY = mAttr.PositionY;
         $scope.FontSizeOptions = mAttr.FontSizeOptions;
         $scope.OSDColorOptions = mAttr.OSDColorOptions;
+        $scope.OSDBlinkOptions = mAttr.OSDBlinkOptions;
         if (mAttr.OSDTransparencyOptions !== undefined) {
             $scope.OSDTransparencyOptions = [];
 
@@ -6058,6 +6059,14 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         setData.OSDColor = $scope.OSD.Color;
         setData.Transparency = $scope.OSD.Transparency;
 
+        if(typeof $scope.OSDBlinkOptions !== 'undefined') {
+            if($scope.OSD.OSDBlink === true) {
+                setData.OSDBlink = 'HDMI';
+            } else {
+                setData.OSDBlink = 'Off';
+            }
+        }
+
         if($scope.isMultiChannel) {
             var currentChannel = UniversialManagerService.getChannelId();
             setData.Channel = currentChannel;
@@ -6126,6 +6135,14 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
         setData.FontSize = $scope.OSD.FontSize;
         setData.OSDColor = $scope.OSD.Color;
         setData.Transparency = $scope.OSD.Transparency;
+
+        if(typeof $scope.OSDBlinkOptions !== 'undefined') {
+            if($scope.OSD.OSDBlink === true) {
+                setData.OSDBlink = 'HDMI';
+            } else {
+                setData.OSDBlink = 'Off';
+            }
+        }
 
         if($scope.isMultiChannel) {
             var currentChannel = UniversialManagerService.getChannelId();
@@ -6204,7 +6221,13 @@ kindFramework.controller('cameraSetupCtrl', function ($scope, $uibModal, $uibMod
                     $scope.OSD.Transparency = $scope.DateOSD[0].Transparency;
                     $scope.titleMax = getOSDRanges('Title', $scope.OSD.FontSize);
                     $scope.dateMax = getOSDRanges('Date', $scope.OSD.FontSize);
-
+                    if(typeof $scope.OSDBlinkOptions !== 'undefined') {
+                        if($scope.DateOSD[0].OSDBlink === 'HDMI') {
+                            $scope.OSD.OSDBlink = true;
+                        } else {
+                            $scope.OSD.OSDBlink = false;
+                        }
+                    }
                     if ($scope.TitleOSD.length) {
                         if ($scope.data.SelectedTitleIndex === undefined) {
                             $scope.data.SelectedTitleIndex = 0;

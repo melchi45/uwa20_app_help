@@ -500,6 +500,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
             mAttributes.FontSizeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/multilineosd/FontSize/enum');
             mAttributes.OSDColorOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/multilineosd/OSDColor/enum');
             mAttributes.OSDTransparencyOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/multilineosd/Transparency/enum');
+            mAttributes.OSDBlinkOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/multilineosd/OSDBlink/enum');
             mAttributes.MultilineOSDTitle = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/multilineosd/OSD/string');
             mAttributes.MultiImageIndex = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/multiimageosd/Index/int');
             mAttributes.ImageOverlayMaxResolution = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/multiimageosd/MaxResolution/string');
