@@ -802,8 +802,7 @@ kindFramework.controller('ipPortCtrl', function ($scope, $timeout, $uibModal, $t
         }
 
         if(((ip_num&not_sm_num)==not_sm_num) || ((ip_num&not_sm_num)==0) || ((ip_num&sm_num)==0)) {
-            // var ErrorMessage = 'lang_msg_chkIPAddress';
-            var ErrorMessage = 'lang_msg_chkSubnetMask';
+            var ErrorMessage = 'lang_msg_chkIPAddress';
             COMMONUtils.ShowError(ErrorMessage);
             return false;
         }

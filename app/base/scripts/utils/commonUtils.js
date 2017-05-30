@@ -1177,6 +1177,7 @@ kindFramework.factory('COMMONUtils', function ($translate, $location,  $uibModal
         for(var i=0; i<4; i++) {
             thisSegment = smArray[i];
             if(thisSegment>255) return false;
+            if(i === 3 && thisSegment>253) return false;
         }
 
         for(i=0; i<32; i++) {
