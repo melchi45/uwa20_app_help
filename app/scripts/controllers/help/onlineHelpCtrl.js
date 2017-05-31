@@ -7,8 +7,8 @@ var wn5OnlineHelp = angular.module(
 	]
 );
 
-wn5OnlineHelp
-    .config(function($stateProvider, $urlRouterProvider){
+wn5OnlineHelp.
+	config(function($stateProvider, $urlRouterProvider){
     	var supportRoute = null;
     	try{
 			if(!("supportRoute" in localStorage)){
@@ -47,8 +47,8 @@ wn5OnlineHelp
     		controller: 'onlineHelpCtrl'
     	});
     	*/
-    })
-	.controller("onlineHelpWrapperCtrl", function($scope, $state){
+    }).
+	controller("onlineHelpWrapperCtrl", function($scope, $state){
 		var supportMenu = null;
 		var supportFeatures = null;
 
@@ -75,8 +75,8 @@ wn5OnlineHelp
     		$('body').css('min-width', 'initial');
     		$("#side-menu").parent().metisMenu();
     	});
-	})
-	.controller("onlineHelpCtrl", function(){
+	}).
+	controller("onlineHelpCtrl", function(){
     	setTimeout(function(){
     		$("#side-menu").parent().metisMenu();
     	});
