@@ -1,21 +1,37 @@
 /*global setTimeout */
-kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $translate, $timeout, SunapiClient, Attributes, COMMONUtils, sketchbookService, $q, $rootScope, WISE_FACE_DETECTION, eventRuleService, UniversialManagerService) {
+kindFramework.controller(
+    'faceDetectionCtrl',
+    function(
+        $scope,
+        $uibModal,
+        $translate,
+        $timeout,
+        SunapiClient,
+        Attributes,
+        COMMONUtils,
+        sketchbookService,
+        $q,
+        $rootScope,
+        WISE_FACE_DETECTION,
+        eventRuleService,
+        UniversialManagerService
+        ){
     "use strict";
     COMMONUtils.getResponsiveObjects($scope);
     var mAttr = Attributes.get();
     var pageData = {};
+    var DEFAULT_TAB_INDEX = 0;
 
-    var DetectionModes = ['Inside', 'Outside'];
     $scope.tabs = [{
         title: 'Include',
         lang: 'lang_include_area',
-        active: true
+        active: true,
     }, {
         title: 'Exclude',
         lang: 'lang_excluded_area',
-        active: false
+        active: false,
     }];
-    $scope.activeTab = $scope.tabs[0];
+    $scope.activeTab = $scope.tabs[DEFAULT_TAB_INDEX];
     $scope.EventSource = 'FaceDetection';
     $scope.EventRule = {};
 
@@ -46,32 +62,31 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         return ($scope.wiseFaceDetection === true && $scope.activeTab.title === $scope.tabs[0].title);
     }
 
-    $scope.$watch('SensitivitySliderModel.data', function (newVal, oldVal) {
-        if(newVal !== undefined && $scope.FD !== undefined){
+    $scope.$watch('SensitivitySliderModel.data', function (newVal) {
+        if(typeof newVal !== "undefined" && typeof $scope.FD !== "undefined"){
             $scope.FD.Sensitivity = $scope.SensitivitySliderModel.data;
         }
     });
 
     var startIndex = 2; //Temporary
     var endIndex = 9; //Temporary
-    var eventSourceOption = {};//Temporary
 
     function getAttributes() {
         $scope.MaxAlarmOutput = mAttr.MaxAlarmOutput;
         $scope.MaxChannel = mAttr.MaxChannel;
-        if (mAttr.EnableOptions !== undefined) {
+        if (typeof mAttr.EnableOptions !== "undefined") {
             $scope.EnableOptions = mAttr.EnableOptions;
         }
-        if (mAttr.ActivateOptions !== undefined) {
+        if (typeof mAttr.ActivateOptions !== "undefined") {
             $scope.ActivateOptions = mAttr.ActivateOptions;
         }
-        if (mAttr.WeekDays !== undefined) {
+        if (typeof mAttr.WeekDays !== "undefined") {
             $scope.WeekDays = mAttr.WeekDays;
         }
-        if (mAttr.DetectionAreaModes !== undefined) {
+        if (typeof mAttr.DetectionAreaModes !== "undefined") {
             $scope.DetectionAreaModes = mAttr.DetectionAreaModes;
         }
-        if (mAttr.FaceDetectSensitivityTypes !== undefined && $scope.SensitivitySliderProperty === undefined) {
+        if (typeof mAttr.FaceDetectSensitivityTypes !== "undefined" && typeof $scope.SensitivitySliderProperty === "undefined") {
             $scope.SensitivitySliderProperty = {
                 floor: mAttr.FaceDetectSensitivityTypes.minValue,
                 ceil: mAttr.FaceDetectSensitivityTypes.maxValue,
@@ -82,17 +97,11 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
             refreshSlider();
         }
-        if (mAttr.AlarmoutDurationOptions !== undefined) {
+        if (typeof mAttr.AlarmoutDurationOptions !== "undefined") {
             $scope.AlarmoutDurationOptions = mAttr.AlarmoutDurationOptions;
         }
         if (Attributes.isSupportGoToPreset() === true) {
             $scope.PresetOptions = Attributes.getPresetOptions();
-        }
-
-        for (var i = 0; i < mAttr.EventSourceOptions.length; i++) { //Temporary
-            if (mAttr.EventSourceOptions[i].EventSource === 'MotionDetection') {
-                eventSourceOption = mAttr.EventSourceOptions[i];
-            }
         }
 
         // $scope.maxFaceDetectionArea = mAttr.MaxFaceDetectionArea;
@@ -125,14 +134,16 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         var detectionAreas = [];
         // var startIndex = $scope.activeTab.title === $scope.tabs[0].title ? 0 : $scope.maxFaceDetectionArea;
         // var endIndex = startIndex + $scope.maxFaceDetectionArea;
+        var idx = 0;
+        var len = 0;
 
         if(
             !isWiseFD() &&
             ('DetectionAreas' in $scope.FD) &&
             pageData.FD.Enable === true
             ){
-            for(var i = 0, ii = $scope.FD.DetectionAreas.length; i < ii; i++){
-                var self = $scope.FD.DetectionAreas[i];
+            for(idx = 0, len = $scope.FD.DetectionAreas.length; idx < len; idx++){
+                var self = $scope.FD.DetectionAreas[idx];
                 var index = 0;
                 if(self.DetectionArea >= startIndex && self.DetectionArea <= endIndex){
                     self.isEnable = true;
@@ -143,9 +154,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             }
         }
 
-        for(var i = 0, ii = $scope.maxFaceDetectionArea; i < ii; i++){
-            if(!detectionAreas[i]){
-                detectionAreas[i] = {};
+        for(idx = 0, len = $scope.maxFaceDetectionArea; idx < len; idx++){
+            if(!detectionAreas[idx]){
+                detectionAreas[idx] = {};
             }
         }
 
@@ -163,77 +174,14 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
     $scope.sketchinfo = {};
     $scope.coordinates = [];
 
-    function getDefaultWiseFDData(){
-        var points = [];
-        var definedVideoInfo = getDefinedVideoInfo();
-        var maxVideoSize = 0;
-        var movementY = 0;
-        /**
-         * 카메라에서 최대 해상도를 저장하지 못하여 보통 -1를 해서 보내지만
-         * Face Detection은 짝수만 가능하기 때문에 -2를 해서 보냄
-         */
-        var maxWidth = definedVideoInfo[2] - 2;
-        var maxHeight = definedVideoInfo[3] - 2;
-
-        if($scope.videoinfo.flip === true && $scope.videoinfo.mirror === false){
-            //Flip
-            points = [
-                [0, maxHeight],
-                [0, 0],
-                [maxWidth, 0],
-                [maxWidth, maxHeight]
-            ];
-        }else if($scope.videoinfo.flip === false && $scope.videoinfo.mirror === true){
-            //Mirror
-            points = [
-                [maxWidth,0],
-                [maxWidth, maxHeight],
-                [0, maxHeight],
-                [0, 0]
-            ];
-        }else if($scope.videoinfo.flip === true && $scope.videoinfo.mirror === true){
-            //Flip/Mirror
-            points = [
-                [maxWidth, maxHeight],
-                [maxWidth,0],
-                [0, 0],
-                [0, maxHeight]
-            ];
-        }else{
-            //Normal
-            points = [
-                [0,0],
-                [0, maxHeight],
-                [maxWidth, maxHeight],
-                [maxWidth, 0]
-            ];
-        }
-
-        /**
-         * @date 2017-02-27
-         * @author Yongku Cho
-         * Hallway View일 때 기본 영역은 가운데 정렬을 한다.
-         * FD Enable On -> Hallway View -> FD 일 때 시나리오와 동일함.
-         */
-        if(isHallwayMode()){
-            maxVideoSize = getMaxVideoSize()[1];
-            movementY = (maxVideoSize - maxHeight) / 2;
-            for(var i = 0, ii = points.length; i < ii; i++){
-                points[i][1] += movementY;
-            }
-        }
-
-        return points;
-    }
-
     $scope.activeGeometry = function(){
         var selectedIndex = 0;
         if(selectedDetectionArea !== null){
             selectedIndex = selectedDetectionArea;
-        }else{
-            for(var i = 0, ii = $scope.coordinates.length; i < ii; i++){
-                if($scope.coordinates[i].isSet === true){
-                    selectedIndex = i;
+        } else {
+            for(var idx = 0, len = $scope.coordinates.length; idx < len; idx++){
+                if($scope.coordinates[idx].isSet === true){
+                    selectedIndex = idx;
                     break; 
                 }
             }   
@@ -320,7 +268,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             $scope.sketchinfo = getSketchinfo(color, 1, true, useEvent);
 
             // console.log($scope.sketchinfo);
-        }else if(pageData.FD.Enable === true){
+        } else if (pageData.FD.Enable === true){
             resetCoordinates(color, $scope.maxFaceDetectionArea);
             /**
              * SketchManager에 사용할 수 있는 포맷으로 Coordinate를 변경하여
@@ -377,12 +325,19 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
     function setFaceDetection(queue) {
         var setData = {};
-        var initSetData = {};
         var removeData = {
             DetectionAreaIndex: null
         };
         var removeIndex = [];
         var currentChannel = UniversialManagerService.getChannelId();
+
+        var idx = 0;
+        var idx2 = 0;
+        var coorLen = 0;
+
+        var self = {};
+        var selfCoor = [];
+        var coor = {};
 
         setData.Channel = currentChannel;
         if (pageData.FD.Enable !== $scope.FD.Enable) {
@@ -400,33 +355,30 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         if (pageData.FD.DetectionAreaMode !== $scope.FD.DetectionAreaMode) {
             setData.DetectionAreaMode = $scope.FD.DetectionAreaMode;
         }
-        var changeCount = 0;
         if (typeof $scope.FD.DetectionAreas !== "undefined") {
-            for (var i = 0; i < $scope.FD.DetectionAreas.length; i++) {
-                var self = $scope.FD.DetectionAreas[i];
-                var selfCoor = [];
+            for (idx = 0; idx < $scope.FD.DetectionAreas.length; idx++) {
+                self = $scope.FD.DetectionAreas[idx];
+                selfCoor = [];
 
-                for(var j = 0, jj = self.Coordinates.length; j < jj; j++){
-                    var coor = self.Coordinates[j];
+                for(idx2 = 0, coorLen = self.Coordinates.length; idx2 < coorLen; idx2++){
+                    coor = self.Coordinates[idx2];
                     selfCoor.push([ coor.x, coor.y ]);
                 }
 
                 setData["DetectionArea." + self.DetectionArea + ".Coordinate"] = selfCoor.join(',');
-                changeCount++;
             }
         } else {
             if (!angular.equals(pageData.FD.DetectionAreas, $scope.FD.DetectionAreas)) {
-                for (var i = 0; i < $scope.FD.DetectionAreas.length; i++) {
-                    var self = $scope.FD.DetectionAreas[i];
-                    var selfCoor = [];
+                for (idx = 0; idx < $scope.FD.DetectionAreas.length; idx++) {
+                    self = $scope.FD.DetectionAreas[idx];
+                    selfCoor = [];
 
-                    for(var j = 0, jj = self.Coordinates.length; j < jj; j++){
-                        var coor = self.Coordinates[j];
+                    for(idx2 = 0, coorLen = self.Coordinates.length; idx2 < coorLen; idx2++){
+                        coor = self.Coordinates[idx2];
                         selfCoor.push([ coor.x, coor.y ]);
                     }
 
                     setData["DetectionArea." + self.DetectionArea + ".Coordinate"] = selfCoor.join(',');
-                    changeCount++;
                 }
             }
         }
@@ -451,12 +403,11 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
             if("DetectionAreas" in pageData.FD && "DetectionAreas" in $scope.FD){
                 if($scope.FD.DetectionAreas.length === 0){
-                    changeCount++;
                     removeData.DetectionAreaIndex = "All";
                 }
             }
         }catch(e){
-            
+            console.error(e);
         }
 
         if(removeIndex.length > 0){
@@ -475,27 +426,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             url: '/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=set', 
             reqData: setData
         });
-
-        //초기 데이터 없을 때
-        // var defaultWiseFDPoints = [];
-        // if(!("DetectionAreas" in pageData.FD)){
-        //     if(findFDIndex(1) === null){
-        //         defaultWiseFDPoints = getDefaultWiseFDData();   
-        //     }else{
-        //         defaultWiseFDPoints = $scope.FD.DetectionAreas[findFDIndex(1)].Coordinates;
-        //     }
-
-        //     defaultWiseFDPoints = fixRatioForCoordinates(defaultWiseFDPoints);   
-        //     defaultWiseFDPoints = changeOnlyEvenNumberOfWiseFD(defaultWiseFDPoints);
-
-        //     initSetData['DetectionArea.1.Coordinate'] = defaultWiseFDPoints.join(',');
-        //     initSetData.Channel = currentChannel;
-
-        //     queue.push({
-        //         url: '/stw-cgi/eventsources.cgi?msubmenu=facedetection&action=set', 
-        //         reqData: initSetData
-        //     });
-        // }
     }
 
 
@@ -728,13 +658,13 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             };   
         }
 
-        if(!!aspectRatio){
+        if(aspectRatio){
             sketchinfo.ratio = definedVideoInfo[4];
             sketchinfo.mirror = $scope.videoinfo.mirror;
             sketchinfo.flip = $scope.videoinfo.flip;
         }
 
-        if(useEvent !== undefined){
+        if(typeof useEvent !== "undefined"){
             sketchinfo.useEvent = useEvent;
         }
 
@@ -782,7 +712,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
     $scope.selectColumn = function(index){
         if(
-            $scope.detectionAreas[index].isEnable === undefined ||
+            typeof $scope.detectionAreas[index].isEnable === "undefined" ||
             (isWiseFD())
             ){
             return;
@@ -920,10 +850,11 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         var modifiedPoints = args[2];
         var roiIndex = modifiedIndex + 1;
         var modeType = 0;
-        var definedVideoInfo = null;
+        var fdIndex = 0;
+        var newArea = null;
 
         if(isWiseFD()){
-            var fdIndex = findFDIndex(roiIndex);
+            fdIndex = findFDIndex(roiIndex);
 
             if(modifiedType !== "delete"){
                 // console.log(modifiedPoints.join(','));
@@ -937,7 +868,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
             
             if(modifiedType === "create" || fdIndex === null){
                 roiIndex = 1;
-                var newArea = createDetectionAreaItem(roiIndex, modeType, modifiedPoints);
+                newArea = createDetectionAreaItem(roiIndex, modeType, modifiedPoints);
                 if(!('DetectionAreas' in $scope.FD)){
                     $scope.FD.DetectionAreas = [];
                 }
@@ -964,7 +895,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
             if(modifiedType === "create"){
                 // console.log(roiIndex);
-                var newArea = createDetectionAreaItem(roiIndex, modeType, modifiedPoints);
+                newArea = createDetectionAreaItem(roiIndex, modeType, modifiedPoints);
                 if(!('DetectionAreas' in $scope.FD)){
                     $scope.FD.DetectionAreas = [];
                 }
@@ -973,7 +904,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
                     $scope.selectColumn(modifiedIndex);
                 });
             }else{
-                var fdIndex = findFDIndex(roiIndex);
+                fdIndex = findFDIndex(roiIndex);
 
                 if(fdIndex !== null){
                     if(modifiedType === "delete"){
@@ -1003,14 +934,6 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
     function checkChangedData(){
         return !angular.equals(pageData.FD, $scope.FD) || !eventRuleService.checkEventRuleValidation();
-    }
-
-    function validatePage() {
-        if(!eventRuleService.checkSchedulerValidation()) {
-            COMMONUtils.ShowError('lang_msg_checkthetable');
-            return false;
-        }
-        return true;
     }
 
     function setChangedData() {
@@ -1047,9 +970,9 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
 
     $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
         if(checkChangedData()){
-            COMMONUtils
-                .confirmChangeingChannel()
-                .then(function(){
+            COMMONUtils.
+                confirmChangeingChannel().
+                then(function(){
                     if(validatePage() === true){
                         setChangedData().then(function(){
                             changeChannel(index);
@@ -1070,7 +993,7 @@ kindFramework.controller('faceDetectionCtrl', function($scope, $uibModal, $trans
         if(val === true){
             for(var i = 0, ii = $scope.detectionAreas.length; i < ii; i++){
                 var self = $scope.detectionAreas[i];
-                if(self.isEnable !== undefined){
+                if(typeof self.isEnable !== "undefined"){
                     self.isEnable = true;
                     $scope.toggleEnable(i);
                 }
