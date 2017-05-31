@@ -39,7 +39,6 @@ kindFramework
                 for(var i = 0; i < ScheduleIds.length; i++) {
                     var obj = convertIdToDate(ScheduleIds[i]);//console.info(ScheduleIds[i]);console.info(obj);
                     eventArray[i] = angular.copy(obj);
-                    eventIdArray.push(eventCount - 1);
                 }
                 eventObjs = angular.copy(eventArray);//console.info(eventArray);
                 if(initializing) {
@@ -151,7 +150,7 @@ kindFramework
                 initialMerging = false;
             }
 
-            function mergeTheDropped(start, end) {
+            function mergeTheDropped(start, end, eventId) {
                 var eventData;
                 var eventMerged = false;
                 var tEventObjs = angular.copy(eventObjs); //eventObjs;
@@ -159,30 +158,41 @@ kindFramework
                 var tEvent;
                 var removingItem = null;
                 var result;
+                var tStart = start;
+                var tEnd = end;
+                var tId = eventId;
+                var forwardMerged = false;
+                var backwardMerged = false;
                 merging = true;
 
                 for(var i = 0; i < tEventObjs.length; i++) {
                     eventItem = angular.copy(tEventObjs[i]);
                     if(eventItem !== null && typeof eventItem !== 'undefined') {
-                        if(moment(start).format('YYYY-MM-DDTHH:mm') === moment(eventItem.end).format('YYYY-MM-DDTHH:mm')) {
+                        if(tId === eventItem.id) {
+                            continue;
+                        }
+                        if(moment(tStart).format('YYYY-MM-DDTHH:mm') === moment(eventItem.end).format('YYYY-MM-DDTHH:mm')) {
                             result = eventItem;
-                            result.end = end;
+                            result.end = tEnd;
                             eventMerged = true;
-                        } else if(moment(end).format('YYYY-MM-DDTHH:mm') === moment(eventItem.start).format('YYYY-MM-DDTHH:mm')) {
-                            if(eventMerged === true) {
-                                removingItem = eventItem;
-                                result.end = eventItem.end;
-                            } else {
+                            forwardMerged = true;
+                        } else if(moment(tEnd).format('YYYY-MM-DDTHH:mm') === moment(eventItem.start).format('YYYY-MM-DDTHH:mm')) {
+                            if(!forwardMerged) {
                                 result = eventItem;
-                                result.start = start;
+                                result.start = tStart;
                                 eventMerged = true;
+                                backwardMerged = true;
+                            } else {
+                                result.end = eventItem.end;
+                                removingItem = eventItem;
+                                // result.start = tStart;
+                                eventMerged = true;
+                                backwardMerged = true;
                             }
-                            // break;
                         }
                     }
                 }
-                if(eventMerged)
-                {
+                if(eventMerged) {
                     for(var k = 0; k < tEventObjs.length; k++) {
                         var eventObj = angular.copy(tEventObjs[k]);
                         if(eventObj.id === result.id) {
@@ -193,16 +203,14 @@ kindFramework
                             break;
                         }
                     }
-                    merging = false;
-                    if(removingItem !== null && removingItem !== undefined) {
+                    if(forwardMerged && backwardMerged) {
                         return removingItem;
                     } else {
                         return true;
                     }
+                } else {
+                    return false;
                 }
-
-                merging = false;
-                return false;
             }
 
             function mergeTheSelected(start, end) {//console.info('mergeTheSelected :: ');console.info('before merge :');console.info(eventObjs);
@@ -697,22 +705,24 @@ kindFramework
                     eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) { // Triggered when dragging stops and the event has moved to a different day/time.
                         // when finish dragging and dropping selected cells.
                         if(currentUnit === '60') {
-                            var merged = mergeTheDropped(event.start, event.end);
-                            if(merged !== false) {
-                                removeEvent(event);
-                                if(merged !== true) {
-                                    removeEvent(merged);
-                                }
+                            var tEvent = angular.copy(event);
+                            var merged = mergeTheDropped(event.start, event.end, event.id);
+                            if(merged === true) {
+                                removeEvent(tEvent);
+                            } else {
+                                removeEvent(tEvent);
+                                removeEvent(merged);
                             }
                         } else {
                             var result = checkFromToMin(event.start, event.end, event.id);
+                            var tEvent = angular.copy(event);
                             if(result === true) {
-                                var merged = mergeTheDropped(event.start, event.end);
-                                if(merged !== false) {
-                                    removeEvent(event);
-                                    if(merged !== true) {
-                                        removeEvent(merged);
-                                    }
+                                var merged = mergeTheDropped(event.start, event.end, event.id);
+                                if(merged === true) {
+                                    removeEvent(tEvent);
+                                } else {
+                                    removeEvent(tEvent);
+                                    removeEvent(merged);
                                 }
                             } else if(result === false) {
                                 revertFunc();
@@ -1268,6 +1278,7 @@ kindFramework
                     eventObj.end = result.getFullYear() + '-' + month + '-' + date + 'T' + endHour + ':' + endMinute + ':' + '00';
                     eventObj.id = eventCount;
                     eventObj.title = '';
+                    eventIdArray.push(eventCount);
                     eventCount++;
                 } else { // hour
                     result.setHours(parseInt(target[1]));
@@ -1291,6 +1302,7 @@ kindFramework
                     eventObj.end = result.getFullYear() + '-' + month + '-' + date + 'T' + endHour + ':' + '00' + ':' + '00';
                     eventObj.id = eventCount;
                     eventObj.title = '';
+                    eventIdArray.push(eventCount);
                     eventCount++;
                 }
                 //console.info('end of convertIdToDate ================== ');
