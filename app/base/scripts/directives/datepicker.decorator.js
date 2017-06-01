@@ -10,7 +10,8 @@ config(function($provide) {
     directive.compile = function() {
 
       var changeFormatMMYYYY = function(dateValue){
-        return vis.moment(dateValue).format('MM-YYYY');
+        var dateObj = new Date(dateValue);
+        return (dateObj.getMonth()+1)+'-'+dateObj.getFullYear();
       };
 
       return function(scope, element, attrs, ctrl) {
