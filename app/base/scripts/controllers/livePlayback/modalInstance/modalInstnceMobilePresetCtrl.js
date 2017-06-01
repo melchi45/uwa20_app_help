@@ -11,7 +11,7 @@ kindFramework.controller('ModalInstnceMobilePresetCtrl',
     $uibModalInstance.close(presetIndex);
   };
   
-  $rootScope.$saveOn('allpopupclose', function(event) {
+  $rootScope.$saveOn('allpopupclose', function() {
     $uibModalInstance.dismiss('cancel');
   }, $scope);
 

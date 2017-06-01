@@ -1,4 +1,5 @@
 'use strict';
+/* global isPhone */
 function BaseLogin(
   $scope,SessionOfUserManager, SunapiClient,CAMERA_TYPE, ModalManagerService, 
   $timeout, UniversialManagerService, CAMERA_STATUS,AccountService, LoginModel, 
@@ -7,7 +8,6 @@ function BaseLogin(
   var self = this;
   var loginModel = new LoginModel();
   var optionServiceType = loginModel.getServiceType();
-  var timeOutPromise = null;
   $scope.serverType = RESTCLIENT_CONFIG.serverType;     
   $scope.currentLanguage = "English";
   $scope.loginInfo = {
@@ -63,14 +63,14 @@ function BaseLogin(
         if(data.length > 0 ){       //admin, user
             accountInfo = data[0];
         }else{                      //guest
-            accountInfo['UserID'] = 'guest';
+            accountInfo.UserID = 'guest';
         }
         AccountService.setAccount(accountInfo);
         $scope.loginInfo.id = accountInfo.UserID;
     };
 
 
-    this.userAccessInfoFailureCallback = function(errorData,errorCode) {
+    this.userAccessInfoFailureCallback = function(errorData) {
         console.error(errorData);
     };
 
@@ -94,8 +94,9 @@ function BaseLogin(
         // }
         if(isPhone) {
             if(CAMERA_TYPE === 'b2c') {
-                if($scope.loginInfo.id === '' || $scope.loginInfo.password === '')
-                    result = true;
+                if($scope.loginInfo.id === '' || $scope.loginInfo.password === ''){
+                  result = true;
+                }
             }
         }
         return result;
@@ -181,7 +182,7 @@ function BaseLogin(
           UniversialManagerService.setisLogin(false);
           self.resetLoadingText();
 
-          if(error != null && error != undefined) // jshint ignore:line
+          if(error !== null && typeof error !== "undefined") // jshint ignore:line
           {
               errorCallBack(error);
           }

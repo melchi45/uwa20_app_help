@@ -1,4 +1,4 @@
-/*global pad, setTimeout, event, clearTimeout*/
+/*global pad, setTimeout, event, clearTimeout, isPhone */
 'use strict';
 kindFramework.controller('ModalInstnceSearchCtrl',
   ['$scope', '$timeout', '$uibModalInstance', 'dateConverter',
@@ -31,7 +31,7 @@ kindFramework.controller('ModalInstnceSearchCtrl',
   };
 
   //WN5의 Backup 기능을 위해 만듬
-  if(data.buttonName !== undefined){
+  if(typeof data.buttonName !== "undefined"){
     $scope.submitButton = data.buttonName;
   }
 
@@ -150,7 +150,7 @@ kindFramework.controller('ModalInstnceSearchCtrl',
         $scope.$broadcast('refreshDatepickers');
         $scope.isLoading = false;
       });
-    }, function(error) {
+    }, function() {
       console.log("findRecordings fail");
       $scope.isLoading = false;
       $scope.errorMessage = "lang_timeout";
@@ -312,7 +312,7 @@ kindFramework.controller('ModalInstnceSearchCtrl',
   var slider = $scope.slider = function() {
     var data = {
       options: {
-        slide: function (event, ui) {
+        slide: function (event) {
           var inputType = event.target.getAttribute('ui-slider') === 'slider.start.options' ? 0 : 1;
           $scope.changeNumToTime(inputType);
         },
@@ -326,7 +326,7 @@ kindFramework.controller('ModalInstnceSearchCtrl',
     };
     var data2 = {
       options: {
-        slide: function (event, ui) {
+        slide: function (event) {
           var inputType = event.target.getAttribute('ui-slider') === 'slider.start.options' ? 0 : 1;
           $scope.changeNumToTime(inputType);
         },
@@ -351,6 +351,7 @@ kindFramework.controller('ModalInstnceSearchCtrl',
   }();
 
   $scope.ok = function() {
+    var data = {};
     if(search()) {
       searchData.setSelectedDate(selectedDate);
       searchData.setSelectedStartedTime([stringPad(slider.start.hours), stringPad(slider.start.minutes), stringPad(slider.start.seconds)]);
@@ -365,7 +366,7 @@ kindFramework.controller('ModalInstnceSearchCtrl',
        };
     } else {
       slider.end.to = slider.start.from + searchData.getDefaultPlusTime();
-      if(slider.end.to >= 1440 )  slider.end.to = 1440;
+      if(slider.end.to >= 1440 ) {slider.end.to = 1440;}
       slider.end.seconds = slider.start.seconds;
       $scope.changeNumToTime(1, 1);
       return;
@@ -386,7 +387,7 @@ kindFramework.controller('ModalInstnceSearchCtrl',
     showRecordingDate(selectedDate.getFullYear(), pad(selectedDate.getMonth()+1));
   }, $scope);
 
-  $rootScope.$saveOn('allpopupclose', function(event) {
+  $rootScope.$saveOn('allpopupclose', function() {
     $uibModalInstance.dismiss('cancel');
   }, $scope);
 

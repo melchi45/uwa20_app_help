@@ -43,7 +43,7 @@ kindFramework.controller('ModalInstnceMessageCtrl',
       }, 3000);
     }
 
-    $rootScope.$saveOn('allpopupclose', function(event) {
+    $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
 

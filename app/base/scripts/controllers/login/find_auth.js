@@ -1,8 +1,8 @@
 "use strict";
 
-kindFramework
-    .controller('FindAuthCtrl', function($scope, FindAuthModel){
-				var FindAuthModel = new FindAuthModel();
+kindFramework.
+  controller('FindAuthCtrl', function($scope, FindAuthModel){
+				var findAuthModel = new FindAuthModel();
 	
         $scope.infoMessage = '';
         $scope.setInfoMessage = function(msg){
@@ -15,7 +15,7 @@ kindFramework
         };
     
         $scope.changeFindUserId = function(){
-            $scope.setInfoMessage(FindAuthModel.getFindIdMessage());
+            $scope.setInfoMessage(findAuthModel.getFindIdMessage());
             
             $scope.findRadio = {
                 userId: true,
@@ -26,7 +26,7 @@ kindFramework
 				$scope.changeFindUserId();
 	
         $scope.changeFindPassword = function(){
-            $scope.setInfoMessage(FindAuthModel.getFindPwdMessage());
+            $scope.setInfoMessage(findAuthModel.getFindPwdMessage());
             
             $scope.findRadio = {
                 userId: false,

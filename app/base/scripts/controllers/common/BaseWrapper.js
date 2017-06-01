@@ -4,13 +4,13 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
     var self=this;
     var unsettransparentbackground = function() {
       console.log("WrapperCtrl::unsettransparentbackground");
-      if($('.body').css('background-color') !== undefined && $('body').css('background-color').indexOf('0, 0, 0, 0') !== -1 ) {
+      if(typeof $('.body').css('background-color') !== "undefined" && $('body').css('background-color').indexOf('0, 0, 0, 0') !== -1 ) {
         $('body').css('background-color', 'rgb(255,255,255)');
       }
-      if($('.main').css('background-color') !== undefined && $('.main').css('background-color').indexOf('0, 0, 0, 0') !== -1 ) {
+      if(typeof $('.main').css('background-color') !== "undefined" && $('.main').css('background-color').indexOf('0, 0, 0, 0') !== -1 ) {
         $('.main').css('background-color', 'rgb(255,255,255)');
       }
-      if($('html').css('background-color') !== undefined && $('.main').css('background-color').indexOf('0, 0, 0, 0') !== -1 ) {
+      if(typeof $('html').css('background-color') !== "undefined" && $('.main').css('background-color').indexOf('0, 0, 0, 0') !== -1 ) {
         $('.html').css('background-color', 'rgb(255,255,255)');
       }
     };
@@ -180,13 +180,13 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         else if (menuId === "rs485" || menuId === "rs485422")
         {
             if(menuId === "rs485"){
-                if(mAttr.PTZModel == true && mAttr.RS422Support == false){
+                if(mAttr.PTZModel === true && mAttr.RS422Support === false){
                     retVal = true;
                 }else{
                     retVal = false;
                 }
             }else{
-                if(mAttr.PTZModel == true && mAttr.RS422Support == false){
+                if(mAttr.PTZModel === true && mAttr.RS422Support === false){
                     retVal = false;
                 }else{
                     retVal = true;
@@ -300,7 +300,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
             retVal = (mAttr.MaxAlarmInput !== 0);
 
             /** If Daynight mode is External, then Alarm Input should not be shown */
-            if (mAttr.cameraCommandResponse !== undefined) {
+            if (typeof mAttr.cameraCommandResponse !== "undefined") {
                 if (mAttr.cameraCommandResponse.DayNightMode === 'ExternalBW') {
                     retVal = false;
                 }
@@ -323,7 +323,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         }
         else if (menuId === "dewarpSetup")
         {
-            retVal = (mAttr.FisheyeLens === true) && (mAttr.profileViewModeType === undefined);
+            retVal = (mAttr.FisheyeLens === true) && (typeof mAttr.profileViewModeType === "undefined");
         }
         else if ( menuId === "dptzSetup")
         {
@@ -380,16 +380,15 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
             } else {
                 retVal = false;
             }
-        }
-        else if(menuId === "soundClassification"){
+        } else if (menuId === "soundClassification") {
           if(mAttr.MaxAudioInput === 0){
             retVal = false;
           } else {
             retVal = true;
           }
         }
-        else if(menuId === "record"){
-          if(parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){ //2.5.3 ���� �̻��� ��
+        else if (menuId === "record") {
+          if (parseInt(mAttr.CGIVersion.replace(/\.{1,}/g,'')) >= 253){
             retVal = true;
           }else{
             retVal = false;
@@ -400,7 +399,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
             retVal = true;
         }
       }
-      else if ((menuId === undefined) || (menuList[menuId] === undefined))
+      else if ((typeof menuId === "undefined") || (typeof menuList[menuId] === "undefined"))
       {
           //LogManager.error("Undefined Menu Fix it!", id);
       }
@@ -448,7 +447,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
 
     $scope.isShowHeader = function (id)
     {
-      if (id === undefined)
+      if (typeof id === "undefined")
       {
           return true;
       }
@@ -459,10 +458,11 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
       return true;
     };
 
-    $rootScope.$saveOn("$locationChangeStart", function(event, next, current) {
+    $rootScope.$saveOn("$locationChangeStart", function(event, next) {
       try {
           $uibModalStack.dismissAll();
       } catch (e) {
+        console.error(e);
       }
       var className = "is-login";
       var body = $('body');
@@ -481,7 +481,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
       $rootScope.$emit('scripts/controllers/common/wrapper.js::$locationChangeStart');
     }, $scope);
 
-    $rootScope.$saveOn('$stateChangeStart', function (event, toState, toParams, fromState, fromParams)
+    $rootScope.$saveOn('$stateChangeStart', function (event, toState, toParams, fromState)
     {
       /**
        * Temporary Comment
@@ -509,15 +509,15 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
       }
     }, $scope);
 
-    $rootScope.$saveOn('unsettransparentbackground', function(event) {
+    $rootScope.$saveOn('unsettransparentbackground', function() {
       return unsettransparentbackground();
     }, $scope);
 }
 
-BaseWrapper.prototype.stateChange = function(toState,fromState){};
+BaseWrapper.prototype.stateChange = function(){};
 
-kindFramework
-.controller('BaseWrapper', ['$rootScope', '$scope', 'RESTCLIENT_CONFIG',
+kindFramework.
+controller('BaseWrapper', ['$rootScope', '$scope', 'RESTCLIENT_CONFIG',
   'MultiLanguage','ROUTE_CONFIG','Attributes','SessionOfUserManager', '$uibModalStack',
   BaseWrapper
 ]);
