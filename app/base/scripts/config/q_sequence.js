@@ -1,7 +1,7 @@
 /* global recursive */
 "use strict";
-kindFramework
-    .config(function ($provide) {
+kindFramework.
+  config(function ($provide) {
         $provide.decorator("$q", function ($delegate) {
             function seqAll(fns) {
                 //create a defer, which will return promise with setting resolve/reject
@@ -46,7 +46,7 @@ kindFramework
                     var promise = fn();
 
                     index++;
-                    if(promise === undefined)
+                    if(typeof promise === "undefined")
                     {
                         if(index < fns.length) {
                             recursive(fns[index]);
@@ -79,11 +79,11 @@ kindFramework
                 // Implementation of allSettled function from Kris Kowal's Q
                 // https://github.com/kriskowal/q/wiki/API-Reference#promiseallsettled
                 function wrap(promise) {
-                    return $delegate.when(promise)
-                        .then(function (value) {
+                    return $delegate.when(promise).
+                        then(function (value) {
                             return { state: 'fulfilled', value: value };
-                        })
-                        .catch(function (reason) {
+                        }).
+                        catch(function (reason) {
                             return { state: 'rejected', reason: reason };
                         });
                 }
