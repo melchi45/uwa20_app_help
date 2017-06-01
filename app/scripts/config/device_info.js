@@ -4,15 +4,15 @@
  * So $urlRouter.sync() is used for Synchronized Multi Language.
  */
 "use strict";
-kindFramework
-	.config(function($urlRouterProvider){
+kindFramework.
+  config(function($urlRouterProvider){
 		try{
 			$urlRouterProvider.deferIntercept();
 		}catch(e){
 			console.error(e);
 		}
-	})
-	.run(function (
+	}).
+  run(function (
 		$rootScope, 
 		$urlRouter, 
 		SunapiClient, 
