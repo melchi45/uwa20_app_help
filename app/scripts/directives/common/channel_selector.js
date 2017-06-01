@@ -23,7 +23,7 @@ kindFramework.directive('channelSelector', function($rootScope) {
         replace: true,
         scope: true,
         templateUrl: 'views/common/directives/channel_selector.html',
-        link: function(scope, element, attrs){
+        link: function(scope, element){
             var elem = element;
 
             scope.channelSelector = {
@@ -40,11 +40,11 @@ kindFramework.directive('channelSelector', function($rootScope) {
                 $rootScope.$emit("channelSelector:changedChannel", index);
             }, scope);
 
-            $rootScope.$saveOn('channelSelector:off', function(event){
+            $rootScope.$saveOn('channelSelector:off', function(){
                 elem.find("button").attr("disabled", true);
             }, scope);
 
-            $rootScope.$saveOn('channelSelector:on', function(event){
+            $rootScope.$saveOn('channelSelector:on', function(){
                 elem.find("button").removeAttr("disabled");
             }, scope);
 
@@ -92,7 +92,7 @@ kindFramework.directive('livePlaybackChannelSelector', function($rootScope, Univ
                 }
             };
 
-            $rootScope.$saveOn('channelSelector:mounted', function(event, index){
+            $rootScope.$saveOn('channelSelector:mounted', function(){
                 try {
                     $rootScope.$emit('channelSelector:changeChannel', UniversialManagerService.getChannelId());   
                 }catch(e){
@@ -145,7 +145,7 @@ kindFramework.directive('setupChannelSelector', function($rootScope, UniversialM
             var DEFAULT_CHANNEL = 0;
             var useChannel = true;
 
-            if(attrs.useChannel == 'false') useChannel = false;
+            if(attrs.useChannel === 'false'){ useChannel = false;}
 
             scope.setupChannelSelector = {
                 useInfo: attrs.useInfo === 'true',
@@ -162,7 +162,7 @@ kindFramework.directive('setupChannelSelector', function($rootScope, UniversialM
                 }, scope);
             }
 
-            $rootScope.$saveOn('channelSelector:mounted', function(event, index){
+            $rootScope.$saveOn('channelSelector:mounted', function(){
                 try {
                     $rootScope.$emit('channelSelector:changeChannel', UniversialManagerService.getChannelId());   
                 }catch(e){

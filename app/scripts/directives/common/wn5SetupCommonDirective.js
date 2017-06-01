@@ -8,7 +8,7 @@ kindFramework.directive('wn5SetupMainTitle', function() {
         },
         replace: true,
         templateUrl: 'views/setup/common/wn5SetupMainTitle.html',
-        link: function(scope, element, attrs){
+        link: function(){
         }
     };
 });
@@ -28,11 +28,11 @@ kindFramework.directive('wn5SetupCommonButton', function() {
             };
 
             scope.wn5SetupCommonButton = {
-                submit: function(event){
+                submit: function(){
                     removeFocus();
                     scope.$parent.$eval(submitClick);
                 },
-                cancel: function(event){
+                cancel: function(){
                     removeFocus();
                     scope.$parent.$eval(cancelClick);
                 }

@@ -215,7 +215,7 @@ kindFramework
                         ConnectionSettingService.setConnectionInfo({id:id, password:password});
 
                         //scope.playerdata = ConnectionSettingService.closeStream();
-                        if(videoinfo.currentPage !== undefined){
+                        if(typeof videoinfo.currentPage !== "undefined"){
                             kindStreamInterface.setIspreview(true, videoinfo.currentPage);
                         }else{
                             kindStreamInterface.setIspreview(true, null);    
@@ -225,7 +225,7 @@ kindFramework
                             scope.$apply(function(){
                                 if(RESTCLIENT_CONFIG.digest.rtspIp === "" || RESTCLIENT_CONFIG.digest.rtspIp === null){
                                     getRtspIpMac().then(
-                                        function(response){
+                                        function(){
                                             scope.playerdata = getPlayerData();
                                             scope.isReady = true;
                                         },
@@ -252,7 +252,7 @@ kindFramework
                     var macIp = response.data.NetworkInterfaces[0].MACAddress;
                     ConnectionSettingService.SetRtspIpMac(rtspIp,macIp);
                 },
-                function(errorData,errorCode) {
+                function(errorData) {
                     console.error(errorData);
                 }, '', true);
             }
@@ -276,7 +276,7 @@ kindFramework
                 //sketchbookService.sketchManager.init(sketchinfo, scope.videoinfo, updateCoordinates, privacyUpdate, autoTrackingUpdate);
                 sketchbookService.sketchManager.init(sketchinfo, scope.videoinfo, updateCoordinates, privacyUpdate, getZoomValue, autoTrackingUpdate);
 
-                if(!(scope.coordinates === undefined || scope.coordinates === null || scope.coordinates === {})){
+                if(!(typeof scope.coordinates === "undefined" || scope.coordinates === null || scope.coordinates === {})){
                     sketchbookService.set(scope.coordinates, scope.flag);
                 }
             });
@@ -316,29 +316,10 @@ kindFramework
                     function(response) {
                      SessionOfUserManager.SetClientIPAddress(response.data.ClientIP);
                     },
-                    function(errorData,errorCode) {
+                    function(errorData) {
                      console.error(errorData);
                     },'',true);
                 }
-            }
-
-            function getBrowserDetect() {
-                var BrowserDetectRes = {};
-                BrowserDetectRes.isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-                // Firefox 1.0+
-                BrowserDetectRes.isFirefox = typeof InstallTrigger !== 'undefined';
-                // At least Safari 3+: "[object HTMLElementConstructor]"
-                BrowserDetectRes.isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
-                // Internet Explorer 6-11
-                BrowserDetectRes.isIE = /*@cc_on!@*/false || !!document.documentMode;
-                // Edge 20+
-                BrowserDetectRes.isEdge = !BrowserDetectRes.isIE && !!window.StyleMedia;
-                // Chrome 1+
-                BrowserDetectRes.isChrome = !!window.chrome && !!window.chrome.webstore;
-                // Blink engine detection
-                BrowserDetectRes.isBlink = (BrowserDetectRes.isChrome || BrowserDetectRes.isOpera) && !!window.CSS;
-
-                return BrowserDetectRes;
             }
 
             function setDISOption(){
