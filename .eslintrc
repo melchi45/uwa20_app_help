@@ -13,7 +13,8 @@
     "shelljs": false
   },
   "globals": {
-    "kindFramework" : true
+    "kindFramework" : true,
+    "angular": true
   },
   //"plugins": ["angular"],
   "rules": {
