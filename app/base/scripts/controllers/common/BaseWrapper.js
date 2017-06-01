@@ -281,7 +281,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         }
         else if (menuId === "audioDetection")
         {
-          if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
+          if(mAttr.MaxAudioInput === 0){
             retVal = false;
           } else {
             retVal = true;
@@ -382,7 +382,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
             }
         }
         else if(menuId === "soundClassification"){
-          if(mAttr.MaxAudioInput === 0 || mAttr.MaxAudioOutput === 0){
+          if(mAttr.MaxAudioInput === 0){
             retVal = false;
           } else {
             retVal = true;
