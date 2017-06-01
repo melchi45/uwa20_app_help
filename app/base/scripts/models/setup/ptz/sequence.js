@@ -28,7 +28,7 @@ kindFramework.factory(
 			};
 
 			this.setCurrentMode = function(_mode) {
-				if( _mode !== null && _mode !== undefined) {
+				if( _mode !== null && typeof _mode !== "undefined") {
 					mode = _mode;
 				}
 			};
@@ -38,7 +38,7 @@ kindFramework.factory(
 			};
 
 			this.setCurrentIndex = function(idx) {
-				if( idx !== null && idx !== undefined ) {
+				if( idx !== null && typeof idx !== "undefined" ) {
 					index = idx;
 				}
 			};
@@ -48,7 +48,7 @@ kindFramework.factory(
 	      if( mode !== null ) {
 	        uri +="&Mode="+mode;
 	      }
-	      if( index !== null && index !== undefined ) {
+	      if( index !== null && typeof index !== "undefined" ) {
 	        uri += "&"+menu.substring(0,1).toUpperCase()+menu.substring(1)+"="+index;
 	      }
 	      return uri;
