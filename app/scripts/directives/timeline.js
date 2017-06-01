@@ -210,7 +210,8 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
               }, function(){
                 timelineCtrl.redraw();
                 $rootScope.$emit('changeLoadingBar', false);
-              }); 
+              });
+              $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
             break;
             case 'eventsorting':
               var data = $scope.timelineControl.getOverlapEvent();
@@ -234,15 +235,18 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
                   $rootScope.$emit('changeLoadingBar', false);
                 });
               };
+              $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
               successCallback(data);
             break;
             case 'backup':
               var backupTime = $scope.timelineControl.getBackupDate();
               if( backupTime !== null ) {
+                
                 playData.setPlaybackBackupTime(backupTime.currentDate, backupTime.startTime, 
                                                 backupTime.endTime);
                 $rootScope.$emit('playbackBackup');
                 $rootScope.$emit('changeLoadingBar', true);
+                $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
               }
               mode = 1;
               timelineCtrl.resetTimeRange();
@@ -250,7 +254,6 @@ kindFramework.directive('timeline', ['$filter', '$interval', '$timeout', '$rootS
           }
 
           $rootScope.$emit('channelSelector:on', true);
-          $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
           $scope.timelineControl.changeTimelineMode(mode);
         };
 
