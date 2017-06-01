@@ -1,10 +1,11 @@
+/* global CryptoJS */
 kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q, SessionOfUserManager,ModalManagerService, $timeout, SunapiConverter)
 {
     'use strict';
 
-    var digestInfo;
-    var usrName;
-    var passWord;
+    var digestInfo = undefined;
+    var usrName = '';
+    var passWord = '';
 
     var sunapiClient = {};
 
@@ -13,22 +14,23 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
     var debugMode = false;
 
    if (RESTCLIENT_CONFIG.serverType === 'camera'){
-        RESTCLIENT_CONFIG['digest'].hostName = window.location.hostname;
-        RESTCLIENT_CONFIG['digest'].port = window.location.port;
+        RESTCLIENT_CONFIG.digest.hostName = window.location.hostname;
+        RESTCLIENT_CONFIG.digest.port = window.location.port;
         var loc_protocol = window.location.protocol;
         var splitProt =loc_protocol.split(":");
-        RESTCLIENT_CONFIG['digest'].protocol = splitProt[0];
+        RESTCLIENT_CONFIG.digest.protocol = splitProt[0];
     }else{
       try{
-        debugMode = RESTCLIENT_CONFIG['debugMode']; 
+        debugMode = RESTCLIENT_CONFIG.debugMode;
       }catch(e){
         console.error(e);
       }
     }
 
 
-    sunapiClient.post = function (url, jsonData, SuccessFn, FailFn, $scope, fileData, specialHeaders)
+    sunapiClient.post = function (_url, jsonData, SuccessFn, FailFn, $scope, fileData, specialHeaders)
     {
+        var url = _url;
         if (typeof jsonData !== 'undefined')
         {
             url += jsonToText(jsonData);
@@ -37,13 +39,14 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         return ajax_async("POST", url, SuccessFn, FailFn, $scope, fileData, specialHeaders);
     };
 
-    sunapiClient.get = function (url, jsonData, SuccessFn, FailFn, $scope, isAsyncCall, isText)
+    sunapiClient.get = function (_url, jsonData, SuccessFn, FailFn, $scope, isAsyncCall, isText)
     {
+        var url = _url;
         if (typeof jsonData !== 'undefined')
         {
             url += jsonToText(jsonData);
 
-            if(url.indexOf("attributes.cgi") == -1)
+            if(url.indexOf("attributes.cgi") === -1)
             {
                url += "&SunapiSeqId=" + sequencenum++;
             }
@@ -96,7 +99,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
      */
     sunapiClient.sequence = function(queue, successCallback, errorCallback){
         var currentItem = queue.shift();
-        if(currentItem === undefined) {return;}
+        if(typeof currentItem === "undefined") {return;}
 
         sunapiClient.get(
             currentItem.url, 
@@ -131,7 +134,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
             usrName = SessionOfUserManager.getUsername();
             passWord = SessionOfUserManager.getPassword();
         }else{
-            LoginRedirect();
+            loginRedirect();
             return;
         }
 
@@ -150,7 +153,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
             xhr.withCredentials = true;
         }
 
-        if (wwwAuthenticate !== '' && wwwAuthenticate !== undefined){
+        if (wwwAuthenticate !== '' && typeof wwwAuthenticate !== "undefined"){
             digestInfo = getDigestInfoInWwwAuthenticate(wwwAuthenticate);
             setDigestHeader(xhr, method, url, digestInfo);
         }else{
@@ -189,7 +192,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
                         xhr.withCredentials = true;
                     }
 
-                    if (wwwAuthenticate !== '' && wwwAuthenticate !== undefined){
+                    if (wwwAuthenticate !== '' && typeof wwwAuthenticate !== "undefined"){
                         digestInfo = getDigestInfoInWwwAuthenticate(wwwAuthenticate);
                         setDigestHeader(xhr, method, url, digestInfo);
                     }else{
@@ -214,9 +217,9 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
                             }else{
                                 if(this.status === 490){
                                     ModalManagerService.open('message', { 'buttonCount': 0, 'message': "Exceeded maximum login attempts, please try after some time" } );
-                                    LoginRedirect();
+                                    loginRedirect();
                                 }
-                                failFn("HTTP Error : ",this.status);
+                                failFn("HTTP Error : ", this.status);
                                 deferred.reject('Failure');
                             }
                         }
@@ -242,7 +245,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
                     }else{
                         if(this.status === 490){
                             ModalManagerService.open('message', { 'buttonCount': 0, 'message': "Exceeded maximum login attempts, please try after some time" } );
-                            LoginRedirect();
+                            loginRedirect();
                         }
                         failFn("HTTP Error : ",this.status);
                         deferred.reject('Failure');
@@ -254,13 +257,16 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         if(RESTCLIENT_CONFIG.serverType === 'grunt') {
           console.log(url);
         }
-        if (typeof fileData !== 'undefined' && fileData !== null && fileData !== ''){
-            xhr.send(fileData);
-        }else{
-            xhr.send();
-        }
+      if (
+        typeof fileData !== 'undefined' &&
+        fileData !== null && fileData !== ''
+        ) {
+        xhr.send(fileData);
+      } else {
+        xhr.send();
+      }
 
-        return deferred.promise;
+      return deferred.promise;
     };
     //*--------------------- End sunapiClient.file export ---------------- */
 
@@ -279,14 +285,8 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         passWord = connect_info.rtsp_pwd;
         console.log("%c request sunapi -> " + reqURL + " ", "color:#61BD4F");
 
-        var xhr = mobile.makeNewRequest(connect_info, url, '');
+        xhr = mobile.makeNewRequest(connect_info, url, '');
         console.log(xhr);
-        var OnErrorEvent = function (evt) {  
-          FailFn(
-            { msg : "Network Error",
-              code : evt.status,
-          });
-        };
 
         // Mobile safari ( for iOS )
         if(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0) {
@@ -327,7 +327,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
                 }
               };
 
-              xhr.onerror = function (evt) { FailFn(xhr.status); };
+              xhr.onerror = function () { FailFn(xhr.status); };
               xhr.ontimeout = function() {  FailFn(408);  }
 
               if(auth) {
@@ -378,7 +378,6 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
           xhr.onreadystatechange = function () {
             if (this.readyState === 4) {
               if (this.status === 401) {
-                var wwwAuthenticate = this.getResponseHeader('www-authenticate');
                 var xhr = new XMLHttpRequest();
 
                 xhr.onreadystatechange = function () {
@@ -481,7 +480,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
       },
 
       parse : function(url, response) {
-        var result;
+        var result = '';
 
           try {
             result = JSON.parse(response);
@@ -534,7 +533,8 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
 
     function setDigestHeader(xhr, method, url, digestCache)
     {
-        var responseValue, digestAuthHeader;
+        var responseValue = null;
+        var digestAuthHeader = null;
         if (digestCache.scheme.toLowerCase() === 'digest')
         {
             digestCache.nc = digestCache.nc + 1;
@@ -559,7 +559,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         }
         else if (digestCache.scheme.toLowerCase() === 'basic')
         {
-            var digestAuthHeader = digestCache.scheme + ' ' + btoa(usrName + ':' + passWord);
+            digestAuthHeader = digestCache.scheme + ' ' + btoa(usrName + ':' + passWord);
 
             xhr.setRequestHeader("Authorization", digestAuthHeader);
         }
@@ -576,7 +576,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         }
         else
         {
-          var resp;
+          var resp = '';
           try{
              resp = JSON.parse(xhr.response);
            }
@@ -592,7 +592,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
 
                 if (result.data.Response === "Fail")
                 {
-                    if(typeof result.data.OpenSDKError == 'undefined'){
+                    if(typeof result.data.OpenSDKError === 'undefined'){
                         failFn(result.data.Error.Details,result.data.Error.Code);
                     }else{
                         failFn(result.data.Error.Details,result.data.Error.Code,result.data.OpenSDKError);
@@ -611,21 +611,9 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         }
     }
 
-    function handleAccountBlock(failFn)
-    {
-        ModalManagerService.open('message', { 'buttonCount': 0, 'message': "Exceeded maximum login attempts, please try after some time" } );
-        LoginRedirect();
-        if(SessionOfUserManager.IsLoginSuccess() === false)
-        {
-
-            failFn("HTTP Error : ",xhr.status);
-            console.log("After calling Account block fail fn");
-        }
-    }
-
     function setupAsyncCall(xhr, method, callbackList, url, failFn)
     {
-        var OnErrorEvent = function (evt)
+        var onErrorEvent = function ()
         {
             failFn("Network Error");
         };
@@ -653,7 +641,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
             }
             else
             {
-                xhr.addEventListener("error", OnErrorEvent, false);
+                xhr.addEventListener("error", onErrorEvent, false);
             }
         }
 
@@ -704,7 +692,6 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
 
 
         //if(SessionOfUserManager.IsWMFApp() === true  && RESTCLIENT_CONFIG.serverType === 'camera' &&
-         //   (checkStaleResponseIssue(url) === false))
         if(RESTCLIENT_CONFIG.serverType === 'camera')
         {
             //Added for same origin request, now using custom digest to avoid browser hang and popups
@@ -720,7 +707,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         /** If there is a new Challenge from server, update the local digest cache  */
         if(RESTCLIENT_CONFIG.serverType === 'grunt')
         {
-          if (wwwAuthenticate !== '' && wwwAuthenticate !== undefined)
+          if (wwwAuthenticate !== '' && typeof wwwAuthenticate !== "undefined")
           {
               digestInfo = getDigestInfoInWwwAuthenticate(wwwAuthenticate);
               setDigestHeader(xhr, method, url, digestInfo);
@@ -738,33 +725,23 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         return xhr;
     }
 
-    /**
-     * When ever server return STALE parameter in digest header, browser shows popup before control coming to
-     * XHR callback, Inorder to avaoid it we will remove digest cache in scenarios in which STALE response can happen
-     * just a temporary workaround
-     */
-
-    function checkStaleResponseIssue(url)
-    {
-        var retVal = false;
-
-        /** As of not it happens only after SSL certificate install and delete */
-        if (url.indexOf("ssl") !== -1)
-        {
-            if (url.indexOf("install") !== -1 || url.indexOf("remove") !== -1)
-            {
-                retVal = true;
-            }
-        }
-        return retVal;
-    }
-
-
     sunapiClient.clearDigestCache = function () {
         console.log('Clearing the Diegest cache !!!!!!!!!!!! ');
         digestInfo = undefined;
     };
 
+    function handleAccountBlock(failFn)
+    {
+        ModalManagerService.open('message', { 'buttonCount': 0, 'message': "Exceeded maximum login attempts, please try after some time" } );
+        loginRedirect();
+        if(SessionOfUserManager.IsLoginSuccess() === false)
+        {
+
+            failFn("HTTP Error : ", syncXhr.status);
+            console.log("After calling Account block fail fn");
+        }
+    }
+    var syncXhr = null;
     var ajax_sync = function (method, url, successFn, failFn, isText)
     {
         if(RESTCLIENT_CONFIG.serverType === 'grunt')
@@ -776,45 +753,45 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
           }
           else
           {
-              LoginRedirect();
+              loginRedirect();
               return;
           }
   }
-        var xhr = makeNewRequest(method, url, false, '', isText);
+        syncXhr = makeNewRequest(method, url, false, '', isText);
 
         if(RESTCLIENT_CONFIG.serverType === 'grunt') {
           console.log(url);
         }
-        xhr.send();
+        syncXhr.send();
 
-        if (xhr.status === 200)
+        if (syncXhr.status === 200)
         {
-            if (typeof xhr.response !== 'undefined' && xhr.response !== "")
+            if (typeof syncXhr.response !== 'undefined' && syncXhr.response !== "")
             {
-                parseResponse(xhr, successFn, failFn, isText);
+                parseResponse(syncXhr, successFn, failFn, isText);
             }
             else
             {
                 failFn("No response");
             }
         }
-        else if (xhr.status === 401 && RESTCLIENT_CONFIG.serverType === 'grunt')
+        else if (syncXhr.status === 401 && RESTCLIENT_CONFIG.serverType === 'grunt')
         {
-            var wwwAuthenticate = xhr.getResponseHeader('www-authenticate');
+            var wwwAuthenticate = syncXhr.getResponseHeader('www-authenticate');
             console.log("sync wwwAuthenticate : ", wwwAuthenticate);
-            var xhr = makeNewRequest(method, url, false, wwwAuthenticate, isText);
-            setDigestHeader(xhr, method, url, digestInfo);
+            syncXhr = makeNewRequest(method, url, false, wwwAuthenticate, isText);
+            setDigestHeader(syncXhr, method, url, digestInfo);
 
             if(RESTCLIENT_CONFIG.serverType === 'grunt') {
               console.log(url);
             }
-            xhr.send();
+            syncXhr.send();
 
-            if (xhr.status === 200)
+            if (syncXhr.status === 200)
             {
-                if (typeof xhr.response !== 'undefined' && xhr.response !== "")
+                if (typeof syncXhr.response !== 'undefined' && syncXhr.response !== "")
                 {
-                    parseResponse(xhr, successFn, failFn, isText);
+                    parseResponse(syncXhr, successFn, failFn, isText);
                 }
                 else
                 {
@@ -823,25 +800,25 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
             }
             else
             {
-                if(xhr.status === 490)
+                if(syncXhr.status === 490)
                 {
                     handleAccountBlock(failFn);
                 }
                 else
                 {
-                   failFn("HTTP Error : ",xhr.status);
+                   failFn("HTTP Error : ",syncXhr.status);
                 }
             }
         }
         else
         {
-            if(xhr.status === 490)
+            if(syncXhr.status === 490)
             {
                 handleAccountBlock(failFn);
             }
             else
             {
-                failFn("HTTP Error : ",xhr.status);
+                failFn("HTTP Error : ",syncXhr.status);
             }
         }
     };
@@ -858,7 +835,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
           }
           else
           {
-              LoginRedirect();
+              loginRedirect();
               return;
           }
         }
@@ -915,7 +892,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
                               if(this.status === 490)
                               {
                                  ModalManagerService.open('message', { 'buttonCount': 0, 'message': "Exceeded maximum login attempts, please try after some time" } );
-                                 LoginRedirect();
+                                 loginRedirect();
                               }
                               failFn("HTTP Error : ",this.status);
                               deferred.reject('Failure');
@@ -956,7 +933,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
                       if(this.status === 490)
                       {
                          ModalManagerService.open('message', { 'buttonCount': 0, 'message': "Exceeded maximum login attempts, please try after some time" } );
-                         LoginRedirect();
+                         loginRedirect();
                       }
                       failFn("HTTP Error : ",this.status);
                       deferred.reject('Failure');
@@ -1054,10 +1031,10 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
         return returnValue;
     };
 
-    var decimalToHex = function (d, padding)
+    var decimalToHex = function (d, _padding)
     {
         var hex = Number(d).toString(16);
-        padding = typeof (padding) === 'undefined' || padding === null ? padding = 2 : padding;
+        var padding = typeof (_padding) === 'undefined' || _padding === null ? 2 : _padding;
 
         while (hex.length < padding)
         {
@@ -1084,28 +1061,8 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
 
         return url;
     };
-
-    var DetectBrowser = function()
-    {
-        var BrowserDetectRes = {};
-        BrowserDetectRes.isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-    // Firefox 1.0+
-       BrowserDetectRes.isFirefox = typeof InstallTrigger !== 'undefined';
-    // At least Safari 3+: "[object HTMLElementConstructor]"
-        BrowserDetectRes.isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
-    // Internet Explorer 6-11
-        BrowserDetectRes.isIE = /*@cc_on!@*/false || !!document.documentMode;
-    // Edge 20+
-        BrowserDetectRes.isEdge = !BrowserDetectRes.isIE && !!window.StyleMedia;
-    // Chrome 1+
-        BrowserDetectRes.isChrome = !!window.chrome && !!window.chrome.webstore;
-    // Blink engine detection
-        BrowserDetectRes.isBlink = (BrowserDetectRes.isChrome || BrowserDetectRes.isOpera) && !!window.CSS;
-
-        return BrowserDetectRes;
-    };
-
-    var LoginRedirect = function()
+    
+    var loginRedirect = function()
     {
       if(RESTCLIENT_CONFIG.serverType === 'grunt')
         {
@@ -1116,9 +1073,9 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
     /**
      * @param {Int} msgType 0: Request, 1: Response
      */
-    var printDebug = function(msgType, url){
+    var printDebug = function(_msgType, url){
       try{
-        var msgType = msgType === 0 ? "REQUEST" : "RESPONSE";
+        var msgType = _msgType === 0 ? "REQUEST" : "RESPONSE";
         if(debugMode === true){
           console.info("[SUNAPI][" + msgType + "]", url);
         }

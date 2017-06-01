@@ -9,8 +9,7 @@
  $(window).on('resize',function() {
       var heightWithoutNavbar = $("body").height() - (17+71);
        
-       var navbarHeigh = 0;
-        var navbarHeigh = $('nav.navbar-default').height();
+       var navbarHeigh = $('nav.navbar-default').height();
         if(typeof navbarHeigh !== 'undefined')
         {
             if(navbarHeigh >heightWithoutNavbar){
@@ -31,8 +30,7 @@ $(document).ready(function () {
     function fix_height() {
         var heightWithoutNavbar = $("body").height() - (17+71);
        
-       var navbarHeigh = 0;
-        var navbarHeigh = $('nav.navbar-default').height();
+       var navbarHeigh = $('nav.navbar-default').height();
         if(typeof navbarHeigh !== 'undefined')
         {
             if(navbarHeigh > heightWithoutNavbar){
