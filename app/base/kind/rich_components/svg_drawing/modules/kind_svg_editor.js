@@ -1,5 +1,5 @@
 "use strict";
-
+/* globals KindSVGEditorFactory */
 function KindSVGEditor(svgTag){
 	this.svgTag = svgTag;
 }

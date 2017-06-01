@@ -1,16 +1,16 @@
 "use strict";
-
-KindSVGEditor.addPlugin('customEditor', function(options){
+/* globals KindSVGEditor */
+KindSVGEditor.addPlugin('customEditor', function(_options){
 	var parentSvgMovedAttr = 'is-moved';
-	var options = this.common.cloneObject(options);
-	var minPoint = options.minPoint === undefined ? 4 : options.minPoint;
+	var options = this.common.cloneObject(_options);
+	var minPoint = typeof options.minPoint === "undefined" ? 4 : options.minPoint;
 	//custom 함수에서는 start, end 이벤트만 사용한다.
-	var customEvent = options.event === undefined ? null : options.event;
-	var fixedRatio = options.fixedRatio === undefined ? false : options.fixedRatio;
-	var useOnlyRectangle = options.useOnlyRectangle === undefined ? false : options.useOnlyRectangle;
-	var ratio = options.ratio === undefined ? false : options.ratio;
-	var minLineLength = options.minLineLength === undefined ? 20 : options.minLineLength;
-	var minSize = options.minSize === undefined ? false : options.minSize;
+	var customEvent = typeof options.event === "undefined" ? null : options.event;
+	var fixedRatio = typeof options.fixedRatio === "undefined" ? false : options.fixedRatio;
+	var useOnlyRectangle = typeof options.useOnlyRectangle === "undefined" ? false : options.useOnlyRectangle;
+	var ratio = typeof options.ratio === "undefined" ? false : options.ratio;
+	var minLineLength = typeof options.minLineLength === "undefined" ? 20 : options.minLineLength;
+	var minSize = typeof options.minSize === "undefined" ? false : options.minSize;
 	var currentPoint = 0;
 	var svgObj = [];
 	var currentSvgObjIndex = 0;
@@ -67,20 +67,6 @@ KindSVGEditor.addPlugin('customEditor', function(options){
 			currentSvgObjIndex++;
 		};
 
-		var validateFirstLine = function(){
-			var points = svgObj[currentSvgObjIndex].getData().points;
-			var returnVal = true;
-
-			if(
-				minLineLength !== false &&
-				funnyMath.pythagoreanTheorem(points[0][0], points[0][1], axis[0], axis[1]) < minLineLength
-				){
-				returnVal = false;
-			}
-
-			return returnVal;
-		};
-
 		var validateAllAxis = function(){
 			var points = svgObj[currentSvgObjIndex].getData().points;
 			var returnVal = true;
@@ -88,7 +74,7 @@ KindSVGEditor.addPlugin('customEditor', function(options){
 			if(minLineLength !== false){
 				for(var i = 0, ii = points.length; i < ii; i++){
 					var startAxis = points[i];
-					var endAxis = i == ii - 1 ? points[0] : points[i + 1];
+					var endAxis = i === ii - 1 ? points[0] : points[i + 1];
 
 					if(funnyMath.pythagoreanTheorem(
 						startAxis[0],
@@ -202,21 +188,6 @@ KindSVGEditor.addPlugin('customEditor', function(options){
 			currentPoint = 0;
 		}
 	}
-
-	function getAngle(a, b, c) {
-        var ab = {
-            x: b.x - a.x,
-            y: b.y - a.y
-        };
-        var cb = {
-            x: b.x - c.x,
-            y: b.y - c.y
-        };
-        var dot = (ab.x * cb.x + ab.y * cb.y); // dot product
-        var cross = (ab.x * cb.y - ab.y * cb.x); // cross product
-        var alpha = Math.atan2(cross, dot);
-        return Math.floor(alpha * 180 / 3.141592 + 0.5);
-    }
 
 	return {
 		destroy: unbindEvent,

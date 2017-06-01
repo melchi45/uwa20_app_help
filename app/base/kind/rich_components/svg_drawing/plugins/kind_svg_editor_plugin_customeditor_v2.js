@@ -1,16 +1,12 @@
 "use strict";
-
-KindSVGEditor.addPlugin('customEditorV2', function(options){
+/* globals KindSVGEditor */
+KindSVGEditor.addPlugin('customEditorV2', function(_options){
 	var parentSvgMovedAttr = 'is-moved';
 	var DEFAULT_OBJECT_SIZE = 30;
 
-	var options = this.common.cloneObject(options);
-	var minPoint = options.minPoint === undefined ? 4 : options.minPoint;
+	var options = this.common.cloneObject(_options);
 	//custom 함수에서는 start, end 이벤트만 사용한다.
-	var customEvent = options.event === undefined ? null : options.event;
-	var ratio = options.ratio === undefined ? false : options.ratio;
-	var minLineLength = options.minLineLength === undefined ? 20 : options.minLineLength;
-	var minSize = options.minSize === undefined ? false : options.minSize;
+	var customEvent = typeof options.event === "undefined" ? null : options.event;
 	var currentPoint = 0;
 	var svgObj = [];
 	var currentSvgObjIndex = 0;
@@ -19,7 +15,6 @@ KindSVGEditor.addPlugin('customEditorV2', function(options){
 	var eventCtrl = this.eventController;
 	var elemCtrl = this.elementController;
 	var commonFunc = this.common;
-	var funnyMath = this.funnyMath;
 
 	var kindSVGEditor = new KindSVGEditor(elemCtrl.getParentSvg());
 
@@ -28,11 +23,11 @@ KindSVGEditor.addPlugin('customEditorV2', function(options){
 
 	var parentSVGMouseUpHandle = function(event){
 		//Right button
-		if(event.buttons === 2) return;
+    if (event.buttons === 2) return;
 
 		if(
 			elemCtrl.getParentSvgAttr(parentSvgMovedAttr) === "true" ||
-			svgObj[currentSvgObjIndex] === undefined
+			typeof svgObj[currentSvgObjIndex] === "undefined"
 			){
 			return;
 		}
@@ -53,10 +48,6 @@ KindSVGEditor.addPlugin('customEditorV2', function(options){
 		}
 
 		var axis = commonFunc.getPageAxis(event);
-
-		var addPoint = function(){
-			svgObj[currentSvgObjIndex].addPoint(axis[0], axis[1]);
-		};
 
 		options.points = [
 			axis,
