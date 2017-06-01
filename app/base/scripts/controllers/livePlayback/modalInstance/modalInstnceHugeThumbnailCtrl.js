@@ -1,8 +1,8 @@
 "use strict";
 
 kindFramework.controller('ModalHugeThumbnailCtrl',
-	['$scope', '$rootScope', '$uibModalInstance', 'data', '$timeout',
-	function ($scope, $rootScope, $uibModalInstance, data, $timeout) {
+	['$scope', '$rootScope', '$uibModalInstance', 'data',
+	function ($scope, $rootScope, $uibModalInstance, data) {
 
 		$scope.name = data.channelName;
 
@@ -10,15 +10,15 @@ kindFramework.controller('ModalHugeThumbnailCtrl',
       $uibModalInstance.dismiss('cancel');
     };
 	
-		$rootScope.$saveOn('allpopupclose', function(event) {
+		$rootScope.$saveOn('allpopupclose', function() {
 			$uibModalInstance.dismiss('cancel');
 		}, $scope);
 
 		var getSize = function() {
-			_size = ($(window).width() > $(window).height()) ? $(window).height()/2 : $(window).width()/2;
+			var _size = ($(window).width() > $(window).height()) ? $(window).height()/2 : $(window).width()/2;
 
 			return _size;
-		}
+		};
 
 		$scope.style = {
 			"background-image" : data.path,

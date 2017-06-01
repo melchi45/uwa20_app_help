@@ -1,5 +1,5 @@
 "use strict";
-
+/* global detector */
 var app = {
     webviewUrl: 'http://',
 	
@@ -64,8 +64,8 @@ var app = {
 
                 xmlHttp.onreadystatechange = function(){
                     if(this.readyState === 4){
-                        if(this.status == 200){
-                            if(xmlHttp.responseText == "OK"){
+                        if(this.status === 200){
+                            if(xmlHttp.responseText === "OK"){
                                 location.href = "../home/setup/pw_change.cgi";
                             }else{
                                 if(xmlHttp.responseText === "admin"){
@@ -86,10 +86,10 @@ var app = {
                                     }
                                 }
                             }
-                        }else if(this.status == 401){
+                        }else if(this.status === 401){
                             document.getElementsByTagName('title')[0].innerHTML = "401 - Unauthorized";
                             document.getElementsByClassName('wrap')[0].innerHTML = "<h1>401 - Unauthorized</h1>";
-                        }else if(this.status == 490){
+                        }else if(this.status === 490){
                             document.getElementsByTagName('title')[0].innerHTML = "Account Blocked";
                             document.getElementsByClassName('wrap')[0].innerHTML = "<h1>You have exceeded the maximum number of login attempts, please try after some time.</h1>";
                         }else{
@@ -99,7 +99,7 @@ var app = {
                     }
                 }
             }catch(e){
-
+              console.error(e);
             }
 
         }

@@ -15,7 +15,7 @@ kindFramework.controller('ModalInstnceFavoriteCtrl',
       $uibModalInstance.dismiss('cancel');
     };
 
-    $rootScope.$saveOn('allpopupclose', function(event) {
+    $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
 }]);

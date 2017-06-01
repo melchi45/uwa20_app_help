@@ -60,7 +60,7 @@ kindFramework.factory('HMStatisticsModel', function($q, pcSetupService, RESTCLIE
 					Mode: 'Cancel',
 					SearchToken: SearchToken
 				},
-				successCallback: function(responseData){
+				successCallback: function(){
 					deferred.resolve('Success');
 				},
 				failCallback: function(failData){
@@ -116,7 +116,7 @@ kindFramework.factory('HMStatisticsModel', function($q, pcSetupService, RESTCLIE
 			return imagePath.join('');
 		};
 
-		this.getReportInfo = function (type){
+		this.getReportInfo = function (){
 			var deferred = $q.defer();
 			var options = {
 				cgi: 'eventsources',

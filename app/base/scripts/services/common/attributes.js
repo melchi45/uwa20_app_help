@@ -1,3 +1,4 @@
+/* global isPhone */
 kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiClient, XMLParser, SessionOfUserManager,RESTCLIENT_CONFIG,CAMERA_STATUS)
 {
     "use strict";
@@ -329,8 +330,8 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         if (!mAttributes.eventsourceCgiAttrReady)
         {
             var va2support = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/videoanalysis2/DetectionType/enum');
-            var vaCmd;
-            if(va2support !== undefined) {
+            var vaCmd = '';
+            if(typeof va2support !== "undefined") {
                 mAttributes.VideoAnalysis2Support = true;
                 vaCmd = 'videoanalysis2';
             } else {
@@ -355,8 +356,8 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
             mAttributes.CameraHeight = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/peoplecount/CameraHeight/int');
             mAttributes.CalibrationMode = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/peoplecount/CalibrationMode/enum');
 
-            mAttributes.PeopleCount = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/peoplecount/Enable/bool') !== undefined;
-            mAttributes.HeatMap = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/heatmap/Enable/bool') !== undefined;
+            mAttributes.PeopleCount = typeof XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/peoplecount/Enable/bool') !== "undefined";
+            mAttributes.HeatMap = typeof XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/heatmap/Enable/bool') !== "undefined";
 
             mAttributes.LoiteringDuration = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/' + vaCmd + '/DefinedArea.#.LoiteringDuration/int');
             mAttributes.AppearanceDuration = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/' + vaCmd + '/DefinedArea.#.AppearanceDuration/int');
@@ -397,7 +398,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
     this.parseEventActionsCgiAttributes = function() {
         if(!mAttributes.eventactionsCgiAttrReady) {
             mAttributes.EventActionSupport = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventactions/complexaction/EventType/enum');
-            if(mAttributes.EventActionSupport !== undefined && mAttributes.EventActionSupport !== null) {
+            if(typeof mAttributes.EventActionSupport !== "undefined" && mAttributes.EventActionSupport !== null) {
                 mAttributes.EventActionSupport = true;
             } else {
                 mAttributes.EventActionSupport = false;
@@ -710,7 +711,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                     mAttributes.MaxProfile = XMLParser.parseAttributeSection(response.data, 'Media/Limit/MaxProfile');
                     mAttributes.CropSupport = XMLParser.parseAttributeSection(response.data, 'Media/Support/Crop');
                     mAttributes.MaxResolution = XMLParser.parseAttributeSection(response.data, 'Media/Limit/MaxResolution');
-                    if (mAttributes.MaxResolution !== undefined)
+                    if (typeof mAttributes.MaxResolution !== "undefined")
                     {
                         mAttributes.MaxResolution = mAttributes.MaxResolution[0];
                     }
@@ -837,7 +838,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                         mAttributes.cameraCommandResponse = response.data.Camera[0];
                     }
                 },
-                function (errorData)
+                function ()
                 {
                    // alert(errorData);
                 },'',true);
@@ -1102,7 +1103,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
     };
 
     this.isSupportGoToPreset = function(){
-        return mAttributes.EventLogTypes !== undefined;
+        return typeof mAttributes.EventLogTypes !== "undefined";
     };
 
     this.getPresetOptions = function(){
@@ -1155,8 +1156,6 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
     var loginIPOLISWeb_No_Digest = function() {
         if (RESTCLIENT_CONFIG.serverType === 'camera')
         {
-
-            var userId, userPassword;
             SunapiClient.get(
             '/stw-cgi/security.cgi?msubmenu=users&action=view',
             {},
@@ -1166,7 +1165,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
                 SessionOfUserManager.SetLogin();
 
             },
-            function(errorData,errorCode) {
+            function(errorData) {
                     console.error(errorData);
             },'',true);
         }
@@ -1181,7 +1180,7 @@ kindFramework.service('Attributes', function ($timeout, $location, $q, SunapiCli
         if(data.length > 0 ){       //admin, user
             accountInfo = data[0];
         }else{                      //guest
-            accountInfo['UserID'] = 'guest';
+            accountInfo.UserID = 'guest';
         }
         loginInfo.id = accountInfo.UserID;
     };

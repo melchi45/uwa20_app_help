@@ -27,6 +27,7 @@ kindFramework
     var self = this;
     var openErrorPopup = false;
     var defaultSpeed = 1;
+		var isBackupDone = false;
 		var pad = function(x){
 			x *= 1;
 			return x<10? "0"+x : x;
@@ -332,31 +333,49 @@ kindFramework
 		  		$rootScope.$emit('changeLoadingBar', false);
 		  		playData.setStatus(PLAY_CMD.STOP);
 		  		if( error.errorCode === BACKUP_STATUS.MODE.STOP ) {
+						if( isBackupDone === true ) return;
+						isBackupDone = true;
 		  			ModalManagerService.open(
 		      			'message',
 		      			{'message':"lang_msg_savingComplete", 'buttonCount':0}
 		      		);	
 		  		}
 		  		else if( error.errorCode === BACKUP_STATUS.MODE.NO_FILE_CREATED){
-					ModalManagerService.open(
+						if( isBackupDone === true ) return;
+						isBackupDone = true;
+						ModalManagerService.open(
 		      			'message',
 		      			{'message':"lang_msg_not_export_saved_file", 'buttonCount':0}
 		      		);
 		  		}
 		  		else if( error.errorCode === BACKUP_STATUS.MODE.CODEC_CHANGED || 
 		  				error.errorCode === BACKUP_STATUS.MODE.PROFILE_CHANGED ) {
-					ModalManagerService.open(
+						if( isBackupDone === true ) return;
+						isBackupDone = true;
+						ModalManagerService.open(
 		      			'message',
 		      			{'message':"lang_msg_codecChange", 'buttonCount':0}
 		      		);
 		  		}
 		  		else if( error.errorCode === BACKUP_STATUS.MODE.EXCEEDED_MAX_FILE) {
+						if( isBackupDone === true ) return;
+						isBackupDone = true;
 		  			ModalManagerService.open(
 		      			'message',
 		      			{'message':"lang_max_filesize", 'buttonCount':0}
 		      		);
-		  		}
-		  	}
+		  		} else if( error.errorCode === BACKUP_STATUS.MODE.NO_LONGER_SUPPORT) {
+						if( isBackupDone === true ) return;
+						isBackupDone = true;
+						ModalManagerService.open(
+							'message',
+							{'message' : 'No longer be able to stream. Please set a shorter section ','buttonCount' : 0}
+						);
+					}
+		  	} else {
+					// recording status
+					isBackupDone = false;
+				}
 		  }
 		  else {
 				if (error.errorCode !== "200") {

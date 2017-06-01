@@ -12,7 +12,7 @@ kindFramework.controller('ModalInstnceListCtrl',
   };
 
   $scope.checkSameValues = function(itemValue){
-    if( typeof(playSpeed) !== 'undefined' && itemValue === playSpeed) return "checked";
+    if( typeof(playSpeed) !== 'undefined' && itemValue === playSpeed) {return "checked";}
   };
 
   $scope.checkPlayback = function(){
@@ -21,7 +21,7 @@ kindFramework.controller('ModalInstnceListCtrl',
     }
   };
 
-  $rootScope.$saveOn('allpopupclose', function(event) {
+  $rootScope.$saveOn('allpopupclose', function() {
     $uibModalInstance.dismiss('cancel');
   }, $scope);
 

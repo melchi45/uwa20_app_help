@@ -10,11 +10,11 @@ kindFramework
 									ChangePasswordModel
                ){
         "use strict";
-				var ChangePasswordModel = new ChangePasswordModel();
+				var changePasswordModel = new ChangePasswordModel();
     
         /*
         if(!SessionOfUserManager.IsLoggedin()){
-						var wrongAccess = ChangePasswordModel.getWrongAccessMessage();
+						var wrongAccess = changePasswordModel.getWrongAccessMessage();
             $('.wrap').html('');
             $translate(wrongAccess).then(function(wrongAccess){
                 alert(wrongAccess);
@@ -36,45 +36,45 @@ kindFramework
           var secondPassword = $scope.loginInfo.newpassword2;
           
           if($scope.loginInfo.password !== SessionOfUserManager.getPassword()){
-            openModal(ChangePasswordModel.getCurrentPasswordMisMatchMessage());
+            openModal(changePasswordModel.getCurrentPasswordMisMatchMessage());
             return;
           }
 
           if(!checkEmptyPassword(firstPassword, secondPassword))
           {
-            openModal(ChangePasswordModel.getEmptyPasswordMessage());
+            openModal(changePasswordModel.getEmptyPasswordMessage());
             return;
           }
 
           if(!checkNumCharSym(firstPassword))
           {
-            openModal(ChangePasswordModel.getWrongSpecialChracter());
+            openModal(changePasswordModel.getWrongSpecialChracter());
             return;             
           }
 
           switch(isSafePassword(firstPassword))
           {
             case 'short_password_length':
-              openModal(ChangePasswordModel.getShortPasswordMessage());
+              openModal(changePasswordModel.getShortPasswordMessage());
               return;
               //break; //Make block for fix Static Analysis lint error - Unreachable 'break' after 'return'
             case 'Three_Special_Character':
-              openModal(ChangePasswordModel.getThreeSpecialCharacterMessage());
+              openModal(changePasswordModel.getThreeSpecialCharacterMessage());
               return;
               //break; //Make block for fix Static Analysis lint error - Unreachable 'break' after 'return'
             case 'Two_Special_Character':
-              openModal(ChangePasswordModel.getTwoSpecialCharacterMessage());
+              openModal(changePasswordModel.getTwoSpecialCharacterMessage());
               return;
               //break; //Make block for fix Static Analysis lint error - Unreachable 'break' after 'return'
             case 'Same_Character':
-              openModal(ChangePasswordModel.getSameCharacterMessage());
+              openModal(changePasswordModel.getSameCharacterMessage());
               return;
               //break; //Make block for fix Static Analysis lint error - Unreachable 'break' after 'return'
           }
 
           if(firstPassword !== secondPassword)
           {
-            openModal(ChangePasswordModel.getPasswordMisMatchMessage());
+            openModal(changePasswordModel.getPasswordMisMatchMessage());
             return;
           }
 
@@ -96,7 +96,7 @@ kindFramework
             $('#change-password').html('');
             SessionOfUserManager.UnSetLogin();
             
-            $translate(ChangePasswordModel.getSuccessMessage()).then(function(translations){
+            $translate(changePasswordModel.getSuccessMessage()).then(function(){
                 //openModal(translations.lang_msg_savingComplete + " " + translations.lang_msg_tryAgain);
 								$timeout(function(){
                     $state.go('login');
@@ -159,13 +159,6 @@ kindFramework
             return 'short_password_length';
           }
           
-          function strncmp(str1, str2, lgth) {
-            var s1 = (str1 + '').substr(0, lgth);
-            var s2 = (str2 + '').substr(0, lgth);
-
-            return ((s1 === s2) ? 0: ((s1 > s2) ? 1: -1));
-          }
-          
           function isValidRule1(passwd) {
             var acceptCount = 0;
             var PATTERN_NUM = /\d+/;  
@@ -173,23 +166,23 @@ kindFramework
             var PATTERN_LOWER_ALPHA = /[a-z]/;
             var PATTERN_SIMBOL4 = /[^\s:\\,a-zA-Z0-9]/;
 
-            if (passwd.match(PATTERN_NUM)) acceptCount++;
-            if (passwd.match(PATTERN_UPPER_ALPHA)) acceptCount++;
-            if (passwd.match(PATTERN_LOWER_ALPHA)) acceptCount++;
-            if (passwd.match(PATTERN_SIMBOL4)) acceptCount++;
+            if (passwd.match(PATTERN_NUM)) {acceptCount++;}
+            if (passwd.match(PATTERN_UPPER_ALPHA)) {acceptCount++;}
+            if (passwd.match(PATTERN_LOWER_ALPHA)) {acceptCount++;}
+            if (passwd.match(PATTERN_SIMBOL4)) {acceptCount++;}
 
             if(SecurityCapability_three){
               if (passwd.length < 10)
               {
-                if (acceptCount < 3) return 'Three_Special_Character';
+                if (acceptCount < 3) {return 'Three_Special_Character';}
               }
               else
               {
-                if (acceptCount < 2) return 'Two_Special_Character';
+                if (acceptCount < 2) {return 'Two_Special_Character';}
               }
             }
             else{
-              if (acceptCount < 2) return 'Two_Special_Character';
+              if (acceptCount < 2) {return 'Two_Special_Character';}
             }
             return 0;
           }

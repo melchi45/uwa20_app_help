@@ -8,7 +8,7 @@ kindFramework.controller('ModalInstanceViewModeCtrl',
     $uibModalInstance.close(viewModeName);
   };
   
-  $rootScope.$saveOn('allpopupclose', function(event) {
+  $rootScope.$saveOn('allpopupclose', function() {
     $uibModalInstance.dismiss('cancel');
   }, $scope);
   

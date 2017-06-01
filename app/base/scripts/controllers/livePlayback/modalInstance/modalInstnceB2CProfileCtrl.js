@@ -16,7 +16,7 @@ kindFramework.controller('ModalInstnceB2CProfileCtrl',
     $rootScope.$emit('changeLoadingBar', true);
   };
   
-  $rootScope.$saveOn('allpopupclose', function(event) {
+  $rootScope.$saveOn('allpopupclose', function() {
     $uibModalInstance.dismiss('cancel');
   }, $scope);
 

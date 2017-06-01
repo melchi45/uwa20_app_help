@@ -1,7 +1,7 @@
 /*global vis*/
 "use strict";
-angular.module('ui.bootstrap.datepicker')
-.config(function($provide) {
+angular.module('ui.bootstrap.datepicker').
+config(function($provide) {
   $provide.decorator('uibDatepickerDirective', function($delegate) {
     var directive = $delegate[0], link = directive.link;
 
@@ -10,7 +10,8 @@ angular.module('ui.bootstrap.datepicker')
     directive.compile = function() {
 
       var changeFormatMMYYYY = function(dateValue){
-        return vis.moment(dateValue).format('MM-YYYY');
+        var dateObj = new Date(dateValue);
+        return (dateObj.getMonth()+1)+'-'+dateObj.getFullYear();
       };
 
       return function(scope, element, attrs, ctrl) {

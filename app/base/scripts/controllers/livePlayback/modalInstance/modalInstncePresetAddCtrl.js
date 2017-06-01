@@ -12,20 +12,20 @@ kindFramework.controller('ModalInstncePresetAddCtrl',
     $scope.PresetNameMaxLen = ((sunapiAttributes.PresetNameMaxLen && sunapiAttributes.PresetNameMaxLen.maxLength)?sunapiAttributes.PresetNameMaxLen.maxLength:"12");
 
     $scope.ok = function() {
-      if($scope.presetName === null | $scope.presetName === "" || $scope.presetName === undefined)
+      if($scope.presetName === null | $scope.presetName === "" || typeof $scope.presetName === "undefined")
       {
         ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_msg_noname" } );
         return;
       }
 
-      if($scope.selectPreset === null | $scope.selectPreset === "" || $scope.selectPreset === undefined)
+      if($scope.selectPreset === null | $scope.selectPreset === "" || typeof $scope.selectPreset === "undefined")
       {
         ModalManagerService.open('message', { 'buttonCount': 1, 'message': "lang_msg_selValidPresetNumber" } );
         return;
       }
 
       var values = {
-        'action' : ($scope.list[$scope.selectPreset-1].name === undefined ? 'add' : 'update'),
+        'action' : (typeof $scope.list[$scope.selectPreset-1].name === "undefined" ? 'add' : 'update'),
         'num' : $scope.selectPreset,
         'name' : $scope.presetName
       };
@@ -38,20 +38,21 @@ kindFramework.controller('ModalInstncePresetAddCtrl',
 
     function getPresetListwithNumber(presetMaxLength, presetList){
       var PresetListwithNumber = [];
-      for(var i=0; i<presetMaxLength; i++)
+      var idx = 0;
+      for(idx=0; idx<presetMaxLength; idx++)
       {
-        PresetListwithNumber.push({value:i+1});
+        PresetListwithNumber.push({value:idx+1});
       }
 
-      for(var i=0; i<presetList.length; i++)
+      for(idx=0; idx<presetList.length; idx++)
       {
-        PresetListwithNumber[presetList[i].value-1] = presetList[i];
+        PresetListwithNumber[presetList[idx].value-1] = presetList[idx];
       }
       
       return PresetListwithNumber;
     }
 
-    $rootScope.$saveOn('allpopupclose', function(event) {
+    $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
 }]);

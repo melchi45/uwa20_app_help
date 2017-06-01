@@ -1,7 +1,7 @@
 "use strict";
 
-kindFramework
-.config(function ($urlRouterProvider, $provide, UniversialManagerServiceProvider, CAMERA_STATUS) {
+kindFramework.
+config(function ($urlRouterProvider, $provide, UniversialManagerServiceProvider, CAMERA_STATUS) {
 
 	$provide.decorator('UniversialManagerService', function($delegate) {
 		return $delegate;

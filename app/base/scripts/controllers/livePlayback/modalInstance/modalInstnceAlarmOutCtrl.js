@@ -10,7 +10,7 @@ kindFramework.controller('ModalInstnceAlarmOutCtrl',
     $uibModalInstance.close(alarmIndex);
   }
   
-  $rootScope.$saveOn('allpopupclose', function(event) {
+  $rootScope.$saveOn('allpopupclose', function() {
     $uibModalInstance.dismiss('cancel');
   }, $scope);
   

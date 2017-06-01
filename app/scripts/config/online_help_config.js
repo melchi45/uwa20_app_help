@@ -1,7 +1,7 @@
 "use strict";
 
-kindFramework
-    .constant('ONLINE_HELP_CONFIG',{
+kindFramework.
+  constant('ONLINE_HELP_CONFIG',{
     	ROOT: 'views/help/',
         INDEX: 'index.html',
         MAIN: 'main.html',

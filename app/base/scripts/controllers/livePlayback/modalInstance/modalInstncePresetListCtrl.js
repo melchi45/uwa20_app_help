@@ -28,7 +28,7 @@ kindFramework.controller('ModalInstncePresetListCtrl',
       $uibModalInstance.close();
     }; 
      
-    $rootScope.$saveOn('allpopupclose', function(event) {
+    $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
 }]);

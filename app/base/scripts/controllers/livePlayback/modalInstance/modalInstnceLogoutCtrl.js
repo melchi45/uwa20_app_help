@@ -1,7 +1,7 @@
 'use strict';
 kindFramework.controller('modalInstnceLogoutCtrl',
-  ['$scope', '$rootScope', '$uibModalInstance', 'data',
-  function ($scope, $rootScope, $uibModalInstance, data) {
+  ['$scope', '$rootScope', '$uibModalInstance', 
+  function ($scope, $rootScope, $uibModalInstance) {
 
   $scope.ok = function() {
     $uibModalInstance.close();
@@ -11,7 +11,7 @@ kindFramework.controller('modalInstnceLogoutCtrl',
     $uibModalInstance.dismiss('cancel');
   };
   
-  $rootScope.$saveOn('allpopupclose', function(event) {
+  $rootScope.$saveOn('allpopupclose', function() {
     $uibModalInstance.dismiss('cancel');
   }, $scope);
 }]);

@@ -1,12 +1,10 @@
 "use strict";
-
+/* global KindSVGEditor */
 KindSVGEditor.addPlugin('draw', function(options){
 	var normalImage = './base/images/setup/btn_in-out_normal.png';
-	var hoverImage = './base/images/setup/btn_in-out_over.png';
 	var pressImage =  './base/images/setup/btn_in-out_press.png';
 
 	var normalAllImage = './base/images/setup/btn_all_normal.png';
-	var hoverAllImage = './base/images/setup/btn_all_over.png';
 	var pressAllImage =  './base/images/setup/btn_all_press.png';
 
 	var plusImage = './base/images/plus.svg';
@@ -43,35 +41,35 @@ KindSVGEditor.addPlugin('draw', function(options){
 	 * useArrow {Boolean} use arrow or not
 	 * arrow {String} Default Arrow of Line
 	 */
-	var fillColor = options.fillColor === undefined ? '#cccccc' : options.fillColor;
-	var lineColor = options.lineColor === undefined ? '#cccccc' : options.lineColor;
-	var pointColor = options.pointColor === undefined ? '#cccccc' : options.pointColor;
-	var points = options.points === undefined ? [[0,0],[100,100]] : options.points;
-	var lineStrokeWidth = options.lineStrokeWidth === undefined ? 3 : options.lineStrokeWidth;
-	var circleRadius = options.circleRadius === undefined ? 5 : options.circleRadius;
-	var minLineLength = options.minLineLength === undefined ? false : options.minLineLength;
-	var textInCircle = options.textInCircle === undefined ? null : options.textInCircle;
-	var arrow = options.arrow === undefined ? null : options.arrow;
-	var useEvent = options.useEvent === undefined ? false : options.useEvent;
-	var useResizeRectangle = options.useResizeRectangle === undefined ? false : options.useResizeRectangle;
-	var notUseMoveTopLayer = options.notUseMoveTopLayer === undefined ? false : options.notUseMoveTopLayer;
-	var useCursor = options.useCursor === undefined ? false : options.useCursor;
-	var useOnlyRectangle = options.useOnlyRectangle === undefined ? false : options.useOnlyRectangle;
-	var useRectangleForCustomDraw = options.useRectangleForCustomDraw === undefined ? false : options.useRectangleForCustomDraw;
-	var fill = options.fill === undefined ? false : options.fill;
-	var fillOpacity = options.fillOpacity === undefined ? .5 : parseFloat(options.fillOpacity);
-	var fixedRatio = options.fixedRatio === undefined ? false : options.fixedRatio;
-	var ratio = options.ratio === undefined ? false : options.ratio;
-	var customEvent = options.event === undefined ? null : options.event;
-	var customDraw = options.customDraw === undefined ? false : options.customDraw;
-	var minSize = options.minSize === undefined ? false : options.minSize;
-	var maxSize = options.maxSize === undefined ? false : options.maxSize;
-	var minPoint = options.minPoint === undefined ? 4 : options.minPoint;
-	var maxPoint = options.maxPoint === undefined ? 8 : options.maxPoint;
-	var initCenter = options.initCenter === undefined ? false : options.initCenter;
-	var mirror = options.mirror === undefined ? false : options.mirror;
-	var flip = options.flip === undefined ? false : options.flip;
-	var notUseAutoChangeOfArrow = options.notUseAutoChangeOfArrow === undefined ? false : options.notUseAutoChangeOfArrow;
+	var fillColor = typeof options.fillColor === "undefined" ? '#cccccc' : options.fillColor;
+	var lineColor = typeof options.lineColor === "undefined" ? '#cccccc' : options.lineColor;
+	var pointColor = typeof options.pointColor === "undefined" ? '#cccccc' : options.pointColor;
+	var points = typeof options.points === "undefined" ? [[0,0],[100,100]] : options.points;
+	var lineStrokeWidth = typeof options.lineStrokeWidth === "undefined" ? 3 : options.lineStrokeWidth;
+	var circleRadius = typeof options.circleRadius === "undefined" ? 5 : options.circleRadius;
+	var minLineLength = typeof options.minLineLength === "undefined" ? false : options.minLineLength;
+	var textInCircle = typeof options.textInCircle === "undefined" ? null : options.textInCircle;
+	var arrow = typeof options.arrow === "undefined" ? null : options.arrow;
+	var useEvent = typeof options.useEvent === "undefined" ? false : options.useEvent;
+	var useResizeRectangle = typeof options.useResizeRectangle === "undefined" ? false : options.useResizeRectangle;
+	var notUseMoveTopLayer = typeof options.notUseMoveTopLayer === "undefined" ? false : options.notUseMoveTopLayer;
+	var useCursor = typeof options.useCursor === "undefined" ? false : options.useCursor;
+	var useOnlyRectangle = typeof options.useOnlyRectangle === "undefined" ? false : options.useOnlyRectangle;
+	var useRectangleForCustomDraw = typeof options.useRectangleForCustomDraw === "undefined" ? false : options.useRectangleForCustomDraw;
+	var fill = typeof options.fill === "undefined" ? false : options.fill;
+	var fillOpacity = typeof options.fillOpacity === "undefined" ? .5 : parseFloat(options.fillOpacity);
+	var fixedRatio = typeof options.fixedRatio === "undefined" ? false : options.fixedRatio;
+	var ratio = typeof options.ratio === "undefined" ? false : options.ratio;
+	var customEvent = typeof options.event === "undefined" ? null : options.event;
+	var customDraw = typeof options.customDraw === "undefined" ? false : options.customDraw;
+	var minSize = typeof options.minSize === "undefined" ? false : options.minSize;
+	var maxSize = typeof options.maxSize === "undefined" ? false : options.maxSize;
+	var minPoint = typeof options.minPoint === "undefined" ? 4 : options.minPoint;
+	var maxPoint = typeof options.maxPoint === "undefined" ? 8 : options.maxPoint;
+	var initCenter = typeof options.initCenter === "undefined" ? false : options.initCenter;
+	var mirror = typeof options.mirror === "undefined" ? false : options.mirror;
+	var flip = typeof options.flip === "undefined" ? false : options.flip;
+	var notUseAutoChangeOfArrow = typeof options.notUseAutoChangeOfArrow === "undefined" ? false : options.notUseAutoChangeOfArrow;
 	//For WN5 Face Detection
 	/**
 	wiseFaceDetection.strokeWidth
@@ -80,7 +78,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 	wiseFaceDetection.heightRatio
 	wiseFaceDetection.widthRatio
 	 */
-	var wiseFaceDetection = options.wiseFaceDetection === undefined ? false : options.wiseFaceDetection;
+	var wiseFaceDetection = typeof options.wiseFaceDetection === "undefined" ? false : options.wiseFaceDetection;
 
 	var useArrow = true;
 
@@ -133,7 +131,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 		}
 
 		function moveTopLayer(){
-			if(notUseMoveTopLayer === true) return;
+			if (notUseMoveTopLayer === true) { return; }
 			var lastChild = parentSvg.lastChild;
 
 			if(lastChild.id !== groupId){
@@ -166,12 +164,12 @@ KindSVGEditor.addPlugin('draw', function(options){
 		var wiseFaceDetectionCircle = null;
 
 		if(wiseFaceDetection !== false){
-			wiseFaceDetection.strokeColor = wiseFaceDetection.strokeColor === undefined ? '#dd2200' : wiseFaceDetection.strokeColor;
-			wiseFaceDetection.strokeWidth = wiseFaceDetection.strokeWidth === undefined ? 2 : wiseFaceDetection.strokeWidth;
-			wiseFaceDetection.fillOpacity = wiseFaceDetection.fillOpacity === undefined ? .5 : wiseFaceDetection.fillOpacity;
-			wiseFaceDetection.fill = wiseFaceDetection.fill === undefined ? '#ff000' : wiseFaceDetection.fill;
-			wiseFaceDetection.heightRatio = wiseFaceDetection.heightRatio === undefined ? 2.2 : wiseFaceDetection.heightRatio;
-			wiseFaceDetection.widthRatio = wiseFaceDetection.widthRatio === undefined ? false : wiseFaceDetection.widthRatio;
+			wiseFaceDetection.strokeColor = typeof wiseFaceDetection.strokeColor === "undefined" ? '#dd2200' : wiseFaceDetection.strokeColor;
+			wiseFaceDetection.strokeWidth = typeof wiseFaceDetection.strokeWidth === "undefined" ? 2 : wiseFaceDetection.strokeWidth;
+			wiseFaceDetection.fillOpacity = typeof wiseFaceDetection.fillOpacity === "undefined" ? .5 : wiseFaceDetection.fillOpacity;
+			wiseFaceDetection.fill = typeof wiseFaceDetection.fill === "undefined" ? '#ff000' : wiseFaceDetection.fill;
+			wiseFaceDetection.heightRatio = typeof wiseFaceDetection.heightRatio === "undefined" ? 2.2 : wiseFaceDetection.heightRatio;
+			wiseFaceDetection.widthRatio = typeof wiseFaceDetection.widthRatio === "undefined" ? false : wiseFaceDetection.widthRatio;
 
 			returnVal.updateCircle = updateCircle;
 			returnVal.append = append;
@@ -200,7 +198,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 			groupHelper.removeChild(wiseFaceDetectionCircle);
 		}
 
-		function updateCircle(x, y, height){
+		function updateCircle(xAxis, yAxis, height){
 			var radius = height / 100;
 
 			if("heightRatio" in wiseFaceDetection){
@@ -209,8 +207,8 @@ KindSVGEditor.addPlugin('draw', function(options){
 				radius *= wiseFaceDetection.widthRatio;
 			}
 
-			elemCtrl.setAttr(wiseFaceDetectionCircle, 'cx', x);
-			elemCtrl.setAttr(wiseFaceDetectionCircle, 'cy', y);
+			elemCtrl.setAttr(wiseFaceDetectionCircle, 'cx', xAxis);
+			elemCtrl.setAttr(wiseFaceDetectionCircle, 'cy', yAxis);
 			elemCtrl.setAttr(wiseFaceDetectionCircle, 'r', radius);
 		}
 	})();
@@ -231,7 +229,6 @@ KindSVGEditor.addPlugin('draw', function(options){
 		var timer = null;
 		var width = 16;
 		var delay = 300;
-		var isMinus = false;
 		var clickEventHandler = null;
 
 		/**
@@ -291,7 +288,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 		};
 
 		this.hide = function(){
-			if(icon === null) return; 
+			if(icon === null){ return; }
 
 			if(icon.style.opacity === '1'){
 				icon.style.opacity = 0;
@@ -302,7 +299,9 @@ KindSVGEditor.addPlugin('draw', function(options){
 					try{
 						groupHelper.removeChild(icon);
 						groupHelper.removeChild(iconText);	
-					}catch(e){}
+					}catch(e){
+            console.error(e);
+          }
 					timer = null;
 				}, delay);	
 			}
@@ -387,7 +386,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 			iconHelper.hide();
 		}
 
-		function showPointIcon(event){
+		function showPointIcon(){
 			if(
 				selectedLineIndex !== null || //드래그를 하고 있을 때
 				this.style.opacity === hideOpacity || //선택된 오브젝트가 아닐 때
@@ -423,7 +422,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 			lineElement.onmousedown = selectLine;
 
 			lineElement.onmouseup = mouseUpHandler;
-			lineElement.addEventListener('mouseleave', function(event){
+			lineElement.addEventListener('mouseleave', function(){
 				if(this.isSelected === true){
 					mouseUpHandler();
 				}
@@ -499,7 +498,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 			backupPoints();
 		}
 
-		function appendAtLast(lineElement){
+		function appendAtLast(){
 			var lineLength = lines.length;
 			var newLineElement = lines[lineLength - 1];
 			var nextElementSibling = lines[lineLength - 2].nextElementSibling;
@@ -560,7 +559,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 			circleElement.onmousedown = selectCircle;
 			circleElement.onmouseup = function(){
 				isLeave = false;
-				if(customDraw === true) return;
+				if(customDraw === true){return;}
 				update();
 			};
 			circleElement.addEventListener('mouseleave', function(){
@@ -578,7 +577,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 			}
 		}
 
-		function showDeleteIcon(event){
+		function showDeleteIcon(){
 			if(
 				selectedCircleIndex !== null || 
 				pointsLength <= minPoint){ //최대 포인트일 때
@@ -591,8 +590,6 @@ KindSVGEditor.addPlugin('draw', function(options){
 			var yAxis = parseInt(elemCtrl.getAttr(this, 'y'));
 			var width = parseInt(elemCtrl.getAttr(this, 'width'));
 			var height = parseInt(elemCtrl.getAttr(this, 'height'));
-
-			var offset = commonFunc.parentOffset();
 
 			if(xAxis - width * 2 < 0){
 				xAxis += width * 2;
@@ -765,7 +762,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 			*/
 			polygon.onmouseup = function(){
 				isLeave = false;
-				if(customDraw === true) return;
+				if(customDraw === true){ return;}
 				update();
 			};
 			polygon.addEventListener('mouseleave', function(){
@@ -796,7 +793,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 		}
 
 		function setSelectColor(){
-			if(polygon === null) return;
+			if(polygon === null){ return;}
 			
 			var opacity = fillOpacity;
 			if(opacity > 0){
@@ -893,12 +890,12 @@ KindSVGEditor.addPlugin('draw', function(options){
 		function setArrowScope(){
 			var startIndex = 0;
 			var endIndex = 0;
-			for(var i = 0; i < arrowQueueLength; i++){
-				if(arrowQueue[i] === arrow.min){
-					startIndex = i;
+			for(var idx = 0; idx < arrowQueueLength; idx++){
+				if(arrowQueue[idx] === arrow.min){
+					startIndex = idx;
 				}
-				if(arrowQueue[i] === arrow.max){
-					endIndex = i;
+				if(arrowQueue[idx] === arrow.max){
+					endIndex = idx;
 				}
 			}
 
@@ -1143,7 +1140,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 
 			var offset = commonFunc.parentOffset();
 
-			if(xAxis === undefined && yAxis === undefined){
+			if(typeof xAxis === "undefined" && typeof yAxis === "undefined"){
 				lastPoint = LineInformation.getAxis(pointsLength - 1);
 				newPoint = [lastPoint[0], lastPoint[1]];
 				newPoint[0] += circleRadius;
@@ -1165,7 +1162,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 				newPoint = [xAxis, yAxis];
 			}
 
-			if(appendIndex !== undefined){
+			if(typeof appendIndex !== "undefined"){
 				LineInformation.appendAxis(appendIndex, newPoint[0], newPoint[1]);
 			}else{
 				LineInformation.setAxis(pointsLength, newPoint[0], newPoint[1]);	
@@ -1204,13 +1201,13 @@ KindSVGEditor.addPlugin('draw', function(options){
 		validateGeometrySize: function(geometryWidth, geometryHeight){
 			var isOk = true;
 
-			if(minSize !== undefined){
+			if(typeof minSize !== "undefined"){
 				if(geometryWidth < minSize.width || geometryHeight < minSize.height){
 					isOk = false;
 				}
 			}
 
-			if(maxSize !== undefined){
+			if(typeof maxSize !== "undefined"){
 				if(geometryWidth > maxSize.width || geometryHeight > maxSize.height){
 					isOk = false;
 				}
@@ -1230,28 +1227,30 @@ KindSVGEditor.addPlugin('draw', function(options){
 		//모든 SVG 태그들을 좌표를 기준으로 변경한다.
 		changeAxis: function(){
 			var polygonPoint = '';
+      var idx = 0;
+      var len = 0;
+      var height = 0;
 
-			for(var i = 0, len = lines.length; i < len; i++){
-				var startAxis = LineInformation.points[i];
-				var endAxisIndex = fill === true && i === len - 1 ? 0 : i + 1;
+			for(idx = 0, len = lines.length; idx < len; idx++){
+				var startAxis = LineInformation.points[idx];
+				var endAxisIndex = fill === true && idx === len - 1 ? 0 : idx + 1;
 				var endAxis = LineInformation.points[endAxisIndex];
-				var lineHalfWidth = lineStrokeWidth / 2;
 				var startXAxis = startAxis[0];
 				var endXAxis = endAxis[0];
 
-				lines[i].setAttributeNS(null, 'x1', startXAxis);
-				lines[i].setAttributeNS(null, 'y1', startAxis[1]);
-				lines[i].setAttributeNS(null, 'x2', endXAxis);
-				lines[i].setAttributeNS(null, 'y2', endAxis[1]);
+				lines[idx].setAttributeNS(null, 'x1', startXAxis);
+				lines[idx].setAttributeNS(null, 'y1', startAxis[1]);
+				lines[idx].setAttributeNS(null, 'x2', endXAxis);
+				lines[idx].setAttributeNS(null, 'y2', endAxis[1]);
 			}
 
-			for(var i = 0, len = circles.length; i < len; i++){
-				var pointAxis = LineInformation.points[i];
+			for(idx = 0, len = circles.length; idx < len; idx++){
+				var pointAxis = LineInformation.points[idx];
 				var circleXAxis = pointAxis[0];
 				var circleYAxis = pointAxis[1];
-				var selfCircle = circles[i];
+				var selfCircle = circles[idx];
 				var width = parseInt(elemCtrl.getAttr(selfCircle, 'width'));
-				var height = parseInt(elemCtrl.getAttr(selfCircle, 'height'));
+				height = parseInt(elemCtrl.getAttr(selfCircle, 'height'));
 
 				/**
 				 * 고정비 사각형일 때, 부모의 영역를 넘어갈 경우 Safari에서
@@ -1261,7 +1260,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 					circleXAxis -= width / 2;
 					circleYAxis -= height / 2;
 				}else if(fixedRatio === true){
-					switch(i){
+					switch(idx){
 						case rectangleIndex[0]:
 							circleXAxis -= width - lineStrokeWidth / 2;
 							circleYAxis -= height - lineStrokeWidth / 2;
@@ -1284,7 +1283,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 				selfCircle.setAttributeNS(null, "x", circleXAxis);
 				selfCircle.setAttributeNS(null, "y", circleYAxis);
 
-				if(i === len - 1 && textInCircle !== null){
+				if(idx === len - 1 && textInCircle !== null){
 					textTag.setAttributeNS(null, 'x', pointAxis[0] - 3);
 					textTag.setAttributeNS(null, 'y', pointAxis[1] + 4);
 				}
@@ -1308,7 +1307,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 				var thridPoint = LineInformation.points[2];
 				var xAxis = funnyMath.getLineCenter(secondPoint[0], secondPoint[1], thridPoint[0], thridPoint[1])[0];
 				var yAxis = funnyMath.getLineCenter(firstPoint[0], firstPoint[1], secondPoint[0], secondPoint[1])[1];
-				var height = 0;
+				height = 0;
 
 				if("heightRatio" in wiseFaceDetection){
 					height = firstPoint[1] - secondPoint[1];
@@ -1322,11 +1321,14 @@ KindSVGEditor.addPlugin('draw', function(options){
 			}
 		},
 		resetAllColor: function(){
-			for(var i = 0, len = lines.length; i < len; i++){
-				lineHelper.setDefaultColor(lines[i]);
+      var idx = 0;
+      var len = 0;
+
+			for(idx = 0, len = lines.length; idx < len; idx++){
+				lineHelper.setDefaultColor(lines[idx]);
 			}
-			for(var i = 0, len = circles.length; i < len; i++){
-				circleHelper.setDefaultColor(circles[i]);
+			for(idx = 0, len = circles.length; idx < len; idx++){
+				circleHelper.setDefaultColor(circles[idx]);
 			}
 
 			polygonHelper.setDefaultColor();
@@ -1334,11 +1336,14 @@ KindSVGEditor.addPlugin('draw', function(options){
 			LineInformation.isAllSelected = false;
 		},
 		setAllColor: function(){
-			for(var i = 0, len = lines.length; i < len; i++){
-				lineHelper.setSelectColor(lines[i]);
+      var idx = 0;
+      var len = 0;
+
+			for(idx = 0, len = lines.length; idx < len; idx++){
+				lineHelper.setSelectColor(lines[idx]);
 			}
-			for(var i = 0, len = circles.length; i < len; i++){
-				circleHelper.setSelectColor(circles[i]);
+			for(idx = 0, len = circles.length; idx < len; idx++){
+				circleHelper.setSelectColor(circles[idx]);
 			}
 
 			polygonHelper.setSelectColor();
@@ -1356,7 +1361,6 @@ KindSVGEditor.addPlugin('draw', function(options){
 				lineHelper.addLine();
 			}
 		};
-		var fixedRatioPointCircle = null;
 
 		for(var i = 0, len = pointsLength; i < len; i++){
 			if(i < len - 1){
@@ -1487,19 +1491,21 @@ KindSVGEditor.addPlugin('draw', function(options){
 	/* mousedown에 세팅한 값은 항상 mouseup에 리셋을 해줘야 한다. */
 	function parentSVGMouseDownHandle(event){		
 		parentSvg.startAxis = commonFunc.getPageAxis(event);
+    var idx = 0;
+    var len = 0;
 
-		for(var i = 0, len = circles.length; i < len; i++){
-			if(circles[i].isSelected === true){
-				selectedCircleIndex = i;
+		for(idx = 0, len = circles.length; idx < len; idx++){
+			if(circles[idx].isSelected === true){
+				selectedCircleIndex = idx;
 				break;
 			}
 		}
 
 		//Check selected Line
 		if(selectedCircleIndex === null && fixedRatio === false){
-			for(var i = 0, len = lines.length; i < len; i++){
-				if(lines[i].isSelected === true){
-					selectedLineIndex = i;
+			for(idx = 0, len = lines.length; idx < len; idx++){
+				if(lines[idx].isSelected === true){
+					selectedLineIndex = idx;
 					break;
 				}
 			}
@@ -1559,8 +1565,6 @@ KindSVGEditor.addPlugin('draw', function(options){
 		var movedXAxis = xAxis - parentSvg.startAxis[0];
 		var movedYAxis = yAxis - parentSvg.startAxis[1];
 
-		var offsetLeft = commonFunc.parentOffset().left;
-		var offsetTop = commonFunc.parentOffset().top;
 		var offsetWidth = commonFunc.parentOffset().width;
 		var offsetHeight = commonFunc.parentOffset().height;
 
@@ -1568,6 +1572,14 @@ KindSVGEditor.addPlugin('draw', function(options){
 		var thirdPoint = LineInformation.getAxis(rectangleIndex[2]);
 
 		var prevPoints = [];
+
+
+    var changedX1 = 0;
+    var changedX2 = 0;
+    var changedY1 = 0;
+    var changedY2 = 0;
+
+    var self = null;
 
 		//포인트를 선택하여 영역을 이동 시킬 때
 		if(selectedCircleIndex !== null){
@@ -1594,15 +1606,10 @@ KindSVGEditor.addPlugin('draw', function(options){
 			}*/
 
 			//사각형 리사이징
-			if(fixedRatio === true || useRectangleForCustomDraw == true){
-
-				var changedX1 = 0;
-				var changedX2 = 0;
-				var changedY1 = 0;
-				var changedY2 = 0;
+			if(fixedRatio === true || useRectangleForCustomDraw === true){
 
 				//사각형
-				if(useOnlyRectangle === true || useRectangleForCustomDraw == true){
+				if(useOnlyRectangle === true || useRectangleForCustomDraw === true){
 					changedX1 = firstPoint[0];
 					changedX2 = xAxis;
 					changedY1 = firstPoint[1];
@@ -1631,11 +1638,9 @@ KindSVGEditor.addPlugin('draw', function(options){
 					var totalMovement = Math.abs(movedXAxis) + Math.abs(movedYAxis);
 
 					var incrementXAxis = parentSvg.ratio[0] / (parentSvg.ratio[1] + parentSvg.ratio[0]) * totalMovement;
-					var incrementYAxis = parentSvg.ratio[1] / (parentSvg.ratio[0] + parentSvg.ratio[1]) * totalMovement;
 
 					if(movedXAxis < 0 || movedYAxis < 0){
 						incrementXAxis *= -1;
-						incrementYAxis *= -1;
 					}
 
 					changedX1 = firstPoint[0];
@@ -1663,11 +1668,11 @@ KindSVGEditor.addPlugin('draw', function(options){
 					}
 
 					//Min, Max Validation
-					if(!LineInformation.validateGeometrySize(Math.abs(changedX1 - changedX2), Math.abs(changedY1 - changedY2))) return;
+					if(!LineInformation.validateGeometrySize(Math.abs(changedX1 - changedX2), Math.abs(changedY1 - changedY2))){ return;}
 				}
 
 				//뒤집어지는 것을 방지 하기 위해 세번째 포인트가 첫번째 포인트 보다 적을 때 return
-				if(firstPoint[0] > changedX2 || firstPoint[1] > changedY2) return;
+				if(firstPoint[0] > changedX2 || firstPoint[1] > changedY2){ return;}
 
 				changeRectangle(changedX1, changedY1, changedX2, changedY2);
 
@@ -1695,7 +1700,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 					}
 
 					for(var i = 0, ii = validateAxis.length; i < ii; i++){
-						var self = validateAxis[i];
+						self = validateAxis[i];
 
 						if(funnyMath.pythagoreanTheorem(xAxis, yAxis, self[0], self[1]) < minLineLength){
 							return;
@@ -1718,10 +1723,10 @@ KindSVGEditor.addPlugin('draw', function(options){
 			var endAxisIndex = fill === true && selectedLineIndex === lines.length - 1 ? 0 : selectedLineIndex + 1;
 			var endAxis = LineInformation.getAxis(endAxisIndex);
 
-			var changedX1 = startAxis[0] + movedXAxis;
-			var changedY1 = startAxis[1] + movedYAxis;
-			var changedX2 = endAxis[0] + movedXAxis;
-			var changedY2 = endAxis[1] + movedYAxis;
+			changedX1 = startAxis[0] + movedXAxis;
+			changedY1 = startAxis[1] + movedYAxis;
+			changedX2 = endAxis[0] + movedXAxis;
+			changedY2 = endAxis[1] + movedYAxis;
 
 			/*
 			 * 라인 이동 시, 양쪽 끝의 유효성 체크하여
@@ -1782,11 +1787,10 @@ KindSVGEditor.addPlugin('draw', function(options){
 			if(LineInformation.validateAllPoint(0, movedYAxis) === false){
 				movedYAxis = 0;
 			}
-
 			if(isMoveOk){
-				for(var i = 0; i < pointsLength; i++){
-					var self = LineInformation.getAxis(i);
-					LineInformation.setAxis(i, self[0] + movedXAxis, self[1] + movedYAxis);
+				for(var idx = 0; idx < pointsLength; idx++){
+					self = LineInformation.getAxis(idx);
+					LineInformation.setAxis(idx, self[0] + movedXAxis, self[1] + movedYAxis);
 				}
 			}
 		}
@@ -1830,7 +1834,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 	function addPoint(xAxis, yAxis, appendIndex){
 		var newCircleRadius = circleRadius;
 		//Set Axis
-		if(appendIndex !== undefined){
+		if(typeof appendIndex !== "undefined"){
 			LineInformation.addAxis(xAxis, yAxis, appendIndex);	
 		}else{
 			LineInformation.addAxis(xAxis, yAxis);	
@@ -1914,7 +1918,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 	}
 
 	function changeRectangleToSize(width, height){
-		if(useOnlyRectangle !== true && fixedRatio !== true) return;
+		if(useOnlyRectangle !== true && fixedRatio !== true){ return;}
 
 		var firstPoint = LineInformation.getAxis(0);
 		var thirdPoint = LineInformation.getAxis(2);
@@ -1993,11 +1997,14 @@ KindSVGEditor.addPlugin('draw', function(options){
 	}
 
 	function changeNormalStatus(){
-		for(var i = 0, len = lines.length; i < len; i++){
-			lineHelper.hide(lines[i]);
+    var idx = 0;
+    var len = 0;
+
+		for(idx = 0, len = lines.length; idx < len; idx++){
+			lineHelper.hide(lines[idx]);
 		}
-		for(var i = 0, len = circles.length; i < len; i++){
-			circleHelper.hide(circles[i]);
+		for(idx = 0, len = circles.length; idx < len; idx++){
+			circleHelper.hide(circles[idx]);
 		}
 
 		if(useArrow === true){
@@ -2010,11 +2017,13 @@ KindSVGEditor.addPlugin('draw', function(options){
 	}
 
 	function changeActiveStatus(){
-		for(var i = 0, len = lines.length; i < len; i++){
-			lineHelper.show(lines[i]);
+    var idx = 0;
+    var len = 0;
+		for(idx = 0, len = lines.length; idx < len; idx++){
+			lineHelper.show(lines[idx]);
 		}
-		for(var i = 0, len = circles.length; i < len; i++){
-			circleHelper.show(circles[i]);
+		for(idx = 0, len = circles.length; idx < len; idx++){
+			circleHelper.show(circles[idx]);
 		}
 
 		if(useArrow === true){
@@ -2040,7 +2049,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 		var pointsLength = 0;
 
 		try{
-			points = prevPoints === undefined ? 
+			points = typeof prevPoints === "undefined" ? 
 				commonFunc.cloneObject(LineInformation.getAll().points) : 
 				commonFunc.cloneObject(prevPoints);
 			pointsLength = points.length;
@@ -2069,75 +2078,16 @@ KindSVGEditor.addPlugin('draw', function(options){
 		return returnVal;
 	}
 
-	function validateStabilizationAngle(prevPoints){
-		var returnVal = true;
-		var points = [];
-		var isDebug = false;
-		var sumAngle = 0;
-		var geometryTotalAngle = 0;
-		var pointsLength = 0;
-
-		try{
-			points = prevPoints === undefined ? 
-				commonFunc.cloneObject(LineInformation.getAll().points) : 
-				commonFunc.cloneObject(prevPoints);
-			pointsLength = points.length;
-
-			/**
-			 * 삼각형부터 체크
-			 */
-			if(pointsLength >= 3 && fill === true){
-
-				//삼각형
-				if(pointsLength === 3){
-					geometryTotalAngle = 180;
-				//사각형
-				}else if(pointsLength === 4){
-					geometryTotalAngle = 360;
-				//오각형 이후
-				}else{
-					geometryTotalAngle = (pointsLength * 180) - 360;
-				}
-
-				for(var i = 0; i < pointsLength; i++){
-					var firstPoint = [];
-					var vertextAngle = funnyMath.getVertextAngle(points[0], points[1], points[2]);
-					sumAngle += Math.abs(vertextAngle);
-
-					firstPoint = points.shift();
-					points.push(firstPoint);
-				}
-
-				sumAngle = Math.floor(sumAngle);
-
-				if(sumAngle < geometryTotalAngle){
-					returnVal = false;
-				}
-
-				if(isDebug){
-					console.log("------------------");	
-					console.log("Sum   Angle", sumAngle);
-					console.log("Total Angle", geometryTotalAngle);
-					console.log("------------------");	
-				}	
-			}	
-		}catch(e){
-			console.warn(e);
-		}
-
-		return returnVal;
-	}
-
 	function validateIntersection(prevPoints){
 		var returnVal = true;
 		var points = 0;
 		var pointsLength = 0;
 
 		//고정비 사각형, 직각사각형, 라인은 교차 체크를 하지 않음.
-		if(fill === false || fixedRatio === true) return;
+		if(fill === false || fixedRatio === true){ return;}
 
 		try{
-			points = prevPoints === undefined ? 
+			points = typeof prevPoints === "undefined" ? 
 				commonFunc.cloneObject(LineInformation.getAll().points) : 
 				commonFunc.cloneObject(prevPoints);
 			pointsLength = points.length;
@@ -2174,7 +2124,7 @@ KindSVGEditor.addPlugin('draw', function(options){
 	}
 
 	function validateStabilization(prevPoints){
-		var points = prevPoints === undefined ? 
+		var points = typeof prevPoints === "undefined" ? 
 				commonFunc.cloneObject(LineInformation.getAll().points) : 
 				commonFunc.cloneObject(prevPoints);
 		var returnVal = true;

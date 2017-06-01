@@ -1,12 +1,11 @@
 /*global BaseWrapper*/
-kindFramework
-.controller('WrapperCtrl',['$controller','$rootScope', '$scope', 'RESTCLIENT_CONFIG', 
+kindFramework.
+controller('WrapperCtrl',['$controller','$rootScope', '$scope', 'RESTCLIENT_CONFIG', 
 	'MultiLanguage','ROUTE_CONFIG','Attributes','SessionOfUserManager',
 	function($controller,$rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
 	ROUTE_CONFIG,Attributes,SessionOfUserManager){
 		"use strict";
-		var self = this;
-		BaseWrapper.prototype.stateChange = function(toState,fromState) {
+		BaseWrapper.prototype.stateChange = function(toState) {
 			setBodyHeightInLive(toState.name);
 		};
 		angular.extend(this, $controller('BaseWrapper',{

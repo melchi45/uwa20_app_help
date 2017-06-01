@@ -1,6 +1,6 @@
 "use strict";
 
-kindFramework.factory('HMSetupModel', function($q, pcSetupService){
+kindFramework.factory('HMSetupModel', function(){
 	var HMSetupModel = function(){
 	};
 

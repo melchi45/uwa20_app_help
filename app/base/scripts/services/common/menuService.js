@@ -13,7 +13,7 @@
  */
 kindFramework.provider('Route', function(ROUTE_CONFIG){
     
-	var _routes;
+	var _routes = {};
 
 	function Route(){
 	}
@@ -52,7 +52,7 @@ kindFramework.provider('Route', function(ROUTE_CONFIG){
 				var stateName = parentName ? parentName + prefix + route.urlName : route.urlName;
 				var onlyMenuName = false;
 
-				if(route.templateUrl === undefined && route.controller === undefined){
+				if(typeof route.templateUrl === "undefined" && typeof route.controller === "undefined"){
 					onlyMenuName = route.urlName;
 					//route.urlName = null;
 				}else{
@@ -63,7 +63,7 @@ kindFramework.provider('Route', function(ROUTE_CONFIG){
 					route.urlName = '/' + urlName;
 				}
 
-				if( stateName !== null ) route.stateName = stateName;
+				if( stateName !== null ){ route.stateName = stateName;}
 				if(angular.isArray(route.childs)){
 					route.isSub = true;
 					if(route.childs.length > 0){
@@ -113,7 +113,7 @@ kindFramework.service('MenuData', function( $state, Route ){
 		this.getTopMenuLink = function( routes ){
 
 			var link = '';
-			if( routes.templateUrl === undefined ){	//laytout인경우는 자식의 화면을 찾는다
+			if( typeof routes.templateUrl === "undefined" ){	//laytout인경우는 자식의 화면을 찾는다
 				var childList = routes.childs;
 				for( var i = 0; i < childList.length; i++ ){
 					var item = childList[i];

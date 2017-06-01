@@ -1,5 +1,4 @@
 "use strict";
-
 var detector = (function(){
   /**
     * See useragents.js for examples of navigator.userAgent
@@ -27,7 +26,7 @@ var detector = (function(){
         versionIdentifier = getFirstMatch(/version\/(\d+(\.\d+)?)/i),
         tablet = /tablet/i.test(ua),
         mobile = !tablet && /[^-]mobi/i.test(ua),
-        result;
+        result = null;
 
     if (/opera|opr/i.test(ua)) {
       result = {
@@ -255,7 +254,9 @@ var detector = (function(){
         (result.ios && result.osversion && result.osversion.split(".")[0] < 6)
         ) {
       result.c = t;
-    } else result.x = t;
+    } else {
+      result.x = t;
+    }
 
     return result;
   }

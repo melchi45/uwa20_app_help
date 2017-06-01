@@ -1,6 +1,6 @@
 "use strict";
-kindFramework
-  .config(['$provide', function($provide){
+kindFramework.
+  config(['$provide', function($provide){
     $provide.decorator('$rootScope', ['$delegate', function($delegate){
 
         $delegate.$saveOn = function(name, listener, scope){

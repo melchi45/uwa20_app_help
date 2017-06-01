@@ -77,7 +77,7 @@ kindFramework.directive('pcSetupReport', function(PcSetupReportModel, pcModalSer
 						$parentScope.pcSetupReport.fileName.name,
 						$parentScope.pcSetupReport.fileName.extension.toUpperCase()
 					).then(
-						function(successData){
+						function(){
 							var WeekDay = $parentScope.pcSetupReport.schedule.period === "Weekly"? $parentScope.pcSetupReport.schedule.date.toUpperCase() : false;
 							pcSetupReportModel.setSchedule(
 								attrs.pageType,

@@ -53,7 +53,7 @@ kindFramework.service('ModalManagerService',
 
       var modal = modalList[key];
 
-      if(modal === undefined ) {
+      if(typeof modal === "undefined" ) {
           console.log("There is no type of ModalInstace");
           return;
       }
@@ -64,7 +64,7 @@ kindFramework.service('ModalManagerService',
 
       if(priority > 0 && (modal.priority > priority || modal.priority < 1)) {
         console.log('modal for ', key, ' has lower priority than the modal currently showing.');
-        if(failCallback !== undefined) {
+        if(typeof failCallback !== "undefined") {
           failCallback();
         }
         return;
@@ -112,7 +112,7 @@ kindFramework.service('ModalManagerService',
     };
 
     this.close = function() {
-      if(modalInstance !== null || modalInstance !== undefined) {
+      if(modalInstance !== null || typeof modalInstance !== "undefined") {
         $uibModalStack.dismiss(modalInstance);
       }
     };

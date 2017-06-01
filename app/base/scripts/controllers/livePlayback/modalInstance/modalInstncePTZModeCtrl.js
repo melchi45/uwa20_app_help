@@ -75,7 +75,7 @@ kindFramework.controller('ModalInstncePTZModeCtrl',
             UniversialManagerService.setViewModeType("QuadView");
             return;
           } else {
-            var msg;
+            var msg = null;
             if(sunapiAttributes.FisheyeLens) {
               msg = "lang_dptz_viewtype_select";
             } else {
@@ -93,7 +93,7 @@ kindFramework.controller('ModalInstncePTZModeCtrl',
       SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', {}, successCallback, errorCallback,'',true);      
     }
 
-    $rootScope.$saveOn('allpopupclose', function(event) {
+    $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss();
     }, $scope);
 

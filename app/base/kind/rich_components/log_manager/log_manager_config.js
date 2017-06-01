@@ -11,17 +11,17 @@
  * @ngdoc constant
  * @name LOGMANAGER_CONFIG
  * @example
- *    kindFramework.constant('LOGMANAGER_CONFIG', {
- *        DEBUG: true,
- *        INFO: false,
- *        WARN: false,
- *        ERROR: true
- *    });
+ *  kindFramework.constant('LOGMANAGER_CONFIG', {
+ *    DEBUG: true,
+ *    INFO: false,
+ *    WARN: false,
+ *    ERROR: true
+ *  });
  */
 
 kindFramework.constant('LOGMANAGER_CONFIG', {
-    DEBUG: false,
-    INFO: false,
-    WARN: false,
-    ERROR: false
+  DEBUG: false,
+  INFO: false,
+  WARN: false,
+  ERROR: false
 });
