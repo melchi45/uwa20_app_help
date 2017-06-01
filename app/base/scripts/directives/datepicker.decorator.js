@@ -1,7 +1,7 @@
 /*global vis*/
 "use strict";
-angular.module('ui.bootstrap.datepicker')
-.config(function($provide) {
+angular.module('ui.bootstrap.datepicker').
+config(function($provide) {
   $provide.decorator('uibDatepickerDirective', function($delegate) {
     var directive = $delegate[0], link = directive.link;
 

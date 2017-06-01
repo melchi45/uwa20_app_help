@@ -10,7 +10,7 @@ kindFramework.directive('loadingBar', function() {
 			isLoading: '='
 		},
 		templateUrl: 'views/livePlayback/directives/loadingBar_template.html',
-		link: function(scope, element, attr) {
+		link: function(scope) {
 			scope.$watch('isLoading', function(newVal, oldVal) {
 				console.log('loadingBar ::', oldVal, '>>>', newVal);
 			});

@@ -2,7 +2,7 @@
 "use strict";
 kindFramework.directive('sideNavigation', function($timeout){
 	return {
-		link: function(scope, element, attrs) {
+		link: function(scope, element) {
 			$timeout(function(){
 				$(element).metisMenu();
 			});
@@ -32,7 +32,7 @@ kindFramework.directive('input', function () {
 
 			// Only care about textboxes, not radio, checkbox, etc.
 			var validTypes = /^(search|email|url|tel|number|text)$/i;
-			if (!validTypes.test(attrs.type)) return;
+			if (!validTypes.test(attrs.type)){ return;}
 
 			// Bind to the mouseup event of the input textbox.  
 			elem.bind('mouseup', function () {
@@ -40,7 +40,7 @@ kindFramework.directive('input', function () {
 				// Get the old value (before click) and return if it's already empty
 				// as there's nothing to do.
 				var $input = $(this), oldValue = $input.val();
-				if (oldValue === '') return;
+				if (oldValue === ''){ return;}
 
 				// Check new value after click, and if it's now empty it means the
 				// clear button was clicked. Manually trigger element's change() event.
@@ -67,13 +67,14 @@ kindFramework.directive('addSpinButton', function() {
 		var divElm = elm.next();
 		var upBtn = divElm.children().eq(0);
 		var downBtn = divElm.children().eq(1);
-		var min, max;
+		var min = 0;
+    var max = 0;
 		var intervalKey = null;
 		var changeFunc = attrs.ngChange;
 
 		elm.addClass('add-spin-button');
 
-		scope.$watch('addSpinButtonDisabled', function(val, oldVal) {
+		scope.$watch('addSpinButtonDisabled', function(val) {
 			if ( val ) {
 				upBtn.attr('disabled', 'disabled');
 				downBtn.attr('disabled', 'disabled');
@@ -85,7 +86,7 @@ kindFramework.directive('addSpinButton', function() {
 
 		scope.safeApply = function(fn) {
 			var phase = this.$root.$$phase;
-			if(phase == '$apply' || phase == '$digest') {
+			if(phase === '$apply' || phase === '$digest') {
 				if(fn && (typeof(fn) === 'function')) {
 					fn();
 				}
@@ -107,7 +108,7 @@ kindFramework.directive('addSpinButton', function() {
 
 		function increse() {
 			max = elm.attr('max');
-			if ( max !== undefined && max <= scope.ngModel ) {
+			if ( typeof max !== "undefined" && max <= scope.ngModel ) {
 				return;
 			}
 			scope.safeApply(function() {
@@ -121,7 +122,7 @@ kindFramework.directive('addSpinButton', function() {
 
 		function decrease() {
 			min = elm.attr('min');
-			if ( min !== undefined && min >= scope.ngModel ) {
+			if ( typeof min !== "undefined" && min >= scope.ngModel ) {
 				return;
 			}
 			scope.safeApply(function() {
@@ -196,7 +197,7 @@ kindFramework.directive('onSizeChanged', ['$window', function ($window) {
         scope: {
             onSizeChanged: '&'
         },
-        link: function (scope, $element, attrs) {
+        link: function (scope, $element) {
             var element = $element[0];
 
             function cacheElementSize(scope, element) {
@@ -223,7 +224,7 @@ kindFramework.directive('sliderNoFocus', ['$timeout', function ($timeout) {
     return {
         restrict: 'A',
         transclude: true,
-        link: function (scope, $element, attrs) {
+        link: function (scope, $element) {
         	$timeout(function() {
         		$element.find('span').attr('tabindex', '');	
         	}, 1000);
