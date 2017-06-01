@@ -144,7 +144,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 					ReportFilename: ReportFilename,
 					ReportFileType: ReportFileType
 				},
-				successCallback: function(responseData){
+				successCallback: function(){
 					deferred.resolve('Success');
 				},
 				failCallback: function(errorData){
@@ -182,7 +182,7 @@ kindFramework.factory('PcSetupReportModel', function($q, pcSetupService){
 					Minute: Minute,
 					Type: pageType
 				},
-				successCallback: function(responseData){
+				successCallback: function(){
 					deferred.resolve('Success');
 				},
 				failCallback: function(errorData){

@@ -7,37 +7,6 @@ kindFramework.factory('PcCameraManagementModel', function($q, pcSetupService, $t
 		}
 
 		var lang = {
-			/* TBD
-			checkBox: {
-				pc: 'HeatMap',
-				hm: 'People Counting'
-			},
-			cameraManagement: {
-				title: 'Camera Management',
-				masterCamera: {
-					title: 'Master Camera',
-					masterCamera: 'Master Camera',
-					ip: 'IP'
-				},
-				slaveCamera: {
-					title: 'Slave Camera',
-					use: 'USE',
-					name: 'Name',
-					ip: 'IP',
-					status: 'Status',
-					testButton: 'Test',
-					statusList: [
-						'Ready',
-						'Connecting',
-						'Connect Error',
-						'Auth Error',
-						'Registration'
-					]
-				},
-				add: 'Add',
-				delete: 'Delete'
-			},
-			*/
 			systemManagement: {
 				title: 'lang_system_management',
 				dataRemove: {
@@ -82,7 +51,7 @@ kindFramework.factory('PcCameraManagementModel', function($q, pcSetupService, $t
 				data: {
 					IncludeDataType: pageType
 				},
-				successCallback: function(responseData){
+				successCallback: function(){
 					deferred.resolve('Success');
 				},
 				errorCallback: function(errorData){
