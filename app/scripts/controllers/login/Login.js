@@ -29,7 +29,8 @@ kindFramework.controller('LoginCtrl',
 
     BaseLogin.prototype.loginIPOLISWeb_No_Digest = function() {
     	var _self = this;
-      var userId, userPassword;
+      var userId = '';
+      var userPassword = '';
       SunapiClient.get(
         '/stw-cgi/security.cgi?msubmenu=users&action=view',
         {},
@@ -39,7 +40,7 @@ kindFramework.controller('LoginCtrl',
           SessionOfUserManager.AddSession($scope.loginInfo.id, '', $scope.loginInfo.serviceType);
           SessionOfUserManager.SetLogin();
 
-          if(userPassword == 4321 && userId == 'admin') // jshint ignore:line
+          if(userPassword === 4321 && userId === 'admin') // jshint ignore:line
           {
             $state.go('change_password');
           }
@@ -59,14 +60,14 @@ kindFramework.controller('LoginCtrl',
                     $state.go('uni.channel');
                 }
               },
-              function(errorData,errorCode) {
+              function(errorData) {
                       console.error(errorData);
               },
               '',
               true);
           }
         },
-        function(errorData,errorCode) {
+        function(errorData) {
                 console.error(errorData);
         },'',true);
     };
@@ -140,7 +141,7 @@ kindFramework.controller('LoginCtrl',
       var timeOutflag = true;
 
       if($scope.desktopAppInfo.isDesktopApp === true){
-        RESTCLIENT_CONFIG['digest'].hostName = $scope.desktopAppInfo.ipAddress;
+        RESTCLIENT_CONFIG.digest.hostName = $scope.desktopAppInfo.ipAddress;
       }
 
       UniversialManagerService.setServiceType(CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB);
