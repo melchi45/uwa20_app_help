@@ -10,14 +10,15 @@ kindFramework.directive('wn5AddSpinButton', function() {
 		var divElm = elm.next();
 		var upBtn = divElm.children().eq(0);
 		var downBtn = divElm.children().eq(1);
-		var min, max;
+		var min = 0;
+    var max = 0;
 		var intervalKey = null;
 		var changeFunc = attrs.ngChange;
 		var flag = attrs.addSpinButtonFlag;
 
 		elm.addClass('add-spin-button');
 
-		scope.$watch('addSpinButtonDisabled', function(val, oldVal) {
+		scope.$watch('addSpinButtonDisabled', function(val) {
 			if ( val ) {
 				upBtn.attr('disabled', 'disabled');
 				downBtn.attr('disabled', 'disabled');
@@ -29,7 +30,7 @@ kindFramework.directive('wn5AddSpinButton', function() {
 
 		scope.safeApply = function(fn) {
 			var phase = this.$root.$$phase;
-			if(phase == '$apply' || phase == '$digest') {
+			if(phase === '$apply' || phase === '$digest') {
 				if(fn && (typeof(fn) === 'function')) {
 					fn();
 				}
@@ -51,7 +52,7 @@ kindFramework.directive('wn5AddSpinButton', function() {
 
 		function increse() {
 			max = elm.attr('max');
-			if ( max !== undefined && max <= scope.ngModel ) {
+			if ( typeof max !== "undefined" && max <= scope.ngModel ) {
 				return;
 			}
 			scope.safeApply(function() {
@@ -65,7 +66,7 @@ kindFramework.directive('wn5AddSpinButton', function() {
 
 		function decrease() {
 			min = elm.attr('min');
-			if ( min !== undefined && min >= scope.ngModel ) {
+			if ( typeof min !== "undefined" && min >= scope.ngModel ) {
 				return;
 			}
 			scope.safeApply(function() {
