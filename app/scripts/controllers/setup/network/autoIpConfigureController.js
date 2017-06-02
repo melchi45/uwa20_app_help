@@ -71,31 +71,37 @@ kindFramework.controller('autoIpConfigureCtrl', function ($scope, $timeout, $uib
         return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=zeroconf&action=view', '',
                 function (response)
                 {
-                    $scope.ZeroConf = response.data.ZeroConf;                    
-                    pageData.ZeroConf = angular.copy($scope.ZeroConf);
-                    if($scope.ZeroConf[0].Enable == false)
-                    {
-                        $scope.ZeroConf[0].IPAddress = "";
-                        $scope.ZeroConf[0].SubnetMask = "";
-                    }
+                    if(!$scope.$$phase){
+                        $scope.$apply(function() {
+                            $scope.ZeroConf = response.data.ZeroConf;                    
 
-                    if($scope.ZeroConf[0].IPAddress === "" && $scope.ZeroConf[0].Enable === true)
-                    {    
-                      if(StatusTimeout === true)
-                      {
-                         checkZeroConfStatus('Fail');
-                      } 
-                      else
-                      {         
-                          checkZeroConfStatus('Trying');
-                      }
-                    }
-                    else
-                    {
-                        StatusTimeout = false;
-                        testZeroConf = false;
-                        RetryCount = 0;
-                        $scope.zeroConfStatus = "";
+                            if($scope.ZeroConf[0].Enable == false)
+                            {
+                                $scope.ZeroConf[0].IPAddress = "";
+                                $scope.ZeroConf[0].SubnetMask = "";
+                            }
+
+                            if($scope.ZeroConf[0].IPAddress === "" && $scope.ZeroConf[0].Enable === true)
+                            {    
+                              if(StatusTimeout === true)
+                              {
+                                 checkZeroConfStatus('Fail');
+                              } 
+                              else
+                              {         
+                                  checkZeroConfStatus('Trying');
+                              }
+                            }
+                            else
+                            {
+                                StatusTimeout = false;
+                                testZeroConf = false;
+                                RetryCount = 0;
+                                $scope.zeroConfStatus = "";
+                            }
+
+                            pageData.ZeroConf = angular.copy($scope.ZeroConf);
+                        });
                     }
                 },
                 function (errorData)
@@ -137,7 +143,7 @@ kindFramework.controller('autoIpConfigureCtrl', function ($scope, $timeout, $uib
     {
         var setData = {};
 
-        setData.Enable = pageData.ZeroConf[0].Enable = $scope.ZeroConf[0].Enable;
+        setData.Enable = $scope.ZeroConf[0].Enable;
 
         if(setData.Enable === true)
         {
@@ -308,11 +314,7 @@ kindFramework.controller('autoIpConfigureCtrl', function ($scope, $timeout, $uib
     function updateZeroStatus() 
     {
         RetryCount = RetryCount+1;
-        getZeroConf().then(function(){
-            if(!$scope.$$phase){
-                $scope.$apply();
-            }
-        });
+        getZeroConf();
     }
 
     $scope.submit = set;

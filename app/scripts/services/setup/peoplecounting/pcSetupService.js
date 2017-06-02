@@ -46,7 +46,7 @@ kindFramework.service('pcSetupService', function(
 				function(response) {
 					SessionOfUserManager.SetClientIPAddress(response.data.ClientIP);
 				},
-				function(errorData,errorCode) {
+				function(errorData) {
 					console.error(errorData);
 				},'',true);
 			}

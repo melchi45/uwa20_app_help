@@ -14,7 +14,6 @@ kindFramework.controller('QMSetupCtrl',
 
 		QmModel,
 		PcSetupModel,
-		PCLinePainter, 
 		PCRectanglePainter, 
 		pcModalService,
 		pcSetupService,
