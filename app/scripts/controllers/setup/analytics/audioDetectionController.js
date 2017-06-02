@@ -315,6 +315,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
     function startMonitoringAudioLevel()
     {
         mStopMonotoringAudioLevel = false;
+        $scope.$broadcast('liveChartStart');
 
         if(monitoringTimer == null)
         {
@@ -351,6 +352,7 @@ kindFramework.controller('audioDetectionCtrl', function ($scope, $uibModal, $tra
 
     function stopMonitoringAudioLevel(){
         mStopMonotoringAudioLevel = true;
+        $scope.$broadcast('liveChartStop');
 
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);

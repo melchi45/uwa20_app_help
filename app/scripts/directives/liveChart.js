@@ -21,6 +21,7 @@ kindFramework
                     var previous_data = 0;
                     var timer_promise = null;
                     var threshold;
+                    var dataprocessing_promise= null;
 
                     var SliderWidth = 140;
                     /////  UI Style Calculate
@@ -152,7 +153,12 @@ kindFramework
                         .attr("offset", function(d) { return d.offset; })
                         .attr("stop-color", function(d) { return d.color; });
 
-                    var DataProcessing = $interval(function(){
+                    paths.transition()
+                        .duration(duration)
+                        .ease('bais')
+                        .attr('transform', 'translate(' + (scope.liveChartOptions.width - 400) +')');
+
+                    function run(){
                         now = new Date();
 
                         // Shift domain
@@ -181,20 +187,13 @@ kindFramework
                         xScale.domain([(now - (limit - 2) * duration), (now - duration)]);
                         graphData.path.attr('d', line).attr('transform', 'translate(' + (-1 * margin.left + 5) +','+ margin.top + ')');
                         graphData.data.shift();
+                    }
 
-                        paths.transition()
-                            .duration(duration)
-                            .ease('bais')
-                            .attr('transform', 'translate(' + (scope.liveChartOptions.width - 400) +')');
-
-                    },duration);
-
-                    scope.$on("$destroy", function(){
-                        $interval.cancel(DataProcessing);
-                    });
+                    dataprocessing_promise = $interval(run,duration);
 
                     function reSizeChart(){
                         Yaxis.attr("transform", "translate(" + (scope.liveChartOptions.width-margin.right) + " , " + margin.top + ")");
+                        paths.transition().attr('transform', 'translate(' + (scope.liveChartOptions.width - 400) +')');
                         OnThresholdBarChange();
                     }
 
@@ -242,6 +241,29 @@ kindFramework
                         }
                         DataQueue.splice(0,DataQueue.length);
                     },true);
+
+                    scope.$on('liveChartStop', function(){
+                        if(dataprocessing_promise !== null)
+                        {
+                            scope.$broadcast('liveChartDataClearAll');
+
+                            $timeout(function(){
+                                $interval.cancel(dataprocessing_promise);
+                                dataprocessing_promise = null;
+                            },200);
+                        }
+                    }, true);
+
+                    scope.$on('liveChartStart', function(){
+                        if(dataprocessing_promise === null)
+                        {
+                            dataprocessing_promise = $interval(run,duration);
+                        }
+                    }, true);
+
+                    scope.$on("$destroy", function(){
+                        $interval.cancel(dataprocessing_promise);
+                    }, true);
                 }
             };
         }]);

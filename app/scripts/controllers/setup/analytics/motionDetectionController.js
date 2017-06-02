@@ -1016,6 +1016,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
     function startMonitoringMotionLevel()
     {
         mStopMonotoringMotionLevel = false;
+        $scope.$broadcast('liveChartStart');
 
         if(monitoringTimer == null)
         {
@@ -1083,6 +1084,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
 
     function stopMonitoringMotionLevel(){
         mStopMonotoringMotionLevel = true;
+        $scope.$broadcast('liveChartStop');
 
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
