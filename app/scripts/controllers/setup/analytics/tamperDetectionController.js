@@ -154,6 +154,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     function startMonitoringTamperingLevel()
     {
         mStopMonotoringTamperingLevel = false;
+        $scope.$broadcast('liveChartStart');
 
         if(monitoringTimer == null)
         {
@@ -191,6 +192,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
 
     function stopMonitoringTamperingLevel(){
         mStopMonotoringTamperingLevel = true;
+        $scope.$broadcast('liveChartStop');
 
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
@@ -658,7 +660,6 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
         {
             getAttributes().finally(function () {
                 view();
-                startMonitoringTamperingLevel();
             });
         }
     })();

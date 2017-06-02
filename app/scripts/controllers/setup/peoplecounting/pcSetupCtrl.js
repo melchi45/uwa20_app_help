@@ -11,7 +11,6 @@ kindFramework.controller('PCSetupCtrl',
 		$translate,
 
 		PcSetupModel,
-		PCLinePainter, 
 		PCRectanglePainter, 
 		pcModalService,
 		pcSetupService,
@@ -76,7 +75,6 @@ kindFramework.controller('PCSetupCtrl',
 
 	// 	document.querySelector('.pc-realtime-video').style.height = defaultResolution.height + 'px';
 	// }
-	var calibrationData = {};
 
 	$scope.init = function(){
 
@@ -98,7 +96,7 @@ kindFramework.controller('PCSetupCtrl',
 
 		getRuleInfo.then(function(data){
 			//$scope.destory interrupt
-			if(asyncInterrupt === true) return;
+			if(asyncInterrupt === true){ return;}
 
 			//Counting Rule Validation
 			var haveRule = false;
@@ -106,8 +104,12 @@ kindFramework.controller('PCSetupCtrl',
 			//Draw Line of Counting Rule in Video
 			var todayRuleData = [];
 			var countingRuleData = [];
+      var i = 0;
+      var len = 0;
+      var ii = 0;
+      var self = '';
 
-			for(var i = 0, len = data.Lines.length; i < len; i++){
+			for(i = 0, len = data.Lines.length; i < len; i++){
 				if(data.Lines[i].Enable === true){
 					haveRule = true;
 				}
@@ -126,8 +128,8 @@ kindFramework.controller('PCSetupCtrl',
 				}
 			}
 
-			for(var i = 0, len = data.Lines.length; i < len; i++){
-				var self = data.Lines[i];
+			for(i = 0, len = data.Lines.length; i < len; i++){
+				self = data.Lines[i];
 				var inCount = self.Enable === true ? self.InCount : '';
 				var outCount = self.Enable === true ? self.OutCount : '';
 				var lineOptions = {};
@@ -171,7 +173,6 @@ kindFramework.controller('PCSetupCtrl',
 			var calibration = data.ObjectSizeCoordinate;
 			var defaultResolution = pcSetupService.getDefaultResolution();
 			var maxResolution = pcSetupService.getMaxResolution();
-			var defaultCalibarationSize = defaultResolution.height * 0.08;
 			var calibrationMinSize = 0;
 			var calibrationMaxSize = 0;
 
@@ -207,7 +208,7 @@ kindFramework.controller('PCSetupCtrl',
 			//Exclude Area 임의 설정
 			try{
 				//초기화
-				for(var i = 0; i < 4; i++){
+				for(i = 0; i < 4; i++){
 					$scope.excludeAreaSection.update(i, {
 						points: [],
         				isEnable: false,
@@ -216,8 +217,8 @@ kindFramework.controller('PCSetupCtrl',
 				}
 
 				if("Areas" in data){
-					for(var i = 0, ii = data.Areas.length; i < ii; i++){
-						var self = data.Areas[i];
+					for (i = 0, ii = data.Areas.length; i < ii; i++){
+						self = data.Areas[i];
 						var coordinates = self.Coordinates;
 						var points = [];
 
@@ -248,7 +249,7 @@ kindFramework.controller('PCSetupCtrl',
 			}
 
 			try{
-				var cameraHeight = mAttr.CameraHeight === undefined ? 
+				var cameraHeight = typeof mAttr.CameraHeight === "undefined" ? 
 					{
 						minValue: 0,
 						maxValue: 0
@@ -292,9 +293,9 @@ kindFramework.controller('PCSetupCtrl',
     
 	$scope.countingSection = {
 		todayRuleData: [],
-		setTodayRuleData: function(data){
-			$scope.countingSection.todayRuleData = data;
-		},
+    setTodayRuleData: function(data){
+      $scope.countingSection.todayRuleData = data;
+    },
 		isDisabledAllRule: false,
 		isPeopleCountDisabled: false,
 		setUndefinedRule: function(){
@@ -455,13 +456,17 @@ kindFramework.controller('PCSetupCtrl',
 		$scope.coordinates = [];
 		var data = null;
 		var convertedData = [];
-        
+    var i = 0;
+    var ii = 0;
+    var self = '';
+    var coordinatesInfo = {};
+    var maxResolution = 0;
         //Exclude Area
         if(flag === "area") {
-        	for(var i = 0, ii = $scope.excludeAreaSection.data.length; i < ii; i++){
-        		var self = $scope.excludeAreaSection.data[i];
+        	for(i = 0, ii = $scope.excludeAreaSection.data.length; i < ii; i++){
+        		self = $scope.excludeAreaSection.data[i];
         		var isEmpty = self.points.length === 0;
-        		var coordinatesInfo = {
+        		coordinatesInfo = {
         			isSet: !isEmpty,
         			enable: self.isEnable,
         			points: self.points
@@ -475,15 +480,15 @@ kindFramework.controller('PCSetupCtrl',
         	sketchinfo.color = 1;
         //Configuration
         }else if(flag === "line") {
-        	for(var i = 0, ii = $scope.countingRuleSection.lineObject.length; i < ii; i++){
-        		var self = $scope.countingRuleSection.lineObject[i];
-        		var coordinatesInfo = {
+        	for(i = 0, ii = $scope.countingRuleSection.lineObject.length; i < ii; i++){
+        		self = $scope.countingRuleSection.lineObject[i];
+        		coordinatesInfo = {
         			isSet: self.enable,
         			enable: self.enable,
         			points: [],
         			direction: null
         		};
-        		var maxResolution = pcSetupService.getMaxResolution();
+        		maxResolution = pcSetupService.getMaxResolution();
 
         		if(self !== null){
         			coordinatesInfo.points[0] = [self.x1, self.y1];
@@ -718,13 +723,6 @@ kindFramework.controller('PCSetupCtrl',
         var modifiedType = args[1]; //생성: create, 삭제: delete
         var modifiedPoints = args[2];
         var modifiedDirection = args[3];
-        var vaLinesIndex = null;
-        var vaAreaIndex = null;
-
-        // console.log("updateCoordinates", modifiedIndex, modifiedType, modifiedPoints, modifiedDirection);
-
-        var coordinates = [];
-        var mode = [];
 
         if($scope.currentTapStatus[0] === true){ //Configuration
         	switch(modifiedType){
@@ -783,8 +781,7 @@ kindFramework.controller('PCSetupCtrl',
 	------------------------------------------ */
 
 	function view(){
-		var failCallback = function(errorData){
-			alert(errorData);
+		var failCallback = function(){
 			$scope.pageLoaded = true;
 		};
 
@@ -792,7 +789,9 @@ kindFramework.controller('PCSetupCtrl',
 			$scope.init().then(function(){
 				try{
 					$scope.pcSetupReport.getReport();
-				}catch(e){ }
+				}catch(e){
+          console.error(e);
+        }
 				$scope.pageLoaded = true;
 			}, failCallback);
 		}, failCallback);
@@ -844,9 +843,13 @@ kindFramework.controller('PCSetupCtrl',
 			console.log(errorData);
 		};
 
+    var i = 0;
+    var ii = 0;
+    var len = 0;
+
 		requestData.Enable = $scope.countingRuleSection.peopleCountingEnable;
 
-		for(var i = 0, len = countRuleSectionData.length; i < len ; i++){
+		for(i = 0, len = countRuleSectionData.length; i < len ; i++){
 			var ruleInfo = $scope.countingRuleSection.data[i];
 			if(linePainterData[i].enable === true){
 				var linePainterItemData = linePainterData[i];
@@ -868,7 +871,7 @@ kindFramework.controller('PCSetupCtrl',
 		}
 
 		//Exclude Area 저장
-		for(var i = 0, ii = $scope.excludeAreaSection.data.length; i < ii; i++){
+		for(i = 0, ii = $scope.excludeAreaSection.data.length; i < ii; i++){
 			var self = $scope.excludeAreaSection.data[i];
 			var backupSelf = $scope.excludeAreaSection.backupData[i];
 			//Exclude Area이기 때문에 항상 Outside로 설정
@@ -899,13 +902,13 @@ kindFramework.controller('PCSetupCtrl',
 			requestData.CameraHeight = $scope.calibrationSection.getCalibrationHeight();	
 		}
 
-		pcSetupModel
-			.setRuleInfo(requestData)
-			.then(function(successData){
-				$scope
-					.pcSetupReport
-					.setReport()
-					.then(function(){
+		pcSetupModel.
+      setRuleInfo(requestData).
+      then(function(){
+				$scope.
+          pcSetupReport.
+          setReport().
+          then(function(){
 						var refresh = function(){
 							$timeout(function(){
 								if(needRefresh){
@@ -946,15 +949,15 @@ kindFramework.controller('PCSetupCtrl',
 	        }
 	    });
 	    modalInstance.result.then(function() {
-	        pcSetupModel
-				.setRuleInfo({
-					Enable: $scope.countingRuleSection.peopleCountingEnable
-				})
-				.then(function(successData){
-					$timeout($scope.init);
-				}, function(errorData){
-					console.error(errorData);
-				});
+	        pcSetupModel.
+            setRuleInfo({
+              Enable: $scope.countingRuleSection.peopleCountingEnable
+            }).
+            then(function(){
+              $timeout($scope.init);
+            }, function(errorData){
+              console.error(errorData);
+            });
 	    }, function(){
 	    	$scope.countingRuleSection.peopleCountingEnable = !$scope.countingRuleSection.peopleCountingEnable;
 	    });

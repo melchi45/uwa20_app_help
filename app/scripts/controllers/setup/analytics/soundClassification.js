@@ -296,6 +296,7 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
     function startMonitoringSoundLevel()
     {
         mStopMonotoringSoundLevel = false;
+        $scope.$broadcast('liveChartStart');
 
         if(monitoringTimer == null)
         {
@@ -332,6 +333,7 @@ kindFramework.controller('soundClassificationCtrl', function ($scope, SunapiClie
 
     function stopMonitoringSoundLevel(){
         mStopMonotoringSoundLevel = true;
+        $scope.$broadcast('liveChartStop');
 
         if(monitoringTimer !== null){
             $timeout.cancel(monitoringTimer);
