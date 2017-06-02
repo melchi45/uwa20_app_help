@@ -28,7 +28,7 @@ kindFramework
         },
         controller : function($scope) {
           var selectorDirective = null;
-          if( $scope.pageController ) {
+          if ( $scope.pageController ) {
           /**
            * create <live-playback-channel-selector> directives for multi channel
            * @function : channelSelector
@@ -58,10 +58,25 @@ kindFramework
           scope.disableSpeedIcon = true;
           scope.disableStepIcon = true;
           scope.disableBackupIcon = true;
+          var INDEX_START_POINT = 0, INDEX_OFFSET = 1;
+          var listInfo =[];
+
+          var initPlaySpeedList = function() {
+            var list = [-8,-4,-2,-1,1,2,4,8];
+            for (var idx = INDEX_START_POINT; idx < list.length; idx++) {
+              listInfo[idx] = 
+              { 
+                'name': 'x' + list[idx],
+                'value': list[idx],
+                'notAnOption' : false,
+              };
+            }
+          };
+          initPlaySpeedList();
           var setButtonStatus = function(scenario, browser) {
             block.scenario = scenario;
             block.browser = browser;
-            if( block.scenario || block.browser ) {
+            if ( block.scenario || block.browser ) {
               scope.disableButton = true;
             } else {
               scope.disableButton = false;
@@ -133,13 +148,6 @@ kindFramework
               }
             },
             getSpeeds: function() {
-              var list = [-8,-4,-2,-1,1,2,4,8];
-              var listInfo = [];
-              for(var i = 0; i < list.length; i++){
-                listInfo[i] = { 'name': 'x' + list[i],
-                                'value': list[i]
-                              };
-              }
               return listInfo;
             },
             captureScreen : function() {
@@ -242,6 +250,17 @@ kindFramework
             });
           });
 
+          var rearrangeSpeed = function() {
+            var lastIndexPoint = listInfo.length-INDEX_OFFSET;
+            if ( scope.playback.speed === listInfo[INDEX_START_POINT].value) {
+              scope.playback.speed = listInfo[INDEX_START_POINT+INDEX_OFFSET].value;
+              scope.selectSpeedChanged();
+            } else if ( scope.playback.speed === listInfo[lastIndexPoint].value) {
+              scope.playback.speed = listInfo[lastIndexPoint-INDEX_OFFSET].value;
+              scope.selectSpeedChanged();
+            }
+          };
+
           var watchStatus = scope.$watch(function(){return playData.getStatus();}, function(newVal, oldVal){
             if( newVal === PLAY_CMD.PLAY ){
               scope.playback.isPlay = scope.disableStepIcon = true;
@@ -262,6 +281,20 @@ kindFramework
             if( scope.playback.isPlay !== false && data === 'pause' ){
               scope.playback.isPlay = scope.disableStepIcon = false;
             }
+          }, scope);
+
+          $rootScope.$saveOn('app/scripts/services/playbackClass/PlaybackInterface.js::limitSpeed',
+            function(event, isLimitSpeed) {
+              var lastIndexPoint = listInfo.length-INDEX_OFFSET;
+              if ( isLimitSpeed === true ) {
+                /**-8x, 8x not supported */
+                listInfo[INDEX_START_POINT].notAnOption = true;
+                listInfo[lastIndexPoint].notAnOption = true;
+                rearrangeSpeed();
+              } else  {
+                listInfo[INDEX_START_POINT].notAnOption = false;
+                listInfo[lastIndexPoint].notAnOption = false;
+              }
           }, scope);
 
           var watchStepStatus = scope.$watch(function(){return playbackStepService.getSettingFlag();}, 

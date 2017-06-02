@@ -93,7 +93,7 @@
             ng-change="selectSpeedChanged()" 
             ng-model="playback.speed" 
             ng-disabled="!playback.isPlay"
-            ng-options="s.value as s.name for s in selectSpeedList">
+            ng-options="s.value as s.name disable when s.notAnOption for s in selectSpeedList">
           </select>
         </li>
       </ul>

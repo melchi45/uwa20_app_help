@@ -275,14 +275,19 @@ kindFramework
 			$rootScope.$emit('channelSelector:on', true);
 		  $rootScope.$emit('app/scripts/services/playbackClass::disableButton', false);
 		  var playData = new PlayDataModel();
-		  if (error.errorCode !== "200" && error.errorCode !== "777") {
+			if( error.errorCode === "503" || error.errorCode === "999" || 
+					error.errorCode === "998") {
 		  	playData.setDefautPlaySpeed();  //if error occur, reset playback speed to 1x
 	  		playData.setStatus(PLAY_CMD.STOP);
 	  	}
 	  	var callbackFnc = function(data) {
 	  		openErrorPopup = false;
 	  	};
-	  	if( error.errorCode === "503" ) {
+			if( error.errorCode === "103") {
+				$rootScope.$emit('app/scripts/services/playbackClass/PlaybackInterface.js::limitSpeed',
+					error.isLimit);
+			}
+	  	else if( error.errorCode === "503" ) {
 	  		if( openErrorPopup === false ) {
 	  			openErrorPopup = true;
 		  		ModalManagerService.open(
