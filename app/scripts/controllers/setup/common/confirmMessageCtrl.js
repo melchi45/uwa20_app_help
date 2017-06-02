@@ -12,7 +12,7 @@ kindFramework.controller('confirmMessageCtrl', function ($scope, $uibModalInstan
         $uibModalInstance.dismiss();
     };
 
-    $uibModalInstance.opened.then(function(){
+    $uibModalInstance.rendered.then(function(){
         $timeout(function () {
             $scope.$digest();
         });
@@ -30,7 +30,7 @@ kindFramework.controller('errorMessageCtrl', function ($scope, $uibModalInstance
         $uibModalInstance.close();        
     };
 
-    $uibModalInstance.opened.then(function(){
+    $uibModalInstance.rendered.then(function(){
         $timeout(function () {
             $scope.$digest();
         });
@@ -53,7 +53,7 @@ kindFramework.controller('detailMessageCtrl', function ($scope, $uibModalInstanc
         $uibModalInstance.dismiss();
     };
 
-    $uibModalInstance.opened.then(function(){
+    $uibModalInstance.rendered.then(function(){
         $timeout(function () {
             $scope.$digest();
         });
