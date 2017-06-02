@@ -1,6 +1,7 @@
 module.exports = function(injection){
 	var grunt = injection.grunt;
 	var projectStructure = injection.projectStructure;
+
 	return function(target){
 
 		if(!grunt.file.exists(projectStructure.customSaConfig)){
@@ -39,6 +40,15 @@ module.exports = function(injection){
 
 		projectStructure.customSaPath = customSaPath;
 
-		grunt.task.run('plato:custom');
+    var plato = require('plato');
+		var done = this.async();
+		var outputDir = projectStructure.reportDir + '/' + projectStructure.customSaDir;
+    var eslintData = JSON.parse(grunt.file.read('.eslintrc').replace(/\/\/.*/g, ''));
+		var options = {
+			title: 'JavaScript Source Analysis',
+			eslint: eslintData
+		};
+
+		plato.inspect(customSaPath, outputDir, options, done);
 	};
 };
