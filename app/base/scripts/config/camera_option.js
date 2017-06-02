@@ -1,1 +1,1 @@
-kindFramework.constant('CAMERA_TYPE','b2b');
+kindFramework.constant('CAMERA_TYPE', 'b2b');

@@ -5824,10 +5824,11 @@ rzslider .rz-bubble {
 }
 .wn5-setup-section .form-group .wn5-setup-section-article-heading {
   padding-left: 15px;
-  padding-right: 80px;
+  padding-right: 15px;
 }
 .wn5-setup-section .form-group .wn5-setup-section-article-heading.wn5-outline-title {
   padding-left: 0;
+  padding-right: 80px;
 }
 .wn5-setup-section .form-group .tab-content .wn5-setup-section-article-heading {
   padding-left: 20px;
