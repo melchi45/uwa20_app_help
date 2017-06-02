@@ -541,6 +541,7 @@ kindFramework.controller('defocusDetectionCtrl', function ($rootScope, $location
         stopMonitoringDefocusLevel();
 
         var modalInstance = $uibModal.open({
+            animation: false,
             templateUrl: 'views/setup/common/confirmMessage.html',
             controller: 'confirmMessageCtrl',
             size: 'sm',

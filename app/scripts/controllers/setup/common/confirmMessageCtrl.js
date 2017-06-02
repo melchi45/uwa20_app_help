@@ -1,4 +1,4 @@
-kindFramework.controller('confirmMessageCtrl', function ($scope, $uibModalInstance, Message)
+kindFramework.controller('confirmMessageCtrl', function ($scope, $uibModalInstance, Message, $timeout)
 {  
     $scope.confirmMessage = Message;
     
@@ -11,9 +11,15 @@ kindFramework.controller('confirmMessageCtrl', function ($scope, $uibModalInstan
     {
         $uibModalInstance.dismiss();
     };
+
+    $uibModalInstance.opened.then(function(){
+        $timeout(function () {
+            $scope.$digest();
+        });
+    });
 });
 
-kindFramework.controller('errorMessageCtrl', function ($scope, $uibModalInstance, Message, Header)
+kindFramework.controller('errorMessageCtrl', function ($scope, $uibModalInstance, Message, Header, $timeout)
 {  
     $scope.headerMessage = Header;           
     
@@ -23,9 +29,15 @@ kindFramework.controller('errorMessageCtrl', function ($scope, $uibModalInstance
     {
         $uibModalInstance.close();        
     };
+
+    $uibModalInstance.opened.then(function(){
+        $timeout(function () {
+            $scope.$digest();
+        });
+    });
 });
 
-kindFramework.controller('detailMessageCtrl', function ($scope, $uibModalInstance, Message,Header,$translate)
+kindFramework.controller('detailMessageCtrl', function ($scope, $uibModalInstance, Message,Header,$translate, $timeout)
 {  
     $scope.headerMessage = Header;
 
@@ -40,4 +52,10 @@ kindFramework.controller('detailMessageCtrl', function ($scope, $uibModalInstanc
     {
         $uibModalInstance.dismiss();
     };
+
+    $uibModalInstance.opened.then(function(){
+        $timeout(function () {
+            $scope.$digest();
+        });
+    });
 });

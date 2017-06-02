@@ -411,6 +411,7 @@ kindFramework.controller('tamperDetectionCtrl', function ($scope, $uibModal, $tr
     $scope.setTamperDetectionEnable = function() {
         stopMonitoringTamperingLevel();
         var modalInstance = $uibModal.open({
+            animation: false,
             templateUrl: 'views/setup/common/confirmMessage.html',
             controller: 'confirmMessageCtrl',
             size: 'sm',

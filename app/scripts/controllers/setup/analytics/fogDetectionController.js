@@ -323,6 +323,7 @@ kindFramework.controller('fogDetectionCtrl', function ($scope, SunapiClient, XML
     $scope.setFogDetectionEnable = function () {
         stopMonitoringFogLevel();
         var modalInstance = $uibModal.open({
+            animation: false,
             templateUrl: 'views/setup/common/confirmMessage.html',
             controller: 'confirmMessageCtrl',
             size: 'sm',
