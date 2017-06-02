@@ -16,7 +16,6 @@ kindFramework.controller('PCStatisticsCtrl',
 		pcSetupService,
 
 		SunapiClient,
-		PCLinePainter,
 		ConnectionSettingService,
 		kindStreamInterface,
 		SessionOfUserManager,
@@ -152,9 +151,9 @@ kindFramework.controller('PCStatisticsCtrl',
 		function getDeviceNameSuccessCallback(data){
 			var conditionsRule = [];
 
-			pcSetupModel
-				.getTodayGraphData()
-				.then(getTodayGraphDataSuccessCallback, failCallback);
+			pcSetupModel.
+        getTodayGraphData().
+        then(getTodayGraphDataSuccessCallback, failCallback);
 
 			//set master info
 			conditionsRule[0] = {
@@ -212,9 +211,9 @@ kindFramework.controller('PCStatisticsCtrl',
 		}
 
 		function getTodayGraphDataSuccessCallback(data){
-			pcSetupModel
-				.getWeekGraphData()
-				.then(getWeekGraphDataCallback, failCallback);
+			pcSetupModel.
+        getWeekGraphData().
+        then(getWeekGraphDataCallback, failCallback);
 
 			var todayChartData = [];
 

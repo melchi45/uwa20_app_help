@@ -5,33 +5,39 @@ kindFramework.factory('sketchbookService', function() {
             return this.sketchManager.get();
         },
         set: function(jsonData, flag) {
-            if (this.sketchManager !== undefined) this.sketchManager.set(jsonData, flag);
+            if (typeof this.sketchManager !== "undefined"){
+              this.sketchManager.set(jsonData, flag);
+            }
         },
         changeFlag: function(flag) {
-            if (this.sketchManager !== undefined) this.sketchManager.changeFlag(flag);
+            if (typeof this.sketchManager !== "undefined"){
+               this.sketchManager.changeFlag(flag);
+            }
         },
         changeRatio: function(ratio) {
-            if (this.sketchManager !== undefined) this.sketchManager.changeRatio(ratio);
+            if (typeof this.sketchManager !== "undefined"){
+              this.sketchManager.changeRatio(ratio);
+            }
         },
         setEnableForSVG: function(index, enableOption){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.setEnableForSVG(index, enableOption);
             }
         },
         activeShape: function(index){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.activeShape(index);
             }
         },
         changeArrow: function(index, arrow){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.changeArrow(index, arrow);
             }
         },
         changeMinSizeOption: function(width, height){
             var returnVal = false;
 
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 returnVal = this.sketchManager.changeMinSizeOption(width, height);
             }
 
@@ -40,29 +46,29 @@ kindFramework.factory('sketchbookService', function() {
         changeMaxSizeOption: function(width, height){
             var returnVal = false;
 
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 returnVal = this.sketchManager.changeMaxSizeOption(width, height);
             }
 
             return returnVal;
         },
         changeRectangleToSize: function(index, width, height){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.changeRectangleToSize(index, width, height);
             }
         },
         removeDrawingGeometry: function(){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.removeDrawingGeometry();
             }
         },
         moveTopLayer: function(index){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.moveTopLayer(index);
             }  
         },
         alignCenter: function(){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.alignCenter();
             }  
         },
@@ -86,37 +92,37 @@ kindFramework.factory('sketchbookService', function() {
             return convertedHeight;
         },
         drawMetaData: function(){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.drawMetaData.apply(this.sketchManager, arguments);
             }  
         },
         drawMetaDataAll: function(){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.drawMetaDataAll.apply(this.sketchManager, arguments);
             }  
         },
         stopEvent: function(){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.stopEvent();
             }  
         },
         startEvent: function(){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.startEvent();
             }  
         },
         hideGeometry: function(index){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.hideGeometry(index);
             }  
         },
         showGeometry: function(index){
-            if (this.sketchManager !== undefined){
+            if (typeof this.sketchManager !== "undefined"){
                 this.sketchManager.showGeometry(index);
             }  
         },
         getErrorRange: function(){
-            if(this.sketchManager !== undefined){
+            if(typeof this.sketchManager !== "undefined"){
                 return this.sketchManager.getErrorRange();
             }
             return false;

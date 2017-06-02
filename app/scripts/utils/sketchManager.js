@@ -1,3 +1,4 @@
+/* global KindSVGEditor */
 var SketchManager = (function() {
     "use strict";
     var sketchInfo = {
@@ -110,7 +111,7 @@ var SketchManager = (function() {
         if(svgObjs !== null){
             for(var i = 0, len = svgObjs.length; i < len; i++){
                 var self = svgObjs[i];
-                if(self !== null && self !== undefined){
+                if(self !== null && typeof self !== "undefined"){
                     self.destroy();
                 }
             }   
@@ -277,32 +278,6 @@ var SketchManager = (function() {
         options.context.clearRect(0, 0, videoInfo.width, videoInfo.height);
     }
 
-    function validateSVGAxis(svgObj, width, height){
-        var convertedPoint = convertPoint(
-            [0, width], 
-            [0, height], 
-            'set'
-        );
-        // var selfPoints = svgObj.getData().points;
-        var convertedWidth = convertedPoint.xpos[1];
-        var convertedHeight = convertedPoint.ypos[1];
-        var returnVal = true;
-
-        if(
-            svgObj.validateAxis(
-                // selfPoints[0][0] + convertedWidth,
-                // selfPoints[0][1] + convertedHeight
-                convertedWidth,
-                convertedHeight
-                ) === false
-            ){
-
-            returnVal = false;
-        }
-
-        return returnVal;
-    }
-
     /**
      * Geometry의 최소값을 변경하는 함수
      * return 값이 false경우 실해, true일 경우 성공이다.
@@ -348,7 +323,7 @@ var SketchManager = (function() {
     function changeRectangleToSize(index, width, height){
         var convertedPoint = null;
 
-        if(svgObjs[index] !== undefined){
+        if(typeof svgObjs[index] !== "undefined"){
             convertedPoint = convertPoint(
                 [0, width], 
                 [0, height], 
@@ -364,7 +339,7 @@ var SketchManager = (function() {
             );
 
             if(sketchInfo.workType === "commonArea" || sketchInfo.workType === "calibration"){
-                if(vaEnteringAppearing !== undefined){
+                if(typeof vaEnteringAppearing !== "undefined"){
                     vaEnteringAppearing.updatePrevSize(index, convertedPoint.xpos[1], convertedPoint.ypos[1]);   
                 }
             }
@@ -621,23 +596,23 @@ var SketchManager = (function() {
                 return;
             }
             if (sketchInfo.workType === "mdSize") {
-                if (mdSize !== null) mdSize.set(data, flag);
+                if (mdSize !== null) {mdSize.set(data, flag);}
             } else if (sketchInfo.workType === "qmArea" || sketchInfo.workType === "mdArea" || sketchInfo.workType === "fdArea" || sketchInfo.workType === "smartCodec" || sketchInfo.workType === "simpleFocus") {
                 if (sketchInfo.shape === 0) {
-                    if (mdArea !== null) mdArea.set(data, flag);
+                    if (mdArea !== null){ mdArea.set(data, flag);}
                 }else{
-                    if (vaEnteringAppearing !== null) vaEnteringAppearing.set(data);
+                    if (vaEnteringAppearing !== null) {vaEnteringAppearing.set(data);}
                 }
             } else if (sketchInfo.workType === "vaEntering" || sketchInfo.workType === "vaAppearing" || sketchInfo.workType === "commonArea" || sketchInfo.workType === "calibration") {
-                if (vaEnteringAppearing !== null) vaEnteringAppearing.set(data);
+                if (vaEnteringAppearing !== null) {vaEnteringAppearing.set(data);}
             } else if (sketchInfo.workType === "vaPassing" || sketchInfo.workType === "peoplecount") {
-                if (vaPassing !== null) vaPassing.set(data);
+                if (vaPassing !== null) {vaPassing.set(data);}
             } else if (sketchInfo.workType === "autoTracking") {
-                if (autoTracking !== null) autoTracking.set(data);
+                if (autoTracking !== null){ autoTracking.set(data);}
             } else if (sketchInfo.workType === "crop") {
-                if (crop !== null) crop.set(data);
+                if (crop !== null){ crop.set(data);}
             } else if (sketchInfo.workType === "privacy") {
-                if (privacy !== null) privacy.set(data);
+                if (privacy !== null){ privacy.set(data);}
             }
         },
         getErrorRange: function(){
@@ -648,7 +623,9 @@ var SketchManager = (function() {
                 mdSize.changeMdsizeFlag(data);
             } else if (sketchInfo.workType === "qmArea" || sketchInfo.workType === "mdArea" || sketchInfo.workType === "fdArea") {
                 mdArea.changeMdDetectFlag(data);
-            } else if (sketchInfo.workType === "vaEntering" || sketchInfo.workType === "vaAppearing") {}
+            }
+            //  else if (sketchInfo.workType === "vaEntering" || sketchInfo.workType === "vaAppearing") {  
+            // }
         },
         changeRatio: function(data) {
             if (sketchInfo.workType === "crop") {
@@ -723,7 +700,7 @@ var SketchManager = (function() {
             }
         },
         drawMetaDataAll: function(metaData, expire){
-            var expireTime = expire === undefined ? 300 : expire;
+            var expireTime = typeof expire === "undefined" ? 300 : expire;
             var canvasType = 0;
             var clearTimer = function(){
                 clearTimeout(drawMetaDataTimer);
@@ -744,9 +721,9 @@ var SketchManager = (function() {
 
             drawMetaDataTimer = setTimeout(clear, expireTime);
         },
-        drawMetaData: function(left, right, top, bottom, scale, translate, colorType, isCircle){
+        drawMetaData: function(left, right, top, bottom, scale, translate, _colorType, isCircle){
             var canvasType = 0;
-            var colorType = colorType === undefined ? 0 : colorType;
+            var colorType = typeof _colorType === "undefined" ? 0 : _colorType;
 
             /*--------VA 전달받은 방식-----------------*/
             var coordinateSystemWidth  = parseInt(( 1 - translate[0]) / scale[0]);
@@ -886,7 +863,7 @@ var SketchManager = (function() {
                 }
                 isDrawDragging = true;
             },
-            mdSizeMouseup: function(e) {
+            mdSizeMouseup: function() {
                 if (!firstDrawClick) {
                     return;
                 }
@@ -924,14 +901,14 @@ var SketchManager = (function() {
                     var actualHeight = parseInt(rectPos.h * (videoInfo.maxHeight / videoInfo.height), 10);
                     if (actualWidth > sketchInfo.minAreaSize && actualHeight > sketchInfo.minAreaSize) {
                         if (sizeFlag === 0) {
-                            if (rectPos.w > coordinates[1].width || rectPos.h > coordinates[1].height) {} else {
+                            if (!(rectPos.w > coordinates[1].width || rectPos.h > coordinates[1].height)) {
                                 coordinates[0].x1 = x1;
                                 coordinates[0].y1 = y1;
                                 coordinates[0].width = rectPos.w;
                                 coordinates[0].height = rectPos.h;
                             }
                         } else {
-                            if (rectPos.w < coordinates[0].width || rectPos.h < coordinates[0].height) {} else {
+                            if (!(rectPos.w < coordinates[0].width || rectPos.h < coordinates[0].height)) {
                                 coordinates[1].x1 = x1;
                                 coordinates[1].y1 = y1;
                                 coordinates[1].width = rectPos.w;
@@ -956,7 +933,7 @@ var SketchManager = (function() {
                     drawRectangle(1, 1, coordinates[0].x1, coordinates[0].y1, coordinates[0].width, coordinates[0].height);
                 }
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
-                    if (!isInit) updateCoordinates();
+                    if (!isInit) {updateCoordinates();}
                 }
             },
             changeMdsizeFlag: function(data) {
@@ -1085,13 +1062,16 @@ var SketchManager = (function() {
                     } else if ((rectPos.startY + rectPos.h) < 0) {
                         rectPos.h = (-1) * rectPos.startY;
                     }
-                    if (detectFlag === 0) fContext.strokeStyle = colorFactory.red;
-                    else fContext.strokeStyle = colorFactory.blue;
+                    if (detectFlag === 0) {
+                      fContext.strokeStyle = colorFactory.red;
+                    }else {
+                      fContext.strokeStyle = colorFactory.blue;
+                    }
                     fContext.strokeRect(rectPos.startX, rectPos.startY, rectPos.w, rectPos.h);
                 }
                 isDrawDragging = true;
             },
-            mouseupRectangle: function(e) {
+            mouseupRectangle: function() {
                 if (!firstDrawClick) {
                     return;
                 }
@@ -1124,23 +1104,24 @@ var SketchManager = (function() {
                         y2 = videoInfo.height;
                     }
                     var isDuplicateArea = false;
+                    var idx = 0;
                     if (sketchInfo.workType === "smartCodec") {
-                        for (var i = 0; i < coordinates.length; i++) {
-                            if (coordinates[i].isSet) {
-                                if (x1 <= coordinates[i].x2 && coordinates[i].x1 <= x2 && y1 <= coordinates[i].y2 && coordinates[i].y1 <= y2) {
+                        for (idx = 0; idx < coordinates.length; idx++) {
+                            if (coordinates[idx].isSet) {
+                                if (x1 <= coordinates[idx].x2 && coordinates[idx].x1 <= x2 && y1 <= coordinates[idx].y2 && coordinates[idx].y1 <= y2) {
                                     isDuplicateArea = true;
                                 }
                             }
                         }
                     }
-                    if ((x1 === x2 || y1 === y2) || isDuplicateArea) {} else {
-                        for (var i = 0; i < coordinates.length; i++) {
-                            if (!coordinates[i].isSet) {
-                                coordinates[i].isSet = true;
-                                coordinates[i].x1 = x1;
-                                coordinates[i].y1 = y1;
-                                coordinates[i].x2 = x2;
-                                coordinates[i].y2 = y2;
+                    if (!((x1 === x2 || y1 === y2) || isDuplicateArea)) {
+                        for (idx = 0; idx < coordinates.length; idx++) {
+                            if (!coordinates[idx].isSet) {
+                                coordinates[idx].isSet = true;
+                                coordinates[idx].x1 = x1;
+                                coordinates[idx].y1 = y1;
+                                coordinates[idx].x2 = x2;
+                                coordinates[idx].y2 = y2;
                                 break;
                             }
                         }
@@ -1199,11 +1180,11 @@ var SketchManager = (function() {
                     }
                 }
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
-                    if (!isInit) updateCoordinates();
+                    if (!isInit) {updateCoordinates();}
                 }
             },
             mouseclickPolygon: function(e) {
-                if (!_self.checkDrawAvailable()) return;
+                if (!_self.checkDrawAvailable()) {return;}
                 var coord = getCoordinate(e, this);
                 var xVal = coord[0];
                 var yVal = coord[1];
@@ -1316,8 +1297,8 @@ var SketchManager = (function() {
 
                 if (isDrawDragging) {
                     fContext.clearRect(0, 0, frontCanvas.width, frontCanvas.height);
-                    if (detectFlag === 0) fContext.strokeStyle = colorFactory.red;
-                    else fContext.strokeStyle = colorFactory.blue;
+                    if (detectFlag === 0) {fContext.strokeStyle = colorFactory.red;}
+                    else {fContext.strokeStyle = colorFactory.blue;}
                     fContext.beginPath();
                     fContext.moveTo(Ax, Ay);
                     fContext.lineTo(xVal, yVal);
@@ -1418,7 +1399,7 @@ var SketchManager = (function() {
                     }
                 }
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
-                    if (!isInit) updateCoordinates();
+                    if (!isInit) {updateCoordinates();}
                 }
             },
             changeMdDetectFlag: function(data) {
@@ -1432,7 +1413,7 @@ var SketchManager = (function() {
             set: function(data, flag) {
                 detectFlag = flag;
                 for (var i = 0; i < coordinates.length; i++) {
-                    if (data[i] !== undefined) {
+                    if (typeof data[i] !== "undefined") {
                         coordinates[i].isSet = data[i].isSet;
                         var xpos = [0, 0, 0, 0];
                         var ypos = [0, 0, 0, 0];
@@ -1667,7 +1648,7 @@ var SketchManager = (function() {
                 }
                 isDrawDragging = true;
             },
-            mouseupRectangle: function(e) {
+            mouseupRectangle: function() {
                 if (!firstDrawClick) {
                     return;
                 }
@@ -1720,12 +1701,12 @@ var SketchManager = (function() {
                     bContext.globalAlpha = alphaFactory.enabled.stroke;
                 }
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
-                    if(!isInit && sketchInfo.disValue !== undefined && !sketchInfo.disValue){
+                    if(!isInit && typeof sketchInfo.disValue !== "undefined" && !sketchInfo.disValue){
                     	updateCoordinates();
                     }
                     /////////////////////
                     sketchInfo.getZoomValue().then(function(returnZoomValue) {
-                        if (!isInit && sketchInfo.disValue !== undefined && !sketchInfo.disValue && returnZoomValue <= sketchInfo.MaxZoomValue) {
+                        if (!isInit && typeof sketchInfo.disValue !== "undefined" && !sketchInfo.disValue && returnZoomValue <= sketchInfo.MaxZoomValue) {
                             updateCoordinates();
                         }
                     });
@@ -1967,7 +1948,7 @@ var SketchManager = (function() {
                     bContext.globalAlpha = alphaFactory.enabled.stroke;
                 }
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
-                    if (!isInit) updateCoordinates();
+                    if (!isInit) {updateCoordinates();}
                 }
             },
             drawArea: function(data) {
@@ -2086,7 +2067,7 @@ var SketchManager = (function() {
                 }
                 return returnArray;
             },
-            openDialog: function(index, type) {
+            openDialog: function(index) {
                 sketchInfo.getZoomValue().then(function(returnZoomValue) {      /////
                     if ((videoInfo.support_ptz || videoInfo.support_zoomOnly) && (sketchInfo.disValue === true || returnZoomValue > sketchInfo.MaxZoomValue)) {
                         $("[type='radio'][name='VideoOutput']").prop("disabled", true);
@@ -2230,16 +2211,16 @@ var SketchManager = (function() {
                                                 $interval.cancel(ptzJogTimer);
                                                 ptzJogTimer = null;
                                             }
-                                            if(!isPtzControlStart) return;
+                                            if(!isPtzControlStart) {return;}
                                             var setData = {};
                                             setData.Channel = 0;
                                             setData.OperationType = 'All';
 
                                             isPtzControlStart = false;
                                             SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control', setData,
-                                                function (response) {
+                                                function () {
                                                 },
-                                                function (errorData) {
+                                                function () {
                                                 },'', true);
                                         }
 
@@ -2249,7 +2230,8 @@ var SketchManager = (function() {
                                             }, 100);
                                         }
 
-                                        function ptzLimitCheck(data) {
+                                        function ptzLimitCheck(_data) {
+                                            var data = _data;
                                             if (data > 100) { data = 100; }
                                             else if (data < -100) { data = -100; }
 
@@ -2271,9 +2253,9 @@ var SketchManager = (function() {
                                             if(isJogUpdating === false) {
                                                 isPtzControlStart = true;
                                                 SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control', setData,
-                                                    function (response) {
+                                                    function () {
                                                     },
-                                                    function (errorData) {
+                                                    function () {
                                                     },'', true);
 
                                                 isJogUpdating = true;
@@ -2295,8 +2277,8 @@ var SketchManager = (function() {
 
                                                 xPos = parseInt(xPos,10) - 100;
                                                 yPos = -(parseInt(yPos,10) - 100);
-                                                if (-4 < yPos && yPos < 4) yPos = 0;
-                                                if (-2 < xPos && xPos < 2) xPos = 0;
+                                                if (-4 < yPos && yPos < 4) {yPos = 0;}
+                                                if (-2 < xPos && xPos < 2) {xPos = 0;}
                                                 ptzJogMove(xPos, yPos);
                                             },
                                             stop: function(){
@@ -2319,8 +2301,9 @@ var SketchManager = (function() {
                                            e.stopPropagation();
                                         });
                                         $("#ptz-control_box-popup").mousedown(function(e){
-                                            if(isDrag || isMove || e.which != 1)
+                                            if(isDrag || isMove || e.which != 1){
                                                 return;
+                                            }
                                             isMove = true;
                                             var jogWidth = $('#ptz-control_move-btn-popup').width()/2;
 
@@ -2341,20 +2324,22 @@ var SketchManager = (function() {
                                                     yPos = yPos + $(window).scrollTop();
                                                 }
                                             }
-                                            if(xPos <= (moveAreaPos.left + jogWidth))
+                                            if(xPos <= (moveAreaPos.left + jogWidth)){
                                                 xPos = (moveAreaPos.left + jogWidth);
-                                            else if(xPos >= (moveAreaWidth + moveAreaPos.left - jogWidth))
+                                            }else if(xPos >= (moveAreaWidth + moveAreaPos.left - jogWidth)){
                                                 xPos = moveAreaWidth + moveAreaPos.left - jogWidth;
+                                            }
 
-                                            if(yPos <= (moveAreaPos.top + jogWidth))
+                                            if(yPos <= (moveAreaPos.top + jogWidth)){
                                                 yPos = moveAreaPos.top + jogWidth;
-                                            else if(yPos >= (moveAreaPos.top + moveAreaHeight - jogWidth))
+                                            }else if(yPos >= (moveAreaPos.top + moveAreaHeight - jogWidth)){
                                                 yPos = moveAreaPos.top + moveAreaHeight - jogWidth;
+                                            }
 
                                             xPos = xPos- jog_Left;
                                             yPos = jog_Top - yPos;
-                                            if (-4 <= xPos && xPos <= 4) xPos = 0;
-                                            if (-2 <= yPos && yPos <= 2) yPos = 0;
+                                            if (-4 <= xPos && xPos <= 4) {xPos = 0;}
+                                            if (-2 <= yPos && yPos <= 2) {yPos = 0;}
 
                                             $('#ptz-control_move-btn-popup').animate({
                                                 top: (moveAreaHeight/2-12)-yPos,
@@ -2364,7 +2349,7 @@ var SketchManager = (function() {
                                                 yPos *= TILT_RATIO;
 
                                                 ptzJogMove(xPos, yPos);
-                                                if(isMove == true) {
+                                                if(isMove === true) {
                                                     clearTimeout(downTimer);
                                                     downTimer = setTimeout(function(){
                                                         $('#ptz-control_move-btn-popup').trigger(e);
@@ -2414,10 +2399,6 @@ var SketchManager = (function() {
     })();
 
     var VaEnteringAppearing = (function() {
-        var isDrawDragging = false;
-        var firstDrawClick = false;
-        var Ax = 0,
-            Ay = 0;
         var x1 = 0,
             y1 = 0,
             x2 = 0,
@@ -2426,13 +2407,6 @@ var SketchManager = (function() {
             y3 = 0,
             x4 = 0,
             y4 = 0;
-        var rectPos = {
-            startX: 0,
-            startY: 0,
-            w: 0,
-            h: 0
-        };
-        var index = 1;
         var coordinates = null;
         var _self = null;
 
@@ -2445,8 +2419,6 @@ var SketchManager = (function() {
 
         function constructor() {
             /* jshint validthis: true */
-            var color = colorFactory.blue;
-            var selectedColor = colorFactory.darkBlue;
             var convertedMinSize = [];
             var convertedMaxSize = [];
 
@@ -2493,7 +2465,7 @@ var SketchManager = (function() {
                         var width = 0;
                         var height = 0;
 
-                        if(this.lineIndex !== undefined){
+                        if(typeof this.lineIndex !== "undefined"){
                             _self.notifyUpdate(this.lineIndex, data);
 
                             //IVA Common Area 에서만 사용
@@ -2751,7 +2723,6 @@ var SketchManager = (function() {
             alignCenter: function(){                
                 for(var i = 0, ii = svgObjs.length; i < ii; i++){
                     var data = {};
-                    var convertedPoints = [];
 
                     svgObjs[i].alignCenter();
                     data = svgObjs[i].getData();
@@ -2762,7 +2733,7 @@ var SketchManager = (function() {
             activeShape: function(index){
                 var method = null;
                 for(var i = 0, ii = svgObjs.length; i < ii; i++){
-                    if(svgObjs[i] !== null && svgObjs[i] !== undefined){ //if svg object is setted.
+                    if(svgObjs[i] !== null && typeof svgObjs[i] !== "undefined"){ //if svg object is setted.
                         method = i === index ? 'active' : 'normal';
                         svgObjs[i][method]();
                     }
@@ -2785,7 +2756,7 @@ var SketchManager = (function() {
                 coordinates[index].points = data.points;
             },
             addSVGObj: function(obj, isNewlyAdded, coordinateIndex){
-                var index = coordinateIndex !== undefined ? coordinateIndex : _self.getIndex();
+                var index = typeof coordinateIndex !== "undefined" ? coordinateIndex : _self.getIndex();
                 obj.lineIndex = index;
                 svgObjs[index] = obj;
 
@@ -2812,7 +2783,7 @@ var SketchManager = (function() {
                     kindSVGCustomObj.start();
                 }
             },
-            openDialog: function(index, type, coordi) {
+            openDialog: function(index, type) {
                 var modalInstance = dialog.open({
                     templateUrl: sketchInfo.modalId,
                     size: 'sm',
@@ -2942,13 +2913,13 @@ var SketchManager = (function() {
                     }
                 }
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
-                    if (!isInit) updateCoordinates();
+                    if (!isInit){ updateCoordinates();}
                 }
             },
             set: function(data) {
                 for (var i = 0; i < coordinates.length; i++) {
                     var enExAppear = null;
-                    if (data[i] !== undefined) {
+                    if (typeof data[i] !== "undefined") {
                         coordinates[i].isSet = data[i].isSet;
                         if('enable' in data[i]){
                             coordinates[i].enable = data[i].enable;
@@ -3044,7 +3015,7 @@ var SketchManager = (function() {
                         _self.addSVGObj(obj, true);
                     },
                     mouseup: function(data){
-                        if(this.lineIndex !== undefined){
+                        if(typeof this.lineIndex !== "undefined"){
                             _self.setCoordinate(this.lineIndex, data);
                             updateCoordinates([
                                 this.lineIndex,
@@ -3115,32 +3086,17 @@ var SketchManager = (function() {
             }
         }
         constructor.prototype = {
-            /*getIndex: function(){
-                var index = null;
-                if(svgObjs.length < sketchInfo.maxNumber){
-                    index = svgObjs.length;
-                }
-
-                for(var i = 0, len = svgObjs.length; i < len; i++){
-                    if(svgObjs[i] === null){
-                        index = i;
-                        break;
-                    }
-                }
-
-                return index;
-            },*/
             activeShape: function(index){
                 var method = null;
                 for(var i = 0, ii = svgObjs.length; i < ii; i++){
-                    if(svgObjs[i] !== null && svgObjs[i] !== undefined){ //if svg object is setted.
+                    if(svgObjs[i] !== null && typeof svgObjs[i] !== "undefined"){ //if svg object is setted.
                         method = i === index ? 'active' : 'normal';
                         svgObjs[i][method]();
                     }
                 }
             },
             setEnableForSVG: function(index, enableOption){
-                if(svgObjs[index] !== null && svgObjs[index] !== undefined){
+                if(svgObjs[index] !== null && typeof svgObjs[index] !== "undefined"){
                     var method = enableOption === true ? 'show' : 'hide';
                     svgObjs[index][method]();
                 }
@@ -3181,7 +3137,7 @@ var SketchManager = (function() {
                 coor.direction = direction; 
             },
             addSVGObj: function(obj, isNewlyAdded, coordinatesIndex){
-                var index = coordinatesIndex !== undefined ? coordinatesIndex : _self.getIndex();
+                var index = typeof coordinatesIndex !== "undefined" ? coordinatesIndex : _self.getIndex();
                 var data = obj.getData();
                 obj.lineIndex = index;
                 svgObjs[index] = obj;
@@ -3226,12 +3182,12 @@ var SketchManager = (function() {
                 }
 
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
-                    if (!isInit) updateCoordinates();
+                    if (!isInit) {updateCoordinates();}
                 }
             },
             set: function(data) {
                 for (var i = 0; i < coordinates.length; i++) {
-                    if (data[i] !== undefined) {
+                    if (typeof data[i] !== "undefined") {
                         var xpos = [];
                         var ypos = [];
                         var coorPoints = [];
@@ -3249,15 +3205,16 @@ var SketchManager = (function() {
                                 }
                             }
                         }
-
-                        for(var j = 0, jLen = data[i].points.length; j < jLen; j++){
+                        var j = 0;
+                        var jLen = 0;
+                        for(j = 0, jLen = data[i].points.length; j < jLen; j++){
                             xpos.push(data[i].points[j][0]);
                             ypos.push(data[i].points[j][1]);
                         }
 
                         point = convertPoint(xpos, ypos, 'set');
 
-                        for(var j = 0, jLen = xpos.length; j < jLen; j++){
+                        for(j = 0, jLen = xpos.length; j < jLen; j++){
                             coorPoints.push([
                                 point.xpos[j],
                                 point.ypos[j]
@@ -3295,14 +3252,17 @@ var SketchManager = (function() {
                         }
                     }
 
-                    for(var j = 0, jLen = coordinates[i].points.length; j < jLen; j++){
+                    var j = 0;
+                    var jLen = 0;
+
+                    for(j = 0, jLen = coordinates[i].points.length; j < jLen; j++){
                         xpos.push(coordinates[i].points[j][0]);
                         ypos.push(coordinates[i].points[j][1]);
                     }
 
                     point = convertPoint(xpos, ypos, 'get');
 
-                    for(var j = 0, jLen = xpos.length; j < jLen; j++){
+                    for(j = 0, jLen = xpos.length; j < jLen; j++){
                         coorPoints.push([
                             point.xpos[j],
                             point.ypos[j]
@@ -3319,33 +3279,6 @@ var SketchManager = (function() {
                     size: 'sm',
                     controller: ['$scope', '$uibModalInstance', function($scope, $uibModalInstance) {
                         $scope.confirmMessage = "lang_msg_confirm_remove_profile";
-                        // $scope.addPointNumber = '0';
-                        // $scope.pointRange = [0];
-
-                        // (function setPointRange(){
-                        //     var data = svgObjs[index].getData();
-                        //     var pointLength = data.points.length;
-                            
-                        //     for(var i = 1, len = 8 - pointLength; i <= len; i++){
-                        //         $scope.pointRange.push(i);
-                        //     }
-                        // })();
-
-                        // $scope.ok = function() {
-                        //     if($scope.addPointNumber > 0){
-                        //         for(var i = 0; i < $scope.addPointNumber; i++){
-                        //             svgObjs[index].addPoint();   
-                        //         }
-                        //     }
-
-                        //     updateCoordinates([
-                        //         index,
-                        //         "mouseup",
-                        //         convertPoints(coordinates[index].points, 'get')
-                        //     ]);
-
-                        //     $uibModalInstance.close();
-                        // };
                         $scope.cancel = function() {
                             $uibModalInstance.dismiss();
                         };
@@ -3462,7 +3395,7 @@ var SketchManager = (function() {
                 }
                 isDrawDragging = true;
             },
-            cropMouseup: function(e) {
+            cropMouseup: function() {
                 if (!firstDrawClick) {
                     return;
                 }
@@ -3587,7 +3520,7 @@ var SketchManager = (function() {
                 fContext.strokeRect(tempCoordi.x1, tempCoordi.y1, tempCoordi.width, tempCoordi.height);
                 fContext.fillRect(tempCoordi.x1, tempCoordi.y1, tempCoordi.width, tempCoordi.height);
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
-                    if (!isInit) updateCoordinates();
+                    if (!isInit) {updateCoordinates();}
                 }
             },
             changeRatio: function(data) {
@@ -3704,7 +3637,7 @@ var SketchManager = (function() {
                 }
                 isDrawDragging = true;
             },
-            mouseupRectangle: function(e) {
+            mouseupRectangle: function() {
                 if (!firstDrawClick) {
                     return;
                 }
@@ -3750,7 +3683,7 @@ var SketchManager = (function() {
                 clearRect(1);
                 drawRectangle(1, 1, coordinates.x1, coordinates.y1, coordinates.x2 - coordinates.x1, coordinates.y2 - coordinates.y1);
                 if (updateCoordinates !== null && typeof updateCoordinates === "function") {
-                    if (!isInit) updateCoordinates();
+                    if (!isInit) {updateCoordinates();}
                 }
             },
             drawArea: function(data) {
@@ -3858,7 +3791,7 @@ var SketchManager = (function() {
                 returnArray.y2 = point.ypos[1];
                 return returnArray;
             },
-            openDialog: function(index, type) {
+            openDialog: function() {
                 var modalInstance = dialog.open({
                     templateUrl: sketchInfo.modalId,
                     controller: ['$scope', '$uibModalInstance', 'Attributes', 'COMMONUtils', 'SunapiClient', function($scope, $uibModalInstance, Attributes, COMMONUtils, SunapiClient) {
@@ -3870,10 +3803,10 @@ var SketchManager = (function() {
                             SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=view', {},
                                 function (response) {
                                     $scope.AutoTrackingAreas = response.data.AutoTracking[0].TrackingAreas;
-                                    if(!$scope.AutoTrackingAreas) $scope.AutoTrackingAreas = [];
+                                    if(!$scope.AutoTrackingAreas) {$scope.AutoTrackingAreas = [];}
                                     $scope.autotrackingDataReady = false;
                                 },
-                                function (errorData) {
+                                function () {
                                     $scope.AutoTrackingAreas = [];
                                     $scope.autotrackingDataReady = false;
                                 },'',true);
@@ -3883,7 +3816,7 @@ var SketchManager = (function() {
                             var name_duplication = false;
                             for(var i = 0; i<$scope.AutoTrackingAreas.length; i++){
                                 var _tmpArea = $scope.AutoTrackingAreas[i];
-                                if(name == _tmpArea.TrackingArea) {
+                                if(name === _tmpArea.TrackingArea) {
                                     name_duplication = true;
                                     break;
                                 }
@@ -3892,7 +3825,7 @@ var SketchManager = (function() {
                         };
                         $scope.ok = function() {
                             var autoName = $(".autoTracking-name-input").val();
-                            if (!autoName) return;
+                            if (!autoName) {return;}
                             if (autorackingNameCheck(autoName) === true) {
                                 COMMONUtils.ShowError('lang_msg_id_duplicate');
                                 return;
@@ -3967,10 +3900,10 @@ var SketchManager = (function() {
     };
     var distToSegmentSquared = function(p, v, w) {
         var l2 = dist2(v, w);
-        if (l2 === 0) return dist2(p, v);
+        if (l2 === 0) {return dist2(p, v);}
         var t = ((p.x - v.x) * (w.x - v.x) + (p.y - v.y) * (w.y - v.y)) / l2;
-        if (t < 0) return dist2(p, v);
-        if (t > 1) return dist2(p, w);
+        if (t < 0) {return dist2(p, v);}
+        if (t > 1) {return dist2(p, w);}
         return dist2(p, {
             x: v.x + t * (w.x - v.x),
             y: v.y + t * (w.y - v.y)
@@ -3980,55 +3913,32 @@ var SketchManager = (function() {
         return Math.sqrt(distToSegmentSquared(p, v, w));
     };
     var isPointInPoly = function(poly, pt) {
-        for (var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i)
-            ((poly[i].y <= pt.y && pt.y < poly[j].y) || (poly[j].y <= pt.y && pt.y < poly[i].y)) && (pt.x < (poly[j].x - poly[i].x) * (pt.y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x) && (c = !c);
+        var c = false;
+        var i = -1;
+        var l = poly.length;
+        var j = l - 1;
+        for (c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i){
+              ((poly[i].y <= pt.y && pt.y < poly[j].y) || (poly[j].y <= pt.y && pt.y < poly[i].y)) && (pt.x < (poly[j].x - poly[i].x) * (pt.y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x) && (c = !c);
+        }
         return c;
     };
-    var dotLineLength = function(x, y, x0, y0, x1, y1, o) {
-        function lineLength(x, y, x0, y0) {
-            return Math.sqrt((x -= x0) * x + (y -= y0) * y);
-        }
-        if (o && !(o = function(x, y, x0, y0, x1, y1) {
-                if (!(x1 - x0)) return {
-                    x: x0,
-                    y: y
-                };
-                else if (!(y1 - y0)) return {
-                    x: x,
-                    y: y0
-                };
-                var left, tg = -1 / ((y1 - y0) / (x1 - x0));
-                return {
-                    x: left = (x1 * (x * tg - y + y0) + x0 * (x * -tg + y - y1)) / (tg * (x1 - x0) + y0 - y1),
-                    y: tg * left - tg * x + y
-                };
-            }(x, y, x0, y0, x1, y1), o.x >= Math.min(x0, x1) && o.x <= Math.max(x0, x1) && o.y >= Math.min(y0, y1) && o.y <= Math.max(y0, y1))) {
-            var l1 = lineLength(x, y, x0, y0),
-                l2 = lineLength(x, y, x1, y1);
-            return l1 > l2 ? l2 : l1;
-        } else {
-            var a = y0 - y1,
-                b = x1 - x0,
-                c = x0 * y1 - y0 * x1;
-            return Math.abs(a * x + b * y + c) / Math.sqrt(a * a + b * b);
-        }
-    };
-
 
     function convertPoints(points, convertType){
         var xpos = [];
         var ypos = [];
         var convertedPoints = null;
         var coorPoints = [];
-
-        for(var j = 0, jj = points.length; j < jj; j++){
+        var j = 0;
+        var jj = 0;
+        
+        for(j = 0, jj = points.length; j < jj; j++){
             xpos.push(points[j][0]);
             ypos.push(points[j][1]);
         }
 
         convertedPoints = convertPoint(xpos, ypos, convertType);
 
-        for(var j = 0, jj = xpos.length; j < jj; j++){
+        for(j = 0, jj = xpos.length; j < jj; j++){
             coorPoints.push([
                 convertedPoints.xpos[j],
                 convertedPoints.ypos[j],
@@ -4040,45 +3950,47 @@ var SketchManager = (function() {
 
     var convertPoint = function(xpos, ypos, mode) {
         var pointCount = xpos.length;
+        var j = 0;
+        var temp = '';
         if (mode === 'set') { // set point
             if (!videoInfo.support_ptz && videoInfo.adjust) {
                 if (videoInfo.rotate === "90") {
-                    for (var j = 0; j < pointCount; j++) {
-                        var temp = ypos[j];
+                    for (j = 0; j < pointCount; j++) {
+                        temp = ypos[j];
                         ypos[j] = xpos[j];
                         xpos[j] = videoInfo.maxWidth - temp;
                     }
                 } else if (videoInfo.rotate === "270") {
-                    for (var j = 0; j < pointCount; j++) {
-                        var temp = xpos[j];
+                    for (j = 0; j < pointCount; j++) {
+                        temp = xpos[j];
                         xpos[j] = ypos[j];
                         ypos[j] = videoInfo.maxHeight - temp;
                     }
                 }
                 if (videoInfo.flip === true) {
-                    for (var j = 0; j < pointCount; j++) {
+                    for (j = 0; j < pointCount; j++) {
                         ypos[j] = videoInfo.maxHeight - ypos[j];
                     }
                 }
                 if (videoInfo.mirror === true) {
-                    for (var j = 0; j < pointCount; j++) {
+                    for (j = 0; j < pointCount; j++) {
                         xpos[j] = videoInfo.maxWidth - xpos[j];
                     }
                 }
             }
             if (sketchInfo.shape === 0) { //rect
                 if (xpos[1] < xpos[0]) {
-                    var temp = xpos[0];
+                    temp = xpos[0];
                     xpos[0] = xpos[1];
                     xpos[1] = temp;
                 }
                 if (ypos[1] < ypos[0]) {
-                    var temp = ypos[0];
+                    temp = ypos[0];
                     ypos[0] = ypos[1];
                     ypos[1] = temp;
                 }
             }
-            for (var j = 0; j < pointCount; j++) {
+            for (j = 0; j < pointCount; j++) {
                 if (videoInfo.rotate === "90" || videoInfo.rotate === "270") {
                     xpos[j] = Math.round(xpos[j] / (videoInfo.maxHeight / videoInfo.height));
                     ypos[j] = Math.round(ypos[j] / (videoInfo.maxWidth / videoInfo.width));
@@ -4090,36 +4002,36 @@ var SketchManager = (function() {
         } else { // set point
             if (!videoInfo.support_ptz && videoInfo.adjust) {
                 if (videoInfo.rotate === "90") {
-                    for (var j = 0; j < pointCount; j++) {
-                        var temp = xpos[j];
+                    for (j = 0; j < pointCount; j++) {
+                        temp = xpos[j];
                         xpos[j] = ypos[j];
                         ypos[j] = videoInfo.width - temp;
                     }
                 } else if (videoInfo.rotate === "270") {
-                    for (var j = 0; j < pointCount; j++) {
-                        var temp = ypos[j];
+                    for (j = 0; j < pointCount; j++) {
+                        temp = ypos[j];
                         ypos[j] = xpos[j];
                         xpos[j] = videoInfo.height - temp;
                     }
                 }
                 if (videoInfo.flip === true) {
                     if (videoInfo.rotate === "90" || videoInfo.rotate === "270") {
-                        for (var j = 0; j < pointCount; j++) {
+                        for (j = 0; j < pointCount; j++) {
                             xpos[j] = videoInfo.height - xpos[j];
                         }
                     } else {
-                        for (var j = 0; j < pointCount; j++) {
+                        for (j = 0; j < pointCount; j++) {
                             ypos[j] = videoInfo.height - ypos[j];
                         }
                     }
                 }
                 if (videoInfo.mirror === true) {
                     if (videoInfo.rotate === "90" || videoInfo.rotate === "270") {
-                        for (var j = 0; j < pointCount; j++) {
+                        for (j = 0; j < pointCount; j++) {
                             ypos[j] = videoInfo.width - ypos[j];
                         }
                     } else {
-                        for (var j = 0; j < pointCount; j++) {
+                        for (j = 0; j < pointCount; j++) {
                             xpos[j] = videoInfo.width - xpos[j];
                         }
                     }
@@ -4127,17 +4039,17 @@ var SketchManager = (function() {
             }
             if (sketchInfo.shape === 0) { //rect
                 if (xpos[1] < xpos[0]) {
-                    var temp = xpos[0];
+                    temp = xpos[0];
                     xpos[0] = xpos[1];
                     xpos[1] = temp;
                 }
                 if (ypos[1] < ypos[0]) {
-                    var temp = ypos[0];
+                    temp = ypos[0];
                     ypos[0] = ypos[1];
                     ypos[1] = temp;
                 }
             }
-            for (var j = 0; j < pointCount; j++) {
+            for (j = 0; j < pointCount; j++) {
                 if (videoInfo.rotate === "90" || videoInfo.rotate === "270") {
                     xpos[j] = Math.round(xpos[j] * (videoInfo.maxHeight / videoInfo.height));
                     ypos[j] = Math.round(ypos[j] * (videoInfo.maxWidth / videoInfo.width));
@@ -4145,8 +4057,8 @@ var SketchManager = (function() {
                     xpos[j] = Math.round(xpos[j] * (videoInfo.maxWidth / videoInfo.width));
                     ypos[j] = Math.round(ypos[j] * (videoInfo.maxHeight / videoInfo.height));
                 }
-                if (xpos[j] < 0) xpos[j] = 0;
-                if (ypos[j] < 0) ypos[j] = 0;
+                if (xpos[j] < 0) {xpos[j] = 0;}
+                if (ypos[j] < 0) {ypos[j] = 0;}
                 if (xpos[j] > videoInfo.maxWidth) {
                     xpos[j] = videoInfo.maxWidth;
                 }
@@ -4162,14 +4074,14 @@ var SketchManager = (function() {
     };
 
     CanvasRenderingContext2D.prototype.fillPolygon = function(pointsArray, fillColor, strokeColor) {
-        if (pointsArray.length <= 0) return;
+        if (pointsArray.length <= 0){ return;}
         this.moveTo(pointsArray[0][0], pointsArray[0][1]);
         for (var i = 0; i < pointsArray.length; i++) {
             this.lineTo(pointsArray[i][0], pointsArray[i][1]);
         }
-        if (strokeColor !== null && strokeColor !== undefined) this.strokeStyle = strokeColor;
+        if (strokeColor !== null && typeof strokeColor !== "undefined"){ this.strokeStyle = strokeColor;}
         this.globalAlpha = alphaFactory.enabled.stroke;
-        if (fillColor !== null && fillColor !== undefined) {
+        if (fillColor !== null && typeof fillColor !== "undefined") {
             this.fillStyle = fillColor;
             this.globalAlpha = alphaFactory.enabled.fill;
             this.fill();

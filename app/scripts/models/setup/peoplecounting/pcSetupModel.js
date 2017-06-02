@@ -1,7 +1,7 @@
 /* global setTimeout */
 "use strict";
 
-kindFramework.factory('PcSetupModel', function($q, PCDSVParser, $interval, pcSetupService, $translate){
+kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $translate){
 	var PeopleCountingModel = function(){
 		if(!(this instanceof PeopleCountingModel)){
 			return new PeopleCountingModel();
