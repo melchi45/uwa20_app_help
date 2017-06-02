@@ -1120,5 +1120,7 @@
     "lang_connectedAction": "Bağlantılı işlem",
     "lang_panTile_limit": "Kaydırma/Eğme limiti",
     "lang_target_size_fix": "Hedef boyutunu koru",
-    "lang_autoExit": "Otomatik çıkış"
+    "lang_autoExit": "Otomatik çıkış",
+    "lang_OSDBlink": "OSD Yanıp Sönme",
+    "lang_msg_OSDBlink_apply": "HDMI ile uygulanır ve PVM monitöründe doğrulanabilir."
 }

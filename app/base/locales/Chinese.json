@@ -1120,5 +1120,7 @@
     "lang_connectedAction": "连续动作",
     "lang_panTile_limit": "平移/倾斜限制",
     "lang_target_size_fix": "保持目标大小",
-    "lang_autoExit": "自动退出"
+    "lang_autoExit": "自动退出",
+    "lang_OSDBlink": "OSD 闪烁",
+    "lang_msg_OSDBlink_apply": "应用于 HDMI 且可通过 PVM 监视器予以确认."
 }

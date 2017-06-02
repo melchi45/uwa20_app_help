@@ -1120,5 +1120,7 @@
     "lang_connectedAction": "Připojování",
     "lang_panTile_limit": "Limit otáčení a naklánění",
     "lang_target_size_fix": "Udržovat cílovou velikost",
-    "lang_autoExit": "Automatické ukončení"
+    "lang_autoExit": "Automatické ukončení",
+    "lang_OSDBlink": "OSD blikání",
+    "lang_msg_OSDBlink_apply": "Použito u HDMI a lze potvrdit pomocí monitoru PVM."
 }

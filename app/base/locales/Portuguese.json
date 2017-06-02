@@ -1120,5 +1120,7 @@
     "lang_connectedAction": "Ação conectada",
     "lang_panTile_limit": "Limite Panorâmico/Inclinação",
     "lang_target_size_fix": "Manter tamanho do alvo",
-    "lang_autoExit": "Sair automaticamente"
+    "lang_autoExit": "Sair automaticamente",
+    "lang_OSDBlink": "Pisca OSD",
+    "lang_msg_OSDBlink_apply": "É aplicado em HDMI e pode ser confirmado com o monitor PVM."
 }

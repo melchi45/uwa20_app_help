@@ -1120,5 +1120,7 @@
     "lang_connectedAction": "Συνδεδεμένη ενέργεια",
     "lang_panTile_limit": "Όριο οριζ./κάθ. στροφής",
     "lang_target_size_fix": "Διατήρηση μεγέθους στόχου",
-    "lang_autoExit": "Αυτόματη έξοδος"
+    "lang_autoExit": "Αυτόματη έξοδος",
+    "lang_OSDBlink": "Αναβοσβήσιμο OSD",
+    "lang_msg_OSDBlink_apply": "Εφαρμόζεται στο HDMI και μπορεί να επιβεβαιωθεί με το μόνιτορ PVM."
 }

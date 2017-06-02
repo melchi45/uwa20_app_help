@@ -1120,5 +1120,7 @@
     "lang_connectedAction": "Połączone działanie",
     "lang_panTile_limit": "Limit panoramowania/wychylania",
     "lang_target_size_fix": "Zachowaj rozmiar docelowy",
-    "lang_autoExit": "Wyjdź automatycznie"
+    "lang_autoExit": "Wyjdź automatycznie",
+    "lang_OSDBlink": "OSD Mrugnięcie",
+    "lang_msg_OSDBlink_apply": "Opcja stosowana jest w HDMI I można ją potwierdzić przy użyciu monitora PVM."
 }

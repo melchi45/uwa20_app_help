@@ -1120,5 +1120,7 @@
     "lang_connectedAction": "Csatlakoztatott művelet",
     "lang_panTile_limit": "Panoráma/dőlés korlát",
     "lang_target_size_fix": "Célméret megtartása",
-    "lang_autoExit": "Automatikus kilépés"
+    "lang_autoExit": "Automatikus kilépés",
+    "lang_OSDBlink": "OSD villogó",
+    "lang_msg_OSDBlink_apply": "Alkalmazása HDMI esetén valósul meg és a PVM monitorral lehet megerősíteni."
 }

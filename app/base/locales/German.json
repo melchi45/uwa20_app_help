@@ -1120,5 +1120,7 @@
     "lang_connectedAction": "Folgeaktion",
     "lang_panTile_limit": "Schwenk-/Neigebeschränkung",
     "lang_target_size_fix": "Zielgröße beibehalten",
-    "lang_autoExit": "Automatisch beenden"
+    "lang_autoExit": "Automatisch beenden",
+    "lang_OSDBlink": "OSD-Blink",
+    "lang_msg_OSDBlink_apply": "Wird mit HDMI angewandt und lässt sich über den PVM Monitor bestätigen. "
 }

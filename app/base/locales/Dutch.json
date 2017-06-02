@@ -1120,5 +1120,7 @@
     "lang_connectedAction": "Verbonden actie",
     "lang_panTile_limit": "Limiet voor pannen/kantelen",
     "lang_target_size_fix": "Doelgrootte aanhouden",
-    "lang_autoExit": "Automatisch afsluiten"
+    "lang_autoExit": "Automatisch afsluiten",
+    "lang_OSDBlink": "OSD Blink",
+    "lang_msg_OSDBlink_apply": "Het wordt toegepast bij HDMI en kan worden bevestigd met de PVM-monitor."
 }

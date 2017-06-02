@@ -1120,5 +1120,7 @@
     "lang_connectedAction": "接続アクション",
     "lang_panTile_limit": "パン/チルト制限",
     "lang_target_size_fix": "ターゲットサイズを維持",
-    "lang_autoExit": "自動的に終了"
+    "lang_autoExit": "自動的に終了",
+    "lang_OSDBlink": "OSD点滅",
+    "lang_msg_OSDBlink_apply": "HDMIに適用され、PVMモニターで確認できます。"
 }
