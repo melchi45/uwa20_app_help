@@ -1,336 +1,282 @@
 kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate, $timeout, $q, $rootScope, eventRuleService, $compile, UniversialManagerService) {
-    "use strict";
-    var mAttr = Attributes.get();
-    COMMONUtils.getResponsiveObjects($scope);
-    var pageData = $scope.pageData = {};
-    $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
-    $scope.RecordEnableOptions = ["Off", "On"];
-    $scope.SelectedStorage = 0;
-    $scope.Channel = UniversialManagerService.getChannelId();
-    $scope.NASTestStatus = "";
-    $scope.NASTimerId = null;
-    $scope.selected = 0;
-    $scope.Formatmsg = ["SDFormatMsg", "NASFormatMsg"];
-    $scope.AutoDeleteDayOptions = [];
-    $scope.needReload = false;
-    $scope.OnlyNumStr = mAttr.OnlyNumStr;
-    $scope.IPv4PatternStr = mAttr.IPv4PatternStr;
-    $scope.FriendlyNameCharSetNoNewLineStr = mAttr.FriendlyNameCharSetNoNewLineStr;
-    $scope.EventSource = "Storage";
-    $scope.StorageInfo = {};
-    $scope.sdcardEnable = false;
+  "use strict";
+  var mAttr = Attributes.get();
+  COMMONUtils.getResponsiveObjects($scope);
+  var pageData = $scope.pageData = {};
+  $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
+  $scope.RecordEnableOptions = ["Off", "On"];
+  $scope.SelectedStorage = 0;
+  $scope.Channel = UniversialManagerService.getChannelId();
+  $scope.NASTestStatus = "";
+  $scope.NASTimerId = null;
+  $scope.selected = 0;
+  $scope.Formatmsg = ["SDFormatMsg", "NASFormatMsg"];
+  $scope.AutoDeleteDayOptions = [];
+  $scope.needReload = false;
+  $scope.OnlyNumStr = mAttr.OnlyNumStr;
+  $scope.IPv4PatternStr = mAttr.IPv4PatternStr;
+  $scope.FriendlyNameCharSetNoNewLineStr = mAttr.FriendlyNameCharSetNoNewLineStr;
+  $scope.EventSource = "Storage";
+  $scope.StorageInfo = {};
+  $scope.sdcardEnable = false;
 
 
+//$scope.NASUserIDPattern = "^[a-zA-Z0-9~`!@$^*()_\\-|{}\\[\\];,./?]*$";
+//$scope.NASPasswordPattern = $scope.NASUserIDPattern;
+//$scope.NASFolderPattern = "^[a-zA-Z0-9~`!@#$%^&()\\-_=+\\[\\]{};',./]*$";
+  $scope.NASUserIDPattern = "^[a-zA-Z0-9_\\-.]*$";
+  $scope.NASPasswordPattern = "^[a-zA-Z0-9~!@$^*_\\-{}\\[\\]./?]*$";
+  $scope.NASFolderPattern = "^[a-zA-Z0-9_\\-.]*$";
+
+  $scope.getTranslatedOption = function(Option) {
+    return COMMONUtils.getTranslatedOption(Option);
+  };
+  $scope.checkNASStatus = function(status) {
+    var statusMsg = "";
+    switch (status) {
+    case 'Fail':
+      statusMsg = $translate.instant('lang_msg_test_fail');
+      break;
+    case 'Success':
+      statusMsg = $translate.instant('lang_msg_test_success');
+      break;
+    case 'Trying':
+    case 'Connecting':
+      statusMsg = $translate.instant('lang_msg_test_connecting');
+      break;
+    default :
+      statusMsg = COMMONUtils.getTranslatedOption(status);
+      break;
+    }
+    return statusMsg;
+  };
+
+  function getStorageTableData() {
+    $scope.infoTableData = [];
+    var getData = {};
+
+    return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=sdcardinfo&action=view', getData,
+        function (response) {
+          var idx = 0;
+          var TableData = response.data;
+          var MultiChannelEnableData = $scope.Storageinfo.Storages[idx].Enable;
+
+          $.each(TableData,function(index, element) {
+            var totalSpace = parseInt(element.TotalSpace);
+            var usedSpace = totalSpace - parseInt(element.UsedSpace);
+            var status = element.Status;
+            element.Enable = MultiChannelEnableData;
+            
+            if (usedSpace < 1024) {
+              element.UsedSpace = usedSpace + " MB"
+            } else if (usedSpace >= 1024 && usedSpace < 1024*1024 ) {
+              element.UsedSpace = (usedSpace/1024).toFixed(2) + " GB"
+            } else if (usedSpace >= 1024*1024 && usedSpace < 1024*1024*1024) {
+              element.UsedSpace = (usedSpace/(1024*1024)).toFixed(2) + " TB"
+            }
+
+            if (totalSpace < 1024) {
+              element.TotalSpace = totalSpace + " MB"
+            } else if (totalSpace >= 1024 && usedSpace < 1024*1024 ) {
+              element.TotalSpace = (totalSpace/1024).toFixed(2) + " GB"
+            } else if (totalSpace >= 1024*1024 && usedSpace < 1024*1024*1024) {
+              element.TotalSpace = (totalSpace/(1024*1024)).toFixed(2) + " TB"
+            }
+
+            if (status === "") {
+              element.Status = "None";
+            } else if (status === "Normal") {
+              element.Status = "Ready";
+            } else if (status === "Active") {
+              element.Status = "Recording";
+            }
+
+          })
+
+          setTimeout(function() {
+            console.info(TableData);
+          },200);
+
+          $scope.infoTableData = TableData;
+        },
+        function (errorData) {
+          console.log(errorData);
+        }, '', true);
+  }
+
+  function showModalDialog(callback, displaymsg, index, queue) {
+    var deferred = $q.defer();
+    var modalInstance = $uibModal.open({
+      templateUrl: 'confirmMessage.html',
+      controller: 'confirmMessageCtrl',
+      resolve: {
+        Message: function() {
+          return displaymsg;
+        }
+      }
+    });
+    modalInstance.result.then(function() {
+      switch (callback) {
+      case "setStorageInfo":
+        setStorageInfo(index, queue);
+        break;
+      case "setRecordGeneralInfo":
+        setRecordGeneralInfo(index, queue);
+        break;
+      case "storageFormatOK":
+        storageFormatOK(index);
+        break;
+      }
+  
+      deferred.resolve('Success');
+    }, function() {
+      deferred.resolve('Success');
+    });
+    
+    return deferred.promise;
+  }
+
+  function getAttributes() {
+    var defer = $q.defer();
+    if (mAttr.FileSystemTypeOptions !== 'undefined') {
+      $scope.FileSystemTypeOptions = mAttr.FileSystemTypeOptions;
+    }
+    if (mAttr.DeviceType !== 'undefined') {
+      $scope.DeviceType = mAttr.DeviceType;
+    }
+    if (mAttr.RecNormalModeOptions !== 'undefined') {
+      $scope.RecNormalModeOptions = mAttr.RecNormalModeOptions;
+    }
+    if (mAttr.RecEventModeOptions !== 'undefined') {
+      $scope.RecEventModeOptions = mAttr.RecEventModeOptions;
+    }
+    if (mAttr.RecPreEventDurationOptions !== 'undefined') {
+      $scope.RecPreEventDurationOptions = mAttr.RecPreEventDurationOptions;
+    }
+    if (mAttr.RecPostEventDurationOptions !== 'undefined') {
+      $scope.RecPostEventDurationOptions = mAttr.RecPostEventDurationOptions;
+    }
+    if (mAttr.RecVideoFileTypeOptions !== 'undefined') {
+      $scope.RecVideoFileTypeOptions = mAttr.RecVideoFileTypeOptions;
+    }
+    if (mAttr.EnableOptions !== 'undefined') {
+      $scope.EnableOptions = mAttr.EnableOptions;
+    }
+    if (mAttr.ActivateOptions !== 'undefined') {
+      $scope.ActivateOptions = mAttr.ActivateOptions;
+    }
+    if (mAttr.WeekDays !== 'undefined') {
+      $scope.WeekDays = mAttr.WeekDays;
+    }
+    if (mAttr.NASIPMaxLen !== 'undefined') {
+      $scope.NASIPMaxLen = parseInt(mAttr.NASIPMaxLen.maxLength);
+      $scope.IPV4Pattern = mAttr.IPv4;
+    }
+    if (mAttr.NASUserIDMaxLen !== 'undefined') {
+      $scope.NASUserIDMaxLen = parseInt(mAttr.NASUserIDMaxLen.maxLength);
+    }
+    if (mAttr.NASPasswordMaxLen !== 'undefined') {
+      $scope.NASPasswordMaxLen = parseInt(mAttr.NASPasswordMaxLen.maxLength);
+    }
+    if (mAttr.DefaultFolderMaxLen !== 'undefined') {
+      $scope.DefaultFolderMaxLen = parseInt(mAttr.DefaultFolderMaxLen.maxLength);
+    }
+    if (mAttr.AutoDeleteDayOptions !== 'undefined') {
+      $scope.AutoDeleteDayOptions.min = parseInt(mAttr.AutoDeleteDayOptions.minValue);
+      $scope.AutoDeleteDayOptions.max = parseInt(mAttr.AutoDeleteDayOptions.maxValue);
+      $scope.IdPattern = mAttr.OnlyNumber;
+    }
+
+    $scope.MaxChannel = mAttr.MaxChannel;
+
+    defer.resolve("success");
+    return defer.promise;
+  }
 
 
-    /*
-     ID : 숫자,알파벳,특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능.
-     Password : 숫자,알파벳,특수문자(~ ! @ $ ^ * _ - { } [ ] . / ?) 입력가능하고 이외 문자는 설정 불가능
-     Default folder : 숫자, 알파벳, 특수문자(_ - .) 입력가능하고 이외 문자는 설정 불가능
-     */
-    //$scope.NASUserIDPattern = "^[a-zA-Z0-9~`!@$^*()_\\-|{}\\[\\];,./?]*$";
-    /** Password and ID has same pattern - ~`!@$^*()_-|{}[];,./? */
-    //$scope.NASPasswordPattern = $scope.NASUserIDPattern;
-    /** folder - `~!@#$%^&()-_=+[]{};',./ */
-    //$scope.NASFolderPattern = "^[a-zA-Z0-9~`!@#$%^&()\\-_=+\\[\\]{};',./]*$";
-    $scope.NASUserIDPattern = "^[a-zA-Z0-9_\\-.]*$";
-    $scope.NASPasswordPattern = "^[a-zA-Z0-9~!@$^*_\\-{}\\[\\]./?]*$";
-    $scope.NASFolderPattern = "^[a-zA-Z0-9_\\-.]*$";
-
-    $scope.getTranslatedOption = function(Option) {
-        return COMMONUtils.getTranslatedOption(Option);
+  function setRecordGeneralInfo(queue) {
+    var setData = {
+      NormalMode : $scope.RecordGeneralInfo.NormalMode,
+      EventMode : $scope.RecordGeneralInfo.EventMode,
+      PreEventDuration : $scope.RecordGeneralInfo.PreEventDuration,
+      PostEventDuration : $scope.RecordGeneralInfo.PostEventDuration
     };
-    $scope.checkNASStatus = function(status) {
-        var statusMsg;
-        switch (status) {
-            case 'Fail':
-                statusMsg = $translate.instant('lang_msg_test_fail');
-                break;
-            case 'Success':
-                statusMsg = $translate.instant('lang_msg_test_success');
-                break;
-            case 'Trying':
-            case 'Connecting':
-                statusMsg = $translate.instant('lang_msg_test_connecting');
-                break;
-            default :
-                statusMsg = COMMONUtils.getTranslatedOption(status);
-                break;
-        }
-        return statusMsg;
-    };
 
-    function getStorageTableData() {
-        $scope.infoTableData = [];
-        var Profiles,
-            profCnt = 0;
-        var getData = {};
-
-        return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=sdcardinfo&action=view', getData,
-            function (response) {
-                var idx = 0;
-                var TableData = response.data;
-                var MultiChannelEnableData = $scope.Storageinfo.Storages[idx].Enable;
-
-                $.each(TableData,function(index, element) {
-
-                    var totalSpace = parseInt(element.TotalSpace);
-                    var usedSpace = totalSpace - parseInt(element.UsedSpace);
-                    var status = element.Status;
-                    element.Enable = MultiChannelEnableData;
-                    
-                    if (usedSpace < 1024) {
-                        element.UsedSpace = usedSpace + " MB"
-                    } else if (usedSpace >= 1024 && usedSpace < 1024*1024 ) {
-                        element.UsedSpace = (usedSpace/1024).toFixed(2) + " GB"
-                    } else if (usedSpace >= 1024*1024 && usedSpace < 1024*1024*1024) {
-                        element.UsedSpace = (usedSpace/(1024*1024)).toFixed(2) + " TB"
-                    }
-
-                    if (totalSpace < 1024) {
-                        element.TotalSpace = totalSpace + " MB"
-                    } else if (totalSpace >= 1024 && usedSpace < 1024*1024 ) {
-                        element.TotalSpace = (totalSpace/1024).toFixed(2) + " GB"
-                    } else if (totalSpace >= 1024*1024 && usedSpace < 1024*1024*1024) {
-                        element.TotalSpace = (totalSpace/(1024*1024)).toFixed(2) + " TB"
-                    }
-
-                    if (status === "") {
-                        element.Status = "None";
-                    } else if (status === "Normal") {
-                        element.Status = "Ready";
-                    } else if (status === "Active") {
-                        element.Status = "Recording";
-                    }
-
-                })
-
-                setTimeout(function() {
-                    console.info(TableData);
-                },200);
-                
-
-                $scope.infoTableData = TableData;
-            },
-            function (errorData) {
-                console.log(errorData);
-            }, '', true);
+    if ($scope.MaxChannel > 1) {
+      setData.Channel = $scope.Channel;
     }
 
-    function getStorageSetup() {
-        var getData = {
-            Channel : 0
-        };
-
-        return SunapiClient.get("/stw-cgi/recording.cgi?msubmenu=storage&action=view", getData,
-            function (response) {
-                $scope.storageData = response.data.storage;
-                $scope.pageData.storageData = angular.copy($scope.storageData[0]);
-
-                $scope.RecordStorageInfo.OverWrite = $scope.storageData[0].OverWrite;
-                $scope.RecordStorageInfo.AutoDeleteEnable = $scope.storageData[0].AutoDeleteEnable;
-                $scope.RecordStorageInfo.AutoDeleteDays = $scope.storageData[0].AutoDeleteDays;
-                $scope.RecordSchedule.Activate = "Always";
-            },
-            function (errorData) {
-                console.log(errorData);
-            }, '', true);
+    if (pageData.RecordGeneralInfo.RecordedVideoFileType !== $scope.RecordGeneralInfo.RecordedVideoFileType) {
+      $scope.needReload = true;
     }
+    setData.RecordedVideoFileType = $scope.RecordGeneralInfo.RecordedVideoFileType;
 
-    function setStorageSetup() {
-        var setData = {};
+    queue.push({
+      url: '/stw-cgi/recording.cgi?msubmenu=general&action=set',
+      reqData: setData,
+      successCallback: function() {
+        pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
+      }
+    });
+  }
 
-        setData.Channel = 0;
-        setData.AutoDeleteEnable = false;
-        setData.AutoDeleteDays = 1;
-        setData.OverWrite = $scope.pageData.storageData.OverWrite;
+  function setAttribute () {
+    var defer = $q.defer();
 
-        if( $scope.pageData.storageData.OverWrite === true ) {
-            setData.AutoDeleteEnable = $scope.pageData.storageData.AutoDeleteEnable;
-            if( $scope.pageData.storageData.AutoDeleteEnable === true ) {
-                setData.AutoDeleteDays = $scope.pageData.storageData.AutoDeleteDays;
-            }
-        }
+    $scope.RecordGeneralInfo.NormalMode = $scope.RecordGeneralInfo.NormalMode;
+    $scope.RecordGeneralInfo.EventMode = $scope.RecordGeneralInfo.EventMode;
+    $scope.RecordGeneralInfo.PreEventDuration = $scope.RecordGeneralInfo.PreEventDuration;
+    $scope.RecordGeneralInfo.PostEventDuration = $scope.RecordGeneralInfo.PostEventDuration;
+    $scope.RecordGeneralInfo.RecordedVideoFileType = $scope.RecordGeneralInfo.RecordedVideoFileType;
 
-        return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=storage&action=set', setData,
-            function () {
-                $scope.pageData.storageData = angular.copy($scope.storageData);
-            },
-            function (errorData) {
-                $scope.pageData.storageData = angular.copy($scope.storageData);
-                console.log(errorData);
-            }, '', true)
-    }
+    defer.resolve('Success');
+    return defer.promise;
+  }
 
+  function setRecordSchedule (queue) {
+    if (!angular.equals(pageData.RecordSchedule, $scope.RecordSchedule)) {
+      var setData = {};
+  
+      if ($scope.MaxChannel > 1) {
+        setData.Channel = angular.copy($scope.Channel);
+      }
+      setData.Activate = $scope.RecordSchedule.Activate;
 
-    function showModalDialog(callback, displaymsg, index, queue) {
-        var deferred = $q.defer();
-        var modalInstance = $uibModal.open({
-            templateUrl: 'confirmMessage.html',
-            controller: 'confirmMessageCtrl',
-            resolve: {
-                Message: function() {
-                    return displaymsg;
-                }
-            }
-        });
-        modalInstance.result.then(function() {
-            switch (callback) {
-                case "setStorageInfo":
-                    setStorageInfo(index, queue);
-                    break;
-                case "setRecordGeneralInfo":
-                    setRecordGeneralInfo(index, queue);
-                    break;
-                case "storageFormatOK":
-                    storageFormatOK(index);
-                    break;
-            }
-            //on ok button press
-            deferred.resolve('Success');
-        }, function() {
-            //on cancel button press
-            deferred.resolve('Success');
-        });
-        return deferred.promise;
-    }
+      var diff = $(pageData.RecordSchedule.ScheduleIds).not($scope.RecordSchedule.ScheduleIds).get(),
+        sun = 0, mon = 0, tue = 0, wed = 0, thu = 0, fri = 0, sat = 0;
 
-    function getAttributes() {
-        var defer = $q.defer();
-        var idx = 0;
-        if (mAttr.FileSystemTypeOptions !== undefined) {
-            $scope.FileSystemTypeOptions = mAttr.FileSystemTypeOptions;
-        }
-        if (mAttr.DeviceType !== undefined) {
-            $scope.DeviceType = mAttr.DeviceType;
-        }
-        if (mAttr.RecNormalModeOptions !== undefined) {
-            $scope.RecNormalModeOptions = mAttr.RecNormalModeOptions;
-        }
-        if (mAttr.RecEventModeOptions !== undefined) {
-            $scope.RecEventModeOptions = mAttr.RecEventModeOptions;
-        }
-        if (mAttr.RecPreEventDurationOptions !== undefined) {
-            $scope.RecPreEventDurationOptions = mAttr.RecPreEventDurationOptions;
-        }
-        if (mAttr.RecPostEventDurationOptions !== undefined) {
-            $scope.RecPostEventDurationOptions = mAttr.RecPostEventDurationOptions;
-        }
-        if (mAttr.RecVideoFileTypeOptions !== undefined) {
-            $scope.RecVideoFileTypeOptions = mAttr.RecVideoFileTypeOptions;
-        }
-        if (mAttr.EnableOptions !== undefined) {
-            $scope.EnableOptions = mAttr.EnableOptions;
-        }
-        if (mAttr.ActivateOptions !== undefined) {
-            $scope.ActivateOptions = mAttr.ActivateOptions;
-        }
-        if (mAttr.WeekDays !== undefined) {
-            $scope.WeekDays = mAttr.WeekDays;
-        }
-        if (mAttr.NASIPMaxLen !== undefined) {
-            $scope.NASIPMaxLen = parseInt(mAttr.NASIPMaxLen.maxLength);
-            $scope.IPV4Pattern = mAttr.IPv4;
-        }
-        if (mAttr.NASUserIDMaxLen !== undefined) {
-            $scope.NASUserIDMaxLen = parseInt(mAttr.NASUserIDMaxLen.maxLength);
-        }
-        if (mAttr.NASPasswordMaxLen !== undefined) {
-            $scope.NASPasswordMaxLen = parseInt(mAttr.NASPasswordMaxLen.maxLength);
-        }
-        if (mAttr.DefaultFolderMaxLen !== undefined) {
-            $scope.DefaultFolderMaxLen = parseInt(mAttr.DefaultFolderMaxLen.maxLength);
-        }
-        if (mAttr.AutoDeleteDayOptions !== undefined) {
-            $scope.AutoDeleteDayOptions.min = parseInt(mAttr.AutoDeleteDayOptions.minValue);
-            $scope.AutoDeleteDayOptions.max = parseInt(mAttr.AutoDeleteDayOptions.maxValue);
-            $scope.IdPattern = mAttr.OnlyNumber;
-        }
-
-        $scope.MaxChannel = mAttr.MaxChannel;
-
-        defer.resolve("success");
-        return defer.promise;
-    }
-
-
-    function setRecordGeneralInfo(queue) {
-        var setData = {
-            NormalMode : $scope.RecordGeneralInfo.NormalMode,
-            EventMode : $scope.RecordGeneralInfo.EventMode,
-            PreEventDuration : $scope.RecordGeneralInfo.PreEventDuration,
-            PostEventDuration : $scope.RecordGeneralInfo.PostEventDuration
-        };
-        if($scope.MaxChannel > 1) setData.Channel = $scope.Channel;
-
-        if (pageData.RecordGeneralInfo.RecordedVideoFileType !== $scope.RecordGeneralInfo.RecordedVideoFileType) {
-            $scope.needReload = true;
-        }
-        setData.RecordedVideoFileType = $scope.RecordGeneralInfo.RecordedVideoFileType;
-
-        queue.push({
-            url: '/stw-cgi/recording.cgi?msubmenu=general&action=set',
-            reqData: setData,
-            successCallback: function(response) {
-                pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
-            }
-        });
-    }
-
-    function setAttribute () {
-        var defer = $q.defer();
-
-        $scope.RecordGeneralInfo.NormalMode = $scope.RecordGeneralInfo.NormalMode;
-        $scope.RecordGeneralInfo.EventMode = $scope.RecordGeneralInfo.EventMode;
-        $scope.RecordGeneralInfo.PreEventDuration = $scope.RecordGeneralInfo.PreEventDuration;
-        $scope.RecordGeneralInfo.PostEventDuration = $scope.RecordGeneralInfo.PostEventDuration;
-        $scope.RecordGeneralInfo.RecordedVideoFileType = $scope.RecordGeneralInfo.RecordedVideoFileType;
-
-        defer.resolve('Success');
-        return defer.promise;
-    }
-
-    function setRecordSchedule(queue) {
-        if (!angular.equals(pageData.RecordSchedule, $scope.RecordSchedule)) {
-            var setData = {};
-            if($scope.MaxChannel > 1) setData.Channel = angular.copy($scope.Channel);
-            setData.Activate = $scope.RecordSchedule.Activate;
-
-            var diff = $(pageData.RecordSchedule.ScheduleIds).not($scope.RecordSchedule.ScheduleIds).get(),
-                sun = 0, mon = 0, tue = 0, wed = 0, thu = 0, fri = 0, sat = 0;
-
-            for (var s = 0; s < diff.length; s++) {
-                var str = diff[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                    if (str[0] === mAttr.WeekDays[d]) {
-                        switch (d) {
+            for (var i = 0; i < diff.length; i++) {
+                var splitStr = diff[i].split('.');
+                for (var j = 0; j < mAttr.WeekDays.length; j++) {
+                    if (splitStr[0] === mAttr.WeekDays[j]) {
+                        switch (j) {
                             case 0:
                                 sun = 1;
-                                setData["SUN" + str[1]] = 0;
+                                setData["SUN" + splitStr[1]] = 0;
                                 break;
                             case 1:
                                 mon = 1;
-                                setData["MON" + str[1]] = 0;
+                                setData["MON" + splitStr[1]] = 0;
                                 break;
                             case 2:
                                 tue = 1;
-                                setData["TUE" + str[1]] = 0;
+                                setData["TUE" + splitStr[1]] = 0;
                                 break;
                             case 3:
                                 wed = 1;
-                                setData["WED" + str[1]] = 0;
+                                setData["WED" + splitStr[1]] = 0;
                                 break;
                             case 4:
                                 thu = 1;
-                                setData["THU" + str[1]] = 0;
+                                setData["THU" + splitStr[1]] = 0;
                                 break;
                             case 5:
                                 fri = 1;
-                                setData["FRI" + str[1]] = 0;
+                                setData["FRI" + splitStr[1]] = 0;
                                 break;
                             case 6:
                                 sat = 1;
-                                setData["SAT" + str[1]] = 0;
+                                setData["SAT" + splitStr[1]] = 0;
                                 break;
                             default:
                                 break;
@@ -338,8 +284,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
                     }
                 }
             }
-            for (var s = 0; s < $scope.RecordSchedule.ScheduleIds.length; s++) {
-                var str = $scope.RecordSchedule.ScheduleIds[s].split('.');
+            for (var z = 0; z < $scope.RecordSchedule.ScheduleIds.length; z++) {
+                var str = $scope.RecordSchedule.ScheduleIds[z].split('.');
                 for (var d = 0; d < mAttr.WeekDays.length; d++) {
                     if (str[0] === mAttr.WeekDays[d]) {
                         switch (d) {
@@ -433,14 +379,14 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         setData.Enable = $scope.RecordStorageInfo.Enable;
         setData.OverWrite = $scope.RecordStorageInfo.OverWrite;
         setData.AutoDeleteEnable = $scope.RecordStorageInfo.AutoDeleteEnable;
-        if(!($scope.RecordStorageInfo.AutoDeleteDays == undefined || $scope.RecordStorageInfo.AutoDeleteDays == '')){
+        if(!($scope.RecordStorageInfo.AutoDeleteDays === 'undefined' || $scope.RecordStorageInfo.AutoDeleteDays === '')){
             setData.AutoDeleteDays = $scope.RecordStorageInfo.AutoDeleteDays;
         }
 
         queue.push({
             url: '/stw-cgi/recording.cgi?msubmenu=storage&action=set',
             reqData: setData,
-            successCallback: function(response) {
+            successCallback: function() {
                 pageData.RecordStorageInfo = angular.copy($scope.RecordStorageInfo);
             }
         });
@@ -482,7 +428,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         queue.push({
             url: '/stw-cgi/system.cgi?msubmenu=storageinfo&action=set',
             reqData: setData,
-            successCallback: function(response) {
+            successCallback: function() {
                 pageData.Storageinfo.Storages[otherStorage] = angular.copy($scope.Storageinfo.Storages[otherStorage]);
             }
         });
@@ -495,16 +441,19 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         queue.push({
             url: '/stw-cgi/system.cgi?msubmenu=storageinfo&action=set',
             reqData: setData,
-            successCallback: function(response) {
+            successCallback: function() {
                 pageData.Storageinfo.Storages[index] = angular.copy($scope.Storageinfo.Storages[index]);
             }
         });
 
-        var otherStorage;
-        if (index === 1) otherStorage = 0;
-        else otherStorage = 1;
+        var otherStorage = 0;
+        if (index === 1) {
+            otherStorage = 0;
+        } else {
+            otherStorage = 1;
+        }
 
-        if ($scope.Storageinfo.Storages[otherStorage] !== undefined && !angular.equals(pageData.Storageinfo.Storages[otherStorage], $scope.Storageinfo.Storages[otherStorage])) {
+        if ($scope.Storageinfo.Storages[otherStorage] !== 'undefined' && !angular.equals(pageData.Storageinfo.Storages[otherStorage], $scope.Storageinfo.Storages[otherStorage])) {
             storageinfoSet(otherStorage, queue);
         }
     }
@@ -528,7 +477,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             }
         }
 
-        var otherstorage;
+        var otherstorage = 0;
         if ($scope.SelectedStorage === 0) {
             otherstorage = 1;
         } else {
@@ -650,7 +599,9 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
     function getRecordingSchedules() {
         var getData = {};
-        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+        if ($scope.MaxChannel > 1) {
+            getData.Channel = $scope.Channel;
+        }
 
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=view', getData, function(response) {
             $scope.RecordSchedule = response.data.RecordSchedule[0];
@@ -664,7 +615,9 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
     function getRecordGeneralDetails() {
         var getData = {};
-        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+        if ($scope.MaxChannel > 1) {
+            getData.Channel = $scope.Channel;
+        }
 
         return SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=general&action=view', getData, function(response) {
             $scope.RecordGeneralInfo = response.data.RecordSetup[0];
@@ -687,7 +640,10 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
     function getRecordProfileDetails() {
         var getData = {};
-        if($scope.MaxChannel > 1) getData.Channel = $scope.Channel;
+        if ($scope.MaxChannel > 1) {
+            getData.Channel = $scope.Channel;
+        }
+
         getData.Profile = $scope.VideoProfilePolicies.RecordProfile;
 
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData, function(response) {
@@ -750,7 +706,9 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         return true;
     }
     $scope.OnNASTest = function() {
-        if (checkNas($scope.SelectedStorage) === false) return;
+        if (checkNas($scope.SelectedStorage) === false) {
+            return;
+        }
         $scope.NASTestStatus = "Connecting";
         $scope.NASTimerId = $timeout(NASConnectionTest, 500);
     };
@@ -768,7 +726,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         /** If nas password is not entered by user, if any password already stored in the camera it will be used */
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=control', setData, function(response) {
             $scope.NASTestStatus = response.data.Status;
-        }, function(errorData) {
+        }, function() {
             //$scope.NASTestStatus = "Fail";
             $scope.NASTimerId = $timeout(NASConnectionTest, 1000);
         }, '', true);
@@ -801,8 +759,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     function saveStorage() {
         var deferred = $q.defer();
         var promises = [],
-            queue = [],
-            promise;
+            queue = [];
 
         function callSequence(){
             $rootScope.$emit('changeLoadingBar', true);
@@ -858,13 +815,14 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
             }
         } else {
             //check for other storage
-            var otherstorage;
+            var otherstorage = 0;
             if ($scope.SelectedStorage === 0) {
                 otherstorage = 1;
             } else {
                 otherstorage = 0;
             }
-            if ($scope.Storageinfo.Storages[otherstorage] !== undefined && !angular.equals(pageData.Storageinfo.Storages[otherstorage], $scope.Storageinfo.Storages[otherstorage])) {
+
+            if ($scope.Storageinfo.Storages[otherstorage] !== 'undefined' && !angular.equals(pageData.Storageinfo.Storages[otherstorage], $scope.Storageinfo.Storages[otherstorage])) {
                 if ($scope.Storageinfo.Storages[otherstorage].Type === 'SD') {
                     if (pageData.Storageinfo.Storages[otherstorage].FileSystem !== $scope.Storageinfo.Storages[otherstorage].FileSystem) {
                         $scope.DisplayMsg = $translate.instant('lang_msg_storage_format2');
@@ -881,14 +839,12 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         }
 
         if(promises.length > 0){
-            $q
-                .seqAll(promises)
-                .then(
-                    callSequence,
-                    function(errorData){
-                        deferred.reject(errorData);
-                    }
-                );
+            $q.seqAll(promises).then(
+                callSequence,
+                function(errorData){
+                    deferred.reject(errorData);
+                }
+            );
         }else{
             console.info('is no modify');
             callSequence();
@@ -899,9 +855,9 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
     function set() {
         var deferred = $q.defer();
-        var modalInstance;
+
         if (validatePage()) {
-            var otherstorage;
+            var otherstorage = 0;
             if ($scope.SelectedStorage === 0) {
                 otherstorage = 1;
             } else {
@@ -939,7 +895,9 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         (function update()
         {
             getCurrentStatus(function (data) {
-                if(destroyInterrupt) return;
+                if (destroyInterrupt) {
+                    return;
+                }
 
                 var tStorageinfo = data;
                 if (!mStopMonotoringStatus)
@@ -1050,7 +1008,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         var setData = {};
         setData.Storage = index + 1;
         setData.Mode = "Format";
-        return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=control', setData, function(response) {
+        return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=control', setData, function() {
             $scope.needReload = true;
             window.setTimeout(view, 1000);
         }, function(errorData) {
@@ -1061,14 +1019,20 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
         var okay = true;
 
-        if(pageData.RecordSchedule.Activate == $scope.RecordSchedule.Activate) {
-            if(pageData.RecordSchedule.Activate != 'Always') {
-                if(!eventRuleService.checkRecordSchedulerValidation()) okay = false;
+        if(pageData.RecordSchedule.Activate === $scope.RecordSchedule.Activate) {
+            if(pageData.RecordSchedule.Activate !== 'Always') {
+                if (!eventRuleService.checkRecordSchedulerValidation()) {
+                    okay = false;
+                }
             }
-        } else okay = false;
+        } else {
+            okay = false;
+        }
 
 
-        if(!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) okay = false;
+        if (!angular.equals(pageData.RecordGeneralInfo, $scope.RecordGeneralInfo)) {
+            okay = false;
+        }
 
         if(okay) {
             $scope.Channel = data;
@@ -1078,20 +1042,18 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
             view();
         } else {
-            COMMONUtils
-                .confirmChangeingChannel()
-                .then(function () {
-                    set().then(function(){
-                        if(data !== undefined) {
-                            $rootScope.$emit("channelSelector:changeChannel", data);
-                            $scope.Channel = data;
-                        }
-                    });
+            COMMONUtils.confirmChangeingChannel().then(function () {
+                set().then(function(){
+                    if(data !== 'undefined') {
+                        $rootScope.$emit("channelSelector:changeChannel", data);
+                        $scope.Channel = data;
+                    }
                 });
+            });
         }
     }, $scope);
 
-    $rootScope.$saveOn("channelSelector:showInfo", function(event, data){
+    $rootScope.$saveOn("channelSelector:showInfo", function(){
         getStorageTableData().then(function(){
             $uibModal.open({
                 size: 'lg',
