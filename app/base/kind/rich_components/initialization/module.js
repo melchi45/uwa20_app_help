@@ -16,41 +16,41 @@ angularModules = null;
  * @memberof module:kindFramework
  */
 kindFramework.
-  config(function ($stateProvider, $urlRouterProvider, ROUTE_CONFIG) {
-  
-    $urlRouterProvider.otherwise(ROUTE_CONFIG.default);
-    
-    var routes = ROUTE_CONFIG.routes;
-    var setRoute = function(routes, parentName, onlyMenuParentName){
-      for(var i = 0, iLen = routes.length; i < iLen; i++){
-        var route = routes[i];
-        var prefix = onlyMenuParentName ? '_' : '.';
-        var stateName = parentName ? parentName + prefix + route.urlName : route.urlName;
-        var onlyMenuName = false;
-        
-        if(typeof route.templateUrl === "undefined" && typeof route.controller === "undefined"){
-          onlyMenuName = route.urlName;
-        }else{
-          var urlName = route.urlName;
-          if(onlyMenuParentName){
-            urlName = onlyMenuParentName + '_' + urlName;
-          }
-          urlName = '/' + urlName;
-          
-          $stateProvider.state(stateName, {
-            url: urlName,
-            templateUrl: route.templateUrl || null,
-            controller: route.controller || null
-          });
+config(function($stateProvider, $urlRouterProvider, ROUTE_CONFIG) {
+
+  $urlRouterProvider.otherwise(ROUTE_CONFIG.default);
+
+  var routes = ROUTE_CONFIG.routes;
+  var setRoute = function(routes, parentName, onlyMenuParentName) {
+    for (var i = 0, iLen = routes.length; i < iLen; i++) {
+      var route = routes[i];
+      var prefix = onlyMenuParentName ? '_' : '.';
+      var stateName = parentName ? parentName + prefix + route.urlName : route.urlName;
+      var onlyMenuName = false;
+
+      if (typeof route.templateUrl === "undefined" && typeof route.controller === "undefined") {
+        onlyMenuName = route.urlName;
+      } else {
+        var urlName = route.urlName;
+        if (onlyMenuParentName) {
+          urlName = onlyMenuParentName + '_' + urlName;
         }
-        
-        if(angular.isArray(route.childs)){
-          if(route.childs.length > 0){
-            setRoute(route.childs, stateName, onlyMenuName);
-          }
+        urlName = '/' + urlName;
+
+        $stateProvider.state(stateName, {
+          url: urlName,
+          templateUrl: route.templateUrl || null,
+          controller: route.controller || null
+        });
+      }
+
+      if (angular.isArray(route.childs)) {
+        if (route.childs.length > 0) {
+          setRoute(route.childs, stateName, onlyMenuName);
         }
-      }  
-    };
-  
-    setRoute(routes);
-  });
+      }
+    }
+  };
+
+  setRoute(routes);
+});

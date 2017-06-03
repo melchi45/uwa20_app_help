@@ -1,7 +1,7 @@
 'use strict';
 
 kindFramework.controller('ModalInstanceStorageInfoCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$timeout', 'infoTableData',
-  function ($scope, $rootScope, $uibModalInstance, $timeout, infoTableData) {
+  function($scope, $rootScope, $uibModalInstance, $timeout, infoTableData) {
 
     $scope.defaultStorageOrder = [
       'Channel',
@@ -14,7 +14,8 @@ kindFramework.controller('ModalInstanceStorageInfoCtrl', ['$scope', '$rootScope'
 
     $scope.infoTableData = infoTableData;
 
-  $scope.cancel = function() {
-    $uibModalInstance.close();
-  };
-}]);
+    $scope.cancel = function() {
+      $uibModalInstance.close();
+    };
+  }
+]);

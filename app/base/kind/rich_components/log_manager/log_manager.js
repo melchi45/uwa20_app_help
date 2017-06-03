@@ -17,12 +17,12 @@
  *  });
  */
 
-kindFramework.service('LogManager', function(LOGMANAGER_CONFIG){
-  var setTwoLetter = function(data){
+kindFramework.service('LogManager', function(LOGMANAGER_CONFIG) {
+  var setTwoLetter = function(data) {
     return data.toString().length === 1 ? "0" + data : data;
   };
 
-  var getDate = function(){
+  var getDate = function() {
     var newDate = new Date();
     var year = newDate.getFullYear();
     var month = newDate.getMonth() + 1;
@@ -51,16 +51,17 @@ kindFramework.service('LogManager', function(LOGMANAGER_CONFIG){
    *  //or
    *  LogManager.info("[kind_server_cm_data-svc] (initModels) The Data Service is ran by the WrapCtrl.");
    */
-  this.info = function(){
+  this.info = function() {
     if (!window.console) {
       return;
     }
 
-    var msg = '', i = 0;
+    var msg = '',
+      i = 0;
     for (i = 0; i < arguments.length; i++) {
       msg += arguments[i];
     }
-    if(LOGMANAGER_CONFIG.INFO){
+    if (LOGMANAGER_CONFIG.INFO) {
       console.info(getDate() + ' [INFO] ' + msg);
     }
   };
@@ -76,15 +77,16 @@ kindFramework.service('LogManager', function(LOGMANAGER_CONFIG){
    *  //or
    *  LogManager.debug("[kind_server_cm_data-svc] (initModels) The Data Service is ran by the WrapCtrl.");
    */
-  this.debug = function(){
+  this.debug = function() {
     if (!window.console) {
       return;
     }
-    var msg = '', i = 0;
+    var msg = '',
+      i = 0;
     for (i = 0; i < arguments.length; i++) {
       msg += arguments[i];
     }
-    if(LOGMANAGER_CONFIG.DEBUG){
+    if (LOGMANAGER_CONFIG.DEBUG) {
       console.debug(getDate() + ' [DEBUG] ' + msg);
     }
   };
@@ -100,15 +102,16 @@ kindFramework.service('LogManager', function(LOGMANAGER_CONFIG){
    *  //or
    *  LogManager.warn("[kind_server_cm_data-svc] (initModels) The Data Service is ran by the WrapCtrl.");
    */
-  this.warn = function(){
+  this.warn = function() {
     if (!window.console) {
       return;
     }
-    var msg = '', i = 0;
+    var msg = '',
+      i = 0;
     for (i = 0; i < arguments.length; i++) {
       msg += arguments[i];
     }
-    if(LOGMANAGER_CONFIG.WARN){
+    if (LOGMANAGER_CONFIG.WARN) {
       console.warn(getDate() + ' [WARN] ' + msg);
     }
   };
@@ -125,15 +128,16 @@ kindFramework.service('LogManager', function(LOGMANAGER_CONFIG){
    *  //or
    *  LogManager.error("[kind_server_cm_data-svc] (initModels) The Data Service is ran by the WrapCtrl.");
    */
-  this.error = function(){
+  this.error = function() {
     if (!window.console) {
       return;
     }
-    var msg = '', i = 0;
+    var msg = '',
+      i = 0;
     for (i = 0; i < arguments.length; i++) {
       msg += arguments[i];
     }
-    if(LOGMANAGER_CONFIG.ERROR){
+    if (LOGMANAGER_CONFIG.ERROR) {
       console.error(getDate() + ' [ERROR] ' + msg);
     }
   };

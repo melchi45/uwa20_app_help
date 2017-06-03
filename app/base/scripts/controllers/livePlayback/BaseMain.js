@@ -1,6 +1,6 @@
 /*global detector, location */
 function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, ModalManagerService,
-          SunapiClient, DisplayService, UniversialManagerService, CAMERA_STATUS, RESTCLIENT_CONFIG) {
+  SunapiClient, DisplayService, UniversialManagerService, CAMERA_STATUS, RESTCLIENT_CONFIG) {
 
   var display = new DisplayService();
   var self = this;
@@ -22,26 +22,24 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
   $scope.logout = function() {
     $rootScope.$emit('allpopupclose');
 
-    switch(UniversialManagerService.getServiceType())
-    {
-        case CAMERA_STATUS.WEB_APP_TYPE.SSM_MOBILE:
+    switch (UniversialManagerService.getServiceType()) {
+      case CAMERA_STATUS.WEB_APP_TYPE.SSM_MOBILE:
         break;
-        case CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB:
-          /*
-           * Block logout popup and feature for 9081 Camera.
-           * Authentication is changed as legacy digest logic, No use JS auth anymore.
-           * JS auth feature should be blocked, and keep feature same as Legacy specification.
-           *          
-          */
-          if(RESTCLIENT_CONFIG.serverType === 'grunt')
-          {
-            self.gruntLogout();
-          }
+      case CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB:
+        /*
+         * Block logout popup and feature for 9081 Camera.
+         * Authentication is changed as legacy digest logic, No use JS auth anymore.
+         * JS auth feature should be blocked, and keep feature same as Legacy specification.
+         *          
+         */
+        if (RESTCLIENT_CONFIG.serverType === 'grunt') {
+          self.gruntLogout();
+        }
         break;
-        case CAMERA_STATUS.WEB_APP_TYPE.SHC_MOBILE:
-          return self.mobileLogout();
+      case CAMERA_STATUS.WEB_APP_TYPE.SHC_MOBILE:
+        return self.mobileLogout();
         //break; //Make block for fix Static Analysis lint error - Unreachable 'break' after 'return'
-        case CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_MOBILE:
+      case CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_MOBILE:
         break;
     }
   };
@@ -50,16 +48,16 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
     $scope.navOpened = val;
   };
 
-  $scope.openNav = function(){
+  $scope.openNav = function() {
     $scope.toggleNav(true);
     $rootScope.$emit("app/scripts/directives/fullCamera.js::hiddenFunctions");
     $rootScope.$emit("allpopupclose");
   };
-  
-  $scope.closeNav = function(){
+
+  $scope.closeNav = function() {
     $scope.toggleNav(false);
   };
-  
+
   $scope.toggleOverlay = function(val) {
     $scope.navOverlay = val;
   };
@@ -69,7 +67,7 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
 
   $scope.onLocation = function(param) {
     var path = $location.$$path;
-    if(path.indexOf(param) < 0) {
+    if (path.indexOf(param) < 0) {
       return true;
     } else {
       return false;
@@ -77,12 +75,12 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
   };
 
   var w = angular.element($window);
-  w.on('resize' , function(){
-    if (!$scope.$$phase) {      
+  w.on('resize', function() {
+    if (!$scope.$$phase) {
       $scope.$broadcast('resize::resize');
     }
   });
-  
+
   $scope.goState = function(param) {
     console.info(param);
     var path = $state.current.name;
@@ -103,36 +101,45 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
   };
 
   $scope.showStatusPopup = function() {
-    var DEFAULT_CHANNEL=0;
-    $scope.profileInfoList=0;
-    $scope.userList=0;
-    $scope.videoProfileList=0;
-    
+    var DEFAULT_CHANNEL = 0;
+    $scope.profileInfoList = 0;
+    $scope.userList = 0;
+    $scope.videoProfileList = 0;
+
     SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
-      function (response) {
+      function(response) {
         $scope.videoProfileList = response.data.VideoProfiles[0].Profiles;
         SunapiClient.get('/stw-cgi/system.cgi?msubmenu=profileaccessinfo&action=view', '',
-          function (response) {
+          function(response) {
             $scope.profileInfoList = response.data.ProfileAccessInfo.ProfileInfo[0].Profiles;
             $scope.userList = response.data.ProfileAccessInfo.Users;
-            for (var index=0; index < $scope.profileInfoList.length ; index++)
-            {
+            for (var index = 0; index < $scope.profileInfoList.length; index++) {
               $scope.profileInfoList[index].Name = $scope.videoProfileList[index].Name;
             }
-            ModalManagerService.open('status', { 'buttonCount': 0, 'profileInfoList': $scope.profileInfoList ,'userList': $scope.userList });
+            ModalManagerService.open('status', {
+              'buttonCount': 0,
+              'profileInfoList': $scope.profileInfoList,
+              'userList': $scope.userList
+            });
             $scope.toggleNav(false);
           },
-          function (errorData) {
-            ModalManagerService.open('message', { 'buttonCount': 0, 'message': errorData } );
-        },'',true);
+          function(errorData) {
+            ModalManagerService.open('message', {
+              'buttonCount': 0,
+              'message': errorData
+            });
+          }, '', true);
       },
-      function (errorData) {
-        ModalManagerService.open('message', { 'buttonCount': 0, 'message': errorData } );
-    },'',true);
+      function(errorData) {
+        ModalManagerService.open('message', {
+          'buttonCount': 0,
+          'message': errorData
+        });
+      }, '', true);
   };
 
   $scope.goToChannel = function() {
-    $scope.goState('uni.channel'); 
+    $scope.goState('uni.channel');
     $scope.clearHistoryStack();
   };
 
@@ -140,7 +147,7 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
     console.log('toggleNavOpened is ' + data);
     $scope.navOpened = data;
   }, $scope);
-  
+
   $rootScope.$saveOn('app/scripts/controllers/livePlayback/main.js::toggleOverlay', function(event, data) {
     console.log('toggleOverlay is ' + data);
     $scope.toggleOverlay(data);
@@ -148,12 +155,12 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
 
   var showLoadingBar = function(_val) {
     $scope.isLoading = _val;
-    $timeout(function(){
+    $timeout(function() {
       $scope.$digest();
     });
   };
-  
-  $rootScope.$saveOn('changeLoadingBar', function(event, data){
+
+  $rootScope.$saveOn('changeLoadingBar', function(event, data) {
     //console.log("main.js::changeLoadingBar is Loaded with data : " + data);
     showLoadingBar(data);
   }, $scope);
@@ -164,12 +171,11 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
 }
 
 BaseMain.prototype.gruntLogout = function() {};
-BaseMain.prototype.mobileLogout = function(){};
-BaseMain.prototype.goState = function(param){};
+BaseMain.prototype.mobileLogout = function() {};
+BaseMain.prototype.goState = function(param) {};
 
 kindFramework
-.controller('BaseUniversalMainCtrl', 
-  ['$scope', '$location', '$window', '$rootScope','$timeout','$state','ModalManagerService', 'SunapiClient', 
-  'DisplayService', 'UniversialManagerService', 'CAMERA_STATUS','RESTCLIENT_CONFIG',
-  BaseMain
-]);
+  .controller('BaseUniversalMainCtrl', ['$scope', '$location', '$window', '$rootScope', '$timeout', '$state', 'ModalManagerService', 'SunapiClient',
+    'DisplayService', 'UniversialManagerService', 'CAMERA_STATUS', 'RESTCLIENT_CONFIG',
+    BaseMain
+  ]);

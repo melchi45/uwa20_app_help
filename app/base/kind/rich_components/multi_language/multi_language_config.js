@@ -2,8 +2,7 @@
 
 kindFramework.constant('MULTILANGUAGE_CONFIG', {
   defaultLocaleFileName: 'English',
-  availableLanguages: [
-    {
+  availableLanguages: [{
       localeFileName: 'English',
       label: 'English'
     },

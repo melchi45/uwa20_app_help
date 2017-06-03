@@ -1,13 +1,12 @@
 'use strict';
 
-kindFramework.controller('ModalInstncePresetListCtrl',
-  ['$scope', '$rootScope', '$uibModalInstance', 'data', 'UniversialManagerService',
-  function ($scope, $rootScope, $uibModalInstance, data, UniversialManagerService) {
+kindFramework.controller('ModalInstncePresetListCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'data', 'UniversialManagerService',
+  function($scope, $rootScope, $uibModalInstance, data, UniversialManagerService) {
 
     $scope.ModalList = data.list;
     $scope.homeAction = data.homeAction;
-    $scope.buttonCount = typeof (data.buttonCount) === "undefined" ? 0 : data.buttonCount;
-    if(UniversialManagerService.getViewModeType() === "QuadView") {
+    $scope.buttonCount = typeof(data.buttonCount) === "undefined" ? 0 : data.buttonCount;
+    if (UniversialManagerService.getViewModeType() === "QuadView") {
       $scope.addingEnabled = false;
       $scope.homeEnabled = false;
     } else {
@@ -19,16 +18,17 @@ kindFramework.controller('ModalInstncePresetListCtrl',
       data.addAction();
       $uibModalInstance.close();
     };
-    
-    $scope.select = function (data){
+
+    $scope.select = function(data) {
       $uibModalInstance.close(data);
     };
 
     $scope.ok = function() {
       $uibModalInstance.close();
-    }; 
-     
+    };
+
     $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
-}]);
+  }
+]);

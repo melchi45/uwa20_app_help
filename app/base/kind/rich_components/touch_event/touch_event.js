@@ -8,15 +8,15 @@
  *
  * @refer http://hammerjs.github.io/touch-action/
  */
-function setKindTouchTouchAction(element, config){
-    try{
-        if(element.style.touchAction === 'none'){
-            console.log("changed ", element.style.touchAction);
-            element.style.touchAction = config.TOUCHACTION;
-        }   
-    }catch(e){
-        console.error(e);
+function setKindTouchTouchAction(element, config) {
+  try {
+    if (element.style.touchAction === 'none') {
+      console.log("changed ", element.style.touchAction);
+      element.style.touchAction = config.TOUCHACTION;
     }
+  } catch (e) {
+    console.error(e);
+  }
 }
 /**
  * <someting kind-touch-pan="<Callback>" kind-touch-pan-disabled="<Boolean>"></someting>
@@ -57,53 +57,53 @@ function setKindTouchTouchAction(element, config){
  *        }
  *    };
  */
-kindFramework.directive("kindTouchPan", function(KIND_TOUCH_PAN){
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs){
-            var callBack = attrs.kindTouchPan;
-            var disabled = attrs.kindTouchPanDisabled;
-            
-            var elem = element[0];
-            var panHammer = new Hammer(elem);
-            
-            var eventList = "panleft panright panup pandown panstart panend";
-            var event = function(ev){
-                scope.$eval(callBack)(ev);
-                scope.$apply();
-            };
-            
-            var currentEvent = null;
-            
-            panHammer.get('pan').set({
-                direction: Hammer.DIRECTION_ALL,
-                pointers: KIND_TOUCH_PAN.POINTERS,
-                threshold: KIND_TOUCH_PAN.THRESHOLD
-            });
+kindFramework.directive("kindTouchPan", function(KIND_TOUCH_PAN) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      var callBack = attrs.kindTouchPan;
+      var disabled = attrs.kindTouchPanDisabled;
 
-            setKindTouchTouchAction(elem, KIND_TOUCH_PAN);
-            
-            if(disabled === undefined){
-                currentEvent = "on";
-                panHammer.on(eventList, event);
-            }else{
-                scope.$watch(disabled, function(newValue, oldValue){
-                    var method = null;
-                    if(newValue === true && currentEvent === "on"){
-                        currentEvent = method = "off";
-                    }else if(
-                        (newValue === false && currentEvent === "off") || 
-                        (newValue === false && currentEvent === null) ){
-                        currentEvent = method = "on";
-                    }
-                    
-                    if(method){
-                        panHammer[method](eventList, event);
-                    }
-                });
-            }
-        }
+      var elem = element[0];
+      var panHammer = new Hammer(elem);
+
+      var eventList = "panleft panright panup pandown panstart panend";
+      var event = function(ev) {
+        scope.$eval(callBack)(ev);
+        scope.$apply();
+      };
+
+      var currentEvent = null;
+
+      panHammer.get('pan').set({
+        direction: Hammer.DIRECTION_ALL,
+        pointers: KIND_TOUCH_PAN.POINTERS,
+        threshold: KIND_TOUCH_PAN.THRESHOLD
+      });
+
+      setKindTouchTouchAction(elem, KIND_TOUCH_PAN);
+
+      if (disabled === undefined) {
+        currentEvent = "on";
+        panHammer.on(eventList, event);
+      } else {
+        scope.$watch(disabled, function(newValue, oldValue) {
+          var method = null;
+          if (newValue === true && currentEvent === "on") {
+            currentEvent = method = "off";
+          } else if (
+            (newValue === false && currentEvent === "off") ||
+            (newValue === false && currentEvent === null)) {
+            currentEvent = method = "on";
+          }
+
+          if (method) {
+            panHammer[method](eventList, event);
+          }
+        });
+      }
     }
+  }
 });
 
 /**
@@ -136,52 +136,52 @@ kindFramework.directive("kindTouchPan", function(KIND_TOUCH_PAN){
  *        }
  *    };
  */
-kindFramework.directive("kindTouchPinch", function(KIND_TOUCH_PINCH){
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs){
-            var callBack = attrs.kindTouchPinch;
-            var disabled = attrs.kindTouchPinchDisabled;
-            
-            var elem = element[0];
-            var pinchHammer = new Hammer.Manager(elem);
-            var pinchEvent = new Hammer.Pinch({
-                pointers: KIND_TOUCH_PINCH.POINTERS,
-                threshold: KIND_TOUCH_PINCH.THRESHOLD
-            });
-            
-            var eventList = "pinch pinchstart pinchend pinchin pinchout pinchcancel";
-            var event = function(ev) {
-                scope.$eval(callBack)(ev);
-                scope.$apply();
-            };
-            var currentEvent = null;
+kindFramework.directive("kindTouchPinch", function(KIND_TOUCH_PINCH) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      var callBack = attrs.kindTouchPinch;
+      var disabled = attrs.kindTouchPinchDisabled;
 
-            setKindTouchTouchAction(elem, KIND_TOUCH_PINCH);
+      var elem = element[0];
+      var pinchHammer = new Hammer.Manager(elem);
+      var pinchEvent = new Hammer.Pinch({
+        pointers: KIND_TOUCH_PINCH.POINTERS,
+        threshold: KIND_TOUCH_PINCH.THRESHOLD
+      });
 
-            pinchHammer.add([pinchEvent]);
-            
-            if(disabled === undefined){
-                currentEvent = "on";
-                pinchHammer.on(eventList, event);
-            }else{
-                scope.$watch(disabled, function(newValue, oldValue){
-                    var method = null;
-                    if(newValue === true && currentEvent === "on"){
-                        currentEvent = method = "off";
-                    }else if(
-                        (newValue === false && currentEvent === "off") || 
-                        (newValue === false && currentEvent === null) ){
-                        currentEvent = method = "on";
-                    }
-                    
-                    if(method){
-                        pinchHammer[method](eventList, event);
-                    }
-                });
-            }
-        }
+      var eventList = "pinch pinchstart pinchend pinchin pinchout pinchcancel";
+      var event = function(ev) {
+        scope.$eval(callBack)(ev);
+        scope.$apply();
+      };
+      var currentEvent = null;
+
+      setKindTouchTouchAction(elem, KIND_TOUCH_PINCH);
+
+      pinchHammer.add([pinchEvent]);
+
+      if (disabled === undefined) {
+        currentEvent = "on";
+        pinchHammer.on(eventList, event);
+      } else {
+        scope.$watch(disabled, function(newValue, oldValue) {
+          var method = null;
+          if (newValue === true && currentEvent === "on") {
+            currentEvent = method = "off";
+          } else if (
+            (newValue === false && currentEvent === "off") ||
+            (newValue === false && currentEvent === null)) {
+            currentEvent = method = "on";
+          }
+
+          if (method) {
+            pinchHammer[method](eventList, event);
+          }
+        });
+      }
     }
+  }
 });
 
 /**
@@ -196,58 +196,58 @@ kindFramework.directive("kindTouchPinch", function(KIND_TOUCH_PINCH){
  *        console.log(event.type);
  *    };
  */
-kindFramework.directive("kindTouchDoubleTap", function(KIND_TOUCH_DOUBLE_TAP){
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs){
-            var callBack = attrs.kindTouchDoubleTap;
-            var disabled = attrs.kindTouchDoubleTapDisabled;
-            
-            var elem = element[0];
-            var doubleTapHammer = new Hammer.Manager(elem);
-            var doubleTapEvent = new Hammer.Tap({
-                event: 'doubletap',
-                taps: 2
-            });
-            
-            var eventList = "doubletap";
-            var event = function(ev) {
-                scope.$eval(callBack)(ev);
-                scope.$apply();
-            };
-            var currentEvent = null;
-            
-            doubleTapHammer.add(doubleTapEvent);
-            doubleTapHammer.get(eventList).set({
-                interval: KIND_TOUCH_DOUBLE_TAP.INTERVAL,
-                time: KIND_TOUCH_DOUBLE_TAP.TIME,
-                threshold: KIND_TOUCH_DOUBLE_TAP.THRESHOLD,
-                posThreshold: KIND_TOUCH_DOUBLE_TAP.POSTHRESHOLD
-            });
+kindFramework.directive("kindTouchDoubleTap", function(KIND_TOUCH_DOUBLE_TAP) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      var callBack = attrs.kindTouchDoubleTap;
+      var disabled = attrs.kindTouchDoubleTapDisabled;
 
-            setKindTouchTouchAction(elem, KIND_TOUCH_DOUBLE_TAP);
-                
-            if(disabled === undefined){
-                currentEvent = "on";
-                doubleTapHammer.on(eventList, event);
-            }else{
-                scope.$watch(disabled, function(newValue, oldValue){
-                    var method = null;
-                    if(newValue === true && currentEvent === "on"){
-                        currentEvent = method = "off";
-                    }else if(
-                        (newValue === false && currentEvent === "off") || 
-                        (newValue === false && currentEvent === null) ){
-                        currentEvent = method = "on";
-                    }
-                    
-                    if(method){
-                        doubleTapHammer[method](eventList, event);
-                    }
-                });
-            }
-        }
+      var elem = element[0];
+      var doubleTapHammer = new Hammer.Manager(elem);
+      var doubleTapEvent = new Hammer.Tap({
+        event: 'doubletap',
+        taps: 2
+      });
+
+      var eventList = "doubletap";
+      var event = function(ev) {
+        scope.$eval(callBack)(ev);
+        scope.$apply();
+      };
+      var currentEvent = null;
+
+      doubleTapHammer.add(doubleTapEvent);
+      doubleTapHammer.get(eventList).set({
+        interval: KIND_TOUCH_DOUBLE_TAP.INTERVAL,
+        time: KIND_TOUCH_DOUBLE_TAP.TIME,
+        threshold: KIND_TOUCH_DOUBLE_TAP.THRESHOLD,
+        posThreshold: KIND_TOUCH_DOUBLE_TAP.POSTHRESHOLD
+      });
+
+      setKindTouchTouchAction(elem, KIND_TOUCH_DOUBLE_TAP);
+
+      if (disabled === undefined) {
+        currentEvent = "on";
+        doubleTapHammer.on(eventList, event);
+      } else {
+        scope.$watch(disabled, function(newValue, oldValue) {
+          var method = null;
+          if (newValue === true && currentEvent === "on") {
+            currentEvent = method = "off";
+          } else if (
+            (newValue === false && currentEvent === "off") ||
+            (newValue === false && currentEvent === null)) {
+            currentEvent = method = "on";
+          }
+
+          if (method) {
+            doubleTapHammer[method](eventList, event);
+          }
+        });
+      }
     }
+  }
 });
 
 /**
@@ -262,59 +262,59 @@ kindFramework.directive("kindTouchDoubleTap", function(KIND_TOUCH_DOUBLE_TAP){
  *        console.log(event.type);
  *    };
  */
-kindFramework.directive("kindTouchTap", function(KIND_TOUCH_TAP){
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs){
-            var callBack = attrs.kindTouchTap;
-            var disabled = attrs.kindTouchTapDisabled;
-            
-            var elem = element[0];
-            var tapHammer = new Hammer(elem);
-            var tapEvent = new Hammer.Tap({
-                event: 'singletap'
-            });
-            
-            var eventList = "tap";
-            var event = function(ev) {
-                if(attrs.kindTouchTap.indexOf('(') > -1){
-                    scope.$eval(attrs.kindTouchTap);
-                }else{
-                    scope.$eval(callBack)(ev);   
-                }
-                scope.$apply();
-            };
-            var currentEvent = null;
-            
-            tapHammer.add(tapEvent);
-            tapHammer.get(eventList).set({
-                pointers: KIND_TOUCH_TAP.POINTERS,
-                threshold: KIND_TOUCH_TAP.THRESHOLD
-            });
+kindFramework.directive("kindTouchTap", function(KIND_TOUCH_TAP) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      var callBack = attrs.kindTouchTap;
+      var disabled = attrs.kindTouchTapDisabled;
 
-            setKindTouchTouchAction(elem, KIND_TOUCH_TAP);
-                
-            if(disabled === undefined){
-                currentEvent = "on";
-                tapHammer.on(eventList, event);
-            }else{
-                scope.$watch(disabled, function(newValue, oldValue){
-                    var method = null;
-                    if(newValue === true && currentEvent === "on"){
-                        currentEvent = method = "off";
-                    }else if(
-                        (newValue === false && currentEvent === "off") || 
-                        (newValue === false && currentEvent === null) ){
-                        currentEvent = method = "on";
-                    }
-                    
-                    if(method){
-                        tapHammer[method](eventList, event);
-                    }
-                });
-            }
+      var elem = element[0];
+      var tapHammer = new Hammer(elem);
+      var tapEvent = new Hammer.Tap({
+        event: 'singletap'
+      });
+
+      var eventList = "tap";
+      var event = function(ev) {
+        if (attrs.kindTouchTap.indexOf('(') > -1) {
+          scope.$eval(attrs.kindTouchTap);
+        } else {
+          scope.$eval(callBack)(ev);
         }
+        scope.$apply();
+      };
+      var currentEvent = null;
+
+      tapHammer.add(tapEvent);
+      tapHammer.get(eventList).set({
+        pointers: KIND_TOUCH_TAP.POINTERS,
+        threshold: KIND_TOUCH_TAP.THRESHOLD
+      });
+
+      setKindTouchTouchAction(elem, KIND_TOUCH_TAP);
+
+      if (disabled === undefined) {
+        currentEvent = "on";
+        tapHammer.on(eventList, event);
+      } else {
+        scope.$watch(disabled, function(newValue, oldValue) {
+          var method = null;
+          if (newValue === true && currentEvent === "on") {
+            currentEvent = method = "off";
+          } else if (
+            (newValue === false && currentEvent === "off") ||
+            (newValue === false && currentEvent === null)) {
+            currentEvent = method = "on";
+          }
+
+          if (method) {
+            tapHammer[method](eventList, event);
+          }
+        });
+      }
     }
+  }
 });
 
 /**
@@ -340,56 +340,56 @@ kindFramework.directive("kindTouchTap", function(KIND_TOUCH_TAP){
  *        }
  *    };
  */
-kindFramework.directive("kindTouchSwipe", function(KIND_TOUCH_SWIPE){
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs){
-            var callBack = attrs.kindTouchSwipe;
-            var disabled = attrs.kindTouchSwipeDisabled;
-            
-            var elem = element[0];
-            var swipeHammer = new Hammer(elem);
-            var swipeEvent = new Hammer.Swipe({
-                event: 'swipe swipeleft swiperight swipeup swipedown'
-            });
-            
-            var eventList = "swipeleft swiperight swipeup swipedown";
-            var event = function(ev) {
-                scope.$eval(callBack)(ev);
-                scope.$apply();
-            };
-            var currentEvent = null;
-            
-            swipeHammer.add(swipeEvent);
-            swipeHammer.get('swipe').set({ 
-                direction: Hammer.DIRECTION_ALL,
-                velocity: KIND_TOUCH_SWIPE.VELOCITY,
-                threshold: KIND_TOUCH_SWIPE.THRESHOLD
-            });
-            
-            setKindTouchTouchAction(elem, KIND_TOUCH_SWIPE);
-                
-            if(disabled === undefined){
-                currentEvent = "on";
-                swipeHammer.on(eventList, event);
-            }else{
-                scope.$watch(disabled, function(newValue, oldValue){
-                    var method = null;
-                    if(newValue === true && currentEvent === "on"){
-                        currentEvent = method = "off";
-                    }else if(
-                        (newValue === false && currentEvent === "off") || 
-                        (newValue === false && currentEvent === null) ){
-                        currentEvent = method = "on";
-                    }
-                    
-                    if(method){
-                        swipeHammer[method](eventList, event);
-                    }
-                });
-            }
-        }
+kindFramework.directive("kindTouchSwipe", function(KIND_TOUCH_SWIPE) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      var callBack = attrs.kindTouchSwipe;
+      var disabled = attrs.kindTouchSwipeDisabled;
+
+      var elem = element[0];
+      var swipeHammer = new Hammer(elem);
+      var swipeEvent = new Hammer.Swipe({
+        event: 'swipe swipeleft swiperight swipeup swipedown'
+      });
+
+      var eventList = "swipeleft swiperight swipeup swipedown";
+      var event = function(ev) {
+        scope.$eval(callBack)(ev);
+        scope.$apply();
+      };
+      var currentEvent = null;
+
+      swipeHammer.add(swipeEvent);
+      swipeHammer.get('swipe').set({
+        direction: Hammer.DIRECTION_ALL,
+        velocity: KIND_TOUCH_SWIPE.VELOCITY,
+        threshold: KIND_TOUCH_SWIPE.THRESHOLD
+      });
+
+      setKindTouchTouchAction(elem, KIND_TOUCH_SWIPE);
+
+      if (disabled === undefined) {
+        currentEvent = "on";
+        swipeHammer.on(eventList, event);
+      } else {
+        scope.$watch(disabled, function(newValue, oldValue) {
+          var method = null;
+          if (newValue === true && currentEvent === "on") {
+            currentEvent = method = "off";
+          } else if (
+            (newValue === false && currentEvent === "off") ||
+            (newValue === false && currentEvent === null)) {
+            currentEvent = method = "on";
+          }
+
+          if (method) {
+            swipeHammer[method](eventList, event);
+          }
+        });
+      }
     }
+  }
 });
 
 
@@ -405,52 +405,52 @@ kindFramework.directive("kindTouchSwipe", function(KIND_TOUCH_SWIPE){
  *        console.log(event.type);
  *    };
  */
-kindFramework.directive("kindTouchPress", function(KIND_TOUCH_PRESS){
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs){
-            var callBack = attrs.kindTouchPress;
-            var disabled = attrs.kindTouchPressDisabled;
-            
-            var elem = element[0];
-            var pressHammer = new Hammer.Manager(elem);
-            var pressEvent = new Hammer.Press({
-                event: 'press',
-                time: KIND_TOUCH_PRESS.TIME,
-                threshold: KIND_TOUCH_PRESS.THRESHOLD
-            });
-            
-            var eventList = "press pressup";
-            var event = function(ev) {
-                scope.$eval(callBack)(ev);
-                scope.$apply();
-            };
-            var currentEvent = null;
-            
-            pressHammer.add(pressEvent);
-            pressHammer.get(eventList);
+kindFramework.directive("kindTouchPress", function(KIND_TOUCH_PRESS) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      var callBack = attrs.kindTouchPress;
+      var disabled = attrs.kindTouchPressDisabled;
 
-            setKindTouchTouchAction(elem, KIND_TOUCH_PRESS);
-                
-            if(disabled === undefined){
-                currentEvent = "on";
-                pressHammer.on(eventList, event);
-            }else{
-                scope.$watch(disabled, function(newValue, oldValue){
-                    var method = null;
-                    if(newValue === true && currentEvent === "on"){
-                        currentEvent = method = "off";
-                    }else if(
-                        (newValue === false && currentEvent === "off") || 
-                        (newValue === false && currentEvent === null) ){
-                        currentEvent = method = "on";
-                    }
-                    
-                    if(method){
-                        pressHammer[method](eventList, event);
-                    }
-                });
-            }
-        }
+      var elem = element[0];
+      var pressHammer = new Hammer.Manager(elem);
+      var pressEvent = new Hammer.Press({
+        event: 'press',
+        time: KIND_TOUCH_PRESS.TIME,
+        threshold: KIND_TOUCH_PRESS.THRESHOLD
+      });
+
+      var eventList = "press pressup";
+      var event = function(ev) {
+        scope.$eval(callBack)(ev);
+        scope.$apply();
+      };
+      var currentEvent = null;
+
+      pressHammer.add(pressEvent);
+      pressHammer.get(eventList);
+
+      setKindTouchTouchAction(elem, KIND_TOUCH_PRESS);
+
+      if (disabled === undefined) {
+        currentEvent = "on";
+        pressHammer.on(eventList, event);
+      } else {
+        scope.$watch(disabled, function(newValue, oldValue) {
+          var method = null;
+          if (newValue === true && currentEvent === "on") {
+            currentEvent = method = "off";
+          } else if (
+            (newValue === false && currentEvent === "off") ||
+            (newValue === false && currentEvent === null)) {
+            currentEvent = method = "on";
+          }
+
+          if (method) {
+            pressHammer[method](eventList, event);
+          }
+        });
+      }
     }
+  }
 });

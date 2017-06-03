@@ -3,39 +3,42 @@
 angular.module('ui.bootstrap.datepicker').
 config(function($provide) {
   $provide.decorator('uibDatepickerDirective', function($delegate) {
-    var directive = $delegate[0], link = directive.link;
+    var directive = $delegate[0],
+      link = directive.link;
 
-    angular.extend(directive.scope, { 'monthChanged': '&' });
+    angular.extend(directive.scope, {
+      'monthChanged': '&'
+    });
 
     directive.compile = function() {
 
-      var changeFormatMMYYYY = function(dateValue){
+      var changeFormatMMYYYY = function(dateValue) {
         var dateObj = new Date(dateValue);
-        return (dateObj.getMonth()+1)+'-'+dateObj.getFullYear();
+        return (dateObj.getMonth() + 1) + '-' + dateObj.getFullYear();
       };
 
       return function(scope, element, attrs, ctrl) {
         link.apply(this, arguments);
         var datepickerCtrl = ctrl[0];
         var ngModelCtrl = ctrl[1];
-        if( ngModelCtrl ){
-        	//Listen for 'refreshDatepickers' event
-        	scope.$on('refreshDatepickers', function refreshView(){
-        		datepickerCtrl.refreshView();
-        	});
+        if (ngModelCtrl) {
+          //Listen for 'refreshDatepickers' event
+          scope.$on('refreshDatepickers', function refreshView() {
+            datepickerCtrl.refreshView();
+          });
         }
-        scope.$watch( function() {
-          return ctrl[0].activeDate.getTime();
-        }, 
-      	function(newVal, oldVal) {
-        	if (scope.datepickerMode === 'day' || scope.datepickerMode === 'month') {
-          	if (changeFormatMMYYYY(oldVal) !== changeFormatMMYYYY(newVal)) {
-            	scope.$root.$broadcast('onChangedMonth', new Date(newVal));
-          	}
-          } else {
-            console.log("unexpected scope.datepickerMode", scope.datepickerMode);
-          }
-       	});
+        scope.$watch(function() {
+            return ctrl[0].activeDate.getTime();
+          },
+          function(newVal, oldVal) {
+            if (scope.datepickerMode === 'day' || scope.datepickerMode === 'month') {
+              if (changeFormatMMYYYY(oldVal) !== changeFormatMMYYYY(newVal)) {
+                scope.$root.$broadcast('onChangedMonth', new Date(newVal));
+              }
+            } else {
+              console.log("unexpected scope.datepickerMode", scope.datepickerMode);
+            }
+          });
       };
     };
     return $delegate;

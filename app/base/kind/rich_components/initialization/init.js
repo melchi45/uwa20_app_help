@@ -1,6 +1,6 @@
 var app = {
   // Check if app is running on browser on device
-  setDevice: function () {
+  setDevice: function() {
     window.isPhone = false;
     var documentUrl = document.URL;
 
@@ -13,20 +13,20 @@ var app = {
   // Application Constructor
   initialize: function() {
     var userAgent = this.getUserAgent();
-    if(userAgent.name === 'msie' && userAgent.version < 9){
+    if (userAgent.name === 'msie' && userAgent.version < 9) {
       this.setBrowserSurpportPage();
-    }else{
+    } else {
       this.setDevice();
 
-      if(window.isPhone){
+      if (window.isPhone) {
         this.bindEvents();
-      }else{
+      } else {
         this.onDeviceReady();
       }
     }
   },
 
-  setBrowserSurpportPage: function(){
+  setBrowserSurpportPage: function() {
     var html = [
       '<div class="container">',
       '<div class="alert alert-info" role="alert">',
@@ -59,13 +59,12 @@ var app = {
     document.title = "Please upgrade the browser";
   },
 
-  getUserAgent: function(){
+  getUserAgent: function() {
     var userAgent = navigator.userAgent.toLowerCase();
     var match = /(webkit)[ \/](\w.]+)/.exec(userAgent) ||
-    /(opera)(?:.*version)?[ \/](\w.]+)/.exec(userAgent) ||
-    /(msie) ([\w.]+)/.exec(userAgent) ||               
-    /(mozilla)(?:.*? rv:([\w.]+))?/.exec(userAgent) ||
-    [];
+      /(opera)(?:.*version)?[ \/](\w.]+)/.exec(userAgent) ||
+      /(msie) ([\w.]+)/.exec(userAgent) ||
+      /(mozilla)(?:.*? rv:([\w.]+))?/.exec(userAgent) || [];
 
     return {
       name: match[1] || "",

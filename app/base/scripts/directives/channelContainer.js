@@ -1,8 +1,8 @@
 /*global clearTimeout, setTimeout*/
-kindFramework.directive('channelContainer', ['$rootScope', '$window','PLAYBACK_TYPE','PTZ_TYPE',
-  'SearchDataModel','PlayDataModel','ExtendChannelContainerService','$timeout',
-  function($rootScope,$window,PLAYBACK_TYPE, PTZ_TYPE,
-    SearchDataModel, PlayDataModel,ExtendChannelContainerService, $timeout) {
+kindFramework.directive('channelContainer', ['$rootScope', '$window', 'PLAYBACK_TYPE', 'PTZ_TYPE',
+  'SearchDataModel', 'PlayDataModel', 'ExtendChannelContainerService', '$timeout',
+  function($rootScope, $window, PLAYBACK_TYPE, PTZ_TYPE,
+    SearchDataModel, PlayDataModel, ExtendChannelContainerService, $timeout) {
     "use strict";
     return {
       require: '^channelsWrapper',
@@ -24,23 +24,23 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window','PLAYBACK_T
         scope.disableButton = false;
         var PLAY_CMD = PLAYBACK_TYPE.playCommand;
         scope.play = function() {
-          if( playback.status === 'play') return;
+          if (playback.status === 'play') return;
           playback.status = 'play';
           playback.changeButtonVisible();
           wrapperController.playPlayback(PLAY_CMD.PLAY);
         };
         scope.pause = function() {
-          if( playback.status === 'pause') return;
+          if (playback.status === 'pause') return;
           playback.status = 'pause';
           playback.changeButtonVisible();
-		      wrapperController.playPlayback(PLAY_CMD.PAUSE);
+          wrapperController.playPlayback(PLAY_CMD.PAUSE);
         };
         var playback = {
           playButton: angular.element(element).find('button.button-play'),
           pauseButton: angular.element(element).find('button.button-pause'),
           status: 'stop',
           changeButtonVisible: function() {
-            switch(playback.status) {
+            switch (playback.status) {
               case 'play':
                 angular.element(playback.playButton).css('display', 'none');
                 angular.element(playback.pauseButton).css('display', 'inline-block');
@@ -67,7 +67,7 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window','PLAYBACK_T
         scope.selectedChannel = function(event) {
           event.preventDefault();
           var mousePosition = event.pointers[0];
-          var info ={
+          var info = {
             'clickedX': mousePosition.clientX,
             'clickedY': mousePosition.clientY
           };
@@ -79,27 +79,28 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window','PLAYBACK_T
         /******************************
         watch enable playback mode
         ******************************/
-        scope.$watch(function() { return searchData.getWebIconStatus(); }, function(newVal, oldVal) {
-          if( newVal === null || newVal === oldVal) return;
+        scope.$watch(function() {
+          return searchData.getWebIconStatus();
+        }, function(newVal, oldVal) {
+          if (newVal === null || newVal === oldVal) return;
           scope.enablePlayback = newVal;
         });
         /*
-        * Check playback status and sync for changing play button
-        */ 
+         * Check playback status and sync for changing play button
+         */
         $rootScope.$saveOn('app/scripts/models/playback/PlayDataModel::changeButtonStatus', function(event, data) {
-          if( playback.status === data ) return;
-          if( data === 'stop' ) {
+          if (playback.status === data) return;
+          if (data === 'stop') {
             playback.status = data;
             playback.changeButtonVisible();
-          }
-          else if( data === 'play') {
+          } else if (data === 'play') {
             playback.status = data;
             playback.changeButtonVisible();
           }
         }, scope);
 
         $rootScope.$saveOn('app/scripts/services/playbackClass::disableButton', function(event, data) {
-          if( scope.disableButton !== data ) {
+          if (scope.disableButton !== data) {
             scope.disableButton = data;
           }
         }, scope);
@@ -110,15 +111,15 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window','PLAYBACK_T
         var touchAction;
         scope.doubleTapcallBack = function(event) {
           console.log("KIND TOUCH DOUBLE TAP");
-          if(scope.isShow !== 'show') return;
-          if(event.target.tagName === "DIV" || event.target.tagName === "CANVAS" || typeof event.fullButton !== undefined) {
-            if(event.clientX !== undefined){
-              var info ={
+          if (scope.isShow !== 'show') return;
+          if (event.target.tagName === "DIV" || event.target.tagName === "CANVAS" || typeof event.fullButton !== undefined) {
+            if (event.clientX !== undefined) {
+              var info = {
                 'clickedX': event.clientX,
                 'clickedY': event.clientY
               };
-            }else{
-              var info ={
+            } else {
+              var info = {
                 'clickedX': 0,
                 'clickedY': 51
               };
@@ -132,7 +133,7 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window','PLAYBACK_T
           scope.doubleTapcallBack(e);
         }, scope);
 
-        function openFullScreen(){
+        function openFullScreen() {
           scope.displayInfo = "full-screen";
           wrapperController.openFullScreen.apply(wrapperController, arguments);
         }
@@ -145,48 +146,50 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window','PLAYBACK_T
         // $timeout(function(){
         //   $('.channel-container').bind("openfullscreen", openFullScreen);
         // });
-        
+
         var lastTouchData;
         var TOUCH_TIME_INTERVAL = 400;
-        scope.tapCallback = function(event){
+        scope.tapCallback = function(event) {
           var playData = new PlayDataModel();
           console.log("KIND TOUCH TAP");
           // if( playData.getStatus() === PLAY_CMD.LIVE ) return;
-          if(scope.isShow !== 'show') return;
-          if(event.target.tagName === "DIV" || event.target.tagName === "CANVAS") {
-            if( isPhone ){
+          if (scope.isShow !== 'show') return;
+          if (event.target.tagName === "DIV" || event.target.tagName === "CANVAS") {
+            if (isPhone) {
               var now = event.timeStamp;
               var delta = now - lastTouchData;
-              if(touchAction !== null) clearTimeout(touchAction);
-              if(delta < TOUCH_TIME_INTERVAL && delta>0){
+              if (touchAction !== null) clearTimeout(touchAction);
+              if (delta < TOUCH_TIME_INTERVAL && delta > 0) {
                 //scope.doubleTapcallBack(event);
-              }
-              else{
+              } else {
                 lastTouchData = now;
-                touchAction = setTimeout(function(e){
+                touchAction = setTimeout(function(e) {
                   console.log("KIND TOUCH TAP TOUCHACTION");
                   clearTimeout(touchAction);
                   touchAction = null;
-  								var mousePosition = event.pointers[0];
-  								var mouseInfo = {
-  									'clickedX' : mousePosition.clientX,
-  									'clickedY' : mousePosition.clientY
-  								};
-  								wrapperController.requestSelectedChannel(mouseInfo);
-                  console.log("tap and status = "+playData.getStatus());
+                  var mousePosition = event.pointers[0];
+                  var mouseInfo = {
+                    'clickedX': mousePosition.clientX,
+                    'clickedY': mousePosition.clientY
+                  };
+                  wrapperController.requestSelectedChannel(mouseInfo);
+                  console.log("tap and status = " + playData.getStatus());
                 }, TOUCH_TIME_INTERVAL, [event]);
-              }      
+              }
               lastTouchData = now;
             }
           }
         };
 
 
-        scope.$watch(function(){ return scope.zoomMode; },
-        function(newVal) {
-          ExtendChannelContainerService.enablePTZ(newVal);
-        });
+        scope.$watch(function() {
+            return scope.zoomMode;
+          },
+          function(newVal) {
+            ExtendChannelContainerService.enablePTZ(newVal);
+          });
         scope.isPc = ExtendChannelContainerService.getIsPcValue();
       }
     };
-}]);
+  }
+]);

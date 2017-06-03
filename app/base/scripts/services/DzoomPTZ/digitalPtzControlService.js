@@ -1,5 +1,5 @@
 kindFramework
-    .factory('DigitalPTZContorlService', ['$q', 'LoggingService', 'SunapiClient', '$timeout', 'CAMERA_STATUS', 'UniversialManagerService', '$rootScope', 'Attributes', function($q, LoggingService, SunapiClient, $timeout, CAMERA_STATUS, UniversialManagerService, $rootScope, Attributes) {
+  .factory('DigitalPTZContorlService', ['$q', 'LoggingService', 'SunapiClient', '$timeout', 'CAMERA_STATUS', 'UniversialManagerService', '$rootScope', 'Attributes', function($q, LoggingService, SunapiClient, $timeout, CAMERA_STATUS, UniversialManagerService, $rootScope, Attributes) {
     'use strict';
     var logger = LoggingService.getInstance('PTZContorlService');
 
@@ -13,7 +13,7 @@ kindFramework
     var moveLevel = 60;
 
     var curPan = 0;
-    var curTilt = 0;      
+    var curTilt = 0;
     var zoom = 0;
 
     var sunapiURI = "";
@@ -28,28 +28,47 @@ kindFramework
 
     var dotCoordinates = null;
 
-    var playingList = [{isPlaying:null, btn:null}, {isPlaying:false, btn:null}, {isPlaying:false, btn:null}, {isPlaying:false, btn:null}, {isPlaying:false, btn:null}];
+    var playingList = [{
+      isPlaying: null,
+      btn: null
+    }, {
+      isPlaying: false,
+      btn: null
+    }, {
+      isPlaying: false,
+      btn: null
+    }, {
+      isPlaying: false,
+      btn: null
+    }, {
+      isPlaying: false,
+      btn: null
+    }];
 
     var isOn = null;
 
     var mAttr = Attributes.get("Image");
 
     var isFisheye = mAttr.FisheyeLens;
-    
-    function eventHandler(event,eventType,element) {
+
+    function eventHandler(event, eventType, element) {
       sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control&Channel=0&NormalizedSpeed=True";
-      if (!event) { event = window.event; }
-      if(UniversialManagerService.getViewModeType() === "QuadView" && isFisheye) {
+      if (!event) {
+        event = window.event;
+      }
+      if (UniversialManagerService.getViewModeType() === "QuadView" && isFisheye) {
         curQuadrant = calCoordinate(event.offsetX, event.offsetY);
       }
-      if(curQuadrant === null && isFisheye) { return null; };
+      if (curQuadrant === null && isFisheye) {
+        return null;
+      };
       if (eventType === "mousewheel") {
         event.stopPropagation();
-        event.preventDefault ();
+        event.preventDefault();
         $timeout.cancel(wheelStopTimerPromise);
         var delta = event.wheelDelta ? event.wheelDelta : -event.detail;
         delta = delta / 120;
-        if(delta > 0) { // wheel up
+        if (delta > 0) { // wheel up
           zoom = 50;
         } else { // wheel down
           zoom = -50;
@@ -57,14 +76,14 @@ kindFramework
         sunapiURI += "&Zoom=" + zoom;
         zoom = 0;
 
-        wheelStopTimerPromise = $timeout(function(){
+        wheelStopTimerPromise = $timeout(function() {
           sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control&Channel=0&OperationType=All";
-          if(UniversialManagerService.getViewModeType() === "QuadView" && isFisheye) {
+          if (UniversialManagerService.getViewModeType() === "QuadView" && isFisheye) {
             sunapiURI += ("&SubViewIndex=" + curQuadrant);
           }
           return execSunapi(sunapiURI);
-        },700);
-        if(UniversialManagerService.getViewModeType() === "QuadView" && isFisheye) {
+        }, 700);
+        if (UniversialManagerService.getViewModeType() === "QuadView" && isFisheye) {
           sunapiURI += ("&SubViewIndex=" + curQuadrant);
         }
         return execSunapi(sunapiURI);
@@ -72,38 +91,38 @@ kindFramework
         downCheck = true;
         curX = event.clientX;
         curY = event.clientY;
-        if(UniversialManagerService.getViewModeType() === "QuadView" && isFisheye) {
+        if (UniversialManagerService.getViewModeType() === "QuadView" && isFisheye) {
           prevQuadrant = calCoordinate(event.offsetX, event.offsetY); // needs to be saved and used when DPTZ button click event occurs
-          if(dotCoordinates !== null && UniversialManagerService.getViewMode() === CAMERA_STATUS.VIEW_MODE.DETAIL) {
+          if (dotCoordinates !== null && UniversialManagerService.getViewMode() === CAMERA_STATUS.VIEW_MODE.DETAIL) {
             removeDot();
             createDot(5, 5, prevQuadrant);
           }
-          if(playingList[prevQuadrant].isPlaying === true) {
+          if (playingList[prevQuadrant].isPlaying === true) {
             downCheck = false;
             return null; // prevent event in currently playing area
           }
         }
       } else if (eventType === "mousemove") {
-        if(downCheck) {
-          if(isFisheye) {
+        if (downCheck) {
+          if (isFisheye) {
             var tQuadrant = calCoordinate(event.offsetX, event.offsetY);
-            if(prevQuadrant !== tQuadrant || tQuadrant === 0) { // 0 is out of boundary
+            if (prevQuadrant !== tQuadrant || tQuadrant === 0) { // 0 is out of boundary
               if (downCheck) {
                 downCheck = false;
               }
               sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control&Channel=0&OperationType=All";
-              if(UniversialManagerService.getViewModeType() === "QuadView" && prevQuadrant !== 0) {
+              if (UniversialManagerService.getViewModeType() === "QuadView" && prevQuadrant !== 0) {
                 sunapiURI += ("&SubViewIndex=" + prevQuadrant);
               }
               return execSunapi(sunapiURI);
             }
           }
           var pan = 0;
-          var tilt = 0;          
+          var tilt = 0;
           moveX = curX - event.clientX;
           moveY = curY - event.clientY;
-          
-          if (moveX < -minMove ) { //left -> right
+
+          if (moveX < -minMove) { //left -> right
             if (moveX < -moveLevel * 6) pan = -100;
             else if (moveX < -moveLevel * 5) pan = -85;
             else if (moveX < -moveLevel * 4) pan = -68;
@@ -119,7 +138,7 @@ kindFramework
             else pan = 17;
           }
 
-          if (moveY < -minMove ) { //top -> bottom
+          if (moveY < -minMove) { //top -> bottom
             if (moveY < -moveLevel * 6) tilt = 100;
             else if (moveY < -moveLevel * 5) tilt = 85;
             else if (moveY < -moveLevel * 4) tilt = 68;
@@ -135,23 +154,19 @@ kindFramework
             else tilt = -17;
           }
 
-          if(pan > 0)
-          {
+          if (pan > 0) {
             pan = 51;
-          }else if (pan < 0) 
-          {
+          } else if (pan < 0) {
             pan = -51;
-          } else{
+          } else {
             pan = 0;
           }
 
-          if(tilt > 0)
-          {
+          if (tilt > 0) {
             tilt = 51;
-          }else if (tilt < 0) 
-          {
+          } else if (tilt < 0) {
             tilt = -51;
-          } else{
+          } else {
             tilt = 0;
           }
 
@@ -166,7 +181,7 @@ kindFramework
             curPan = pan;
             curTilt = tilt;
 
-            if(UniversialManagerService.getViewModeType() === "QuadView" && prevQuadrant === curQuadrant && isFisheye) { // limit the case of area changed when mouse moving
+            if (UniversialManagerService.getViewModeType() === "QuadView" && prevQuadrant === curQuadrant && isFisheye) { // limit the case of area changed when mouse moving
               sunapiURI += ("&SubViewIndex=" + curQuadrant);
             }
             return execSunapi(sunapiURI);
@@ -177,9 +192,13 @@ kindFramework
           downCheck = false;
         }
         sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control&Channel=0&OperationType=All";
-        if(UniversialManagerService.getViewModeType() === "QuadView" && isFisheye) {
-          if(playingList[curQuadrant].isPlaying === true) { return null; } // in case of event occured in playing area
-          if(curQuadrant === 0) { return null; } // prevent sunapi call when out of boundary
+        if (UniversialManagerService.getViewModeType() === "QuadView" && isFisheye) {
+          if (playingList[curQuadrant].isPlaying === true) {
+            return null;
+          } // in case of event occured in playing area
+          if (curQuadrant === 0) {
+            return null;
+          } // prevent sunapi call when out of boundary
           sunapiURI += ("&SubViewIndex=" + curQuadrant);
         }
         return execSunapi(sunapiURI);
@@ -187,17 +206,32 @@ kindFramework
       return null;
     }
 
-    function mouseWheel(event) { eventHandler(event,"mousewheel", null); }
-    function mouseDown(event) { eventHandler(event,"mousedown", null); }
-    function mouseMove(event) { eventHandler(event,"mousemove", null); }
-    function mouseUp(event) { eventHandler(event,"mouseup", null); }
-    function mouseLeave(event) { eventHandler(event,"mouseleave", null); }
+    function mouseWheel(event) {
+      eventHandler(event, "mousewheel", null);
+    }
+
+    function mouseDown(event) {
+      eventHandler(event, "mousedown", null);
+    }
+
+    function mouseMove(event) {
+      eventHandler(event, "mousemove", null);
+    }
+
+    function mouseUp(event) {
+      eventHandler(event, "mouseup", null);
+    }
+
+    function mouseLeave(event) {
+      eventHandler(event, "mouseleave", null);
+    }
 
     var agent = navigator.userAgent.toLowerCase();
+
     function setElementEvent(element) {
-      if(agent.indexOf("firefox") !== -1) {
+      if (agent.indexOf("firefox") !== -1) {
         element.addEventListener('DOMMouseScroll', mouseWheel);
-      }else{
+      } else {
         element.addEventListener('mousewheel', mouseWheel);
       }
       element.addEventListener('mousedown', mouseDown);
@@ -207,9 +241,9 @@ kindFramework
     }
 
     function deleteElementEvent(element) {
-      if(agent.indexOf("firefox") !== -1) {
+      if (agent.indexOf("firefox") !== -1) {
         element.removeEventListener('DOMMouseScroll', mouseWheel);
-      }else{
+      } else {
         element.removeEventListener('mousewheel', mouseWheel);
       }
       element.removeEventListener('mousedown', mouseDown);
@@ -222,26 +256,24 @@ kindFramework
       var getData = {};
       if (uri !== null) {
         SunapiClient.get(uri, getData,
-          function (response) { 
-            if(callback !== undefined)
-            {
-                if (callback !== null) { callback(response.data); }   
+          function(response) {
+            if (callback !== undefined) {
+              if (callback !== null) {
+                callback(response.data);
+              }
             }
           },
-          function (errorData) { 
-            if(callback !== undefined)
-            {
-              if (callback !== null) { 
-                callback(errorData);  
+          function(errorData) {
+            if (callback !== undefined) {
+              if (callback !== null) {
+                callback(errorData);
               } else {
-                console.log(errorData);  
-              }  
+                console.log(errorData);
+              }
+            } else {
+              console.log(errorData);
             }
-            else
-            {
-              console.log(errorData);  
-            }
-          }, '', true 
+          }, '', true
         );
       }
     }
@@ -258,36 +290,36 @@ kindFramework
 
     function runDPTZ(mode, value, callback) {
       var sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=";
-      if(curQuadrant !== null && prevQuadrant !== 0) {
-        if(mode === "home") {
-          if(curQuadrant !== null) {
+      if (curQuadrant !== null && prevQuadrant !== 0) {
+        if (mode === "home") {
+          if (curQuadrant !== null) {
             var sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=home&action=control&Channel=0";
             sunapiURI += ("&SubViewIndex=" + prevQuadrant);
             execSunapi(sunapiURI);
           } else {
             console.error('Current Quadrant is null');
           }
-        } else if(mode === "preset") {
+        } else if (mode === "preset") {
           sunapiURI += "preset&action=control&Channel=0&Preset=" + value;
           sunapiURI += ("&SubViewIndex=" + prevQuadrant);
-          if(playingList[prevQuadrant].isPlaying === true) {
+          if (playingList[prevQuadrant].isPlaying === true) {
             $(playingList[prevQuadrant].btn).remove();
             playingList[prevQuadrant].isPlaying = false;
           }
-        } else if(mode === "group") {
+        } else if (mode === "group") {
           sunapiURI += "group&action=control&Channel=0&Group=" + value;
           sunapiURI += ("&SubViewIndex=" + prevQuadrant);
           createBtn(prevQuadrant);
-        } else if(mode === "stopSequence") {
+        } else if (mode === "stopSequence") {
           sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control&Channel=0&OperationType=All";
           sunapiURI += ("&SubViewIndex=" + curQuadrant);
           playingList[curQuadrant].isPlaying = false;
-        } else if(mode === "stopSequenceAll") {
-          for(var i = 1; i < playingList.length; i++) {
-            if(playingList[i].isPlaying === true) {
+        } else if (mode === "stopSequenceAll") {
+          for (var i = 1; i < playingList.length; i++) {
+            if (playingList[i].isPlaying === true) {
               playingList[i].isPlaying = false;
               sunapiURI = "/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control&Channel=0&OperationType=All";
-              sunapiURI += ("&SubViewIndex=" + i);// when go to main live or change ptz mode while group running, stop all sequence
+              sunapiURI += ("&SubViewIndex=" + i); // when go to main live or change ptz mode while group running, stop all sequence
               execSunapi(sunapiURI);
             }
           }
@@ -299,7 +331,9 @@ kindFramework
     }
 
     function calCoordinate(x, y) {
-      if(x < 0 || y < 0) { return null; }
+      if (x < 0 || y < 0) {
+        return null;
+      }
       var quadrant = 0;
       var canvas = document.querySelector(".kind-stream-canvas");
       var w = canvas.offsetWidth;
@@ -310,32 +344,96 @@ kindFramework
       var offsetLeft = canvas.offsetLeft;
       var offsetTop = canvas.offsetTop;
 
-      if(UniversialManagerService.getViewMode() === CAMERA_STATUS.VIEW_MODE.DETAIL) { // when full screen, fullDiv handles mouse events
-        if(offsetLeft > 0) {
-          if((xPos <= offsetLeft) || ((offsetLeft + w) <= xPos)) { // x is positioned in offset area
+      if (UniversialManagerService.getViewMode() === CAMERA_STATUS.VIEW_MODE.DETAIL) { // when full screen, fullDiv handles mouse events
+        if (offsetLeft > 0) {
+          if ((xPos <= offsetLeft) || ((offsetLeft + w) <= xPos)) { // x is positioned in offset area
             return 0;
           }
           xPos = xPos - offsetLeft;
-        } else if(offsetTop > 0) { 
-          if((yPos <= offsetTop) || ((offsetTop + h) <= yPos)) { // y is postioned in offset area
+        } else if (offsetTop > 0) {
+          if ((yPos <= offsetTop) || ((offsetTop + h) <= yPos)) { // y is postioned in offset area
             return 0;
           }
           yPos = yPos - offsetTop;
         }
       } else { // when main view, canvas handles mouse events
-        if(xPos >= w - 5 || xPos <= 5 || yPos >= h - 5 || yPos <= 5) { return 0; } // to handle case of missing event to stop moving, +-5
+        if (xPos >= w - 5 || xPos <= 5 || yPos >= h - 5 || yPos <= 5) {
+          return 0;
+        } // to handle case of missing event to stop moving, +-5
       }
 
-      var coordinates = [[{xPos:0,yPos:0}, {xPos:w/2,yPos:0}, {xPos:0,yPos:h/2}, {xPos:w/2,yPos:h/2}],
-                        [{xPos:w/2,yPos:0}, {xPos:w,yPos:0}, {xPos:w/2,yPos:h/2}, {xPos:w,yPos:h/2}],
-                        [{xPos:0,yPos:h/2}, {xPos:w/2,yPos:h/2}, {xPos:0,yPos:h}, {xPos:w/2,yPos:h}],
-                        [{xPos:w/2,yPos:h/2}, {xPos:w,yPos:h/2}, {xPos:w/2,yPos:h}, {xPos:w,yPos:h}]];
+      var coordinates = [
+        [{
+          xPos: 0,
+          yPos: 0
+        }, {
+          xPos: w / 2,
+          yPos: 0
+        }, {
+          xPos: 0,
+          yPos: h / 2
+        }, {
+          xPos: w / 2,
+          yPos: h / 2
+        }],
+        [{
+          xPos: w / 2,
+          yPos: 0
+        }, {
+          xPos: w,
+          yPos: 0
+        }, {
+          xPos: w / 2,
+          yPos: h / 2
+        }, {
+          xPos: w,
+          yPos: h / 2
+        }],
+        [{
+          xPos: 0,
+          yPos: h / 2
+        }, {
+          xPos: w / 2,
+          yPos: h / 2
+        }, {
+          xPos: 0,
+          yPos: h
+        }, {
+          xPos: w / 2,
+          yPos: h
+        }],
+        [{
+          xPos: w / 2,
+          yPos: h / 2
+        }, {
+          xPos: w,
+          yPos: h / 2
+        }, {
+          xPos: w / 2,
+          yPos: h
+        }, {
+          xPos: w,
+          yPos: h
+        }]
+      ];
 
-      dotCoordinates = [{xPos:w/2/2+offsetLeft, yPos:h/2/2+offsetTop}, {xPos:w/2/2*3+offsetLeft, yPos:h/2/2+offsetTop}, {xPos:w/2/2+offsetLeft, yPos:h/2/2*3+offsetTop}, {xPos:w/2/2*3+offsetLeft, yPos:h/2/2*3+offsetTop}];
+      dotCoordinates = [{
+        xPos: w / 2 / 2 + offsetLeft,
+        yPos: h / 2 / 2 + offsetTop
+      }, {
+        xPos: w / 2 / 2 * 3 + offsetLeft,
+        yPos: h / 2 / 2 + offsetTop
+      }, {
+        xPos: w / 2 / 2 + offsetLeft,
+        yPos: h / 2 / 2 * 3 + offsetTop
+      }, {
+        xPos: w / 2 / 2 * 3 + offsetLeft,
+        yPos: h / 2 / 2 * 3 + offsetTop
+      }];
 
-      for(var i = 0; i < 4; i++) {
-        if(xPos < coordinates[i][3].xPos) {
-          if(yPos < coordinates[i][3].yPos) { // (1,1)
+      for (var i = 0; i < 4; i++) {
+        if (xPos < coordinates[i][3].xPos) {
+          if (yPos < coordinates[i][3].yPos) { // (1,1)
             quadrant = 1;
             break;
           } else { // (1,2)
@@ -343,7 +441,7 @@ kindFramework
             break;
           }
         } else {
-          if(yPos < coordinates[i][3].yPos) { // (2,1)
+          if (yPos < coordinates[i][3].yPos) { // (2,1)
             quadrant = 2;
             break;
           } else { // (2,2)
@@ -355,9 +453,9 @@ kindFramework
       return quadrant;
     }
 
-    function createBtn(pos){
+    function createBtn(pos) {
       var coordinate = dotCoordinates[pos - 1];
-      var btn = $("<button class='quadrant"+pos+"'>").css({
+      var btn = $("<button class='quadrant" + pos + "'>").css({
         position: "absolute",
         left: coordinate.xPos + "px",
         top: coordinate.yPos + "px",
@@ -368,10 +466,10 @@ kindFramework
       btn
         .addClass('button-background-none', 'ptz-menu-tooltip')
         .html("<span class='sr-only'>pause</span><i class='tui tui-ch-playback-stop'></i>")
-        .on("click", function(){
+        .on("click", function() {
           removeBtn(this);
         });
-      
+
       $("body").prepend(btn);
 
       playingList[pos].isPlaying = true;
@@ -379,8 +477,8 @@ kindFramework
     }
 
     function removeBtn(elem, mode) {
-      if(mode === 'all') {
-        for(var i = 1; i < playingList.length; i++) {
+      if (mode === 'all') {
+        for (var i = 1; i < playingList.length; i++) {
           var btn = $(playingList[i].btn);
           btn.remove();
         }
@@ -391,15 +489,17 @@ kindFramework
     }
 
     function createDot(width, height, pos) {
-      var coordinate = dotCoordinates[pos-1];
-      if(coordinate === undefined) { return; } // in case of click out of bounadary
+      var coordinate = dotCoordinates[pos - 1];
+      if (coordinate === undefined) {
+        return;
+      } // in case of click out of bounadary
       var objDot = $("<div id='objDot'>").css({
         width: width + "px",
         height: height + "px",
         backgroundColor: "yellow",
         position: "absolute",
-        left: dotCoordinates[pos-1].xPos + "px",
-        top: dotCoordinates[pos-1].yPos + "px",
+        left: dotCoordinates[pos - 1].xPos + "px",
+        top: dotCoordinates[pos - 1].yPos + "px",
         transform: "translate(-50%, -50%)",
         zIndex: 100
       });
@@ -408,7 +508,7 @@ kindFramework
 
     function removeDot() {
       var dot = $("#objDot");
-      if(dot.length !== 0) {
+      if (dot.length !== 0) {
         $("#objDot").remove();
       } else {
         return null;
@@ -429,20 +529,32 @@ kindFramework
       var h = canvas.offsetHeight;
       var offsetLeft = canvas.offsetLeft;
       var offsetTop = canvas.offsetTop;
-      dotCoordinates = [{xPos:w/2/2+offsetLeft, yPos:h/2/2+offsetTop}, {xPos:w/2/2*3+offsetLeft, yPos:h/2/2+offsetTop}, {xPos:w/2/2+offsetLeft, yPos:h/2/2*3+offsetTop}, {xPos:w/2/2*3+offsetLeft, yPos:h/2/2*3+offsetTop}];
+      dotCoordinates = [{
+        xPos: w / 2 / 2 + offsetLeft,
+        yPos: h / 2 / 2 + offsetTop
+      }, {
+        xPos: w / 2 / 2 * 3 + offsetLeft,
+        yPos: h / 2 / 2 + offsetTop
+      }, {
+        xPos: w / 2 / 2 + offsetLeft,
+        yPos: h / 2 / 2 * 3 + offsetTop
+      }, {
+        xPos: w / 2 / 2 * 3 + offsetLeft,
+        yPos: h / 2 / 2 * 3 + offsetTop
+      }];
     }
 
     $rootScope.$saveOn('update-dot-dptz', function(event, data) {
-      if(data === true) {
-        if(UniversialManagerService.getViewMode() === CAMERA_STATUS.VIEW_MODE.DETAIL) {
-          if(isOn) {
+      if (data === true) {
+        if (UniversialManagerService.getViewMode() === CAMERA_STATUS.VIEW_MODE.DETAIL) {
+          if (isOn) {
             updateDotCoordinates();
-            if(removeDot() !== null) { // already dot existed
+            if (removeDot() !== null) { // already dot existed
               createDot(5, 5, prevQuadrant);
             }
             removeBtn(null, 'all');
-            for(var i = 1; i <= playingList.length; i++) { // recreate btns
-              if(playingList[i].isPlaying === true) {
+            for (var i = 1; i <= playingList.length; i++) { // recreate btns
+              if (playingList[i].isPlaying === true) {
                 createBtn(i);
               }
             }
@@ -452,14 +564,14 @@ kindFramework
     });
 
     return {
-      eventHandler : eventHandler,
-      setElementEvent : setElementEvent,
-      deleteElementEvent : deleteElementEvent,
-      getSettingList : getSettingList,
-      runDPTZ : runDPTZ,
-      removeDot : removeDot,
-      setIsOn : setIsOn,
-      getIsOn : getIsOn,
-      removeBtn : removeBtn
+      eventHandler: eventHandler,
+      setElementEvent: setElementEvent,
+      deleteElementEvent: deleteElementEvent,
+      getSettingList: getSettingList,
+      runDPTZ: runDPTZ,
+      removeDot: removeDot,
+      setIsOn: setIsOn,
+      getIsOn: getIsOn,
+      removeBtn: removeBtn
     };
-}]);
+  }]);

@@ -1,45 +1,41 @@
-kindFramework.controller('ModalInstncePTZModeCtrl',
-  ['$scope', '$uibModalInstance', 'data', '$rootScope', 'ModalManagerService', 'Attributes', 'SunapiClient', 'UniversialManagerService',
-  function ($scope, $uibModalInstance, data, $rootScope, ModalManagerService, Attributes, SunapiClient, UniversialManagerService) {
+kindFramework.controller('ModalInstncePTZModeCtrl', ['$scope', '$uibModalInstance', 'data', '$rootScope', 'ModalManagerService', 'Attributes', 'SunapiClient', 'UniversialManagerService',
+  function($scope, $uibModalInstance, data, $rootScope, ModalManagerService, Attributes, SunapiClient, UniversialManagerService) {
     "use strict";
     var sunapiAttributes = Attributes.get();
 
     $scope.data = {
-      zoomMode : data.zoomMode,
-      isDigitalZoom : false,
-      isPTZ : false,
-      isDPTZ : false,
-      supportPTZ : (sunapiAttributes.PTZModel || sunapiAttributes.ExternalPTZModel || sunapiAttributes.ZoomOnlyModel),
-      supportDPTZ : sunapiAttributes.isDigitalPTZ
+      zoomMode: data.zoomMode,
+      isDigitalZoom: false,
+      isPTZ: false,
+      isDPTZ: false,
+      supportPTZ: (sunapiAttributes.PTZModel || sunapiAttributes.ExternalPTZModel || sunapiAttributes.ZoomOnlyModel),
+      supportDPTZ: sunapiAttributes.isDigitalPTZ
     };
 
 
-    switch($scope.data.zoomMode)
-    {
+    switch ($scope.data.zoomMode) {
       case 'Digital Zoom':
         $scope.data.isDigitalZoom = true;
-      break;
+        break;
       case 'PTZ':
         $scope.data.isPTZ = true;
-      break;
+        break;
       case 'Digital PTZ':
         $scope.data.isDPTZ = true;
-      break;
+        break;
     }
 
-    $scope.changeZoomMode = function(_zoomMode)
-    {
-      switch(_zoomMode)
-      {
+    $scope.changeZoomMode = function(_zoomMode) {
+      switch (_zoomMode) {
         case "Digital Zoom":
           changeToDigitalZoom();
-        break;
+          break;
         case "PTZ":
           chnageToPTZ();
-        break;
+          break;
         case "Digital PTZ":
           changeToDPTZ();
-        break;
+          break;
       }
     };
 
@@ -48,12 +44,12 @@ kindFramework.controller('ModalInstncePTZModeCtrl',
     }
 
     function chnageToPTZ() {
-      $uibModalInstance.close('PTZ'); 
+      $uibModalInstance.close('PTZ');
     }
 
     function changeToDPTZ() {
-      var successCallback = function(response){
-        var DEFAULT_CHANNEL=0;
+      var successCallback = function(response) {
+        var DEFAULT_CHANNEL = 0;
         var profileList = response.data.VideoProfiles[DEFAULT_CHANNEL].Profiles;
         // for(var i = 0; i < profileList.length; i++) { // check if dptz profile is set or not
         //   if(profileList[i].IsDigitalPTZProfile !== undefined) {
@@ -67,34 +63,40 @@ kindFramework.controller('ModalInstncePTZModeCtrl',
         //   }
         // }
         var currentProfile = UniversialManagerService.getProfileInfo(data);
-        for(var i = 0; i < profileList.length; i++) // check if dptz profile is selected or not
+        for (var i = 0; i < profileList.length; i++) // check if dptz profile is selected or not
         {
-          if(currentProfile.ViewModeType === "QuadView" || currentProfile.IsDigitalPTZProfile === true)
-          {
+          if (currentProfile.ViewModeType === "QuadView" || currentProfile.IsDigitalPTZProfile === true) {
             $uibModalInstance.close('Digital PTZ');
             UniversialManagerService.setViewModeType("QuadView");
             return;
           } else {
             var msg = null;
-            if(sunapiAttributes.FisheyeLens) {
+            if (sunapiAttributes.FisheyeLens) {
               msg = "lang_dptz_viewtype_select";
             } else {
               msg = "lang_dptzprofile_select";
             }
-            ModalManagerService.open('message', { 'buttonCount': 0, 'message': msg } );
+            ModalManagerService.open('message', {
+              'buttonCount': 0,
+              'message': msg
+            });
             $uibModalInstance.dismiss();
             return;
           }
         }
       };
       var errorCallback = function() {
-        ModalManagerService.open('message', { 'buttonCount': 0, 'message': "Sunapi error" } );
+        ModalManagerService.open('message', {
+          'buttonCount': 0,
+          'message': "Sunapi error"
+        });
       };
-      SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', {}, successCallback, errorCallback,'',true);      
+      SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', {}, successCallback, errorCallback, '', true);
     }
 
     $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss();
     }, $scope);
 
-}]);
+  }
+]);

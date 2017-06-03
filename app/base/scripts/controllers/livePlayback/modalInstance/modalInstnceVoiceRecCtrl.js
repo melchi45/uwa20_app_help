@@ -1,14 +1,13 @@
-kindFramework.controller('ModalInstnceVoiceRecCtrl',
-  ['$scope', '$rootScope', '$uibModalInstance', 
-  function ($scope, $rootScope, $uibModalInstance) {
+kindFramework.controller('ModalInstnceVoiceRecCtrl', ['$scope', '$rootScope', '$uibModalInstance',
+  function($scope, $rootScope, $uibModalInstance) {
     'use strict';
-     /*fixed VOICE_REC_MAX data count*/
+    /*fixed VOICE_REC_MAX data count*/
     var VOICE_REC_MAX = 10;
     var voiceRecControl = $scope.voiceRecControl = {
       visibility: false,
       visibilityCheckbox: false,
       visibilityNewRecord: false,
-      datas:[],
+      datas: [],
       deleteRec: function() {
         voiceRecControl.visibilityCheckbox = false;
       },
@@ -53,10 +52,10 @@ kindFramework.controller('ModalInstnceVoiceRecCtrl',
         },
       ];
       var idx = 0;
-      for(idx = 0; idx < dummyData.length ; idx++) {
+      for (idx = 0; idx < dummyData.length; idx++) {
         voiceRecControl.datas.push(dummyData[idx]);
       }
-      while(idx < VOICE_REC_MAX){
+      while (idx < VOICE_REC_MAX) {
         voiceRecControl.datas.push({
           'title': 'New Voice',
           'isEmpty': true,
@@ -71,8 +70,9 @@ kindFramework.controller('ModalInstnceVoiceRecCtrl',
     $scope.cancel = function() {
       $uibModalInstance.dismiss('cancel');
     };
-    
+
     $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
-}]);
+  }
+]);

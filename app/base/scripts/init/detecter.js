@@ -1,8 +1,8 @@
 "use strict";
-var detector = (function(){
+var detector = (function() {
   /**
-    * See useragents.js for examples of navigator.userAgent
-    */
+   * See useragents.js for examples of navigator.userAgent
+   */
 
   var t = true;
 
@@ -19,14 +19,14 @@ var detector = (function(){
     }
 
     var iosdevice = getFirstMatch(/(ipod|iphone|ipad)/i).toLowerCase(),
-        likeAndroid = /like android/i.test(ua),
-        android = !likeAndroid && /android/i.test(ua),
-        chromeBook = /CrOS/.test(ua),
-        edgeVersion = getFirstMatch(/edge\/(\d+(\.\d+)?)/i),
-        versionIdentifier = getFirstMatch(/version\/(\d+(\.\d+)?)/i),
-        tablet = /tablet/i.test(ua),
-        mobile = !tablet && /[^-]mobi/i.test(ua),
-        result = null;
+      likeAndroid = /like android/i.test(ua),
+      android = !likeAndroid && /android/i.test(ua),
+      chromeBook = /CrOS/.test(ua),
+      edgeVersion = getFirstMatch(/edge\/(\d+(\.\d+)?)/i),
+      versionIdentifier = getFirstMatch(/version\/(\d+(\.\d+)?)/i),
+      tablet = /tablet/i.test(ua),
+      mobile = !tablet && /[^-]mobi/i.test(ua),
+      result = null;
 
     if (/opera|opr/i.test(ua)) {
       result = {
@@ -34,15 +34,13 @@ var detector = (function(){
         opera: t,
         version: versionIdentifier || getFirstMatch(/(?:opera|opr)[\s\/](\d+(\.\d+)?)/i)
       };
-    }
-    else if (/yabrowser/i.test(ua)) {
+    } else if (/yabrowser/i.test(ua)) {
       result = {
         name: 'Yandex Browser',
         yandexbrowser: t,
         version: versionIdentifier || getFirstMatch(/(?:yabrowser)[\s\/](\d+(\.\d+)?)/i)
       };
-    }
-    else if (/windows phone/i.test(ua)) {
+    } else if (/windows phone/i.test(ua)) {
       result = {
         name: 'Windows Phone',
         windowsphone: t
@@ -50,13 +48,11 @@ var detector = (function(){
       if (edgeVersion) {
         result.msedge = t;
         result.version = edgeVersion;
-      }
-      else {
+      } else {
         result.msie = t;
         result.version = getFirstMatch(/iemobile\/(\d+(\.\d+)?)/i);
       }
-    }
-    else if (/msie|trident/i.test(ua)) {
+    } else if (/msie|trident/i.test(ua)) {
       result = {
         name: 'Internet Explorer',
         msie: t,
@@ -75,38 +71,33 @@ var detector = (function(){
         msedge: t,
         version: edgeVersion
       };
-    }
-    else if (/chrome|crios|crmo/i.test(ua)) {
+    } else if (/chrome|crios|crmo/i.test(ua)) {
       result = {
         name: 'Chrome',
         chrome: t,
         version: getFirstMatch(/(?:chrome|crios|crmo)\/(\d+(\.\d+)?)/i)
       };
-    }
-    else if (iosdevice) {
+    } else if (iosdevice) {
       result = {
-        name : iosdevice === 'iphone' ? 'iPhone' : iosdevice === 'ipad' ? 'iPad' : 'iPod'
+        name: iosdevice === 'iphone' ? 'iPhone' : iosdevice === 'ipad' ? 'iPad' : 'iPod'
       };
       // WTF: version is not part of user agent in web apps
       if (versionIdentifier) {
         result.version = versionIdentifier;
       }
-    }
-    else if (/sailfish/i.test(ua)) {
+    } else if (/sailfish/i.test(ua)) {
       result = {
         name: 'Sailfish',
         sailfish: t,
         version: getFirstMatch(/sailfish\s?browser\/(\d+(\.\d+)?)/i)
       };
-    }
-    else if (/seamonkey\//i.test(ua)) {
+    } else if (/seamonkey\//i.test(ua)) {
       result = {
         name: 'SeaMonkey',
         seamonkey: t,
         version: getFirstMatch(/seamonkey\/(\d+(\.\d+)?)/i)
       };
-    }
-    else if (/firefox|iceweasel/i.test(ua)) {
+    } else if (/firefox|iceweasel/i.test(ua)) {
       result = {
         name: 'Firefox',
         firefox: t,
@@ -115,71 +106,62 @@ var detector = (function(){
       if (/\((mobile|tablet);[^\)]*rv:[\d\.]+\)/i.test(ua)) {
         result.firefoxos = t;
       }
-    }
-    else if (/silk/i.test(ua)) {
-      result =  {
+    } else if (/silk/i.test(ua)) {
+      result = {
         name: 'Amazon Silk',
         silk: t,
-        version : getFirstMatch(/silk\/(\d+(\.\d+)?)/i)
+        version: getFirstMatch(/silk\/(\d+(\.\d+)?)/i)
       };
-    }
-    else if (android) {
+    } else if (android) {
       result = {
         name: 'Android',
         version: versionIdentifier
       };
-    }
-    else if (/phantom/i.test(ua)) {
+    } else if (/phantom/i.test(ua)) {
       result = {
         name: 'PhantomJS',
         phantom: t,
         version: getFirstMatch(/phantomjs\/(\d+(\.\d+)?)/i)
       };
-    }
-    else if (/blackberry|\bbb\d+/i.test(ua) || /rim\stablet/i.test(ua)) {
+    } else if (/blackberry|\bbb\d+/i.test(ua) || /rim\stablet/i.test(ua)) {
       result = {
         name: 'BlackBerry',
         blackberry: t,
         version: versionIdentifier || getFirstMatch(/blackberry[\d]+\/(\d+(\.\d+)?)/i)
       };
-    }
-    else if (/(web|hpw)os/i.test(ua)) {
+    } else if (/(web|hpw)os/i.test(ua)) {
       result = {
         name: 'WebOS',
         webos: t,
         version: versionIdentifier || getFirstMatch(/w(?:eb)?osbrowser\/(\d+(\.\d+)?)/i)
       };
-      if(/touchpad\//i.test(ua)){
-         result.touchpad = t;
+      if (/touchpad\//i.test(ua)) {
+        result.touchpad = t;
       }
-    }
-    else if (/bada/i.test(ua)) {
+    } else if (/bada/i.test(ua)) {
       result = {
         name: 'Bada',
         bada: t,
         version: getFirstMatch(/dolfin\/(\d+(\.\d+)?)/i)
       };
-    }
-    else if (/tizen/i.test(ua)) {
+    } else if (/tizen/i.test(ua)) {
       result = {
         name: 'Tizen',
         tizen: t,
         version: getFirstMatch(/(?:tizen\s?)?browser\/(\d+(\.\d+)?)/i) || versionIdentifier
       };
-    }
-    else if (/safari/i.test(ua)) {
+    } else if (/safari/i.test(ua)) {
       result = {
         name: 'Safari',
         safari: t,
         version: versionIdentifier
       };
-    }
-    else {
+    } else {
       result = {
         name: getFirstMatch(/^(.*)\/(.*) /),
         version: getSecondMatch(/^(.*)\/(.*) /)
       };
-   }
+    }
 
     // set webkit or gecko flag for browsers based on these engines
     if (!result.msedge && /(apple)?webkit/i.test(ua)) {
@@ -235,24 +217,23 @@ var detector = (function(){
     // Graded Browser Support
     // http://developer.yahoo.com/yui/articles/gbs
     if (result.msedge ||
-        (result.msie && result.version >= 10) ||
-        (result.yandexbrowser && result.version >= 15) ||
-        (result.chrome && result.version >= 20) ||
-        (result.firefox && result.version >= 20.0) ||
-        (result.safari && result.version >= 6) ||
-        (result.opera && result.version >= 10.0) ||
-        (result.ios && result.osversion && result.osversion.split(".")[0] >= 6) ||
-        (result.blackberry && result.version >= 10.1)
-        ) {
+      (result.msie && result.version >= 10) ||
+      (result.yandexbrowser && result.version >= 15) ||
+      (result.chrome && result.version >= 20) ||
+      (result.firefox && result.version >= 20.0) ||
+      (result.safari && result.version >= 6) ||
+      (result.opera && result.version >= 10.0) ||
+      (result.ios && result.osversion && result.osversion.split(".")[0] >= 6) ||
+      (result.blackberry && result.version >= 10.1)
+    ) {
       result.a = t;
-    }
-    else if ((result.msie && result.version < 10) ||
-        (result.chrome && result.version < 20) ||
-        (result.firefox && result.version < 20.0) ||
-        (result.safari && result.version < 6) ||
-        (result.opera && result.version < 10.0) ||
-        (result.ios && result.osversion && result.osversion.split(".")[0] < 6)
-        ) {
+    } else if ((result.msie && result.version < 10) ||
+      (result.chrome && result.version < 20) ||
+      (result.firefox && result.version < 20.0) ||
+      (result.safari && result.version < 6) ||
+      (result.opera && result.version < 10.0) ||
+      (result.ios && result.osversion && result.osversion.split(".")[0] < 6)
+    ) {
       result.c = t;
     } else {
       result.x = t;
@@ -263,7 +244,7 @@ var detector = (function(){
 
   var bowser = detect(typeof navigator !== 'undefined' ? navigator.userAgent : '');
 
-  bowser.test = function (browserList) {
+  bowser.test = function(browserList) {
     for (var i = 0; i < browserList.length; ++i) {
       var browserItem = browserList[i];
       if (typeof browserItem === 'string') {

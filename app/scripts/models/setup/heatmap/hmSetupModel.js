@@ -1,8 +1,7 @@
 "use strict";
 
-kindFramework.factory('HMSetupModel', function(){
-	var HMSetupModel = function(){
-	};
+kindFramework.factory('HMSetupModel', function() {
+  var HMSetupModel = function() {};
 
-	return HMSetupModel;
+  return HMSetupModel;
 });

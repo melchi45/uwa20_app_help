@@ -1,6 +1,5 @@
-kindFramework.controller('ModalInstnceFavoriteCtrl',
-  ['$scope', '$rootScope', '$uibModalInstance',
-  function ($scope, $rootScope, $uibModalInstance) {
+kindFramework.controller('ModalInstnceFavoriteCtrl', ['$scope', '$rootScope', '$uibModalInstance',
+  function($scope, $rootScope, $uibModalInstance) {
     'use strict';
     var FAVORITE_STEPS = ['input', 'message', 'option'];
 
@@ -18,4 +17,5 @@ kindFramework.controller('ModalInstnceFavoriteCtrl',
     $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
-}]);
+  }
+]);

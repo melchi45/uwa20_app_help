@@ -5,6 +5,7 @@
  * If you want to cancel the text selection during the dragging,
  * Use class '.kind-svg-editor-drawing' in the your Stylesheet.
  */
+
 body.kind-svg-editor-drawing h1,
 body.kind-svg-editor-drawing h2,
 body.kind-svg-editor-drawing h3,
@@ -16,8 +17,8 @@ body.kind-svg-editor-drawing p,
 body.kind-svg-editor-drawing pre,
 body.kind-svg-editor-drawing button,
 body.kind-svg-editor-drawing input {
-	user-select: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }

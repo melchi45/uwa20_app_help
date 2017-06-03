@@ -1,18 +1,17 @@
-kindFramework.controller('ModalInstnceTrackingCtrl', 
-  ['$scope', '$rootScope', '$uibModalInstance', 'data', 'PTZContorlService',
-  function ($scope, $rootScope, $uibModalInstance, data, PTZContorlService) {
+kindFramework.controller('ModalInstnceTrackingCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'data', 'PTZContorlService',
+  function($scope, $rootScope, $uibModalInstance, data, PTZContorlService) {
     "use strict";
-    
+
     $scope.selectMenu = {
       isAutoOn: PTZContorlService.getAutoTrackingMode() === "True",
       isManualOn: PTZContorlService.getManualTrackingMode() === "True",
-      onAuto: function(){
-          $scope.selectMenu.isAutoOn = true;
-          $scope.selectMenu.isManualOn = false;
+      onAuto: function() {
+        $scope.selectMenu.isAutoOn = true;
+        $scope.selectMenu.isManualOn = false;
       },
-      onManual: function(){
-          $scope.selectMenu.isAutoOn = false;
-          $scope.selectMenu.isManualOn = true; 
+      onManual: function() {
+        $scope.selectMenu.isAutoOn = false;
+        $scope.selectMenu.isManualOn = true;
       }
     };
     $scope.setAutoTracking = function() {
@@ -20,7 +19,7 @@ kindFramework.controller('ModalInstnceTrackingCtrl',
       if ($scope.selectMenu.isAutoOn) {
         PTZContorlService.setAutoTrackingMode("False");
       } else {
-        if($scope.selectMenu.isManualOn) {
+        if ($scope.selectMenu.isManualOn) {
           PTZContorlService.setManualTrackingMode("False");
         }
         PTZContorlService.setAutoTrackingMode("True");
@@ -34,7 +33,7 @@ kindFramework.controller('ModalInstnceTrackingCtrl',
       if ($scope.selectMenu.isManualOn) {
         PTZContorlService.setManualTrackingMode("False");
       } else {
-        if($scope.selectMenu.isAutoOn) {
+        if ($scope.selectMenu.isAutoOn) {
           PTZContorlService.setAutoTrackingMode("False");
         }
         PTZContorlService.setManualTrackingMode("True");
@@ -42,8 +41,9 @@ kindFramework.controller('ModalInstnceTrackingCtrl',
       }
       $uibModalInstance.close();
     };
-    
+
     $rootScope.$saveOn('allpopupclose', function(event) {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
-}]);
+  }
+]);

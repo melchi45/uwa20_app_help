@@ -1,7 +1,7 @@
-kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStreamInterface', 
+kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStreamInterface',
   function($q, LoggingService, kindStreamInterface) {
     "use strict";
-    
+
     var downCheck = false;
     var zoomX = 0.0;
     var zoomY = 0.0;
@@ -32,18 +32,18 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
       return zoomData;
     }
 
-    function eventHandler(event,eventType,element) {
+    function eventHandler(event, eventType, element) {
       if (!event) {
         event = window.event;
       }
-      
+
       if (eventType === "mousewheel") {
         event.stopPropagation();
-        event.preventDefault ();
+        event.preventDefault();
         var zoomChange = false;
         var delta = event.wheelDelta ? event.wheelDelta : -event.detail;
-        delta = delta/120;
-        if(delta > 0 && zoomZ <= maxZoomZLevel) {
+        delta = delta / 120;
+        if (delta > 0 && zoomZ <= maxZoomZLevel) {
           zoomChange = true;
           zoomZ += zoomScale;
         } else if (delta < 0 && zoomZ >= minZoomZLevel) {
@@ -64,7 +64,7 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
               zoomY += zoomValue / 1000;
             }
           }
-        } 
+        }
 
         if (zoomZ <= initZoomZ) {
           zoomX = 0;
@@ -90,14 +90,14 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
       } else if (eventType === "mousedown") {
         event.preventDefault();
         //마우스 왼쪽 버튼만 허용
-        if(event.button !== 0) return;
+        if (event.button !== 0) return;
 
         downCheck = true;
         curX = event.offsetX;
         curY = event.offsetY;
       } else if (eventType === "mousemove") {
         event.preventDefault();
-        if(downCheck) {
+        if (downCheck) {
           var tempZoomX = 0;
           var tempZoomY = 0;
 
@@ -106,7 +106,7 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
 
           //console.log("pixelCounterService::X = " + Math.abs(moveX) + "px, Y = " + Math.abs(moveY) + "px");
           callbackFunc(curX, curY, moveX, moveY);
-        }         
+        }
       } else if (eventType === "mouseup") {
         downCheck = false;
       }
@@ -114,21 +114,35 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
 
     function mouseWheel(event) {
       var zoomArray = eventHandler(event, "mousewheel", null);
-      kindStreamInterface.changeDrawInfo(zoomArray); 
+      kindStreamInterface.changeDrawInfo(zoomArray);
     }
-    function mouseDown(event) { eventHandler(event,"mousedown", null); }
-    function mouseMove(event) { eventHandler(event, "mousemove", null); }
-    function mouseUp(event) { eventHandler(event,"mouseup", null); }
-    function mouseLeave(event) { eventHandler(event,"mouseleave", null); }  
-    function setMouseDown(){
+
+    function mouseDown(event) {
+      eventHandler(event, "mousedown", null);
+    }
+
+    function mouseMove(event) {
+      eventHandler(event, "mousemove", null);
+    }
+
+    function mouseUp(event) {
+      eventHandler(event, "mouseup", null);
+    }
+
+    function mouseLeave(event) {
+      eventHandler(event, "mouseleave", null);
+    }
+
+    function setMouseDown() {
       downCheck = false;
     }
 
     var agent = navigator.userAgent.toLowerCase();
+
     function setElementEvent(element) {
-      if(agent.indexOf("firefox") !== -1) {
+      if (agent.indexOf("firefox") !== -1) {
         element.addEventListener('DOMMouseScroll', mouseWheel);
-      }else{
+      } else {
         element.addEventListener('mousewheel', mouseWheel);
       }
       element.addEventListener('mousedown', mouseDown);
@@ -140,9 +154,9 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
     }
 
     function deleteElementEvent(element) {
-      if(agent.indexOf("firefox") !== -1) {
+      if (agent.indexOf("firefox") !== -1) {
         element.removeEventListener('DOMMouseScroll', mouseWheel);
-      }else{
+      } else {
         element.removeEventListener('mousewheel', mouseWheel);
       }
       element.removeEventListener('mousedown', mouseDown);
@@ -158,10 +172,11 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
     }
 
     return {
-      init : init,
-      eventHandler : eventHandler,
-      setElementEvent : setElementEvent,
-      deleteElementEvent : deleteElementEvent,
-      setCallbackFunc : setCallbackFunc
+      init: init,
+      eventHandler: eventHandler,
+      setElementEvent: setElementEvent,
+      deleteElementEvent: deleteElementEvent,
+      setCallbackFunc: setCallbackFunc
     };
-}]);
+  }
+]);

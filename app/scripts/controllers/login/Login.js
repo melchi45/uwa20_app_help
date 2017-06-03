@@ -1,13 +1,12 @@
 /*global BaseLogin*/
-kindFramework.controller('LoginCtrl',
-	['$controller', '$scope','SessionOfUserManager','SunapiClient',
-    'CAMERA_TYPE', 'ModalManagerService', '$timeout', 'UniversialManagerService', 
-    'CAMERA_STATUS', 'AccountService', 'LoginModel', 'RESTCLIENT_CONFIG','Attributes',
-    'MultiLanguage','ConnectionSettingService','$state',
-    function($controller, $scope,SessionOfUserManager, SunapiClient,
-        CAMERA_TYPE, ModalManagerService, $timeout, UniversialManagerService, 
-        CAMERA_STATUS,AccountService, LoginModel, RESTCLIENT_CONFIG, Attributes,
-        MultiLanguage, ConnectionSettingService, $state){
+kindFramework.controller('LoginCtrl', ['$controller', '$scope', 'SessionOfUserManager', 'SunapiClient',
+  'CAMERA_TYPE', 'ModalManagerService', '$timeout', 'UniversialManagerService',
+  'CAMERA_STATUS', 'AccountService', 'LoginModel', 'RESTCLIENT_CONFIG', 'Attributes',
+  'MultiLanguage', 'ConnectionSettingService', '$state',
+  function($controller, $scope, SessionOfUserManager, SunapiClient,
+    CAMERA_TYPE, ModalManagerService, $timeout, UniversialManagerService,
+    CAMERA_STATUS, AccountService, LoginModel, RESTCLIENT_CONFIG, Attributes,
+    MultiLanguage, ConnectionSettingService, $state) {
     "use strict";
     var self = this;
     var loginModel = new LoginModel();
@@ -21,126 +20,124 @@ kindFramework.controller('LoginCtrl',
     BaseLogin.prototype.getAttributes = function() {
       var mAttr = Attributes.get();
 
-      if (!mAttr.Ready || mAttr.GetFail)
-      {
-          Attributes.initialize(1000);
+      if (!mAttr.Ready || mAttr.GetFail) {
+        Attributes.initialize(1000);
       }
     };
 
     BaseLogin.prototype.loginIPOLISWeb_No_Digest = function() {
-    	var _self = this;
+      var _self = this;
       var userId = '';
       var userPassword = '';
       SunapiClient.get(
-        '/stw-cgi/security.cgi?msubmenu=users&action=view',
-        {},
+        '/stw-cgi/security.cgi?msubmenu=users&action=view', {},
         function(response) {
           self.setAccountData(response);
 
           SessionOfUserManager.AddSession($scope.loginInfo.id, '', $scope.loginInfo.serviceType);
           SessionOfUserManager.SetLogin();
 
-          if(userPassword === 4321 && userId === 'admin') // jshint ignore:line
+          if (userPassword === 4321 && userId === 'admin') // jshint ignore:line
           {
             $state.go('change_password');
-          }
-          else
-          {
+          } else {
             SunapiClient.get(
-              '/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', 
-              {}, 
+              '/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', {},
               function(response) {
-                if(SessionOfUserManager.IsLoggedin()){
-                    $scope.currentLanguage = response.data.Language;
-                    MultiLanguage.setLanguage($scope.currentLanguage);
-                    console.log(" -- Current Login language = [ " + $scope.currentLanguage + " ]");
-                    _self.successLogin();
-                    ConnectionSettingService.setConnectionInfo($scope.loginInfo);
-                    UniversialManagerService.setUserId($scope.loginInfo.id);
-                    $state.go('uni.channel');
+                if (SessionOfUserManager.IsLoggedin()) {
+                  $scope.currentLanguage = response.data.Language;
+                  MultiLanguage.setLanguage($scope.currentLanguage);
+                  console.log(" -- Current Login language = [ " + $scope.currentLanguage + " ]");
+                  _self.successLogin();
+                  ConnectionSettingService.setConnectionInfo($scope.loginInfo);
+                  UniversialManagerService.setUserId($scope.loginInfo.id);
+                  $state.go('uni.channel');
                 }
               },
               function(errorData) {
-                      console.error(errorData);
+                console.error(errorData);
               },
               '',
               true);
           }
         },
         function(errorData) {
-                console.error(errorData);
-        },'',true);
+          console.error(errorData);
+        }, '', true);
     };
 
     BaseLogin.prototype.loginIPOLISWeb = function() {
-    	var _self = this;
-      var successCallBack = function(response)
-      {
-        SunapiClient.get('/stw-cgi/security.cgi?msubmenu=users&action=view',{}, self.setAccountData ,
-        	self.userAccessInfoFailureCallback, {}, false);
+      var _self = this;
+      var successCallBack = function(response) {
+        SunapiClient.get('/stw-cgi/security.cgi?msubmenu=users&action=view', {}, self.setAccountData,
+          self.userAccessInfoFailureCallback, {}, false);
         $timeout.cancel(timeOutPromise);
-        if(timeOutflag)
-        {
-          if($scope.loginInfo.password === '4321' && $scope.loginInfo.id === 'admin')
-          {
+        if (timeOutflag) {
+          if ($scope.loginInfo.password === '4321' && $scope.loginInfo.id === 'admin') {
             $timeout(function() {
-              $scope.$apply(function(){
+              $scope.$apply(function() {
                 $state.go('change_password');
               });
             });
-          }
-          else{
-            if(SessionOfUserManager.IsLoggedin()){
+          } else {
+            if (SessionOfUserManager.IsLoggedin()) {
               $scope.currentLanguage = response.data.Language;
               MultiLanguage.setLanguage($scope.currentLanguage);
               console.log(" -- Current Login language = [ " + $scope.currentLanguage + " ]");
               _self.successLogin();
-              if($scope.desktopAppInfo.isDesktopApp === true){
+              if ($scope.desktopAppInfo.isDesktopApp === true) {
                 ConnectionSettingService.changeServerAddress($scope.desktopAppInfo.ipAddress);
               }
               ConnectionSettingService.setConnectionInfo($scope.loginInfo);
               UniversialManagerService.setUserId($scope.loginInfo.id);
               $state.go('uni.channel');
             }
-          }                     
+          }
         }
       };
-      var errorCallBack = function(errorData,errorCode) {
+      var errorCallBack = function(errorData, errorCode) {
         $timeout.cancel(timeOutPromise);
-        if(timeOutflag)
-        {
+        if (timeOutflag) {
           self.failedLogin();
           SessionOfUserManager.UnSetLogin();
-				
-					var msg = loginModel.getIPOLISWebErrorMessage(errorCode);
 
-          if(typeof errorCode !== 'undefined')
-          {
-              if(errorCode === 490)
-              {
-                self.failedLogin();
-                ModalManagerService.open('message', { 'buttonCount': 0, 'message': msg } );
-              }
-              else if(errorCode === 401)
-              {
-              	ModalManagerService.open('message', { 'buttonCount': 0, 'message': msg } );
-              }
+          var msg = loginModel.getIPOLISWebErrorMessage(errorCode);
+
+          if (typeof errorCode !== 'undefined') {
+            if (errorCode === 490) {
+              self.failedLogin();
+              ModalManagerService.open('message', {
+                'buttonCount': 0,
+                'message': msg
+              });
+            } else if (errorCode === 401) {
+              ModalManagerService.open('message', {
+                'buttonCount': 0,
+                'message': msg
+              });
+            }
           } else {
-              ModalManagerService.open('message', { 'buttonCount': 0, 'message': msg } );
-          }                              
+            ModalManagerService.open('message', {
+              'buttonCount': 0,
+              'message': msg
+            });
+          }
         }
       };
       var timeOutCallBack = function() {
         timeOutflag = false;
         self.failedLogin();
-				var msg = loginModel.getTimeoutMessage();
+        var msg = loginModel.getTimeoutMessage();
         SessionOfUserManager.UnSetLogin();
-        ModalManagerService.open('message', { 'buttonCount': 0, 'message': msg } );
+        ModalManagerService.open('message', {
+          'buttonCount': 0,
+          'message': msg
+        });
       };
 
       var timeOutflag = true;
 
-      if($scope.desktopAppInfo.isDesktopApp === true){
+      if ($scope.desktopAppInfo.isDesktopApp === true) {
         RESTCLIENT_CONFIG.digest.hostName = $scope.desktopAppInfo.ipAddress;
       }
 
@@ -148,20 +145,26 @@ kindFramework.controller('LoginCtrl',
       SessionOfUserManager.AddSession($scope.loginInfo.id, $scope.loginInfo.password, $scope.loginInfo.serviceType);
       SessionOfUserManager.SetLogin();
       timeOutPromise = $timeout(timeOutCallBack, 5000);
-      SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', {}, successCallBack ,errorCallBack,'',true);
+      SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', {}, successCallBack, errorCallBack, '', true);
     };
 
 
     angular.extend(this, $controller('BaseLoginCtrl', {
-      $scope:$scope, SessionOfUserManager:SessionOfUserManager, SunapiClient:SunapiClient,
-      CAMERA_TYPE:CAMERA_TYPE, ModalManagerService:ModalManagerService, $timeout:$timeout, 
-      UniversialManagerService:UniversialManagerService, CAMERA_STATUS:CAMERA_STATUS,
-      AccountService:AccountService, LoginModel:LoginModel, RESTCLIENT_CONFIG:RESTCLIENT_CONFIG
+      $scope: $scope,
+      SessionOfUserManager: SessionOfUserManager,
+      SunapiClient: SunapiClient,
+      CAMERA_TYPE: CAMERA_TYPE,
+      ModalManagerService: ModalManagerService,
+      $timeout: $timeout,
+      UniversialManagerService: UniversialManagerService,
+      CAMERA_STATUS: CAMERA_STATUS,
+      AccountService: AccountService,
+      LoginModel: LoginModel,
+      RESTCLIENT_CONFIG: RESTCLIENT_CONFIG
     }));
 
-    if(RESTCLIENT_CONFIG.serverType === 'camera')
-    {
-        $scope.onSubmitHandle();    
+    if (RESTCLIENT_CONFIG.serverType === 'camera') {
+      $scope.onSubmitHandle();
     }
 
 
@@ -169,4 +172,5 @@ kindFramework.controller('LoginCtrl',
       isDesktopApp: window.isDesktopApp,
       ipAddress: ""
     };
-}]);
+  }
+]);

@@ -7,8 +7,7 @@
 
 kindFramework.constant('ROUTE_CONFIG', {
   default: 'login',
-  routes: [
-    {
+  routes: [{
       urlName: 'login',
       name: 'Login Design',
       templateUrl: 'views/login/login.html',
@@ -21,124 +20,121 @@ kindFramework.constant('ROUTE_CONFIG', {
       controller: 'LoginFailCtrl'
     },
     {
-     urlName: 'find_auth',
-     name: 'Find Auth',
-     templateUrl: 'views/login/find_auth.html',
-     controller: 'FindAuthCtrl'
+      urlName: 'find_auth',
+      name: 'Find Auth',
+      templateUrl: 'views/login/find_auth.html',
+      controller: 'FindAuthCtrl'
     },
-				{
-					urlName: 'change_password',
-					name: 'Change Password',
-					templateUrl: 'views/login/change_password.html',
-					controller: 'ChangePasswordCtrl'
-				},
     {
-     urlName: 'uni',
-     name: 'BtoBMain view',
-     templateUrl: 'views/livePlayback/main.html',
-     controller: 'UniversalMainCtrl',
-     childs: [
-      {
-       urlName: 'channellist',
-       name: 'channelList',
-       templateUrl: 'views/livePlayback/channellist.html',
-       controller: 'ChannelListCtrl',
-      },
-      {
-       urlName: 'channel',
-       name: 'channel',
-       templateUrl: 'views/livePlayback/channel.html',
-       controller: 'ChannelCtrl'
-      },
-      {
-       urlName: 'playbackChannel',
-       name: 'playbackChannel',
-       templateUrl: 'views/livePlayback/channel.playback.html',
-       controller: 'PlaybackChannelCtrl'
-      },
-      {
-       urlName: 'channelA',
-       name: 'channelA',
-       templateUrl: 'views/livePlayback/channel.all.html',
-       controller: 'ChannelCtrlAll',
-      },
-      {
-       urlName: 'setup',
-       name: 'setup',
-       templateUrl: 'views/setup/b2bMobileSetup.html',
-       controller: 'SetupCtrl',
-      },
-      {
-       urlName: 'mainRegistration',
-       name: 'mainRegistrationPage',
-       templateUrl: 'views/device_registration/mainRegistration.html',
-       controller: 'mainRegistrationCtrl',
-      },
-      {
-       urlName: 'addDevice',
-       name: 'addDevice',
-       templateUrl: 'views/device_registration/addDevice.html',
-       controller: 'AddDeviceCtrl',
-      },
-      {
-       urlName: 'autoRegistration',
-       name: 'autoRegistration',
-       templateUrl: 'views/device_registration/autoRegistration.html',
-       controller: 'autoRegistrationCtrl',
-      },
-      {
-       urlName: 'event',
-       name: 'event',
-       templateUrl: 'views/event/event.html',
-       controller: 'eventCtrl',
-       childs: [
-        {
-         urlName: 'list',
-         name: 'eventList',
-         templateUrl: 'views/event/event_list.html',
-         controller: 'EventListCtrl'
+      urlName: 'change_password',
+      name: 'Change Password',
+      templateUrl: 'views/login/change_password.html',
+      controller: 'ChangePasswordCtrl'
+    },
+    {
+      urlName: 'uni',
+      name: 'BtoBMain view',
+      templateUrl: 'views/livePlayback/main.html',
+      controller: 'UniversalMainCtrl',
+      childs: [{
+          urlName: 'channellist',
+          name: 'channelList',
+          templateUrl: 'views/livePlayback/channellist.html',
+          controller: 'ChannelListCtrl',
         },
         {
-         urlName: 'spread',
-         name: 'eventSpreadDays',
-         templateUrl: 'views/event/event_spread.html',
-         controller: 'EventSpreadCtrl'
+          urlName: 'channel',
+          name: 'channel',
+          templateUrl: 'views/livePlayback/channel.html',
+          controller: 'ChannelCtrl'
         },
         {
-         urlName: 'play',
-         name: 'eventPlay',
-         templateUrl: 'views/event/event_play.html',
-         controller: 'EventPlayCtrl'
-        }
-       ]
-      },
-      {
-       urlName: 'bookmark',
-       name: 'bookmark',
-       templateUrl: 'views/bookmark/bookmark.html',
-       controller: 'BookmarkCtrl',
-       childs: [
-        {
-         urlName: 'list',
-         name: 'bookmarkList',
-         templateUrl: 'views/bookmark/bookmark_list.html',
-         controller: 'BookmarkListCtrl'
+          urlName: 'playbackChannel',
+          name: 'playbackChannel',
+          templateUrl: 'views/livePlayback/channel.playback.html',
+          controller: 'PlaybackChannelCtrl'
         },
-        // {
-        //  urlName: 'spread',
-        //  name: 'bookmarkSpread',
-        //  templateUrl: 'views/bookmark/bookmark_spread.html',
-        //  controller: 'BookmarkSpreadCtrl',
-        // },
         {
-         urlName: 'play',
-         name: 'bookmarkPlay',
-         templateUrl: 'views/bookmark/bookmark_play.html',
-         controller: 'BookmarkPlayCtrl',
-        }
-       ]
-      },
-     ],
+          urlName: 'channelA',
+          name: 'channelA',
+          templateUrl: 'views/livePlayback/channel.all.html',
+          controller: 'ChannelCtrlAll',
+        },
+        {
+          urlName: 'setup',
+          name: 'setup',
+          templateUrl: 'views/setup/b2bMobileSetup.html',
+          controller: 'SetupCtrl',
+        },
+        {
+          urlName: 'mainRegistration',
+          name: 'mainRegistrationPage',
+          templateUrl: 'views/device_registration/mainRegistration.html',
+          controller: 'mainRegistrationCtrl',
+        },
+        {
+          urlName: 'addDevice',
+          name: 'addDevice',
+          templateUrl: 'views/device_registration/addDevice.html',
+          controller: 'AddDeviceCtrl',
+        },
+        {
+          urlName: 'autoRegistration',
+          name: 'autoRegistration',
+          templateUrl: 'views/device_registration/autoRegistration.html',
+          controller: 'autoRegistrationCtrl',
+        },
+        {
+          urlName: 'event',
+          name: 'event',
+          templateUrl: 'views/event/event.html',
+          controller: 'eventCtrl',
+          childs: [{
+              urlName: 'list',
+              name: 'eventList',
+              templateUrl: 'views/event/event_list.html',
+              controller: 'EventListCtrl'
+            },
+            {
+              urlName: 'spread',
+              name: 'eventSpreadDays',
+              templateUrl: 'views/event/event_spread.html',
+              controller: 'EventSpreadCtrl'
+            },
+            {
+              urlName: 'play',
+              name: 'eventPlay',
+              templateUrl: 'views/event/event_play.html',
+              controller: 'EventPlayCtrl'
+            }
+          ]
+        },
+        {
+          urlName: 'bookmark',
+          name: 'bookmark',
+          templateUrl: 'views/bookmark/bookmark.html',
+          controller: 'BookmarkCtrl',
+          childs: [{
+              urlName: 'list',
+              name: 'bookmarkList',
+              templateUrl: 'views/bookmark/bookmark_list.html',
+              controller: 'BookmarkListCtrl'
+            },
+            // {
+            //  urlName: 'spread',
+            //  name: 'bookmarkSpread',
+            //  templateUrl: 'views/bookmark/bookmark_spread.html',
+            //  controller: 'BookmarkSpreadCtrl',
+            // },
+            {
+              urlName: 'play',
+              name: 'bookmarkPlay',
+              templateUrl: 'views/bookmark/bookmark_play.html',
+              controller: 'BookmarkPlayCtrl',
+            }
+          ]
+        },
+      ],
     },
     {
       urlName: 'setup',
@@ -146,13 +142,11 @@ kindFramework.constant('ROUTE_CONFIG', {
       name: 'lang_top_setup',
       iconClass: "fa fa-cog",
       abstract: true,
-      childs: [
-        {
+      childs: [{
           urlName: 'basic',
           name: 'Basic',
           iconClass: "tui tui-wn5-basic",
-          childs: [
-            {
+          childs: [{
               urlName: 'videoProfile',
               name: 'lang_menu_videoprofile',
               templateUrl: 'views/setup/basic/profile.html',
@@ -188,8 +182,7 @@ kindFramework.constant('ROUTE_CONFIG', {
           urlName: 'ptzSetup',
           name: 'PTZ',
           iconClass: "tui tui-wn5-toolbar-ptz",
-          childs: [
-            {
+          childs: [{
               urlName: 'preset',
               name: 'lang_presetSetup',
               templateUrl: 'views/setup/ptz/preset.html',
@@ -250,44 +243,43 @@ kindFramework.constant('ROUTE_CONFIG', {
               controller: 'dptzSetupCtrl'
             }
           ]
-         },
-         {
+        },
+        {
           urlName: 'videoAudio',
           name: 'lang_left_va',
           iconClass: "tui tui-wn5-toolbar-setup",
-          childs: [
-            {
-             urlName: 'videoSetup',
-             name: 'lang_menu_videosrc',
-             templateUrl: 'views/setup/video&audio/video.html',
-             controller: 'videoCtrl'
-             },
-             /** It is not used as now, can be uesed later */
-             /*{
-              urlName: 'dewarpSetup',
-              name: "lang_menu_viewssetup",
-              templateUrl: 'views/setup/video&audio/dewarpSetup.html',
-              controller: 'dewarpSetupCtrl'
-             },*/
+          childs: [{
+              urlName: 'videoSetup',
+              name: 'lang_menu_videosrc',
+              templateUrl: 'views/setup/video&audio/video.html',
+              controller: 'videoCtrl'
+            },
+            /** It is not used as now, can be uesed later */
+            /*{
+             urlName: 'dewarpSetup',
+             name: "lang_menu_viewssetup",
+             templateUrl: 'views/setup/video&audio/dewarpSetup.html',
+             controller: 'dewarpSetupCtrl'
+            },*/
             {
               urlName: 'audioSetup',
               name: 'lang_menu_audiosrc',
               templateUrl: 'views/setup/video&audio/audio.html',
               controller: 'audioCtrl'
             },
-             {
+            {
               urlName: 'cameraSetup',
               name: 'lang_menu_camera',
               templateUrl: 'views/setup/video&audio/cameraSetup.html',
               controller: 'cameraSetupCtrl'
-             },
-             {
+            },
+            {
               urlName: 'smartCodec',
               name: 'lang_menu_smartcodec',
               templateUrl: 'views/setup/video&audio/smartCodec.html',
               controller: 'smartCodecCtrl'
-             },
-             {
+            },
+            {
               urlName: 'simpleFocus',
               name: 'lang_menu_focus',
               templateUrl: 'views/setup/video&audio/simpleFocus.html',
@@ -300,16 +292,16 @@ kindFramework.constant('ROUTE_CONFIG', {
               controller: 'simpleFocusCtrl'
             },
             {
-             urlName: 'wiseStream',
-             name: "lang_wisestreamWisestream",
-             templateUrl: 'views/setup/video&audio/wisestream.html',
-             controller: 'wiseStreamCtrl'
+              urlName: 'wiseStream',
+              name: "lang_wisestreamWisestream",
+              templateUrl: 'views/setup/video&audio/wisestream.html',
+              controller: 'wiseStreamCtrl'
             },
             {
-             urlName: 'imageAlign',
-             name: 'Image Alignment',
-             templateUrl: 'views/setup/video&audio/imageAlign.html',
-             controller: 'imageAlignCtrl'
+              urlName: 'imageAlign',
+              name: 'Image Alignment',
+              templateUrl: 'views/setup/video&audio/imageAlign.html',
+              controller: 'imageAlignCtrl'
             }
           ]
         },
@@ -317,37 +309,36 @@ kindFramework.constant('ROUTE_CONFIG', {
           urlName: 'network',
           name: 'lang_left_network',
           iconClass: "tui tui-wn5-network",
-          childs: [
-            {
+          childs: [{
               urlName: 'ddns',
               name: 'lang_menu_ddns',
               templateUrl: 'views/setup/network/ddns.html',
               controller: 'ddnsCtrl'
             },
             {
-             urlName: 'ipFiltering',
-             name : 'lang_menu_ipfilter',
-             templateUrl: 'views/setup/network/ipfiltering.html',
-             controller: 'ipfilteringCtrl'
-             },
-             {
-             urlName: 'ssl',
-             name : 'lang_https_str',
-             templateUrl: 'views/setup/network/ssl.html',
-             controller: 'sslCtrl'
-             },
-             {
-             urlName: 'x802',
-             name : 'lang_menu_8021x',
-             templateUrl: 'views/setup/network/8021x.html',
-             controller: '8021xCtrl'
-             },
-             {
-             urlName: 'qos',
-             name : 'lang_menu_qos',
-             templateUrl: 'views/setup/network/qos.html',
-             controller: 'qosCtrl'
-             },
+              urlName: 'ipFiltering',
+              name: 'lang_menu_ipfilter',
+              templateUrl: 'views/setup/network/ipfiltering.html',
+              controller: 'ipfilteringCtrl'
+            },
+            {
+              urlName: 'ssl',
+              name: 'lang_https_str',
+              templateUrl: 'views/setup/network/ssl.html',
+              controller: 'sslCtrl'
+            },
+            {
+              urlName: 'x802',
+              name: 'lang_menu_8021x',
+              templateUrl: 'views/setup/network/8021x.html',
+              controller: '8021xCtrl'
+            },
+            {
+              urlName: 'qos',
+              name: 'lang_menu_qos',
+              templateUrl: 'views/setup/network/qos.html',
+              controller: 'qosCtrl'
+            },
             {
               urlName: 'snmp',
               name: 'lang_menu_snmp',
@@ -366,8 +357,7 @@ kindFramework.constant('ROUTE_CONFIG', {
           urlName: 'event',
           name: 'lang_left_event',
           iconClass: "tui tui-wn5-alarm",
-          childs: [
-            {
+          childs: [{
               urlName: 'eventSetup',
               name: 'lang_menu_eventsetup',
               templateUrl: 'views/setup/event/eventSetup.html',
@@ -419,10 +409,9 @@ kindFramework.constant('ROUTE_CONFIG', {
         },
         {
           urlName: 'analytics',
-          name: 'lang_analytics', 
+          name: 'lang_analytics',
           iconClass: "tui tui-wn5-iva",
-          childs: [
-            {
+          childs: [{
               urlName: 'motionDetection/v2',
               name: 'lang_menu_motiondetection',
               templateUrl: 'views/setup/analytics/motionDetection.html',
@@ -445,7 +434,7 @@ kindFramework.constant('ROUTE_CONFIG', {
               name: 'lang_menu_fogdetection',
               templateUrl: 'views/setup/analytics/fogDetection.html',
               controller: 'fogDetectionCtrl'
-            },            
+            },
             {
               urlName: 'faceDetection',
               name: 'lang_menu_facedetection',
@@ -482,13 +471,11 @@ kindFramework.constant('ROUTE_CONFIG', {
           urlName: 'statistics',
           name: 'lang_statistics',
           iconClass: 'tui tui-statistics',
-          childs: [
-            {
+          childs: [{
               urlName: 'peoplecounting',
               name: 'lang_peoplecounting',
               iconClass: 'tui tui-peoplecounting',
-              childs: [
-                {
+              childs: [{
                   urlName: 'search',
                   name: 'lang_search',
                   templateUrl: 'views/setup/peoplecounting/pcStatisticsSetup.html',
@@ -506,8 +493,7 @@ kindFramework.constant('ROUTE_CONFIG', {
               urlName: 'queue',
               name: 'lang_queue_management',
               iconClass: 'tui tui-wn5-ptz-near',
-              childs: [
-                {
+              childs: [{
                   urlName: 'search',
                   name: 'lang_search',
                   templateUrl: 'views/setup/queue/qmStatistics.html',
@@ -525,8 +511,7 @@ kindFramework.constant('ROUTE_CONFIG', {
               urlName: 'heatmap',
               name: 'lang_heatmap',
               iconClass: 'tui tui-heatmap',
-              childs: [
-                {
+              childs: [{
                   urlName: 'search',
                   name: 'lang_search',
                   templateUrl: 'views/setup/heatmap/hmStatistics.html',
@@ -546,8 +531,7 @@ kindFramework.constant('ROUTE_CONFIG', {
           urlName: 'system',
           name: 'lang_left_system',
           iconClass: "tui tui-wn5-system",
-          childs: [
-            {
+          childs: [{
               urlName: 'productinfo',
               name: 'lang_menu_proinfo',
               templateUrl: 'views/setup/system/productinfo.html',
@@ -577,14 +561,12 @@ kindFramework.constant('ROUTE_CONFIG', {
           urlName: 'openplatform',
           name: 'lang_left_openplatform',
           iconClass: 'tui tui-wn5-open-platform',
-          childs: [
-            {
-             urlName: 'opensdk',
-             name: 'lang_left_openplatform', 
-             templateUrl: 'views/setup/openplatform/opensdk.html',
-             controller: 'opensdkCtrl'
-            },
-          ]
+          childs: [{
+            urlName: 'opensdk',
+            name: 'lang_left_openplatform',
+            templateUrl: 'views/setup/openplatform/opensdk.html',
+            controller: 'opensdkCtrl'
+          }, ]
         }
       ]
     },

@@ -1,6 +1,5 @@
-kindFramework.controller('ModalInstnceSliderCtrl',
-  ['$scope', '$rootScope', '$uibModalInstance', 'data', 'kindStreamInterface', 'UniversialManagerService', 'CAMERA_STATUS',
-  function ($scope, $rootScope, $uibModalInstance, data, kindStreamInterface, UniversialManagerService, CAMERA_STATUS) {
+kindFramework.controller('ModalInstnceSliderCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'data', 'kindStreamInterface', 'UniversialManagerService', 'CAMERA_STATUS',
+  function($scope, $rootScope, $uibModalInstance, data, kindStreamInterface, UniversialManagerService, CAMERA_STATUS) {
     'use strict';
     var sectionLength = data.timeSections.length;
     $scope.message = data.message;
@@ -8,17 +7,17 @@ kindFramework.controller('ModalInstnceSliderCtrl',
       'options': {
         min: parseFloat(data.timeSections[0]),
         max: parseFloat(data.timeSections[sectionLength - 1]),
-        stop: function(event, ui){
-          if(event.type === "slidestop") {
-            if(data.tag === "speaker") {
-              if(checkAudioInputState() === false){
+        stop: function(event, ui) {
+          if (event.type === "slidestop") {
+            if (data.tag === "speaker") {
+              if (checkAudioInputState() === false) {
                 console.log("AudioInput is disabled.");
                 return;
               }
               kindStreamInterface.controlAudioIn(ui.value);
               UniversialManagerService.setSpeakerVol(ui.value);
-            } else if(data.tag === "mic") {
-              if(checkAudioOutputState() === false){
+            } else if (data.tag === "mic") {
+              if (checkAudioOutputState() === false) {
                 console.log("AudioOutput is disabled.");
                 return;
               }
@@ -28,14 +27,14 @@ kindFramework.controller('ModalInstnceSliderCtrl',
           }
         },
       },
-      data : 0,
+      data: 0,
       timeSections: data.timeSections,
       cellStyle: {
-        width: 1/sectionLength * 100 + '%'
+        width: 1 / sectionLength * 100 + '%'
       },
       getCellStyle: function(index) {
         return {
-          left: index * (1/$scope.slider.options.max) * 100 + '%',
+          left: index * (1 / $scope.slider.options.max) * 100 + '%',
         };
       }
     };
@@ -48,19 +47,19 @@ kindFramework.controller('ModalInstnceSliderCtrl',
       $uibModalInstance.dismiss('cancel');
     };
 
-    function checkAudioInputState(){
+    function checkAudioInputState() {
       var profileInfo = UniversialManagerService.getProfileInfo();
-      return profileInfo.AudioInputEnable === true ? true : false; 
+      return profileInfo.AudioInputEnable === true ? true : false;
     }
 
-    function checkAudioOutputState(){
+    function checkAudioOutputState() {
       var data = UniversialManagerService.getIsAudioOutEnabled();
-      return data === true ? true : false; 
+      return data === true ? true : false;
     }
 
-    $scope.onOff = function(){
-      if(data.tag === "speaker") {
-        if(checkAudioInputState() === false){
+    $scope.onOff = function() {
+      if (data.tag === "speaker") {
+        if (checkAudioInputState() === false) {
           console.log("AudioInput is disabled.");
           return;
         }
@@ -68,7 +67,7 @@ kindFramework.controller('ModalInstnceSliderCtrl',
         $scope.isSpeakerOn = UniversialManagerService.isSpeakerOn();
         $scope.isSpeakerOn = !$scope.isSpeakerOn;
         UniversialManagerService.setSpeakerOn($scope.isSpeakerOn);
-        if($scope.isSpeakerOn) {
+        if ($scope.isSpeakerOn) {
           kindStreamInterface.controlAudioIn('on');
           var vol = UniversialManagerService.getSpeakerVol();
           kindStreamInterface.controlAudioIn(vol);
@@ -76,8 +75,8 @@ kindFramework.controller('ModalInstnceSliderCtrl',
         } else {
           kindStreamInterface.controlAudioIn('off');
         }
-      } else if(data.tag === "mic") {
-        if(checkAudioOutputState() === false){
+      } else if (data.tag === "mic") {
+        if (checkAudioOutputState() === false) {
           console.log("AudioOutput is disabled.");
           return;
         }
@@ -85,7 +84,7 @@ kindFramework.controller('ModalInstnceSliderCtrl',
         $scope.isMicOn = UniversialManagerService.isMicOn();
         $scope.isMicOn = !$scope.isMicOn;
         UniversialManagerService.setMicOn($scope.isMicOn);
-        if($scope.isMicOn) {
+        if ($scope.isMicOn) {
           kindStreamInterface.controlAudioOut('on');
           var vol = UniversialManagerService.getMicVol();
           kindStreamInterface.controlAudioOut(vol);
@@ -96,42 +95,42 @@ kindFramework.controller('ModalInstnceSliderCtrl',
       }
     };
 
-    if(data.tag === "speaker") {
+    if (data.tag === "speaker") {
       $scope.isSpeaker = true;
       $scope.isSpeakerOn = true;
-      if(checkAudioInputState() === false){
+      if (checkAudioInputState() === false) {
         console.log("AudioInput is disabled.");
         $scope.isSpeakerOn = false;
-      }else{
+      } else {
         $scope.isSpeakerOn = UniversialManagerService.isSpeakerOn();
       }
       var iniVol = UniversialManagerService.getSpeakerVol();
-      if(iniVol !== null){
+      if (iniVol !== null) {
         $scope.slider.data = iniVol;
       }
-    } else if(data.tag === "mic") {
+    } else if (data.tag === "mic") {
       $scope.isSpeaker = false;
       $scope.isMicOn = true;
-      if(checkAudioOutputState() === false){
+      if (checkAudioOutputState() === false) {
         console.log("AudioOutput is disabled.");
         $scope.isMicOn = false;
-      }else{
+      } else {
         $scope.isMicOn = UniversialManagerService.isMicOn();
       }
       var iniVol = UniversialManagerService.getMicVol();
-      if(iniVol !== null){
+      if (iniVol !== null) {
         $scope.slider.data = iniVol;
       }
     }
-    
+
     $rootScope.$saveOn('allpopupclose', function(event) {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
 
-    $scope.getModalBottomBar = function(){
-      if(UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.LIVE){
+    $scope.getModalBottomBar = function() {
+      if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.LIVE) {
         return "modal-bottom-bar";
-      } else if(UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
+      } else if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
         return "modal-bottom-bar-timeline";
       } else {
         console.log("Unexpected play mode");
@@ -139,15 +138,16 @@ kindFramework.controller('ModalInstnceSliderCtrl',
       }
     };
 
-    $scope.getModalSlideBar = function(){
-      if(UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.LIVE){
+    $scope.getModalSlideBar = function() {
+      if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.LIVE) {
         return "";
-      } else if(UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
-        return ""+" playback";
+      } else if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
+        return "" + " playback";
       } else {
         console.log("Unexpected play mode");
         return;
       }
     };
 
-}]);
+  }
+]);

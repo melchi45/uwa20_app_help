@@ -1,26 +1,25 @@
 'use strict';
 
-kindFramework.controller('ModalInstnceMessageCtrl',
-  ['$scope', '$rootScope', '$uibModalInstance', '$sce', 'data', '$timeout','UniversialManagerService', 'CAMERA_STATUS', '$translate',
-  function ($scope, $rootScope, $uibModalInstance, $sce, data, $timeout, UniversialManagerService, CAMERA_STATUS, $translate) {
+kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$sce', 'data', '$timeout', 'UniversialManagerService', 'CAMERA_STATUS', '$translate',
+  function($scope, $rootScope, $uibModalInstance, $sce, data, $timeout, UniversialManagerService, CAMERA_STATUS, $translate) {
 
     $scope.data = data;
 
-    if(typeof(data.isHtml) === 'undefined') {
+    if (typeof(data.isHtml) === 'undefined') {
       $scope.isHtml = false;
     } else {
       $scope.isHtml = true;
     }
 
-    if(UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
+    if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
       $scope.modalMessagePlaybackflag = true;
     } else {
       $scope.modalMessagePlaybackflag = false;
     }
 
-     $scope.deliberatelyTrustDangerousSnippet = function() {
-       return $sce.trustAsHtml($scope.data.message);
-     };
+    $scope.deliberatelyTrustDangerousSnippet = function() {
+      return $sce.trustAsHtml($scope.data.message);
+    };
 
     $scope.ok = function() {
       $uibModalInstance.close();
@@ -30,8 +29,8 @@ kindFramework.controller('ModalInstnceMessageCtrl',
       $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.checkPlayback = function(){
-      if(UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
+    $scope.checkPlayback = function() {
+      if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
         return "modal-bottom-bar-timeline";
       }
     };
@@ -45,15 +44,15 @@ kindFramework.controller('ModalInstnceMessageCtrl',
      * $uibModalInstance.close() 기능이 정상적으로 실행되지 않는다.
      * 그래서 event.target을 통해 모달을 닫아 준다.
      */
-    function closeModal(event){
+    function closeModal(event) {
       var target = $(event.target);
-      if(target.hasClass('tui-loading-wrapper')){
+      if (target.hasClass('tui-loading-wrapper')) {
         target
           .parent()
           .parent()
           .parent()
           .remove();
-      }else if(target.hasClass('tui-close')){
+      } else if (target.hasClass('tui-close')) {
         target
           .parent()
           .parent()
@@ -62,7 +61,7 @@ kindFramework.controller('ModalInstnceMessageCtrl',
           .parent()
           .remove();
       }
-      
+
       $('.modal-backdrop').remove();
       $uibModalInstance.close();
     };
@@ -74,27 +73,27 @@ kindFramework.controller('ModalInstnceMessageCtrl',
      * 새로운 디자인을 사용하기 때문에
      * 기존 modal의 스타일을 Reset 해준다.
      */
-    if(data.buttonCount < 2){
-      $uibModalInstance.rendered.then(function(){
+    if (data.buttonCount < 2) {
+      $uibModalInstance.rendered.then(function() {
         var transformReset = 'translate(0,0)';
         var transitionReset = 'initial';
         var templateHtml = [
           '<div class="tui-loading-wrapper">',
-            '<div class="tui-loading">',
-              '<span class="tui tui-ch-live-info"></span>',
-              '<span class="tui-loading-message"></span>',
-            '</div>',
+          '<div class="tui-loading">',
+          '<span class="tui tui-ch-live-info"></span>',
+          '<span class="tui-loading-message"></span>',
+          '</div>',
           '</div>'
         ];
         var tuiLoadingWrapper = $(templateHtml.join(''));
         var tuiLoadingCancel = $('<span class="tui tui-close"></span>');
         var message = $scope.isHtml ? deliberatelyTrustDangerousSnippet() : $translate.instant(data.message);
 
-        if(data.buttonCount === 1){
+        if (data.buttonCount === 1) {
           tuiLoadingCancel.on("click", closeModal);
-          tuiLoadingWrapper.on("click", function(event){
-            if($(event.target).hasClass('tui-loading-wrapper')){
-              closeModal(event); 
+          tuiLoadingWrapper.on("click", function(event) {
+            if ($(event.target).hasClass('tui-loading-wrapper')) {
+              closeModal(event);
             }
           });
 
@@ -127,13 +126,14 @@ kindFramework.controller('ModalInstnceMessageCtrl',
             'background-color': 'initial'
           });
 
-        if( data.buttonCount <= 0){
+        if (data.buttonCount <= 0) {
           tuiLoadingWrapper.find(".tui.tui-ch-live-info").remove();
-          
+
           $timeout(function() {
             $uibModalInstance.close();
           }, 2000);
         }
       });
     }
-}]);
+  }
+]);
