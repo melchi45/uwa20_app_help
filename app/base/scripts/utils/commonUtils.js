@@ -218,7 +218,8 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
 
   commonUtils.confirmChangeingChannel = function() {
     var msgMoveToAnother = $translate.instant('lang_msg_save_and_move_to_another');
-    var msg = msgMoveToAnother.replace("%1", "CH");
+    var otherChannel = $translate.instant('lang_other_channel');
+    var msg = msgMoveToAnother.replace("%1", otherChannel);
 
     var modalInstance = $uibModal.open({
       templateUrl: 'views/setup/common/confirmMessage.html',
@@ -231,7 +232,6 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
         }
       }
     });
-
     return modalInstance.result;
   };
 
