@@ -713,7 +713,11 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
           var str = Option.split('s');
 
           if (str.length === 2) {
-            return str[0] + ' ' + $translate.instant('lang_sec');
+            if (str[1] === 'full') {
+              return str[0] + ' ' + $translate.instant('lang_seconds');
+            } else {
+              return str[0] + ' ' + $translate.instant('lang_sec');
+            }
           }
 
           var str = Option.split('m');

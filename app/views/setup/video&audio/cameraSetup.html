@@ -1358,7 +1358,7 @@
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_initLens' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
                                         <select class="form-control" ng-model="Focus.LensResetSchedule">
-                                            <option ng-selected="Focus.LensResetSchedule === Mode" value={{Mode}} ng-repeat="Mode in LensResetScheduleOptions">{{Mode === 'Manual' ? getTranslatedOption(Mode) : Mode.split('D')[0] + ' ' + getTranslatedOption('Day')}}</option>
+                                            <option ng-selected="Focus.LensResetSchedule === Mode" value={{Mode}} ng-repeat="Mode in LensResetScheduleOptions">{{Mode === 'Manual' ? getTranslatedOption(Mode) : Mode.split('D')[0] + ' ' + getTranslatedOption('Day').toLowercase() }}</option>
                                         </select>
                                         <button type="button" class="btn btn-primary" ng-disabled="Focus.LensResetSchedule !== 'Manual'" ng-click="setLensReset()">{{ 'lang_reset' | translate }}</button>
                                     </div>
