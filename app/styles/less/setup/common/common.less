@@ -14,7 +14,7 @@
       position: absolute;
       right: 0;
       top: 0;
-      line-height: @wn5-gui-button-line-height;
+      line-height: @setup-button-line-height;
       span.btn {
         border-color: @color-button-border;
         float: right;
@@ -147,18 +147,18 @@
 
 
 #imagePresetScheduleDiv {
-	border: 1px solid @wn5-gui-table-border;
+	border: 1px solid @theme-table-border;
 
 	#imagePresetSchedule-head {
 		width: 100%;
-		height: @wn5-gui-table-min-height;
-	    border-bottom: 1px solid @wn5-gui-table-border;
-	    background: @wn5-gui-table-header-bg;
+		height: @setup-table-min-height;
+	    border-bottom: 1px solid @theme-table-border;
+	    background: @theme-table-header-bg;
 
 		.imagePresetSchedule-head-item {
 			width: 4.16%;
-			line-height: @wn5-gui-table-min-height;
-			border-left: 1px solid @wn5-gui-table-border;
+			line-height: @setup-table-min-height;
+			border-left: 1px solid @theme-table-border;
 			float: left;
 			text-align: center;
 		}
@@ -171,8 +171,8 @@
 	#imagePresetSchedule-body {
 		width: 100%;
 		clear: left;
-		height: @wn5-gui-table-min-height;
-		background: @wn5-gui-table-data-bg;
+		height: @setup-table-min-height;
+		background: @theme-table-data-bg;
 
 		#imagePresetSchedule-userpreset {
 		}
@@ -291,15 +291,15 @@
 
 #userpage {
 	.userpage-password-description {
-		margin-top: @wn5-setup-content-area-form-group-margin-bottom;
+		margin-top: @setup-content-area-form-group-margin-bottom;
 		ol {
-			padding-top: @wn5-setup-content-area-indent;
-			padding-bottom: @wn5-setup-content-area-indent;
-			padding-left:  @wn5-setup-content-area-indent * 2;
-			padding-right: @wn5-setup-content-area-indent;
+			padding-top: @setup-content-area-indent;
+			padding-bottom: @setup-content-area-indent;
+			padding-left:  @setup-content-area-indent * 2;
+			padding-right: @setup-content-area-indent;
 
-			border: solid 1px @wn5-gui-table-border;
-			font-size: @wn5-gui-body-m;
+			border: solid 1px @theme-table-border;
+			font-size: @setup-body-m;
 		    margin-bottom: 0;
 		    list-style-type:disc;
 		}
@@ -426,7 +426,7 @@
 
     	@media(max-width: @setup-mobile-max-width){
     		width: 100%;
-    		padding-right: @wn5-setup-content-area-indent;
+    		padding-right: @setup-content-area-indent;
     	}
 	}
 }
@@ -477,7 +477,7 @@
 
 		h3 {
 			@media(max-width: @setup-mobile-max-width){
-				font-size: @wn5-gui-title-s !important;
+				font-size: @setup-title-s !important;
 			}
 		}
 	}

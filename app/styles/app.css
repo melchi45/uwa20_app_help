@@ -1,3 +1,23 @@
+/* 테마 수정 시 themes/theme.less 코드를 수정한다. */
+/*
+theme 코드는 각 폴더에 main.less를 작성하고,
+main.less를 통해서 수정한다.
+
+main.less
+ ㄴ text-field.less
+ ㄴ button.less
+ ㄴ table.less
+ ㄴ tab.less
+ ㄴ slider.less
+ 
+위와 같은 컴포넌트별 변수를 유지하고 각 less의 색상을 수정한다.
+uwa20-default는 색상 스키마 기준으로 각 컴포넌트의 색상을 부여하여,
+color-scheme.less를 만들어서 작성하였다.
+*/
+/*
+UWA2.0의 기본 테마이다.
+GUI 가이드에 작성된 색상을 기준으로 변수로 정의한다.
+*/
 /* Regular Expression style */
 [id^="cm-"],
 [class^="cm-"] {
@@ -3747,7 +3767,6 @@ button.login-input + input.login-input {
  * Desktop -> Mobile 순서로 @media가 작성된다.
  * @media(max-width: @setup-mobile-max-width){ //Some code }
  */
-/* Color Scheme */
 /* Font */
 /* Text fields */
 /* Button */
@@ -4669,7 +4688,7 @@ button.login-input + input.login-input {
   margin: 0;
   padding: 10px 0 10px 0;
   text-align: center;
-  color: #676a6c;
+  color: #4c4c4c;
   font-size: 14px;
   font-weight: bold;
 }
@@ -4694,7 +4713,7 @@ button.login-input + input.login-input {
 .wn5-setup-tab > .nav .wn5-setup-tab-item > a:hover,
 .wn5-setup-tab .wn5-setup-tab-list .wn5-setup-tab-item > a:hover {
   background: #ffffff !important;
-  color: #676a6c !important;
+  color: #4c4c4c !important;
 }
 .wn5-setup-tab > .nav > li > button.active,
 .wn5-setup-tab .wn5-setup-tab-list > li > button.active,
@@ -4705,7 +4724,7 @@ button.login-input + input.login-input {
 .wn5-setup-tab > .nav .wn5-setup-tab-item > a.active,
 .wn5-setup-tab .wn5-setup-tab-list .wn5-setup-tab-item > a.active {
   background: #ffffff !important;
-  color: #676a6c !important;
+  color: #4c4c4c !important;
   border-bottom: 0 !important;
 }
 .wn5-setup-tab > .nav > li.active > a,
@@ -4713,7 +4732,7 @@ button.login-input + input.login-input {
 .wn5-setup-tab > .nav .wn5-setup-tab-item.active > a,
 .wn5-setup-tab .wn5-setup-tab-list .wn5-setup-tab-item.active > a {
   background: #ffffff !important;
-  color: #676a6c !important;
+  color: #4c4c4c !important;
   border-bottom: 0 !important;
 }
 .wn5-setup-tab > .nav:after,
