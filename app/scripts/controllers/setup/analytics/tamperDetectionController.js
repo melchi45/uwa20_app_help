@@ -18,7 +18,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
     width: 400,
     height: 150,
     disabled: false,
-    onEnd: function() {}
+    onEnd: function() {},
   };
 
   $scope.TamperDetectDurationSliderProperty = {
@@ -28,10 +28,10 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
     vertical: false,
     showInputBox: true,
     disabled: false,
-    onEnd: function() {}
+    onEnd: function() {},
   };
   $scope.TamperDetectDurationSliderModel = {
-    data: 5
+    data: 5,
   };
 
   $scope.TamperDetectSensitivitySliderProperty = {
@@ -41,10 +41,10 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
     vertical: false,
     showInputBox: true,
     disabled: false,
-    onEnd: function() {}
+    onEnd: function() {},
   };
   $scope.TamperDetectSensitivitySliderModel = {
-    data: 5
+    data: 5,
   };
 
   $scope.EventSource = 'TamperingDetection';
@@ -80,7 +80,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
 
   function showVideo() {
     var getData = {
-      Channel: UniversialManagerService.getChannelId()
+      Channel: UniversialManagerService.getChannelId(),
     };
 
     return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
@@ -105,37 +105,37 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
           rotate: rotate,
           adjust: adjust,
           currentPage: 'TamperingDetection',
-          channelId: UniversialManagerService.getChannelId()
+          channelId: UniversialManagerService.getChannelId(),
         };
         $scope.ptzinfo = {
-          type: 'none'
+          type: 'none',
         };
 
       },
       function(errorData) {
-        //alert(errorData);
+        console.log(errorData)
       }, '', true);
   }
 
-  $scope.$watch('TamperDetectChartOptions', function(newValue, oldValue) {
+  $scope.$watch('TamperDetectChartOptions', function(newValue) {
     if (newValue.ThresholdLevel) {
-      if ($scope.TamperDetect !== undefined) {
+      if ($scope.TamperDetect !== 'undefined') {
         $scope.TamperDetect.ThresholdLevel = $scope.TamperDetectChartOptions.ThresholdLevel;
       }
     }
   }, true);
 
-  $scope.$watch('TamperDetectDurationSliderModel.data', function(newValue, oldValue) {
+  $scope.$watch('TamperDetectDurationSliderModel.data', function(newValue) {
     if (newValue) {
-      if ($scope.TamperDetect !== undefined) {
+      if ($scope.TamperDetect !== 'undefined') {
         $scope.TamperDetect.Duration = $scope.TamperDetectDurationSliderModel.data;
       }
     }
   }, true);
 
-  $scope.$watch('TamperDetectSensitivitySliderModel.data', function(newValue, oldValue) {
+  $scope.$watch('TamperDetectSensitivitySliderModel.data', function(newValue) {
     if (newValue) {
-      if ($scope.TamperDetect !== undefined) {
+      if ($scope.TamperDetect !== 'undefined') {
         $scope.TamperDetect.SensitivityLevel = $scope.TamperDetectSensitivitySliderModel.data;
       }
     }
@@ -149,10 +149,12 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
     mStopMonotoringTamperingLevel = false;
     $scope.$broadcast('liveChartStart');
 
-    if (monitoringTimer == null) {
+    if (monitoringTimer === null) {
       (function update() {
         getTamperingLevel(function(data) {
-          if (destroyInterrupt) return;
+          if (destroyInterrupt) {
+            return;
+          } 
           var newTamperLevel = angular.copy(data);
 
           if (!mStopMonotoringTamperingLevel) {
@@ -162,7 +164,9 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
               while (index--) {
                 var level = validateLevel(newTamperLevel[index]);
 
-                if (level === null) continue;
+                if (level === null) {
+                  continue;
+                } 
 
                 if ($scope.TamperDetectChartOptions.EnqueueData) {
                   $scope.TamperDetectChartOptions.EnqueueData(level);
@@ -210,7 +214,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
     var newTamperLevel = {};
 
     var getData = {
-      Channel: UniversialManagerService.getChannelId()
+      Channel: UniversialManagerService.getChannelId(),
     };
 
     getData.MaxSamples = maxSample;
@@ -223,7 +227,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
     return SunapiClient.get(sunapiURL, getData,
       function(response) {
         newTamperLevel = angular.copy(response.data.TamperingDetection[0].Samples);
-        if (func !== undefined) {
+        if (func !== 'undefined') {
           func(newTamperLevel);
         }
       },
@@ -234,12 +238,12 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
       }, '', true);
   }
 
-  function initPTZUI() {
-    $scope.supportPTZ = (AccountService.isPTZAble() || mAttr.isDigitalPTZ);
-    $scope.ptzinfo = {
-      type: (mAttr.isDigitalPTZ ? 'DPTZ' : 'PTZ')
-    };
-  }
+  // function initPTZUI() {
+  //   $scope.supportPTZ = (AccountService.isPTZAble() || mAttr.isDigitalPTZ);
+  //   $scope.ptzinfo = {
+  //     type: (mAttr.isDigitalPTZ ? 'DPTZ' : 'PTZ')
+  //   };
+  // }
 
   $scope.getTranslatedOption = function(Option) {
     return COMMONUtils.getTranslatedOption(Option);
@@ -248,24 +252,24 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
   function getAttributes() {
     var defer = $q.defer();
 
-    if (mAttr.EnableOptions !== undefined) {
+    if (mAttr.EnableOptions !== 'undefined') {
       $scope.EnableOptions = mAttr.EnableOptions;
     }
 
-    if (mAttr.ActivateOptions !== undefined) {
+    if (mAttr.ActivateOptions !== 'undefined') {
       $scope.ActivateOptions = mAttr.ActivateOptions;
     }
 
-    if (mAttr.WeekDays !== undefined) {
+    if (mAttr.WeekDays !== 'undefined') {
       $scope.WeekDays = mAttr.WeekDays;
     }
 
-    if (mAttr.TamperDetectThreshold !== undefined) {
+    if (mAttr.TamperDetectThreshold !== 'undefined') {
       $scope.TamperDetectChartOptions.ceil = mAttr.TamperDetectThreshold.maxValue;
       $scope.TamperDetectChartOptions.floor = mAttr.TamperDetectThreshold.minValue;
     }
 
-    if (mAttr.TamperDetectDuration !== undefined) {
+    if (mAttr.TamperDetectDuration !== 'undefined') {
       $scope.TamperDetectDurationSliderProperty.ceil = mAttr.TamperDetectDuration.maxValue;
       $scope.TamperDetectDurationSliderProperty.floor = mAttr.TamperDetectDuration.minValue;
 
@@ -273,7 +277,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
       $scope.TamperDetectSensitivitySliderProperty.ceil = mAttr.TamperDetectSensitivityLevel.maxValue;
     }
 
-    if (mAttr.AlarmoutDurationOptions !== undefined) {
+    if (mAttr.AlarmoutDurationOptions !== 'undefined') {
       $scope.AlarmoutDurationOptions = mAttr.AlarmoutDurationOptions;
     }
 
@@ -294,16 +298,16 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
     return defer.promise;
   }
 
-  function refreshSlider() {
-    $timeout(function() {
-      $scope.$broadcast('rzSliderForceRender');
-      $scope.$broadcast('reCalcViewDimensions');
-    });
-  }
+  // function refreshSlider() {
+  //   $timeout(function() {
+  //     $scope.$broadcast('rzSliderForceRender');
+  //     $scope.$broadcast('reCalcViewDimensions');
+  //   });
+  // }
 
-  function getSliderColor() {
-    return mAttr.sliderEnableColor;
-  }
+  // function getSliderColor() {
+  //   return mAttr.sliderEnableColor;
+  // }
 
   function getTamperDetection() {
     var getData = {
@@ -361,7 +365,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
 
 
     return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=tamperingdetection&action=set', setData,
-      function(response) {
+      function() {
         pageData.TamperDetect = angular.copy($scope.TamperDetect);
       },
       function(errorData) {
@@ -380,8 +384,8 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
       resolve: {
         Message: function() {
           return 'lang_apply_question';
-        }
-      }
+        },
+      },
     });
 
     modalInstance.result.then(
@@ -408,6 +412,8 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
             if ($scope.TamperDetect.Enable) {
               startMonitoringTamperingLevel();
             }
+
+            console.log(errorData);
 
             $rootScope.$emit('changeLoadingBar', false);
             $scope.TamperDetect.Enable = angular.copy(pageData.TamperDetect.Enable);
@@ -473,17 +479,15 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
 
   $rootScope.$saveOn('channelSelector:selectChannel', function(event, index) {
     if (checkChangedData()) {
-      COMMONUtils
-        .confirmChangeingChannel()
-        .then(function() {
-          if (validatePage() === true) {
-            setChangedData().then(function() {
-              changeChannel(index);
-            });
-          }
-        }, function() {
-          console.log("canceled");
-        });
+      COMMONUtils.confirmChangeingChannel().then(function() {
+        if (validatePage() === true) {
+          setChangedData().then(function() {
+            changeChannel(index);
+          });
+        }
+      }, function() {
+        console.log("canceled");
+      });
     } else {
       changeChannel(index);
     }
@@ -540,8 +544,8 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
           resolve: {
             Message: function() {
               return 'lang_apply_question';
-            }
-          }
+            },
+          },
         });
 
         modalInstance.result.then(function() {
