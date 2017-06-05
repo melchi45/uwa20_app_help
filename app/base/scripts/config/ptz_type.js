@@ -14,12 +14,12 @@ kindFramework.constant('PTZ_TYPE', {
     'TRACE': 12,
     'TRACKING': 13,
     'STOP': 14,
-    'NONE': 15
+    'NONE': 15,
   },
   swingMode: {
     'PAN': "lang_pan",
     'TILT': "lang_tilt",
-    'PANTILT': "lang_pantilt"
+    'PANTILT': "lang_pantilt",
   }
 });
 
@@ -30,6 +30,6 @@ kindFramework.constant('PTZ_MESSAGE', {
     'GROUP': "설정된 리스트가 없습니다. GROUP 설정을 해주세요.",
     'TOUR': "설정된 리스트가 없습니다. TOUR 설정을 해주세요.",
     'TRACE': "TRACE를 지원하지 않습니다. ",
-    'NONE': "설정된 리스트가 없습니다. 설정을 해주세요."
+    'NONE': "설정된 리스트가 없습니다. 설정을 해주세요.",
   }
 });

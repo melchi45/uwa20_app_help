@@ -3,7 +3,7 @@ kindFramework.controller('ModalCheckBoxListCtrl', ['$scope', '$rootScope', '$uib
     "use strict";
 
     $scope.data = {
-      ModalList: data.list
+      ModalList: data.list,
     };
 
     $scope.buttonCount = typeof(data.buttonCount) === "undefined" ? 0 : data.buttonCount;
@@ -18,12 +18,12 @@ kindFramework.controller('ModalCheckBoxListCtrl', ['$scope', '$rootScope', '$uib
         }
       };
 
-      for (var i = 0; i < data.list.length; i++) {
-        if (data.list[i].name === item.name) {
+      for (var idx = 0; idx < data.list.length; idx++) {
+        if (data.list[idx].name === item.name) {
           if (item.enable === true) {
-            SunapiClient.get('/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.' + (i + 1) + '.State=On', {}, successCallback, errorCallBack, '', true);
+            SunapiClient.get('/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.' + (idx + 1) + '.State=On', {}, successCallback, errorCallBack, '', true);
           } else {
-            SunapiClient.get('/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.' + (i + 1) + '.State=Off', {}, successCallback, errorCallBack, '', true);
+            SunapiClient.get('/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.' + (idx + 1) + '.State=Off', {}, successCallback, errorCallBack, '', true);
           }
         }
       }
@@ -36,5 +36,5 @@ kindFramework.controller('ModalCheckBoxListCtrl', ['$scope', '$rootScope', '$uib
     $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
-  }
+  },
 ]);

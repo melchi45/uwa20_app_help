@@ -24,8 +24,8 @@ config(function($provide) {
         } else {
           throw new Error("$q.seqAll :: Type of argument is incorrect. Array of functions is only allowed");
         }
-      } catch (e) {
-        console.error(e.message);
+      } catch (error) {
+        console.error(error.message);
         deferred.reject('$q.seqAll :: promises[' + (index - 1) + ']' + ' rejected with status: ' + error.status);
       }
 
@@ -76,13 +76,13 @@ config(function($provide) {
         then(function(value) {
           return {
             state: 'fulfilled',
-            value: value
+            value: value,
           };
         }).
         catch(function(reason) {
           return {
             state: 'rejected',
-            reason: reason
+            reason: reason,
           };
         });
       }

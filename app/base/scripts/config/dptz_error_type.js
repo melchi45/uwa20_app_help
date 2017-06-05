@@ -6,6 +6,6 @@ kindFramework.constant('ERROR_CODE', {
     INVALID_NEED_TO_SET: 4,
     INVALID_MAX_PRESET: 5,
     INVALID_GROUP_SETTING: 6,
-    INVALID_JUST_RELOAD: 7
+    INVALID_JUST_RELOAD: 7,
   }
 })

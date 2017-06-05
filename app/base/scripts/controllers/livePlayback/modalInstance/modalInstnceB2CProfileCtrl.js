@@ -19,7 +19,7 @@ kindFramework.controller('ModalInstnceB2CProfileCtrl', ['$scope', '$rootScope', 
       $uibModalInstance.dismiss('cancel');
     }, $scope);
 
-  }
+  },
 ]);
 kindFramework.run(["$templateCache", function($templateCache) {
   var strVar = "";

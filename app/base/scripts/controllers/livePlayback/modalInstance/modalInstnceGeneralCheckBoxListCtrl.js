@@ -1,13 +1,13 @@
 "use strict";
 
-kindFramework.controller('ModalGeneralCheckBoxListCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'data', '$timeout',
-  function($scope, $rootScope, $uibModalInstance, data, $timeout) {
+kindFramework.controller('ModalGeneralCheckBoxListCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'data',
+  function($scope, $rootScope, $uibModalInstance, data) {
 
     $scope.checklist = data.list;
     $scope.checkboxAll = data.checkboxAll
 
     $scope.all = {
-      selected: false
+      selected: false,
     };
 
     $scope.selectAll = function(_selected) {
