@@ -1,6 +1,6 @@
 .kind-responsive-live {
     .live-channel-selector {
-        border: solid 1px #e9e9e9;
+        border: solid 1px @theme-color-w-gray-12;
         border-right: 0;
         padding: 15px 25px 0 25px;
     }
@@ -155,7 +155,7 @@
 
                             .cm-at {
                                 .tui-ch-live-ptz-tracking-auto-on{
-                                    color: #f37321;
+                                    color: @theme-color-w-orange-100;
                                 }
                             }
 
@@ -173,12 +173,12 @@
                         #cm-ptz-control-box {
                             width: 160px;
                             height: 160px;
-                            background-color:#fff;
+                            background-color:@theme-color-white;
                             position: relative;
-                            border: 1px solid #e9e9e9;
+                            border: 1px solid @theme-color-w-gray-12;
                             
                             .cm-ptz-line {
-                                border: 1px dashed #e9e9e9;
+                                border: 1px dashed @theme-color-w-gray-12;
                                 position: absolute;
                                 z-index: 1;
 
@@ -270,8 +270,8 @@
                         float: left;
                         box-sizing: border-box;
                         text-align: left;
-                        background: #fff;
-                        border: 1px solid #ddd;
+                        background: @theme-color-white;
+                        border: 1px solid @theme-color-w-gray-25;
                         padding: 1em 1.4em;
                         min-width: 360px;
 
@@ -287,7 +287,7 @@
                                 width: 100px;
                                 float: left;
                                 line-height: 30px;
-                                color: #000;
+                                color: @theme-color-black;
                             }
 
                             & > div {
@@ -330,12 +330,12 @@
                         }
 
                         &.ui-widget-content{
-                            background: #fff;
+                            background: @theme-color-white;
                         }
 
                         .ui-widget-header{
                             border: none;
-                            border-bottom: 1px solid #d2d2d2;
+                            border-bottom: 1px solid @theme-color-w-gray-25;
                             background: none;
                             text-transform: none;
                         }
@@ -345,7 +345,7 @@
                             border-top: none;
                             border-left: none;
                             border-bottom: none;
-                            border-right: 1px solid #d2d2d2;
+                            border-right: 1px solid @theme-color-w-gray-25;
 
                             :last-of-type {
                                 border-right: none;
@@ -359,7 +359,7 @@
                                 display: inline-block;
                                 width: 100%;
                                 text-align: center;
-                                color: #000;
+                                color: @theme-color-black;
                                 font-weight: normal;
                             }
                         }
@@ -471,7 +471,7 @@
                         display: inline-block;
                         width: 90px;
                         font-size: 12px;
-                        color: #000;
+                        color: @theme-color-black;
                         font-weight: normal;
                     }
 
@@ -521,57 +521,57 @@
             }
             
             .ui-widget-content {
-                color: #fff;
+                color: @theme-color-white;
             }
 
             #cm-menu-content {
                 #cm-ptz {
                     #ptz-components {
                         #live-ptz-add-form {
-                            background: #262626;
-                            border: 1px solid #333;
-                            color: #fff;
+                            background: @theme-color-dark-gray-25;
+                            border: 1px solid @theme-color-dark-gray-12;
+                            color: @theme-color-white;
 
                             .form-group > span {
-                                color: #fff;
+                                color: @theme-color-white;
                             }
 
                             .form-group {
                                 .form-control {
-                                    background: #262626;
-                                    border: 1px solid #4c4c4c;
+                                    background: @theme-color-dark-gray-25;
+                                    border: 1px solid @theme-color-w-gray-100;
                                 }
                             }
                         }
 
                         #live-ptz-tabs {
-                            color: #fff;
-                            border: 1px solid #333;
-                            background: #262626;
+                            color: @theme-color-white;
+                            border: 1px solid @theme-color-dark-gray-12;
+                            background: @theme-color-dark-gray-25;
 
                             & > ul {
-                                border-bottom: 1px solid #333;
+                                border-bottom: 1px solid @theme-color-dark-gray-12;
                                 
                                 li {
-                                    background: #262626;
-                                    border-color: #333;
+                                    background: @theme-color-dark-gray-25;
+                                    border-color: @theme-color-dark-gray-12;
                                 }
 
                                 li.ui-tabs-active {
-                                    background: #191919;
+                                    background: @theme-color-dark-gray-50;
                                 }
 
                                 .ui-state-default a{
-                                    color: #fff;
+                                    color: @theme-color-white;
                                 }
                             }
 
                             & > div {
-                                background: #191919;
+                                background: @theme-color-dark-gray-50;
                             }
                             
                             #live-ptz-preset {
-                                color: #fff;
+                                color: @theme-color-white;
                             }
                         }
                     }
@@ -823,7 +823,7 @@
             #cm-icon-list {
                 width: 100%;
                 height: 50px !important;
-                border-top: 1px solid #ccc;
+                border-top: 1px solid @theme-color-w-gray-33;
                 line-height: 50px;
 
                 #playback-channel-holder {
@@ -831,7 +831,7 @@
                         padding: 0 20px;
                         height: 26px;
                         border: none;
-                        border-right: 1px solid #ccc;
+                        border-right: 1px solid @theme-color-w-gray-33;
                         margin-top: 12px;
 
                         & > * {
@@ -851,14 +851,14 @@
                     li {
                         width: 61px;
                         float: left;
-                        border: 1px solid #e9e9e9;
+                        border: 1px solid @theme-color-w-gray-12;
                         
                         &:not(:first-child) {
                             border-top: none;
                         }
 
                         &.cm-active {
-                            border-right: 1px solid rgba(0,0,0,0);
+                            border-right: 1px solid @theme-color-black;
                         }
                     }
                 }
@@ -905,7 +905,7 @@
                 #cm-menu-content {
                     top:0;
                     height: calc(~"100% - 50px");
-                    border-left: 1px solid #333;
+                    border-left: 1px solid @theme-color-dark-gray-12;
                 }
 
                 #cm-icon-list .info-toggle {
@@ -913,7 +913,7 @@
                 }
 
                 #cm-icon-list {
-                    border-top: 1px solid #333;
+                    border-top: 1px solid @theme-color-dark-gray-12;
                 }
             }
         }
@@ -923,7 +923,7 @@
             padding: 0;
 
             & > .cm-col {
-                border: 1px solid #ddd !important;
+                border: 1px solid @theme-color-w-gray-25 !important;
                 left: 50%;
                 position: relative;
                 transform: translateX(-50%);
