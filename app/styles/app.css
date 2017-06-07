@@ -9860,11 +9860,11 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback #playback-channel-holder .playback-channel-selector {
   padding: 15px 18px 0 30px;
 }
+.kind-responsive-playback .cm-str-button * {
+  border: none !important;
+}
 .kind-responsive-playback .cm-vline {
   margin-top: 12px;
-}
-.kind-responsive-playback .cm-button-today {
-  margin: 10px 30px 0 0;
 }
 .kind-responsive-playback .info-toggle {
   bottom: -1px;
