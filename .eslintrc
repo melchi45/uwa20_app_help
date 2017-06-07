@@ -14,7 +14,8 @@
   },
   "globals": {
     "kindFramework" : true,
-    "angular": true
+    "angular": true,
+    "isPhone" : true
   },
   //"plugins": ["angular"],
   "rules": {
