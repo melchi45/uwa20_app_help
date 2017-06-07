@@ -14,12 +14,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
   $scope.isTransParent = isPhone;
   this.optionServiceType = ['WEB_SSM', 'WEB_IPOLIS', 'MOBILE_B2C', 'MOBILE_B2B'];
   $scope.connectedService = this.optionServiceType[UniversialManagerService.getServiceType()];
-  var today = new Date();
-  var NonPluginProfile = "PLUGINFREE";
-  var NonPluginResolution = "1280x720";
 
-  var layoutInfo = null,
-    layoutWith = null;
   var PLAY_CMD = PLAYBACK_TYPE.playCommand;
   var playData = new PlayDataModel();
   var self = this;
@@ -27,6 +22,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
   playData.setStatus(PLAY_CMD.LIVE);
   playData.setCurrentMenu('main');
   $scope.timelineController = {};
+  var VIEW_MODE = ["originalratio", "fit", "originalsize" ];
 
   var setNonPluginCookie = function() {
     document.cookie = "isNonPlugin=1; path=/";
@@ -118,7 +114,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
       ModalManagerService.open(
         'profile', {
           'profileList': $scope.profileList,
-          'profileInfo': $scope.profileInfo
+          'profileInfo': $scope.profileInfo,
         }
       );
     },
@@ -148,7 +144,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
     visiblePasswordMessage: function(index) {
       ModalManagerService.open(
         'b2clogin', {
-          'stepIndex': index
+          'stepIndex': index,
         }
       );
     },
@@ -168,7 +164,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
       };
       ModalManagerService.open(
         'ptzmode', {
-          'zoomMode': domControls.zoomMode
+          'zoomMode': domControls.zoomMode,
         },
         successCallback
       );
@@ -187,7 +183,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
       }
       $scope.viewMode = self.getViewModeCmd(self.viewModeIndex);
 
-      if (typeof $scope.setChannelSize !== undefined) {
+      if (typeof $scope.setChannelSize !== "undefined") {
         $scope.setChannelSize();
       }
     }
@@ -197,8 +193,11 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
 
   var setEnablePlayback = function() {
     var playMode = UniversialManagerService.getPlayMode();
-    if (playMode === CAMERA_STATUS.PLAY_MODE.LIVE) $scope.domControls.enablePlayback = false;
-    else if (playMode === CAMERA_STATUS.PLAY_MODE.PLAYBACK) $scope.domControls.enablePlayback = true;
+    if (playMode === CAMERA_STATUS.PLAY_MODE.LIVE) { 
+      $scope.domControls.enablePlayback = false; 
+    } else if (playMode === CAMERA_STATUS.PLAY_MODE.PLAYBACK) { 
+      $scope.domControls.enablePlayback = true; 
+    }
   };
   setEnablePlayback();
 
@@ -213,7 +212,6 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
 
   $scope.channelPositionInfoCallback = function(info) {
     console.log("channelPositionInfoCallback information : " + JSON.stringify(info));
-    layoutInfo = info;
     self.channelPositionInfo(info);
     if (typeof(cameraFunctionElements) === 'undefined') {
       cameraFunctionElements = angular.element(".camera-functions");
@@ -224,7 +222,24 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
     }
   };
 
+  function mapKeys (obj, keyMapping) {
+    var mapped = {};
+    for (var key in keyMapping) {
+      mapped[obj[key]] = keyMapping[key];
+    }
+    return mapped;
+  }
+
   $scope.playPlayback = function(command) {
+    var playCommandToFunctionMap = mapKeys(PLAY_CMD, {
+      PLAY : playbackInterfaceService.play,
+      PAUSE : playbackInterfaceService.pause,
+      RESUME : playbackInterfaceService.resume,
+      STOP : playbackInterfaceService.stop,
+      SEEK : playbackInterfaceService.seek,
+      INIT : playbackInterfaceService.seek,
+      BACKUP : playbackInterfaceService.backup,
+    });
     var prevStatus = playData.getStatus();
     var results = null;
     if ((prevStatus === PLAY_CMD.PAUSE || prevStatus === PLAY_CMD.STEPFORWARD ||
@@ -245,29 +260,23 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
         return null;
       }
     }
-    if (command === PLAY_CMD.PLAY) {
-      results = playbackInterfaceService.play();
-    } else if (command === PLAY_CMD.PAUSE) {
-      results = playbackInterfaceService.pause();
-    } else if (command === PLAY_CMD.RESUME) {
-      results = playbackInterfaceService.resume();
-      playData.setStatus(PLAY_CMD.PLAY);
-    } else if (command === PLAY_CMD.STOP) {
-      return playbackInterfaceService.stop();
-    } else if (command === PLAY_CMD.SEEK) {
-      playData.setStatus(PLAY_CMD.PLAY);
-      results = playbackInterfaceService.seek();
-    } else if (command === PLAY_CMD.INIT) {
-      $scope.timelineController.goInit();
-      results = playbackInterfaceService.seek();
-    } else if (command === PLAY_CMD.PREV || command === PLAY_CMD.NEXT) {
+    if ( playCommandToFunctionMap.hasOwnProperty(command)) {
+      if ( command === PLAY_CMD.SEEK) {
+        playData.setStatus(PLAY_CMD.PLAY);
+      } else if ( command === PLAY_CMD.INIT) {
+        $scope.timelineController.goInit();
+      }
+      var func = playCommandToFunctionMap[command];
+      results = func.call(playbackInterfaceService);
+    }
+    if (command === PLAY_CMD.PREV || command === PLAY_CMD.NEXT) {
       var outputs = $scope.timelineController.jumpEvent(command);
       if (outputs === false) {
         var popupMessage = 'This is ' + (command === PLAY_CMD.PREV ? 'first' : 'last') + ' event';
         ModalManagerService.open(
           'message', {
             'message': popupMessage,
-            'buttonCount': 0
+            'buttonCount': 0,
           }
         );
         results = playbackInterfaceService.stop();
@@ -279,8 +288,6 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
     } else if (command === PLAY_CMD.STEPFORWARD || command === PLAY_CMD.STEPBACKWARD) {
       $scope.timelineController.resetTimeRange();
       results = playbackInterfaceService.stepPlay(command);
-    } else if (command === PLAY_CMD.BACKUP) {
-      playbackInterfaceService.backup();
     }
     if (results !== null) {
       $timeout(function() {
@@ -396,10 +403,11 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
     var cmd = [
       "originalratio",
       "fit",
-      "originalsize"
+      "originalsize",
     ];
 
-    if (index > 2) {
+    var MAX_INDEX = cmd.length-1;
+    if (index > MAX_INDEX) {
       return cmd[0];
     } else {
       return cmd[index];
@@ -409,13 +417,13 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
   this.getViewModeTitle = function(viewMode) {
     var viewModeStr = null;
     switch (viewMode) {
-      case self.getViewModeCmd(0):
+      case VIEW_MODE[0]:
         viewModeStr = "lang_Aspect_Ratio";
         break;
-      case self.getViewModeCmd(1):
+      case VIEW_MODE[1]:
         viewModeStr = "lang_fit";
         break;
-      case self.getViewModeCmd(2):
+      case VIEW_MODE[2]:
         viewModeStr = "lang_original_size";
         break;
     }
@@ -423,20 +431,22 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
     return viewModeStr;
   }
 
-  $rootScope.$saveOn('seek', function(event) {
+  $rootScope.$saveOn('seek', function() {
     $scope.playPlayback(PLAY_CMD.SEEK);
   }, $scope);
 
-  $rootScope.$saveOn('app/scripts/models/playback/PlayDataModel::stop', function(event) {
+  $rootScope.$saveOn('app/scripts/models/playback/PlayDataModel::stop', function() {
     $scope.playPlayback(PLAY_CMD.STOP);
   }, $scope);
 
   $rootScope.$saveOn("/script/controllers/livePlayback/channel::openPlaybackAfterAuth",
     function(event, data) {
-      if (data === null) return;
+      if (data === null) { 
+        return; 
+      }
       $rootScope.$emit('changeLoadingBar', true);
-      playbackInterfaceService.openPlaybackAfterAuth(data)
-        .then(function(result) {
+      playbackInterfaceService.openPlaybackAfterAuth(data).
+        then(function() {
           UniversialManagerService.setIsAuthunicating(true);
           $scope.timelineController.create();
           $rootScope.$emit('changeLoadingBar', false);
@@ -448,12 +458,14 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
         });
     }, $scope);
 
-  $rootScope.$saveOn('clearTimeline', function(event, data) {
+  $rootScope.$saveOn('clearTimeline', function() {
     $scope.timelineController.clear();
   }, $scope);
 
   $rootScope.$saveOn('$locationChangeStart', function(event, next, current) {
-    if (current === null) return;
+    if (current === null) { 
+      return; 
+    }
     self.locationChange(next);
     playData.setStatus(PLAY_CMD.STOP);
     setDefaultPlaybackData();
@@ -466,7 +478,9 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
   });
 
   $scope.$on('swipeEvent', function(event, data) {
-    if (playData.getCurrentMenu() === 'full') return;
+    if (playData.getCurrentMenu() === 'full') {
+      return;
+    }
     if (data === 'panup') {
       if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.LIVE) {
         domControls.enableGotoButton = false;
@@ -503,15 +517,15 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
 
   (function removeIsPluginSession() {
     try {
-      if (window.sessionStorage !== undefined) {
+      if (typeof window.sessionStorage !== "undefined") {
         if ("isPlugin" in window.sessionStorage) {
           console.log("from kind, isPlugin is removed.");
           delete window.sessionStorage.isPlugin;
           $rootScope.updateMonitoringPath();
         }
       }
-    } catch (e) {
-      console.error("That isPlugin is removed have problem.", e);
+    } catch (err) {
+      console.error("That isPlugin is removed have problem.", err);
     }
   })();
 
@@ -549,9 +563,9 @@ BaseChannel.prototype.locationChange = function(next) {};
 BaseChannel.prototype.selectedGoChannel = function(info) {};
 BaseChannel.prototype.revertSetting = function(newVal) {};
 
-kindFramework
-  .controller('BaseChannelCtrl', ['$scope', '$timeout', '$rootScope', 'LocalStorageService',
+kindFramework.
+  controller('BaseChannelCtrl', ['$scope', '$timeout', '$rootScope', 'LocalStorageService',
     'LoggingService', 'CAMERA_TYPE', 'SunapiClient', 'PLAYBACK_TYPE',
     'ModalManagerService', 'UniversialManagerService', 'CAMERA_STATUS', 'CameraService',
-    '$state', 'SearchDataModel', 'PlayDataModel', 'PlaybackInterface', BaseChannel
+    '$state', 'SearchDataModel', 'PlayDataModel', 'PlaybackInterface', BaseChannel,
   ]);
