@@ -9011,6 +9011,9 @@ i.tui-ch-playback-stop {
   position: absolute;
   left: 0;
 }
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #cm-live-ptz-control .cm-ptz-control-left .tui {
+  color: #797979;
+}
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #cm-live-ptz-control .cm-ptz-control-left .cm-near {
   top: 0;
 }
