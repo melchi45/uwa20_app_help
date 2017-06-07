@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "Sekretess kan bara ställas in om DIS är inaktiverat och zoomen är inställd på mindre än x32.",
     "lang_msg_privacy_Zoom_37x": "Sekretess kan bara ställas in om DIS är inaktiverat och zoomen är inställd på mindre än x37.",
     "lang_msg_privacy_Zoom_43x": "Sekretess kan bara ställas in om DIS är inaktiverat och zoomen är inställd på mindre än x43.",
-    "lang_msg_privacy_Zoom_variable_magnification": "Sekretess kan bara ställas in om DIS är inaktiverat och zoomen är inställd på mindre än x%1.",
+    "lang_msg_privacy_Zoom_variable_magnification": "För att använda sekretessfunktionen måste DIS-funktionen vara avstängd och zoomen måste vara lika eller mindre än %1 skala.",
     "lang_msg_max_Privacyarea_32": "Du kan ange max 32 sekretessområden.",
     "lang_msg_max_Privacyarea_12": "Du kan ange max 12 sekretessområden.",
     "lang_msg_max_Privacyarea_6": "Du kan ange max 6 sekretessområden.",

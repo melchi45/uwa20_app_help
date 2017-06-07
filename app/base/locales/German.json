@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "Nur wenn DIS deaktiviert ist und die Zoom-Einstellung kleiner als X32 ist, kann Privatsphäre eingestellt werden.",
     "lang_msg_privacy_Zoom_37x": "Nur wenn DIS deaktiviert ist und die Zoom-Einstellung kleiner als X37 ist, kann Privatsphäre eingestellt werden.",
     "lang_msg_privacy_Zoom_43x": "Nur wenn DIS deaktiviert ist und die Zoom-Einstellung kleiner als X43 ist, kann Privatsphäre eingestellt werden.",
-    "lang_msg_privacy_Zoom_variable_magnification": "Nur wenn DIS deaktiviert ist und die Zoom-Einstellung kleiner als X%1 ist, kann Privatsphäre eingestellt werden.",
+    "lang_msg_privacy_Zoom_variable_magnification": "Um die Datenschutzfunktion nutzen zu können, muss die DIS-Funktion deaktiviert sein und der Zoom muss gleich oder kleiner als %1 Skala sein.",
     "lang_msg_max_Privacyarea_32": "Es lassen sich maximal 32 Privatbereiche einstellen.",
     "lang_msg_max_Privacyarea_12": "Es lassen sich maximal 12 Privatbereiche einstellen.",
     "lang_msg_max_Privacyarea_6": "Es lassen sich maximal 6 Privatbereiche einstellen.",

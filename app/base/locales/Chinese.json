@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "仅当数字稳定 (DIS) 被停用且缩放小于 32 倍时，隐私区域才可设置。",
     "lang_msg_privacy_Zoom_37x": "仅当数字稳定 (DIS) 被停用且缩放小于 37 倍时，隐私区域才可设置。",
     "lang_msg_privacy_Zoom_43x": "仅当数字稳定 (DIS) 被停用且缩放小于 43 倍时，隐私区域才可设置。",
-    "lang_msg_privacy_Zoom_variable_magnification": "仅当数字稳定 (DIS) 被停用且缩放小于 %1 倍时，隐私区域才可设置。",
+    "lang_msg_privacy_Zoom_variable_magnification": "要使用隐私功能，必须禁用DIS功能，并且缩放必须等于或小于%1比例。",
     "lang_msg_max_Privacyarea_32": "您可以最多设置32个隐私区域。",
     "lang_msg_max_Privacyarea_12": "您可以最多设置12个隐私区域。",
     "lang_msg_max_Privacyarea_6": "您可以最多设置6个隐私区域。",

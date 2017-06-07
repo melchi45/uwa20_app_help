@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "Privatnost se može podesiti samo ako je deaktiviran DIS i zumiranje je manje od X32",
     "lang_msg_privacy_Zoom_37x": "Privatnost se može podesiti samo ako je deaktiviran DIS i zumiranje je manje od X37",
     "lang_msg_privacy_Zoom_43x": "Privatnost se može podesiti samo ako je deaktiviran DIS i zumiranje je manje od X43",
-    "lang_msg_privacy_Zoom_variable_magnification": "Privatnost se može podesiti samo ako je deaktiviran DIS i zumiranje je manje od X%1",
+    "lang_msg_privacy_Zoom_variable_magnification": "To use the privacy function, the DIS function must be disabled and the zoom must be equal or smaller than %1 scale.",
     "lang_msg_max_Privacyarea_32": "Moguće je uspostaviti najviše 32 područja bez nadzora. ",
     "lang_msg_max_Privacyarea_12": "Moguće je uspostaviti najviše 12 područja bez nadzora. ",
     "lang_msg_max_Privacyarea_6": "Moguće je uspostaviti najviše 6 područja bez nadzora. ",
