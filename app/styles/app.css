@@ -9860,9 +9860,6 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback #playback-channel-holder .playback-channel-selector {
   padding: 15px 18px 0 30px;
 }
-.kind-responsive-playback .cm-str-button * {
-  border: none !important;
-}
 .kind-responsive-playback .cm-vline {
   margin-top: 12px;
 }
@@ -9889,9 +9886,6 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback .cm-playback-block.cm-datepicker-section {
   text-align: left;
   margin: 0 10px 15px 10px;
-}
-.kind-responsive-playback .cm-backup-button {
-  margin-top: 25px;
 }
 .kind-responsive-playback #cm-playback-event {
   z-index: 1;
@@ -9947,7 +9941,7 @@ i.tui-ch-playback-stop {
   min-width: 125px;
   padding: 10px 0;
   text-align: center;
-  background-color: #fff;
+  background-color: #ffffff;
   border: 1px solid #d2d2d2;
   color: #a5a5a5;
   cursor: pointer;
