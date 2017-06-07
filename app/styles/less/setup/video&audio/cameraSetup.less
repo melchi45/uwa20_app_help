@@ -1,0 +1,83 @@
+#camerasetuppage {
+  .wn5-setup-tab {
+    > .nav {
+      &:after {
+        background-color: @theme-light-tab-unselected;
+      }
+    }
+  }
+
+  .wn5-setup-camera-setup-activation-time {
+    padding: 0;
+  }
+
+  .imagepreset-defineFocus {
+    background:#54c0ff !important;
+  }
+
+  .imagepreset-motionFocus {
+      background:#ffa52f !important;
+  }
+
+  .imagepreset-reduceNoise {
+      background:#5eec5f !important;
+  }
+
+  .imagepreset-brightVideo {
+      background:#923ee6 !important;
+  }
+
+  .imagepreset-motionFocus-reduceNoise {
+      background:#ef5ca8 !important;
+  }
+
+  .imagepreset-motionFocus-brightVideo {
+      background:#ffff77 !important;
+  }
+
+  .imagepreset-vividVideo {
+      background:#e00001 !important;
+  }
+
+  .imagepreset-userPreset {
+      background:#3464ff !important;
+  }
+
+  #scheduleColor {
+    margin-top: 10px;
+
+    .scheduleColorWrapper {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 10px;
+
+      > div {
+        width: 25%;
+        float: left;
+
+        > a {
+          float: left;
+        }
+
+        > span {
+          width: calc(~"100% - 30px");
+          float: right;
+          line-height: 14px;
+          padding-bottom: 3px;
+        }
+      }
+    }
+  }
+
+  .ir_led_time {
+      min-width: 66px;
+      width: 41%;
+      float: left;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+  }
+  
+  .ir_led_span {
+      float: left;
+  }
+}

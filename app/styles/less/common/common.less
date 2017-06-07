@@ -263,3 +263,26 @@ channels-wrapper canvas {
 .fc-time-grid-event.fc-short .fc-time:after {
     content: normal;
 }
+
+.form-horizontal .control-label{
+  text-align:left !important;
+  position: relative;
+}
+
+/** Show disabled drop down box items in grey color */
+
+/*css style for IE*/
+option[disabled='disabled']::-ms-value {
+    background-color: lightGray;
+    opacity:1;
+}
+/*Specific to chrome and firefox*/
+option[disabled='disabled'] {
+    background-color: lightGray;
+    opacity:1;
+}
+
+select option:disabled {
+     background-color: lightGray;
+    opacity:1;
+}

@@ -5,6 +5,7 @@
 @import "rzslider.less";
 @import "sketchbook.less";
 @import "tabcontrol.less";
+@import "scheduler.less";
 
 .file-browser-field {
   position: relative;
@@ -563,13 +564,22 @@
 	}
 }
 
-/* For Sketchbook */
-body.kind-svg-editor-drawing {
-	.wn5-setup-preview-table,
-	.channel-content {
-		user-select: none;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-	}
+.setup-wrapper,
+#videosetuppage,
+.modal,
+.modal *:not(input, textarea) {
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+.preset-selectbox {float: right; width: 60%;}
+
+.setup-border-box-padding {
+    padding-bottom: 3px;
+}
+
+.wn5-setup-wrapper #setup-border-box {
+    display: block;
 }

@@ -3566,6 +3566,25 @@ channels-wrapper canvas {
 .fc-time-grid-event.fc-short .fc-time:after {
   content: normal;
 }
+.form-horizontal .control-label {
+  text-align: left !important;
+  position: relative;
+}
+/** Show disabled drop down box items in grey color */
+/*css style for IE*/
+option[disabled='disabled']::-ms-value {
+  background-color: lightGray;
+  opacity: 1;
+}
+/*Specific to chrome and firefox*/
+option[disabled='disabled'] {
+  background-color: lightGray;
+  opacity: 1;
+}
+select option:disabled {
+  background-color: lightGray;
+  opacity: 1;
+}
 .login-wrapper {
   width: 700px;
 }
@@ -4790,12 +4809,6 @@ button.login-input + input.login-input {
   background-color: #f2f2f2 !important;
   border-right: 1px solid #e9e9e9 !important;
 }
-#camerasetuppage .wn5-setup-tab > .nav:after {
-  background-color: #f2f2f2;
-}
-#camerasetuppage .wn5-setup-camera-setup-activation-time {
-  padding: 0;
-}
 /* Modal */
 .wn5-setup-modal-wrapper .modal-header,
 .wn5-setup-modal-wrapper .modal-body,
@@ -5690,6 +5703,22 @@ rzslider .rz-bubble {
 #sketchbook #sketchbook_svg {
   overflow: visible;
 }
+body.kind-svg-editor-drawing .wn5-setup-preview-table,
+body.kind-svg-editor-drawing .channel-content {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+#setup-border-box {
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+  display: none;
+}
 /*
 @media(max-width: @setup-mobile-max-width){
 	#sketchbook canvas {
@@ -5782,6 +5811,49 @@ rzslider .rz-bubble {
 .ibox-content .nav > li.active,
 .ibox-content .nav > li:focus {
   z-index: 1;
+}
+[drag-select] {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: white;
+}
+[drag-select] .eng-selected-item {
+  background: SteelBlue;
+  color: white;
+}
+.setHome {
+  background: #54c0ff;
+}
+.setPreset {
+  background: #ffa52f;
+}
+.setSwing {
+  background: #5eec5f;
+}
+.setGroup {
+  background: #923ee6;
+}
+.setTour {
+  background: #ef5ca8;
+}
+.setTrace {
+  background: #ffff77;
+}
+.setAutopan {
+  background: #3464ff;
+}
+.scheduleColorInfo {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  font-weight: bold;
+  margin-right: 3px;
 }
 .file-browser-field {
   position: relative;
@@ -6246,13 +6318,24 @@ rzslider .rz-bubble {
   margin-right: 0;
   font-size: 14px;
 }
-/* For Sketchbook */
-body.kind-svg-editor-drawing .wn5-setup-preview-table,
-body.kind-svg-editor-drawing .channel-content {
+.setup-wrapper,
+#videosetuppage,
+.modal,
+.modal *:not(input, textarea) {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+.preset-selectbox {
+  float: right;
+  width: 60%;
+}
+.setup-border-box-padding {
+  padding-bottom: 3px;
+}
+.wn5-setup-wrapper #setup-border-box {
+  display: block;
 }
 #wisenet-multi_imager-image_align {
   width: 100%;
@@ -7499,6 +7582,76 @@ img[id^="hm-results-image-"] {
 }
 /* Queue management
 ---------------------------------------*/
+#taskmanager2 .order-btn {
+  float: right;
+  width: 14px;
+  height: 28px;
+}
+#taskmanager2 .order-btn i {
+  float: left;
+  cursor: default;
+}
+#camerasetuppage .wn5-setup-tab > .nav:after {
+  background-color: #f2f2f2;
+}
+#camerasetuppage .wn5-setup-camera-setup-activation-time {
+  padding: 0;
+}
+#camerasetuppage .imagepreset-defineFocus {
+  background: #54c0ff !important;
+}
+#camerasetuppage .imagepreset-motionFocus {
+  background: #ffa52f !important;
+}
+#camerasetuppage .imagepreset-reduceNoise {
+  background: #5eec5f !important;
+}
+#camerasetuppage .imagepreset-brightVideo {
+  background: #923ee6 !important;
+}
+#camerasetuppage .imagepreset-motionFocus-reduceNoise {
+  background: #ef5ca8 !important;
+}
+#camerasetuppage .imagepreset-motionFocus-brightVideo {
+  background: #ffff77 !important;
+}
+#camerasetuppage .imagepreset-vividVideo {
+  background: #e00001 !important;
+}
+#camerasetuppage .imagepreset-userPreset {
+  background: #3464ff !important;
+}
+#camerasetuppage #scheduleColor {
+  margin-top: 10px;
+}
+#camerasetuppage #scheduleColor .scheduleColorWrapper {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+#camerasetuppage #scheduleColor .scheduleColorWrapper > div {
+  width: 25%;
+  float: left;
+}
+#camerasetuppage #scheduleColor .scheduleColorWrapper > div > a {
+  float: left;
+}
+#camerasetuppage #scheduleColor .scheduleColorWrapper > div > span {
+  width: calc(100% - 30px);
+  float: right;
+  line-height: 14px;
+  padding-bottom: 3px;
+}
+#camerasetuppage .ir_led_time {
+  min-width: 66px;
+  width: 41%;
+  float: left;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+#camerasetuppage .ir_led_span {
+  float: left;
+}
 @media (min-width: 2300px) and (min-height: 1294px) {
   /* left side-bar style */
   .side-nav-wrapper.setup-wrapper {
