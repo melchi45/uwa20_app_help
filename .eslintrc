@@ -74,7 +74,7 @@
     "no-void" : "error", //disallow void operators
     "vars-on-top" : "off", //require var declarations be placed at the top of their containing scope
     "complexity" : ["warn",20], //enforce a maximum cyclomatic complexity allowed in a program
-    "no-magic-numbers": "warn", //disallow magic numbers
+    "no-magic-numbers": ["warn", {"ignore": [-1, 0, 1]}], //disallow magic numbers
     ///
     // Variables
     // - These rules relate to variable declarations:
