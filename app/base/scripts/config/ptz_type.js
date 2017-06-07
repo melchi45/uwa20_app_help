@@ -31,5 +31,5 @@ kindFramework.constant('PTZ_MESSAGE', {
     'TOUR': "설정된 리스트가 없습니다. TOUR 설정을 해주세요.",
     'TRACE': "TRACE를 지원하지 않습니다. ",
     'NONE': "설정된 리스트가 없습니다. 설정을 해주세요.",
-  }
+  },
 });

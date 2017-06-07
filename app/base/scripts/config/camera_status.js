@@ -45,7 +45,7 @@ kindFramework.constant('CAMERA_STATUS', {
   },
   STREAMING_MODE: {
     'PLUGIN_MODE': 0,
-    'NO_PLUGIN_MODE': 1
+    'NO_PLUGIN_MODE': 1,
   },
   PTZ_MODE: {
     'NONE': 0,
@@ -53,7 +53,7 @@ kindFramework.constant('CAMERA_STATUS', {
     'DIGITAL': 2,
     'EXTERNAL_DIGITAL': 3,
     'OPTICAL': 4,
-    'ZOOMONLY': 5
+    'ZOOMONLY': 5,
   },
-  B2C_DEFAULT_PROFILE: 'Low'
+  B2C_DEFAULT_PROFILE: 'Low',
 });

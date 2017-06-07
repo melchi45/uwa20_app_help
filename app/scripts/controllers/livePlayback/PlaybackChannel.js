@@ -2,8 +2,8 @@
  * Created by miju462.park on 2016-05-12.
  */
 /* global setTimeout, cordova, clearInterval, setInterval, BaseChannel, workerManager*/
-kindFramework
-  .controller('PlaybackChannelCtrl', ['$controller', '$scope', '$timeout', '$q', '$rootScope', '$location', 'LocalStorageService',
+kindFramework.controller(
+  'PlaybackChannelCtrl', ['$controller', '$scope', '$timeout', '$q', '$rootScope', '$location', 'LocalStorageService',
     'ConnectionSettingService', 'LoggingService', 'kindStreamInterface',
     'DigitalZoomService', 'CAMERA_TYPE', 'SunapiClient', 'PLAYBACK_TYPE',
     'SessionOfUserManager', 'ModalManagerService', 'UniversialManagerService',
@@ -23,12 +23,16 @@ kindFramework
       var PLAY_CMD = PLAYBACK_TYPE.playCommand;
       var searchData = new SearchDataModel();
       $scope.sliderRefreshInProgress = false;
-      var DEFAULT_CHANNEL = 0;
       var waitingPlaybackPage = false;
       var isChannelPlayerInit = false;
       var isTimelineInit = false;
       $scope.pageController = {};
       $scope.playbackPage = {};
+
+      var DEFAULT_VALUE = 0;
+      var TIMEOUT = 500;
+      var MIN_TO_SEC = 60;
+      var SEC_TO_MS = 1000;
 
       BaseChannel.prototype.locationChange = function(next) {
         if (next.indexOf('playbackChannel') === -1) {
@@ -57,15 +61,14 @@ kindFramework
                 console.log("$scope.timelineController.destroy();");
                 $scope.timelineController.destroy();
               }
-            } catch (e) {
+            } catch (err) {
               $scope.timelineController.destroy();
             }
           }
         }
       };
 
-      BaseChannel.prototype.openFullView = function(event, info) {
-
+      BaseChannel.prototype.openFullView = function() {
         if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
           var playData = new PlayDataModel();
           playData.setCurrentMenu('full');
@@ -111,7 +114,7 @@ kindFramework
         $state: $state,
         SearchDataModel: SearchDataModel,
         PlayDataModel: PlayDataModel,
-        PlaybackInterface: PlaybackInterface
+        PlaybackInterface: PlaybackInterface,
       }));
 
       /*
@@ -124,11 +127,11 @@ kindFramework
         playData.setEnableTimezone(true);
         if (UniversialManagerService.isSpeakerOn()) {
           UniversialManagerService.setSpeakerOn(false);
-          UniversialManagerService.setSpeakerVol(0);
+          UniversialManagerService.setSpeakerVol(DEFAULT_VALUE);
         }
         if (UniversialManagerService.isMicOn()) {
           UniversialManagerService.setMicOn(false);
-          UniversialManagerService.setMicVol(0);
+          UniversialManagerService.setMicVol(DEFAULT_VALUE);
         }
         waitingPlaybackPage = false;
         isTimelineInit = false;
@@ -147,8 +150,8 @@ kindFramework
         var playData = new PlayDataModel();
         playData.setPlaybackEnable(true);
         PlaybackInterface.stopLive();
-        PlaybackInterface.preparePlayback(channelId)
-          .then(function(results) {
+        PlaybackInterface.preparePlayback(channelId).
+          then(function(results) {
             def.resolve(results);
           }, function(err) {
             def.reject(err);
@@ -175,17 +178,16 @@ kindFramework
         $scope.pageController.channelSelector(sunapiAttributes.MaxChannel > 1 ? true : false);
         ConnectionSettingService.SetMultiChannelSupport(
           sunapiAttributes.MaxChannel > 1 ? true : false);
-        var playData = new PlayDataModel();
         playData.setPlaybackEnable(true);
-        initStreaming()
-          .then(function() {
+        initStreaming().
+          then(function() {
             //Check Browser
-            if (BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ||
-              BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.EDGE) {
+            if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.FIREFOX ||
+              BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.EDGE) {
               ModalManagerService.open(
                 'message', {
                   'message': "Optimized for Chrome Browser",
-                  'buttonCount': 0
+                  'buttonCount': 0,
                 }
               );
             }
@@ -194,7 +196,7 @@ kindFramework
         $scope.domControls.enablePlayback = true;
         $scope.timelineController.create();
         $scope.timelineController.changeCurrnetDate({
-          'date': searchData.getSelectedDate()
+          'date': searchData.getSelectedDate(),
         });
 
         UniversialManagerService.setPlayMode(CAMERA_STATUS.PLAY_MODE.PLAYBACK);
@@ -203,7 +205,7 @@ kindFramework
       };
 
       $scope.channelSetFunctions = {
-        show: false
+        show: false,
       };
 
       $scope.selectBackupTime = function() {
@@ -222,7 +224,6 @@ kindFramework
       var setAccountData = function(response) {
         var accountInfo = {};
         var data = response.data.Users;
-
         if (data.length > 0) { //admin, user
           accountInfo = data[0];
           UniversialManagerService.setUserId(data[0].UserID);
@@ -245,7 +246,7 @@ kindFramework
           function(response) {
             setAccountData(response);
           },
-          function(errorData, errorCode) {
+          function(errorData) {
             console.error(errorData);
           }, {}, true);
       };
@@ -261,7 +262,7 @@ kindFramework
             $scope.ClientIPAddress = response.data.ClientIP;
             SessionOfUserManager.SetClientIPAddress($scope.ClientIPAddress);
           },
-          function(errorData, errorCode) {
+          function(errorData) {
             console.error(errorData);
           }, '', true);
       };
@@ -278,7 +279,7 @@ kindFramework
             var macIp = response.data.NetworkInterfaces[0].MACAddress;
             ConnectionSettingService.SetRtspIpMac(rtspIp, macIp);
           },
-          function(errorData, errorCode) {
+          function(errorData) {
             console.error(errorData);
           }, '', true);
       };
@@ -294,7 +295,7 @@ kindFramework
             var rtspPort = response.data.Port;
             ConnectionSettingService.SetRtspPort(rtspPort);
           },
-          function(errorData, errorCode) {
+          function(errorData) {
             console.error(errorData);
           }, '', true);
       };
@@ -313,7 +314,7 @@ kindFramework
           var password = SessionOfUserManager.getPassword();
           ConnectionSettingService.setConnectionInfo({
             id: id,
-            password: password
+            password: password,
           });
           /**
            * When user refresh the browser, account is resetted.
@@ -336,7 +337,7 @@ kindFramework
           $timeout(function() {
             sunapiAttributes = Attributes.get();
             checkAttributes();
-          }, 500);
+          }, TIMEOUT);
         } else {
           getCurrentDate();
         }
@@ -353,14 +354,14 @@ kindFramework
           function(response) {
             var currentDay = response.data.LocalTime.split(" ")[0];
             var current = new Date(currentDay);
-            current.setTime(current.getTime() + current.getTimezoneOffset() * 60 * 1000);
+            current.setTime(current.getTime() + ( current.getTimezoneOffset() * MIN_TO_SEC * SEC_TO_MS));
             searchData.setDefaultDate(current);
             initializePlaybackPage();
           },
-          function(errorDate) {}, '', true);
+          function() {}, '', true);
       }
 
-      function GetFlipMirror() {
+      function getFlipMirror() {
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', '',
           function(response) {
             UniversialManagerService.setRotate(response.data.Flip);
@@ -372,8 +373,8 @@ kindFramework
 
       // When connect to PlaybackChannel at first,
       $scope.$on('$stateChangeSuccess',
-        function(event, toState, toParams, fromState, fromParams) {
-          GetFlipMirror();
+        function(event, toState, toParams, fromState) {
+          getFlipMirror();
           console.log(fromState, " :->", toState);
           getStreamingInfo();
           self.resetUI();
@@ -389,7 +390,7 @@ kindFramework
         watchViewMode();
       });
 
-      $rootScope.$saveOn('playbackBackup', function(event, data) {
+      $rootScope.$saveOn('playbackBackup', function() {
         $scope.playPlayback(PLAY_CMD.BACKUP);
       }, $scope);
 
@@ -400,7 +401,7 @@ kindFramework
         }
       }, $scope);
 
-      $rootScope.$saveOn('channelPlayer::initialized', function(event, data) {
+      $rootScope.$saveOn('channelPlayer::initialized', function() {
         isChannelPlayerInit = true;
         if (waitingPlaybackPage === true && isTimelineInit === true &&
           isChannelPlayerInit === true) {
@@ -408,7 +409,7 @@ kindFramework
         }
       }, $scope);
 
-      $rootScope.$saveOn('timeline::initialized', function(event, data) {
+      $rootScope.$saveOn('timeline::initialized', function() {
         isTimelineInit = true;
         if (waitingPlaybackPage === true && isTimelineInit === true &&
           isChannelPlayerInit === true) {
@@ -432,13 +433,14 @@ kindFramework
 
       $rootScope.$saveOn('channel:reloadStreaming', function() {
         var playData = new PlayDataModel();
-        if (BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && playData.getStatus() === PLAY_CMD.PLAY) {
+        if (BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && 
+          playData.getStatus() === PLAY_CMD.PLAY) {
           $scope.playPlayback(PLAY_CMD.STOP);
           playData.setStatus(PLAY_CMD.PLAY);
           $timeout(function() {
             $scope.timelineController.resetTimeRange();
             $scope.playPlayback(PLAY_CMD.PLAY);
-          }, 500);
+          }, TIMEOUT);
         }
       }, $scope);
 
@@ -455,10 +457,10 @@ kindFramework
         console.log(response);
       }, $scope);
 
-      var watchViewMode = $scope.$watch('viewMode', function(newVal, oldVal) {
+      var watchViewMode = $scope.$watch('viewMode', function(newVal) {
         console.log("kind ", newVal);
         if (newVal === null) {
-          $scope.viewMode = self.getViewModeCmd(0);
+          $scope.viewMode = self.getViewModeCmd(DEFAULT_VALUE);
           return;
         }
         // $scope.wisenetCameraFuntions[6].label = $scope.viewModeTitle = getViewModeTitle(newVal);
@@ -467,5 +469,5 @@ kindFramework
         $scope.viewModeTitle = self.getViewModeTitle(newVal);
         kindStreamInterface.setCanvasStyle(newVal);
       });
-    }
+    },
   ]);

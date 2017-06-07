@@ -13,5 +13,5 @@ kindFramework.controller('modalInstnceStatusCtrl', ['$scope', '$rootScope', '$ui
     $rootScope.$saveOn('allpopupclose', function() {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
-  }
+  },
 ]);

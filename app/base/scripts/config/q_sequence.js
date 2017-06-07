@@ -1,4 +1,3 @@
-/* global recursive */
 "use strict";
 kindFramework.
 config(function($provide) {
