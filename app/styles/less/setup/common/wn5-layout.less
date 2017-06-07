@@ -406,26 +406,26 @@
     margin-bottom: 0;
     border: 0;
 
-    border-left: 1px solid @theme-tab-border;
+    border-left: 1px solid @theme-light-tab-border;
 
     .wn5-setup-tab-item-common() {
       width: 100%;
       height: @setup-tab-height;
       border-radius: 0;
       border: 0 !important;
-      background-color: @theme-tab-unselected;
-      border-right: 1px solid @theme-tab-border !important;
-      border-bottom: 1px solid @theme-tab-border !important;
+      background-color: @theme-light-tab-unselected;
+      border-right: 1px solid @theme-light-tab-border !important;
+      border-bottom: 1px solid @theme-light-tab-border !important;
       outline: none;
       margin: 0;
     }
 
     > li,
     .wn5-setup-tab-item {
-      border-top: 1px solid @theme-tab-border;
+      border-top: 1px solid @theme-light-tab-border;
       .btn-hover() {
-        background: @theme-tab-select !important;
-        color: @theme-tab-color !important;
+        background: @theme-light-tab-select !important;
+        color: @theme-light-tab-color !important;
       }
       .btn-active(){
         .btn-hover();
@@ -445,7 +445,7 @@
         .wn5-setup-tab-item-common();
         padding: 10px 0 10px 0;
         text-align: center;
-        color: @theme-tab-color;
+        color: @theme-light-tab-color;
         font-size: @setup-title-s;
         font-weight: bold;
         
@@ -490,7 +490,7 @@
   > .tab-content,
   .wn5-setup-tab-content {
     position: relative;
-    border: 1px solid @theme-tab-border;
+    border: 1px solid @theme-light-tab-border;
     border-top: 0;
     padding: 20px 0;
     background: #fff;
@@ -532,7 +532,7 @@
   .wn5-setup-tab {
     > .nav {
       &:after {
-        background-color: @theme-tab-unselected;
+        background-color: @theme-light-tab-unselected;
       }
     }
   }
