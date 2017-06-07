@@ -255,18 +255,18 @@ fieldset {
     font-size: 18px;
     cursor: pointer;
     float: none;
-    color: @theme-slider-normal-line-top !important;
+    color: @theme-light-slider-normal-line-top !important;
 
     &:hover {
-      color: @theme-slider-focus-line-top !important;
+      color: @theme-light-slider-focus-line-top !important;
     }
 
     &:active {
-      color: @theme-slider-click-line-top !important;
+      color: @theme-light-slider-click-line-top !important;
     }
 
     &[disabled] {
-      color: @theme-slider-disabled-line-top !important;
+      color: @theme-light-slider-disabled-line-top !important;
       cursor: default;
     }
     
@@ -289,25 +289,25 @@ fieldset {
     }
 
     .rz-bar {
-      background: @theme-slider-normal-line-bottom !important;
+      background: @theme-light-slider-normal-line-bottom !important;
 
       &:focus {
-        background: @theme-slider-focus-line-bottom !important;
+        background: @theme-light-slider-focus-line-bottom !important;
       }
 
       &:active {
-        background: @theme-slider-click-line-bottom !important;
+        background: @theme-light-slider-click-line-bottom !important;
       }
 
       &.rz-selection {
-        background: @theme-slider-normal-line-top !important;
+        background: @theme-light-slider-normal-line-top !important;
 
         &:focus {
-          background: @theme-slider-focus-line-top !important;
+          background: @theme-light-slider-focus-line-top !important;
         }
 
         &:active {
-          background: @theme-slider-click-line-top !important;
+          background: @theme-light-slider-click-line-top !important;
         }
       }
     }
@@ -333,21 +333,21 @@ fieldset {
       height: @setup-slider-big-size;
 
       &:after {
-        background: @theme-slider-normal-line-top;
+        background: @theme-light-slider-normal-line-top;
         left: 2px;
         top: 2px;
       }
 
       &:focus,
       &:hover {
-        background: @theme-slider-focus-line-top;
+        background: @theme-light-slider-focus-line-top;
         &:after {
           background: rgba(0,0,0,0);
         }
       }
 
       &:active {
-        background: @theme-slider-click-line-top;
+        background: @theme-light-slider-click-line-top;
         &:after {
           background: rgba(0,0,0,0);
         }
@@ -357,10 +357,10 @@ fieldset {
 
   rzslider[disabled] {
     .rz-bar {
-      background: @theme-slider-disabled-line-bottom !important;
+      background: @theme-light-slider-disabled-line-bottom !important;
 
       &.rz-selection {
-        background: @theme-slider-disabled-line-top !important;
+        background: @theme-light-slider-disabled-line-top !important;
       }
     }
 
@@ -368,7 +368,7 @@ fieldset {
       background: rgba(0,0,0,0);
 
       &:after {
-        background: @theme-slider-disabled-line-top;
+        background: @theme-light-slider-disabled-line-top;
       }
     }
   }
@@ -380,14 +380,14 @@ fieldset {
       border: none;
       width: @setup-slider-small-size !important;
       height: @setup-slider-small-size !important;
-      background: @theme-slider-normal-line-top;
+      background: @theme-light-slider-normal-line-top;
 
       &.ui-state-hover {
-        background: @theme-slider-focus-line-top;
+        background: @theme-light-slider-focus-line-top;
       }
 
       &.ui-state-active {
-        background: @theme-slider-click-line-top;
+        background: @theme-light-slider-click-line-top;
       }
     }
 

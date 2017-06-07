@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "Confidenţialitatea poate fi setată numai dacă DIS este dezactivat, iar funcţia zoom este mai mică de X32",
     "lang_msg_privacy_Zoom_37x": "Confidenţialitatea poate fi setată numai dacă DIS este dezactivat, iar funcţia zoom este mai mică de X37",
     "lang_msg_privacy_Zoom_43x": "Confidenţialitatea poate fi setată numai dacă DIS este dezactivat, iar funcţia zoom este mai mică de X43",
-    "lang_msg_privacy_Zoom_variable_magnification": "Confidenţialitatea poate fi setată numai dacă DIS este dezactivat, iar funcţia zoom este mai mică de X%1",
+    "lang_msg_privacy_Zoom_variable_magnification": "To use the privacy function, the DIS function must be disabled and the zoom must be equal or smaller than %1 scale.",
     "lang_msg_max_Privacyarea_32": "Puteţi seta maximum 32 de zone de intimitate.",
     "lang_msg_max_Privacyarea_12": "Puteţi seta maximum 12 de zone de intimitate.",
     "lang_msg_max_Privacyarea_6": "Puteţi seta maximum 6 de zone de intimitate.",

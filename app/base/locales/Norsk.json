@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "Privatliv kan stilles inn kun hvis DIS er deaktivert og zoom er mindre enn X32",
     "lang_msg_privacy_Zoom_37x": "Privatliv kan stilles inn kun hvis DIS er deaktivert og zoom er mindre enn X37",
     "lang_msg_privacy_Zoom_43x": "Privatliv kan stilles inn kun hvis DIS er deaktivert og zoom er mindre enn X43",
-    "lang_msg_privacy_Zoom_variable_magnification": "Privatliv kan stilles inn kun hvis DIS er deaktivert og zoom er mindre enn X%1",
+    "lang_msg_privacy_Zoom_variable_magnification": "To use the privacy function, the DIS function must be disabled and the zoom must be equal or smaller than %1 scale.",
     "lang_msg_max_Privacyarea_32": "Du kan maksimalt velge 32 personmvernområder.",
     "lang_msg_max_Privacyarea_12": "Du kan maksimalt velge 12 personmvernområder.",
     "lang_msg_max_Privacyarea_6": "Du kan maksimalt velge 6 personmvernområder.",

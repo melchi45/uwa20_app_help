@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "La Privacy può essere impostata solo se DIS è disattivato è lo zoom è inferiore di X32",
     "lang_msg_privacy_Zoom_37x": "La Privacy può essere impostata solo se DIS è disattivato è lo zoom è inferiore di X37",
     "lang_msg_privacy_Zoom_43x": "La Privacy può essere impostata solo se DIS è disattivato è lo zoom è inferiore di X43",
-    "lang_msg_privacy_Zoom_variable_magnification": "La Privacy può essere impostata solo se DIS è disattivato è lo zoom è inferiore di X%1",
+    "lang_msg_privacy_Zoom_variable_magnification": "Per utilizzare la funzione privacy, la funzione DIS deve essere disabilitata e lo zoom deve essere uguale o inferiore a %1 scala.",
     "lang_msg_max_Privacyarea_32": "È possibile impostare fino ad un massimo di 32 aree privacy.",
     "lang_msg_max_Privacyarea_12": "È possibile impostare fino ad un massimo di 12 aree privacy.",
     "lang_msg_max_Privacyarea_6": "È possibile impostare fino ad un massimo di 6 aree privacy ",

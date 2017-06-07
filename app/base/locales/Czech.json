@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "Soukromí lze nastavit, jen pokud je deaktivováno DIS a zvětšení je menší než X32",
     "lang_msg_privacy_Zoom_37x": "Soukromí lze nastavit, jen pokud je deaktivováno DIS a zvětšení je menší než X37",
     "lang_msg_privacy_Zoom_43x": "Soukromí lze nastavit, jen pokud je deaktivováno DIS a zvětšení je menší než X43",
-    "lang_msg_privacy_Zoom_variable_magnification": "Soukromí lze nastavit, jen pokud je deaktivováno DIS a zvětšení je menší než X%1",
+    "lang_msg_privacy_Zoom_variable_magnification": "Chcete-li použít funkci soukromí, musí zakázána funkce DIS a přiblížení musí být rovna nebo menší než %1 měřítku.",
     "lang_msg_max_Privacyarea_32": "Můžete nastavit maximálně 32 soukromých oblastí.",
     "lang_msg_max_Privacyarea_12": "Můžete nastavit maximálně 12 soukromých oblastí.",
     "lang_msg_max_Privacyarea_6": "Můžete nastavit maximálně 6 soukromých oblastí.",

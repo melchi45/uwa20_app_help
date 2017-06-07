@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "Privacy kan alleen worden ingesteld als DIS is gedeactiveerd en zoom minder is dan X32",
     "lang_msg_privacy_Zoom_37x": "Privacy kan alleen worden ingesteld als DIS is gedeactiveerd en zoom minder is dan X37",
     "lang_msg_privacy_Zoom_43x": "Privacy kan alleen worden ingesteld als DIS is gedeactiveerd en zoom minder is dan X43",
-    "lang_msg_privacy_Zoom_variable_magnification": "Privacy kan alleen worden ingesteld als DIS is gedeactiveerd en zoom minder is dan X%1",
+    "lang_msg_privacy_Zoom_variable_magnification": "Om de privacyfunctie te gebruiken, moet de DIS-functie uitgeschakeld zijn en moet de zoom gelijk of kleiner zijn dan %1 schaal.",
     "lang_msg_max_Privacyarea_32": "U kunt max. 32 privacy-gebieden instellen.",
     "lang_msg_max_Privacyarea_12": "U kunt max. 12 privacy-gebieden instellen.",
     "lang_msg_max_Privacyarea_6": "U kunt max. 6 privacy-gebieden instellen.",

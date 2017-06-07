@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "DISが機能解除となり、ズームが32倍よりも小さい場合のみ、プライバシー設定が可能です。",
     "lang_msg_privacy_Zoom_37x": "DISが機能解除となり、ズームが37倍よりも小さい場合のみ、プライバシー設定が可能です。",
     "lang_msg_privacy_Zoom_43x": "DISが機能解除となり、ズームが43倍よりも小さい場合のみ、プライバシー設定が可能です。",
-    "lang_msg_privacy_Zoom_variable_magnification": "DISが機能解除となり、ズームが20倍よりも小さい場合のみ、プライバシー設定が可能です。",
+    "lang_msg_privacy_Zoom_variable_magnification": "プライバシー機能を使用するには、DIS機能を無効にする必要があり、ズームは%1スケール以下でなければなりません。",
     "lang_msg_max_Privacyarea_32": "最大32のプライバシー領域を設定できます。",
     "lang_msg_max_Privacyarea_12": "最大12のプライバシー領域を設定できます。",
     "lang_msg_max_Privacyarea_6": "最大6のプライバシー領域を設定できます。",

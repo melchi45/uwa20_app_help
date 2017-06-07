@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "La confidentialité ne peut être réglée que si DIS est désactivé et que le zoom est inférieur à 32 x",
     "lang_msg_privacy_Zoom_37x": "La confidentialité ne peut être réglée que si DIS est désactivé et que le zoom est inférieur à 37 x",
     "lang_msg_privacy_Zoom_43x": "La confidentialité ne peut être réglée que si DIS est désactivé et que le zoom est inférieur à 43 x",
-    "lang_msg_privacy_Zoom_variable_magnification": "La confidentialité ne peut être réglée que si DIS est désactivé et que le zoom est inférieur à %1 x",
+    "lang_msg_privacy_Zoom_variable_magnification": "Pour utiliser la fonction de confidentialité, la fonction DIS doit être désactivée et le zoom doit être égal ou inférieur à l'échelle %1.",
     "lang_msg_max_Privacyarea_32": "Vous pouvez définir au maximum 32 secteurs de vie privée.",
     "lang_msg_max_Privacyarea_12": "Vous pouvez définir au maximum 12 secteurs de vie privée.",
     "lang_msg_max_Privacyarea_6": "Vous pouvez définir au maximum 6 secteurs de vie privée.",
