@@ -1,12 +1,12 @@
 "use strict";
-kindFramework
-  .directive("extendFullCamera", ['kindStreamInterface', 'UniversialManagerService',
+kindFramework.
+  directive("extendFullCamera", ['kindStreamInterface', 'UniversialManagerService',
     function(kindStreamInterface, UniversialManagerService) {
       return {
         require: '^fullCamera',
         url: '<div></div>',
         restrict: 'A',
-        link: function(scope, element, attrs) {
+        link: function(scope, element) {
           scope.actions = {
             controlAudio: function(data) {
               kindStreamInterface.controlAudio(data);
@@ -26,5 +26,5 @@ kindFramework
           };
         },
       };
-    }
+    },
   ]);

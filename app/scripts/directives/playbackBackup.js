@@ -9,16 +9,18 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope', 'Mod
       scope: {
         getBackupDate: '=',
         control: '=',
-        visibility: '='
+        visibility: '=',
       },
       link: function(scope, element, attr) {
         var playData = new PlayDataModel();
         var PLAY_CMD = PLAYBACK_TYPE.playCommand;
         var searchData = new SearchDataModel();
         scope.blockTimeInput = false;
-        var pad = function(x) {
-          x *= 1;
-          return x < 10 ? "0" + x : x;
+        var MAX_FILEBACKUP_DURATION = 300000; // 5Min to ms
+        var MIN_DOUBLE_FIGURES = 10;
+        var pad = function(input) {
+          var target = input*1;
+          return target < MIN_DOUBLE_FIGURES ? "0" + target : target;
         };
 
         var init = function() {
@@ -31,7 +33,7 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope', 'Mod
         var currentDateStr = [
           newDate.getFullYear(),
           pad(newDate.getMonth() + 1),
-          pad(newDate.getDate())
+          pad(newDate.getDate()),
         ].join('-');
 
         scope.startTime = {
@@ -54,41 +56,41 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope', 'Mod
             scope.endTime.minutes, scope.endTime.seconds);
           var diff = end.getTime() - start.getTime();
 
-          if (diff > 0 && diff <= 5 * 60 * 1000) {
+          if (diff > 0 && diff <= MAX_FILEBACKUP_DURATION) {
             var startTime = pad(scope.startTime.hours) + "" + pad(scope.startTime.minutes) + "" + pad(scope.startTime.seconds);
             var endTime = pad(scope.endTime.hours) + "" + pad(scope.endTime.minutes) + "" + pad(scope.endTime.seconds);
             return {
               startTime: startTime,
               endTime: endTime,
-              currentDate: scope.currentDate
+              currentDate: scope.currentDate,
             };
           } else {
             if (diff === 0) {
               ModalManagerService.open(
                 'message', {
                   'message': "lang_msg_From_To_Diff",
-                  'buttonCount': 1
+                  'buttonCount': 1,
                 }
               );
             } else if (diff < 0) {
               ModalManagerService.open(
                 'message', {
                   'message': "lang_msg_From_To_Late",
-                  'buttonCount': 1
+                  'buttonCount': 1,
                 }
               );
-            } else if (diff > 5 * 60 * 1000) {
+            } else if (diff > MAX_FILEBACKUP_DURATION) {
               ModalManagerService.open(
                 'message', {
                   'message': "lang_msg_no_more_than_5min",
-                  'buttonCount': 1
+                  'buttonCount': 1,
                 }
               );
-              end.setTime(start.getTime() + 5 * 60 * 1000);
+              end.setTime(start.getTime() + MAX_FILEBACKUP_DURATION);
               scope.endTime = {
                 hours: pad(end.getHours()),
                 minutes: pad(end.getMinutes()),
-                seconds: pad(end.getSeconds())
+                seconds: pad(end.getSeconds()),
               };
             }
             return null;
@@ -96,14 +98,15 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope', 'Mod
         };
 
         var watchVisible = scope.$watch(function() {
-            return scope.visibility;
-          },
-          function(newVal, oldVal) {
-            if (newVal === oldVal) return;
-            if (newVal === true) {
-              init();
-            }
-          });
+          return scope.visibility;
+        }, function(newVal, oldVal) {
+          if (newVal === oldVal) {
+            return;
+          }
+          if (newVal === true) {
+            init();
+          }
+        });
         $rootScope.$saveOn("scripts/services/playbackClass/timelineService::backupTimeRange",
           function(event, item) {
             scope.startTime.hours = pad(item.start.hour());
@@ -112,8 +115,8 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope', 'Mod
 
             var endTarget = item.end;
 
-            if (item.end.valueOf() - item.start.valueOf() > 5 * 60 * 1000) {
-              endTarget = moment(item.start.valueOf() + 5 * 60 * 1000);
+            if (item.end.valueOf() - item.start.valueOf() > MAX_FILEBACKUP_DURATION) {
+              endTarget = moment(item.start.valueOf() + MAX_FILEBACKUP_DURATION);
             }
             scope.endTime.hours = pad(endTarget.hour());
             scope.endTime.minutes = pad(endTarget.minute());
@@ -127,7 +130,7 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope', 'Mod
           //KILL Watch Process
           watchVisible();
         });
-      }
+      },
     };
-  }
+  },
 ]);

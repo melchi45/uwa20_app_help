@@ -15,7 +15,8 @@
   "globals": {
     "kindFramework" : true,
     "angular": true,
-    "isPhone" : true
+    "isPhone" : true,
+    "moment" : true
   },
   //"plugins": ["angular"],
   "rules": {

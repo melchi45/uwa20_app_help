@@ -8,21 +8,25 @@ kindFramework.directive('playbackDatepicker', function() {
     controller: function($scope, $timeout, dateConverter, PlaybackInterface, CAMERA_TYPE, $rootScope, SearchDataModel, UniversialManagerService, ModalManagerService) {
       var searchData = new SearchDataModel();
       var recordingDate = [];
-      var optionServiceType = ['WEB_SSM', 'WEB_IPOLIS', 'MOBILE_B2C', 'MOBILE_B2B'];
       var selectedEventList = [];
       var currentDate = searchData.getSelectedDate();
       var isValueChanged = true;
       var playbackInterfaceService = PlaybackInterface;
+      var MIN_DATE = {'YEAR' : 2000, 'MONTH' : 1, 'DAY' : 1};
+      var MAX_DATE = {'YEAR' : 2037, 'MONTH' : 12, 'DAY' : 32};
+      var HOUR_TO_MIN = 60, MIN_TO_SEC = 60;
+      var MIN_DOUBLE_FIGURES = 10;
+      var MAX_SLIDER_INPUT = 1440;
 
       $scope.blockTimeInput = false;
       $scope.submitButton = 'lang_search';
-      $scope.minDate = new Date(2000, 0, 1);
-      $scope.maxDate = new Date(2037, 11, 31);
+      $scope.minDate = new Date(MIN_DATE.YEAR, MIN_DATE.MONTH-1, MIN_DATE.DAY);
+      $scope.maxDate = new Date(MAX_DATE.YEAR, MAX_DATE.MONTH-1, MAX_DATE.DAY);
       $scope.showError = function(message) {
         ModalManagerService.open(
           'message', {
             'buttonCount': 0,
-            'message': message
+            'message': message,
           }
         );
       };
@@ -41,13 +45,14 @@ kindFramework.directive('playbackDatepicker', function() {
 
       var makeElementsOfInputBox = function(sliderTime, wantedElements) {
         if (wantedElements === 'hours') {
-          return pad(Math.floor(sliderTime / 60));
+          return pad(Math.floor(sliderTime / MIN_TO_SEC));
         } else if (wantedElements === 'minutes') {
-          return pad(sliderTime - (Math.floor(sliderTime / 60) * 60));
+          return pad(sliderTime - (Math.floor(sliderTime / MIN_TO_SEC) * MIN_TO_SEC));
         } else if (wantedElements === 'seconds') {
           return "00";
         } else {
-          return pad(Math.floor(sliderTime / 60)) + ":" + pad(sliderTime - (Math.floor(sliderTime / 60) * 60)) + ":" + "00";
+          return pad(Math.floor(sliderTime / MIN_TO_SEC)) + ":" + 
+            pad(sliderTime - (Math.floor(sliderTime / MIN_TO_SEC) * MIN_TO_SEC)) + ":" + "00";
         }
       };
       var makeFullPackageOfInputBox = function(wantedElements) {
@@ -67,8 +72,8 @@ kindFramework.directive('playbackDatepicker', function() {
       };
       $scope.changeNumToTime = function(inputType, distinctionBranch) {
         if (inputType === 0) {
-          if (slider.start.from === 1440) {
-            slider.start.from = slider.start.from - 1;
+          if (slider.start.from === MAX_SLIDER_INPUT) {
+            slider.start.from -= 1;
             slider.start.hours = "23";
             slider.start.minutes = "59";
             slider.start.seconds = "58";
@@ -80,8 +85,8 @@ kindFramework.directive('playbackDatepicker', function() {
             }
           }
         } else {
-          if (slider.end.to === 1440) {
-            slider.end.to = slider.end.to - 1;
+          if (slider.end.to === MAX_SLIDER_INPUT) {
+            slider.end.to -= 1;
             slider.end.hours = "23";
             slider.end.minutes = "59";
             slider.end.seconds = "59";
@@ -98,31 +103,32 @@ kindFramework.directive('playbackDatepicker', function() {
         });
       };
       var changeTimeToNum = function(hours, minutes) {
-        return (stringToNum(hours) * 60) + stringToNum(minutes);
+        return (stringToNum(hours) * HOUR_TO_MIN) + stringToNum(minutes);
       };
-      var pad = function(x) {
-        return (x < 10 ? "0" + x : x);
+      var pad = function(input) {
+        var target = input*1;
+        return target < MIN_DOUBLE_FIGURES ? "0" + target : target;
       };
-      var stringPad = function(x) {
-        switch (numToString(x).length) {
+      var stringPad = function(input) {
+        switch (numToString(input).length) {
           case 0:
             return '00';
           case 1:
-            return '0' + x;
+            return '0' + input;
           case 2:
-            return numToString(x);
+            return numToString(input);
           default:
             console.log("unexpected keyCode");
             break;
         }
       };
-      var stringToNum = function(x) {
-        return x *= 1;
+      var stringToNum = function(input) {
+        return input * 1;
       };
-      var numToString = function(x) {
-        return x + "";
+      var numToString = function(input) {
+        return input + "";
       };
-      var search = function function_name() {
+      var search = function() {
         // checkInputValues();
         if (makeFullPackageOfInputBox('start') === makeFullPackageOfInputBox('end')) {
           $scope.showError("lang_msg_From_To_Diff");
@@ -140,7 +146,7 @@ kindFramework.directive('playbackDatepicker', function() {
         var dateInfo = {
           'year': year,
           'month': month,
-          'channel': channelId
+          'channel': channelId,
         };
         playbackInterfaceService.findRecordings(dateInfo).then(function(results) {
           recordingDate = results;
@@ -148,7 +154,7 @@ kindFramework.directive('playbackDatepicker', function() {
             $scope.$broadcast('refreshDatepickers');
             $scope.isLoading = false;
           });
-        }, function(error) {
+        }, function() {
           console.log("findRecordings fail");
           $scope.isLoading = false;
           $scope.showError("lang_timeout");
@@ -157,16 +163,21 @@ kindFramework.directive('playbackDatepicker', function() {
       $scope.playback = {
         'search': {
           mode: 'day',
-          selectedDate: currentDate
+          selectedDate: currentDate,
         },
         getDayClass: function(date, mode) {
           switch (mode) {
             case 'day':
               var className = "";
-              if (date.getDay() === 0 || date.getDay() === 6) className = "week";
-              if (new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)) className += " today";
-              for (var i in recordingDate) {
-                if (recordingDate[i].day === pad(date.getDate()) && recordingDate[i].month === pad(date.getMonth() + 1)) {
+              if (date.getDay() === 0 || date.getDay() === 6) {
+                className = "week";
+              }
+              if (new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)) {
+                className += " today";
+              }
+              for (var idx in recordingDate) {
+                if (recordingDate[idx].day === pad(date.getDate()) && 
+                  recordingDate[idx].month === pad(date.getMonth() + 1)) {
                   className += " event";
                   return className;
                 }
@@ -187,8 +198,9 @@ kindFramework.directive('playbackDatepicker', function() {
             $scope.showError("lang_msg_timebackupDateError");
           } else {
             var isExistFlag = false;
-            for (var i in recordingDate) {
-              if (recordingDate[i].day === pad($scope.playback.search.selectedDate.getDate()) && recordingDate[i].month === pad($scope.playback.search.selectedDate.getMonth() + 1)) {
+            for (var idx in recordingDate) {
+              if (recordingDate[idx].day === pad($scope.playback.search.selectedDate.getDate()) && 
+                recordingDate[idx].month === pad($scope.playback.search.selectedDate.getMonth() + 1)) {
                 isExistFlag = true;
               }
             }
@@ -234,13 +246,15 @@ kindFramework.directive('playbackDatepicker', function() {
         getFocusTime: function($event) {
           var isDown = false;
           validTime.defaultTime = $event.target.value;
-          if (validTime.defaultTime === undefined) {
+          if (typeof validTime.defaultTime === "undefined") {
             validTime.defaultTime = "00";
           }
           var selectedElement = document.getElementById($event.target.id);
           selectedElement.setSelectionRange(0, 2);
-          selectedElement.onkeyup = function($event) {
-            if (isDown === false) return;
+          selectedElement.onkeyup = function() {
+            if (isDown === false) {
+              return;
+            }
             if (/^[0-9]+$/.test(selectedElement.value) === false) {
               selectedElement.value = selectedElement.value.slice(0, -1);
             }
@@ -359,7 +373,9 @@ kindFramework.directive('playbackDatepicker', function() {
           }
         } else {
           slider.end.to = slider.start.from + searchData.getDefaultPlusTime();
-          if (slider.end.to >= 1440) slider.end.to = 1440;
+          if (slider.end.to >= MAX_SLIDER_INPUT) {
+            slider.end.to = MAX_SLIDER_INPUT;
+          }
           slider.end.seconds = slider.start.seconds;
           $scope.changeNumToTime(1, 1);
           return false;
@@ -406,13 +422,8 @@ kindFramework.directive('playbackDatepicker', function() {
           $scope.cancel();
         }
       };
-      var currentInputTarget = null;
 
       $timeout(function() {
-        $('.start-time input, .end-time input').bind('mousedown', function(event) {
-          console.log("kind mousedown", event.target);
-          currentInputTarget = event.target;
-        });
         var searchModal = $("#search-box").parent().parent().parent();
         searchModal.bind("mousedown", clickHandler);
       });
@@ -438,10 +449,10 @@ kindFramework.directive('playbackDatepicker', function() {
     scope: {
       getSelectedDate: '=',
       control: '=',
-      showMenu: '='
+      showMenu: '=',
     },
-    link: function(scope, element, attr) {
+    link: function(scope) {
       scope.getSelectedDate = scope.ok;
-    }
+    },
   };
 });
