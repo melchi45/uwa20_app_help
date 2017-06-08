@@ -9862,11 +9862,6 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback #pb-datepicker-section .start-time {
   margin-left: 0;
 }
-.kind-responsive-playback #cm-bottom-menu.cm-full-menu #pb-icon-list {
-  width: 100%;
-  display: block;
-  clear: both;
-}
 .kind-responsive-playback #cm-bottom-menu.cm-full-menu #pb-icon-list .cm-vline {
   background: #333;
 }
