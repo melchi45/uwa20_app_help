@@ -19,11 +19,7 @@
     padding-top: 20px;
     line-height: 170px;
     text-align: left;
-    h1 {
-      color: #d7dcdd;
-      font-size: 17px;
-      margin-top: 40px;
-    }
+    
     @media(max-width: 479px) {
       height: 190px;
       padding-top: 20px;
@@ -35,12 +31,6 @@
   }
   .login-inputbox-container {
     padding-top: 40px;
-  }
-  .button-background-none {
-    color: #585e6c;
-    i {
-      color: #585e6c;
-    }
   }
   @media(max-width: 640px) {
     width: 100%;
@@ -56,8 +46,8 @@
   padding: 0 9px;
   min-width: 200px !important;
   &.text {
-    background-color: white;
-    border: 1px solid @color-check-round-border;
+    background-color: @theme-light-text-fields-normal-input-bg;
+    border: 1px solid @theme-light-text-fields-normal-input-line;
   }
   .tui {
     font-weight: bold;
@@ -76,24 +66,24 @@ button.login-input+input.login-input {
 .submit {
   margin-bottom: 15px;
   position: relative;
-  background-color: #ff9832;
-  border-color: #ff9832;
-  color: white;
+  background-color: @theme-light-button-point-normal-bg;
+  border-color: @theme-light-button-point-normal-line;
+  color: @theme-light-button-point-normal-text;
   i {
     float: right;
     margin-top: 9px;
     font-size: 14px;
-    color: white;
+    color: @theme-light-button-point-normal-text;
   }
   &:disabled {
-    background-color: #ffbe7f;
-    border-color: #ffbe7f;   
+    background-color: @theme-light-button-point-disabled-bg;
+    border-color: @theme-light-button-point-disabled-line; 
+    color: @theme-light-button-point-disabled-text; 
   }  
 }
 .popup-full{
   width: 100%;
   height: 100%;
-  background: #fffefa;
   position: absolute;
 }
 #find-id {

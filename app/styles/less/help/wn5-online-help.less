@@ -1,16 +1,14 @@
 #wn5-online-help-wrapper {
-	@online-help-default-color: #4c4c4c;
 	@online-help-strong-weight: normal;
-	@online-help-strong-color: #000;
 
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	color: @online-help-default-color;
+	color: @theme-online-help-text-normal;
 
 	strong {
 		font-weight: @online-help-strong-weight;
-		color: @online-help-strong-color;
+		color: @theme-online-help-text-strong;
 	}
 
 	@media(max-width: 720px){
@@ -24,7 +22,6 @@
 	}
 
 	.side-nav-wrapper {
-		border-color: #c9c9c9;
 		position: relative;
 		.transition(none);
 		.transform(none);
@@ -36,7 +33,7 @@
 	}
 
 	#setup-main {
-		color: #4c4c4c;
+		color: @theme-online-help-text-normal;
 		left: 250px;
 		.wrapper.wrapper-content {
 			height: auto;
@@ -93,15 +90,15 @@
 	}
 
 	.wn5-online-help-link {
-		color: #000;
+		color: @theme-online-help-text-link;
 		text-decoration: underline;
 		font-weight: normal;
 
 		&:hover {
-			color: #f37321;
+			color: @theme-online-help-text-link-hover;
 			
 			strong {
-				color: #f37321 !important;
+				color: @theme-online-help-text-link-hover !important;
 			}
 		}
 	}
@@ -117,8 +114,8 @@
 	.wn5-online-help-info {
 		float: left;
 		width: 100%;
-		background-color: #fff;
-		border: 1px solid #e9e9e9;
+		background-color: @theme-online-help-info-background-normal;
+		border: 1px solid @theme-online-help-info-border;
 		margin-top: 20px;
 		padding: 10px 15px;
 		font-size: 12px;
@@ -137,7 +134,7 @@
 
 	.wn5-online-help-action {
 		.wn5-online-help-info();
-		background-color: #efefef;
+		background-color: @theme-online-help-info-background-active;
 	}
 
 	.wn5-online-help-list {
@@ -163,7 +160,7 @@
 }
 
 #wn5-online-help-header {
-	background-color: #4c4c4c;
+	background-color: @theme-online-help-background-header;
 	width: 100%;
 	height: 50px;
 	overflow: hidden;
@@ -188,5 +185,5 @@
 	float: left;
 	padding-top: 15px;
 	margin: 0 0 0 15px;
-	color: #fff;
+	color: @theme-online-help-text-header;
 }
