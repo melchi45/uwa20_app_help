@@ -980,12 +980,15 @@ live-playback common {
         }
 
         &:active,
-        &.active,
-        &:active *,
-        &.active * {
+        &.active {
             background-color: #fff;
             border: 1px solid #fff;
             color: #000;
+
+            * {
+                background-color: #fff;
+                color: #000;
+            }
         }
 
         &.cm-disabled {

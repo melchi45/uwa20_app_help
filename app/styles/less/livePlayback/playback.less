@@ -41,7 +41,7 @@
             width: 1px;
             height: 26px;
             float: left;
-            background-color: #bbb;
+            background-color: @theme-light-vline-dark;
             margin-top: 12px;
         }
 
@@ -72,8 +72,8 @@
         position: relative;
         overflow-x: hidden;
         overflow-y: auto;
-        background-color: #fbfbfb;
-        border-top: 1px solid #e9e9e9;
+        background-color: @theme-background-setup;
+        border-top: 1px solid @theme-light-table-border;
 
         .wisenet-camera-functions {
             margin-top: 0px;
@@ -89,13 +89,13 @@
             margin-bottom: 5px;
 
             span {
-                color: #000;
+                color: @theme-light-normal-color;
             } 
         } 
 
         .pb-timeboxes {
             line-height: 34px;
-            color: #000;
+            color: @theme-light-text-fields-normal-input-text;
 
             input {
                 width: 45px;
@@ -106,7 +106,7 @@
 
         .pb-range {
             line-height: 34px;
-            color: #000;
+            color: @theme-light-normal-color;
             float: left;
         }
     }
@@ -221,8 +221,8 @@
             padding: 10px 0;
             text-align: center;
             background-color: @theme-background-default;
-            border: 1px solid #d2d2d2;
-            color: #a5a5a5;
+            border: 1px solid @theme-light-button-dark-disabled-line;
+            color: @theme-light-button-dark-disabled-text;
             cursor: pointer;
 
             &+div {
@@ -231,7 +231,7 @@
 
             &.active, 
             &.selected {
-                color: #000;
+                color: @theme-light-button-dark-focus-text;
             }
         } 
 
@@ -276,7 +276,7 @@
         .pb-all-day {
             display: block;
             font-size: 14px;
-            color: #000;
+            color: @theme-light-normal-color;
             width: 100%;
             margin: 10px 0 30px 0px;
             clear: both;
@@ -298,7 +298,7 @@
             }
 
             &.event {
-                color: #f37321;
+                color: @theme-light-button-point-normal-text;
             }
         }
 
@@ -312,36 +312,36 @@
     #cm-bottom-menu.cm-full-menu{
         #pb-icon-list {
             .cm-vline {
-                background : #333;
+                background: @theme-dark-vline-dark;
             }
         }
 
         #pb-menu-content {
             height: 200px;
-            background-color: #191919;
-            border-top: 1px solid #333;
+            background-color: @theme-background-full-menu-content;
+            border-top: 1px solid @theme-dark-table-border;
 
             h2 span {
-                color: #fff;
+                color: @theme-dark-normal-color;
                 line-height: 15px;
             }
         }
 
         .pb-duplicate-items {
             & > div {
-                background-color: #262626;
-                border: 1px solid #333;
-                color: #797979;
+                background-color: @theme-dark-table-header-bg;
+                border: 1px solid @theme-dark-table-border;
+                color: @theme-dark-text-fields-disabled-text;
 
                 &.active, &.selected {
-                    color: #fff;
+                    color: @theme-dark-normal-color;
                 }
             }
         }  
 
         #pb-datepicker-section {
             .pb-all-day label {
-                color: white;
+                color: @theme-dark-normal-color;
             }
 
             .ua-datepicker {
@@ -349,20 +349,20 @@
                     width: 100%;
 
                     .btn.btn-default {
-                        background-color: #191919 !important;
-                        color: #fff !important;
+                        background-color: @theme-background-full-menu-content !important;
+                        color: @theme-dark-normal-color !important;
 
                         &.active {
-                            background-color: #fff !important;
+                            background-color: @theme-dark-normal-color !important;
 
                             span {
-                                color: #000;
+                                color: @theme-light-normal-color;
                             }
                         }  
                     }  
 
                     tbody tr td.event span {
-                        color: #f37321 !important;
+                        color: @theme-light-button-point-normal-text !important;
                     } 
                 } 
             } 
@@ -1305,6 +1305,11 @@
                 height: 50px !important;
                 border-top: 1px solid #ccc;
 
+                & > * {
+                    float: none;
+                    display: inline-table;
+                }
+
                 .pb-control {
                     margin: 0 10px;
 
@@ -1322,9 +1327,9 @@
 
                 .info-toggle {
                     position: fixed;
-                    top: 50%;
+                    top: -50vh;
                     left: 100%;
-                    transform: translate(-100%, -50%);
+                    transform: translate(-100%, 50%);
                     width: 60px;
                     height: 50px;
                     margin-left: 0px !important;
@@ -1357,6 +1362,12 @@
 
                 .cm-vline.cm-pc {
                     display: inherit !important;
+                }
+
+                .cm-vline {
+                    margin: 0;
+                    position: relative;
+                    top: 2px;
                 }
             }
 
