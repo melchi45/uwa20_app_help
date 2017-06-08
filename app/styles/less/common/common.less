@@ -1,7 +1,7 @@
 @import "reset";
 @import "make-webkit";
 @import "make-circle";
-@import "varable";
+@import "variable";
 @import "default";
 @import "loading-bar";
 @import "controls/button-extends";
@@ -13,27 +13,18 @@
 @import "controls/button";
 @import "controls/timeline";
 @import "controls/modal";
+@import "controls/channel-selector";
 
-/* Channel Selector Directive Commom */
-.channel-selector {
-  float: left;
-
-  li {
-    float: left;
-
-    &:first-child {
-      margin-right: 10px;
-      .channel-selector-title {
-        float: left;
-        padding: 0;
-        margin: 0;
-      }
-    }
-
-    > button {
-      padding: 0;
-    }
-  }
+html, 
+body {
+    width: 100%;
+    min-height: 0 !important;
+    height: 100%;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-track-color: #ccc;
+    scrollbar-face-color: #666;
+    scrollbar-arrow-color: #999;
 }
 
 body {
@@ -65,93 +56,24 @@ body {
 
   &.kind-responsive-live {
     min-width: @kind-responsive-live-min-width;
+    background-color: black;
   }
 
   &.kind-responsive-playback {
     min-width: @kind-responsive-playback-min-width;
+    background-color: black;
   }
   
   &.kind-responsive-setup {
     min-width: @kind-responsive-setup-min-width;
   }
 }
+
 .nav-hover() {
   background-color: @color-button-selected;
   color: #fff !important;
   i {
     color: #fff !important;
-  }
-}
-.side-nav-wrapper {
-  @width-left-padding: 15px;
-  list-style: none;
-  position: absolute;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  background-color: #fff;
-  overflow-y: auto;
-  z-index: 1;
-  border-right: 1px solid @color-button-selected;
-  -webkit-transition: -webkit-transform @animation-timing-function @animation-time-side-nav;
-  -moz-transition: -moz-transform @animation-timing-function @animation-time-side-nav;
-  -ms-transition: -ms-transform @animation-timing-function @animation-time-side-nav;
-  -o-transition: -o-transform @animation-timing-function @animation-time-side-nav;
-  transition: transform @animation-timing-function @animation-time-side-nav;
-  .translate(-100%);
-  width: @width-side-nav;
-  .sid-nav-inner {
-    height: 100%;
-  }
-  nav {
-    height: 100%;
-    #side-menu{
-      margin-top: 50px;
-    }
-    dl, > ul {
-      height: 100%;
-      margin: 0;
-      position: relative;
-      dt, > li {
-        padding-bottom: 7px;
-        a, a:hover {
-          font-weight: 700;
-          font-size: @setup-title-s;
-          color: @font-color;
-          width: 100%;
-          display: block;
-          padding: 10px @setup-tree-1depth-padding-left 10px @setup-tree-1depth-padding-right;
-
-          span {
-            margin-left: @setup-tree-1depth-text-margin-left;
-          }
-          i {
-            color: @font-color;
-            font-size: 17px;
-            vertical-align: text-top;
-          }
-          &.on {
-            .nav-hover()
-          }
-          &.default-cursor {
-            cursor: default;
-          }
-        }
-        &.separate
-        {
-          @gap: 11px;
-          padding-bottom: @gap;
-          &:after {
-            content: " ";
-            width: auto;
-            height: 1px;
-            background-color: #d8dde8;
-            display: block;
-            margin-top: @gap;
-          }
-        }
-      }
-    }
   }
 }
 

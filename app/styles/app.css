@@ -218,65 +218,25 @@ color-scheme.less를 만들어서 작성하였다.
   display: none !important;
 }
 /* another style is live.less and playback.less */
-html,
-body {
-  width: 100%;
-  min-height: 0 !important;
-  height: 100%;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  scrollbar-track-color: #ccc;
-  scrollbar-face-color: #666;
-  scrollbar-arrow-color: #999;
-}
-html.kind-responsive-live,
-body.kind-responsive-live,
-html.kind-responsive-playback,
-body.kind-responsive-playback {
-  background-color: black;
-}
-html .is-login,
-body .is-login {
+.is-login {
   overflow-x: hidden;
   overflow-y: auto;
   background-color: #ffffff;
 }
-html .wrap,
-body .wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-/* Login */
 @media (max-width: 641px) and (max-height: 220px) {
-  body.is-login {
+  .is-login {
     min-height: 250px;
   }
 }
 @media (max-width: 361px) and (max-height: 420px) {
-  body.is-login {
+  .is-login {
     min-height: 420px;
   }
 }
-#login {
-  margin-top: 50px;
-  background-color: #f8f8f8;
-  padding: 30px;
-}
-#login h2 {
-  margin-bottom: 40px;
-}
-/* Main marketing message and sign up button */
-.content {
-  padding: 40px 0;
-  margin: 20px 0 50px 0;
-}
-/* footer */
-.footer {
-  margin-top: 50px;
-  padding-top: 20px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+.wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 /* channel */
 #video-container {
@@ -3296,6 +3256,17 @@ input[type='text'] {
 .channel-selector li > button {
   padding: 0;
 }
+html,
+body {
+  width: 100%;
+  min-height: 0 !important;
+  height: 100%;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scrollbar-track-color: #ccc;
+  scrollbar-face-color: #666;
+  scrollbar-arrow-color: #999;
+}
 body {
   font-family: "NotoSans";
   overflow: hidden;
@@ -3326,143 +3297,14 @@ body.wisenet-desktop-body {
 }
 body.kind-responsive-live {
   min-width: 400px;
+  background-color: black;
 }
 body.kind-responsive-playback {
   min-width: 400px;
+  background-color: black;
 }
 body.kind-responsive-setup {
   min-width: 730px;
-}
-.side-nav-wrapper {
-  list-style: none;
-  position: absolute;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  background-color: #fff;
-  overflow-y: auto;
-  z-index: 1;
-  border-right: 1px solid #ff9832;
-  -webkit-transition: -webkit-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
-  -moz-transition: -moz-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
-  -ms-transition: -ms-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
-  -o-transition: -o-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
-  transition: transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
-  -webkit-transform: translateZ(0) translate(-100%, 0);
-  -moz-transform: translateZ(0) translate(-100%, 0);
-  -ms-transform: translateZ(0) translate(-100%, 0);
-  -o-transform: translateZ(0) translate(-100%, 0);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  width: 250px;
-}
-.side-nav-wrapper .sid-nav-inner {
-  height: 100%;
-}
-.side-nav-wrapper nav {
-  height: 100%;
-}
-.side-nav-wrapper nav #side-menu {
-  margin-top: 50px;
-}
-.side-nav-wrapper nav dl,
-.side-nav-wrapper nav > ul {
-  height: 100%;
-  margin: 0;
-  position: relative;
-}
-.side-nav-wrapper nav dl dt,
-.side-nav-wrapper nav > ul dt,
-.side-nav-wrapper nav dl > li,
-.side-nav-wrapper nav > ul > li {
-  padding-bottom: 7px;
-}
-.side-nav-wrapper nav dl dt a,
-.side-nav-wrapper nav > ul dt a,
-.side-nav-wrapper nav dl > li a,
-.side-nav-wrapper nav > ul > li a,
-.side-nav-wrapper nav dl dt a:hover,
-.side-nav-wrapper nav > ul dt a:hover,
-.side-nav-wrapper nav dl > li a:hover,
-.side-nav-wrapper nav > ul > li a:hover {
-  font-weight: 700;
-  font-size: 14px;
-  color: #4c4c4c;
-  width: 100%;
-  display: block;
-  padding: 10px 15px 10px 10px;
-}
-.side-nav-wrapper nav dl dt a span,
-.side-nav-wrapper nav > ul dt a span,
-.side-nav-wrapper nav dl > li a span,
-.side-nav-wrapper nav > ul > li a span,
-.side-nav-wrapper nav dl dt a:hover span,
-.side-nav-wrapper nav > ul dt a:hover span,
-.side-nav-wrapper nav dl > li a:hover span,
-.side-nav-wrapper nav > ul > li a:hover span {
-  margin-left: 5px;
-}
-.side-nav-wrapper nav dl dt a i,
-.side-nav-wrapper nav > ul dt a i,
-.side-nav-wrapper nav dl > li a i,
-.side-nav-wrapper nav > ul > li a i,
-.side-nav-wrapper nav dl dt a:hover i,
-.side-nav-wrapper nav > ul dt a:hover i,
-.side-nav-wrapper nav dl > li a:hover i,
-.side-nav-wrapper nav > ul > li a:hover i {
-  color: #4c4c4c;
-  font-size: 17px;
-  vertical-align: text-top;
-}
-.side-nav-wrapper nav dl dt a.on,
-.side-nav-wrapper nav > ul dt a.on,
-.side-nav-wrapper nav dl > li a.on,
-.side-nav-wrapper nav > ul > li a.on,
-.side-nav-wrapper nav dl dt a:hover.on,
-.side-nav-wrapper nav > ul dt a:hover.on,
-.side-nav-wrapper nav dl > li a:hover.on,
-.side-nav-wrapper nav > ul > li a:hover.on {
-  background-color: #ff9832;
-  color: #fff !important;
-}
-.side-nav-wrapper nav dl dt a.on i,
-.side-nav-wrapper nav > ul dt a.on i,
-.side-nav-wrapper nav dl > li a.on i,
-.side-nav-wrapper nav > ul > li a.on i,
-.side-nav-wrapper nav dl dt a:hover.on i,
-.side-nav-wrapper nav > ul dt a:hover.on i,
-.side-nav-wrapper nav dl > li a:hover.on i,
-.side-nav-wrapper nav > ul > li a:hover.on i {
-  color: #fff !important;
-}
-.side-nav-wrapper nav dl dt a.default-cursor,
-.side-nav-wrapper nav > ul dt a.default-cursor,
-.side-nav-wrapper nav dl > li a.default-cursor,
-.side-nav-wrapper nav > ul > li a.default-cursor,
-.side-nav-wrapper nav dl dt a:hover.default-cursor,
-.side-nav-wrapper nav > ul dt a:hover.default-cursor,
-.side-nav-wrapper nav dl > li a:hover.default-cursor,
-.side-nav-wrapper nav > ul > li a:hover.default-cursor {
-  cursor: default;
-}
-.side-nav-wrapper nav dl dt.separate,
-.side-nav-wrapper nav > ul dt.separate,
-.side-nav-wrapper nav dl > li.separate,
-.side-nav-wrapper nav > ul > li.separate {
-  padding-bottom: 11px;
-}
-.side-nav-wrapper nav dl dt.separate:after,
-.side-nav-wrapper nav > ul dt.separate:after,
-.side-nav-wrapper nav dl > li.separate:after,
-.side-nav-wrapper nav > ul > li.separate:after {
-  content: " ";
-  width: auto;
-  height: 1px;
-  background-color: #d8dde8;
-  display: block;
-  margin-top: 11px;
 }
 .wisenet-nav > li > a:active {
   background-color: #ff9832;
@@ -5854,6 +5696,137 @@ body.kind-svg-editor-drawing .channel-content {
   vertical-align: middle;
   font-weight: bold;
   margin-right: 3px;
+}
+.side-nav-wrapper {
+  list-style: none;
+  position: absolute;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  overflow-y: auto;
+  z-index: 1;
+  border-right: 1px solid #ff9832;
+  -webkit-transition: -webkit-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
+  -moz-transition: -moz-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
+  -ms-transition: -ms-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
+  -o-transition: -o-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
+  transition: transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
+  -webkit-transform: translateZ(0) translate(-100%, 0);
+  -moz-transform: translateZ(0) translate(-100%, 0);
+  -ms-transform: translateZ(0) translate(-100%, 0);
+  -o-transform: translateZ(0) translate(-100%, 0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  width: 250px;
+}
+.side-nav-wrapper .sid-nav-inner {
+  height: 100%;
+}
+.side-nav-wrapper nav {
+  height: 100%;
+}
+.side-nav-wrapper nav #side-menu {
+  margin-top: 50px;
+}
+.side-nav-wrapper nav dl,
+.side-nav-wrapper nav > ul {
+  height: 100%;
+  margin: 0;
+  position: relative;
+}
+.side-nav-wrapper nav dl dt,
+.side-nav-wrapper nav > ul dt,
+.side-nav-wrapper nav dl > li,
+.side-nav-wrapper nav > ul > li {
+  padding-bottom: 7px;
+}
+.side-nav-wrapper nav dl dt a,
+.side-nav-wrapper nav > ul dt a,
+.side-nav-wrapper nav dl > li a,
+.side-nav-wrapper nav > ul > li a,
+.side-nav-wrapper nav dl dt a:hover,
+.side-nav-wrapper nav > ul dt a:hover,
+.side-nav-wrapper nav dl > li a:hover,
+.side-nav-wrapper nav > ul > li a:hover {
+  font-weight: 700;
+  font-size: 14px;
+  color: #4c4c4c;
+  width: 100%;
+  display: block;
+  padding: 10px 15px 10px 10px;
+}
+.side-nav-wrapper nav dl dt a span,
+.side-nav-wrapper nav > ul dt a span,
+.side-nav-wrapper nav dl > li a span,
+.side-nav-wrapper nav > ul > li a span,
+.side-nav-wrapper nav dl dt a:hover span,
+.side-nav-wrapper nav > ul dt a:hover span,
+.side-nav-wrapper nav dl > li a:hover span,
+.side-nav-wrapper nav > ul > li a:hover span {
+  margin-left: 5px;
+}
+.side-nav-wrapper nav dl dt a i,
+.side-nav-wrapper nav > ul dt a i,
+.side-nav-wrapper nav dl > li a i,
+.side-nav-wrapper nav > ul > li a i,
+.side-nav-wrapper nav dl dt a:hover i,
+.side-nav-wrapper nav > ul dt a:hover i,
+.side-nav-wrapper nav dl > li a:hover i,
+.side-nav-wrapper nav > ul > li a:hover i {
+  color: #4c4c4c;
+  font-size: 17px;
+  vertical-align: text-top;
+}
+.side-nav-wrapper nav dl dt a.on,
+.side-nav-wrapper nav > ul dt a.on,
+.side-nav-wrapper nav dl > li a.on,
+.side-nav-wrapper nav > ul > li a.on,
+.side-nav-wrapper nav dl dt a:hover.on,
+.side-nav-wrapper nav > ul dt a:hover.on,
+.side-nav-wrapper nav dl > li a:hover.on,
+.side-nav-wrapper nav > ul > li a:hover.on {
+  background-color: #ff9832;
+  color: #fff !important;
+}
+.side-nav-wrapper nav dl dt a.on i,
+.side-nav-wrapper nav > ul dt a.on i,
+.side-nav-wrapper nav dl > li a.on i,
+.side-nav-wrapper nav > ul > li a.on i,
+.side-nav-wrapper nav dl dt a:hover.on i,
+.side-nav-wrapper nav > ul dt a:hover.on i,
+.side-nav-wrapper nav dl > li a:hover.on i,
+.side-nav-wrapper nav > ul > li a:hover.on i {
+  color: #fff !important;
+}
+.side-nav-wrapper nav dl dt a.default-cursor,
+.side-nav-wrapper nav > ul dt a.default-cursor,
+.side-nav-wrapper nav dl > li a.default-cursor,
+.side-nav-wrapper nav > ul > li a.default-cursor,
+.side-nav-wrapper nav dl dt a:hover.default-cursor,
+.side-nav-wrapper nav > ul dt a:hover.default-cursor,
+.side-nav-wrapper nav dl > li a:hover.default-cursor,
+.side-nav-wrapper nav > ul > li a:hover.default-cursor {
+  cursor: default;
+}
+.side-nav-wrapper nav dl dt.separate,
+.side-nav-wrapper nav > ul dt.separate,
+.side-nav-wrapper nav dl > li.separate,
+.side-nav-wrapper nav > ul > li.separate {
+  padding-bottom: 11px;
+}
+.side-nav-wrapper nav dl dt.separate:after,
+.side-nav-wrapper nav > ul dt.separate:after,
+.side-nav-wrapper nav dl > li.separate:after,
+.side-nav-wrapper nav > ul > li.separate:after {
+  content: " ";
+  width: auto;
+  height: 1px;
+  background-color: #d8dde8;
+  display: block;
+  margin-top: 11px;
 }
 .file-browser-field {
   position: relative;
