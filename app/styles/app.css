@@ -5706,7 +5706,7 @@ body.kind-svg-editor-drawing .channel-content {
   background-color: #fff;
   overflow-y: auto;
   z-index: 1;
-  border-right: 1px solid #ff9832;
+  border-right: 1px solid #ccc;
   -webkit-transition: -webkit-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
   -moz-transition: -moz-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
   -ms-transition: -ms-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
@@ -11039,7 +11039,6 @@ i.tui-ch-playback-stop {
   }
 }
 #wn5-online-help-wrapper .side-nav-wrapper {
-  border-color: #c9c9c9;
   position: relative;
   -webkit-transition: none;
   -moz-transition: none;
@@ -11097,7 +11096,7 @@ i.tui-ch-playback-stop {
   list-style: disc;
 }
 #wn5-online-help-wrapper .wn5-online-help-link {
-  color: #000;
+  color: #000000;
   text-decoration: underline;
   font-weight: normal;
 }
@@ -11116,7 +11115,7 @@ i.tui-ch-playback-stop {
 #wn5-online-help-wrapper .wn5-online-help-info {
   float: left;
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   border: 1px solid #e9e9e9;
   margin-top: 20px;
   padding: 10px 15px;
@@ -11134,12 +11133,12 @@ i.tui-ch-playback-stop {
 #wn5-online-help-wrapper .wn5-online-help-action {
   float: left;
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   border: 1px solid #e9e9e9;
   margin-top: 20px;
   padding: 10px 15px;
   font-size: 12px;
-  background-color: #efefef;
+  background-color: #e9e9e9;
 }
 #wn5-online-help-wrapper .wn5-online-help-action h4 {
   font-size: 14px;
@@ -11190,5 +11189,5 @@ i.tui-ch-playback-stop {
   float: left;
   padding-top: 15px;
   margin: 0 0 0 15px;
-  color: #fff;
+  color: #ffffff;
 }
