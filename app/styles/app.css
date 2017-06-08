@@ -1970,7 +1970,7 @@ input[type='text'] {
   border-radius: 0;
   color: inherit;
   font-size: 12px;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .ua-datepicker table .btn.btn-default.active {
   -webkit-box-shadow: none;
@@ -1978,11 +1978,11 @@ input[type='text'] {
   box-shadow: none;
 }
 .ua-datepicker table .btn.btn-default.btn-info {
-  background-color: #ff9832 !important;
-  border-color: #ff9832;
+  background-color: #f37321 !important;
+  border-color: #f37321;
 }
 .ua-datepicker table .btn.btn-default.btn-info span {
-  color: white;
+  color: #ffffff;
 }
 .ua-datepicker table .btn.btn-default.btn-sm {
   padding: 5px 8px;
@@ -1998,8 +1998,8 @@ input[type='text'] {
   display: block;
   width: 10px;
   height: 10px;
-  border-left: 2px solid #bcbeb6;
-  border-bottom: 2px solid #bcbeb6;
+  border-left: 2px solid #d2d2d2;
+  border-bottom: 2px solid #d2d2d2;
 }
 .ua-datepicker table .btn.btn-default .glyphicon.glyphicon-chevron-left:before {
   -webkit-transform: rotate(45deg);
@@ -2025,12 +2025,6 @@ input[type='text'] {
 .ua-datepicker table thead strong.text-center:nth-child(7),
 .ua-datepicker table thead th.text-center:nth-child(7) {
   color: #7f7f7f;
-}
-.ua-datepicker table tbody tr:nth-child(odd) td:nth-child(even) .btn.btn-default.btn-sm {
-  background-color: #f7f7f7;
-}
-.ua-datepicker table tbody tr:nth-child(even) td:nth-child(odd) .btn.btn-default.btn-sm {
-  background-color: #f7f7f7;
 }
 .ua-datepicker table tbody tr td.week {
   color: #7f7f7f;
