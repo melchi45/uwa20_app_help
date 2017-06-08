@@ -80,4 +80,39 @@
   .ir_led_span {
       float: left;
   }
+
+  #imagePresetScheduleDiv {
+    border: 1px solid @theme-light-table-border;
+
+    #imagePresetSchedule-head {
+      width: 100%;
+      height: @setup-table-min-height;
+      border-bottom: 1px solid @theme-light-table-border;
+      background: @theme-light-table-header-bg;
+
+      .imagePresetSchedule-head-item {
+        width: 4.16%;
+        line-height: @setup-table-min-height;
+        border-left: 1px solid @theme-light-table-border;
+        float: left;
+        text-align: center;
+      }
+
+      .first-item {
+        border-left: none;
+      }
+    }
+
+    #imagePresetSchedule-body {
+      width: 100%;
+      clear: left;
+      height: @setup-table-min-height;
+      background: @theme-light-table-data-bg;
+
+      .imagePresetSchedule-schedule {
+        position: relative;
+        height: 39px;
+      }
+    }
+  }
 }
