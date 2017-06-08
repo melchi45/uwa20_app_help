@@ -1,30 +1,47 @@
-<div id="cm-playback-event" class="cm-row">
+<div id="pb-event-section" class="cm-row">
   <div class="cm-center cm-force-center">
-    <div class="cm-playback-block cm-event-section">
+    <div class="pb-block pb-event">
+
       <h2><span>{{'lang_event' | translate}}</span></h2>
-      <div class="cm-checkbox-wrap cm-event-all-wrap">
-        <input type="checkbox" id="allEvent" ng-model="allEventSearch.selected" ng-click="selectAllEvent($event)">
+
+      <div id="pb-event-all" class="cm-checkbox-wrap">
+        <input 
+          type="checkbox" 
+          id="allEvent" 
+          ng-model="allEventSearch.selected" 
+          ng-click="selectAllEvent($event)">
         <label for="allEvent">{{allEventSearch.name | translate}}</label>
       </div>
 
-      <div class="cm-event-list-wrap">
+      <div id="pb-event-list">
         <div ng-repeat="event in eventList" class="cm-checkbox-wrap">
-          <input type="checkbox" id="event-{{event.name}}" ng-model="event.selected" value="{{event.event}}" ng-click="selectEachEvent($event)">
-          <label for="event-{{event.name}}" ng-class="{'available-check-event':event.enable}">{{event.name | translate}}</label>
+          <input 
+            type="checkbox" 
+            id="event-{{event.name}}" 
+            ng-model="event.selected" 
+            ng-click="selectEachEvent($event)" 
+            value="{{event.event}}">
+            <label for="event-{{event.name}}" ng-class="{'available-check-event':event.enable}">{{event.name | translate}}</label>
         </div>
       </div>
 
     </div>
 
-    <div class="cm-playback-block cm-event-section">
+    <div class="pb-block pb-event">
       <h2><span>{{'lang_overlapped_section' | translate}}</span></h2>
+
       <div 
         ng-if="showOverlap"
         ng-repeat="overlap in overlapList" 
         class="overlap-search-container">
         <label>
-          <input type="radio" name="overlap" ng-model="selected.overlap" ng-value="overlap" ng-disabled="!overlap.enable">
-          <span class="overlap-title">{{overlap.name | translate}} {{$index + 1}}</span>
+          <input 
+            type="radio" 
+            name="overlap" 
+            ng-model="selected.overlap" 
+            ng-disabled="!overlap.enable" 
+            ng-value="overlap">
+            <span class="overlap-title">{{overlap.name | translate}} {{$index + 1}}</span>
         </label>
       </div>
     </div>
