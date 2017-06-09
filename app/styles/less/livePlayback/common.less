@@ -662,7 +662,7 @@ live-playback common {
 /* table element */
 .cm-table{
     width: 100%;
-    color: #000;
+    color: @theme-light-normal-color;
     position: relative;
     word-break: break-all;
     border-collapse: collapse;
@@ -670,21 +670,21 @@ live-playback common {
     th, td {
         padding: 5px 10px;
         line-height: 16px;
-        border: 1px solid #e9e9e9;
+        border: 1px solid @theme-light-table-border;
     }
 
     th {
         text-align: center;
-        background-color: #f2f2f2;
+        background-color: @theme-light-table-header-bg;
         font-weight: normal;
     }
 
     td {
-        background-color: #fff;
+        background-color: @theme-light-table-data-bg;
     }
 
     & tr:first-child > * {
-        border-top: 1px solid #e9e9e9;
+        border-top: 1px solid @theme-light-table-border;
     }
 
     

@@ -8585,35 +8585,6 @@ i.tui-ch-playback-stop {
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-setup .cm-table tr {
   height: 33px;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz .cm-center {
-  width: 100%;
-}
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components {
-  float: left;
-  width: 100%;
-  display: block;
-  /*
-                    #cm-ptz-tables {
-                        width: calc(~"100% - 40%");
-                        max-width: calc(~"100% - 270px");
-                        min-height: 160px;
-                        padding: 0 20px;
-                        border-left: 1px solid #e2e2e2;
-                        display: inline;
-
-                        & > div {
-                            width: calc(~"50% - 20px");
-                            float: left;
-                            display: inline;
-                            margin: 0 10px;
-                            text-align: left;
-                        }
-                    }
-                    */
-  /*
-                        #ptz-components.ptz-zoom
-                    */
-}
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-ptz #ptz-components #cm-live-ptz-control {
   width: 30%;
   float: left;
