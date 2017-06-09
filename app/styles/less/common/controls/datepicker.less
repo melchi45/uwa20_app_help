@@ -2,7 +2,7 @@
   table {
     margin: 0 auto;
     border: 0;
-    color: @font-color;
+    color: @theme-color-gray-100;
     .btn.btn-default {
       border: 0;
       border-radius: 0;
@@ -28,7 +28,7 @@
       }
       //other month
       .text-muted {
-        color: lighten(@font-color, 40%);
+        color: lighten(@theme-color-gray-100, 40%);
       }
       .glyphicon {
         &:before {
@@ -61,7 +61,7 @@
         font-weight: normal;
         &.text-center {
           &:first-child, &:nth-child(7) {
-            color: lighten(@font-color, 20%);
+            color: lighten(@theme-color-gray-100, 20%);
           }
         }
       }
@@ -70,7 +70,7 @@
       tr {
         td {
           &.week {
-            color: lighten(@font-color, 20%);
+            color: lighten(@theme-color-gray-100, 20%);
           }
           &.today {
             button {
@@ -83,8 +83,8 @@
               .make-circle(4px);
               .horizon-center();
               bottom: 2px;
-              //background-color: lighten(@font-color, 40%);
-              background-color: lighten(@color-timeline-main, 15%);
+              //background-color: lighten(@theme-color-gray-100, 40%);
+              background-color: lighten(@theme-color-point-100, 15%);
             }
           }
           &.monthSearch {
