@@ -1,0 +1,20 @@
+.event-setup-link {
+  font-size: @setup-title-s;
+  min-width: 255px;
+
+  @media(max-width: @setup-mobile-max-width){
+    font-size: @setup-body-m;
+  }
+  i {
+    border: 1px solid @color-button-border;
+    border-radius: 50%;
+    padding: 3px 2px 2px 3px;
+    margin-right: 3px;
+  }
+  &:hover {
+    color: @color-button-selected;
+    i {
+      border-color: @color-button-selected;
+    }
+  }
+}
