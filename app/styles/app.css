@@ -1300,17 +1300,6 @@ input[type='text'] {
 .top-menu-left {
   left: 12px;
 }
-.top-menu-time-left {
-  left: 60px;
-  color: white;
-  line-height: 30px !important;
-}
-.top-right-close-button i {
-  color: white !important;
-  margin: 1px;
-  padding: 1px;
-  font-size: 26px !important;
-}
 .button-menu {
   width: 35px;
   font-size: 20px;
@@ -1445,11 +1434,11 @@ input[type='text'] {
   left: 0;
   width: 100%;
   height: 50px;
-  background-color: #f47320;
+  background-color: #f37321;
   text-align: center;
   font-size: 16px;
   line-height: 50px;
-  color: #fff;
+  color: #ffffff;
 }
 .tui-loading-wrapper .tui-loading .tui-loading-rect {
   display: inline-block;
@@ -1457,7 +1446,7 @@ input[type='text'] {
   height: 30px;
   margin-top: 10px;
   margin-left: 3px;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .tui-loading-wrapper .tui-loading .tui-ch-live-info {
   margin-right: 8px;
@@ -1684,33 +1673,6 @@ input[type='text'] {
   display: block;
   margin: 4px auto;
   opacity: 0;
-}
-.wmf-toggle-button {
-  cursor: pointer;
-  position: relative;
-}
-.wmf-toggle-button input {
-  position: absolute;
-  left: -9999px;
-}
-.wmf-toggle-button input:checked + .title {
-  color: #dfdfdf;
-  border: 1px #dfdfdf solid;
-}
-.wmf-toggle-button .title {
-  width: 100%;
-  height: 100%;
-  font-size: 12px;
-  color: #686868;
-  background-color: #fff;
-  border: 1px #686868 solid;
-  vertical-align: middle;
-  text-align: center;
-}
-.button-sm {
-  width: 50px;
-  height: 30px;
-  line-height: 30px;
 }
 .button {
   border: 1px solid #e9e9e9;
@@ -2873,7 +2835,7 @@ body {
   overflow: hidden;
   font-size: 12px;
   min-width: 400px;
-  color: #000;
+  color: #000000;
   -ms-overflow-style: scrollbar;
   /* It is added in wrapper.js, when page of "/uni/channel" is loaded. */
   /* 68(Video Top Margin) + 35(Toggle Playback) + 85(Playback) + 10(Bottom Margin)= 198px */
