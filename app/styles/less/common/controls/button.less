@@ -41,126 +41,18 @@
 }
 
 .cm-btn-dark {
-  border: 1px solid @theme-light-button-dark-normal-line !important;
-  color: @theme-light-button-dark-normal-text !important;
-  background-color: @theme-light-button-dark-normal-bg !important;
-  
-  * {
-    color: inherit !important;
-    background-color: inherit !important;
-  }
-  
-  &:hover,
-  &.hover {
-    border: 1px solid @theme-light-button-dark-focus-line !important;
-    color: @theme-light-button-dark-focus-text !important;
-    background-color: @theme-light-button-dark-focus-bg !important;
-  }
-
-  &.active,
-  &:active {
-    border: 1px solid @theme-light-button-dark-press-line !important;
-    color: @theme-light-button-dark-press-text !important;
-    background-color: @theme-light-button-dark-press-bg !important;
-    box-shadow: none;
-  }
-
-  &[disabled],
-  &[readonly],
-  &.cm-disabled {
-    border: 1px solid @theme-light-button-dark-disabled-line !important;
-    color: @theme-light-button-dark-disabled-text !important;
-    background-color: @theme-light-button-dark-disabled-bg !important;
-  }
+  .mixin-button("dark", "light");
 }
 
 .cm-btn-point {
-  border: 1px solid @theme-light-button-point-normal-line !important;
-  color: @theme-light-button-point-normal-text !important;
-  background-color: @theme-light-button-point-normal-bg !important;
-  
-  * {
-    color: inherit !important;
-    background-color: inherit !important;
-  }
-  
-  &:hover,
-  &.hover {
-    border: 1px solid @theme-light-button-point-focus-line !important;
-    color: @theme-light-button-point-focus-text !important;
-    background-color: @theme-light-button-point-focus-bg !important;
-  }
-
-  &.active,
-  &:active {
-    border: 1px solid @theme-light-button-point-press-line !important;
-    color: @theme-light-button-point-press-text !important;
-    background-color: @theme-light-button-point-press-bg !important;
-    box-shadow: none;
-  }
-
-  &[disabled],
-  &[readonly],
-  &.cm-disabled {
-    border: 1px solid @theme-light-button-point-disabled-line !important;
-    color: @theme-light-button-point-disabled-text !important;
-    background-color: @theme-light-button-point-disabled-bg !important;
-  }
+  .mixin-button("point", "light");
 }
 
 .cm-full-menu {
   .cm-btn-dark {
-    border-color: @theme-dark-button-dark-normal-line !important;
-    color: @theme-dark-button-dark-normal-text !important;
-    background-color: @theme-dark-button-dark-normal-bg !important;
-    
-    &:hover,
-    &.hover {
-      border-color: @theme-dark-button-dark-focus-line !important;
-      color: @theme-dark-button-dark-focus-text !important;
-      background-color: @theme-dark-button-dark-focus-bg !important;
-    }
-
-    &.active,
-    &:active {
-      border-color: @theme-dark-button-dark-press-line !important;
-      color: @theme-dark-button-dark-press-text !important;
-      background-color: @theme-dark-button-dark-press-bg !important;
-    }
-
-    &[disabled],
-    &[readonly],
-    &.cm-disabled {
-      border-color: @theme-dark-button-dark-disabled-line !important;
-      color: @theme-dark-button-dark-disabled-text !important;
-      background-color: @theme-dark-button-dark-disabled-bg !important;
-    }
+    .mixin-button("dark", "dark");
   }
   .cm-btn-point {
-    border-color: @theme-dark-button-point-normal-line !important;
-    color: @theme-dark-button-point-normal-text !important;
-    background-color: @theme-dark-button-point-normal-bg !important;
-    
-    &:hover,
-    &.hover {
-      border-color: @theme-dark-button-point-focus-line !important;
-      color: @theme-dark-button-point-focus-text !important;
-      background-color: @theme-dark-button-point-focus-bg !important;
-    }
-
-    &.active,
-    &:active {
-      border-color: @theme-dark-button-point-press-line !important;
-      color: @theme-dark-button-point-press-text !important;
-      background-color: @theme-dark-button-point-press-bg !important;
-    }
-
-    &[disabled],
-    &[readonly],
-    &.cm-disabled {
-      border-color: @theme-dark-button-point-disabled-line !important;
-      color: @theme-dark-button-point-disabled-text !important;
-      background-color: @theme-dark-button-point-disabled-bg !important;
-    }
+    .mixin-button("point", "dark");
   }
 }
