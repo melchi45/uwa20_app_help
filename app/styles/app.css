@@ -2351,7 +2351,8 @@ input[type='text'] {
   color: inherit !important;
   background-color: inherit !important;
 }
-.cm-btn-dark:hover {
+.cm-btn-dark:hover,
+.cm-btn-dark.hover {
   border: 1px solid #a5a5a5 !important;
   color: #4c4c4c !important;
   background-color: #d2d2d2 !important;
@@ -2361,8 +2362,10 @@ input[type='text'] {
   border: 1px solid #000000 !important;
   color: #ffffff !important;
   background-color: #000000 !important;
+  box-shadow: none;
 }
 .cm-btn-dark[disabled],
+.cm-btn-dark[readonly],
 .cm-btn-dark.cm-disabled {
   border: 1px solid #a5a5a5 !important;
   color: #797979 !important;
@@ -2377,7 +2380,8 @@ input[type='text'] {
   color: inherit !important;
   background-color: inherit !important;
 }
-.cm-btn-point:hover {
+.cm-btn-point:hover,
+.cm-btn-point.hover {
   border: 1px solid #f37321 !important;
   color: #ffffff !important;
   background-color: #f37321 !important;
@@ -2387,8 +2391,10 @@ input[type='text'] {
   border: 1px solid #c25c1a !important;
   color: #ffffff !important;
   background-color: #c25c1a !important;
+  box-shadow: none;
 }
 .cm-btn-point[disabled],
+.cm-btn-point[readonly],
 .cm-btn-point.cm-disabled {
   border: 1px solid #a5a5a5 !important;
   color: #797979 !important;
@@ -2399,7 +2405,8 @@ input[type='text'] {
   color: #ffffff !important;
   background-color: #191919 !important;
 }
-.cm-full-menu .cm-btn-dark:hover {
+.cm-full-menu .cm-btn-dark:hover,
+.cm-full-menu .cm-btn-dark.hover {
   border-color: #d2d2d2 !important;
   color: #000000 !important;
   background-color: #d2d2d2 !important;
@@ -2411,6 +2418,7 @@ input[type='text'] {
   background-color: #ffffff !important;
 }
 .cm-full-menu .cm-btn-dark[disabled],
+.cm-full-menu .cm-btn-dark[readonly],
 .cm-full-menu .cm-btn-dark.cm-disabled {
   border-color: #333333 !important;
   color: #333333 !important;
@@ -2421,7 +2429,8 @@ input[type='text'] {
   color: #f37321 !important;
   background-color: #191919 !important;
 }
-.cm-full-menu .cm-btn-point:hover {
+.cm-full-menu .cm-btn-point:hover,
+.cm-full-menu .cm-btn-point.hover {
   border-color: #f37321 !important;
   color: #ffffff !important;
   background-color: #f37321 !important;
@@ -2433,6 +2442,7 @@ input[type='text'] {
   background-color: #c25c1a !important;
 }
 .cm-full-menu .cm-btn-point[disabled],
+.cm-full-menu .cm-btn-point[readonly],
 .cm-full-menu .cm-btn-point.cm-disabled {
   border-color: #333333 !important;
   color: #333333 !important;
@@ -4790,9 +4800,6 @@ fieldset .btn-white,
 fieldset .btn-primary,
 .wn5-setup-wrapper .wn5-btn,
 fieldset .wn5-btn {
-  background-color: #ffffff !important;
-  border-color: #a5a5a5 !important;
-  color: #4c4c4c;
   font-size: 14px;
   height: 30px;
   line-height: 28px;
@@ -4808,105 +4815,6 @@ fieldset .wn5-btn {
   fieldset .wn5-btn {
     font-size: 12px;
   }
-}
-.wn5-setup-wrapper .btn-white i,
-fieldset .btn-white i,
-.wn5-setup-wrapper .btn-primary i,
-fieldset .btn-primary i,
-.wn5-setup-wrapper .wn5-btn i,
-fieldset .wn5-btn i {
-  color: #4c4c4c;
-}
-.wn5-setup-wrapper .btn-white:hover,
-fieldset .btn-white:hover,
-.wn5-setup-wrapper .btn-primary:hover,
-fieldset .btn-primary:hover,
-.wn5-setup-wrapper .wn5-btn:hover,
-fieldset .wn5-btn:hover,
-.wn5-setup-wrapper .btn-white.wn5-btn-hover,
-fieldset .btn-white.wn5-btn-hover,
-.wn5-setup-wrapper .btn-primary.wn5-btn-hover,
-fieldset .btn-primary.wn5-btn-hover,
-.wn5-setup-wrapper .wn5-btn.wn5-btn-hover,
-fieldset .wn5-btn.wn5-btn-hover {
-  background-color: #d2d2d2 !important;
-  border-color: #a5a5a5 !important;
-  color: #4c4c4c;
-}
-.wn5-setup-wrapper .btn-white:hover i,
-fieldset .btn-white:hover i,
-.wn5-setup-wrapper .btn-primary:hover i,
-fieldset .btn-primary:hover i,
-.wn5-setup-wrapper .wn5-btn:hover i,
-fieldset .wn5-btn:hover i,
-.wn5-setup-wrapper .btn-white.wn5-btn-hover i,
-fieldset .btn-white.wn5-btn-hover i,
-.wn5-setup-wrapper .btn-primary.wn5-btn-hover i,
-fieldset .btn-primary.wn5-btn-hover i,
-.wn5-setup-wrapper .wn5-btn.wn5-btn-hover i,
-fieldset .wn5-btn.wn5-btn-hover i {
-  color: #4c4c4c;
-}
-.wn5-setup-wrapper .btn-white:active,
-fieldset .btn-white:active,
-.wn5-setup-wrapper .btn-primary:active,
-fieldset .btn-primary:active,
-.wn5-setup-wrapper .wn5-btn:active,
-fieldset .wn5-btn:active,
-.wn5-setup-wrapper .btn-white.wn5-btn-active,
-fieldset .btn-white.wn5-btn-active,
-.wn5-setup-wrapper .btn-primary.wn5-btn-active,
-fieldset .btn-primary.wn5-btn-active,
-.wn5-setup-wrapper .wn5-btn.wn5-btn-active,
-fieldset .wn5-btn.wn5-btn-active {
-  background-color: #000000 !important;
-  border-color: #000000 !important;
-  color: #ffffff;
-  box-shadow: none;
-}
-.wn5-setup-wrapper .btn-white:active i,
-fieldset .btn-white:active i,
-.wn5-setup-wrapper .btn-primary:active i,
-fieldset .btn-primary:active i,
-.wn5-setup-wrapper .wn5-btn:active i,
-fieldset .wn5-btn:active i,
-.wn5-setup-wrapper .btn-white.wn5-btn-active i,
-fieldset .btn-white.wn5-btn-active i,
-.wn5-setup-wrapper .btn-primary.wn5-btn-active i,
-fieldset .btn-primary.wn5-btn-active i,
-.wn5-setup-wrapper .wn5-btn.wn5-btn-active i,
-fieldset .wn5-btn.wn5-btn-active i {
-  color: #ffffff;
-}
-.wn5-setup-wrapper .btn-white[disabled],
-fieldset .btn-white[disabled],
-.wn5-setup-wrapper .btn-primary[disabled],
-fieldset .btn-primary[disabled],
-.wn5-setup-wrapper .wn5-btn[disabled],
-fieldset .wn5-btn[disabled],
-.wn5-setup-wrapper .btn-white[readonly],
-fieldset .btn-white[readonly],
-.wn5-setup-wrapper .btn-primary[readonly],
-fieldset .btn-primary[readonly],
-.wn5-setup-wrapper .wn5-btn[readonly],
-fieldset .wn5-btn[readonly] {
-  background-color: #d2d2d2 !important;
-  border-color: #a5a5a5 !important;
-  color: #797979;
-}
-.wn5-setup-wrapper .btn-white[disabled] i,
-fieldset .btn-white[disabled] i,
-.wn5-setup-wrapper .btn-primary[disabled] i,
-fieldset .btn-primary[disabled] i,
-.wn5-setup-wrapper .wn5-btn[disabled] i,
-fieldset .wn5-btn[disabled] i,
-.wn5-setup-wrapper .btn-white[readonly] i,
-fieldset .btn-white[readonly] i,
-.wn5-setup-wrapper .btn-primary[readonly] i,
-fieldset .btn-primary[readonly] i,
-.wn5-setup-wrapper .wn5-btn[readonly] i,
-fieldset .wn5-btn[readonly] i {
-  color: #797979;
 }
 .wn5-setup-wrapper .btn-wide,
 fieldset .btn-wide {

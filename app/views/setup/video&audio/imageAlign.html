@@ -22,7 +22,7 @@
                                         <button
                                             type="button"
                                             ng-click="btn.clickCallback()"
-                                            class="btn btn-primary {{btn.btnCls}}">
+                                            class="btn btn-primary cm-btn-dark {{btn.btnCls}}">
                                             <span 
                                                 ng-repeat="cls in btn.iconCls track by $index"
                                                 class="{{cls}}">
@@ -37,7 +37,7 @@
                                         <button
                                             type="button"
                                             ng-click="btn.clickCallback()"
-                                            class="btn btn-primary {{btn.btnCls}}">
+                                            class="btn btn-primary cm-btn-dark {{btn.btnCls}}">
                                             <span 
                                                 ng-repeat="cls in btn.iconCls track by $index"
                                                 class="{{cls}}">
@@ -54,7 +54,7 @@
                                     ng-repeat="num in sensorIds track by $index"
                                     ng-click="selectSensorId(num)"
                                     ng-class="{'selected-sensor': selectedSensorId === num}"
-                                    class="btn btn-primary">
+                                    class="btn btn-primary cm-btn-dark">
                                     {{num + 1}}
                                 </button>
                             </div>
@@ -62,7 +62,7 @@
                                 <button 
                                     type="button"
                                     ng-click="resetAll()"
-                                    class="btn btn-primary">
+                                    class="btn btn-primary cm-btn-dark">
                                     <span class="tui tui-ch-playback-reset"></span>
                                     {{ 'lang_resetAll' | translate }}
                                 </button>

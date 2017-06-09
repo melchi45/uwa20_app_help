@@ -96,7 +96,8 @@
     background-color: inherit !important;
   }
   
-  &:hover {
+  &:hover,
+  &.hover {
     border: 1px solid @theme-light-button-dark-focus-line !important;
     color: @theme-light-button-dark-focus-text !important;
     background-color: @theme-light-button-dark-focus-bg !important;
@@ -107,9 +108,11 @@
     border: 1px solid @theme-light-button-dark-press-line !important;
     color: @theme-light-button-dark-press-text !important;
     background-color: @theme-light-button-dark-press-bg !important;
+    box-shadow: none;
   }
 
   &[disabled],
+  &[readonly],
   &.cm-disabled {
     border: 1px solid @theme-light-button-dark-disabled-line !important;
     color: @theme-light-button-dark-disabled-text !important;
@@ -127,7 +130,8 @@
     background-color: inherit !important;
   }
   
-  &:hover {
+  &:hover,
+  &.hover {
     border: 1px solid @theme-light-button-point-focus-line !important;
     color: @theme-light-button-point-focus-text !important;
     background-color: @theme-light-button-point-focus-bg !important;
@@ -138,9 +142,11 @@
     border: 1px solid @theme-light-button-point-press-line !important;
     color: @theme-light-button-point-press-text !important;
     background-color: @theme-light-button-point-press-bg !important;
+    box-shadow: none;
   }
 
   &[disabled],
+  &[readonly],
   &.cm-disabled {
     border: 1px solid @theme-light-button-point-disabled-line !important;
     color: @theme-light-button-point-disabled-text !important;
@@ -154,7 +160,8 @@
     color: @theme-dark-button-dark-normal-text !important;
     background-color: @theme-dark-button-dark-normal-bg !important;
     
-    &:hover {
+    &:hover,
+    &.hover {
       border-color: @theme-dark-button-dark-focus-line !important;
       color: @theme-dark-button-dark-focus-text !important;
       background-color: @theme-dark-button-dark-focus-bg !important;
@@ -168,6 +175,7 @@
     }
 
     &[disabled],
+    &[readonly],
     &.cm-disabled {
       border-color: @theme-dark-button-dark-disabled-line !important;
       color: @theme-dark-button-dark-disabled-text !important;
@@ -179,7 +187,8 @@
     color: @theme-dark-button-point-normal-text !important;
     background-color: @theme-dark-button-point-normal-bg !important;
     
-    &:hover {
+    &:hover,
+    &.hover {
       border-color: @theme-dark-button-point-focus-line !important;
       color: @theme-dark-button-point-focus-text !important;
       background-color: @theme-dark-button-point-focus-bg !important;
@@ -193,6 +202,7 @@
     }
 
     &[disabled],
+    &[readonly],
     &.cm-disabled {
       border-color: @theme-dark-button-point-disabled-line !important;
       color: @theme-dark-button-point-disabled-text !important;

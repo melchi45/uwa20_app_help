@@ -39,9 +39,6 @@ fieldset {
   .btn-white,
   .btn-primary,
   .wn5-btn {
-    background-color: @theme-light-button-dark-normal-bg !important;
-    border-color: @theme-light-button-dark-normal-line !important;
-    color: @theme-light-button-dark-normal-text;
     font-size: @setup-title-s;
     height: @setup-button-height;
     line-height: @setup-button-line-height;
@@ -50,37 +47,6 @@ fieldset {
 
     @media(max-width: @setup-mobile-max-width){
       font-size: @setup-body-m;
-    }
-
-    i {
-      color: @theme-light-button-dark-normal-text;
-    }
-
-    &:hover,
-    &.wn5-btn-hover {
-      background-color: @theme-light-button-dark-focus-bg !important;
-      border-color: @theme-light-button-dark-focus-line !important;
-      color: @theme-light-button-dark-focus-text;
-      i {
-        color: @theme-light-button-dark-focus-text;                
-      }
-    }
-    
-    &:active,
-    &.wn5-btn-active {
-      background-color: @theme-light-button-dark-press-bg !important;
-      border-color: @theme-light-button-dark-press-line !important;
-      color: @theme-light-button-dark-press-text;
-      i {
-        color: @theme-light-button-dark-press-text;
-      }
-
-      box-shadow: none;
-    }
-
-    &[disabled],
-    &[readonly] {
-      .btn-disabled();
     }
   }
   
