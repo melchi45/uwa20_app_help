@@ -3497,32 +3497,6 @@ button.login-input + input.login-input {
 /* Content Area */
 /* Table */
 /* Responsive UI */
-.nav > li.active {
-  border-left: 0;
-}
-.nav > li.active > a i,
-.nav > li.active > a span {
-  color: #f37321;
-}
-.nav li a:hover {
-  background-color: #f37321 !important;
-  color: #ffffff !important;
-}
-.nav li a:hover i,
-.nav li a:hover span {
-  color: #ffffff !important;
-}
-.nav .nav.nav-second-level a {
-  padding-left: 45px !important;
-  padding-top: 5px !important;
-  padding-bottom: 5px !important;
-  font-weight: normal !important;
-  font-size: 14px;
-}
-.nav .nav.nav-third-level a {
-  padding-left: 70px !important;
-  font-weight: normal !important;
-}
 .side-nav-wrapper.setup-wrapper {
   width: 260px;
   -webkit-transform: translateZ(0) translate(0, 0);
@@ -4971,10 +4945,10 @@ body.kind-svg-editor-drawing .channel-content {
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: #fff;
+  background-color: #ffffff;
   overflow-y: auto;
   z-index: 1;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #cccccc;
   -webkit-transition: -webkit-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
   -moz-transition: -moz-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
   -ms-transition: -ms-transform cubic-bezier(0.54, 0.13, 0.1, 1.03) 0.3s;
@@ -5056,8 +5030,8 @@ body.kind-svg-editor-drawing .channel-content {
 .side-nav-wrapper nav > ul dt a:hover.on,
 .side-nav-wrapper nav dl > li a:hover.on,
 .side-nav-wrapper nav > ul > li a:hover.on {
-  background-color: #ff9832;
-  color: #fff !important;
+  background-color: #f37321 !important;
+  color: #ffffff !important;
 }
 .side-nav-wrapper nav dl dt a.on i,
 .side-nav-wrapper nav > ul dt a.on i,
@@ -5066,8 +5040,16 @@ body.kind-svg-editor-drawing .channel-content {
 .side-nav-wrapper nav dl dt a:hover.on i,
 .side-nav-wrapper nav > ul dt a:hover.on i,
 .side-nav-wrapper nav dl > li a:hover.on i,
-.side-nav-wrapper nav > ul > li a:hover.on i {
-  color: #fff !important;
+.side-nav-wrapper nav > ul > li a:hover.on i,
+.side-nav-wrapper nav dl dt a.on span,
+.side-nav-wrapper nav > ul dt a.on span,
+.side-nav-wrapper nav dl > li a.on span,
+.side-nav-wrapper nav > ul > li a.on span,
+.side-nav-wrapper nav dl dt a:hover.on span,
+.side-nav-wrapper nav > ul dt a:hover.on span,
+.side-nav-wrapper nav dl > li a:hover.on span,
+.side-nav-wrapper nav > ul > li a:hover.on span {
+  color: #ffffff !important;
 }
 .side-nav-wrapper nav dl dt a.default-cursor,
 .side-nav-wrapper nav > ul dt a.default-cursor,
@@ -5079,22 +5061,31 @@ body.kind-svg-editor-drawing .channel-content {
 .side-nav-wrapper nav > ul > li a:hover.default-cursor {
   cursor: default;
 }
-.side-nav-wrapper nav dl dt.separate,
-.side-nav-wrapper nav > ul dt.separate,
-.side-nav-wrapper nav dl > li.separate,
-.side-nav-wrapper nav > ul > li.separate {
-  padding-bottom: 11px;
+.nav > li.active {
+  border-left: 0;
 }
-.side-nav-wrapper nav dl dt.separate:after,
-.side-nav-wrapper nav > ul dt.separate:after,
-.side-nav-wrapper nav dl > li.separate:after,
-.side-nav-wrapper nav > ul > li.separate:after {
-  content: " ";
-  width: auto;
-  height: 1px;
-  background-color: #d8dde8;
-  display: block;
-  margin-top: 11px;
+.nav > li.active > a i,
+.nav > li.active > a span {
+  color: #f37321;
+}
+.nav li a:hover {
+  background-color: #f37321 !important;
+  color: #ffffff !important;
+}
+.nav li a:hover i,
+.nav li a:hover span {
+  color: #ffffff !important;
+}
+.nav .nav.nav-second-level a {
+  padding-left: 45px !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  font-weight: normal !important;
+  font-size: 14px;
+}
+.nav .nav.nav-third-level a {
+  padding-left: 70px !important;
+  font-weight: normal !important;
 }
 /* Setup Channel Selector */
 #setup-channel-selector {
