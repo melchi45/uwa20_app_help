@@ -5377,7 +5377,7 @@ body.kind-svg-editor-drawing .channel-content {
 }
 .graph .group {
   fill: none;
-  stroke: black;
+  stroke: #000000;
   stroke-width: 2px;
 }
 .zeroline {
@@ -5387,7 +5387,7 @@ body.kind-svg-editor-drawing .channel-content {
   /*stroke-dasharray: 5 5;*/
 }
 .zerolinetext {
-  fill: red;
+  fill: #e00001;
 }
 .level-threshold-slider svg {
   height: auto;
