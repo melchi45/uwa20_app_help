@@ -4453,7 +4453,7 @@ button.login-input + input.login-input {
   }
 }
 .cm-recording-color {
-  color: blue;
+  color: #3464ff;
 }
 fieldset[disabled] .btn {
   background-color: #d2d2d2 !important;
