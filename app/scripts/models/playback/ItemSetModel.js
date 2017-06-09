@@ -129,6 +129,26 @@ kindFramework.
         this.getFullItemSet = function() {
           return itemSet.timelineData;
         };
+        
+        /**
+         * return last endTime item
+         * @function getLastItem
+         * @return last item data.
+         */
+        this.getLastItem = function() {
+          var lastItem = $filter('orderBy')(itemSet.timelineData,'end',true)[0];
+          return lastItem;
+        };
+
+        /**
+         * return first startTime item
+         * @function getFirstItem
+         * @return first item data.
+         */
+        this.getFirstItem = function() {
+          var firstItem = $filter('orderBy')(itemSet.timelineData,'start',false)[0];
+          return firstItem;
+        };
 
         /** 
          * return item using index param
