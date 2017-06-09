@@ -17,7 +17,6 @@
       top: 0;
       line-height: @setup-button-line-height;
       span.btn {
-        border-color: @color-button-border;
         float: right;
       }
     }
@@ -144,17 +143,77 @@
 	margin-bottom: 0;
 }
 
+<<<<<<< HEAD
+=======
+.graph {
+  .axis {
+	  font-size: 12px;
+    .tick {
+      line {
+        stroke: @theme-color-gray-75;
+      }
+      text {
+        fill: @theme-color-gray-75;
+        font-size: 0.7em;
+      }
+    }
+
+    .domain {
+      fill: none;
+      stroke: @theme-color-gray-75;
+    }
+  }
+
+  .group {
+    fill: none;
+    stroke: @theme-color-black-100;
+    stroke-width: 2px;
+  }
+}
+
+>>>>>>> 1c215cc78cacf7aa567c476b706fdcfa1e7d8cdf
 .zeroline {
     fill: none;
-    stroke: #797979;
+    stroke: @theme-color-gray-75;
     stroke-width: 2px;
     /*stroke-dasharray: 5 5;*/
 }
 
 .zerolinetext {
-    fill: red;
+    fill: @theme-color-pallet-red;
 }
 
+<<<<<<< HEAD
+=======
+.level-threshold-slider {
+	svg {
+		height: auto;
+	}
+	.graph {
+		float: left;
+	}
+	.slider-align {
+		width: 50px;
+		height: 140px;
+		float: left;
+		position: relative;
+		i {
+			position: absolute;
+			left: 20px;
+			font-size: 20px;
+			cursor: pointer;
+		}
+	}
+}
+
+[slider-no-focus] {
+	.ui-state-active {
+		background-color: @theme-color-pallet-blue;
+		border-width: 4px !important;
+	}
+}
+
+>>>>>>> 1c215cc78cacf7aa567c476b706fdcfa1e7d8cdf
 .video-pattern {
 	width: 150px;
 	margin-top: 3px;
