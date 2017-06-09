@@ -177,14 +177,14 @@
                 <button 
                   ng-click="presetAddForm.apply()"
                   title="{{'lang_apply' | translate}}"
-                  class="cm-submit-button"
+                  class="cm-submit-button cm-btn-point"
                   style="margin-right: 5px;">
                   {{'lang_apply' | translate}}
                 </button>
                 <button 
                   ng-click="presetAddForm.cancel()"
                   title="{{'lang_cancel' | translate}}"
-                  class="cm-str-button cm-cancel-button">
+                  class="cm-btn-dark cm-cancel-button">
                   {{'lang_cancel' | translate}}
                 </button>
             </div>
@@ -219,9 +219,9 @@
             ng-options="preset as (preset.value + ' : ' + preset.name)  for preset in presetList">
           </select>
           <div style="margin-top: 5px;">
-            <button type="button" class="cm-str-button" title="Start" ng-click="ptzPreset('Go')">{{'lang_start' | translate }}</button>
-            <button type="button" class="cm-str-button" title="Stop" ng-click="ptzPreset('Home')" ng-if="modePTZ.Home">{{'lang_home'|translate}}</button>
-            <button type="button" class="cm-str-button" title="Set" style="float: right;" ng-click="ptzPreset('Set')">{{'lang_set'|translate}}</button>
+            <button type="button" class="cm-btn-dark" title="Start" ng-click="ptzPreset('Go')">{{'lang_start' | translate }}</button>
+            <button type="button" class="cm-btn-dark" title="Stop" ng-click="ptzPreset('Home')" ng-if="modePTZ.Home">{{'lang_home'|translate}}</button>
+            <button type="button" class="cm-btn-dark" title="Set" style="float: right;" ng-click="ptzPreset('Set')">{{'lang_set'|translate}}</button>
           </div>
         </div>
         <table class="cm-table" ng-if="currentPtzType !== ptzType.OPTICAL && currentPtzType !== ptzType.ZOOMONLY">
@@ -263,8 +263,8 @@
           ng-options="Mode as Mode for Mode in SwingModes">
         </select>
         <div style="margin-top: 5px;">
-          <button type="button" class="cm-str-button" title="Start" ng-click="ptzSwing('Go')">{{'lang_start' | translate }}</button>
-          <button type="button" class="cm-str-button" title="Stop" ng-click="ptzSwing('Stop')">{{'lang_stop' | translate }}</button>
+          <button type="button" class="cm-btn-dark" title="Start" ng-click="ptzSwing('Go')">{{'lang_start' | translate }}</button>
+          <button type="button" class="cm-btn-dark" title="Stop" ng-click="ptzSwing('Stop')">{{'lang_stop' | translate }}</button>
         </div>
       </div>
       <!-- Swing end -->
@@ -278,8 +278,8 @@
             ng-options="group as (group.value + ' : ' + group.name)  for group in groupList">
           </select>
           <div style="margin-top: 5px;">
-            <button type="button" class="cm-str-button" title="Go" ng-click="ptzGroup('Go')">{{'lang_start' | translate }}</button>
-            <button type="button" class="cm-str-button" title="Stop" ng-click="ptzGroup('Stop')">{{'lang_stop' | translate }}</button>
+            <button type="button" class="cm-btn-dark" title="Go" ng-click="ptzGroup('Go')">{{'lang_start' | translate }}</button>
+            <button type="button" class="cm-btn-dark" title="Stop" ng-click="ptzGroup('Stop')">{{'lang_stop' | translate }}</button>
           </div>
         </div>
         <table class="cm-table" ng-if="currentPtzType !== ptzType.OPTICAL">
@@ -325,8 +325,8 @@
       <div id="live-ptz-tour" ng-if="currentPtzType === ptzType.OPTICAL">
         <div>{{'lang_tour' | translate}}</div>
         <div style="margin-top: 5px; min-width: 200px;">
-          <button type="button" class="cm-str-button" title="Start" ng-click="ptzTour('Go')">{{'lang_start' | translate }}</button>
-          <button type="button" class="cm-str-button" title="Stop"  ng-click="ptzTour('Stop')">{{'lang_stop' | translate }}</button>
+          <button type="button" class="cm-btn-dark" title="Start" ng-click="ptzTour('Go')">{{'lang_start' | translate }}</button>
+          <button type="button" class="cm-btn-dark" title="Stop"  ng-click="ptzTour('Stop')">{{'lang_stop' | translate }}</button>
         </div>
       </div>
       <!-- Tour end -->
@@ -339,8 +339,8 @@
           ng-options="TraceOptions.indexOf(Option) as Option for Option in TraceOptions">
         </select>
         <div style="margin-top: 5px;">
-          <button type="button" class="cm-str-button" title="Start" ng-click="ptzTrace('Go')">{{'lang_start' | translate }}</button>
-          <button type="button" class="cm-str-button" title="Stop"  ng-click="ptzTrace('Stop')">{{'lang_stop' | translate }}</button>
+          <button type="button" class="cm-btn-dark" title="Start" ng-click="ptzTrace('Go')">{{'lang_start' | translate }}</button>
+          <button type="button" class="cm-btn-dark" title="Stop"  ng-click="ptzTrace('Stop')">{{'lang_stop' | translate }}</button>
         </div>
       </div>
       <!-- Trace end -->
