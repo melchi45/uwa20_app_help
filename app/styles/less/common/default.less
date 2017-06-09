@@ -11,7 +11,7 @@ ul {
   }
 }
 a, a:hover {
-  color: @font-color;
+  color: @theme-light-normal-color;
   text-decoration: none;
   cursor: pointer;
 }
@@ -36,36 +36,6 @@ input[type='text'] {
   }
   &>.button {
     margin-left: 10px;
-  }
-  &.button-toggle-group {
-    background-color: @background-color-main;
-    .button-toggle {
-      width: 20px;
-      margin-left: 0;
-      display: none;
-      //display: initial;
-    }
-    .button-group {
-      .translate(0);
-      opacity: 1;
-      display: inline-block !important;
-    }
-    @media(max-width: 400px) {
-      .button-toggle {
-        display: initial;
-        z-index: 10;
-      }
-      .button-group {
-        &.ng-hide-add, &.ng-hide-remove {
-          .transition(all linear 0.5s);
-        }
-        &.ng-hide {
-          .translate(30px);
-          opacity: 0;
-          visibility: hidden ;
-        }
-      }
-    }
   }
 }
 .top-menu-right {
@@ -96,13 +66,13 @@ input[type='text'] {
   font-size: 20px;
   padding: 0;
   &:active {
-    border-color: @color-button-selected;
+    border-color: @theme-color-point-60;
     background-color: #fff;
     i {
-      color: @color-button-selected !important;
+      color: @theme-color-point-60 !important;
     }
     span.icon-bar {
-      background-color: @color-button-selected !important;
+      background-color: @theme-color-point-60 !important;
     }
   }
 }
