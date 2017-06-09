@@ -62,7 +62,9 @@ module.exports = function(injection){
 	 */
 	var projectJsCodePath = [
 			appJsPath + '/*.js',
-			appJsPath + '/**/*.js'
+			appJsPath + '/**/*.js',
+			baseAppDir + '/' + jsDir + '/*.js',
+			baseAppDir + '/' + jsDir + '/**/*.js',
 	];
 
 	/**
