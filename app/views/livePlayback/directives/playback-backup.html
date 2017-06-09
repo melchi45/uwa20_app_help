@@ -1,14 +1,14 @@
-<div id="cm-playback-backup">
+<div id="pb-backup-section">
 
-	<div class="cm-playback-block cm-m0-10" id="backup-date">
+	<div class="pb-block cm-m0-10" id="backup-date">
 		<input 
 			type="text" 
 			disabled="disabled"
-			class="cm-textbox cm-date-textbox"
+			class="cm-textbox"
 			ng-model="currentDate">
 	</div>
 
-	<div class="cm-playback-block cm-m0-10 cm-timeboxes start-time">
+	<div class="pb-block cm-m0-10 pb-timeboxes start-time">
         <input 
         	type="text" 
         	maxlength="2" 
@@ -40,9 +40,9 @@
         	ng-model="startTime.seconds">
     </div>
 
-    <div class="cm-playback-range">~</div>
+    <div class="pb-range">~</div>
 
-    <div class="cm-playback-block cm-m0-10 cm-timeboxes end-time">
+    <div class="pb-block cm-m0-10 pb-timeboxes end-time">
         <input 
         	type="text" 
         	maxlength="2" 

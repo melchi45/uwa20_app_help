@@ -13,7 +13,6 @@ var angularModules = [
   'kindSunapiModule',
   'KindDisplayModule',
   'ngIOS9UIWebViewPatch',
-  'rzModule',
   'ngPatternRestrict',
   'nvd3'
 ];
