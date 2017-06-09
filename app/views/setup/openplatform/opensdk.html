@@ -30,11 +30,11 @@
                 <div id="f1_upload_form" class="form-group">
                     <div class="wn5-setup-preview-table-col-4 file-browser-field">
                         <input type="text" class="form-control" name="cerName" id="certificateFile" ng-model="CertificateFile" ng-disabled="true">
-                        <label for="opensdkfileupload"> <span class="btn btn-primary" ng-disabled="IsCerticateInstalled()">...</span></label>
+                        <label for="opensdkfileupload"> <span class="btn btn-primary cm-btn-dark" ng-disabled="IsCerticateInstalled()">...</span></label>
                         <input style="visibility: hidden; position: relative; display:none" id="opensdkfileupload" class="form-control" type="file" name="opensdkfileupload" ng-disabled="IsCerticateInstalled()"  ng-model-instant accept=".cap"  onchange="angular.element(this).scope().setOpenSDKFile(this)">
                     </div>
                     <div class="wn5-setup-preview-table-col-2">
-                        <button type="button" class="btn btn-primary btn-margin-left" style="float:left" ng-click="OnOpenSDKInstall()" ng-disabled="!CertificateFile">{{ 'lang_install' | translate }}</button>
+                        <button type="button" class="btn btn-primary cm-btn-dark btn-margin-left" style="float:left" ng-click="OnOpenSDKInstall()" ng-disabled="!CertificateFile">{{ 'lang_install' | translate }}</button>
                     </div>
                     <div class="wn5-setup-preview-table-col-6 text-right">
                         {{'lang_version' | translate }} : {{DeviceInfo.OpenSDKVersion}}
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="form-group text-right">
-                    <button type="button" class="btn btn-primary" ng-disabled="false" ng-click="OnOpenSDKTaskManager()">{{ 'lang_taskmanager' | translate }}</button>
+                    <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="false" ng-click="OnOpenSDKTaskManager()">{{ 'lang_taskmanager' | translate }}</button>
                 </div>
                 <div class="form-group">
                     <table class="table table-bordered wn5-setup-table">
@@ -103,9 +103,9 @@
                                             {{ 'lang_version' | translate}} : {{App.Version}}
                                         </div>
                                         <div>
-                                            <button type="button" class="btn btn-primary btn-margin-right" ng-disabled="false" ng-click="OnOpenSDKAppUninstall(App.AppID)">{{ 'lang_uninstall' | translate }}</button>
+                                            <button type="button" class="btn btn-primary cm-btn-dark btn-margin-right" ng-disabled="false" ng-click="OnOpenSDKAppUninstall(App.AppID)">{{ 'lang_uninstall' | translate }}</button>
                                             
-                                            <button type="button" class="btn btn-primary" ng-disabled="false" ng-click="OnOpenSDKGoApp(App.AppID)">{{ 'lang_goApp' | translate }}</button>
+                                            <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="false" ng-click="OnOpenSDKGoApp(App.AppID)">{{ 'lang_goApp' | translate }}</button>
                                         </div>
                                     </div>
                                 </td>
@@ -117,7 +117,7 @@
                                         
                                         <button 
                                             type="button" 
-                                            class="btn btn-primary" 
+                                            class="btn btn-primary cm-btn-dark" 
                                             ng-disabled="false" 
                                             ng-click="OnOpenSDKAppStart(App.AppID)"
                                             ng-if="App.Status === 'Stopped' || App.Status === 'Installed'">
@@ -125,7 +125,7 @@
                                         </button>
                                         <button 
                                             type="button" 
-                                            class="btn btn-primary" 
+                                            class="btn btn-primary cm-btn-dark" 
                                             ng-if="App.Status === 'Running'" 
                                             ng-disabled="false" 
                                             ng-click="OnOpenSDKAppStop(App.AppID)">
@@ -133,7 +133,7 @@
                                         </button>
                                         <button 
                                             type="button" 
-                                            class="btn btn-primary btn-margin-left" 
+                                            class="btn btn-primary cm-btn-dark btn-margin-left" 
                                             ng-disabled="!IsOpenSDKAppRunning(App.Status)" 
                                             ng-click="OnOpenSDKAppHealth(App.AppID)">
                                             {{ 'lang_health' | translate }}
@@ -161,7 +161,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-primary" ng-disabled="false" ng-click="OnOpenSDKAppApply(App.AppID)">{{ 'lang_apply' | translate }}</button>
+                                        <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="false" ng-click="OnOpenSDKAppApply(App.AppID)">{{ 'lang_apply' | translate }}</button>
                                     </div>
                                 </td>
                             </tr>

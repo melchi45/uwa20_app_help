@@ -1,22 +1,24 @@
 "use strict";
-kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMERA_STATUS',
-  '$rootScope', '$compile', 'PluginControlService', 'KindControlService',
+kindFramework.
+directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMERA_STATUS', '$rootScope',
+  '$compile', 'PluginControlService', 'KindControlService',
   'MJPEGPollingControlService', 'kindStreamInterface',
   '$timeout', 'ModalManagerService', '$translate', 'PluginModel',
-  function(BrowserService, UniversialManagerService, CAMERA_STATUS,
+  function (BrowserService, UniversialManagerService, CAMERA_STATUS,
     $rootScope, $compile, PluginControlService, KindControlService,
     MJPEGPollingControlService, kindStreamInterface,
     $timeout, ModalManagerService, $translate, PluginModel) {
     return {
       restrict: 'E',
       scope: {
-        'playinfo': '='
+        'playinfo': '=',
       },
-      link: function(scope, elem) {
+      link: function (scope, elem) {
+        var TIMEOUT = 500;
         var channelPlayerObj = null;
         scope.child = {};
         $rootScope.$emit('channelPlayer::initialized');
-        scope.$on('$destroy', function() {
+        scope.$on('$destroy', function () {
           if (channelPlayerObj !== null) {
             channelPlayerObj.stopStreaming();
             channelPlayerObj = null;
@@ -26,7 +28,7 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
           UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
         });
 
-        $rootScope.$saveOn('channelPlayer:play', function(event, isPluginMode, ip, port, intProfileNumber, id, password, streamTagType, statusCallback, isReconnect) {
+        $rootScope.$saveOn('channelPlayer:play', function (event, isPluginMode, ip, port, intProfileNumber, id, password, streamTagType, statusCallback, isReconnect) {
           console.log("Requested Play { plugInMode : " + isPluginMode + ", Profile : " + intProfileNumber + " }");
           channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);
 
@@ -53,21 +55,21 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
           //4. Check Requested Profile
           if (channelPlayerObj.checkProfileAvailable(isPluginMode, intProfileNumber) === false) {
             if (BrowserService.PlugInSupport && BrowserService.PlugInDetect) {
-              //IE ??????ï¿½ï¿½ï¿½ï¿½ ????????? // PlugIn Off ???????????? H264, H265 ????? ???
+              //IE ÇÃ·¯±×ÀÎ È°¼ºÈ­ // PlugIn Off »óÅÂ¿¡¼­ H264, H265 ¿äÃ» ½Ã
               $rootScope.$emit("channel:setPlugin");
             } else {
-              //????? ??????ï¿½ï¿½ï¿½ï¿½
+              //¼³Ä¡ ½Ã³ª¸®¿À
               createPlugInInstallElement();
               $rootScope.$emit('changeLoadingBar', false);
             }
 
-            //NonPlugIn ?????? ??????ï¿½ï¿½ï¿½ï¿½
+            //NonPlugIn Àç»ý ½Ã³ª¸®¿À
             //requestAvailableProfile(profile);
             return;
           }
 
           //5. Stream Element Check
-          if (channelPlayerObj.StreamElementDetect(isPluginMode, elem) === false) {
+          if (channelPlayerObj.streamElementDetect(isPluginMode, elem) === false) {
             channelPlayerObj.deleteStreamElement();
             channelPlayerObj.createStreamElement(isPluginMode);
           }
@@ -86,7 +88,7 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
           channelPlayerObj.startStreaming(isPluginMode, ip, port, intProfileNumber, id, password, streamTagType, statusCallback, isReconnect);
         }, scope);
 
-        $rootScope.$saveOn('channelPlayer:command', function(event, type, command, callback) {
+        $rootScope.$saveOn('channelPlayer:command', function (event, type, command, callback) {
           console.log("Requested command {  Type : " + type + ", Value : " + command + "}");
           var isPluginMode = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
 
@@ -181,7 +183,7 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
           }
         }, scope);
 
-        var ChannelPlayer = function(BrowserType, isPluginMode) {
+        var ChannelPlayer = function (BrowserType, isPluginMode) {
           function PlugIn() {
             function createActiveXElement() {
               var ElementTemplate = UniversialManagerService.getPluginElement();
@@ -205,7 +207,7 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
               setElement(ElementTemplate);
             }
 
-            this.createStreamElement = function() {
+            this.createStreamElement = function () {
               if (window.ActiveXObject || "ActiveXObject" in window) {
                 createActiveXElement();
               } else {
@@ -216,17 +218,17 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
             /**
              * @return {boolean}
              */
-            this.StreamElementDetect = function() {
+            this.streamElementDetect = function () {
               return (elem.find('object').length !== 0);
             };
 
-            this.startStreaming = function(_pluginMode, _ip, _port, _profile, _id, _password, _streamtagtype, statusCallback) {
+            this.startStreaming = function (_pluginMode, _ip, _port, _profile, _id, _password, _streamtagtype, statusCallback) {
               var pluginObj = elem[0].getElementsByTagName('object')[0];
               $(pluginObj).addClass("cm-vn");
               PluginControlService.startPluginStreaming(pluginObj, _ip, _port, _profile, _id, _password, statusCallback);
             };
 
-            this.capture = function() {
+            this.capture = function () {
               var strPath = PluginControlService.capture();
               ModalManagerService.open('message', {
                 'buttonCount': 0,
@@ -234,7 +236,7 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
               });
             };
 
-            this.record = function(recordInfo) {
+            this.record = function (recordInfo) {
               if (recordInfo.command === 'start') {
                 PluginControlService.startRecord(recordInfo.callback);
               } else if (recordInfo.command === 'stop') {
@@ -242,105 +244,105 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
               }
             };
 
-            this.setAreaZoomAction = function(_command) {
+            this.setAreaZoomAction = function (_command) {
               PluginControlService.setAreaZoomAction(_command);
             };
 
-            this.setAreaZoomMode = function(_mode) {
+            this.setAreaZoomMode = function (_mode) {
               PluginControlService.setAreaZoomMode(_mode);
             };
 
-            this.setManualTrackingMode = function(_mode) {
+            this.setManualTrackingMode = function (_mode) {
               PluginControlService.setManualTrackingMode(_mode);
             };
 
-            this.step = function(_data) {
+            this.step = function (_data) {
               PluginControlService.applyStepCommand(_data);
             };
 
-            this.changeMicVolume = function(_command) {
+            this.changeMicVolume = function (_command) {
               UniversialManagerService.setMicVol(_command);
               PluginControlService.setAudioTalkVolume(_command);
             };
 
-            this.micStatusOFF = function(_command) {
+            this.micStatusOFF = function (_command) {
               UniversialManagerService.setMicOn(_command);
               PluginControlService.stopAudioTalk();
             };
 
-            this.micStatusON = function(_command) {
+            this.micStatusON = function (_command) {
               UniversialManagerService.setMicOn(_command);
               PluginControlService.startAudioTalk();
             };
 
-            this.changeSpeakerVolume = function(_command) {
+            this.changeSpeakerVolume = function (_command) {
               UniversialManagerService.setSpeakerVol(_command);
               PluginControlService.setAudioVolume(_command);
             };
 
-            this.speakerStatusOFF = function() {
+            this.speakerStatusOFF = function () {
               UniversialManagerService.setSpeakerOn(false);
               PluginControlService.stopAudioListen();
             };
 
-            this.speakerStatusON = function() {
+            this.speakerStatusON = function () {
               UniversialManagerService.setSpeakerOn(true);
               PluginControlService.startAudioListen();
-              $timeout(function() {
+              $timeout(function () {
                 PluginControlService.setAudioVolume(UniversialManagerService.getSpeakerVol());
-              }, 500);
+              }, TIMEOUT);
             };
 
-            this.pixelCount = function(_type, _command) {
+            this.pixelCount = function (_type, _command) {
               UniversialManagerService.setPixelCount(_command.cmd);
               PluginControlService.pixcelCount(_command);
             };
 
-            this.closePlayback = function() {
+            this.closePlayback = function () {
               $rootScope.$emit('blockTimebarInputField', false);
               PluginControlService.closePlaybackSession();
               elem.empty();
             };
 
-            this.pause = function() {
+            this.pause = function () {
               PluginControlService.applyPauseCommand();
             };
 
-            this.speed = function(_speed, _data) {
+            this.speed = function (_speed, _data) {
               PluginControlService.applyPlaySpeed(_speed, _data);
             };
 
-            this.seek = function(_data) {
+            this.seek = function (_data) {
               PluginControlService.applySeekCommand(_data);
             };
 
-            this.resume = function(_data) {
+            this.resume = function (_data) {
               PluginControlService.applyResumeCommand(_data);
             };
 
-            this.playback = function(_data, _timeCallback, _errorCallback) {
+            this.playback = function (_data, _timeCallback, _errorCallback) {
               this.createStreamElement();
               var pluginObj = elem[0].getElementsByTagName('object')[0];
               PluginControlService.startPlayback(pluginObj, _data, _timeCallback, _errorCallback);
-              $timeout(function() {
+              $timeout(function () {
                 if (UniversialManagerService.isSpeakerOn()) {
                   try {
                     this.speakerStatusON();
                     this.changeSpeakerVolume(UniversialManagerService.getSpeakerVol());
-                  } catch (e) {
-                    console.error(e);
+                  } catch (err) {
+                    console.error(err);
                   }
                 }
               }.bind(this));
             };
 
-            this.playbackBackup = function(_data, _callback) {
+            this.playbackBackup = function (_data, _callback) {
               this.createStreamElement();
               var pluginObj = elem[0].getElementsByTagName('object')[0];
               PluginControlService.startPlaybackBackup(pluginObj, _data, _callback);
             };
 
-            this.stopLiveForPlayback = function(_isPlaybackMode) {
+            this.stopLiveForPlayback = function () {
               PluginControlService.stopStreaming();
 
               if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) {
@@ -359,7 +361,7 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
               }
             }
 
-            this.createStreamElement = function() {
+            this.createStreamElement = function () {
               var Element = $compile("<img cursor='default' zIndex='10' draggable='false'>")(scope);
               elem.append(Element);
               setElement(Element);
@@ -368,15 +370,15 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
             /**
              * @return {boolean}
              */
-            this.StreamElementDetect = function() {
+            this.streamElementDetect = function () {
               return (elem.find('image').length !== 0);
             };
 
-            this.startStreaming = function() {
+            this.startStreaming = function () {
               MJPEGPollingControlService.startMJPEGStreaming(elem);
             };
 
-            this.capture = function() {
+            this.capture = function () {
               MJPEGPollingControlService.capture();
             };
 
@@ -418,7 +420,7 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
 
             this.playbackBackup = stopAndNotSupport;
 
-            this.stopLiveForPlayback = function(_isPlaybackMode) {
+            this.stopLiveForPlayback = function (_isPlaybackMode) {
               MJPEGPollingControlService.stopStreaming(elem);
 
               if (_isPlaybackMode === true) {
@@ -429,7 +431,7 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
           }
 
           function Kind() {
-            this.createStreamElement = function() {
+            this.createStreamElement = function () {
               var ElementTemplate = '<kind_stream class="channel-content" kindplayer="playerdata" display="displayInfo"></kind_stream>';
               elem.append($compile(ElementTemplate)(scope));
             };
@@ -437,31 +439,31 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
             /**
              * @return {boolean}
              */
-            this.StreamElementDetect = function() {
+            this.streamElementDetect = function () {
               return (elem.find('kind_stream').length !== 0);
             };
 
-            this.startStreaming = function(_pluginMode, _ip, _port, _profile, _id, _password, _streamtagtype, statusCallback, isReconnect) {
+            this.startStreaming = function (_pluginMode, _ip, _port, _profile, _id, _password, _streamtagtype, statusCallback, isReconnect) {
               KindControlService.startKindStreaming(scope, _profile, _streamtagtype, statusCallback, isReconnect);
             };
 
-            this.capture = function() {
+            this.capture = function () {
               if (typeof document.createElement('a').download !== "undefined" &&
                 !(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI && UniversialManagerService.getVideoMode() === "video")) {
                 KindControlService.capture(scope);
                 ModalManagerService.open('message', {
                   'buttonCount': 0,
-                  'message': "lang_capture_image_saved"
+                  'message': "lang_capture_image_saved",
                 });
               } else {
                 ModalManagerService.open('message', {
                   'buttonCount': 0,
-                  'message': "lang_service_unavailable"
+                  'message': "lang_service_unavailable",
                 });
               }
             };
 
-            this.record = function(recordInfo) {
+            this.record = function (recordInfo) {
               if (recordInfo.command === 'start') {
                 KindControlService.startRecord(scope, recordInfo);
               } else if (recordInfo.command === 'stop') {
@@ -469,118 +471,118 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
               }
             };
 
-            this.setAreaZoomAction = function(_command) {
+            this.setAreaZoomAction = function (_command) {
               KindControlService.setAreaZoomAction(_command);
             };
 
-            this.setAreaZoomMode = function(_mode) {
+            this.setAreaZoomMode = function (_mode) {
               KindControlService.setAreaZoomMode(_mode);
             };
 
-            this.setManualTrackingMode = function(_mode) {
+            this.setManualTrackingMode = function (_mode) {
               KindControlService.setManualTrackingMode(_mode);
             };
 
-            this.step = function(_data) {
+            this.step = function (_data) {
               $rootScope.$emit('app/scripts/directives/channelPlayer.js:step', _data);
             };
 
-            this.changeMicVolume = function(_command) {
+            this.changeMicVolume = function (_command) {
               UniversialManagerService.setMicVol(_command);
               kindStreamInterface.controlAudioOut(_command);
             };
 
-            this.micStatusOFF = function(_command) {
+            this.micStatusOFF = function (_command) {
               UniversialManagerService.setMicOn(_command);
               kindStreamInterface.controlAudioOut('off');
             };
 
-            this.micStatusON = function(_command) {
+            this.micStatusON = function (_command) {
               UniversialManagerService.setMicOn(_command);
               kindStreamInterface.controlAudioOut('on');
             };
 
-            this.changeSpeakerVolume = function(_command) {
+            this.changeSpeakerVolume = function (_command) {
               UniversialManagerService.setSpeakerVol(_command);
               kindStreamInterface.controlAudioIn(_command);
             };
 
-            this.speakerStatusOFF = function() {
+            this.speakerStatusOFF = function () {
               UniversialManagerService.setSpeakerOn(false);
               kindStreamInterface.controlAudioIn('off');
             };
 
-            this.speakerStatusON = function() {
+            this.speakerStatusON = function () {
               UniversialManagerService.setSpeakerOn(true);
               kindStreamInterface.controlAudioIn(UniversialManagerService.getSpeakerVol());
             };
 
-            this.pixelCount = function(_type, _command) {
+            this.pixelCount = function (_type, _command) {
               UniversialManagerService.setPixelCount(_command.cmd);
               $rootScope.$emit('channel:overlayCanvas', _command.cmd);
               $rootScope.$emit('overlayCanvas::command', _type, _command.cmd);
             };
 
-            this.closePlayback = function() {
+            this.closePlayback = function () {
               $rootScope.$emit('blockTimebarInputField', false);
               KindControlService.closePlaybackSession(scope);
               angular.element(elem.find('kind_stream')).remove();
-              if (scope.child.$destroy !== undefined) {
+              if (typeof scope.child.$destroy !== "undefined") {
                 scope.child.$destroy();
               }
             };
 
-            this.pause = function() {
+            this.pause = function () {
               KindControlService.applyPauseCommand(scope);
             };
 
-            this.speed = function(_speed, _data) {
+            this.speed = function (_speed, _data) {
               KindControlService.applyPlaySpeed(scope, _speed, _data);
             };
 
-            this.seek = function(_data) {
+            this.seek = function (_data) {
               KindControlService.applySeekCommand(scope, _data);
             };
 
-            this.resume = function(_data) {
+            this.resume = function (_data) {
               KindControlService.applyResumeCommand(scope, _data);
             };
 
-            this.playback = function(_data, _timeCallback, _errorCallback) {
+            this.playback = function (_data, _timeCallback, _errorCallback) {
               this.createStreamElement();
               KindControlService.startPlayback(scope, _data, _timeCallback, _errorCallback);
-              $timeout(function() {
+              $timeout(function () {
                 if (UniversialManagerService.isSpeakerOn()) {
                   try {
                     this.speakerStatusON();
                     this.changeSpeakerVolume(UniversialManagerService.getSpeakerVol());
-                  } catch (e) {
-                    console.error(e);
+                  } catch (err) {
+                    console.error(err);
                   }
                 }
               }.bind(this));
             };
 
-            this.playbackBackup = function(_data, _callback) {
+            this.playbackBackup = function (_data, _callback) {
               this.createStreamElement();
               KindControlService.startPlaybackBackup(scope, _data, _callback);
             };
 
-            this.stopLiveForPlayback = function() {
+            this.stopLiveForPlayback = function () {
               KindControlService.stopStreaming(elem);
               elem.empty();
             };
           }
 
           function Player() {
-            this.stopStreaming = function() {
+            this.stopStreaming = function () {
               MJPEGPollingControlService.stopStreaming(elem);
               PluginControlService.stopStreaming();
               KindControlService.stopStreaming(elem);
               elem.empty();
             };
 
-            this.checkProfileAvailable = function(isPluginMode, intProfileNumber) {
+            this.checkProfileAvailable = function (isPluginMode, intProfileNumber) {
               switch (BrowserService.BrowserDetect) {
                 case BrowserService.BROWSER_TYPES.IE:
                   if (isPluginMode === true) {
@@ -589,7 +591,6 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
                     var MJPEG_PROFILE_NUM = 1; // 1 is MJPEG
                     return (intProfileNumber === MJPEG_PROFILE_NUM);
                   }
-                  break;
                 case BrowserService.BROWSER_TYPES.SAFARI:
                   return true;
                 case BrowserService.BROWSER_TYPES.CHROME:
@@ -599,19 +600,18 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
                 default:
                   /* jshint ignore:end */
                   return !(isPluginMode);
-                  break;
               }
             };
 
-            this.deleteStreamElement = function() {
+            this.deleteStreamElement = function () {
               angular.element(elem.find('kind_stream')).remove();
               elem.empty();
-              if (scope.child.$destroy !== undefined) {
+              if (typeof scope.child.$destroy !== "undefined") {
                 scope.child.$destroy();
               }
             };
 
-            this.getPluginMode = function() {
+            this.getPluginMode = function () {
               return (this instanceof PlugIn) ? true : false;
             };
           }
@@ -658,7 +658,7 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
         }
 
         function setElement(elem) {
-          $timeout(function() {
+          $timeout(function () {
             $rootScope.$emit('BaseChannel:resetViewMode');
             kindStreamInterface.setStreamCanvas(elem);
             kindStreamInterface.setResizeEvent();
@@ -691,7 +691,7 @@ kindFramework.directive('channelPlayer', ['BrowserService', 'UniversialManagerSe
               break;
           }
         }
-      }
+      },
     };
-  }
+  },
 ]);

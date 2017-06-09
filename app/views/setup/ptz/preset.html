@@ -35,7 +35,7 @@
                     <div class="wn5-setup-section-article-content">
                         <input type="text" class="form-control" ng-model="LastPosition.RememberLastPositionDuration" maxlength="{{LastPositionAttr.DurLen}}" required ng-pattern-restrict="{{OnlyNumStr}}"/>
                         <label class="col-lg-2 control-label" style="text-align:left">({{LastPositionAttr.RememberLastPositionDuration.minValue}}~{{LastPositionAttr.RememberLastPositionDuration.maxValue}} {{ 'lang_sec' | translate }})</label>
-                        <button type="button" class="btn btn-primary" ng-click="setLastPosition()">{{ 'lang_set' | translate }}</button>
+                        <button type="button" class="btn btn-primary cm-btn-dark" ng-click="setLastPosition()">{{ 'lang_set' | translate }}</button>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             <div class="wn5-setup-section-article">
                 <div class="form-group">
                     <div class="wn5-setup-section-article-content">
-                        <button type="button" class="btn btn-primary" ng-click="remove()">{{ 'lang_remove' | translate }}</button>
+                        <button type="button" class="btn btn-primary cm-btn-dark" ng-click="remove()">{{ 'lang_remove' | translate }}</button>
                     </div>
                 </div>
                 <div class="table-wrapper form-group">

@@ -6,16 +6,6 @@
     }
 
     #cm-bottom-menu {
-        #cm-icon-list {
-            .cm-col {
-                height: 50px;
-            } 
-
-            #alarm {
-                margin: 0 20px;
-            }
-        } 
-
 
         #cm-icon-list {
             .cm-col {
@@ -43,7 +33,6 @@
             }
 
             .cm-live-controller {
-                position: relative;
                 max-height: 50px;
                 height: 50px;
                 float: left;
@@ -116,15 +105,7 @@
             }
 
             #cm-ptz {
-                .cm-center {
-                    width: 100%;
-                }
-
                 #ptz-components {
-                    float: left;
-                    width: 100%;
-                    display: block;
-
                     #cm-live-ptz-control {
                         width: 30%;
                         float: left;
@@ -159,7 +140,7 @@
 
                             .cm-at {
                                 .tui-ch-live-ptz-tracking-auto-on{
-                                    color: @theme-color-point-100;
+                                    color: @theme-ptz-active-icon;
                                 }
                             }
 
@@ -250,25 +231,6 @@
                         }
                     } 
 
-                    /*
-                    #cm-ptz-tables {
-                        width: calc(~"100% - 40%");
-                        max-width: calc(~"100% - 270px");
-                        min-height: 160px;
-                        padding: 0 20px;
-                        border-left: 1px solid #e2e2e2;
-                        display: inline;
-
-                        & > div {
-                            width: calc(~"50% - 20px");
-                            float: left;
-                            display: inline;
-                            margin: 0 10px;
-                            text-align: left;
-                        }
-                    }
-                    */
-
                     #live-ptz-add-form {
                         width: 40%;
                         float: left;
@@ -309,7 +271,7 @@
                         }
                     }
 
-                    #live-ptz-tabs {
+                    #cm-ptz-tabs {
                         width: 40%;
                         float: left;
                         box-sizing: border-box;
@@ -370,7 +332,7 @@
                     }
 
 
-                    #live-ptz-zoom {
+                    #cm-ptz-zoom {
                         width: 30%;
                         float: left;
                         text-align: left;
@@ -378,10 +340,6 @@
                         font-size: 12px;
                     }
 
-
-                    /*
-                        #ptz-components.ptz-zoom
-                    */
                     &.ptz-zoom {
                         max-width: 600px;
                         position: relative;
@@ -392,7 +350,7 @@
                             width: 40%;
                         }
 
-                        #live-ptz-tabs {
+                        #cm-ptz-tabs {
                             width: 60%;
                         }
                     }
@@ -429,9 +387,6 @@
                             ::-webkit-scrollbar-thumb {
                                 background: #c1c1c1;
                             }​
-
-                            /* thumb 이후에 스타일이 죽습니다 */
-                            dummy {}
 
                             th, td {
                                 width: 1%;
@@ -548,7 +503,7 @@
                             }
                         }
 
-                        #live-ptz-tabs {
+                        #cm-ptz-tabs {
                             color: @theme-color-white;
                             border: 1px solid @theme-color-black-80;
                             background: @theme-color-black-85;
@@ -717,7 +672,7 @@
                         */
                         
                         #live-ptz-add-form,
-                        #live-ptz-tabs {
+                        #cm-ptz-tabs {
                             width: 80%;
                             margin: 20px 0;
                         }
@@ -953,7 +908,7 @@
                 }
 
                 #live-ptz-add-form,
-                &#live-ptz-tabs {
+                &#cm-ptz-tabs {
                     width: 80% !important;
                     margin: 20px 0 !important;
                 }
@@ -1084,16 +1039,6 @@
                 }
 
                 .alarm-volume {
-                    #alarm {
-                        margin: 0 30px;
-                        padding-top: 10px;
-
-                        .cm-icon-button-b {
-                            font-size: 40px;
-                            margin-top: 10px;
-                        }
-                    }
-
                     .cm-col {
                         height: 75px;
                         margin: 0 30px;

@@ -50,7 +50,7 @@
                 </p>
                 <div class="text-center">
                     <button 
-                        class="btn btn-primary" 
+                        class="btn btn-primary cm-btn-dark" 
                         type="button"
                         ng-click="previewSection.goToSetup()"
                         >{{ lang.realTime.button | translate }}</button>
@@ -202,7 +202,7 @@
                 </div>
                 <div class="text-center pc-conditions-buttons wn5-setup-common-button">
                     <button 
-                        class="btn btn-black" 
+                        class="btn cm-btn-dark" 
                         type="button"
                         ng-disabled="!queueData.Enable" 
                         ng-click="searchSection.start()">
@@ -287,7 +287,7 @@
 
             <div class="text-center pc-conditions-buttons wn5-setup-common-button">
                 <button 
-                    class="btn btn-black" 
+                    class="btn cm-btn-dark" 
                     type="button" 
                     ng-disabled="!resultSection.view || resultSection.noResults || !(resultSection.viewGraph.average || resultSection.viewGraph.cumulative)"
                     ng-click="resultSection.getReport()">

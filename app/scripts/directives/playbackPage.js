@@ -45,7 +45,7 @@ kindFramework
             }
           }
         },
-        link: function(scope, element, attributes) {
+        link: function(scope) {
           var searchData = new SearchDataModel();
           var playData = new PlayDataModel();
           var waitChangePlaySpeed = false;
@@ -58,13 +58,15 @@ kindFramework
           scope.disableSpeedIcon = true;
           scope.disableStepIcon = true;
           scope.disableBackupIcon = true;
-          var INDEX_START_POINT = 0,
-            INDEX_OFFSET = 1;
+          var TIMEOUT = 2000;
+          var SPEED_LIST = {'FB8':-8, 'FB4':-4, 'FB2' : -2, 'FB1':-1, 
+            'FF1':1, 'FF2':2, 'FF4':4, 'FF8':8};
           var listInfo = [];
 
           var initPlaySpeedList = function() {
-            var list = [-8, -4, -2, -1, 1, 2, 4, 8];
-            for (var idx = INDEX_START_POINT; idx < list.length; idx++) {
+            var list = [SPEED_LIST.FB8, SPEED_LIST.FB4, SPEED_LIST.FB2, SPEED_LIST.FB1, 
+              SPEED_LIST.FF1, SPEED_LIST.FF2, SPEED_LIST.FF4, SPEED_LIST.FF8];
+            for (var idx = 0; idx < list.length; idx++) {
               listInfo[idx] = {
                 'name': 'x' + list[idx],
                 'value': list[idx],
@@ -84,15 +86,17 @@ kindFramework
           };
           var PLAY_CMD = PLAYBACK_TYPE.playCommand;
           var playback = scope.playback = {
-            isPlay: playData.getStatus() === PLAY_CMD.PLAY ? true : false,
+            isPlay: playData.getStatus() === PLAY_CMD.PLAY,
             visibilitySpeedPopup: false,
             play: function() {
-              if (scope.disableButton === true) return;
+              if (scope.disableButton === true) {
+                return;
+              }
               $rootScope.$emit('changeLoadingBar', false);
               $rootScope.$emit('blockTimebarInputField', true);
               playback.isPlay = scope.disableStepIcon = true;
               scope.playPlayback({
-                "command": PLAY_CMD.PLAY
+                "command": PLAY_CMD.PLAY,
               });
               $timeout(function() {
                 kindStreamInterface.setCanvasStyle(scope.viewMode);
@@ -102,17 +106,21 @@ kindFramework
               playback.isPlay = scope.disableStepIcon = false;
               $rootScope.$emit('blockTimebarInputField', false);
               scope.playPlayback({
-                "command": PLAY_CMD.PAUSE
+                "command": PLAY_CMD.PAUSE,
               });
             },
             stepForward: function() {
-              if (scope.disableStepIcon === true) return;
+              if (scope.disableStepIcon === true) {
+                return;
+              }
               playback.isPlay = false;
               $rootScope.$emit('blockTimebarInputField', false);
               $rootScope.$emit('channelPlayer:command', 'step', 'forward');
             },
             stepBackward: function() {
-              if (scope.disableStepIcon === true) return;
+              if (scope.disableStepIcon === true) {
+                return;
+              }
               playback.isPlay = false;
               $rootScope.$emit('blockTimebarInputField', false);
               $rootScope.$emit('channelPlayer:command', 'step', 'backward');
@@ -133,7 +141,7 @@ kindFramework
               var successCallback = function(data) {
                 scope.playSpeed = data.value;
                 scope.setPlaySpeed({
-                  "speed": scope.playSpeed
+                  "speed": scope.playSpeed,
                 });
                 waitChangePlaySpeed = true;
                 setTimeout(function() {
@@ -141,7 +149,7 @@ kindFramework
                   if (delayOpenPopup) {
                     openSpeedPopup();
                   }
-                }, 2000);
+                }, TIMEOUT);
               };
               if (playData.getStatus() === PLAY_CMD.PLAY) {
                 if (waitChangePlaySpeed === false) {
@@ -153,7 +161,7 @@ kindFramework
                 $rootScope.$emit('changeLoadingBar', false);
                 ModalManagerService.open('message', {
                   'buttonCount': 0,
-                  'message': "lang_no_video_played"
+                  'message': "lang_no_video_played",
                 });
                 return;
               }
@@ -168,13 +176,15 @@ kindFramework
                 $rootScope.$emit('changeLoadingBar', false);
                 ModalManagerService.open('message', {
                   'buttonCount': 0,
-                  'message': "lang_no_video_played"
+                  'message': "lang_no_video_played",
                 });
                 return;
               }
             },
             backup: function() {
-              if (scope.disableBackupIcon === true) return;
+              if (scope.disableBackupIcon === true) {
+                return;
+              }
               scope.timelineController.changeTimelineMode(1);
               setButtonStatus(true, block.browser);
             },
@@ -186,21 +196,21 @@ kindFramework
               }
             },
             speakerStatus: false,
-            speakerVolumn: 0
+            speakerVolumn: 0,
           };
 
           scope.selectSpeedList = playback.getSpeeds();
-          scope.playback.speed = scope.selectSpeedList[4].value;
+          scope.playback.speed = SPEED_LIST.FF1;
 
           scope.selectSpeedChanged = function() {
             scope.setPlaySpeed({
-              "speed": scope.playback.speed
+              "speed": scope.playback.speed,
             });
             waitChangePlaySpeed = true;
             scope.disableSpeedIcon = true;
             setTimeout(function() {
               scope.disableSpeedIcon = false;
-            }, 2000);
+            }, TIMEOUT);
           };
 
           if (scope.pageController) {
@@ -215,19 +225,17 @@ kindFramework
               if (UniversialManagerService.isSpeakerOn()) {
                 changeSpeakerStatus(false);
               }
-              //workerManager.initVideo(false);
-              //workerManager.playbackSpeed(1);
             };
           }
 
           var changeSpeakerStatus = function(status, volumn) {
-            if (status !== undefined) {
+            if (typeof status !== "undefined" && status !== null) {
               scope.playback.speakerStatus = status;
               speakerSlider.slider("option", "disabled", !status);
               UniversialManagerService.setSpeakerOn(status);
               $rootScope.$emit('channelPlayer:command', 'speakerStatus', status);
             }
-            if (volumn !== undefined) {
+            if (typeof volumn !== "undefined") {
               scope.playback.speakerVolumn = volumn;
               UniversialManagerService.setSpeakerVol(volumn);
               $rootScope.$emit('channelPlayer:command', 'speakerVolume', volumn);
@@ -248,7 +256,7 @@ kindFramework
               slide: function(event, ui) {
                 scope.$apply(function() {
                   if (UniversialManagerService.isSpeakerOn()) {
-                    changeSpeakerStatus(undefined, ui.value);
+                    changeSpeakerStatus(null, ui.value);
                   }
                 });
               },
@@ -261,24 +269,24 @@ kindFramework
                 scope.$apply(function() {
                   scope.playback.speakerVolumn = ui.value;
                 });
-              }
+              },
             });
           });
 
           var rearrangeSpeed = function() {
-            var lastIndexPoint = listInfo.length - INDEX_OFFSET;
-            if (scope.playback.speed === listInfo[INDEX_START_POINT].value) {
-              scope.playback.speed = listInfo[INDEX_START_POINT + INDEX_OFFSET].value;
+            var lastIndexPoint = listInfo.length - 1;
+            if (scope.playback.speed === listInfo[0].value) {
+              scope.playback.speed = listInfo[1].value;
               scope.selectSpeedChanged();
             } else if (scope.playback.speed === listInfo[lastIndexPoint].value) {
-              scope.playback.speed = listInfo[lastIndexPoint - INDEX_OFFSET].value;
+              scope.playback.speed = listInfo[lastIndexPoint - 1].value;
               scope.selectSpeedChanged();
             }
           };
 
           var watchStatus = scope.$watch(function() {
             return playData.getStatus();
-          }, function(newVal, oldVal) {
+          }, function(newVal) {
             if (newVal === PLAY_CMD.PLAY) {
               scope.playback.isPlay = scope.disableStepIcon = true;
               scope.disableSpeedIcon = false;
@@ -301,32 +309,31 @@ kindFramework
 
           $rootScope.$saveOn('app/scripts/services/playbackClass/PlaybackInterface.js::limitSpeed',
             function(event, isLimitSpeed) {
-              var lastIndexPoint = listInfo.length - INDEX_OFFSET;
+              var lastIndexPoint = listInfo.length - 1;
               if (isLimitSpeed === true) {
                 /**-8x, 8x not supported */
-                listInfo[INDEX_START_POINT].notAnOption = true;
+                listInfo[0].notAnOption = true;
                 listInfo[lastIndexPoint].notAnOption = true;
                 rearrangeSpeed();
               } else {
-                listInfo[INDEX_START_POINT].notAnOption = false;
+                listInfo[0].notAnOption = false;
                 listInfo[lastIndexPoint].notAnOption = false;
               }
             }, scope);
 
           var watchStepStatus = scope.$watch(function() {
-              return playbackStepService.getSettingFlag();
-            },
-            function(newVal, oldVal) {
-              if (newVal !== oldVal) {
-                scope.disableStepIcon = scope.playback.isPlay;
-              }
-            });
+            return playbackStepService.getSettingFlag();
+          }, function(newVal, oldVal) {
+            if (newVal !== oldVal) {
+              scope.disableStepIcon = scope.playback.isPlay;
+            }
+          });
 
           $rootScope.$saveOn('app/scripts/directives/channelPlayer.js:step', function(event, data) {
             scope.playPlayback((data === "forward" ? {
-              "command": PLAY_CMD.STEPFORWARD
+              "command": PLAY_CMD.STEPFORWARD,
             } : {
-              "command": PLAY_CMD.STEPBACKWARD
+              "command": PLAY_CMD.STEPBACKWARD,
             }));
           }, scope);
 
@@ -350,10 +357,10 @@ kindFramework
             kindStreamInterface.controlWorker({
               'channelId': 0,
               'cmd': 'videoBuffering',
-              'data': []
+              'data': [],
             });
 
-            if (scope.initStepService !== undefined) {
+            if (typeof scope.initStepService !== "undefined") {
               scope.initStepService();
             }
           }, scope);
@@ -368,7 +375,9 @@ kindFramework
            * If there is no any recording data, then disabled backup icon
            */
           $rootScope.$saveOn('app/scripts/directives/timeline.js::timelineDataCount', function(event, data) {
-            if (block.browser === true) return;
+            if (block.browser === true) {
+              return;
+            }
             if (data > 0) {
               scope.disableBackupIcon = false;
               if (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE &&
@@ -385,14 +394,14 @@ kindFramework
             watchStepStatus();
           });
 
-          scope.openFullscreenButton = function(e) {
-            e.fullButton = true;
-            $rootScope.$emit('channelContainer:openFullscreenButton', e);
+          scope.openFullscreenButton = function(event) {
+            event.fullButton = true;
+            $rootScope.$emit('channelContainer:openFullscreenButton', event);
           };
 
-          scope.closeFullscreenButton = function(e) {
-            e.fullButton = true;
-            $rootScope.$emit('fullCamera:closeFullscreenButton', e);
+          scope.closeFullscreenButton = function(event) {
+            event.fullButton = true;
+            $rootScope.$emit('fullCamera:closeFullscreenButton', event);
           };
 
           scope.showMenuContent = true;
@@ -400,12 +409,15 @@ kindFramework
             scope.showMenuContent = !scope.showMenuContent;
             console.log(scope.showMenuContent);
 
-            if (scope.showMenuContent === true) angular.element('#cm-video').removeClass('smaller');
-            else angular.element('#cm-video').addClass('smaller');
+            if (scope.showMenuContent === true) {
+              angular.element('#cm-video').removeClass('smaller');
+            } else {
+              angular.element('#cm-video').addClass('smaller');
+            }
 
             kindStreamInterface.setCanvasStyle(scope.viewMode, scope.showMenuContent);
           };
-        }
+        },
       };
-    }
+    },
   ]);

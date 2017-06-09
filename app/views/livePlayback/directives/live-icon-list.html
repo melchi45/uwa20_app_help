@@ -63,7 +63,7 @@
             <i class="tui tui-wn5-toolbar-alarm"></i>
           </span>
           <input id="output-{{$index}}" ng-repeat="n in alarmOutputMax() track by $index" type="button" ng-click="alarmOutput($index, $event)" 
-          class="cm-str-button cm-alarm-button" title="{{$index + 1}}" value="{{$index + 1}}" ng-disabled="disableAlarmOutput()">
+          class="cm-btn-dark cm-alarm-button" title="{{$index + 1}}" value="{{$index + 1}}" ng-disabled="disableAlarmOutput()">
         </div>
 
         <div class="cm-vline" ng-show="MaxAudioInput !== 0"></div>

@@ -1,8 +1,8 @@
 /**
  * This service is for controlling timeline item set
  */
-kindFramework
-  .factory('ItemSetModel', ['$filter', '$rootScope',
+kindFramework.
+  factory('ItemSetModel', ['$filter', '$rootScope',
     function($filter, $rootScope) {
       "use strict";
       var ItemSetModel = function() {
@@ -17,7 +17,7 @@ kindFramework
          */
         var itemSet = {
           'timelineData': null,
-          'dupEventData': null
+          'dupEventData': null,
         };
 
         /*
@@ -54,8 +54,9 @@ kindFramework
               var timeInfoList = getTimeInfo(r[i].startObj, r[i].endObj);
               var isEmptyItem = true;
               for (var k = 0; k < timeInfoList.length; k++) {
-                if (timeInfoList[k] === 1)
+                if (timeInfoList[k] === 1) {
                   isEmptyItem = false;
+                }
               }
               if (isEmptyItem) {
                 newArray.push(r[i]);
@@ -72,7 +73,7 @@ kindFramework
          * @param: newArray - item Array.
          */
         this.addData = function(newArray, showSequence) {
-          if (showSequence === undefined) {
+          if (typeof showSequence === "undefined") {
             showSequence = false;
           }
           itemSet.timelineData = [];
@@ -82,28 +83,29 @@ kindFramework
           }
           timeInfo = new Array(24 * 60 * 60 / 10);
           // Array.protoype.fill() not supported by IE
-          for (var i = 0; i < timeInfo.length; i++) {
-            timeInfo[i] = 0;
+          var idx = 0;
+          for ( idx = 0; idx < timeInfo.length; idx++) {
+            timeInfo[idx] = 0;
           }
           var itemList = $filter('orderBy')(newArray, 'start');
           checkDuplicateEvent(itemList);
           var timelineItems = makeTimelineItem(itemList);
-          var r = $filter('orderBy')(timelineItems, 'start');
-          for (var i = 0; i < r.length; i++) {
-            if (r[i].dupId !== -1 && typeof(r[i].className) === 'undefined') {
-              itemSet.dupEventData.push(r[i]);
+          var items = $filter('orderBy')(timelineItems, 'start');
+          for (idx = 0; idx < items.length; idx++) {
+            if (items[idx].dupId !== -1 && typeof(items[idx].className) === 'undefined') {
+              itemSet.dupEventData.push(items[idx]);
             } else {
-              r[i].id = itemSet.timelineData.length;
-              itemSet.timelineData.push(r[i]);
+              items[idx].id = itemSet.timelineData.length;
+              itemSet.timelineData.push(items[idx]);
             }
           }
           if (showSequence === true && itemSet.dupEventData.length !== 0) {
-            for (var i = 0; i < itemSet.timelineData.length; i++) {
-              if (i + 1 < itemSet.timelineData.length &&
-                itemSet.timelineData[i + 1].startObj.getTime() - itemSet.timelineData[i].endObj.getTime() === 1000) {
+            for (idx = 0; idx < itemSet.timelineData.length; idx++) {
+              if (idx + 1 < itemSet.timelineData.length &&
+                itemSet.timelineData[idx + 1].startObj.getTime() - itemSet.timelineData[idx].endObj.getTime() === 1000) {
 
-                itemSet.timelineData[i + 1].startObj = itemSet.timelineData[i].endObj;
-                itemSet.timelineData[i + 1].start = itemSet.timelineData[i].end;
+                itemSet.timelineData[idx + 1].startObj = itemSet.timelineData[idx].endObj;
+                itemSet.timelineData[idx + 1].start = itemSet.timelineData[idx].end;
               }
             }
           }
@@ -148,7 +150,6 @@ kindFramework
           if (start >= end) {
             return null;
           }
-          var rangedDataArray = [];
 
           var min = 0,
             max = targetArray.length - 1;
@@ -261,7 +262,9 @@ kindFramework
          * @param : time is Date format
          */
         this.getSelectedItem = function(time, direction) {
-          if (itemSet === null || itemSet.timelineData === null) return null;
+          if (itemSet === null || itemSet.timelineData === null) {
+            return null;
+          }
           return binarySearch(itemSet.timelineData, time, direction);
         };
 
@@ -325,7 +328,6 @@ kindFramework
          */
         var checkDuplicateEvent = function(objectList) {
           var dupId = 0;
-          var isExist = false;
           if (objectList === null) {
             return null;
           }
@@ -344,7 +346,7 @@ kindFramework
               'start': target.start,
               'startObj': target.startObj,
               'end': target.end,
-              'endObj': target.endObj
+              'endObj': target.endObj,
             };
 
             var recalculated = true;
@@ -368,15 +370,15 @@ kindFramework
                * calcularing duplicated event's range 
                *(set to minimum value for start, set to maximum value for end)
                */
-              for (var i = 0; i < itemContainning.length; i++) {
-                if (itemContainning[i].startObj < timeInfo.startObj) {
-                  timeInfo.startObj = itemContainning[i].startObj;
-                  timeInfo.start = itemContainning[i].start;
+              for (var idx = 0; idx < itemContainning.length; idx++) {
+                if (itemContainning[idx].startObj < timeInfo.startObj) {
+                  timeInfo.startObj = itemContainning[idx].startObj;
+                  timeInfo.start = itemContainning[idx].start;
                   recalculated = true;
                 }
-                if (itemContainning[i].endObj > timeInfo.endObj) {
-                  timeInfo.end = itemContainning[i].end;
-                  timeInfo.endObj = itemContainning[i].endObj;
+                if (itemContainning[idx].endObj > timeInfo.endObj) {
+                  timeInfo.end = itemContainning[idx].end;
+                  timeInfo.endObj = itemContainning[idx].endObj;
                   recalculated = true;
                 }
               }
@@ -394,12 +396,12 @@ kindFramework
                 endObj: timeInfo.endObj,
                 className: DUPLICATE_CLASS_NAME,
                 dupId: dupId,
-                length: timeInfo.endObj.getTime() - timeInfo.startObj.getTime()
+                length: timeInfo.endObj.getTime() - timeInfo.startObj.getTime(),
               };
               objectList.push(dupItem);
-              for (var i = 0; i < itemContainning.length; i++) {
+              for (var idx = 0; idx < itemContainning.length; idx++) {
                 var targetItem = $filter('filter')(objectList, {
-                  id: itemContainning[i].id
+                  id: itemContainning[idx].id,
                 });
                 targetItem[0].dupId = dupId;
               }

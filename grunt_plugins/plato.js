@@ -3,7 +3,7 @@ module.exports = function(injection){
 	var projectStructure = injection.projectStructure;
 	return {
 		options:{
-			jshint : grunt.file.readJSON('.jshintrc')
+			jshint : grunt.file.readJSON('.eslintrc')
 		},
 		custom: {
 			files: {

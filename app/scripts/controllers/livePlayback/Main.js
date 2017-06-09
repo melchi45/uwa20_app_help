@@ -1,6 +1,6 @@
 /*global detector, location, BaseMain, confirm */
-kindFramework
-  .controller('UniversalMainCtrl', ['$scope', '$location', '$window', '$rootScope', 'CAMERA_TYPE',
+kindFramework.
+  controller('UniversalMainCtrl', ['$scope', '$location', '$window', '$rootScope', 'CAMERA_TYPE',
     'ModalManagerService', 'SunapiClient', 'DisplayService', 'UniversialManagerService',
     'SessionOfUserManager', 'CAMERA_STATUS', '$timeout', '$state', 'RESTCLIENT_CONFIG', '$controller',
     function($scope, $location, $window, $rootScope, CAMERA_TYPE,
@@ -51,5 +51,5 @@ kindFramework
         CAMERA_STATUS: CAMERA_STATUS,
         RESTCLIENT_CONFIG: RESTCLIENT_CONFIG,
       }));
-    }
+    },
   ]);

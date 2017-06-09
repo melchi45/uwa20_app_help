@@ -51,9 +51,9 @@
                         <button 
                             type="button"
                             ng-click="selectColumn($index)"
-                            ng-class="{'wn5-btn-hover': detectionArea.isEnable === true, 'wn5-btn-active': detectionArea.isSelected === true && detectionArea.isEnable === true}"
+                            ng-class="{'hover': detectionArea.isEnable === true, 'active': detectionArea.isSelected === true && detectionArea.isEnable === true}"
                             ng-disabled="detectionArea.isEnable === undefined"
-                            class="btn wn5-btn btn-margin-right wn5-btn-small-square"
+                            class="btn cm-btn-dark wn5-btn btn-margin-right wn5-btn-small-square"
                             ng-repeat="detectionArea in detectionAreas track by $index">
                             {{$index + 1}}
                         </button>

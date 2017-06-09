@@ -28,6 +28,7 @@ module.exports = function(injection){
 		customSaDir = customPath + '_' + saDir,
 
 		appJsPath = appDir + '/' + jsDir,
+		baseAppJsPath = baseAppDir + '/' + jsDir,
 		appCssPath = appDir + '/' + cssDir,
 		appViewPath = appDir + '/' + viewDir,
 
@@ -62,7 +63,9 @@ module.exports = function(injection){
 	 */
 	var projectJsCodePath = [
 			appJsPath + '/*.js',
-			appJsPath + '/**/*.js'
+			appJsPath + '/**/*.js',
+			baseAppJsPath + '/*.js',
+			baseAppJsPath + '/**/*.js',
 	];
 
 	/**

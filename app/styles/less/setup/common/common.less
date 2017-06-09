@@ -17,7 +17,6 @@
       top: 0;
       line-height: @setup-button-line-height;
       span.btn {
-        border-color: @color-button-border;
         float: right;
       }
     }
@@ -144,39 +143,41 @@
 	margin-bottom: 0;
 }
 
-.graph .axis {
-	font-size: 12px;
-}
+.graph {
+  .axis {
+	  font-size: 12px;
+    .tick {
+      line {
+        stroke: @theme-color-gray-75;
+      }
+      text {
+        fill: @theme-color-gray-75;
+        font-size: 0.7em;
+      }
+    }
 
-.graph .axis .tick line {
-    stroke: #797979;
-}
+    .domain {
+      fill: none;
+      stroke: @theme-color-gray-75;
+    }
+  }
 
-.graph .axis .tick text {
-    fill: #797979;
-    font-size: 0.7em;
-}
-
-.graph .axis .domain {
+  .group {
     fill: none;
-    stroke: #797979;
-}
-
-.graph .group {
-	fill: none;
-	stroke: black;
-	stroke-width: 2px;
+    stroke: @theme-color-black-100;
+    stroke-width: 2px;
+  }
 }
 
 .zeroline {
     fill: none;
-    stroke: #797979;
+    stroke: @theme-color-gray-75;
     stroke-width: 2px;
     /*stroke-dasharray: 5 5;*/
 }
 
 .zerolinetext {
-    fill: red;
+    fill: @theme-color-pallet-red;
 }
 
 .level-threshold-slider {
@@ -202,7 +203,7 @@
 
 [slider-no-focus] {
 	.ui-state-active {
-		background-color: #3464ff;
+		background-color: @theme-color-pallet-blue;
 		border-width: 4px !important;
 	}
 }
@@ -283,9 +284,7 @@
 }
 
 .setup-wrapper,
-#videosetuppage,
-.modal,
-.modal *:not(input, textarea) {
+#videosetuppage {
 	user-select: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
