@@ -1,6 +1,5 @@
-/*global PlaybackParent, workerManager*/
-kindFramework
-  .factory('PlaybackInterface', ['$q', '$filter', '$rootScope', '$injector', 'CAMERA_TYPE',
+kindFramework.
+  factory('PlaybackInterface', ['$q', '$filter', '$rootScope', '$injector', 'CAMERA_TYPE',
     'SunapiClient', 'PlaybackService',
     'ConnectionSettingService', 'PLAYBACK_TYPE', 'ModalManagerService',
     'SearchDataModel', 'PlayDataModel', 'ItemSetModel', 'Attributes', '$timeout', 'UniversialManagerService', 'kindStreamInterface',
@@ -12,25 +11,26 @@ kindFramework
       "use strict";
 
       var PLAY_CMD = PLAYBACK_TYPE.playCommand;
-      var support_alarm_input = false;
-      var support_face_detection = false;
-      var support_tampering_detection = false;
-      var support_motion_detection = false;
-      var support_video_analysis = false;
-      var support_audio_detection = false;
-      var support_nework_disconnect = false;
-      var support_manual_recording = false;
-      var support_defocus_detection = false;
-      var support_fog_detection = false;
-      var support_audio_analysis = false;
-      var support_auto_tracking = false;
-      var self = this;
+      var supportAlarmInput = false;
+      var supportFaceDetection = false;
+      var supportTamperingDetection = false;
+      var supportMotionDetection = false;
+      var supportVideoAnalysis = false;
+      var supportAudioDetection = false;
+      var supportNetworkDisconnect = false;
+      var supportManualRecording = false;
+      var supportDefocusDetection = false;
+      var supportFogDetection = false;
+      var supportAudioAnalysis = false;
+      var supportAutoTracking = false;
       var openErrorPopup = false;
       var defaultSpeed = 1;
       var isBackupDone = false;
-      var pad = function(x) {
-        x *= 1;
-        return x < 10 ? "0" + x : x;
+      var MIN_DOUBLE_FIGURES = 10;
+      var TIMEOUT = 500;
+      var pad = function(input) {
+        var target = input*1;
+        return target < MIN_DOUBLE_FIGURES ? "0" + target : target;
       };
       var mAttr = Attributes.get();
 
@@ -44,20 +44,8 @@ kindFramework
         name: "lang_normal_for_playback",
         event: "Normal",
         selected: true,
-        enable: false
+        enable: false,
       }];
-      /*WebPlayback.prototype.eventList = [
-        {name:"Normal Recording", event:"Normal", selected:true, enable:false},
-        {name: "Alarm input", event:"AlarmInput", selected:true, enable:false},
-        {name: "Tampering detection", event:"TamperingDetection", selected:true, enable:false},  
-        {name: "Motion detection", event:"MotionDetection", selected:true, enable:false},
-        {name: "Video analytics", event:"VideoAnalysis", selected:true, enable:false},
-        {name: "Face detection", event:"FaceDetection", selected:true, enable:false},
-        {name: "Audio detection", event:"AudioDetection", selected:true, enable:false},
-        {name: "Network disconnection", event:"NetworkDisconnect", selected:true, enable:false},
-        {name: "Manual recording", event:"UserInput", selected:true, enable:false},
-      ];
-*/
 
       /**
        * When go main-playback page, this function called ( web operation differ from app)
@@ -68,16 +56,15 @@ kindFramework
       PlaybackInterface.preparePlayback = function(channelId) {
         var def = $q.defer();
         var myObj = this;
-        this.checkSDStatus(channelId)
-          .then(function(value) {
+        this.checkSDStatus(channelId).
+          then(function() {
             myObj.openPlayback(channelId);
             def.resolve('success');
           }, function(sdInfo) {
-            //Please check multi language.
             myObj.showErrorPopup('lang_check_storage_status');
             $rootScope.$emit('changeLoadingBar', false);
             $rootScope.$emit('refreshLivePage', true);
-            def.reject('error');
+            def.reject(sdInfo);
           });
         return def.promise;
       };
@@ -92,10 +79,10 @@ kindFramework
           day: date,
           id: 0,
           type: type,
-          channel: channelId
+          channel: channelId,
         };
-        PlaybackService.getOverlappedId(query)
-          .then(function(value) {
+        PlaybackService.getOverlappedId(query).
+          then(function(value) {
             var itemSet = new ItemSetModel();
             //value.OverlappedIDList format is = {1,0} 
             if (value.OverlappedIDList.length > 0) {
@@ -103,26 +90,25 @@ kindFramework
             }
             searchData.setOverlapId(query.id);
             console.log(value);
-            PlaybackService.displayTimelineItem(query)
-              .then(function(value) {
+            PlaybackService.displayTimelineItem(query).
+              then(function(value) {
                 console.log("value.length", value.length);
                 if (value.length === 0) {
                   ModalManagerService.open(
                     'message', {
                       'message': "lang_msg_no_result",
-                      'buttonCount': 1
+                      'buttonCount': 1,
                     }
                   );
                 }
                 itemSet.addData(value, playData.getTimelineMode());
-                //searchData.setWebIconStatus(true);
                 $rootScope.$emit('changeLoadingBar', false);
               }, function() {
                 console.log("There is no valid record item");
                 ModalManagerService.open(
                   'message', {
                     'message': "lang_timeout",
-                    'buttonCount': 1
+                    'buttonCount': 1,
                   }
                 );
                 itemSet.addData([]);
@@ -134,14 +120,12 @@ kindFramework
             ModalManagerService.open(
               'message', {
                 'message': "lang_timeout",
-                'buttonCount': 1
+                'buttonCount': 1,
               }
             );
             itemSet.addData([]);
             $rootScope.$emit('changeLoadingBar', false);
           });
-
-
       };
 
       PlaybackInterface.openPlayback = function(channelId) {
@@ -172,7 +156,9 @@ kindFramework
       };
       PlaybackInterface.timelineCallback = function(time, stepFlag) {
         var callbackFnc = playData.getTimeCallback();
-        if (typeof(callbackFnc) === 'undefined' || callbackFnc === null) return;
+        if (typeof(callbackFnc) === 'undefined' || callbackFnc === null) {
+          return;
+        }
         callbackFnc(time, stepFlag);
       };
       PlaybackInterface.play = function() {
@@ -191,7 +177,7 @@ kindFramework
         $rootScope.$emit('app/scripts/services/playbackClass::disableButton', true);
         $rootScope.$emit("channelPlayer:command", "playback", this.playbackInfo, {
           'timeCallback': this.timelineCallback,
-          'errorCallback': this.playbackErrorCallback
+          'errorCallback': this.playbackErrorCallback,
         });
       };
 
@@ -238,11 +224,11 @@ kindFramework
         kindStreamInterface.controlWorker({
           'channelId': this.playbackInfo.channel,
           'cmd': 'playbackSpeed',
-          'data': speed
+          'data': speed,
         });
         $rootScope.$emit("channelPlayer:command", "speed", {
           'speed': speed,
-          'data': this.playbackInfo
+          'data': this.playbackInfo,
         });
       };
 
@@ -266,8 +252,8 @@ kindFramework
        */
       PlaybackInterface.findRecordings = function(info) {
         var def = $q.defer();
-        PlaybackService.findRecordingDate(info)
-          .then(function(results) {
+        PlaybackService.findRecordingDate(info).
+          then(function(results) {
             def.resolve(results);
           }, function(error) {
             console.log("No search result and error" + error);
@@ -304,7 +290,7 @@ kindFramework
           playData.setDefautPlaySpeed(); //if error occur, reset playback speed to 1x
           playData.setStatus(PLAY_CMD.STOP);
         }
-        var callbackFnc = function(data) {
+        var callbackFnc = function() {
           openErrorPopup = false;
         };
         if (error.errorCode === "103") {
@@ -316,7 +302,7 @@ kindFramework
             ModalManagerService.open(
               'message', {
                 'message': 'lang_service_unavailable',
-                'buttonCount': 1
+                'buttonCount': 1,
               },
               callbackFnc,
               callbackFnc
@@ -330,22 +316,22 @@ kindFramework
             ModalManagerService.open(
               'message', {
                 'message': 'lang_msg_not_support_resolution',
-                'buttonCount': 1
+                'buttonCount': 1,
               },
               callbackFnc,
               callbackFnc
             );
           }
         } else if (error.errorCode === "777") {
-          if (BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ||
-            BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.EDGE) {
+          if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.FIREFOX ||
+            BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.EDGE) {
             if (openErrorPopup === false) {
               openErrorPopup = true;
-              var message = (BrowserService.BrowserDetect == BrowserService.BROWSER_TYPES.FIREFOX ? 'lang_unavailable_aac_firefox' : 'lang_unavailable_aac_edge');
+              var message = (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.FIREFOX ? 'lang_unavailable_aac_firefox' : 'lang_unavailable_aac_edge');
               ModalManagerService.open(
                 'message', {
                   'message': message,
-                  'buttonCount': 0
+                  'buttonCount': 0,
                 },
                 callbackFnc,
                 callbackFnc
@@ -364,49 +350,59 @@ kindFramework
             $rootScope.$emit('changeLoadingBar', false);
             playData.setStatus(PLAY_CMD.STOP);
             if (error.errorCode === BACKUP_STATUS.MODE.STOP) {
-              if (isBackupDone === true) return;
+              if (isBackupDone === true) {
+                return;
+              }
               isBackupDone = true;
               ModalManagerService.open(
                 'message', {
                   'message': "lang_msg_savingComplete",
-                  'buttonCount': 0
+                  'buttonCount': 0,
                 }
               );
             } else if (error.errorCode === BACKUP_STATUS.MODE.NO_FILE_CREATED) {
-              if (isBackupDone === true) return;
+              if (isBackupDone === true) {
+                return;
+              }
               isBackupDone = true;
               ModalManagerService.open(
                 'message', {
                   'message': "lang_msg_not_export_saved_file",
-                  'buttonCount': 0
+                  'buttonCount': 0,
                 }
               );
             } else if (error.errorCode === BACKUP_STATUS.MODE.CODEC_CHANGED ||
               error.errorCode === BACKUP_STATUS.MODE.PROFILE_CHANGED) {
-              if (isBackupDone === true) return;
+              if (isBackupDone === true) {
+                return;
+              }
               isBackupDone = true;
               ModalManagerService.open(
                 'message', {
                   'message': "lang_msg_codecChange",
-                  'buttonCount': 0
+                  'buttonCount': 0,
                 }
               );
             } else if (error.errorCode === BACKUP_STATUS.MODE.EXCEEDED_MAX_FILE) {
-              if (isBackupDone === true) return;
+              if (isBackupDone === true) {
+                return;
+              }
               isBackupDone = true;
               ModalManagerService.open(
                 'message', {
                   'message': "lang_max_filesize",
-                  'buttonCount': 0
+                  'buttonCount': 0,
                 }
               );
             } else if (error.errorCode === BACKUP_STATUS.MODE.NO_LONGER_SUPPORT) {
-              if (isBackupDone === true) return;
+              if (isBackupDone === true) {
+                return;
+              }
               isBackupDone = true;
               ModalManagerService.open(
                 'message', {
                   'message': 'No longer be able to stream. Please set a shorter section ',
-                  'buttonCount': 0
+                  'buttonCount': 0,
                 }
               );
             }
@@ -446,37 +442,37 @@ kindFramework
         if (eventSource === null || typeof(eventSource) === 'undefined') {
           return;
         }
-        for (var i = 0; i < eventSource.length; i++) {
-          var eventType = eventSource[i].EventSource;
+        for (var idx = 0; idx < eventSource.length; idx++) {
+          var eventType = eventSource[idx].EventSource;
           var indexOf = eventType.indexOf;
           if (indexOf.call(eventType, "AlarmInput") !== -1) {
-            support_alarm_input = true;
+            supportAlarmInput = true;
           } else if (indexOf.call(eventType, "MotionDetection") !== -1) {
-            support_motion_detection = true;
+            supportMotionDetection = true;
           } else if (indexOf.call(eventType, "TamperingDetection") !== -1) {
-            support_tampering_detection = true;
+            supportTamperingDetection = true;
           } else if (indexOf.call(eventType, "FaceDetection") !== -1) {
-            support_face_detection = true;
+            supportFaceDetection = true;
           } else if (indexOf.call(eventType, "AudioDetection") !== -1) {
-            support_audio_detection = true;
+            supportAudioDetection = true;
           } else if (indexOf.call(eventType, "NetworkEvent") !== -1) {
-            support_nework_disconnect = true;
+            supportNetworkDisconnect = true;
           } else if (indexOf.call(eventType, "UserInput") !== -1) {
-            support_manual_recording = true;
+            supportManualRecording = true;
           } else if (indexOf.call(eventType, "DefocusDetection") !== -1) {
-            support_defocus_detection = true;
+            supportDefocusDetection = true;
           } else if (indexOf.call(eventType, "FogDetection") !== -1) {
-            support_fog_detection = true;
+            supportFogDetection = true;
           } else if (indexOf.call(eventType, "AudioAnalysis") !== -1) {
-            support_audio_analysis = true;
+            supportAudioAnalysis = true;
           } else if (indexOf.call(eventType, "Tracking") !== -1) {
-            support_auto_tracking = true;
+            supportAutoTracking = true;
           }
         }
         if (typeof(mAttr.MotionDetectModes) !== 'undefined' && mAttr.MotionDetectModes !== null) {
           for (var index = 0; index < mAttr.MotionDetectModes.length; index++) {
             if (mAttr.MotionDetectModes[index] === 'IntelligentVideo') {
-              support_video_analysis = true;
+              supportVideoAnalysis = true;
               break;
             }
           }
@@ -486,100 +482,100 @@ kindFramework
       var updateEventList = function() {
         var eventList = PlaybackInterface.eventList;
         var push = eventList.push;
-        if (support_alarm_input) {
+        if (supportAlarmInput) {
           push.call(eventList, {
             name: "lang_alarm",
             event: "AlarmInput",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_tampering_detection) {
+        if (supportTamperingDetection) {
           push.call(eventList, {
             name: "lang_tampering",
             event: "TamperingDetection",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_motion_detection) {
+        if (supportMotionDetection) {
           push.call(eventList, {
             name: "lang_menu_motiondetection",
             event: "MotionDetection",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_video_analysis) {
+        if (supportVideoAnalysis) {
           push.call(eventList, {
             name: "lang_menu_iva",
             event: "VideoAnalysis",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_face_detection) {
+        if (supportFaceDetection) {
           push.call(eventList, {
             name: "lang_menu_facedetection",
             event: "FaceDetection",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_audio_detection) {
+        if (supportAudioDetection) {
           push.call(eventList, {
             name: "lang_ad",
             event: "AudioDetection",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_nework_disconnect) {
+        if (supportNetworkDisconnect) {
           push.call(eventList, {
             name: "lang_menu_networkdisconnect",
             event: "NetworkDisconnect",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_manual_recording) {
+        if (supportManualRecording) {
           push.call(eventList, {
             name: "lang_manualRecording",
             event: "UserInput",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_defocus_detection) {
+        if (supportDefocusDetection) {
           push.call(eventList, {
             name: "lang_defocus_detection",
             event: "DefocusDetection",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_fog_detection) {
+        if (supportFogDetection) {
           push.call(eventList, {
             name: "lang_menu_fogdetection",
             event: "FogDetection",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_audio_analysis) {
+        if (supportAudioAnalysis) {
           push.call(eventList, {
             name: "lang_menu_soundclassification",
             event: "AudioAnalysis",
             selected: true,
-            enable: false
+            enable: false,
           });
         }
-        if (support_auto_tracking) {
+        if (supportAutoTracking) {
           push.call(eventList, {
             name: "lang_autotracking",
             event: "Tracking",
             selected: true,
-            enabled: false
+            enabled: false,
           });
         }
       };
@@ -591,7 +587,7 @@ kindFramework
           $timeout(function() {
             mAttr = Attributes.get();
             wait();
-          }, 500);
+          }, TIMEOUT);
         } else {
           checkEventSource();
           updateEventList();
@@ -604,5 +600,5 @@ kindFramework
         'data': ['stepRequest', PlaybackInterface.stepRequestCallback, PlaybackInterface]
       });
       return PlaybackInterface;
-    }
+    },
   ]);

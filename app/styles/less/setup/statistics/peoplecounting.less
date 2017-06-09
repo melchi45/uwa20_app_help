@@ -22,7 +22,7 @@
 #pc-realtime-live {
 	overflow: visible;
 	width: 100%;
-	padding: 0 @wn5-setup-responsive-ui-content-padding-left;
+	padding: 0 @setup-responsive-ui-content-padding-left;
 
 	kind_stream,
 	kind_stream > div {
@@ -55,8 +55,8 @@
 	}
 
 	.pc-setup-counting-table {
-		width: 640px + @wn5-setup-responsive-ui-content-padding-left * 2;
-		padding: 0 @wn5-setup-responsive-ui-content-padding-left;
+		width: 640px + @setup-responsive-ui-content-padding-left * 2;
+		padding: 0 @setup-responsive-ui-content-padding-left;
 	}
 }
 
@@ -116,32 +116,12 @@
 		float: left;
 	}
 
-	.fa-minus-square,
-	.fa-plus-square {
-		font-size: 20px;
-		cursor: pointer;
-	}
-
 	.pc-setup-collapse-calibration-slider {
 		position: relative;
 
 		i {
 			position: absolute;
 			top: 5px;
-		}
-
-		.fa-minus-square {
-			left: 15px;
-		}
-
-		.fa-plus-square {
-			right: 15px;
-		}
-
-		rzslider {
-			width: calc(~"100% - 60px");
-			margin-left: 30px;
-			margin-top: 10px;
 		}
 	}
 
@@ -286,8 +266,8 @@ overflow: visible;
 }
 
 .pc-statistics-dialog-title {
-	font-size: @wn5-gui-body-l;
-	color: @wn5-gui-color-w-orange-100;
+	font-size: @setup-body-l;
+	color: @theme-color-point-100;
 	float: left;
 
 	.tui {
@@ -296,7 +276,7 @@ overflow: visible;
 	}
 
 	@media(max-width: @setup-mobile-max-width){
-		font-size: @wn5-gui-body-m;
+		font-size: @setup-body-m;
 	}
 }
 
@@ -462,7 +442,7 @@ overflow: visible;
 
 .pc-round-rule-guide{
 	width: 100%;
-	padding: 0 @wn5-setup-responsive-ui-content-padding-left;
+	padding: 0 @setup-responsive-ui-content-padding-left;
 	margin-bottom: 10px;
 	font-size: 14px;
 }

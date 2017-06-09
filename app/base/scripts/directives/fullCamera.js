@@ -312,7 +312,6 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
           // if(scope.windowSize > window.innerWidth * window.innerHeight) {
           if (UniversialManagerService.getIsCaptured() && !!window.chrome && !!window.chrome.webstore) { // check if full screen closed by capture and if chrome
             scope.afterActionCapture();
-            return;
           }
           /**
            * ?��?�� ��??��?�� Full Screen ?��?�� Detail View��? ?��?��?�� ?��

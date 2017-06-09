@@ -36,7 +36,7 @@ kindFramework.controller('ptzPresetCtrl', function($scope, $uibModalInstance, At
 
   $scope.ok = function() {
     if (typeof $scope.InputPTZPresetName === 'undefined') {
-      var ErrorMessage = 'lang_msg_validPresetName';
+      var ErrorMessage = 'lang_msg_nullPresetName';
       COMMONUtils.ShowError(ErrorMessage, 'md');
     } else {
       $uibModalInstance.close({

@@ -1078,7 +1078,9 @@
                         <uib-tab heading="{{getTranslatedOption('OSD')}}" active="tabActiveData.osd" select="OnTabClick( 'OSD')" ng-if="tabMenu.OSD">
                             <div>
                                 <div ng-if="OSDBlinkOptions !== undefined">
-                                    <div class="wn5-setup-section-article-heading">OSD Blink</div>
+                                    <div class="wn5-setup-section-article-heading">
+                                        <label> {{ 'lang_OSDBlink' | translate }} </label>
+                                    </div>
                                     <div class="wn5-setup-section-article-content">
                                         <div>
                                             <input 
@@ -1086,12 +1088,12 @@
                                                 ng-model="OSD.OSDBlink" 
                                                 ng-change="OnOSDBlinkStatusChange()"
                                                 > 
-                                                <label>{{ 'lang_enable' | translate }} </label>
+                                                <label> {{ 'lang_enable' | translate }} </label>
                                         </div>
                                     </div>
                                     <div class="wn5-setup-section-article-content wn5-gui-text-orange-100" style="padding-left: 20px;">
                                         <i class="tui tui-wn5-toolbar-status" style="margin-right: 5px; transform: scale(1.3);"></i>
-                                        <span>It is applied at HDMI and can be confirmed with the PVM monitor</span>
+                                        <span>{{ 'lang_msg_OSDBlink_apply' | translate }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -1151,10 +1153,6 @@
                                                     </td>
                                                     <td width="30%" height="60">
                                                         <div ng-class="TableSliderClass" class="slider-fields live-slider-field cm-osd-slider-wrap">
-                                                            <!-- <rzslider 
-                                                                rz-slider-model="Title.PositionX" 
-                                                                rz-slider-options="Title.TitlePositionXSliderOptions">
-                                                            </rzslider> -->
                                                             <live_slider 
                                                                 live-slider-model="Title" 
                                                                 live-slider-model-name="PositionX"
@@ -1164,10 +1162,6 @@
                                                     </td>
                                                     <td width="30%" height="60">
                                                         <div ng-class="TableSliderClass" class="slider-fields live-slider-field cm-osd-slider-wrap">
-                                                            <!-- <rzslider 
-                                                                rz-slider-model="Title.PositionY" 
-                                                                rz-slider-options="Title.TitlePositionYSliderOptions">
-                                                            </rzslider> -->
                                                             <live_slider 
                                                                 live-slider-model="Title" 
                                                                 live-slider-model-name="PositionY"
@@ -1211,10 +1205,6 @@
                                                     </td>
                                                     <td width="30%" height="60">
                                                         <div ng-class="TableSliderClass" class="slider-fields live-slider-field cm-osd-slider-wrap">
-                                                            <!-- <rzslider 
-                                                                rz-slider-model="Date.PositionX" 
-                                                                rz-slider-options="DatePositionXSliderOptions">
-                                                            </rzslider> -->
                                                             <live_slider 
                                                                 live-slider-model="Date" 
                                                                 live-slider-model-name="PositionX"
@@ -1224,10 +1214,6 @@
                                                     </td>
                                                     <td width="30%" height="60">
                                                         <div ng-class="TableSliderClass" class="slider-fields live-slider-field cm-osd-slider-wrap">
-                                                            <!-- <rzslider 
-                                                                rz-slider-model="Date.PositionY" 
-                                                                rz-slider-options="DatePositionYSliderOptions">
-                                                            </rzslider> -->
                                                             <live_slider 
                                                                 live-slider-model="Date" 
                                                                 live-slider-model-name="PositionY"
@@ -1358,7 +1344,7 @@
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_initLens' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
                                         <select class="form-control" ng-model="Focus.LensResetSchedule">
-                                            <option ng-selected="Focus.LensResetSchedule === Mode" value={{Mode}} ng-repeat="Mode in LensResetScheduleOptions">{{Mode === 'Manual' ? getTranslatedOption(Mode) : Mode.split('D')[0] + ' ' + getTranslatedOption('Day')}}</option>
+                                            <option ng-selected="Focus.LensResetSchedule === Mode" value={{Mode}} ng-repeat="Mode in LensResetScheduleOptions">{{Mode === 'Manual' ? getTranslatedOption(Mode) : Mode.split('D')[0] + ' ' + getTranslatedOption('Day').toLowercase() }}</option>
                                         </select>
                                         <button type="button" class="btn btn-primary" ng-disabled="Focus.LensResetSchedule !== 'Manual'" ng-click="setLensReset()">{{ 'lang_reset' | translate }}</button>
                                     </div>

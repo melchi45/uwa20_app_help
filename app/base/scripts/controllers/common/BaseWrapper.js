@@ -144,7 +144,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
     "heatmap": "common",
     "setup": "common",
     "statistics": "common",
-    "search": "common"
+    "search": "common",
   };
 
   $scope.isShowMenu = function(id) {
@@ -374,8 +374,8 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
   $rootScope.$saveOn("$locationChangeStart", function(event, next) {
     try {
       $uibModalStack.dismissAll();
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
     var className = "is-login";
     var body = $('body');
@@ -425,5 +425,5 @@ BaseWrapper.prototype.stateChange = function() {};
 kindFramework.
 controller('BaseWrapper', ['$rootScope', '$scope', 'RESTCLIENT_CONFIG',
   'MultiLanguage', 'ROUTE_CONFIG', 'Attributes', 'SessionOfUserManager', '$uibModalStack',
-  BaseWrapper
+  BaseWrapper,
 ]);

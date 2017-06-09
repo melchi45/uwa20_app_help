@@ -301,7 +301,7 @@ kindFramework
             if (blockWindowShiftTimeoutId === null && playData.getTimelineEnable()) {
               itemFocusing(curTime);
             }
-            setTimebarPosition(curTime.format(), convert_String_to_Date(endTarget), true);
+            setTimebarPosition(curTime.format(), convert_String_to_Date(endTarget), stepFlag === true ? false : true);
           }
           timestamp = time.timestamp;
         };

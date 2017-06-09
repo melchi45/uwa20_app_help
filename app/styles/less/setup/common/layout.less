@@ -27,7 +27,7 @@
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         font-weight: normal !important;
-        font-size: @wn5-gui-title-s;
+        font-size: @setup-title-s;
       }
     }
     &.nav-third-level {
@@ -74,15 +74,10 @@
     height: auto;
   }
 
-  .fa.fa-minus-square
-  ,.fa.fa-plus-square {
-    color: @color-button-selected;
-  }
-
   h3.applyColor {
     color: #585e6c;
     margin-top: 25px;
-    font-size: @wn5-gui-title-l;
+    font-size: @setup-title-l;
 
     span:first-child {
       margin-right: 20px;
@@ -103,19 +98,19 @@
 
   .setupMainTitle {
     margin-top: 20px;
-    font-size: @wn5-gui-title-xl;
+    font-size: @setup-title-xl;
   }  
 
   .form-group {
     margin: 0;
-    line-height: @wn5-gui-text-height;
-    min-height: @wn5-gui-text-height;
+    line-height: @setup-text-height;
+    min-height: @setup-text-height;
     vertical-align: middle;
     margin-bottom: 0;
 
     &:not(.ng-hide)+.form-group,
     &.use-margin-top {
-      margin-top: @wn5-setup-content-area-form-group-margin-bottom;
+      margin-top: @setup-content-area-form-group-margin-bottom;
     }
 
     .col-sub-label {
@@ -195,11 +190,11 @@
   overflow: auto;
   .wrapper.wrapper-content {
     height: 100%;
-    padding: 0 @wn5-setup-responsive-ui-padding-left @wn5-setup-responsive-ui-padding-bottom @wn5-setup-responsive-ui-padding-right;
+    padding: 0 @setup-responsive-ui-padding-left @setup-responsive-ui-padding-bottom @setup-responsive-ui-padding-right;
     position: relative;
     margin: 0;
     width: auto;
-    max-width: @wn5-setup-responsive-ui-max-width;
+    max-width: @setup-responsive-ui-max-width;
     overflow: visible;
     .ibox {
       margin: 0;
@@ -214,7 +209,7 @@
     }
 
     @media(max-width: @setup-mobile-max-width){
-      padding: 0 15px @wn5-setup-responsive-ui-padding-bottom 15px;
+      padding: 0 15px @setup-responsive-ui-padding-bottom 15px;
     }
   }
   /**
@@ -239,7 +234,7 @@
     }
     td {
         position: relative;
-        min-width: @wn5-setup-table-height;
+        min-width: @setup-table-height;
         vertical-align: middle;
 
         select, 
@@ -280,8 +275,8 @@
   right: 0;
   top: 0;
   bottom: 0;
-  padding-top: @wn5-gui-tree-padding-top;
-  padding-bottom: @wn5-gui-tree-padding-top;
+  padding-top: @setup-tree-padding-top;
+  padding-bottom: @setup-tree-padding-top;
   overflow: auto;
   li {
     a {
@@ -355,18 +350,18 @@
   &.wn5-setup-date-time-selector-input {
     margin-left: 5px;
 
-    border: solid 1px @wn5-gui-text-fields-normal-input-line;
-    color: @wn5-gui-text-fields-normal-input-text;
-    background-color: @wn5-gui-text-fields-normal-input-bg;
+    border: solid 1px @theme-light-text-fields-normal-input-line;
+    color: @theme-light-text-fields-normal-input-text;
+    background-color: @theme-light-text-fields-normal-input-bg;
 
     &:first-of-type {
       margin-right: 10px;
     }
 
     &.wn5-setup-date-time-selector-input-disabled {
-      border-color: @wn5-gui-text-fields-disabled-line !important;
-      color: @wn5-gui-text-fields-disabled-text;
-      background-color: @wn5-gui-text-fields-disabled-bg;  
+      border-color: @theme-light-text-fields-disabled-line !important;
+      color: @theme-light-text-fields-disabled-text;
+      background-color: @theme-light-text-fields-disabled-bg;  
     }
   }
 }
@@ -440,11 +435,11 @@
 }
 
 .event-setup-link {
-  font-size: @wn5-gui-title-s;
+  font-size: @setup-title-s;
   min-width: 255px;
 
   @media(max-width: @setup-mobile-max-width){
-    font-size: @wn5-gui-body-m;
+    font-size: @setup-body-m;
   }
   i {
     border: 1px solid @color-button-border;
@@ -462,5 +457,5 @@
 
 #setup-main {
   margin-top: 50px;
-  background-color: #fbfbfb;
+  background-color: @theme-background-setup;
 }

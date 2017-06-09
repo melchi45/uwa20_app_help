@@ -590,7 +590,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
     }
   };
 
-  this.getCgiSection = function() {
+  var getCgiSection = this.getCgiSection = function(){
     mAttributes.systemCgiAttrReady = false;
     mAttributes.mediaCgiAttrReady = false;
     mAttributes.networkCgiAttrReady = false;
@@ -621,7 +621,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
   };
 
 
-  this.getAttributeSection = function() {
+  var getAttributeSection = this.getAttributeSection = function (){
     var getData = {};
 
     return SunapiClient.get('/stw-cgi/attributes.cgi/attributes', getData,
@@ -791,7 +791,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
       }, '', true);
   }
 
-  this.getDeviceInfo = function() {
+   var getDeviceInfo = this.getDeviceInfo = function (){
     var getData = {};
 
     return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', getData,
@@ -822,7 +822,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
   };
 
 
-  this.getEventSourceOptions = function() {
+  var getEventSourceOptions = this.getEventSourceOptions = function (){
     var getData = {};
 
     return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=sourceoptions&action=view', getData,
@@ -851,19 +851,19 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
       mAttributes.GetFail = false;
 
       if (!mAttributes.DeviceInfoReady) {
-        functionList.push(this.getDeviceInfo);
+        functionList.push(getDeviceInfo);
       }
 
       if (!mAttributes.EventSourceOptionsReady) {
-        functionList.push(this.getEventSourceOptions);
+        functionList.push(getEventSourceOptions);
       }
 
       if (!mAttributes.AttributeSectionReady) {
-        functionList.push(this.getAttributeSection);
+        functionList.push(getAttributeSection);
       }
 
       if (!mAttributes.CgiSectionReady) {
-        functionList.push(this.getCgiSection);
+        functionList.push(getCgiSection);
       }
 
       if (isAdmin()) {
@@ -1052,9 +1052,10 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
           setAccountData(response);
           SessionOfUserManager.AddSession(loginInfo.id, '', CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB);
           SessionOfUserManager.SetLogin();
-
+          initialize(500);
         },
         function(errorData) {
+          loginIPOLISWeb_No_Digest();
           console.error(errorData);
         }, '', true);
     }
@@ -1088,8 +1089,6 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
         SessionOfUserManager.UnSetLogin();
         LoginRedirect(); // jshint ignore:line
       }
-    } else {
-      this.initialize(500);
     }
 
   }

@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "프라이버시 기능을 사용하려면, DIS 기능이 비활성화되고 줌이 32배율 미만이어야 합니다.",
     "lang_msg_privacy_Zoom_37x": "프라이버시 기능을 사용하려면, DIS 기능이 비활성화되고 줌이 37배율 미만이어야 합니다.",
     "lang_msg_privacy_Zoom_43x": "프라이버시 기능을 사용하려면, DIS 기능이 비활성화되고 줌이 43배율 미만이어야 합니다.",
-    "lang_msg_privacy_Zoom_variable_magnification": "프라이버시 기능을 사용하려면, DIS 기능이 비활성화되고 줌이 %1배율 미만이어야 합니다.",
+    "lang_msg_privacy_Zoom_variable_magnification": "프라이버시 기능을 사용하려면, DIS 기능이 비활성화되고 줌이 %1배율 이하어야 합니다.",
     "lang_msg_max_Privacyarea_32": "프라이버시 영역은 최대 32개까지 설정할 수 있습니다.",
     "lang_msg_max_Privacyarea_12": "프라이버시 영역은 최대 12개까지 설정할 수 있습니다.",
     "lang_msg_max_Privacyarea_6": "프라이버시 영역은 최대 6개까지 설정할 수 있습니다.",

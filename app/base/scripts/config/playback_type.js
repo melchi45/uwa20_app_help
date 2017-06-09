@@ -12,6 +12,6 @@ kindFramework.constant('PLAYBACK_TYPE', {
     'SEEK': 10,
     'STEPFORWARD': 11,
     'STEPBACKWARD': 12,
-    'BACKUP': 13
-  }
+    'BACKUP': 13,
+  },
 });

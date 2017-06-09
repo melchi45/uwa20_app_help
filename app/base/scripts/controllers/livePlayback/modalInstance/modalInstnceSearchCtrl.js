@@ -15,10 +15,16 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
     var isValueChanged = true;
     var playbackInterfaceService = PlaybackInterface;
 
+    var MIN_DATE = {'YEAR' : 2000, 'MONTH' : 1, 'DAY' : 1};
+    var MAX_DATE = {'YEAR' : 2037, 'MONTH' : 12, 'DAY' : 32};
+    var HOUR_TO_MIN = 60, MIN_TO_SEC = 60;
+    var INDEX_OFFSET = 1;
+    var TIMEOUT = 1500;
+
     $scope.submitButton = 'lang_search';
     $scope.eventList = data.eventList;
-    $scope.minDate = new Date(2000, 0, 1);
-    $scope.maxDate = new Date(2037, 11, 31);
+    $scope.minDate = new Date(MIN_DATE.YEAR, MIN_DATE.MONTH-INDEX_OFFSET, MIN_DATE.DAY);
+    $scope.maxDate = new Date(MAX_DATE.YEAR, MAX_DATE.MONTH-INDEX_OFFSET, MAX_DATE.DAY);
     $scope.connectedService = optionServiceType[UniversialManagerService.getServiceType()];
 
     $scope.showError = function() {
@@ -26,7 +32,7 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
       $('.modal-error-message').addClass(className);
       setTimeout(function() {
         $('.modal-error-message').removeClass(className);
-      }, 1500);
+      }, TIMEOUT);
     };
 
     //WN5의 Backup 기능을 위해 만듬
@@ -36,13 +42,14 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
 
     var makeElementsOfInputBox = function(sliderTime, wantedElements) {
       if (wantedElements === 'hours') {
-        return pad(Math.floor(sliderTime / 60));
+        return pad(Math.floor(sliderTime / MIN_TO_SEC));
       } else if (wantedElements === 'minutes') {
-        return pad(sliderTime - (Math.floor(sliderTime / 60) * 60));
+        return pad(sliderTime - (Math.floor(sliderTime / MIN_TO_SEC) * MIN_TO_SEC));
       } else if (wantedElements === 'seconds') {
         return "00";
       } else {
-        return pad(Math.floor(sliderTime / 60)) + ":" + pad(sliderTime - (Math.floor(sliderTime / 60) * 60)) + ":" + "00";
+        return pad(Math.floor(sliderTime / MIN_TO_SEC)) + ":" + 
+          pad(sliderTime - (Math.floor(sliderTime / MIN_TO_SEC) * MIN_TO_SEC)) + ":" + "00";
       }
     };
 
@@ -65,7 +72,7 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
     $scope.changeNumToTime = function(inputType, distinctionBranch) {
       if (inputType === 0) {
         if (slider.start.from === 1440) {
-          slider.start.from = slider.start.from - 1;
+          slider.start.from -= 1;
           slider.start.hours = "23";
           slider.start.minutes = "59";
           slider.start.seconds = "58";
@@ -78,7 +85,7 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
         }
       } else {
         if (slider.end.to === 1440) {
-          slider.end.to = slider.end.to - 1;
+          slider.end.to -= 1;
           slider.end.hours = "23";
           slider.end.minutes = "59";
           slider.end.seconds = "59";
@@ -96,7 +103,7 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
     };
 
     var changeTimeToNum = function(hours, minutes) {
-      return (stringToNum(hours) * 60) + stringToNum(minutes);
+      return (stringToNum(hours) * HOUR_TO_MIN) + stringToNum(minutes);
     };
 
     var pad = function(x) {
@@ -117,15 +124,15 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
       }
     };
 
-    var stringToNum = function(x) {
-      return x *= 1;
+    var stringToNum = function(str) {
+      return str*1;
     };
 
-    var numToString = function(x) {
-      return x + "";
+    var numToString = function(str) {
+      return str + "";
     };
 
-    var search = function function_name() {
+    var search = function() {
       // checkInputValues();
       if (makeFullPackageOfInputBox('start') === makeFullPackageOfInputBox('end')) {
         $scope.errorMessage = "lang_msg_From_To_Diff";
@@ -142,24 +149,24 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
 
     var showRecordingDate = function(year, month) {
       $scope.isLoading = true;
-      playbackInterfaceService.findRecordings(year, month)
-        .then(function(results) {
-          recordingDate = results;
-          $timeout(function() {
-            $scope.$broadcast('refreshDatepickers');
-            $scope.isLoading = false;
-          });
-        }, function() {
-          console.log("findRecordings fail");
+      playbackInterfaceService.findRecordings(year, month).
+      then(function(results) {
+        recordingDate = results;
+        $timeout(function() {
+          $scope.$broadcast('refreshDatepickers');
           $scope.isLoading = false;
-          $scope.errorMessage = "lang_timeout";
-          $scope.showError();
         });
+      }, function() {
+        console.log("findRecordings fail");
+        $scope.isLoading = false;
+        $scope.errorMessage = "lang_timeout";
+        $scope.showError();
+      });
     };
 
     $scope.playback = {
       'search': {
-        selectedDate: selectedDate
+        selectedDate: selectedDate,
       },
       getDayClass: function(date, mode) {
         switch (mode) {
@@ -190,9 +197,9 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
           $scope.showError();
         } else {
           var isExistFlag = false;
-          for (var i in recordingDate) {
-            if (recordingDate[i].day === pad($scope.playback.search.selectedDate.getDate()) &&
-              recordingDate[i].month === pad($scope.playback.search.selectedDate.getMonth() + 1)) {
+          for (var idx in recordingDate) {
+            if (recordingDate[idx].day === pad($scope.playback.search.selectedDate.getDate()) &&
+              recordingDate[idx].month === pad($scope.playback.search.selectedDate.getMonth() + 1)) {
               isExistFlag = true;
             }
           }
@@ -246,8 +253,8 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
         }
         var selectedElement = document.getElementById($event.target.id);
         selectedElement.setSelectionRange(0, 2);
-        selectedElement.onkeyup = function($event) {
-          if (isDown === false) return;
+        selectedElement.onkeyup = function() {
+          if (isDown === false) { return; }
           if (/^[0-9]+$/.test(selectedElement.value) === false) {
             selectedElement.value = selectedElement.value.slice(0, -1);
           }
@@ -441,7 +448,7 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
 
           return {
             width: windowWidth,
-            height: windowHeight
+            height: windowHeight,
           };
         },
         init: function() {
@@ -494,7 +501,7 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
           var heightForDesign = deviceDetecter.isLandscape ? 60 : 20;
           var seachBoxHeight = halfHeight - $('.modal-bottom-bar').height() - $('.button-groups').height() - heightForDesign;
           var searchBoxStyle = {
-            height: seachBoxHeight + 'px'
+            height: seachBoxHeight + 'px',
           };
 
           if (deviceDetecter.isLandscape) {
@@ -538,12 +545,12 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
             'moz-transform': '',
             'o-transform': '',
             'ms-transform': '',
-            'transition': ''
+            'transition': '',
           });
 
           $('#search-box').css({
             height: '',
-            'padding-bottom': ''
+            'padding-bottom': '',
           });
         }
       };
@@ -608,5 +615,5 @@ kindFramework.controller('ModalInstnceSearchCtrl', ['$scope', '$timeout', '$uibM
         window.removeEventListener('native.keyboardshow', keyBoardShowHandler);
       });
     }
-  }
+  },
 ]);

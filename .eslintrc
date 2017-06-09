@@ -14,7 +14,8 @@
   },
   "globals": {
     "kindFramework" : true,
-    "angular": true
+    "angular": true,
+    "isPhone" : true
   },
   //"plugins": ["angular"],
   "rules": {
@@ -74,7 +75,7 @@
     "no-void" : "error", //disallow void operators
     "vars-on-top" : "off", //require var declarations be placed at the top of their containing scope
     "complexity" : ["warn",20], //enforce a maximum cyclomatic complexity allowed in a program
-    "no-magic-numbers": "warn", //disallow magic numbers
+    "no-magic-numbers": ["warn", {"ignore": [-1, 0, 1]}], //disallow magic numbers
     ///
     // Variables
     // - These rules relate to variable declarations:
@@ -104,7 +105,7 @@
     "comma-style": ["warn", "last"], //enforce consistent comma style
                                     // -requires a comma after and on the same line as an array element, object property, or variable declaration
     "id-length" : "warn", //enforce minimum(2) and maximum(Infinity) identifier lengths
-    "indent" : ["warn",2], //enforce consistent indentation(2 spaces)
+    "indent" : ["warn",2,{"SwitchCase" : 1}], //enforce consistent indentation(2 spaces)
     "keyword-spacing" : ["warn",{"before" : true}], //enforce consistent spacing before and after keywords
     "max-depth" : "warn", //enforce a maximum depth(4) that blocks can be nested
     "max-len" : ["warn",{  //enforce a maximum line length(80)

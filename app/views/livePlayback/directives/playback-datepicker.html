@@ -1,12 +1,12 @@
-<div id="cm-playback-datepicker">
+<div id="pb-datepicker-section">
 	<div class="cm-row">
 		<div class="cm-center">
 
-			<div class="cm-playback-block cm-datepicker-section">
+			<div class="pb-block pb-datepicker">
 				<uib-datepicker 
 					ng-model="playback.search.selectedDate" 
 					show-weeks="false" 
-					class="ua-datepicker cm-datepicker" 
+					class="ua-datepicker pb-datepicker" 
 					datepicker-mode = "playback.search.mode"
 					custom-class="playback.getDayClass(date, mode)"
 					ng-change="playback.recordingDataIsExist()" 
@@ -15,58 +15,58 @@
 		  		</uib-datepicker>
 		  	</div>
 		  	
-		  	<div class="cm-playback-block cm-datepicker-section">
-				<div class="start-time cm-playback-block cm-m0-5">
-		        	<h2>{{"lang_from"|translate}}</h2>
-		        	<div class="cm-timeboxes">
-			            <input type="text" maxlength="2" id="slider-start-time-hours" class="cm-textbox" ng-model="slider.start.hours"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
-			            :
-			            <input type="text" maxlength="2" id="slider-start-time-minutes" class="cm-textbox" ng-model="slider.start.minutes"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
-			            :
-			            <input type="text" maxlength="2" id="slider-start-time-seconds" class="cm-textbox" ng-model="slider.start.seconds"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
-		            </div>
-		        </div>
+		  	<div class="pb-block pb-datepicker">
+					<div class="start-time pb-block cm-m0-5">
+						<h2>{{"lang_from"|translate}}</h2>
+						<div class="pb-timeboxes">
+								<input type="text" maxlength="2" id="slider-start-time-hours" class="cm-textbox" ng-model="slider.start.hours"
+												ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+								:
+								<input type="text" maxlength="2" id="slider-start-time-minutes" class="cm-textbox" ng-model="slider.start.minutes"
+												ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+								:
+								<input type="text" maxlength="2" id="slider-start-time-seconds" class="cm-textbox" ng-model="slider.start.seconds"
+												ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+							</div>
+					</div>
 
-		        <div class="cm-playback-block cm-m0-5">
-		        	<h2>&nbsp;</h2>
-			        <div class="cm-playback-range">~</div>
-			    </div>
+					<div class="pb-block cm-m0-5">
+						<h2>&nbsp;</h2>
+						<div class="pb-range">~</div>
+					</div>
 
-		        <div class="end-time cm-playback-block cm-m0-5">
-		        	<h2>{{"lang_to"|translate}}</h2>
-		        	<div class="cm-timeboxes">
-			            <input type="text" maxlength="2" id="slider-end-time-hours" class="cm-textbox"  ng-model="slider.end.hours"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
-			            
-			            <input type="text" maxlength="2" id="slider-end-time-minutes" class="cm-textbox" ng-model="slider.end.minutes"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
-			            :      
-			            <input type="text" maxlength="2" id="slider-end-time-seconds" class="cm-textbox" ng-model="slider.end.seconds"
-			                   ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
-			        </div>
-		        </div>
+					<div class="end-time pb-block cm-m0-5">
+						<h2>{{"lang_to"|translate}}</h2>
+						<div class="pb-timeboxes">
+								<input type="text" maxlength="2" id="slider-end-time-hours" class="cm-textbox"  ng-model="slider.end.hours"
+												ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+								
+								<input type="text" maxlength="2" id="slider-end-time-minutes" class="cm-textbox" ng-model="slider.end.minutes"
+												ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+								:      
+								<input type="text" maxlength="2" id="slider-end-time-seconds" class="cm-textbox" ng-model="slider.end.seconds"
+												ng-focus="validTime.getFocusTime($event);" ng-blur="validTime.changeSliderValue($event);" ng-disabled="allDay">
+						</div>
+					</div>
 
-				<div class="cm-playback-all-day cm-checkbox-wrap">
-					<input type="checkbox" id="all-day" ng-model="allDay" ng-click="selectAllDay()">
-					<label for="all-day">{{'lang_all_day' | translate}}</label>
-				</div>
+					<div class="pb-all-day cm-checkbox-wrap">
+						<input type="checkbox" id="all-day" ng-model="allDay" ng-click="selectAllDay()">
+						<label for="all-day">{{'lang_all_day' | translate}}</label>
+					</div>
 
-				<div class="cm-playback-button-wrap">
-				  <button 
-				    ng-click="control.submit()"
-				    class="cm-submit-button"
-				    style="margin-right: 5px;">
-				    {{'lang_apply' | translate}}
-				  </button>
-				  <button 
-				    ng-click="control.cancel()"
-				    class="cm-str-button cm-cancel-button">
-				    {{'lang_cancel' | translate}}
-				  </button>
-				</div>
+					<div class="pb-button-wrap">
+						<button 
+							ng-click="control.submit()"
+							class="cm-submit-button"
+							style="margin-right: 5px;">
+							{{'lang_apply' | translate}}
+						</button>
+						<button 
+							ng-click="control.cancel()"
+							class="cm-str-button cm-cancel-button">
+							{{'lang_cancel' | translate}}
+						</button>
+					</div>
 
 			</div>
 		</div>

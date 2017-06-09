@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "Yksityisyys voidaan asettaa vain, jos DIS ei ole käytössä ja zoomaus on vähemmän kuin X20.",
     "lang_msg_privacy_Zoom_37x": "Yksityisyys voidaan asettaa vain, jos DIS ei ole käytössä ja zoomaus on vähemmän kuin X32.",
     "lang_msg_privacy_Zoom_43x": "Yksityisyys voidaan asettaa vain, jos DIS ei ole käytössä ja zoomaus on vähemmän kuin X37.",
-    "lang_msg_privacy_Zoom_variable_magnification": "Yksityisyys voidaan asettaa vain, jos DIS ei ole käytössä ja zoomaus on vähemmän kuin X43.",
+    "lang_msg_privacy_Zoom_variable_magnification": "To use the privacy function, the DIS function must be disabled and the zoom must be equal or smaller than %1 scale.",
     "lang_msg_max_Privacyarea_32": "Yksityisyys voidaan asettaa vain, jos DIS ei ole käytössä ja zoomaus on vähemmän kuin X%1.",
     "lang_msg_max_Privacyarea_12": "Voit asettaa enintään 32 yksityisyysaluetta.",
     "lang_msg_max_Privacyarea_6": "Voit asettaa enintään 12 yksityisyysaluetta.",

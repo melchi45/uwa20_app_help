@@ -1395,7 +1395,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   $scope.getHeaterTranslation = function(option) {
     if (mAttr.PTZModel && option == 'Heater') {
-      return COMMONUtils.getTranslatedOption('Fan');
+      return COMMONUtils.getTranslatedOption('Heater');
     } else {
       return COMMONUtils.getTranslatedOption(option)
     }

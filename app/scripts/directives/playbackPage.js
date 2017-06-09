@@ -38,9 +38,9 @@ kindFramework
               if (mode === true && selectorDirective === null) {
                 var childScope = $scope.$new();
                 selectorDirective = $compile('<live-playback-channel-selector class="playback-channel-selector"></live-playback-channel-selector>');
-                $('#playback-channel-holder').append(selectorDirective(childScope)).append('<div class="cm-vline"></div>');
+                $('#pb-channel-holder').append(selectorDirective(childScope)).append('<div class="cm-vline"></div>');
               } else {
-                $('#playback-channel-holder').remove();
+                $('#pb-channel-holder').remove();
               }
             }
           }

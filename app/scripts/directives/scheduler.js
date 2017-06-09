@@ -719,21 +719,21 @@ kindFramework
                 // when finish dragging and dropping selected cells.
                 if (currentUnit === '60') {
                   var tEvent = angular.copy(event);
-                  var merged = mergeTheDropped(event.start, event.end, event.id);
-                  if (merged === true) {
+                  var merged = mergeTheDropped(tEvent.start, tEvent.end, tEvent.id);
+                  if (merged === true) { // merged
                     removeEvent(tEvent);
-                  } else {
+                  } else if(merged !== false) { // between merged
                     removeEvent(tEvent);
                     removeEvent(merged);
                   }
                 } else {
-                  var result = checkFromToMin(event.start, event.end, event.id);
                   var tEvent = angular.copy(event);
+                  var result = checkFromToMin(tEvent.start, tEvent.end, tEvent.id);
                   if (result === true) {
-                    var merged = mergeTheDropped(event.start, event.end, event.id);
-                    if (merged === true) {
+                    var merged = mergeTheDropped(tEvent.start, tEvent.end, tEvent.id);
+                    if (merged === true) { // merged
                       removeEvent(tEvent);
-                    } else {
+                    } else if(merged !== false) { // between merged
                       removeEvent(tEvent);
                       removeEvent(merged);
                     }

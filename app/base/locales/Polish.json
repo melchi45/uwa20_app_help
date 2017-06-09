@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "Prywatność można ustawić tylko, gdy wyłączony jest DIS a zoom jest mniejszy niż X32.",
     "lang_msg_privacy_Zoom_37x": "Prywatność można ustawić tylko, gdy wyłączony jest DIS a zoom jest mniejszy niż X37.",
     "lang_msg_privacy_Zoom_43x": "Prywatność można ustawić tylko, gdy wyłączony jest DIS a zoom jest mniejszy niż X43.",
-    "lang_msg_privacy_Zoom_variable_magnification": "Prywatność można ustawić tylko, gdy wyłączony jest DIS a zoom jest mniejszy niż X%1.",
+    "lang_msg_privacy_Zoom_variable_magnification": "Aby korzystać z funkcji prywatności, należy wyłączyć funkcję DIS i zoom musi być równy lub mniejszy niż %1.",
     "lang_msg_max_Privacyarea_32": "Można ustawić maks. 32 obszary prywatne.",
     "lang_msg_max_Privacyarea_12": "Można ustawić maks. 12 obszary prywatne.",
     "lang_msg_max_Privacyarea_6": "Można ustawić maks. 6 obszary prywatne.",

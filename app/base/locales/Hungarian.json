@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "A titkosítást csak akkor tudja beállítani, ha a DIS-t kikapcsolta és a nagyítás 32 szorosnál kisebb",
     "lang_msg_privacy_Zoom_37x": "A titkosítást csak akkor tudja beállítani, ha a DIS-t kikapcsolta és a nagyítás 37 szorosnál kisebb",
     "lang_msg_privacy_Zoom_43x": "A titkosítást csak akkor tudja beállítani, ha a DIS-t kikapcsolta és a nagyítás 43 szorosnál kisebb",
-    "lang_msg_privacy_Zoom_variable_magnification": "A titkosítást csak akkor tudja beállítani, ha a DIS-t kikapcsolta és a nagyítás %1 szorosnál kisebb",
+    "lang_msg_privacy_Zoom_variable_magnification": "Az adatvédelmi funkció használatához a DIS funkciót le kell tiltani, és a zoomnak egyenlőnek vagy kisebbnek kell lennie, mint a %1 lépték.",
     "lang_msg_max_Privacyarea_32": "Maximum 32 magánéleti területet állíthat be.",
     "lang_msg_max_Privacyarea_12": "Maximum 12 magánéleti területet állíthat be.",
     "lang_msg_max_Privacyarea_6": "Maximum 6 magánéleti területet állíthat be.",

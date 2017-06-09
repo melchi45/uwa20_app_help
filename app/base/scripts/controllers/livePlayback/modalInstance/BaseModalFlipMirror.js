@@ -11,7 +11,7 @@ function BaseModalFlipMirror($scope, $rootScope, UniversialManagerService,
     if (UniversialManagerService.getPlayStatus() === CAMERA_STATUS.PLAY_STATUS.STOP) {
       ModalManagerService.open('message', {
         'buttonCount': 0,
-        'message': "lang_appNotRunning"
+        'message': "lang_appNotRunning",
       });
       $uibModalInstance.dismiss();
       return;
@@ -53,5 +53,5 @@ BaseModalFlipMirror.prototype.flipMirror = function() {};
 
 kindFramework.controller('BaseModalFlipMirror', ['$scope', '$rootScope',
   'UniversialManagerService', 'CAMERA_STATUS', 'ModalManagerService',
-  '$uibModalInstance', BaseModalFlipMirror
+  '$uibModalInstance', BaseModalFlipMirror,
 ]);

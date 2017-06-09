@@ -324,7 +324,7 @@
     "lang_msg_privacy_Zoom_32x": "Gizlilik yalnızca, DIS devredışı bırakılmışsa ve zoom X32'den daha azsa ayarlanabilir.",
     "lang_msg_privacy_Zoom_37x": "Gizlilik yalnızca, DIS devredışı bırakılmışsa ve zoom X37'den daha azsa ayarlanabilir.",
     "lang_msg_privacy_Zoom_43x": "Gizlilik yalnızca, DIS devredışı bırakılmışsa ve zoom X43'den daha azsa ayarlanabilir.",
-    "lang_msg_privacy_Zoom_variable_magnification": "Gizlilik yalnızca, DIS devredışı bırakılmışsa ve zoom X%1'den daha azsa ayarlanabilir.",
+    "lang_msg_privacy_Zoom_variable_magnification": "Gizlilik işlevini kullanmak için, DIS işlevi devre dışı bırakılmalı ve yakınlaştırma %1 ölçekten küçük veya eşit olmalıdır.",
     "lang_msg_max_Privacyarea_32": "En fazla 32 gizlilik alanı ayarlayabilirsiniz.",
     "lang_msg_max_Privacyarea_12": "En fazla 12 gizlilik alanı ayarlayabilirsiniz.",
     "lang_msg_max_Privacyarea_6": "En fazla 6 gizlilik alanı ayarlayabilirsiniz.",

@@ -1,0 +1,118 @@
+#camerasetuppage {
+  .wn5-setup-tab {
+    > .nav {
+      &:after {
+        background-color: @theme-light-tab-unselected;
+      }
+    }
+  }
+
+  .wn5-setup-camera-setup-activation-time {
+    padding: 0;
+  }
+
+  .imagepreset-defineFocus {
+    background: @theme-legend-sky-blue !important;
+  }
+
+  .imagepreset-motionFocus {
+      background: @theme-legend-orange !important;
+  }
+
+  .imagepreset-reduceNoise {
+      background: @theme-legend-green !important;
+  }
+
+  .imagepreset-brightVideo {
+      background: @theme-legend-purple !important;
+  }
+
+  .imagepreset-motionFocus-reduceNoise {
+      background: @theme-legend-pink !important;
+  }
+
+  .imagepreset-motionFocus-brightVideo {
+      background: @theme-legend-yellow !important;
+  }
+
+  .imagepreset-vividVideo {
+      background: @theme-legend-red !important;
+  }
+
+  .imagepreset-userPreset {
+      background: @theme-legend-blue !important;
+  }
+
+  #scheduleColor {
+    margin-top: 10px;
+
+    .scheduleColorWrapper {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 10px;
+
+      > div {
+        width: 25%;
+        float: left;
+
+        > a {
+          float: left;
+        }
+
+        > span {
+          width: calc(~"100% - 30px");
+          float: right;
+          line-height: 14px;
+          padding-bottom: 3px;
+        }
+      }
+    }
+  }
+
+  .ir_led_time {
+      min-width: 66px;
+      width: 41%;
+      float: left;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+  }
+  
+  .ir_led_span {
+      float: left;
+  }
+
+  #imagePresetScheduleDiv {
+    border: 1px solid @theme-light-table-border;
+
+    #imagePresetSchedule-head {
+      width: 100%;
+      height: @setup-table-min-height;
+      border-bottom: 1px solid @theme-light-table-border;
+      background: @theme-light-table-header-bg;
+
+      .imagePresetSchedule-head-item {
+        width: 4.16%;
+        line-height: @setup-table-min-height;
+        border-left: 1px solid @theme-light-table-border;
+        float: left;
+        text-align: center;
+      }
+
+      .first-item {
+        border-left: none;
+      }
+    }
+
+    #imagePresetSchedule-body {
+      width: 100%;
+      clear: left;
+      height: @setup-table-min-height;
+      background: @theme-light-table-data-bg;
+
+      .imagePresetSchedule-schedule {
+        position: relative;
+        height: 39px;
+      }
+    }
+  }
+}

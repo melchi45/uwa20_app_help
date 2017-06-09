@@ -8,7 +8,6 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   var mAttr = Attributes.get();
   $scope.SelectedChannel = 0;
   COMMONUtils.getResponsiveObjects($scope);
-  var idx;
   var pageData = {};
   pageData.MotionDetection = {};
   pageData.rois = [];
@@ -19,8 +18,6 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   var defaultSensitivity = 80;
   var defaultThreshold = 5;
-
-  var mLastSequenceLevel = 0;
 
   $scope.checkApplyButtonClick = false;
 
@@ -74,15 +71,17 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     // var changeHandover = angular.equals(pageData.Handover, $scope.Handover);
 
     var scopeRois = [];
-    for (var i = 0; i < $scope.selectInclude.length; i++) {
-      var self = $scope.selectInclude[i];
+    var i = 0;
+    var self = null;
+    for (i = 0; i < $scope.selectInclude.length; i++) {
+      self = $scope.selectInclude[i];
       if ('Coordinates' in self) {
         delete self.isEnable;
         scopeRois.push(self);
       }
     }
-    for (var i = 0; i < $scope.selectExclude.length; i++) {
-      var self = $scope.selectExclude[i];
+    for (i = 0; i < $scope.selectExclude.length; i++) {
+      self = $scope.selectExclude[i];
       if ('Coordinates' in self) {
         delete self.isEnable;
         scopeRois.push(self);
@@ -97,9 +96,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       changeChannel(index);
     } else {
       if (validatePage()) {
-        COMMONUtils
-          .confirmChangeingChannel()
-          .then(function() {
+        COMMONUtils.
+          confirmChangeingChannel().
+          then(function() {
             $rootScope.$emit('changeLoadingBar', true);
             saveSettings().then(function() {
               changeChannel(index);
@@ -117,7 +116,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   }
 
   function getCommonCmd() {
-    if ($scope.VideoAnalysis2Support !== undefined && $scope.VideoAnalysis2Support === true) {
+    if (typeof $scope.VideoAnalysis2Support !== "undefined" && $scope.VideoAnalysis2Support === true) {
       $scope.va2CommonCmd = '/stw-cgi/eventsources.cgi?msubmenu=videoanalysis2'
     } else {
       $scope.va2CommonCmd = '/stw-cgi/eventsources.cgi?msubmenu=videoanalysis'
@@ -167,9 +166,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   $scope.checkCurrentEnableState = function() {
     var val = true;
+    var i = 0;
     if ($scope.activeTab.title === 'Include') {
-      for (var i = 0; i < $scope.selectInclude.length; i++) {
-        if ($scope.selectInclude[i].Mode !== undefined) {
+      for (i = 0; i < $scope.selectInclude.length; i++) {
+        if (typeof $scope.selectInclude[i].Mode !== "undefined") {
           if ($scope.selectInclude[i].isEnable === false) {
             val = false;
             break;
@@ -179,8 +179,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
       $scope.selectAllCheckbox.include = val;
     } else if ($scope.activeTab.title === 'Exclude') {
-      for (var i = 0; i < $scope.selectExclude.length; i++) {
-        if ($scope.selectExclude[i].Mode !== undefined) {
+      for (i = 0; i < $scope.selectExclude.length; i++) {
+        if (typeof $scope.selectExclude[i].Mode !== "undefined") {
           if ($scope.selectExclude[i].isEnable === false) {
             val = false;
             break;
@@ -249,9 +249,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
     $timeout(function() {
       $scope.$broadcast('liveChartDataClearAll');
-      mLastSequenceLevel = 0;
     });
-    if ($scope.isSelectedIncludeIndex === undefined || parseInt($scope.isSelectedIncludeIndex) === 0) {
+    if (typeof $scope.isSelectedIncludeIndex === "undefined" || parseInt($scope.isSelectedIncludeIndex) === 0) {
       //$scope.SensitivitySliderOptions.data = 0;
     } else {
       $scope.SensitivitySliderModel.data = $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].SensitivityLevel;
@@ -269,8 +268,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   //     activeShape(newVal - 1);
   // });
 
-  $scope.$watch('SensitivitySliderModel.data', function(newVal, oldVal) {
-    if ($scope.isSelectedIncludeIndex !== undefined && parseInt($scope.isSelectedIncludeIndex) !== 0) {
+  $scope.$watch('SensitivitySliderModel.data', function() {
+    if (typeof $scope.isSelectedIncludeIndex !== "undefined" && parseInt($scope.isSelectedIncludeIndex) !== 0) {
       $scope.selectInclude[$scope.isSelectedIncludeIndex - 1].SensitivityLevel = $scope.SensitivitySliderModel.data;
     }
   });
@@ -280,8 +279,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     sketchbookService.moveTopLayer(index);
   }
 
-  $scope.$watch('MDv2ChartOptions.ThresholdLevel', function(newVal, oldVal) {
-    if ($scope.isSelectedIncludeIndex !== undefined && parseInt($scope.isSelectedIncludeIndex) !== 0) {
+  $scope.$watch('MDv2ChartOptions.ThresholdLevel', function() {
+    if (typeof $scope.isSelectedIncludeIndex !== "undefined" && parseInt($scope.isSelectedIncludeIndex) !== 0) {
       $scope.selectInclude[$scope.isSelectedIncludeIndex - 1].ThresholdLevel = $scope.MDv2ChartOptions.ThresholdLevel;
     }
   });
@@ -332,7 +331,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   };
 
   $scope.selectTableColumn = function(tableIndex, $event) {
-    if ($event !== undefined) {
+    if (typeof $event !== "undefined") {
       if ($event.target.nodeName === 'BUTTON') {
         $scope['changeSelected' + $scope.activeTab.title + 'Index'](tableIndex);
         // toggleCheckbox(tableIndex);
@@ -365,10 +364,13 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     var isValidCnt = 0;
     var isEnableCnt = 0;
 
+    var i = 0;
+    var self = null;
+
     if ($scope.activeTab.title === 'Include') {
 
-      for (var i = 0; i < $scope.selectInclude.length; i++) {
-        if ($scope.selectInclude[i].Mode !== undefined) {
+      for (i = 0; i < $scope.selectInclude.length; i++) {
+        if (typeof $scope.selectInclude[i].Mode !== "undefined") {
           isValidCnt++;
           if ($scope.selectInclude[i].isEnable === true) {
             isEnableCnt++;
@@ -376,17 +378,17 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         }
       }
       if (isValidCnt - isEnableCnt > 0) {
-        for (var i = 0; i < $scope.selectInclude.length; i++) {
-          var self = $scope.selectInclude[i];
-          if (self.Mode !== undefined) {
+        for (i = 0; i < $scope.selectInclude.length; i++) {
+          self = $scope.selectInclude[i];
+          if (typeof self.Mode !== "undefined") {
             self.isEnable = true;
             sketchbookService.setEnableForSVG(self.ROI - 1, true);
           }
         }
         $scope.selectAllCheckbox.include = true;
       } else if (isValidCnt - isEnableCnt === 0) {
-        for (var i = 0; i < $scope.selectInclude.length; i++) {
-          var self = $scope.selectInclude[i];
+        for (i = 0; i < $scope.selectInclude.length; i++) {
+          self = $scope.selectInclude[i];
           self.isEnable = false;
           sketchbookService.setEnableForSVG(self.ROI - 1, false);
         }
@@ -399,8 +401,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
     if ($scope.activeTab.title === 'Exclude') {
 
-      for (var i = 0; i < $scope.selectExclude.length; i++) {
-        if ($scope.selectExclude[i].Mode !== undefined) {
+      for (i = 0; i < $scope.selectExclude.length; i++) {
+        if (typeof $scope.selectExclude[i].Mode !== "undefined") {
           isValidCnt++;
           if ($scope.selectExclude[i].isEnable === true) {
             isEnableCnt++;
@@ -408,17 +410,17 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         }
       }
       if (isValidCnt - isEnableCnt > 0) {
-        for (var i = 0; i < $scope.selectExclude.length; i++) {
-          var self = $scope.selectExclude[i];
-          if (self.Mode !== undefined) {
+        for (i = 0; i < $scope.selectExclude.length; i++) {
+          self = $scope.selectExclude[i];
+          if (typeof self.Mode !== "undefined") {
             self.isEnable = true;
             sketchbookService.setEnableForSVG(self.ROI - 9, true);
           }
         }
         $scope.selectAllCheckbox.exclude = true;
       } else if (isValidCnt - isEnableCnt === 0) {
-        for (var i = 0; i < $scope.selectExclude.length; i++) {
-          var self = $scope.selectExclude[i];
+        for (i = 0; i < $scope.selectExclude.length; i++) {
+          self = $scope.selectExclude[i];
           self.isEnable = false;
           sketchbookService.setEnableForSVG(self.ROI - 9, false);
         }
@@ -431,11 +433,11 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   function isVacant(tableIndex) {
 
-    if ($scope.activeTab.title === 'Include' && $scope.selectInclude[tableIndex - 1].Mode === undefined) {
+    if ($scope.activeTab.title === 'Include' && typeof $scope.selectInclude[tableIndex - 1].Mode === "undefined") {
       return true;
     }
 
-    if ($scope.activeTab.title === 'Exclude' && $scope.selectExclude[tableIndex - 1].Mode === undefined) {
+    if ($scope.activeTab.title === 'Exclude' && typeof $scope.selectExclude[tableIndex - 1].Mode === "undefined") {
       return true;
     }
 
@@ -443,41 +445,41 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   }
 
-  function toggleCheckbox(tableIndex) {
-    var enableOption = null;
-    var index = tableIndex - 1;
+  // function toggleCheckbox(tableIndex) {
+  //   var enableOption = null;
+  //   var index = tableIndex - 1;
 
-    if ($scope.activeTab.title === 'Include') {
-      $scope.selectInclude[index].isEnable = !$scope.selectInclude[index].isEnable;
-      enableOption = $scope.selectInclude[index].isEnable;
-    }
+  //   if ($scope.activeTab.title === 'Include') {
+  //     $scope.selectInclude[index].isEnable = !$scope.selectInclude[index].isEnable;
+  //     enableOption = $scope.selectInclude[index].isEnable;
+  //   }
 
-    if ($scope.activeTab.title === 'Exclude') {
-      $scope.selectExclude[index].isEnable = !$scope.selectExclude[index].isEnable;
-      enableOption = $scope.selectExclude[index].isEnable;
-    }
+  //   if ($scope.activeTab.title === 'Exclude') {
+  //     $scope.selectExclude[index].isEnable = !$scope.selectExclude[index].isEnable;
+  //     enableOption = $scope.selectExclude[index].isEnable;
+  //   }
 
-    sketchbookService.setEnableForSVG(index, enableOption);
-  }
+  //   sketchbookService.setEnableForSVG(index, enableOption);
+  // }
 
   function getAttributes() {
     $scope.MaxChannel = mAttr.MaxChannel;
-    if (mAttr.EnableOptions !== undefined) {
+    if (typeof mAttr.EnableOptions !== "undefined") {
       $scope.EnableOptions = mAttr.EnableOptions;
     }
 
     refreshSensitivitySlider();
 
     /////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
-    if (mAttr.ActivateOptions !== undefined) {
+    if (typeof mAttr.ActivateOptions !== "undefined") {
       $scope.ActivateOptions = mAttr.ActivateOptions;
     }
 
-    if (mAttr.WeekDays !== undefined) {
+    if (typeof mAttr.WeekDays !== "undefined") {
       $scope.WeekDays = mAttr.WeekDays;
     }
 
-    if (mAttr.AlarmoutDurationOptions !== undefined) {
+    if (typeof mAttr.AlarmoutDurationOptions !== "undefined") {
       $scope.AlarmoutDurationOptions = mAttr.AlarmoutDurationOptions;
     }
 
@@ -485,7 +487,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       $scope.PresetOptions = Attributes.getPresetOptions();
     }
 
-    if (mAttr.VideoAnalysis2Support !== undefined && mAttr.VideoAnalysis2Support === true) {
+    if (typeof mAttr.VideoAnalysis2Support !== "undefined" && mAttr.VideoAnalysis2Support === true) {
       $scope.VideoAnalysis2Support = true;
     } else {
       $scope.VideoAnalysis2Support = false;
@@ -502,7 +504,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
     ////////////////////////////<<FOR SCHEDULE CODE>>/////////////////////////////
 
-    if (mAttr.HandoverRange !== undefined) {
+    if (typeof mAttr.HandoverRange !== "undefined") {
       $scope.HandoverSupport = true;
       $scope.HandoverEnableOptions = ['Enable', 'Disable'];
 
@@ -511,26 +513,26 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       $scope.IPv4Pattern = mAttr.IPv4;
       $scope.IPv6Pattern = mAttr.IPv6;
 
-      if (mAttr.IpFilterIPType !== undefined) {
+      if (typeof mAttr.IpFilterIPType !== "undefined") {
         $scope.IPTypes = mAttr.IpFilterIPType;
       }
 
-      if (mAttr.HandoverUserMaxLen !== undefined) {
+      if (typeof mAttr.HandoverUserMaxLen !== "undefined") {
         $scope.HandoverUserMinLen = 1;
         $scope.HandoverUserMaxLen = mAttr.HandoverUserMaxLen.maxLength;
       }
 
-      if (mAttr.HandoverPwdMaxLen !== undefined) {
+      if (typeof mAttr.HandoverPwdMaxLen !== "undefined") {
         $scope.HandoverPwdMinLen = 1;
         $scope.HandoverPwdMaxLen = mAttr.HandoverPwdMaxLen.maxLength;
       }
 
-      if (mAttr.HandoverPresetRange !== undefined) {
+      if (typeof mAttr.HandoverPresetRange !== "undefined") {
         $scope.HandoverPresetMin = mAttr.HandoverPresetRange.minValue;
         $scope.HandoverPresetMax = mAttr.HandoverPresetRange.maxValue;
       }
 
-      if (mAttr.HandoverUserRange !== undefined) {
+      if (typeof mAttr.HandoverUserRange !== "undefined") {
         $scope.HandoverUserMin = mAttr.HandoverUserRange.minValue;
         $scope.HandoverUserMax = mAttr.HandoverUserRange.maxValue;
       }
@@ -547,9 +549,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   }
 
-  function getSliderColor() {
-    return mAttr.sliderEnableColor;
-  }
+  // function getSliderColor() {
+  //   return mAttr.sliderEnableColor;
+  // }
 
   function refreshSensitivitySlider() {
     $timeout(function() {
@@ -562,7 +564,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
           rzslider.addClass('vertical');
         }
       } catch (e) {
-
+        console.info(e);
       }
     });
   }
@@ -590,7 +592,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     같은 탭을 두번 누를 때 백업하는 순간 문제가 발생하므로
     현재 탭을 누를 때는 실행하지 않는 다.
     */
-    if ($scope.activeTab.title === title && isDefault === undefined) {
+    if ($scope.activeTab.title === title && typeof isDefault === "undefined") {
       // console.log("Return", $scope.activeTab.title, isDefault, prevMotionDetectionEnable);
       return;
     }
@@ -606,7 +608,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     var prevTag = isIncludeTab ? 1 : 0;
     var prevData = null;
 
-    if (isDefault === undefined) {
+    if (typeof isDefault === "undefined") {
       prevData = sketchbookService.get();
 
       /**
@@ -615,7 +617,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
        * 그럼 Area의 backupCoordinates가 undefined가 되기 때문에
        * 분기 처리를 추가한다.
        */
-      if (prevData !== undefined) {
+      if (typeof prevData !== "undefined") {
         backupCoordinates[prevTag] = prevData;
       }
     }
@@ -666,23 +668,18 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     var modifiedIndex = args[0];
     var modifiedType = args[1]; //생성: create, 삭제: delete
     var mode = null;
-    var isEnable = null;
     var title = $scope.activeTab.title;
-    var setData = {};
-    var roiIndex = modifiedIndex + 1;
 
-    if (title === 'Exclude') {
-      roiIndex += 8;
-    }
+    var coordinates = null;
+    var points = null;
 
     $timeout(function() {
       if (modifiedType === "create" || modifiedType === "delete") {
         if (modifiedType === "create") {
           mode = title === 'Include' ? 'Inside' : 'Outside';
-          isEnable = true;
 
-          var coordinates = sketchbookService.get();
-          var points = coordinates[modifiedIndex].points;
+          coordinates = sketchbookService.get();
+          points = coordinates[modifiedIndex].points;
           var roi = modifiedIndex + 1;
           if (mode === 'Outside') {
             roi += 8;
@@ -700,9 +697,13 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
           $scope['changeSelected' + title + 'Index'](modifiedIndex + 1);
         } else if (modifiedType === "delete") {
           $scope['select' + title][modifiedIndex] = {
-            Mode: undefined,
             isEnable: false
           };
+
+          if(typeof $scope['select' + title][modifiedIndex].Mode !== "undefined"){
+            delete $scope['select' + title][modifiedIndex].Mode;
+          }
+
           if (title === "Include") {
             $scope['changeSelected' + title + 'Index'](getFirstIncludeIndex());
           } else {
@@ -716,8 +717,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         activeShape(modifiedIndex);
         $scope['changeSelected' + title + 'Index'](modifiedIndex + 1);
 
-        var coordinates = sketchbookService.get();
-        var points = coordinates[modifiedIndex].points;
+        coordinates = sketchbookService.get();
+        points = coordinates[modifiedIndex].points;
 
         $scope['select' + title][modifiedIndex].Coordinates = points;
       }
@@ -850,7 +851,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         $rootScope.$emit('changeLoadingBar', false);
         $scope.pageLoaded = true;
         $scope.$emit('pageLoaded', $scope.EventSource);
-        alert(errorData);
+        console.log(errorData);
       }
     );
   }
@@ -893,21 +894,18 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         data = response.data.VideoAnalysis[0];
       }
 
-      prepareMotionDetectionData(data, isPreset);
+      prepareMotionDetectionData(data);
     };
 
     return getMotionDetectionData(successCallback, isPreset);
   }
 
-  function prepareMotionDetectionData(mdResponseData, isPreset) {
+  function prepareMotionDetectionData(mdResponseData) {
     setMotionDetectionEnable(mdResponseData.DetectionType);
     setMotionDetectionRules(mdResponseData.ROIs);
   }
 
-  var prevMotionDetectionEnable = null;
-
   function setMotionDetectionEnable(detectionType) {
-    prevMotionDetectionEnable = detectionType;
     // DetectionType : MDAndIV, Off, MotionDetection, IntelligentVideo
 
     if (detectionType === "Off" || detectionType === "IntelligentVideo") {
@@ -958,21 +956,22 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       return;
     }
 
-    if (rois !== undefined) {
+    if (typeof rois !== "undefined") {
       updatedROIData = updateROIData(rois);
       $scope.changeSelectedIncludeIndex(updatedROIData[0]);
       $scope.changeSelectedExcludeIndex(updatedROIData[1]);
     }
 
     // TODO :: SET CHECK BOX 
-    for (var i = 0; i < $scope.selectInclude.length; i++) {
-      if ($scope.selectInclude[i].Mode !== undefined) {
+    var i = 0;
+    for (i = 0; i < $scope.selectInclude.length; i++) {
+      if (typeof $scope.selectInclude[i].Mode !== "undefined") {
         $scope.selectInclude[i].isEnable = true;
       }
     }
 
-    for (var i = 0; i < $scope.selectExclude.length; i++) {
-      if ($scope.selectExclude[i].Mode !== undefined) {
+    for (i = 0; i < $scope.selectExclude.length; i++) {
+      if (typeof $scope.selectExclude[i].Mode !== "undefined") {
         $scope.selectExclude[i].isEnable = true;
       }
     }
@@ -988,8 +987,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       []
     ];
 
-    for (var i = 1; i <= 16; i++) {
-      var areaType = i > 8 ? 1 : 0; //include: 0, exclude: 1
+    var areaType = null;
+    for (i = 1; i <= 16; i++) {
+      areaType = i > 8 ? 1 : 0; //include: 0, exclude: 1
       backupCoordinates[areaType].push({ //SketchManager에서 사용하는 포맷
         isSet: false,
         points: [],
@@ -1002,13 +1002,13 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
      * ROIs 값을 사용하여, Include/Exclude 영역을 그리기 위한 
      * SketchManager에서 사용가능한 Interface로 수정한다.
      */
-    if (rois !== undefined) {
-      for (var i = 0, ii = rois.length; i < ii; i++) {
+    if (typeof rois !== "undefined") {
+      for (i = 0; i < rois.length; i++) {
         var self = rois[i];
         var roi = self.ROI;
         var isExclude = roi > 8;
         var coordinates = self.Coordinates;
-        var areaType = isExclude ? 1 : 0; //include: 0, exclude: 1
+        areaType = isExclude ? 1 : 0; //include: 0, exclude: 1
         var points = [];
 
         if (coordinates.length === 0) {
@@ -1068,7 +1068,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
       },
       function(errorData) {
-        //alert(errorData);
+        console.log(errorData);
       }, '', true);
   }
 
@@ -1080,20 +1080,20 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     mStopMonotoringMotionLevel = false;
     $scope.$broadcast('liveChartStart');
 
-    if (monitoringTimer == null) {
+    if (monitoringTimer === null) {
       (function update() {
         getMotionLevel(function(data, index) {
-          if (destroyInterrupt) return;
+          if (destroyInterrupt) {return;}
           var newMotionLevel = angular.copy(data);
 
           if (!mStopMonotoringMotionLevel) {
             if (newMotionLevel.length >= maxSample) {
-              var index = newMotionLevel.length;
+              var i = newMotionLevel.length;
 
-              while (index--) {
+              while (i--) {
                 var level = newMotionLevel[index].Level;
 
-                if (level === null) continue;
+                if (level === null) {continue;}
 
                 if ($scope.MDv2ChartOptions.EnqueueData) {
                   $scope.MDv2ChartOptions.EnqueueData(level);
@@ -1124,7 +1124,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     return SunapiClient.get(sunapiURL, getData,
       function(response) {
         newMotionLevel = angular.copy(response.data.MotionDetection[0].Samples);
-        if (func !== undefined) {
+        if (typeof func !== "undefined") {
           func(newMotionLevel, getData.Index);
         }
       },
@@ -1253,7 +1253,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         }
 
         SunapiClient.get(cmd, setData,
-          function(response) {
+          function() {
             deferred.resolve();
           },
           function(errorData) {
@@ -1381,10 +1381,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     SunapiClient.get(
       currentItem.url,
       currentItem.reqData,
-      function(response) {
+      function() {
 
       },
-      function(errorData) {
+      function() {
         //alert(errorData);
       },
       '',
@@ -1414,7 +1414,6 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   function saveHandoverFunction(functionlist) {
 
-    var promise = null;
     var item = null;
     var queue = [];
     globalQueue = [];
@@ -1422,21 +1421,21 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     if ($scope.HandoverSupport && pageData.Handover && !angular.equals(pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList, $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList)) {
       for (var i = 0; i < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList.length; i++) {
         if (!angular.equals(pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i], $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i])) {
-          var index = i;
+          // var index = i;
           //promises.push(function(){return setHandoverList(index, $scope.presetTypeData.SelectedPreset);});
           // functionlist.push(function(){
           //     return setHandoverList(index, $scope.presetTypeData.SelectedPreset);
           // });
 
           functionlist.push((function(index, selectedPreset) {
-            var index = index;
-            var selectedPreset = selectedPreset;
+            var keepIndex = index;
+            var keepSelectedPreset = selectedPreset;
             return function() {
-              return setHandoverList(index, selectedPreset);
+              return setHandoverList(keepIndex, keepSelectedPreset);
             };
           })(i, $scope.presetTypeData.SelectedPreset));
 
-          if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i] !== undefined) {
+          if (typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i] !== "undefined") {
             if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i].UserList.length) {
               for (var j = 0; j < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i].UserList.length; j++) {
                 item = updateHandoverList(i, j, $scope.presetTypeData.SelectedPreset);
@@ -1483,7 +1482,6 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     //삭제된 Index 찾아서 삭제 요청
     var deferred = $q.defer();
     var removedROIIndex = [];
-    var promises = [];
 
     // console.log(pageData.rois);
 
@@ -1497,7 +1495,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
           self = $scope.selectInclude[roi - 1];
         }
 
-        if (self.Mode === undefined) {
+        if (typeof self.Mode === "undefined") {
           removedROIIndex.push(roi);
         }
       }
@@ -1516,7 +1514,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       SunapiClient.get(cmd,
         //SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=remove', 
         setData,
-        function(response) {
+        function() {
           // console.log("removed");
           deferred.resolve(removedROIIndex);
         },
@@ -1548,16 +1546,20 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
       var coor = [];
       var selfCoor = [];
-      for (var j = 0, jj = pageDataItem.Coordinates.length; j < jj; j++) {
+
+      var j = 0;
+      var jj = null;
+
+      for (j = 0, jj = pageDataItem.Coordinates.length; j < jj; j++) {
         coor.push([
           pageDataItem.Coordinates[j].x,
           pageDataItem.Coordinates[j].y
         ]);
       }
 
-      if (self.Mode !== undefined) {
+      if (typeof self.Mode !== "undefined") {
         if (self.Coordinates[0].toString() === "[object Object]") {
-          for (var j = 0, jj = self.Coordinates.length; j < jj; j++) {
+          for (j = 0, jj = self.Coordinates.length; j < jj; j++) {
             selfCoor.push([
               self.Coordinates[j].x,
               self.Coordinates[j].y
@@ -1585,13 +1587,16 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       var isOk = true;
       var self = null;
 
-      for (var j = 0, jj = unmodifiedROIIndex.length; j < jj; j++) {
+      var j = 0;
+      var jj = null;
+
+      for (j = 0, jj = unmodifiedROIIndex.length; j < jj; j++) {
         if (unmodifiedROIIndex[j] === i) {
           isOk = false;
         }
       }
 
-      for (var j = 0, jj = deletedROIIndex.length; j < jj; j++) {
+      for (j = 0, jj = deletedROIIndex.length; j < jj; j++) {
         if (deletedROIIndex[j] === i) {
           isOk = false;
         }
@@ -1642,7 +1647,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
               var data = $scope[property][index];
               var coor = [];
 
-              if (data.Mode !== undefined) {
+              if (typeof data.Mode !== "undefined") {
                 if (data.Coordinates[0].toString() === "[object Object]") {
                   for (var j = 0, jj = data.Coordinates.length; j < jj; j++) {
                     coor.push([
@@ -1667,7 +1672,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
             cmd = $scope.presetCmd + '&action=set';
           }
           SunapiClient.get(cmd, setData,
-            function(response) {
+            function() {
               deferred.resolve();
             },
             function(errorData) {
@@ -1694,14 +1699,14 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     function validateHandOverItem(handoverData) {
       //IPv4
       if (handoverData.IPType === $scope.IPTypes[0]) {
-        if (handoverData.IPV4Address === undefined) {
+        if (typeof handoverData.IPV4Address === "undefined") {
           return 'lang_msg_chkIPAddress';
         } else if (COMMONUtils.CheckValidIPv4Address(handoverData.IPV4Address) === false) {
           return 'lang_msg_chkIPAddress';
         }
         //IPv6
       } else {
-        if (handoverData.IPV6Address === undefined) {
+        if (typeof handoverData.IPV6Address === "undefined") {
           return 'lang_msg_chkIPv6Address';
         } else if (COMMONUtils.CheckValidIPv6Address(handoverData.IPV6Address) === false) {
           return 'lang_msg_chkIPv6Address';
@@ -1710,31 +1715,31 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
       //Port
       if (
-        handoverData.Port === undefined ||
+        typeof handoverData.Port === "undefined" ||
         parseInt(handoverData.Port) <= 0 ||
         parseInt(handoverData.Port) > mAttr.Http.maxValue) {
         return 'lang_msg_Theportshouldbebetween1and65535';
       }
 
       //UserName
-      if (handoverData.Username === undefined) {
+      if (typeof handoverData.Username === "undefined") {
         return 'lang_msg_invalid_userID';
       }
 
       //Password
-      if (handoverData.Password === undefined) {
+      if (typeof handoverData.Password === "undefined") {
         return 'lang_msg_invalid_pw';
       }
 
       //PresetNumber
       if (
-        handoverData.PresetNumber === undefined ||
+        typeof handoverData.PresetNumber === "undefined" ||
         parseInt(handoverData.PresetNumber) < $scope.HandoverPresetMin ||
         parseInt(handoverData.PresetNumber) > $scope.HandoverPresetMax) {
-        return $translate
-          .instant('lang_range_alert')
-          .replace('%1', $scope.HandoverPresetMin)
-          .replace('%2', $scope.HandoverPresetMax);
+        return $translate.
+          instant('lang_range_alert').
+          replace('%1', $scope.HandoverPresetMin).
+          replace('%2', $scope.HandoverPresetMax);
       }
 
       return true;
@@ -1797,7 +1802,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       function(response) {
         //Enable이 비활성화 일 때 Handover는 필요없으므로 Return
         if ($scope.MotionDetection.MotionDetectionEnable === false) {
-          if (successCallback !== undefined) {
+          if (typeof successCallback !== "undefined") {
             successCallback();
           }
 
@@ -1827,13 +1832,13 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
         $scope.handoverEnDisable = ($scope.findHandoverIndex() === -1) ? 'Disable' : $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[$scope.findHandoverIndex()].Enable;
 
-        if (successCallback !== undefined) {
+        if (typeof successCallback !== "undefined") {
           successCallback();
         }
 
         $scope.$apply();
       },
-      function(errorData) {
+      function() {
         /*
         if (errorData !== "Configuration Not Found")
         {
@@ -1841,7 +1846,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         }*/
         $scope.Handover[0].HandoverList = [];
         pageData.Handover = angular.copy($scope.Handover);
-        if (successCallback !== undefined) {
+        if (typeof successCallback !== "undefined") {
           successCallback();
         }
       }, '', true);
@@ -1864,7 +1869,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
             var idx = -1;
             for (var b = 0; b < presetHandover.length; b++) {
               var Preset = $scope.PresetNameValueOptions[a].split(' : ');
-              if (Preset[0] == presetHandover[b].PresetIndex) {
+              if (parseInt(Preset[0], 10) === parseInt(presetHandover[b].PresetIndex, 10)) {
                 idx = b;
                 break;
               }
@@ -1872,14 +1877,17 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
             $scope.Handover[index] = {};
             $scope.Handover[index].PresetIndex = $scope.PresetNameValueOptions[a].Preset;
             $scope.Handover[index].HandoverList = [];
-            if (idx != -1) {
+            if (idx !== -1) {
               $scope.Handover[index].HandoverList = angular.copy(presetHandover[idx].HandoverList);
             }
 
             for (var i = 0; i < $scope.Handover[index].HandoverList.length; i++) {
               $scope.Handover[index].HandoverList[i].CheckAll = false;
               $scope.Handover[index].HandoverList[i].Enable = $scope.Handover[index].HandoverList[i].Enable ? $scope.HandoverEnableOptions[0] : $scope.HandoverEnableOptions[1];
-              if (typeof $scope.Handover[index].HandoverList[i].UserList == 'undefined') $scope.Handover[index].HandoverList[i].UserList = [];
+              if (typeof $scope.Handover[index].HandoverList[i].UserList === 'undefined') {
+                $scope.Handover[index].HandoverList[i].UserList = [];
+              }
+
               for (var j = 0; j < $scope.Handover[index].HandoverList[i].UserList.length; j++) {
                 $scope.Handover[index].HandoverList[i].UserList[j].SelectedHandoverIndex = false;
 
@@ -1899,12 +1907,12 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         }, 100);
 
       },
-      function(errorData) {
+      function() {
         if ($scope.Handover.length <= 1) {
           for (var a = 0; a < $scope.PresetNameValueOptions.length; a++) {
             var index = a + 1;
             $scope.Handover[index] = {};
-            $scope.Handover[index].PresetIndex = PresetNameValueOptions[a].Preset;
+            $scope.Handover[index].PresetIndex = $scope.PresetNameValueOptions[a].Preset;
             $scope.Handover[index].HandoverList = [];
           }
           viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
@@ -1915,13 +1923,13 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   function viewHandoverAreaOptions(presetIdx) {
     var index = presetIdx;
-    if (typeof presetIdx == 'undefined') index = 0;
+    if (typeof presetIdx === 'undefined') {index = 0;}
 
     var HandoverAreaOptionsArray = [];
 
-    if (typeof $scope.Handover[index] != 'undefined' && $scope.Handover[index].HandoverList.length) {
+    if (typeof $scope.Handover[index] !== 'undefined' && $scope.Handover[index].HandoverList.length) {
       for (var i = 0; i < $scope.Handover[index].HandoverList.length; i++) {
-        if (typeof $scope.Handover[index].HandoverList[i] != 'undefined') {
+        if (typeof $scope.Handover[index].HandoverList[i] !== 'undefined') {
           HandoverAreaOptionsArray.push($scope.Handover[index].HandoverList[i].ROIIndex);
         }
       }
@@ -1931,10 +1939,11 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     }
   }
 
-  function setHandoverList(handoverlistIndex, index) {
+  function setHandoverList(handoverlistIndex, indexParam) {
     //console.log(" ::::: setHandoverList START ::::: ");
     var deferred = $q.defer();
-    if (typeof index == 'undefined') index = 0;
+    var index = indexParam;
+    if (typeof indexParam === 'undefined') {index = 0;}
     // if(handoverlistIndex > 0){
     // handoverlistIndex--;
     // }
@@ -1979,10 +1988,12 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   }
 
 
-  function updateHandoverList(roiIndex, userIndex, index) {
+  function updateHandoverList(roiIndex, userIndexParam, indexParam) {
     //console.log(" ::::: roiIndex, userIndex, index", roiIndex, userIndex, index);
-    if (typeof index == 'undefined') index = 0;
-    if (typeof userIndex == 'undefined') userIndex = 0;
+    var index = indexParam;
+    var userIndex = userIndexParam;
+    if (typeof indexParam === 'undefined') {index = 0;}
+    if (typeof userIndexParam === 'undefined') {userIndex = 0;}
 
     var setData = {};
     var userList = $scope.Handover[index].HandoverList[roiIndex].UserList[userIndex];
@@ -2041,11 +2052,11 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     };
   }
 
-  function addUserToHandover(roiIndex, index) {
+  function addUserToHandover(roiIndex, indexParam) {
 
     //console.log(" ::: roiIndex, index", roiIndex, index);
-
-    if (typeof index == 'undefined') index = 0;
+    var index = indexParam;
+    if (typeof indexParam === 'undefined') {index = 0;}
     var setData = {
       Channel: UniversialManagerService.getChannelId()
     };
@@ -2078,7 +2089,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
     //console.log(" ::: setData", setData);
     return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=add', setData,
-      function(response) {
+      function() {
         pageData.Handover = angular.copy($scope.Handover);
       },
       function(errorData) {
@@ -2087,14 +2098,14 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       }, '', true);
   }
 
-  function removeUserFromHandover(roiIndex, userIndexArray, index) {
+  function removeUserFromHandover(roiIndex, userIndexArray) {
     var setData = {
       Channel: UniversialManagerService.getChannelId()
     };
 
     setData.ROIIndex = roiIndex;
 
-    if (typeof userIndexArray !== 'undefined' && userIndexArray.length) {
+    if (userIndexArray !== null && userIndexArray.length) {
       setData.HandoverIndex = '';
 
       for (var i = 0; i < userIndexArray.length; i++) {
@@ -2114,10 +2125,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     }
 
     return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=remove', setData,
-      function(response) {
+      function() {
         pageData.Handover = angular.copy($scope.Handover);
       },
-      function(errorData) {
+      function() {
         //alert(errorData);
       }, '', true);
   }
@@ -2142,7 +2153,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   function removeHandoverFunction() {
     var promises = [];
-    var promise;
+    var promise = null;
 
     //var areaIndex = parseInt($('#SelectedHandoverAreaId').val().split(':')[1]);
 
@@ -2174,15 +2185,15 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
           modalInstance.result.then(function() {
             if (!angular.equals(pageData.VA[$scope.presetTypeData.SelectedPreset], $scope.VA[$scope.presetTypeData.SelectedPreset])) {
               if ($scope.presetTypeData.SelectedPreset > 0) {
-                setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
+                // setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
               } else {
-                setVideoAnalysis(promises);
+                // setVideoAnalysis(promises);
               }
             }
 
             if (userIndexArray.length === $scope.HandoverUserMax) {
               promise = function() {
-                return removeUserFromHandover($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].ROIIndex, undefined, $scope.presetTypeData.SelectedPreset);
+                return removeUserFromHandover($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].ROIIndex, null, $scope.presetTypeData.SelectedPreset);
               };
             } else {
               promise = function() {
@@ -2201,8 +2212,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
               }
               $q.seqAll(promises2).then(function() {
                 viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
-              }, function(errorData2) {});
-            }, function(errorData) {
+              }, function() {});
+            }, function() {
               //alert(errorData);
             });
           }, function() {
@@ -2211,7 +2222,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         }
       }
     }
-  };
+  }
 
   $scope.addHandover = function() {
     var prevIsSelectedIncludeIndex = $scope.isSelectedIncludeIndex;
@@ -2238,19 +2249,18 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   function addHandoverFunction(prevIsSelectedIncludeIndex) {
     var promises = [];
-    var promise;
     //        var areaIndex = parseInt($('#SelectedHandoverAreaId').val().split(':')[1]);
     //        var areaIndex = $scope.isSelectedIncludeIndex - 1;
     $scope.isSelectedIncludeIndex = prevIsSelectedIncludeIndex;
     var areaIndex = prevIsSelectedIncludeIndex - 1;
 
-    if (true)
+    // if (true)
     //if (typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList !== 'undefined' && typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex] !== 'undefined')
-    {
+    // {
       //if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.length < $scope.HandoverUserMax)
-      if (true)
+      // if (true)
       //if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.length < $scope.HandoverUserMax)
-      {
+      // {
         if (modalInstance !== null) {
           modalInstance.dismiss();
         }
@@ -2279,14 +2289,15 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
             getHandoverList(function() {
 
               //$scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.push(g_userList);
+              console.info(":::::", $scope.Handover[$scope.presetTypeData.SelectedPreset]);
               $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[$scope.findHandoverIndex()].UserList.push(g_userList);
 
               if (returnValue) {
                 if (!angular.equals(pageData.VA[$scope.presetTypeData.SelectedPreset], $scope.VA[$scope.presetTypeData.SelectedPreset])) {
                   if ($scope.presetTypeData.SelectedPreset > 0) {
-                    setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
+                    // setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
                   } else {
-                    setVideoAnalysis(promises);
+                    // setVideoAnalysis(promises);
                   }
                   $q.seqAll(promises).then(function() {
                     var promises2 = [];
@@ -2302,13 +2313,13 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
                       }
                       $q.seqAll(promises3).then(function() {
                         viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
-                      }, function(errorData3) {
+                      }, function() {
                         //alert(errorData);
                       });
-                    }, function(errorData2) {
+                    }, function() {
                       //alert(errorData);
                     });
-                  }, function(errorData) {
+                  }, function() {
                     //alert(errorData);
                   });
 
@@ -2328,10 +2339,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
                         updateROIData(response.data.VideoAnalysis[0].ROIs);
                         viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
                       });
-                    }, function(errorData3) {
+                    }, function() {
                       //alert(errorData);
                     });
-                  }, function(errorData2) {
+                  }, function() {
                     //alert(errorData);
                   });
                 }
@@ -2345,22 +2356,22 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
           modalInstance = null;
           //$log.info('Modal dismissed at: ' + new Date());
         });
-      } else {
-        $uibModal.open({
-          templateUrl: 'views/setup/common/errorMessage.html',
-          controller: 'errorMessageCtrl',
-          size: 'sm',
-          resolve: {
-            Message: function() {
-              return 'lang_msg_cannot_add';
-            },
-            Header: function() {
-              return 'lang_error';
-            }
-          }
-        });
-      }
-    }
+      // } else {
+      //   $uibModal.open({
+      //     templateUrl: 'views/setup/common/errorMessage.html',
+      //     controller: 'errorMessageCtrl',
+      //     size: 'sm',
+      //     resolve: {
+      //       Message: function() {
+      //         return 'lang_msg_cannot_add';
+      //       },
+      //       Header: function() {
+      //         return 'lang_error';
+      //       }
+      //     }
+      //   });
+      // }
+    // }
   }
 
   function getHandoverListIndex() {
@@ -2400,16 +2411,17 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   //////////////////////////////////////////////////////////////////////////////////////////////////
   $scope.isOccupied = function() {
     var returnValue = 0;
+    var i = 0;
     if ($scope.activeTab.title === 'Include') {
-      for (var i = 0; i < $scope.selectInclude.length; i++) {
-        if ($scope.selectInclude[i].Coordinates !== undefined) {
+      for (i = 0; i < $scope.selectInclude.length; i++) {
+        if (typeof $scope.selectInclude[i].Coordinates !== "undefined") {
           returnValue++;
         }
       }
     }
     if ($scope.activeTab.title === 'Exclude') {
-      for (var i = 0; i < $scope.selectExclude.length; i++) {
-        if ($scope.selectExclude[i].Coordinates === undefined) {
+      for (i = 0; i < $scope.selectExclude.length; i++) {
+        if (typeof $scope.selectExclude[i].Coordinates === "undefined") {
           returnValue++;
         }
       }
@@ -2467,7 +2479,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     }
 
     $timeout(function() {
-      if (!(typeof mAttr.DefaultPresetNumber === undefined || !mAttr.DefaultPresetNumber)) {
+      if (!(typeof mAttr.DefaultPresetNumber === "undefined" || !mAttr.DefaultPresetNumber)) {
         $scope.presetData.type = 'Preset';
 
         $timeout(function() {
@@ -2490,7 +2502,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     });
   }
 
-  function changePresetType(newVal, oldVal) {
+  function changePresetType(newVal) {
     if (newVal === 'Global') {
       return gotoPreset('Stop', $scope.presetData.preset);
     } else {
@@ -2552,8 +2564,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     setData.Preset = preset;
 
     return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', setData,
-      function(response) {},
-      function(errorData) {},
+      function() {},
+      function() {},
       '', true);
   }
 
