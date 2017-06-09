@@ -605,47 +605,12 @@ live-playback common {
   line-height: 34px;
   padding: 0 10px;
   vertical-align: top;
-  background-color: #fff;
-  border: 1px solid #a5a5a5;
-  color: #4c4c4c;
+  border-width: 1px;
   box-sizing: border-box;
-  /**
-     * @date 2017-04-17
-     * Live / Video setup / Display 에 Reset 버튼 확인필요.
-     */
 }
 .cm-str-button.cm-cancel-button {
   width: 100px;
   font-size: 14px;
-}
-.cm-str-button:hover {
-  background-color: #d2d2d2;
-  color: #4c4c4c;
-  border: 1px solid #a5a5a5;
-}
-.cm-str-button:hover * {
-  background-color: #d2d2d2;
-  color: #4c4c4c;
-}
-.cm-str-button.active,
-.cm-str-button:active {
-  border: 1px solid #000;
-  color: #fff;
-  background-color: #000;
-}
-.cm-str-button.active *,
-.cm-str-button:active * {
-  color: #fff;
-  background-color: #000;
-}
-.cm-str-button.cm-disabled {
-  border: 1px solid #a5a5a5 !important;
-  background-color: #d2d2d2 !important;
-  color: #797979 !important;
-}
-.cm-str-button.cm-disabled * {
-  background-color: #d2d2d2 !important;
-  color: #797979 !important;
 }
 .cm-str-button.cm-cancel-button {
   width: 100px;
@@ -910,61 +875,6 @@ live-playback common {
   color: #797979;
   background-color: #191919;
   border: 1px solid #262626;
-}
-#cm-bottom-menu.cm-full-menu .cm-str-button {
-  background-color: #262626;
-  border: 1px solid #797979;
-  color: #fff;
-}
-#cm-bottom-menu.cm-full-menu .cm-str-button:hover,
-#cm-bottom-menu.cm-full-menu .cm-str-button:hover * {
-  background-color: #d2d2d2;
-  color: #000;
-}
-#cm-bottom-menu.cm-full-menu .cm-str-button:active,
-#cm-bottom-menu.cm-full-menu .cm-str-button.active {
-  background-color: #fff;
-  border: 1px solid #fff;
-  color: #000;
-}
-#cm-bottom-menu.cm-full-menu .cm-str-button:active *,
-#cm-bottom-menu.cm-full-menu .cm-str-button.active * {
-  background-color: #fff;
-  color: #000;
-}
-#cm-bottom-menu.cm-full-menu .cm-str-button.cm-disabled {
-  background-color: #191919 !important;
-  border: 1px solid #333 !important;
-  color: #333 !important;
-}
-#cm-bottom-menu.cm-full-menu .cm-str-button.cm-disabled * {
-  border: none !important;
-  background-color: #191919 !important;
-  color: #333 !important;
-}
-#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn {
-  background-color: #262626;
-  border-color: #797979;
-  color: #fff;
-}
-#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn > div {
-  border-color: #797979;
-}
-#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:hover > div {
-  background-color: #d2d2d2;
-  color: #000;
-}
-#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:active > div {
-  background-color: #fff;
-  color: #000;
-}
-#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:hover,
-#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:active {
-  border-color: #262626;
-}
-#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:hover > div,
-#cm-bottom-menu.cm-full-menu .cm-channel-selector-quad-btn:active > div {
-  border-color: #262626;
 }
 #cm-bottom-menu.cm-full-menu .cm-submit-button {
   background-color: #262626;
@@ -1461,10 +1371,6 @@ live-playback common {
 .cm-channel-selector {
   float: left;
   height: 51px;
-  /**
-     * Channel Selector Directive Commom
-     * .channel-selector는 공통 스타일만 있음
-     */
 }
 .cm-channel-selector button {
   height: 21px;
@@ -1488,68 +1394,10 @@ live-playback common {
 }
 .cm-channel-selector .channel-selector li > button {
   width: 28px;
-  border: solid 2px #4c4c4c;
-  color: #666666;
   line-height: 17px;
   font-size: 14px;
   padding-left: 1px;
   /* 텍스트가 중앙으로 정확히 맞지 않아 추가 */
-}
-.cm-channel-selector .channel-selector li > button:hover {
-  color: #ffffff;
-  background-color: #4c4c4c;
-}
-.cm-channel-selector .channel-selector li > button:active,
-.cm-channel-selector .channel-selector li > button.active {
-  color: #ffffff;
-  background-color: #000000;
-  border-color: #000000;
-}
-.cm-channel-selector .cm-channel-selector-quad-btn-wrapper {
-  width: 27px;
-  float: left;
-  margin-left: 4px;
-}
-.cm-channel-selector .cm-channel-selector-quad-btn {
-  position: relative;
-  width: 100%;
-  float: left;
-  background: none;
-  border: solid 1px #4c4c4c;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
-  padding: 0;
-  /* Quad view의 Channel 표시 */
-}
-.cm-channel-selector .cm-channel-selector-quad-btn > div {
-  position: absolute;
-  float: left;
-  width: 12px;
-  height: 9px;
-  border-left: solid 1px #4c4c4c;
-  border-top: solid 1px #4c4c4c;
-  border-right: 0;
-  border-bottom: 0;
-}
-.cm-channel-selector .cm-channel-selector-quad-btn > div:nth-of-type(1) {
-  left: 0;
-  top: 0;
-}
-.cm-channel-selector .cm-channel-selector-quad-btn > div:nth-of-type(2) {
-  left: 12px;
-  top: 0;
-}
-.cm-channel-selector .cm-channel-selector-quad-btn > div:nth-of-type(3) {
-  left: 0;
-  top: 9px;
-}
-.cm-channel-selector .cm-channel-selector-quad-btn > div:nth-of-type(4) {
-  left: 12px;
-  top: 9px;
-}
-.cm-channel-selector .cm-channel-selector-quad-btn:hover > div,
-.cm-channel-selector .cm-channel-selector-quad-btn:active > div {
-  background-color: #ccc;
 }
 [ng\:cloak],
 [ng-cloak],
@@ -2532,6 +2380,54 @@ input[type='text'] {
 .wisenet-toggle-playback {
   font-size: 27px;
 }
+.cm-str-button {
+  border: 1px solid #a5a5a5;
+  color: #4c4c4c;
+  background-color: #ffffff;
+}
+.cm-str-button * {
+  color: inherit !important;
+  background-color: inherit !important;
+}
+.cm-str-button:hover {
+  border: 1px solid #a5a5a5;
+  color: #4c4c4c;
+  background-color: #d2d2d2;
+}
+.cm-str-button.active,
+.cm-str-button:active {
+  border: 1px solid #000000;
+  color: #ffffff;
+  background-color: #000000;
+}
+.cm-str-button[disabled],
+.cm-str-button.cm-disabled {
+  border: 1px solid #a5a5a5;
+  color: #797979;
+  background-color: #d2d2d2;
+}
+.cm-full-menu .cm-str-button {
+  border-color: #797979;
+  color: #ffffff !important;
+  background-color: #191919;
+}
+.cm-full-menu .cm-str-button:hover {
+  border-color: #d2d2d2;
+  color: #000000 !important;
+  background-color: #d2d2d2;
+}
+.cm-full-menu .cm-str-button.active,
+.cm-full-menu .cm-str-button:active {
+  border-color: #ffffff;
+  color: #000000 !important;
+  background-color: #ffffff;
+}
+.cm-full-menu .cm-str-button[disabled],
+.cm-full-menu .cm-str-button.cm-disabled {
+  border-color: #333333;
+  color: #333333 !important;
+  background-color: #191919;
+}
 .timeline-container {
   margin-top: -13px;
   padding: 0 13px;
@@ -3201,8 +3097,84 @@ input[type='text'] {
   padding: 0;
   margin: 0;
 }
-.channel-selector li > button {
+.channel-selector li .cm-str-button {
   padding: 0;
+}
+.cm-channel-selector-quad-btn-wrapper {
+  width: 27px;
+  float: left;
+  margin-left: 4px;
+}
+.cm-channel-selector-quad-btn {
+  position: relative;
+  width: 100%;
+  float: left;
+  padding: 0;
+  border: solid 1px #a5a5a5;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+}
+.cm-channel-selector-quad-btn > div {
+  position: absolute;
+  float: left;
+  width: 12px;
+  height: 9px;
+  border-right: 0;
+  border-bottom: 0;
+  background-color: #ffffff;
+  border-left: solid 1px #a5a5a5;
+  border-top: solid 1px #a5a5a5;
+}
+.cm-channel-selector-quad-btn > div:nth-of-type(1) {
+  left: 0;
+  top: 0;
+}
+.cm-channel-selector-quad-btn > div:nth-of-type(2) {
+  left: 12px;
+  top: 0;
+}
+.cm-channel-selector-quad-btn > div:nth-of-type(3) {
+  left: 0;
+  top: 9px;
+}
+.cm-channel-selector-quad-btn > div:nth-of-type(4) {
+  left: 12px;
+  top: 9px;
+}
+.cm-channel-selector-quad-btn:hover {
+  border-color: #a5a5a5;
+}
+.cm-channel-selector-quad-btn:hover > div {
+  background-color: #d2d2d2;
+  border-color: #a5a5a5;
+}
+.cm-channel-selector-quad-btn:active {
+  border-color: #ffffff;
+}
+.cm-channel-selector-quad-btn:active > div {
+  background-color: #000000;
+  border-color: #ffffff;
+}
+.cm-full-menu .cm-channel-selector-quad-btn {
+  border-color: #797979;
+}
+.cm-full-menu .cm-channel-selector-quad-btn > div {
+  background-color: #191919;
+  border-color: #797979;
+}
+.cm-full-menu .cm-channel-selector-quad-btn:hover {
+  border-color: #000000;
+}
+.cm-full-menu .cm-channel-selector-quad-btn:hover > div {
+  background-color: #d2d2d2;
+  border-color: #000000;
+}
+.cm-full-menu .cm-channel-selector-quad-btn:active {
+  border-color: #000000;
+}
+.cm-full-menu .cm-channel-selector-quad-btn:active > div {
+  background-color: #ffffff;
+  border-color: #000000;
 }
 html,
 body {
@@ -5533,28 +5505,12 @@ body.kind-svg-editor-drawing .channel-content {
 #setup-channel-selector .setup-channel-selector-btns {
   float: left;
   width: 75%;
-  /**
-	     * Channel Selector Directive Commom
-	     * .channel-selector는 공통 스타일만 있음
-	     */
 }
 #setup-channel-selector .setup-channel-selector-btns button {
   height: 30px;
   line-height: 28px;
 }
-#setup-channel-selector .setup-channel-selector-btns button:focus {
-  background-color: #fff;
-}
-#setup-channel-selector .setup-channel-selector-btns button.active,
-#setup-channel-selector .setup-channel-selector-btns button:active,
-#setup-channel-selector .setup-channel-selector-btns button:hover {
-  line-height: 30px;
-  background-color: #000;
-  color: #fff !important;
-  border: 0 !important;
-}
 #setup-channel-selector .setup-channel-selector-btns .channel-selector li {
-  color: #000;
   /* CH 텍스트 */
 }
 #setup-channel-selector .setup-channel-selector-btns .channel-selector li:first-child {
@@ -5569,16 +5525,12 @@ body.kind-svg-editor-drawing .channel-content {
 }
 #setup-channel-selector .setup-channel-selector-btns .channel-selector li > button {
   width: 43px;
-  color: #000;
   font-size: 15px;
-  border: solid 1px #868686;
 }
 #setup-channel-selector .setup-channel-selector-btns .setup-channel-selector-info {
   margin-left: 16px;
   min-width: 68px;
   font-size: 14px;
-  border: solid 1px #a5a5a5;
-  color: #333;
 }
 .file-browser-field {
   position: relative;
@@ -10760,15 +10712,6 @@ i.tui-ch-playback-stop {
   overflow: hidden;
   width: 163px;
   margin: 15px auto 0;
-}
-#channellist-channel-selector .active {
-  border-color: #4c4c4c;
-  color: #666666;
-  background-color: #ffffff;
-}
-#channellist-channel-selector button:hover {
-  color: #ffffff;
-  background-color: #4c4c4c;
 }
 #wn5-online-help-wrapper {
   width: 100%;

@@ -605,55 +605,12 @@ live-playback common {
     line-height: 34px;
     padding: 0 10px;
     vertical-align: top;
-    background-color: #fff;
-    border: 1px solid #a5a5a5;
-    color: #4c4c4c;
+    border-width: 1px;
     box-sizing: border-box;
 
     &.cm-cancel-button {
         width: 100px;
         font-size: 14px;
-    }
-
-    /**
-     * @date 2017-04-17
-     * Live / Video setup / Display 에 Reset 버튼 확인필요.
-     */
-    .hover-and-focus() {
-        background-color: #d2d2d2;
-        color: #4c4c4c;
-    }
-
-    &:hover {
-        .hover-and-focus();
-        border: 1px solid #a5a5a5;
-    }
-
-    &:hover * {
-        .hover-and-focus();
-    }
-
-    &.active,
-    &:active {
-        border: 1px solid #000;
-        color: #fff;
-        background-color: #000;
-
-        * {
-            color: #fff;
-            background-color: #000;
-        }
-    }
-
-    &.cm-disabled {
-        border: 1px solid #a5a5a5 !important;
-        background-color: #d2d2d2 !important;
-        color: #797979 !important;
-
-        * {
-            background-color: #d2d2d2 !important;
-            color: #797979 !important;
-        }
     }
 
     &.cm-cancel-button {
@@ -965,74 +922,6 @@ live-playback common {
             color: #797979;
             background-color: #191919;
             border: 1px solid #262626;
-        }
-    }
-
-    .cm-str-button {
-        background-color: #262626;
-        border: 1px solid #797979;
-        color: #fff;
-
-        &:hover,
-        &:hover * {
-            background-color: #d2d2d2;
-            color: #000;
-        }
-
-        &:active,
-        &.active {
-            background-color: #fff;
-            border: 1px solid #fff;
-            color: #000;
-
-            * {
-                background-color: #fff;
-                color: #000;
-            }
-        }
-
-        &.cm-disabled {
-            background-color: #191919 !important;
-            border: 1px solid #333 !important;
-            color: #333 !important;
-
-            * {
-                border: none !important;
-                background-color: #191919 !important;
-                color: #333 !important;
-            }
-        }
-    }
-
-    .cm-channel-selector-quad-btn {
-        background-color: #262626;
-        border-color: #797979;
-        color: #fff;
-
-        > div {
-            border-color: #797979;
-        }
-
-        &:hover {
-            > div {
-                background-color: #d2d2d2;
-                color: #000;
-            }
-        }
-
-        &:active {
-            > div {
-                background-color: #fff;
-                color: #000;
-            }
-        }
-
-        &:hover,
-        &:active {
-            border-color: #262626;
-            > div {
-                border-color: #262626;
-            }
         }
     }
 
@@ -1707,10 +1596,6 @@ live-playback common {
         height: 21px;
     }
 
-    /**
-     * Channel Selector Directive Commom
-     * .channel-selector는 공통 스타일만 있음
-     */
     .channel-selector {
         height: 21px;
 
@@ -1729,79 +1614,12 @@ live-playback common {
                     line-height: 20px;
                 }
             }
-
+            
             > button {
                 width: 28px;
-                border: solid 2px @channel-selector-btn-border-color;
-                color: @channel-selector-btn-text-color;
                 line-height: 17px;
                 font-size: 14px;
                 padding-left: 1px; /* 텍스트가 중앙으로 정확히 맞지 않아 추가 */
-
-                &:hover {
-                    color: @channel-selector-btn-active-text-color;
-                    background-color: @channel-selector-btn-border-color;
-                }
-
-                &:active,
-                &.active {
-                    color: @channel-selector-btn-active-text-color;
-                    background-color: @channel-selector-btn-active-color;
-                    border-color: @channel-selector-btn-active-color;
-                }
-            }
-        }
-    }
-
-    .cm-channel-selector-quad-btn-wrapper {
-        width: 27px;
-        float: left;
-        margin-left: 4px;
-    }
-
-    .cm-channel-selector-quad-btn {
-        position: relative;
-        width: 100%;
-        float: left;
-        background: none;
-        border: solid 1px @channel-selector-btn-border-color;
-        border-bottom-width: 2px;
-        border-right-width: 2px;
-        padding: 0;
-
-        /* Quad view의 Channel 표시 */
-        > div {
-            position: absolute;
-            float: left;
-            width: 12px;
-            height: 9px;
-            border-left: solid 1px @channel-selector-btn-border-color;
-            border-top: solid 1px @channel-selector-btn-border-color;
-            border-right: 0;
-            border-bottom: 0;
-
-            &:nth-of-type(1){
-                left: 0;
-                top: 0;
-            }
-            &:nth-of-type(2){
-                left: 12px;
-                top: 0;
-            }
-            &:nth-of-type(3){
-                left: 0;
-                top: 9px;
-            }
-            &:nth-of-type(4){
-                left: 12px;
-                top: 9px;
-            }
-        }
-
-        &:hover,
-        &:active {
-            > div {
-                background-color: #ccc;
             }
         }
     }
