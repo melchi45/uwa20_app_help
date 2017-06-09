@@ -1,33 +1,28 @@
 <div class="cm-row" id="timeline-setting" ng-show="timelineControl.currentTimelineMode === 'playback'">
-  <div class="cm-center">
-    <div class="cm-col">
-      <button 
-        type="button"
-        ng-click="checkCurrentStatus()"
-        class="cm-str-button"
-        title="{{selectedEvent| translate}}">
-        <i class="tui tui-wn5-toolbar-filter cm-icon-x15"></i>
-        <span class="cm-pc">&nbsp;{{selectedEvent| translate}}</span>
-      </button>
-    </div>
-
-    <date-control 
-      control="timelineControl"
-      playback-backup="playbackBackup" 
-      disable-backup-icon="disableBackupIcon">
-    </date-control>
-
+  <div class="cm-col">
+    <button 
+      type="button"
+      ng-click="checkCurrentStatus()"
+      class="cm-str-button"
+      title="{{selectedEvent| translate}}">
+      <i class="tui tui-wn5-toolbar-filter cm-icon-x15"></i>
+      <span class="cm-pc">&nbsp;{{selectedEvent| translate}}</span>
+    </button>
   </div>
+
+  <date-control 
+    control="timelineControl"
+    playback-backup="playbackBackup" 
+    disable-backup-icon="disableBackupIcon">
+  </date-control>
 </div>
 
-<div class="cm-row" ng-show="timelineControl.currentTimelineMode === 'backup'">
-  <div class="cm-center" style="height:50px;">
-    <playback-backup
-      get-backup-date="timelineControl.getBackupDate"
-      control="timelineControl"
-      visibility="visibility.backup">
-    </playback-backup>
-  </div>
+<div class="cm-row" id="backup-setting" ng-show="timelineControl.currentTimelineMode === 'backup'">
+  <playback-backup
+    get-backup-date="timelineControl.getBackupDate"
+    control="timelineControl"
+    visibility="visibility.backup">
+  </playback-backup>
 </div>
 
 <div class="cm-row cm-p010">
@@ -72,7 +67,6 @@
 <div 
   ng-show="timelineControl.currentTimelineMode !== 'playback' && timelineControl.currentTimelineMode !== 'datepicker'"
   class="cm-row" 
-  style="padding: 10px 0;"
   ng-class="{'pb-backup-button' : timelineControl.currentTimelineMode === 'backup'}">
   <div class="cm-center">
     <button 

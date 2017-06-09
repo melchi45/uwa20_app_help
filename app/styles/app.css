@@ -467,7 +467,8 @@ live-playback common {
   background: #a5a5a5;
 }
 #cm-bottom-menu #cm-icon-list,
-#cm-bottom-menu #timeline-setting {
+#cm-bottom-menu #timeline-setting,
+#cm-bottom-menu #backup-setting {
   width: 100%;
   line-height: 50px;
   padding: 0;
@@ -9640,11 +9641,10 @@ i.tui-ch-playback-stop {
     top: 30px;
   }
 }
-.kind-responsive-playback {
-  /* it is in timeline.html not in pb-backup */
-  /* full screen */
+.kind-responsive-playback #cm-bottom-menu {
+  /* #cm-bottom-menu full screen */
 }
-.kind-responsive-playback #pb-icon-list {
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list {
   width: auto;
   line-height: 50px;
   padding: 0;
@@ -9655,156 +9655,140 @@ i.tui-ch-playback-stop {
   left: 50%;
   transform: translateX(-50%);
 }
-.kind-responsive-playback #pb-icon-list .ui-state-default {
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list .ui-state-default {
   top: 13px;
 }
-.kind-responsive-playback #pb-icon-list .ui-slider-horizontal:hover .ui-state-default {
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list .ui-slider-horizontal:hover .ui-state-default {
   top: 13px;
 }
-.kind-responsive-playback #pb-icon-list .ui-slider-horizontal.ui-slider-disabled .ui-state-default {
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list .ui-slider-horizontal.ui-slider-disabled .ui-state-default {
   top: 13px;
 }
-.kind-responsive-playback #pb-icon-list .cm-opacity .ui-slider-horizontal .ui-state-default {
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list .cm-opacity .ui-slider-horizontal .ui-state-default {
   top: 13px;
 }
-.kind-responsive-playback #pb-icon-list .cm-vline {
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list .cm-vline {
   width: 1px;
   height: 26px;
   float: left;
   background-color: #cccccc;
   margin-top: 12px;
 }
-.kind-responsive-playback #pb-icon-list [id$="slider"] {
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list [id$="slider"] {
   display: inline-block;
   width: 100px;
   vertical-align: top;
   margin-left: 15px;
   margin-top: 5px;
 }
-.kind-responsive-playback #pb-icon-list .pb-speed {
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list .pb-speed {
   height: 30px;
   margin-top: 10px;
 }
-.kind-responsive-playback #pb-icon-list #volume-control {
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list .info-toggle {
+  bottom: -1px;
+}
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list #pb-channel-holder {
+  display: block;
+  float: left;
+}
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list #pb-channel-holder .playback-channel-selector {
+  padding: 15px 18px 0 30px;
+}
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list #pb-channel-holder .cm-channel-selector-quad-btn-wrapper {
+  display: none;
+}
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list #pb-display-control {
+  height: 50px;
+}
+.kind-responsive-playback #cm-bottom-menu #pb-icon-list #volume-control {
   margin: 0 20px;
 }
-.kind-responsive-playback #pb-menu-content {
+.kind-responsive-playback #cm-bottom-menu .pb-block {
+  position: relative;
+  display: block;
+  margin: 0 10px;
+  float: left;
+}
+.kind-responsive-playback #cm-bottom-menu .pb-block.pb-control li {
+  display: inline;
+  margin: 0 10px;
+}
+.kind-responsive-playback #cm-bottom-menu .pb-block.pb-event {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.kind-responsive-playback #cm-bottom-menu .pb-block.pb-datepicker {
+  text-align: left;
+  margin: 0 10px 5px 10px;
+}
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content {
   width: 100%;
   min-width: 400px;
   height: 200px;
-  padding: 19px 0 0 0;
+  padding: 19px 0 10px 0;
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: #fbfbfb;
   border-top: 1px solid #e9e9e9;
 }
-.kind-responsive-playback #pb-menu-content .wisenet-camera-functions {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .wisenet-camera-functions {
   margin-top: 0px;
 }
-.kind-responsive-playback #pb-menu-content .cm-col {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .cm-col {
   text-align: left;
 }
-.kind-responsive-playback #pb-menu-content h2 {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content h2 {
   font-size: 16px;
   margin-top: 0;
   margin-bottom: 5px;
 }
-.kind-responsive-playback #pb-menu-content h2 span {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content h2 span {
   color: #000000;
 }
-.kind-responsive-playback #pb-menu-content .pb-timeboxes {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-timeboxes {
   line-height: 34px;
   color: #000000;
 }
-.kind-responsive-playback #pb-menu-content .pb-timeboxes input {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-timeboxes input {
   width: 45px;
   height: 34px;
   text-align: center;
 }
-.kind-responsive-playback #pb-menu-content .pb-range {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-range {
   line-height: 34px;
   color: #000000;
   float: left;
 }
-.kind-responsive-playback #pb-channel-holder {
-  display: block;
-  float: left;
-}
-.kind-responsive-playback #pb-channel-holder .playback-channel-selector {
-  padding: 15px 18px 0 30px;
-}
-.kind-responsive-playback .info-toggle {
-  bottom: -1px;
-}
-.kind-responsive-playback .pb-block {
-  position: relative;
-  display: block;
-  margin: 0 10px;
-  float: left;
-}
-.kind-responsive-playback .pb-block.pb-control li {
-  display: inline;
-  margin: 0 10px;
-}
-.kind-responsive-playback .pb-block.pb-event {
-  text-align: left;
-  margin-bottom: 20px;
-}
-.kind-responsive-playback .pb-block.pb-datepicker {
-  text-align: left;
-  margin: 0 10px 15px 10px;
-}
-.kind-responsive-playback #pb-event-section {
-  z-index: 1;
-}
-.kind-responsive-playback #pb-event-section > .cm-center {
-  display: table-cell;
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content #timeline-setting {
   width: auto;
-  position: relative;
-  left: calc(50vw - 20px);
+  left: 50%;
   transform: translateX(-50%);
 }
-.kind-responsive-playback #pb-event-section #pb-event-all {
-  width: 100px;
-  height: 25px;
-  line-height: 25px;
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content #timeline-setting #pb-date-control {
   float: left;
 }
-.kind-responsive-playback #pb-event-section #pb-event-list {
-  width: 640px;
-  float: left;
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content #timeline-setting #pb-date-control button[kind-touch-tap="goPrevDay"] {
+  width: 22px;
+  padding: 0;
+  margin: 0 -5px 0 0;
 }
-.kind-responsive-playback #pb-event-section #pb-event-list > div {
-  width: 160px;
-  height: 25px;
-  line-height: 25px;
-  float: left;
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content #timeline-setting #pb-date-control button[kind-touch-tap="goNextDay"] {
+  width: 22px;
+  padding: 0;
+  margin: 0 0 0 -5px;
 }
-.kind-responsive-playback #pb-event-section #pb-event-list > div label {
-  white-space: nowrap;
-  font-weight: normal;
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content #timeline-setting #pb-date-control #backup {
+  margin-left: 30px;
 }
-.kind-responsive-playback #pb-event-section #pb-event-list > div label.available-check-event {
-  font-weight: bold;
-}
-.kind-responsive-playback #pb-backup-section {
-  float: left;
-}
-.kind-responsive-playback #pb-backup-section #backup-date .cm-textbox {
-  width: 150px;
-  text-align: center;
-}
-.kind-responsive-playback .pb-backup-button {
-  margin-top: 20px;
-}
-.kind-responsive-playback .pb-duplicate-items {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-duplicate-items {
   text-align: center;
   margin-top: 20px;
   float: left;
   width: 100%;
 }
-.kind-responsive-playback .pb-duplicate-items > div {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-duplicate-items > div {
   display: inline-block;
   min-width: 125px;
   padding: 10px 0;
@@ -9814,66 +9798,19 @@ i.tui-ch-playback-stop {
   color: #797979;
   cursor: pointer;
 }
-.kind-responsive-playback .pb-duplicate-items > div + div {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-duplicate-items > div + div {
   margin-left: 10px;
 }
-.kind-responsive-playback .pb-duplicate-items > div.active,
-.kind-responsive-playback .pb-duplicate-items > div.selected {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-duplicate-items > div.active,
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-duplicate-items > div.selected {
   color: #4c4c4c;
 }
-.kind-responsive-playback .pb-duplicate-items .event-type {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-duplicate-items .event-type {
   font-weight: bold;
   font-size: 13px;
 }
-.kind-responsive-playback .pb-duplicate-items .event-time {
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-duplicate-items .event-time {
   font-size: 11px;
-}
-.kind-responsive-playback #pb-date-control {
-  float: left;
-}
-.kind-responsive-playback #pb-date-control button[kind-touch-tap="goPrevDay"] {
-  width: 22px;
-  padding: 0;
-  margin: 0 -5px 0 0;
-}
-.kind-responsive-playback #pb-date-control button[kind-touch-tap="goNextDay"] {
-  width: 22px;
-  padding: 0;
-  margin: 0 0 0 -5px;
-}
-.kind-responsive-playback #pb-datepicker-section {
-  margin-top: -5px;
-  display: inline-table;
-}
-.kind-responsive-playback #pb-datepicker-section h2 {
-  line-height: 15px;
-  font-size: 12px;
-  margin: 5px 0;
-}
-.kind-responsive-playback #pb-datepicker-section .pb-all-day {
-  display: block;
-  font-size: 14px;
-  color: #000000;
-  width: 100%;
-  margin: 10px 0 30px 0px;
-  clear: both;
-}
-.kind-responsive-playback #pb-datepicker-section .pb-all-day label {
-  font-weight: normal;
-  margin-top: 10px;
-}
-.kind-responsive-playback #pb-datepicker-section .pb-button-wrap {
-  display: block;
-  margin-top: 40px;
-}
-.kind-responsive-playback #pb-datepicker-section .pb-datepicker tbody tr td.event:after {
-  display: none;
-}
-.kind-responsive-playback #pb-datepicker-section .pb-datepicker tbody tr td.event {
-  color: #f37321;
-}
-.kind-responsive-playback #pb-datepicker-section .start-time {
-  margin-left: 0;
 }
 .kind-responsive-playback #cm-bottom-menu.cm-full-menu #pb-icon-list .cm-vline {
   background: #4c4c4c;
@@ -9915,216 +9852,106 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback #cm-bottom-menu.cm-full-menu #pb-datepicker-section .ua-datepicker table tbody tr td.event span {
   color: #f37321 !important;
 }
-.kind-responsive-playback #backup {
-  margin-left: 30px;
+.kind-responsive-playback #pb-event-section {
+  z-index: 1;
 }
-@media (min-width: 3000px) and (min-height: 1688px) {
-  .kind-responsive-playback #cm-video {
-    height: calc(100% - 525px) !important;
-  }
-  .kind-responsive-playback #cm-video.smaller {
-    height: calc(100% - 190px) !important;
-  }
-  .kind-responsive-playback #pb-backup-section {
-    float: left;
-  }
-  .kind-responsive-playback #pb-backup-section #backup-date .cm-textbox {
-    width: 180px;
-    height: 59.5px;
-    line-height: 59.5px;
-    font-size: 21px;
-    text-align: center;
-  }
-  .kind-responsive-playback #cm-bottom-menu.cm-show-menu {
-    height: 525px;
-  }
-  .kind-responsive-playback #cm-bottom-menu.cm-full-menu {
-    height: 87.5px;
-  }
-  .kind-responsive-playback #cm-bottom-menu.cm-full-menu.cm-show-menu {
-    height: 440px;
-  }
-  .kind-responsive-playback #cm-bottom-menu.cm-full-menu #pb-menu-content {
-    height: 360px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list {
-    height: 87.5px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .info-toggle {
-    height: 87.5px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .info-toggle li {
-    height: 87.5px;
-    width: 108.5px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .info-toggle li button {
-    margin-top: 12px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .pb-block {
-    margin: 0 17.5px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .pb-block li {
-    margin: 0 17.5px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .cm-icon-button-b {
-    font-size: 47px;
-    margin-top: 13px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .cm-vline {
-    height: 45.5px;
-    margin-top: 21px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .pb-speed {
-    height: 52.5px;
-    margin-top: 17.5px;
-    width: 84px;
-    font-size: 23.3px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list #volume-control {
-    margin: 0 35px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list #volume-control .cm-icon-button-s {
-    font-size: 42px;
-    margin-top: 13px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-icon-list [id$="slider"] {
-    width: 175px;
-    margin-left: 26.25px;
-    margin-top: 18px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #timeline-setting {
-    height: 84px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-menu-content {
-    height: 350px;
-    padding: 33.25px 0 26.25px 0;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-menu-content .cm-col {
-    margin: 0 35px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-date-control .cm-col {
-    margin: 0 35px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-date-control .pb-timeboxes {
-    line-height: 59.5px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-date-control .pb-timeboxes input {
-    width: 78.75px;
-    height: 59.5px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #backup {
-    margin-left: 52.5px;
-  }
-  .kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-range {
-    line-height: 59.5px;
-  }
-  .kind-responsive-playback .cm-str-button {
-    height: 59.5px;
-    line-height: 59.5px;
-    padding: 0 17.5px;
-    font-size: 21px;
-  }
-  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item .vis-item-overflow {
-    height: 35px;
-  }
-  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly {
-    top: 2px !important;
-    height: 60px !important;
-  }
-  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly .vis-item-overflow {
-    height: 35px;
-    top: 18px;
-  }
-  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly.vis-item-normal .vis-item-overflow {
-    height: 35px;
-    top: 18px;
-  }
-  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-background.vis-vertical .vis-time-axis {
-    top: 25px;
-  }
-  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text.vis-minor {
-    font-size: 22px;
-  }
-  .kind-responsive-playback .vis-custom-time div {
-    width: 50px !important;
-    height: 50px !important;
-    margin-top: 46px;
-  }
-  .kind-responsive-playback .vis-custom-time div:after {
-    left: 18px;
-    top: 13px;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 15px solid #797979;
-  }
-  .kind-responsive-playback .pb-duplicate-items > div {
-    padding: 15px 15px;
-    margin-top: 38px;
-  }
-  .kind-responsive-playback .pb-duplicate-items .event-type {
-    font-size: 21px;
-  }
-  .kind-responsive-playback .pb-duplicate-items .event-time {
-    font-size: 18px;
-  }
-  .kind-responsive-playback #pb-menu-content h2 {
-    font-size: 30px !important;
-    margin-bottom: 22px !important;
-  }
-  .kind-responsive-playback #pb-menu-content #pb-event-all {
-    width: 170px;
-  }
-  .kind-responsive-playback #pb-menu-content #pb-event-all label {
-    font-size: 21px;
-  }
-  .kind-responsive-playback #pb-menu-content #pb-event-list {
-    width: 1240px;
-  }
-  .kind-responsive-playback #pb-menu-content #pb-event-list .cm-checkbox-wrap {
-    width: 310px;
-    height: 40px;
-  }
-  .kind-responsive-playback #pb-menu-content #pb-event-list .cm-checkbox-wrap label {
-    font-size: 21px;
-  }
-  .kind-responsive-playback #pb-menu-content .overlap-search-container label {
-    font-size: 21px;
-  }
-  .kind-responsive-playback #pb-menu-content .pb-timeboxes input {
-    width: 78.75px !important;
-    height: 59.5px !important;
-    font-size: 20px !important;
-  }
-  .kind-responsive-playback .cm-submit-button {
-    width: 175px;
-    height: 59.5px;
-    font-size: 20px;
-  }
-  .kind-responsive-playback .cm-cancel-button {
-    width: 175px;
-  }
-  .kind-responsive-playback #pb-datepicker-section .cm-center {
-    width: 1140px;
-  }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child {
-    width: 35%;
-  }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table {
-    width: 80% !important;
-  }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table th {
-    font-size: 18px;
-  }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table .btn.btn-default {
-    font-size: 18px;
-  }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:last-child {
-    width: 55%;
-    margin: 15px 0px;
-  }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:last-child .pb-all-day {
-    font-size: 21px;
-  }
+.kind-responsive-playback #pb-event-section > .cm-center {
+  display: table-cell;
+  width: auto;
+  position: relative;
+  left: calc(50vw - 20px);
+  transform: translateX(-50%);
+}
+.kind-responsive-playback #pb-event-section #pb-event-all {
+  width: 100px;
+  height: 25px;
+  line-height: 25px;
+  float: left;
+}
+.kind-responsive-playback #pb-event-section #pb-event-list {
+  width: 640px;
+  float: left;
+}
+.kind-responsive-playback #pb-event-section #pb-event-list > div {
+  width: 160px;
+  height: 25px;
+  line-height: 25px;
+  float: left;
+}
+.kind-responsive-playback #pb-event-section #pb-event-list > div label {
+  white-space: nowrap;
+  font-weight: normal;
+}
+.kind-responsive-playback #pb-event-section #pb-event-list > div label.available-check-event {
+  font-weight: bold;
+}
+.kind-responsive-playback #backup-setting {
+  height: auto !important;
+  line-height: 1em !important;
+}
+.kind-responsive-playback #pb-backup-section {
+  width: 100%;
+  text-align: center;
+  display: inline-table;
+  line-height: 1em;
+}
+.kind-responsive-playback #pb-backup-section .pb-block {
+  margin: 0 5px !important;
+  display: inline-table;
+  float: none;
+}
+.kind-responsive-playback #pb-backup-section .pb-block input {
+  padding: 0 5px !important;
+}
+.kind-responsive-playback #pb-backup-section .pb-block#backup-date {
+  width: 100%;
+  text-align: center;
+  margin: 0 0 5px 0 !important;
+}
+.kind-responsive-playback #pb-backup-section .pb-range {
+  float: none;
+  display: inline;
+}
+.kind-responsive-playback #pb-backup-section #backup-date .cm-textbox {
+  width: 150px;
+  text-align: center;
+}
+.kind-responsive-playback .pb-backup-button {
+  margin-top: 15px;
+}
+.kind-responsive-playback #pb-datepicker-section {
+  margin-top: -5px;
+  display: inline-table;
+}
+.kind-responsive-playback #pb-datepicker-section h2 {
+  line-height: 15px;
+  font-size: 12px;
+  margin: 5px 0;
+}
+.kind-responsive-playback #pb-datepicker-section .pb-all-day {
+  display: block;
+  font-size: 14px;
+  color: #000000;
+  width: 100%;
+  margin: 15px 0 30px 0px;
+  clear: both;
+}
+.kind-responsive-playback #pb-datepicker-section .pb-all-day label {
+  font-weight: normal;
+  margin-top: 10px;
+}
+.kind-responsive-playback #pb-datepicker-section .pb-button-wrap {
+  display: block;
+  margin-top: 40px;
+}
+.kind-responsive-playback #pb-datepicker-section .pb-datepicker tbody tr td.event:after {
+  display: none;
+}
+.kind-responsive-playback #pb-datepicker-section .pb-datepicker tbody tr td.event {
+  color: #f37321;
+}
+.kind-responsive-playback #pb-datepicker-section .start-time {
+  margin-left: 0;
 }
 @media (min-width: 2300px) and (min-height: 1294px) {
   .kind-responsive-playback {
@@ -10222,18 +10049,23 @@ i.tui-ch-playback-stop {
     margin-left: 22.5px;
     margin-top: 15.5px;
   }
-  .kind-responsive-playback #cm-bottom-menu #timeline-setting {
-    height: 75px;
-  }
   .kind-responsive-playback #cm-bottom-menu #pb-menu-content {
     height: 300px;
     padding: 28.5px 0 22.5px 0;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #timeline-setting,
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #backup-setting {
+    height: 75px;
   }
   .kind-responsive-playback #cm-bottom-menu #pb-menu-content .cm-col {
     margin: 0 30px;
   }
   .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-date-control .cm-col {
     margin: 0 30px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-date-control button[kind-touch-tap="goPrevDay"],
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-date-control button[kind-touch-tap="goNextDay"] {
+    width: 30px;
   }
   .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-date-control .pb-timeboxes {
     line-height: 51px;
@@ -10288,9 +10120,11 @@ i.tui-ch-playback-stop {
     border-bottom: 7px solid transparent;
     border-left: 11px solid #797979;
   }
+  .kind-responsive-playback .pb-duplicate-items {
+    margin-top: 50px;
+  }
   .kind-responsive-playback .pb-duplicate-items > div {
     padding: 15px 15px;
-    margin-top: 20px;
   }
   .kind-responsive-playback .pb-duplicate-items .event-type {
     font-size: 17px;
@@ -10364,6 +10198,220 @@ i.tui-ch-playback-stop {
     margin-top: 55px;
   }
 }
+@media (min-width: 3000px) and (min-height: 1688px) {
+  .kind-responsive-playback #cm-video {
+    height: calc(100% - 525px) !important;
+  }
+  .kind-responsive-playback #cm-video.smaller {
+    height: calc(100% - 190px) !important;
+  }
+  .kind-responsive-playback #cm-bottom-menu.cm-show-menu {
+    height: 525px;
+  }
+  .kind-responsive-playback #cm-bottom-menu.cm-full-menu {
+    height: 87.5px;
+  }
+  .kind-responsive-playback #cm-bottom-menu.cm-full-menu.cm-show-menu {
+    height: 440px;
+  }
+  .kind-responsive-playback #cm-bottom-menu.cm-full-menu #pb-menu-content {
+    height: 360px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list {
+    height: 87.5px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .info-toggle {
+    height: 87.5px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .info-toggle li {
+    height: 87.5px;
+    width: 108.5px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .info-toggle li button {
+    margin-top: 12px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .pb-block {
+    margin: 0 17.5px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .pb-block li {
+    margin: 0 17.5px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .cm-icon-button-b {
+    font-size: 47px;
+    margin-top: 13px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .cm-vline {
+    height: 45.5px;
+    margin-top: 21px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list .pb-speed {
+    height: 52.5px;
+    margin-top: 17.5px;
+    width: 84px;
+    font-size: 23.3px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list #volume-control {
+    margin: 0 35px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list #volume-control .cm-icon-button-s {
+    font-size: 42px;
+    margin-top: 13px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-icon-list [id$="slider"] {
+    width: 175px;
+    margin-left: 26.25px;
+    margin-top: 18px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content {
+    height: 350px;
+    padding: 33.25px 0 26.25px 0;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content .cm-col {
+    margin: 0 35px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #timeline-setting,
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #backup-setting {
+    height: 84px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-date-control .cm-col {
+    margin: 0 35px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-date-control .pb-timeboxes {
+    line-height: 59.5px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-date-control .pb-timeboxes input {
+    width: 78.75px;
+    height: 59.5px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #backup {
+    margin-left: 52.5px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-range {
+    line-height: 59.5px;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-backup-section {
+    float: left;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-backup-section #backup-date .cm-textbox {
+    width: 180px;
+    height: 59.5px;
+    line-height: 59.5px;
+    font-size: 21px;
+    text-align: center;
+  }
+  .kind-responsive-playback #cm-bottom-menu #pb-menu-content #pb-backup-section .pb-backup-button {
+    margin-top: 70px;
+  }
+  .kind-responsive-playback .cm-str-button {
+    height: 59.5px;
+    line-height: 59.5px;
+    padding: 0 17.5px;
+    font-size: 21px;
+  }
+  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item .vis-item-overflow {
+    height: 35px;
+  }
+  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly {
+    top: 2px !important;
+    height: 60px !important;
+  }
+  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly .vis-item-overflow {
+    height: 35px;
+    top: 18px;
+  }
+  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly.vis-item-normal .vis-item-overflow {
+    height: 35px;
+    top: 18px;
+  }
+  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-background.vis-vertical .vis-time-axis {
+    top: 25px;
+  }
+  .kind-responsive-playback .vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text.vis-minor {
+    font-size: 22px;
+  }
+  .kind-responsive-playback .vis-custom-time div {
+    width: 50px !important;
+    height: 50px !important;
+    margin-top: 46px;
+  }
+  .kind-responsive-playback .vis-custom-time div:after {
+    left: 18px;
+    top: 13px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid #797979;
+  }
+  .kind-responsive-playback .pb-duplicate-items {
+    margin-top: 40px;
+  }
+  .kind-responsive-playback .pb-duplicate-items > div {
+    padding: 15px 15px;
+  }
+  .kind-responsive-playback .pb-duplicate-items .event-type {
+    font-size: 21px;
+  }
+  .kind-responsive-playback .pb-duplicate-items .event-time {
+    font-size: 18px;
+  }
+  .kind-responsive-playback #pb-menu-content h2 {
+    font-size: 30px !important;
+    margin-bottom: 22px !important;
+  }
+  .kind-responsive-playback #pb-menu-content #pb-event-all {
+    width: 170px;
+  }
+  .kind-responsive-playback #pb-menu-content #pb-event-all label {
+    font-size: 21px;
+  }
+  .kind-responsive-playback #pb-menu-content #pb-event-list {
+    width: 1240px;
+  }
+  .kind-responsive-playback #pb-menu-content #pb-event-list .cm-checkbox-wrap {
+    width: 310px;
+    height: 40px;
+  }
+  .kind-responsive-playback #pb-menu-content #pb-event-list .cm-checkbox-wrap label {
+    font-size: 21px;
+  }
+  .kind-responsive-playback #pb-menu-content .overlap-search-container label {
+    font-size: 21px;
+  }
+  .kind-responsive-playback #pb-menu-content .pb-timeboxes input {
+    width: 78.75px !important;
+    height: 59.5px !important;
+    font-size: 20px !important;
+  }
+  .kind-responsive-playback .cm-submit-button {
+    width: 175px;
+    height: 59.5px;
+    font-size: 20px;
+  }
+  .kind-responsive-playback .cm-cancel-button {
+    width: 175px;
+  }
+  .kind-responsive-playback #pb-datepicker-section .cm-center {
+    width: 1140px;
+  }
+  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child {
+    width: 35%;
+  }
+  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table {
+    width: 80% !important;
+  }
+  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table th {
+    font-size: 18px;
+  }
+  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table .btn.btn-default {
+    font-size: 18px;
+  }
+  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:last-child {
+    width: 55%;
+    margin: 15px 0px;
+  }
+  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:last-child .pb-all-day {
+    font-size: 21px;
+  }
+}
 @media screen and (max-width: 1023px) {
   .kind-responsive-playback #pb-event-section > .cm-center {
     width: 100%;
@@ -10421,8 +10469,15 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-icon-list #pb-play-control {
     margin: 0 10px;
   }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .start-time,
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .end-time {
+    margin-top: 15px;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .pb-all-day label {
+    margin: 5px 0;
+  }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content .cm-col {
-    margin: 0 2px;
+    margin: 0 2px !important;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content #pb-event-section > .cm-center {
     width: 100%;
@@ -10438,13 +10493,15 @@ i.tui-ch-playback-stop {
     padding: 0 5px;
     width: 40px;
   }
-  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content .pb-backup-button {
-    margin-top: 5px;
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content #backup-setting {
+    height: auto;
+    line-height: 1em;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content #pb-backup-section {
     width: 100%;
     text-align: center;
     display: inline-table;
+    line-height: 1em;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content #pb-backup-section .pb-block {
     margin: 0 5px !important;
@@ -10457,10 +10514,15 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content #pb-backup-section .pb-block#backup-date {
     width: 100%;
     text-align: center;
+    margin: 0 0 5px 0 !important;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content #pb-backup-section .pb-range {
     float: none;
     display: inline;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content .pb-backup-button {
+    margin-top: 10px;
+    padding: 5px 0 !important;
   }
 }
 @media screen and (max-width: 700px) {
@@ -10490,13 +10552,6 @@ i.tui-ch-playback-stop {
   }
   .kind-responsive-playback #pb-datepicker-section .ua-datepicker table {
     width: 80%;
-  }
-  .kind-responsive-playback #pb-datepicker-section .start-time,
-  .kind-responsive-playback #pb-datepicker-section .end-time {
-    margin: 0;
-  }
-  .kind-responsive-playback #pb-datepicker-section .start-time {
-    margin-left: 5%;
   }
   .kind-responsive-playback .pb-all-day label {
     margin-left: 5%;
@@ -10602,7 +10657,14 @@ i.tui-ch-playback-stop {
   display: none;
 }
 .kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content .cm-col {
-  margin: 0 2px;
+  margin: 0 2px !important;
+}
+.kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content .pb-duplicate-items {
+  max-height: 80px;
+  overflow-y: scroll;
+}
+.kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content .pb-duplicate-items > * {
+  margin: 5px !important;
 }
 .kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-event-section .cm-center {
   left: 50%;
@@ -10644,10 +10706,15 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-event-section > .cm-center {
   width: 100%;
 }
+.kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #backup-setting {
+  height: auto;
+  line-height: 1em;
+}
 .kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-backup-section {
   width: 100%;
   text-align: center;
   display: inline-table;
+  line-height: 1em;
 }
 .kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-backup-section .pb-block {
   margin: 0 5px !important;
@@ -10660,16 +10727,20 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-backup-section .pb-block#backup-date {
   width: 100%;
   text-align: center;
+  margin: 0 0 10px 0 !important;
 }
 .kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-backup-section .pb-range {
   float: none;
   display: inline;
 }
+.kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content .pb-backup-button {
+  margin-top: 15px;
+}
 .kind-responsive-playback.land-scape #cm-bottom-menu.cm-show-menu #pb-menu-content {
   left: calc(100% - 400px);
 }
 .kind-responsive-playback.land-scape #cm-bottom-menu.cm-show-menu #pb-icon-list .info-toggle {
-  left: calc(100% - 400px);
+  left: calc(100% - 399px);
 }
 .kind-responsive-playback.land-scape #cm-bottom-menu.cm-full-menu #pb-menu-content {
   top: 0;
