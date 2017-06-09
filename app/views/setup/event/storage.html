@@ -106,7 +106,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary" ng-click="OnStorageFormat($index)" ng-disabled="($parent.selected != $index || GetFormatButtonStatus($index)) && isLoading || getOnOffStatus($index)" style="text-align:center" type="button">
+                                        <button class="btn btn-primary cm-btn-dark" ng-click="OnStorageFormat($index)" ng-disabled="($parent.selected != $index || GetFormatButtonStatus($index)) && isLoading || getOnOffStatus($index)" style="text-align:center" type="button">
                                             {{ 'lang_format' | translate }}
                                         </button>
                                     </td>
@@ -218,7 +218,7 @@
                     </div>
                     <div class="form-group">
                         <div class="wn5-setup-section-article-content wn5-setup-section-article-heading-offset">
-                            <button class="btn btn-primary" ng-click="OnNASTest()" ng-disabled="!(Storageinfo.Storages[SelectedStorage].Status === 'None')" type="button">
+                            <button class="btn btn-primary cm-btn-dark" ng-click="OnNASTest()" ng-disabled="!(Storageinfo.Storages[SelectedStorage].Status === 'None')" type="button">
                                 {{ 'lang_test' | translate }}
                             </button>
                         </div>

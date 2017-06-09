@@ -1,6 +1,6 @@
 "use strict";
-kindFramework
-  .directive("extendViewFunctions", ['DigitalZoomService', 'UniversialManagerService',
+kindFramework.
+  directive("extendViewFunctions", ['DigitalZoomService', 'UniversialManagerService',
     'kindStreamInterface', 'PTZContorlService', 'DigitalPTZContorlService',
     'CAMERA_STATUS', 'PTZ_TYPE', 'ModalManagerService', '$translate', 'SequenceModel',
     function(DigitalZoomService, UniversialManagerService, kindStreamInterface,
@@ -10,7 +10,7 @@ kindFramework
         require: '?viewFunctions',
         url: '<div></div>',
         restrict: 'A',
-        link: function(scope, element, attrs) {
+        link: function(scope) {
           var presetRefresh = function() {
             scope.ptzAction.presetRefresh();
           };

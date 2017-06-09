@@ -4,10 +4,10 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
   function($rootScope, TimelineService, SearchDataModel, PlayDataModel, PLAYBACK_TYPE,
     ModalManagerService, PlaybackInterface, $timeout, UniversialManagerService) {
     'use strict';
-    var searchedData = {};
-    var pad = function(x) {
-      x *= 1;
-      return x < 10 ? "0" + x : x;
+    var MIN_DOUBLE_FIGURES = 10;
+    var pad = function(input) {
+      var target = input*1;
+      return target < MIN_DOUBLE_FIGURES ? "0" + target : target;
     };
     return {
       restrict: 'E',
@@ -19,10 +19,9 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
         'control': '=',
         'eventChangeUnallowed': '=',
         'disableBackupIcon': '=',
-        'playbackBackup': '='
+        'playbackBackup': '=',
       },
-      controller: function($scope, $element) {},
-      link: function(scope, element, attr, timelineCtrl) {
+      link: function(scope) {
         $rootScope.$emit('timeline::initialized');
         scope.currentDate = '';
         scope.playingTime = {
@@ -31,35 +30,49 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
           seconds: '00',
         };
         scope.blockTimeInput = false;
-
         var timelineCtrl = new TimelineService();
         var searchData = new SearchDataModel();
         var playData = new PlayDataModel();
         var PLAY_CMD = PLAYBACK_TYPE.playCommand;
+        var KEYCODE = {ENTER : 13};
         moment.tz.add("Africa/Abidjan|LMT GMT|g.8 0|01|-2ldXH.Q|48e5");
         moment.tz.setDefault("Africa/Abidjan");
         var showDateString = function(dateObj) {
           scope.currentDate = dateObj.getFullYear() + "-" + pad(dateObj.getMonth() + 1) + "-" + pad(dateObj.getDate());
         };
+        var parsingTime = function(date, start, end) {
+          var startTime = start.split(":");
+          var endTime = end.split(":");
+          var startTimeString='', endTimeString='';
+          startTimeString = endTimeString = date.getFullYear() + '-' + pad(date.getMonth() + 1) + 
+            '-' + pad(date.getDate())+' ';
+          for ( var idx = 0; idx < startTime.length; idx++ ) {
+            startTimeString += pad(startTime[idx]);
+            endTimeString += pad(endTime[idx]);
+            if ( idx !== startTime.length-1 ) {
+              startTimeString += ':';
+            }
+          }
+          startTimeString += "+00:00";
+          endTimeString += "+00:00";
+          var results = {
+            'startWindow':moment.parseZone( startTimeString ),
+            'endWindow':moment.parseZone( endTimeString ),
+          };
+          return results;
+        };
         var onChangeCurrentDate = function(current) {
           showDateString(current.date);
           timelineCtrl.changeOptions(current.date);
-          if (current.startTime === undefined) {
+          if (typeof current.startTime === "undefined") {
             current.startTime = "00:00:00";
           }
-          if (current.endTime === undefined) {
+          if (typeof current.endTime === "undefined") {
             current.endTime = "23:59:59";
           }
-          var startTime = (current.startTime).split(":");
-          var endTime = (current.endTime).split(":");
-          var startWindow = moment.parseZone(
-            current.date.getFullYear() + '-' + pad(current.date.getMonth() + 1) + '-' + pad(current.date.getDate()) +
-            ' ' + pad(startTime[0]) + ':' + pad(startTime[1]) + ':' + pad(startTime[2]) + "+00:00");
-          var endWindow = moment.parseZone(
-            current.date.getFullYear() + '-' + pad(current.date.getMonth() + 1) + '-' + pad(current.date.getDate()) +
-            ' ' + pad(endTime[0]) + ':' + pad(endTime[1]) + ':' + pad(endTime[2]) + "+00:00");
+          var windows = parsingTime (current.date, current.startTime, current.endTime);
           searchData.setSelectedDate(current.date);
-          timelineCtrl.changeTimelineView(startWindow, endWindow);
+          timelineCtrl.changeTimelineView(windows.startWindow, windows.endWindow);
           timelineCtrl.clearTimeline();
           var searchInfo = {
             'startTime': current.startTime,
@@ -70,8 +83,8 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
           };
 
           $rootScope.$emit('changeLoadingBar', true);
-          PlaybackInterface.requestEventSearch(searchInfo)
-            .then(function() {
+          PlaybackInterface.requestEventSearch(searchInfo).
+            then(function() {
               $rootScope.$emit('changeLoadingBar', false);
             }, function() {
               $rootScope.$emit('changeLoadingBar', false);
@@ -88,27 +101,19 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
         scope.control.changeCurrnetDate = function(current) {
           showDateString(current.date);
 
-          if (current.startTime === undefined) {
+          if (typeof current.startTime === "undefined") {
             current.startTime = "00:00:00";
           }
-          if (current.endTime === undefined) {
+          if (typeof current.endTime === "undefined") {
             current.endTime = "23:59:59";
           }
         };
 
         scope.control.getSearchInfo = function(current) {
           timelineCtrl.changeOptions(current.date);
-
-          var startTime = (current.startTime).split(":");
-          var endTime = (current.endTime).split(":");
-          var startWindow = moment.parseZone(
-            current.date.getFullYear() + '-' + pad(current.date.getMonth() + 1) + '-' + pad(current.date.getDate()) +
-            ' ' + pad(startTime[0]) + ':' + pad(startTime[1]) + ':' + pad(startTime[2]) + '+00:00');
-          var endWindow = moment.parseZone(
-            current.date.getFullYear() + '-' + pad(current.date.getMonth() + 1) + '-' + pad(current.date.getDate()) +
-            ' ' + pad(endTime[0]) + ':' + pad(endTime[1]) + ':' + pad(endTime[2]) + '+00:00');
+          var windows = parsingTime(current.date, current.startTime, current.endTime);
           searchData.setSelectedDate(current.date);
-          timelineCtrl.changeTimelineView(startWindow, endWindow);
+          timelineCtrl.changeTimelineView(windows.startWindow, windows.endWindow);
           var channelId = UniversialManagerService.getChannelId();
 
           var searchInfo = {
@@ -117,7 +122,7 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
             'date': current.date,
             'eventList': searchData.getEventTypeList(),
             'id': searchData.getOverlapId(),
-            'channel': channelId
+            'channel': channelId,
           };
 
           return searchInfo;
@@ -165,54 +170,55 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
           );*/
         };
 
-        scope.goPrevDay = function(event) {
+        scope.goPrevDay = function() {
           playData.setDefautPlaySpeed();
           playData.setStatus(PLAY_CMD.STOP);
           var targetDate = searchData.getSelectedDate();
           targetDate.setDate(targetDate.getDate() - 1);
           searchData.setSelectedDate(targetDate);
           onChangeCurrentDate({
-            'date': targetDate
+            'date': targetDate,
           });
         };
 
-        scope.goNextDay = function(event) {
+        scope.goNextDay = function() {
           playData.setDefautPlaySpeed();
           playData.setStatus(PLAY_CMD.STOP);
           var targetDate = searchData.getSelectedDate();
           targetDate.setDate(targetDate.getDate() + 1);
           searchData.setSelectedDate(targetDate);
           onChangeCurrentDate({
-            'date': targetDate
+            'date': targetDate,
           });
         };
 
-        scope.goToday = function(event) {
+        scope.goToday = function() {
           playData.setDefautPlaySpeed();
           playData.setStatus(PLAY_CMD.STOP);
           onChangeCurrentDate({
-            'date': new Date()
+            'date': new Date(),
           });
         };
 
         scope.onKeyDown = function(keyEvent) {
-          if (keyEvent.which === 13) { // Enter
+          if (keyEvent.which === KEYCODE.ENTER) { // Enter
             scope.control.setTimebarPosition(scope.playingTime.hours,
               scope.playingTime.minutes, scope.playingTime.seconds);
           }
         };
         var watchTime = scope.$watch(function() {
-            return playData.getStartTime() || playData.getEndTime();
-          },
-          function(newVal, oldVal) {
-            var startTime = playData.getStartTime();
-            var endTime = playData.getEndTime();
-            if (startTime === null || endTime === null) return;
-            scope.startTime = pad(startTime.getHours()) + "" + pad(startTime.getMinutes()) + "" + pad(startTime.getSeconds());
-            if (endTime !== null || endTime !== undefined) {
-              scope.endTime = pad(endTime.getHours()) + "" + pad(endTime.getMinutes()) + "" + pad(endTime.getSeconds());
-            }
-          });
+          return playData.getStartTime() || playData.getEndTime();
+        }, function() {
+          var startTime = playData.getStartTime();
+          var endTime = playData.getEndTime();
+          if (startTime === null || endTime === null) {
+            return;
+          }
+          scope.startTime = pad(startTime.getHours()) + "" + pad(startTime.getMinutes()) + "" + pad(startTime.getSeconds());
+          if (endTime !== null || typeof endTime !== "undefined") {
+            scope.endTime = pad(endTime.getHours()) + "" + pad(endTime.getMinutes()) + "" + pad(endTime.getSeconds());
+          }
+        });
 
         $rootScope.$saveOn('updateTimebar', function(event, timePosition) {
           $timeout(function() {
@@ -231,5 +237,5 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
         });
       },
     };
-  }
+  },
 ]);

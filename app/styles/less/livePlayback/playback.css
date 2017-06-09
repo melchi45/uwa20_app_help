@@ -9,7 +9,7 @@
 .kind-responsive-playback #playback-channel-holder .playback-channel-selector {
   padding: 15px 18px 0 30px;
 }
-.kind-responsive-playback .cm-str-button * {
+.kind-responsive-playback .cm-btn-dark * {
   border: none !important;
 }
 .kind-responsive-playback .cm-vline {
@@ -639,7 +639,7 @@
   .kind-responsive-playback #cm-bottom-menu #cm-menu-content .cm-playback-range {
     line-height: 51px;
   }
-  .kind-responsive-playback .cm-str-button {
+  .kind-responsive-playback .cm-btn-dark {
     height: 51px;
     line-height: 51px;
     padding: 0 15px;
@@ -854,7 +854,7 @@
   .kind-responsive-playback #cm-bottom-menu #cm-menu-content .cm-playback-range {
     line-height: 59.5px;
   }
-  .kind-responsive-playback .cm-str-button {
+  .kind-responsive-playback .cm-btn-dark {
     height: 59.5px;
     line-height: 59.5px;
     padding: 0 17.5px;

@@ -1,4 +1,9 @@
-kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient, Attributes, COMMONUtils, $translate, $timeout, $q, $rootScope, eventRuleService, $compile, UniversialManagerService) {
+kindFramework.controller('storageCtrl', 
+function (
+  $scope, $uibModal, SunapiClient, Attributes, 
+  COMMONUtils, $translate, $timeout, $q, 
+  $rootScope, eventRuleService, UniversialManagerService
+) {
   "use strict";
   var mAttr = Attributes.get();
   COMMONUtils.getResponsiveObjects($scope);
@@ -15,7 +20,6 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
   $scope.needReload = false;
   $scope.OnlyNumStr = mAttr.OnlyNumStr;
   $scope.IPv4PatternStr = mAttr.IPv4PatternStr;
-  $scope.FriendlyNameCharSetNoNewLineStr = mAttr.FriendlyNameCharSetNoNewLineStr;
   $scope.EventSource = "Storage";
   $scope.StorageInfo = {};
   $scope.sdcardEnable = false;
@@ -55,7 +59,9 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     $scope.infoTableData = [];
     var getData = {};
 
-    return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=sdcardinfo&action=view', getData,
+    return SunapiClient.get(
+      '/stw-cgi/system.cgi?msubmenu=sdcardinfo&action=view', 
+      getData,
       function(response) {
         var idx = 0;
         var TableData = response.data;
@@ -69,18 +75,18 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
           if (usedSpace < 1024) {
             element.UsedSpace = usedSpace + " MB"
-          } else if (usedSpace >= 1024 && usedSpace < 1024 * 1024) {
+          } else if (usedSpace >= 1024 && usedSpace < 1048576) { // 1024 * 1024
             element.UsedSpace = (usedSpace / 1024).toFixed(2) + " GB"
-          } else if (usedSpace >= 1024 * 1024 && usedSpace < 1024 * 1024 * 1024) {
-            element.UsedSpace = (usedSpace / (1024 * 1024)).toFixed(2) + " TB"
+          } else if (usedSpace >= 1048576 && usedSpace < 1073741824) {
+            element.UsedSpace = (usedSpace / (1048576)).toFixed(2) + " TB"
           }
 
           if (totalSpace < 1024) {
             element.TotalSpace = totalSpace + " MB"
-          } else if (totalSpace >= 1024 && usedSpace < 1024 * 1024) {
+          } else if (totalSpace >= 1024 && usedSpace < 1048576) { // 1024 * 1024
             element.TotalSpace = (totalSpace / 1024).toFixed(2) + " GB"
-          } else if (totalSpace >= 1024 * 1024 && usedSpace < 1024 * 1024 * 1024) {
-            element.TotalSpace = (totalSpace / (1024 * 1024)).toFixed(2) + " TB"
+          } else if (totalSpace >= 1048576 && usedSpace < 1073741824) {
+            element.TotalSpace = (totalSpace / (1048576)).toFixed(2) + " TB"
           }
 
           if (status === "") {
@@ -112,8 +118,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
       resolve: {
         Message: function() {
           return displaymsg;
-        }
-      }
+        },
+      },
     });
     modalInstance.result.then(function() {
       switch (callback) {
@@ -199,7 +205,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
       NormalMode: $scope.RecordGeneralInfo.NormalMode,
       EventMode: $scope.RecordGeneralInfo.EventMode,
       PreEventDuration: $scope.RecordGeneralInfo.PreEventDuration,
-      PostEventDuration: $scope.RecordGeneralInfo.PostEventDuration
+      PostEventDuration: $scope.RecordGeneralInfo.PostEventDuration,
     };
 
     if ($scope.MaxChannel > 1) {
@@ -216,7 +222,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
       reqData: setData,
       successCallback: function() {
         pageData.RecordGeneralInfo = angular.copy($scope.RecordGeneralInfo);
-      }
+      },
     });
   }
 
@@ -251,11 +257,11 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         fri = 0,
         sat = 0;
 
-      for (var i = 0; i < diff.length; i++) {
-        var splitStr = diff[i].split('.');
-        for (var j = 0; j < mAttr.WeekDays.length; j++) {
-          if (splitStr[0] === mAttr.WeekDays[j]) {
-            switch (j) {
+      for (var idx = 0; idx < diff.length; idx++) {
+        var splitStr = diff[idx].split('.');
+        for (var jdx = 0; jdx < mAttr.WeekDays.length; jdx++) {
+          if (splitStr[0] === mAttr.WeekDays[jdx]) {
+            switch (jdx) {
               case 0:
                 sun = 1;
                 setData["SUN" + splitStr[1]] = 0;
@@ -290,11 +296,11 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
           }
         }
       }
-      for (var z = 0; z < $scope.RecordSchedule.ScheduleIds.length; z++) {
-        var str = $scope.RecordSchedule.ScheduleIds[z].split('.');
-        for (var d = 0; d < mAttr.WeekDays.length; d++) {
-          if (str[0] === mAttr.WeekDays[d]) {
-            switch (d) {
+      for (var zdx = 0; zdx < $scope.RecordSchedule.ScheduleIds.length; zdx++) {
+        var str = $scope.RecordSchedule.ScheduleIds[zdx].split('.');
+        for (var ddx = 0; ddx < mAttr.WeekDays.length; ddx++) {
+          if (str[0] === mAttr.WeekDays[ddx]) {
+            switch (ddx) {
               case 0:
                 sun = 1;
                 setData["SUN" + str[1]] = 1;
@@ -374,7 +380,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
 
       queue.push({
         url: '/stw-cgi/recording.cgi?msubmenu=recordingschedule&action=set',
-        reqData: setData
+        reqData: setData,
       });
     }
   }
@@ -394,7 +400,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
       reqData: setData,
       successCallback: function() {
         pageData.RecordStorageInfo = angular.copy($scope.RecordStorageInfo);
-      }
+      },
     });
   }
   $scope.setStorageInfoData = function(index) {
@@ -436,7 +442,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
       reqData: setData,
       successCallback: function() {
         pageData.Storageinfo.Storages[otherStorage] = angular.copy($scope.Storageinfo.Storages[otherStorage]);
-      }
+      },
     });
   }
 
@@ -449,7 +455,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
       reqData: setData,
       successCallback: function() {
         pageData.Storageinfo.Storages[index] = angular.copy($scope.Storageinfo.Storages[index]);
-      }
+      },
     });
 
     var otherStorage = 0;
@@ -509,7 +515,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
   $scope.GetFormatButtonStatus = function(index) {
     var idx = 0;
     var formatdisable = false;
-    for (idx = 0; idx < $scope.Storageinfo.Storages.length; idx = idx + 1) {
+    for (idx = 0; idx < $scope.Storageinfo.Storages.length; idx++) {
       if ($scope.Storageinfo.Storages[idx].Status === 'Formatting') {
         formatdisable = true;
         break;
@@ -533,11 +539,11 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
     var index = 0;
     var totalSize = "0";
     var freeSize = "0";
-    for (index = 0; index < $scope.Storageinfo.Storages.length; index = index + 1) {
+    for (index = 0; index < $scope.Storageinfo.Storages.length; index++) {
       totalSize = $scope.Storageinfo.Storages[index].TotalSpace;
       freeSize = $scope.Storageinfo.Storages[index].TotalSpace - $scope.Storageinfo.Storages[index].UsedSpace;
-      if (totalSize >= 1024 * 1024) {
-        totalSize = (totalSize / 1024 / 1024).toFixed(2);
+      if (totalSize >= 1048576) { // 1024 * 1024
+        totalSize = (totalSize / 1048576).toFixed(2); // 1024 / 1024
         $scope.Storageinfo.Storages[index].TotalSpace = totalSize + " TB";
       } else if (totalSize >= 1024) {
         totalSize = (totalSize / 1024).toFixed(2);
@@ -545,8 +551,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
       } else {
         $scope.Storageinfo.Storages[index].TotalSpace = totalSize + " MB";
       }
-      if (freeSize >= 1024 * 1024) {
-        freeSize = (freeSize / 1024 / 1024).toFixed(2);
+      if (freeSize >= 1048576) { // 1024 * 1024
+        freeSize = (freeSize / 1048576).toFixed(2); // 1024 / 1024
         $scope.Storageinfo.Storages[index].UsedSpace = freeSize + " TB";
       } else if (freeSize >= 1024) {
         freeSize = (freeSize / 1024).toFixed(2);
@@ -906,7 +912,7 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         var tStorageinfo = data;
         if (!mStopMonotoringStatus) {
           var isLoading = false;
-          for (var idx = 0; idx < tStorageinfo.Storages.length; idx = idx + 1) {
+          for (var idx = 0; idx < tStorageinfo.Storages.length; idx++) {
             if (tStorageinfo.Storages[idx].Status === "") {
               $scope.Storageinfo.Storages[idx].Status = "None";
               $scope.Storageinfo.Storages[idx].isProcessing = false;
@@ -933,8 +939,9 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
               $scope.Storageinfo.Storages[idx].UsedSpace = tStorageinfo.Storages[idx].UsedSpace;
               var totalSize = $scope.Storageinfo.Storages[idx].TotalSpace;
               var freeSize = $scope.Storageinfo.Storages[idx].TotalSpace - $scope.Storageinfo.Storages[idx].UsedSpace;
-              if (totalSize >= 1024 * 1024) {
-                totalSize = (totalSize / 1024 / 1024).toFixed(2);
+              
+              if (totalSize >= 1048576) { // 1024 * 1024
+                totalSize = (totalSize / 1048576).toFixed(2); // 1024 / 1024
                 $scope.Storageinfo.Storages[idx].TotalSpace = totalSize + " TB";
               } else if (totalSize >= 1024) {
                 totalSize = (totalSize / 1024).toFixed(2);
@@ -942,8 +949,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
               } else {
                 $scope.Storageinfo.Storages[idx].TotalSpace = totalSize + " MB";
               }
-              if (freeSize >= 1024 * 1024) {
-                freeSize = (freeSize / 1024 / 1024).toFixed(2);
+              if (freeSize >= 1048576) { // 1024 * 1024
+                freeSize = (freeSize / 1048576).toFixed(2); // 1024 / 1024
                 $scope.Storageinfo.Storages[idx].UsedSpace = freeSize + " TB";
               } else if (freeSize >= 1024) {
                 freeSize = (freeSize / 1024).toFixed(2);
@@ -976,16 +983,16 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
   function getCurrentStatus(func) {
     var getData = {};
 
-    return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', getData, function(response) {
-
-      var tStorageinfo = response.data;
-
-      func(tStorageinfo);
-
-    }, function(errorData) {
-      console.log(errorData);
-      startMonitoringStatus();
-    }, '', true);
+    return SunapiClient.get(
+      '/stw-cgi/system.cgi?msubmenu=storageinfo&action=view', 
+      getData, 
+      function(response) {
+        var tStorageinfo = response.data;
+        func(tStorageinfo);
+      }, function(errorData) {
+        console.log(errorData);
+        startMonitoringStatus();
+      }, '', true);
   }
 
 
@@ -1064,8 +1071,8 @@ kindFramework.controller('storageCtrl', function($scope, $uibModal, SunapiClient
         resolve: {
           infoTableData: function() {
             return $scope.infoTableData;
-          }
-        }
+          },
+        },
       });
     })
 

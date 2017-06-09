@@ -478,6 +478,8 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
 
 
   $rootScope.$saveOn('channelSelector:selectChannel', function(event, index) {
+    stopMonitoringTamperingLevel();
+
     if (checkChangedData()) {
       COMMONUtils.confirmChangeingChannel().then(function() {
         if (validatePage() === true) {

@@ -6,13 +6,13 @@ kindFramework.directive('playbackEventSorting', function() {
     replace: true,
     templateUrl: 'views/livePlayback/directives/playback-event-sorting.html',
     controller: function($scope, $rootScope, CAMERA_TYPE, PlaybackInterface, SearchDataModel, UniversialManagerService) {
-      var pad = function(x) {
-        x *= 1;
-        return (x < 10 ? "0" + x : x);
+      var MIN_DOUBLE_FIGURES = 10;
+      var pad = function(input) {
+        var target = input*1;
+        return target < MIN_DOUBLE_FIGURES ? "0" + target : target;
       };
       var optionServiceType = ['WEB_SSM', 'WEB_IPOLIS', 'MOBILE_B2C', 'MOBILE_B2B'];
       $scope.connectedService = optionServiceType[UniversialManagerService.getServiceType()];
-      var selectedEvent = null;
       $scope.eventList = null;
       var playbackInterfaceService = PlaybackInterface;
       /*
@@ -20,8 +20,7 @@ kindFramework.directive('playbackEventSorting', function() {
        * default value is today.
        */
       $scope.recordedDate = null;
-      var idList;
-      var maxOverlapIDListLength = 1;
+      var MAX_OVERLAP_ID = 1;
       var searchData = new SearchDataModel();
       /*
        * Set flag all event with every items are checked or not. 
@@ -47,20 +46,20 @@ kindFramework.directive('playbackEventSorting', function() {
           name: "lang_resetAll",
           event: "All",
           selected: false,
-          enable: true
+          enable: true,
         };
         $scope.overlapList = [{
           name: "lang_overlapped_section",
           enable: false,
-          id: 0
+          id: 0,
         }, {
           name: "lang_overlapped_section",
           enable: false,
-          id: 1
-        }, ];
+          id: 1,
+        }];
         $scope.selected = {
           event: null,
-          overlap: $scope.overlapList[0]
+          overlap: $scope.overlapList[0],
         };
       };
 
@@ -72,16 +71,17 @@ kindFramework.directive('playbackEventSorting', function() {
           year: $scope.recordedDate.getFullYear(),
           month: pad($scope.recordedDate.getMonth() + 1),
           day: pad($scope.recordedDate.getDate()),
-          channel: channelId
+          channel: channelId,
         };
         playbackInterfaceService.getOverlappedId(query).then(function(value) {
-          idList = value.OverlappedIDList;
+          var idList = value.OverlappedIDList;
           console.log('OverlappedIDList ::', idList);
           for (var index = 0; index < idList.length; index++) {
             var id = idList[index];
-            if (id > maxOverlapIDListLength) continue;
-            $scope.overlapList[id].enable = true;
-            $scope.overlapList[id].id = id;
+            if (id <= MAX_OVERLAP_ID) {
+              $scope.overlapList[id].enable = true;
+              $scope.overlapList[id].id = id;
+            }
           }
           if (typeof(data.overlapList) !== 'undefined' && data.overlapList !== null) {
             $scope.selected.overlap = $scope.overlapList[data.overlapList];
@@ -129,16 +129,13 @@ kindFramework.directive('playbackEventSorting', function() {
         if (data.selectedEvent === null) {
           setDefaultEventItem();
         } else {
-          // for( var i=0 ; i< data.selectedEvent.length; i++) {
           if (data.selectedEvent[0] === 'All') {
             angular.forEach($scope.eventList, function(item) {
               item.selected = true;
             });
             $scope.allEventSearch.selected = true;
           } else {
-            // for( var i=0 ; i< data.selectedEvent.length; i++) {
             selectPreviousValue();
-            // }
           }
         }
         //To set default value.
@@ -185,7 +182,8 @@ kindFramework.directive('playbackEventSorting', function() {
             }
             $scope.selected.event = null;
             if ($scope.eventList[j].enable === true) {
-              if (typeof($scope.eventList[j].selected) !== 'undefined') { // checkbox case( multiple selection)
+              // checkbox case( multiple selection)
+              if (typeof($scope.eventList[j].selected) !== 'undefined') { 
                 $scope.eventList[j].selected = true;
                 $scope.selected.event = $scope.eventList[j];
               } else { // radio button case ( 1 selection )
@@ -199,9 +197,7 @@ kindFramework.directive('playbackEventSorting', function() {
           setDefaultEventItem();
         }
       };
-      // if( typeof(data.overlapList) !== 'undefined' && data.overlapList !== null) {
-      //   $scope.selected.overlap = $scope.overlapList[data.overlapList]; 
-      // }
+
       $scope.ok = function() {
         var selectedEventList = [];
         /*
@@ -222,9 +218,9 @@ kindFramework.directive('playbackEventSorting', function() {
             searchData.setPlaybackType('timeSearch');
           } else {
             searchData.setPlaybackType('eventSearch');
-            for (var i = 0; i < $scope.eventList.length; i++) {
-              if ($scope.eventList[i].selected) {
-                selectedEventList.push($scope.eventList[i].event);
+            for (var idx = 0; idx < $scope.eventList.length; idx++) {
+              if ($scope.eventList[idx].selected) {
+                selectedEventList.push($scope.eventList[idx].event);
               }
             }
           }
@@ -239,10 +235,12 @@ kindFramework.directive('playbackEventSorting', function() {
             searchData.setOverlapId(null);
           }
           searchData.setEventTypeList(selectedEventList);
-          console.log('selected overlap id:: ', $scope.selected.overlap.enable ? $scope.selected.overlap.id : null);
+          console.log('selected overlap id:: ', $scope.selected.overlap.enable ?
+            $scope.selected.overlap.id : null);
           data = {
-            'selectedOverlap': $scope.selected.overlap.enable ? $scope.selected.overlap.id : null,
-            'selectedEvent': selectedEventList
+            'selectedOverlap': $scope.selected.overlap.enable ? 
+              $scope.selected.overlap.id : null,
+            'selectedEvent': selectedEventList,
           };
         } else {
           // $uibModalInstance.dismiss('no event selected');
@@ -253,19 +251,21 @@ kindFramework.directive('playbackEventSorting', function() {
     },
     scope: {
       getOverlapEvent: '=',
-      setOverlapEvent: '='
+      setOverlapEvent: '=',
     },
-    link: function(scope, element, attr) {
+    link: function(scope) {
       scope.getOverlapEvent = scope.ok;
       scope.setOverlapEvent = function(eventData) {
         data = eventData;
         scope.eventList = data.eventList;
         scope.setInitialize();
-        scope.recordedDate = (data.recordedDate === null || data.recordedDate === undefined) ? new Date() : data.recordedDate;
+        scope.recordedDate = (data.recordedDate === null || 
+          typeof data.recordedDate === "undefined") ? 
+          new Date() : data.recordedDate;
         scope.flagAllEventOrNot();
         scope.updateEventSelected();
         scope.getOverlappedId();
       };
-    }
+    },
   };
 });

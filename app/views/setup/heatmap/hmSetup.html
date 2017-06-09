@@ -86,9 +86,9 @@
                         <button 
                             type="button"
                             ng-click="excludeAreaSection.select($index)"
-                            ng-class="{'wn5-btn-hover': excludeArea.isEnable === true, 'wn5-btn-active': excludeArea.isSelected === true && excludeArea.isEnable === true}"
+                            ng-class="{'hover': excludeArea.isEnable === true, 'active': excludeArea.isSelected === true && excludeArea.isEnable === true}"
                             ng-disabled="excludeArea.points.length === 0"
-                            class="btn wn5-btn btn-margin-right wn5-btn-small-square"
+                            class="btn cm-btn-dark wn5-btn btn-margin-right wn5-btn-small-square"
                             ng-repeat="excludeArea in excludeAreaSection.data track by $index">
                             {{$index + 1}}
                         </button>

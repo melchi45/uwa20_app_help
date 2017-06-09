@@ -6,7 +6,7 @@
         <div class="wn5-setup-section">
             <hr class="wn5-setup-hr">
             <div class="wn5-gui-body-large">
-                <input type="checkbox" name="Enable" ng-model="SoundClassfication.Enable" ng-click="setAudioanalysisEnable()">
+                <input type="checkbox" name="Enable" ng-model="SoundClassfication.Enable" ng-change="setAudioanalysisEnable()">
                 <label>{{ 'lang_enable_feature_sound_classification' | translate }}</label>
             </div>
         </div>

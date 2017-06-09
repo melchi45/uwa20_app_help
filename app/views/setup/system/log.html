@@ -16,7 +16,7 @@
                         <div class="wn5-setup-section-article-heading">{{ 'lang_logType' | translate }}</div>
                         <div class="wn5-setup-section-article-content">
                             <select class="form-control" id="AccessTypeId" ng-model="SelectedAccessLog" ng-options="Type for Type in AccessLogTypes" ng-change="onAccLogChange(SelectedAccessLog)"></select>
-                            <button type="button" class="btn btn-primary" ng-click="backup(tab)">{{ 'lang_btn_backup' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="backup(tab)">{{ 'lang_btn_backup' | translate }}</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -51,7 +51,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="text" class="text" id="SelectedAccessLogPage" ng-model="data.AccessLogPageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;border: solid 1px #ddd; line-height:23px; vertical-align:middle;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{pagePattern}}"/>
                         <label class="control-label">/ {{getPageCount(tab)}}</label>
-                        <button type="button" class="btn btn-primary" ng-click="jumpToPage(tab)" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
+                        <button type="button" class="btn btn-primary cm-btn-dark" ng-click="jumpToPage(tab)" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a ng-click="getNextPage(tab)">
                             <i class="tui tui-right"></i>
@@ -67,7 +67,7 @@
                         <div class="wn5-setup-section-article-heading">{{ 'lang_logType' | translate }}</div>
                         <div class="wn5-setup-section-article-content">
                             <select class="form-control" id="SystemTypeId" ng-model="SelectedSystemLog" ng-options="Type for Type in SystemLogTypes" ng-change="onSysLogChange(SelectedSystemLog)"></select>
-                            <button type="button" class="btn btn-primary" ng-click="backup(tab)">{{ 'lang_btn_backup' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="backup(tab)">{{ 'lang_btn_backup' | translate }}</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,7 +102,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="text" class="text" id="SelectedSystemLogPage" ng-model="data.SystemLogPageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;border: solid 1px #ddd; line-height:23px; vertical-align:middle;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{pagePattern}}"/>
                         <label class="control-label">/ {{getPageCount(tab)}}</label>
-                        <button type="button" class="btn btn-primary" ng-click="jumpToPage(tab)" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
+                        <button type="button" class="btn btn-primary cm-btn-dark" ng-click="jumpToPage(tab)" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a ng-click="getNextPage(tab)">
                             <i class="tui tui-right"></i>
@@ -127,7 +127,7 @@
                         <div class="wn5-setup-section-article-heading">{{ 'lang_logType' | translate }}</div>
                         <div class="wn5-setup-section-article-content">
                             <select class="form-control" id="EventTypeId" ng-model="data.SelectedEventLog" ng-options="Type as getEventName(Type) for Type in EventLogTypes" ng-change="onEvtLogChange(data.SelectedEventLog)"></select>
-                            <button type="button" class="btn btn-primary" ng-click="backup(tab)">{{ 'lang_btn_backup' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="backup(tab)">{{ 'lang_btn_backup' | translate }}</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -162,7 +162,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="text" class="text" id="SelectedEventLogPage" ng-model="data.EventLogPageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;border: solid 1px #ddd; line-height:23px; vertical-align:middle;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{pagePattern}}"/>
                         <label class="control-label">/ {{getPageCount(tab)}}</label>
-                        <button type="button" class="btn btn-primary" ng-click="jumpToPage(tab)" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
+                        <button type="button" class="btn btn-primary cm-btn-dark" ng-click="jumpToPage(tab)" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a ng-click="getNextPage(tab)">
                             <i class="tui tui-right"></i>

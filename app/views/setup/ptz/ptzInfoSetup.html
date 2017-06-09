@@ -42,7 +42,7 @@
                     <div class="wn5-setup-section-article">
                         <div class="form-group">
                             <div class="wn5-setup-section-article-content">
-                                <button type="button" class="btn btn-primary" ng-click="remove()">{{ 'lang_remove' | translate }}</button>
+                                <button type="button" class="btn btn-primary cm-btn-dark" ng-click="remove()">{{ 'lang_remove' | translate }}</button>
                             </div>
                         </div>
                         <div class="table-wrapper form-group">
@@ -80,7 +80,7 @@
                                     <i class="tui tui-ch-live-gotochannel"></i>
                                 </a>
                                 -->
-                                    <button type="button" class="btn btn-primary" ng-click="jumpToPage('preset')" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; margin-top:-4px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
+                                    <button type="button" class="btn btn-primary cm-btn-dark" ng-click="jumpToPage('preset')" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; margin-top:-4px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <a ng-click="getNextPage('preset')"><i class="tui tui-right"></i></a>
                                 <a ng-click="getLastPage('preset')"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
@@ -127,10 +127,10 @@
                 <div class="wn5-setup-section-article">
                     <div class="form-group">
                         <div class="wn5-setup-section-article-content">
-                            <button type="button" class="btn btn-primary" ng-click="startStopSwing(0)">
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="startStopSwing(0)">
                                 {{ 'lang_start' | translate }}
                             </button>
-                            <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopSwing(1)">
+                            <button type="button" class="btn btn-primary cm-btn-dark btn-margin-both" ng-click="startStopSwing(1)">
                                 {{ 'lang_stop' | translate }}
                             </button>
                         </div>
@@ -184,9 +184,9 @@
                     <div class="form-group">
                         <div class="wn5-setup-section-article-content">
                             <select class="form-control wp25" ng-model="Group.SelectedIndex" ng-options="GroupOptions.indexOf(Option) as Option for Option in GroupOptions"></select>
-                            <button type="button" class="btn btn-primary btn-margin-left" ng-click="startStopGroup(0)">{{ 'lang_start' | translate }}</button>
-                            <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopGroup(1)">{{ 'lang_stop' | translate }}</button>
-                            <button type="button" class="btn btn-primary" ng-click="removeGroups()">
+                            <button type="button" class="btn btn-primary cm-btn-dark btn-margin-left" ng-click="startStopGroup(0)">{{ 'lang_start' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark btn-margin-both" ng-click="startStopGroup(1)">{{ 'lang_stop' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="removeGroups()">
                                 {{ 'lang_remove' | translate }}
                             </button>
                         </div>
@@ -222,7 +222,7 @@
                         <i class="tui tui-ch-live-gotochannel"></i>
                         </a>
                         -->
-                        <button type="button" class="btn btn-primary" ng-click="jumpToPage('group')" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
+                        <button type="button" class="btn btn-primary cm-btn-dark" ng-click="jumpToPage('group')" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a ng-click="getNextPage('group')"><i class="tui tui-right"></i></a>
                         <a ng-click="getLastPage('group')"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
@@ -245,9 +245,9 @@
                 <div class="wn5-setup-section-article">
                     <div class="form-group">
                         <div class="wn5-setup-section-article-content">
-                            <button type="button" class="btn btn-primary" ng-click="startStopTour(0)">{{ 'lang_start' | translate }}</button>
-                            <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopTour(1)">{{ 'lang_stop' | translate }}</button>
-                            <button type="button" class="btn btn-primary" ng-click="removeTours()">{{ 'lang_remove' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="startStopTour(0)">{{ 'lang_start' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark btn-margin-both" ng-click="startStopTour(1)">{{ 'lang_stop' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="removeTours()">{{ 'lang_remove' | translate }}</button>
                         </div>
                     </div>
                     <div class="table-wrapper form-group">
@@ -283,9 +283,9 @@
                     <div class="form-group">
                         <div class="wn5-setup-section-article-content">
                             <select class="form-control wp25" ng-model="Trace.SelectedIndex" ng-options="TraceOptions.indexOf(Option) as Option for Option in TraceOptions"></select>
-                            <button type="button" class="btn btn-primary btn-margin-left" ng-click="startStopTrace(1)">{{ 'lang_start' | translate }}</button>
-                            <button type="button" class="btn btn-primary btn-margin-both" ng-click="startStopTrace(0)">{{ 'lang_stop' | translate }}</button>
-                            <button type="button" class="btn btn-primary" ng-click="setTrace()">{{ 'lang_set' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark btn-margin-left" ng-click="startStopTrace(1)">{{ 'lang_start' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark btn-margin-both" ng-click="startStopTrace(0)">{{ 'lang_stop' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="setTrace()">{{ 'lang_set' | translate }}</button>
                         </div>
                     </div>
                 </div>
@@ -442,7 +442,7 @@
                     </div>
                     <table border='1' width='100%' style="text-align:center">
                         <div align="right" style="margin-bottom: 5px;">
-                            <button type="button" class="btn btn-primary" ng-click="clearSchedule()">{{ 'lang_clear' | translate }}</button>                                
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="clearSchedule()">{{ 'lang_clear' | translate }}</button>                                
                         </div>                            
                         <thead>
                             <tr height='35' bgcolor="#e6e6e6">

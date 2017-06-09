@@ -99,10 +99,10 @@
                             <button 
                                 type="button"
                                 ng-click="selectTableColumn(includeThing.ROI, $event)"
-                                ng-class="{'wn5-btn-hover': includeThing.Coordinates.length > 0, 
-                                           'wn5-btn-active': isSelectedIncludeIndex === includeThing.ROI && includeThing.Coordinates.length > 0}"
+                                ng-class="{'hover': includeThing.Coordinates.length > 0, 
+                                           'active': isSelectedIncludeIndex === includeThing.ROI && includeThing.Coordinates.length > 0}"
                                 ng-disabled="includeThing.Mode !== 'Inside'"
-                                class="btn wn5-btn btn-margin-right wn5-btn-small-square"
+                                class="btn cm-btn-dark wn5-btn btn-margin-right wn5-btn-small-square"
                                 ng-repeat = "includeThing in selectInclude track by $index">
                                 {{$index + 1}}
                             </button>
@@ -143,10 +143,10 @@
                             <button 
                                 type="button"
                                 ng-click="selectTableColumn(excludeThing.ROI - 8, $event)"
-                                ng-class="{'wn5-btn-hover': excludeThing.Coordinates.length > 0, 
-                                           'wn5-btn-active': isSelectedExcludeIndex === excludeThing.ROI - 8 && excludeThing.Coordinates.length > 0}"
+                                ng-class="{'hover': excludeThing.Coordinates.length > 0, 
+                                           'active': isSelectedExcludeIndex === excludeThing.ROI - 8 && excludeThing.Coordinates.length > 0}"
                                 ng-disabled="excludeThing.Mode !== 'Outside'"
-                                class="btn wn5-btn btn-margin-right wn5-btn-small-square"
+                                class="btn cm-btn-dark wn5-btn btn-margin-right wn5-btn-small-square"
                                 ng-repeat = "excludeThing in selectExclude track by $index">
                                 {{$index + 1}}
                             </button>
@@ -194,12 +194,12 @@
                         </div>
                         <div class="wn5-setup-section-article-content text-right">
                             <!--
-                            <button type="button" class="btn btn-primary" ng-click="addHandover()" ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[data.HandoverAreaIndex].UserList.length >= HandoverUserMax || isSelectedIncludeIndex === "0"'>{{ 'lang_add' | translate }}</button>
-                            <button type="button" class="btn btn-primary" ng-click="removeHandover()" ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[data.HandoverAreaIndex].UserList.length === 0 || isSelectedIncludeIndex === "0"'>{{ 'lang_delete' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="addHandover()" ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[data.HandoverAreaIndex].UserList.length >= HandoverUserMax || isSelectedIncludeIndex === "0"'>{{ 'lang_add' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="removeHandover()" ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[data.HandoverAreaIndex].UserList.length === 0 || isSelectedIncludeIndex === "0"'>{{ 'lang_delete' | translate }}</button>
 
                             <button 
                                 type="button" 
-                                class="btn btn-primary" 
+                                class="btn btn-primary cm-btn-dark" 
                                 ng-click="removeHandover()" 
                                 ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[isSelectedIncludeIndex-1].UserList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[isSelectedIncludeIndex-1].UserList.length === undefined'>
                                 {{ 'lang_delete' | translate }}
@@ -207,14 +207,14 @@
                             -->
                             <button 
                                 type="button" 
-                                class="btn btn-primary btn-margin-right" 
+                                class="btn btn-primary cm-btn-dark btn-margin-right" 
                                 ng-click="addHandover()" 
                                 ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList[findHandoverIndex()].UserList.length >= HandoverUserMax || isOccupied() === 0'>
                                 {{ 'lang_add' | translate }}
                             </button>
                             <button 
                                 type="button" 
-                                class="btn btn-primary" 
+                                class="btn btn-primary cm-btn-dark" 
                                 ng-click="removeHandover()" 
                                 ng-disabled='Handover[presetTypeData.SelectedPreset].HandoverList[findHandoverIndex()].UserList.length === 0 || Handover[presetTypeData.SelectedPreset].HandoverList[findHandoverIndex()].UserList.length === undefined'>
                                 {{ 'lang_delete' | translate }}

@@ -479,6 +479,8 @@ kindFramework.controller('fogDetectionCtrl', function($scope, SunapiClient, XMLP
   }
 
   $rootScope.$saveOn('channelSelector:selectChannel', function(event, index) {
+    stopMonitoringFogLevel();
+
     if (checkChangedData() || !eventRuleService.checkEventRuleValidation()) {
       COMMONUtils
         .confirmChangeingChannel()
