@@ -67,6 +67,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   };
 
   $rootScope.$saveOn('channelSelector:selectChannel', function(event, index) {
+    stopMonitoringMotionLevel();
+
     var changeVA = angular.equals(pageData.VA, $scope.VA);
     // 멀티디렉셔널 Handover 미지원
     // var changeHandover = angular.equals(pageData.Handover, $scope.Handover);

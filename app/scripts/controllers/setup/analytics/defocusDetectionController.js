@@ -458,6 +458,7 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
   });
 
   $rootScope.$saveOn('channelSelector:selectChannel', function(event, index) {
+    stopMonitoringDefocusLevel();
 
     if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect) || !eventRuleService.checkEventRuleValidation()) {
       if (validatePage()) {
