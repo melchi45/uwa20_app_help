@@ -3,7 +3,7 @@
     <button 
       type="button"
       ng-click="checkCurrentStatus()"
-      class="cm-str-button"
+      class="cm-btn-dark"
       title="{{selectedEvent| translate}}">
       <i class="tui tui-wn5-toolbar-filter cm-icon-x15"></i>
       <span class="cm-pc">&nbsp;{{selectedEvent| translate}}</span>
@@ -72,14 +72,14 @@
     <button 
       ng-click="timelineControl.submit()"
       title="{{'lang_apply' | translate}}"
-      class="cm-submit-button"
+      class="cm-submit-button cm-btn-point"
       style="margin-right: 5px;">
       {{'lang_apply' | translate}}
     </button>
     <button 
       ng-click="timelineControl.cancel()"
       title="{{'lang_cancel' | translate}}"
-      class="cm-str-button cm-cancel-button">
+      class="cm-btn-dark cm-cancel-button">
       {{'lang_cancel' | translate}}
     </button>
   </div>

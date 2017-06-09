@@ -60,11 +60,11 @@
                     <div class="wn5-setup-section-article-content">
                         <div class="wn5-setup-preview-table-col-6 file-browser-field">
                             <input type="text" class="form-control" name ="cerName" ng-model="CACertificateFile" ng-disabled="true"> 
-                            <label for="certfileid"> <span class="btn btn-primary" ng-disabled="IEEE802Dot1x[SelectedInterface].CACertificateInstalled">...</span></label>
+                            <label for="certfileid"> <span class="btn btn-primary cm-btn-dark" ng-disabled="IEEE802Dot1x[SelectedInterface].CACertificateInstalled">...</span></label>
                             <input style="visibility: hidden; position: relative; display:none" id="certfileid" class="form-control" type="file" name="certfileid" ng-disabled="IEEE802Dot1x[SelectedInterface].CACertificateInstalled" ng-model-instant accept=".crt"  onchange="angular.element(this).scope().setCACertificateFile(this)">
                         </div>
-                        <button class="btn btn-primary btn-margin-left" ng-disabled="IEEE802Dot1x[SelectedInterface].CACertificateInstalled" ng-click="OnCertInstall(0)">{{ 'lang_install' | translate }}</button>
-                        <button class="btn btn-primary btn-margin-both" ng-disabled="!IEEE802Dot1x[SelectedInterface].CACertificateInstalled" ng-click="OnCertDelete(0)">{{ 'lang_delete' | translate }}</button>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-left" ng-disabled="IEEE802Dot1x[SelectedInterface].CACertificateInstalled" ng-click="OnCertInstall(0)">{{ 'lang_install' | translate }}</button>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-both" ng-disabled="!IEEE802Dot1x[SelectedInterface].CACertificateInstalled" ng-click="OnCertDelete(0)">{{ 'lang_delete' | translate }}</button>
                         <label ng-if="!IEEE802Dot1x[SelectedInterface].CACertificateInstalled" style="color:red">{{ 'lang_nolang_available' | translate }}</label>
                         <label ng-if="IEEE802Dot1x[SelectedInterface].CACertificateInstalled" style="color:green">{{ 'lang_installed' | translate }}</label>
                     </div>
@@ -74,11 +74,11 @@
                     <div class="wn5-setup-section-article-content">
                         <div class="wn5-setup-preview-table-col-6 file-browser-field">
                             <input type="text" class="form-control" name ="clientcerName" ng-model="ClientCertificateFile" ng-disabled="true"> 
-                            <label for="clientcertfileid"> <span class="btn btn-primary" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled">...</span></label>
+                            <label for="clientcertfileid"> <span class="btn btn-primary cm-btn-dark" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled">...</span></label>
                             <input style="visibility: hidden; position: relative; display:none" id="clientcertfileid" class="form-control" type="file" name="clientcertfileid" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" ng-model-instant accept=".crt" onchange="angular.element(this).scope().setClientCertificateFile(this)">
                         </div>
-                        <button class="btn btn-primary btn-margin-left" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" ng-click="OnCertInstall(1)">{{ 'lang_install' | translate }}</button>
-                        <button class="btn btn-primary btn-margin-both" ng-disabled="!IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" ng-click="OnCertDelete(1)">{{ 'lang_delete' | translate }}</button>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-left" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" ng-click="OnCertInstall(1)">{{ 'lang_install' | translate }}</button>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-both" ng-disabled="!IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" ng-click="OnCertDelete(1)">{{ 'lang_delete' | translate }}</button>
                         <label ng-if="!IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" style="color:red">{{ 'lang_nolang_available' | translate }}</label>
                         <label ng-if="IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" style="color:green">{{ 'lang_installed' | translate }}</label>
                     </div>
@@ -89,11 +89,11 @@
                     <div class="wn5-setup-section-article-content">
                         <div class="wn5-setup-preview-table-col-6 file-browser-field">
                             <input type="text" class="form-control" name ="keyName" ng-model="ClietKeyFile" ng-disabled="true"> 
-                            <label for="keyfileid"> <span class="btn btn-primary" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled">...</span></label>
+                            <label for="keyfileid"> <span class="btn btn-primary cm-btn-dark" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled">...</span></label>
                             <input style="visibility: hidden; position: relative; display:none" id="keyfileid" class="form-control" type="file" name="keyfileid" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" ng-model-instant accept=".pem"  onchange="angular.element(this).scope().setClientKeyFile(this)">
                         </div>
-                        <button class="btn btn-primary btn-margin-left" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" ng-click="OnCertInstall(2)">{{ 'lang_install' | translate }}</button>
-                        <button class="btn btn-primary btn-margin-both" ng-disabled="!IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" ng-click="OnCertDelete(2)">{{ 'lang_delete' | translate }}</button>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-left" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" ng-click="OnCertInstall(2)">{{ 'lang_install' | translate }}</button>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-both" ng-disabled="!IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" ng-click="OnCertDelete(2)">{{ 'lang_delete' | translate }}</button>
                         <label ng-if="!IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" style="color:red">{{ 'lang_nolang_available' | translate }}</label>
                         <label ng-if="IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" style="color:green">{{ 'lang_installed' | translate }}</label>
                     </div>

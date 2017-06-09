@@ -41,15 +41,15 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
             } else {
               scope.ptzPreset("Add");
               this.show = false;
-              $("#live-ptz-tabs").removeClass('cm-display-none');
+              $("#cm-ptz-tabs").removeClass('cm-display-none');
             }
           },
           cancel: function() {
             this.show = false;
-            $("#live-ptz-tabs").removeClass('cm-display-none');
+            $("#cm-ptz-tabs").removeClass('cm-display-none');
           },
           waitTab: function() {
-            if ($("#live-ptz-tabs").length) scope.setTabs();
+            if ($("#cm-ptz-tabs").length) scope.setTabs();
             else {
               setTimeout(function() {
                 scope.presetAddForm.waitTab();
@@ -208,7 +208,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
             } else if (value === 'Go') {
               run('preset', scope.selectedObj.presetObj.value, 'Start');
             } else if (value === 'Set') {
-              $("#live-ptz-tabs").addClass('cm-display-none');
+              $("#cm-ptz-tabs").addClass('cm-display-none');
               scope.presetAddForm.show = true;
             } else if (value === 'Add') {
               sunapiURI = "/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=add&Preset=" + scope.addPresetting.SelectedNumber + "&Name=" + scope.addPresetting.SelectedName;
@@ -567,13 +567,13 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
         }
 
         scope.setTabs = function() {
-          console.log($("#live-ptz-tabs").length);
-          if ($("#live-ptz-tabs").length) {
+          console.log($("#cm-ptz-tabs").length);
+          if ($("#cm-ptz-tabs").length) {
             console.log('use tabs');
-            $("#live-ptz-tabs").tabs();
-            var tabCount = $("#live-ptz-tabs .ui-widget-header li").length;
+            $("#cm-ptz-tabs").tabs();
+            var tabCount = $("#cm-ptz-tabs .ui-widget-header li").length;
             if (tabCount < 5) {
-              $("#live-ptz-tabs .ui-widget-header li").css("width", (100 / tabCount) + "%");
+              $("#cm-ptz-tabs .ui-widget-header li").css("width", (100 / tabCount) + "%");
             }
           }
         }

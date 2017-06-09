@@ -1,37 +1,21 @@
 .button {
-  border: 1px solid @color-button-border;
-  color: @font-color;
+  border: 1px solid @theme-color-gray-12;
+  color: @theme-light-normal-color;
   text-align: center;
   i {
-    color: @color-button-icon;
+    color: @theme-color-gray-100;
   }
   &:focus {outline:0;}
-  .btn-disalbed-color(@font-color, white, @color-button-border);
-}
-.button-active {
-  border-color: @color-button-selected;
-  background-color: @color-button-selected;
-  color: #fff;
-  i {
-    color: #fff;
-  }
-  .btn-disalbed-color(#fff, @color-button-selected, @color-button-selected);
-}
-.button-background-active {
-  background-color: white;
-  &:active, 
-  &.button-clicked {
-    .button-active;
-  }
+  .btn-disalbed-color(@theme-light-normal-color, white, @theme-color-gray-12);
 }
 .button-border-active {
   background-color: transparent;
   &:active {
     background-color: transparent;
-    border-color: @color-button-selected;
-    color: @color-button-selected;
+    border-color: @theme-color-point-60;
+    color: @theme-color-point-60;
     i {
-      color: @color-button-selected;
+      color: @theme-color-point-60;
     }
   }
 }
@@ -45,9 +29,9 @@
   &:not(:disabled):active,
   &:not(:disabled).button-clicked,
   &:hover {
-    color: @color-button-selected !important;
+    color: @theme-color-point-60 !important;
     i {
-      color: @color-button-selected !important;
+      color: @theme-color-point-60 !important;
     }
   }
   &:disabled i {
@@ -55,33 +39,128 @@
   }
   &:focus {outline:0;}
 }
-.tui-button-circle, .tui-button-circle:hover{
-  .button;
+
+.cm-btn-dark {
+  border: 1px solid @theme-light-button-dark-normal-line !important;
+  color: @theme-light-button-dark-normal-text !important;
+  background-color: @theme-light-button-dark-normal-bg !important;
+  
+  * {
+    color: inherit !important;
+    background-color: inherit !important;
+  }
+  
+  &:hover,
+  &.hover {
+    border: 1px solid @theme-light-button-dark-focus-line !important;
+    color: @theme-light-button-dark-focus-text !important;
+    background-color: @theme-light-button-dark-focus-bg !important;
+  }
+
+  &.active,
   &:active {
-    .button-active;
+    border: 1px solid @theme-light-button-dark-press-line !important;
+    color: @theme-light-button-dark-press-text !important;
+    background-color: @theme-light-button-dark-press-bg !important;
+    box-shadow: none;
   }
-  width: 32px !important;
-  height: 32px !important;
-  border-radius: 50%;
-  background-color: transparent;
-  line-height: 30px;
-  font-size: 20px;
-  i.tui-check {
-    font-size: 28px !important;
-    margin-top: 2px;
+
+  &[disabled],
+  &[readonly],
+  &.cm-disabled {
+    border: 1px solid @theme-light-button-dark-disabled-line !important;
+    color: @theme-light-button-dark-disabled-text !important;
+    background-color: @theme-light-button-dark-disabled-bg !important;
   }
-}
-.tui-button-circle-active, .tui-button-circle-active:hover {
-  .button-active;
-}
-.tui-button-gray {
-  color: @color-button-icon;
-  i {
-    color: @color-button-icon;
-  }
-  font-size: 20px;
 }
 
-.wisenet-toggle-playback {
-  font-size: 27px;
+.cm-btn-point {
+  border: 1px solid @theme-light-button-point-normal-line !important;
+  color: @theme-light-button-point-normal-text !important;
+  background-color: @theme-light-button-point-normal-bg !important;
+  
+  * {
+    color: inherit !important;
+    background-color: inherit !important;
+  }
+  
+  &:hover,
+  &.hover {
+    border: 1px solid @theme-light-button-point-focus-line !important;
+    color: @theme-light-button-point-focus-text !important;
+    background-color: @theme-light-button-point-focus-bg !important;
+  }
+
+  &.active,
+  &:active {
+    border: 1px solid @theme-light-button-point-press-line !important;
+    color: @theme-light-button-point-press-text !important;
+    background-color: @theme-light-button-point-press-bg !important;
+    box-shadow: none;
+  }
+
+  &[disabled],
+  &[readonly],
+  &.cm-disabled {
+    border: 1px solid @theme-light-button-point-disabled-line !important;
+    color: @theme-light-button-point-disabled-text !important;
+    background-color: @theme-light-button-point-disabled-bg !important;
+  }
+}
+
+.cm-full-menu {
+  .cm-btn-dark {
+    border-color: @theme-dark-button-dark-normal-line !important;
+    color: @theme-dark-button-dark-normal-text !important;
+    background-color: @theme-dark-button-dark-normal-bg !important;
+    
+    &:hover,
+    &.hover {
+      border-color: @theme-dark-button-dark-focus-line !important;
+      color: @theme-dark-button-dark-focus-text !important;
+      background-color: @theme-dark-button-dark-focus-bg !important;
+    }
+
+    &.active,
+    &:active {
+      border-color: @theme-dark-button-dark-press-line !important;
+      color: @theme-dark-button-dark-press-text !important;
+      background-color: @theme-dark-button-dark-press-bg !important;
+    }
+
+    &[disabled],
+    &[readonly],
+    &.cm-disabled {
+      border-color: @theme-dark-button-dark-disabled-line !important;
+      color: @theme-dark-button-dark-disabled-text !important;
+      background-color: @theme-dark-button-dark-disabled-bg !important;
+    }
+  }
+  .cm-btn-point {
+    border-color: @theme-dark-button-point-normal-line !important;
+    color: @theme-dark-button-point-normal-text !important;
+    background-color: @theme-dark-button-point-normal-bg !important;
+    
+    &:hover,
+    &.hover {
+      border-color: @theme-dark-button-point-focus-line !important;
+      color: @theme-dark-button-point-focus-text !important;
+      background-color: @theme-dark-button-point-focus-bg !important;
+    }
+
+    &.active,
+    &:active {
+      border-color: @theme-dark-button-point-press-line !important;
+      color: @theme-dark-button-point-press-text !important;
+      background-color: @theme-dark-button-point-press-bg !important;
+    }
+
+    &[disabled],
+    &[readonly],
+    &.cm-disabled {
+      border-color: @theme-dark-button-point-disabled-line !important;
+      color: @theme-dark-button-point-disabled-text !important;
+      background-color: @theme-dark-button-point-disabled-bg !important;
+    }
+  }
 }

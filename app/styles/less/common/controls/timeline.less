@@ -22,7 +22,7 @@
           content: ' ';
           display: block;
           height: 1px;
-          background-color: @timeline-border-color;
+          background-color: @theme-color-gray-25;
           position: absolute;
           left: 0;
           right: 0;
@@ -41,7 +41,7 @@
             left: 0;
             top: 0;
             border: none;
-            background-color: @timeline-border-color;
+            background-color: @theme-color-gray-25;
           }
           &.vis-major {
             display: none;
@@ -126,7 +126,7 @@
           content: ' ';
           display: block;
           width: 100%;
-          border-top: 1px solid @timeline-border-color;
+          border-top: 1px solid @theme-color-gray-25;
           position: absolute;
           top: 10px;
         }
@@ -215,12 +215,12 @@
     font-size: 12px;
     min-width: 250px;
     padding-top: 4px;
-    color: @color-button-icon;
+    color: @theme-color-gray-100;
     padding: 2px 10px 2px 10px;
     border-radius: 15px;
     cursor: pointer;
     &:active, &.selected {
-      color: @color-timeline-main;
+      color: @theme-color-point-100;
     }
   }
   div{
@@ -230,7 +230,7 @@
       padding: 0 5px;
       border-radius: 15px;
       &:active, &.selected {
-        color: @color-timeline-main;
+        color: @theme-color-point-100;
       }
     }
   }
@@ -248,13 +248,13 @@
     color: white;
     &:active, &.selected {
       color: white;
-      background-color: @color-timeline-main;
+      background-color: @theme-color-point-100;
     }
   }
   .playback-details div a {
     color: white;
     &:active, &.selected {
-      color: @color-timeline-main;
+      color: @theme-color-point-100;
     }
   }
   .vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text {

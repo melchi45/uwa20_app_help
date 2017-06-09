@@ -3,7 +3,7 @@
     <div class="ptz-detail-label">
         {{ 'lang_presetNo' | translate }}
     </div>
-    <select ng-model="selectPreset" class="ptz-detail-selectBox">
+    <select ng-model="selectPreset" class="ptz-detail-select">
         <option ng-repeat="item in list" value="{{item.value}}">
         {{item.value}} : {{item.name}}
         </option>

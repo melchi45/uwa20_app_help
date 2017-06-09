@@ -7,15 +7,15 @@
     position: absolute;
     left: -9999px;
     &:checked+.icon {
-      border-color: lighten(@font-color, 10%);
+      border-color: lighten(@theme-color-gray-100, 10%);
       &:before {
         opacity: 1;
-        background-color: lighten(@font-color, 10%);
+        background-color: lighten(@theme-color-gray-100, 10%);
       }
     }
   }
   .title {
-    color: @font-color;
+    color: @theme-color-gray-100;
     font-size: 12px;
     margin-left: 5px;
     height: 18px;
@@ -30,7 +30,7 @@
     height: 18px;
     background-color: transparent;
     border-radius: 50%;
-    border: solid 1px lighten(@font-color, 25%);
+    border: solid 1px lighten(@theme-color-gray-100, 25%);
     float: left;
     &:before {
       content: ' ';

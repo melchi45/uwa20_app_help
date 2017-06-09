@@ -81,8 +81,8 @@
             <div class="wn5-setup-section-article">
                 <div class="form-group">
                     <div class="wn5-setup-section-article-content">
-                        <button type="button" class="btn btn-primary btn-margin-right" ng-click="addProfile()" ng-disabled="!EnableAddButton">{{ 'lang_add' | translate }}</button>
-                        <button type="button" class="btn btn-primary" ng-click="deleteProfile()" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].IsFixedProfile">{{ 'lang_delete' | translate }}</button>
+                        <button type="button" class="btn btn-primary cm-btn-dark btn-margin-right" ng-click="addProfile()" ng-disabled="!EnableAddButton">{{ 'lang_add' | translate }}</button>
+                        <button type="button" class="btn btn-primary cm-btn-dark" ng-click="deleteProfile()" ng-disabled="VideoProfiles[ch].Profiles[selectedProfile].IsFixedProfile">{{ 'lang_delete' | translate }}</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -249,7 +249,7 @@
                 <div class="wn5-setup-section-article-content">
                     <button 
                         type="button"  
-                        class="btn btn-primary" 
+                        class="btn btn-primary cm-btn-dark" 
                         ng-disabled="!VideoProfiles[ch].Profiles[selectedProfile].CropEncodingEnable || VideoProfiles[ch].Profiles[selectedProfile].IsDigitalPTZProfile" 
                         ng-click="setCropArea()">
                         {{ 'lang_setArea' | translate }}
@@ -259,7 +259,7 @@
                 <div class="wn5-setup-section-article-content">
                     <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].CropEncodingEnable" ng-change="changeCropStatus()">
                     </input>
-                    <button type="button"  class="btn btn-primary" ng-disabled="!VideoProfiles[ch].Profiles[selectedProfile].CropEncodingEnable" ng-click="setCropArea()">{{ 'lang_setArea' | translate }}
+                    <button type="button"  class="btn btn-primary cm-btn-dark" ng-disabled="!VideoProfiles[ch].Profiles[selectedProfile].CropEncodingEnable" ng-click="setCropArea()">{{ 'lang_setArea' | translate }}
                     </button>
                 </div> -->
             </div>
@@ -301,12 +301,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="form-group">
-            <button type="button" class="button button-background-none btn-wide" ng-model="showAdvancedMenu" ng-click="advacedMenu()">
-              {{ showAdvancedLabel | translate }}<i ng-class="showAdvancedMenu == true ? 'tui-top' :'tui-down'" class="tui"></i>
-              <hr class="wn5-setup-hr" ng-hide="showAdvancedMenu == true">
-            </button>
-        </div> -->
         <!-- <div ng-show="showAdvancedMenu"> -->
             <div ng-show="VideoProfiles[ch].Profiles[selectedProfile].EncodingType != 'MJPEG'"
                 class="wn5-setup-section">

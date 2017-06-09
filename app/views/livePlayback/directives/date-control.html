@@ -4,12 +4,12 @@
     <button
       type="button" 
       kind-touch-tap="goPrevDay"
-      class="cm-str-button cm-pc">
+      class="cm-btn-dark cm-pc">
       <i class="tui tui-left"></i>
     </button>
     <button 
       type="button" 
-      class="cm-str-button"
+      class="cm-btn-dark"
       kind-touch-tap="visibleSearchPopup">
       <i class="tui tui-wn5-toolbar-calendar cm-icon-x15"></i>
       <span>{{currentDate}}</span>
@@ -17,7 +17,7 @@
     <button
       type="button" 
       kind-touch-tap="goNextDay"
-      class="cm-str-button cm-pc">
+      class="cm-btn-dark cm-pc">
       <i class="tui tui-right"></i>
     </button>
   </div>
@@ -62,7 +62,7 @@
     <button 
       type="button" 
       ng-hide="timelineMode === 'backup'"
-      class="cm-str-button"
+      class="cm-btn-dark"
       kind-touch-tap="goToday"
       title="{{'lang_today' | translate}}">
       {{'lang_today' | translate}}
@@ -71,7 +71,7 @@
 
   <div class="cm-col" id="backup">
     <button 
-      class="cm-str-button"
+      class="cm-btn-dark"
       kind-touch-tap="playbackBackup"
       title="{{ 'lang_backup' | translate}}"
       data-ng-disabled="disableBackupIcon"

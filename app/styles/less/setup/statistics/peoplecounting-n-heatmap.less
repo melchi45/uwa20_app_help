@@ -25,11 +25,6 @@ Prefix : pc-n-hm
 	font-weight: bold;
 }
 
-.pc-n-hm-heading-lv1 {
-	.pc-n-hm-heading-lv2();
-	color: #585e6c;	
-}
-
 /* Section */
 .generate-grid-system(@n, @i: 1) when (@i =< @n){
 	.pc-n-hm-grid-@{i} {
@@ -54,7 +49,7 @@ Prefix : pc-n-hm
 .pc-n-hm-hr {
 	clear: both;
 	margin: 10px 0;
-	border-color: #ddd;
+	border-color: @theme-side-tree-menu-line;
 }
 
 .pc-n-hm-hr-hm-calender-active {
@@ -190,7 +185,7 @@ Prefix : pc-n-hm
 	a {
 		text-decoration: underline;
 		&:hover{
-			color: orange;
+			color: @theme-color-point-100;
 		}
 	}
 }

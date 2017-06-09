@@ -3,14 +3,13 @@
 @import "default";
 @import "loading-bar";
 @import "controls/datepicker";
-@import "controls/ui-slider";
 @import "controls/radio";
-@import "controls/checkbox";
-@import "controls/toggle-button";
 @import "controls/button";
 @import "controls/timeline";
 @import "controls/modal";
 @import "controls/channel-selector";
+@import "controls/ptz-control";
+@import "controls/live-chart-slider";
 
 html, 
 body {
@@ -29,7 +28,7 @@ body {
   overflow: hidden;
   font-size: 12px;
   min-width: 400px;
-  color: #000;
+  color: @theme-light-normal-color;
   -ms-overflow-style: scrollbar;
 
   /* It is added in wrapper.js, when page of "/uni/channel" is loaded. */
@@ -66,38 +65,20 @@ body {
   }
 }
 
-.nav-hover() {
-  background-color: @color-button-selected;
-  color: #fff !important;
-  i {
-    color: #fff !important;
-  }
-}
-
-.wisenet-nav {
-  > li {
-    > a:active {
-      .nav-hover()
-    }
-  }
-}
-
 .nav-toggle {
+  position: absolute;
+  top: 11px;
+  left: 12px;
+  
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 20px;
+  padding: 0;
+
   z-index: @zindex-top;
   &.is-loading {
     z-index: @zindex-top * 1000 !important;
-  }
-  &.overlay {
-    z-index: @zindex-top * 1000;
-    display: initial !important;
-    i {
-      color: white !important;
-    }
-    &:active {
-      span.icon-bar {
-        background-color: #ff9832 !important;
-      }
-    }
   }
 }
 
@@ -107,16 +88,6 @@ body {
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: @background-color-main;
-  .nav-toggle {
-    span.icon-bar {
-      background-color: @color-button-font;
-      width: 13px;
-      &+span.icon-bar{
-        margin-top: 2px;
-      }
-    }
-  }
   &>div {
     height: 100%;
     overflow: hidden;

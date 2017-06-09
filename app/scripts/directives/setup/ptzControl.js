@@ -1,4 +1,4 @@
-kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibModal, $state, $timeout, COMMONUtils, $interval, CAMERA_STATUS, UniversialManagerService, $rootScope, DigitalPTZContorlService) {
+kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibModal, $state, $timeout, COMMONUtils, $interval, CAMERA_STATUS, UniversialManagerService, $rootScope) {
   "use strict";
   return {
     restrict: 'E',
@@ -7,7 +7,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
       quadrant: '='
     },
     templateUrl: './views/setup/common/ptzControl.html',
-    link: function(scope, element, attrs) {
+    link: function(scope) {
       var mAttr = Attributes.get("attr");
       scope.showPTZControlPreset = false;
       scope.showPTZControlPresetText = false;
@@ -30,8 +30,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
       scope.disablePosition = false;
       scope.autoTrackingFlag = false;
 
-      var sunapiURI, isPtzControlStart = false,
-        IsDigitalPTZProfile = false;
+      var isPtzControlStart = false, IsDigitalPTZProfile = false;
 
       var initControlUI = function() {
         scope.showPTZControlPreset = false;
@@ -97,7 +96,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
                 });
                 scope.isShowPTZControl = (mAttr.ExternalPTZModel === false && IsDigitalPTZProfile === true);
               },
-              function(errorData) {
+              function() {
                 scope.isShowPTZControl = false;
               }, '', true);
           }
@@ -141,7 +140,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
               scope.blcbox = {};
               scope.blcbox.select = 5;
               scope.blcbox.options = COMMONUtils.getArray(5, true);
-              if (ptzinfo.disable == undefined || (ptzinfo.disable !== undefined && ptzinfo.disable == true)) {
+              if (ptzinfo.disable === undefined || (ptzinfo.disable !== undefined && ptzinfo.disable === true)) {
                 if (ptzinfo.type === 'BLC') {
                   scope.disablePTZControlBLC = true;
                   scope.disablePTZControlHLC = false;
@@ -160,7 +159,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
               }
               scope.ptzControlClass = 'w510';
             }
-          } else if (ptzinfo.type == 'OSD') {
+          } else if (ptzinfo.type === 'OSD') {
             if (mAttr.PTZModel) {
               scope.showPTZControlOSD = true;
               scope.ptzControlClass = 'w310';
@@ -211,22 +210,22 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
 
         var removeNorth = function() {
           $timeout(function() {
-            $('#sketchbook #set_North').remove();
+            $('#sketchbook').find('#set_North').remove();
           }, 1000);
         };
         var setData = {};
         setData.NorthDirection = '';
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set', setData,
-          function(response) {
+          function() {
             removeNorth();
           },
-          function(errorData) {
+          function() {
             removeNorth();
           }, '', true);
       }
       scope.$watch('showPTZControlOSD', function(value) {
-        if (value == false) {
-          $('#sketchbook #set_North').remove();
+        if (value === false) {
+          $('#sketchbook').find('#set_North').remove();
         }
       });
 
@@ -256,7 +255,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
         setData.Channel = 0;
         setData.TrackingAreaID = scope.selectTrackingArea;
         SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=remove', setData,
-          function(response) {
+          function() {
             getAutoTracking();
           },
           function(errorData) {}, '', true);
@@ -278,7 +277,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
       scope.clickAutoTracking = function() {
         var setData = {};
         setData.Channel = 0;
-        if (scope.autoTrackingFlag == true) {
+        if (scope.autoTrackingFlag === true) {
           scope.autoTrackingFlag = false;
           setData.Enable = 'False';
         } else {
@@ -287,8 +286,8 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
         }
         SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=autotracking&action=set', setData,
           function(response) {},
-          function(errorData) {
-            scope.autoTrackingFlag = scope.autoTrackingFlag != true;
+          function() {
+            scope.autoTrackingFlag = (scope.autoTrackingFlag !== true);
           }, '', true);
       };
 
@@ -306,7 +305,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
               } catch (e) {}
             }, 100);
           },
-          function(errorData) {
+          function() {
             $timeout(function() {
               try {
                 scope.TrackingAreas = [];
@@ -321,11 +320,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
       $rootScope.$saveOn('AutoTrackingStatus', function(event, obj) {
         switch (obj.type) {
           case "TrackingEnable":
-            if (obj.value === 'false') {
-              scope.autoTrackingFlag = false;
-            } else {
-              scope.autoTrackingFlag = true;
-            }
+              scope.autoTrackingFlag = (obj.value === 'true');
             break;
         }
       });
@@ -345,9 +340,12 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
         }
       });
 
-      $("#ptz-control_move-btn").unbind();
-      $("#ptz-control_box").unbind();
-      $("#ptz-control_slider").unbind();
+      var ptzMoveBtn = $("#ptz-control_move-btn");
+      var ptzControlBox = $("#ptz-control_box");
+      var ptzControlSlider = $("#ptz-control_slider");
+      ptzMoveBtn.unbind();
+      ptzControlBox.unbind();
+      ptzControlSlider.unbind();
       var isDrag = false;
       var isMove = false;
       var animateDuration = 50;
@@ -359,7 +357,9 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
       var ptzJogTimer = null;
       var isJogUpdating = false;
 
-      $("#ptz-control_move-btn").draggable({
+
+
+       ptzMoveBtn.draggable({
         containment: "parent",
         revert: false,
         revertDuration: 100,
@@ -382,9 +382,9 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
           if (!isDrag && !isMove) {} else {
             isDrag = false;
             isMove = false;
-            var moveAreaWidth = $('#ptz-control_box').width();
-            var moveAreaHeight = $('#ptz-control_box').height();
-            $('#ptz-control_move-btn').animate({
+            var moveAreaWidth = ptzControlBox.width();
+            var moveAreaHeight = ptzControlBox.height();
+              ptzMoveBtn.animate({
               top: (moveAreaHeight / 2 - 12),
               left: (moveAreaWidth / 2 - 12)
             }, animateDuration, function() {
@@ -393,27 +393,28 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
           }
         }
       });
-      $("#ptz-control_box").mousedown(function(e) {
-        if (isDrag || isMove || e.which != 1)
+        ptzControlBox.mousedown(function(e) {
+        if (isDrag || isMove || e.which !== 1)
           return;
 
         isMove = true;
-        var jogWidth = $('#ptz-control_move-btn').width() / 2;
+        var jogWidth = ptzMoveBtn.width() / 2;
 
-        var moveAreaPos = $('#ptz-control_box').offset();
-        var moveAreaWidth = $('#ptz-control_box').width();
-        var moveAreaHeight = $('#ptz-control_box').height();
-        var jogPos = $('#ptz-control_move-btn').offset();
+        var moveAreaPos = ptzControlBox.offset();
+        var moveAreaWidth = ptzControlBox.width();
+        var moveAreaHeight = ptzControlBox.height();
+        var jogPos = ptzMoveBtn.offset();
         var jog_Left = jogPos.left + jogWidth;
         var jog_Top = jogPos.top + jogWidth;
         var xPos = e.pageX;
         var yPos = e.pageY;
 
-        if (window.navigator.msPointerEnabled) {
-          if ($(window).scrollLeft() != 0 && e.pageX == e.clientX) {
+        /** @namespace window.navigator.msPointerEnabled */
+            if (window.navigator.msPointerEnabled) {
+          if ($(window).scrollLeft() !== 0 && e.pageX === e.clientX) {
             xPos = xPos + $(window).scrollLeft();
           }
-          if ($(window).scrollTop() != 0 && e.pageY == e.clientY) {
+          if ($(window).scrollTop() !== 0 && e.pageY === e.clientY) {
             yPos = yPos + $(window).scrollTop();
           }
         }
@@ -432,7 +433,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
         if (-4 <= xPos && xPos <= 4) xPos = 0;
         if (-2 <= yPos && yPos <= 2) yPos = 0;
 
-        $('#ptz-control_move-btn').animate({
+          ptzMoveBtn.animate({
           top: (moveAreaHeight / 2 - 12) - yPos,
           left: (moveAreaWidth / 2 - 12) + xPos
         }, animateDuration, function() {
@@ -440,24 +441,40 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
           yPos *= TILT_RATIO;
 
           ptzJogMove(xPos, yPos);
-          if (isMove == true) {
+          if (isMove === true) {
             clearTimeout(downTimer);
             downTimer = setTimeout(function() {
-              $('#ptz-control_move-btn').trigger(e);
+                ptzMoveBtn.trigger(e);
             }, animateDuration);
           }
         });
         e.preventDefault();
       });
-      $('#ptz-control_box,#ptz-control_move-btn').mouseup(function(e) {
+        ptzMoveBtn.mouseup(function(e) {
+            clearTimeout(downTimer);
+            e.preventDefault();
+            if (!isDrag && !isMove) {} else {
+                isDrag = false;
+                isMove = false;
+                var moveAreaWidth = ptzControlBox.width();
+                var moveAreaHeight = ptzControlBox.height();
+                ptzMoveBtn.animate({
+                    top: (moveAreaHeight / 2 - 12),
+                    left: (moveAreaWidth / 2 - 12)
+                }, animateDuration, function() {
+                    ptzStop();
+                });
+            }
+        });
+        ptzControlBox.mouseup(function(e) {
         clearTimeout(downTimer);
         e.preventDefault();
         if (!isDrag && !isMove) {} else {
           isDrag = false;
           isMove = false;
-          var moveAreaWidth = $('#ptz-control_box').width();
-          var moveAreaHeight = $('#ptz-control_box').height();
-          $('#ptz-control_move-btn').animate({
+          var moveAreaWidth = ptzControlBox.width();
+          var moveAreaHeight = ptzControlBox.height();
+            ptzMoveBtn.animate({
             top: (moveAreaHeight / 2 - 12),
             left: (moveAreaWidth / 2 - 12)
           }, animateDuration, function() {
@@ -492,7 +509,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
         }
       }
 
-      $("#ptz-control_slider").slider({
+        ptzControlSlider.slider({
         orientation: "vertical",
         min: -100,
         max: 100,
@@ -522,14 +539,15 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
 
         },
         stop: function() {
-          $("#ptz-control_slider").slider('value', 0);
+            ptzControlSlider.slider('value', 0);
           ptzStop();
         }
       });
 
-      $("#ptz-control_slider-horizontal-zoom").unbind();
+      var ptzContorlSliderHorizontalZoom = $("#ptz-control_slider-horizontal-zoom");
+      ptzContorlSliderHorizontalZoom.unbind();
 
-      $("#ptz-control_slider-horizontal-zoom").slider({
+      ptzContorlSliderHorizontalZoom.slider({
         orientation: "horizontal",
         min: -100,
         max: 100,
@@ -555,17 +573,16 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
 
         },
         stop: function() {
-          $("#ptz-control_slider-horizontal-zoom").slider('value', 0);
+           ptzContorlSliderHorizontalZoom.slider('value', 0);
           ptzStop();
         }
       });
 
+      var ptzContorlSliderHorizontalFocus = $("#ptz-control_slider-horizontal-focus");
 
+      ptzContorlSliderHorizontalFocus.unbind();
 
-
-      $("#ptz-control_slider-horizontal-focus").unbind();
-
-      $("#ptz-control_slider-horizontal-focus").slider({
+      ptzContorlSliderHorizontalFocus.slider({
         orientation: "horizontal",
         min: -100,
         max: 100,
@@ -588,7 +605,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
 
         },
         stop: function() {
-          $("#ptz-control_slider-horizontal-focus").slider('value', 0);
+          ptzContorlSliderHorizontalFocus.slider('value', 0);
           ptzStop();
         }
       });
@@ -602,9 +619,9 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
       scope.clickPtzFocus = function(value) {
         var setData = {};
         setData.Channel = 0;
-        if (value == 'Stop') {
+        if (value === 'Stop') {
           ptzStop();
-        } else if (value == 'Auto') {
+        } else if (value === 'Auto') {
           setData.Mode = 'AutoFocus';
 
           SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=control', setData,
@@ -622,9 +639,9 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
 
       scope.clickHomePosition = function(value) {
         var setData = {};
-        if (value == 'Set') {
+        if (value === 'Set') {
           SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=home&action=set', setData,
-            function(response) {
+            function() {
               COMMONUtils.ShowInfo('lang_savingCompleted');
             },
             function(errorData) {}, '', true);
@@ -637,7 +654,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
       };
 
       scope.ptzControlZoom = function(value) {
-        if (value == 'Stop') {
+        if (value === 'Stop') {
           if (UniversialManagerService.getDigitalPTZ() !== CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING) {
             ptzStop();
           }
@@ -703,7 +720,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
                 addData.Name = data.PresetName;
 
                 SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=add', addData,
-                  function(response) {
+                  function() {
                     scope.$emit('changePTZPreset', data.PresetIdx);
                   },
                   function(errorData) {}, '', true);

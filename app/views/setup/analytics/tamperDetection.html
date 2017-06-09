@@ -14,7 +14,7 @@
             </setup-channel-selector>
             
             <div class="wn5-gui-body-large">
-                <input type="checkbox" name="Enable" ng-model="TamperDetect.Enable" ng-click="setTamperDetectionEnable()">
+                <input type="checkbox" name="Enable" ng-model="TamperDetect.Enable" ng-change="setTamperDetectionEnable()">
                 <label>{{ 'lang_enable_feature_tampering_detection' | translate }}</label>
             </div>
         </div>
