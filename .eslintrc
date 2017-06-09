@@ -18,113 +18,100 @@
     "isPhone" : true,
     "moment" : true
   },
-  //"plugins": ["angular"],
   "rules": {
-    //
-    // Possible Errors
-    //- These rules related to possible syntax or logic errors in JS code
-    //
-    "no-compare-neg-zero" : "off", //disallow comparing against -0
-    "no-cond-assign" : "error", //disallow assignment operators in conditional expressions
-    "no-constant-condition" : "error", //disallow constant expressions in conditions
-    "no-control-regex" : "error", //disallow control characters in regular expressions
-    "no-debugger" : "error", //disallow the use of debugger
-    "no-dupe-args" : "error", //disallow duplicate arguments in function definitions
-    "no-dupe-keys" : "error", //disallow duplicate keys in object literals
-    "no-duplicate-case" :"error", //disallow duplicate case labels
-    "no-empty" : "error", //disallow empty block statements
-    "no-empty-character-class" : "error", //disallow empty character classes in regular expressions
-    "no-ex-assign" : "error", //disallow reassigning exceptions in catch clauses
-    "no-extra-boolean-cast" : "error", //disallow unnecessary boolean casts
-    "no-extra-semi" : "error", //disallow unnecessary semicolons
-    "no-func-assign" :"error", //disallow reassigning function declarations
-    "no-inner-declarations" : "error", //disallow variable or function declarations in nested blocks
-    "no-invalid-regexp" : "error", //disallow irregular whitespace outside of strings and comments
-    "no-irregular-whitespace" : "error", //disallow irregular whitespace outside of strings and comments
-    "no-obj-calls" : "error", //disallow calling global object properties as functions
-    "no-regex-spaces" : "error", //disallow multiple spaces in regular expressions
-    "no-sparse-arrays" : "error", //disallow sparse arrays
-    "no-unexpected-multiline" : "error", //disallow confusing multiline expressions
-    "no-unreachable" : "error", //disallow unreachable code after return, throw, continue, and break statements
-    "no-unsafe-finally" : "error", //disallow control flow statements in finally blocks
-    "no-unsafe-negation" : "off", //disallow negating the left operand of relational operators
-    "use-isnan" : "error", //require calls to isNaN() when checking for NaN
-    "valid-typeof" : "error", //enforce comparing typeof expressions against valid strings
+    "no-compare-neg-zero" : "off",
+    "no-cond-assign" : "error",
+    "no-constant-condition" : "error",
+    "no-control-regex" : "error",
+    "no-debugger" : "error",
+    "no-dupe-args" : "error",
+    "no-dupe-keys" : "error",
+    "no-duplicate-case" :"error",
+    "no-empty" : "error",
+    "no-empty-character-class" : "error",
+    "no-ex-assign" : "error",
+    "no-extra-boolean-cast" : "error",
+    "no-extra-semi" : "error",
+    "no-func-assign" :"error",
+    "no-inner-declarations" : "error",
+    "no-invalid-regexp" : "error",
+    "no-irregular-whitespace" : "error",
+    "no-obj-calls" : "error",
+    "no-regex-spaces" : "error",
+    "no-sparse-arrays" : "error",
+    "no-unexpected-multiline" : "error",
+    "no-unreachable" : "error",
+    "no-unsafe-finally" : "error",
+    "no-unsafe-negation" : "off",
+    "use-isnan" : "error",
+    "valid-typeof" : "error",
+    "no-console:" : "off",
+    "valid-jsdoc" : "off",
 
-    "no-console:" : "off", //disallow the use of console
-    "valid-jsdoc" : "off", //enforce valid JSDoc comments
-    ///
-    // Best Practices
-    // - These rules relate to better ways of doing things to help you avoid problems:
-    "block-scoped-var" : "error", //enforce the use of variables within the scope they are defined
-    "curly" : "error", //enforce consistent brace style for all control statements
-    "dot-location" : "error", //enforce consistent newlines before and after dots
-    "dot-notation" : "error", //enforce dot notation whenever possible
-    "eqeqeq" : "error", //require the use of === and !==
-    "no-alert" : "error", //disallow the use of alert, confirm, and prompt
-    "no-case-declarations" : "error", //disallow lexical declarations in case clauses
-    "no-empty-pattern" : "error", //disallow empty destructuring patterns
-    "no-fallthrough" : "error", //disallow fallthrough of case statements
-    "no-global-assign" : "off", //disallow assignments to native objects or read-only global variables
-    "no-multi-spaces" : "off", //disallow multiple spaces
-    "no-octal" : "error", //disallow octal literals
-    "no-param-reassign" : "error", //disallow reassigning function parameters
-    "no-redeclare" : "error", //disallow variable redeclaration
-    "no-self-assign" : "error", //disallow assignments where both sides are exactly the same
-    "no-self-compare" : "error", //disallow comparisons where both sides are exactly the same
-    "no-unused-labels" : "error", //disallow unused labels
-    "no-void" : "error", //disallow void operators
-    "vars-on-top" : "off", //require var declarations be placed at the top of their containing scope
-    "complexity" : ["warn",20], //enforce a maximum cyclomatic complexity allowed in a program
-    "no-magic-numbers": ["warn", {"ignore": [-1, 0, 1]}], //disallow magic numbers
-    ///
-    // Variables
-    // - These rules relate to variable declarations:
-    "init-declarations" : "error", //require or disallow initialization in variable declarations
-    "no-delete-var" : "error", //disallow deleting variables
-    "no-restricted-globals" : "error", //disallow specified global variables
-    "no-undef" : "error", //disallow the use of undeclared variables unless mentioned in global comments
-    "no-undefined" : "error", //disallow the use of undefined as an identifier
-    "no-unused-vars" : "error", //disallow unused variables
-    ///
-    // Stylistic Issues
-    // - These rules relate to style guidelines, and are therefore quite subjective:
-    "block-spacing" : ["warn","always"], //enforce consistent spacing inside single-line blocks
-    "brace-style" : ["warn", "1tbs"], //enforce consistent brace style for blocks : enforces one true brace style
-    "camelcase" : ["warn", { "properties": "always" }], //enforce camelcase naming convention
-    "comma-dangle": ["warn", {                        //require or disallow trailing commas
+    "block-scoped-var" : "error", 
+    "curly" : "error",
+    "dot-location" : "error",
+    "dot-notation" : "error",
+    "eqeqeq" : "error",
+    "no-alert" : "error",
+    "no-case-declarations" : "error",
+    "no-empty-pattern" : "error",
+    "no-fallthrough" : "error",
+    "no-global-assign" : "off",
+    "no-multi-spaces" : "off",
+    "no-octal" : "error",
+    "no-param-reassign" : "error",
+    "no-redeclare" : "error",
+    "no-self-assign" : "error",
+    "no-self-compare" : "error",
+    "no-unused-labels" : "error",
+    "no-void" : "error",
+    "vars-on-top" : "off",
+    "complexity" : ["warn",20],
+    "no-magic-numbers": ["warn", {"ignore": [-1, 0, 1]}],
+
+    "init-declarations" : "error",
+    "no-delete-var" : "error",
+    "no-restricted-globals" : "error",
+    "no-undef" : "error",
+    "no-undefined" : "error",
+    "no-unused-vars" : "error",
+
+    "block-spacing" : ["warn","always"],
+    "brace-style" : ["warn", "1tbs"],
+    "camelcase" : ["warn", { "properties": "always" }],
+    "comma-dangle": ["warn", {
       "arrays": "always-multiline",
       "objects": "always-multiline",
       "imports": "ignore",
       "exports": "ignore",
       "functions": "never"
     }],
-    "comma-spacing" : ["warn",{     //enforce consistent spacing before and after commas
+    "comma-spacing" : ["warn",{ 
       "before": false,
       "after": true
     }],
-    "comma-style": ["warn", "last"], //enforce consistent comma style
-                                    // -requires a comma after and on the same line as an array element, object property, or variable declaration
-    "id-length" : "warn", //enforce minimum(2) and maximum(Infinity) identifier lengths
-    "indent" : ["warn",2,{"SwitchCase" : 1}], //enforce consistent indentation(2 spaces)
-    "keyword-spacing" : ["warn",{"before" : true}], //enforce consistent spacing before and after keywords
-    "max-depth" : "warn", //enforce a maximum depth(4) that blocks can be nested
-    "max-len" : ["warn",{  //enforce a maximum line length(80)
+    "comma-style": ["warn", "last"],
+    "id-length" : "warn",
+    "indent" : ["warn",2,{"SwitchCase" : 1}],
+    "keyword-spacing" : ["warn",{"before" : true}],
+    "max-depth" : "warn",
+    "max-len" : ["warn",{
       "code" : 80
     }],
-    "new-cap" : ["warn",{   //require constructor names to begin with a capital letter
+    "new-cap" : ["warn",{
       "newIsCap": true,
       "capIsNew": true
     }],
-    "no-continue" : "warn", //disallow continue statements
-    "no-mixed-operators" : "warn", //Disallow mixes of different operators
-    "no-multi-assign" : "off", //Disallow Use of Chained Assignment Expressions
-    "no-nested-ternary" : "warn", //disallow nested ternary expressions
-    "no-new-object" : "warn", //disallow Object constructors
-    "no-unneeded-ternary" : "warn", //disallow ternary operators when simpler alternatives exist
-    "operator-assignment" : "warn", //require assignment operator shorthand where possible
-    "operator-linebreak" : ["warn", "after"], //enforce consistent linebreak style for operators
-    "space-unary-op" : ["off",{"words": true, "nonwords": false}], //Require spaces before/after unary operators 
-    "space-before-blocks" : "warn" //Require Disallow Space Before Blocks 
+    "no-continue" : "warn",
+    "no-mixed-operators" : "warn",
+    "no-multi-assign" : "off",
+    "no-nested-ternary" : "warn",
+    "no-new-object" : "warn",
+    "no-unneeded-ternary" : "warn",
+    "operator-assignment" : "warn",
+    "operator-linebreak" : ["warn", "after"],
+    "space-unary-op" : ["off",{"words": true, "nonwords": false}],
+    "space-before-blocks" : "warn" 
   }
 }
