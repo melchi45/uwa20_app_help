@@ -5634,17 +5634,6 @@ Prefix : pc-n-hm
     font-size: 12px;
   }
 }
-.pc-n-hm-heading-lv1 {
-  margin: 0 0 10px 0 !important;
-  font-size: 14px;
-  font-weight: bold;
-  color: #585e6c;
-}
-@media (max-width: 700px) {
-  .pc-n-hm-heading-lv1 {
-    font-size: 12px;
-  }
-}
 /* Section */
 .pc-n-hm-section-no-margin {
   overflow: hidden;
@@ -5705,7 +5694,7 @@ Prefix : pc-n-hm
 .pc-n-hm-hr {
   clear: both;
   margin: 10px 0;
-  border-color: #ddd;
+  border-color: #cccccc;
 }
 .pc-n-hm-hr-hm-calender-active {
   width: 100%;
@@ -5839,7 +5828,7 @@ Prefix : pc-n-hm
   text-decoration: underline;
 }
 .pc-n-hm-ftp-email a:hover {
-  color: orange;
+  color: #f37321;
 }
 /* People Counting 
 ---------------------------------------*/
@@ -5869,7 +5858,6 @@ Prefix : pc-n-hm
 #pc-realtime-live .kind-stream-canvas {
   width: 100%;
   height: 100%;
-  background-color: #f8f8f8;
 }
 #pc-realtime-live > p {
   margin-top: 20px;
@@ -6029,11 +6017,6 @@ Prefix : pc-n-hm
   border: 0;
   font-size: 20px;
 }
-.pc-btn-background-none.pc-btn-background-none-selected,
-.pc-btn-background-none:active,
-.pc-calender-button:active:not([disabled]) {
-  color: #ff9832;
-}
 .pc-graph-fix-tooltip .nvtooltip {
   top: 60px !important;
 }
@@ -6124,9 +6107,6 @@ Prefix : pc-n-hm
 .pc-calender-icon .form-control {
   text-align: right;
 }
-.pc-calender-icon input[readonly] {
-  background-color: #fff;
-}
 @media (max-width: 700px) {
   .pc-calender-icon {
     width: 105px;
@@ -6153,8 +6133,8 @@ Prefix : pc-n-hm
   top: 50px;
   width: 300px;
   padding: 10px 20px;
-  border: 1px solid #eee;
-  background-color: #fff;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
   border-radius: 3px;
   outline: none;
 }
@@ -6210,35 +6190,8 @@ Prefix : pc-n-hm
 /* Camera Management End*/
 /* People Counting 
 ---------------------------------------*/
-#pc-round-rule-guide {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 8;
-  transform: translate(-50%, -50%);
-  border-radius: 100%;
-  border: 2px solid #ff9832;
-  background-color: transparent;
-}
-.pc-round-rule-guide {
-  width: 100%;
-  padding: 0 20px;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
 /* Heat Map
 ---------------------------------------*/
-#hm-results-heatmap {
-  /*
-	.hm-results-heatmap-item:nth-child(even) {
-		padding-left: 10px;
-	}
-
-	.hm-results-heatmap-item:nth-child(odd) {
-		padding-right: 10px;
-	}
-	*/
-}
 #hm-results-heatmap .hm-results-heatmap-item {
   position: relative;
   width: 640px;
@@ -6324,43 +6277,9 @@ div.hm_index span:last-of-type {
   padding-bottom: 15px;
   font-weight: 700;
 }
-#hm_rule_table {
-  max-width: 800px;
-}
-#hm_rule_table tr td input[type="checkbox"] {
-  margin-right: 5px;
-}
-#hm_rule_table tr:nth-of-type(1) td {
-  background-color: #d9d9d9;
-}
-#hm_rule_table tr:nth-of-type(2) td {
-  background-color: #b4c7e7;
-}
-#hm_rule_table tr:nth-of-type(3) td {
-  background-color: #c5e0b4;
-}
-#hm_rule_table tr:nth-of-type(4) td {
-  background-color: #deebf7;
-}
 #hm_everyday_at select {
   display: inline-block;
   width: 150px;
-}
-.hm_hr_line_ddd {
-  width: 100%;
-  height: 1px;
-  float: left;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  background-color: #ddd;
-}
-.hm_hr_line_ccc {
-  width: 100%;
-  height: 1px;
-  float: left;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  background-color: #ccc;
 }
 .hm_row {
   width: 100%;
@@ -6369,28 +6288,6 @@ div.hm_index span:last-of-type {
 }
 .hm_row label {
   display: block;
-}
-.hm_row canvas {
-  width: 640px;
-  height: 640px;
-  background-color: #eee;
-  border: 2px dashed #ccc;
-}
-.hm_row_half {
-  width: 480px;
-  margin-left: 20px;
-  margin-right: 10px;
-  margin-top: 10px;
-  float: left;
-}
-.hm_row_half label {
-  display: block;
-}
-.hm_row_half canvas {
-  width: 480px;
-  height: 360px;
-  background-color: #eee;
-  border: 2px dashed #ccc;
 }
 .hm_p0 {
   padding: 0 !important;
@@ -6406,51 +6303,6 @@ div.hm_index span:last-of-type {
   position: relative;
   z-index: 1;
 }
-.hm-calender-icon {
-  padding-left: 49px;
-}
-.hm-calender-icon .hm-calender-button {
-  position: absolute;
-  left: 15px;
-  top: 0px;
-  background: none;
-  border: 0;
-  margin-top: 3px;
-}
-.hm-calender-icon .hm-calender-button > span {
-  font-size: 22px;
-}
-.hm-calender-icon .hm-swung-dash {
-  position: absolute;
-  left: -3px;
-  top: 0px;
-  font-size: 16px;
-}
-.hm-calender-icon input[readonly] {
-  background-color: #fff;
-}
-.hm-calender {
-  position: absolute;
-  left: -119px;
-  top: 50px;
-  width: 300px;
-  padding: 10px 20px;
-  border: 1px solid #eee;
-  background-color: #fff;
-  border-radius: 3px;
-  outline: none;
-}
-.hm-calender table,
-.hm-calender button {
-  outline: none;
-}
-.hm-calender-arrow-top {
-  transform: rotate(-90deg);
-  position: absolute;
-  top: 33px;
-  left: 20px;
-  font-size: 20px;
-}
 /* Calender End */
 /*setup page*/
 .hm_msel {
@@ -6461,59 +6313,6 @@ div.hm_index span:last-of-type {
 }
 #hm_everyday_at {
   line-height: 35px;
-}
-.hm_cbox {
-  width: 100%;
-  height: 170px;
-  background-color: #fdfdfd;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  padding: 0 !important;
-}
-.hm_cbox_title {
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-  float: left;
-  padding: 0 15px;
-  border-bottom: 1px solid #ddd;
-}
-.hm_cbox_title span {
-  float: left;
-  font-weight: bold;
-}
-.hm_cbox_title input[type="button"] {
-  float: right;
-  padding: 0;
-  height: 22px;
-  line-height: 20px;
-  margin: 9px 0;
-  vertical-align: middle;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-}
-.hm_cbox_title input[type="button"][value="Slave"] {
-  width: 50px;
-}
-.hm_cbox_title input[type="button"][value="X"] {
-  width: 22px;
-}
-.hm_cbox_cont {
-  float: left;
-  padding: 15px;
-}
-.hm_cbox_cont p {
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-.hm_cbox_cont p span:first-of-type {
-  display: inline-block;
-  width: 50px;
-}
-.hm_cbox_cont p span:first-of-type::after {
-  float: right;
-  content: ":";
 }
 #hm_ip_add label {
   width: 20%;
