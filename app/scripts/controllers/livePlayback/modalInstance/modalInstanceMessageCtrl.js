@@ -75,8 +75,6 @@ kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope', '$u
      */
     if (data.buttonCount < 2) {
       $uibModalInstance.rendered.then(function() {
-        var transformReset = 'translate(0,0)';
-        var transitionReset = 'initial';
         var templateHtml = [
           '<div class="tui-loading-wrapper">',
           '<div class="tui-loading">',
@@ -109,22 +107,8 @@ kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope', '$u
         $('.modal-content > div').remove();
         $('.modal-content').append(tuiLoadingWrapper);
 
-        $(".modal-dialog, .modal-content")
-          .css({
-            left: 0,
-            top: 0,
-            width: '100%',
-            height: '100%',
-            transform: transformReset,
-            '-moz-transform': transformReset,
-            '-webkit-transform': transformReset,
-            '-o-transform': transformReset,
-            transition: transitionReset,
-            '-moz-transition': transitionReset,
-            '-webkit-transition': transitionReset,
-            '-o-transition': transitionReset,
-            'background-color': 'initial'
-          });
+        $(".modal-dialog, .modal-content").
+          addClass('modal-message');
 
         if (data.buttonCount <= 0) {
           tuiLoadingWrapper.find(".tui.tui-ch-live-info").remove();

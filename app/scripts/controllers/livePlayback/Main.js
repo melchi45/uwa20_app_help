@@ -20,17 +20,15 @@ kindFramework.
       };
 
       BaseMain.prototype.gruntLogout = function() {
-        if (confirm('Logout')) {
+        ModalManagerService.open('logout', {'buttonCount': 2 }, function(success) {
           UniversialManagerService.setisLogin(false);
           UniversialManagerService.removeUserId();
           UniversialManagerService.initialization();
           SessionOfUserManager.RemoveSession();
           SessionOfUserManager.UnSetLogin();
           $state.go('login');
-        }
+        });
         $scope.toggleNav(false);
-        // ModalManagerService.open('logout', {'buttonCount': 2 }, function(success) {
-        // });
       };
 
       BaseMain.prototype.goState = function(param) {

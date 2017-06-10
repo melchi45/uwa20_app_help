@@ -25,5 +25,13 @@ a,
 input,
 button,
 select {
-  outline: none;
+  outline: 0 !important;
+  &:focus,
+  &:active {
+    outline: 0 !important;
+  }
+}
+
+.btn {
+  border-radius: 0;
 }

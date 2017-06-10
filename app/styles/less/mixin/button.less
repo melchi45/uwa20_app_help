@@ -1,17 +1,3 @@
-.btn-disalbed-color(@color, @background-color, @border-color) {
-  &.disabled, &[disabled],
-  &.disabled:hover, &[disabled]:hover,
-  &.disabled:focus, &[disabled]:focus,
-  &.disabled:active, &[disabled]:active{
-    color: @color;
-    border-color: @border-color;
-    background-color: @background-color;
-    i{
-      color: @color;
-    }
-  }
-}
-
 //@btn-type {enum: point, dark}
 //@bg-type {enum: light, dark}
 .mixin-button(@btn-type, @bg-type){
@@ -63,9 +49,20 @@
 
   &[disabled],
   &[readonly],
-  &.cm-disabled {
-    border: 1px solid @@disabled-line !important;
-    color: @@disabled-text !important;
-    background-color: @@disabled-bg !important;
+  &.cm-disabled,
+  &.disabled {
+    .disabled(){
+      border: 1px solid @@disabled-line !important;
+      color: @@disabled-text !important;
+      background-color: @@disabled-bg !important;
+    }
+
+    .disabled();
+
+    &:focus,
+    &:active,
+    &:hover {
+      .disabled();
+    }
   }
 }
