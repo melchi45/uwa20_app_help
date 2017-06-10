@@ -2131,7 +2131,6 @@ body.modal-open {
   /* Firefox all */
   -ms-user-select: none;
   /* IE 10+ */
-  /* Only Crop Encoding in Basic/Video Profile */
 }
 .modal *:not(input, textarea) {
   user-select: none;
@@ -2201,11 +2200,12 @@ body.modal-open {
   margin-left: auto;
 }
 @media (min-width: 768px) {
-  .modal.modal-width-auto .modal-dialog {
+  .modal.modal-position-middle .modal-dialog {
     position: absolute;
     left: 50%;
     top: 50%;
     margin: 0 !important;
+    min-width: 400px;
     width: auto;
     -webkit-transform: translateZ(0) translate(-50%, -50%);
     -moz-transform: translateZ(0) translate(-50%, -50%);
@@ -2220,30 +2220,11 @@ body.modal-open {
 .modal-backdrop {
   z-index: 2040 !important;
 }
-.inmodal .modal-body {
-  background: #f8fafb;
-}
-.inmodal .modal-header {
-  padding: 30px 15px;
-  text-align: center;
-}
-.inmodal .modal-title {
-  font-size: 26px;
-}
-.inmodal .modal-icon {
-  font-size: 84px;
-  color: #e2e3e3;
-}
 .animated.modal.fade .modal-dialog {
   -webkit-transform: none;
   -ms-transform: none;
   -o-transform: none;
   transform: none;
-}
-.wn5-setup-modal-wrapper .modal-header,
-.wn5-setup-modal-wrapper .modal-body,
-.wn5-setup-modal-wrapper .modal-footer {
-  padding: 5px 20px !important;
 }
 #ptz-detail-modal {
   margin-top: 10px;

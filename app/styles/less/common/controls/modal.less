@@ -19,6 +19,8 @@ body.modal-open {
 
   .modal-dialog {
     z-index: 2200;
+
+
   }
 
   .modal-header {
@@ -81,14 +83,14 @@ body.modal-open {
     }
   }
 
-  /* Only Crop Encoding in Basic/Video Profile */
-  &.modal-width-auto {
+  &.modal-position-middle {
     .modal-dialog {
       @media(min-width: 768px){
         position: absolute;
         left: 50%;
         top: 50%;
         margin: 0 !important;
+        min-width: 400px;
         width: auto;
         .translate(-50%,-50%);
       }
@@ -100,36 +102,11 @@ body.modal-open {
   z-index: 2040 !important;
 }
 
-.inmodal {
-  .modal-body {
-    background: #f8fafb;
-  }
-  .modal-header {
-    padding: 30px 15px;
-    text-align: center;
-  }
-  .modal-title {
-    font-size: 26px;
-  }
-  .modal-icon {
-    font-size: 84px;
-    color: #e2e3e3;
-  }
-}
-
 .animated.modal.fade .modal-dialog {
   -webkit-transform: none;
   -ms-transform: none;
   -o-transform: none;
   transform: none;
-}
-
-.wn5-setup-modal-wrapper {
-  .modal-header,
-  .modal-body,
-  .modal-footer {
-    padding: 5px 20px !important;
-  }
 }
 
 #ptz-detail-modal {
