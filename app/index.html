@@ -62,7 +62,6 @@
     <link href="styles/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
     <link href="styles/plugins/datapicker/angular-datapicker.css" rel="stylesheet">
     
-    <link href="styles/setup/ptz.css" rel="stylesheet">
     <link href="styles/animate.css" rel="stylesheet">
     <link href="styles/style.css" rel="stylesheet">
     <link href="styles/app.css" rel="stylesheet">
@@ -246,25 +245,16 @@
 
     <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceProfileCtrl.js"></script>
     <script src="scripts/controllers/livePlayback/modalInstance/modalInstanceMessageCtrl.js"></script>
-    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceFavoriteCtrl.js"></script>
     <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceListCtrl.js"></script>
-    <!-- <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceSearchCtrl.js"></script> -->
-    <script src="base/scripts/controllers/livePlayback/modalInstance/BaseModalFlipMirror.js"></script>
-    <script src="scripts/controllers/livePlayback/modalInstance/ModalInstanceFlipMirrorCtrl.js"></script>
     <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceCheckBoxListCtrl.js"></script>
     <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceSliderCtrl.js"></script>
-    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceVoiceRecCtrl.js"></script>
     <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstncePresetListCtrl.js"></script>
     <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstncePresetAddCtrl.js"></script>
     <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceLogoutCtrl.js"></script>
     <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceStatusCtrl.js"></script>
     <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceTrackingCtrl.js"></script>
     <!-- <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceOverlapEventCtrl.js"></script> -->
-    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstanceViewModeCtrl.js"></script> 
     <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstncePTZModeCtrl.js"></script>
-    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceprofileSizeAlertCtrl.js"></script>
-    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceAlarmOutCtrl.js"></script>
-    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceGeneralCheckBoxListCtrl.js"></script>
     <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceLiveListCtrl.js"></script>
 
     <script src="base/scripts/directives/loadingBar.js"></script>
@@ -343,7 +333,6 @@
     <script src="scripts/controllers/setup/system/productinfo.js"></script>
     <script src="scripts/controllers/setup/system/upgradeReboot.js"></script>
     <script src="scripts/controllers/setup/system/logCtrl.js"></script>
-    <script src="scripts/controllers/setup/system/status.js"></script>
     <script src="scripts/controllers/setup/openplatform/opensdkController.js"></script>
     <script src="scripts/controllers/setup/video&audio/videoController.js"></script>
     <script src="scripts/controllers/setup/video&audio/dewarpSetupCtrl.js"></script>
@@ -429,96 +418,6 @@
     <script src="scripts/controllers/setup/heatmap/hmSetupCtrl.js"></script>
     <script src="scripts/controllers/setup/heatmap/modals/hm_report_modal_ctrl.js"></script>
 
-<!-- ## B2B Mobile Used Files -->
-<!-- 
-    <script src="scripts/models/addDevice/addDevice.js"></script>
-    <script src="scripts/models/addDevice/DBObjectModel.js"></script>
-
-    <script src="scripts/services/playbackClass/NVRSessionManagerService.js"></script>
-    <script src="scripts/services/bookmark/bookmarkService.js"></script>
-    <script src="scripts/services/bookmark/mockBookmarkService.js"></script>
-    <script src="scripts/services/event/event_service.js"></script>
-    <script src="scripts/services/iPOLiS_Mobile/b2bPasswordService.js"></script>
-    <script src="scripts/services/iPOLiS_Mobile/mobileSunapiService.js"></script>
-    <script src="scripts/services/iPOLiS_Mobile/b2bLiveService.js"></script>
-    <script src="scripts/services/iPOLiS_Mobile/b2bControlService.js"></script>
-    <script src="scripts/services/iPOLiS_Mobile/b2bListService.js"></script>
-    <script src="scripts/services/iPOLiS_Mobile/b2cControlService.js"></script>
-    <script src="scripts/services/iPOLiS_Mobile/b2cListService.js"></script>
-    <script src="scripts/services/iPOLiS_Mobile/b2cLiveService.js"></script>
-    <script src="scripts/services/iPOLiS_Mobile/WisenetDB.js"></script>
-    <script src="scripts/services/iPOLiS_Mobile/addDevice.js"></script>
-    <script src="scripts/services/plugin/pluginPlaybackService.js"></script>
-    <script src="scripts/services/plugin/pluginManageService.js"></script>
-    <script src="scripts/services/common/application_lifecycle_model.js"></script>
-    <script src="scripts/services/common/errorMessageService.js"></script>
-
-    <script src="scripts/utils/pluginUtil.js"></script>
-
-    <script src="scripts/controllers/livePlayback/channellist.js"></script>
-    <script src="scripts/controllers/livePlayback/channel.all.js"></script>
-    <script src="scripts/controllers/livePlayback/addDevice.js"></script> 
-    <script src="scripts/controllers/livePlayback/setup.js"></script>
-
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceB2CLoginCtrl.js"></script>
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceB2CProfileCtrl.js"></script>
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceMobilePresetCtrl.js"></script> 
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstncePasswordSetting.js"></script>
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceB2CPresetCtrl.js"></script>
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceB2BProfileSelectCtrl.js"></script> 
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstanceBookmarkCommentCtrl.js"></script>
-
-    <script src="scripts/controllers/bookmark/bookmark.js"></script>
-    <script src="scripts/controllers/bookmark/bookmark_list.js"></script>
-    <script src="scripts/controllers/bookmark/bookmark_spread.js"></script>
-    <script src="scripts/controllers/bookmark/bookmark_play.js"></script>
-    
-    <script src="scripts/controllers/event/event.js"></script>
-    <script src="scripts/controllers/event/event_list.js"></script>
-    <script src="scripts/controllers/event/event_spread.js"></script>
-    <script src="scripts/controllers/event/event_play.js"></script>
-
-    <script src="scripts/directives/card.js"></script>
-    <script src="scripts/directives/cardSlider.js"></script>
-    <script src="scripts/directives/cardSpread.js"></script>
-    <script src="scripts/directives/scrolly.js"></script>
-    <script src="scripts/directives/scrollable.js"></script>
- -->    
-
-
-<!-- ## B2C Mobile Used Files -->
-<!-- 
-    <script src="scripts/services/prevent_error/b2bListService.js"></script>
-    <script src="scripts/services/prevent_error/b2bLiveService.js"></script>
-    <script src="scripts/services/prevent_error/b2bControlService.js"></script>
-    <script src="scripts/services/prevent_error/mobileSunapiService.js"></script>
-    <script src="scripts/services/prevent_error/WisenetDB.js"></script>
-    <script src="scripts/services/prevent_error/b2bPasswordService.js"></script>
-
-    <script src="scripts/models/prevent_error/DBObjectModel.js"></script>
-
-
-    <script src="scripts/services/b2c/b2cControlService.js"></script>
-    <script src="scripts/services/b2c/b2cListService.js"></script>
-    <script src="scripts/services/b2c/b2cLiveService.js"></script>
-    <script src="scripts/services/plugin/pluginPlaybackService.js"></script>
-    <script src="scripts/services/plugin/pluginManageService.js"></script>
-    <script src="scripts/services/common/application_lifecycle_model.js"></script>
-    <script src="scripts/services/common/errorMessageService.js"></script>
-
-    <script src="scripts/utils/pluginUtil.js"></script>
-
-    <script src="scripts/controllers/livePlayback/channel.all.js"></script>
-
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceB2CLoginCtrl.js"></script>
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceB2CProfileCtrl.js"></script>
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceMobilePresetCtrl.js"></script> 
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstncePasswordSetting.js"></script>
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceB2CPresetCtrl.js"></script>
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceB2BProfileSelectCtrl.js"></script> 
-    <script src="scripts/controllers/livePlayback/modalInstance/modalInstanceBookmarkCommentCtrl.js"></script>
-
- -->
     <!-- endbuild -->
 
     <!-- build:js scripts/online_help.js -->

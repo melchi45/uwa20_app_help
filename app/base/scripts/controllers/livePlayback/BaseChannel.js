@@ -118,16 +118,6 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
         }
       );
     },
-    // visibleFavoritePopup: function() {
-    //   ModalManagerService.open(
-    //     'bookmarkComment', 
-    //     {comment : ''},
-    //     function(fName) {
-    //       PluginManageService.addFavorite(fName);
-    //     }, function(err) {
-    //       console.log(err);
-    //     });
-    // },
     visibleMainLiveCapturePopup: function($event) {
       if (navigator.appVersion.indexOf('Mac') === -1) {
         var className = 'button-clicked';
@@ -140,13 +130,6 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
         }
       }
       CameraService.captureScreen();
-    },
-    visiblePasswordMessage: function(index) {
-      ModalManagerService.open(
-        'b2clogin', {
-          'stepIndex': index,
-        }
-      );
     },
     changeZoomMode: function() {
       var successCallback = function(_zoomMode) {
