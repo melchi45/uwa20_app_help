@@ -509,6 +509,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
             var modalInstance2 = $uibModal.open({
               templateUrl: "privacyPopup2.html",
               backdrop: true,
+              windowClass: 'modal-position-middle',
               controller: ['$scope', '$uibModalInstance', '$timeout', 'sketchbookService', '$interval', 'CAMERA_STATUS', 'UniversialManagerService', 'SunapiClient', function(scope, $uibModalInstance, $timeout, sketchbookService, $interval, CAMERA_STATUS, UniversialManagerService, SunapiClient) {
                 var ptzJogTimer = null;
                 var isJogUpdating = false;
@@ -767,6 +768,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
       size: 'lg',
       templateUrl: 'views/setup/video&audio/modal/ModalVideoSetupInfo.html',
       controller: 'ModalInstanceVideoSetupInfoCtrl',
+      windowClass: 'modal-position-middle',
       resolve: {
         infoTableData: function() {
           return $scope.infoTableData;
@@ -1030,6 +1032,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
       var modalInstance = $uibModal.open({
         templateUrl: 'views/setup/common/errorMessage.html',
         controller: 'errorMessageCtrl',
+        windowClass: 'modal-position-middle',
         resolve: {
           Message: function() {
             return tMessage;
@@ -1103,6 +1106,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
             var modalInstance = $uibModal.open({
               templateUrl: 'views/setup/common/errorMessage.html',
               controller: 'errorMessageCtrl',
+              windowClass: 'modal-position-middle',
               resolve: {
                 Message: function() {
                   return 'lang_msg_windowClose';
@@ -1402,6 +1406,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
               var modalInstance = $uibModal.open({
                 templateUrl: 'views/setup/common/errorMessage.html',
                 controller: 'errorMessageCtrl',
+                windowClass: 'modal-position-middle',
                 resolve: {
                   Message: function() {
                     return tMessage;

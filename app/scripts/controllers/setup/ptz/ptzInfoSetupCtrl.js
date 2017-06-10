@@ -1716,6 +1716,7 @@ kindFramework.controller('ptzInfoSetupCtrl', function($scope, $location, $uibMod
     var modalInstance = $uibModal.open({
       templateUrl: 'autorunModal.html',
       controller: 'autorunModalCtrl',
+      windowClass: 'modal-position-middle',
       resolve: {
         SelectedDay: function() {
           return $scope.SelectedDay;

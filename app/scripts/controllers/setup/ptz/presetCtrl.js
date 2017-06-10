@@ -425,6 +425,7 @@ kindFramework.controller('presetCtrl', function($scope, $location, $timeout, $ui
     var modalInstance = $uibModal.open({
       templateUrl: 'views/setup/common/errorMessage.html',
       controller: 'errorMessageCtrl',
+      windowClass: 'modal-position-middle',
       size: 'sm',
       resolve: {
         Message: function() {

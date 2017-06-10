@@ -404,6 +404,7 @@ kindFramework.controller('HMSetupCtrl', function(
     modalInstance = $uibModal.open({
       templateUrl: view,
       controller: controller,
+      windowClass: 'modal-position-middle',
       resolve: data,
       size: size
     });

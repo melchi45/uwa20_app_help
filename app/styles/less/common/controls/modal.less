@@ -62,13 +62,13 @@ body.modal-open {
   .modal-footer {
     text-align: left;
     margin-top: 0;
-    padding: 15px 0;
+    padding: 15px;
 
     .btn {
       min-width: 100px;
       + .btn {
-        margin-left: auto;
-        margin-right: 10px;
+        margin-left: 10px;
+        margin-right: 0;
       }
     }
 
@@ -85,14 +85,15 @@ body.modal-open {
 
   &.modal-position-middle {
     .modal-dialog {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin: 0 !important;
+      .translate(-50%,-50%);
+      width: auto;
+
       @media(min-width: 768px){
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        margin: 0 !important;
         min-width: 400px;
-        width: auto;
-        .translate(-50%,-50%);
       }
     }
   }

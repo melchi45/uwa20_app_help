@@ -313,6 +313,7 @@ kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XM
       size: 'lg',
       templateUrl: 'views/setup/common/schedulePopup.html',
       controller: 'modalInstanceCtrl',
+      windowClass: 'modal-position-middle',
       resolve: {
         SelectedDay: function() {
           return $scope.SelectedDay;

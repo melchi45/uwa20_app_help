@@ -2847,6 +2847,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       size: 'lg',
       templateUrl: 'views/setup/basic/modal/ModalVideoProfileInfo.html',
       controller: 'ModalInstanceVideoProfileInfoCtrl',
+      windowClass: 'modal-position-middle',
       resolve: {
         infoTableData: function() {
           return $scope.infoTableData;

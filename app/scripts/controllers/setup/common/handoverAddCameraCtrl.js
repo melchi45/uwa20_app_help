@@ -97,6 +97,7 @@ kindFramework.controller('handoverAddCameraCtrl', function($scope, $uibModalInst
       $uibModal.open({
         templateUrl: 'views/setup/common/errorMessage.html',
         controller: 'errorMessageCtrl',
+        windowClass: 'modal-position-middle',
         size: 'sm',
         resolve: {
           Message: function() {
@@ -116,6 +117,7 @@ kindFramework.controller('handoverAddCameraCtrl', function($scope, $uibModalInst
       $uibModal.open({
         templateUrl: 'views/setup/common/errorMessage.html',
         controller: 'errorMessageCtrl',
+        windowClass: 'modal-position-middle',
         size: 'sm',
         resolve: {
           Message: function() {
@@ -138,6 +140,7 @@ kindFramework.controller('handoverAddCameraCtrl', function($scope, $uibModalInst
       $uibModal.open({
         templateUrl: 'views/setup/common/errorMessage.html',
         controller: 'errorMessageCtrl',
+        windowClass: 'modal-position-middle',
         size: 'sm',
         resolve: {
           Message: function() {

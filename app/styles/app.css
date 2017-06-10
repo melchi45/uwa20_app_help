@@ -2182,14 +2182,14 @@ body.modal-open {
 .modal .modal-footer {
   text-align: left;
   margin-top: 0;
-  padding: 15px 0;
+  padding: 15px;
 }
 .modal .modal-footer .btn {
   min-width: 100px;
 }
 .modal .modal-footer .btn + .btn {
-  margin-left: auto;
-  margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 0;
 }
 .modal .modal-footer .btn-group .btn + .btn {
   margin-right: -1px;
@@ -2199,22 +2199,24 @@ body.modal-open {
   margin-right: 0;
   margin-left: auto;
 }
+.modal.modal-position-middle .modal-dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0 !important;
+  -webkit-transform: translateZ(0) translate(-50%, -50%);
+  -moz-transform: translateZ(0) translate(-50%, -50%);
+  -ms-transform: translateZ(0) translate(-50%, -50%);
+  -o-transform: translateZ(0) translate(-50%, -50%);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  width: auto;
+}
 @media (min-width: 768px) {
   .modal.modal-position-middle .modal-dialog {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: 0 !important;
     min-width: 400px;
-    width: auto;
-    -webkit-transform: translateZ(0) translate(-50%, -50%);
-    -moz-transform: translateZ(0) translate(-50%, -50%);
-    -ms-transform: translateZ(0) translate(-50%, -50%);
-    -o-transform: translateZ(0) translate(-50%, -50%);
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
   }
 }
 .modal-backdrop {

@@ -804,6 +804,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
       size: 'lg',
       templateUrl: 'views/setup/event/modal/ModalEventSetupInfo.html',
       controller: 'ModalInstanceEventSetupInfoCtrl',
+      windowClass: 'modal-position-middle',
       resolve: {
         infoTableData: function() {
           return $scope.infoTableData;

@@ -2239,6 +2239,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         modalInstance = $uibModal.open({
           templateUrl: 'views/setup/common/handoverAddCamera.html',
           controller: 'handoverAddCameraCtrl',
+          windowClass: 'modal-position-middle',
           resolve: {
             HandoverList: function() {
               //console.log(" ::: $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList", $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList);

@@ -20,6 +20,7 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
     var modalInstance = $uibModal.open({
       templateUrl: 'detailInfoMessage.html',
       controller: 'detailMessageCtrl',
+      windowClass: 'modal-position-middle',
       resolve: {
         Message: function() {
           return displaymsg;
@@ -473,6 +474,7 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
         var modalInstance = $uibModal.open({
           templateUrl: 'detailInfoMessage.html',
           controller: 'detailMessageCtrl',
+          windowClass: 'modal-position-middle',
           resolve: {
             Message: function() {
               return ($translate.instant('lang_msg_settings') + "\r\n" + $translate.instant('lang_msg_press_ok'));

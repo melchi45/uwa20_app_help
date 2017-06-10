@@ -929,6 +929,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
     modalInstance = $uibModal.open({
       templateUrl: view,
       controller: controller,
+      windowClass: 'modal-position-middle',
       resolve: data,
       size: size
     });
@@ -959,6 +960,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
     modalInstance = $uibModal.open({
       templateUrl: view,
       controller: controller,
+      windowClass: 'modal-position-middle',
       resolve: data,
       size: 'sm'
     });

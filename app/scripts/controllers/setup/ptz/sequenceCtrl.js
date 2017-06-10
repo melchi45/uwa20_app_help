@@ -1183,6 +1183,7 @@ kindFramework.controller('sequenceCtrl', function($scope, $uibModal, $timeout, $
     var modalInstance = $uibModal.open({
       templateUrl: 'autorunModal.html',
       controller: 'autorunModalCtrl',
+      windowClass: 'modal-position-middle',
       resolve: {
         SelectedDay: function() {
           return $scope.SelectedDay;

@@ -395,6 +395,7 @@ kindFramework.controller('HMStatisticsCtrl', function(
     modalInstance = $uibModal.open({
       templateUrl: view,
       controller: controller,
+      windowClass: 'modal-position-middle',
       resolve: data,
       size: size
     });
@@ -425,6 +426,7 @@ kindFramework.controller('HMStatisticsCtrl', function(
     modalInstance = $uibModal.open({
       templateUrl: view,
       controller: controller,
+      windowClass: 'modal-position-middle',
       resolve: data,
       size: 'sm'
     });

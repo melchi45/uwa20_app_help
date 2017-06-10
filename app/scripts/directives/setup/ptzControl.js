@@ -700,6 +700,7 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
             var modalInstance = $uibModal.open({
               templateUrl: 'views/setup/common/ptzPresetPopup.html',
               controller: 'ptzPresetCtrl',
+              windowClass: 'modal-position-middle',
               resolve: {
                 PresetData: function() {
                   var presets = [];

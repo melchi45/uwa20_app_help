@@ -195,6 +195,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     var modalInstance = $uibModal.open({
       templateUrl: 'views/setup/common/confirmMessage.html',
       controller: 'confirmMessageCtrl',
+      windowClass: 'modal-position-middle',
       size: modalSize,
       resolve: {
         Message: function() {
@@ -217,6 +218,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     var modalInstance = $uibModal.open({
       templateUrl: 'views/setup/common/confirmMessage.html',
       controller: 'confirmMessageCtrl',
+      windowClass: 'modal-position-middle',
       size: 'sm',
       resolve: {
         Message: function() {
@@ -238,6 +240,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     var modalInstance = $uibModal.open({
       templateUrl: 'views/setup/common/errorMessage.html',
       controller: 'errorMessageCtrl',
+      windowClass: 'modal-position-middle',
       size: modalSize,
       resolve: {
         Message: function() {
@@ -258,6 +261,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     var modalInstance = $uibModal.open({
       templateUrl: 'views/setup/common/errorMessage.html',
       controller: 'errorMessageCtrl',
+      windowClass: 'modal-position-middle',
       size: 'sm',
       resolve: {
         Message: function() {
@@ -284,6 +288,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     var modalInstance = $uibModal.open({
       templateUrl: 'views/setup/common/detailInfoMessage.html',
       controller: 'detailMessageCtrl',
+      windowClass: 'modal-position-middle',
       size: modalSize,
       resolve: {
         Message: function() {
@@ -310,6 +315,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     var modalInstance = $uibModal.open({
       templateUrl: 'views/setup/common/confirmMessage.html',
       controller: 'confirmMessageCtrl',
+      windowClass: 'modal-position-middle',
       size: actualSize,
       resolve: {
         Message: function() {

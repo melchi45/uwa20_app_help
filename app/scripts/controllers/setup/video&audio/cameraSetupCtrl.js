@@ -908,6 +908,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       size: 'lg',
       templateUrl: 'imagePresetScheduleModal.html',
       controller: 'imgPresetScheduleCtrl',
+      windowClass: 'modal-position-middle',
       resolve: {
         ImagePreset: function() {
           return $scope.ImagePreset[$scope.ch];
@@ -2887,6 +2888,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       size: 'lg',
       templateUrl: 'dayNightSchedulePopup.html',
       controller: 'dnScheduleCtrl',
+      windowClass: 'modal-position-middle',
       resolve: {
         selectedDay: function() {
           return $scope.SelectedDay;
@@ -2918,6 +2920,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       size: 'lg',
       templateUrl: 'dayNightSchedulePopup.html',
       controller: 'heaterScheduleCtrl',
+      windowClass: 'modal-position-middle',
       resolve: {
         selectedDay: function() {
           return $scope.SelectedDay;

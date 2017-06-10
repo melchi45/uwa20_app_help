@@ -283,6 +283,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
         var modalInstance = $uibModal.open({
           templateUrl: 'errorPopup.html',
           controller: 'errorMessageCtrl',
+          windowClass: 'modal-position-middle',
           resolve: {
             Message: function() {
               return 'lang_msg_windowClose';
@@ -330,6 +331,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
         var modalInstance = $uibModal.open({
           templateUrl: 'errorPopup.html',
           controller: 'errorMessageCtrl',
+          windowClass: 'modal-position-middle',
           resolve: {
             Message: function() {
               return 'lang_msg_windowClose';
@@ -496,6 +498,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
           var modalInstance = $uibModal.open({
             templateUrl: 'errorPopup.html',
             controller: 'errorMessageCtrl',
+            windowClass: 'modal-position-middle',
             resolve: {
               Message: function() {
                 return 'lang_msg_reconnect';
@@ -519,6 +522,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
           var modalInstance = $uibModal.open({
             templateUrl: 'errorPopup.html',
             controller: 'errorMessageCtrl',
+            windowClass: 'modal-position-middle',
             resolve: {
               Message: function() {
                 return 'lang_msg_windowClose';
@@ -545,6 +549,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
       var modalInstance = $uibModal.open({
         templateUrl: 'errorPopup.html',
         controller: 'errorMessageCtrl',
+        windowClass: 'modal-position-middle',
         resolve: {
           Message: function() {
             return 'lang_msg_windowClose';
@@ -580,6 +585,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
       var modalInstance = $uibModal.open({
         templateUrl: 'errorPopup.html',
         controller: 'errorMessageCtrl',
+        windowClass: 'modal-position-middle',
         size: 'sm',
         resolve: {
           Message: function() {
@@ -596,6 +602,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
       var modalInstance = $uibModal.open({
         templateUrl: 'errorPopup.html',
         controller: 'errorMessageCtrl',
+        windowClass: 'modal-position-middle',
         size: 'sm',
         resolve: {
           Message: function() {
@@ -623,6 +630,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
       var modalInstance = $uibModal.open({
         templateUrl: 'errorPopup.html',
         controller: 'errorMessageCtrl',
+        windowClass: 'modal-position-middle',
         size: 'sm',
         resolve: {
           Message: function() {
@@ -637,6 +645,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
       var modalInstance = $uibModal.open({
         templateUrl: 'errorPopup.html',
         controller: 'errorMessageCtrl',
+        windowClass: 'modal-position-middle',
         size: 'sm',
         resolve: {
           Message: function() {

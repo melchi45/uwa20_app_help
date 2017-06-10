@@ -1062,6 +1062,7 @@ function (
         size: 'lg',
         templateUrl: 'views/setup/event/modal/ModalStorageInfo.html',
         controller: 'ModalInstanceStorageInfoCtrl',
+        windowClass: 'modal-position-middle',
         resolve: {
           infoTableData: function() {
             return $scope.infoTableData;

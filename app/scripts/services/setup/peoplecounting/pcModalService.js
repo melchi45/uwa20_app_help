@@ -25,6 +25,7 @@ kindFramework.service('pcModalService', function($uibModal) {
     modalInstance = $uibModal.open({
       templateUrl: view,
       controller: controller,
+      windowClass: 'modal-position-middle',
       size: size,
       resolve: {
         iconClass: function() {
@@ -67,6 +68,7 @@ kindFramework.service('pcModalService', function($uibModal) {
     modalInstance = $uibModal.open({
       templateUrl: view,
       controller: controller,
+      windowClass: 'modal-position-middle',
       size: size,
       resolve: {
         title: function() {
@@ -84,7 +86,8 @@ kindFramework.service('pcModalService', function($uibModal) {
   this.openReportForm = function() {
     modalInstance = $uibModal.open({
       templateUrl: 'views/setup/peoplecounting/modals/report.html',
-      controller: 'reportModalCtrl'
+      controller: 'reportModalCtrl',
+      windowClass: 'modal-position-middle'
     });
 
     return modalInstance.result;
@@ -93,7 +96,8 @@ kindFramework.service('pcModalService', function($uibModal) {
   this.openAddSlaveConfirm = function() {
     modalInstance = $uibModal.open({
       templateUrl: 'views/setup/peoplecounting/modals/add_slave.html',
-      controller: 'addSlaveModalCtrl'
+      controller: 'addSlaveModalCtrl',
+      windowClass: 'modal-position-middle'
     });
 
     return modalInstance.result;
