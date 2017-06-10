@@ -5588,6 +5588,7 @@ body.kind-svg-editor-drawing .channel-content {
   font-weight: bold;
 }
 #userpage .userpage-password-description {
+  background-color: #ffffff;
   margin-top: 10px;
 }
 #userpage .userpage-password-description ol {

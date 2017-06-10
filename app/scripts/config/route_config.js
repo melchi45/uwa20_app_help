@@ -14,18 +14,6 @@ kindFramework.constant('ROUTE_CONFIG', {
       controller: 'LoginCtrl'
     },
     {
-      urlName: 'loginFail',
-      name: 'Login Fail',
-      templateUrl: 'views/login/loginFail.html',
-      controller: 'LoginFailCtrl'
-    },
-    {
-      urlName: 'find_auth',
-      name: 'Find Auth',
-      templateUrl: 'views/login/find_auth.html',
-      controller: 'FindAuthCtrl'
-    },
-    {
       urlName: 'change_password',
       name: 'Change Password',
       templateUrl: 'views/login/change_password.html',
@@ -152,12 +140,6 @@ kindFramework.constant('ROUTE_CONFIG', {
               templateUrl: 'views/setup/basic/profile.html',
               controller: 'profileCtrl'
             },
-            // {
-            //   urlName: 'record',
-            //   name: 'lang_menu_record',
-            //   templateUrl: 'views/setup/basic/record.html',
-            //   controller: 'recordCtrl'
-            // },
             {
               urlName: 'user',
               name: 'lang_menu_user',
