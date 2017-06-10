@@ -1538,6 +1538,7 @@ var SketchManager = (function() {
       openDialog: function(index) {
         var modalInstance = dialog.open({
           templateUrl: sketchInfo.modalId,
+          windowClass: 'modal-position-middle',
           controller: ['$scope', '$uibModalInstance', function($scope, $uibModalInstance) {
             $scope.delete = function() {
               if (sketchInfo.shape === 0) {
@@ -2143,6 +2144,7 @@ var SketchManager = (function() {
             $("[type='radio'][name='VideoOutput']").prop("disabled", true);
             var modalInstance = dialog.open({
               templateUrl: sketchInfo.modalId,
+              windowClass: 'modal-position-middle',
               backdrop: true,
               controller: ['$scope', '$uibModalInstance', '$timeout', 'Attributes', 'COMMONUtils', 'sketchbookService', '$interval', 'SunapiClient', 'CAMERA_STATUS', 'UniversialManagerService', function($scope, $uibModalInstance, $timeout, Attributes, COMMONUtils, sketchbookService, $interval, SunapiClient, CAMERA_STATUS, UniversialManagerService) {
                 var mAttr = Attributes.get("image");
@@ -2816,6 +2818,7 @@ var SketchManager = (function() {
       openDialog: function(index, type) {
         var modalInstance = dialog.open({
           templateUrl: sketchInfo.modalId,
+          windowClass: 'modal-position-middle',
           size: 'sm',
           controller: ['$scope', '$uibModalInstance', function($scope, $uibModalInstance) {
             $scope.confirmMessage = "lang_msg_confirm_remove_profile";
@@ -3307,6 +3310,7 @@ var SketchManager = (function() {
       openDialog: function(index) {
         var modalInstance = dialog.open({
           templateUrl: sketchInfo.modalId,
+          windowClass: 'modal-position-middle',
           size: 'sm',
           controller: ['$scope', '$uibModalInstance', function($scope, $uibModalInstance) {
             $scope.confirmMessage = "lang_msg_confirm_remove_profile";
@@ -3835,6 +3839,7 @@ var SketchManager = (function() {
       openDialog: function() {
         var modalInstance = dialog.open({
           templateUrl: sketchInfo.modalId,
+          windowClass: 'modal-position-middle',
           controller: ['$scope', '$uibModalInstance', 'Attributes', 'COMMONUtils', 'SunapiClient', function($scope, $uibModalInstance, Attributes, COMMONUtils, SunapiClient) {
             var mAttr = Attributes.get();
             $scope.AlphaNumericStr = mAttr.AlphaNumericStr;
