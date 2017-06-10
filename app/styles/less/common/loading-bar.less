@@ -74,6 +74,22 @@
   }
 }
 
+.block {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: (@zindex-top*100);
+  opacity: 0;
+  visibility: hidden;
+  &.visible{
+    opacity: 1;
+    visibility: visible;
+    z-index: @zindex-top * 10;
+  }
+}
+
 @-webkit-keyframes tui-loading-keyframe {
   0%, 40%, 100% { 
     -webkit-transform: scaleY(0.4);

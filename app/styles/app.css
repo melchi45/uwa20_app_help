@@ -1257,19 +1257,6 @@ button:active,
 select:active {
   outline: 0 !important;
 }
-.btn {
-  border-radius: 0;
-}
-.default-animation {
-  -webkit-transition: all linear 0.3s;
-  -moz-transition: all linear 0.3s;
-  -o-transition: all linear 0.3s;
-  transition: all linear 0.3s;
-}
-/* Responsive Width */
-.tui {
-  vertical-align: baseline;
-}
 ul {
   padding: 0;
   list-style: none;
@@ -1283,51 +1270,18 @@ a:hover {
 input[type='text'] {
   padding-left: 10px;
 }
-.top-menu {
-  position: absolute;
-  top: 11px;
-  height: 32px;
-  line-height: 32px;
-  vertical-align: middle;
+.default-animation {
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+  transition: all linear 0.3s;
 }
-.top-menu.text,
-.top-menu span.text {
-  color: #000;
-  font-size: 14px;
-  font-weight: 700;
+/* Responsive Width */
+.btn {
+  border-radius: 0;
 }
-.top-menu.wisenet-camera-title {
-  font-size: 17px;
-  letter-spacing: -0.5px;
-  padding-top: 2px;
-}
-.top-menu > .button {
-  margin-left: 10px;
-}
-.top-menu-right {
-  right: 12px;
-}
-.top-menu-right-2nd {
-  right: 11px;
-  width: 32px !important;
-}
-.top-menu-left {
-  left: 12px;
-}
-.button-menu {
-  width: 35px;
-  font-size: 20px;
-  padding: 0;
-}
-.button-menu:active {
-  border-color: #f8ab7a;
-  background-color: #fff;
-}
-.button-menu:active i {
-  color: #f8ab7a !important;
-}
-.button-menu:active span.icon-bar {
-  background-color: #f8ab7a !important;
+.tui {
+  vertical-align: baseline;
 }
 .vertical-middle {
   position: absolute;
@@ -1374,62 +1328,6 @@ input[type='text'] {
 .text-outline {
   color: white;
   text-shadow: -1px -1px 0 #666, 1px -1px 0 #666, -1px 1px 0 #666, 1px 1px 0 #666;
-}
-.tui.tui-menu-close {
-  margin-left: -3px;
-}
-.block {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-}
-.block.visible {
-  opacity: 1;
-  visibility: visible;
-  z-index: 100;
-}
-.wisenet-open-menu,
-.wisenet-close-menu,
-.wisenet-viewmode {
-  border: 0 !important;
-}
-.wisenet-open-menu,
-.wisenet-viewmode {
-  font-size: 32px;
-}
-.wisenet-viewmode,
-.wisenet-viewmode.overlay:active {
-  background-color: transparent;
-}
-.wisenet-viewmode.overlay {
-  z-index: 10000;
-  display: initial !important;
-}
-.wisenet-viewmode.overlay i {
-  color: #fff;
-}
-.wisenet-close-menu {
-  font-size: 28px;
-}
-.wisenet-brandname {
-  position: absolute;
-  top: 16px;
-  left: 60px;
-  width: 120px;
-}
-#wisenet-border-line {
-  border-top: 1px solid #e8e8e8;
-  position: absolute;
-  z-index: 9;
-  left: 0;
-  right: 0;
-  top: 55px;
-  height: 1px;
 }
 /* Function */
 .tui-loading-wrapper {
@@ -1499,6 +1397,21 @@ input[type='text'] {
   -moz-animation-delay: -0.8s;
   -o-animation-delay: -0.8s;
   animation-delay: -0.8s;
+}
+.block {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+}
+.block.visible {
+  opacity: 1;
+  visibility: visible;
+  z-index: 100;
 }
 @-webkit-keyframes tui-loading-keyframe {
   0%,
@@ -3211,11 +3124,9 @@ body.wisenet-desktop-body {
 }
 body.kind-responsive-live {
   min-width: 400px;
-  background-color: black;
 }
 body.kind-responsive-playback {
   min-width: 400px;
-  background-color: black;
 }
 body.kind-responsive-setup {
   min-width: 730px;
@@ -7000,14 +6911,6 @@ img[id^="hm-results-image-"] {
   margin-top: 7px;
   font-size: 19px;
   color: #f8ab7a;
-}
-.wisenet-viewmode {
-  cursor: pointer;
-  font-weight: normal;
-  margin-bottom: 5px;
-}
-.wisenet-viewmode .selected {
-  font-weight: bold;
 }
 /* Add for changing Monitoring */
 .wisenet-channel {
