@@ -99,17 +99,7 @@ kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $transl
     var promises = [];
     if (validatePage()) {
       if (!angular.equals(pageData.Timer, $scope.Timer) || !angular.equals(pageData.EventRule, $scope.EventRule)) {
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          size: 'sm',
-          resolve: {
-            Message: function() {
-              return 'lang_apply_question';
-            }
-          }
-        });
-        modalInstance.result.then(function() {
+        COMMONUtils.ApplyConfirmation(function() {
           if (!angular.equals(pageData.Timer, $scope.Timer)) {
             promises.push(setTimer);
           }
@@ -126,7 +116,9 @@ kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $transl
             $scope.pageLoaded = false;
             view();
           }
-        }, function() {});
+        }, 
+        'sm',
+        function() {});
       }
     }
   }

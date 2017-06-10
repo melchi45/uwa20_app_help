@@ -105,18 +105,7 @@ kindFramework.controller('soundClassificationCtrl', function($scope, SunapiClien
 
   $scope.setAudioanalysisEnable = function() {
     stopMonitoringSoundLevel();
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        }
-      }
-    });
-
-    modalInstance.result.then(
+    COMMONUtils.ApplyConfirmation(
       function() {
         var setData = {};
 
@@ -141,6 +130,7 @@ kindFramework.controller('soundClassificationCtrl', function($scope, SunapiClien
             }
           }, '', true);
       },
+      'sm',
       function() {
         $scope.SoundClassfication.Enable = angular.copy(pageData.SoundClassfication.Enable);
         if ($scope.SoundClassfication.Enable) {

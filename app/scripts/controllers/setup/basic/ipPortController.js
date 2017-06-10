@@ -866,20 +866,12 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
     if (validatePortPage()) {
       setRTSPTimeout();
       if (!angular.equals(pageData.PortConf, $scope.PortConf)) {
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          resolve: {
-            Message: function() {
-              return 'lang_msg_confirmInterface';
-            }
-          }
-        });
-
-        modalInstance.result.then(function() {
+        COMMONUtils.ShowConfirmation(function() {
           setPortConf();
-        }, function() {
-
+        }, 
+        'lang_msg_confirmInterface',
+        'sm',
+        function() {
         });
       }
     }
@@ -890,17 +882,7 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
     var promises = [];
     if (validateIPPage()) {
       if (!angular.equals(pageData.DefaultGateway, $scope.DefaultGateway) || !angular.equals(pageData.NetworkBandwidths, $scope.NetworkBandwidths) || !angular.equals(pageData.DNS, $scope.DNS) || !angular.equals(pageData.NetworkInterfaces, $scope.NetworkInterfaces)) {
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          resolve: {
-            Message: function() {
-              return 'lang_msg_confirmInterface';
-            }
-          }
-        });
-
-        modalInstance.result.then(function() {
+        COMMONUtils.ShowConfirmation(function() {
           if ($scope.DeviceType === 'NVR') {
             if (!angular.equals(pageData.DefaultGateway, $scope.DefaultGateway) || !angular.equals(pageData.NetworkBandwidths, $scope.NetworkBandwidths)) {
               if (!angular.equals(pageData.DefaultGateway, $scope.DefaultGateway)) {
@@ -927,7 +909,10 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
 
             }, function(errorData) {});
           }
-        }, function() {
+        }, 
+        'lang_msg_confirmInterface',
+        'sm',
+        function() {
 
         });
       }

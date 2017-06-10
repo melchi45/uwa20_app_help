@@ -129,57 +129,33 @@ kindFramework.controller('simpleFocusCtrl', function($scope, SunapiClient, Attri
 
   function setFastAutoFocus() {
     // COMMONUtils.ApplyConfirmation(SaveFAFSettings);
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        }
-      }
-    });
-    modalInstance.result.then(function() {
+    COMMONUtils.ApplyConfirmation(function() {
       SaveFAFSettings();
-    }, function() {
+    }, 
+    'sm',
+    function() {
       $scope.FastAutoFocus = !$scope.FastAutoFocus;
     });
   }
 
   function setFBEnable() {
     // COMMONUtils.ApplyConfirmation(SaveFBEnable);
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        }
-      }
-    });
-    modalInstance.result.then(function() {
+    COMMONUtils.ApplyConfirmation(function() {
       SaveFBEnable();
-    }, function() {
+    }, 
+    'sm',
+    function() {
       $scope.FBAdjustEnable = !$scope.FBAdjustEnable;
     });
   }
 
   function setTCEnable() {
     // COMMONUtils.ApplyConfirmation(SaveTCEnable);
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        }
-      }
-    });
-    modalInstance.result.then(function() {
+    COMMONUtils.ApplyConfirmation(function() {
       SaveTCEnable();
-    }, function() {
+    }, 
+    'sm',
+    function() {
       $scope.TCEnable = !$scope.TCEnable;
     });
   }

@@ -841,18 +841,7 @@ kindFramework.controller('QMSetupCtrl',
     }
 
     $scope.submitEnable = function() {
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/setup/common/confirmMessage.html',
-        controller: 'confirmMessageCtrl',
-        size: 'sm',
-        resolve: {
-          Message: function() {
-            return 'lang_apply_question';
-          }
-        }
-      });
-
-      modalInstance.result.then(
+      COMMONUtils.ApplyConfirmation(
         function() {
           qmModel
             .setData({
@@ -867,6 +856,7 @@ kindFramework.controller('QMSetupCtrl',
               }
             );
         },
+        'sm',
         function() {
           $scope.queueData.Enable = !$scope.queueData.Enable;
         }

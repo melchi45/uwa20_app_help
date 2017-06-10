@@ -445,18 +445,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
     if (validTimezoneCheck() === false) {
       return;
     }
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        }
-      }
-    });
-
-    modalInstance.result.then(function() {
+    COMMONUtils.ApplyConfirmation(function() {
         var setData = {};
 
         for (idx = 0; idx < $scope.DateTime.NTPURLList.length; idx = idx + 1) {
@@ -537,6 +526,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
             }, '', true);
         }
       },
+      'sm',
       function() {}
     );
 

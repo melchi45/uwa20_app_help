@@ -295,18 +295,7 @@ kindFramework.controller('fogDetectionCtrl', function($scope, SunapiClient, XMLP
 
   $scope.setFogDetectionEnable = function() {
     stopMonitoringFogLevel();
-    var modalInstance = $uibModal.open({
-      animation: false,
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        }
-      }
-    });
-    modalInstance.result.then(function() {
+    COMMONUtils.ApplyConfirmation(function() {
       $rootScope.$emit('changeLoadingBar', true);
       var setData = {};
 
@@ -331,7 +320,9 @@ kindFramework.controller('fogDetectionCtrl', function($scope, SunapiClient, XMLP
             startMonitoringFogLevel();
           }
         }, '', true);
-    }, function() {
+    }, 
+    'sm',
+    function() {
       $scope.FogDetect.Enable = angular.copy(pageData.FogDetect.Enable);
       if ($scope.FogDetect.Enable) {
         startMonitoringFogLevel();

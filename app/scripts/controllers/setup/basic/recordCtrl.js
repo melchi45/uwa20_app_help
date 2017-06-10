@@ -334,16 +334,7 @@ kindFramework.controller('recordCtrl', function($scope, $uibModal, $timeout, $ro
 
   function showModalDialog(callback, displaymsg, index, queue) {
     var deferred = $q.defer();
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      resolve: {
-        Message: function() {
-          return displaymsg;
-        }
-      }
-    });
-    modalInstance.result.then(function() {
+    COMMONUtils.ShowConfirmation(function() {
       switch (callback) {
         case "setStorageInfo":
           setStorageInfo(index, queue);
@@ -357,7 +348,10 @@ kindFramework.controller('recordCtrl', function($scope, $uibModal, $timeout, $ro
       }
       //on ok button press
       deferred.resolve('Success');
-    }, function() {
+    }, 
+    displaymsg,
+    'sm',
+    function() {
       //on cancel button press
       deferred.resolve('Success');
     });

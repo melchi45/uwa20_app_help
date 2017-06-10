@@ -90,22 +90,12 @@ kindFramework.controller('alarmoutputCtrl', function($scope, $timeout, $uibModal
     var promises = [];
     if (validatePage()) {
       if (!angular.equals(pageData.AlarmOutputs, $scope.AlarmOutputs)) {
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          size: 'sm',
-          resolve: {
-            Message: function() {
-              return 'lang_apply_question';
-            }
-          }
-        });
-        modalInstance.result.then(function() {
+        COMMONUtils.ApplyConfirmation(function() {
           setAlarmOutputs(promises);
           $q.seqAll(promises).then(function() {
             view();
           }, function(errorData) {});
-        }, function() {});
+        }, 'sm', function() {});
       }
     }
   }

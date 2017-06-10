@@ -112,16 +112,7 @@ function (
 
   function showModalDialog(callback, displaymsg, index, queue) {
     var deferred = $q.defer();
-    var modalInstance = $uibModal.open({
-      templateUrl: 'confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      resolve: {
-        Message: function() {
-          return displaymsg;
-        },
-      },
-    });
-    modalInstance.result.then(function() {
+    COMMONUtils.ShowConfirmation(function() {
       switch (callback) {
         case "setStorageInfo":
           setStorageInfo(index, queue);
@@ -135,7 +126,10 @@ function (
       }
 
       deferred.resolve('Success');
-    }, function() {
+    }, 
+    displaymsg,
+    'sm',
+    function() {
       deferred.resolve('Success');
     });
 

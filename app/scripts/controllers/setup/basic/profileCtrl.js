@@ -1489,25 +1489,22 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   $scope.changeResolutionMode = function(mode) {
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      resolve: {
-        Message: function() {
-          if (mode === '2M') {
-            return 'lang_msg_2megamode_change';
-          } else if (mode === '3M') {
-            return 'lang_msg_3megamode_change';
-          } else {
-            return 'lang_msg_megamode_change';
-          }
-        }
-      }
-    });
+    var msg = '';
 
-    modalInstance.result.then(function() {
+    if (mode === '2M') {
+      msg = 'lang_msg_2megamode_change';
+    } else if (mode === '3M') {
+      msg = 'lang_msg_3megamode_change';
+    } else {
+      msg = 'lang_msg_megamode_change';
+    }
+
+    COMMONUtils.ShowConfirmation(function() {
       setVideoSource();
-    }, function() {
+    }, 
+    msg,
+    'sm',
+    function() {
       $scope.VideoSources.SensorCaptureSize = pageData.VideoSources.SensorCaptureSize;
     });
   };
@@ -1746,45 +1743,23 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   function setConnectionPolicy() {
+    var msg = '';
     if ($scope.ProfileSessionPolicy === true) {
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/setup/common/confirmMessage.html',
-        controller: 'confirmMessageCtrl',
-        size: 'md',
-        resolve: {
-          Message: function() {
-            return 'lang_msg_change_setting';
-          }
-        }
-      });
-      modalInstance.result.then(
-        function() {
-          saveConnectionPolicy();
-        },
-        function() {
-          $scope.ProfileSessionPolicy = !$scope.ProfileSessionPolicy;
-        }
-      );
+      msg = 'lang_msg_change_setting';
     } else {
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/setup/common/confirmMessage.html',
-        controller: 'confirmMessageCtrl',
-        size: 'lg',
-        resolve: {
-          Message: function() {
-            return 'lang_msg_change_connection_policy';
-          }
-        }
-      });
-      modalInstance.result.then(
-        function() {
-          saveConnectionPolicy();
-        },
-        function() {
-          $scope.ProfileSessionPolicy = !$scope.ProfileSessionPolicy;
-        }
-      );
+      msg = 'lang_msg_change_connection_policy';
     }
+    
+    COMMONUtils.ShowConfirmation(
+      function() {
+        saveConnectionPolicy();
+      },
+      msg,
+      'sm',
+      function() {
+        $scope.ProfileSessionPolicy = !$scope.ProfileSessionPolicy;
+      }
+    );
   }
 
   $scope.setConnectionPolicy = setConnectionPolicy;

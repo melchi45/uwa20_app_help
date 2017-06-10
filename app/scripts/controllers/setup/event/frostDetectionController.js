@@ -227,24 +227,17 @@ kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XM
   function set() {
     if (validatePage()) {
       if (!angular.equals(pageData.FrostDetect, $scope.FrostDetect) || !angular.equals(pageData.EventRule, $scope.EventRule)) {
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          size: 'sm',
-          resolve: {
-            Message: function() {
-              return 'lang_apply';
-            }
-          }
-        });
-        modalInstance.result.then(function() {
+        COMMONUtils.ShowConfirmation(function() {
           if (!angular.equals(pageData.FrostDetect, $scope.FrostDetect)) {
             setFrostDetection();
           }
           if (!angular.equals(pageData.EventRule, $scope.EventRule)) {
             setEventRules();
           }
-        }, function() {});
+        }, 
+        'lang_apply',
+        'sm',
+        function() {});
       }
     }
   }

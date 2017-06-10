@@ -130,17 +130,7 @@ kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScop
     var promises = [];
     if (validatePage()) {
       if (!angular.equals(pageData.AlarmInputs, $scope.AlarmInputs) || !angular.equals(pageData.EventRules, $scope.EventRules)) {
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          size: 'sm',
-          resolve: {
-            Message: function() {
-              return 'lang_apply_question';
-            }
-          }
-        });
-        modalInstance.result.then(function() {
+        COMMONUtils.ApplyConfirmation(function() {
           if (!angular.equals(pageData.AlarmInputs, $scope.AlarmInputs)) {
             $scope.AlarmInputs.forEach(function(elem, index) {
               if (!angular.equals(pageData.AlarmInputs[index], elem)) {
@@ -164,7 +154,9 @@ kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScop
             $scope.$emit('applied', true);
             view();
           }
-        }, function() {});
+        },
+        'sm',
+        function() {});
       }
     }
   }

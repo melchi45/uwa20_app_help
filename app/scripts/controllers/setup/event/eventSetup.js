@@ -783,29 +783,18 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
   }
 
   function set() {
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        }
-      }
-    });
-
     if ($scope.isMultiChannel && $scope.isEventActionSupported) {
       if (!angular.equals(pageData.CommonEventRules, $scope.CommonEventRules) ||
         !angular.equals(pageData.ChannelEventRules, $scope.ChannelEventRules)) {
-        modalInstance.result.then(function() {
+        COMMONUtils.ApplyConfirmation(function() {
           setEventActions();
-        }, function() {});
+        }, 'sm', function() {});
       }
     } else {
       if (!angular.equals(pageData.EventRules, $scope.EventRules)) {
-        modalInstance.result.then(function() {
+        COMMONUtils.ApplyConfirmation(function() {
           setEventRules();
-        }, function() {});
+        }, 'sm', function() {});
       }
     }
   }

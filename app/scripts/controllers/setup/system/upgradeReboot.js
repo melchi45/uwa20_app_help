@@ -254,20 +254,12 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
   };
 
   $scope.factoryReset = function() {
-    var modalInstance = $uibModal.open({
-      templateUrl: 'confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      resolve: {
-        Message: function() {
-          return 'lang_msg_factoryDefault';
-        }
-      }
-    });
-
-    modalInstance.result.then(function() {
+    COMMONUtils.ShowConfirmation(function() {
       resetDevice();
-    }, function() {
-
+    }, 
+    'lang_msg_factoryDefault',
+    'sm',
+    function() {
     });
   };
 
@@ -318,20 +310,12 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
 
 
   $scope.reboot = function() {
-    var modalInstance = $uibModal.open({
-      templateUrl: 'confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_msg_restart';
-        }
-      }
-    });
-
-    modalInstance.result.then(function() {
+    COMMONUtils.ShowConfirmation(function() {
       restart();
-    }, function() {
+    }, 
+    'lang_msg_restart',
+    'sm',
+    function() {
 
     });
   };

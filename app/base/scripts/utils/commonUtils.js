@@ -185,7 +185,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     }
   };
 
-  commonUtils.ApplyConfirmation = function(Callback, ModalSize) {
+  commonUtils.ApplyConfirmation = function(Callback, ModalSize, errorCallback) {
     var modalSize = 'sm';
 
     if (ModalSize === 'md' || ModalSize === 'lg') {
@@ -203,7 +203,11 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       }
     });
 
-    modalInstance.result.then(Callback, function() {});
+    modalInstance.result.then(Callback, function(){
+      if(typeof errorCallback !== "undefined"){
+        errorCallback();
+      }
+    });
   };
 
   commonUtils.confirmChangeingChannel = function() {

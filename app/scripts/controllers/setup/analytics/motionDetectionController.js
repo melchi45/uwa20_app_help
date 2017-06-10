@@ -1158,19 +1158,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   $scope.submitEnable = function() {
     stopMonitoringMotionLevel();
-    var modalInstance = $uibModal.open({
-      animation: false,
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        }
-      }
-    });
-
-    modalInstance.result.then(function() {
+    COMMONUtils.ApplyConfirmation(function() {
       $scope.checkApplyButtonClick = true;
       $rootScope.$emit('changeLoadingBar', true);
 
@@ -1190,7 +1178,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
           console.log(errorData);
         }
       );
-    }, function() {
+    }, 
+    'sm',
+    function() {
       $scope.checkApplyButtonClick = false;
       $scope.MotionDetection.MotionDetectionEnable = pageData.MotionDetection.MotionDetectionEnable;
 
@@ -1272,22 +1262,12 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   function set() {
     if (validatePage()) {
       sketchbookService.removeDrawingGeometry();
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/setup/common/confirmMessage.html',
-        controller: 'confirmMessageCtrl',
-        size: 'sm',
-        resolve: {
-          Message: function() {
-            return 'lang_apply_question';
-          }
-        }
-      });
-
-      modalInstance.result.then(
+      COMMONUtils.ApplyConfirmation(
         function() {
           $scope.checkApplyButtonClick = true;
           saveSettings();
         },
+        'sm',
         function() {
           $scope.checkApplyButtonClick = false;
         }
@@ -2171,18 +2151,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         }
 
         if (userIndexArray.length) {
-          var modalInstance = $uibModal.open({
-            templateUrl: 'views/setup/common/confirmMessage.html',
-            controller: 'confirmMessageCtrl',
-            size: 'sm',
-            resolve: {
-              Message: function() {
-                return 'lang_msg_confirm_remove_profile';
-              }
-            }
-          });
-
-          modalInstance.result.then(function() {
+          ShowConfirmation(function() {
             if (!angular.equals(pageData.VA[$scope.presetTypeData.SelectedPreset], $scope.VA[$scope.presetTypeData.SelectedPreset])) {
               if ($scope.presetTypeData.SelectedPreset > 0) {
                 // setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
@@ -2216,7 +2185,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
             }, function() {
               //alert(errorData);
             });
-          }, function() {
+          }, 
+          'lang_msg_confirm_remove_profile',
+          'sm',
+          function() {
 
           });
         }

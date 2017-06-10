@@ -190,17 +190,8 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
   function set(isEnabledChanged) {
     if (isEnabledChanged) { // when enable checkbox changed.
       stopMonitoringAudioLevel();
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/setup/common/confirmMessage.html',
-        controller: 'confirmMessageCtrl',
-        size: 'sm',
-        resolve: {
-          Message: function() {
-            return 'lang_apply_question';
-          }
-        }
-      });
-      modalInstance.result.then(function() {
+      
+      COMMONUtils.ApplyConfirmation(function() {
         var setData = {};
 
         setData.Channel = 0;
@@ -218,7 +209,9 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
               startMonitoringAudioLevel();
             }
           }, '', true);
-      }, function() {
+      },
+      'sm',
+      function() {
         if (isEnabledChanged) {
           $scope.AD.Enable = !$scope.AD.Enable;
 
@@ -234,18 +227,7 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
     if (validatePage()) {
       if (!angular.equals(pageData.AD, $scope.AD) || !angular.equals(pageData.EventRule, $scope.EventRule)) {
         //stopMonitoringAudioLevel();
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          size: 'sm',
-          resolve: {
-            Message: function() {
-              return 'lang_apply_question';
-            }
-          }
-        });
-
-        modalInstance.result.then(function() {
+        COMMONUtils.ApplyConfirmation(function() {
           var functionList = [];
           if (!angular.equals(pageData.AD, $scope.AD)) {
             functionList.push(setAudioDetection);
@@ -266,7 +248,9 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
             view();
           }
 
-        }, function() {
+        }, 
+        'sm',
+        function() {
 
         });
       }

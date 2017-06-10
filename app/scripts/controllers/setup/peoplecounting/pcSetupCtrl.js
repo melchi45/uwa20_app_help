@@ -941,17 +941,7 @@ kindFramework.controller('PCSetupCtrl',
     }
 
     $scope.submitEnable = function() {
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/setup/common/confirmMessage.html',
-        controller: 'confirmMessageCtrl',
-        size: 'sm',
-        resolve: {
-          Message: function() {
-            return 'lang_apply_question';
-          }
-        }
-      });
-      modalInstance.result.then(function() {
+      COMMONUtils.ApplyConfirmation(function() {
         pcSetupModel.
         setRuleInfo({
           Enable: $scope.countingRuleSection.peopleCountingEnable
@@ -961,7 +951,9 @@ kindFramework.controller('PCSetupCtrl',
         }, function(errorData) {
           console.error(errorData);
         });
-      }, function() {
+      }, 
+      'sm',
+      function() {
         $scope.countingRuleSection.peopleCountingEnable = !$scope.countingRuleSection.peopleCountingEnable;
       });
     };

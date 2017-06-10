@@ -337,21 +337,11 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
   function set() {
     if (validatePage()) {
       // if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect) || !eventRuleService.checkEventRuleValidation()){
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/setup/common/confirmMessage.html',
-        controller: 'confirmMessageCtrl',
-        size: 'sm',
-        resolve: {
-          Message: function() {
-            return 'lang_apply_question';
-          }
-        }
-      });
-
-      modalInstance.result.then(function() {
+      COMMONUtils.ApplyConfirmation(function() {
         saveSettings();
-      }, function() {
-
+      }, 
+      'sm',
+      function() {
       });
       // }
     }
@@ -492,19 +482,7 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
   $scope.submitEnable = function() {
     stopMonitoringDefocusLevel();
 
-    var modalInstance = $uibModal.open({
-      animation: false,
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        }
-      }
-    });
-
-    modalInstance.result.then(function() {
+    COMMONUtils.ApplyConfirmation(function() {
       var setData = {
         Channel: UniversialManagerService.getChannelId(),
         Enable: $scope.DefocusDetect.Enable
@@ -523,7 +501,9 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
             startMonitoringDefocusLevel();
           }
         }, '', true);
-    }, function() {
+    }, 
+    'sm',
+    function() {
       $scope.DefocusDetect.Enable = pageData.DefocusDetect.Enable;
       if ($scope.DefocusDetect.Enable) {
         startMonitoringDefocusLevel();

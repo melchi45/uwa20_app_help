@@ -502,17 +502,7 @@ kindFramework.controller(
       sketchbookService.removeDrawingGeometry();
 
       if (validatePage()) {
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          size: 'sm',
-          resolve: {
-            Message: function() {
-              return 'lang_apply_question';
-            }
-          }
-        });
-        modalInstance.result.then(setChangedData, function() {
+        COMMONUtils.ApplyConfirmation(setChangedData, function() {
           if (isEnable === true) {
             $scope.FD.Enable = pageData.FD.Enable;
           }

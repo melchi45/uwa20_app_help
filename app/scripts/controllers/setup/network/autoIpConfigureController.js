@@ -220,20 +220,9 @@ kindFramework.controller('autoIpConfigureCtrl', function($scope, $timeout, $uibM
   function set() {
     if (validatePage()) {
       if (!angular.equals(pageData.ZeroConf, $scope.ZeroConf) || !angular.equals(pageData.UpnpDiscovery, $scope.UpnpDiscovery) || !angular.equals(pageData.Bonjour, $scope.Bonjour)) {
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          size: 'sm',
-          resolve: {
-            Message: function() {
-              return 'lang_apply_question';
-            }
-          }
-        });
-
         testZeroConf = false;
 
-        modalInstance.result.then(function() {
+        COMMONUtils.ApplyConfirmation(function() {
           if (!angular.equals(pageData.ZeroConf, $scope.ZeroConf)) {
             console.log("TEST ZERO CONF  werwe", testZeroConf);
 
@@ -251,7 +240,9 @@ kindFramework.controller('autoIpConfigureCtrl', function($scope, $timeout, $uibM
           if (!angular.equals(pageData.Bonjour, $scope.Bonjour)) {
             setBonjour();
           }
-        }, function() {
+        },
+        'sm',
+        function() {
 
         });
 

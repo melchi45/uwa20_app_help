@@ -612,19 +612,12 @@ kindFramework
                   // icon: ' tui-delete tui',
                   text: $translate.instant('lang_reset'),
                   click: function() {
-                    var modalInstance = $uibModal.open({
-                      templateUrl: 'views/setup/common/confirmMessage.html',
-                      controller: 'confirmMessageCtrl',
-                      size: 'sm',
-                      resolve: {
-                        Message: function() {
-                          return 'lang_msg_initialize_event_action_schedule';
-                        }
-                      }
-                    });
-                    modalInstance.result.then(function() {
+                    COMMONUtils.ShowConfirmation(function() {
                       deleteAll();
-                    }, function() {});
+                    }, 
+                    'lang_msg_initialize_event_action_schedule',
+                    'sm',
+                    function() {});
                   }
                 }
               },

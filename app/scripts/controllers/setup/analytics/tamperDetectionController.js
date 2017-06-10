@@ -376,19 +376,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
 
   $scope.setTamperDetectionEnable = function() {
     stopMonitoringTamperingLevel();
-    var modalInstance = $uibModal.open({
-      animation: false,
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        },
-      },
-    });
-
-    modalInstance.result.then(
+    COMMONUtils.ApplyConfirmation(
       function() {
         $rootScope.$emit('changeLoadingBar', true);
         var setData = {};
@@ -419,6 +407,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
             $scope.TamperDetect.Enable = angular.copy(pageData.TamperDetect.Enable);
           }, '', true);
       },
+      'sm',
       function() {
         $scope.TamperDetect.Enable = angular.copy(pageData.TamperDetect.Enable);
         if ($scope.TamperDetect.Enable) {
@@ -539,18 +528,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
     if (validatePage()) {
       if (!angular.equals(pageData.TamperDetect, $scope.TamperDetect) || !angular.equals(pageData.EventRule, $scope.EventRule)) {
         stopMonitoringTamperingLevel();
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          size: 'sm',
-          resolve: {
-            Message: function() {
-              return 'lang_apply_question';
-            },
-          },
-        });
-
-        modalInstance.result.then(function() {
+        COMMONUtils.ApplyConfirmation(function() {
           var functionList = [];
 
           if (!angular.equals(pageData.TamperDetect, $scope.TamperDetect)) {
@@ -572,7 +550,9 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
             view();
           }
 
-        }, function() {
+        }, 
+        'sm',
+        function() {
 
         });
       }

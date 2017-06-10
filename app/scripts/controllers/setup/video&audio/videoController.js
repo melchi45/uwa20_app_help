@@ -919,18 +919,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
   });
 
   $scope.setVideoSetupEnable = function() {
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        }
-      }
-    });
-
-    modalInstance.result.then(
+    COMMONUtils.ApplyConfirmation(
       function() {
         var setData = {};
 
@@ -952,6 +941,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
             console.log(errorData);
           }, '', true);
       },
+      'sm',
       function() {
         $scope.PrivacyMask[$scope.SelectedChannel].Enable = angular.copy(pageData.PrivacyMask[$scope.SelectedChannel].Enable);
       }

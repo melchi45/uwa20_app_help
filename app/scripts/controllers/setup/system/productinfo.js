@@ -169,18 +169,7 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
 
   function set() {
     if (validate()) {
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/setup/common/confirmMessage.html',
-        controller: 'confirmMessageCtrl',
-        size: 'sm',
-        resolve: {
-          Message: function() {
-            return 'lang_apply_question';
-          }
-        }
-      });
-
-      modalInstance.result.then(function() {
+      COMMONUtils.ApplyConfirmation(function() {
         var setData = {};
         setData.DeviceName = encodeURIComponent($scope.Info.DeviceName);
         if ($scope.DeviceType === 'NWC') {
@@ -200,7 +189,9 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
           function(errorData) {
             alert("Error!");
           }, '', true);
-      }, function() {
+      }, 
+      'sm',
+      function() {
 
       });
     }

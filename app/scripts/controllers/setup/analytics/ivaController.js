@@ -1760,17 +1760,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
   }
 
   $scope.setOnlyEnable = function() {
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/setup/common/confirmMessage.html',
-      controller: 'confirmMessageCtrl',
-      size: 'sm',
-      resolve: {
-        Message: function() {
-          return 'lang_apply_question';
-        },
-      },
-    });
-    modalInstance.result.then(function() {
+    COMMONUtils.ApplyConfirmation(function() {
       var url = '';
       if ($scope.IntelligentVideoEnable === true) {
         if ($scope.presetTypeData.SelectedPreset === 0) { // global type
@@ -1815,9 +1805,10 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
           console.log(errorData);
         });
     },
-      function() {
-        $scope.IntelligentVideoEnable = !$scope.IntelligentVideoEnable;
-      });
+    'sm',
+    function() {
+      $scope.IntelligentVideoEnable = !$scope.IntelligentVideoEnable;
+    });
   };
 
   function comparePageData() {
@@ -1862,17 +1853,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
         //  pageDetectionType === "MDAndIV") && $scope.IntelligentVideoEnable ||
         //   pageData.VA[0].IntelligentVideoEnable != $scope.IntelligentVideo)
         // ) {
-        var modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/confirmMessage.html',
-          controller: 'confirmMessageCtrl',
-          size: 'sm',
-          resolve: {
-            Message: function() {
-              return 'lang_apply_question';
-            },
-          },
-        });
-        modalInstance.result.then(function() {
+        COMMONUtils.ApplyConfirmation(function() {
 
           showLoadingBar(true);
 
@@ -1903,7 +1884,9 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             $scope.$emit('applied', true);
             $timeout(view);
           }
-        }, function() {
+        }, 
+        'sm',
+        function() {
           if (isEnabledChanged) {
             $scope.IntelligentVideoEnable = !$scope.IntelligentVideoEnable;
           }

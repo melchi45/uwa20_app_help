@@ -61,20 +61,10 @@ kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal,
   function set() {
     if (validatePage()) {
       // if (!angular.equals(pageData.EventRule, $scope.EventRule)) {
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/setup/common/confirmMessage.html',
-        controller: 'confirmMessageCtrl',
-        size: 'sm',
-        resolve: {
-          Message: function() {
-            return 'lang_apply_question';
-          }
-        }
-      });
-      modalInstance.result.then(function() {
+      COMMONUtils.ApplyConfirmation(function() {
         $scope.$emit('applied', true);
         //view();
-      }, function() {});
+      }, 'sm', function() {});
       // }
     }
   }
