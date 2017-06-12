@@ -95,10 +95,6 @@ var SketchManager = (function() {
       if ("style" in svgElement) {
         svgElement.style.zIndex = zIndex;
       }
-
-      svgElement.setAttributeNS(null, 'width', videoInfo.width);
-      svgElement.setAttributeNS(null, 'height', videoInfo.height);
-      svgElement.setAttributeNS(null, 'viewBox', '0 0 ' + videoInfo.width + ' ' + videoInfo.height);
     }
   };
 

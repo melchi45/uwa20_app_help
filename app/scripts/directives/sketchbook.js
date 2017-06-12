@@ -174,6 +174,10 @@ kindFramework
                 "overflow": "inherit"
               });
 
+              elem.find("#sketchbook_svg")[0].setAttributeNS(null, 'width', videoinfo.width);
+              elem.find("#sketchbook_svg")[0].setAttributeNS(null, 'height', videoinfo.height);
+              elem.find("#sketchbook_svg")[0].setAttributeNS(null, 'viewBox', '0 0 ' + videoinfo.width + ' ' + videoinfo.height);
+
               var canvasElem = document.getElementsByTagName("canvas");
               if (videoinfo.support_ptz) {
                 if (videoinfo.support_ptz === 'PTZ') {
