@@ -3132,7 +3132,7 @@ body.kind-responsive-playback {
   min-width: 400px;
 }
 body.kind-responsive-setup {
-  min-width: 730px;
+  min-width: 320px;
 }
 .nav-toggle {
   position: absolute;
@@ -4535,63 +4535,53 @@ body.kind-svg-editor-drawing .channel-content {
   box-sizing: content-box;
   display: none;
 }
-/*
-@media(max-width: @setup-mobile-max-width){
-	#sketchbook canvas {
-		width: 100% !important;
-		height: 100% !important;
-		display: block;
-	}
-
-	// Can't use sketchbook in Mobile Device
-	#sketchbook canvas,
-	#sketchbook_svg {
-		pointer-events: none;
-	}
-
-	#container,
-	#sketchbook {
-		width: 100% !important;
-
-		// 영상 비율별 height 설정 
-		// 1:1 
-		&[style*="height: 640px"],
-		&[height="640"],{
-			height: 100% !important;
-		}
-		
-		// 21:9 
-		&[style*="height: 278px"],
-		&[height="278"],{
-			height: 43.4375% !important;
-		}
-		
-		// 4:3 
-		&[style*="height: 480px"],
-		&[height="480"],{
-			height: 75% !important;
-		}
-
-		// 16:9 
-		&[style*="height: 360px"],
-		&[height="360"],{
-			height: 56.25% !important;
-		}
-
-		// 4096x2160 
-		&[style*="height: 337px"],
-		&[height="337"],{
-			height: 52.65625% !important;
-		}
-
-		// 2592x1520 
-		&[style*="height: 376px"],
-		&[height="376"],{
-			height: 58.75% !important;
-		}
-	}
+@media (max-width: 700px) {
+  #sketchbook canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+  #container,
+  #sketchbook {
+    width: 100% !important;
+  }
+  #container[style*="height: 640px"],
+  #sketchbook[style*="height: 640px"],
+  #container[height="640"],
+  #sketchbook[height="640"] {
+    height: 100% !important;
+  }
+  #container[style*="height: 278px"],
+  #sketchbook[style*="height: 278px"],
+  #container[height="278"],
+  #sketchbook[height="278"] {
+    height: 43.4375% !important;
+  }
+  #container[style*="height: 480px"],
+  #sketchbook[style*="height: 480px"],
+  #container[height="480"],
+  #sketchbook[height="480"] {
+    height: 75% !important;
+  }
+  #container[style*="height: 360px"],
+  #sketchbook[style*="height: 360px"],
+  #container[height="360"],
+  #sketchbook[height="360"] {
+    height: 56.25% !important;
+  }
+  #container[style*="height: 337px"],
+  #sketchbook[style*="height: 337px"],
+  #container[height="337"],
+  #sketchbook[height="337"] {
+    height: 52.65625% !important;
+  }
+  #container[style*="height: 376px"],
+  #sketchbook[style*="height: 376px"],
+  #container[height="376"],
+  #sketchbook[height="376"] {
+    height: 58.75% !important;
+  }
 }
-*/
 [drag-select] {
   cursor: pointer;
   -webkit-touch-callout: none;
