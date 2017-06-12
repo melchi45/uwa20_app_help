@@ -1,165 +1,165 @@
-    <div id="cm-menu-content">
+<div id="cm-menu-content">
 
 
-    <!-- Setup 버튼을 클릭했을 때 -->
-    <div ng-show="channelSetFunctions['setup']" id="cm-setup">
-      <div class="cm-center">
-        <div class="cm-setup-col">
-          <h2>
-            <span>{{'lang_profile' | translate}}</span>
-            <select 
-              class="cm-selectbox cm-profile-sel" 
-              ng-model="selectedProfile" 
-              ng-change="changeProfile(selectedProfile)" 
-              ng-options="profileList.indexOf(profile) as profile.Name for profile in profileList">
-            </select>
-          </h2>
-          <div class="ng-binding">
-            <table class="cm-table">
-              <tr>
-                <th>{{'lang_resolution' | translate}}</th>
-                <td>{{profileList[selectedProfile].Resolution}}</td>
-              </tr>
-              <tr>
-                <th>{{'lang_codec' | translate}}</th>
-                <td>{{profileList[selectedProfile].EncodingType}}</td>
-              </tr>
-              <tr>
-                <th>{{'lang_framerate' | translate}}</th>
-                <td>{{profileList[selectedProfile].FrameRate}}</td>
-              </tr>
-              <!-- <tr>
-                <th>{{'lang_compression' | translate}}</th>
-                <td>{{profileList[selectedProfile].CompressionLevel}}</td>
-              </tr> -->
-              <tr>
-                <th>{{'lang_targetBitrate' | translate}}</th>
-                <td>
-                  {{profileList[selectedProfile].Bitrate}} Kbps
-                  <span ng-show="profileList[selectedProfile].H264 !== undefined">,{{profileList[selectedProfile].H264.BitrateControlType}}</span>
-                  <span ng-show="profileList[selectedProfile].H265 !== undefined">,{{profileList[selectedProfile].H265.BitrateControlType}}</span>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-        <div class="cm-setup-col" ng-show="showImageController">
-          <h2>
-            <span>{{'lang_display' | translate}}</span>
-            <button 
-              class="cm-btn-dark" 
-              title="{{ 'lang_camerareset' | translate}}" 
-              ng-click="resetDisplay()"
-              style="padding: 0 5px 0 4px; height: 25px; line-height: 25px; transform: translateY(-3px);">
-              <span class="sr-only">{{ 'lang_camerareset' | translate}}</span>
-              <i class="tui tui-wn5-return"></i>
-            </button>
-          </h2>
-          <ul id="cm-display-slider" class="cm-profile-ul">
-            <li data-type="Contrast">
-              <h3>{{'lang_contrast' | translate}}</h3>
-              <span class="cm-min">0</span>
-              <div class="cm-slider">
-                <div></div>
-              </div>
-              <span class="cm-max">0</span>
-              <input type="number" min="0" max="100" class="cm-textbox">
-            </li>
-            <li data-type="Brightness">
-              <h3>{{'lang_brightness' | translate}}</h3>
-              <span class="cm-min">0</span>
-              <div class="cm-slider">
-                <div></div>
-              </div>
-              <span class="cm-max">0</span>
-              <input type="number" min="0" max="100" class="cm-textbox">
-            </li>
-            <li data-type="SharpnessLevel">
-              <h3>{{'lang_sharpness' | translate}}</h3>
-              <div class="cm-checkbox-wrap">
-                <input type="checkbox" id="sharpness-enable">
-                <label for="sharpness-enable"></label>
-              </div>
-              <span class="cm-min">0</span>
-              <div class="cm-slider">
-                <div></div>
-              </div>
-              <span class="cm-max">0</span>
-              <input type="number" min="0" max="100" class="cm-textbox">
-            </li>
-            <li data-type="Saturation">
-              <h3>{{'lang_colorlevel' | translate}}</h3>
-              <span class="cm-min">0</span>
-              <div class="cm-slider">
-                <div></div>
-              </div>
-              <span class="cm-max">0</span>
-              <input type="number" min="0" max="100" class="cm-textbox">
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
-
-    <!-- PTZ 버튼을 클릭했을 때 -->
-    <div ng-show="channelSetFunctions['ptz']" id="cm-ptz">
-      <live-ptz-control></live-ptz-control>
-    </div>
-
-
-    <!-- Status 버튼을 클릭했을 때 -->
-    <div ng-show="channelSetFunctions['status']" id="cm-status">
-      <div class="cm-status-wrap">
-
-        <div class="cm-status-col">
-          <h2><span>{{'lang_menu_info' | translate}}</span></h2>
-          <table class="cm-table" id="cm-status-first">
-            <thead>
-              <tr>
-                <th>{{'lang_profile' | translate}}</th>
-                <th>{{'lang_bitrate' | translate}}(kbps)</th>
-                <th>{{'lang_framerate' | translate}}(fps)</th>
-                <th>ATC(%)</th>
-                <th>{{'lang_accessNumber' | translate}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="Profiles in profileAccessInfoList">
-                <td>{{Profiles.Name}}</td>
-                <td>{{Profiles.CurrentBitrate}}/{{Profiles.TotalBitrate}}</td>
-                <td>{{Profiles.CurrentFPS}}/{{Profiles.TotalFPS}}</td>
-                <td>{{Profiles.ATC}}</td>
-                <td>{{Profiles.ConcurrentUserCount}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="cm-status-col">
-          <h2><span>{{'lang_currentUsers' | translate}}</span></h2>
+  <!-- Setup 버튼을 클릭했을 때 -->
+  <div ng-show="channelSetFunctions['setup']" id="cm-setup">
+    <div class="cm-center">
+      <div class="cm-setup-col">
+        <h2>
+          <span>{{'lang_profile' | translate}}</span>
+          <select 
+            class="cm-selectbox cm-profile-sel" 
+            ng-model="selectedProfile" 
+            ng-change="changeProfile(selectedProfile)" 
+            ng-options="profileList.indexOf(profile) as profile.Name for profile in profileList">
+          </select>
+        </h2>
+        <div class="ng-binding">
           <table class="cm-table">
-            <thead>
-              <tr>
-                <th>{{'lang_profile' | translate}}</th>
-                <th>{{'lang_bitrate' | translate}}(kbps)</th>
-                <th>{{'lang_networkConnectionStatus' | translate}}</th>
-                <th>{{'lang_IPAddress' | translate}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="Users in profileAccessUserList">
-                <td><div ng-repeat="profileName in Users.ProfileNameList track by $index">{{profileName}}</div></td>
-                <td>{{Users.ClientBitrate}}</td>
-                <td>{{Users.ClientNetworkConnectionStatus}}</td>
-                <td>{{Users.ClientIPAddress}}</td>
-              </tr>
-            </tbody>
+            <tr>
+              <th>{{'lang_resolution' | translate}}</th>
+              <td>{{profileList[selectedProfile].Resolution}}</td>
+            </tr>
+            <tr>
+              <th>{{'lang_codec' | translate}}</th>
+              <td>{{profileList[selectedProfile].EncodingType}}</td>
+            </tr>
+            <tr>
+              <th>{{'lang_framerate' | translate}}</th>
+              <td>{{profileList[selectedProfile].FrameRate}}</td>
+            </tr>
+            <!-- <tr>
+              <th>{{'lang_compression' | translate}}</th>
+              <td>{{profileList[selectedProfile].CompressionLevel}}</td>
+            </tr> -->
+            <tr>
+              <th>{{'lang_targetBitrate' | translate}}</th>
+              <td>
+                {{profileList[selectedProfile].Bitrate}} Kbps
+                <span ng-show="profileList[selectedProfile].H264 !== undefined">,{{profileList[selectedProfile].H264.BitrateControlType}}</span>
+                <span ng-show="profileList[selectedProfile].H265 !== undefined">,{{profileList[selectedProfile].H265.BitrateControlType}}</span>
+              </td>
+            </tr>
           </table>
         </div>
-
       </div>
+
+      <div class="cm-setup-col" ng-show="showImageController">
+        <h2>
+          <span>{{'lang_display' | translate}}</span>
+          <button 
+            class="cm-btn-dark" 
+            title="{{ 'lang_camerareset' | translate}}" 
+            ng-click="resetDisplay()"
+            style="padding: 0 5px 0 4px; height: 25px; line-height: 25px; transform: translateY(-3px);">
+            <span class="sr-only">{{ 'lang_camerareset' | translate}}</span>
+            <i class="tui tui-wn5-return"></i>
+          </button>
+        </h2>
+        <ul id="cm-display-slider" class="cm-profile-ul">
+          <li data-type="Contrast">
+            <h3>{{'lang_contrast' | translate}}</h3>
+            <span class="cm-min">0</span>
+            <div class="cm-slider">
+              <div></div>
+            </div>
+            <span class="cm-max">0</span>
+            <input type="number" min="0" max="100" class="cm-textbox">
+          </li>
+          <li data-type="Brightness">
+            <h3>{{'lang_brightness' | translate}}</h3>
+            <span class="cm-min">0</span>
+            <div class="cm-slider">
+              <div></div>
+            </div>
+            <span class="cm-max">0</span>
+            <input type="number" min="0" max="100" class="cm-textbox">
+          </li>
+          <li data-type="SharpnessLevel">
+            <h3>{{'lang_sharpness' | translate}}</h3>
+            <div class="cm-checkbox-wrap">
+              <input type="checkbox" id="sharpness-enable">
+              <label for="sharpness-enable"></label>
+            </div>
+            <span class="cm-min">0</span>
+            <div class="cm-slider">
+              <div></div>
+            </div>
+            <span class="cm-max">0</span>
+            <input type="number" min="0" max="100" class="cm-textbox">
+          </li>
+          <li data-type="Saturation">
+            <h3>{{'lang_colorlevel' | translate}}</h3>
+            <span class="cm-min">0</span>
+            <div class="cm-slider">
+              <div></div>
+            </div>
+            <span class="cm-max">0</span>
+            <input type="number" min="0" max="100" class="cm-textbox">
+          </li>
+        </ul>
+      </div>
+
     </div>
   </div>
+
+
+  <!-- PTZ 버튼을 클릭했을 때 -->
+  <div ng-show="channelSetFunctions['ptz']" id="cm-ptz">
+    <live-ptz-control></live-ptz-control>
+  </div>
+
+
+  <!-- Status 버튼을 클릭했을 때 -->
+  <div ng-show="channelSetFunctions['status']" id="cm-status">
+    <div class="cm-status-wrap">
+
+      <div class="cm-status-col">
+        <h2><span>{{'lang_menu_info' | translate}}</span></h2>
+        <table class="cm-table" id="cm-status-first">
+          <thead>
+            <tr>
+              <th>{{'lang_profile' | translate}}</th>
+              <th>{{'lang_bitrate' | translate}}(kbps)</th>
+              <th>{{'lang_framerate' | translate}}(fps)</th>
+              <th>ATC(%)</th>
+              <th>{{'lang_accessNumber' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="Profiles in profileAccessInfoList">
+              <td>{{Profiles.Name}}</td>
+              <td>{{Profiles.CurrentBitrate}}/{{Profiles.TotalBitrate}}</td>
+              <td>{{Profiles.CurrentFPS}}/{{Profiles.TotalFPS}}</td>
+              <td>{{Profiles.ATC}}</td>
+              <td>{{Profiles.ConcurrentUserCount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cm-status-col">
+        <h2><span>{{'lang_currentUsers' | translate}}</span></h2>
+        <table class="cm-table">
+          <thead>
+            <tr>
+              <th>{{'lang_profile' | translate}}</th>
+              <th>{{'lang_bitrate' | translate}}(kbps)</th>
+              <th>{{'lang_networkConnectionStatus' | translate}}</th>
+              <th>{{'lang_IPAddress' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="Users in profileAccessUserList">
+              <td><div ng-repeat="profileName in Users.ProfileNameList track by $index">{{profileName}}</div></td>
+              <td>{{Users.ClientBitrate}}</td>
+              <td>{{Users.ClientNetworkConnectionStatus}}</td>
+              <td>{{Users.ClientIPAddress}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

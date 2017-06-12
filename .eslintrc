@@ -57,7 +57,7 @@
     "no-alert" : "error",
     "no-case-declarations" : "error",
     "no-empty-pattern" : "error",
-    "no-fallthrough" : "error",
+    "no-fallthrough" : ["error",{ "commentPattern": "break[\\s\\w]*omitted" } ],
     "no-global-assign" : "off",
     "no-multi-spaces" : "off",
     "no-octal" : "error",

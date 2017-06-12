@@ -58,29 +58,27 @@
   show-menu="timelineControl.showMenu">
 </playback-datepicker>
 
-<playback-event-sorting 
+<playback-event
   set-overlap-event="timelineControl.setOverlapEvent"
   get-overlap-event="timelineControl.getOverlapEvent"
   ng-show="timelineControl.currentTimelineMode === 'eventsorting'">
-</playback-event-sorting>
+</playback-event>
 
 <div 
   ng-show="timelineControl.currentTimelineMode !== 'playback' && timelineControl.currentTimelineMode !== 'datepicker'"
-  class="cm-row" 
+  class="cm-row timeline-button" 
   ng-class="{'pb-backup-button' : timelineControl.currentTimelineMode === 'backup'}">
-  <div class="cm-center">
-    <button 
-      ng-click="timelineControl.submit()"
-      title="{{'lang_apply' | translate}}"
-      class="cm-submit-button cm-btn-point"
-      style="margin-right: 5px;">
-      {{'lang_apply' | translate}}
-    </button>
-    <button 
-      ng-click="timelineControl.cancel()"
-      title="{{'lang_cancel' | translate}}"
-      class="cm-btn-dark cm-cancel-button">
-      {{'lang_cancel' | translate}}
-    </button>
-  </div>
+  <button 
+    ng-click="timelineControl.submit()"
+    title="{{'lang_apply' | translate}}"
+    class="cm-submit-button cm-btn-point"
+    style="margin-right: 5px;">
+    {{'lang_apply' | translate}}
+  </button>
+  <button 
+    ng-click="timelineControl.cancel()"
+    title="{{'lang_cancel' | translate}}"
+    class="cm-btn-dark cm-cancel-button">
+    {{'lang_cancel' | translate}}
+  </button>
 </div>

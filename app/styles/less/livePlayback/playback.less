@@ -11,6 +11,8 @@
             max-height: 100px;
             left: 50%;
             transform: translateX(-50%);
+            color: #797979;
+            float: left;
 
             .ui-state-default{
                 top: 13px;
@@ -112,7 +114,7 @@
             width: 100%;
             min-width: 400px;
             height: 200px;
-            padding: 19px 0 10px 0;
+            padding: 19px 0 0 0;
             position: relative;
             overflow-x: hidden;
             overflow-y: auto;
@@ -217,6 +219,10 @@
                     font-size: 11px;
                 }
             }
+
+            .timeline-button:not(.pb-backup-button) {
+                margin: 10px 0;
+            }
         }
 
         /* #cm-bottom-menu full screen */
@@ -251,6 +257,8 @@
             }  
 
             #pb-datepicker-section {
+                width: auto;
+
                 .pb-all-day label {
                     color: @theme-dark-normal-color;
                 }
@@ -283,6 +291,9 @@
 
         #pb-event-section {
             z-index: 1;
+            width: auto;
+            left: 50%;
+            transform: translateX(-50%);
             
             & > .cm-center {
                 display: table-cell;
@@ -600,13 +611,6 @@
             }
         }
 
-        // .cm-str-button {
-        //     height: 51px;
-        //     line-height: 51px;
-        //     padding: 0 15px;
-        //     font-size: 17px;
-        // }
-
         .cm-btn-dark {
             height: 51px;
             line-height: 51px;
@@ -614,7 +618,6 @@
             font-size: 17px;
         }
         
-        // .vis-timeline.vis-bottom .vis-panel.vis-center .vis-content .vis-itemset .vis-foreground .vis-item.vis-range.vis-readonly .vis-item-overflow
 
         .vis-timeline.vis-bottom .vis-panel {
             &.vis-center .vis-content .vis-itemset {
@@ -726,34 +729,30 @@
 
         /* Date-content UI style  */
         #pb-datepicker-section {
-            .cm-center {
-                width: 830px;
+            .pb-datepicker {
+                &:first-child {
+                    width: 35%;
 
-                .pb-datepicker {
-                    &:first-child {
-                        width: 35%;
+                    table {
+                        width: 80% !important;
 
-                        table {
-                            width: 80% !important;
+                        th {
+                            font-size: 14px;
+                        }
 
-                            th {
-                                font-size: 14px;
-                            }
-
-                            .btn.btn-default {
-                                font-size: 14px;
-                            }
+                        .btn.btn-default {
+                            font-size: 14px;
                         }
                     }
+                }
 
-                    &:last-child {
-                        width: 55%;
-                        margin: 15px 0px;
+                &:last-child {
+                    width: 55%;
+                    margin: 15px 0px;
 
 
-                        .pb-all-day {
-                            font-size: 16px;
-                        }
+                    .pb-all-day {
+                        font-size: 16px;
                     }
                 }
             }
@@ -963,13 +962,6 @@
             }
         }
 
-        // .cm-str-button {
-        //     height: 59.5px;
-        //     line-height: 59.5px;
-        //     padding: 0 17.5px;
-        //     font-size: 21px;
-        // }
-
         .cm-btn-dark {
             height: 59.5px;
             line-height: 59.5px;
@@ -1039,36 +1031,31 @@
             width: 175px;
         }
 
-        // Date-content UI style
         #pb-datepicker-section {
-            .cm-center {
-                width: 1140px;
+            .pb-datepicker {
+                &:first-child {
+                    width: 35%;
 
-                .pb-datepicker {
-                    &:first-child {
-                        width: 35%;
+                    table {
+                        width: 80% !important;
 
-                        table {
-                            width: 80% !important;
+                        th {
+                            font-size: 18px;
+                        }
 
-                            th {
-                                font-size: 18px;
-                            }
-
-                            .btn.btn-default {
-                                  font-size: 18px;  
-                            }
+                        .btn.btn-default {
+                                font-size: 18px;  
                         }
                     }
+                }
 
-                    &:last-child {
-                        width: 55%;
-                        margin: 15px 0px;
+                &:last-child {
+                    width: 55%;
+                    margin: 15px 0px;
 
 
-                        .pb-all-day {
-                            font-size: 21px;
-                        }
+                    .pb-all-day {
+                        font-size: 21px;
                     }
                 }
             }
@@ -1174,12 +1161,6 @@
                         margin: 0 2px !important;
                     }
 
-                    #pb-event-section {
-                        & > .cm-center {
-                            width: 100%;
-                        }
-                    }
-
                     #pb-date-control {
                         .cm-col {
                             margin: 0 3px;
@@ -1245,15 +1226,13 @@
 
     @media screen and (max-width:700px) {
         #pb-datepicker-section {
-            margin-top: -5px;
-
             .pb-block {
                 &.cm-m0-5 {
                     margin: 0 3px;
                 }
             }
 
-            & > .cm-row > .cm-center > .pb-block {
+            & > .pb-block {
                 margin: 0 auto;
                 float: none;
 
@@ -1266,7 +1245,7 @@
             .pb-button-wrap {
                 text-align: center;
                 display: block;
-                margin: 15px auto;
+                margin: 10px auto;
                 clear: both;
                 width: 100%;
             }
@@ -1440,12 +1419,7 @@
                 }
 
                 #pb-datepicker-section {
-                    & > .cm-row > .cm-center {
-                        left: 50%;
-                    }
-                
-
-                    & > .cm-row > .cm-center > .pb-block {
+                    & > .pb-block {
                         margin: 0 auto;
                         float: none;
 

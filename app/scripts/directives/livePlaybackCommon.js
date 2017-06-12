@@ -1,6 +1,6 @@
-/* global SketchManager, setInterval, clearInterval, getClientIP */
-kindFramework
-  .directive('livePlaybackCommon', ['$timeout',
+/* global setInterval, clearInterval */
+kindFramework.
+  directive('livePlaybackCommon', ['$timeout',
     function($timeout) {
       'use strict';
       return {
@@ -9,5 +9,5 @@ kindFramework
         templateUrl: './views/livePlayback/directives/live-playback-common.html',
         link: function(scope, elem, attrs) {}
       };
-    }
+    },
   ]);

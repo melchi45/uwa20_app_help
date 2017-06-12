@@ -5,11 +5,9 @@
     'cm-show-menu' : showMenuContent}">
     <!--'cm-playback-menu' : domControls.enablePlayback -->
 
-  <!--
-  Prev, Play, Next, ���Ӱ� ���� ��ư ����
-  -->
-  <div class="cm-row" id="pb-icon-list" ng-show="enablePlayback">
+  <div id="pb-icon-list" ng-show="enablePlayback">
 
+    <!-- info mation toggle -->
     <ul class="info-toggle">
       <li ng-class="{ 'cm-active' : showMenuContent }">
         <button 
@@ -23,6 +21,7 @@
     </ul>
     <span id="pb-channel-holder"></span>
 
+    <!-- full screen / view mode / capture -->
     <ul id="pb-display-control" class="pb-block pb-control cm-list-2">
       <li>
         <button 
@@ -55,6 +54,8 @@
 
     <div class="cm-vline channel-case"></div>
 
+
+    <!-- prev / play / next / play speed -->
     <ul id="pb-play-control" class="pb-block pb-control cm-list-2">
       <li>
         <button 
@@ -99,6 +100,7 @@
 
     <div class="cm-vline cm-pc" ng-show="maxAudioInput !== 0"></div>
 
+    <!-- Speaker -->
     <div class="pb-block pb-control" id="volume-control" ng-show="maxAudioInput !== 0">
       <button 
         class="cm-icon-button-s"
@@ -113,6 +115,8 @@
       </div>
     </div>
   </div>
+
+  <!-- Playback Contents -->
   <div id="pb-menu-content" ng-show="enablePlayback">
     <div class="camera-functions vertical-middle wisenet-camera-functions">
       <timeline control="timelineController" playback-backup="playback.backup" disable-backup-icon="disableBackupIcon">

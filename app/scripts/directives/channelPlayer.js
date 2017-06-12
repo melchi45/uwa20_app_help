@@ -1,7 +1,7 @@
 "use strict";
 kindFramework.
-directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMERA_STATUS', '$rootScope',
-  '$compile', 'PluginControlService', 'KindControlService',
+directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMERA_STATUS', 
+  '$rootScope', '$compile', 'PluginControlService', 'KindControlService',
   'MJPEGPollingControlService', 'kindStreamInterface',
   '$timeout', 'ModalManagerService', '$translate', 'PluginModel',
   function (BrowserService, UniversialManagerService, CAMERA_STATUS,
@@ -28,81 +28,88 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
           UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
         });
 
-        $rootScope.$saveOn('channelPlayer:play', function (event, isPluginMode, ip, port, intProfileNumber, id, password, streamTagType, statusCallback, isReconnect) {
-          console.log("Requested Play { plugInMode : " + isPluginMode + ", Profile : " + intProfileNumber + " }");
-          channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);
+        $rootScope.$saveOn('channelPlayer:play', 
+          function (event, isPluginMode, ip, port, intProfileNumber, id, password, streamTagType, 
+            statusCallback, isReconnect) {
+            console.log("Requested Play { plugInMode : " + isPluginMode + ", Profile : " + 
+              intProfileNumber + " }");
+            channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);
 
-          $rootScope.$emit('changeLoadingBar', true);
+            $rootScope.$emit('changeLoadingBar', true);
 
-          //1. Check PlugIn Installed.
-          if ((isPluginMode === true) && (BrowserService.PlugInDetect === false)) {
-            channelPlayerObj.stopStreaming();
+            //1. Check PlugIn Installed.
+            if ((isPluginMode === true) && (BrowserService.PlugInDetect === false)) {
+              channelPlayerObj.stopStreaming();
 
-            //2. Check if request is first or not.
-            if (elem[0].childNodes.length === 0) {
-              requestAvailableProfile(intProfileNumber);
-            } else {
-              elem.empty();
-              createPlugInInstallElement();
-            }
-            $rootScope.$emit('changeLoadingBar', false);
-            return;
-          }
-
-          //3. Stop Previous Streaming
-          channelPlayerObj.stopStreaming();
-
-          //4. Check Requested Profile
-          if (channelPlayerObj.checkProfileAvailable(isPluginMode, intProfileNumber) === false) {
-            if (BrowserService.PlugInSupport && BrowserService.PlugInDetect) {
-              //IE 플러그인 활성화 // PlugIn Off 상태에서 H264, H265 요청 시
-              $rootScope.$emit("channel:setPlugin");
-            } else {
-              //설치 시나리오
-              createPlugInInstallElement();
+              //2. Check if request is first or not.
+              if (elem[0].childNodes.length === 0) {
+                requestAvailableProfile(intProfileNumber);
+              } else {
+                elem.empty();
+                createPlugInInstallElement();
+              }
               $rootScope.$emit('changeLoadingBar', false);
+              return;
             }
 
-            //NonPlugIn 재생 시나리오
-            //requestAvailableProfile(profile);
-            return;
-          }
-
-          //5. Stream Element Check
-          if (channelPlayerObj.streamElementDetect(isPluginMode, elem) === false) {
-            channelPlayerObj.deleteStreamElement();
-            channelPlayerObj.createStreamElement(isPluginMode);
-          }
-
-          //prevent blocking of UI for allow excute plugin
-          $rootScope.$emit('changeLoadingBar', false);
-
-          //6. Plugin Version Check
-          if ((isPluginMode === true) && (BrowserService.PlugInVersionCheck(elem) === false)) {
+            //3. Stop Previous Streaming
             channelPlayerObj.stopStreaming();
-            createPlugInInstallElement();
-            return;
-          }
 
-          //7. Start Streaming
-          channelPlayerObj.startStreaming(isPluginMode, ip, port, intProfileNumber, id, password, streamTagType, statusCallback, isReconnect);
-        }, scope);
+            //4. Check Requested Profile
+            if (channelPlayerObj.checkProfileAvailable(isPluginMode, intProfileNumber) === false) {
+              if (BrowserService.PlugInSupport && BrowserService.PlugInDetect) {
+                //IE 플러그인 활성화 // PlugIn Off 상태에서 H264, H265 요청 시
+                $rootScope.$emit("channel:setPlugin");
+              } else {
+                //설치 시나리오
+                createPlugInInstallElement();
+                $rootScope.$emit('changeLoadingBar', false);
+              }
+
+              //NonPlugIn 재생 시나리오
+              //requestAvailableProfile(profile);
+              return;
+            }
+
+            //5. Stream Element Check
+            if (channelPlayerObj.streamElementDetect(isPluginMode, elem) === false) {
+              channelPlayerObj.deleteStreamElement();
+              channelPlayerObj.createStreamElement(isPluginMode);
+            }
+
+            //prevent blocking of UI for allow excute plugin
+            $rootScope.$emit('changeLoadingBar', false);
+
+            //6. Plugin Version Check
+            if ((isPluginMode === true) && (BrowserService.PlugInVersionCheck(elem) === false)) {
+              channelPlayerObj.stopStreaming();
+              createPlugInInstallElement();
+              return;
+            }
+
+            //7. Start Streaming
+            channelPlayerObj.startStreaming(isPluginMode, ip, port, intProfileNumber, id, password, 
+              streamTagType, statusCallback, isReconnect);
+          }, scope);
 
         $rootScope.$saveOn('channelPlayer:command', function (event, type, command, callback) {
           console.log("Requested command {  Type : " + type + ", Value : " + command + "}");
-          var isPluginMode = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
+          var isPluginMode = (UniversialManagerService.getStreamingMode() === 
+              CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
 
           if (channelPlayerObj === null) {
             if (isPluginMode && BrowserService.PlugInSupport && BrowserService.PlugInDetect) {
               channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);
             } else {
-              UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
+              UniversialManagerService.setStreamingMode(
+                CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
               isPluginMode = false;
               channelPlayerObj = new ChannelPlayer(BrowserService.BrowserDetect, isPluginMode);
             }
           } else {
             if ((isPluginMode === true) && (BrowserService.PlugInDetect === false)) {
-              UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
+              UniversialManagerService.setStreamingMode(
+                CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
               isPluginMode = false;
             }
 
@@ -188,7 +195,8 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
             function createActiveXElement() {
               var ElementTemplate = UniversialManagerService.getPluginElement();
               if (ElementTemplate === null) {
-                ElementTemplate = $compile('<object classid="clsid:' + PluginModel.ActiveX.ObjectID + '" zIndex="10"></object>')(scope);
+                ElementTemplate = $compile('<object classid="clsid:' + 
+                  PluginModel.ActiveX.ObjectID + '" zIndex="10"></object>')(scope);
                 UniversialManagerService.setPluginElement(ElementTemplate);
               }
 
@@ -199,7 +207,8 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
             function createNPAPIElement() {
               var ElementTemplate = UniversialManagerService.getPluginElement();
               if (ElementTemplate === null) {
-                ElementTemplate = $compile('<object type="' + PluginModel.NPAPI.ObjectID + '"></object>')(scope);
+                ElementTemplate = $compile('<object type="' + 
+                  PluginModel.NPAPI.ObjectID + '"></object>')(scope);
                 UniversialManagerService.setPluginElement(ElementTemplate);
               }
 
@@ -222,17 +231,20 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
               return (elem.find('object').length !== 0);
             };
 
-            this.startStreaming = function (_pluginMode, _ip, _port, _profile, _id, _password, _streamtagtype, statusCallback) {
+            this.startStreaming = function (_pluginMode, _ip, _port, _profile, _id, 
+              _password, _streamtagtype, statusCallback) {
+
               var pluginObj = elem[0].getElementsByTagName('object')[0];
               $(pluginObj).addClass("cm-vn");
-              PluginControlService.startPluginStreaming(pluginObj, _ip, _port, _profile, _id, _password, statusCallback);
+              PluginControlService.startPluginStreaming(pluginObj, _ip, _port, _profile, _id, 
+                _password, statusCallback);
             };
 
             this.capture = function () {
               var strPath = PluginControlService.capture();
               ModalManagerService.open('message', {
                 'buttonCount': 0,
-                'message': $translate.instant('lang_capture_image_saved') + "\n" + strPath
+                'message': $translate.instant('lang_capture_image_saved') + "\n" + strPath,
               });
             };
 
@@ -432,7 +444,8 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
 
           function Kind() {
             this.createStreamElement = function () {
-              var ElementTemplate = '<kind_stream class="channel-content" kindplayer="playerdata" display="displayInfo"></kind_stream>';
+              var ElementTemplate = '<kind_stream class="channel-content" kindplayer="playerdata"'+
+                'display="displayInfo"></kind_stream>';
               elem.append($compile(ElementTemplate)(scope));
             };
 
@@ -443,13 +456,16 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
               return (elem.find('kind_stream').length !== 0);
             };
 
-            this.startStreaming = function (_pluginMode, _ip, _port, _profile, _id, _password, _streamtagtype, statusCallback, isReconnect) {
-              KindControlService.startKindStreaming(scope, _profile, _streamtagtype, statusCallback, isReconnect);
+            this.startStreaming = function (_pluginMode, _ip, _port, _profile, _id, _password, 
+              _streamtagtype, statusCallback, isReconnect) {
+              KindControlService.startKindStreaming(scope, _profile, _streamtagtype, 
+                statusCallback, isReconnect);
             };
 
             this.capture = function () {
               if (typeof document.createElement('a').download !== "undefined" &&
-                !(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI && UniversialManagerService.getVideoMode() === "video")) {
+                !(BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI && 
+                  UniversialManagerService.getVideoMode() === "video")) {
                 KindControlService.capture(scope);
                 ModalManagerService.open('message', {
                   'buttonCount': 0,
@@ -596,9 +612,8 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
                 case BrowserService.BROWSER_TYPES.CHROME:
                 case BrowserService.BROWSER_TYPES.EDGE:
                 case BrowserService.BROWSER_TYPES.FIREFOX:
-                  /* jshint ignore:start */
+                  // break omitted
                 default:
-                  /* jshint ignore:end */
                   return !(isPluginMode);
               }
             };
@@ -647,13 +662,17 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
         };
 
         function createPlugInInstallElement() {
-          var ElementTemplate = '<div class="cm-plugin-msg">{{ "lang_msg_plugin_install2" | translate }}<br><a href=' + BrowserService.PlugInPath + '><i class="tui tui-wn5-download cm-icon-x15"></i>Plugin</a></div>';
+          var ElementTemplate = '<div class="cm-plugin-msg">'+
+            '{{ "lang_msg_plugin_install2" | translate }}<br><a href=' + 
+            BrowserService.PlugInPath + 
+            '><i class="tui tui-wn5-download cm-icon-x15"></i>Plugin</a></div>';
           elem.append($compile(ElementTemplate)(scope));
           $rootScope.$emit('NeedToInstallPlugIn', true);
         }
 
         function createNoSupportPlaybackInPlugInElement() {
-          var ElementTemplate = '<div class="cm-plugin-msg">{{ "lang_msg_plugin_only_support_ie" | translate }}</div>';
+          var ElementTemplate = '<div class="cm-plugin-msg">'+
+            '{{ "lang_msg_plugin_only_support_ie" | translate }}</div>';
           elem.append($compile(ElementTemplate)(scope));
         }
 
@@ -670,16 +689,16 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
           switch (BrowserService.BrowserDetect) {
             case BrowserService.BROWSER_TYPES.IE:
               var MJPEG_PROFILE_NUM = 1; // 1 is MJPEG
-              $rootScope.$emit('channelPlayer:stopped', 'NOT_AVAIALBE', MJPEG_PROFILE_NUM, CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
+              $rootScope.$emit('channelPlayer:stopped', 'NOT_AVAIALBE', 
+                MJPEG_PROFILE_NUM, CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
               $rootScope.$emit('NeedToInstallPlugIn', true);
               break;
             case BrowserService.BROWSER_TYPES.SAFARI:
             case BrowserService.BROWSER_TYPES.CHROME:
             case BrowserService.BROWSER_TYPES.EDGE:
             case BrowserService.BROWSER_TYPES.FIREFOX:
-              /* jshint ignore:start */
+              // break omitted
             default:
-              /* jshint ignore:end */
               /* This is for PLUGINFREE Profile
               createPLUGINFREEProfile().then(
                 function(_ProfileNumber){
@@ -687,7 +706,8 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
                 }
               );
               */
-              $rootScope.$emit('channelPlayer:stopped', 'NOT_AVAIALBE', _profile, CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
+              $rootScope.$emit('channelPlayer:stopped', 'NOT_AVAIALBE', 
+                _profile, CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE);
               break;
           }
         }
