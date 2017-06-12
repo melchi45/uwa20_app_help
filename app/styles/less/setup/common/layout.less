@@ -4,7 +4,6 @@
 }
 .main.setup-wrapper {
   left: @setup-menu-width;
-  overflow: auto;
   input[type="text"], input[type="password"], input[type="number"] {
     border-radius: 0;
     -webkit-appearance: none;
@@ -140,7 +139,8 @@
   }
 }
 .main.setup-wrapper {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   .wrapper.wrapper-content {
     height: 100%;
     padding: 0 @setup-responsive-ui-padding-left @setup-responsive-ui-padding-bottom @setup-responsive-ui-padding-right;

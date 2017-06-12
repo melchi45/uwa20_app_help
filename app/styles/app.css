@@ -3327,7 +3327,6 @@ select option:disabled {
 }
 .main.setup-wrapper {
   left: 260px;
-  overflow: auto;
 }
 .main.setup-wrapper input[type="text"],
 .main.setup-wrapper input[type="password"],
@@ -3461,7 +3460,8 @@ select option:disabled {
   }
 }
 .main.setup-wrapper {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   /**
    * @setup-mobile-width-for-block-main 인 1021px 부터는 사이드 메뉴가
    * 무조건 보이기 때문에 검색 배경을 삭제한다.
