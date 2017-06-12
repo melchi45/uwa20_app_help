@@ -1,15 +1,14 @@
-kindFramework
-  .service('SessionOfUserManager', function($rootScope, ROUTE_CONFIG, RESTCLIENT_CONFIG, $cookies, $cookieStore, $window, $location) {
+kindFramework.
+  service('SessionOfUserManager', 
+  function($rootScope, ROUTE_CONFIG, RESTCLIENT_CONFIG, $cookies, 
+    $cookieStore, $window, $location) {
     "use strict";
 
-    var username;
-    var password;
-    var serviceType;
+    var username = null;
+    var password = null;
     var loggedin = false;
     var IsWMF = false;
     var loginSuccess = false;
-
-
 
     var getUsername = function() {
       return username;
@@ -19,14 +18,9 @@ kindFramework
       return password;
     };
 
-    var getServiceType = function() {
-      return serviceType;
-    };
-
     var AddSession = function(usrname, passwd, type) {
       username = usrname;
       password = passwd;
-      serviceType = type;
     };
 
     var RemoveSession = function() {
@@ -35,17 +29,17 @@ kindFramework
     };
 
     var CheckPlugin = function() {
-      if ($window.sessionStorage !== undefined) {
+      if (typeof $window.sessionStorage !== "undefined") {
         if (!$window.sessionStorage.isPlugin && $location.$$search.isPlugin === '1') {
           $window.sessionStorage.isPlugin = true;
         }
       }
-      return IsPlugin(); // jshint ignore:line
+      return isPlugin(); // jshint ignore:line
     };
 
-    var IsPlugin = function() {
-      if ($window.sessionStorage !== undefined) {
-        return $window.sessionStorage.isPlugin ? true : false;
+    var isPlugin = function() {
+      if (typeof $window.sessionStorage !== "undefined") {
+        return $window.sessionStorage.isPlugin;
       } else {
         return false;
       }
@@ -104,13 +98,13 @@ kindFramework
 
     var IsLoggedin = function() {
       if (loggedin === false) {
-        var Authen;
+        var Authen = null;
         var restClientConfig = RESTCLIENT_CONFIG.digest;
         if (RESTCLIENT_CONFIG.serverType === 'camera') {
           restClientConfig.hostName = window.location.hostname;
         }
         Authen = $cookieStore.get(restClientConfig.hostName);
-        if (typeof Authen !== 'undefined') {
+        if (typeof Authen !== 'undefined' && Authen !== null) {
           /* Commenting encryption temporarily till old web implements cookie encryption*/
           /*var IPHash = CryptoJS.MD5(restClientConfig.hostName).toString();
           var decres = CryptoJS.AES.decrypt(Authen,IPHash);
@@ -175,18 +169,18 @@ kindFramework
 
     this.getUsername = getUsername;
     this.getPassword = getPassword;
-    this.AddSession = AddSession;
-    this.RemoveSession = RemoveSession;
-    this.SetLogin = SetLogin;
-    this.UnSetLogin = UnSetLogin;
-    this.IsLoggedin = IsLoggedin;
-    this.IsPlugin = IsPlugin;
-    this.CheckPlugin = CheckPlugin;
-    this.IsWMFApp = IsWMFApp;
-    this.IsLoginSuccess = IsLoginSuccess;
-    this.MarkLoginSuccess = MarkLoginSuccess;
-    this.UnMarkLoginSuccess = UnMarkLoginSuccess;
-    this.SetClientIPAddress = SetClientIPAddress;
-    this.GetClientIPAddress = GetClientIPAddress;
+    this.addSession = AddSession;
+    this.removeSession = RemoveSession;
+    this.setLogin = SetLogin;
+    this.unSetLogin = UnSetLogin;
+    this.isLoggedin = IsLoggedin;
+    this.IsPlugin = isPlugin;
+    this.checkPlugin = CheckPlugin;
+    this.isWMFApp = IsWMFApp;
+    this.isLoginSuccess = IsLoginSuccess;
+    this.markLoginSuccess = MarkLoginSuccess;
+    this.unMarkLoginSuccess = UnMarkLoginSuccess;
+    this.setClientIPAddress = SetClientIPAddress;
+    this.getClientIPAddress = GetClientIPAddress;
 
   });

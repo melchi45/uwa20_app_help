@@ -13,7 +13,7 @@ kindFramework
     var changePasswordModel = new ChangePasswordModel();
 
     /*
-        if(!SessionOfUserManager.IsLoggedin()){
+        if(!SessionOfUserManager.isLoggedin()){
 						var wrongAccess = changePasswordModel.getWrongAccessMessage();
             $('.wrap').html('');
             $translate(wrongAccess).then(function(wrongAccess){
@@ -90,7 +90,7 @@ kindFramework
 
     function successCallBack() {
       $('#change-password').html('');
-      SessionOfUserManager.UnSetLogin();
+      SessionOfUserManager.unSetLogin();
 
       $translate(changePasswordModel.getSuccessMessage()).then(function() {
         //openModal(translations.lang_msg_savingComplete + " " + translations.lang_msg_tryAgain);

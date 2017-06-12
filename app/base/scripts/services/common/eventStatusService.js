@@ -233,7 +233,7 @@ kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $
 
   function logoutEventSession() {
     stopEventService();
-    SessionOfUserManager.UnSetLogin();
+    SessionOfUserManager.unSetLogin();
     Attributes.reset();
     $location.path('/login');
   }

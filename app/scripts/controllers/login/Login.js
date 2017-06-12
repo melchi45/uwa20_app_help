@@ -34,8 +34,8 @@ kindFramework.controller('LoginCtrl', ['$controller', '$scope', 'SessionOfUserMa
         function(response) {
           self.setAccountData(response);
 
-          SessionOfUserManager.AddSession($scope.loginInfo.id, '', $scope.loginInfo.serviceType);
-          SessionOfUserManager.SetLogin();
+          SessionOfUserManager.addSession($scope.loginInfo.id, '', $scope.loginInfo.serviceType);
+          SessionOfUserManager.setLogin();
 
           if (userPassword === 4321 && userId === 'admin') // jshint ignore:line
           {
@@ -44,7 +44,7 @@ kindFramework.controller('LoginCtrl', ['$controller', '$scope', 'SessionOfUserMa
             SunapiClient.get(
               '/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', {},
               function(response) {
-                if (SessionOfUserManager.IsLoggedin()) {
+                if (SessionOfUserManager.isLoggedin()) {
                   $scope.currentLanguage = response.data.Language;
                   MultiLanguage.setLanguage($scope.currentLanguage);
                   console.log(" -- Current Login language = [ " + $scope.currentLanguage + " ]");
@@ -80,7 +80,7 @@ kindFramework.controller('LoginCtrl', ['$controller', '$scope', 'SessionOfUserMa
               });
             });
           } else {
-            if (SessionOfUserManager.IsLoggedin()) {
+            if (SessionOfUserManager.isLoggedin()) {
               $scope.currentLanguage = response.data.Language;
               MultiLanguage.setLanguage($scope.currentLanguage);
               console.log(" -- Current Login language = [ " + $scope.currentLanguage + " ]");
@@ -99,7 +99,7 @@ kindFramework.controller('LoginCtrl', ['$controller', '$scope', 'SessionOfUserMa
         $timeout.cancel(timeOutPromise);
         if (timeOutflag) {
           self.failedLogin();
-          SessionOfUserManager.UnSetLogin();
+          SessionOfUserManager.unSetLogin();
 
           var msg = loginModel.getIPOLISWebErrorMessage(errorCode);
 
@@ -128,7 +128,7 @@ kindFramework.controller('LoginCtrl', ['$controller', '$scope', 'SessionOfUserMa
         timeOutflag = false;
         self.failedLogin();
         var msg = loginModel.getTimeoutMessage();
-        SessionOfUserManager.UnSetLogin();
+        SessionOfUserManager.unSetLogin();
         ModalManagerService.open('message', {
           'buttonCount': 0,
           'message': msg
@@ -142,8 +142,8 @@ kindFramework.controller('LoginCtrl', ['$controller', '$scope', 'SessionOfUserMa
       }
 
       UniversialManagerService.setServiceType(CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB);
-      SessionOfUserManager.AddSession($scope.loginInfo.id, $scope.loginInfo.password, $scope.loginInfo.serviceType);
-      SessionOfUserManager.SetLogin();
+      SessionOfUserManager.addSession($scope.loginInfo.id, $scope.loginInfo.password, $scope.loginInfo.serviceType);
+      SessionOfUserManager.setLogin();
       timeOutPromise = $timeout(timeOutCallBack, 5000);
       SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', {}, successCallBack, errorCallBack, '', true);
     };

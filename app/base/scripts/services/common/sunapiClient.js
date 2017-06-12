@@ -58,13 +58,13 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
   };
 
   /**
-   * SUNAPI ìš”ì²­ì„ ìˆœì„œëŒ€ë¡œ ìš”ì²­ì„ í•˜ê³  ì‹¶ì„ ë•Œ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜.
-   * @param {Array} queue ë°ì´í„° ìš”ì²­
-   * @param {String} queue[<Index>].url ìš”ì²­ URL
-   * @param {Object} queue[<Index>].reqData ìš”ì²­ JSON ë°ì´í„°
-   * @param {Function} queue[<Index>].successCallback í•´ë‹¹ ìš”ì²­ì´ ëë‚  ë•Œ ì‹¤í–‰, ì—†ì–´ë„ ë¨.
-   * @param {Function} successCallback ëª¨ë“  ìš”ì²­ì´ ëë‚  ë•Œ Success Callback
-   * @param {Function} errorCallback ìš”ì²­ ë§ˆë‹¤ Errorê°€ ìƒê¸¸ ë•Œ Error Callback
+   * SUNAPI ¿äÃ»À» ¼ø¼­´ë·Î ¿äÃ»À» ÇÏ°í ½ÍÀ» ¶§ »ç¿ëÇÏ´Â ÇÔ¼ö.
+   * @param {Array} queue µ¥ÀÌÅÍ ¿äÃ»
+   * @param {String} queue[<Index>].url ¿äÃ» URL
+   * @param {Object} queue[<Index>].reqData ¿äÃ» JSON µ¥ÀÌÅÍ
+   * @param {Function} queue[<Index>].successCallback ÇØ´ç ¿äÃ»ÀÌ ³¡³¯ ¶§ ½ÇÇà, ¾ø¾îµµ µÊ.
+   * @param {Function} successCallback ¸ğµç ¿äÃ»ÀÌ ³¡³¯ ¶§ Success Callback
+   * @param {Function} errorCallback ¿äÃ» ¸¶´Ù Error°¡ »ı±æ ¶§ Error Callback
    * @example
       var setData = {};
       setData.NormalMode = $scope.RecordGeneralInfo[$scope.Channel].NormalMode;
@@ -121,7 +121,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     var deferred = $q.defer();
     var wwwAuthenticate = '';
 
-    if (SessionOfUserManager.IsLoggedin() === true) {
+    if (SessionOfUserManager.isLoggedin() === true) {
       usrName = SessionOfUserManager.getUsername();
       passWord = SessionOfUserManager.getPassword();
     } else {
@@ -666,7 +666,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     xhr.open(method, server + url, isAsync);
 
 
-    //if(SessionOfUserManager.IsWMFApp() === true  && RESTCLIENT_CONFIG.serverType === 'camera' &&
+    //if(SessionOfUserManager.isWMFApp() === true  && RESTCLIENT_CONFIG.serverType === 'camera' &&
     if (RESTCLIENT_CONFIG.serverType === 'camera') {
       //Added for same origin request, now using custom digest to avoid browser hang and popups
       //xhr.setRequestHeader('XClient', 'XMLHttpRequest');
@@ -705,7 +705,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
       'message': "Exceeded maximum login attempts, please try after some time"
     });
     loginRedirect();
-    if (SessionOfUserManager.IsLoginSuccess() === false) {
+    if (SessionOfUserManager.isLoginSuccess() === false) {
 
       failFn("HTTP Error : ", syncXhr.status);
       console.log("After calling Account block fail fn");
@@ -714,7 +714,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
   var syncXhr = null;
   var ajax_sync = function(method, url, successFn, failFn, isText) {
     if (RESTCLIENT_CONFIG.serverType === 'grunt') {
-      if (SessionOfUserManager.IsLoggedin() === true) {
+      if (SessionOfUserManager.isLoggedin() === true) {
         usrName = SessionOfUserManager.getUsername();
         passWord = SessionOfUserManager.getPassword();
       } else {
@@ -771,7 +771,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
   var ajax_async = function(method, url, successFn, failFn, $scope, fileData, specialHeaders, isText) {
     var deferred = $q.defer();
     if (RESTCLIENT_CONFIG.serverType === 'grunt') {
-      if (SessionOfUserManager.IsLoggedin() === true) {
+      if (SessionOfUserManager.isLoggedin() === true) {
         usrName = SessionOfUserManager.getUsername();
         passWord = SessionOfUserManager.getPassword();
       } else {

@@ -23,7 +23,7 @@ kindFramework.controller('translateCtrl', function($scope, $rootScope, $timeout,
 
   function getCurrentLanguage() {
     $scope.currentLanguage = 'English';
-    if (SessionOfUserManager.IsLoggedin() === true) {
+    if (SessionOfUserManager.isLoggedin() === true) {
       SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', '',
         function(Response) {
           $scope.currentLanguage = Response.data.Language;
@@ -42,7 +42,7 @@ kindFramework.controller('translateCtrl', function($scope, $rootScope, $timeout,
     MultiLanguage.setLanguage($scope.currentLanguage);
     /** Save the Language settings in the server */
     jData.Language = name;
-    if (SessionOfUserManager.IsLoggedin() === true) {
+    if (SessionOfUserManager.isLoggedin() === true) {
       SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=set', jData,
         function(Response) {
           $scope.currentLanguage = Response.data.Language;

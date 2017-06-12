@@ -173,7 +173,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
 
   commonUtils.onLogout = function() {
     EventStatusService.stopMonotoringEvents();
-    SessionOfUserManager.UnSetLogin();
+    SessionOfUserManager.unSetLogin();
     Attributes.reset();
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
     if (isIE === true) {
@@ -1229,7 +1229,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       return 0;
     }
 
-    //ì—°ì†ì ì¸ ë¬¸ì, ìˆ«ìì²´í¬
+    //¿¬¼ÓÀûÀÎ ¹®ÀÚ, ¼ıÀÚÃ¼Å©
     function isValidRule2(value, cnt) {
       var result = 0;
       var checkStr = "";
@@ -1237,7 +1237,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       var checkDesc = "";
       var acceptCount1 = 0;
 
-      //ê°™ì€ë¬¸ì,ìˆ«ì
+      //°°Àº¹®ÀÚ,¼ıÀÚ
       if (value.match(mAttr.ConstantSymbol1)) acceptCount1++;
       if (value.match(mAttr.ConstantSymbol2)) acceptCount1++;
       if (acceptCount1 > 0) result = 5;
@@ -1265,7 +1265,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     var ret = isValidRule1(passwd);
 
     if (0 == ret) {
-      //ì—°ì†ì ì¸ ë¬¸ì, ìˆ«ìì²´í¬
+      //¿¬¼ÓÀûÀÎ ¹®ÀÚ, ¼ıÀÚÃ¼Å©
       return isValidRule2(passwd, 3);
       //return isValidRule2(passwd);
     }

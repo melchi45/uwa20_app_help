@@ -273,7 +273,7 @@ kindFramework.
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=getclientip&action=view', {},
           function(response) {
             $scope.ClientIPAddress = response.data.ClientIP;
-            SessionOfUserManager.SetClientIPAddress($scope.ClientIPAddress);
+            SessionOfUserManager.setClientIPAddress($scope.ClientIPAddress);
           },
           function(errorData, errorCode) {
             console.error(errorData);
@@ -485,8 +485,8 @@ kindFramework.
         functionList.push(getRtspIpMac);
         functionList.push(getRtspPort);
         if (prevPage.url === "/login") {
-          if (SessionOfUserManager.IsLoggedin()) {
-            if (SessionOfUserManager.GetClientIPAddress() === '127.0.0.1') {
+          if (SessionOfUserManager.isLoggedin()) {
+            if (SessionOfUserManager.getClientIPAddress() === '127.0.0.1') {
               functionList.push(GetClientIP);
             }
             self.resetUI();
@@ -494,7 +494,7 @@ kindFramework.
             $state.go('login');
           }
         } else {
-          if (SessionOfUserManager.IsLoggedin()) {
+          if (SessionOfUserManager.isLoggedin()) {
             functionList.push(GetLanguage);
             $scope.connectedService = self.optionServiceType[UniversialManagerService.getServiceType()];
             var id = SessionOfUserManager.getUsername();
@@ -509,7 +509,7 @@ kindFramework.
              * So below lines is added.
              */
             functionList.push(GetUserInfo);
-            if (SessionOfUserManager.GetClientIPAddress() === '127.0.0.1') {
+            if (SessionOfUserManager.getClientIPAddress() === '127.0.0.1') {
               functionList.push(GetClientIP);
             }
             self.resetUI();

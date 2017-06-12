@@ -22,7 +22,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
   /* By Default point to plugin free viewer */
   $rootScope.monitoringPath = '';
   $rootScope.updateMonitoringPath = function() {
-    if (SessionOfUserManager.CheckPlugin()) {
+    if (SessionOfUserManager.checkPlugin()) {
       $rootScope.monitoringPath = '../home/monitoring.cgi';
     } else {
       $rootScope.monitoringPath = '#/uni/channel';

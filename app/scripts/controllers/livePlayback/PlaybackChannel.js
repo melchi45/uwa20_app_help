@@ -260,7 +260,7 @@ kindFramework.controller(
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=getclientip&action=view', {},
           function(response) {
             $scope.ClientIPAddress = response.data.ClientIP;
-            SessionOfUserManager.SetClientIPAddress($scope.ClientIPAddress);
+            SessionOfUserManager.setClientIPAddress($scope.ClientIPAddress);
           },
           function(errorData) {
             console.error(errorData);
@@ -309,7 +309,7 @@ kindFramework.controller(
       var getStreamingInfo = function() {
         getRtspIpMac();
         getRtspPort();
-        if (SessionOfUserManager.IsLoggedin()) {
+        if (SessionOfUserManager.isLoggedin()) {
           var id = SessionOfUserManager.getUsername();
           var password = SessionOfUserManager.getPassword();
           ConnectionSettingService.setConnectionInfo({
@@ -321,7 +321,7 @@ kindFramework.controller(
            * So below lines is added.
            */
           getUserInfo();
-          if (SessionOfUserManager.GetClientIPAddress() === '127.0.0.1') {
+          if (SessionOfUserManager.getClientIPAddress() === '127.0.0.1') {
             getClientIP();
           }
         }
