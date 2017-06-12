@@ -16,7 +16,8 @@
     "kindFramework" : true,
     "angular": true,
     "isPhone" : true,
-    "moment" : true
+    "moment" : true,
+    "d3" : true
   },
   "rules": {
     "no-compare-neg-zero" : "off",

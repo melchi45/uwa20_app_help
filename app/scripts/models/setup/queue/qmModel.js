@@ -8,7 +8,6 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
     }
 
     var channelIndex = 0;
-    var asyncInterrupt = false;
     var interruptMessage = "interrupt with cancel";
     this.getInterruptMessage = function() {
       return interruptMessage;
@@ -143,7 +142,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             failCallback: failCallback
           });
         },
-        remove: function(successCallback, failCallback, data) {
+        remove: function(successCallback, failCallback, _data) {
+          var data = _data;
           if (!data) {
             data = {};
           }
@@ -156,7 +156,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             failCallback: failCallback
           });
         },
-        check: function(successCallback, failCallback, data) {
+        check: function(successCallback, failCallback, _data) {
+          var data = _data;
           if (!data) {
             data = {};
           }
@@ -212,45 +213,6 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
       }
     };
 
-    var eventStatusCgi = {
-      check: function(successCallback, failCallback) {
-        pcSetupService.requestSunapi({
-          cgi: 'eventstatus',
-          msubmenu: 'eventstatus',
-          action: 'check',
-          data: {
-            'Channel.0.EventType': 'QueueEvent'
-          },
-          successCallback: successCallback,
-          failCallback: failCallback
-        });
-      },
-      monitor: function(successCallback, failCallback) {
-        pcSetupService.requestSunapi({
-          cgi: 'eventstatus',
-          msubmenu: 'eventstatus',
-          action: 'monitor',
-          data: {
-            'Channel.0.EventType': 'QueueEvent'
-          },
-          successCallback: successCallback,
-          failCallback: failCallback
-        });
-      },
-      monitordiff: function(successCallback, failCallback) {
-        pcSetupService.requestSunapi({
-          cgi: 'eventstatus',
-          msubmenu: 'eventstatus',
-          action: 'monitordiff',
-          data: {
-            'Channel.0.EventType': 'QueueEvent'
-          },
-          successCallback: successCallback,
-          failCallback: failCallback
-        });
-      }
-    };
-
     var recordingCgi = {
       control: function(data, successCallback, failCallback) {
         pcSetupService.requestSunapi({
@@ -299,7 +261,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
       return deferred.promise;
     };
 
-    function addZero(data) {
+    function addZero(_data) {
+      var data = _data;
       if (data < 10) {
         data = "0" + data;
       }
@@ -346,7 +309,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
     this.getData = function() {
       var deferred = $q.defer();
 
-      function successCallback(data) {
+      function successCallback(_data) {
+        var data = _data;
         data = data.data.QueueManagementSetup[0];
         deferred.resolve(data);
       }
@@ -379,7 +343,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
     this.checkData = function(data) {
       var deferred = $q.defer();
 
-      function successCallback(successData) {
+      function successCallback(_successData) {
+        var successData = _successData;
         successData = successData.data.QueueCount[0].Queues;
 
         deferred.resolve(successData);
@@ -397,7 +362,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
     this.getEventActionData = function() {
       var deferred = $q.defer();
 
-      function successCallback(data) {
+      function successCallback(_data) {
+        var data = _data;
         data = data.data.QueueManagement[0];
         deferred.resolve(data);
       }
@@ -470,7 +436,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
         }
       }
 
-      function viewResultSuccessCallback(response) {
+      function viewResultSuccessCallback(_response) {
+        var response = _response;
         response = response.data;
         var resultInterval = response.ResultInterval;
         var queueResults = response.QueueResults;
@@ -503,7 +470,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             for (var j = 0; j < queueLevels.length; j++) {
               if (checkList) {
                 var checkListKey = queueLevels[j].Level.toLowerCase();
-                if (checkList[checkListKey] === undefined || checkList[checkListKey].indexOf(i) === -1) {
+                if (typeof checkList[checkListKey] === "undefined" || checkList[checkListKey].indexOf(i) === -1) {
                   continue;
                 }
               }
@@ -522,7 +489,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
       function fillterResults(results, resultInterval) {
         var fillterData = [];
 
-        var changeDateObj = function(str) {
+        var changeDateObj = function(_str) {
+          var str = _str;
           str = str.replace('T', ' ').replace('Z', '');
           str = str.split(' ');
           str[0] = str[0].split('-');
@@ -567,10 +535,14 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
         var fromDate = changeDateObj(searchOptions.FromDate);
         var toDate = changeDateObj(searchOptions.ToDate);
 
+        var i = 0;
+        var len = 0;
+        var data = {};
+
         switch (resultInterval) {
           case "Hourly":
-            for (var i = 0, len = results.length; i < len; i++) {
-              var data = {};
+            for (i = 0, len = results.length; i < len; i++) {
+              data = {};
               fromDate.setHours(i);
               data.timeStamp = changeFormatForGraph(fromDate);
               data.value = parseInt(results[i]);
@@ -579,8 +551,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             break;
           case "Daily":
           case "Weekly":
-            for (var i = 0, len = results.length; i < len; i++) {
-              var data = {};
+            for (i = 0, len = results.length; i < len; i++) {
+              data = {};
 
               if (i === 0) {
                 data.timeStamp = changeFormatForGraph(fromDate);
@@ -602,8 +574,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             }
             break;
           case "Monthly":
-            for (var i = 0, len = results.length; i < len; i++) {
-              var data = {};
+            for (i = 0, len = results.length; i < len; i++) {
+              data = {};
 
               if (
                 fromDate.getFullYear() === toDate.getFullYear() &&
@@ -630,12 +602,13 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 
       searchOptions.Channel = channelIndex;
       searchOptions.Mode = 'Start';
+      var i = 1;
       if (type === graphType[0]) {
-        for (var i = 1; i <= 3; i++) {
+        for (i = 1; i <= 3; i++) {
           searchOptions["Queue." + i + ".AveragePeople"] = 'True';
         }
       } else {
-        for (var i = 1; i <= 3; i++) {
+        for (i = 1; i <= 3; i++) {
           searchOptions["Queue." + i + ".Level.High.CumulativeTime"] = 'True';
           searchOptions["Queue." + i + ".Level.Medium.CumulativeTime"] = 'True';
         }
@@ -692,9 +665,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
     };
 
     this.cancelSearch = function() {
-      if (searchToken === null) return;
+      if (searchToken === null) {return;}
 
-      // asyncInterrupt = true;
       recordingCgi.control({
         Mode: 'Cancel',
         SearchToken: searchToken
