@@ -41,7 +41,7 @@ ptzModule.service('ptzInterface', function(KindPTZService){
                 cameraUrl: ip,
 
                 // Temporary parameters caused by origin Issue of SUMAPI.
-                echo_sunapi_server:sunapiServer,
+                echoSunapiServer:sunapiServer,
                 user:user,
                 password:password,
                 options:{

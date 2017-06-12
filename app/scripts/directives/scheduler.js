@@ -1,7 +1,9 @@
 /* global SketchManager, setInterval, clearInterval, getClientIP */
 kindFramework
   .directive('scheduler', ['$rootScope', '$timeout', 'SunapiClient', '$translate', '$uibModal', '$window', 'eventRuleService', '$compile', 'UniversialManagerService',
-    function($rootScope, $timeout, SunapiClient, $translate, $uibModal, $window, eventRuleService, $compile, UniversialManagerService) {
+  'COMMONUtils',
+    function($rootScope, $timeout, SunapiClient, $translate, $uibModal, $window, eventRuleService, $compile, UniversialManagerService,
+    COMMONUtils) {
       'use strict';
 
       return {

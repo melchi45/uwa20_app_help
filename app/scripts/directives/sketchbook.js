@@ -43,7 +43,7 @@ kindFramework
           var getPlayerData = function() {
             if (mAttr.MaxChannel > 1) {
               profileInfo.ChannelId = currentChannel;
-              ConnectionSettingService.SetMultiChannelSupport(true);
+              ConnectionSettingService.setMultiChannelSupport(true);
             } else {
               profileInfo.ChannelId = null;
             }
@@ -250,7 +250,7 @@ kindFramework
               function(response) {
                 var rtspIp = response.data.NetworkInterfaces[0].IPv4Address;
                 var macIp = response.data.NetworkInterfaces[0].MACAddress;
-                ConnectionSettingService.SetRtspIpMac(rtspIp, macIp);
+                ConnectionSettingService.setRtspIpMac(rtspIp, macIp);
               },
               function(errorData) {
                 console.error(errorData);

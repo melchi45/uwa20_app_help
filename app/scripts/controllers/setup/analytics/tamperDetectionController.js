@@ -74,7 +74,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
   });
 
 
-  //sketchbook ì—ì„œ ì“°ì´ëŠ” ë¯¸ì‚¬ìš© ë³€ìˆ˜
+  //sketchbook ?—?„œ ?“°?´?Š” ë¯¸ì‚¬?š© ë³??ˆ˜
   $scope.coordinates = null;
   $scope.sketchinfo = null;
 
@@ -227,7 +227,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
     return SunapiClient.get(sunapiURL, getData,
       function(response) {
         newTamperLevel = angular.copy(response.data.TamperingDetection[0].Samples);
-        if (func !== 'undefined') {
+        if (typeof func !== 'undefined') {
           func(newTamperLevel);
         }
       },

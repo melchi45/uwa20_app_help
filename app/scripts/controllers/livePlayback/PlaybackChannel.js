@@ -1,21 +1,23 @@
 /**
  * Created by miju462.park on 2016-05-12.
  */
-/* global setTimeout, cordova, clearInterval, setInterval, BaseChannel, workerManager*/
+/* global setTimeout, clearInterval, setInterval, BaseChannel*/
 kindFramework.controller(
-  'PlaybackChannelCtrl', ['$controller', '$scope', '$timeout', '$q', '$rootScope', '$location', 'LocalStorageService',
-    'ConnectionSettingService', 'LoggingService', 'kindStreamInterface',
+  'PlaybackChannelCtrl', ['$controller', '$scope', '$timeout', '$q', '$rootScope', '$location', 
+    'LocalStorageService', 'ConnectionSettingService', 'LoggingService', 'kindStreamInterface',
     'DigitalZoomService', 'CAMERA_TYPE', 'SunapiClient', 'PLAYBACK_TYPE',
     'SessionOfUserManager', 'ModalManagerService', 'UniversialManagerService',
     'CAMERA_STATUS', 'Attributes', 'CameraService', '$translate', 'AccountService',
     'MultiLanguage', '$state', 'SearchDataModel', 'PlayDataModel',
-    'PlaybackInterface', 'playbackStepService', 'BACKUP_STATUS', 'RESTCLIENT_CONFIG', 'BrowserService', 'ExtendChannelContainerService', 'COMMONUtils',
+    'PlaybackInterface', 'playbackStepService', 'BACKUP_STATUS', 'RESTCLIENT_CONFIG', 
+    'BrowserService', 'ExtendChannelContainerService', 'COMMONUtils',
     function($controller, $scope, $timeout, $q, $rootScope, $location, LocalStorageService,
       ConnectionSettingService, LoggingService, kindStreamInterface, DigitalZoomService,
       CAMERA_TYPE, SunapiClient, PLAYBACK_TYPE, SessionOfUserManager, ModalManagerService,
       UniversialManagerService, CAMERA_STATUS, Attributes, CameraService, $translate,
       AccountService, MultiLanguage, $state, SearchDataModel, PlayDataModel,
-      PlaybackInterface, playbackStepService, BACKUP_STATUS, RESTCLIENT_CONFIG, BrowserService, ExtendChannelContainerService, COMMONUtils) {
+      PlaybackInterface, playbackStepService, BACKUP_STATUS, RESTCLIENT_CONFIG, BrowserService,
+      ExtendChannelContainerService, COMMONUtils) {
       "use strict";
 
       var self = this;
@@ -88,7 +90,8 @@ kindFramework.controller(
           $scope.resetViewMode();
           kindStreamInterface.setCanvasStyle($scope.viewMode); //when open full screen, reset view mode with delaying
         });
-        $rootScope.$emit('fullscreenOpened', [sunapiAttributes.MaxROICoordinateX, sunapiAttributes.MaxROICoordinateY]);
+        $rootScope.$emit('fullscreenOpened', 
+          [sunapiAttributes.MaxROICoordinateX, sunapiAttributes.MaxROICoordinateY]);
         // }
       };
 
@@ -175,9 +178,8 @@ kindFramework.controller(
       var initializePlaybackPage = function() {
         var playData = new PlayDataModel();
         $rootScope.$emit('changeLoadingBar', true);
-        $scope.pageController.channelSelector(sunapiAttributes.MaxChannel > 1 ? true : false);
-        ConnectionSettingService.SetMultiChannelSupport(
-          sunapiAttributes.MaxChannel > 1 ? true : false);
+        $scope.pageController.channelSelector(sunapiAttributes.MaxChannel > 1);
+        ConnectionSettingService.setMultiChannelSupport(sunapiAttributes.MaxChannel > 1);
         playData.setPlaybackEnable(true);
         initStreaming().
           then(function() {
@@ -277,7 +279,7 @@ kindFramework.controller(
           function(response) {
             var rtspIp = response.data.NetworkInterfaces[0].IPv4Address;
             var macIp = response.data.NetworkInterfaces[0].MACAddress;
-            ConnectionSettingService.SetRtspIpMac(rtspIp, macIp);
+            ConnectionSettingService.setRtspIpMac(rtspIp, macIp);
           },
           function(errorData) {
             console.error(errorData);
@@ -293,7 +295,7 @@ kindFramework.controller(
         return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=rtsp&action=view', {},
           function(response) {
             var rtspPort = response.data.Port;
-            ConnectionSettingService.SetRtspPort(rtspPort);
+            ConnectionSettingService.setRtspPort(rtspPort);
           },
           function(errorData) {
             console.error(errorData);
@@ -354,7 +356,8 @@ kindFramework.controller(
           function(response) {
             var currentDay = response.data.LocalTime.split(" ")[0];
             var current = new Date(currentDay);
-            current.setTime(current.getTime() + ( current.getTimezoneOffset() * MIN_TO_SEC * SEC_TO_MS));
+            current.setTime(current.getTime() + 
+              (current.getTimezoneOffset() * MIN_TO_SEC * SEC_TO_MS));
             searchData.setDefaultDate(current);
             initializePlaybackPage();
           },
