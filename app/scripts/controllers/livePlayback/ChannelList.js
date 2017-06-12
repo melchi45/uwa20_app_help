@@ -355,9 +355,8 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
         SunapiClient.get('/stw-cgi/security.cgi?msubmenu=digestauth&action=view', getData,
             function (response) {
                 var responseValue = response.data.Response;
-                var fps = UniversialManagerService.getProfileInfo().FrameRate;
                 pluginElement.SetWMDInitialize(channelId, channelId + 1, "PluginJSONEvent");
-                pluginElement.PlayLiveStream(ip, port, 12, userID, '', responseValue);
+                pluginElement.PlayLiveStream(ip, port, 13, userID, '', responseValue);
             },
             function (errorData, errorCode) {
                 console.error(errorData);
