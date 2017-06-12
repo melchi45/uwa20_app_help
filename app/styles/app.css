@@ -2125,11 +2125,14 @@ body.modal-open {
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   -o-backface-visibility: hidden;
-  width: auto;
+  min-width: 450px;
+  max-width: 90%;
+  width: 100%;
 }
 @media (min-width: 768px) {
   .modal.modal-position-middle .modal-dialog {
-    min-width: 400px;
+    min-width: 450px;
+    width: auto;
   }
 }
 .modal-backdrop {

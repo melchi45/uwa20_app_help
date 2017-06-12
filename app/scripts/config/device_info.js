@@ -30,7 +30,7 @@ run(function(
       //When Developer is testing by grunt
       if (
         RESTCLIENT_CONFIG.serverType === 'grunt' &&
-        SessionOfUserManager.IsLoggedin() === false
+        SessionOfUserManager.isLoggedin() === false
       ) {
         $urlRouter.sync();
       } else {

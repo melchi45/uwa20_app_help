@@ -1,9 +1,6 @@
 kindFramework.controller('imgPresetScheduleCtrl', function($scope, $uibModalInstance, $translate, Attributes, COMMONUtils, ImagePreset, $rootScope) {
   var mAttr = Attributes.get();
-  var presetCnt = 0,
-    from = '',
-    to = '',
-    schedule = {};
+  var schedule = {};
 
   $scope.resetScheduleTime = function(index) {
     /*var schedule = $scope.ImagePreset.Schedules[index];
@@ -33,7 +30,7 @@ kindFramework.controller('imgPresetScheduleCtrl', function($scope, $uibModalInst
     $scope.MinuteOptions.push(m);
   }
 
-  if (mAttr.ImagePresetSchedModeOptions !== undefined) {
+  if (typeof mAttr.ImagePresetSchedModeOptions !== "undefined") {
     $scope.ImagePresetSchedModeOptions = mAttr.ImagePresetSchedModeOptions;
   }
 
@@ -43,8 +40,6 @@ kindFramework.controller('imgPresetScheduleCtrl', function($scope, $uibModalInst
     var i = 0,
       j = 0,
       temp = {};
-
-    var timeNotSet = new Date(2000, 1, 1, 0, 0, 0).valueOf();
 
     /** Check if there are any duplicate schedules  */
     for (i = 0; i < $scope.ImagePreset.Schedules.length; i++) {
@@ -89,7 +84,7 @@ kindFramework.controller('imgPresetScheduleCtrl', function($scope, $uibModalInst
 
   function updatePresetSchedule() {
     var i = 0,
-      temp;
+      temp = null;
     for (i = 0; i < $scope.ImagePreset.Schedules.length; i++) {
       schedule = $scope.ImagePreset.Schedules[i];
 

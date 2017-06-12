@@ -78,7 +78,7 @@ kindFramework.directive('droppable',function(){
                      */
                     var changeplayerdata = {
                         channelId: channelId,
-                        server_address:"55.101.78.176:5000",
+                        serverAddress:"55.101.78.176:5000",
                         rtspUrl: u.attr('data-url'),
                         width: u.attr('data-width'),
                         height: u.attr('data-height')

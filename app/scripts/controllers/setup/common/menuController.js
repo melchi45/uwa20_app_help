@@ -2,13 +2,13 @@ kindFramework.controller('sideMenuCtrl', function($scope, $rootScope, $state, Me
   "use strict";
   $rootScope.$state = $state;
   $scope.menuData = MenuData.getMenuData($state);
-  //í™œì„±í™” ë©”ë‰´ í´ë˜ìŠ¤
+  //È°¼ºÈ­ ¸Ş´º Å¬·¡½º
   $scope.activeCheck = function(state) {
     var className = $state.current.name.indexOf(state) > -1 ? 'active in' : '';
     return className;
   };
 
-  //ì™¼ìª½ ë©”ë‰´ ì²«ë²ˆì§¸ ë©”ë‰´ê°€ í˜ì´ì§€ë¥¼ ê°€ì§€ê³ ìˆëŠ” ë©”ë‰´ì¸ì§€ ìì‹ì„ ê°ì‹¸ê³ ë§Œ ìˆëŠ” ë©”ë‰´ì¸ì§€ ì²´í¬í•˜ì—¬ ë§í¬ê°’ì„ ë¦¬í„´
+  //¿ŞÂÊ ¸Ş´º Ã¹¹øÂ° ¸Ş´º°¡ ÆäÀÌÁö¸¦ °¡Áö°íÀÖ´Â ¸Ş´ºÀÎÁö ÀÚ½ÄÀ» °¨½Î°í¸¸ ÀÖ´Â ¸Ş´ºÀÎÁö Ã¼Å©ÇÏ¿© ¸µÅ©°ªÀ» ¸®ÅÏ
   $scope.getLink = function(menuData) {
     var stateName = menuData.templateUrl !== null ? menuData.stateName : "#";
   };
@@ -125,8 +125,8 @@ kindFramework.controller('layoutCtrl', function($scope, $rootScope, $state, Menu
         UniversialManagerService.setisLogin(false);
         UniversialManagerService.removeUserId();
         UniversialManagerService.initialization();
-        SessionOfUserManager.RemoveSession();
-        SessionOfUserManager.UnSetLogin();
+        SessionOfUserManager.removeSession();
+        SessionOfUserManager.unSetLogin();
         $state.go('login');
       }, {}, 'modal-setup');
     }

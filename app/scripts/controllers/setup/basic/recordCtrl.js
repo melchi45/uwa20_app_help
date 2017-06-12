@@ -7,7 +7,7 @@ kindFramework.controller('recordCtrl', function($scope, $uibModal, $timeout, $ro
 
   COMMONUtils.getResponsiveObjects($scope);
 
-  if (SessionOfUserManager.IsLoggedin()) {
+  if (SessionOfUserManager.isLoggedin()) {
     LogManager.debug("Setup login is success.");
   }
 
@@ -29,7 +29,7 @@ kindFramework.controller('recordCtrl', function($scope, $uibModal, $timeout, $ro
     $scope.MaxChannel = mAttr.MaxChannel;
 
     // enable setting types
-    // ì§€ì • ê°€ëŠ¥í•œ ì„¸íŒ… ì¢…ë¥˜
+    // ÁöÁ¤ °¡´ÉÇÑ ¼¼ÆÃ Á¾·ù
     $scope.RecNormalModeOptions = mAttr.RecNormalModeOptions;
     $scope.RecEventModeOptions = mAttr.RecEventModeOptions;
     $scope.RecPreEventDurationOptions = mAttr.RecPreEventDurationOptions;
@@ -324,7 +324,7 @@ kindFramework.controller('recordCtrl', function($scope, $uibModal, $timeout, $ro
       $rootScope.$emit('changeLoadingBar', false);
 
       var templete = angular.element("<scheduler></scheduler>");
-      console.info('ë˜ëƒ;');
+      console.info('µÇ³Ä;');
       $compile(templete)($scope);
       scheduler.append(templete);
     }, function(errorData) {

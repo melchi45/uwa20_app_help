@@ -22,7 +22,9 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
   playData.setStatus(PLAY_CMD.LIVE);
   playData.setCurrentMenu('main');
   $scope.timelineController = {};
+  var TIMEOUT = 200;
   var VIEW_MODE = ["originalratio", "fit", "originalsize" ];
+  var MARGIN = 10, HALF = 2;
 
   var setNonPluginCookie = function() {
     document.cookie = "isNonPlugin=1; path=/";
@@ -71,8 +73,8 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
   };
 
   /**
-   * GNB 메뉴 활성화 함수
-   * 0 : Live 활성화, 1 : Playback 활성화
+   * GNB �޴� Ȱ��ȭ �Լ�
+   * 0 : Live Ȱ��ȭ, 1 : Playback Ȱ��ȭ
    */
   $scope.activeGNB = function(index) {
     var menu = ['live', 'playback'];
@@ -99,9 +101,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
     disalbePlaybackButton: false,
     togglemessage: "Live",
     togglePlayback: function() {},
-    closePlayback: function() {
-      closePlaybackPage();
-    },
+    closePlayback: function() {},
     visibleFullScreen: function() {
       self.resetUI();
       domControls.visibilityFullStreaming = true;
@@ -126,7 +126,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
           target.addClass(className);
           setTimeout(function() {
             target.removeClass(className);
-          }, 200);
+          }, TIMEOUT);
         }
       }
       CameraService.captureScreen();
@@ -157,7 +157,8 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
        * If browser is full screen, view mode is only two 'fit' 'original ratio'.
        * or else, view mode is three 'fit' 'original ratio', 'original size'.
        */
-      var maxViewMode = domControls.visibilityFullScreen ? 1 : 2;
+      var maxViewMode = domControls.visibilityFullScreen ? 
+        (VIEW_MODE.length-1)-1 : (VIEW_MODE.length-1);
 
       if (self.viewModeIndex === maxViewMode) {
         self.viewModeIndex = 0;
@@ -169,7 +170,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
       if (typeof $scope.setChannelSize !== "undefined") {
         $scope.setChannelSize();
       }
-    }
+    },
   };
 
   checkValidUser();
@@ -184,24 +185,18 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
   };
   setEnablePlayback();
 
-  var cameraFunctionElements;
-  var cameraFunctionCount;
-  var touchZone = {
-    'minX': 0,
-    'maxX': 0,
-    'minY': 0,
-    'maxY': 0
-  };
+  var cameraFunctionElements = null;
+  var cameraFunctionCount = -1;
 
   $scope.channelPositionInfoCallback = function(info) {
     console.log("channelPositionInfoCallback information : " + JSON.stringify(info));
     self.channelPositionInfo(info);
-    if (typeof(cameraFunctionElements) === 'undefined') {
+    if (cameraFunctionElements === null ) {
       cameraFunctionElements = angular.element(".camera-functions");
       cameraFunctionCount = cameraFunctionElements.length;
     }
-    for (var i = 0; i < cameraFunctionCount; i++) {
-      cameraFunctionElements[i].style.marginTop = info.height / 2 + 10 + "px";
+    for (var idx = 0; idx < cameraFunctionCount; idx++) {
+      cameraFunctionElements[idx].style.marginTop = (info.height / HALF) + MARGIN + "px";
     }
   };
 
@@ -213,7 +208,8 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
     return mapped;
   }
 
-  $scope.playPlayback = function(command) {
+  $scope.playPlayback = function(_command) {
+    var command = _command;
     var playCommandToFunctionMap = mapKeys(PLAY_CMD, {
       PLAY : playbackInterfaceService.play,
       PAUSE : playbackInterfaceService.pause,
@@ -338,7 +334,7 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
     ******************************/
     openFullScreen: function(event, info) {
       self.openFullView(event, info);
-    }
+    },
   };
 
   $timeout(self.init);
@@ -400,13 +396,13 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
   this.getViewModeTitle = function(viewMode) {
     var viewModeStr = null;
     switch (viewMode) {
-      case VIEW_MODE[0]:
+      case 'originalratio':
         viewModeStr = "lang_Aspect_Ratio";
         break;
-      case VIEW_MODE[1]:
+      case 'fit':
         viewModeStr = "lang_fit";
         break;
-      case VIEW_MODE[2]:
+      case 'originalsize':
         viewModeStr = "lang_original_size";
         break;
     }
@@ -512,13 +508,15 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
     }
   })();
 
-  $rootScope.$saveOn('app/scripts/controllers/livePlayback/channel.js :: resetPlaySpeed', function(event, data) {
-    self.resetPlaySpeed();
-  }, $scope);
+  $rootScope.$saveOn('app/scripts/controllers/livePlayback/channel.js :: resetPlaySpeed', 
+    function() {
+      self.resetPlaySpeed();
+    }, $scope);
 
-  $rootScope.$saveOn('scripts/services/playbackClass/timelineService::changePlayStatus', function(event, data) {
-    $scope.playPlayback(data);
-  }, $scope);
+  $rootScope.$saveOn('scripts/services/playbackClass/timelineService::changePlayStatus', 
+    function(event, data) {
+      $scope.playPlayback(data);
+    }, $scope);
 
   $rootScope.$saveOn(
     'scripts/controllers/livePlayback/BaseChannel.js::toggleLiveViewMode',

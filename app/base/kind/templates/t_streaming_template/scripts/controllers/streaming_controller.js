@@ -54,7 +54,7 @@ kindFramework.controller('streamingCtrl', function($scope, kindStreamInterface){
  */
         var changeplayerdata = {
             channelId: $scope.channelId,
-            server_address:"55.101.78.176:5000",
+            serverAddress:"55.101.78.176:5000",
             rtspUrl: $scope.streamingInfo,
             width: $scope.streamingWidth,
             height: $scope.streamingHeight

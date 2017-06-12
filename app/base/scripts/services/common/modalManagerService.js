@@ -40,11 +40,6 @@ kindFramework.service('ModalManagerService', ['$uibModal', '$uibModalStack',
         'template': 'views/livePlayback/modal/ModalPresetAdd.html',
         'priority': 2
       },
-      'presetlist': {
-        'controller': 'ModalInstncePresetListCtrl',
-        'template': 'views/livePlayback/modal/ModalPresetList.html',
-        'priority': 2
-      },
       'profile': {
         'controller': 'ModalInstnceProfileCtrl',
         'template': 'views/livePlayback/modal/ModalProfile.html',
@@ -58,21 +53,6 @@ kindFramework.service('ModalManagerService', ['$uibModal', '$uibModalStack',
       'status': {
         'controller': 'modalInstnceStatusCtrl',
         'template': 'views/livePlayback/modal/ModalStatus.html',
-        'priority': 2
-      },
-      'tracking': {
-        'controller': 'ModalInstnceTrackingCtrl',
-        'template': 'views/livePlayback/modal/ModalTracking.html',
-        'priority': 2
-      },
-      'ptzmode': {
-        'controller': 'ModalInstncePTZModeCtrl',
-        'template': 'views/livePlayback/modal/ModalPTZMode.html',
-        'priority': 2
-      },
-      'liveList': {
-        'controller': 'ModalInstnceLiveListCtrl',
-        'template': 'views/livePlayback/modal/ModalLiveList.html',
         'priority': 2
       },
     };

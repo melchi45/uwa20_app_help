@@ -19,11 +19,11 @@ function BaseLogin(
   var errorCallBack = function(error) {
     console.log(JSON.stringify(error));
     /*
-     *** login ì‹¤íŒ¨ ì‹œ nativeì—ì„œ webìœ¼ë¡œ ì „ì†¡ë˜ëŠ” ë¬¸ìì—´
-    -. Timeoutìœ¼ë¡œ ì¸í•œ ì‹¤íŒ¨ : "loginResultFailTimeout"
-    -. id/passwordê°€ ì˜ëª»ë˜ì—ˆì„ ê²½ìš° :  "loginResultFailUnauthorized"
-    -. ë„¤íŠ¸ì›Œí¬ê°€ ì—°ê²°ì´ ì•ˆë˜ì—ˆì„ ê²½ìš° : "loginResultFailNetworkNotConnected"
-    -. ê·¸ ì™¸ì˜ ì´ìœ ë¡œ ì‹¤íŒ¨ë˜ì—ˆì„ ê²½ìš° : "loginResultFailOther"
+     *** login ½ÇÆĞ ½Ã native¿¡¼­ webÀ¸·Î Àü¼ÛµÇ´Â ¹®ÀÚ¿­
+    -. TimeoutÀ¸·Î ÀÎÇÑ ½ÇÆĞ : "loginResultFailTimeout"
+    -. id/password°¡ Àß¸øµÇ¾úÀ» °æ¿ì :  "loginResultFailUnauthorized"
+    -. ³×Æ®¿öÅ©°¡ ¿¬°áÀÌ ¾ÈµÇ¾úÀ» °æ¿ì : "loginResultFailNetworkNotConnected"
+    -. ±× ¿ÜÀÇ ÀÌÀ¯·Î ½ÇÆĞµÇ¾úÀ» °æ¿ì : "loginResultFailOther"
     */
     var msg = loginModel.getErrorCallBackMessage(error);
     ModalManagerService.open('message', {
@@ -163,7 +163,7 @@ function BaseLogin(
   };
 
   this.afterSuccessLogin = function() {
-    SessionOfUserManager.MarkLoginSuccess();
+    SessionOfUserManager.markLoginSuccess();
     console.log("Login Success");
     $scope.btnDisabled = false;
     UniversialManagerService.setisLogin(true);
@@ -189,13 +189,13 @@ function BaseLogin(
   };
 
   var loginStatus = function() {
-    UniversialManagerService.setisLogin(SessionOfUserManager.IsLoggedin());
+    UniversialManagerService.setisLogin(SessionOfUserManager.isLoggedin());
     if (UniversialManagerService.getisLogin() === true) {
       UniversialManagerService.setisLogin(false);
-      SessionOfUserManager.UnSetLogin();
+      SessionOfUserManager.unSetLogin();
     }
     $scope.btnDisabled = false;
-    SessionOfUserManager.UnMarkLoginSuccess();
+    SessionOfUserManager.unMarkLoginSuccess();
   };
 
   this.initServiceType();

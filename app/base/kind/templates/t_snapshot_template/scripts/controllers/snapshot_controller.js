@@ -36,7 +36,7 @@ kindFramework.controller('snapshotCtrl', function($scope,listService,KindProfile
          */
         $scope.snapshotData = {
             cameraUrl :$scope.cameraUrl,
-            echo_sunapi_server:'55.101.78.176:5000',
+            echoSunapiServer:'55.101.78.176:5000',
             user:$scope.cameraId,
             password : $scope.cameraPassword,
         };

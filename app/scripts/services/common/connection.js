@@ -1,13 +1,15 @@
-/*global workerManager*/
-kindFramework
-  .factory('ConnectionSettingService', ['LoggingService', 'RESTCLIENT_CONFIG', 'PLAYBACK_TYPE', 'ProfileCheckService', 'playbackStepService', 'UniversialManagerService',
-    function(LoggingService, RESTCLIENT_CONFIG, PLAYBACK_TYPE, ProfileCheckService, playbackStepService, UniversialManagerService) {
+kindFramework.
+  factory('ConnectionSettingService', 
+  ['LoggingService', 'RESTCLIENT_CONFIG', 'PLAYBACK_TYPE', 'ProfileCheckService', 
+    'playbackStepService', 'UniversialManagerService',
+    function(LoggingService, RESTCLIENT_CONFIG, PLAYBACK_TYPE, ProfileCheckService, 
+    playbackStepService, UniversialManagerService) {
       'use strict';
       if (RESTCLIENT_CONFIG.serverType === 'camera') {
         RESTCLIENT_CONFIG.digest.hostName = window.location.hostname;
         RESTCLIENT_CONFIG.digest.port = window.location.port;
-        var loc_protocol = window.location.protocol;
-        var splitProt = loc_protocol.split(":");
+        var locProtocol = window.location.protocol;
+        var splitProt = locProtocol.split(":");
         RESTCLIENT_CONFIG.digest.protocol = splitProt[0];
       }
 
@@ -18,6 +20,14 @@ kindFramework
       var PLAY_CMD = PLAYBACK_TYPE.playCommand;
 
       var logger = LoggingService.getInstance('ConnectionSettingService');
+      var DATE_POSITION = 8;
+      var TIME_POSITION = 6;
+      var HOUR_POSITION = 2;
+      var MIN_POSITION = 2;
+      var SEC_POSITION = 2;
+      var MIN_DOUBLE_FIGURES = 10;
+      var PREV_STEP_REQUEST_TIME = 2;
+      var HOUR_TO_SEC = 60, MIN_TO_SEC = 60;
 
       var cameraInfo = {
         id: "cam001",
@@ -30,23 +40,23 @@ kindFramework
 
       var connectionSettings = {
         cameraUrl: "",
-        echo_sunapi_server: CAMERA_IP_ADDRESS,
+        echoSunapiServer: CAMERA_IP_ADDRESS,
         user: "",
         password: "",
         rtspIp: RESTCLIENT_CONFIG.digest.rtspIp,
-        rtspPort: RESTCLIENT_CONFIG.digest.rtspPort
+        rtspPort: RESTCLIENT_CONFIG.digest.rtspPort,
       };
 
       var deviceInfo = {
         channelId: 0,
         port: STREAM_PORT,
-        server_address: CAMERA_IP_ADDRESS,
+        serverAddress: CAMERA_IP_ADDRESS,
         protocol: PROTOCOL,
         cameraIp: "",
         user: "",
         password: "",
         captureName: "",
-        ClientIPAddress: CLIENT_ADDRESS
+        ClientIPAddress: CLIENT_ADDRESS,
       };
 
       var mediaInfo = {
@@ -55,18 +65,18 @@ kindFramework
         requestInfo: {
           cmd: null,
           url: null,
-          scale: 1
+          scale: 1,
         },
         framerate: 0,
         audioOutStatus: false,
         needToImmediate: false,
-        govLength: null
+        govLength: null,
       };
 
       var callbacks = {
         time: null,
         error: null,
-        close: null
+        close: null,
       };
 
 
@@ -76,13 +86,7 @@ kindFramework
         callback: callbacks,
       };
 
-      var isPlaybackAlive = false;
       var playbackId = null;
-
-      var objectCopy = function(obj) {
-        return JSON.parse(JSON.stringify(obj));
-      };
-
       var startPlayback = function(data, timeCallback, errorCallback, closeCallback) {
         var playbackId = "";
         if (cameraInfo.supportMultiChannel === true) {
@@ -91,7 +95,6 @@ kindFramework
         playbackId += "recording/" + data.time + "/OverlappedID=" + data.id + "/play.smp";
         console.log("new playback url : " + playbackId);
         //TODO : playerInfo need to add channel filed ( data.channel )
-        isPlaybackAlive = true;
         playerInfo.callback.time = timeCallback;
         playerInfo.callback.error = errorCallback;
         playerInfo.callback.close = closeCallback;
@@ -114,7 +117,7 @@ kindFramework
             errorCallback({
               errorCode: "996",
               description: "Not enough decoding for currnet profile, Change UWA profile",
-              place: "connection.js"
+              place: "connection.js",
             });
             return null;
           }
@@ -126,10 +129,11 @@ kindFramework
         playerInfo.callback.error = errorCallback;
         playerInfo.callback.close = closeCallback;
         if (cameraInfo.supportMultiChannel === true) {
-          playerInfo.media.requestInfo.url = data.ChannelId + "/" + playerInfo.media.requestInfo.url;
+          playerInfo.media.requestInfo.url = data.ChannelId + "/" + 
+            playerInfo.media.requestInfo.url;
         }
 
-        if (data.ChannelId !== undefined) {
+        if (typeof data.ChannelId !== "undefined") {
           playerInfo.device.channelId = data.ChannelId;
         }
 
@@ -180,10 +184,10 @@ kindFramework
             requestInfo: {
               cmd: 'open',
               url: data.Name + '/media.smp',
-              scale: 1
+              scale: 1,
             },
             framerate: data.FrameRate,
-            mode: (mode === undefined ? null : mode),
+            mode: (typeof mode === "undefined" ? null : mode),
           };
           return info;
         } else if (flag === '') {
@@ -248,7 +252,9 @@ kindFramework
         playerInfo.media.type = 'playback';
         playerInfo.media.requestInfo.cmd = 'seek';
         playerInfo.media.requestInfo.url = newUrl;
-        playerInfo.media.requestInfo.dummy = (playerInfo.media.requestInfo.dummy === undefined ? 0 : playerInfo.media.requestInfo.dummy + 1);
+        playerInfo.media.requestInfo.dummy = 
+          (typeof playerInfo.media.requestInfo.dummy === "undefined" ? 
+            0 : playerInfo.media.requestInfo.dummy + 1);
         console.log("playback seek url : " + playerInfo.media.requestInfo.url);
         return playerInfo;
       };
@@ -258,7 +264,8 @@ kindFramework
         if (cameraInfo.supportMultiChannel === true) {
           newUrl += data.channel + "/";
         }
-        newUrl += "recording/" + calcStepDateTime(data.time) + "/OverlappedID=" + data.id + "/play.smp";
+        newUrl += "recording/" + calcStepDateTime(data.time) + "/OverlappedID=" + 
+          data.id + "/play.smp";
         playerInfo.media.requestInfo.cmd = cmd;
         if (cmd === "step") {
           playerInfo.media.type = 'step';
@@ -313,21 +320,21 @@ kindFramework
 
       var calcStepDateTime = function(time) {
         var result = time;
-        var date = time.substr(0, 8);
-        var calcTime = time.substr(8, 6);
+        var date = time.substr(0, DATE_POSITION);
+        var calcTime = time.substr(DATE_POSITION, TIME_POSITION);
 
-        var hour = calcTime.substr(0, 2);
-        var min = calcTime.substr(2, 2);
-        var sec = calcTime.substr(4, 2);
+        var hour = calcTime.substr(0, HOUR_POSITION);
+        var min = calcTime.substr(HOUR_POSITION, MIN_POSITION);
+        var sec = calcTime.substr(HOUR_POSITION+MIN_POSITION, SEC_POSITION);
 
-        if (sec > 2) {
-          result -= 2;
+        if (sec > PREV_STEP_REQUEST_TIME) {
+          result -= PREV_STEP_REQUEST_TIME;
         } else {
-          min = (min === 0 ? min = 59 : min -= 1);
-          sec = (sec === 0 ? sec = 58 : sec = 59);
+          min = (min === 0 ? min = HOUR_TO_SEC-1 : min -= 1);
+          sec = (sec === 0 ? sec = MIN_TO_SEC-PREV_STEP_REQUEST_TIME : sec = MIN_TO_SEC-1);
           result = date + hour;
-          result += (min < 10 ? "0" + min : min);
-          result += (sec < 10 ? "0" + sec : sec);
+          result += (min < MIN_DOUBLE_FIGURES ? "0" + min : min);
+          result += (sec < MIN_DOUBLE_FIGURES ? "0" + sec : sec);
         }
 
         return result;
@@ -338,7 +345,6 @@ kindFramework
        * @name: closePlaybackSession
        */
       var closePlaybackSession = function() {
-        isPlaybackAlive = false;
         //re-set step flag
         playbackStepService.setSettingFlag(true);
         playerInfo.media.type = 'playback';
@@ -378,7 +384,8 @@ kindFramework
       };
 
       var SetRtspIpMac = function(rtspIp, macIp) {
-        connectionSettings.rtspIp = playerInfo.device.cameraIp = RESTCLIENT_CONFIG.digest.rtspIp = rtspIp;
+        connectionSettings.rtspIp = playerInfo.device.cameraIp = 
+          RESTCLIENT_CONFIG.digest.rtspIp = rtspIp;
         RESTCLIENT_CONFIG.digest.macAddress = macIp;
       };
 
@@ -396,7 +403,7 @@ kindFramework
       };
 
       var changeServerAddress = function(cameraIp) {
-        deviceInfo.server_address = cameraIp;
+        deviceInfo.serverAddress = cameraIp;
       };
       return {
         setConnectionInfo: setConnectionInfo,
@@ -414,10 +421,10 @@ kindFramework
         getCurrentCommand: getCurrentCommand,
         backupCommand: backupCommand,
         playbackBackup: playbackBackup,
-        SetRtspPort: SetRtspPort,
-        SetRtspIpMac: SetRtspIpMac,
-        SetMultiChannelSupport: SetMultiChannelSupport,
-        changeServerAddress: changeServerAddress
+        setRtspPort: SetRtspPort,
+        setRtspIpMac: SetRtspIpMac,
+        setMultiChannelSupport: SetMultiChannelSupport,
+        changeServerAddress: changeServerAddress,
       };
-    }
+    },
   ]);

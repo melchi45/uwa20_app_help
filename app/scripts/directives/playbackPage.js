@@ -1,6 +1,6 @@
-/*global setTimeout, workerManager*/
-kindFramework
-  .directive('playbackPage', ['$rootScope', '$filter', '$timeout', 'PlaybackInterface',
+/*global setTimeout*/
+kindFramework.
+  directive('playbackPage', ['$rootScope', '$filter', '$timeout', 'PlaybackInterface',
     'PLAYBACK_TYPE', 'ModalManagerService', 'CameraService', 'playbackStepService',
     'CAMERA_TYPE', 'SearchDataModel', 'PlayDataModel', 'UniversialManagerService',
     'kindStreamInterface', 'CAMERA_STATUS', 'BrowserService', '$compile',
@@ -37,8 +37,11 @@ kindFramework
             $scope.pageController.channelSelector = function(mode) {
               if (mode === true && selectorDirective === null) {
                 var childScope = $scope.$new();
-                selectorDirective = $compile('<live-playback-channel-selector class="playback-channel-selector"></live-playback-channel-selector>');
-                $('#pb-channel-holder').append(selectorDirective(childScope)).append('<div class="cm-vline"></div>');
+                selectorDirective = 
+                  $compile('<live-playback-channel-selector class="playback-channel-selector">'+
+                  '</live-playback-channel-selector>');
+                $('#pb-channel-holder').append(selectorDirective(childScope)).
+                  append('<div class="cm-vline"></div>');
               } else {
                 $('#pb-channel-holder').remove();
               }
@@ -132,7 +135,7 @@ kindFramework
                   'list', {
                     'buttonCount': 0,
                     'list': playback.getSpeeds(),
-                    'selectedItem': playData.getPlaySpeed()
+                    'selectedItem': playData.getPlaySpeed(),
                   },
                   successCallback
                 );
@@ -290,7 +293,8 @@ kindFramework
             if (newVal === PLAY_CMD.PLAY) {
               scope.playback.isPlay = scope.disableStepIcon = true;
               scope.disableSpeedIcon = false;
-            } else if (newVal === PLAY_CMD.STOP || newVal === PLAY_CMD.PAUSE || newVal === PLAY_CMD.PLAYPAGE) {
+            } else if (newVal === PLAY_CMD.STOP || newVal === PLAY_CMD.PAUSE || 
+                      newVal === PLAY_CMD.PLAYPAGE) {
               scope.playback.isPlay = scope.disableStepIcon = false;
               if (newVal === PLAY_CMD.STOP || newVal === PLAY_CMD.PLAYPAGE) {
                 scope.disableSpeedIcon = true;
@@ -329,7 +333,8 @@ kindFramework
             }
           });
 
-          $rootScope.$saveOn('app/scripts/directives/channelPlayer.js:step', function(event, data) {
+          $rootScope.$saveOn('app/scripts/directives/channelPlayer.js:step', 
+          function(event, data) {
             scope.playPlayback((data === "forward" ? {
               "command": PLAY_CMD.STEPFORWARD,
             } : {
@@ -337,22 +342,25 @@ kindFramework
             }));
           }, scope);
 
-          $rootScope.$saveOn('app/scripts/services/playbackClass::disableButton', function(event, data) {
+          $rootScope.$saveOn('app/scripts/services/playbackClass::disableButton', 
+          function(event, data) {
             if (block.scenario !== data) {
               setButtonStatus(data, block.browser);
             }
           }, scope);
 
-          $rootScope.$saveOn('app/scripts/directives/channelPlayer.js:disablePlayback', function(event, data) {
-            if (data === true) {
-              setButtonStatus(block.scenario, true);
-              scope.disableBackupIcon = true;
-            } else {
-              setButtonStatus(block.scenario, false);
-            }
-          }, scope);
+          $rootScope.$saveOn('app/scripts/directives/channelPlayer.js:disablePlayback', 
+            function(event, data) {
+              if (data === true) {
+                setButtonStatus(block.scenario, true);
+                scope.disableBackupIcon = true;
+              } else {
+                setButtonStatus(block.scenario, false);
+              }
+            }, scope);
 
-          $rootScope.$saveOn('app/script/services/playbackClass/timelineService.js::stepInit', function() {
+          $rootScope.$saveOn('app/script/services/playbackClass/timelineService.js::stepInit', 
+          function() {
             //workerManager.videoBuffering();
             kindStreamInterface.controlWorker({
               'channelId': 0,
@@ -365,7 +373,8 @@ kindFramework
             }
           }, scope);
 
-          $rootScope.$saveOn('app/scripts/models/playback/PlayDataModel.js::changeSpeed', function(event, data) {
+          $rootScope.$saveOn('app/scripts/models/playback/PlayDataModel.js::changeSpeed', 
+          function(event, data) {
             if (data !== scope.playback.speed) {
               scope.playback.speed = data;
             }
@@ -374,14 +383,16 @@ kindFramework
           /**
            * If there is no any recording data, then disabled backup icon
            */
-          $rootScope.$saveOn('app/scripts/directives/timeline.js::timelineDataCount', function(event, data) {
+          $rootScope.$saveOn('app/scripts/directives/timeline.js::timelineDataCount', 
+          function(event, data) {
             if (block.browser === true) {
               return;
             }
             if (data > 0) {
               scope.disableBackupIcon = false;
-              if (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE &&
-                typeof(document.createElement('a').download) === "undefined") {
+              if (UniversialManagerService.getStreamingMode() === 
+                  CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE &&
+                  typeof(document.createElement('a').download) === "undefined") {
                 scope.disableBackupIcon = true;
               }
             } else {

@@ -5,7 +5,8 @@ kindFramework.directive('playbackEvent', function() {
     restrict: 'E',
     replace: true,
     templateUrl: 'views/livePlayback/directives/playback-event.html',
-    controller: function($scope, $rootScope, CAMERA_TYPE, PlaybackInterface, SearchDataModel, UniversialManagerService) {
+    controller: function($scope, $rootScope, CAMERA_TYPE, PlaybackInterface, 
+    SearchDataModel, UniversialManagerService) {
       var MIN_DOUBLE_FIGURES = 10;
       var pad = function(input) {
         var target = input*1;
@@ -140,7 +141,9 @@ kindFramework.directive('playbackEvent', function() {
         }
         //To set default value.
         if (typeof($scope.allEventSearch) === 'undefined') {
-          searchData.setEventTypeList($scope.selected.event === null ? null : [$scope.selected.event.event]);
+          searchData.setEventTypeList($scope.selected.event === null ? 
+                                      null : 
+                                      [$scope.selected.event.event]);
         } else {
           if (searchData.getEventTypeList() === null) {
             searchData.setEventTypeList(['All']);
@@ -168,29 +171,31 @@ kindFramework.directive('playbackEvent', function() {
           }
         }
       };
+
+      var checkIsEventSelect = function(evtId, prevEventList) {
+        if ($scope.eventList[evtId].event === prevEventList) {
+          $scope.selected.event = null;
+          if ($scope.eventList[evtId].enable === true) {
+            // checkbox case( multiple selection)
+            if (typeof($scope.eventList[evtId].selected) !== 'undefined') { 
+              $scope.eventList[evtId].selected = true;
+              $scope.selected.event = $scope.eventList[evtId];
+            } else { // radio button case ( 1 selection )
+              $scope.selected.event = $scope.eventList[evtId];
+            }
+          }
+        }
+      }
       /**
        * make to 'selected = true' matching with prevList items.
        * @name : selectPreviousValue
        * @param : prevList is element of data.selectedEvent
        */
       var selectPreviousValue = function() {
-        for (var i = 0; i < data.selectedEvent.length; i++) {
-          var prevList = data.selectedEvent[i];
-          for (var j = 0; j < $scope.eventList.length; j++) {
-            if ($scope.eventList[j].event !== prevList) {
-              continue;
-            }
-            $scope.selected.event = null;
-            if ($scope.eventList[j].enable === true) {
-              // checkbox case( multiple selection)
-              if (typeof($scope.eventList[j].selected) !== 'undefined') { 
-                $scope.eventList[j].selected = true;
-                $scope.selected.event = $scope.eventList[j];
-              } else { // radio button case ( 1 selection )
-                $scope.selected.event = $scope.eventList[j];
-                break;
-              }
-            }
+        for (var evtIdx = 0; evtIdx < data.selectedEvent.length; evtIdx++) {
+          var prevList = data.selectedEvent[evtIdx];
+          for (var evtId = 0; evtId < $scope.eventList.length; evtId++) {
+            checkIsEventSelect(evtId, prevList);
           }
         }
         if ($scope.selected.event === null) {

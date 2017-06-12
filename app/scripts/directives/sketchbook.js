@@ -43,7 +43,7 @@ kindFramework
           var getPlayerData = function() {
             if (mAttr.MaxChannel > 1) {
               profileInfo.ChannelId = currentChannel;
-              ConnectionSettingService.SetMultiChannelSupport(true);
+              ConnectionSettingService.setMultiChannelSupport(true);
             } else {
               profileInfo.ChannelId = null;
             }
@@ -174,6 +174,10 @@ kindFramework
                 "overflow": "inherit"
               });
 
+              elem.find("#sketchbook_svg")[0].setAttributeNS(null, 'width', videoinfo.width);
+              elem.find("#sketchbook_svg")[0].setAttributeNS(null, 'height', videoinfo.height);
+              elem.find("#sketchbook_svg")[0].setAttributeNS(null, 'viewBox', '0 0 ' + videoinfo.width + ' ' + videoinfo.height);
+
               var canvasElem = document.getElementsByTagName("canvas");
               if (videoinfo.support_ptz) {
                 if (videoinfo.support_ptz === 'PTZ') {
@@ -206,7 +210,7 @@ kindFramework
 
               }
 
-              if (SessionOfUserManager.IsLoggedin()) {
+              if (SessionOfUserManager.isLoggedin()) {
                 var id = SessionOfUserManager.getUsername();
                 var password = SessionOfUserManager.getPassword();
                 getClientIP();
@@ -250,7 +254,7 @@ kindFramework
               function(response) {
                 var rtspIp = response.data.NetworkInterfaces[0].IPv4Address;
                 var macIp = response.data.NetworkInterfaces[0].MACAddress;
-                ConnectionSettingService.SetRtspIpMac(rtspIp, macIp);
+                ConnectionSettingService.setRtspIpMac(rtspIp, macIp);
               },
               function(errorData) {
                 console.error(errorData);
@@ -308,11 +312,11 @@ kindFramework
           }
 
           function getClientIP() {
-            if (SessionOfUserManager.GetClientIPAddress() === '127.0.0.1') {
+            if (SessionOfUserManager.getClientIPAddress() === '127.0.0.1') {
               SunapiClient.get(
                 '/stw-cgi/system.cgi?msubmenu=getclientip&action=view', {},
                 function(response) {
-                  SessionOfUserManager.SetClientIPAddress(response.data.ClientIP);
+                  SessionOfUserManager.setClientIPAddress(response.data.ClientIP);
                 },
                 function(errorData) {
                   console.error(errorData);

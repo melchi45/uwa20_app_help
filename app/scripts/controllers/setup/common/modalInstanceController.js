@@ -1,9 +1,12 @@
-kindFramework.controller('modalInstanceCtrl', function($scope, $uibModalInstance, Attributes, SelectedDay, SelectedHour, SelectedFromMinute, SelectedToMinute, Rule, COMMONUtils) {
+kindFramework.
+controller('modalInstanceCtrl', 
+function($scope, $uibModalInstance, Attributes, SelectedDay, SelectedHour, 
+SelectedFromMinute, SelectedToMinute, Rule, COMMONUtils) {
   "use strict";
   COMMONUtils.getResponsiveObjects($scope);
 
   var mAttr = Attributes.get();
-
+  var MAX_MINUTES = 59;
   var pageData = {};
 
   $scope.SelectedDay = SelectedDay;
@@ -25,8 +28,8 @@ kindFramework.controller('modalInstanceCtrl', function($scope, $uibModalInstance
   };
 
   $scope.HourOptions = [];
-  for (var h = 0; h < mAttr.MaxHours; h++) {
-    $scope.HourOptions.push(h);
+  for (var hour = 0; hour < mAttr.MaxHours; hour++) {
+    $scope.HourOptions.push(hour);
   }
 
   $scope.MinuteOptions = [];
@@ -34,21 +37,20 @@ kindFramework.controller('modalInstanceCtrl', function($scope, $uibModalInstance
     $scope.MinuteOptions.push(m);
   }
 
-  var index = $scope.EventRule.ScheduleIds.indexOf($scope.SelectedDay + '.' + $scope.SelectedHour);
-
   function inArray(arr, str) {
-    for (var i = 0; i < arr.length; i++) {
-      var tArray = arr[i].split(".");
+    for (var idx = 0; idx < arr.length; idx++) {
+      var tArray = arr[idx].split(".");
       tArray = tArray[0] + "." + tArray[1];
-      if (tArray == str) {
-        return i;
+      if (tArray === str) {
+        return idx;
       }
     }
     return -1;
   }
 
   $scope.ok = function() {
-    var foundId = inArray($scope.EventRule.ScheduleIds, $scope.SelectedDay + '.' + $scope.SelectedHour);
+    var foundId = inArray($scope.EventRule.ScheduleIds, 
+      $scope.SelectedDay + '.' + $scope.SelectedHour);
     // for (var i = 0; i < $scope.EventRule.ScheduleIds.length; i++)
     // {
     //     if ($scope.EventRule.ScheduleIds[i].indexOf($scope.SelectedDay + '.' + $scope.SelectedHour) >= 0)
@@ -60,10 +62,12 @@ kindFramework.controller('modalInstanceCtrl', function($scope, $uibModalInstance
     if (foundId !== -1) {
       $scope.EventRule.ScheduleIds.splice(foundId, 1);
     }
-    if ($scope.SelectedToMinute - $scope.SelectedFromMinute >= 59) {
+    if ($scope.SelectedToMinute - $scope.SelectedFromMinute >= MAX_MINUTES) {
       $scope.EventRule.ScheduleIds.push($scope.SelectedDay + '.' + $scope.SelectedHour);
     } else {
-      $scope.EventRule.ScheduleIds.push($scope.SelectedDay + '.' + $scope.SelectedHour + '.' + $scope.SelectedFromMinute + '.' + $scope.SelectedToMinute);
+      $scope.EventRule.ScheduleIds.push(
+        $scope.SelectedDay + '.' + $scope.SelectedHour + '.' + $scope.SelectedFromMinute + 
+        '.' + $scope.SelectedToMinute);
     }
 
     $uibModalInstance.close($scope.EventRule);
@@ -75,9 +79,10 @@ kindFramework.controller('modalInstanceCtrl', function($scope, $uibModalInstance
 
   $scope.delete = function() {
     var foundId = -1;
-    for (var i = 0; i < $scope.EventRule.ScheduleIds.length; i++) {
-      if ($scope.EventRule.ScheduleIds[i].indexOf($scope.SelectedDay + '.' + $scope.SelectedHour) >= 0) {
-        foundId = i;
+    for (var idx = 0; idx < $scope.EventRule.ScheduleIds.length; idx++) {
+      if ($scope.EventRule.ScheduleIds[idx].indexOf(
+          $scope.SelectedDay + '.' + $scope.SelectedHour) >= 0) {
+        foundId = idx;
         break;
       }
     }

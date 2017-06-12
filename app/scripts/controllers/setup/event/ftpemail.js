@@ -57,7 +57,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
   }
 
   function ftpView() {
-    var jData;
+    var jData = {};
     return SunapiClient.get('/stw-cgi/transfer.cgi?msubmenu=ftp&action=view', jData, function(response) {
       pageDataFTP = response.data;
       $scope.FTPHost = response.data.Host;
@@ -74,7 +74,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
   }
 
   function smtpView() {
-    var jData;
+    var jData = {};
     return SunapiClient.get('/stw-cgi/transfer.cgi?msubmenu=smtp&action=view', jData, function(response) {
       pageDataSMTP = response.data;
       $scope.SMTPHost = response.data.Host;
@@ -114,7 +114,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
 
   function validateSMTP() {
     var retVal = true;
-    var ErrorMessage;
+    var ErrorMessage = null;
     if ($scope.DeviceType === 'NWC') {
       if ($scope.SMTPBody.length > 256) {
         ErrorMessage = 'lang_msg_body_maxlength';
@@ -218,7 +218,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
 
   function validateFTP() {
     var retVal = true;
-    var ErrorMessage;
+    var ErrorMessage = null;
     var ftpPathTok = $scope.FTPPath.split("/");
     for (var i = 1; i < ftpPathTok.length - 1; i++) {
       if (ftpPathTok[i].length === 0) {
@@ -290,7 +290,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
 
   function CheckValidIPv4Address(address) {
     var textCheck = isNaN(address.split(/\./)[0]);
-    if (textCheck === true) return true;
+    if (textCheck === true) {return true;}
 
     return COMMONUtils.CheckValidIPv4Address(address);
   }
@@ -420,7 +420,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
   }
 
   function checkStatus(status) {
-    var statusMsg;
+    var statusMsg = null;
     switch (status) {
       case 'Fail':
         statusMsg = $translate.instant('lang_msg_test_fail');
@@ -439,7 +439,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
   }
 
   function updateSMTPStatus() {
-    var jData;
+    var jData = {};
     return SunapiClient.get('/stw-cgi/transfer.cgi?msubmenu=smtp&action=test', jData, function(response) {
       $scope.smtpStatus = checkStatus(response.data.Status);
       $scope.$apply();
@@ -452,7 +452,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
   }
 
   function updateFTPStatus() {
-    var jData;
+    var jData = {};
     return SunapiClient.get('/stw-cgi/transfer.cgi?msubmenu=ftp&action=test', jData, function(response) {
       $scope.ftpStatus = checkStatus(response.data.Status);
       $scope.$apply();

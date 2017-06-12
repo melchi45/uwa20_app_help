@@ -37,7 +37,7 @@ kindFramework.service('pcSetupService', function(
       }
     };
 
-    if (SessionOfUserManager.IsLoggedin()) {
+    if (SessionOfUserManager.isLoggedin()) {
       var id = SessionOfUserManager.getUsername();
       var password = SessionOfUserManager.getPassword();
       ConnectionSettingService.setConnectionInfo({
@@ -45,10 +45,10 @@ kindFramework.service('pcSetupService', function(
         password: password
       });
 
-      if (SessionOfUserManager.GetClientIPAddress() === '127.0.0.1') {
+      if (SessionOfUserManager.getClientIPAddress() === '127.0.0.1') {
         SunapiClient.get('/stw-cgi/system.cgi?msubmenu=getclientip&action=view', {},
           function(response) {
-            SessionOfUserManager.SetClientIPAddress(response.data.ClientIP);
+            SessionOfUserManager.setClientIPAddress(response.data.ClientIP);
           },
           function(errorData) {
             console.error(errorData);

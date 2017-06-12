@@ -6,7 +6,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   COMMONUtils.getResponsiveObjects($scope);
 
-  if (SessionOfUserManager.IsLoggedin()) {
+  if (SessionOfUserManager.isLoggedin()) {
     LogManager.debug("Setup login is success.");
   }
 
@@ -764,9 +764,9 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
             $scope.selectFrameRate($scope.ResoltionList[i].MaxFPS, defaultFPS, isAdjustBitRate);
             if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined) {
               /**
-               * MJPEGì—ì„œ H265ë³€ê²½ í›„ ì €ì¥í•˜ì§€ ì•Šì„ ìƒíƒœì—ì„œ
-               * Resolution ë³€ê²½ ì‹œ Bitrate Controlì€ ì •ì˜ê°€ ë˜ìˆì§€ ì•Šê¸° ë•Œë¬¸ì—
-               * VBRë¡œ ê¸°ë³¸ê°’ì„ ì„¤ì •í•œë‹¤.
+               * MJPEG¿¡¼­ H265º¯°æ ÈÄ ÀúÀåÇÏÁö ¾ÊÀ» »óÅÂ¿¡¼­
+               * Resolution º¯°æ ½Ã Bitrate ControlÀº Á¤ÀÇ°¡ µÇÀÖÁö ¾Ê±â ¶§¹®¿¡
+               * VBR·Î ±âº»°ªÀ» ¼³Á¤ÇÑ´Ù.
                */
               if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType !== undefined) {
                 $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType;

@@ -1,8 +1,9 @@
-/*global detector, location, BaseMain, confirm */
+/*global location, BaseMain, confirm */
 kindFramework.
   controller('UniversalMainCtrl', ['$scope', '$location', '$window', '$rootScope', 'CAMERA_TYPE',
     'ModalManagerService', 'SunapiClient', 'DisplayService', 'UniversialManagerService',
-    'SessionOfUserManager', 'CAMERA_STATUS', '$timeout', '$state', 'RESTCLIENT_CONFIG', '$controller',
+    'SessionOfUserManager', 'CAMERA_STATUS', '$timeout', '$state', 'RESTCLIENT_CONFIG', 
+    '$controller',
     function($scope, $location, $window, $rootScope, CAMERA_TYPE,
       ModalManagerService, SunapiClient, DisplayService, UniversialManagerService,
       SessionOfUserManager, CAMERA_STATUS, $timeout, $state, RESTCLIENT_CONFIG, $controller) {
@@ -24,8 +25,8 @@ kindFramework.
           UniversialManagerService.setisLogin(false);
           UniversialManagerService.removeUserId();
           UniversialManagerService.initialization();
-          SessionOfUserManager.RemoveSession();
-          SessionOfUserManager.UnSetLogin();
+          SessionOfUserManager.removeSession();
+          SessionOfUserManager.unSetLogin();
           $state.go('login');
         });
         $scope.toggleNav(false);

@@ -902,7 +902,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
               if (changedUrl.indexOf('login') === -1 && mAttributes.GetFail) {
                 if (RESTCLIENT_CONFIG.serverType === 'grunt') {
                   console.log("Logging out");
-                  SessionOfUserManager.UnSetLogin();
+                  SessionOfUserManager.unSetLogin();
                   LoginRedirect(); // jshint ignore:line
                 } else {
                   console.log("Retry Call attributes");
@@ -915,7 +915,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
         function() {
           if (RESTCLIENT_CONFIG.serverType === 'grunt') {
             console.log("Logging out");
-            SessionOfUserManager.UnSetLogin();
+            SessionOfUserManager.unSetLogin();
             LoginRedirect(); // jshint ignore:line
           } else {
             console.log("Retry Call attributes");
@@ -1050,8 +1050,8 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
         '/stw-cgi/security.cgi?msubmenu=users&action=view', {},
         function(response) {
           setAccountData(response);
-          SessionOfUserManager.AddSession(loginInfo.id, '', CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB);
-          SessionOfUserManager.SetLogin();
+          SessionOfUserManager.addSession(loginInfo.id, '', CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB);
+          SessionOfUserManager.setLogin();
           initialize(500);
         },
         function(errorData) {
@@ -1081,12 +1081,12 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
     /** Dont't initialize attributes during service initilization. It is causing password popup
      messages, it should be initilaized after login */
     if (RESTCLIENT_CONFIG.serverType === 'grunt') {
-      console.log('Attributes is Logged in ', SessionOfUserManager.IsLoggedin());
-      if (SessionOfUserManager.IsLoggedin() === true) {
+      console.log('Attributes is Logged in ', SessionOfUserManager.isLoggedin());
+      if (SessionOfUserManager.isLoggedin() === true) {
         this.initialize(500);
       } else {
         console.log("Not LoggedIn");
-        SessionOfUserManager.UnSetLogin();
+        SessionOfUserManager.unSetLogin();
         LoginRedirect(); // jshint ignore:line
       }
     }

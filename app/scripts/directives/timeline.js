@@ -3,7 +3,7 @@ kindFramework.
     'PLAYBACK_TYPE', 'ModalManagerService', 'PlaybackInterface', 'SearchDataModel',
     'TimelineService', 'PlayDataModel',
     function($filter, $interval, $timeout, $rootScope, PLAYBACK_TYPE, ModalManagerService,
-    PlaybackInterface, SearchDataModel, TimelineService, PlayDataModel ){
+    PlaybackInterface, SearchDataModel, TimelineService, PlayDataModel ) {
       'use strict';
       var timelineMode = [
         'playback',
@@ -20,6 +20,7 @@ kindFramework.
           'playbackBackup': '=',
         },
         controller: function($scope, $element) {
+          var MAX_TIME_LENGTH = 2;
           $element.attr('id', $scope.elementId);
           $scope.timelineControl = $scope.control || {};
           var searchData = new SearchDataModel();
@@ -116,11 +117,11 @@ kindFramework.
             },
             focus: function($event) {
               try {
-                $event.target.setSelectionRange(0, 2);
+                $event.target.setSelectionRange(0, MAX_TIME_LENGTH);
               } catch (err) {
                 console.error(err);
               }
-            }
+            },
           };
 
           $scope.timelineControl.currentTimelineMode = 'playback';

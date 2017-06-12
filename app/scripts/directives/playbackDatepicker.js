@@ -5,7 +5,8 @@ kindFramework.directive('playbackDatepicker', function() {
     restrict: 'E',
     replace: true,
     templateUrl: 'views/livePlayback/directives/playback-datepicker.html',
-    controller: function($scope, $timeout, dateConverter, PlaybackInterface, CAMERA_TYPE, $rootScope, SearchDataModel, UniversialManagerService, ModalManagerService) {
+    controller: function($scope, $timeout, dateConverter, PlaybackInterface, CAMERA_TYPE, 
+    $rootScope, SearchDataModel, UniversialManagerService, ModalManagerService) {
       var searchData = new SearchDataModel();
       var recordingDate = [];
       var selectedEventList = [];
@@ -17,6 +18,11 @@ kindFramework.directive('playbackDatepicker', function() {
       var HOUR_TO_MIN = 60, MIN_TO_SEC = 60;
       var MIN_DOUBLE_FIGURES = 10;
       var MAX_SLIDER_INPUT = 1440;
+      var MAX_HOUR = 24;
+      var MAX_SECONDS = 60;
+      var MAX_TIME_LENGTH = 2;
+      var MAX_DATE_VALUE = 6;
+      var KEY = {TAB:9, ESC:27, ARROW_LEFT:37, ARROW_UP:38, ARROW_RIGHT:39, ARROW_DOWN:40};
 
       $scope.blockTimeInput = false;
       $scope.submitButton = 'lang_search';
@@ -60,12 +66,14 @@ kindFramework.directive('playbackDatepicker', function() {
           slider.start.hours = document.getElementById('slider-start-time-hours').value;
           slider.start.minutes = document.getElementById('slider-start-time-minutes').value;
           slider.start.seconds = document.getElementById('slider-start-time-seconds').value;
-          return stringPad(slider.start.hours) + ":" + stringPad(slider.start.minutes) + ":" + stringPad(slider.start.seconds);
+          return stringPad(slider.start.hours) + ":" + stringPad(slider.start.minutes) + 
+                  ":" + stringPad(slider.start.seconds);
         } else if (wantedElements === 'end') {
           slider.end.hours = document.getElementById('slider-end-time-hours').value;
           slider.end.minutes = document.getElementById('slider-end-time-minutes').value;
           slider.end.seconds = document.getElementById('slider-end-time-seconds').value;
-          return stringPad(slider.end.hours) + ":" + stringPad(slider.end.minutes) + ":" + stringPad(slider.end.seconds);
+          return stringPad(slider.end.hours) + ":" + stringPad(slider.end.minutes) + 
+                ":" + stringPad(slider.end.seconds);
         } else {
           console.log("invalid parameter");
         }
@@ -115,7 +123,7 @@ kindFramework.directive('playbackDatepicker', function() {
             return '00';
           case 1:
             return '0' + input;
-          case 2:
+          case MAX_TIME_LENGTH:
             return numToString(input);
           default:
             console.log("unexpected keyCode");
@@ -169,7 +177,7 @@ kindFramework.directive('playbackDatepicker', function() {
           switch (mode) {
             case 'day':
               var className = "";
-              if (date.getDay() === 0 || date.getDay() === 6) {
+              if (date.getDay() === 0 || date.getDay() === MAX_DATE_VALUE) {
                 className = "week";
               }
               if (new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)) {
@@ -200,7 +208,8 @@ kindFramework.directive('playbackDatepicker', function() {
             var isExistFlag = false;
             for (var idx in recordingDate) {
               if (recordingDate[idx].day === pad($scope.playback.search.selectedDate.getDate()) && 
-                recordingDate[idx].month === pad($scope.playback.search.selectedDate.getMonth() + 1)) {
+                recordingDate[idx].month === 
+                    pad($scope.playback.search.selectedDate.getMonth()+1)) {
                 isExistFlag = true;
               }
             }
@@ -225,7 +234,7 @@ kindFramework.directive('playbackDatepicker', function() {
         switch (element.id) {
           case 'slider-start-time-hours':
           case 'slider-end-time-hours':
-            if (element.value >= 24) {
+            if (element.value >= MAX_HOUR) {
               element.value = "23";
             }
             break;
@@ -233,7 +242,7 @@ kindFramework.directive('playbackDatepicker', function() {
           case 'slider-end-time-minutes':
           case 'slider-start-time-seconds':
           case 'slider-end-time-seconds':
-            if (element.value >= 60) {
+            if (element.value >= MAX_SECONDS) {
               element.value = "59";
             }
             break;
@@ -250,7 +259,7 @@ kindFramework.directive('playbackDatepicker', function() {
             validTime.defaultTime = "00";
           }
           var selectedElement = document.getElementById($event.target.id);
-          selectedElement.setSelectionRange(0, 2);
+          selectedElement.setSelectionRange(0, MAX_TIME_LENGTH);
           selectedElement.onkeyup = function() {
             if (isDown === false) {
               return;
@@ -258,7 +267,7 @@ kindFramework.directive('playbackDatepicker', function() {
             if (/^[0-9]+$/.test(selectedElement.value) === false) {
               selectedElement.value = selectedElement.value.slice(0, -1);
             }
-            if (selectedElement.value.length === 2) {
+            if (selectedElement.value.length === MAX_TIME_LENGTH) {
               if (isValueChanged === true) {
                 checkValidValue(selectedElement);
                 if (selectedElement.id === 'slider-start-time-seconds') {
@@ -269,11 +278,11 @@ kindFramework.directive('playbackDatepicker', function() {
                   $(this).next().focus();
                 }
               } else {
-                selectedElement.setSelectionRange(0, 2);
+                selectedElement.setSelectionRange(0, MAX_TIME_LENGTH);
                 isValueChanged = true;
               }
             }
-            if (event.keyCode === 39 || event.keyCode === 40) {
+            if (event.keyCode === KEY.ARROW_RIGHT || event.keyCode === KEY.ARROW_DOWN ) {
               checkValidValue(selectedElement);
               if (selectedElement.id === 'slider-start-time-seconds') {
                 $("#slider-end-time-hours").focus();
@@ -287,12 +296,12 @@ kindFramework.directive('playbackDatepicker', function() {
           selectedElement.onkeydown = function($event) {
             isDown = true;
             switch ($event.keyCode) {
-              case 9:
+              case KEY.TAB:
                 checkValidValue(selectedElement);
                 $event.preventDefault();
                 break;
-              case 37:
-              case 38:
+              case KEY.ARROW_LEFT:
+              case KEY.ARROW_UP:
                 checkValidValue(selectedElement);
                 isValueChanged = false;
                 if (selectedElement.id === 'slider-end-time-hours') {
@@ -318,7 +327,8 @@ kindFramework.directive('playbackDatepicker', function() {
         var data = {
           options: {
             slide: function(event, ui) {
-              var inputType = event.target.getAttribute('ui-slider') === 'slider.start.options' ? 0 : 1;
+              var inputType = 
+                event.target.getAttribute('ui-slider') === 'slider.start.options' ? 0 : 1;
               $scope.changeNumToTime(inputType);
             },
             min: 0,
@@ -327,12 +337,14 @@ kindFramework.directive('playbackDatepicker', function() {
           hours: searchData.getSelectedStartedTime()[0],
           minutes: searchData.getSelectedStartedTime()[1],
           seconds: searchData.getSelectedStartedTime()[2],
-          from: changeTimeToNum(searchData.getSelectedStartedTime()[0], searchData.getSelectedStartedTime()[1]),
+          from: changeTimeToNum(searchData.getSelectedStartedTime()[0], 
+                                searchData.getSelectedStartedTime()[1]),
         };
         var data2 = {
           options: {
             slide: function(event, ui) {
-              var inputType = event.target.getAttribute('ui-slider') === 'slider.start.options' ? 0 : 1;
+              var inputType = 
+                event.target.getAttribute('ui-slider') === 'slider.start.options' ? 0 : 1;
               $scope.changeNumToTime(inputType);
             },
             min: 0,
@@ -341,7 +353,8 @@ kindFramework.directive('playbackDatepicker', function() {
           hours: searchData.getSelectedEndedTime()[0],
           minutes: searchData.getSelectedEndedTime()[1],
           seconds: searchData.getSelectedEndedTime()[2],
-          to: changeTimeToNum(searchData.getSelectedEndedTime()[0], searchData.getSelectedEndedTime()[1]),
+          to: changeTimeToNum(searchData.getSelectedEndedTime()[0], 
+                              searchData.getSelectedEndedTime()[1]),
         };
         return {
           start: data,
@@ -349,17 +362,19 @@ kindFramework.directive('playbackDatepicker', function() {
           timeSections: ['00:00', '06:00', '12:00', '18:00', '24:00'],
           getTimeSpanStyle: function(index, length) {
             return {
-              left: index * (1 / (length - 1)) * 100 + '%',
+              left: (index * (1 / (length - 1)) * 100) + '%',
             };
-          }
+          },
         };
       }();
       $scope.ok = function() {
         var data = {};
         if (search()) {
           searchData.setSelectedDate(currentDate);
-          searchData.setSelectedStartedTime([stringPad(slider.start.hours), stringPad(slider.start.minutes), stringPad(slider.start.seconds)]);
-          searchData.setSelectedEndedTime([stringPad(slider.end.hours), stringPad(slider.end.minutes), stringPad(slider.end.seconds)]);
+          searchData.setSelectedStartedTime([stringPad(slider.start.hours), 
+            stringPad(slider.start.minutes), stringPad(slider.start.seconds)]);
+          searchData.setSelectedEndedTime([stringPad(slider.end.hours), 
+            stringPad(slider.end.minutes), stringPad(slider.end.seconds)]);
           data = {
             'startTime': makeFullPackageOfInputBox('start'),
             'endTime': makeFullPackageOfInputBox('end'),
@@ -386,7 +401,8 @@ kindFramework.directive('playbackDatepicker', function() {
       $scope.cancel = function() {
         $scope.playback.search.selectedDate = currentDate = searchData.getSelectedDate();
         $scope.playback.search.mode = 'day';
-        if (makeFullPackageOfInputBox('start') === '00:00:00' && makeFullPackageOfInputBox('end') === '23:59:59') {
+        if (makeFullPackageOfInputBox('start') === '00:00:00' && 
+            makeFullPackageOfInputBox('end') === '23:59:59') {
           $scope.allDay = true;
         }
       };
@@ -405,7 +421,7 @@ kindFramework.directive('playbackDatepicker', function() {
       var documentBody = document.body;
       var keyUpHandler = function(event) {
         var keyCode = event.which || event.keyCode;
-        if (keyCode === 27) {
+        if (keyCode === KEY.ESC) {
           documentBody.removeEventListener('keyup', keyUpHandler);
           $scope.cancel();
         }

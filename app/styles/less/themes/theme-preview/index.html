@@ -16,14 +16,60 @@
       <a href="http://127.0.0.1:9877/styles/less/themes/theme-preview/index.html">http://127.0.0.1:9877/styles/less/themes/theme-preview/index.html</a>로 접근하세요.
     </p>
     <section>
-        <h1>1.1.2 Color Scheme</h1>
+        <h1>Theme</h1>
+        <article>
+          <select onchange="changeTheme(this)">
+            <option>uwa20-default</option>
+          </select>
+        </article>
+    </section>
+    <section>
+        <h1>Color Scheme</h1>
         <article>
           <h2>Light Color Scheme</h2>
           <div class="contents">
-            <div class="color-box"></div>
+            <div class="color-box theme-color-point-dark"></div>
+            <div class="color-box theme-color-point-100"></div>
+            <div class="color-box theme-color-point-60"></div>
+            <div class="color-box theme-color-point-10"></div>
+          </div>
+          <div class="contents">
+            <div class="color-box theme-color-white"></div>
+            <div class="color-box theme-color-black-100"></div>
+            <div class="color-box theme-color-black-90"></div>
+            <div class="color-box theme-color-black-85"></div>
+            <div class="color-box theme-color-black-80"></div>
+            <div class="color-box theme-color-gray-100"></div>
+            <div class="color-box theme-color-gray-75"></div>
+            <div class="color-box theme-color-gray-50"></div>
+            <div class="color-box theme-color-gray-33"></div>
+            <div class="color-box theme-color-gray-25"></div>
+            <div class="color-box theme-color-gray-12"></div>
+            <div class="color-box theme-color-gray-7"></div>
+            <div class="color-box theme-color-gray-2"></div>
+          </div>
+          <div class="contents">
+            <div class="color-box theme-color-pallet-red"></div>
+            <div class="color-box theme-color-pallet-orange"></div>
+            <div class="color-box theme-color-pallet-yellow"></div>
+            <div class="color-box theme-color-pallet-green"></div>
+            <div class="color-box theme-color-pallet-blue"></div>
+            <div class="color-box theme-color-pallet-sky-blue"></div>
+            <div class="color-box theme-color-pallet-purple"></div>
+            <div class="color-box theme-color-pallet-pink"></div>
           </div>
         </article>
     </section>
+    <section>
+      
+    </section>
+
     <script src="../../../../external-lib/less/dist/less.js"></script>
+    <script>
+      function changeTheme(self){
+        less.modifyVars({ theme : self.value });
+        less.refreshStyles();
+      }
+    </script>
 </body>
 </html>

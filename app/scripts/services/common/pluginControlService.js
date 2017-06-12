@@ -49,7 +49,7 @@ kindFramework
         EventNotificationService.setBorderElement($(pluginElement), 'live');
 
         if (PlugInPromise !== null) {
-          // pluginElement.PlayLiveStream ì‹¤í–‰ ë„ ì¤‘ Profile ë³€ê²½ ìš”ì²­ì´ ë“¤ì–´ì˜¬ ê²½ìš°
+          // pluginElement.PlayLiveStream ?‹¤?–‰ ?„ ì¤? Profile ë³?ê²? ?š”ì²??´ ?“¤?–´?˜¬ ê²½ìš°
           $timeout.cancel(PlugInPromise);
         }
 
@@ -243,6 +243,7 @@ kindFramework
       this.applyStepCommand = function(data) {
         var playdata = new PlayDataModel();
         playdata.setDefautPlaySpeed();
+        playSpeed = 1;
         var time = playdata.getCurrentPosition();
 
         if (pluginElement !== null && pluginElement !== undefined) {
@@ -866,8 +867,8 @@ kindFramework
           case 400: //rtsp connection success
             /*  jsonData
                 {
-                    retrycnt: ì ‘ì† íšŸìˆ˜,
-                    type: ì—°ê²° íƒ€ì…
+                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
+                    type: ?—°ê²? ????…
                 }
             */
             if (jsonData.type === 1) {
@@ -886,8 +887,8 @@ kindFramework
           case 401: //rtsp unauthorized(401)
             /*  jsonData
                 {
-                    retrycnt: ì ‘ì† íšŸìˆ˜,
-                    type: ì—°ê²° íƒ€ì…
+                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
+                    type: ?—°ê²? ????…
                 }
             */
             $timeout(function() {
@@ -914,7 +915,7 @@ kindFramework
               }
             }, 100);
             break;
-          case 402: //rtsp disconnection(5ì´ˆê°„ ë¯¸ìˆ˜ì‹ ì‹œ)
+          case 402: //rtsp disconnection(5ì´ˆê°„ ë¯¸ìˆ˜?‹ ?‹œ)
             console.log("402 error :: try reconnect");
             pluginElement.CloseStream();
             if (reconnectionTimeout !== null) {
@@ -927,27 +928,27 @@ kindFramework
             updatePluginEventNotification(12, 1);
             // $rootScope.$emit("pluginControlService:updateEvent", data);        
             break;
-          case 403: //Rtsp ì‚¬ìš©ì ê³„ì • ë¸”ë¡?
+          case 403: //Rtsp ?‚¬?š©? ê³„ì • ë¸”ë¡?
             /*  jsonData
                 {
-                    retrycnt: ì ‘ì† íšŸìˆ˜,
-                    type: ì—°ê²° íƒ€ì…
+                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
+                    type: ?—°ê²? ????…
                 }
             */
             break;
           case 404: //Rtsp not found(404)
             /*  jsonData
                 {
-                    retrycnt: ì ‘ì† íšŸìˆ˜,
-                    type: ì—°ê²° íƒ€ì…
+                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
+                    type: ?—°ê²? ????…
                 }
             */
             break;
           case 405: //Rtsp client error
             /*  jsonData
                 {
-                    retrycnt: ì ‘ì† íšŸìˆ˜,
-                    type: ì—°ê²° íƒ€ì…
+                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
+                    type: ?—°ê²? ????…
                 }
             */
             break;
@@ -958,8 +959,8 @@ kindFramework
           case 503: //Rtsp service not available(503)
             /*  jsonData
                 {
-                    retrycnt: ì ‘ì† íšŸìˆ˜,
-                    type: ì—°ê²° íƒ€ì…
+                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
+                    type: ?—°ê²? ????…
                 }
             */
             if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
