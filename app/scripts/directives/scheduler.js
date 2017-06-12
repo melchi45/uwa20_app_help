@@ -901,62 +901,62 @@ kindFramework.
               var result;
               var start = moment(data.start).format('YYYY-MM-DDTHH:mm');//console.info(start);
               var end = moment(data.end).format('YYYY-MM-DDTHH:mm');//console.info(end);
-              if (start.indexOf('P') !== -1) {
-                start = start.split('P');
-              } else if (start.indexOf('A') !== -1) {
-                start = start.split('A');
-              } else if (start.indexOf('T') !== -1) {
-                start = start.split('T');
+              if(start.indexOf('P') !== -1) {
+                  start = start.split('P');
+              } else if(start.indexOf('A') !== -1) {
+                  start = start.split('A');
+              } else if(start.indexOf('T') !== -1) {
+                  start = start.split('T');
               }
               var startDate = start[0];
               var startTime = start[1];
-              startDate = new Date(startDate);
-              var startDay = startDate.getDay();
+              startDate = moment(startDate);
+              var startDay = startDate.day();
               var startTime = startTime.split(':');
               var startHour = startTime[0];
               var startMinute = startTime[1];
 
-              if (end.indexOf('P') !== -1) {
-                end = end.split('P');
-              } else if (end.indexOf('A') !== -1) {
-                end = end.split('A');
-              } else if (end.indexOf('T') !== -1) {
-                end = end.split('T');
+              if(end.indexOf('P') !== -1) {
+                  end = end.split('P');
+              } else if(end.indexOf('A') !== -1) {
+                  end = end.split('A');
+              } else if(end.indexOf('T') !== -1) {
+                  end = end.split('T');
               }
               var endDate = end[0];
               var endTime = end[1];
-              endDate = new Date(endDate);
-              var endDay = endDate.getDay();
+              endDate = moment(endDate);
+              var endDay = endDate.day();
               var endTime = endTime.split(':');
               var endHour = endTime[0];
               var endMinute = endTime[1];
               var array = null;
 
               // set day
-              switch (startDay) {
-                case 0:
-                  result = 'lang_sun';
-                  break;
-                case 1:
-                  result = 'lang_mon';
-                  break;
-                case 2:
-                  result = 'lang_tue';
-                  break;
-                case 3:
-                  result = 'lang_wed';
-                  break;
-                case 4:
-                  result = 'lang_thu';
-                  break;
-                case 5:
-                  result = 'lang_fri';
-                  break;
-                case 6:
-                  result = 'lang_sat';
-                  break;
-                default:
-                  break;
+              switch(startDay) {
+                  case 0:
+                      result = 'lang_sun';
+                      break;
+                  case 1:
+                      result = 'lang_mon';
+                      break;
+                  case 2:
+                      result = 'lang_tue';
+                      break;
+                  case 3:
+                      result = 'lang_wed';
+                      break;
+                  case 4:
+                      result = 'lang_thu';
+                      break;
+                  case 5:
+                      result = 'lang_fri';
+                      break;
+                  case 6:
+                      result = 'lang_sat';
+                      break;
+                  default:
+                      break;
               }
 
 
@@ -966,9 +966,9 @@ kindFramework.
               endMinute = parseInt(endMinute);
 
               // set time
-              if (endMinute === 0 && startMinute === 0) { // hour
-                if ((endHour - startHour) > 1) { // hours
-                  array = [];
+              if(endMinute === 0 && startMinute === 0) { // hour
+                  if((endHour - startHour) > 1) { // hours
+                      array = [];
                       var tDate = result;
                       var first;
                       first = startHour;
@@ -976,53 +976,53 @@ kindFramework.
                           tDate += ('.' + i);
                           array.push(tDate);
                           tDate = result;
-                  }//console.info(array);console.info('+++++++++++++++++++++++');
-                } else if ((endHour - startHour) < 0) {
-                  if (startHour === 23) { // hour
-                    result += ('.' + 23);
-                  } else { // hours
-                    array = [];
+                      }//console.info(array);console.info('+++++++++++++++++++++++');
+                  } else if((endHour - startHour) < 0) {
+                      if(startHour === 23) { // hour
+                          result += ('.' + 23);
+                      } else { // hours
+                          array = [];
                           var first = startHour;
                           var tDate = result;
                           for(var i = first; i <= 23; i++) {
                               tDate += ('.' + i);
                               array.push(tDate);
                               tDate = result;
-                    }
-                  }
-                } else if (startHour === 0 && endHour === 0) { // 00:00 ~ 00:00
-                  array = [];
+                          }
+                      }
+                  } else if(startHour === 0 && endHour === 0) { // 00:00 ~ 00:00
+                      array = [];
                       var first = startHour;
                       var tDate = result;
                       for(var i = first; i <= 23; i++) {
                           tDate += ('.' + i);
                           array.push(tDate);
                           tDate = result;
+                      }
+                  } else { // an hour
+                      if(endHour === 0) {
+                          result += ('.' + 23);
+                      } else {
+                          result += ('.' + startHour);//console.info(result);console.info('+++++++++++++++++++++++');
+                      }
                   }
-                } else { // an hour
-                  if (endHour === 0) {
-                    result += ('.' + 23);
-                  } else {
-                    result += ('.' + startHour);//console.info(result);console.info('+++++++++++++++++++++++');
-                  }
-                }
-              } else if ((endMinute !== 0 || startMinute !== 0) && (endHour - startHour >= 1) || (endMinute !== 0 || startMinute !== 0) && (endHour - startHour < 0)) { // hours & minutes
-                array = []; // 02:00 ~ 03:30 , 02:30 ~ 3:00, 02:30 ~ 03:30..
+              } else if((endMinute !== 0 || startMinute !== 0) && (endHour - startHour >= 1) || (endMinute !== 0 || startMinute !== 0) && (endHour - startHour < 0)) { // hours & minutes
+                  array = []; // 02:00 ~ 03:30 , 02:30 ~ 3:00, 02:30 ~ 03:30..
                   var tDate = result;
                   var first;
 
-                if (endHour === 0) {
-                  if (startHour === 0) { // in 00:00 ~ 00:59
-                    array = [];
+                  if(endHour === 0) {
+                      if(startHour === 0) { // in 00:00 ~ 00:59
+                          array = [];
                           var tDate = result;
                           var first = 0;
                           for(var i = first; i <= endHour; i++) {
                               tDate += (('.' + i) + '.' + startMinute + '.' + endMinute);
                               array.push(tDate);
                               tDate = result;
-                    }//console.info(array);console.info('+++++++++++++++++++++++');
-                  } else { // in ~ 24:59
-                    array = [];
+                          }//console.info(array);console.info('+++++++++++++++++++++++');
+                      } else { // in ~ 24:59
+                          array = [];
                           var tDate = result;
                           var first = 23;
                           for(var i = first; i >= startHour; i--) {
@@ -1034,14 +1034,14 @@ kindFramework.
                                   tDate += (('.' + i) + '.' + startMinute + '.' + '59');
                               } else if(i === startHour && startMinute === 0) {
                                   tDate += ('.' + i);
-                      } else {
+                              } else {
                                   tDate += ('.' + i);
-                      }
+                              }
                               array.push(tDate);
                               tDate = result;
-                    }//console.info(array);console.info('+++++++++++++++++++++++');
-                  }
-                } else if (startHour === 0 && startMinute === 0 && endMinute !== 0) { // 0:00 ~ 1:30
+                          }//console.info(array);console.info('+++++++++++++++++++++++');
+                      }
+                  } else if(startHour === 0 && startMinute === 0 && endMinute !== 0) { // 0:00 ~ 1:30
                       // first = endHour - startHour;
                       first = endHour;
                       for(var i = first; i >= startHour; i--) {
@@ -1049,257 +1049,258 @@ kindFramework.
                               tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
                           } else if(i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
                               tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
-                    } else { // 2:00 ~ 3:00
+                          } else { // 2:00 ~ 3:00
                               tDate += ('.' + i);
-                    }
-                    array.push(tDate);
-                    tDate = result;
-                  }//console.info(array);console.info('+++++++++++++++++++++++');
-                } else if (startHour === 0 && startMinute !== 0 && endMinute !== 0) { // 0:30 ~ 1:30
+                          }
+                          array.push(tDate);
+                          tDate = result;
+                      }//console.info(array);console.info('+++++++++++++++++++++++');
+                  } else if(startHour === 0 && startMinute !== 0 && endMinute !== 0) { // 0:30 ~ 1:30
                       // first = endHour - startHour;
-                  first = endHour;
-                  for (var i = first; i >= startHour; i--) {
-                    if (i === first) { // 3:00 ~ 3:30
-                      tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                    } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                      tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
-                    } else { // 2:00 ~ 3:00
-                      tDate += ('.' + i);
-                    }
-                    array.push(tDate);
-                    tDate = result;
-                  }//console.info(array);console.info('+++++++++++++++++++++++');
-                } else if (startHour === 0 && startMinute !== 0 && endMinute === 0) { // 0:30 ~ 1:00
+                      first = endHour;
+                      for(var i = first; i >= startHour; i--) {
+                          if(i === first) { // 3:00 ~ 3:30
+                              tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
+                          } else if(i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                              tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                          } else { // 2:00 ~ 3:00
+                              tDate += ('.' + i);
+                          }
+                          array.push(tDate);
+                          tDate = result;
+                      }//console.info(array);console.info('+++++++++++++++++++++++');
+                  } else if(startHour === 0 && startMinute !== 0 && endMinute === 0) { // 0:30 ~ 1:00
                       // first = endHour - startHour - 1;
-                  first = endHour - 1;
-                  if (endHour - startHour > 1) {
-                    for (var i = first; i >= startHour; i--) {
-                      if (i === first && endMinute !== 0) { // 3:00 ~ 3:30
-                        tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                      } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                        tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
-                      } else { // 2:00 ~ 3:00
-                        tDate += ('.' + i);
+                      first = endHour - 1;
+                      if(endHour - startHour > 1) {
+                          for(var i = first; i >= startHour; i--) {
+                              if(i === first && endMinute !== 0) { // 3:00 ~ 3:30
+                                  tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
+                              } else if(i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                                  tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                              } else { // 2:00 ~ 3:00
+                                  tDate += ('.' + i);
+                              }
+                              array.push(tDate);
+                              tDate = result;
+                          }//console.info(array);console.info('+++++++++++++++++++++++');
+                      } else {
+                          tDate += (('.' + startHour) + '.' + startMinute + '.' + '59');
+                          array.push(tDate);
+                          tDate = result;//console.info(array);console.info('+++++++++++++++++++++++');
                       }
-                      array.push(tDate);
-                      tDate = result;
-                    }//console.info(array);console.info('+++++++++++++++++++++++');
-                  } else {
-                    tDate += (('.' + startHour) + '.' + startMinute + '.' + '59');
-                    array.push(tDate);
-                    tDate = result;//console.info(array);console.info('+++++++++++++++++++++++');
-                  }
-                } else if (startHour !== 0 && startMinute === 0 && endMinute !== 0) { // 1:00 ~ 2:30
+                  } else if(startHour !== 0 && startMinute === 0 && endMinute !== 0) { // 1:00 ~ 2:30
                       // first = endHour - startHour + 1;
-                  first = endHour;
-                  for (var i = first; i >= startHour; i--) {
-                    if (i === first) { // 3:00 ~ 3:30
-                      tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                    } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                      tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
-                    } else { // 2:00 ~ 3:00
-                      tDate += ('.' + i);
-                    }
-                    array.push(tDate);
-                    tDate = result;
-                  }//console.info(array);console.info('+++++++++++++++++++++++');
-                } else if (startHour !== 0 && startMinute !== 0 && endMinute === 0) { // 1:30 ~ 2:00
+                      first = endHour;
+                      for(var i = first; i >= startHour; i--) {
+                          if(i === first) { // 3:00 ~ 3:30
+                              tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
+                          } else if(i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                              tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                          } else { // 2:00 ~ 3:00
+                              tDate += ('.' + i);
+                          }
+                          array.push(tDate);
+                          tDate = result;
+                      }//console.info(array);console.info('+++++++++++++++++++++++');
+                  } else if(startHour !== 0 && startMinute !== 0 && endMinute === 0) { // 1:30 ~ 2:00
                       // first = endHour - startHour;
-                  first = endHour - 1;
-                  if (endHour - startHour > 1) {
-                    for (var i = first; i >= startHour; i--) {
-                      if (i === first && endMinute !== 0) { // 3:00 ~ 3:30
-                        tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                      } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                        tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
-                      } else { // 2:00 ~ 3:00
-                        tDate += ('.' + i);
+                      first = endHour - 1;
+                      if(endHour - startHour > 1) {
+                          for(var i = first; i >= startHour; i--) {
+                              if(i === first && endMinute !== 0) { // 3:00 ~ 3:30
+                                  tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
+                              } else if(i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                                  tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                              } else { // 2:00 ~ 3:00
+                                  tDate += ('.' + i);
+                              }
+                              array.push(tDate);
+                              tDate = result;
+                          }//console.info(array);console.info('+++++++++++++++++++++++');
+                      } else {
+                          tDate += (('.' + startHour) + '.' + startMinute + '.' + '59');
+                          array.push(tDate);
+                          tDate = result;//console.info(array);console.info('+++++++++++++++++++++++');
                       }
-                      array.push(tDate);
-                      tDate = result;
-                    }//console.info(array);console.info('+++++++++++++++++++++++');
-                  } else {
-                    tDate += (('.' + startHour) + '.' + startMinute + '.' + '59');
-                    array.push(tDate);
-                    tDate = result;//console.info(array);console.info('+++++++++++++++++++++++');
+                  } else if(startHour !== 0 && startMinute !== 0 && endMinute !== 0) { // 1:30 ~ 2:30
+                      first = endHour;
+                      for(var i = first; i >= startHour; i--) {
+                          if(i === first) { // 3:00 ~ 3:30
+                              tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
+                          } else if(i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                              tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                          } else { // 2:00 ~ 3:00
+                              tDate += ('.' + i);
+                          }
+                          array.push(tDate);
+                          tDate = result;
+                      }//console.info(array);console.info('+++++++++++++++++++++++');
                   }
-                } else if (startHour !== 0 && startMinute !== 0 && endMinute !== 0) { // 1:30 ~ 2:30
-                  first = endHour;
-                  for (var i = first; i >= startHour; i--) {
-                    if (i === first) { // 3:00 ~ 3:30
-                      tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                    } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                      tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
-                    } else { // 2:00 ~ 3:00
-                      tDate += ('.' + i);
-                    }
-                    array.push(tDate);
-                    tDate = result;
-                  }//console.info(array);console.info('+++++++++++++++++++++++');
-                }
-              } else if ((endMinute === 0 && startMinute !== 0) && (endHour - startHour === 1) || (endMinute === 0 && startMinute !== 0) && (endHour - startHour === -23)) { // 1:30 ~ 2:00
-                result += (('.' + startHour) + '.' + startMinute + '.' + '59');//console.info(result);console.info('+++++++++++++++++++++++');
+              } else if((endMinute === 0 && startMinute !== 0) && (endHour - startHour === 1) || (endMinute === 0 && startMinute !== 0) && (endHour - startHour === -23)) { // 1:30 ~ 2:00
+                  result += (('.' + startHour) + '.' + startMinute + '.' + '59');//console.info(result);console.info('+++++++++++++++++++++++');
               } else {
-                result += (('.' + startHour) + '.' + startMinute + '.' + endMinute);//console.info(result);console.info('+++++++++++++++++++++++');
+                  result += (('.' + startHour) + '.' + startMinute + '.' + endMinute);//console.info(result);console.info('+++++++++++++++++++++++');
               }
               //console.info('end of convertDateToId ================== ');
-              if (array === null) { // divided into more than one
-                var tResult =  setMinusOneMin(result, 'string');
-                if (tResult !== null) {
-                  return tResult;
-                } else {
-                  return result;
-                }
+              if(array === null) { // divided into more than one
+                  var tResult =  setMinusOneMin(result, 'string');
+                  if(tResult !== null) {
+                      return tResult;
+                  } else {
+                      return result;
+                  }
               } else {
-                return setMinusOneMin(array, 'array');
+                  return setMinusOneMin(array, 'array');
               }
             }
 
             function convertIdToDate(data) { //console.info('convertIdToDate :: ');
               var target = data.split('.');
               var tDay = target[0];
-              var result = new Date(defaultDate);
-              var today = result.getDay();
+              var result = moment(defaultDate);
+              var today = result.day();
               var distance;
               var eventObj = {};
               var month, startHour, endHour, startMinute, endMinute, date;
 
-              switch (tDay) {
-                case 'lang_sun':
-                  if (today > 0) {
-                    distance = (0 - 7 - today) % 7;
-                  } else {
-                    distance = (0 + 7 - today) % 7;
-                  }
-                  break;
-                case 'lang_mon':
-                  if (today > 1) {
-                    distance = (1 - 7 - today) % 7;
-                  } else {
-                    distance = (1 + 7 - today) % 7;
-                  }
-                  break;
-                case 'lang_tue':
-                  if (today > 2) {
-                    distance = (2 - 7 - today) % 7;
-                  } else {
-                    distance = (2 + 7 - today) % 7;
-                  }
-                  break;
-                case 'lang_wed':
-                  if (today > 3) {
-                    distance = (3 - 7 - today) % 7;
-                  } else {
-                    distance = (3 + 7 - today) % 7;
-                  }
-                  break;
-                case 'lang_thu':
-                  if (today > 4) {
-                    distance = (4 - 7 - today) % 7;
-                  } else {
-                    distance = (4 + 7 - today) % 7;
-                  }
-                  break;
-                case 'lang_fri':
-                  if (today > 5) {
-                    distance = (5 - 7 - today) % 7;
-                  } else {
-                    distance = (5 + 7 - today) % 7;
-                  }
-                  break;
-                case 'lang_sat':
-                  if (today > 6) {
-                    distance = (6 - 7 - today) % 7;
-                  } else {
-                    distance = (6 + 7 - today) % 7;
-                  }
-                  break;
-                default:
-                  break;
+              switch(tDay) {
+                  case 'lang_sun':
+                      if(today > 0) {
+                          distance = (0 - 7 - today) % 7;
+                      } else {
+                          distance = (0 + 7 - today) % 7;
+                      }
+                      break;
+                  case 'lang_mon':
+                      if(today > 1) {
+                          distance = (1 - 7 - today) % 7;
+                      } else {
+                          distance = (1 + 7 - today) % 7;
+                      }
+                      break;
+                  case 'lang_tue':
+                      if(today > 2) {
+                          distance = (2 - 7 - today) % 7;
+                      } else {
+                          distance = (2 + 7 - today) % 7;
+                      }
+                      break;
+                  case 'lang_wed':
+                      if(today > 3) {
+                          distance = (3 - 7 - today) % 7;
+                      } else {
+                          distance = (3 + 7 - today) % 7;
+                      }
+                      break;
+                  case 'lang_thu':
+                      if(today > 4) {
+                          distance = (4 - 7 - today) % 7;
+                      } else {
+                          distance = (4 + 7 - today) % 7;
+                      }
+                      break;
+                  case 'lang_fri':
+                      if(today > 5) {
+                          distance = (5 - 7 - today) % 7;
+                      } else {
+                          distance = (5 + 7 - today) % 7;
+                      }
+                      break;
+                  case 'lang_sat':
+                      if(today > 6) {
+                          distance = (6 - 7 - today) % 7;
+                      } else {
+                          distance = (6 + 7 - today) % 7;
+                      }
+                      break;
+                  default:
+                      break;
               }
 
-              result.setDate(result.getDate() + distance);
+              // result.setDate(result.getDate() + distance);
+              result.date(result.date() + distance);
 
-              if (target.length > 2) { // minute
-                month = (result.getMonth() + 1) + '';
-                if (month.length === 1) {
-                  month = '0' + month;
-                }
-                date = result.getDate() + '';
-                if (date.length === 1) {
-                  date = '0' + date;
-                }
-                startHour = target[1];
-                if (startHour.length === 1) {
-                  startHour = '0' + startHour;
-                }
-                startMinute = target[2];
-                if (startMinute.length === 1) {
-                  startMinute = '0' + startMinute;
-                }
-                endMinute = target[3];
-                if (endMinute !== '59') { // plus 1 min except for case of 59 which turns into 0
-                  endMinute = parseInt(endMinute);
-                  endMinute += 1;
-                  endMinute += '';
-                  endHour = startHour;
-                } else if (endMinute === '59' && startMinute === '00') { // convert 59 minute to 00 by adding 1 hour
-                  endHour = parseInt(startHour) + 1;
-                  endHour += '';
-                  if (endHour.length === 1) {
-                    endHour = '0' + endHour;
+              if(target.length > 2) { // minute
+                  month = (result.month() + 1) + '';
+                  if(month.length === 1) {
+                      month = '0' + month;
                   }
-                  endMinute = '00';
-                } else {
-                  if (endMinute === '59') { // 30 ~ 59 min
-                    endHour = parseInt(startHour) + 1;
-                    endHour += '';
-                    if (endHour.length === 1) {
-                      endHour = '0' + endHour;
-                    }
-                    endMinute = '00';
-                  } else if (startMinute === '00') { // 00 ~ 30 min
-                    endMinute = parseInt(endMinute);
-                    endMinute += 1;
-                    endMinute += '';
-                    endHour = startHour;
+                  date = result.date() + '';
+                  if(date.length === 1) {
+                      date = '0' + date;
+                  }
+                  startHour = target[1];
+                  if(startHour.length === 1) {
+                      startHour = '0' + startHour;
+                  }
+                  startMinute = target[2];
+                  if(startMinute.length === 1) {
+                      startMinute = '0' + startMinute;
+                  }
+                  endMinute = target[3];
+                  if(endMinute !== '59') { // plus 1 min except for case of 59 which turns into 0
+                      endMinute = parseInt(endMinute);
+                      endMinute += 1;
+                      endMinute += '';
+                      endHour = startHour;
+                  } else if(endMinute === '59' && startMinute === '00') { // convert 59 minute to 00 by adding 1 hour
+                      endHour = parseInt(startHour) + 1;
+                      endHour += '';
+                      if(endHour.length === 1) {
+                          endHour = '0' + endHour;
+                      }
+                      endMinute = '00';
                   } else {
-                    endHour = startHour;
+                      if(endMinute === '59') { // 30 ~ 59 min
+                          endHour = parseInt(startHour) + 1;
+                          endHour += '';
+                          if(endHour.length === 1) {
+                              endHour = '0' + endHour;
+                          }
+                          endMinute = '00';
+                      } else if(startMinute === '00') { // 00 ~ 30 min
+                          endMinute = parseInt(endMinute);
+                          endMinute += 1;
+                          endMinute += '';
+                          endHour = startHour;
+                      } else {
+                          endHour = startHour;
+                      }
                   }
-                }
-                if (endMinute.length === 1) {
-                  endMinute = '0' + endMinute;
-                }
+                  if(endMinute.length === 1) {
+                      endMinute = '0' + endMinute;
+                  }
 
-                eventObj.start = result.getFullYear() + '-' + month + '-' + date + 'T' + startHour + ':' + startMinute + ':' + '00';
-                eventObj.end = result.getFullYear() + '-' + month + '-' + date + 'T' + endHour + ':' + endMinute + ':' + '00';
-                eventObj.id = eventCount;
-                eventObj.title = '';
-                eventIdArray.push(eventCount);
-                eventCount++;
+                  eventObj.start = result.year() + '-' + month + '-' + date + 'T' + startHour + ':' + startMinute + ':' + '00';
+                  eventObj.end = result.year() + '-' + month + '-' + date + 'T' + endHour + ':' + endMinute + ':' + '00';
+                  eventObj.id = eventCount;
+                  eventObj.title = '';
+                  eventIdArray.push(eventCount);
+                  eventCount++;
               } else { // hour
-                result.setHours(parseInt(target[1]));
-                month = (result.getMonth() + 1) + '';
-                if (month.length === 1) {
-                  month = '0' + month;
-                }
-                date = result.getDate() + '';
-                if (date.length === 1) {
-                  date = '0' + date;
-                }
-                startHour = result.getHours() + '';
-                endHour = (result.getHours() + 1) + '';
-                if (startHour.length === 1) {
-                  startHour = '0' + startHour;
-                }
-                if (endHour.length === 1) {
-                  endHour = '0' + endHour;
-                }
-                eventObj.start = result.getFullYear() + '-' + month + '-' + date + 'T' + startHour + ':' + '00' + ':' + '00';
-                eventObj.end = result.getFullYear() + '-' + month + '-' + date + 'T' + endHour + ':' + '00' + ':' + '00';
-                eventObj.id = eventCount;
-                eventObj.title = '';
-                eventIdArray.push(eventCount);
+                  result.hour(parseInt(target[1]));
+                  month = (result.month() + 1) + '';
+                  if(month.length === 1) {
+                      month = '0' + month;
+                  }
+                  date = result.date() + '';
+                  if(date.length === 1) {
+                      date = '0' + date;
+                  }
+                  startHour = result.hour() + '';
+                  endHour = (result.hour() + 1) + '';
+                  if(startHour.length === 1) {
+                      startHour = '0' + startHour;
+                  }
+                  if(endHour.length === 1) {
+                      endHour = '0' + endHour;
+                  }
+                  eventObj.start = result.year() + '-' + month + '-' + date + 'T' + startHour + ':' + '00' + ':' + '00';
+                  eventObj.end = result.year() + '-' + month + '-' + date + 'T' + endHour + ':' + '00' + ':' + '00';
+                  eventObj.id = eventCount;
+                  eventObj.title = '';
+                  eventIdArray.push(eventCount);
                 eventCount++;
               }
               //console.info('end of convertIdToDate ================== ');
