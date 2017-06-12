@@ -2151,7 +2151,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         }
 
         if (userIndexArray.length) {
-          ShowConfirmation(function() {
+          // ShowConfirmation(function() {
             if (!angular.equals(pageData.VA[$scope.presetTypeData.SelectedPreset], $scope.VA[$scope.presetTypeData.SelectedPreset])) {
               if ($scope.presetTypeData.SelectedPreset > 0) {
                 // setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
@@ -2185,12 +2185,12 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
             }, function() {
               //alert(errorData);
             });
-          }, 
-          'lang_msg_confirm_remove_profile',
-          'sm',
-          function() {
+          // }, 
+          // 'lang_msg_confirm_remove_profile',
+          // 'sm',
+          // function() {
 
-          });
+          // });
         }
       }
     }

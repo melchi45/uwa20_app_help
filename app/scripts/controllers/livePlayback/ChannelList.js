@@ -10,8 +10,8 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
   var videoMode = "canvas";
   var plugin = false;
   var userID = "";
-  var ip;
-  var port;
+  var ip = null;
+  var port = null;
   var MultiDirectionProfile = {
     EncodingType: 'H264',
     Resolution: '800x600',
@@ -261,16 +261,16 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
 
   xmlHttp.onreadystatechange = function() {
     if (this.readyState === 4) {
-      if (this.status == 200) {
-        if (xmlHttp.responseText == "OK") {
+      if (this.status === 200) {
+        if (xmlHttp.responseText === "OK") {
           window.setTimeout(RefreshPage, 500);
         } else {
           startVideoStreaming();
         }
-      } else if (this.status == 401) {
+      } else if (this.status === 401) {
         var unAuthHtml = "<html><head><title>401 - Unauthorized</title></head><body><h1>401 - Unauthorized</h1></body></html>";
         document.write(unAuthHtml);
-      } else if (this.status == 490) {
+      } else if (this.status === 490) {
         var blockHtml = "<html><head><title>Account Blocked</title></head><body><h1>You have exceeded the maximum number of login attempts, please try after some time.</h1></body></html>";
         document.write(blockHtml);
       } else {
@@ -293,7 +293,7 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
     SunapiClient.get('/stw-cgi/security.cgi?msubmenu=digestauth&action=view', getData,
       function(response) {
         var responseValue = response.data.Response;
-        var fps = UniversialManagerService.getProfileInfo().FrameRate;
+        // var fps = UniversialManagerService.getProfileInfo().FrameRate;
         pluginElement.SetWMDInitialize(channelId, channelId + 1, "PluginJSONEvent");
         pluginElement.PlayLiveStream(ip, port, 12, userID, '', responseValue);
       },
