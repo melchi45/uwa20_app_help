@@ -2,7 +2,6 @@ kindFramework.controller('imageAlignCtrl', function($scope, $timeout, SunapiClie
   "use strict";
 
   var mAttr = Attributes.get();
-  var pageData = {};
 
   $scope.videoinfo = {
     width: 640,
@@ -135,7 +134,7 @@ kindFramework.controller('imageAlignCtrl', function($scope, $timeout, SunapiClie
   var controlLocking = false;
 
   function controlImageAlign(mode, sensorId, vertical, horizontal) {
-    if (controlLocking === true) return;
+    if (controlLocking === true) {return;}
     controlLocking = true;
 
     var reqData = {};
@@ -171,7 +170,7 @@ kindFramework.controller('imageAlignCtrl', function($scope, $timeout, SunapiClie
       '',
       true
     );
-  };
+  }
 
   function getAttributes() {
     /*if (mAttr.BaudRateOptions !== undefined) {
