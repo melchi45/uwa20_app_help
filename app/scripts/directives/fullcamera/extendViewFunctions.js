@@ -11,6 +11,7 @@ kindFramework.
         url: '<div></div>',
         restrict: 'A',
         link: function(scope) {
+          var MINIMUM_PIXEL_DIFF = 5;
           var presetRefresh = function() {
             scope.ptzAction.presetRefresh();
           };
@@ -30,12 +31,12 @@ kindFramework.
                   var zoomArray = DigitalZoomService.eventHandler(event, "mousewheel", null);
                   var zoomLevel = 1.0 + 2.415 + zoomArray[2];
 
-                  if (zoomLevel == 1.0) {
+                  if (zoomLevel === 1.0) {
                     scope.digitalZoom.visibility = false;
                   } else {
                     scope.digitalZoom.visibility = true;
                   }
-                  if (scope.digitalZoom.level == zoomLevel.toFixed(2)) {
+                  if (scope.digitalZoom.level === zoomLevel.toFixed(2)) {
                     return;
                   } else if (scope.digitalZoom.level > zoomLevel.toFixed(2)) {
                     scope.digitalZoom.navigation.width += 2;
@@ -57,11 +58,11 @@ kindFramework.
 
                   kindStreamInterface.changeDrawInfo(zoomArray);
                 }
-              } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
+              } else if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
                 if (ptzModeList.PTZ === PTZContorlService.getMode()) {
                   PTZContorlService.eventHandler(event, "mousewheel", null);
                 }
-              } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.DIGITZL_PTZ) {
+              } else if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.DIGITZL_PTZ) {
                 DigitalPTZContorlService.eventHandler(event, "mousewheel", null);
               }
             }
@@ -70,24 +71,24 @@ kindFramework.
           fullDiv.addEventListener('mousedown', function(event) {
             scope.digitalZoom.curLocation = [event.clientX, event.clientY];
             if (!scope.domControls.visibilityFullScreenFuntions && !scope.domControls.visibilityPlaybackControl) {
-              if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM) {
+              if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM) {
                 scope.digitalZoom.mouseDownCheck = true;
                 DigitalZoomService.eventHandler(event, "mousedown", null);
-              } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
+              } else if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
                 PTZContorlService.eventHandler(event, "mousedown", null);
                 if (ptzModeList.AREAZOOM === PTZContorlService.getMode()) {
                   scope.ptzControl.ptzAreaZoomMode = true;
                   areaX = event.clientX;
                   areaY = event.clientY;
                 }
-              } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.DIGITZL_PTZ) {
+              } else if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.DIGITZL_PTZ) {
                 DigitalPTZContorlService.eventHandler(event, "mousedown", null);
               }
             }
           });
 
           fullDiv.addEventListener('mousemove', function(event) {
-            if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM) {
+            if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM) {
               if (scope.digitalZoom.mouseDownCheck && kindStreamInterface.managerCheck()) {
                 var zoomArray = DigitalZoomService.eventHandler(event, "mousemove", fullDiv);
                 kindStreamInterface.changeDrawInfo(zoomArray);
@@ -99,7 +100,7 @@ kindFramework.
                   scope.digitalZoom.areaStyle.top = scope.digitalZoom.navigation.top + '%';
                 });
               }
-            } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
+            } else if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
               PTZContorlService.eventHandler(event, "mousemove", fullDiv);
               if (ptzModeList.AREAZOOM === PTZContorlService.getMode() && scope.ptzControl.ptzAreaZoomMode) {
                 var width = event.clientX - areaX;
@@ -107,43 +108,44 @@ kindFramework.
                 context.clearRect(0, 0, event.target.clientWidth, event.target.clientHeight);
                 context.strokeRect(areaX, areaY, width, height);
               }
-            } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.DIGITZL_PTZ) {
+            } else if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.DIGITZL_PTZ) {
               DigitalPTZContorlService.eventHandler(event, "mousemove", fullDiv);
             }
           });
 
           fullDiv.addEventListener('mouseup', function(event) {
-            if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM) {
+            if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM) {
               scope.digitalZoom.mouseDownCheck = false;
               DigitalZoomService.eventHandler(event, "mouseup", null);
-            } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
+            } else if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
               PTZContorlService.eventHandler(event, "mouseup", null);
               if (ptzModeList.AREAZOOM === PTZContorlService.getMode()) {
                 context.clearRect(0, 0, event.target.clientWidth, event.target.clientHeight);
                 scope.ptzControl.ptzAreaZoomMode = false;
               }
-            } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.DIGITZL_PTZ) {
+            } else if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.DIGITZL_PTZ) {
               DigitalPTZContorlService.eventHandler(event, "mouseup", null);
             }
-            var moveX;
-            var moveY;
-            if (scope.digitalZoom.curLocation !== undefined) {
+            var moveX = -1, moveY = -1;
+            if (typeof scope.digitalZoom.curLocation !== "undefined") {
               moveX = Math.abs(scope.digitalZoom.curLocation[0] - event.clientX);
               moveY = Math.abs(scope.digitalZoom.curLocation[1] - event.clientY);
 
-              if (moveX > 5 || moveY > 5) {
+              if (moveX > MINIMUM_PIXEL_DIFF || moveY > MINIMUM_PIXEL_DIFF) {
                 scope.digitalZoom.mouseMoveCheck = true;
               }
             }
           });
 
           fullDiv.addEventListener('mouseleave', function(event) {
-            if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM) {
+            if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM) {
               scope.digitalZoom.mouseDownCheck = false;
               DigitalZoomService.eventHandler(event, "mouseleave", null);
-            } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
+            } else if (UniversialManagerService.getZoomMode() === 
+                CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
               PTZContorlService.eventHandler(event, "mouseleave", null);
-            } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.DIGITZL_PTZ) {
+            } else if (UniversialManagerService.getZoomMode() === 
+                CAMERA_STATUS.ZOOM_MODE.DIGITZL_PTZ) {
               DigitalPTZContorlService.eventHandler(event, "mouseleave", null);
             }
           });
@@ -170,9 +172,9 @@ kindFramework.
               PTZContorlService.ptzSetting(values, presetRefresh);
             } else {
               ModalManagerService.open('message', {
-                  'buttonCount': 2,
-                  'message': "Ìï¥Îãπ ÌîÑÎ¶¨ÏÖãÏù¥ Ïù¥ÎØ∏ Ï†ÄÏû•ÎêòÏñ¥ ÏûàÏäµÎãàÎã§. ÎçÆÏñ¥Ïì∞Í≤†ÏäµÎãàÍπå?"
-                },
+                'buttonCount': 2,
+                'message': "«ÿ¥Á «¡∏Æº¬¿Ã ¿ÃπÃ ¿˙¿Âµ«æÓ ¿÷Ω¿¥œ¥Ÿ. µ§æÓæ≤∞⁄Ω¿¥œ±Ó?",
+              },
                 function() {
                   PTZContorlService.ptzSetting(values, presetRefresh);
                 }
@@ -182,7 +184,7 @@ kindFramework.
 
 
           scope.presetListCallback = function(result) {
-            if (result.PTZPresets === undefined) {
+            if (typeof result.PTZPresets === "undefined") {
               ModalManagerService.open('message', {
                 'buttonCount': 1,
                 'message': $translate.instant('lang_NoListFound')
@@ -201,20 +203,20 @@ kindFramework.
               }
               var homeAction = function() {
                 PTZContorlService.ptzSetting({
-                  'action': 'home'
+                  'action': 'home',
                 });
               };
               var addAction = function() {
                 ModalManagerService.open('presetadd', {
                   'list': list,
-                  'buttonCount': 2
+                  'buttonCount': 2,
                 }, presetAddCallBack);
               };
               ModalManagerService.open('presetlist', {
                 'buttonCount': 1,
                 'list': list,
                 'homeAction': homeAction,
-                'addAction': addAction
+                'addAction': addAction,
               });
             }
           };
@@ -235,19 +237,19 @@ kindFramework.
             list = [{
               'name': $translate.instant(PTZ_TYPE.swingMode.PAN),
               'action': swingFunc,
-              'value': 'Pan'
+              'value': 'Pan',
             }, {
               'name': $translate.instant(PTZ_TYPE.swingMode.TILT),
               'action': swingFunc,
-              'value': 'Tilt'
+              'value': 'Tilt',
             }, {
               'name': $translate.instant(PTZ_TYPE.swingMode.PANTILT),
               'action': swingFunc,
-              'value': 'PanTilt'
+              'value': 'PanTilt',
             }];
             ModalManagerService.open('liveList', {
               'buttonCount': 0,
-              'list': list
+              'list': list,
             });
           };
           scope.groupListCallback = function(result) {
@@ -275,7 +277,7 @@ kindFramework.
             }
             ModalManagerService.open('liveList', {
               'buttonCount': 0,
-              'list': list
+              'list': list,
             });
           };
           scope.tourListCallback = function(result) {
@@ -303,7 +305,7 @@ kindFramework.
             }
             ModalManagerService.open('liveList', {
               'buttonCount': 0,
-              'list': list
+              'list': list,
             });
           };
 
@@ -332,7 +334,7 @@ kindFramework.
             }
             ModalManagerService.open('liveList', {
               'buttonCount': 0,
-              'list': list
+              'list': list,
             });
           };
 
@@ -413,7 +415,8 @@ kindFramework.
                 PTZContorlService.setMode(ptzModeList.PTZ);
                 scope.ptzKeepDzoom = false;
                 UniversialManagerService.setZoomMode(CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ);
-              } else if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
+              } else if (UniversialManagerService.getZoomMode() === 
+                  CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
                 PTZContorlService.setMode(ptzModeList.NONE);
                 scope.ptzKeepDzoom = true;
                 scope.ptzKeepAzoom = false;
@@ -459,7 +462,7 @@ kindFramework.
             presetRefresh: function() {
               PTZContorlService.setMode(ptzModeList.PRESET);
               PTZContorlService.getSettingList(scope.presetListCallback);
-            }
+            },
           };
           scope.ptzAfterAction = {
             near: function() {
@@ -485,5 +488,5 @@ kindFramework.
           };
         },
       };
-    }
+    },
   ]);
