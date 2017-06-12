@@ -157,7 +157,7 @@ kindFramework.
           $scope.timelineControl.getSearchInfo = function() {};
           $scope.timelineControl.changePlayingTime = function() {};
 
-          //This function will be defined in playbackEventSorting.js
+          //This function will be defined in playbackEvent.js
           $scope.timelineControl.getOverlapEvent = function() {};
           $scope.timelineControl.setOverlapEvent = function() {};
 

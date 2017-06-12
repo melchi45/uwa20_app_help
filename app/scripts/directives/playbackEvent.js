@@ -1,10 +1,10 @@
-kindFramework.directive('playbackEventSorting', function() {
+kindFramework.directive('playbackEvent', function() {
   'use strict';
   var data = {};
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'views/livePlayback/directives/playback-event-sorting.html',
+    templateUrl: 'views/livePlayback/directives/playback-event.html',
     controller: function($scope, $rootScope, CAMERA_TYPE, PlaybackInterface, SearchDataModel, UniversialManagerService) {
       var MIN_DOUBLE_FIGURES = 10;
       var pad = function(input) {
