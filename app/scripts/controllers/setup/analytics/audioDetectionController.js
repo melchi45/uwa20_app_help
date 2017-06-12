@@ -285,7 +285,7 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
                 }
               }
             }
-            monitoringTimer = $timeout(update, 500);
+            monitoringTimer = $timeout(update, 300);
           }
         });
       })();
