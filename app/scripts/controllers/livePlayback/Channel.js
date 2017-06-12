@@ -1,36 +1,38 @@
 /**
  * Created by miju462.park on 2016-05-12.
  */
-/* global setTimeout, cordova, clearInterval, setInterval, BaseChannel, workerManager */
-kindFramework
-  .controller('ChannelCtrl', ['$controller', '$scope', '$timeout', '$q', '$rootScope', '$location', 'LocalStorageService',
+/* global setTimeout, clearInterval, setInterval, BaseChannel */
+kindFramework.
+  controller('ChannelCtrl', ['$controller', '$scope', '$timeout', '$q', '$rootScope', 
+    '$location', 'LocalStorageService',
     'ConnectionSettingService', 'LoggingService', 'kindStreamInterface',
     'DigitalZoomService', 'CAMERA_TYPE', 'SunapiClient', 'PLAYBACK_TYPE',
     'SessionOfUserManager', 'ModalManagerService', 'UniversialManagerService',
     'CAMERA_STATUS', 'Attributes', 'CameraService', '$translate', 'AccountService',
     'MultiLanguage', '$state', 'SearchDataModel', 'PlayDataModel', 'KindProfileService',
-    'PlaybackInterface', 'playbackStepService', 'RESTCLIENT_CONFIG', 'BrowserService', 'ExtendChannelContainerService', 'COMMONUtils', 'BACKUP_STATUS',
+    'PlaybackInterface', 'playbackStepService', 'RESTCLIENT_CONFIG', 'BrowserService', 
+    'ExtendChannelContainerService', 'COMMONUtils', 'BACKUP_STATUS',
     function($controller, $scope, $timeout, $q, $rootScope, $location, LocalStorageService,
       ConnectionSettingService, LoggingService, kindStreamInterface, DigitalZoomService,
       CAMERA_TYPE, SunapiClient, PLAYBACK_TYPE, SessionOfUserManager, ModalManagerService,
       UniversialManagerService, CAMERA_STATUS, Attributes, CameraService, $translate,
       AccountService, MultiLanguage, $state, SearchDataModel, PlayDataModel, KindProfileService,
-      PlaybackInterface, playbackStepService, RESTCLIENT_CONFIG, BrowserService, ExtendChannelContainerService, COMMONUtils, BACKUP_STATUS) {
+      PlaybackInterface, playbackStepService, RESTCLIENT_CONFIG, BrowserService, 
+      ExtendChannelContainerService, COMMONUtils, BACKUP_STATUS) {
       "use strict";
 
       var self = this;
+      var FULL_HD_RESOLUTION = {WIDTH : 1920, HEGITH : 1080};
       var sunapiAttributes = Attributes.get(); //--> not common.
       var defaultProfileID = 2; // H.264
-      var logger = LoggingService.getInstance('ChannelCtrl');
 
-      var playbackInterfaceService = PlaybackInterface;
       var StreamTagType = 'canvas';
       var pageData = {};
       $scope.sliderRefreshInProgress = false;
       //var DEFAULT_CHANNEL=0;
       var cameraMicEnable = false;
       var videoLimitFPS = 3;
-      var videoLimitSize = 1920 * 1080;
+      var videoLimitSize = FULL_HD_RESOLUTION.WIDTH * FULL_HD_RESOLUTION.HEGITH;
       var audioEncodingType = null;
       var channelId = UniversialManagerService.getChannelId();
 
@@ -58,7 +60,8 @@ kindFramework
           $scope.playerdata = playerdata;
           $timeout(function() {
             if (typeof($scope.profileInfo) !== 'undefined') {
-              $scope.playerdata = ConnectionSettingService.getPlayerData('live', $scope.profileInfo, timeCallback, errorCallback, closeCallback);
+              $scope.playerdata = ConnectionSettingService.getPlayerData('live', 
+                $scope.profileInfo, timeCallback, errorCallback, closeCallback);
               // $rootScope.$emit('changeLoadingBar', true);
             }
           });
@@ -96,7 +99,8 @@ kindFramework
             kindStreamInterface.setCanvasStyle($scope.viewMode); //when open full screen, reset view mode with delaying
           });
         });
-        $rootScope.$emit('fullscreenOpened', [sunapiAttributes.MaxROICoordinateX, sunapiAttributes.MaxROICoordinateY]);
+        $rootScope.$emit('fullscreenOpened', [sunapiAttributes.MaxROICoordinateX, 
+          sunapiAttributes.MaxROICoordinateY]);
         // }
       };
 
@@ -153,7 +157,7 @@ kindFramework
         $state: $state,
         SearchDataModel: SearchDataModel,
         PlayDataModel: PlayDataModel,
-        PlaybackInterface: PlaybackInterface
+        PlaybackInterface: PlaybackInterface,
       }));
 
       $scope.channelBasicFunctions = {
@@ -165,7 +169,7 @@ kindFramework
         micEnable: false,
         micStatus: false,
         micVolume: false,
-        overlayCanvas: false
+        overlayCanvas: false,
       };
       // var isPTZAble = AccountService.isPTZAble() === true;
 
@@ -180,8 +184,10 @@ kindFramework
       };
 
       $scope.alarmOutput = function(index, event) {
-        UniversialManagerService.setAlarmOutput(index, !UniversialManagerService.getAlarmOutput(index));
-        var sunapiURI = '/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.' + (index + 1) + '.State=';
+        UniversialManagerService.setAlarmOutput(index, 
+          !UniversialManagerService.getAlarmOutput(index));
+        var sunapiURI = '/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.' + 
+          (index + 1) + '.State=';
         if (UniversialManagerService.getAlarmOutput(index) === true) {
           sunapiURI += 'On';
           $(event.target).addClass('cm-on');
@@ -197,7 +203,7 @@ kindFramework
       var alarmOutputCheck = function() {
         var sunapiURI = '/stw-cgi/eventstatus.cgi?msubmenu=eventstatus&action=check';
         var successCallback = function(response) {
-          if (response.data.AlarmOutput !== undefined) {
+          if (typeof response.data.AlarmOutput !== "undefined") {
             for (var i = 0; i < Object.keys(response.data.AlarmOutput).length; i++) {
               UniversialManagerService.setAlarmOutput(i, response.data.AlarmOutput[i + 1]);
               if (response.data.AlarmOutput[i + 1]) {
@@ -313,10 +319,11 @@ kindFramework
       }
 
       $scope.enableSharpness = function() {
-        if (pageData.ImageEnhancements.SharpnessEnable)
+        if (pageData.ImageEnhancements.SharpnessEnable) {
           $scope.ImageEnhancements.SharpnessEnable = false;
-        else
+        } else {
           $scope.ImageEnhancements.SharpnessEnable = true;
+        }
         $scope.imageenhancementsSet();
       };
 
@@ -333,18 +340,21 @@ kindFramework
           ignoredKeys.push('SharpnessLevel');
         }
 
-        changed = COMMONUtils.fillSetData(setData, $scope.ImageEnhancements, pageData.ImageEnhancements,
+        changed = COMMONUtils.fillSetData(setData, $scope.ImageEnhancements, 
+          pageData.ImageEnhancements,
           ignoredKeys, false);
 
         if (changed) {
-          if (setData.hasOwnProperty('SharpnessEnable') || setData.hasOwnProperty('SharpnessLevel')) {
+          if (setData.hasOwnProperty('SharpnessEnable') || 
+              setData.hasOwnProperty('SharpnessLevel')) {
             setData.SharpnessEnable = $scope.ImageEnhancements.SharpnessEnable;
             if ($scope.ImageEnhancements.SharpnessEnable === true) {
               setData.SharpnessLevel = $scope.ImageEnhancements.SharpnessLevel;
             }
           }
 
-          return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=set', setData,
+          return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=imageenhancements&action=set', 
+            setData,
             function(response) {
               COMMONUtils.updatePageData($scope.ImageEnhancements, pageData.ImageEnhancements,
                 ignoredKeys);
@@ -356,7 +366,7 @@ kindFramework
       };
 
       function initExposureSliders() {
-        if ($scope.Brightness !== undefined) {
+        if (typeof $scope.Brightness !== "undefined") {
           $scope.BrigntnesSliderOptions = {
             floor: $scope.Brightness.minValue,
             ceil: $scope.Brightness.maxValue,
@@ -368,10 +378,10 @@ kindFramework
               return sunapiAttributes.sliderEnableColor;
             },
             step: 1,
-            keyboardSupport: false
+            keyboardSupport: false,
           };
         }
-        if ($scope.SharpnessLevel !== undefined) {
+        if (typeof $scope.SharpnessLevel !== "undefined") {
           $scope.SharpnessSliderOptions = {
             floor: $scope.SharpnessLevel.minValue,
             ceil: $scope.SharpnessLevel.maxValue,
@@ -383,10 +393,10 @@ kindFramework
               return sunapiAttributes.sliderEnableColor;
             },
             step: 1,
-            keyboardSupport: false
+            keyboardSupport: false,
           };
         }
-        if ($scope.Saturation !== undefined) {
+        if (typeof $scope.Saturation !== "undefined") {
           $scope.SaturationSliderOptions = {
             floor: $scope.Saturation.minValue,
             ceil: $scope.Saturation.maxValue,
@@ -398,10 +408,10 @@ kindFramework
               return sunapiAttributes.sliderEnableColor;
             },
             step: 1,
-            keyboardSupport: false
+            keyboardSupport: false,
           };
         }
-        if ($scope.Contrast !== undefined) {
+        if (typeof $scope.Contrast !== "undefined") {
           $scope.ContrastSliderOptions = {
             floor: $scope.Contrast.minValue,
             ceil: $scope.Contrast.maxValue,
@@ -413,7 +423,7 @@ kindFramework
               return sunapiAttributes.sliderEnableColor;
             },
             step: 1,
-            keyboardSupport: false
+            keyboardSupport: false,
           };
         }
         $scope.refreshSliders();
@@ -468,7 +478,6 @@ kindFramework
 
       $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
         var prevPage = fromState;
-        var curPage = toState;
         var functionList = [];
 
         functionList.push(GetFlipMirror);
@@ -492,7 +501,7 @@ kindFramework
             var password = SessionOfUserManager.getPassword();
             ConnectionSettingService.setConnectionInfo({
               id: id,
-              password: password
+              password: password,
             });
 
             /**
@@ -538,8 +547,9 @@ kindFramework
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofilepolicy&action=view', '',
           function(response) {
             if (sunapiAttributes.MaxChannel > 1) {
-              for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
-                UniversialManagerService.setDefaultProfileIndex(response.data.VideoProfilePolicies[i].DefaultProfile, i);
+              for (var idx = 0; idx < sunapiAttributes.MaxChannel; idx++) {
+                UniversialManagerService.setDefaultProfileIndex(
+                  response.data.VideoProfilePolicies[idx].DefaultProfile, idx);
               }
             } else {
               defaultProfileID = response.data.VideoProfilePolicies[channelId].DefaultProfile;
@@ -548,16 +558,16 @@ kindFramework
           function(errorData) {
             ModalManagerService.open('message', {
               'buttonCount': 0,
-              'message': errorData
+              'message': errorData,
             });
           }, '', true);
       };
 
       function getProfileByIndex(_profilelist, _profileindex) {
         if (AccountService.isProfileAble()) {
-          for (var i = 0; i < _profilelist.length; i++) {
-            if (_profilelist[i].Profile === _profileindex) {
-              return _profilelist[i];
+          for (var idx = 0; idx < _profilelist.length; idx++) {
+            if (_profilelist[idx].Profile === _profileindex) {
+              return _profilelist[idx];
             }
           }
         } else {
@@ -566,9 +576,9 @@ kindFramework
       }
 
       function getProfileIndex(profile) {
-        for (var i = 0, len = $scope.profileList.length; i < len; i++) {
-          if ($scope.profileList[i].Profile == profile) {
-            return i;
+        for (var idx = 0, len = $scope.profileList.length; idx < len; idx++) {
+          if ($scope.profileList[idx].Profile === profile) {
+            return idx;
           }
         }
       }
