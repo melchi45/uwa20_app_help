@@ -78,7 +78,7 @@ kindFramework.controller('profileCtrl', function($scope,listService,KindProfileS
          */
         var profileSettings = {
             cameraUrl :$scope.cameraUrl,
-            echo_sunapi_server:'55.101.78.176:5000',
+            echoSunapiServer:'55.101.78.176:5000',
             user:$scope.cameraId,
             password : $scope.cameraPassword,
         };

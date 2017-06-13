@@ -30,7 +30,7 @@ kindFramework.controller('eventCtrl', function ($scope, $rootScope, KindEventSer
 
         var connectionSettings = {
             cameraUrl: $scope.cameraIp,
-            echo_sunapi_server: "55.101.78.176:5000",
+            echoSunapiServer: "55.101.78.176:5000",
             user: $scope.cameraId,
             password: $scope.cameraPassword,
             options:changeData

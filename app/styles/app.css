@@ -2125,11 +2125,14 @@ body.modal-open {
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   -o-backface-visibility: hidden;
-  width: auto;
+  min-width: 450px;
+  max-width: 90%;
+  width: 100%;
 }
 @media (min-width: 768px) {
   .modal.modal-position-middle .modal-dialog {
-    min-width: 400px;
+    min-width: 450px;
+    width: auto;
   }
 }
 .modal-backdrop {
@@ -2346,7 +2349,7 @@ body.modal-open {
   width: 100%;
   border: 1px dashed #d2d2d2;
   position: absolute;
-  top: calc(49%);
+  top: calc(50% - 1px);
   left: 0;
   z-index: 1;
 }
@@ -2356,7 +2359,7 @@ body.modal-open {
   border: 1px dashed #d2d2d2;
   position: absolute;
   top: 0;
-  left: calc(49%);
+  left: calc(50% - 1px);
   z-index: 1;
 }
 #ptz-control #ptz-control_left-control-box #ptz-control_box #ptz-control_move-btn {
@@ -2364,8 +2367,8 @@ body.modal-open {
   height: 24px;
   line-height: 24px;
   position: absolute;
-  top: calc(38%);
-  left: calc(38%);
+  top: calc(50% - 12px);
+  left: calc(50% - 12px);
   z-index: 2;
   font-size: 24px;
   color: #797979;
@@ -2480,35 +2483,35 @@ body.modal-open {
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.top-up {
   top: -25px;
-  left: calc(39%);
+  left: calc(50% - 11px);
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.top-down {
   top: 2px;
-  left: calc(39%);
+  left: calc(50% - 11px);
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.left-left {
-  top: calc(39%);
+  top: calc(50% - 11px);
   left: -25px;
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.left-right {
-  top: calc(39%);
+  top: calc(50% - 11px);
   left: 2px;
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.right-left {
-  top: calc(39%);
+  top: calc(50% - 11px);
   right: 2px;
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.right-right {
-  top: calc(39%);
+  top: calc(50% - 11px);
   right: -25px;
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.bottom-up {
   bottom: 2px;
-  left: calc(39%);
+  left: calc(50% - 11px);
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.bottom-down {
   bottom: -26px;
-  left: calc(39%);
+  left: calc(50% - 11px);
 }
 #ptz-control_right-box #ptz-control_blc-right {
   width: 80px;
@@ -2539,7 +2542,7 @@ body.modal-open {
   width: 100%;
   border: 1px dashed #d2d2d2;
   position: absolute;
-  top: calc(49%);
+  top: calc(50% - 1px);
   left: 0;
   z-index: 1;
 }
@@ -2549,7 +2552,7 @@ body.modal-open {
   border: 1px dashed #d2d2d2;
   position: absolute;
   top: 0;
-  left: calc(49%);
+  left: calc(50% - 1px);
   z-index: 1;
 }
 #ptz-control_box-popup #ptz-control_move-btn-popup {
@@ -2557,8 +2560,8 @@ body.modal-open {
   height: 24px;
   line-height: 24px;
   position: absolute;
-  top: calc(38%);
-  left: calc(38%);
+  top: calc(50% - 12px);
+  left: calc(50% - 12px);
   z-index: 2;
   font-size: 24px;
   color: #797979;
@@ -2792,7 +2795,7 @@ body.modal-open {
   }
   #ptz-control_blc-left {
     width: 235px;
-    margin-right: calc(-135%);
+    margin-right: calc(100% - 235px);
   }
   #ptz-control_blc-right {
     margin-left: 0;
@@ -3129,7 +3132,7 @@ body.kind-responsive-playback {
   min-width: 400px;
 }
 body.kind-responsive-setup {
-  min-width: 730px;
+  min-width: 320px;
 }
 .nav-toggle {
   position: absolute;
@@ -3324,7 +3327,6 @@ select option:disabled {
 }
 .main.setup-wrapper {
   left: 260px;
-  overflow: auto;
 }
 .main.setup-wrapper input[type="text"],
 .main.setup-wrapper input[type="password"],
@@ -3458,7 +3460,8 @@ select option:disabled {
   }
 }
 .main.setup-wrapper {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   /**
    * @setup-mobile-width-for-block-main 인 1021px 부터는 사이드 메뉴가
    * 무조건 보이기 때문에 검색 배경을 삭제한다.
@@ -4532,63 +4535,53 @@ body.kind-svg-editor-drawing .channel-content {
   box-sizing: content-box;
   display: none;
 }
-/*
-@media(max-width: @setup-mobile-max-width){
-	#sketchbook canvas {
-		width: 100% !important;
-		height: 100% !important;
-		display: block;
-	}
-
-	// Can't use sketchbook in Mobile Device
-	#sketchbook canvas,
-	#sketchbook_svg {
-		pointer-events: none;
-	}
-
-	#container,
-	#sketchbook {
-		width: 100% !important;
-
-		// 영상 비율별 height 설정 
-		// 1:1 
-		&[style*="height: 640px"],
-		&[height="640"],{
-			height: 100% !important;
-		}
-		
-		// 21:9 
-		&[style*="height: 278px"],
-		&[height="278"],{
-			height: 43.4375% !important;
-		}
-		
-		// 4:3 
-		&[style*="height: 480px"],
-		&[height="480"],{
-			height: 75% !important;
-		}
-
-		// 16:9 
-		&[style*="height: 360px"],
-		&[height="360"],{
-			height: 56.25% !important;
-		}
-
-		// 4096x2160 
-		&[style*="height: 337px"],
-		&[height="337"],{
-			height: 52.65625% !important;
-		}
-
-		// 2592x1520 
-		&[style*="height: 376px"],
-		&[height="376"],{
-			height: 58.75% !important;
-		}
-	}
+@media (max-width: 700px) {
+  #sketchbook canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+  #container,
+  #sketchbook {
+    width: 100% !important;
+  }
+  #container[style*="height: 640px"],
+  #sketchbook[style*="height: 640px"],
+  #container[height="640"],
+  #sketchbook[height="640"] {
+    height: 100% !important;
+  }
+  #container[style*="height: 278px"],
+  #sketchbook[style*="height: 278px"],
+  #container[height="278"],
+  #sketchbook[height="278"] {
+    height: 43.4375% !important;
+  }
+  #container[style*="height: 480px"],
+  #sketchbook[style*="height: 480px"],
+  #container[height="480"],
+  #sketchbook[height="480"] {
+    height: 75% !important;
+  }
+  #container[style*="height: 360px"],
+  #sketchbook[style*="height: 360px"],
+  #container[height="360"],
+  #sketchbook[height="360"] {
+    height: 56.25% !important;
+  }
+  #container[style*="height: 337px"],
+  #sketchbook[style*="height: 337px"],
+  #container[height="337"],
+  #sketchbook[height="337"] {
+    height: 52.65625% !important;
+  }
+  #container[style*="height: 376px"],
+  #sketchbook[style*="height: 376px"],
+  #container[height="376"],
+  #sketchbook[height="376"] {
+    height: 58.75% !important;
+  }
 }
-*/
 [drag-select] {
   cursor: pointer;
   -webkit-touch-callout: none;
@@ -8556,6 +8549,8 @@ i.tui-ch-playback-stop {
   max-height: 100px;
   left: 50%;
   transform: translateX(-50%);
+  color: #797979;
+  float: left;
 }
 .kind-responsive-playback #cm-bottom-menu #pb-icon-list .ui-state-default {
   top: 13px;
@@ -8628,7 +8623,7 @@ i.tui-ch-playback-stop {
   width: 100%;
   min-width: 400px;
   height: 200px;
-  padding: 19px 0 10px 0;
+  padding: 19px 0 0 0;
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
@@ -8714,6 +8709,9 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback #cm-bottom-menu #pb-menu-content .pb-duplicate-items .event-time {
   font-size: 11px;
 }
+.kind-responsive-playback #cm-bottom-menu #pb-menu-content .timeline-button:not(.pb-backup-button) {
+  margin: 10px 0;
+}
 .kind-responsive-playback #cm-bottom-menu.cm-full-menu #pb-icon-list .cm-vline {
   background: #4c4c4c;
 }
@@ -8734,6 +8732,9 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback #cm-bottom-menu.cm-full-menu .pb-duplicate-items > div.active,
 .kind-responsive-playback #cm-bottom-menu.cm-full-menu .pb-duplicate-items > div.selected {
   color: #fbfbfb;
+}
+.kind-responsive-playback #cm-bottom-menu.cm-full-menu #pb-datepicker-section {
+  width: auto;
 }
 .kind-responsive-playback #cm-bottom-menu.cm-full-menu #pb-datepicker-section .pb-all-day label {
   color: #fbfbfb;
@@ -8756,6 +8757,9 @@ i.tui-ch-playback-stop {
 }
 .kind-responsive-playback #pb-event-section {
   z-index: 1;
+  width: auto;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .kind-responsive-playback #pb-event-section > .cm-center {
   display: table-cell;
@@ -8798,7 +8802,7 @@ i.tui-ch-playback-stop {
   line-height: 1em;
 }
 .kind-responsive-playback #pb-backup-section .pb-block {
-  margin: 0 5px !important;
+  margin: 0 5px 15px 0 !important;
   display: inline-table;
   float: none;
 }
@@ -8806,9 +8810,9 @@ i.tui-ch-playback-stop {
   padding: 0 5px !important;
 }
 .kind-responsive-playback #pb-backup-section .pb-block#backup-date {
-  width: 100%;
+  width: auto;
   text-align: center;
-  margin: 0 0 5px 0 !important;
+  display: inline;
 }
 .kind-responsive-playback #pb-backup-section .pb-range {
   float: none !important;
@@ -8819,7 +8823,7 @@ i.tui-ch-playback-stop {
   text-align: center;
 }
 .kind-responsive-playback .pb-backup-button {
-  margin-top: 15px;
+  margin-top: 25px;
 }
 .kind-responsive-playback #pb-datepicker-section {
   margin-top: -5px;
@@ -9074,26 +9078,23 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback .cm-cancel-button {
     width: 150px;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center {
-    width: 830px;
-  }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:first-child {
     width: 35%;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:first-child table {
     width: 80% !important;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table th {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:first-child table th {
     font-size: 14px;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table .btn.btn-default {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:first-child table .btn.btn-default {
     font-size: 14px;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:last-child {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:last-child {
     width: 55%;
     margin: 15px 0px;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:last-child .pb-all-day {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:last-child .pb-all-day {
     font-size: 16px;
   }
   .kind-responsive-playback .pb-backup-button {
@@ -9291,26 +9292,23 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback .cm-cancel-button {
     width: 175px;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center {
-    width: 1140px;
-  }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:first-child {
     width: 35%;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:first-child table {
     width: 80% !important;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table th {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:first-child table th {
     font-size: 18px;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:first-child table .btn.btn-default {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:first-child table .btn.btn-default {
     font-size: 18px;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:last-child {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:last-child {
     width: 55%;
     margin: 15px 0px;
   }
-  .kind-responsive-playback #pb-datepicker-section .cm-center .pb-datepicker:last-child .pb-all-day {
+  .kind-responsive-playback #pb-datepicker-section .pb-datepicker:last-child .pb-all-day {
     font-size: 21px;
   }
 }
@@ -9322,8 +9320,6 @@ i.tui-ch-playback-stop {
     width: 100%;
     margin-bottom: 20px;
   }
-}
-@media screen and (max-width: 850px) {
   .kind-responsive-playback #pb-menu-content .cm-col {
     margin: 0 10px;
   }
@@ -9371,18 +9367,42 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-icon-list #pb-play-control {
     margin: 0 10px;
   }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section h2 {
+    text-align: center;
+  }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .start-time,
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .end-time {
     margin-top: 15px;
   }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section > .pb-block {
+    margin: 0 auto;
+    float: none;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section > .pb-block:first-child {
+    width: 100%;
+    margin: 15px 0px;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section > .pb-block.cm-m0-5 {
+    margin: 0 3px;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .ua-datepicker table {
+    width: 80%;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .pb-all-day {
+    text-align: center;
+  }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .pb-all-day label {
-    margin: 5px 0;
+    margin: 20px 0 0 0;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .pb-button-wrap {
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    clear: both;
+    width: 100%;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content .cm-col {
     margin: 0 2px !important;
-  }
-  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content #pb-event-section > .cm-center {
-    width: 100%;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content #pb-date-control .cm-col {
     margin: 0 3px;
@@ -9425,42 +9445,6 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content .pb-backup-button {
     margin-top: 10px;
     padding: 5px 0 !important;
-  }
-}
-@media screen and (max-width: 700px) {
-  .kind-responsive-playback #pb-datepicker-section {
-    margin-top: -5px;
-  }
-  .kind-responsive-playback #pb-datepicker-section .pb-block.cm-m0-5 {
-    margin: 0 3px;
-  }
-  .kind-responsive-playback #pb-datepicker-section > .cm-row > .cm-center > .pb-block {
-    margin: 0 auto;
-    float: none;
-  }
-  .kind-responsive-playback #pb-datepicker-section > .cm-row > .cm-center > .pb-block:first-child {
-    width: 100%;
-    margin: 15px 0px;
-  }
-  .kind-responsive-playback #pb-datepicker-section .pb-button-wrap {
-    text-align: center;
-    display: block;
-    margin: 15px auto;
-    clear: both;
-    width: 100%;
-  }
-  .kind-responsive-playback #pb-datepicker-section h2 {
-    text-align: center;
-  }
-  .kind-responsive-playback #pb-datepicker-section .ua-datepicker table {
-    width: 80%;
-  }
-  .kind-responsive-playback .pb-all-day label {
-    margin-left: 5%;
-  }
-  .kind-responsive-playback .cm-cancel-button {
-    width: 100px;
-    font-size: 14px;
   }
 }
 @media screen and (max-width: 530px) {
@@ -9577,14 +9561,11 @@ i.tui-ch-playback-stop {
 .kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-event-section #pb-event-list > div {
   width: 50%;
 }
-.kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-datepicker-section > .cm-row > .cm-center {
-  left: 50%;
-}
-.kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-datepicker-section > .cm-row > .cm-center > .pb-block {
+.kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-datepicker-section > .pb-block {
   margin: 0 auto;
   float: none;
 }
-.kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-datepicker-section > .cm-row > .cm-center > .pb-block:first-child {
+.kind-responsive-playback.land-scape #cm-bottom-menu #pb-menu-content #pb-datepicker-section > .pb-block:first-child {
   width: 100%;
   margin: 15px 0px;
 }

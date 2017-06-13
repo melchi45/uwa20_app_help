@@ -95,19 +95,10 @@ var SketchManager = (function() {
       if ("style" in svgElement) {
         svgElement.style.zIndex = zIndex;
       }
-
-      svgElement.setAttributeNS(null, 'width', videoInfo.width);
-      svgElement.setAttributeNS(null, 'height', videoInfo.height);
-      svgElement.setAttributeNS(null, 'viewBox', '0 0 ' + videoInfo.width + ' ' + videoInfo.height);
     }
   };
 
-  var resetSVGElement = function() {
-    if (kindSVGCustomObj !== null) {
-      kindSVGCustomObj.destroy();
-      kindSVGCustomObj = null;
-    }
-
+  var removeAllSVGElement = function(){
     if (svgObjs !== null) {
       for (var i = 0, len = svgObjs.length; i < len; i++) {
         var self = svgObjs[i];
@@ -118,7 +109,15 @@ var SketchManager = (function() {
 
       svgObjs = [];
     }
+  };
 
+  var resetSVGElement = function() {
+    if (kindSVGCustomObj !== null) {
+      kindSVGCustomObj.destroy();
+      kindSVGCustomObj = null;
+    }
+
+    removeAllSVGElement();
     toggleSVGElement(false);
   };
 
@@ -563,6 +562,26 @@ var SketchManager = (function() {
         frontCanvas.removeEventListener('contextmenu', autoTracking.contexmenuPolygon, false);
         autoTracking = null;
       }
+    },
+    changeVideoInfo: function(width, height){
+      var data = this.get();
+      
+      //clear Canvas
+      clearRect(0);
+      clearRect(1);
+
+      //clear SVG
+      removeAllSVGElement();
+
+      videoInfo.width = width;
+      videoInfo.height = height;
+
+      frontCanvas.width = width;
+      frontCanvas.height = height;
+      backCanvas.width = width;
+      backCanvas.height = height;
+      
+      this.set(data);
     },
     get: function() {
       if (sketchInfo === null) {
@@ -1598,6 +1617,16 @@ var SketchManager = (function() {
     var selectedCoordinates = null;
     var PRIVACY_LINE_WIDTH = 3;
 
+    function setColor(){
+      fContext.lineWidth = PRIVACY_LINE_WIDTH;
+      fContext.globalAlpha = "1";
+      fContext.strokeStyle = colorFactory.blue;
+      fContext.fillStyle = colorFactory.blue;
+      bContext.lineWidth = PRIVACY_LINE_WIDTH;
+      bContext.strokeStyle = colorFactory.blue;
+      bContext.fillStyle = colorFactory.blue;
+    }
+
     function constructor() {
       /* jshint validthis: true */
       _self = this;
@@ -1613,13 +1642,8 @@ var SketchManager = (function() {
         x2: 0,
         y2: 0
       };
-      fContext.lineWidth = PRIVACY_LINE_WIDTH;
-      fContext.globalAlpha = "1";
-      fContext.strokeStyle = colorFactory.blue;
-      fContext.fillStyle = colorFactory.blue;
-      bContext.lineWidth = PRIVACY_LINE_WIDTH;
-      bContext.strokeStyle = colorFactory.blue;
-      bContext.fillStyle = colorFactory.blue;
+
+      setColor();
     }
     constructor.prototype = {
       mousedownRectangle: function(e) {
@@ -2006,6 +2030,7 @@ var SketchManager = (function() {
         }
       },
       set: function(data) {
+        setColor();
         if (typeof data !== "undefined" || data !== null) {
           _self.drawArea(data);
           if (data.selectedMask === true) {
@@ -3368,6 +3393,13 @@ var SketchManager = (function() {
       y2 = 0;
     var _self = null;
 
+    function setColor(){
+      fContext.lineWidth = lineWidth;
+      fContext.globalAlpha = alphaFactory.enabled.fill;
+      fContext.strokeStyle = colorFactory.blue;
+      fContext.fillStyle = colorFactory.blue;
+    }
+
     function constructor() {
       /* jshint validthis: true */
       setCropLimitResolution();
@@ -3380,10 +3412,8 @@ var SketchManager = (function() {
         width: 0,
         height: 0
       };
-      fContext.strokeStyle = colorFactory.blue;
-      fContext.fillStyle = colorFactory.blue;
-      fContext.lineWidth = lineWidth;
-      fContext.globalAlpha = alphaFactory.enabled.fill;
+
+      setColor();
     }
 
     function setCropLimitResolution() {
@@ -3429,9 +3459,9 @@ var SketchManager = (function() {
           } else if ((rectPos.startY + rectPos.h) < 0) {
             rectPos.h = (-1) * rectPos.startY;
           }
-          fContext.strokeStyle = colorFactory.blue;
-          fContext.lineWidth = lineWidth;
-          fContext.fillStyle = colorFactory.blue;
+          fContext.globalAlpha = alphaFactory.enabled.fill;
+          fContext.fillRect(rectPos.startX, rectPos.startY, rectPos.w, rectPos.h);
+          fContext.globalAlpha = alphaFactory.enabled.stroke;
           fContext.strokeRect(rectPos.startX, rectPos.startY, rectPos.w, rectPos.h);
         }
         isDrawDragging = true;
@@ -3558,7 +3588,10 @@ var SketchManager = (function() {
         tempCoordi.y1 = parseInt(coordinates.y1 / (videoInfo.maxHeight / videoInfo.height), 10);
         tempCoordi.width = parseInt(coordinates.width / (videoInfo.maxWidth / videoInfo.width), 10);
         tempCoordi.height = parseInt(coordinates.height / (videoInfo.maxHeight / videoInfo.height), 10);
+
+        fContext.globalAlpha = alphaFactory.enabled.stroke;
         fContext.strokeRect(tempCoordi.x1, tempCoordi.y1, tempCoordi.width, tempCoordi.height);
+        fContext.globalAlpha = alphaFactory.enabled.fill;
         fContext.fillRect(tempCoordi.x1, tempCoordi.y1, tempCoordi.width, tempCoordi.height);
         if (updateCoordinates !== null && typeof updateCoordinates === "function") {
           if (!isInit) {
@@ -3583,11 +3616,13 @@ var SketchManager = (function() {
         }
         _self.updateCanvas(false);
       },
-      set: function(data) {
-        coordinates.x1 = parseInt(data[0].x1, 10);
-        coordinates.y1 = parseInt(data[0].y1, 10);
-        coordinates.width = parseInt(data[0].width, 10);
-        coordinates.height = parseInt(data[0].height, 10);
+      set: function(_data) {
+        setColor();
+        var data = Array.isArray(_data) ? _data[0] : _data;
+        coordinates.x1 = parseInt(data.x1, 10);
+        coordinates.y1 = parseInt(data.y1, 10);
+        coordinates.width = parseInt(data.width, 10);
+        coordinates.height = parseInt(data.height, 10);
         _self.updateCanvas(true);
       },
       get: function() {

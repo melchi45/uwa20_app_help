@@ -26,7 +26,9 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope', 'Mod
         var init = function() {
           playData.setStatus(PLAY_CMD.STOP);
           var currentDateObj = searchData.getSelectedDate();
-          scope.currentDate = currentDateObj.getFullYear() + "-" + pad(currentDateObj.getMonth() + 1) + "-" + pad(currentDateObj.getDate());
+          scope.currentDate = 
+            currentDateObj.getFullYear() + "-" + pad(currentDateObj.getMonth() + 1) + "-" + 
+            pad(currentDateObj.getDate());
         };
         var newDate = new Date();
         var defaultTime = '00';
@@ -50,15 +52,17 @@ kindFramework.directive('playbackBackup', ['SearchDataModel', '$rootScope', 'Mod
 
         scope.getBackupDate = function() {
           //check time range is below 5 min.
-          var start = new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate(), scope.startTime.hours,
-            scope.startTime.minutes, scope.startTime.seconds);
-          var end = new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate(), scope.endTime.hours,
-            scope.endTime.minutes, scope.endTime.seconds);
+          var start = new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate(), 
+            scope.startTime.hours, scope.startTime.minutes, scope.startTime.seconds);
+          var end = new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate(), 
+            scope.endTime.hours, scope.endTime.minutes, scope.endTime.seconds);
           var diff = end.getTime() - start.getTime();
 
           if (diff > 0 && diff <= MAX_FILEBACKUP_DURATION) {
-            var startTime = pad(scope.startTime.hours) + "" + pad(scope.startTime.minutes) + "" + pad(scope.startTime.seconds);
-            var endTime = pad(scope.endTime.hours) + "" + pad(scope.endTime.minutes) + "" + pad(scope.endTime.seconds);
+            var startTime = pad(scope.startTime.hours) + "" + pad(scope.startTime.minutes) + "" + 
+                            pad(scope.startTime.seconds);
+            var endTime = pad(scope.endTime.hours) + "" + pad(scope.endTime.minutes) + "" + 
+                          pad(scope.endTime.seconds);
             return {
               startTime: startTime,
               endTime: endTime,

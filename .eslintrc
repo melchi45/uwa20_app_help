@@ -16,7 +16,8 @@
     "kindFramework" : true,
     "angular": true,
     "isPhone" : true,
-    "moment" : true
+    "moment" : true,
+    "d3" : true
   },
   "rules": {
     "no-compare-neg-zero" : "off",
@@ -56,7 +57,7 @@
     "no-alert" : "error",
     "no-case-declarations" : "error",
     "no-empty-pattern" : "error",
-    "no-fallthrough" : "error",
+    "no-fallthrough" : ["error",{ "commentPattern": "break[\\s\\w]*omitted" } ],
     "no-global-assign" : "off",
     "no-multi-spaces" : "off",
     "no-octal" : "error",

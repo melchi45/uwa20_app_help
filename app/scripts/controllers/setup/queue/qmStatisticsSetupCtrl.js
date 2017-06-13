@@ -24,15 +24,9 @@ kindFramework.controller('QMStatisticsCtrl', function(
   $scope.sketchinfo = {};
   $scope.coordinates = [];
 
-  var modalInstance = null;
-  var asyncInterrupt = false;
-
   var mAttr = Attributes.get();
   var qmModel = new QmModel();
   $scope.lang = qmModel.getStLang();
-
-  var searchFromDate = null;
-  var searchToDate = null;
 
   $scope.queueData = {};
   $scope.queueData.dataLoad = false;
@@ -125,14 +119,13 @@ kindFramework.controller('QMStatisticsCtrl', function(
     }
   };
 
-  function changeFormatForGraph(timeForamtForGraph, dateFormat) {
+  function changeFormatForGraph(_timeForamtForGraph, dateFormat) {
+    var timeForamtForGraph = _timeForamtForGraph;
     timeForamtForGraph += ""; //Change Type
     var year = timeForamtForGraph.substr(0, 4);
     var month = timeForamtForGraph.substr(4, 2);
     var date = timeForamtForGraph.substr(6, 2);
     var hours = timeForamtForGraph.substr(8, 2);
-    var minutes = timeForamtForGraph.substr(10, 2);
-    var seconds = timeForamtForGraph.substr(12, 2);
 
     var returnVal = null;
 
@@ -158,7 +151,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
     }
 
     /* tickFormat이 비정상일 때 null 처리 */
-    if (isFloat(data) || data < 0) return null;
+    if (isFloat(data) || data < 0) {return null;}
 
     var num = data < 10 ? 1 : data < 100 ? 2 : 3;
     return d3.format('.' + num + 's')(data);
@@ -206,7 +199,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
       $scope.graphSection[type][dateType].data = data;
       $timeout(function() {
         if (type === graphTypes[0]) {
-          if ($scope.graphSection[type][dateType].options.chart.legend !== undefined) {
+          if (typeof $scope.graphSection[type][dateType].options.chart.legend !== "undefined") {
             $scope.graphSection[type][dateType].options.chart.legend.dispatch.legendClick({
               seriesIndex: 0
             });
@@ -233,7 +226,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
       item.disabled = true;
 
       var seriesIndex = item.seriesIndex;
-      if (seriesIndex === undefined) {
+      if (typeof seriesIndex === "undefined") {
         seriesIndex = item.values[0].series;
       }
 
@@ -391,7 +384,8 @@ kindFramework.controller('QMStatisticsCtrl', function(
     getGraph: function(dateType, type) {
       var deferred = $q.defer();
 
-      function successCallback(data) {
+      function successCallback(_data) {
+        var data = _data;
         data = data.data;
 
         var xAxisData = [];
@@ -469,13 +463,13 @@ kindFramework.controller('QMStatisticsCtrl', function(
       }
 
       if (dateType === graphDateTypes[0]) {
-        qmModel
-          .getTodayGraphData(type)
-          .then(successCallback, failCallback);
+        qmModel.
+          getTodayGraphData(type).
+          then(successCallback, failCallback);
       } else if (dateType === graphDateTypes[1]) {
-        qmModel
-          .getWeeklyGraphData(type)
-          .then(successCallback, failCallback);
+        qmModel.
+          getWeeklyGraphData(type).
+          then(successCallback, failCallback);
       } else {
         var dateForm = $scope.pcConditionsDateForm;
         var toCalenderTimeStamp = dateForm.toCalender.getTime();
@@ -505,9 +499,9 @@ kindFramework.controller('QMStatisticsCtrl', function(
           deferred.resolve("NoData");
         } else {
           $scope.resultSection.viewGraph[type] = true;
-          qmModel
-            .getSearchGraphData(type, searchOptions, checkList)
-            .then(successCallback, failCallback);
+          qmModel.
+            getSearchGraphData(type, searchOptions, checkList).
+            then(successCallback, failCallback);
         }
       }
 
@@ -648,20 +642,21 @@ kindFramework.controller('QMStatisticsCtrl', function(
         var filename = postData.fileName + '.' + postData.fileType;
         var contentType = 'text/plain';
         var success = false;
+        var blob = null;
         if (postData.fileType === '.xlsx') {
           contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
         }
         try {
           console.log("Trying SaveBlob method ...");
 
-          var blob = new Blob([response.data], {
+          blob = new Blob([response.data], {
             type: contentType
           });
           if (navigator.msSaveBlob) {
             navigator.msSaveBlob(blob, filename);
           } else {
             var saveBlob = navigator.webkitSaveBlob || navigator.mozSaveBlob || navigator.saveBlob;
-            if (saveBlob === undefined) {
+            if (typeof saveBlob === "undefined") {
               throw "Not supported";
             }
             saveBlob(blob, filename);
@@ -680,7 +675,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
               try {
                 console.log("Trying DownloadLink method ...");
 
-                var blob = new Blob([response.data], {
+                blob = new Blob([response.data], {
                   type: contentType
                 });
                 var url = urlCreator.createObjectURL(blob);
@@ -700,7 +695,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
             if (!success) {
               try {
                 console.log("Trying DownloadLink method with WindowLocation ...");
-                var blob = new Blob([response.data], {
+                blob = new Blob([response.data], {
                   type: contentType
                 });
                 var reader = new FileReader();
@@ -740,12 +735,10 @@ kindFramework.controller('QMStatisticsCtrl', function(
 
                   form.submit();
 
-                  var interval;
                   var captureFrame = $('#' + iframe.id);
                   var captureForm = $('#' + form.id);
                   captureFrame.unbind();
-                  interval = setTimeout(function() {
-
+                  setTimeout(function() {
                     captureFrame.unbind();
                     captureForm.remove();
                     captureFrame.remove();
@@ -832,48 +825,6 @@ kindFramework.controller('QMStatisticsCtrl', function(
     }
   };
 
-  function changeDateFormat(date, useMonth, useDay, useTime) {
-    var useMonth = useMonth === false ? false : true;
-    var useDay = useDay === false ? false : true;
-
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-
-    var str = year;
-
-    month = month < 10 ? "0" + month : month;
-    day = day < 10 ? "0" + day : day;
-
-    if (useMonth === true) {
-      str += '-' + month;
-    }
-
-    if (useDay === true) {
-      str += '-' + day;
-    }
-
-    return str;
-  }
-
-  function getCalenderDate() {
-    var dateForm = $scope.pcConditionsDateForm;
-
-    var FromDate = null;
-    var ToDate = null;
-
-    var fromCalender = dateForm.fromCalender;
-    var toCalender = dateForm.toCalender;
-
-    FromDate = changeDateFormat(fromCalender) + "T00:00:00Z";
-    ToDate = changeDateFormat(toCalender) + "T23:59:59Z";
-
-    return {
-      FromDate: FromDate,
-      ToDate: ToDate
-    };
-  }
-
   function showVideo() {
     var getData = {};
     return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
@@ -900,72 +851,6 @@ kindFramework.controller('QMStatisticsCtrl', function(
     }, function(errorData) {
       console.log(errorData);
     }, '', true);
-  }
-
-  /**
-   * @param options {Object} view, controller, iconClass, title, message, data
-   * @return Promise {Promise}
-   */
-  function openAlert(options) {
-    if (asyncInterrupt) {
-      return;
-    }
-    var view = options.view || 'views/setup/peoplecounting/modals/alert.html';
-    var controller = options.controller || 'alertModalCtrl';
-    var size = options.size || 'sm';
-    var data = {
-      iconClass: function() {
-        return options.iconClass;
-      },
-      title: function() {
-        return options.title;
-      },
-      message: function() {
-        return options.message;
-      }
-    };
-    data = $.extend(data, options.data);
-
-    modalInstance = $uibModal.open({
-      templateUrl: view,
-      controller: controller,
-      windowClass: 'modal-position-middle',
-      resolve: data,
-      size: size
-    });
-
-    return modalInstance.result;
-  }
-
-  /**
-   * @param options {Object} view, controller, title, message, data
-   * @return Promise {Promise}
-   */
-  function openConfirm(options) {
-    if (asyncInterrupt) {
-      return;
-    }
-    var view = options.view || 'views/setup/peoplecounting/modals/confirm.html';
-    var controller = options.controller || 'confirmModalCtrl';
-    var data = {
-      title: function() {
-        return options.title;
-      },
-      message: function() {
-        return options.message;
-      }
-    };
-    data = $.extend(data, options.data);
-
-    modalInstance = $uibModal.open({
-      templateUrl: view,
-      controller: controller,
-      windowClass: 'modal-position-middle',
-      resolve: data,
-      size: 'sm'
-    });
-
-    return modalInstance.result;
   }
 
   function getPercent(val, max) {
@@ -1012,26 +897,21 @@ kindFramework.controller('QMStatisticsCtrl', function(
         var parent = $("#qm-bar-" + id);
 
         var colorList = ["#2beddb", "#0dd8eb", "#57ed06", "#0ec20e", "#ffab33", "#ff5400"];
-        var colorNameList = ["#1be2e4", "#31d70a", "#ff7f19"];
 
         parent.find(".qm-bar-mask").css({
           width: (100 - getPercent(queue, data.max)) + "%"
         });
 
         //Bar 2
-        var colorName = null;
         var startColor = null;
         var endColor = null;
         if (queue < data.mid) {
-          colorName = colorNameList[0];
           startColor = colorList[0];
           endColor = colorList[1];
         } else if (queue < data.high) {
-          colorName = colorNameList[1];
           startColor = colorList[2];
           endColor = colorList[3];
         } else {
-          colorName = colorNameList[2];
           startColor = colorList[4];
           endColor = colorList[5];
         }
@@ -1150,11 +1030,11 @@ kindFramework.controller('QMStatisticsCtrl', function(
       $scope.pageLoaded = true;
     };
 
-    showVideo()
-      .then(
+    showVideo().
+      then(
         function() {
-          $scope.init()
-            .then(
+          $scope.init().
+            then(
               function() {
                 $scope.pageLoaded = true;
               },

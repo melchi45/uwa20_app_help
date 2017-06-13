@@ -38,7 +38,8 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
         moment.tz.add("Africa/Abidjan|LMT GMT|g.8 0|01|-2ldXH.Q|48e5");
         moment.tz.setDefault("Africa/Abidjan");
         var showDateString = function(dateObj) {
-          scope.currentDate = dateObj.getFullYear() + "-" + pad(dateObj.getMonth() + 1) + "-" + pad(dateObj.getDate());
+          scope.currentDate = dateObj.getFullYear() + "-" + pad(dateObj.getMonth() + 1) + "-" + 
+            pad(dateObj.getDate());
         };
         var parsingTime = function(date, start, end) {
           var startTime = start.split(":");
@@ -129,7 +130,8 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
         };
 
         scope.control.startBackup = function() {
-          playData.setPlaybackBackupTime(searchData.getSelectedDate(), scope.startTime, scope.endTime);
+          playData.setPlaybackBackupTime(
+              searchData.getSelectedDate(), scope.startTime, scope.endTime);
           $rootScope.$emit('playbackBackup');
         };
 
@@ -214,9 +216,13 @@ kindFramework.directive('dateControl', ['$rootScope', 'TimelineService', 'Search
           if (startTime === null || endTime === null) {
             return;
           }
-          scope.startTime = pad(startTime.getHours()) + "" + pad(startTime.getMinutes()) + "" + pad(startTime.getSeconds());
+          scope.startTime = 
+            pad(startTime.getHours()) + "" + pad(startTime.getMinutes()) + "" + 
+            pad(startTime.getSeconds());
           if (endTime !== null || typeof endTime !== "undefined") {
-            scope.endTime = pad(endTime.getHours()) + "" + pad(endTime.getMinutes()) + "" + pad(endTime.getSeconds());
+            scope.endTime = 
+              pad(endTime.getHours()) + "" + pad(endTime.getMinutes()) + "" + 
+              pad(endTime.getSeconds());
           }
         });
 

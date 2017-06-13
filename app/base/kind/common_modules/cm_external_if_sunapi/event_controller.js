@@ -5,7 +5,7 @@
  * @example 
  * var settings = {
  *      cameraUrl: "192.168.xxx.xxx",
- *      echo_sunapi_server:["" or "55.101.78.176:5000"],
+ *      echoSunapiServer:["" or "55.101.78.176:5000"],
  *      user:"userid",
  *      password:"password",
  *      options:{

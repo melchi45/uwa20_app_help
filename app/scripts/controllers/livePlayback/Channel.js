@@ -604,7 +604,7 @@ kindFramework.
           function(response) {
             var rtspIp = response.data.NetworkInterfaces[0].IPv4Address;
             var macIp = response.data.NetworkInterfaces[0].MACAddress;
-            ConnectionSettingService.SetRtspIpMac(rtspIp, macIp);
+            ConnectionSettingService.setRtspIpMac(rtspIp, macIp);
           },
           function(errorData, errorCode) {
             console.error(errorData);
@@ -615,7 +615,7 @@ kindFramework.
         return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=rtsp&action=view', {},
           function(response) {
             var rtspPort = response.data.Port;
-            ConnectionSettingService.SetRtspPort(rtspPort);
+            ConnectionSettingService.setRtspPort(rtspPort);
           },
           function(errorData, errorCode) {
             console.error(errorData);
@@ -638,7 +638,7 @@ kindFramework.
         $scope.selectedProfile = getProfileIndex(_requestProfile.Profile);
         if (sunapiAttributes.MaxChannel > 1) {
           $scope.profileInfo.ChannelId = channelId;
-          ConnectionSettingService.SetMultiChannelSupport(true);
+          ConnectionSettingService.setMultiChannelSupport(true);
         } else {
           $scope.profileInfo.ChannelId = null;
         }

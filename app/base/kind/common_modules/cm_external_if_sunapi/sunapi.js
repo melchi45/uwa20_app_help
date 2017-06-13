@@ -9,7 +9,7 @@ kindSunapi
     var _param;// = settings.param;
 
     // Temporary variables caused by origin Issue of SUMAPI.
-    var _echo_sunapi_server;// = settings.echo_sunapi_server;
+    var _echoSunapiServer;// = settings.echoSunapiServer;
     var _user;// = settings.user;          
     var _password;// = settings.password;  
 
@@ -24,7 +24,7 @@ kindSunapi
         _param = settings.param;
 
         // Temporary variables caused by origin Issue of SUMAPI.
-        _echo_sunapi_server = settings.echo_sunapi_server;
+        _echoSunapiServer = settings.echoSunapiServer;
         _user = settings.user;          
         _password = settings.password;    
     };
@@ -102,7 +102,7 @@ kindSunapi
         }
         var config = {
             method: "POST",
-            url: "http://"+_echo_sunapi_server+"/SUNAPI"+additionalUrl,
+            url: "http://"+_echoSunapiServer+"/SUNAPI"+additionalUrl,
             data: {"user": _user, "password": _password, "url": getUrl()}
         };
         
@@ -114,12 +114,12 @@ kindSunapi
     };
 
     /**
-     * if it isn't used _echo_sunapi_server, sunapi is json response type.
+     * if it isn't used _echoSunapiServer, sunapi is json response type.
      */
     var checkVersion = function(){
         var OLD_VERSION = 0;
         var JSON_VERSION = 1;
-        var version = isNull(_echo_sunapi_server);
+        var version = isNull(_echoSunapiServer);
         return version?JSON_VERSION:OLD_VERSION;
     };
 

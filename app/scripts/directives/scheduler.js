@@ -1,7 +1,6 @@
-/* global SketchManager, setInterval, clearInterval, getClientIP */
-kindFramework
-  .directive('scheduler', ['$rootScope', '$timeout', 'SunapiClient', '$translate', '$uibModal', '$window', 'eventRuleService', '$compile', 'UniversialManagerService',
-    function($rootScope, $timeout, SunapiClient, $translate, $uibModal, $window, eventRuleService, $compile, UniversialManagerService) {
+kindFramework.
+  directive('scheduler', ['$rootScope', '$timeout', 'SunapiClient', '$translate', '$uibModal', '$window', 'eventRuleService', '$compile', 'UniversialManagerService', 'COMMONUtils',
+    function($rootScope, $timeout, SunapiClient, $translate, $uibModal, $window, eventRuleService, $compile, UniversialManagerService, COMMONUtils) {
       'use strict';
 
       return {
@@ -13,19 +12,16 @@ kindFramework
           var eventObjs = [];
           var eventIdArray = [];
           var eventCount = 0;
-          var EventRule; // = scope.$parent.EventRule;
-          var ScheduleIds; // = EventRule.ScheduleIds;
+          var EventRule = null; // = scope.$parent.EventRule;
+          var ScheduleIds = null; // = EventRule.ScheduleIds;
           var visibility = null;
           var resized = false;
-          var cleaning = false;
           var curDuration = '00:30:00';
           var activeMenu = '';
           var alreadyCreated = false;
           var defaultDate = '';
           var initialRendered = false;
-          var merging = false;
           var initialMerging = false;
-          var deleting = false;
           var prevEventObjs = null;
           var initializing = false;
           var currentUnit = '30';
@@ -36,9 +32,10 @@ kindFramework
 
           function setEventSources() { //console.info('setEventSources ::: ');console.info(ScheduleIds);
             var eventArray = new Array(ScheduleIds.length);
-            for (var i = 0; i < ScheduleIds.length; i++) {
-              var obj = convertIdToDate(ScheduleIds[i]); //console.info(ScheduleIds[i]);console.info(obj);
-              eventArray[i] = angular.copy(obj);
+            var index = 0;
+            for (index = 0; index < ScheduleIds.length; index++) {
+              var obj = convertIdToDate(ScheduleIds[index]); //console.info(ScheduleIds[i]);console.info(obj);
+              eventArray[index] = angular.copy(obj);
             }
             eventObjs = angular.copy(eventArray); //console.info(eventArray);
             if (initializing) {
@@ -49,13 +46,13 @@ kindFramework
               eventRuleService.setInitialScheduleData({
                 menu: activeMenu,
                 type: currentScheduleType,
-                data: ScheduleIds
+                data: ScheduleIds,
               });
             } else {
               eventRuleService.setScheduleData({
                 menu: activeMenu,
                 type: currentScheduleType,
-                data: ScheduleIds
+                data: ScheduleIds,
               });
             }
             // console.info('end of setEventSources ===================== ');
@@ -65,22 +62,23 @@ kindFramework
 
             var scheduleIds = [];
             var tEventObjs = angular.copy(eventObjs);
+            var index = 0;
 
-            for (var i = 0; i < tEventObjs.length; i++) {
-              var tElement = tEventObjs[i];
+            for (index = 0; index < tEventObjs.length; index++) {
+              var tElement = tEventObjs[index];
               var result = convertDateToId(tElement);
               if (typeof result === 'string') {
                 scheduleIds.push(angular.copy(result));
               } else {
-                for (var k = 0; k < result.length; k++) {
-                  var element = angular.copy(result[k]);
+                for (index = 0; index < result.length; index++) {
+                  var element = angular.copy(result[index]);
                   scheduleIds.push(angular.copy(element));
                 }
               }
             }
             if (activeMenu === 'alarmInput') {
               scope.EventRules[scope.AlarmData.SelectedAlarm].ScheduleIds = angular.copy(scheduleIds); // temporarily index 0
-            } else if (activeMenu == 'storage') {
+            } else if (activeMenu === 'storage') {
               scope.RecordSchedule.ScheduleIds = angular.copy(scheduleIds);
             } else {
               scope.EventRule.ScheduleIds = angular.copy(scheduleIds);
@@ -90,13 +88,13 @@ kindFramework
               eventRuleService.setInitialScheduleData({
                 menu: activeMenu,
                 type: currentScheduleType,
-                data: scheduleIds
+                data: scheduleIds,
               });
             } else {
               eventRuleService.setScheduleData({
                 menu: activeMenu,
                 type: currentScheduleType,
-                data: scheduleIds
+                data: scheduleIds,
               });
             }
             // console.info('end of getEventSources ===================== ');
@@ -104,36 +102,34 @@ kindFramework
 
           function mergeTheInitial() { //console.info('mergeTheInitial :: ');console.info('before merge : ');
             var tEventObjs = eventObjs;
-            var prevEvent;
-            var tDay;
+            var prevEvent = null;
             var eventMerged = false;
-            var eventItem;
-            var removingItem;
-            var eventData;
+            var eventItem = null;
+            var removingItem = null;
             var targetItemToMerge = [];
             var curIndex = 0;
-            merging = true;
             initialMerging = true;
+            var index = 0;
 
-            for (var i = 0; i < tEventObjs.length; i++) {
-              if (i === 0) {
-                prevEvent = tEventObjs[i]; //console.info('prevEvent : ');console.info(moment(prevEvent.start).format('YYYY-MM-DDTHH:mm'));console.info(moment(prevEvent.end).format('YYYY-MM-DDTHH:mm'));
+            for (index = 0; index < tEventObjs.length; index++) {
+              if (index === 0) {
+                prevEvent = tEventObjs[index]; //console.info('prevEvent : ');console.info(moment(prevEvent.start).format('YYYY-MM-DDTHH:mm'));console.info(moment(prevEvent.end).format('YYYY-MM-DDTHH:mm'));
               } else {
-                var startTime = moment(tEventObjs[i].start).format('YYYY-MM-DDTHH:mm'); //console.info('prevEvent : ');console.info(moment(prevEvent.start).format('YYYY-MM-DDTHH:mm'));console.info(moment(prevEvent.end).format('YYYY-MM-DDTHH:mm'));
-                var endTime = moment(tEventObjs[i].end).format('YYYY-MM-DDTHH:mm');
+                var startTime = moment(tEventObjs[index].start).format('YYYY-MM-DDTHH:mm'); //console.info('prevEvent : ');console.info(moment(prevEvent.start).format('YYYY-MM-DDTHH:mm'));console.info(moment(prevEvent.end).format('YYYY-MM-DDTHH:mm'));
+                // var endTime = moment(tEventObjs[i].end).format('YYYY-MM-DDTHH:mm');
                 // console.info('target time : ');console.info(startTime);console.info(endTime);
-                var prevStartTime = moment(prevEvent.start).format('YYYY-MM-DDTHH:mm');
+                // var prevStartTime = moment(prevEvent.start).format('YYYY-MM-DDTHH:mm');
                 var prevEndTime = moment(prevEvent.end).format('YYYY-MM-DDTHH:mm');
 
-                if (prevEndTime === startTime && !(moment(prevEvent.end).format('HH:mm') === '00:00' && moment(tEventObjs[i].start).format('HH:mm') === '00:00')) { // case to merge
+                if (prevEndTime === startTime && !(moment(prevEvent.end).format('HH:mm') === '00:00' && moment(tEventObjs[index].start).format('HH:mm') === '00:00')) { // case to merge
                   eventItem = prevEvent;
-                  eventItem.end = tEventObjs[i].end;
-                  removingItem = tEventObjs[i];
+                  eventItem.end = tEventObjs[index].end;
+                  removingItem = tEventObjs[index];
 
                   // find event object in calendar
-                  var eventObj;
-                  for (var k = 0; k < tEventObjs.length; k++) {
-                    eventObj = tEventObjs[k];
+                  var eventObj = null;
+                  for (index = 0; index < tEventObjs.length; index++) {
+                    eventObj = tEventObjs[index];
                     if (eventObj.id === eventItem.id) {
                       eventObj.start = eventItem.start;
                       eventObj.end = eventItem.end;
@@ -151,38 +147,35 @@ kindFramework
                     eventMerged = false;
                   }
                 } else {
-                  prevEvent = tEventObjs[i];
+                  prevEvent = tEventObjs[index];
                   curIndex++;
                 }
               }
             }
             // console.info('end of mergeTheInitial ===============');
-            for (var a = 0; a < targetItemToMerge.length; a++) {
-              if (targetItemToMerge[a] !== undefined) {
-                $('#calendar').fullCalendar('updateEvent', targetItemToMerge[a]);
+            for (index = 0; index < targetItemToMerge.length; index++) {
+              if (typeof targetItemToMerge[index] !== 'undefined') {
+                $('#calendar').fullCalendar('updateEvent', targetItemToMerge[index]);
               }
             }
-            merging = false;
             initialMerging = false;
           }
 
           function mergeTheDropped(start, end, eventId) {
-            var eventData;
             var eventMerged = false;
             var tEventObjs = angular.copy(eventObjs); //eventObjs;
-            var eventItem;
-            var tEvent;
+            var eventItem = null;
             var removingItem = null;
-            var result;
+            var result = null;
             var tStart = start;
             var tEnd = end;
             var tId = eventId;
             var forwardMerged = false;
             var backwardMerged = false;
-            merging = true;
+            var index = 0;
 
-            for (var i = 0; i < tEventObjs.length; i++) {
-              eventItem = angular.copy(tEventObjs[i]);
+            for (index = 0; index < tEventObjs.length; index++) {
+              eventItem = angular.copy(tEventObjs[index]);
               if (eventItem !== null && typeof eventItem !== 'undefined') {
                 if (tId === eventItem.id) {
                   continue;
@@ -209,8 +202,8 @@ kindFramework
               }
             }
             if (eventMerged) {
-              for (var k = 0; k < tEventObjs.length; k++) {
-                var eventObj = angular.copy(tEventObjs[k]);
+              for (index = 0; index < tEventObjs.length; index++) {
+                var eventObj = angular.copy(tEventObjs[index]);
                 if (eventObj.id === result.id) {
                   eventObj.start = result.start;
                   eventObj.end = result.end;
@@ -230,16 +223,15 @@ kindFramework
           }
 
           function mergeTheSelected(start, end) { //console.info('mergeTheSelected :: ');console.info('before merge :');console.info(eventObjs);
-            var eventData;
+            var eventData = null;
             var eventMerged = false;
             var between = false;
             var tEventObjs = angular.copy(eventObjs); // eventObjs;
-            var removingItem;
-            var removingItem2;
+            var removingItem = null;
+            var removingItem2 = null;
             var tStart = start;
             var tEnd = end;
             var resizedEvent = null;
-            merging = true;
 
             if (resized) {
               tStart = start.start;
@@ -248,8 +240,8 @@ kindFramework
               resized = false;
             }
 
-            for (var i = 0; i < tEventObjs.length; i++) {
-              var eventItem = angular.copy(tEventObjs[i]);
+            for (var ii = 0; ii < tEventObjs.length; ii++) {
+              var eventItem = angular.copy(tEventObjs[ii]);
               if (resizedEvent !== null) {
                 if (eventItem.id === resizedEvent.id) {
                   continue;
@@ -279,16 +271,16 @@ kindFramework
                         eventItem.end = tEnd;
                         eventMerged = true;
 
-                        for (var k = i + 1; k < tEventObjs.length; k++) { // case of between
-                          var item = angular.copy(tEventObjs[k]);
+                        for (var kk = ii + 1; kk < tEventObjs.length; kk++) { // case of between
+                          var tItem = angular.copy(tEventObjs[kk]);
                           // if(moment(eventItem.start).format('YYYY-MM-DDTHH:mm') < moment(item.start).format('YYYY-MM-DDTHH:mm')) {
-                          if (moment(eventItem.end).format('YYYY-MM-DDTHH:mm') === moment(item.start).format('YYYY-MM-DDTHH:mm')) {
+                          if (moment(eventItem.end).format('YYYY-MM-DDTHH:mm') === moment(tItem.start).format('YYYY-MM-DDTHH:mm')) {
                             // if(moment(eventItem.end).format('YYYY-MM-DDTHH:mm') <= moment(item.end).format('YYYY-MM-DDTHH:mm')) {
                             // console 5, 6
-                            eventItem.end = item.end;
+                            eventItem.end = tItem.end;
                             between = true; //console.info('between removing item :');
                             eventMerged = true; //console.info(moment(item.start).format('YYYY-MM-DDTHH:mm'));console.info(moment(item.end).format('YYYY-MM-DDTHH:mm'));
-                            removingItem = item; //console.info(removingItem);
+                            removingItem = tItem; //console.info(removingItem);
                             // }
                           }
                           // }
@@ -317,8 +309,8 @@ kindFramework
                           resizedEvent.end = eventItem.end;
                         }
 
-                        for (var k = 0; k < tEventObjs.length; k++) { // case of between
-                          var item = angular.copy(tEventObjs[k]);
+                        for (var ll = 0; ll < tEventObjs.length; ll++) { // case of between
+                          var item = angular.copy(tEventObjs[ll]);
                           if (moment(eventItem.start).format('YYYY-MM-DDTHH:mm') === moment(item.end).format('YYYY-MM-DDTHH:mm')) {
                             eventItem.start = item.start;
                             between = true;
@@ -354,8 +346,8 @@ kindFramework
                     }
 
                     // find event object in calendar
-                    for (var j = 0; j < tEventObjs.length; j++) {
-                      var eventObj = angular.copy(tEventObjs[j]);
+                    for (var jj = 0; jj < tEventObjs.length; jj++) {
+                      var eventObj = angular.copy(tEventObjs[jj]);
                       if (eventObj.id === eventData.id) {
                         eventObj.start = eventData.start; //console.info('merged item :: ');
                         eventObj.end = eventData.end; //console.info(moment(eventObj.start).format('YYYY-MM-DDTHH:mm'));console.info(moment(eventObj.end).format('YYYY-MM-DDTHH:mm'));
@@ -363,10 +355,10 @@ kindFramework
                         break;
                       }
                     }
-                    if (removingItem !== null && removingItem !== undefined) { // remove and let calendar update events after updating
+                    if (removingItem !== null && typeof removingItem !== 'undefined') { // remove and let calendar update events after updating
                       removeEvent(removingItem);
                     }
-                    if (removingItem2 !== null && removingItem2 !== undefined) {
+                    if (removingItem2 !== null && typeof removingItem2 !== 'undefined') {
                       removeEvent(removingItem2);
                     }
                     return;
@@ -377,10 +369,10 @@ kindFramework
             if (!eventMerged && resizedEvent === null) {
               // console.log('adding event id: '+eventcount);
               var emptyId = null;
-              for (var i = 0; i <= eventIdArray.length; i++) {
-                if (eventIdArray.indexOf(i) === -1) {
-                  emptyId = i;
-                  eventIdArray.push(i);
+              for (var mm = 0; mm <= eventIdArray.length; mm++) {
+                if (eventIdArray.indexOf(mm) === -1) {
+                  emptyId = mm;
+                  eventIdArray.push(mm);
                   eventCount++;
                   break;
                 }
@@ -397,42 +389,36 @@ kindFramework
               $('#calendar').fullCalendar('renderEvent', eventData, true);
             }
             // console.info('end of mergeTheSelected ====================== ');
-            merging = false;
           }
 
           function mergeTheResized(resizedItem) { //console.info('start of mergeTheResized ====================== ');
             // console.info(moment(resizedItem.start).format('YYYY-MM-DDTHH:mm'));console.info(moment(resizedItem.end).format('YYYY-MM-DDTHH:mm'));
-            var eventMerged = false;
             var tEventObjs = angular.copy(eventObjs); //eventObjs;
-            var eventItem;
+            var eventItem = null;
             var removingItem = null;
             var targetItem = angular.copy(resizedItem);
-            merging = true;
 
-            for (var i = 0; i < tEventObjs.length; i++) {
-              eventItem = angular.copy(tEventObjs[i]);
+            for (var ii = 0; ii < tEventObjs.length; ii++) {
+              eventItem = angular.copy(tEventObjs[ii]);
               if (moment(eventItem.start).format('YYYY-MM-DDTHH:mm') === moment(targetItem.end).format('YYYY-MM-DDTHH:mm')) {
                 targetItem.end = angular.copy(eventItem.end);
                 removingItem = angular.copy(eventItem);
                 $('#calendar').fullCalendar('updateEvent', targetItem);
-                merging = false;
                 return removingItem;
               }
             }
-
-            merging = false;
             // console.info('end of mergeTheResized ====================== ');
             return null;
           }
 
           function checkFromToMin(start, end, id) {
-            var target;
+            var target = null;
             var tEventObjs = angular.copy(eventObjs);
-            if (id !== undefined) { // drop & resize
+            var index = 0;
+            if (typeof id !== 'undefined') { // drop & resize
               // if(moment(start).format('YYYY-MM-DDTHH') !== moment(end).format('YYYY-MM-DDTHH')) { // on the different day
-              for (var i = 0; i < tEventObjs.length; i++) {
-                var result = true;
-                target = tEventObjs[i];
+              for (index = 0; index < tEventObjs.length; index++) {
+                target = tEventObjs[index];
                 if (target.id !== id) {
                   // except between
                   // if(moment(target.start).format('HH:mm') === '00:00' && moment(target.end).format('HH:mm') === '00:00' && (moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm') || moment(target.start).format('YYYY-MM-DDTHH:mm') === moment(end).format('YYYY-MM-DDTHH:mm'))) {
@@ -473,8 +459,8 @@ kindFramework
             } else { // select
               if (moment(start).format('YYYY-MM-DDTHH') === moment(end).format('YYYY-MM-DDTHH')) { // on the same hour
                 // find existing event in the same hour
-                for (var i = 0; i < tEventObjs.length; i++) {
-                  target = tEventObjs[i];
+                for (index = 0; index < tEventObjs.length; index++) {
+                  target = tEventObjs[index];
                   if (moment(target.start).format('YYYY-MM-DDTHH:mm') === moment(end).format('YYYY-MM-DDTHH:mm')) {
                     // merged
                     return true;
@@ -506,8 +492,8 @@ kindFramework
               } else { // on the different hour
                 var sSuccess = false;
                 var eSuccess = false;
-                for (var i = 0; i < tEventObjs.length; i++) {
-                  target = tEventObjs[i];
+                for (index = 0; index < tEventObjs.length; index++) {
+                  target = tEventObjs[index];
                   if (moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) {
                     // merged
                     sSuccess = true;
@@ -521,8 +507,8 @@ kindFramework
                   return true;
                 } else {
                   if (!sSuccess) {
-                    for (var i = 0; i < tEventObjs.length; i++) {
-                      target = tEventObjs[i];
+                    for (index = 0; index < tEventObjs.length; index++) {
+                      target = tEventObjs[index];
                       if (moment(target.start).format('YYYY-MM-DDTHH') === moment(start).format('YYYY-MM-DDTHH') ||
                         moment(target.end).format('YYYY-MM-DDTHH') === moment(start).format('YYYY-MM-DDTHH')) {
                         if (moment(target.end).format('mm') === '00') {
@@ -530,19 +516,18 @@ kindFramework
                         } else {
                           return false;
                         }
-                        if (moment(end).format('mm') === '00') {
-                          return true;
-                        }
-                        if (moment(start).format('mm') === '00') {
-                          return true;
-                        }
+                        // if (moment(end).format('mm') === '00') {
+                        //   return true;
+                        // }
+                        // if (moment(start).format('mm') === '00') {
+                        //   return true;
+                        // }
                       }
                     }
                   }
                   if (!eSuccess) {
-                    var result = false;
-                    for (var i = 0; i < tEventObjs.length; i++) {
-                      target = tEventObjs[i];
+                    for (index = 0; index < tEventObjs.length; index++) {
+                      target = tEventObjs[index];
                       if (moment(target.start).format('YYYY-MM-DDTHH') === moment(end).format('YYYY-MM-DDTHH') ||
                         moment(target.end).format('YYYY-MM-DDTHH') === moment(end).format('YYYY-MM-DDTHH')) {
                         if (moment(end).format('mm') === '00') {
@@ -550,12 +535,12 @@ kindFramework
                         } else {
                           return false;
                         }
-                        if (moment(end).format('mm') === '00') {
-                          return true;
-                        }
-                        if (moment(start).format('mm') === '00') {
-                          return true;
-                        }
+                        // if (moment(end).format('mm') === '00') {
+                        //   return true;
+                        // }
+                        // if (moment(start).format('mm') === '00') {
+                        //   return true;
+                        // }
                       }
                     }
                   }
@@ -580,7 +565,7 @@ kindFramework
               contentHeight: function() {
                 $('#calendar .fc-scroller').css({
                   maxHeight: 600 + "px",
-                  overflowY: "auto"
+                  overflowY: "auto",
                 });
               },
               customButtons: {
@@ -590,7 +575,7 @@ kindFramework
                   click: function() {
                     $('#calendar').fullCalendar('option', 'slotDuration', '00:01:00');
                     currentUnit = '1';
-                  }
+                  },
                 },
                 customSlotDuration2: {
                   // icon: ' tui-ch-playback-search tui',
@@ -598,7 +583,7 @@ kindFramework
                   click: function() {
                     $('#calendar').fullCalendar('option', 'slotDuration', '00:30:00');
                     currentUnit = '30';
-                  }
+                  },
                 },
                 customSlotDuration3: {
                   // icon: ' tui-ch-playback-search tui',
@@ -606,7 +591,7 @@ kindFramework
                   click: function() {
                     $('#calendar').fullCalendar('option', 'slotDuration', '00:60:00');
                     currentUnit = '60';
-                  }
+                  },
                 },
                 clearAll: {
                   // icon: ' tui-delete tui',
@@ -618,8 +603,8 @@ kindFramework
                     'lang_msg_initialize_event_action_schedule',
                     'sm',
                     function() {});
-                  }
-                }
+                  },
+                },
               },
               header: {
                 right: '',
@@ -660,7 +645,7 @@ kindFramework
               },
               eventConstraint: {
                 start: '00:00',
-                end: '24:00'
+                end: '24:00',
               },
               selectOverlap: false,
               events: eventObjs,
@@ -710,23 +695,25 @@ kindFramework
               },
               eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) { // Triggered when dragging stops and the event has moved to a different day/time.
                 // when finish dragging and dropping selected cells.
+                var tEvent = null;
+                var merged = null;
                 if (currentUnit === '60') {
-                  var tEvent = angular.copy(event);
-                  var merged = mergeTheDropped(tEvent.start, tEvent.end, tEvent.id);
+                  tEvent = angular.copy(event);
+                  merged = mergeTheDropped(tEvent.start, tEvent.end, tEvent.id);
                   if (merged === true) { // merged
                     removeEvent(tEvent);
-                  } else if(merged !== false) { // between merged
+                  } else if (merged !== false) { // between merged
                     removeEvent(tEvent);
                     removeEvent(merged);
                   }
                 } else {
-                  var tEvent = angular.copy(event);
+                  tEvent = angular.copy(event);
                   var result = checkFromToMin(tEvent.start, tEvent.end, tEvent.id);
                   if (result === true) {
-                    var merged = mergeTheDropped(tEvent.start, tEvent.end, tEvent.id);
+                    merged = mergeTheDropped(tEvent.start, tEvent.end, tEvent.id);
                     if (merged === true) { // merged
                       removeEvent(tEvent);
-                    } else if(merged !== false) { // between merged
+                    } else if (merged !== false) { // between merged
                       removeEvent(tEvent);
                       removeEvent(merged);
                     }
@@ -740,9 +727,10 @@ kindFramework
               eventResize: function(event, delta, revertFunc, jsEvent, ui, view) { // Triggered when resizing stops and the event has changed in duration.
                 // eventResizeStop: function(event, jsEvent, ui, view){
                 // console.info('eventResize :: ');console.info(moment(event.start).format('YYYY-MM-DDTHH:mm'));console.info(moment(event.end).format('YYYY-MM-DDTHH:mm'));
+                var removingItem = null;
                 if (currentUnit === '60') {
                   resized = true;
-                  var removingItem = mergeTheResized(event);
+                  removingItem = mergeTheResized(event);
                   if (removingItem !== null) {
                     removeEvent(removingItem);
                   }
@@ -750,7 +738,7 @@ kindFramework
                   var result = checkFromToMin(event.start, event.end, event.id);
                   if (result === true) {
                     resized = true;
-                    var removingItem = mergeTheResized(event);
+                    removingItem = mergeTheResized(event);
                     if (removingItem !== null) {
                       removeEvent(removingItem);
                     }
@@ -758,7 +746,7 @@ kindFramework
                     revertFunc();
                   }
                 }
-              }
+              },
             });
 
             // setVisibility("Scheduled");
@@ -777,43 +765,43 @@ kindFramework
             if (value === "Always") {
               v = "hidden";
               $("#calendar").css({
-                "display": "none"
+                "display": "none",
               });
             } else if (value === "Scheduled") {
               v = "visible";
               $("#calendar").css({
-                "display": "block"
+                "display": "block",
               });
               $("#calendar").css({
-                "margin-top": "20px"
+                "margin-top": "20px",
               });
             } else {
               return;
             }
             visibility = v;
             $("#calendar").css({
-              "visibility": visibility
+              "visibility": visibility,
             });
           }
 
           function deleteAll(flag) { //console.info('deleteAll ::: ');
             var objs = angular.copy(eventObjs);
-            deleting = true;
             for (var j = 0; j < objs.length; j++) {
               removeEvent(objs[j]);
             }
-            deleting = false;
           }
 
           function setMinusOneMin(data, type) { // minus 1 from endMinute in case of hour so BE set time from 0 ~ 59
-            var result;
+            var result = null;
+            var item = null;
+            var tItem = null;
             if (type === 'string') {
-              var item = data;
+              item = data;
               item = item.split('.');
               if (item.length === 2) {
                 result = item[0] + '.' + item[1] + '.' + '0' + '.' + '59';
               } else if (item.length === 4) {
-                var tItem = parseInt(item[3]);
+                tItem = parseInt(item[3]);
                 if (tItem !== 59 && tItem !== 0) { // no need to minus
                   tItem -= 1;
                 } else {
@@ -826,15 +814,15 @@ kindFramework
             } else if (type === 'array') {
               var array = data;
               var exception = false;
-              var lastItem;
+              var lastItem = null;
               var lastIndex = null;
 
-              for (var k = 0; k < array.length; k++) {
-                var tItem = array[k];
-                tItem = tItem.split('.');
-                if (tItem.length === 4) {
-                  lastIndex = k;
-                  if (k !== 0) {
+              for (var kk = 0; kk < array.length; kk++) {
+                var element = array[kk];
+                element = element.split('.');
+                if (element.length === 4) {
+                  lastIndex = kk;
+                  if (kk !== 0) {
                     exception = true;
                   }
                 }
@@ -855,20 +843,20 @@ kindFramework
 
               lastItem = lastItem.split('.');
               if (lastItem.length === 2) {
-                for (var i = 0; i < array.length; i++) {
-                  var item = array[i];
+                for (var ii = 0; ii < array.length; ii++) {
+                  item = array[ii];
                   item = item.split('.');
-                  if (i === lastIndex) {
+                  if (ii === lastIndex) {
                     result = item[0] + '.' + item[1] + '.' + '0' + '.' + '59';
-                    array[i] = result;
+                    array[ii] = result;
                   }
                 }
               } else if (lastItem.length === 4) {
-                for (var j = 0; j < array.length; j++) {
-                  var item = array[j];
+                for (var jj = 0; jj < array.length; jj++) {
+                  item = array[jj];
                   item = item.split('.');
-                  if (j === lastIndex) {
-                    var tItem = parseInt(item[3]);
+                  if (jj === lastIndex) {
+                    tItem = parseInt(item[3]);
                     if (tItem !== 59 && tItem !== 0) { // no need to minus
                       tItem -= 1;
                     } else {
@@ -876,7 +864,7 @@ kindFramework
                     }
                     item[3] = tItem + '';
                     result = item[0] + '.' + item[1] + '.' + item[2] + '.' + item[3];
-                    array[j] = result;
+                    array[jj] = result;
                   }
                 }
               }
@@ -884,38 +872,38 @@ kindFramework
             }
           }
 
-          function setPlusOneMin(hour, minute) {
-            var endHour = parseInt(hour);
-            var endMinute = parseInt(minute);
+          // function setPlusOneMin(hour, minute) {
+          //   var endHour = parseInt(hour);
+          //   var endMinute = parseInt(minute);
 
-            if (endMinute !== 0) { // minute
-              endMinute += 1;
-              if (endMinute === 60) { // 00 min
-                if (endHour !== 24 && endHour !== 0) {
-                  endHour += 1;
-                  endHour += '';
-                  endMinute = '00';
-                }
-              } else {
-                endHour += '';
-                endMinute += '';
-              }
-            } else { // do nothing
-              endHour += '';
-              endMinute += '';
-            }
-            if (endHour.length === 1) {
-              endHour = '0' + endHour;
-            }
-            endMinute += '';
-            if (endMinute.length === 1) {
-              endMinute = '0' + endMinute;
-            }
-            return [endHour, endMinute];
-          }
+          //   if (endMinute !== 0) { // minute
+          //     endMinute += 1;
+          //     if (endMinute === 60) { // 00 min
+          //       if (endHour !== 24 && endHour !== 0) {
+          //         endHour += 1;
+          //         endHour += '';
+          //         endMinute = '00';
+          //       }
+          //     } else {
+          //       endHour += '';
+          //       endMinute += '';
+          //     }
+          //   } else { // do nothing
+          //     endHour += '';
+          //     endMinute += '';
+          //   }
+          //   if (endHour.length === 1) {
+          //     endHour = '0' + endHour;
+          //   }
+          //   endMinute += '';
+          //   if (endMinute.length === 1) {
+          //     endMinute = '0' + endMinute;
+          //   }
+          //   return [endHour, endMinute];
+          // }
 
           function convertDateToId(data) { //console.info('convertDateToId :: ');
-            var result;
+            var result = null;
             var start = moment(data.start).format('YYYY-MM-DDTHH:mm'); //console.info(start);
             var end = moment(data.end).format('YYYY-MM-DDTHH:mm'); //console.info(end);
             if (start.indexOf('P') !== -1) {
@@ -929,7 +917,7 @@ kindFramework
             var startTime = start[1];
             startDate = new Date(startDate);
             var startDay = startDate.getDay();
-            var startTime = startTime.split(':');
+            startTime = startTime.split(':');
             var startHour = startTime[0];
             var startMinute = startTime[1];
 
@@ -940,14 +928,14 @@ kindFramework
             } else if (end.indexOf('T') !== -1) {
               end = end.split('T');
             }
-            var endDate = end[0];
+
             var endTime = end[1];
-            endDate = new Date(endDate);
-            var endDay = endDate.getDay();
-            var endTime = endTime.split(':');
+            endTime = endTime.split(':');
             var endHour = endTime[0];
             var endMinute = endTime[1];
             var array = null;
+            var tDate = null;
+            var first = null;
 
             // set day
             switch (startDay) {
@@ -986,11 +974,10 @@ kindFramework
             if (endMinute === 0 && startMinute === 0) { // hour
               if ((endHour - startHour) > 1) { // hours
                 array = [];
-                var tDate = result;
-                var first;
+                tDate = result;
                 first = startHour;
-                for (var i = first; i < endHour; i++) {
-                  tDate += ('.' + i);
+                for (var ii = first; ii < endHour; ii++) {
+                  tDate += ('.' + ii);
                   array.push(tDate);
                   tDate = result;
                 } //console.info(array);console.info('+++++++++++++++++++++++');
@@ -999,20 +986,20 @@ kindFramework
                   result += ('.' + 23);
                 } else { // hours
                   array = [];
-                  var first = startHour;
-                  var tDate = result;
-                  for (var i = first; i <= 23; i++) {
-                    tDate += ('.' + i);
+                  first = startHour;
+                  tDate = result;
+                  for (var kk = first; kk <= 23; kk++) {
+                    tDate += ('.' + kk);
                     array.push(tDate);
                     tDate = result;
                   }
                 }
               } else if (startHour === 0 && endHour === 0) { // 00:00 ~ 00:00
                 array = [];
-                var first = startHour;
-                var tDate = result;
-                for (var i = first; i <= 23; i++) {
-                  tDate += ('.' + i);
+                first = startHour;
+                tDate = result;
+                for (var jj = first; jj <= 23; jj++) {
+                  tDate += ('.' + jj);
                   array.push(tDate);
                   tDate = result;
                 }
@@ -1025,34 +1012,33 @@ kindFramework
               }
             } else if ((endMinute !== 0 || startMinute !== 0) && (endHour - startHour >= 1) || (endMinute !== 0 || startMinute !== 0) && (endHour - startHour < 0)) { // hours & minutes
               array = []; // 02:00 ~ 03:30 , 02:30 ~ 3:00, 02:30 ~ 03:30..
-              var tDate = result;
-              var first;
+              tDate = result;
 
               if (endHour === 0) {
                 if (startHour === 0) { // in 00:00 ~ 00:59
                   array = [];
-                  var tDate = result;
-                  var first = 0;
-                  for (var i = first; i <= endHour; i++) {
-                    tDate += (('.' + i) + '.' + startMinute + '.' + endMinute);
+                  tDate = result;
+                  first = 0;
+                  for (var ll = first; ll <= endHour; ll++) {
+                    tDate += (('.' + ll) + '.' + startMinute + '.' + endMinute);
                     array.push(tDate);
                     tDate = result;
                   } //console.info(array);console.info('+++++++++++++++++++++++');
                 } else { // in ~ 24:59
                   array = [];
-                  var tDate = result;
-                  var first = 23;
-                  for (var i = first; i >= startHour; i--) {
-                    if (i === first && startMinute === 0 && endMinute === 0) {
+                  tDate = result;
+                  first = 23;
+                  for (var mm = first; mm >= startHour; mm--) {
+                    if (mm === first && startMinute === 0 && endMinute === 0) {
                       tDate += ('.' + 23);
-                    } else if (i === first && endMinute !== 0) {
+                    } else if (mm === first && endMinute !== 0) {
                       tDate += (('.' + 23) + '.0.' + endMinute);
-                    } else if (i === startHour && startMinute !== 0) {
-                      tDate += (('.' + i) + '.' + startMinute + '.' + '59');
-                    } else if (i === startHour && startMinute === 0) {
-                      tDate += ('.' + i);
+                    } else if (mm === startHour && startMinute !== 0) {
+                      tDate += (('.' + mm) + '.' + startMinute + '.' + '59');
+                    } else if (mm === startHour && startMinute === 0) {
+                      tDate += ('.' + mm);
                     } else {
-                      tDate += ('.' + i);
+                      tDate += ('.' + mm);
                     }
                     array.push(tDate);
                     tDate = result;
@@ -1061,13 +1047,13 @@ kindFramework
               } else if (startHour === 0 && startMinute === 0 && endMinute !== 0) { // 0:00 ~ 1:30
                 // first = endHour - startHour;
                 first = endHour;
-                for (var i = first; i >= startHour; i--) {
-                  if (i === first) { // 3:00 ~ 3:30
-                    tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                  } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                    tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                for (var nn = first; nn >= startHour; nn--) {
+                  if (nn === first) { // 3:00 ~ 3:30
+                    tDate += (('.' + nn) + '.' + (0 + '') + '.' + endMinute);
+                  } else if (nn === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                    tDate += (('.' + nn) + '.' + startMinute + '.' + '59'); // issue!
                   } else { // 2:00 ~ 3:00
-                    tDate += ('.' + i);
+                    tDate += ('.' + nn);
                   }
                   array.push(tDate);
                   tDate = result;
@@ -1075,13 +1061,13 @@ kindFramework
               } else if (startHour === 0 && startMinute !== 0 && endMinute !== 0) { // 0:30 ~ 1:30
                 // first = endHour - startHour;
                 first = endHour;
-                for (var i = first; i >= startHour; i--) {
-                  if (i === first) { // 3:00 ~ 3:30
-                    tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                  } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                    tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                for (var oo = first; oo >= startHour; oo--) {
+                  if (oo === first) { // 3:00 ~ 3:30
+                    tDate += (('.' + oo) + '.' + (0 + '') + '.' + endMinute);
+                  } else if (oo === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                    tDate += (('.' + oo) + '.' + startMinute + '.' + '59'); // issue!
                   } else { // 2:00 ~ 3:00
-                    tDate += ('.' + i);
+                    tDate += ('.' + oo);
                   }
                   array.push(tDate);
                   tDate = result;
@@ -1090,13 +1076,13 @@ kindFramework
                 // first = endHour - startHour - 1;
                 first = endHour - 1;
                 if (endHour - startHour > 1) {
-                  for (var i = first; i >= startHour; i--) {
-                    if (i === first && endMinute !== 0) { // 3:00 ~ 3:30
-                      tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                    } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                      tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                  for (var pp = first; pp >= startHour; pp--) {
+                    if (pp === first && endMinute !== 0) { // 3:00 ~ 3:30
+                      tDate += (('.' + pp) + '.' + (0 + '') + '.' + endMinute);
+                    } else if (pp === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                      tDate += (('.' + pp) + '.' + startMinute + '.' + '59'); // issue!
                     } else { // 2:00 ~ 3:00
-                      tDate += ('.' + i);
+                      tDate += ('.' + pp);
                     }
                     array.push(tDate);
                     tDate = result;
@@ -1109,13 +1095,13 @@ kindFramework
               } else if (startHour !== 0 && startMinute === 0 && endMinute !== 0) { // 1:00 ~ 2:30
                 // first = endHour - startHour + 1;
                 first = endHour;
-                for (var i = first; i >= startHour; i--) {
-                  if (i === first) { // 3:00 ~ 3:30
-                    tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                  } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                    tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                for (var qq = first; qq >= startHour; qq--) {
+                  if (qq === first) { // 3:00 ~ 3:30
+                    tDate += (('.' + qq) + '.' + (0 + '') + '.' + endMinute);
+                  } else if (qq === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                    tDate += (('.' + qq) + '.' + startMinute + '.' + '59'); // issue!
                   } else { // 2:00 ~ 3:00
-                    tDate += ('.' + i);
+                    tDate += ('.' + qq);
                   }
                   array.push(tDate);
                   tDate = result;
@@ -1124,13 +1110,13 @@ kindFramework
                 // first = endHour - startHour;
                 first = endHour - 1;
                 if (endHour - startHour > 1) {
-                  for (var i = first; i >= startHour; i--) {
-                    if (i === first && endMinute !== 0) { // 3:00 ~ 3:30
-                      tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                    } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                      tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                  for (var rr = first; rr >= startHour; rr--) {
+                    if (rr === first && endMinute !== 0) { // 3:00 ~ 3:30
+                      tDate += (('.' + rr) + '.' + (0 + '') + '.' + endMinute);
+                    } else if (rr === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                      tDate += (('.' + rr) + '.' + startMinute + '.' + '59'); // issue!
                     } else { // 2:00 ~ 3:00
-                      tDate += ('.' + i);
+                      tDate += ('.' + rr);
                     }
                     array.push(tDate);
                     tDate = result;
@@ -1142,13 +1128,13 @@ kindFramework
                 }
               } else if (startHour !== 0 && startMinute !== 0 && endMinute !== 0) { // 1:30 ~ 2:30
                 first = endHour;
-                for (var i = first; i >= startHour; i--) {
-                  if (i === first) { // 3:00 ~ 3:30
-                    tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                  } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                    tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                for (var ss = first; ss >= startHour; ss--) {
+                  if (ss === first) { // 3:00 ~ 3:30
+                    tDate += (('.' + ss) + '.' + (0 + '') + '.' + endMinute);
+                  } else if (ss === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                    tDate += (('.' + ss) + '.' + startMinute + '.' + '59'); // issue!
                   } else { // 2:00 ~ 3:00
-                    tDate += ('.' + i);
+                    tDate += ('.' + ss);
                   }
                   array.push(tDate);
                   tDate = result;
@@ -1177,9 +1163,9 @@ kindFramework
             var tDay = target[0];
             var result = new Date(defaultDate);
             var today = result.getDay();
-            var distance;
+            var distance = null;
             var eventObj = {};
-            var month, startHour, endHour, startMinute, endMinute, date;
+            var month = null, startHour = null, endHour = null, startMinute = null, endMinute = null, date = null;
 
             switch (tDay) {
               case 'lang_sun':
@@ -1324,7 +1310,7 @@ kindFramework
           }
 
           function initCalendar(data) {
-            if (typeof data != 'undefined') {
+            if (typeof data !== 'undefined') {
               $('#calendar').fullCalendar('destroy');
               initialRendered = false;
               alreadyCreated = true;
@@ -1497,13 +1483,13 @@ kindFramework
           $rootScope.$on('resetScheduleData', function() {
             deleteAll();
             if (prevEventObjs !== null) {
-              for (var i = 0; i < prevEventObjs.length; i++) {
-                $('#calendar').fullCalendar('renderEvent', prevEventObjs[i], true);
+              for (var index = 0; index < prevEventObjs.length; index++) {
+                $('#calendar').fullCalendar('renderEvent', prevEventObjs[index], true);
               }
             }
             mergeTheInitial();
           }, scope);
-        }
+        },
       };
-    }
+    },
   ]);
