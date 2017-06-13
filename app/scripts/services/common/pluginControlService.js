@@ -49,7 +49,7 @@ kindFramework
         EventNotificationService.setBorderElement($(pluginElement), 'live');
 
         if (PlugInPromise !== null) {
-          // pluginElement.PlayLiveStream ?‹¤?–‰ ?„ ì¤? Profile ë³?ê²? ?š”ì²??´ ?“¤?–´?˜¬ ê²½ìš°
+          // pluginElement.PlayLiveStream ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ ï¿½? Profile ï¿½?ï¿½? ?ï¿½ï¿½ï¿½??ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ê²½ìš°
           $timeout.cancel(PlugInPromise);
         }
 
@@ -489,10 +489,10 @@ kindFramework
         var LengthPos1 = String(Pos1).length;
         var LengthPos2 = String(Pos2).length;
         setData.X1 = parseInt(Number(Pos1) / 10000);
-        setData.Y1 = Number(String(Pos1).substring(LengthPos1 - 3, LengthPos1));
+        setData.Y1 = Number(String(Pos1).substring(LengthPos1 - String(setData.X1).length, LengthPos1));
 
         setData.X2 = parseInt(Number(Pos2) / 10000);
-        setData.Y2 = Number(String(Pos2).substring(LengthPos2 - 3, LengthPos2));
+        setData.Y2 = Number(String(Pos2).substring(LengthPos2 - String(setData.X2).length, LengthPos2));
 
         setData.TileWidth = pluginElement.offsetWidth;
         setData.TileHeight = pluginElement.offsetHeight;
@@ -867,8 +867,8 @@ kindFramework
           case 400: //rtsp connection success
             /*  jsonData
                 {
-                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
-                    type: ?—°ê²? ????…
+                    retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
+                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
                 }
             */
             if (jsonData.type === 1) {
@@ -887,8 +887,8 @@ kindFramework
           case 401: //rtsp unauthorized(401)
             /*  jsonData
                 {
-                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
-                    type: ?—°ê²? ????…
+                    retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
+                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
                 }
             */
             $timeout(function() {
@@ -915,7 +915,7 @@ kindFramework
               }
             }, 100);
             break;
-          case 402: //rtsp disconnection(5ì´ˆê°„ ë¯¸ìˆ˜?‹ ?‹œ)
+          case 402: //rtsp disconnection(5ì´ˆê°„ ë¯¸ìˆ˜?ï¿½ï¿½?ï¿½ï¿½)
             console.log("402 error :: try reconnect");
             pluginElement.CloseStream();
             if (reconnectionTimeout !== null) {
@@ -928,27 +928,27 @@ kindFramework
             updatePluginEventNotification(12, 1);
             // $rootScope.$emit("pluginControlService:updateEvent", data);        
             break;
-          case 403: //Rtsp ?‚¬?š©? ê³„ì • ë¸”ë¡?
+          case 403: //Rtsp ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ê³„ì • ë¸”ë¡?
             /*  jsonData
                 {
-                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
-                    type: ?—°ê²? ????…
+                    retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
+                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
                 }
             */
             break;
           case 404: //Rtsp not found(404)
             /*  jsonData
                 {
-                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
-                    type: ?—°ê²? ????…
+                    retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
+                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
                 }
             */
             break;
           case 405: //Rtsp client error
             /*  jsonData
                 {
-                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
-                    type: ?—°ê²? ????…
+                    retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
+                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
                 }
             */
             break;
@@ -959,8 +959,8 @@ kindFramework
           case 503: //Rtsp service not available(503)
             /*  jsonData
                 {
-                    retrycnt: ? ‘?† ?šŸ?ˆ˜,
-                    type: ?—°ê²? ????…
+                    retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
+                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
                 }
             */
             if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {

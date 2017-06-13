@@ -1,6 +1,5 @@
-/* global SketchManager, setInterval, clearInterval, getClientIP */
-kindFramework
-  .directive('eventActionSetup', ['LoggingService', 'COMMONUtils', 'Attributes', 'SunapiClient', '$rootScope', 'eventRuleService', 'UniversialManagerService',
+kindFramework.
+  directive('eventActionSetup', ['LoggingService', 'COMMONUtils', 'Attributes', 'SunapiClient', '$rootScope', 'eventRuleService', 'UniversialManagerService',
     function(LoggingService, COMMONUtils, Attributes, SunapiClient, $rootScope, eventRuleService, UniversialManagerService) {
       'use strict';
       return {
@@ -8,11 +7,8 @@ kindFramework
         scope: false,
         templateUrl: 'views/setup/common/event-action-setup.html',
         link: function(scope, elem, attrs) {
-          var logger = LoggingService.getInstance('eventActionSetup');
-          var currentEventRule = {};
-          var currentEventSource = null;
           var mAttr = Attributes.get();
-          var isMultiChannel;
+          var isMultiChannel = false;
           if (mAttr.MaxChannel > 1) {
             isMultiChannel = true;
           } else {
@@ -21,30 +17,31 @@ kindFramework
           var isEventActionSupported = mAttr.EventActionSupport;
           var pageData = {};
           var currentPage = null;
+          var locationChanging = false;
+          var DAYS = {SUN:0, MON:1, TUE:2, WED:3, THU:4, FRI:5, SAT:6};
+          var SCHEDULE = {MAX_LENGTH:4, DAY:0, HOUR:1, FROM_MIN:2, TO_MIN:3};
 
           function getEventActions() {
             var getData = {};
             var url = '';
-            if (currentPage !== null) {
-              scope.EventSource = currentPage;
-            }
-            if (scope.EventSource === 'VideoAnalysis' ||
-              scope.EventSource === 'FogDetection' ||
-              scope.EventSource === 'DefocusDetection' ||
-              scope.EventSource === 'FaceDetection' ||
-              scope.EventSource === 'AudioAnalysis' ||
-              scope.EventSource === 'VideoAnalysis' ||
-              scope.EventSource === 'MotionDetection' ||
-              scope.EventSource === 'TamperingDetection') {
+
+            if (currentPage === 'VideoAnalysis' ||
+              currentPage === 'FogDetection' ||
+              currentPage === 'DefocusDetection' ||
+              currentPage === 'FaceDetection' ||
+              currentPage === 'AudioAnalysis' ||
+              currentPage === 'VideoAnalysis' ||
+              currentPage === 'MotionDetection' ||
+              currentPage === 'TamperingDetection') {
               var currentChannel = UniversialManagerService.getChannelId();
               url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
-              getData.EventType = 'Channel.' + currentChannel + '.' + scope.EventSource; // EventType=Channel.0.MotionDetection
+              getData.EventType = 'Channel.' + currentChannel + '.' + currentPage; // EventType=Channel.0.MotionDetection
             } else {
               url = '/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view';
-              if (scope.EventSource === 'NetworkEvent') { // SUNAPI NG
+              if (currentPage === 'NetworkEvent') { // SUNAPI NG
                 getData.EventType = 'NetworkDisconnect';
               } else {
-                getData.EventType = scope.EventSource;
+                getData.EventType = currentPage;
               }
             }
 
@@ -69,11 +66,7 @@ kindFramework
 
           function getEventRules() {
             var getData = {};
-            if (currentPage === null) {
-              getData.EventSource = scope.EventSource;
-            } else {
-              getData.EventSource = currentPage;
-            }
+            getData.EventSource = currentPage;
             return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=rules&action=view', getData,
               function(response) {
                 prepareEventRules(response.data.EventRules);
@@ -101,11 +94,7 @@ kindFramework
               setData.Enable = scope.EventRule.Enable;
             }
             setData.RuleIndex = scope.EventRule.RuleIndex;
-            if (currentPage === null) {
-              setData.EventSource = scope.EventSource;
-            } else {
-              setData.EventSource = currentPage;
-            }
+            setData.EventSource = currentPage;
 
             setData.EventAction = "";
             if (scope.EventRule.FtpEnable) {
@@ -141,38 +130,38 @@ kindFramework
                 thu = 0,
                 fri = 0,
                 sat = 0;
-              for (var s = 0; s < diff.length; s++) {
-                var str = diff[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                  if (str[0] === mAttr.WeekDays[d]) {
-                    switch (d) {
-                      case 0:
+              for (var ss = 0; ss < diff.length; ss++) {
+                var str1 = diff[ss].split('.');
+                for (var dd = 0; dd < mAttr.WeekDays.length; dd++) {
+                  if (str1[SCHEDULE.DAY] === mAttr.WeekDays[dd]) {
+                    switch (dd) {
+                      case DAYS.SUN:
                         sun = 1;
-                        setData["SUN" + str[1]] = 0;
+                        setData["SUN" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 1:
+                      case DAYS.MON:
                         mon = 1;
-                        setData["MON" + str[1]] = 0;
+                        setData["MON" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 2:
+                      case DAYS.TUE:
                         tue = 1;
-                        setData["TUE" + str[1]] = 0;
+                        setData["TUE" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 3:
+                      case DAYS.WED:
                         wed = 1;
-                        setData["WED" + str[1]] = 0;
+                        setData["WED" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 4:
+                      case DAYS.THU:
                         thu = 1;
-                        setData["THU" + str[1]] = 0;
+                        setData["THU" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 5:
+                      case DAYS.FRI:
                         fri = 1;
-                        setData["FRI" + str[1]] = 0;
+                        setData["FRI" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 6:
+                      case DAYS.SAT:
                         sat = 1;
-                        setData["SAT" + str[1]] = 0;
+                        setData["SAT" + str1[SCHEDULE.HOUR]] = 0;
                         break;
                       default:
                         break;
@@ -180,58 +169,58 @@ kindFramework
                   }
                 }
               }
-              for (var s = 0; s < scope.EventRule.ScheduleIds.length; s++) {
-                var str = scope.EventRule.ScheduleIds[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                  if (str[0] === mAttr.WeekDays[d]) {
-                    switch (d) {
-                      case 0:
+              for (var tt = 0; tt < scope.EventRule.ScheduleIds.length; tt++) {
+                var str2 = scope.EventRule.ScheduleIds[tt].split('.');
+                for (var ee = 0; ee < mAttr.WeekDays.length; ee++) {
+                  if (str2[SCHEDULE.DAY] === mAttr.WeekDays[ee]) {
+                    switch (ee) {
+                      case DAYS.SUN:
                         sun = 1;
-                        setData["SUN" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["SUN" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["SUN" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["SUN" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 1:
+                      case DAYS.MON:
                         mon = 1;
-                        setData["MON" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["MON" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["MON" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["MON" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 2:
+                      case DAYS.TUE:
                         tue = 1;
-                        setData["TUE" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["TUE" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["TUE" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["TUE" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 3:
+                      case DAYS.WED:
                         wed = 1;
-                        setData["WED" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["WED" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["WED" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["WED" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 4:
+                      case DAYS.THU:
                         thu = 1;
-                        setData["THU" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["THU" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["THU" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["THU" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 5:
+                      case DAYS.FRI:
                         fri = 1;
-                        setData["FRI" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["FRI" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["FRI" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["FRI" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 6:
+                      case DAYS.SAT:
                         sat = 1;
-                        setData["SAT" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["SAT" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["SAT" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["SAT" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
                       default:
@@ -273,16 +262,12 @@ kindFramework
               }, '', true);
 
             pageData.EventRule = angular.copy(scope.EventRule);
-          };
+          }
 
           function setEventActions(channel) {
             var url = '';
             var setData = {};
             var currentChannel = 0;
-
-            if (currentPage !== null) {
-              scope.EventSource = currentPage;
-            }
 
             if (scope.EventRule.EventType.substring(0, 7) === 'Channel') {
               if (channel === null) { // no channel selection page.
@@ -336,38 +321,38 @@ kindFramework
                 thu = 0,
                 fri = 0,
                 sat = 0;
-              for (var s = 0; s < diff.length; s++) {
-                var str = diff[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                  if (str[0] === mAttr.WeekDays[d]) {
-                    switch (d) {
-                      case 0:
+              for (var ss = 0; ss < diff.length; ss++) {
+                var str1 = diff[ss].split('.');
+                for (var dd = 0; dd < mAttr.WeekDays.length; dd++) {
+                  if (str1[SCHEDULE.DAY] === mAttr.WeekDays[dd]) {
+                    switch (dd) {
+                      case DAYS.SUN:
                         sun = 1;
-                        setData["SUN" + str[1]] = 0;
+                        setData["SUN" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 1:
+                      case DAYS.MON:
                         mon = 1;
-                        setData["MON" + str[1]] = 0;
+                        setData["MON" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 2:
+                      case DAYS.TUE:
                         tue = 1;
-                        setData["TUE" + str[1]] = 0;
+                        setData["TUE" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 3:
+                      case DAYS.WED:
                         wed = 1;
-                        setData["WED" + str[1]] = 0;
+                        setData["WED" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 4:
+                      case DAYS.THU:
                         thu = 1;
-                        setData["THU" + str[1]] = 0;
+                        setData["THU" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 5:
+                      case DAYS.FRI:
                         fri = 1;
-                        setData["FRI" + str[1]] = 0;
+                        setData["FRI" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 6:
+                      case DAYS.SAT:
                         sat = 1;
-                        setData["SAT" + str[1]] = 0;
+                        setData["SAT" + str1[SCHEDULE.HOUR]] = 0;
                         break;
                       default:
                         break;
@@ -375,58 +360,58 @@ kindFramework
                   }
                 }
               }
-              for (var s = 0; s < scope.EventRule.ScheduleIds.length; s++) {
-                var str = scope.EventRule.ScheduleIds[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                  if (str[0] === mAttr.WeekDays[d]) {
-                    switch (d) {
-                      case 0:
+              for (var tt = 0; tt < scope.EventRule.ScheduleIds.length; tt++) {
+                var str2 = scope.EventRule.ScheduleIds[tt].split('.');
+                for (var ee = 0; ee < mAttr.WeekDays.length; ee++) {
+                  if (str2[SCHEDULE.DAY] === mAttr.WeekDays[ee]) {
+                    switch (ee) {
+                      case DAYS.SUN:
                         sun = 1;
-                        setData["SUN" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["SUN" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["SUN" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["SUN" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 1:
+                      case DAYS.MON:
                         mon = 1;
-                        setData["MON" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["MON" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["MON" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["MON" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 2:
+                      case DAYS.TUE:
                         tue = 1;
-                        setData["TUE" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["TUE" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["TUE" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["TUE" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 3:
+                      case DAYS.WED:
                         wed = 1;
-                        setData["WED" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["WED" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["WED" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["WED" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 4:
+                      case DAYS.THU:
                         thu = 1;
-                        setData["THU" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["THU" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["THU" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["THU" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 5:
+                      case DAYS.FRI:
                         fri = 1;
-                        setData["FRI" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["FRI" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["FRI" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["FRI" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 6:
+                      case DAYS.SAT:
                         sat = 1;
-                        setData["SAT" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["SAT" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["SAT" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["SAT" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
                       default:
@@ -465,31 +450,31 @@ kindFramework
               }, '', true);
 
             pageData.EventRule = angular.copy(scope.EventRule);
-          };
+          }
 
-          function setEventActionsByIndex(i) {
+          function setEventActionsByIndex(ii) {
             var setData = {};
-            setData.EventType = 'AlarmInput.' + (i + 1);
-            // setData.RuleIndex = scope.EventRules[i].RuleIndex;
+            setData.EventType = 'AlarmInput.' + (ii + 1);
+            // setData.RuleIndex = scope.EventRules[ii].RuleIndex;
             setData.EventAction = "";
-            if (scope.EventRules[i].FtpEnable) {
+            if (scope.EventRules[ii].FtpEnable) {
               setData.EventAction += 'FTP,';
             }
-            if (scope.EventRules[i].SmtpEnable) {
+            if (scope.EventRules[ii].SmtpEnable) {
               setData.EventAction += 'SMTP,';
             }
-            if (scope.EventRules[i].RecordEnable) {
+            if (scope.EventRules[ii].RecordEnable) {
               setData.EventAction += 'Record,';
             }
             for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-              if (scope.EventRules[i].AlarmOutputs[ao].Duration !== 'Off') {
+              if (scope.EventRules[ii].AlarmOutputs[ao].Duration !== 'Off') {
                 setData.EventAction += 'AlarmOutput.' + (ao + 1) + ',';
-                setData["AlarmOutput." + (ao + 1) + ".Duration"] = scope.EventRules[i].AlarmOutputs[ao].Duration;
+                setData["AlarmOutput." + (ao + 1) + ".Duration"] = scope.EventRules[ii].AlarmOutputs[ao].Duration;
               }
             }
-            if (scope.EventRules[i].PresetNumber !== 'Off') {
+            if (scope.EventRules[ii].PresetNumber !== 'Off') {
               setData.EventAction += 'GoToPreset,';
-              setData.PresetNumber = scope.EventRules[i].PresetNumber;
+              setData.PresetNumber = scope.EventRules[ii].PresetNumber;
             }
             if (setData.EventAction.length) {
               setData.EventAction = setData.EventAction.substring(0, setData.EventAction.length - 1);
@@ -498,10 +483,10 @@ kindFramework
               setData.EventAction = 'None';
             }
 
-            setData.ScheduleType = scope.EventRules[i].ScheduleType;
+            setData.ScheduleType = scope.EventRules[ii].ScheduleType;
             //if ($scope.EventRules[i].ScheduleType === 'Scheduled')
             {
-              var diff = $(pageData.EventRules[i].ScheduleIds).not(scope.EventRules[i].ScheduleIds).get();
+              var diff = $(pageData.EventRules[ii].ScheduleIds).not(scope.EventRules[ii].ScheduleIds).get();
               var sun = 0,
                 mon = 0,
                 tue = 0,
@@ -509,38 +494,38 @@ kindFramework
                 thu = 0,
                 fri = 0,
                 sat = 0;
-              for (var s = 0; s < diff.length; s++) {
-                var str = diff[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                  if (str[0] === mAttr.WeekDays[d]) {
-                    switch (d) {
-                      case 0:
+              for (var ss = 0; ss < diff.length; ss++) {
+                var str1 = diff[ss].split('.');
+                for (var dd = 0; dd < mAttr.WeekDays.length; dd++) {
+                  if (str1[SCHEDULE.DAY] === mAttr.WeekDays[dd]) {
+                    switch (dd) {
+                      case DAYS.SUN:
                         sun = 1;
-                        setData["SUN" + str[1]] = 0;
+                        setData["SUN" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 1:
+                      case DAYS.MON:
                         mon = 1;
-                        setData["MON" + str[1]] = 0;
+                        setData["MON" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 2:
+                      case DAYS.TUE:
                         tue = 1;
-                        setData["TUE" + str[1]] = 0;
+                        setData["TUE" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 3:
+                      case DAYS.WED:
                         wed = 1;
-                        setData["WED" + str[1]] = 0;
+                        setData["WED" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 4:
+                      case DAYS.THU:
                         thu = 1;
-                        setData["THU" + str[1]] = 0;
+                        setData["THU" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 5:
+                      case DAYS.FRI:
                         fri = 1;
-                        setData["FRI" + str[1]] = 0;
+                        setData["FRI" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 6:
+                      case DAYS.SAT:
                         sat = 1;
-                        setData["SAT" + str[1]] = 0;
+                        setData["SAT" + str1[SCHEDULE.HOUR]] = 0;
                         break;
                       default:
                         break;
@@ -548,58 +533,58 @@ kindFramework
                   }
                 }
               }
-              for (var s = 0; s < scope.EventRules[i].ScheduleIds.length; s++) {
-                var str = scope.EventRules[i].ScheduleIds[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                  if (str[0] === mAttr.WeekDays[d]) {
-                    switch (d) {
-                      case 0:
+              for (var tt = 0; tt < scope.EventRules[ii].ScheduleIds.length; tt++) {
+                var str2 = scope.EventRules[ii].ScheduleIds[tt].split('.');
+                for (var ee = 0; ee < mAttr.WeekDays.length; ee++) {
+                  if (str2[SCHEDULE.DAY] === mAttr.WeekDays[ee]) {
+                    switch (ee) {
+                      case DAYS.SUN:
                         sun = 1;
-                        setData["SUN" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["SUN" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["SUN" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["SUN" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 1:
+                      case DAYS.MON:
                         mon = 1;
-                        setData["MON" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["MON" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["MON" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["MON" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 2:
+                      case DAYS.TUE:
                         tue = 1;
-                        setData["TUE" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["TUE" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["TUE" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["TUE" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 3:
+                      case DAYS.WED:
                         wed = 1;
-                        setData["WED" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["WED" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["WED" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["WED" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 4:
+                      case DAYS.THU:
                         thu = 1;
-                        setData["THU" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["THU" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["THU" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["THU" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 5:
+                      case DAYS.FRI:
                         fri = 1;
-                        setData["FRI" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["FRI" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["FRI" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["FRI" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 6:
+                      case DAYS.SAT:
                         sat = 1;
-                        setData["SAT" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["SAT" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["SAT" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["SAT" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
                       default:
@@ -640,36 +625,36 @@ kindFramework
             pageData.EventRules = angular.copy(scope.EventRules);
           }
 
-          function setEventRulesByIndex(i) {
+          function setEventRulesByIndex(ii) {
             var setData = {};
-            setData.RuleIndex = scope.EventRules[i].RuleIndex;
+            setData.RuleIndex = scope.EventRules[ii].RuleIndex;
             setData.EventAction = "";
-            if (scope.EventRules[i].FtpEnable) {
+            if (scope.EventRules[ii].FtpEnable) {
               setData.EventAction += 'FTP,';
             }
-            if (scope.EventRules[i].SmtpEnable) {
+            if (scope.EventRules[ii].SmtpEnable) {
               setData.EventAction += 'SMTP,';
             }
-            if (scope.EventRules[i].RecordEnable) {
+            if (scope.EventRules[ii].RecordEnable) {
               setData.EventAction += 'Record,';
             }
             for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-              if (scope.EventRules[i].AlarmOutputs[ao].Duration !== 'Off') {
+              if (scope.EventRules[ii].AlarmOutputs[ao].Duration !== 'Off') {
                 setData.EventAction += 'AlarmOutput.' + (ao + 1) + ',';
-                setData["AlarmOutput." + (ao + 1) + ".Duration"] = scope.EventRules[i].AlarmOutputs[ao].Duration;
+                setData["AlarmOutput." + (ao + 1) + ".Duration"] = scope.EventRules[ii].AlarmOutputs[ao].Duration;
               }
             }
-            if (scope.EventRules[i].PresetNumber !== 'Off') {
+            if (scope.EventRules[ii].PresetNumber !== 'Off') {
               setData.EventAction += 'GoToPreset,';
-              setData.PresetNumber = scope.EventRules[i].PresetNumber;
+              setData.PresetNumber = scope.EventRules[ii].PresetNumber;
             }
             if (setData.EventAction.length) {
               setData.EventAction = setData.EventAction.substring(0, setData.EventAction.length - 1);
             }
-            setData.ScheduleType = scope.EventRules[i].ScheduleType;
+            setData.ScheduleType = scope.EventRules[ii].ScheduleType;
             //if ($scope.EventRules[i].ScheduleType === 'Scheduled')
             {
-              var diff = $(pageData.EventRules[i].ScheduleIds).not(scope.EventRules[i].ScheduleIds).get();
+              var diff = $(pageData.EventRules[ii].ScheduleIds).not(scope.EventRules[ii].ScheduleIds).get();
               var sun = 0,
                 mon = 0,
                 tue = 0,
@@ -677,38 +662,38 @@ kindFramework
                 thu = 0,
                 fri = 0,
                 sat = 0;
-              for (var s = 0; s < diff.length; s++) {
-                var str = diff[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                  if (str[0] === mAttr.WeekDays[d]) {
-                    switch (d) {
-                      case 0:
+              for (var ss = 0; ss < diff.length; ss++) {
+                var str1 = diff[ss].split('.');
+                for (var dd = 0; dd < mAttr.WeekDays.length; dd++) {
+                  if (str1[SCHEDULE.DAY] === mAttr.WeekDays[dd]) {
+                    switch (dd) {
+                      case DAYS.SUN:
                         sun = 1;
-                        setData["SUN" + str[1]] = 0;
+                        setData["SUN" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 1:
+                      case DAYS.MON:
                         mon = 1;
-                        setData["MON" + str[1]] = 0;
+                        setData["MON" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 2:
+                      case DAYS.TUE:
                         tue = 1;
-                        setData["TUE" + str[1]] = 0;
+                        setData["TUE" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 3:
+                      case DAYS.WED:
                         wed = 1;
-                        setData["WED" + str[1]] = 0;
+                        setData["WED" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 4:
+                      case DAYS.THU:
                         thu = 1;
-                        setData["THU" + str[1]] = 0;
+                        setData["THU" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 5:
+                      case DAYS.FRI:
                         fri = 1;
-                        setData["FRI" + str[1]] = 0;
+                        setData["FRI" + str1[SCHEDULE.HOUR]] = 0;
                         break;
-                      case 6:
+                      case DAYS.SAT:
                         sat = 1;
-                        setData["SAT" + str[1]] = 0;
+                        setData["SAT" + str1[SCHEDULE.HOUR]] = 0;
                         break;
                       default:
                         break;
@@ -716,58 +701,58 @@ kindFramework
                   }
                 }
               }
-              for (var s = 0; s < scope.EventRules[i].ScheduleIds.length; s++) {
-                var str = scope.EventRules[i].ScheduleIds[s].split('.');
-                for (var d = 0; d < mAttr.WeekDays.length; d++) {
-                  if (str[0] === mAttr.WeekDays[d]) {
-                    switch (d) {
-                      case 0:
+              for (var tt = 0; tt < scope.EventRules[ii].ScheduleIds.length; tt++) {
+                var str2 = scope.EventRules[ii].ScheduleIds[tt].split('.');
+                for (var ee = 0; ee < mAttr.WeekDays.length; ee++) {
+                  if (str2[SCHEDULE.DAY] === mAttr.WeekDays[ee]) {
+                    switch (ee) {
+                      case DAYS.SUN:
                         sun = 1;
-                        setData["SUN" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["SUN" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["SUN" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["SUN" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 1:
+                      case DAYS.MON:
                         mon = 1;
-                        setData["MON" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["MON" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["MON" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["MON" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 2:
+                      case DAYS.TUE:
                         tue = 1;
-                        setData["TUE" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["TUE" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["TUE" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["TUE" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 3:
+                      case DAYS.WED:
                         wed = 1;
-                        setData["WED" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["WED" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["WED" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["WED" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 4:
+                      case DAYS.THU:
                         thu = 1;
-                        setData["THU" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["THU" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["THU" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["THU" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 5:
+                      case DAYS.FRI:
                         fri = 1;
-                        setData["FRI" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["FRI" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["FRI" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["FRI" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
-                      case 6:
+                      case DAYS.SAT:
                         sat = 1;
-                        setData["SAT" + str[1]] = 1;
-                        if (str.length === 4) {
-                          setData["SAT" + str[1] + ".FromTo"] = str[2] + '-' + str[3];
+                        setData["SAT" + str2[SCHEDULE.HOUR]] = 1;
+                        if (str2.length === SCHEDULE.MAX_LENGTH) {
+                          setData["SAT" + str2[SCHEDULE.HOUR] + ".FromTo"] = str2[SCHEDULE.FROM_MIN] + '-' + str2[SCHEDULE.TO_MIN];
                         }
                         break;
                       default:
@@ -830,21 +815,21 @@ kindFramework
             }
             scope.EventRule.AlarmOutputs = [];
             if (typeof eventRules[0].AlarmOutputs === 'undefined') {
-              for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-                scope.EventRule.AlarmOutputs[ao] = {};
-                scope.EventRule.AlarmOutputs[ao].Duration = 'Off';
+              for (var ii = 0; ii < mAttr.MaxAlarmOutput; ii++) {
+                scope.EventRule.AlarmOutputs[ii] = {};
+                scope.EventRule.AlarmOutputs[ii].Duration = 'Off';
               }
             } else {
-              for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-                scope.EventRule.AlarmOutputs[ao] = {};
+              for (var jj = 0; jj < mAttr.MaxAlarmOutput; jj++) {
+                scope.EventRule.AlarmOutputs[jj] = {};
                 var duration = 'Off';
-                for (var j = 0; j < eventRules[0].AlarmOutputs.length; j++) {
-                  if ((ao + 1) === eventRules[0].AlarmOutputs[j].AlarmOutput) {
-                    duration = eventRules[0].AlarmOutputs[j].Duration;
+                for (var kk = 0; kk < eventRules[0].AlarmOutputs.length; kk++) {
+                  if ((jj + 1) === eventRules[0].AlarmOutputs[kk].AlarmOutput) {
+                    duration = eventRules[0].AlarmOutputs[kk].Duration;
                     break;
                   }
                 }
-                scope.EventRule.AlarmOutputs[ao].Duration = duration;
+                scope.EventRule.AlarmOutputs[jj].Duration = duration;
               }
             }
             if (typeof eventRules[0].PresetNumber === 'undefined') {
@@ -860,11 +845,11 @@ kindFramework
             eventRuleService.setEventRuleData({
               pageData: scope.EventRule,
               scopeData: scope.EventRule,
-              menu: scope.EventSource
+              menu: scope.EventSource,
             });
 
             // scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
-          };
+          }
 
           function prepareEventActions(eventActions) {
             var eventAction = eventActions[0].Actions;
@@ -890,21 +875,21 @@ kindFramework
             }
             scope.EventRule.AlarmOutputs = [];
             if (typeof eventAction[0].AlarmOutputs[0].Duration === 'undefined' || eventAction[0].AlarmOutputs[0].Duration === 'None') {
-              for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-                scope.EventRule.AlarmOutputs[ao] = {};
-                scope.EventRule.AlarmOutputs[ao].Duration = 'Off';
+              for (var ii = 0; ii < mAttr.MaxAlarmOutput; ii++) {
+                scope.EventRule.AlarmOutputs[ii] = {};
+                scope.EventRule.AlarmOutputs[ii].Duration = 'Off';
               }
             } else {
-              for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-                scope.EventRule.AlarmOutputs[ao] = {};
+              for (var jj = 0; jj < mAttr.MaxAlarmOutput; jj++) {
+                scope.EventRule.AlarmOutputs[jj] = {};
                 var duration = 'Off';
-                for (var j = 0; j < eventAction[0].AlarmOutputs.length; j++) {
-                  if ((ao + 1) === eventAction[0].AlarmOutputs[j].AlarmOutput) {
-                    duration = eventAction[0].AlarmOutputs[j].Duration;
+                for (var kk = 0; kk < eventAction[0].AlarmOutputs.length; kk++) {
+                  if ((jj + 1) === eventAction[0].AlarmOutputs[kk].AlarmOutput) {
+                    duration = eventAction[0].AlarmOutputs[kk].Duration;
                     break;
                   }
                 }
-                scope.EventRule.AlarmOutputs[ao].Duration = duration;
+                scope.EventRule.AlarmOutputs[jj].Duration = duration;
               }
             }
             if (typeof eventAction[0].PresetNumber === 'undefined') {
@@ -919,62 +904,62 @@ kindFramework
             eventRuleService.setEventRuleData({
               pageData: scope.EventRule,
               scopeData: scope.EventRule,
-              menu: scope.EventSource
+              menu: scope.EventSource,
             });
 
             scope.$emit('EventRulePrepared', scope.EventRule.ScheduleType);
-          };
+          }
 
           function prepareEventActionArray(eventActions) {
             scope.EventRules = [];
             for (var ai = 0; ai < mAttr.MaxAlarmInput; ai++) {
-              var eventType = 'AlarmInput.' + (ai + 1);
-              for (var i = 0; i < eventActions.length; i++) {
+              // var eventType = 'AlarmInput.' + (ai + 1);
+              for (var ii = 0; ii < eventActions.length; ii++) {
                 var mRule = {};
                 mRule.FtpEnable = false;
                 mRule.SmtpEnable = false;
                 mRule.RecordEnable = false;
-                if (eventActions[i].EventType === 'AlarmInput.#') {
-                  var actions = eventActions[i].Actions;
-                  for (var k = 0; k < actions.length; k++) {
-                    mRule.Enable = actions[k].Enable;
-                    mRule.RuleIndex = actions[k].AlarmInput;
-                    mRule.ScheduleType = actions[k].ScheduleType;
-                    mRule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds(actions[k].Schedule));
-                    if (typeof actions[k].EventActions !== 'undefined') {
-                      if (actions[k].EventActions.indexOf('FTP') !== -1) {
+                if (eventActions[ii].EventType === 'AlarmInput.#') {
+                  var actions = eventActions[ii].Actions;
+                  for (var kk = 0; kk < actions.length; kk++) {
+                    mRule.Enable = actions[kk].Enable;
+                    mRule.RuleIndex = actions[kk].AlarmInput;
+                    mRule.ScheduleType = actions[kk].ScheduleType;
+                    mRule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds(actions[kk].Schedule));
+                    if (typeof actions[kk].EventActions !== 'undefined') {
+                      if (actions[kk].EventActions.indexOf('FTP') !== -1) {
                         mRule.FtpEnable = true;
                       }
-                      if (actions[k].EventActions.indexOf('SMTP') !== -1) {
+                      if (actions[kk].EventActions.indexOf('SMTP') !== -1) {
                         mRule.SmtpEnable = true;
                       }
-                      if (actions[k].EventActions.indexOf('Record') !== -1) {
+                      if (actions[kk].EventActions.indexOf('Record') !== -1) {
                         mRule.RecordEnable = true;
                       }
                     }
                     mRule.AlarmOutputs = [];
-                    if (typeof actions[k].AlarmOutputs === 'undefined' || actions[k].AlarmOutputs[0].Duration === 'None') {
-                      for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-                        mRule.AlarmOutputs[ao] = {};
-                        mRule.AlarmOutputs[ao].Duration = 'Off';
+                    if (typeof actions[kk].AlarmOutputs === 'undefined' || actions[kk].AlarmOutputs[0].Duration === 'None') {
+                      for (var jj = 0; jj < mAttr.MaxAlarmOutput; jj++) {
+                        mRule.AlarmOutputs[jj] = {};
+                        mRule.AlarmOutputs[jj].Duration = 'Off';
                       }
                     } else {
-                      for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-                        mRule.AlarmOutputs[ao] = {};
+                      for (var mm = 0; mm < mAttr.MaxAlarmOutput; mm++) {
+                        mRule.AlarmOutputs[mm] = {};
                         var duration = 'Off';
-                        for (var j = 0; j < actions[k].AlarmOutputs.length; j++) {
-                          if (ao + 1 === actions[k].AlarmOutputs[j].AlarmOutput) {
-                            duration = actions[k].AlarmOutputs[j].Duration;
+                        for (var ll = 0; ll < actions[kk].AlarmOutputs.length; ll++) {
+                          if (mm + 1 === actions[kk].AlarmOutputs[ll].AlarmOutput) {
+                            duration = actions[kk].AlarmOutputs[ll].Duration;
                             break;
                           }
                         }
-                        mRule.AlarmOutputs[ao].Duration = duration;
+                        mRule.AlarmOutputs[mm].Duration = duration;
                       }
                     }
-                    if (typeof actions[k].PresetNumber === 'undefined') {
+                    if (typeof actions[kk].PresetNumber === 'undefined') {
                       mRule.PresetNumber = 'Off';
                     } else {
-                      mRule.PresetNumber = actions[k].PresetNumber + '';
+                      mRule.PresetNumber = actions[kk].PresetNumber + '';
                     }
                     scope.EventRules.push(mRule);
                   }
@@ -989,14 +974,13 @@ kindFramework
             eventRuleService.setEventRuleData({
               pageData: scope.EventRules,
               scopeData: scope.EventRules,
-              menu: scope.EventSource
+              menu: scope.EventSource,
             });
 
             // scope.$emit('EventRulePrepared', scope.EventRules.ScheduleType);
           }
 
           function prepareEventRuleArray(eventRules) {
-            console.info(eventRules);
             scope.EventRules = [];
             for (var ai = 0; ai < mAttr.MaxAlarmInput; ai++) {
               var mRule = {};
@@ -1004,46 +988,46 @@ kindFramework
               mRule.SmtpEnable = false;
               mRule.RecordEnable = false;
               var sourceName = 'AlarmInput.' + (ai + 1);
-              for (var i = 0; i < eventRules.length; i++) {
-                if (eventRules[i].EventSource === sourceName) {
-                  mRule.Enable = eventRules[i].Enable;
-                  mRule.RuleIndex = eventRules[i].RuleIndex;
-                  mRule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds(eventRules[i].Schedule));
-                  mRule.ScheduleType = eventRules[i].ScheduleType;
-                  if (typeof eventRules[i].EventAction !== 'undefined') {
-                    if (eventRules[i].EventAction.indexOf('FTP') !== -1) {
+              for (var ii = 0; ii < eventRules.length; ii++) {
+                if (eventRules[ii].EventSource === sourceName) {
+                  mRule.Enable = eventRules[ii].Enable;
+                  mRule.RuleIndex = eventRules[ii].RuleIndex;
+                  mRule.ScheduleIds = angular.copy(COMMONUtils.getSchedulerIds(eventRules[ii].Schedule));
+                  mRule.ScheduleType = eventRules[ii].ScheduleType;
+                  if (typeof eventRules[ii].EventAction !== 'undefined') {
+                    if (eventRules[ii].EventAction.indexOf('FTP') !== -1) {
                       mRule.FtpEnable = true;
                     }
-                    if (eventRules[i].EventAction.indexOf('SMTP') !== -1) {
+                    if (eventRules[ii].EventAction.indexOf('SMTP') !== -1) {
                       mRule.SmtpEnable = true;
                     }
-                    if (eventRules[i].EventAction.indexOf('Record') !== -1) {
+                    if (eventRules[ii].EventAction.indexOf('Record') !== -1) {
                       mRule.RecordEnable = true;
                     }
                   }
                   mRule.AlarmOutputs = [];
-                  if (typeof eventRules[i].AlarmOutputs === 'undefined') {
-                    for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-                      mRule.AlarmOutputs[ao] = {};
-                      mRule.AlarmOutputs[ao].Duration = 'Off';
+                  if (typeof eventRules[ii].AlarmOutputs === 'undefined') {
+                    for (var jj = 0; jj < mAttr.MaxAlarmOutput; jj++) {
+                      mRule.AlarmOutputs[jj] = {};
+                      mRule.AlarmOutputs[jj].Duration = 'Off';
                     }
                   } else {
-                    for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-                      mRule.AlarmOutputs[ao] = {};
+                    for (var kk = 0; kk < mAttr.MaxAlarmOutput; kk++) {
+                      mRule.AlarmOutputs[kk] = {};
                       var duration = 'Off';
-                      for (var j = 0; j < eventRules[i].AlarmOutputs.length; j++) {
-                        if (ao + 1 === eventRules[i].AlarmOutputs[j].AlarmOutput) {
-                          duration = eventRules[i].AlarmOutputs[j].Duration;
+                      for (var ll = 0; ll < eventRules[ii].AlarmOutputs.length; ll++) {
+                        if (kk + 1 === eventRules[ii].AlarmOutputs[ll].AlarmOutput) {
+                          duration = eventRules[ii].AlarmOutputs[ll].Duration;
                           break;
                         }
                       }
-                      mRule.AlarmOutputs[ao].Duration = duration;
+                      mRule.AlarmOutputs[kk].Duration = duration;
                     }
                   }
-                  if (typeof eventRules[i].PresetNumber === 'undefined') {
+                  if (typeof eventRules[ii].PresetNumber === 'undefined') {
                     mRule.PresetNumber = 'Off';
                   } else {
-                    mRule.PresetNumber = eventRules[i].PresetNumber + '';
+                    mRule.PresetNumber = eventRules[ii].PresetNumber + '';
                   }
                   scope.EventRules.push(mRule);
                   break;
@@ -1058,7 +1042,7 @@ kindFramework
             eventRuleService.setEventRuleData({
               pageData: scope.EventRules,
               scopeData: scope.EventRules,
-              menu: scope.EventSource
+              menu: scope.EventSource,
             });
 
             // scope.$emit('EventRulePrepared', scope.EventRules.ScheduleType);
@@ -1068,21 +1052,24 @@ kindFramework
             if (typeof newVal === "undefined") {
               return;
             } //console.info('eventactionsetup watch pageloaded : ');console.info(scope.EventSource);
+            currentPage = scope.EventSource;
+            UniversialManagerService.setCurrentSetupPage(currentPage);
             if (newVal === true) {
               if (isEventActionSupported && isMultiChannel) {
-                if (scope.EventSource !== 'AlarmInput') {
+                if (currentPage !== 'AlarmInput') {
                   getEventActions();
                 } else {
                   getEventActionArray();
                 }
               } else {
-                if (scope.EventSource !== 'AlarmInput') {
+                if (currentPage !== 'AlarmInput') {
                   getEventRules();
                 } else {
                   getEventRuleArray();
                 }
               }
             }
+            locationChanging = false;
           }, true);
 
           // when update eventRule data by user mouse, set data for eventRuleService.
@@ -1106,22 +1093,22 @@ kindFramework
             var data = {
               pageData: pageData.EventRules,
               scopeData: scope.EventRules,
-              menu: scope.EventSource
+              menu: scope.EventSource,
             }
             eventRuleService.setEventRuleData(data);
           }, true);
 
           scope.$saveOn('pageLoaded', function(event, data) { //console.info('eventactionsetup saveon pageloaded : ');console.info(scope.EventSource);
-            currentPage = data;
-            if (currentPage === scope.EventSource) {
+            var tCurrentPage = UniversialManagerService.getCurrentSetupPage();
+            if (tCurrentPage === scope.EventSource && !locationChanging) {
               if (isEventActionSupported && isMultiChannel) {
-                if (scope.EventSource !== 'AlarmInput') {
+                if (currentPage !== 'AlarmInput') {
                   getEventActions();
                 } else {
                   getEventActionArray();
                 }
               } else {
-                if (scope.EventSource !== 'AlarmInput') {
+                if (currentPage !== 'AlarmInput') {
                   getEventRules();
                 } else {
                   getEventRuleArray();
@@ -1131,32 +1118,35 @@ kindFramework
           });
 
           scope.$saveOn('applied', function(event, data) { //console.info('eventactionsetup saveon applied : ');console.info(scope.EventSource);
-            var channel = null;
-            if (data !== true) { // target channel to set passed as parameter.
-              channel = data;
-            }
-            if (scope.EventSource !== 'AlarmInput') {
-              if (!angular.equals(pageData.EventRule, scope.EventRule)) {
-                if (isEventActionSupported && isMultiChannel) {
-                  setEventActions(channel);
-                } else {
-                  setEventRules();
-                }
+            var tCurrentPage = UniversialManagerService.getCurrentSetupPage();
+            if (tCurrentPage === scope.EventSource) {
+              var channel = null;
+              if (data !== true) { // target channel to set passed as parameter.
+                channel = data;
               }
-            } else {
-              if (!angular.equals(pageData.EventRules, scope.EventRules)) {
-                if (isEventActionSupported && isMultiChannel) {
-                  scope.EventRules.forEach(function(elem, index) {
-                    if (!angular.equals(pageData.EventRules[index], scope.EventRules[index])) {
-                      setEventActionsByIndex(index);
-                    }
-                  });
-                } else {
-                  scope.EventRules.forEach(function(elem, index) {
-                    if (!angular.equals(pageData.EventRules[index], scope.EventRules[index])) {
-                      setEventRulesByIndex(index);
-                    }
-                  });
+              if (currentPage !== 'AlarmInput') {
+                if (!angular.equals(pageData.EventRule, scope.EventRule)) {
+                  if (isEventActionSupported && isMultiChannel) {
+                    setEventActions(channel);
+                  } else {
+                    setEventRules();
+                  }
+                }
+              } else {
+                if (!angular.equals(pageData.EventRules, scope.EventRules)) {
+                  if (isEventActionSupported && isMultiChannel) {
+                    scope.EventRules.forEach(function(elem, index) {
+                      if (!angular.equals(pageData.EventRules[index], scope.EventRules[index])) {
+                        setEventActionsByIndex(index);
+                      }
+                    });
+                  } else {
+                    scope.EventRules.forEach(function(elem, index) {
+                      if (!angular.equals(pageData.EventRules[index], scope.EventRules[index])) {
+                        setEventRulesByIndex(index);
+                      }
+                    });
+                  }
                 }
               }
             }
@@ -1168,8 +1158,12 @@ kindFramework
             } else {
               return 'lang_simpleFocus';
             }
-          }
-        }
+          };
+
+          $rootScope.$saveOn("$locationChangeStart", function(event, next, current) {
+            locationChanging = true;
+          });
+        },
       };
-    }
+    },
   ]);
