@@ -652,27 +652,21 @@ live-playback common {
 /* table element */
 .cm-table {
   width: 100%;
-  color: #000000;
   position: relative;
   word-break: break-all;
   border-collapse: collapse;
+  /*& tr:first-child > * {
+        border-top: 1px solid @theme-light-table-border;
+    }*/
 }
 .cm-table th,
 .cm-table td {
   padding: 5px 10px;
   line-height: 16px;
-  border: 1px solid #e9e9e9;
 }
 .cm-table th {
   text-align: center;
-  background-color: #f2f2f2;
   font-weight: normal;
-}
-.cm-table td {
-  background-color: #ffffff;
-}
-.cm-table tr:first-child > * {
-  border-top: 1px solid #e9e9e9;
 }
 /* video area */
 #cm-video {
@@ -817,8 +811,6 @@ live-playback common {
   border-left: none !important;
 }
 #cm-bottom-menu.cm-full-menu .cm-table {
-  color: #fff;
-  border: 1px solid #333;
   border-collapse: collapse;
 }
 #cm-bottom-menu.cm-full-menu .cm-table::-webkit-scrollbar {
@@ -826,14 +818,6 @@ live-playback common {
 }
 #cm-bottom-menu.cm-full-menu .cm-table::-webkit-scrollbar-thumb {
   opacity: 0.2;
-}
-#cm-bottom-menu.cm-full-menu .cm-table th {
-  background-color: #262626;
-  border: 1px solid #333;
-}
-#cm-bottom-menu.cm-full-menu .cm-table td {
-  background-color: #191919;
-  border: 1px solid #333;
 }
 #cm-bottom-menu.cm-full-menu .cm-selectbox,
 #cm-bottom-menu.cm-full-menu .cm-textbox {
@@ -1759,7 +1743,7 @@ input[type='text'] {
 .cm-full-menu .cm-btn-dark.cm-disabled,
 .cm-full-menu .cm-btn-dark.disabled {
   border: 1px solid #333333 !important;
-  color: #333333 !important;
+  color: #d2d2d2 !important;
   background-color: #191919 !important;
 }
 .cm-full-menu .cm-btn-dark[disabled]:focus,
@@ -1775,7 +1759,7 @@ input[type='text'] {
 .cm-full-menu .cm-btn-dark.cm-disabled:hover,
 .cm-full-menu .cm-btn-dark.disabled:hover {
   border: 1px solid #333333 !important;
-  color: #333333 !important;
+  color: #d2d2d2 !important;
   background-color: #191919 !important;
 }
 .cm-full-menu .cm-btn-point {
@@ -1805,7 +1789,7 @@ input[type='text'] {
 .cm-full-menu .cm-btn-point.cm-disabled,
 .cm-full-menu .cm-btn-point.disabled {
   border: 1px solid #333333 !important;
-  color: #333333 !important;
+  color: #a5a5a5 !important;
   background-color: #191919 !important;
 }
 .cm-full-menu .cm-btn-point[disabled]:focus,
@@ -1821,7 +1805,7 @@ input[type='text'] {
 .cm-full-menu .cm-btn-point.cm-disabled:hover,
 .cm-full-menu .cm-btn-point.disabled:hover {
   border: 1px solid #333333 !important;
-  color: #333333 !important;
+  color: #a5a5a5 !important;
   background-color: #191919 !important;
 }
 .timeline-container {
@@ -2135,13 +2119,14 @@ body.modal-open {
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   -o-backface-visibility: hidden;
-  min-width: 450px;
+  min-width: 320px;
   max-width: 90%;
   width: 100%;
 }
 @media (min-width: 768px) {
   .modal.modal-position-middle .modal-dialog {
-    width: 450px;
+    min-width: 450px;
+    width: auto;
   }
 }
 .modal-backdrop {
@@ -3094,6 +3079,44 @@ body.modal-open {
   display: inline-block;
   position: relative !important;
   margin-left: 10px;
+}
+.cm-table-theme * {
+  color: inherit !important;
+  background-color: inherit !important;
+}
+.cm-table-theme tr th,
+.cm-table-theme tr td {
+  border: 1px solid #e9e9e9 !important;
+}
+.cm-table-theme tr th {
+  background-color: #f2f2f2 !important;
+  color: #000000 !important;
+}
+.cm-table-theme tr td {
+  background-color: #ffffff !important;
+  color: #4c4c4c !important;
+}
+.cm-table-theme tr.wn5-setup-table-active td {
+  background-color: #fef1e8 !important;
+}
+.cm-full-menu .cm-table-theme * {
+  color: inherit !important;
+  background-color: inherit !important;
+}
+.cm-full-menu .cm-table-theme tr th,
+.cm-full-menu .cm-table-theme tr td {
+  border: 1px solid #333333 !important;
+}
+.cm-full-menu .cm-table-theme tr th {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+.cm-full-menu .cm-table-theme tr td {
+  background-color: #191919 !important;
+  color: #ffffff !important;
+}
+.cm-full-menu .cm-table-theme tr.wn5-setup-table-active td {
+  background-color: #fef1e8 !important;
 }
 html,
 body {
