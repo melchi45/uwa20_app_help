@@ -9320,8 +9320,6 @@ i.tui-ch-playback-stop {
     width: 100%;
     margin-bottom: 20px;
   }
-}
-@media screen and (max-width: 850px) {
   .kind-responsive-playback #pb-menu-content .cm-col {
     margin: 0 10px;
   }
@@ -9369,12 +9367,39 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-icon-list #pb-play-control {
     margin: 0 10px;
   }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section h2 {
+    text-align: center;
+  }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .start-time,
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .end-time {
     margin-top: 15px;
   }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section > .pb-block {
+    margin: 0 auto;
+    float: none;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section > .pb-block:first-child {
+    width: 100%;
+    margin: 15px 0px;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section > .pb-block.cm-m0-5 {
+    margin: 0 3px;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .ua-datepicker table {
+    width: 80%;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .pb-all-day {
+    text-align: center;
+  }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .pb-all-day label {
-    margin: 5px 0;
+    margin: 20px 0 0 0;
+  }
+  .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-datepicker-section .pb-button-wrap {
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    clear: both;
+    width: 100%;
   }
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content .cm-col {
     margin: 0 2px !important;
@@ -9420,39 +9445,6 @@ i.tui-ch-playback-stop {
   .kind-responsive-playback:not(.land-scape) #cm-bottom-menu #pb-menu-content .pb-backup-button {
     margin-top: 10px;
     padding: 5px 0 !important;
-  }
-}
-@media screen and (max-width: 700px) {
-  .kind-responsive-playback #pb-datepicker-section .pb-block.cm-m0-5 {
-    margin: 0 3px;
-  }
-  .kind-responsive-playback #pb-datepicker-section > .pb-block {
-    margin: 0 auto;
-    float: none;
-  }
-  .kind-responsive-playback #pb-datepicker-section > .pb-block:first-child {
-    width: 100%;
-    margin: 15px 0px;
-  }
-  .kind-responsive-playback #pb-datepicker-section .pb-button-wrap {
-    text-align: center;
-    display: block;
-    margin: 10px auto;
-    clear: both;
-    width: 100%;
-  }
-  .kind-responsive-playback #pb-datepicker-section h2 {
-    text-align: center;
-  }
-  .kind-responsive-playback #pb-datepicker-section .ua-datepicker table {
-    width: 80%;
-  }
-  .kind-responsive-playback .pb-all-day label {
-    margin-left: 5%;
-  }
-  .kind-responsive-playback .cm-cancel-button {
-    width: 100px;
-    font-size: 14px;
   }
 }
 @media screen and (max-width: 530px) {
