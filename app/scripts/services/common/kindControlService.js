@@ -1,17 +1,38 @@
-kindFramework
-  .service('KindControlService', ['$rootScope', 'LoggingService', 'kindStreamInterface',
+kindFramework.
+  service('KindControlService', ['$rootScope', 'LoggingService', 'kindStreamInterface',
     'UniversialManagerService', 'ConnectionSettingService', 'Attributes', 'ModalManagerService',
-    '$translate', 'CAMERA_STATUS', 'EventNotificationService', 'AccountService', '$q', 'SunapiClient',
-    '$timeout', 'PTZContorlService', 'PTZ_TYPE',
+    '$translate', 'CAMERA_STATUS', 'EventNotificationService', 'AccountService', '$q', 
+    'SunapiClient', '$timeout', 'PTZContorlService', 'PTZ_TYPE',
     function($rootScope, LoggingService, kindStreamInterface, UniversialManagerService,
       ConnectionSettingService, Attributes, ModalManagerService, $translate, CAMERA_STATUS,
-      EventNotificationService, AccountService, $q, SunapiClient, $timeout, PTZContorlService, PTZ_TYPE) {
+      EventNotificationService, AccountService, $q, SunapiClient, $timeout, PTZContorlService, 
+      PTZ_TYPE) {
       var sunapiAttributes = Attributes.get(); //--> not common.
       var NonPluginProfile = "PLUGINFREE";
-      var NonPluginResolution = "1920x1080";
-      var NonPluginResolution_Multi = "1536x676";
-      var NonPluginResolution_Fish_9M = "1280x1280";
-      var NonPluginResolution_Fish_12M = "800x600";
+      var MIN_DOUBLE_FIGURES = 10;
+      var nonPluginResolution = {
+        'multi' : '1536x676',
+        'Fisheye9M' : "1280x1280",
+        'Fisheye12M' : "800x600",
+      };
+      var NON_PLUGIN_RESOLUTION = {
+        'MULTI' : {
+          'WIDTH' : 1536,
+          'HEIGHT' : 676,
+        },
+        'FISHEYE' : {
+          'WIDTH' : 1280,
+          'HEIGHT' : 1280,
+        },
+      };
+      var ERROR_CODE = {
+        'ARGUMENT_ERROR' : 300,
+        'PROFILE_UNAVAILABLE' : 503,
+        'TALK_UNAVAILABLE' : 504,
+        'PLUGINFREE' : 996,
+        'DISCONNECT' : 999,
+      }
+      var TIMEOUT = 500;
       var NonPluginResolutionArray = getResolutionListForRatio();
       var NonPluginSelectNum = 0;
       var changePluginFlag = false;
@@ -20,11 +41,16 @@ kindFramework
       var getDateStr = function() {
         var dt = new Date();
         var dateStr = dt.getFullYear() + "";
-        dateStr += (dt.getMonth() < 9 ? "0" + (dt.getMonth() + 1) : (dt.getMonth() + 1)) + "";
-        dateStr += (dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate()) + " ";
-        dateStr += (dt.getHours() < 10 ? "0" + dt.getHours() : dt.getHours()) + "";
-        dateStr += (dt.getMinutes() < 10 ? "0" + dt.getMinutes() : dt.getMinutes()) + "";
-        dateStr += (dt.getSeconds() < 10 ? "0" + dt.getSeconds() : dt.getSeconds());
+        dateStr += (dt.getMonth()+1 < MIN_DOUBLE_FIGURES ? "0" + (dt.getMonth() + 1) :
+                                                           (dt.getMonth() + 1)) + "";
+        dateStr += (dt.getDate() < MIN_DOUBLE_FIGURES ? "0" + dt.getDate() : 
+                                                        dt.getDate()) + " ";
+        dateStr += (dt.getHours() < MIN_DOUBLE_FIGURES ? "0" + dt.getHours() : 
+                                                        dt.getHours()) + "";
+        dateStr += (dt.getMinutes() < MIN_DOUBLE_FIGURES ? "0" + dt.getMinutes() : 
+                                                          dt.getMinutes()) + "";
+        dateStr += (dt.getSeconds() < MIN_DOUBLE_FIGURES ? "0" + dt.getSeconds() : 
+                                                          dt.getSeconds());
         return dateStr;
       };
 
@@ -34,7 +60,7 @@ kindFramework
           'menu': 'start',
           'channel': info.channel,
           'fileName': fileName,
-          'callback': info.callback
+          'callback': info.callback,
         };
         _scope.playerdata = ConnectionSettingService.backupCommand(recordInfo);
       }
@@ -42,7 +68,7 @@ kindFramework
       this.stopRecord = function(_scope, info) {
         var recordInfo = {
           'menu': 'stop',
-          'channel': info.channelId
+          'channel': info.channelId,
         };
         _scope.playerdata = ConnectionSettingService.backupCommand(recordInfo);
       }
@@ -57,7 +83,8 @@ kindFramework
           sunapiAttributes.ModelName + "_" + data.time, _errorCallback);
       };
 
-      this.startKindStreaming = function(_scope, _profile, _streamtagtype, statusCallback, isReconnect) {
+      this.startKindStreaming = function(_scope, _profile, _streamtagtype, 
+                                          statusCallback, isReconnect) {
         var logger = LoggingService.getInstance('ChannelCtrl');
         var closeCallback = function(error) {
           logger.log(error);
@@ -69,7 +96,8 @@ kindFramework
         liveStatusCallback = statusCallback;
 
         var errorCallback = function(error) {
-          logger.log("errorcode:", error.errorCode, "error string:", error.description, "error place:", error.place);
+          logger.log("errorcode:", error.errorCode, "error string:", error.description, 
+                    "error place:", error.place);
 
           switch (error.errorCode) {
             case '200':
@@ -86,7 +114,7 @@ kindFramework
               var eventData = {
                 type: 'NetworkDisconnection',
                 value: 'true',
-                eventId: null
+                eventId: null,
               };
               EventNotificationService.updateEventStatus(eventData);
 
@@ -97,7 +125,7 @@ kindFramework
                 $rootScope.$emit('changeLoadingBar', false);
                 return;
               }
-              liveStatusCallback(999);
+              liveStatusCallback(ERROR_CODE.DISCONNECT);
               break;
             case '997': // delay check 5sec
               var CurrentProfile = UniversialManagerService.getProfileInfo();
@@ -125,11 +153,11 @@ kindFramework
               break;
             case '503': //profile unavailable
               $rootScope.$emit('changeLoadingBar', false);
-              liveStatusCallback(503);
+              liveStatusCallback(ERROR_CODE.PROFILE_UNAVAILABLE);
               break;
             case '504': //Talk unavailable
               $rootScope.$emit('changeLoadingBar', false);
-              liveStatusCallback(504);
+              liveStatusCallback(ERROR_CODE.TALK_UNAVAILABLE);
               break;
           }
         };
@@ -141,9 +169,13 @@ kindFramework
         kindStreamInterface.setIspreview(false, 'live');
 
         if (_streamtagtype === 'canvas') {
-          _scope.playerdata = ConnectionSettingService.getPlayerData('live', RequestProfile, timeCallback, errorCallback, closeCallback, _streamtagtype);
+          _scope.playerdata = 
+              ConnectionSettingService.getPlayerData('live', RequestProfile, timeCallback, 
+                                      errorCallback, closeCallback, _streamtagtype);
         } else if (_streamtagtype === 'video') {
-          _scope.playerdata = ConnectionSettingService.getPlayerData('live', RequestProfile, timeCallback, errorCallback, closeCallback, _streamtagtype);
+          _scope.playerdata = 
+              ConnectionSettingService.getPlayerData('live', RequestProfile, 
+                                        timeCallback, errorCallback, closeCallback, _streamtagtype);
         }
 
         if (isReconnect === true) {
@@ -155,11 +187,11 @@ kindFramework
       }
 
       this.stopStreaming = function(_channelPlayerElement, _scope) {
-        if (_channelPlayerElement.find('kind_stream').length !== 0) {}
       }
 
       this.startPlayback = function(_scope, data, timeCallback, errorCallback) {
-        _scope.playerdata = ConnectionSettingService.startPlayback(data, timeCallback, errorCallback);
+        _scope.playerdata = 
+            ConnectionSettingService.startPlayback(data, timeCallback, errorCallback);
       };
 
       this.applyResumeCommand = function(_scope, data) {
@@ -190,32 +222,31 @@ kindFramework
         try {
 
           if (_mode !== true && _mode !== false) {
-            throw new Error(300, "Argument Error");
-            return;
+            throw new Error(ERROR_CODE.ARGUMENT_ERROR, "Argument Error");
+          } else {
+            $rootScope.$emit('channel:overlayCanvas');
+            $rootScope.$emit('overlayCanvas::command', "manualTracking", _mode);
+
+            console.log("kindControlService::setManualTrackingMode() ===>" + _mode + 
+                        "manualTracking");
           }
-
-          $rootScope.$emit('channel:overlayCanvas');
-          $rootScope.$emit('overlayCanvas::command', "manualTracking", _mode);
-
-          console.log("kindControlService::setManualTrackingMode() ===>" + _mode + "manualTracking");
-        } catch (e) {
-          console.log(e.message);
+        } catch (err) {
+          console.log(err.message);
         }
       };
 
       this.setAreaZoomMode = function(_mode) {
         try {
           if (_mode !== true && _mode !== false) {
-            throw new Error(300, "Argument Error");
-            return;
+            throw new Error(ERROR_CODE.ARGUMENT_ERROR, "Argument Error");
+          } else {
+            $rootScope.$emit('channel:overlayCanvas');
+            $rootScope.$emit('overlayCanvas::command', "areaZoomMode", _mode);
+
+            console.log("kindControlService::setAreaZoomMode() ===>" + _mode + "AreaZoom");
           }
-
-          $rootScope.$emit('channel:overlayCanvas');
-          $rootScope.$emit('overlayCanvas::command', "areaZoomMode", _mode);
-
-          console.log("kindControlService::setAreaZoomMode() ===>" + _mode + "AreaZoom");
-        } catch (e) {
-          console.log(e.message);
+        } catch (err) {
+          console.log(err.message);
         }
       };
 
@@ -232,11 +263,11 @@ kindFramework
               PTZContorlService.getPTZAreaZoomURI("next");
               break;
             default:
-              throw new Error(300, "Argument Error");
+              throw new Error(ERROR_CODE.ARGUMENT_ERROR, "Argument Error");
           }
           console.log("kindControlService::setAreaZoomAction() ===>" + _command);
-        } catch (e) {
-          console.log(e.message);
+        } catch (err) {
+          console.log(err.message);
         }
       };
 
@@ -264,10 +295,10 @@ kindFramework
               $rootScope.$emit('changeLoadingBar', false);
               ModalManagerService.open('message', {
                 'buttonCount': 0,
-                'message': errorData
+                'message': errorData,
               });
             }, '', true);
-        }, 500);
+        }, TIMEOUT);
         return deferred.promise;
       };
 
@@ -285,14 +316,15 @@ kindFramework
           $rootScope.$emit('changeLoadingBar', false);
           ModalManagerService.open('message', {
             'buttonCount': 0,
-            'message': errorData
+            'message': errorData,
           });
         }
       };
 
       function addDefaultProfile(resolution) {
         var deferred = $q.defer();
-        var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=add&Name=" + NonPluginProfile + "&EncodingType=H264";
+        var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=add&Name=" + 
+                        NonPluginProfile + "&EncodingType=H264";
         sunapiURI += "&ATCTrigger=Network&ATCMode=Disabled&Resolution=" + resolution;
         sunapiURI += "&FrameRate=20&CompressionLevel=10&Bitrate=2048"; //AudioInputEnable=False";
         sunapiURI += "&H264.BitrateControlType=VBR&H264.PriorityType=FrameRate&H264.GOVLength=20";
@@ -320,12 +352,12 @@ kindFramework
         SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=view', '',
           function(response) {
             var SensorSize = response.data.VideoSources[0].SensorCaptureSize;
-            if (SensorSize == "9M") {
-              addDefaultProfile(NonPluginResolution_Fish_9M).then(function(_profileNumber) {
+            if (SensorSize === "9M") {
+              addDefaultProfile(nonPluginResolution.Fisheye9M).then(function(_profileNumber) {
                 deferred.resolve(_profileNumber);
               });
             } else {
-              addDefaultProfile(NonPluginResolution_Fish_12M).then(function(_profileNumber) {
+              addDefaultProfile(nonPluginResolution.Fisheye12M).then(function(_profileNumber) {
                 deferred.resolve(_profileNumber);
               });
             }
@@ -342,15 +374,18 @@ kindFramework
         SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=view', '',
           function(response) {
             var sensorSize = response.data.VideoSources[0].SensorCaptureSize;
-            var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=update&EncodingType=H264&Resolution=";
+            var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=update&"+
+                            "EncodingType=H264&Resolution=";
             ModalManagerService.open('message', {
               'buttonCount': 0,
-              'message': 'Change PLUGINFREE Resolution'
+              'message': 'Change PLUGINFREE Resolution',
             });
-            if (sensorSize == "9M") {
-              sunapiURI += NonPluginResolution_Fish_9M + "&FrameRate=20&ViewModeIndex=0&Profile=" + (_profileIndex + 1);
+            if (sensorSize === "9M") {
+              sunapiURI += nonPluginResolution.Fisheye9M + 
+                        "&FrameRate=20&ViewModeIndex=0&Profile=" + (_profileIndex + 1);
             } else {
-              sunapiURI += NonPluginResolution_Fish_12M + "&FrameRate=20&ViewModeIndex=0&Profile=" + (_profileIndex + 1);
+              sunapiURI += nonPluginResolution.Fisheye12M + 
+                        "&FrameRate=20&ViewModeIndex=0&Profile=" + (_profileIndex + 1);
             }
 
             SunapiClient.get(sunapiURI, '',
@@ -376,9 +411,11 @@ kindFramework
         var deferred = $q.defer();
         ModalManagerService.open('message', {
           'buttonCount': 0,
-          'message': 'Change PLUGINFREE Resolution'
+          'message': 'Change PLUGINFREE Resolution',
         });
-        var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=update&FrameRate=20&EncodingType=H264&Resolution=" + NonPluginResolution_Multi + "&Profile=" + (_profileIndex + 1);
+        var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=update&"+
+                        "FrameRate=20&EncodingType=H264&Resolution=" + nonPluginResolution.multi + 
+                        "&Profile=" + (_profileIndex + 1);
         SunapiClient.get(sunapiURI, '',
           function(response) {
             waitUWAProfile().then(function(_profileNumber) {
@@ -397,7 +434,10 @@ kindFramework
           'buttonCount': 0,
           'message': 'Change PLUGINFREE Resolution'
         });
-        var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=update&FrameRate=20&EncodingType=H264&Resolution=" + NonPluginResolutionArray[NonPluginSelectNum] + "&Profile=" + (_profileIndex + 1);
+        var sunapiURI = "/stw-cgi/media.cgi?msubmenu=videoprofile&action=update&"+
+                        "FrameRate=20&EncodingType=H264&Resolution=" + 
+                        NonPluginResolutionArray[NonPluginSelectNum] + "&Profile=" + 
+                        (_profileIndex + 1);
         if (sunapiAttributes.MaxChannel > 1) {
           sunapiURI += "&Channel=" + UniversialManagerService.getChannelId();
         }
@@ -425,9 +465,9 @@ kindFramework
         SunapiClient.get(sunapiURI, '',
           function(response) {
             var VideoCodes = response.data.VideoCodecInfo[0].ViewModes[0].Codecs;
-            for (var i = 0; i < VideoCodes.length; i++) {
-              if (VideoCodes[i].EncodingType === "H264") {
-                NonPluginResolutionArray = getListRatioArray(VideoCodes[i].General);
+            for (var idx = 0; idx < VideoCodes.length; idx++) {
+              if (VideoCodes[idx].EncodingType === "H264") {
+                NonPluginResolutionArray = getListRatioArray(VideoCodes[idx].General);
               }
             }
           },
@@ -440,14 +480,14 @@ kindFramework
         var resolutionArray = new Array();
         var standardRatio = null;
 
-        for (var i = 0; i < list.length; i++) {
-          var aspectRatio,
-            aspectWitdth,
-            aspectHeight;
+        for (var id = 0; id < list.length; id++) {
+          var aspectRatio=-1,
+            aspectWitdth=-1,
+            aspectHeight=-1;
 
-          aspectRatio = gcd(list[i].Width, list[i].Height);
-          aspectWitdth = list[i].Width / aspectRatio;
-          aspectHeight = list[i].Height / aspectRatio;
+          aspectRatio = gcd(list[id].Width, list[id].Height);
+          aspectWitdth = list[id].Width / aspectRatio;
+          aspectHeight = list[id].Height / aspectRatio;
 
           if (aspectWitdth > 16) {
             aspectWitdth = 16;
@@ -459,12 +499,12 @@ kindFramework
 
           if (standardRatio === null) {
             standardRatio = aspectWitdth + ":" + aspectHeight;
-            if (list[i].Width <= 1920 && list[i].Height <= 1080) {
-              resolutionArray.push(list[i].Width + 'x' + list[i].Height);
+            if (list[id].Width <= 1920 && list[id].Height <= 1080) {
+              resolutionArray.push(list[id].Width + 'x' + list[id].Height);
             }
           } else {
             if (standardRatio === (aspectWitdth + ":" + aspectHeight)) {
-              resolutionArray.push(list[i].Width + 'x' + list[i].Height);
+              resolutionArray.push(list[id].Width + 'x' + list[id].Height);
             }
           }
         }
@@ -480,19 +520,20 @@ kindFramework
           $rootScope.$emit('channelPlayer:command', 'stopLive', false);
           ModalManagerService.open('message', {
             'buttonCount': 1,
-            'message': "lang_msg_not_profile_auth"
+            'message': "lang_msg_not_profile_auth",
           });
         } else {
-          if (CurrentProfile !== undefined) {
+          if (typeof CurrentProfile !== "undefined") {
             changePluginFlag = true;
             $rootScope.$emit('changeLoadingBar', true);
             ModalManagerService.open('message', {
               'buttonCount': 1,
-              'message': $translate.instant('lang_videoplaydifficult') + $translate.instant('lang_defaultprofileapplied')
+              'message': $translate.instant('lang_videoplaydifficult') + 
+                          $translate.instant('lang_defaultprofileapplied'),
             });
             createPLUGINFREEProfile().then(
               function(data) {
-                liveStatusCallback(996, data);
+                liveStatusCallback(ERROR_CODE.PLUGINFREE, data);
                 changePluginFlag = false;
               },
               function(error) {
@@ -502,7 +543,7 @@ kindFramework
           } else {
             ModalManagerService.open('message', {
               'buttonCount': 1,
-              'message': $translate.instant('lang_msg_invalidValue')
+              'message': $translate.instant('lang_msg_invalidValue'),
             });
           }
         }
@@ -510,7 +551,6 @@ kindFramework
 
       function createPLUGINFREEProfile() {
         var deferred = $q.defer();
-        var promise = deferred.promise;
 
         var ProfileIndex = 0;
         var ProfileList = UniversialManagerService.getProfileList();
@@ -524,8 +564,10 @@ kindFramework
                 var size = Resolution[0] * Resolution[1];
                 var codec = ProfileList[ProfileIndex].EncodingType;
 
-                if (sunapiAttributes.FisheyeLens == true) { //for fish eye
-                  if (size <= 1280 * 1280 && codec === "H264") {
+                if (sunapiAttributes.FisheyeLens === true) { //for fish eye
+                  if (size <= 
+                        NON_PLUGIN_RESOLUTION.FISHEYE.WIDTH*NON_PLUGIN_RESOLUTION.FISHEYE.HEIGHT && 
+                        codec === "H264") {
                     deferred.resolve(ProfileIndex);
                   } else {
                     revertFisheyeDefaultProfile(ProfileIndex).then(
@@ -537,8 +579,10 @@ kindFramework
                       }
                     );
                   }
-                } else if (sunapiAttributes.MultiImager == true) { //for multiImager
-                  if (size <= 1536 * 676 && codec === "H264") {
+                } else if (sunapiAttributes.MultiImager === true) { //for multiImager
+                  if (size <= 
+                        NON_PLUGIN_RESOLUTION.MULTI.WIDTH*NON_PLUGIN_RESOLUTION.MULTI.HEIGHT &&
+                        codec === "H264") {
                     deferred.resolve(ProfileIndex);
                   } else {
                     revertMultiimagerDefaultProfile(ProfileIndex).then(
@@ -551,7 +595,7 @@ kindFramework
                     );
                   }
                 } else {
-                  if (NonPluginResolutionArray !== undefined) {
+                  if (typeof NonPluginResolutionArray !== "undefined") {
                     var freeResolution = NonPluginResolutionArray[NonPluginSelectNum].split('x');
                     var NonPluginSize = freeResolution[0] * freeResolution[1];
                     if (size <= NonPluginSize && codec === "H264") {
@@ -577,7 +621,7 @@ kindFramework
             /* jshint ignore:end */
 
             if (ProfileIndex === ProfileList.length) {
-              if (sunapiAttributes.FisheyeLens == true) {
+              if (sunapiAttributes.FisheyeLens === true) {
                 addFisheyeDefaultProfile().then(
                   function(_profileNumber) {
                     deferred.resolve(_profileNumber);
@@ -586,8 +630,8 @@ kindFramework
                     deferred.reject();
                   }
                 );
-              } else if (sunapiAttributes.MultiImager == true) {
-                addDefaultProfile(NonPluginResolution_Multi).then(
+              } else if (sunapiAttributes.MultiImager === true) {
+                addDefaultProfile(nonPluginResolution.multi).then(
                   function(_profileNumber) {
                     deferred.resolve(_profileNumber);
                   },
@@ -613,16 +657,16 @@ kindFramework
 
       function checkPLUGINFREEProfile() {
         var curResolution = UniversialManagerService.getProfileInfo().Resolution.split('x');
-        var curResolutionSize = (size === undefined ? curResolution[0] * curResolution[1] : size);
+        var curResolutionSize = (typeof size === "undefined" ? curResolution[0] * curResolution[1] : size);
         var selectNum = -1;
 
-        if (NonPluginResolutionArray !== undefined) {
-          for (var i = 0; i < NonPluginResolutionArray.length; i++) {
-            var resolution = NonPluginResolutionArray[i].split('x');
+        if (typeof NonPluginResolutionArray !== "undefined") {
+          for (var index = 0; index < NonPluginResolutionArray.length; index++) {
+            var resolution = NonPluginResolutionArray[index].split('x');
             var size = resolution[0] * resolution[1];
 
             if (size < curResolutionSize) {
-              selectNum = i;
+              selectNum = index;
               break;
             }
           }
@@ -630,5 +674,5 @@ kindFramework
 
         return selectNum;
       }
-    }
+    },
   ]);
