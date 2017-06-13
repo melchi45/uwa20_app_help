@@ -1,4 +1,4 @@
-<div class="wrapper wrapper-content" ng-if="pageLoaded">
+<div class="wrapper wrapper-content" ng-if="pageLoaded" id="setup-facedetection">
     <wn5-setup-main-title 
         data-title="lang_menu_facedetection">
     </wn5-setup-main-title>
@@ -82,6 +82,26 @@
                         </div>
                     </div>
                 </div>
+                <!--<div
+                    class="form-group"
+                    ng-if="activeTab.title === tabs[0].title">
+                    <div class="wn5-setup-preview-heading">{{ 'Detection line color' | translate }}</div>
+                    <div class="wn5-setup-preview-content">
+                      <div class="wn5-gui-text-orange-100">
+                        <i class="tui tui-wn5-toolbar-status" style="margin-right: 5px; transform: scale(1.3);"></i>
+                        <span>{{ 'It is applied at HDMI and can be confirmed with the PVM monitor' | translate }}</span>
+                      </div>
+                      <div class="setup-facedetection-color-wrapper">
+                        <div 
+                          class="setup-facedetection-color-box"
+                          data-color-index="{{colorIndex}}"
+                          ng-class="{'active': selectedColorIndex === colorIndex}"
+                          ng-click="selectColor(colorIndex)"
+                          ng-repeat="colorIndex in colorIndexList">
+                        </div>
+                      </div>
+                    </div>
+                </div>-->
             </div>
         </div>
     </div>
