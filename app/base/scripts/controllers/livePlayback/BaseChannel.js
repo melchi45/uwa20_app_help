@@ -268,12 +268,16 @@ function BaseChannel($scope, $timeout, $rootScope, LocalStorageService,
       $scope.timelineController.resetTimeRange();
       results = playbackInterfaceService.stepPlay(command);
     }
+    if ( command === PLAY_CMD.RESUME) {
+      playData.setStatus(PLAY_CMD.PLAY);
+    }
     if (results !== null) {
       $timeout(function() {
         domControls.playerdata = results;
       });
       return results;
     }
+
   };
 
   $scope.setPlaySpeed = function(speed) {

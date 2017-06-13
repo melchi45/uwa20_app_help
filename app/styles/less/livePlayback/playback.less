@@ -337,44 +337,44 @@
             height: auto !important;
             line-height: 1em !important;
         }
-
-        #pb-backup-section {
-            width: 100%;
-            text-align: center;
-            display: inline-table;
-            line-height: 1em;
-
-            .pb-block {
-                margin: 0 5px !important;
+            #pb-backup-section {
+                width: 100%;
+                text-align: center;
                 display: inline-table;
-                float: none;
+                line-height: 1em;
 
-                input {
-                    padding: 0 5px !important;
+                .pb-block {
+                    margin: 0 5px 15px 0 !important;
+                    display: inline-table;
+                    float: none;
+
+                    input {
+                        padding: 0 5px !important;
+                    }
+
+                    &#backup-date {
+                        width: auto;
+                        text-align: center;
+                        display:inline;
+                    }
                 }
 
-                &#backup-date {
-                    width: 100%;
-                    text-align: center;
-                    margin: 0 0 5px 0 !important;
+                .pb-range {
+                    float: none !important;
+                    display: inline;
+                }    
+                
+                #backup-date {
+                    .cm-textbox {
+                        width: 150px;
+                        text-align: center;
+                    }
                 }
             }
+                .pb-backup-button {
+                    margin-top: 25px;
+                }
 
-            .pb-range {
-                float: none !important;
-                display: inline;
-            }    
-            
-            #backup-date {
-                .cm-textbox {
-                    width: 150px;
-                    text-align: center;
-                }
-            }
-        }
-            .pb-backup-button {
-                margin-top: 15px;
-            }
 
         #pb-datepicker-section {
             margin-top: -5px;
@@ -419,7 +419,6 @@
                 margin-left: 0;
             }
         } 
-
 
 
 
@@ -764,6 +763,7 @@
     }
 
 
+
     @media(min-width:3000px) and (min-height:1688px) {
         #cm-video {
             height: calc(~"100% - 525px") !important;
@@ -1074,10 +1074,7 @@
                 margin-bottom: 20px;
             }
         }
-    }
 
-
-    @media screen and (max-width:850px) {
         #pb-menu-content {
             .cm-col {
                 margin: 0 10px;
@@ -1146,12 +1143,46 @@
                 }
                 
                     #pb-datepicker-section {
+                        h2 {
+                            text-align: center;
+                        }
+
                         .start-time, .end-time {
                             margin-top: 15px;
                         }
 
-                        .pb-all-day label {
-                            margin: 5px 0;
+                        & > .pb-block {
+                            margin: 0 auto;
+                            float: none;
+
+                            &:first-child {
+                                width: 100%;
+                                margin: 15px 0px;
+                            }
+
+                            &.cm-m0-5 {
+                                margin: 0 3px;
+                            }
+                        }
+
+                        .ua-datepicker table {
+                            width: 80%;
+                        }
+
+                        .pb-all-day {
+                            text-align: center;
+
+                            label {
+                                margin: 20px 0 0 0;
+                            }
+                        }
+
+                        .pb-button-wrap {
+                            text-align: center;
+                            display: block;
+                            margin: 10px auto;
+                            clear: both;
+                            width: 100%;
                         }
                     }
 
@@ -1224,51 +1255,6 @@
     }
 
 
-    @media screen and (max-width:700px) {
-        #pb-datepicker-section {
-            .pb-block {
-                &.cm-m0-5 {
-                    margin: 0 3px;
-                }
-            }
-
-            & > .pb-block {
-                margin: 0 auto;
-                float: none;
-
-                &:first-child {
-                    width: 100%;
-                    margin: 15px 0px;
-                }
-            }
-
-            .pb-button-wrap {
-                text-align: center;
-                display: block;
-                margin: 10px auto;
-                clear: both;
-                width: 100%;
-            }
-
-            h2 {
-                text-align: center;
-            }
-
-            .ua-datepicker table {
-                width: 80%;
-            }
-        }  
-
-        .pb-all-day label {
-            margin-left: 5%;
-        }
-
-        .cm-cancel-button {
-            width: 100px;
-            font-size: 14px;
-        }
-    }
-
 
     @media screen and (max-width:530px) {
         #pb-event-section {
@@ -1279,6 +1265,7 @@
             }
         }
     }
+
 
 
     &.land-scape {

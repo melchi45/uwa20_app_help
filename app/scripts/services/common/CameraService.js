@@ -1,5 +1,4 @@
-kindFramework
-  .service('CameraService', ['$rootScope', 'BaseCameraService', 'ModalManagerService',
+kindFramework.service('CameraService', ['$rootScope', 'BaseCameraService', 'ModalManagerService',
     'SunapiClient', 'UniversialManagerService', 'CAMERA_STATUS', 'kindStreamInterface',
     function($rootScope, BaseCameraService, ModalManagerService, SunapiClient,
       UniversialManagerService, CAMERA_STATUS, kindStreamInterface) {
@@ -14,7 +13,7 @@ kindFramework
         var successCallback = function(response) {
           var DataList = [];
 
-          if (response.data.AlarmOutput === undefined) {
+          if (typeof response.data.AlarmOutput === "undefined") {
             ModalManagerService.open('message', {
               'buttonCount': 0,
               'message': "lang_alarmoulang_nolang_supported"

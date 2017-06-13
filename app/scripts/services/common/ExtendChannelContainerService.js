@@ -1,7 +1,7 @@
 'use strict';
 /**/
-kindFramework
-  .service('ExtendChannelContainerService', ['DigitalZoomService', 'DigitalPTZContorlService',
+kindFramework.
+  service('ExtendChannelContainerService', ['DigitalZoomService', 'DigitalPTZContorlService',
     'PTZContorlService', 'PTZ_TYPE', 'PixelCounterService', '$rootScope',
     function(DigitalZoomService, DigitalPTZContorlService,
       PTZContorlService, PTZ_TYPE, PixelCounterService, $rootScope) {
@@ -85,6 +85,5 @@ kindFramework
           PTZContorlService.setMode(cmd);
         }
       };
-
-    }
+    },
   ]);

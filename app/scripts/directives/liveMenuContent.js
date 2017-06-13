@@ -18,6 +18,7 @@ kindFramework.directive('liveMenuContent', function(
       var display = null;
       scope.showImageController = false;
       var isMultiChannel = false;
+      var ATTRIBUTE_REQUEST_TIMEOUT = 500;
       if (mAttr.MaxChannel > 1) {
         isMultiChannel = true;
       }
@@ -40,12 +41,12 @@ kindFramework.directive('liveMenuContent', function(
       function setDisplay() {
         var setData = {};
 
-        $.each(display, function(i, self) {
-          setData[i] = self.value;
+        $.each(display, function(ii, self) {
+          setData[ii] = self.value;
         });
 
-        if (display['SharpnessLevel'].enable === false) {
-          delete setData['SharpnessLevel'];
+        if (display.SharpnessLevel.enable === false) {
+          delete setData.SharpnessLevel;
           setData.SharpnessEnable = false;
         } else {
           setData.SharpnessEnable = true;
@@ -79,41 +80,41 @@ kindFramework.directive('liveMenuContent', function(
               Contrast: {
                 min: mAttr.Contrast.minValue,
                 max: mAttr.Contrast.maxValue,
-                defValue: 50
+                defValue: 50,
               },
               Brightness: {
                 min: mAttr.Brightness.minValue,
                 max: mAttr.Brightness.maxValue,
-                defValue: 50
+                defValue: 50,
               },
               SharpnessLevel: {
                 min: mAttr.SharpnessLevel.minValue,
                 max: mAttr.SharpnessLevel.maxValue,
-                defValue: 12
+                defValue: 12,
               },
               Saturation: {
                 min: mAttr.Saturation.minValue,
                 max: mAttr.Saturation.maxValue,
-                defValue: 50
-              }
+                defValue: 50,
+              },
             };
             var values = response.data.ImageEnhancements[0];
-            $("#cm-display-slider li").each(function(i, self) {
+            $("#cm-display-slider li").each(function(ii, self) {
               var type = $(self).attr("data-type");
               display[type].value = values[type];
               var slider = $(self).find(".cm-slider div");
 
               $(self).find(".cm-min").html(display[type].min);
               $(self).find(".cm-max").html(display[type].max);
-              $(self).find("input[type='number']")
-                .attr("min", display[type].min)
-                .attr("max", display[type].max)
-                .val(display[type].value)
-                .on("change keyup", function(e) {
+              $(self).find("input[type='number']").
+                attr("min", display[type].min).
+                attr("max", display[type].max).
+                val(display[type].value).
+                on("change keyup", function(error) {
                   slider.slider("value", $(this).val());
                 });
 
-              if (slider.slider("instance") === undefined) {
+              if (typeof slider.slider("instance") === 'undefined') {
                 slider.slider({
                   orientation: "horizontal",
                   range: "min",
@@ -128,80 +129,80 @@ kindFramework.directive('liveMenuContent', function(
                   },
                   create: function() {
                     $(".ui-slider-handle").unbind('keydown');
-                  }
+                  },
                 });
               } else {
                 slider.slider("instance").options.value = display[type].value;
                 slider.slider("instance")._refresh();
               }
             });
-            $('#sharpness-enable')[0].checked = values['SharpnessEnable'];
-            display['SharpnessLevel'].enable = values['SharpnessEnable'];
-            if (display['SharpnessLevel'].enable === true) {
-              $('#sharpness-enable')
-                .parent()
-                .parent()
-                .find(".cm-slider > div")
-                .slider({
-                  disabled: false
-                })
-                .parent()
-                .parent()
-                .find("input[type='number']")
-                .removeClass("cm-opacity")
-                .prop("disabled", false);
+            $('#sharpness-enable')[0].checked = values.SharpnessEnable;
+            display.SharpnessLevel.enable = values.SharpnessEnable;
+            if (display.SharpnessLevel.enable === true) {
+              $('#sharpness-enable').
+                parent().
+                parent().
+                find(".cm-slider > div").
+                slider({
+                  disabled: false,
+                }).
+                parent().
+                parent().
+                find("input[type='number']").
+                removeClass("cm-opacity").
+                prop("disabled", false);
             } else {
-              $('#sharpness-enable')
-                .parent()
-                .parent()
-                .find(".cm-slider > div")
-                .slider({
-                  disabled: true
-                })
-                .parent()
-                .parent()
-                .find("input[type='number']")
-                .addClass("cm-opacity")
-                .prop("disabled", true);
+              $('#sharpness-enable').
+                parent().
+                parent().
+                find(".cm-slider > div").
+                slider({
+                  disabled: true,
+                }).
+                parent().
+                parent().
+                find("input[type='number']").
+                addClass("cm-opacity").
+                prop("disabled", true);
             }
             scope.showImageController = true;
           },
           function(errorData) {
             console.log(errorData);
-            if (errorData == "Not Authorized") {
+            if (errorData === "Not Authorized") {
               scope.showImageController = false;
             }
           }, '', true);
       }
 
       $("#sharpness-enable").change(function() {
-        display['SharpnessLevel'].enable = $("#sharpness-enable")[0].checked;
+        display.SharpnessLevel.enable = $("#sharpness-enable")[0].checked;
         if ($("#sharpness-enable")[0].checked === true) {
-          $(this)
-            .parent()
-            .parent()
-            .find(".cm-slider > div")
-            .slider({
-              disabled: false
-            })
-            .parent()
-            .parent()
-            .find("input[type='number']")
-            .removeClass("cm-opacity")
-            .prop("disabled", false);
+          $(this).
+            parent().
+            parent().
+            find(".cm-slider > div").
+            slider({
+              disabled: false,
+            }).
+            parent().
+            parent().
+            find("input[type='number']").
+            removeClass("cm-opacity").
+            prop("disabled", false);
         } else {
-          $(this)
-            .parent()
-            .parent()
-            .find(".cm-slider > div")
-            .slider({
-              disabled: true
-            })
-            .parent()
-            .parent()
-            .find("input[type='number']")
-            .addClass("cm-opacity")
-            .prop("disabled", true);
+          $(this).
+            parent().
+            parent().
+            find(".cm-slider > div").
+            slider({
+              disabled: true,
+            }).
+            parent().
+            parent().
+            find("input[type='number']").
+            addClass("cm-opacity").
+            prop("disabled", true);
         }
         setDisplay();
       });
@@ -246,6 +247,7 @@ kindFramework.directive('liveMenuContent', function(
       });*/
 
       function setTableSize() {
+        /*
         var padding = 20;
         var allWidth = $(".cm-status-col")[0].clientWidth - (padding * 2);
         var size = {
@@ -254,17 +256,16 @@ kindFramework.directive('liveMenuContent', function(
             20,
             20,
             15,
-            27
+            27,
           ],
           second: [
             22,
             23,
             30,
-            25
-          ]
+            25,
+          ],
         };
 
-        /*
         for(var key in size){
         	var table = $("#cm-status-" + key);
         	table.css({width: allWidth + "px"});
@@ -310,11 +311,11 @@ kindFramework.directive('liveMenuContent', function(
           $timeout(function() {
             mAttr = Attributes.get();
             wait();
-          }, 500);
+          }, ATTRIBUTE_REQUEST_TIMEOUT);
         } else {
           view();
         }
       })();
-    }
+    },
   };
 });

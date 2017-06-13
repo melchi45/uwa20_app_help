@@ -51,18 +51,18 @@
   </div>
 </div>
 
+<playback-event
+  set-overlap-event="timelineControl.setOverlapEvent"
+  get-overlap-event="timelineControl.getOverlapEvent"
+  ng-show="timelineControl.currentTimelineMode === 'eventsorting'">
+</playback-event>
+
 <playback-datepicker
   control="timelineControl"
   get-selected-date="timelineControl.getSelectedDate"
   ng-show="timelineControl.currentTimelineMode === 'datepicker'"
   show-menu="timelineControl.showMenu">
 </playback-datepicker>
-
-<playback-event
-  set-overlap-event="timelineControl.setOverlapEvent"
-  get-overlap-event="timelineControl.getOverlapEvent"
-  ng-show="timelineControl.currentTimelineMode === 'eventsorting'">
-</playback-event>
 
 <div 
   ng-show="timelineControl.currentTimelineMode !== 'playback' && timelineControl.currentTimelineMode !== 'datepicker'"

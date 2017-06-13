@@ -1,6 +1,7 @@
 /*global kindFramework */
 /*global console */
 /*global alert */
+/*global Uint8Array */
 
 kindFramework.controller('8021xCtrl', function($scope, SunapiClient, COMMONUtils, Attributes, $timeout, $translate) {
   "use strict";
@@ -15,28 +16,28 @@ kindFramework.controller('8021xCtrl', function($scope, SunapiClient, COMMONUtils
 
   function getAttributes() {
 
-    if (mAttr.EAPOLTypeOptions !== undefined) {
+    if (typeof mAttr.EAPOLTypeOptions !== "undefined") {
       $scope.EAPOLTypeOptions = mAttr.EAPOLTypeOptions;
     }
 
-    if (mAttr.EAPOLVersionOptions !== undefined) {
+    if (typeof mAttr.EAPOLVersionOptions !== "undefined") {
       $scope.EAPOLVersionOptions = mAttr.EAPOLVersionOptions;
     }
 
-    if (mAttr.CertificateTypeOptions !== undefined) {
+    if (typeof mAttr.CertificateTypeOptions !== "undefined") {
       $scope.CertificateTypeOptions = mAttr.CertificateTypeOptions;
     }
 
-    if (mAttr.IEEE802Dot1xInterfaceOptions !== undefined) {
+    if (typeof mAttr.IEEE802Dot1xInterfaceOptions !== "undefined") {
       $scope.IEEE802Dot1xInterfaceOptions = mAttr.IEEE802Dot1xInterfaceOptions;
     }
-    if (mAttr.DeviceType !== undefined) {
+    if (typeof mAttr.DeviceType !== "undefined") {
       $scope.DeviceType = mAttr.DeviceType;
     }
-    if (mAttr.EAPOLIDRange !== undefined) {
+    if (typeof mAttr.EAPOLIDRange !== "undefined") {
       $scope.EAPOLIDRange = mAttr.EAPOLIDRange.maxLength;
     }
-    if (mAttr.EAPOLPasswordRange !== undefined) {
+    if (typeof mAttr.EAPOLPasswordRange !== "undefined") {
       $scope.EAPOLPasswordRange = mAttr.EAPOLPasswordRange.maxLength;
     }
     $scope.EAPOLPattern = mAttr.FriendlyNameCharSet;
@@ -65,14 +66,12 @@ kindFramework.controller('8021xCtrl', function($scope, SunapiClient, COMMONUtils
 
     var retVal = true;
     if ($scope.IEEE8021xForm.EAPOLId.$valid === false) {
-      var ErrorMessage = 'lang_msg_invalid_id';
-      COMMONUtils.ShowError(ErrorMessage);
+      COMMONUtils.ShowError("lang_msg_invalid_id");
       retVal = false;
     }
 
     if ($scope.IEEE8021xForm.EAPOLPassword.$valid === false) {
-      var ErrorMessage = 'lang_msg_invalid_pw';
-      COMMONUtils.ShowError(ErrorMessage);
+      COMMONUtils.ShowError("lang_msg_invalid_pw");
       retVal = false;
     }
 
@@ -101,8 +100,7 @@ kindFramework.controller('8021xCtrl', function($scope, SunapiClient, COMMONUtils
   }
 
   function saveSettings() {
-    var setData = {},
-      reqSaveData;
+    var setData = {};
     var modified = false;
     if (mAttr.DeviceType === 'NVR') {
       setData.InterfaceName = $scope.IEEE802Dot1x[$scope.SelectedInterface].InterfaceName;
@@ -192,24 +190,24 @@ kindFramework.controller('8021xCtrl', function($scope, SunapiClient, COMMONUtils
     var certfileelm = document.getElementById("certfileid");
     var clientertfileelm = document.getElementById("clientcertfileid");
     var keyfileelm = document.getElementById("keyfileid");
-    var fileName, ext;
+    var fileName = "", ext = "";
 
     var setData = {},
-      postData;
-    var cerfiletype, cerfile, cerfilesize;
-    var requiredextn = "crt";
+        postData = "",
+        cerfiletype = "", 
+        cerfile = null, 
+        cerfilesize = null,
+        requiredextn = "crt";
 
     if ($type === 0) {
       if (!$scope.cacerfile) {
-        var ErrorMessage = 'lang_msg_cert_file_error';
-        COMMONUtils.ShowError(ErrorMessage);
+        COMMONUtils.ShowError("lang_msg_cert_file_error");
         return;
       }
       fileName = certfileelm.value.split('/').pop().split('\\').pop();
       ext = fileName.split('.').pop();
-      if (requiredextn != ext) {
-        var ErrorMessage = 'lang_msg_cert_file_error';
-        COMMONUtils.ShowError(ErrorMessage);
+      if (requiredextn !== ext) {
+        COMMONUtils.ShowError("lang_msg_cert_file_error");
         return false;
       }
       cerfiletype = 'CACertificate';
@@ -217,15 +215,13 @@ kindFramework.controller('8021xCtrl', function($scope, SunapiClient, COMMONUtils
       cerfilesize = $scope.cacerfilesize;
     } else if ($type === 1) {
       if (!$scope.clientcerfile) {
-        var ErrorMessage = 'lang_msg_cert_file_error';
-        COMMONUtils.ShowError(ErrorMessage);
+        COMMONUtils.ShowError("lang_msg_cert_file_error");
         return;
       }
       fileName = clientertfileelm.value.split('/').pop().split('\\').pop();
       ext = fileName.split('.').pop();
-      if (requiredextn != ext) {
-        var ErrorMessage = 'lang_msg_cert_file_error';
-        COMMONUtils.ShowError(ErrorMessage);
+      if (requiredextn !== ext) {
+        COMMONUtils.ShowError("lang_msg_cert_file_error");
         return false;
       }
       cerfiletype = 'ClientCertificate';
@@ -233,16 +229,14 @@ kindFramework.controller('8021xCtrl', function($scope, SunapiClient, COMMONUtils
       cerfilesize = $scope.clientfilesize;
     } else if ($type === 2) {
       if (!$scope.clientkeyfile) {
-        var ErrorMessage = 'lang_msg_key_file_error';
-        COMMONUtils.ShowError(ErrorMessage);
+        COMMONUtils.ShowError("lang_msg_key_file_error");
         return;
       }
       requiredextn = "pem";
       fileName = keyfileelm.value.split('/').pop().split('\\').pop();
       ext = fileName.split('.').pop();
-      if (requiredextn != ext) {
-        var ErrorMessage = 'lang_msg_key_file_error';
-        COMMONUtils.ShowError(ErrorMessage);
+      if (requiredextn !== ext) {
+        COMMONUtils.ShowError("lang_msg_key_file_error");
         return false;
       }
       cerfiletype = 'ClientPrivateKey';
@@ -306,22 +300,19 @@ kindFramework.controller('8021xCtrl', function($scope, SunapiClient, COMMONUtils
 
     if ($type === 0) {
       if (!$scope.IEEE802Dot1x[$scope.SelectedInterface].CACertificateInstalled) {
-        var ErrorMessage = 'CACertificate not installed';
-        COMMONUtils.ShowError(ErrorMessage);
+        COMMONUtils.ShowError("CACertificate not installed");
         return;
       }
       setData.CertificateType = 'CACertificate';
     } else if ($type === 1) {
       if (!$scope.IEEE802Dot1x[$scope.SelectedInterface].ClientCertificateInstalled) {
-        var ErrorMessage = 'ClientCertificate not installed';
-        COMMONUtils.ShowError(ErrorMessage);
+        COMMONUtils.ShowError("ClientCertificate not installed");
         return;
       }
       setData.CertificateType = 'ClientCertificate';
     } else if ($type === 2) {
       if (!$scope.IEEE802Dot1x[$scope.SelectedInterface].ClientPrivateKeyInstalled) {
-        var ErrorMessage = 'ClientPrivateKey not installed';
-        COMMONUtils.ShowError(ErrorMessage);
+        COMMONUtils.ShowError("ClientPrivateKey not installed");
         return;
       }
       setData.CertificateType = 'ClientPrivateKey';
