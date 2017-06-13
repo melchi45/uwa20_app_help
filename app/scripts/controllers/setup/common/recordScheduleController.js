@@ -34,13 +34,13 @@ kindFramework.controller('recordScheduleCtrl', function($scope, $uibModalInstanc
     $scope.MinuteOptions.push(m);
   }
 
-  var index = $scope.RecSchedule[$scope.CurChannel].ScheduleIds.indexOf($scope.SelectedDay + '.' + $scope.SelectedHour);
+  // var index = $scope.RecSchedule[$scope.CurChannel].ScheduleIds.indexOf($scope.SelectedDay + '.' + $scope.SelectedHour);
 
   function inArray(arr, str) {
     for (var i = 0; i < arr.length; i++) {
       var tArray = arr[i].split(".");
       tArray = tArray[0] + "." + tArray[1];
-      if (tArray == str) {
+      if (tArray === str) {
         return i;
       }
     }

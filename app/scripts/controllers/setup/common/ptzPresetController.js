@@ -11,7 +11,7 @@ kindFramework.controller('ptzPresetCtrl', function($scope, $uibModalInstance, At
   for (var i = 0; i < $scope.PTZPresetList.length; i++) {
     var data = null;
     for (var j = 0; j < $scope.PTZPresets.length; j++) {
-      if (Number($scope.PTZPresets[j].Preset) == (i + 1)) {
+      if (Number($scope.PTZPresets[j].Preset) === (i + 1)) {
         data = {
           'Preset': $scope.PTZPresets[j].Preset,
           'Name': $scope.PTZPresets[j].Preset + ':' + $scope.PTZPresets[j].Name
@@ -25,14 +25,18 @@ kindFramework.controller('ptzPresetCtrl', function($scope, $uibModalInstance, At
         'Preset': i + 1,
         'Name': '' + idx + ':'
       };
-      if (!$scope.SelectedPTZPreset) $scope.SelectedPTZPreset = data;
+      if (!$scope.SelectedPTZPreset) {
+        $scope.SelectedPTZPreset = data;
+      }
     }
     $scope.PTZPresetList[i] = data;
   }
-  if (!$scope.SelectedPTZPreset) $scope.SelectedPTZPreset = {
-    'Preset': 1,
-    'Name': '1:'
-  };
+  if (!$scope.SelectedPTZPreset) {
+    $scope.SelectedPTZPreset = {
+      'Preset': 1,
+      'Name': '1:'
+    };
+  }
 
   $scope.ok = function() {
     if (typeof $scope.InputPTZPresetName === 'undefined') {
