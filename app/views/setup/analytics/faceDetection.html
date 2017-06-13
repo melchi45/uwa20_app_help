@@ -94,10 +94,10 @@
                       <div class="setup-facedetection-color-wrapper">
                         <div 
                           class="setup-facedetection-color-box"
-                          data-color-index="{{colorIndex}}"
-                          ng-class="{'active': selectedColorIndex === colorIndex}"
-                          ng-click="selectColor(colorIndex)"
-                          ng-repeat="colorIndex in colorIndexList">
+                          data-color-name="{{colorItem.colorName}}"
+                          ng-class="{'active': detectionLineColorSection.selectedColorIndex === colorIndex}"
+                          ng-click="detectionLineColorSection.selectColor(colorIndex, colorItem.colorCode)"
+                          ng-repeat="(colorIndex, colorItem) in detectionLineColorSection.colorIndexList">
                         </div>
                       </div>
                     </div>

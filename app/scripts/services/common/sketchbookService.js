@@ -19,6 +19,11 @@ kindFramework.factory('sketchbookService', function() {
         this.sketchManager.changeRatio(ratio);
       }
     },
+    changeWFDStrokeColor: function(strokeColor) {
+      if (typeof this.sketchManager !== "undefined") {
+        this.sketchManager.changeWFDStrokeColor(strokeColor);
+      }
+    },
     setEnableForSVG: function(index, enableOption) {
       if (typeof this.sketchManager !== "undefined") {
         this.sketchManager.setEnableForSVG(index, enableOption);
