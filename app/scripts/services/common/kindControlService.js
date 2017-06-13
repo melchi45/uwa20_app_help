@@ -657,7 +657,7 @@ kindFramework.
 
       function checkPLUGINFREEProfile() {
         var curResolution = UniversialManagerService.getProfileInfo().Resolution.split('x');
-        var curResolutionSize = (typeof size === "undefined" ? curResolution[0] * curResolution[1] : size);
+        var curResolutionSize = curResolution[0] * curResolution[1];
         var selectNum = -1;
 
         if (typeof NonPluginResolutionArray !== "undefined") {
