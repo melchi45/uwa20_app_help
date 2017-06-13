@@ -343,10 +343,10 @@
             <h3>{{ 'lang_privacy' | translate }}</h3>
         </div>
         <div class="modal-body modal-setup">
-            <label class="col-sm-3 control-label">
+            <label class="col-xs-3 control-label">
                 {{ 'lang_name' | translate }}
             </label>
-            <div class="col-sm-6">
+            <div class="col-xs-6">
                 <input 
                     class="form-control privacy-name-input" 
                     style="float:left" 
@@ -358,10 +358,10 @@
             </div>
         </div>
         <div class="modal-body modal-setup">
-            <label class="col-sm-3 control-label">
+            <label class="col-xs-3 control-label">
                 {{ 'lang_color' | translate }}
             </label>
-            <div class="col-sm-6">
+            <div class="col-xs-6">
                 <select 
                     class="form-control" 
                     ng-model="modalValue.MaskColor" 
@@ -377,11 +377,11 @@
             </div>
         </div>
         <div class="modal-body modal-setup" ng-show="IsPTZ || IsZoomOnly">
-            <label class="col-sm-3 control-label">
+            <label class="col-xs-3 control-label">
                 {{ 'lang_zoomThreshold' | translate }}
             </label>
             <div 
-                class="col-sm-3 col-xs-6 field-radio-wrapper control-label" 
+                class="col-xs-3 field-radio-wrapper control-label" 
                 ng-repeat="Enable in OnOFF">
                 {{ Enable.lang | translate }}
                 <input 
@@ -393,7 +393,7 @@
             </div>
         </div>
         <div class="modal-body modal-setup" ng-show="IsPTZ" style="padding-bottom:0;">
-            <label class="col-sm-3 control-label"></label>
+            <label class="col-xs-3 control-label"></label>
             <div id="ptz-control_box-wrap">
                 <div id="ptz-control_box-popup">
                     <div id="ptz-control_box-hline-popup"></div>
@@ -432,7 +432,8 @@
             <h3>{{ 'lang_setZoomThreshold' | translate }}</h3>
         </div>
         <div class="modal-body modal-setup">
-            <label class="col-sm-3 control-label">
+          <div class="row">
+            <label class="col-xs-3 control-label">
                 {{ 'lang_zoom' | translate }}
             </label>
             <div class="slider-fields live-slider-field col-xs-3 ptz-control_horizontal-wrap">
@@ -446,13 +447,13 @@
                     </button>
                 </div>
             </div>
-        </div>
-
-        <div class="modal-body modal-setup wn5-gui-text-orange-100">
-            <div class="col-sm-12">
+          </div>
+          <div class="row">
+            <div class="col-xs-12 wn5-gui-text-orange-100">
                 <i class="tui tui-wn5-toolbar-status" style="margin-right: 5px; transform: scale(1.3);"></i>
-                <span>{{ 'lang_msg_zoomThreshold' | translate }}<span>
+                <p>{{ 'lang_msg_zoomThreshold' | translate }}<p>
             </div>
+          </div>
         </div>
 
         <div class="modal-footer modal-setup" style="text-align:center">
@@ -481,12 +482,11 @@
         </div>
 
         <div class="modal-body modal-setup">
-            <div class="col-sm-12">
+            <div class="col-xs-12">
                 {{ message | translate}}
             </div>
         </div>
 
-        <div class="modal-body modal-setup"></div>
         <div class="modal-footer modal-setup" style="text-align:center">
             <button 
                 type="button" 
