@@ -38,7 +38,8 @@ kindFramework.factory(
         this.setPlaySpeed = function(_playSpeed) {
           if (playSpeed !== _playSpeed) {
             playSpeed = _playSpeed;
-            $rootScope.$emit('app/scripts/models/playback/PlayDataModel.js::changeSpeed', playSpeed);
+            $rootScope.$emit('app/scripts/models/playback/PlayDataModel.js::changeSpeed', 
+                            playSpeed);
           }
         };
 
@@ -53,13 +54,17 @@ kindFramework.factory(
          *        : (ex. playCommand.PLAY, playCommand.PAUSE ...)
          */
         this.setStatus = function(cmd) {
-          if (playbackStatus === cmd) return;
+          if (playbackStatus === cmd) {
+            return;
+          }
           playbackStatus = cmd;
 
           if (cmd === PLAY_CMD.STOP || cmd === PLAY_CMD.PAUSE || cmd === PLAY_CMD.LIVE) {
-            $rootScope.$emit('app/scripts/models/playback/PlayDataModel::changeButtonStatus', 'stop');
+            $rootScope.$emit('app/scripts/models/playback/PlayDataModel::changeButtonStatus', 
+                            'stop');
           } else if (cmd === PLAY_CMD.PLAY || cmd === PLAY_CMD.SEEK) {
-            $rootScope.$emit('app/scripts/models/playback/PlayDataModel::changeButtonStatus', 'play');
+            $rootScope.$emit('app/scripts/models/playback/PlayDataModel::changeButtonStatus', 
+                            'play');
           }
           if (cmd === PLAY_CMD.STOP) {
             $rootScope.$emit('app/scripts/models/playback/PlayDataModel::stop');
@@ -122,7 +127,7 @@ kindFramework.factory(
             endTime = null;
           }
           if (searchData.getPlaybackType() === 'eventSearch' &&
-            endTime !== null && endTime !== undefined) {
+            endTime !== null && typeof endTime !== "undefined") {
             selectTime += "-" + endTimeString;
           }
         };
@@ -221,5 +226,5 @@ kindFramework.factory(
         };
       };
       return PlayDataModel;
-    }
+    },
   ]);
