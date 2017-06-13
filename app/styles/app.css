@@ -1290,6 +1290,7 @@ input[type='text'] {
   -moz-transform: translateZ(0) translate(0, -50%);
   -ms-transform: translateZ(0) translate(0, -50%);
   -o-transform: translateZ(0) translate(0, -50%);
+  transform: translateZ(0) translate(0, -50%);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -1308,6 +1309,7 @@ input[type='text'] {
   -moz-transform: translateZ(0) translate(-50%, -50%);
   -ms-transform: translateZ(0) translate(-50%, -50%);
   -o-transform: translateZ(0) translate(-50%, -50%);
+  transform: translateZ(0) translate(-50%, -50%);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -1320,6 +1322,7 @@ input[type='text'] {
   -moz-transform: translateZ(0) translate(-50%, 0);
   -ms-transform: translateZ(0) translate(-50%, 0);
   -o-transform: translateZ(0) translate(-50%, 0);
+  transform: translateZ(0) translate(-50%, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -1498,12 +1501,14 @@ input[type='text'] {
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 .ua-datepicker table .btn.btn-default .glyphicon.glyphicon-chevron-right:before {
   -webkit-transform: rotate(225deg);
   -moz-transform: rotate(225deg);
   -ms-transform: rotate(225deg);
   -o-transform: rotate(225deg);
+  transform: rotate(225deg);
 }
 .ua-datepicker table thead tr:first-child th {
   padding-bottom: 10px;
@@ -1539,6 +1544,7 @@ input[type='text'] {
   -moz-transform: translateZ(0) translate(-50%, 0);
   -ms-transform: translateZ(0) translate(-50%, 0);
   -o-transform: translateZ(0) translate(-50%, 0);
+  transform: translateZ(0) translate(-50%, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -1919,6 +1925,7 @@ input[type='text'] {
   -moz-transform: translateZ(0) translate(-50%, 1px);
   -ms-transform: translateZ(0) translate(-50%, 1px);
   -o-transform: translateZ(0) translate(-50%, 1px);
+  transform: translateZ(0) translate(-50%, 1px);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -1952,6 +1959,7 @@ input[type='text'] {
   -moz-transform: scale(1.5);
   -ms-transform: scale(1.5);
   -o-transform: scale(1.5);
+  transform: scale(1.5);
 }
 .vis-custom-time div:after {
   position: absolute;
@@ -2086,6 +2094,7 @@ body.modal-open {
   -moz-transform: translate(0, 0) !important;
   -ms-transform: translate(0, 0) !important;
   -o-transform: translate(0, 0) !important;
+  transform: translate(0, 0) !important;
   -webkit-transition: initial !important;
   -moz-transition: initial !important;
   -ms-transition: initial !important;
@@ -2121,6 +2130,7 @@ body.modal-open {
   -moz-transform: translateZ(0) translate(-50%, -50%);
   -ms-transform: translateZ(0) translate(-50%, -50%);
   -o-transform: translateZ(0) translate(-50%, -50%);
+  transform: translateZ(0) translate(-50%, -50%);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -2131,8 +2141,7 @@ body.modal-open {
 }
 @media (min-width: 768px) {
   .modal.modal-position-middle .modal-dialog {
-    min-width: 450px;
-    width: auto;
+    width: 450px;
   }
 }
 .modal-backdrop {
@@ -3320,6 +3329,7 @@ select option:disabled {
   -moz-transform: translateZ(0) translate(0, 0);
   -ms-transform: translateZ(0) translate(0, 0);
   -o-transform: translateZ(0) translate(0, 0);
+  transform: translateZ(0) translate(0, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -3442,6 +3452,7 @@ select option:disabled {
     -moz-transform: translateZ(0) translate(0, 0);
     -ms-transform: translateZ(0) translate(0, 0);
     -o-transform: translateZ(0) translate(0, 0);
+    transform: translateZ(0) translate(0, 0);
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
@@ -4460,6 +4471,7 @@ fieldset .ui-slider.ui-slider-vertical .ui-state-default.ui-state-hover {
   -moz-transform: translateX(-50%) scale(1.33) !important;
   -ms-transform: translateX(-50%) scale(1.33) !important;
   -o-transform: translateX(-50%) scale(1.33) !important;
+  transform: translateX(-50%) scale(1.33) !important;
 }
 .wn5-setup-wrapper .ui-slider.ui-slider-vertical .ui-state-default.ui-state-active,
 fieldset .ui-slider.ui-slider-vertical .ui-state-default.ui-state-active {
@@ -4467,6 +4479,7 @@ fieldset .ui-slider.ui-slider-vertical .ui-state-default.ui-state-active {
   -moz-transform: translateX(-50%) scale(1.33) !important;
   -ms-transform: translateX(-50%) scale(1.33) !important;
   -o-transform: translateX(-50%) scale(1.33) !important;
+  transform: translateX(-50%) scale(1.33) !important;
 }
 .wn5-setup-wrapper .ui-slider:not(.ui-slider-vertical) .ui-state-default,
 fieldset .ui-slider:not(.ui-slider-vertical) .ui-state-default {
@@ -4479,6 +4492,7 @@ fieldset .ui-slider:not(.ui-slider-vertical) .ui-state-default.ui-state-hover {
   -moz-transform: scale(1.33) !important;
   -ms-transform: scale(1.33) !important;
   -o-transform: scale(1.33) !important;
+  transform: scale(1.33) !important;
 }
 .wn5-setup-wrapper .ui-slider:not(.ui-slider-vertical) .ui-state-default.ui-state-active,
 fieldset .ui-slider:not(.ui-slider-vertical) .ui-state-default.ui-state-active {
@@ -4486,6 +4500,7 @@ fieldset .ui-slider:not(.ui-slider-vertical) .ui-state-default.ui-state-active {
   -moz-transform: scale(1.33) !important;
   -ms-transform: scale(1.33) !important;
   -o-transform: scale(1.33) !important;
+  transform: scale(1.33) !important;
 }
 .wn5-setup-spin-button {
   float: left;
@@ -4644,6 +4659,7 @@ body.kind-svg-editor-drawing .channel-content {
   -moz-transform: translateZ(0) translate(-100%, 0);
   -ms-transform: translateZ(0) translate(-100%, 0);
   -o-transform: translateZ(0) translate(-100%, 0);
+  transform: translateZ(0) translate(-100%, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -6712,6 +6728,7 @@ img[id^="hm-results-image-"] {
   -moz-transform: translateZ(0) translate(0, -50%);
   -ms-transform: translateZ(0) translate(0, -50%);
   -o-transform: translateZ(0) translate(0, -50%);
+  transform: translateZ(0) translate(0, -50%);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -6782,6 +6799,7 @@ img[id^="hm-results-image-"] {
   -moz-transform: translateZ(0) translate(0, 0);
   -ms-transform: translateZ(0) translate(0, 0);
   -o-transform: translateZ(0) translate(0, 0);
+  transform: translateZ(0) translate(0, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -6852,6 +6870,7 @@ img[id^="hm-results-image-"] {
   -moz-transform: translateZ(0) translate(-50%, 0);
   -ms-transform: translateZ(0) translate(-50%, 0);
   -o-transform: translateZ(0) translate(-50%, 0);
+  transform: translateZ(0) translate(-50%, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -7093,6 +7112,7 @@ channels-wrapper dl dd .control-box button {
   -moz-transform: translateZ(0) translate(-50%, -50%);
   -ms-transform: translateZ(0) translate(-50%, -50%);
   -o-transform: translateZ(0) translate(-50%, -50%);
+  transform: translateZ(0) translate(-50%, -50%);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -7164,6 +7184,7 @@ channels-wrapper dl dd .control-box button {
   -moz-transform: translateZ(0) translate(-50%, 0);
   -ms-transform: translateZ(0) translate(-50%, 0);
   -o-transform: translateZ(0) translate(-50%, 0);
+  transform: translateZ(0) translate(-50%, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -7176,6 +7197,7 @@ channels-wrapper dl dd .control-box button {
   -moz-transform: translateZ(0) translate(-50%, -50%);
   -ms-transform: translateZ(0) translate(-50%, -50%);
   -o-transform: translateZ(0) translate(-50%, -50%);
+  transform: translateZ(0) translate(-50%, -50%);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -7245,6 +7267,7 @@ channels-wrapper dl dd .control-box button {
   -moz-transform: translateZ(0) translate(-140%, 0);
   -ms-transform: translateZ(0) translate(-140%, 0);
   -o-transform: translateZ(0) translate(-140%, 0);
+  transform: translateZ(0) translate(-140%, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -7454,6 +7477,7 @@ channels-wrapper dl dd .control-box button {
   -moz-transform: translateZ(0) translate(0, 0);
   -ms-transform: translateZ(0) translate(0, 0);
   -o-transform: translateZ(0) translate(0, 0);
+  transform: translateZ(0) translate(0, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -7470,6 +7494,7 @@ channels-wrapper dl dd .control-box button {
   -moz-transform: translateZ(0) translate(-100%, 0);
   -ms-transform: translateZ(0) translate(-100%, 0);
   -o-transform: translateZ(0) translate(-100%, 0);
+  transform: translateZ(0) translate(-100%, 0);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -7914,7 +7939,7 @@ i.tui-ch-playback-stop {
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-status .cm-status-wrap .cm-status-col .cm-table ::-webkit-scrollbar-thumb {
   background: #c1c1c1;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-status .cm-status-wrap .cm-status-col .cm-table ​ th,
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-status .cm-status-wrap .cm-status-col .cm-table th,
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-status .cm-status-wrap .cm-status-col .cm-table td {
   width: 1%;
   box-sizing: border-box;
@@ -9744,6 +9769,7 @@ i.tui-ch-playback-stop {
   -moz-transform: none;
   -ms-transform: none;
   -o-transform: none;
+  transform: none;
 }
 #wn5-online-help-wrapper #side-menu {
   margin-top: 0;
