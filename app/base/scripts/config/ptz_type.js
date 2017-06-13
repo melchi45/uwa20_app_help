@@ -22,14 +22,3 @@ kindFramework.constant('PTZ_TYPE', {
     'PANTILT': "lang_pantilt",
   }
 });
-
-kindFramework.constant('PTZ_MESSAGE', {
-  ptzNoListMessage: {
-    'PRESET': "설정된 리스트가 없습니다. PRESET 설정을 해주세요.",
-    'SWING': "설정된 리스트가 없습니다. SWING 설정을 해주세요.",
-    'GROUP': "설정된 리스트가 없습니다. GROUP 설정을 해주세요.",
-    'TOUR': "설정된 리스트가 없습니다. TOUR 설정을 해주세요.",
-    'TRACE': "TRACE를 지원하지 않습니다. ",
-    'NONE': "설정된 리스트가 없습니다. 설정을 해주세요.",
-  },
-});
