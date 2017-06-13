@@ -8802,7 +8802,7 @@ i.tui-ch-playback-stop {
   line-height: 1em;
 }
 .kind-responsive-playback #pb-backup-section .pb-block {
-  margin: 0 5px !important;
+  margin: 0 5px 15px 0 !important;
   display: inline-table;
   float: none;
 }
@@ -8810,9 +8810,9 @@ i.tui-ch-playback-stop {
   padding: 0 5px !important;
 }
 .kind-responsive-playback #pb-backup-section .pb-block#backup-date {
-  width: 100%;
+  width: auto;
   text-align: center;
-  margin: 0 0 5px 0 !important;
+  display: inline;
 }
 .kind-responsive-playback #pb-backup-section .pb-range {
   float: none !important;
@@ -8823,7 +8823,7 @@ i.tui-ch-playback-stop {
   text-align: center;
 }
 .kind-responsive-playback .pb-backup-button {
-  margin-top: 15px;
+  margin-top: 25px;
 }
 .kind-responsive-playback #pb-datepicker-section {
   margin-top: -5px;
