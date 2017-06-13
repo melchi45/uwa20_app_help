@@ -1,6 +1,6 @@
 kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScope, $state,
   kindStreamInterface, Attributes, SunapiClient, ConnectionSettingService, UniversialManagerService,
-  CAMERA_STATUS, BrowserService, RESTCLIENT_CONFIG) {
+  CAMERA_STATUS, BrowserService, RESTCLIENT_CONFIG, PluginModel) {
   "use strict";
 
   var channlistClass = 'channellist-video-wrapper';
@@ -54,9 +54,9 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
           } else {
             var object = '';
             if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) {
-              object = '<object classid="clsid:FC4C00B9-5A98-461C-88E8-B24B528DDBF5" width="100%" height="100%" name="channel' + i + '" id="channel' + i + '"></object>';
+              object = '<object classid="clsid:'+ PluginModel.ActiveX.ObjectID +'" width="100%" height="100%" name="channel' + i + '" id="channel' + i + '"></object>';
             } else {
-              object = '<object type="application/HTWisenetViewer-plugin" width="100%" height="100%" name="channel' + i + '" id="channel' + i + '"></object>';
+              object = '<object type="' + PluginModel.NPAPI.ObjectID + '" width="100%" height="100%" name="channel' + i + '" id="channel' + i + '"></object>';
             }
             div.innerHTML = object;
             $(section).append($(figure).append($(div)));
