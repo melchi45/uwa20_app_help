@@ -35,7 +35,7 @@ kindFramework.controller('dewarpSetupCtrl',
     function getAttributes() {
       $scope.lensModelList = mAttr.LensModel;
 
-      if (mAttr.ViewModeIndex !== undefined) {
+      if (typeof mAttr.ViewModeIndex !== "undefined") {
         $scope.minViewModeIndex = mAttr.ViewModeIndex.minValue;
         $scope.maxViewModeIndex = mAttr.ViewModeIndex.maxValue;
         $scope.cameraPositionList = mAttr.CameraPosition; // "Wall", "Ceiling"

@@ -19,7 +19,7 @@ kindFramework.controller('dnScheduleCtrl', function($scope, $uibModalInstance, $
 
   function parseStartEndTime() {
     var day = {};
-    if (camera.DayNightModeSchedules !== undefined) {
+    if (typeof camera.DayNightModeSchedules !== "undefined") {
       if (camera.DayNightModeSchedules.hasOwnProperty(selectedDay)) {
         day = camera.DayNightModeSchedules[selectedDay];
       }
@@ -62,7 +62,7 @@ kindFramework.controller('dnScheduleCtrl', function($scope, $uibModalInstance, $
       document.getElementById('selectedToHour').focus();
       if ($scope.SelectedFromHour >= $scope.SelectedToHour) {
         document.getElementById('selectedToHour').focus();
-        if (($scope.SelectedFromHour == $scope.SelectedToHour) && ($scope.SelectedFromMinute > $scope.SelectedToMinute)) {
+        if (($scope.SelectedFromHour === $scope.SelectedToHour) && ($scope.SelectedFromMinute > $scope.SelectedToMinute)) {
           document.getElementById('selectedToMinute').focus();
         }
       }
@@ -75,7 +75,7 @@ kindFramework.controller('dnScheduleCtrl', function($scope, $uibModalInstance, $
   $scope.ok = function() {
     if (validatePage() === true) {
       var day = {};
-      if (camera.DayNightModeSchedules !== undefined) {
+      if (typeof camera.DayNightModeSchedules !== "undefined") {
         if (camera.DayNightModeSchedules.hasOwnProperty(selectedDay)) {
           day = camera.DayNightModeSchedules[selectedDay];
           day.FromTo = COMMONUtils.getFormatedInteger($scope.SelectedFromHour, 2) + ':' + COMMONUtils.getFormatedInteger($scope.SelectedFromMinute, 2) +
@@ -124,7 +124,7 @@ kindFramework.controller('heaterScheduleCtrl', function($scope, $uibModalInstanc
 
   function parseStartEndTime() {
     var day = {};
-    if (heater !== undefined) {
+    if (typeof heater !== "undefined") {
       if (heater.hasOwnProperty(selectedDay)) {
         day = heater[selectedDay];
       }
@@ -174,7 +174,7 @@ kindFramework.controller('heaterScheduleCtrl', function($scope, $uibModalInstanc
   $scope.ok = function() {
     if (validatePage() === true) {
       var day = {};
-      if (heater !== undefined) {
+      if (typeof heater !== "undefined") {
         if (heater.hasOwnProperty(selectedDay)) {
           day = heater[selectedDay];
           day.FromTo = COMMONUtils.getFormatedInteger($scope.SelectedFromHour, 2) + ':' + COMMONUtils.getFormatedInteger($scope.SelectedFromMinute, 2) +

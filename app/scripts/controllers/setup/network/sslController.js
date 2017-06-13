@@ -1,8 +1,8 @@
+"use strict";
+/*globals Uint8Array*/
 kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, SunapiClient, COMMONUtils, Attributes, $timeout, $translate, CAMERA_STATUS, UniversialManagerService, $q, $window) {
-  "use strict";
 
   var mAttr = Attributes.get();
-
   COMMONUtils.getResponsiveObjects($scope);
 
   var sslURLPath = $(location).attr('pathname') + '#/setup/network_ssl';
@@ -10,11 +10,11 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
   $scope.pageData = {};
 
   function getAttributes() {
-    if (mAttr.SSLPolicyOptions !== undefined) {
+    if (typeof mAttr.SSLPolicyOptions !== "undefined") {
       $scope.SSLPolicyOptions = mAttr.SSLPolicyOptions;
     }
 
-    if (mAttr.PublicCertificateNameRange !== undefined) {
+    if (typeof mAttr.PublicCertificateNameRange !== "undefined") {
       $scope.PublicCertificateNameRange = parseInt(mAttr.PublicCertificateNameRange.maxLength, 10);
     }
     $scope.PublicCertificateNamePattern = "^[a-zA-Z0-9]*$";
@@ -39,7 +39,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
   function httpPortView() {
     return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=http&action=view', '',
       function(response) {
-        if (response.data !== undefined) {
+        if (typeof response.data !== "undefined") {
           $scope.httpPort = response.data.Port;
         }
       },
@@ -52,7 +52,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
   function httpsPortView() {
     return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=https&action=view', '',
       function(response) {
-        if (response.data !== undefined) {
+        if (typeof response.data !== "undefined") {
           $scope.httpsPort = response.data.Port;
         }
       },
@@ -156,8 +156,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
     var ext = '';
 
     if ($scope.SSL.PublicCertificateName === "") {
-      var ErrorMessage = 'lang_msg_please_input_certname';
-      COMMONUtils.ShowError(ErrorMessage);
+      COMMONUtils.ShowError("lang_msg_please_input_certname");
       return;
     }
 
@@ -166,9 +165,8 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
     ext = fileName.split('.').pop();
 
     //Check for file extension validity.
-    if (ext != "crt") {
-      var ErrorMessage = 'lang_msg_cert_file_error';
-      COMMONUtils.ShowError(ErrorMessage);
+    if (ext !== "crt") {
+      COMMONUtils.ShowError("lang_msg_cert_file_error");
       return;
     }
 
@@ -176,14 +174,13 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
     fileName = element.value.split('/').pop().split('\\').pop();
     ext = fileName.split('.').pop();
 
-    if (ext != "key") {
-      var ErrorMessage = 'lang_msg_key_file_error';
-      COMMONUtils.ShowError(ErrorMessage);
+    if (ext !== "key") {
+      COMMONUtils.ShowError("lang_msg_key_file_error");
       return;
     }
 
     var setData = {},
-      postData;
+      postData = "";
 
     if ($scope.cerfile) {
       var r = new FileReader();
@@ -277,14 +274,20 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       relocate_page = 'https://';
     }
 
-    if (ipv6addr) relocate_page += '[';
-    relocate_page += the_hostname;
-    if (ipv6addr) relocate_page += ']';
+    if (ipv6addr) {
+      relocate_page += '[' + the_hostname + ']';
+    } else {
+      relocate_page += the_hostname;
+    }
 
     if (httpsmode === 'HTTP') {
-      if (httpPort !== 80) relocate_page += ':' + httpPort;
+      if (httpPort !== 80) {
+        relocate_page += ':' + httpPort;
+      }
     } else {
-      if (httpPort !== 443) relocate_page += ':' + httpsPort;
+      if (httpPort !== 443) {
+        relocate_page += ':' + httpsPort;
+      }
     }
 
     relocate_page += sslURLPath;
@@ -297,7 +300,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
     }
 
     //To check plugin at HTTPS
-    if ($window.sessionStorage !== undefined) {
+    if (typeof $window.sessionStorage !== "undefined") {
       if ($window.sessionStorage.isPlugin === "true") {
         $scope.relocateUrl += "?isPlugin";
       } else {
@@ -327,8 +330,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       return;
     }
 
-    var setData = {},
-      reqSaveData;
+    var setData = {};
     setData.PublicCertificateName = $scope.SSL.PublicCertificateName;
 
     SunapiClient.get('/stw-cgi/security.cgi?msubmenu=ssl&action=remove', setData,
@@ -345,7 +347,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
   };
 
   $scope.IsCerticateInstalled = function() {
-    if ($scope.SSL !== undefined && $scope.SSL.PublicCertificateInstalled === false) {
+    if (typeof $scope.SSL !== "undefined" && $scope.SSL.PublicCertificateInstalled === false) {
       return false;
     }
     return true;
@@ -372,7 +374,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
   (function checkPlugin() {
     var url = $location.url();
     try {
-      if ($window.sessionStorage !== undefined) {
+      if (typeof $window.sessionStorage !== "undefined") {
         if (url.indexOf('isPlugin') > 0) {
           $window.sessionStorage.isPlugin = "true";
         } else if (url.indexOf('isNonPlugin') > 0) {
