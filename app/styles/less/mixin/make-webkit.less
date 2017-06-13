@@ -94,24 +94,28 @@
   -moz-transform: @string;
   -ms-transform: @string;
   -o-transform: @string;
+  transform: @string;
 }
 .scale (@factor) {
   -webkit-transform: scale(@factor);
   -moz-transform: scale(@factor);
   -ms-transform: scale(@factor);
   -o-transform: scale(@factor);
+  transform: scale(@factor);
 }
 .rotate (@deg) {
   -webkit-transform: rotate(@deg);
   -moz-transform: rotate(@deg);
   -ms-transform: rotate(@deg);
   -o-transform: rotate(@deg);
+  transform: rotate(@deg);
 }
 .skew (@deg, @deg2) {
   -webkit-transform: skew(@deg, @deg2);
   -moz-transform: skew(@deg, @deg2);
   -ms-transform: skew(@deg, @deg2);
   -o-transform: skew(@deg, @deg2);
+  transform: skew(@deg, @deg2);
 }
 .translate (@x, @y:0) {
   .translate3d(@x, @y, 0);
@@ -121,6 +125,7 @@
   -moz-transform: translateZ(@z) translate(@x, @y);
   -ms-transform: translateZ(@z) translate(@x, @y);
   -o-transform: translateZ(@z) translate(@x, @y);
+  transform: translateZ(@z) translate(@x, @y);
 
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
@@ -138,4 +143,5 @@
   -moz-transform-origin: @x @y;
   -ms-transform-origin: @x @y;
   -o-transform-origin: @x @y;
+  transform-origin: @x @y;
 }

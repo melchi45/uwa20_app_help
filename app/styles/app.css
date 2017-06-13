@@ -2349,7 +2349,7 @@ body.modal-open {
   width: 100%;
   border: 1px dashed #d2d2d2;
   position: absolute;
-  top: calc(49%);
+  top: calc(50% - 1px);
   left: 0;
   z-index: 1;
 }
@@ -2359,7 +2359,7 @@ body.modal-open {
   border: 1px dashed #d2d2d2;
   position: absolute;
   top: 0;
-  left: calc(49%);
+  left: calc(50% - 1px);
   z-index: 1;
 }
 #ptz-control #ptz-control_left-control-box #ptz-control_box #ptz-control_move-btn {
@@ -2367,8 +2367,8 @@ body.modal-open {
   height: 24px;
   line-height: 24px;
   position: absolute;
-  top: calc(38%);
-  left: calc(38%);
+  top: calc(50% - 12px);
+  left: calc(50% - 12px);
   z-index: 2;
   font-size: 24px;
   color: #797979;
@@ -2483,35 +2483,35 @@ body.modal-open {
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.top-up {
   top: -25px;
-  left: calc(39%);
+  left: calc(50% - 11px);
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.top-down {
   top: 2px;
-  left: calc(39%);
+  left: calc(50% - 11px);
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.left-left {
-  top: calc(39%);
+  top: calc(50% - 11px);
   left: -25px;
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.left-right {
-  top: calc(39%);
+  top: calc(50% - 11px);
   left: 2px;
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.right-left {
-  top: calc(39%);
+  top: calc(50% - 11px);
   right: 2px;
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.right-right {
-  top: calc(39%);
+  top: calc(50% - 11px);
   right: -25px;
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.bottom-up {
   bottom: 2px;
-  left: calc(39%);
+  left: calc(50% - 11px);
 }
 #ptz-control_right-box #ptz-control_blc-left #ptz-control_blc-adj button.bottom-down {
   bottom: -26px;
-  left: calc(39%);
+  left: calc(50% - 11px);
 }
 #ptz-control_right-box #ptz-control_blc-right {
   width: 80px;
@@ -2542,7 +2542,7 @@ body.modal-open {
   width: 100%;
   border: 1px dashed #d2d2d2;
   position: absolute;
-  top: calc(49%);
+  top: calc(50% - 1px);
   left: 0;
   z-index: 1;
 }
@@ -2552,7 +2552,7 @@ body.modal-open {
   border: 1px dashed #d2d2d2;
   position: absolute;
   top: 0;
-  left: calc(49%);
+  left: calc(50% - 1px);
   z-index: 1;
 }
 #ptz-control_box-popup #ptz-control_move-btn-popup {
@@ -2560,8 +2560,8 @@ body.modal-open {
   height: 24px;
   line-height: 24px;
   position: absolute;
-  top: calc(38%);
-  left: calc(38%);
+  top: calc(50% - 12px);
+  left: calc(50% - 12px);
   z-index: 2;
   font-size: 24px;
   color: #797979;
@@ -2795,7 +2795,7 @@ body.modal-open {
   }
   #ptz-control_blc-left {
     width: 235px;
-    margin-right: calc(-135%);
+    margin-right: calc(100% - 235px);
   }
   #ptz-control_blc-right {
     margin-left: 0;
