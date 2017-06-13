@@ -10,7 +10,7 @@ kindFramework.
         return isPc;
       };
       this.setDigitalZoomService = function(mode) {
-        var canvasElem = document.getElementById("cm-livecanvas");
+        var canvasElem = document.getElementById("overlay-canvas");
 
         if (mode) {
           if (canvasElem !== null) {
@@ -25,7 +25,7 @@ kindFramework.
       };
 
       this.setPixelCounterService = function(mode, callbackFunc) {
-        var canvasElem = document.getElementById("cm-livecanvas");
+        var canvasElem = document.getElementById("overlay-canvas");
         if (mode) {
           if (canvasElem !== null) {
             PixelCounterService.setElementEvent(canvasElem);
@@ -40,7 +40,7 @@ kindFramework.
       };
 
       this.setManualTrackingService = function(mode, callbackFunc) {
-        var canvasElem = document.getElementById("cm-livecanvas");
+        var canvasElem = document.getElementById("overlay-canvas");
         if (mode) {
           if (canvasElem !== null) {
             /* it blocked multi added eventlistener */
@@ -61,7 +61,7 @@ kindFramework.
       };
 
       this.enablePTZ = function(mode) {
-        var canvasElem = document.getElementById("cm-livecanvas");
+        var canvasElem = document.getElementById("overlay-canvas");
         if (canvasElem !== null) {
           PTZContorlService.deleteElementEvent(canvasElem);
           DigitalZoomService.deleteElementEvent(canvasElem);

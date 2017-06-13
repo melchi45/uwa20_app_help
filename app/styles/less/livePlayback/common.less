@@ -150,7 +150,7 @@ channel_player canvas,
 channel_player #video-container,
 channel_player object:not(.dptz),
 channel_player img,
-#cm-livecanvas {
+#overlay-canvas {
   position: absolute;
 }
 
@@ -716,14 +716,14 @@ live-playback common {
         }
     } 
 
-    #cm-livecanvas {
+    #overlay-canvas {
         background-color: transparent;
         z-index: 102;
         opacity: 1;
     } 
 
     .cm-wisenet-channel,
-    overlay-canvas{
+    overlay-canvas {
         width: 100%;
         max-width: 100%;
         height: 100%;
@@ -741,7 +741,7 @@ live-playback common {
     }
 }
 
-#cm-livecanvas,
+#overlay-canvas,
 #livecanvas {
     position: relative;
 }

@@ -511,7 +511,7 @@ kindFramework.factory('PTZContorlService', ['$q', 'LoggingService', 'SunapiClien
     }
 
     function areaZoomInit() {
-      overlayCanvas = document.getElementById("cm-livecanvas");
+      overlayCanvas = document.getElementById("overlay-canvas");
       overlayCanvasContext = overlayCanvas.getContext("2d");
 
       //AreaZoom 영역 색상 두께 설정
