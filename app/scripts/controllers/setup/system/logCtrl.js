@@ -21,7 +21,13 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
 
   $scope.CurrentDate = new Date();
 
-  $scope.MaxDate = COMMONUtils.getFormatedInteger($scope.CurrentDate.getFullYear(), 4).toString() + "-" + COMMONUtils.getFormatedInteger($scope.CurrentDate.getMonth() + 1, 2).toString() + "-" + COMMONUtils.getFormatedInteger($scope.CurrentDate.getDate(), 2).toString();
+  var DATE_LENGTH = {YEAR:4, MONTH:2, DATE:2};
+
+  var DATE_PARAM = {YEAR:0, MONTH:1, DATE:2};
+
+  var ATTRIBUTE_REQUEST_TIMEOUT = 500;
+
+  $scope.MaxDate = COMMONUtils.getFormatedInteger($scope.CurrentDate.getFullYear(), DATE_LENGTH.YEAR).toString() + "-" + COMMONUtils.getFormatedInteger($scope.CurrentDate.getMonth() + 1, DATE_LENGTH.MONTH).toString() + "-" + COMMONUtils.getFormatedInteger($scope.CurrentDate.getDate(), DATE_LENGTH.DATE).toString();
 
   $scope.isMultiChannel = false;
 
@@ -45,8 +51,11 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
     $scope.SelectedChannel = $scope.ChannelTypes[0];
 
     $scope.AccessLogTypes = ['All'];
-    if (mAttr.AccessLogTypes !== undefined) {
-      var logArray = angular.copy(mAttr.AccessLogTypes);
+
+    var logArray = null;
+
+    if (typeof mAttr.AccessLogTypes !== 'undefined') {
+      logArray = angular.copy(mAttr.AccessLogTypes);
 
       logArray.sort();
       $scope.AccessLogTypes.push.apply($scope.AccessLogTypes, logArray);
@@ -54,8 +63,8 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
     }
 
     $scope.SystemLogTypes = ['All'];
-    if (mAttr.SystemLogTypes !== undefined) {
-      var logArray = angular.copy(mAttr.SystemLogTypes);
+    if (typeof mAttr.SystemLogTypes !== 'undefined') {
+      logArray = angular.copy(mAttr.SystemLogTypes);
 
       logArray.sort();
       $scope.SystemLogTypes.push.apply($scope.SystemLogTypes, logArray);
@@ -63,8 +72,8 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
     }
 
     $scope.EventLogTypes = ['All'];
-    if (mAttr.EventLogTypes !== undefined) {
-      var logArray = angular.copy(mAttr.EventLogTypes);
+    if (typeof mAttr.EventLogTypes !== 'undefined') {
+      logArray = angular.copy(mAttr.EventLogTypes);
 
       logArray.sort();
       $scope.EventLogTypes.push.apply($scope.EventLogTypes, logArray);
@@ -158,17 +167,18 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
 
     return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=eventlog&action=view', getData,
       function(response) {
+        var index = 0;
         if (typeof response.data.ChannelEventLog !== 'undefined') {
-          for (var i = 0; i < response.data.ChannelEventLog.length; i++) {
+          for (index = 0; index < response.data.ChannelEventLog.length; index++) {
             // $scope.EventLog.push.apply($scope.EventLog, response.data.ChannelEventLog[i].EventLog);
-            $scope.EventLog.push(response.data.ChannelEventLog[i].EventLog);
+            $scope.EventLog.push(response.data.ChannelEventLog[index].EventLog);
           }
         }
 
         if (typeof response.data.AlarmInputLog !== 'undefined') {
-          for (var i = 0; i < response.data.AlarmInputLog.length; i++) {
-            $scope.EventLog.push.apply($scope.EventLog, response.data.AlarmInputLog[i].EventLog);
-            $scope.AlarmEvents.push(response.data.AlarmInputLog[i]);
+          for (index = 0; index < response.data.AlarmInputLog.length; index++) {
+            $scope.EventLog.push.apply($scope.EventLog, response.data.AlarmInputLog[index].EventLog);
+            $scope.AlarmEvents.push(response.data.AlarmInputLog[index]);
           }
         }
 
@@ -178,7 +188,7 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
         // $scope.EL = COMMONUtils.chunkArray($scope.EventLog, $scope.pageSize);
         $scope.EL = COMMONUtils.chunkArray($scope.EventLog[0], $scope.pageSize);
 
-        if ($scope.data.SelectedEventLog !== null && $scope.data.SelectedEventLog !== undefined) {
+        if ($scope.data.SelectedEventLog !== null && typeof $scope.data.SelectedEventLog !== 'undefined') {
           $scope.onEvtLogChange($scope.data.SelectedEventLog);
         }
       },
@@ -192,7 +202,7 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
   function view(onlyEventLog) {
     if (onlyEventLog) {
       $q.seqAll([
-        getEventLog
+        getEventLog,
       ]).then(function() {
         $rootScope.$emit('changeLoadingBar', false);
         $scope.pageLoaded = true;
@@ -205,7 +215,7 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
       $q.seqAll([
         getAccessLog,
         getSystemLog,
-        getEventLog
+        getEventLog,
       ]).then(function() {
         $rootScope.$emit('changeLoadingBar', false);
         $scope.pageLoaded = true;
@@ -218,18 +228,19 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
 
   $scope.backup = function(Option) {
     var logArray = [];
+    var index = 0;
 
     if (Option === 'AccessLog') {
-      for (var i = 0; i < $scope.AL.length; i++) {
-        logArray.push.apply(logArray, $scope.AL[i]);
+      for (index = 0; index < $scope.AL.length; index++) {
+        logArray.push.apply(logArray, $scope.AL[index]);
       }
     } else if (Option === 'SystemLog') {
-      for (var i = 0; i < $scope.SL.length; i++) {
-        logArray.push.apply(logArray, $scope.SL[i]);
+      for (index = 0; index < $scope.SL.length; index++) {
+        logArray.push.apply(logArray, $scope.SL[index]);
       }
     } else if (Option === 'EventLog') {
-      for (var i = 0; i < $scope.EL.length; i++) {
-        logArray.push.apply(logArray, $scope.EL[i]);
+      for (index = 0; index < $scope.EL.length; index++) {
+        logArray.push.apply(logArray, $scope.EL[index]);
       }
     }
 
@@ -239,7 +250,7 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
       return;
     }
 
-    var logData;
+    var logData = null;
     for (var i = 0; i < logArray.length; i++) {
       if (Option === 'EventLog' && logArray[i].Type === 'VideoAnalysis') {
         if (mAttr.VideoAnalyticsSupport === false) {
@@ -260,19 +271,21 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
 
     var filename = $scope.ModelName + '_' + Option + '_' + COMMONUtils.getCurrentDatetime() + '.txt';
     var contentType = 'application/plain-text';
+    var blob = null;
+    var url = null;
 
     try {
       console.log("Trying SaveBlob method ...");
 
-      var blob = new Blob([logData], {
-        type: contentType
+      blob = new Blob([logData], {
+        type: contentType,
       });
 
       if (navigator.msSaveBlob) {
         navigator.msSaveBlob(blob, filename);
       } else {
         var saveBlob = navigator.webkitSaveBlob || navigator.mozSaveBlob || navigator.saveBlob;
-        if (saveBlob === undefined) {
+        if (typeof saveBlob === 'undefined') {
           throw "Not supported";
         }
         saveBlob(blob, filename);
@@ -292,11 +305,11 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
           try {
             console.log("Trying DownloadLink method ...");
 
-            var blob = new Blob([logData], {
-              type: contentType
+            blob = new Blob([logData], {
+              type: contentType,
             });
 
-            var url = urlCreator.createObjectURL(blob);
+            url = urlCreator.createObjectURL(blob);
             link.setAttribute('href', url);
             link.setAttribute("download", filename);
 
@@ -314,10 +327,10 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
         if (!success) {
           try {
             console.log("Trying DownloadLink method with WindowLocation ...");
-            var blob = new Blob([logData], {
-              type: contentType
+            blob = new Blob([logData], {
+              type: contentType,
             });
-            var url = urlCreator.createObjectURL(blob);
+            url = urlCreator.createObjectURL(blob);
             window.location = url;
 
             console.log("DownloadLink method with WindowLocation succeeded");
@@ -331,15 +344,16 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
 
     if (!success) {
       console.log("No methods worked for saving the arraybuffer, Using Resort window.open");
-      window.open(httpPath, '_blank', '');
+      // window.open(httpPath, '_blank', '');
     }
   };
 
   $scope.jumpToPage = function(Option) {
     var pageCount = parseInt($scope.getPageCount(Option));
+    var pageNum = null;
 
     if (Option === 'AccessLog') {
-      var pageNum = $scope.data.AccessLogPageIndex;
+      pageNum = $scope.data.AccessLogPageIndex;
 
       if (pageNum < 1) {
         return;
@@ -350,7 +364,7 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
       }
       $scope.data.AccessLogPageIndex = $scope.currentAccessLogPage;
     } else if (Option === 'SystemLog') {
-      var pageNum = $scope.data.SystemLogPageIndex;
+      pageNum = $scope.data.SystemLogPageIndex;
 
       if (pageNum < 1) {
         return;
@@ -361,7 +375,7 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
       }
       $scope.data.SystemLogPageIndex = $scope.currentSystemLogPage;
     } else if (Option === 'EventLog') {
-      var pageNum = $scope.data.EventLogPageIndex;
+      pageNum = $scope.data.EventLogPageIndex;
 
       if (pageNum < 1) {
         return;
@@ -505,7 +519,6 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
   };
 
   $scope.onEvtLogChange = function(Option) {
-    var currentChannel = UniversialManagerService.getChannelId();
     $scope.EL = [];
     $scope.currentEventLogPage = 1;
     if (Option === 'All') {
@@ -521,7 +534,7 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
     if (typeof $scope.CurrentDate === 'undefined') {
       var str = $('#SearchDateId').val().split('-');
 
-      $scope.CurrentDate = new Date(parseInt(str[0]), parseInt(str[1]) - 1, parseInt(str[2]));
+      $scope.CurrentDate = new Date(parseInt(str[DATE_PARAM.YEAR]), parseInt(str[DATE_PARAM.MONTH]) - 1, parseInt(str[DATE_PARAM.DATE]));
     }
 
     var cDate = new Date();
@@ -532,14 +545,14 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
 
       var dateReq = {};
 
-      dateReq.fromDate = COMMONUtils.getFormatedInteger(fromDate.getFullYear(), 4).toString() + "-" + COMMONUtils.getFormatedInteger(fromDate.getMonth() + 1, 2).toString() + "-" + COMMONUtils.getFormatedInteger(fromDate.getDate(), 2).toString();
-      dateReq.toDate = COMMONUtils.getFormatedInteger(toDate.getFullYear(), 4).toString() + "-" + COMMONUtils.getFormatedInteger(toDate.getMonth() + 1, 2).toString() + "-" + COMMONUtils.getFormatedInteger(toDate.getDate(), 2).toString();
+      dateReq.fromDate = COMMONUtils.getFormatedInteger(fromDate.getFullYear(), DATE_LENGTH.YEAR).toString() + "-" + COMMONUtils.getFormatedInteger(fromDate.getMonth() + 1, DATE_LENGTH.MONTH).toString() + "-" + COMMONUtils.getFormatedInteger(fromDate.getDate(), DATE_LENGTH.DATE).toString();
+      dateReq.toDate = COMMONUtils.getFormatedInteger(toDate.getFullYear(), DATE_LENGTH.YEAR).toString() + "-" + COMMONUtils.getFormatedInteger(toDate.getMonth() + 1, DATE_LENGTH.MONTH).toString() + "-" + COMMONUtils.getFormatedInteger(toDate.getDate(), DATE_LENGTH.DATE).toString();
 
       getAccessLog(dateReq);
       getSystemLog(dateReq);
       getEventLog(dateReq);
     } else {
-      alert("Future Date");
+      console.error("Future Date");
     }
   };
 
@@ -558,7 +571,7 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
       $timeout(function() {
         mAttr = Attributes.get();
         wait();
-      }, 500);
+      }, ATTRIBUTE_REQUEST_TIMEOUT);
     } else {
       view();
     }
