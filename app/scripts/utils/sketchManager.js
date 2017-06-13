@@ -3459,9 +3459,9 @@ var SketchManager = (function() {
           } else if ((rectPos.startY + rectPos.h) < 0) {
             rectPos.h = (-1) * rectPos.startY;
           }
-          fContext.strokeStyle = colorFactory.blue;
-          fContext.lineWidth = lineWidth;
-          fContext.fillStyle = colorFactory.blue;
+          fContext.globalAlpha = alphaFactory.enabled.fill;
+          fContext.fillRect(rectPos.startX, rectPos.startY, rectPos.w, rectPos.h);
+          fContext.globalAlpha = alphaFactory.enabled.stroke;
           fContext.strokeRect(rectPos.startX, rectPos.startY, rectPos.w, rectPos.h);
         }
         isDrawDragging = true;
@@ -3588,7 +3588,10 @@ var SketchManager = (function() {
         tempCoordi.y1 = parseInt(coordinates.y1 / (videoInfo.maxHeight / videoInfo.height), 10);
         tempCoordi.width = parseInt(coordinates.width / (videoInfo.maxWidth / videoInfo.width), 10);
         tempCoordi.height = parseInt(coordinates.height / (videoInfo.maxHeight / videoInfo.height), 10);
+
+        fContext.globalAlpha = alphaFactory.enabled.stroke;
         fContext.strokeRect(tempCoordi.x1, tempCoordi.y1, tempCoordi.width, tempCoordi.height);
+        fContext.globalAlpha = alphaFactory.enabled.fill;
         fContext.fillRect(tempCoordi.x1, tempCoordi.y1, tempCoordi.width, tempCoordi.height);
         if (updateCoordinates !== null && typeof updateCoordinates === "function") {
           if (!isInit) {
