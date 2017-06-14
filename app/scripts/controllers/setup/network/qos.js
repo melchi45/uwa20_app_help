@@ -50,7 +50,8 @@ kindFramework.controller('qosCtrl', function($scope, $timeout, COMMONUtils, Suna
     $scope.IPv6DSCPStrlen = IPv6DSCP.max.toString().length;
   }
 
-  function view(updateType) {
+  function view(updateTypeData) {
+    var updateType = updateTypeData;
 
     if (typeof updateType === 'undefined') {
       updateType = "all";
@@ -75,6 +76,8 @@ kindFramework.controller('qosCtrl', function($scope, $timeout, COMMONUtils, Suna
         pageData = angular.copy(response.data);
 
         for (var i = 0; i < response.data.QOS.length; i++) {
+          var j = 0;
+
           if (response.data.QOS[i].IPType === 'IPv4') {
             if (updateType === "IPv6") {
               continue;
@@ -82,7 +85,7 @@ kindFramework.controller('qosCtrl', function($scope, $timeout, COMMONUtils, Suna
 
             $scope.IPListV4 = response.data.QOS[i].IPList;
             $scope.originalIPv4Length = response.data.QOS[i].IPList.length;
-            for (var j = 0; j < $scope.IPListV4.length; j++) {
+            for (j = 0; j < $scope.IPListV4.length; j++) {
               $scope.IPListV4[j].ind = j + 1;
               $scope.IPListV4[j].isNew = false;
             }
@@ -275,8 +278,11 @@ kindFramework.controller('qosCtrl', function($scope, $timeout, COMMONUtils, Suna
 
   function validate() {
     var retVal = true;
-    var qosIdx;
-    var ErrorMessage;
+    var qosIdx = 0;
+    var ErrorMessage = null;
+    var i = 0;
+    var j = 0;
+
     for (qosIdx = 0; qosIdx < $scope.IPListV4.length; qosIdx = qosIdx + 1) {
       if (typeof $scope.IPListV4[qosIdx].IPAddress === 'undefined' ||
         $scope.IPListV4[qosIdx].IPAddress === "") {
@@ -318,9 +324,10 @@ kindFramework.controller('qosCtrl', function($scope, $timeout, COMMONUtils, Suna
 
 
     var isUniqueIpv4 = true;
-    for (var i = 0; i < $scope.IPListV4.length; i++) {
-      for (var j = 0; j < $scope.IPListV4.length; j++) {
-        if (i != j) {
+
+    for (i = 0; i < $scope.IPListV4.length; i++) {
+      for (j = 0; j < $scope.IPListV4.length; j++) {
+        if (i !== j) {
           if ($scope.IPListV4[i].IPAddress === $scope.IPListV4[j].IPAddress) {
             isUniqueIpv4 = false;
           }
@@ -375,9 +382,9 @@ kindFramework.controller('qosCtrl', function($scope, $timeout, COMMONUtils, Suna
 
 
     var isUniqueIpv6 = true;
-    for (var i = 0; i < $scope.IPListV6.length; i++) {
-      for (var j = 0; j < $scope.IPListV6.length; j++) {
-        if (i != j) {
+    for (i = 0; i < $scope.IPListV6.length; i++) {
+      for (j = 0; j < $scope.IPListV6.length; j++) {
+        if (i !== j) {
           if ($scope.IPListV6[i].IPAddress === $scope.IPListV6[j].IPAddress) {
             isUniqueIpv6 = false;
           }
@@ -405,13 +412,15 @@ kindFramework.controller('qosCtrl', function($scope, $timeout, COMMONUtils, Suna
 
   function saveSettings() {
     var promises = [];
-    var promise = null;
     var updateRequired = false;
+    
+
     if (typeof pageData.QOS !== 'undefined') {
 
       for (var i = 0; i < pageData.QOS.length; i++) {
+        var j = 0;
         if (pageData.QOS[i].IPType === 'IPv4') {
-          for (var j = 0; j < pageData.QOS[i].IPList.length; j++) {
+          for (j = 0; j < pageData.QOS[i].IPList.length; j++) {
             updateRequired = false;
             if (pageData.QOS[i].IPList[j].IPAddress !== $scope.IPListV4[j].IPAddress) {
               updateRequired = true;
@@ -452,7 +461,7 @@ kindFramework.controller('qosCtrl', function($scope, $timeout, COMMONUtils, Suna
           }
         } else {
 
-          for (var j = 0; j < pageData.QOS[i].IPList.length; j++) {
+          for (j = 0; j < pageData.QOS[i].IPList.length; j++) {
             updateRequired = false;
             if (pageData.QOS[i].IPList[j].IPAddress !== $scope.IPListV6[j].IPAddress) {
               updateRequired = true;
