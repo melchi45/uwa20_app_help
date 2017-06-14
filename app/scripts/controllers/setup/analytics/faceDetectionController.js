@@ -71,7 +71,15 @@ kindFramework.controller(
     //TNB
     $scope.detectionLineColorSection = {
       selectedColorIndex: '0',
-      colorIndexList: { //facedetection.less 파일에 정의된 색상 코드와 동일해야 함.
+      /*
+       * facedetection.less 파일에 정의된 색상 코드와 동일해야 함.
+       * JSON 포맷
+       * <Color Index:String>: {
+       *   colorName: <Color Name:String>
+       *   colorCode: <Color Code:String>
+       * }
+       */
+      colorIndexList: { 
         0: {
           colorName: 'red',
           colorCode: 'rgb(253, 46, 84)'
@@ -319,7 +327,7 @@ kindFramework.controller(
           $scope.coordinates[0].enable = true;
         }
 
-        //TNB 기본색상 세팅
+        //TNB SUANPI 응답데이터를 영역 옵션에 설정
         //$scope.detectionLineColorSection.setSelectedColor($scope.FD.enableOverlay);
 
         $scope.sketchinfo = getSketchinfo(color, 1, true, useEvent);
@@ -412,6 +420,10 @@ kindFramework.controller(
       if (pageData.FD.DetectionAreaMode !== $scope.FD.DetectionAreaMode) {
         setData.DetectionAreaMode = $scope.FD.DetectionAreaMode;
       }
+
+      //TNB 설정한 색상값을 SUNAPI에 요청
+      // setData.enableOverlay = $scope.detectionLineColorSection.getSelectedColorIndex($scope.FD.enableOverlay);
+
       if (typeof $scope.FD.DetectionAreas !== "undefined") {
         for (idx = 0; idx < $scope.FD.DetectionAreas.length; idx++) {
           self = $scope.FD.DetectionAreas[idx];
@@ -696,7 +708,7 @@ kindFramework.controller(
         sketchinfo.wiseFaceDetection = true;
         sketchinfo.wiseFDCircleHeightRatio = WISE_FACE_DETECTION.HEIGHT_RATIO;
 
-        //TNB 모델 분기
+        //TNB 저장된 데이터로 영역 색상 설정
         // sketchinfo.wiseFDCircleStrokeColor = $scope.detectionLineColorSection.getSelectedColorCode();
       }
 

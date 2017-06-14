@@ -733,6 +733,7 @@ var SketchManager = (function() {
         svgObjs[index].show();
       }
     },
+    //TNB
     changeWFDStrokeColor: function(strokeColor) {
       if (kindSVGEditor !== null) {
         colorFactory.circleForMETAInFD = strokeColor;
