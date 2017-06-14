@@ -44,6 +44,7 @@ var SketchManager = (function() {
   var ratio = null;
 
   var colorFactory = {
+    circleForMETAInFD: '#FF0000', //TNB 모델에서 변경해서 사용함
     originalRed: '#FF0000',
     red: "#CE534D",
     brightRed: '#CE827E',
@@ -223,22 +224,23 @@ var SketchManager = (function() {
     drawStroke.apply(null, arguments);
   }
 
+  /**
+   * drawCircle is used for META Data in Face Detection.
+   */
   function drawCircle() {
-    var options = arguments[5] === true ? getMetaDataOptions(arguments) : getOptions(arguments);
-
-    options.context.lineWidth = lineWidth;
-    options.context.beginPath();
-    options.context.globalAlpha = options.startGlobalAlpha;
-    options.context.strokeStyle = options.color;
-    options.context.arc(
+    fContext.lineWidth = lineWidth;
+    fContext.beginPath();
+    fContext.globalAlpha = alphaFactory.metaData;
+    fContext.strokeStyle = colorFactory.circleForMETAInFD;
+    fContext.arc(
       arguments[2],
       arguments[3],
       arguments[4],
       0,
       2 * Math.PI
     );
-    options.context.stroke();
-    options.context.closePath();
+    fContext.stroke();
+    fContext.closePath();
   }
 
   /**
@@ -733,6 +735,7 @@ var SketchManager = (function() {
     },
     changeWFDStrokeColor: function(strokeColor) {
       if (kindSVGEditor !== null) {
+        colorFactory.circleForMETAInFD = strokeColor;
         vaEnteringAppearing.changeWFDStrokeColor(strokeColor);
       }
     },
@@ -758,6 +761,9 @@ var SketchManager = (function() {
 
       drawMetaDataTimer = setTimeout(clear, expireTime);
     },
+    /**
+     *  @param isCircle {Boolean} Face Detection 분류
+     */
     drawMetaData: function(left, right, top, bottom, scale, translate, _colorType, isCircle) {
       var canvasType = 0;
       var colorType = typeof _colorType === "undefined" ? 0 : _colorType;
@@ -2642,6 +2648,7 @@ var SketchManager = (function() {
         };
 
         if("wiseFDCircleStrokeColor" in sketchInfo){
+          colorFactory.circleForMETAInFD = sketchInfo.wiseFDCircleStrokeColor;
           kindSvgOptions.wiseFaceDetection.strokeColor = sketchInfo.wiseFDCircleStrokeColor;
         }
 
