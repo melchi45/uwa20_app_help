@@ -180,11 +180,16 @@ KindSVGEditor.addPlugin('draw', function(options) {
       returnVal.append = append;
       returnVal.add = add;
       returnVal.remove = remove;
+      returnVal.changeStrokeColor = changeStrokeColor;
     } else {
       returnVal = false;
     }
 
     return returnVal;
+
+    function changeStrokeColor(strokeColor){
+      elemCtrl.setAttr(wiseFaceDetectionCircle, 'stroke', strokeColor);
+    }
 
     function add() {
       wiseFaceDetectionCircle = elemCtrl.createCircle(10);
@@ -2183,7 +2188,9 @@ KindSVGEditor.addPlugin('draw', function(options) {
     stopEvent: unbindEvent,
     startEvent: bindEvent,
 
-    moveTopLayer: groupHelper.moveTopLayer
+    moveTopLayer: groupHelper.moveTopLayer,
+
+    changeWFDStrokeColor: wiseFaceDetectionHelper.changeStrokeColor
   };
 
   return drawObj;

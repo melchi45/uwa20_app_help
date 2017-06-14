@@ -36,6 +36,7 @@ kindFramework.service('UniversialManagerService', ['CAMERA_STATUS', 'LocalStorag
     var isPixelCountOn = false;
     var channelId = 0;
     var defaultProfileIndex;
+    var currentSetupPage = null;
 
     this.initialization = function() {
       ProfileInfo = null;
@@ -534,5 +535,13 @@ kindFramework.service('UniversialManagerService', ['CAMERA_STATUS', 'LocalStorag
     this.getDefaultProfileIndex = function(channelId) {
       return defaultProfileIndex[channelId];
     }
-  }
+
+    this.getCurrentSetupPage = function() {
+      return currentSetupPage;
+    }
+
+    this.setCurrentSetupPage = function(page) {
+      currentSetupPage = page;
+    }
+  },
 ]);

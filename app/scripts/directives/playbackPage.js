@@ -118,6 +118,7 @@ kindFramework.
               }
               playback.isPlay = false;
               $rootScope.$emit('blockTimebarInputField', false);
+              scope.timelineController.resetTimeRange();
               $rootScope.$emit('channelPlayer:command', 'step', 'forward');
             },
             stepBackward: function() {
@@ -126,6 +127,7 @@ kindFramework.
               }
               playback.isPlay = false;
               $rootScope.$emit('blockTimebarInputField', false);
+              scope.timelineController.resetTimeRange();
               $rootScope.$emit('channelPlayer:command', 'step', 'backward');
             },
             visibleSpeedPopup: function(event) {

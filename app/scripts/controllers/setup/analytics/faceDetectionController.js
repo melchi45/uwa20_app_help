@@ -68,10 +68,69 @@ kindFramework.controller(
       }
     });
 
-    $scope.selectedColorIndex = 0;
-    $scope.colorIndexList = [0,1,2,3,4,5,6,7,8];
-    $scope.selectColor = function(index){
-      $scope.selectedColorIndex = index;
+    //TNB
+    $scope.detectionLineColorSection = {
+      selectedColorIndex: '0',
+      /*
+       * facedetection.less 파일에 정의된 색상 코드와 동일해야 함.
+       * JSON 포맷
+       * <Color Index:String>: {
+       *   colorName: <Color Name:String>
+       *   colorCode: <Color Code:String>
+       * }
+       */
+      colorIndexList: { 
+        0: {
+          colorName: 'red',
+          colorCode: 'rgb(253, 46, 84)'
+        },
+        1: {
+          colorName: 'orange',
+          colorCode: 'rgb(255, 149, 0)'
+        },
+        2: {
+          colorName: 'yellow',
+          colorCode: 'rgb(255, 203, 0)'
+        },
+        3: {
+          colorName: 'green',
+          colorCode: 'rgb(64, 217, 88)'
+        },
+        4: {
+          colorName: 'blue',
+          colorCode: 'rgb(6, 122, 255)'
+        },
+        5: {
+          colorName: 'indigo',
+          colorCode: 'rgb(0, 32, 96)'
+        },
+        6: {
+          colorName: 'purple',
+          colorCode: 'rgb(87, 87, 222)'
+        },
+        7: {
+          colorName: 'black',
+          colorCode: 'rgb(0, 0, 0)'
+        },
+        8: {
+          colorName: 'white',
+          colorCode: 'rgb(218, 218, 219)'
+        }
+      },
+      setSelectedColor: function(index){
+        $scope.detectionLineColorSection.selectedColorIndex = index + '';
+      },
+      selectColor: function(colorIndex, colorCode){
+        $scope.detectionLineColorSection.setSelectedColor(colorIndex);
+        sketchbookService.changeWFDStrokeColor(colorCode);
+      },
+      getSelectedColorCode: function(){
+        var colorIndex = $scope.detectionLineColorSection.selectedColorIndex;
+        return $scope.detectionLineColorSection.colorIndexList[colorIndex].colorCode;
+      },
+      getSelectedColorIndex: function(){
+        return $scope.detectionLineColorSection.selectedColorIndex;
+      }
     };
 
     var startIndex = 2; //Temporary
@@ -268,6 +327,9 @@ kindFramework.controller(
           $scope.coordinates[0].enable = true;
         }
 
+        //TNB SUANPI 응답데이터를 영역 옵션에 설정
+        //$scope.detectionLineColorSection.setSelectedColor($scope.FD.enableOverlay);
+
         $scope.sketchinfo = getSketchinfo(color, 1, true, useEvent);
 
         // console.log($scope.sketchinfo);
@@ -358,6 +420,10 @@ kindFramework.controller(
       if (pageData.FD.DetectionAreaMode !== $scope.FD.DetectionAreaMode) {
         setData.DetectionAreaMode = $scope.FD.DetectionAreaMode;
       }
+
+      //TNB 설정한 색상값을 SUNAPI에 요청
+      // setData.enableOverlay = $scope.detectionLineColorSection.getSelectedColorIndex($scope.FD.enableOverlay);
+
       if (typeof $scope.FD.DetectionAreas !== "undefined") {
         for (idx = 0; idx < $scope.FD.DetectionAreas.length; idx++) {
           self = $scope.FD.DetectionAreas[idx];
@@ -508,11 +574,17 @@ kindFramework.controller(
       sketchbookService.removeDrawingGeometry();
 
       if (validatePage()) {
-        COMMONUtils.ApplyConfirmation(setChangedData, function() {
-          if (isEnable === true) {
-            $scope.FD.Enable = pageData.FD.Enable;
+        COMMONUtils.ApplyConfirmation(
+          setChangedData,
+          function() {
+            if (isEnable === true) {
+              $scope.FD.Enable = pageData.FD.Enable;
+            }
+          },
+          function(){
+            $scope.FD.Enable = !$scope.FD.Enable;
           }
-        });
+        );
       }
     }
 
@@ -635,6 +707,9 @@ kindFramework.controller(
       if (color === 0) {
         sketchinfo.wiseFaceDetection = true;
         sketchinfo.wiseFDCircleHeightRatio = WISE_FACE_DETECTION.HEIGHT_RATIO;
+
+        //TNB 저장된 데이터로 영역 색상 설정
+        // sketchinfo.wiseFDCircleStrokeColor = $scope.detectionLineColorSection.getSelectedColorCode();
       }
 
       if (definedVideoInfo[3] === 0) {
