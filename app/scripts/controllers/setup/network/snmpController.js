@@ -20,22 +20,22 @@ kindFramework.controller('snmpCtrl', function($scope, $timeout, $uibModal, Sunap
     $scope.IPv4PatternStr = mAttr.IPv4PatternStr;
     $scope.FriendlyNameCharSetExpandedStr2 = mAttr.FriendlyNameCharSetExpandedStr2;
 
-    if (mAttr.ReadCommunity !== undefined) {
+    if (mAttr.ReadCommunity !== "undefined") {
       $scope.RCommMinLength = mAttr.ReadCommunity.minLength;
       $scope.RCommMaxLength = mAttr.ReadCommunity.maxLength;
     }
 
-    if (mAttr.WriteCommunity !== undefined) {
+    if (mAttr.WriteCommunity !== "undefined") {
       $scope.WCommMinLength = mAttr.WriteCommunity.minLength;
       $scope.WCommMaxLength = mAttr.WriteCommunity.maxLength;
     }
 
-    if (mAttr.UserPassword !== undefined) {
+    if (mAttr.UserPassword !== "undefined") {
       $scope.PwdMinLength = mAttr.UserPassword.minLength;
       $scope.PwdMaxLength = mAttr.UserPassword.maxLength;
     }
 
-    if (mAttr.TrapCommunity !== undefined) {
+    if (mAttr.TrapCommunity !== "undefined") {
       $scope.TCommMinLength = mAttr.TrapCommunity.minLength;
       $scope.TCommMaxLength = mAttr.TrapCommunity.maxLength;
     }
@@ -121,6 +121,7 @@ kindFramework.controller('snmpCtrl', function($scope, $timeout, $uibModal, Sunap
   }
 
   function validatePage() {
+    var ErrorMessage = null;
 
     if ($scope.snmpForm.readComm.$valid === false) {
       COMMONUtils.ShowError('lang_msg_invalid_readcommunity');
@@ -135,7 +136,7 @@ kindFramework.controller('snmpCtrl', function($scope, $timeout, $uibModal, Sunap
     /** IF SNMP V3 is enabled  */
     if ($scope.snmp.Version3) {
       /** If User entered some invalid password or not allowed characters  */
-      if ($scope.snmp.UserPassword === undefined) {
+      if ($scope.snmp.UserPassword === "undefined") {
         COMMONUtils.ShowError('lang_msg_invalid_pw');
         return false;
       } else {
@@ -152,12 +153,12 @@ kindFramework.controller('snmpCtrl', function($scope, $timeout, $uibModal, Sunap
     if ($scope.snmpForm.trapComm.$valid === false) {
       if ($scope.snmpForm.trapComm.$error.required === true) {
         if ($scope.snmpTrap.Enable) {
-          var ErrorMessage = 'lang_msg_invalid_community';
+          ErrorMessage = 'lang_msg_invalid_community';
           COMMONUtils.ShowError(ErrorMessage);
           return false;
         }
       } else {
-        var ErrorMessage = 'lang_msg_invalid_community';
+        ErrorMessage = 'lang_msg_invalid_community';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
@@ -165,7 +166,7 @@ kindFramework.controller('snmpCtrl', function($scope, $timeout, $uibModal, Sunap
 
     if ($scope.snmpTrap.Enable === true) {
       if ($scope.snmpForm.trapAddress.$valid === false || COMMONUtils.CheckValidIPv4Address($scope.snmpTrap.TrapConf.Address) === false) {
-        var ErrorMessage = 'lang_msg_chkIPAddress';
+        ErrorMessage = 'lang_msg_chkIPAddress';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
