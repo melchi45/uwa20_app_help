@@ -249,7 +249,7 @@ kindFramework.directive('liveMenuContent', function(
       function setTableSize() {
         /*
         var padding = 20;
-        var allWidth = $(".cm-status-col")[0].clientWidth - (padding * 2);
+        var allWidth = $(".live-status-col")[0].clientWidth - (padding * 2);
         var size = {
           first: [
             18,

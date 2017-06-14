@@ -1,17 +1,15 @@
 .kind-responsive-live {
-    .live-channel-selector {
-        border: solid 1px @theme-color-gray-12;
-        border-right: 0;
-        padding: 15px 25px 0 25px;
-    }
 
     #cm-bottom-menu {
-
         #cm-icon-list {
+            width: auto;
+            left: 50%;
+            transform: translateX(-50%);
+
             .cm-col {
                 float: right;
                 height: 50px;
-            }  
+            }
 
             .cm-vline {
                 float: left;
@@ -22,9 +20,15 @@
                 background: #bbb;
                 margin-top: 12px;
                 z-index: 1;
-            } 
+            }
 
-            .alarm-volume {
+            .live-channel-selector {
+                border: solid 1px @theme-color-gray-12;
+                border-right: 0;
+                padding: 15px 25px 0 25px;
+            }
+
+            #live-alarm-volume {
                 float: left;
 
                 #alarm {
@@ -32,7 +36,7 @@
                 }
             }
 
-            .cm-live-controller {
+            .live-controller {
                 max-height: 50px;
                 height: 50px;
                 float: left;
@@ -43,7 +47,6 @@
                     float: left;
                 }
             }
-
         }
 
         #cm-menu-content {
@@ -62,19 +65,26 @@
                 max-width: 1024px;
             }
 
+            /* table element */
+            .live-table{
+                width: 100%;
+                position: relative;
+                word-break: break-all;
+                border-collapse: collapse;
 
-            #cm-setup {
-                .cm-center {
-                    width: 100%;
-
-                    .cm-profile-sel{    
-                        height: 30px;
-                        line-height: 30px;
-                        margin-top: -8px;
-                    }
+                th {
+                    text-align: center;
+                    font-weight: normal;
                 }
 
-                .cm-setup-col {
+                th, td {
+                    padding: 0.5em 1em;
+                }
+            }
+
+
+            #live-setup {
+                .live-setup-col {
                     width: calc(~"50% - 10px");
                     min-width: 360px;
                     padding: 0 20px;
@@ -84,11 +94,23 @@
                     h2 span {
                         margin-right: 5px;
                     }
+
+                    #live-profile {
+                        height: 30px;
+                        line-height: 30px;
+                        margin-top: -8px;
+                    }
                 }
 
-                .cm-table {
-                    width: 100%;
+        
+                .live-profile {
+                    min-width: 160px;
+                    height: 30px;
+                    line-height: 30px;
+                    margin-top: -8px;
+                }
 
+                .live-table {
                     th {
                         width: 35%;
                         text-align: left;
@@ -358,70 +380,62 @@
                 }
             }
 
-            #cm-status {
-                .cm-status-wrap {
-                    width: 100%;
+            #live-status {
+                .live-status-col {
+                    width: calc(~"50% - 10px");
+                    padding: 0 20px;
+                    text-align: left;
                     display: inline-table;
 
-                    .cm-status-col {
-                        width: calc(~"50% - 10px");
-                        padding: 0 20px;
-                        text-align: left;
-                        display: inline-table;
+                    .live-table {
+                        ::-webkit-scrollbar {
+                            width: 12px;
+                            height: 1em;
+                        }
+                        ::-webkit-scrollbar-button {
+                            &:vertical {
+                                background: #666;
+                            }
+                        }
+                        ::-webkit-scrollbar-track-piece {
+                            background: #f1f1f1;
+                        }
+                        ::-webkit-scrollbar-thumb {
+                            background: #c1c1c1;
+                        }​
 
-                        .cm-table {
+                        /* 
+                            thumb 이후에 스타일이 죽습니다 
+                            지우면 안됩니다
+                        */
+                        dummy {}
+
+                        th, td {
+                            width: 1%;
+                            box-sizing: border-box;
+                        }
+
+                        thead {
+                            display: block;
+
+                            & > tr > *:last-child {
+                                width: 1.23% !important;
+                            }
+                        }
+
+                        tbody {
                             width: 100%;
+                            height: 95px;
                             position: relative;
-        
-                            ::-webkit-scrollbar {
-                                width: 12px;
-                                height: 1em;
-                            }
-                            ::-webkit-scrollbar-button {
-                                &:vertical {
-                                    background: #666;
-                                }
-                            }
-                            ::-webkit-scrollbar-track-piece {
-                                background: #f1f1f1;
-                            }
-                            ::-webkit-scrollbar-thumb {
-                                background: #c1c1c1;
-                            }​
-
-                            /* 
-                                thumb 이후에 스타일이 죽습니다 
-                                지우면 안됩니다
-                            */
-                            dummy {}
-
-                            th, td {
-                                width: 1%;
-                                box-sizing: border-box;
-                            }
-
-                            thead {
-                                display: block;
-
-                                & > tr > *:last-child {
-                                    width: 1.23% !important;
-                                }
-                            }
-
-                            tbody {
-                                width: 100%;
-                                height: 95px;
-                                position: relative;
-                                max-height: 95px;
-                                display: block;
-                                overflow: auto;
-                                overflow-x: hidden;
-                                overflow-y: scroll;
-                            }
-                        } 
+                            max-height: 95px;
+                            display: block;
+                            overflow: auto;
+                            overflow-x: hidden;
+                            overflow-y: scroll;
+                        }
                     } 
                 } 
-            }
+            } 
 
 
             #cm-display-slider {
@@ -482,12 +496,30 @@
 
 
         &.cm-full-menu {
-            .live-channel-selector {
-                border: none;
+            #cm-icon-list {
+                .live-channel-selector {
+                    border: none;
+                }
             }
             
             .ui-widget-content {
                 color: @theme-color-white;
+            }
+
+    
+            .live-table {
+                &::-webkit-scrollbar {
+                    opacity: 0.5;
+                }
+                &::-webkit-scrollbar-thumb {
+                    opacity: 0.2;
+                }​
+
+                /* 
+                    thumb 이후에 스타일이 죽습니다 
+                    지우면 안됩니다
+                */
+                dummy {}
             }
 
             #cm-menu-content {
@@ -584,7 +616,7 @@
                         transform: translateX(-50%);
                     }
 
-                    .cm-live-controller {
+                    .live-controller {
                         position: relative;
                         max-height: 50px;
                         width: 100%;
@@ -600,10 +632,15 @@
                         }
                     }
 
-                    .alarm-volume {
+                    #live-alarm-volume {
+                        width: auto;
                         position: relative;
                         transform: translateX(-50%);
                         left: 50%;
+
+                        & > .cm-col {
+                            margin: 0 10px;
+                        }
                     }
                     
                     .cm-vline {
@@ -620,27 +657,6 @@
 
                     .cm-vline {
                         display: none;
-                    }
-
-                    .cm-col-100 {
-                        width: 100%;
-                        height: 50px;
-                        float: left;
-                        line-height: 50px;
-                        text-align: center;
-                        border-top: none;
-
-                        li {
-                            float: none;
-                            display: inline-block;
-                        }
-                    }  
-
-                    .cm-small-center {
-                        width: auto;
-                        margin: 0 auto;
-                        display: inline-block;
-                        float: none;
                     } 
                 }
 
@@ -657,27 +673,12 @@
                 }
 
                 #cm-menu-content {
-        
                     #cm-ptz #ptz-components {
                         #cm-live-ptz-control {
                             width: auto;
                             margin: 0 auto;
                         }
                     
-                        /*
-                        #cm-ptz-tables {
-
-                            & > div {
-                                width: 100%;
-                                margin: 0;
-
-                                &:nth-child(2) {
-                                    margin-top: 20px;
-                                }
-                            }
-                        }
-                        */
-                        
                         #live-ptz-add-form,
                         #cm-ptz-tabs {
                             width: 80%;
@@ -691,8 +692,8 @@
                         }
                     }
 
-                    #cm-setup {
-                        .cm-setup-col {
+                    #live-setup {
+                        .live-setup-col {
                             width: 80%;
                             min-width: 360px;
                             padding: 0;
@@ -708,8 +709,8 @@
                         min-width: 0;
                     }
                     
-                    #cm-status {
-                        .cm-status-wrap .cm-status-col {
+                    #live-status {
+                        .cm-status-wrap .live-status-col {
                             width: 80% !important;
                             min-width: 360px;
                             padding: 0;
@@ -727,7 +728,6 @@
                     .cm-small-center {
                         width: auto;
                         margin: 0 auto;
-                        float: none;
 
                         .cm-col {
                             display: inline-block;
@@ -792,6 +792,12 @@
                 border-top: 1px solid @theme-color-gray-33;
                 line-height: 50px;
 
+                .cm-vline {
+                    margin: 0 5px;
+                    float: none;
+                    display: inline-table;
+                }
+
                 #pb-channel-holder {
                     & > div {
                         padding: 0 20px;
@@ -808,7 +814,7 @@
 
                 .info-toggle {
                     position: fixed;
-                    top: 50%;
+                    top: calc(-40vh);
                     left: 100%;
                     transform: translate(-100%, -50%);
                     width: 60px;
@@ -829,14 +835,35 @@
                     }
                 }
 
-                .cm-live-controller li {
-                    line-height: 50px;
-                    top: 0;
-                    margin: 0 5px;
+                .live-controller {
+                    float: none;
+                    display:inline;
+                    margin: 0;
+
+                    li {
+                        line-height: 50px;
+                        top: 0;
+                        margin: 0 5px;
+                        float:none;
+                        display: inline-table;
+                    }
                 }
 
-                #alarm {
-                    margin: 0 10px;
+                #live-alarm-volume {
+                    float: none;
+                    display: inline;
+
+                    #alarm {
+                        margin: 0 10px;
+                        float: none;
+                        display: inline-table;
+                    }
+
+                    #volume-control {
+                        margin: 0;
+                        float: none;
+                        display: inline-table;
+                    }
                 }
             }
 
@@ -848,8 +875,8 @@
                 left: 100%;
                 height: calc(~"100% - 100px");
         
-                 .cm-status-wrap .cm-status-col,
-                 #cm-setup .cm-setup-col {
+                 .cm-status-wrap .live-status-col,
+                 #live-setup .live-setup-col {
                     width: 80%;
                     min-width: 360px;
                     margin: 10px 0;
@@ -903,12 +930,6 @@
                 left: 50%;
                 transform: translateX(-50%);
 
-                /* tables
-                &#cm-ptz-tables {
-                    margin-top: 20px !important;
-                }
-                 */
-
                 &#cm-live-ptz-control {
                     width: auto !important;
                     margin: 0 auto !important;
@@ -925,7 +946,6 @@
                     margin: 20px 0 !important;
                     padding: 0 !important;
                 }
-
             }
         } 
     }
@@ -946,70 +966,6 @@
                 }
             }
 
-            #cm-menu-content {
-                height: 300px;
-
-                & > * {
-                    max-width: 1400px;
-                }
-
-                h2 {
-                    font-size: 24px;
-                    margin-bottom: 10px;
-                }
-
-                #cm-setup {
-                    .cm-setup-col {
-                        width: calc(~"60% - 10px");
-                        margin-top: 20px;
-
-                        .cm-profile-sel {
-                            height: 40px;
-                            font-size: 16px;
-                            margin-top: -6px;
-                        }
-                    }
-
-                    .cm-table {
-                        font-size: 16px;
-                        height: 180px;
-                    }
-                }
-
-                #cm-status {
-                    .cm-status-wrap {
-                        font-size: 16px;
-
-                        .cm-table {
-                            th, td {
-                                padding: 10px 10px;
-                            }
-
-                            tbody {
-                                height: 150px !important;
-                                max-height: 150px !important;
-                            }
-                        }
-                    }
-                }
-
-                #cm-display-slider {
-                    li {
-                        height: 25px;
-                        line-height: 36px;
-                        margin-top: 18px;
-
-                        h3 {
-                            font-size: 16px;
-                        }
-
-                        > span {
-                            font-size: 16px;
-                        }
-                    }
-                }
-            }
-            
 
             #cm-icon-list {
                 height: 75px;
@@ -1034,7 +990,7 @@
                     }
                 }
 
-                .cm-live-controller {
+                .live-controller {
                     li {
                         margin: 0 15px;
 
@@ -1045,7 +1001,7 @@
                     }
                 }
 
-                .alarm-volume {
+                #live-alarm-volume {
                     .cm-col {
                         height: 75px;
                         margin: 0 30px;
@@ -1070,6 +1026,70 @@
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+
+            #cm-menu-content {
+                height: 300px;
+
+                & > * {
+                    max-width: 1400px;
+                }
+
+                h2 {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }
+
+                #live-setup {
+                    .live-setup-col {
+                        width: calc(~"60% - 10px");
+                        margin-top: 20px;
+
+                        #live-profile {
+                            height: 40px;
+                            font-size: 16px;
+                            margin-top: -6px;
+                        }
+                    }
+
+                    .live-table {
+                        font-size: 16px;
+                        height: 180px;
+                    }
+                }
+
+                #live-status {
+                    .cm-status-wrap {
+                        font-size: 16px;
+
+                        .live-table {
+                            th, td {
+                                padding: 10px 10px;
+                            }
+
+                            tbody {
+                                height: 150px !important;
+                                max-height: 150px !important;
+                            }
+                        }
+                    }
+                }
+
+                #cm-display-slider {
+                    li {
+                        height: 25px;
+                        line-height: 36px;
+                        margin-top: 18px;
+
+                        h3 {
+                            font-size: 16px;
+                        }
+
+                        > span {
+                            font-size: 16px;
                         }
                     }
                 }
@@ -1103,12 +1123,12 @@
                     margin-bottom: 10px;
                 }
 
-                #cm-setup {
-                    .cm-setup-col {
+                #live-setup {
+                    .live-setup-col {
                         width: calc(~"60% - 10px");
 
 
-                        .cm-profile-sel {
+                        #live-profile {
                             height: 60px;
                             font-size: 21px;
                             margin-top: -8px;
@@ -1116,7 +1136,7 @@
                         }
                     }
 
-                    .cm-table {
+                    .live-table {
                         font-size: 22px;
                         height: 240px;
 
@@ -1130,11 +1150,11 @@
                     }
                 }
 
-                #cm-status {
+                #live-status {
                     .cm-status-wrap {
                         font-size: 21px;
 
-                        .cm-table {
+                        .live-table {
                             th, td {
                                 padding: 15px 10px;
                             }
@@ -1172,7 +1192,7 @@
                     }
                 }
 
-                .cm-live-controller {
+                .live-controller {
                     li {
                         margin: 0 22px;
 
@@ -1183,12 +1203,9 @@
                     }
                 }
 
-                .cm-alarm-button {
-                    width: 24px;
-                    height: 24px;
-                }
 
-                .alarm-volume {
+
+                #live-alarm-volume {
                     #alarm {
                         margin: 0 30px;
                         padding-top: 18px;
@@ -1196,6 +1213,11 @@
                         .cm-icon-button-b {
                             font-size: 50px;
                             margin-top: 18px;
+                        }
+
+                        .cm-alarm-button {
+                            width: 24px;
+                            height: 24px;
                         }
                     }
 
