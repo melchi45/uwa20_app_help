@@ -562,11 +562,17 @@ kindFramework.controller(
       sketchbookService.removeDrawingGeometry();
 
       if (validatePage()) {
-        COMMONUtils.ApplyConfirmation(setChangedData, function() {
-          if (isEnable === true) {
-            $scope.FD.Enable = pageData.FD.Enable;
+        COMMONUtils.ApplyConfirmation(
+          setChangedData,
+          function() {
+            if (isEnable === true) {
+              $scope.FD.Enable = pageData.FD.Enable;
+            }
+          },
+          function(){
+            $scope.FD.Enable = !$scope.FD.Enable;
           }
-        });
+        );
       }
     }
 
