@@ -336,6 +336,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
       mAttributes.CameraHeights = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/autotracking/CameraHeight/enum');
       mAttributes.AutoTrackObjectSize = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/autotracking/ObjectSize/enum');
       mAttributes.DetectionAreaModes = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/facedetection/DetectionAreaMode/enum');
+      mAttributes.DetectionLineColourOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/facedetection/DetectionLineColour/enum');
       mAttributes.DisplayRules = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/' + vaCmd + '/DisplayRules/bool');
       mAttributes.DetectionResultOverlay = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/' + vaCmd + '/DetectionResultOverlay/bool');
       mAttributes.CameraHeight = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/peoplecount/CameraHeight/int');
