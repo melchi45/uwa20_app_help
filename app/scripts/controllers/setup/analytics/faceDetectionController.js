@@ -34,7 +34,83 @@ kindFramework.controller(
     $scope.activeTab = $scope.tabs[DEFAULT_TAB_INDEX];
     $scope.EventSource = 'FaceDetection';
     $scope.EventRule = {};
-    $scope.overlayColorSection = null;
+
+    $scope.overlayColorSection = {
+        selectedColorIndex: '0',
+        /*
+         * facedetection.less 파일에 정의된 색상 코드와 동일해야 함.
+         * JSON 포맷
+         * <Color Index:String>: {
+         *   colorName: <Color Name:String>
+         *   colorCode: <Color Code:String>
+         * }
+         */
+        colorIndexList: [
+          {
+            colorName: 'Black',
+            colorCode: 'rgb(0, 0, 0)'
+          },
+          {
+            colorName: 'White',
+            colorCode: 'rgb(218, 218, 219)'
+          },
+          {
+            colorName: 'Red',
+            colorCode: 'rgb(253, 46, 84)'
+          },
+          {
+            colorName: 'Orange',
+            colorCode: 'rgb(255, 149, 0)'
+          },
+          {
+            colorName: 'Yellow',
+            colorCode: 'rgb(255, 203, 0)'
+          },
+          {
+            colorName: 'Green',
+            colorCode: 'rgb(64, 217, 88)'
+          },
+          {
+            colorName: 'Blue',
+            colorCode: 'rgb(6, 122, 255)'
+          },
+          {
+            colorName: 'Navy',
+            colorCode: 'rgb(0, 32, 96)'
+          },
+          {
+            colorName: 'Violet',
+            colorCode: 'rgb(87, 87, 222)'
+          },
+        ],
+        setSelectedColor: function(tColour){
+          var colour = tColour;
+          for (var index = 0; index < $scope.overlayColorSection.colorIndexList.length; index++) {
+            if (colour === $scope.overlayColorSection.colorIndexList[index].colorName) {
+              $scope.overlayColorSection.selectedColorIndex = index + '';
+            }
+          }
+        },
+        selectColor: function(colorIndex, colorCode){
+          if($scope.FD.Enable === false) {
+            return;
+          }
+          $scope.overlayColorSection.setSelectedColor(colorIndex);
+          sketchbookService.changeWFDStrokeColor(colorCode);
+          $scope.FD.OverlayColor = $scope.overlayColorSection.colorIndexList[colorIndex].colorName;
+        },
+        getSelectedColorCode: function(){
+          var colorIndex = $scope.overlayColorSection.selectedColorIndex;
+          return $scope.overlayColorSection.colorIndexList[colorIndex].colorCode;
+        },
+        getSelectedColorIndex: function(){
+          return $scope.overlayColorSection.selectedColorIndex;
+        },
+        getSelectedColorName: function(){
+          var colorIndex = $scope.overlayColorSection.selectedColorIndex;
+          return $scope.overlayColorSection.colorIndexList[colorIndex].colorName;
+        },
+      };
 
     $scope.getTranslatedOption = function(Option) {
       return COMMONUtils.getTranslatedOption(Option);
@@ -107,9 +183,6 @@ kindFramework.controller(
 
       // TNB
       $scope.overlayColorOptions = mAttr.OverlayColorOptions;
-      if(typeof $scope.overlayColorOptions !== 'undefined') {
-        initOverlayColor();
-      }
 
       // $scope.maxFaceDetectionArea = mAttr.MaxFaceDetectionArea;
       $scope.maxFaceDetectionArea = 8;
@@ -270,7 +343,7 @@ kindFramework.controller(
         }
 
         //TNB SUANPI 응답데이터를 영역 옵션에 설정
-        if(typeof $scope.overlayColorOptions !== 'undefined' && $scope.overlayColorSection !== null) {
+        if(typeof $scope.overlayColorOptions !== 'undefined') {
           $scope.overlayColorSection.setSelectedColor($scope.FD.OverlayColor);
         }
 
@@ -367,8 +440,8 @@ kindFramework.controller(
       }
 
       //TNB 설정한 색상값을 SUNAPI에 요청
-      if (pageData.FD.OverlayColor !== $scope.FD.OverlayColor) {
-        if(typeof $scope.overlayColorOptions !== 'undefined') {
+      if(typeof $scope.overlayColorOptions !== 'undefined') {
+        if (pageData.FD.OverlayColor !== $scope.FD.OverlayColor) {
           setData.OverlayColor = $scope.FD.OverlayColor;
         }
       }
@@ -445,83 +518,6 @@ kindFramework.controller(
         reqData: setData
       });
     }
-
-    function initOverlayColor() { // TNB
-      $scope.overlayColorSection = {
-        selectedColorIndex: '0',
-        /*
-         * facedetection.less 파일에 정의된 색상 코드와 동일해야 함.
-         * JSON 포맷
-         * <Color Index:String>: {
-         *   colorName: <Color Name:String>
-         *   colorCode: <Color Code:String>
-         * }
-         */
-        colorIndexList: [
-          {
-            colorName: 'Black',
-            colorCode: 'rgb(0, 0, 0)'
-          },
-          {
-            colorName: 'White',
-            colorCode: 'rgb(218, 218, 219)'
-          },
-          {
-            colorName: 'Red',
-            colorCode: 'rgb(253, 46, 84)'
-          },
-          {
-            colorName: 'Orange',
-            colorCode: 'rgb(255, 149, 0)'
-          },
-          {
-            colorName: 'Yellow',
-            colorCode: 'rgb(255, 203, 0)'
-          },
-          {
-            colorName: 'Green',
-            colorCode: 'rgb(64, 217, 88)'
-          },
-          {
-            colorName: 'Blue',
-            colorCode: 'rgb(6, 122, 255)'
-          },
-          {
-            colorName: 'Navy',
-            colorCode: 'rgb(0, 32, 96)'
-          },
-          {
-            colorName: 'Violet',
-            colorCode: 'rgb(87, 87, 222)'
-          },
-        ],
-        setSelectedColor: function(tColour){
-          var colour = tColour;
-          for (var index = 0; index < $scope.overlayColorSection.colorIndexList.length; index++) {
-            if (colour === $scope.overlayColorSection.colorIndexList[index].colorName) {
-              $scope.overlayColorSection.selectedColorIndex = index + '';
-            }
-          }
-        },
-        selectColor: function(colorIndex, colorCode){
-          $scope.overlayColorSection.setSelectedColor(colorIndex);
-          sketchbookService.changeWFDStrokeColor(colorCode);
-          $scope.FD.OverlayColor = $scope.overlayColorSection.colorIndexList[colorIndex].colorName;
-        },
-        getSelectedColorCode: function(){
-          var colorIndex = $scope.overlayColorSection.selectedColorIndex;
-          return $scope.overlayColorSection.colorIndexList[colorIndex].colorCode;
-        },
-        getSelectedColorIndex: function(){
-          return $scope.overlayColorSection.selectedColorIndex;
-        },
-        getSelectedColorName: function(){
-          var colorIndex = $scope.overlayColorSection.selectedColorIndex;
-          return $scope.overlayColorSection.colorIndexList[colorIndex].colorName;
-        },
-      };
-    }
-
 
     function refreshSlider() {
       $timeout(function() {
@@ -734,7 +730,9 @@ kindFramework.controller(
         sketchinfo.wiseFDCircleHeightRatio = WISE_FACE_DETECTION.HEIGHT_RATIO;
 
         //TNB 저장된 데이터로 영역 색상 설정
-        sketchinfo.wiseFDCircleStrokeColor = $scope.overlayColorSection.getSelectedColorCode();
+        if(typeof $scope.overlayColorOptions !== 'undefined') {
+          sketchinfo.wiseFDCircleStrokeColor = $scope.overlayColorSection.getSelectedColorCode();
+        }
       }
 
       if (definedVideoInfo[3] === 0) {
