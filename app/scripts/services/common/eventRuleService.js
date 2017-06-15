@@ -4,6 +4,12 @@ kindFramework.factory('eventRuleService', function() {
   var currentScheduleType = "Always";
   var initialScheduleIds = [];
   var initialScheduleType = "Always";
+  var currentMenu = null;
+  var initialScheduleDataObj = {
+      type: initialScheduleType,
+      data: initialScheduleIds
+  };
+
   var scheduleDataObj = {
     type: currentScheduleType,
     data: currentScheduleIds,

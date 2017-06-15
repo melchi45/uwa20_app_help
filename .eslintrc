@@ -17,12 +17,7 @@
     "angular": true,
     "isPhone" : true,
     "moment" : true,
-    "d3" : true,
-    "currentMenu" : null,
-    "initialScheduleDataObj" : {
-        "type": "Always",
-        "data": []
-    }
+    "d3" : true
   },
   "rules": {
     "no-compare-neg-zero" : "off",
