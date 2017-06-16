@@ -489,10 +489,10 @@ kindFramework
         var LengthPos1 = String(Pos1).length;
         var LengthPos2 = String(Pos2).length;
         setData.X1 = parseInt(Number(Pos1) / 10000);
-        setData.Y1 = Number(String(Pos1).substring(LengthPos1 - String(setData.X1).length, LengthPos1));
+        setData.Y1 = Number(String(Pos1).substring(String(setData.X1).length, LengthPos1));
 
         setData.X2 = parseInt(Number(Pos2) / 10000);
-        setData.Y2 = Number(String(Pos2).substring(LengthPos2 - String(setData.X2).length, LengthPos2));
+        setData.Y2 = Number(String(Pos2).substring(String(setData.X2).length, LengthPos2));
 
         setData.TileWidth = pluginElement.offsetWidth;
         setData.TileHeight = pluginElement.offsetHeight;
