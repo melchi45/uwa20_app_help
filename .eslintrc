@@ -57,6 +57,7 @@
     "no-alert" : "error",
     "no-case-declarations" : "error",
     "no-empty-pattern" : "error",
+
     "no-fallthrough" : ["error",{ "commentPattern": "break[\\s\\w]*omitted" } ],
     "no-global-assign" : "off",
     "no-multi-spaces" : "off",
@@ -93,18 +94,19 @@
       "after": true
     }],
     "comma-style": ["warn", "last"],
-    "id-length" : "warn",
+    "id-length" : ["warn",{"exceptions": ["x","y","i"] }],
     "indent" : ["warn",2,{"SwitchCase" : 1}],
     "keyword-spacing" : ["warn",{"before" : true}],
     "max-depth" : "warn",
     "max-len" : ["warn",{
       "code" : 100,
       "ignoreComments": true,
-      "ignoreTrailingComments": true
+      "ignoreTrailingComments": true,
+      "ignoreStrings": true
     }],
     "new-cap" : ["warn",{
       "newIsCap": true,
-      "capIsNew": true
+      "capIsNew": false
     }],
     "no-continue" : "warn",
     "no-mixed-operators" : "warn",

@@ -1,102 +1,95 @@
-<div class="cm-row cm-live-icon-list" id="cm-icon-list">
-  <div class="cm-center">
+<div class="cm-row cm-live-icon-list" id="live-icon-list">
+  <live-playback-channel-selector class="live-channel-selector" ng-if="isMultiChannel === true" use-quad-view="true"></live-playback-channel-selector>
 
-     <live-playback-channel-selector class="live-channel-selector" ng-if="isMultiChannel === true" use-quad-view="true"></live-playback-channel-selector>
-
-    <!-- information toggle buttons -->
-    <ul class="info-toggle">
-      <li 
-        ng-if="function.show" 
-        ng-repeat="function in wisenetCameraFuntions2"
-        ng-class="{ 'cm-active' : channelSetFunctions[function.ngClass] }">
-        <button 
-          class="cm-icon-button-b"
-          ng-click="function.action($event);" 
-          title="{{function.label | translate}}">
-          <span class="sr-only">{{ function.label | translate }}</span>
-          <i class="tui {{function.class}}"></i>
-        </button>
-      </li>
-    </ul>
-
-
-
-    <!-- live controller -->
-    <ul class="cm-col cm-live-controller">
-      <li 
-        ng-if="function.show" 
-        ng-repeat="function in wisenetCameraFuntions">
-        <button 
-          class="cm-icon-button-b"
-          ng-click="function.action($event);" 
-          ng-class="{ 'cm-active' : channelBasicFunctions[function.ngClass] }"
-          title="{{(function.label === 'viewMode'? viewModeTitle : function.label) | translate}}"
-          data-ng-disabled="function.disabled">
-          <span class="sr-only">{{ (function.label === 'viewMode'? viewModeTitle : function.label) | translate }}</span>
-          <i class="tui {{(function.class === 'viewMode'? viewModeIcon : function.class)}}"></i>
-        </button>
-      </li>
-      <li ng-show="MaxAudioOutput !== 0">
-        <button 
-          class="cm-icon-button-b"
-          ng-click="changeMic()" 
-          ng-class="{'cm-opacity': !channelBasicFunctions.micEnable}"
-          title="{{'lang_Microphone' | translate}}">
-          <span class="sr-only">{{ 'lang_Microphone' | translate }}</span>
-          <i ng-class="channelBasicFunctions.micStatus == true ? 'tui tui-wn5-toolbar-mic' : 'tui tui-wn5-talk-off'"></i>
-        </button>
-      </li>
-    </ul>
-
-    <div class="cm-vline cm-pc"></div>
-
-
-    <!-- alarm with volume controller -->
-    <div class="cm-col-100 alarm-volume">
-      <div class="cm-small-center">
-
-        <div class="cm-col" ng-if="alarmOutputUser()" id="alarm">
-          <span 
-            class="cm-icon-button-b"
-            title="{{'lang_alarmOutput' | translate}}">
-            <span class="sr-only">{{ 'lang_alarmOutput' | translate }}</span>
-            <i class="tui tui-wn5-toolbar-alarm"></i>
-          </span>
-          <input id="output-{{$index}}" ng-repeat="n in alarmOutputMax() track by $index" type="button" ng-click="alarmOutput($index, $event)" 
-          class="cm-btn-dark cm-alarm-button" title="{{$index + 1}}" value="{{$index + 1}}" ng-disabled="disableAlarmOutput()">
-        </div>
-
-        <div class="cm-vline" ng-show="MaxAudioInput !== 0"></div>
-
-        <div class="cm-col" id="volume-control" ng-show="MaxAudioInput !== 0">
-          <button 
-            class="cm-icon-button-s"
-            ng-click="changeSpeaker()" 
-            ng-class="{'cm-opacity':!channelBasicFunctions.speakerEnable}"
-            title="{{'lang_Speaker' | translate}}">
-            <span class="sr-only">{{ 'lang_Speaker' | translate }}</span>
-            <i ng-class="channelBasicFunctions.speakerStatus == true? 'tui tui-wn5-toolbar-sound' : 'tui tui-wn5-sound-off'"></i>
-          </button>
-          <div id="cm-speaker-slider" ng-class="{'cm-opacity':!channelBasicFunctions.speakerStatus}">
-            <div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- <div class="cm-col cm-margin-ls">
+  <!-- information toggle buttons -->
+  <ul class="info-toggle">
+    <li 
+      ng-if="function.show" 
+      ng-repeat="function in wisenetCameraFuntions2"
+      ng-class="{ 'cm-active' : channelSetFunctions[function.ngClass] }">
       <button 
-        class="cm-icon-button-s"
+        class="cm-icon-button-b"
+        ng-click="function.action($event);" 
+        title="{{function.label | translate}}">
+        <span class="sr-only">{{ function.label | translate }}</span>
+        <i class="tui {{function.class}}"></i>
+      </button>
+    </li>
+  </ul>
+
+
+
+  <!-- live controller -->
+  <ul class="cm-col live-controller">
+    <li 
+      ng-if="function.show" 
+      ng-repeat="function in wisenetCameraFuntions">
+      <button 
+        class="cm-icon-button-b"
+        ng-click="function.action($event);" 
+        ng-class="{ 'cm-active' : channelBasicFunctions[function.ngClass] }"
+        title="{{(function.label === 'viewMode'? viewModeTitle : function.label) | translate}}"
+        data-ng-disabled="function.disabled">
+        <span class="sr-only">{{ (function.label === 'viewMode'? viewModeTitle : function.label) | translate }}</span>
+        <i class="tui {{(function.class === 'viewMode'? viewModeIcon : function.class)}}"></i>
+      </button>
+    </li>
+    <li ng-show="MaxAudioOutput !== 0">
+      <button 
+        class="cm-icon-button-b"
         ng-click="changeMic()" 
         ng-class="{'cm-opacity': !channelBasicFunctions.micEnable}"
-        title="{{'Mic' | translate}}">
-        <span class="sr-only">{{ 'Mic' | translate }}</span>
-        <i ng-class="channelBasicFunctions.micStatus == true ? 'tui tui-mic' : 'tui tui-mic-mute'"></i>
+        title="{{'lang_Microphone' | translate}}">
+        <span class="sr-only">{{ 'lang_Microphone' | translate }}</span>
+        <i ng-class="channelBasicFunctions.micStatus == true ? 'tui tui-wn5-toolbar-mic' : 'tui tui-wn5-talk-off'"></i>
       </button>
-      <div id="cm-mic-slider" ng-class="{'cm-opacity':!channelBasicFunctions.micStatus}">
+    </li>
+  </ul>
+
+  <div class="cm-vline cm-pc"></div>
+
+
+  <!-- alarm with volume controller -->
+  <div id="live-alarm-volume">
+    <div class="cm-col" ng-if="alarmOutputUser()" id="alarm">
+      <span 
+        class="cm-icon-button-b"
+        title="{{'lang_alarmOutput' | translate}}">
+        <span class="sr-only">{{ 'lang_alarmOutput' | translate }}</span>
+        <i class="tui tui-wn5-toolbar-alarm"></i>
+      </span>
+      <input id="output-{{$index}}" ng-repeat="n in alarmOutputMax() track by $index" type="button" ng-click="alarmOutput($index, $event)" 
+      class="cm-btn-dark cm-alarm-button" title="{{$index + 1}}" value="{{$index + 1}}" ng-disabled="disableAlarmOutput()">
+    </div>
+
+    <div class="cm-vline" ng-show="MaxAudioInput !== 0"></div>
+
+    <div class="cm-col" id="volume-control" ng-show="MaxAudioInput !== 0">
+      <button 
+        class="cm-icon-button-s"
+        ng-click="changeSpeaker()" 
+        ng-class="{'cm-opacity':!channelBasicFunctions.speakerEnable}"
+        title="{{'lang_Speaker' | translate}}">
+        <span class="sr-only">{{ 'lang_Speaker' | translate }}</span>
+        <i ng-class="channelBasicFunctions.speakerStatus == true? 'tui tui-wn5-toolbar-sound' : 'tui tui-wn5-sound-off'"></i>
+      </button>
+      <div id="cm-speaker-slider" ng-class="{'cm-opacity':!channelBasicFunctions.speakerStatus}">
         <div></div>
       </div>
-    </div> -->
-
+    </div>
   </div>
+
+  <!-- <div class="cm-col cm-margin-ls">
+    <button 
+      class="cm-icon-button-s"
+      ng-click="changeMic()" 
+      ng-class="{'cm-opacity': !channelBasicFunctions.micEnable}"
+      title="{{'Mic' | translate}}">
+      <span class="sr-only">{{ 'Mic' | translate }}</span>
+      <i ng-class="channelBasicFunctions.micStatus == true ? 'tui tui-mic' : 'tui tui-mic-mute'"></i>
+    </button>
+    <div id="cm-mic-slider" ng-class="{'cm-opacity':!channelBasicFunctions.micStatus}">
+      <div></div>
+    </div>
+  </div> -->
 </div>

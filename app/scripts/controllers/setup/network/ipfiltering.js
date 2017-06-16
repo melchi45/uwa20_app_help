@@ -61,10 +61,13 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
 
       var div = parseInt(mask_data / 8);
       var mod = parseInt(mask_data % 8);
+      var i = 0;
+      var temp = null;
 
       if (mod !== 0) {
-        for (var i = (8 - mod); i < 8; i++) {
-          var temp = 1 << i;
+
+        for (i = (8 - mod); i < 8; i++) {
+          temp = 1 << i;
           min_mask |= temp;
         }
       }
@@ -72,13 +75,13 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
       var tempIP = parseInt(min_IP[div]);
       min_IP[div] = tempIP & min_mask;
 
-      for (var i = div + 1; i < 4; i++) {
+      for (i = div + 1; i < 4; i++) {
         min_IP[i] = 0;
       }
 
       if (mod !== 0) {
-        for (var i = 0; i < (8 - mod); i++) {
-          var temp = 1 << i;
+        for (i = 0; i < (8 - mod); i++) {
+          temp = 1 << i;
           max_mask |= temp;
         }
       } else {
@@ -87,7 +90,7 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
 
       tempIP = parseInt(max_IP[div]);
       max_IP[div] = tempIP | max_mask;
-      for (var i = div + 1; i < 4; i++) {
+      for (i = div + 1; i < 4; i++) {
         max_IP[i] = 255;
       }
 
@@ -101,8 +104,9 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
     var frontValCnt = 0;
     var backValCnt = 0;
     var backAddr = new Array();
+    var index = 0;
 
-    for (var index = 0; index < ipVal.length; ++index) {
+    for (index = 0; index < ipVal.length; ++index) {
       if (ipVal[index].length === 0) {
         for (var index2 = index; index2 < ipVal.length; ++index2) {
           if (ipVal[index2].length !== 0) {
@@ -115,12 +119,12 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
       frontValCnt++;
     }
 
-    for (var index = 0; index < backValCnt; ++index) {
+    for (index = 0; index < backValCnt; ++index) {
       ipVal[8 - (backValCnt - index)] = backAddr[index];
     }
 
     var offset = 8 - (frontValCnt + backValCnt);
-    for (var index = frontValCnt; index < (frontValCnt + offset); ++index) {
+    for (index = frontValCnt; index < (frontValCnt + offset); ++index) {
       ipVal[index] = 0;
     }
 
@@ -131,22 +135,24 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
     var ipBinaryVal = 0;
     for (var i = 0; i < valLength; ++i) {
       var binVal = 0;
-      if (addrVal.charAt(i) === 'f' || addrVal.charAt(i) === 'F')
-        binVal = 15;
-      else if (addrVal.charAt(i) === 'e' || addrVal.charAt(i) === 'E')
-        binVal = 14;
-      else if (addrVal.charAt(i) === 'd' || addrVal.charAt(i) === 'D')
-        binVal = 13;
-      else if (addrVal.charAt(i) === 'c' || addrVal.charAt(i) === 'C')
-        binVal = 12;
-      else if (addrVal.charAt(i) === 'b' || addrVal.charAt(i) === 'B')
-        binVal = 11;
-      else if (addrVal.charAt(i) === 'a' || addrVal.charAt(0) === 'A')
-        binVal = 10;
-      else
+    if (addrVal.charAt(i) === 'f' || addrVal.charAt(i) === 'F') {
+      binVal = 15;
+    } else if (addrVal.charAt(i) === 'e' || addrVal.charAt(i) === 'E') {
+      binVal = 14;
+    } else if (addrVal.charAt(i) === 'd' || addrVal.charAt(i) === 'D') {
+      binVal = 13;
+    } else if (addrVal.charAt(i) === 'c' || addrVal.charAt(i) === 'C') {
+      binVal = 12;
+    } else if (addrVal.charAt(i) === 'b' || addrVal.charAt(i) === 'B') {
+      binVal = 11;
+    } else if (addrVal.charAt(i) === 'a' || addrVal.charAt(0) === 'A') {
+      binVal = 10;
+    } else {
         binVal = addrVal.charAt(i);
-      ipBinaryVal = ipBinaryVal << 4;
-      ipBinaryVal |= binVal;
+        ipBinaryVal = ipBinaryVal << 4;
+        ipBinaryVal |= binVal;
+    }
+      
     }
     return ipBinaryVal;
   }
@@ -171,10 +177,12 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
       var max_IP = SplitIPv6Address(IPAddrV6.toLowerCase());
       var div = parseInt(mask_data / 16);
       var mod = parseInt(mask_data % 16);
+      var i = 0;
+      var temp = null;
 
       if (mod !== 0) {
-        for (var i = (16 - mod); i < 16; i++) {
-          var temp = 1 << i;
+        for (i = (16 - mod); i < 16; i++) {
+          temp = 1 << i;
           min_mask |= temp;
         }
       }
@@ -182,13 +190,13 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
       min_IP[div] = (GetAddrBinary(min_IP[div], min_IP[div].length) & min_mask).toString(16);
 
 
-      for (var i = div + 1; i < 8; i++) {
+      for (i = div + 1; i < 8; i++) {
         min_IP[i] = 0;
       }
 
       if (mod !== 0) {
-        for (var i = 0; i < (16 - mod); i++) {
-          var temp = 1 << i;
+        for (i = 0; i < (16 - mod); i++) {
+          temp = 1 << i;
           max_mask |= temp;
         }
       } else {
@@ -196,7 +204,7 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
       }
 
       max_IP[div] = (GetAddrBinary(max_IP[div], max_IP[div].length) | max_mask).toString(16);
-      for (var i = div + 1; i < 8; i++) {
+      for (i = div + 1; i < 8; i++) {
         max_IP[i] = "ffff";
       }
 
@@ -237,7 +245,7 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
     var subnetaddr = CalSubnetMask(prefix4).split(".");
     var nm_32 = (subnetaddr[0] << 24) | (subnetaddr[1] << 16) | (subnetaddr[2] << 8) | subnetaddr[3];
     var myip_32 = (myip[0] << 24) | (myip[1] << 16) | (myip[2] << 8) | myip[3];
-    if ((ip_32 & nm_32) == (myip_32 & nm_32)) {
+    if ((ip_32 & nm_32) === (myip_32 & nm_32)) {
       return true;
     }
     return false;
@@ -248,9 +256,9 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
     var inputIP = SplitIPv6Address(curIP.toLowerCase());
     var myIP = SplitIPv6Address(MyIP.toLowerCase());
 
-    if (prefix == 128) {
-      if (inputIP[0] == myIP[0] && inputIP[1] == myIP[1] && inputIP[2] == myIP[2] && inputIP[3] == myIP[3] &&
-        inputIP[4] == myIP[4] && inputIP[5] == myIP[5] && inputIP[6] == myIP[6] && inputIP[7] == myIP[7]) {
+    if (prefix === 128) {
+      if (inputIP[0] === myIP[0] && inputIP[1] === myIP[1] && inputIP[2] === myIP[2] && inputIP[3] === myIP[3] &&
+        inputIP[4] === myIP[4] && inputIP[5] === myIP[5] && inputIP[6] === myIP[6] && inputIP[7] === myIP[7]) {
         return true;
       }
 
@@ -262,21 +270,24 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
       var max_IP = SplitIPv6Address(curIP.toLowerCase());
       var div = parseInt(prefix / 16);
       var mod = parseInt(prefix % 16);
+      var i = 0;
+      var temp = null;
 
-      if (mod != 0) {
-        for (var i = (16 - mod); i < 16; i++) {
-          var temp = 1 << i;
+      if (mod !== 0) {
+        for (i = (16 - mod); i < 16; i++) {
+          temp = 1 << i;
           min_mask |= temp;
         }
       }
       min_IP[div] = (GetAddrBinary(min_IP[div], min_IP[div].length) & min_mask).toString(16);
 
-      for (var i = div + 1; i < 8; i++)
+      for (i = div + 1; i < 8; i++) {
         min_IP[i] = 0;
+      }
 
-      if (mod != 0) {
-        for (var i = 0; i < (16 - mod); i++) {
-          var temp = 1 << i;
+      if (mod !== 0) {
+        for (i = 0; i < (16 - mod); i++) {
+          temp = 1 << i;
           max_mask |= temp;
         }
       } else {
@@ -285,19 +296,19 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
 
       max_IP[div] = (GetAddrBinary(max_IP[div], max_IP[div].length) | max_mask).toString(16);
 
-      for (var i = div + 1; i < 8; i++)
+      for (i = div + 1; i < 8; i++) {
         max_IP[i] = "ffff";
+      }
 
       var isMatch = false;
-      var matchCnt = 0;
 
       for (var ix = 0; ix < 8; ++ix) {
         if (min_IP[ix].toString(10) < myIP[ix].toString(10) && myIP[ix].toString(10) < max_IP[ix].toString(10)) {
           isMatch = true;
           break;
-        } else if (min_IP[ix] == myIP[ix] || myIP[ix] == max_IP[ix]) {
-          if (ix == 7) {
-            if (min_IP[ix] == myIP[ix] || myIP[ix] == max_IP[ix]) {
+        } else if (min_IP[ix] === myIP[ix] || myIP[ix] === max_IP[ix]) {
+          if (ix === 7) {
+            if (min_IP[ix] === myIP[ix] || myIP[ix] === max_IP[ix]) {
               isMatch = true;
               break;
             }
@@ -307,36 +318,36 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
           break;
         }
       }
-      if (isMatch == true) {
+      if (isMatch === true) {
         return true;
       }
     }
     return false;
   }
 
-  function GetMyIPv6Address(addrVal) {
-    var retVal = addrVal.indexOf(".");
-    if (retVal != -1) {
-      var splitIP = addrVal.split(":");
-      var ipv4Addr = (splitIP[splitIP.length - 1]).split(".");
-      var tempAddr1 = (ipv4Addr[0] << 8) | ipv4Addr[1];
-      var tempAddr2 = (ipv4Addr[2] << 8) | ipv4Addr[3];
-      tempAddr1 = tempAddr1.toString(16);
-      tempAddr2 = tempAddr2.toString(16);
-      addrVal = "";
-      for (var index = 0; index < (splitIP.length - 1); ++index) {
-        addrVal += splitIP[index] + ":";
-      }
-      addrVal += tempAddr1 + ":" + tempAddr2;
-    }
+  // function GetMyIPv6Address(addrVal) {
+  //   var retVal = addrVal.indexOf(".");
+  //   if (retVal != -1) {
+  //     var splitIP = addrVal.split(":");
+  //     var ipv4Addr = (splitIP[splitIP.length - 1]).split(".");
+  //     var tempAddr1 = (ipv4Addr[0] << 8) | ipv4Addr[1];
+  //     var tempAddr2 = (ipv4Addr[2] << 8) | ipv4Addr[3];
+  //     tempAddr1 = tempAddr1.toString(16);
+  //     tempAddr2 = tempAddr2.toString(16);
+  //     addrVal = "";
+  //     for (var index = 0; index < (splitIP.length - 1); ++index) {
+  //       addrVal += splitIP[index] + ":";
+  //     }
+  //     addrVal += tempAddr1 + ":" + tempAddr2;
+  //   }
 
-    return addrVal;
-  }
+  //   return addrVal;
+  // }
 
 
 
   function getClientIP() {
-    var jData;
+    var jData = null;
     return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=getclientip&action=view', jData,
       function(response) {
         $scope.ClientIPAddr = response.data.ClientIP;
@@ -349,8 +360,10 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
   }
 
 
-  function view(updateType) {
-    var jData;
+  function view(updateTypeData) {
+    var updateType = updateTypeData;
+    var jData = null;
+
     return SunapiClient.get('/stw-cgi/security.cgi?msubmenu=ipfilter&action=view', jData,
         function(response) {
           pageData = angular.copy(response.data);
@@ -385,8 +398,10 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
             $scope.data.AccessTypeIPv6 = "Deny";
           }
 
-          var idx;
+          var idx = 0;
           for (idx = 0; idx < response.data.IPFilters.length; idx = idx + 1) {
+            var filterIdx = 0;
+
             if (response.data.IPFilters[idx].IPType === "IPv4") {
               if (updateType === "IPv6") {
                 continue;
@@ -396,7 +411,7 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
                 $scope.data.AccessTypeIPv4 = response.data.IPFilters[idx].AccessType;
               }
               $scope.FilterIPv4 = response.data.IPFilters[idx].Filters;
-              var filterIdx;
+
               $scope.originalIPv4Length = $scope.FilterIPv4.length;
               for (filterIdx = 0; filterIdx < $scope.FilterIPv4.length; filterIdx = filterIdx + 1) {
                 $scope.FilterIPv4[filterIdx].Range = CalculateFilterRangeIPV4($scope.FilterIPv4[filterIdx].Address, $scope.FilterIPv4[filterIdx].Mask);
@@ -415,7 +430,7 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
                 $scope.data.AccessTypeIPv6 = response.data.IPFilters[idx].AccessType;
               }
               $scope.FilterIPv6 = response.data.IPFilters[idx].Filters;
-              var filterIdx;
+              
               $scope.originalIPv6Length = $scope.FilterIPv6.length;
               for (filterIdx = 0; filterIdx < $scope.FilterIPv6.length; filterIdx = filterIdx + 1) {
                 $scope.FilterIPv6[filterIdx].Range = CalculateFilterRangeIPV6($scope.FilterIPv6[filterIdx].Address, $scope.FilterIPv6[filterIdx].Mask);
@@ -428,15 +443,14 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
         },
         function(errorData) {
           console.log(errorData);
-        }, '', true)
-      .finally(function() {
+        }, '', true).finally(function() {
         featureDetection();
       });
   }
 
 
   function updateIPv4(selected4) {
-    var filterIdx;
+    var filterIdx = 0;
     for (filterIdx = 0; filterIdx < $scope.FilterIPv4.length; filterIdx = filterIdx + 1) {
       if ($scope.FilterIPv4[filterIdx].ind === selected4) {
         $scope.FilterIPv4[filterIdx].Range = CalculateFilterRangeIPV4($scope.FilterIPv4[filterIdx].Address, $scope.FilterIPv4[filterIdx].Mask);
@@ -446,7 +460,7 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
   }
 
   function updateIPv6(selected6) {
-    var filterIdx;
+    var filterIdx = 0;
     for (filterIdx = 0; filterIdx < $scope.FilterIPv6.length; filterIdx = filterIdx + 1) {
       if ($scope.FilterIPv6[filterIdx].ind === selected6) {
         $scope.FilterIPv6[filterIdx].Range = CalculateFilterRangeIPV6($scope.FilterIPv6[filterIdx].Address, $scope.FilterIPv6[filterIdx].Mask);
@@ -676,34 +690,34 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
 
   function validate() {
     var retVal = true;
-
-    var filterIdx;
+    var ErrorMessage = null;
+    var filterIdx = 0;
 
     for (filterIdx = 0; filterIdx < $scope.FilterIPv4.length; filterIdx = filterIdx + 1) {
 
       if (typeof $scope.FilterIPv4[filterIdx].Address === 'undefined' ||
         $scope.FilterIPv4[filterIdx].Address === "") {
 
-        var ErrorMessage = 'lang_msg_chkIPAddress';
+        ErrorMessage = 'lang_msg_chkIPAddress';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
 
       if (COMMONUtils.CheckValidIPv4Address($scope.FilterIPv4[filterIdx].Address) === false) {
-        var ErrorMessage = 'lang_msg_chkIPAddress';
+        ErrorMessage = 'lang_msg_chkIPAddress';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
 
 
       if (typeof $scope.FilterIPv4[filterIdx].Mask === 'undefined') {
-        var ErrorMessage = 'lang_msg_IPv4Prefix1to32';
+        ErrorMessage = 'lang_msg_IPv4Prefix1to32';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
 
       if ($scope.FilterIPv4[filterIdx].Mask < $scope.MaskRangeIPv4.min || $scope.FilterIPv4[filterIdx].Mask > $scope.MaskRangeIPv4.max) {
-        var ErrorMessage = 'lang_msg_IPv4Prefix1to32';
+        ErrorMessage = 'lang_msg_IPv4Prefix1to32';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
@@ -712,8 +726,11 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
     var clientIPFound_Ipv4 = false;
     var isUniqueIpv4 = true;
     var accessIpv4 = COMMONUtils.CheckValidIPv4Address($scope.ClientIPAddr);
+    var i = 0;
+    var j = 0;
+
     if (accessIpv4 === true) {
-      for (var i = 0; i < $scope.FilterIPv4.length; i++) {
+      for (i = 0; i < $scope.FilterIPv4.length; i++) {
         if (CurrentIPInRangeIPv4($scope.FilterIPv4[i].Address, $scope.ClientIPAddr, $scope.FilterIPv4[i].Mask) === true) {
           clientIPFound_Ipv4 = true;
           break;
@@ -721,9 +738,9 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
 
       }
     }
-    for (var i = 0; i < $scope.FilterIPv4.length; i++) {
-      for (var j = 0; j < $scope.FilterIPv4.length; j++) {
-        if (i != j) {
+    for (i = 0; i < $scope.FilterIPv4.length; i++) {
+      for (j = 0; j < $scope.FilterIPv4.length; j++) {
+        if (i !== j) {
           if ($scope.FilterIPv4[i].Address === $scope.FilterIPv4[j].Address) {
             isUniqueIpv4 = false;
             break;
@@ -735,25 +752,25 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
     for (filterIdx = 0; filterIdx < $scope.FilterIPv6.length; filterIdx = filterIdx + 1) {
       if (typeof $scope.FilterIPv6[filterIdx].Address === 'undefined' ||
         $scope.FilterIPv6[filterIdx].Address === "") {
-        var ErrorMessage = 'lang_msg_chkIPv6Address';
+        ErrorMessage = 'lang_msg_chkIPv6Address';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
 
       if (COMMONUtils.CheckValidIPv6Address($scope.FilterIPv6[filterIdx].Address) === false) {
-        var ErrorMessage = 'lang_msg_chkIPv6Address';
+        ErrorMessage = 'lang_msg_chkIPv6Address';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
 
       if (typeof $scope.FilterIPv6[filterIdx].Mask === 'undefined') {
-        var ErrorMessage = 'lang_msg_IPv6Prefix1to128';
+        ErrorMessage = 'lang_msg_IPv6Prefix1to128';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
 
       if ($scope.FilterIPv6[filterIdx].Mask < $scope.MaskRangeIPv6.min || $scope.FilterIPv6[filterIdx].Mask > $scope.MaskRangeIPv6.max) {
-        var ErrorMessage = 'lang_msg_IPv6Prefix1to128';
+        ErrorMessage = 'lang_msg_IPv6Prefix1to128';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
@@ -764,16 +781,16 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
     var isUniqueIpv6 = true;
     var accessIpv6 = COMMONUtils.CheckValidIPv6Address($scope.ClientIPAddr);
     if (accessIpv6 === true) {
-      for (var i = 0; i < $scope.FilterIPv6.length; i++) {
+      for (i = 0; i < $scope.FilterIPv6.length; i++) {
         if (CurrentIPInRangeIPv6($scope.FilterIPv6[i].Address, $scope.ClientIPAddr, $scope.FilterIPv6[i].Mask) === true) {
           clientIPFound_Ipv6 = true;
           break;
         }
       }
     }
-    for (var i = 0; i < $scope.FilterIPv6.length; i++) {
-      for (var j = 0; j < $scope.FilterIPv6.length; j++) {
-        if (i != j) {
+    for (i = 0; i < $scope.FilterIPv6.length; i++) {
+      for (j = 0; j < $scope.FilterIPv6.length; j++) {
+        if (i !== j) {
           if ($scope.FilterIPv6[i].Address === $scope.FilterIPv6[j].Address) {
             isUniqueIpv6 = false;
             break;
@@ -798,7 +815,7 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
     }
 
     if (isUniqueIpv4 === false) {
-      var ErrorMessage = 'lang_msg_IPv4AddressDuplicate';
+      ErrorMessage = 'lang_msg_IPv4AddressDuplicate';
       COMMONUtils.ShowError(ErrorMessage);
       return false;
     }
@@ -818,7 +835,7 @@ kindFramework.controller('ipfilteringCtrl', function($scope, $timeout, COMMONUti
     }
 
     if (isUniqueIpv6 === false) {
-      var ErrorMessage = 'lang_msg_IPv4AddressDuplicate';
+      ErrorMessage = 'lang_msg_IPv4AddressDuplicate';
       COMMONUtils.ShowError(ErrorMessage);
       return false;
     }

@@ -7,7 +7,7 @@ kindFramework.controller('audioCtrl', function($scope, SunapiClient, XMLParser, 
 
   var mAttr = Attributes.get();
   COMMONUtils.getResponsiveObjects($scope);
-  var idx;
+  var idx = 0;
   var pageData = {};
 
   $scope.G711BitRateOptions = CameraSpec.G711BitRateOptions;
@@ -24,12 +24,12 @@ kindFramework.controller('audioCtrl', function($scope, SunapiClient, XMLParser, 
   function featureDetection() {
     var defer = $q.defer();
     $scope.SelectedChannel = 0;
-    if (mAttr.DeviceType != undefined) {
+    if (mAttr.DeviceType !== "undefined") {
       $scope.DeviceType = mAttr.DeviceType;
       pageData.DeviceType = angular.copy($scope.DeviceType);
       if ($scope.DeviceType === "NVR") {
         $scope.ChannelOptions = [];
-        if (mAttr.MaxChannel != undefined) {
+        if (mAttr.MaxChannel !== "undefined") {
           $scope.maxChannels = parseInt(mAttr.MaxChannel);
           for (idx = 1; idx <= $scope.maxChannels; idx = idx + 1) {
             var channelname = "Channel " + idx;
@@ -39,37 +39,40 @@ kindFramework.controller('audioCtrl', function($scope, SunapiClient, XMLParser, 
       }
 
       if ($scope.DeviceType === "NWC") {
+        var gainmin = null;
+        var gainmax = null;
+
         //Audio - In
-        if (mAttr.AudioInSourceOptions != undefined) {
+        if (mAttr.AudioInSourceOptions !== "undefined") {
           $scope.AudioInSourceOptions = mAttr.AudioInSourceOptions;
         }
-        if (mAttr.AudioInEncodingOptions != undefined) {
+        if (mAttr.AudioInEncodingOptions !== "undefined") {
           $scope.AudioInEncodingOptions = mAttr.AudioInEncodingOptions;
         }
 
-        if (mAttr.AudioInGainOptions != undefined) {
-          var gainmin = parseInt(mAttr.AudioInGainOptions.minValue);
-          var gainmax = parseInt(mAttr.AudioInGainOptions.maxValue);
+        if (mAttr.AudioInGainOptions !== "undefined") {
+          gainmin = parseInt(mAttr.AudioInGainOptions.minValue);
+          gainmax = parseInt(mAttr.AudioInGainOptions.maxValue);
           $scope.AudioInGainOptions = [];
           for (idx = gainmin; idx <= gainmax; idx = idx + 1) {
             $scope.AudioInGainOptions.push(idx);
           }
         }
         //Audio-Out
-        if (mAttr.AudioOutGainOptions != undefined) {
-          var gainmin = parseInt(mAttr.AudioOutGainOptions.minValue);
-          var gainmax = parseInt(mAttr.AudioOutGainOptions.maxValue);
+        if (mAttr.AudioOutGainOptions !== "undefined") {
+          gainmin = parseInt(mAttr.AudioOutGainOptions.minValue);
+          gainmax = parseInt(mAttr.AudioOutGainOptions.maxValue);
           $scope.AudioOutGainOptions = [];
           for (idx = gainmin; idx <= gainmax; idx = idx + 1) {
             $scope.AudioOutGainOptions.push(idx);
           }
         }
 
-        if (mAttr.MaxAudioInput !== undefined) {
+        if (mAttr.MaxAudioInput !== "undefined") {
           $scope.MaxAudioInput = mAttr.MaxAudioInput;
         }
 
-        if (mAttr.MaxAudioOutput !== undefined) {
+        if (mAttr.MaxAudioOutput !== "undefined") {
           $scope.MaxAudioOutput = mAttr.MaxAudioOutput;
         }
 
@@ -178,7 +181,7 @@ kindFramework.controller('audioCtrl', function($scope, SunapiClient, XMLParser, 
     }
 
     if ($scope.DeviceType === "NWC") {
-      if ($scope.MaxAudioOutput == 0) {
+      if ($scope.MaxAudioOutput === 0) {
         return;
       }
     }
