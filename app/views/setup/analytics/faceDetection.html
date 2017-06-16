@@ -95,9 +95,10 @@
                         <div 
                           class="setup-facedetection-color-box"
                           data-color-name="{{colorItem.colorName}}"
-                          ng-class="{'active': overlayColorSection.selectedColorIndex === colorIndex}"
+                          ng-class="{ 'active': (colorIndex == overlayColorSection.selectedColorIndex) }"
                           ng-click="overlayColorSection.selectColor(colorIndex, colorItem.colorCode)"
                           ng-repeat="(colorIndex, colorItem) in overlayColorSection.colorIndexList">
+                          <i class="tui tui-check"></i>
                         </div>
                       </div>
                     </div>

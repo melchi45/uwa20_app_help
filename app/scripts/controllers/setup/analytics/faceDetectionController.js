@@ -52,41 +52,44 @@ kindFramework.controller(
           },
           {
             colorName: 'White',
-            colorCode: 'rgb(218, 218, 219)'
+            colorCode: 'rgb(255, 255, 255)'
           },
           {
             colorName: 'Red',
-            colorCode: 'rgb(253, 46, 84)'
+            colorCode: 'rgb(241, 24, 19)'
           },
           {
             colorName: 'Orange',
-            colorCode: 'rgb(255, 149, 0)'
+            colorCode: 'rgb(243, 115, 33)'
           },
           {
             colorName: 'Yellow',
-            colorCode: 'rgb(255, 203, 0)'
+            colorCode: 'rgb(255, 211, 0)'
           },
           {
             colorName: 'Green',
-            colorCode: 'rgb(64, 217, 88)'
+            colorCode: 'rgb(37, 225, 18)'
           },
           {
             colorName: 'Blue',
-            colorCode: 'rgb(6, 122, 255)'
+            colorCode: 'rgb(0, 145, 255)'
           },
           {
             colorName: 'Navy',
-            colorCode: 'rgb(0, 32, 96)'
+            colorCode: 'rgb(6, 67, 114)'
           },
           {
             colorName: 'Violet',
-            colorCode: 'rgb(87, 87, 222)'
+            colorCode: 'rgb(106, 113, 229)'
           },
         ],
         setSelectedColor: function(tColour){
-          var colour = tColour;
+          if(typeof tColour === 'undefined'){
+            return;
+          }
+          var colour = parseInt(tColour, 10);
           for (var index = 0; index < $scope.overlayColorSection.colorIndexList.length; index++) {
-            if (colour === $scope.overlayColorSection.colorIndexList[index].colorName) {
+            if ($scope.overlayColorSection.colorIndexList[colour].colorName === $scope.overlayColorSection.colorIndexList[index].colorName) {
               $scope.overlayColorSection.selectedColorIndex = index + '';
             }
           }
