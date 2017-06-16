@@ -27,6 +27,7 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
   };
 
   var DEVICE_NAME_LENGTH = 8;
+  var DEVICE_OPTION_LENGTH = 24;
 
   var ATTRIBUTE_REQUEST_TIMEOUT = 500;
 
@@ -130,6 +131,75 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
     }
   }
 
+  function validLocation() {
+    var val = $scope.Info.Location;
+    if ($.trim(val).length === 0) { 
+      return false; 
+    } // only white space
+    var len = val.length;
+    for (var ii = 0; ii < val.length; ii++) {
+      // var str = val[ii];
+      try {
+        // var stringByteLen = ~-encodeURI(str).split(/%..|./).length;
+      } catch (error) {
+        ii++;
+        len--;
+      }
+    }
+
+    if (len > DEVICE_OPTION_LENGTH) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function validDescription() {
+    var val = $scope.Info.Description;
+    if ($.trim(val).length === 0) { 
+      return false; 
+    } // only white space
+    var len = val.length;
+    for (var ii = 0; ii < val.length; ii++) {
+      // var str = val[ii];
+      try {
+        // var stringByteLen = ~-encodeURI(str).split(/%..|./).length;
+      } catch (error) {
+        ii++;
+        len--;
+      }
+    }
+
+    if (len > DEVICE_OPTION_LENGTH) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function validMemo() {
+    var val = $scope.Info.Memo;
+    if ($.trim(val).length === 0) { 
+      return false; 
+    } // only white space
+    var len = val.length;
+    for (var ii = 0; ii < val.length; ii++) {
+      // var str = val[ii];
+      try {
+        // var stringByteLen = ~-encodeURI(str).split(/%..|./).length;
+      } catch (error) {
+        ii++;
+        len--;
+      }
+    }
+
+    if (len > DEVICE_OPTION_LENGTH) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   function validate() {
     var retVal = true;
     var ErrorMessage = '';
@@ -143,6 +213,27 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
 
     if (validDeviceName() === false) {
       ErrorMessage = $translate.instant('lang_msg_check_deviceName') + ' ' + $translate.instant('lang_msg_allowed_upto_8_chars');
+      retVal = false;
+      COMMONUtils.ShowError(ErrorMessage);
+      return retVal;
+    }
+
+    if (validLocation() === false) {
+      ErrorMessage = $translate.instant('lang_msg_check_location');
+      retVal = false;
+      COMMONUtils.ShowError(ErrorMessage);
+      return retVal;
+    }
+
+    if (validDescription() === false) {
+      ErrorMessage = $translate.instant('lang_msg_check_description');
+      retVal = false;
+      COMMONUtils.ShowError(ErrorMessage);
+      return retVal;
+    }
+
+    if (validMemo() === false) {
+      ErrorMessage = $translate.instant('lang_msg_check_memo');
       retVal = false;
       COMMONUtils.ShowError(ErrorMessage);
       return retVal;

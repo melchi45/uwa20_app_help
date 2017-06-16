@@ -1356,22 +1356,27 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
 
   function sunapiQueueRequest(queue, callback) {
-    var currentItem = queue.shift();
-    currentItem.reqData.Channel = UniversialManagerService.getChannelId();
-    SunapiClient.get(
-      currentItem.url,
-      currentItem.reqData,
-      function() {
+    var currentItem = null;
 
-      },
-      function() {
-        //alert(errorData);
-      },
-      '',
-      true
-    ).then(reqCallback);
+    if(queue.length > 0) {
+      currentItem = queue.shift();
+      currentItem.reqData.Channel = UniversialManagerService.getChannelId();  
+
+      SunapiClient.get(
+        currentItem.url,
+        currentItem.reqData,
+        function() {
+
+        },
+        function() {
+          //alert(errorData);
+        }, '', true).then(reqCallback);
+    } else {
+      callback();
+    }
 
     function reqCallback() {
+
       if (queue.length > 0) {
         sunapiQueueRequest(queue, callback);
       } else {

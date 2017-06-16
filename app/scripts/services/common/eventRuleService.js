@@ -5,25 +5,26 @@ kindFramework.factory('eventRuleService', function() {
   var initialScheduleIds = [];
   var initialScheduleType = "Always";
   var currentMenu = null;
+  var initialScheduleDataObj = {
+      type: initialScheduleType,
+      data: initialScheduleIds
+  };
+
   var scheduleDataObj = {
     type: currentScheduleType,
     data: currentScheduleIds,
-  };
-  var initialScheduleDataObj = {
-    type: initialScheduleType,
-    data: initialScheduleIds,
-  };
-  var eventRuleDataObj = {
+  };  var eventRuleDataObj = {
     pageData: null,
     scopeData: null,
     menu: null,
   };
 
   var compareScheduleData = function(isRecordPage) {
-    var pScheduleIds;
-    var sScheduleIds;
-    var pScheduleType;
-    var sScheduleType;
+    var pScheduleIds = null;
+    var sScheduleIds = null;
+    var pScheduleType = null;
+    var sScheduleType = null;
+
     if (isRecordPage) {
       pScheduleIds = initialScheduleIds;
       sScheduleIds = currentScheduleIds;
@@ -38,7 +39,7 @@ kindFramework.factory('eventRuleService', function() {
 
     var isSame = false;
 
-    if ((pScheduleType === sScheduleType) && (pScheduleIds.length == sScheduleIds.length)) {
+    if ((pScheduleType === sScheduleType) && (pScheduleIds.length === sScheduleIds.length)) {
       isSame = true;
       for (var i = 0; i < pScheduleIds.length; i++) {
         var target = pScheduleIds[i];

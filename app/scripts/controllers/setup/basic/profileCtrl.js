@@ -16,13 +16,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     x: 320,
     y: 28,
     width: 1280,
-    height: 1024
+    height: 1024,
   };
   var cropInitSize_5M = {
     x: 480,
     y: 360,
     width: 1600,
-    height: 1200
+    height: 1200,
   };
 
   $scope.showAdvancedMenu = false;
@@ -82,7 +82,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     $scope.viewModeIndex = mAttr.viewModeIndex;
     $scope.profileViewModeType = mAttr.profileViewModeType;
     /** Show only dewarped or modified view modes, dont list original view as a option  */
-    if ($scope.profileViewModeType !== undefined) {
+    if (typeof $scope.profileViewModeType !== 'undefined') {
       $scope.profileDewarpViewModeType = [];
       for (var i = 0; i < $scope.profileViewModeType.length; i++) {
         if ($scope.profileViewModeType[i] === 'Overview') {
@@ -99,7 +99,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     initEncoderDetails();
     initCompressionList();
 
-    if (mAttr.Bitrate !== undefined) {
+    if (typeof mAttr.Bitrate !== 'undefined') {
 
       if (typeof $scope.BitRateRange === 'undefined') {
         setBitRateRange(mAttr.Bitrate.minValue, mAttr.Bitrate.maxValue);
@@ -124,8 +124,6 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   function getProfileTableData() {
     $scope.infoTableData = [];
-    var Profiles,
-      profCnt = 0;
     var getData = {};
 
     return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', getData,
@@ -174,25 +172,25 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   function initMulticastDetails() {
 
-    if (mAttr.SVNPMulticastPort !== undefined) {
+    if (typeof mAttr.SVNPMulticastPort !== 'undefined') {
       $scope.SVNPMulticastPortRange = {};
       $scope.SVNPMulticastPortRange.min = mAttr.SVNPMulticastPort.minValue;
       $scope.SVNPMulticastPortRange.max = mAttr.SVNPMulticastPort.maxValue;
     }
 
-    if (mAttr.SVNPMulticastTTL !== undefined) {
+    if (typeof mAttr.SVNPMulticastTTL !== 'undefined') {
       $scope.SVNPMulticastTTLRange = {};
       $scope.SVNPMulticastTTLRange.min = mAttr.SVNPMulticastTTL.minValue;
       $scope.SVNPMulticastTTLRange.max = mAttr.SVNPMulticastTTL.maxValue;
     }
 
-    if (mAttr.RTPMulticastPort !== undefined) {
+    if (typeof mAttr.RTPMulticastPort !== 'undefined') {
       $scope.RTPMulticastPortRange = {};
       $scope.RTPMulticastPortRange.min = mAttr.RTPMulticastPort.minValue;
       $scope.RTPMulticastPortRange.max = mAttr.RTPMulticastPort.maxValue;
     }
 
-    if (mAttr.RTPMulticastTTL !== undefined) {
+    if (typeof mAttr.RTPMulticastTTL !== 'undefined') {
       $scope.RTPMulticastTTLRange = {};
       $scope.RTPMulticastTTLRange.min = mAttr.RTPMulticastTTL.minValue;
       $scope.RTPMulticastTTLRange.max = mAttr.RTPMulticastTTL.maxValue;
@@ -200,11 +198,9 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   function initCompressionList() {
-    var minCompression = 0,
-      maxCompression = 0,
-      i = 0;
+    var i = 0;
 
-    if ($scope.CompressionLevelList !== undefined) {
+    if (typeof $scope.CompressionLevelList !== 'undefined') {
       // avoid multiple init
       return;
     }
@@ -230,7 +226,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   function initEncoderDetails() {
-    if (mAttr.EncodingTypes !== undefined) {
+    if (typeof mAttr.EncodingTypes !== 'undefined') {
       $scope.EncodingTypes = [];
 
       for (var i = 0; i < mAttr.EncodingTypes.length; i++) {
@@ -247,7 +243,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
         }
         $scope.EncodingTypes.push(temp);
 
-        if ($scope.viewModeIndex !== undefined) {
+        if (typeof $scope.viewModeIndex !== 'undefined') {
           $scope.EncodingTypesByProfile = angular.copy($scope.EncodingTypes);
           $scope.profileSupportedEnodings = CameraSpec.profileBasedEnodingType();
         }
@@ -257,13 +253,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   function initATCDetails() {
     var i = 0,
-      j = 0;
+      j = 0, temp = {};
     /** Map Enum Values and Display strings */
-    if (mAttr.ATCModes !== undefined) {
+    if (typeof mAttr.ATCModes !== 'undefined') {
       $scope.ATCModeOptions = [];
 
       for (i = 0; i < mAttr.ATCModes.length; i++) {
-        var temp = {};
+        temp = {};
         temp.Value = mAttr.ATCModes[i];
         if (mAttr.ATCModes[i] === 'Disabled') {
           temp.Text = 'lang_disable';
@@ -277,11 +273,11 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     }
 
 
-    if (mAttr.ATCTrigger !== undefined && mAttr.ATCEventType !== undefined) {
+    if (typeof mAttr.ATCTrigger !== 'undefined' && typeof mAttr.ATCEventType !== 'undefined') {
       for (i = 0; i < mAttr.ATCTrigger.length; i++) {
         if (mAttr.ATCTrigger[i] === 'Event') {
           for (j = 0; j < mAttr.ATCEventType.length; j++) {
-            var temp = {};
+            temp = {};
             if (mAttr.ATCEventType[j] === 'MotionDetection') {
               temp.Value = 'Event-MD';
               temp.Text = 'lang_eventMD';
@@ -292,11 +288,11 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       }
     }
 
-    if (mAttr.ATCSensitivityOptions !== undefined) {
+    if (typeof mAttr.ATCSensitivityOptions !== 'undefined') {
       $scope.ATCSensitivityOptions = [];
 
       for (i = 0; i < mAttr.ATCSensitivityOptions.length; i++) {
-        var temp = {};
+        temp = {};
         temp.Value = mAttr.ATCSensitivityOptions[i];
         if (mAttr.ATCSensitivityOptions[i] === 'VeryLow') {
           temp.Text = 'lang_very_low';
@@ -315,14 +311,14 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     }
 
     $scope.ATCLimitRange = {};
-    if (mAttr.ATCLimit !== undefined) {
-      if (mAttr.ATCLimit.minValue !== undefined) {
+    if (typeof mAttr.ATCLimit !== 'undefined') {
+      if (typeof mAttr.ATCLimit.minValue !== 'undefined') {
         $scope.ATCLimitRange.Min = mAttr.ATCLimit.minValue;
       } else {
         $scope.ATCLimitRange.Min = 10;
       }
 
-      if (mAttr.ATCLimit.maxValue !== undefined) {
+      if (typeof mAttr.ATCLimit.maxValue !== 'undefined') {
         $scope.ATCLimitRange.Max = mAttr.ATCLimit.maxValue;
       } else {
         $scope.ATCLimitRange.Max = 50;
@@ -360,7 +356,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     } else {
       $scope.PtzMode.Mode = mAttr.PTZModeOptions[1]; //Digital PTZ
     }
-  };
+  }
 
   /**
    * GCD for finding the aspect ratio
@@ -373,14 +369,12 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   function fillProfileDetails(to, from, encoding, general) {
-    var j;
-
     to.Resol = [];
-    for (j = 0; j < from.length; j++) {
+    for (var j = 0; j < from.length; j++) {
       var option = {},
-        aspectRatio,
-        aspectWitdth,
-        aspectHeight;
+        aspectRatio = 0,
+        aspectWitdth = 0,
+        aspectHeight = 0;
 
       aspectRatio = gcd(from[j].Width, from[j].Height);
       aspectWitdth = from[j].Width / aspectRatio;
@@ -402,9 +396,9 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       /**
        * Fill frame rate details
        */
-      if (from[j].MaxFPS !== undefined) {
+      if (typeof from[j].MaxFPS !== 'undefined') {
         option.MaxFPS = from[j].MaxFPS;
-      } else if (general.Resol[j].MaxFPS !== undefined) {
+      } else if (typeof general.Resol[j].MaxFPS !== 'undefined') {
         /**
          * Assumed here that General and The current profiles has same resolution list
          */
@@ -415,15 +409,15 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
        *  Camera provides FPS in 1000 units
        */
       if (option.MaxFPS >= 1000) {
-        option.MaxFPS = option.MaxFPS / 1000;
+        option.MaxFPS /= 1000;
       }
 
       /**
        * Fill default frame rate details
        */
-      if (from[j].DefaultFPS !== undefined) {
+      if (typeof from[j].DefaultFPS !== 'undefined') {
         option.DefaultFPS = from[j].DefaultFPS;
-      } else if (general.Resol[j].DefaultFPS !== undefined) {
+      } else if (typeof general.Resol[j].DefaultFPS !== 'undefined') {
         /**
          * Assumed here that General and The current profiles has same resolution list
          */
@@ -431,7 +425,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       }
 
       if (option.DefaultFPS >= 1000) {
-        option.DefaultFPS = option.DefaultFPS / 1000;
+        option.DefaultFPS /= 1000;
       }
 
       /**
@@ -442,13 +436,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   $scope.setProfileType = function(type, profileNo) {
-    var i, k, profiles, policy;
+    var profiles = null, policy = null;
     var key = type + 'Profile';
 
     var requireType = {
       DefaultProfile: 2,
       EventProfile: 1,
-      RecordProfile: 1
+      RecordProfile: 1,
     };
 
     profiles = $scope.VideoProfiles[$scope.ch].Profiles;
@@ -459,7 +453,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
       profiles[$scope.selectedProfile][key] = true;
     } else {
-      for (i = 0; i < profiles.length; i++) {
+      for (var i = 0; i < profiles.length; i++) {
         if (profiles[i][key]) {
           requireType[key] = profiles[i].Profile;
           break;
@@ -491,8 +485,8 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       return false;
     }
 
-    if ($scope.VideoProfiles !== undefined && $scope.VideoCodecInfo !== undefined &&
-      $scope.VideoProfiles[$scope.ch].Profiles[profIdx] !== undefined) {
+    if (typeof $scope.VideoProfiles !== 'undefined' && typeof $scope.VideoCodecInfo !== 'undefined' &&
+      typeof $scope.VideoProfiles[$scope.ch].Profiles[profIdx] !== 'undefined') {
       prof = $scope.VideoProfiles[$scope.ch].Profiles[profIdx];
       var profileViewMode = prof.ViewModeType;
       var encoding = prof.EncodingType;
@@ -503,7 +497,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
           var selViewMode = viewModeList[viewModeCnt];
           for (var encodingCnt = 0; encodingCnt < selViewMode.Codecs.length; encodingCnt++) {
             if (selViewMode.Codecs[encodingCnt].EncodingType === encoding) {
-              if (selViewMode.Codecs[encodingCnt].IsDigitalPTZSupported !== undefined) {
+              if (typeof selViewMode.Codecs[encodingCnt].IsDigitalPTZSupported !== 'undefined') {
                 retVal = selViewMode.Codecs[encodingCnt].IsDigitalPTZSupported;
                 break;
               }
@@ -640,7 +634,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   function adjustSupportedCodecs() {
     /** Fishe- Eye new spec Profile #2,#3,#4 can change codec, event hough fixed profile
      It can support only H.264 and H.265 */
-    if ($scope.viewModeIndex !== undefined) {
+    if (typeof $scope.viewModeIndex !== 'undefined') {
       var supportedEncodings = [];
       $scope.EncodingTypesByProfile = [];
 
@@ -683,13 +677,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
 
   $scope.selectResolutionList = function(isAdjustBitRate, isCodecChange, isAdjustResolution) {
-    var i,
+    var i = 0,
       frameRateSet = false,
       resolSelected = false,
       selectedProfileDetails = {},
       defaultFPS = 0;
 
-    if ($scope.viewModeIndex !== undefined && $scope.VideoProfiles !== undefined && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ViewModeIndex === 1) {
+    if (typeof $scope.viewModeIndex !== 'undefined' && typeof $scope.VideoProfiles !== 'undefined' && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ViewModeIndex === 1) {
       LogManager.debug("selecing Dewarp Profile details");
       selectedProfileDetails = $scope.dewarpProfileDetails[$scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ViewModeType];
     } else {
@@ -697,7 +691,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       selectedProfileDetails = $scope.ProfileDetails;
     }
 
-    if (selectedProfileDetails === undefined || selectedProfileDetails.length === 0) {
+    if (typeof selectedProfileDetails === 'undefined' || selectedProfileDetails.length === 0) {
       LogManager.debug("profile details is empty ");
       return;
     }
@@ -708,7 +702,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
         if (isDptzSupportedProfile($scope.selectedProfile)) {
           if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].IsDigitalPTZProfile === true &&
-            selectedProfileDetails[i].DigitalPTZ !== undefined) {
+            typeof selectedProfileDetails[i].DigitalPTZ !== 'undefined') {
             $scope.ResoltionList = selectedProfileDetails[i].DigitalPTZ.Resol;
             resolSelected = true;
             LogManager.debug("selecing DPTZ Resoltion List");
@@ -717,7 +711,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
         }
 
         if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].RecordProfile &&
-          selectedProfileDetails[i].Record !== undefined) {
+          typeof selectedProfileDetails[i].Record !== 'undefined') {
           $scope.ResoltionList = selectedProfileDetails[i].Record.Resol;
           resolSelected = true;
           LogManager.debug("selecing Record Resoltion List");
@@ -725,7 +719,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
         }
 
         if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].EventProfile &&
-          selectedProfileDetails[i].Email !== undefined) {
+          typeof selectedProfileDetails[i].Email !== 'undefined') {
           $scope.ResoltionList = selectedProfileDetails[i].Email.Resol;
           LogManager.debug("selecing Email Resoltion List");
           resolSelected = true;
@@ -752,7 +746,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
     for (i = 0; i < $scope.ResoltionList.length; i++) {
       if ($scope.ResoltionList[i].Value === $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Resolution) {
-        if ($scope.ResoltionList[i].DefaultFPS !== undefined) {
+        if (typeof $scope.ResoltionList[i].DefaultFPS !== 'undefined') {
           defaultFPS = $scope.ResoltionList[i].DefaultFPS;
         }
         if (isDptzSupportedProfile($scope.selectedProfile)) {
@@ -762,13 +756,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
             $scope.DisableBitrateSelection = true;
           } else {
             $scope.selectFrameRate($scope.ResoltionList[i].MaxFPS, defaultFPS, isAdjustBitRate);
-            if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined) {
+            if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined') {
               /**
-               * MJPEG¿¡¼­ H265º¯°æ ÈÄ ÀúÀåÇÏÁö ¾ÊÀ» »óÅÂ¿¡¼­
-               * Resolution º¯°æ ½Ã Bitrate ControlÀº Á¤ÀÇ°¡ µÇÀÖÁö ¾Ê±â ¶§¹®¿¡
-               * VBR·Î ±âº»°ªÀ» ¼³Á¤ÇÑ´Ù.
+               * MJPEGï¿½ï¿½ï¿½ï¿½ H265ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½
+               * Resolution ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Bitrate Controlï¿½ï¿½ ï¿½ï¿½ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+               * VBRï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
                */
-              if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType !== undefined) {
+              if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType !== 'undefined') {
                 $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType;
               } else {
                 $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType = 'VBR';
@@ -814,7 +808,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
     $scope.checkRecordProfileSettings();
 
-    if (mAttr.Bitrate !== undefined) {
+    if (typeof mAttr.Bitrate !== 'undefined') {
       $scope.selectBitRate(isAdjustBitRate);
     }
 
@@ -829,8 +823,8 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     } else if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].RecordProfile === true) {
       $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode = "Disabled";
     } else {
-      if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined &&
-        $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode === undefined) {
+      if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined' &&
+        typeof $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode === 'undefined') {
         $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode;
       }
       if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].EncodingType === 'MJPEG') {
@@ -863,16 +857,16 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     }
   };
 
-  $scope.selectFrameRate = function(maxfps, defaultfps, isAdjustFrate) {
-    var limitFPS = 0;
+  $scope.selectFrameRate = function(maxfps, defaultfps, tIsAdjustFrate) {
+    var limitFPS = 0, isAdjustFrate = null;
 
-    if (maxfps === undefined || maxfps === 0) {
+    if (typeof maxfps === 'undefined' || maxfps === 0) {
       LogManager.error('selectFrameRate error', maxfps, $scope.VideoCodecInfo);
       return;
     }
 
-    if (defaultfps == undefined) {
-      if ($scope.FrameRateList !== undefined && $scope.FrameRateList.length === maxfps) {
+    if (typeof defaultfps === 'undefined') {
+      if (typeof $scope.FrameRateList !== 'undefined' && $scope.FrameRateList.length === maxfps) {
         return;
       }
       limitFPS = maxfps;
@@ -880,20 +874,23 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       limitFPS = defaultfps;
     }
 
-    if (isAdjustFrate == undefined) {
+    if (typeof tIsAdjustFrate === 'undefined') {
       isAdjustFrate = false;
+    } else {
+      isAdjustFrate = tIsAdjustFrate;
     }
+    
     /*
     If the current frame rate is more than allowed frame rate.
     Automatically set it to Max FPSselectResolutionList*/
 
-    if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] === undefined) {
+    if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] === 'undefined') {
       $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate = defaultfps;
     } else {
       $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate;
     }
 
-    if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate > limitFPS && isAdjustFrate == true) {
+    if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate > limitFPS && isAdjustFrate === true) {
       LogManager.debug("Adjusting Frame Rate ", $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate, " -> ", limitFPS);
       $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate = limitFPS;
     }
@@ -904,13 +901,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
 
   function handleCodecChange() {
-    var defaultProfile, profile;
+    var profile = null;
 
     profile = $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile];
 
-    if ((profile.EncodingType === 'H264') && (profile.H264 === undefined)) {
+    if ((profile.EncodingType === 'H264') && (typeof profile.H264 === 'undefined')) {
       getDefaultEncoderSettings(profile);
-    } else if ((profile.EncodingType === 'H265') && (profile.H265 === undefined)) {
+    } else if ((profile.EncodingType === 'H265') && (typeof profile.H265 === 'undefined')) {
       getDefaultEncoderSettings(profile);
     } else if (profile.EncodingType === 'MJPEG') {
       /**
@@ -941,7 +938,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   $scope.selectBitRate = function(isAdjustBitRate) {
 
-    var i, j, resolCnt = 0,
+    var resolCnt = 0,
       minBitrate = 64,
       maxBitrate = 0,
       defaultBitrate = 0,
@@ -955,12 +952,12 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     viewMode = $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ViewModeType;
     viewModeList = $scope.VideoCodecInfo[$scope.ch].ViewModes;
 
-    for (i = 0; i < viewModeList.length; i++) {
+    for (var i = 0; i < viewModeList.length; i++) {
       if (viewModeList[i].ViewMode === viewMode) {
         codecInfo = viewModeList[i].Codecs;
       }
 
-      for (j = 0; j < codecInfo.length; j++) {
+      for (var j = 0; j < codecInfo.length; j++) {
         if (codecInfo[j].EncodingType === $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].EncodingType) {
           RecResoltionList = codecInfo[j].Record;
           GenResoltionList = codecInfo[j].General;
@@ -981,31 +978,31 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
              * Record profile info doesnt have min bit rate details.
              * Need to refer min profile in General
              */
-            if (RecResoltionList[resolCnt].MaxVBRTargetBitrate !== undefined) {
+            if (typeof RecResoltionList[resolCnt].MaxVBRTargetBitrate !== 'undefined') {
               maxBitrate = RecResoltionList[resolCnt].MaxVBRTargetBitrate;
             }
 
-            if (RecResoltionList[resolCnt].MinVBRTargetBitrate !== undefined) {
+            if (typeof RecResoltionList[resolCnt].MinVBRTargetBitrate !== 'undefined') {
               minBitrate = RecResoltionList[resolCnt].MinVBRTargetBitrate;
             }
 
-            if (RecResoltionList[resolCnt].DefaultVBRTargetBitrate !== undefined) {
+            if (typeof RecResoltionList[resolCnt].DefaultVBRTargetBitrate !== 'undefined') {
               defaultBitrate = RecResoltionList[resolCnt].DefaultVBRTargetBitrate;
             }
 
           } else {
-            if (GenResoltionList[resolCnt].MaxVBRTargetBitrate !== undefined) {
+            if (typeof GenResoltionList[resolCnt].MaxVBRTargetBitrate !== 'undefined') {
               maxBitrate = GenResoltionList[resolCnt].MaxVBRTargetBitrate;
             }
 
-            if (GenResoltionList[resolCnt].MinVBRTargetBitrate !== undefined) {
+            if (typeof GenResoltionList[resolCnt].MinVBRTargetBitrate !== 'undefined') {
               minBitrate = GenResoltionList[resolCnt].MinVBRTargetBitrate;
             }
 
             defaultBitrate = GenResoltionList[resolCnt].DefaultVBRTargetBitrate;
           }
 
-          if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined) {
+          if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined') {
             $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate;
           } else {
             if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate < minBitrate) {
@@ -1016,21 +1013,21 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
         } else {
 
           if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].RecordProfile) {
-            if (RecResoltionList[resolCnt].MaxCBRTargetBitrate !== undefined) {
+            if (typeof RecResoltionList[resolCnt].MaxCBRTargetBitrate !== 'undefined') {
               maxBitrate = RecResoltionList[resolCnt].MaxCBRTargetBitrate;
             }
-            if (RecResoltionList[resolCnt].MinCBRTargetBitrate !== undefined) {
+            if (typeof RecResoltionList[resolCnt].MinCBRTargetBitrate !== 'undefined') {
               minBitrate = RecResoltionList[resolCnt].MinCBRTargetBitrate;
             }
-            if (RecResoltionList[resolCnt].DefaultCBRTargetBitrate !== undefined) {
+            if (typeof RecResoltionList[resolCnt].DefaultCBRTargetBitrate !== 'undefined') {
               defaultBitrate = RecResoltionList[resolCnt].DefaultCBRTargetBitrate;
             }
 
           } else {
-            if (GenResoltionList[resolCnt].MaxCBRTargetBitrate !== undefined) {
+            if (typeof GenResoltionList[resolCnt].MaxCBRTargetBitrate !== 'undefined') {
               maxBitrate = GenResoltionList[resolCnt].MaxCBRTargetBitrate;
             }
-            if (GenResoltionList[resolCnt].MinCBRTargetBitrate !== undefined) {
+            if (typeof GenResoltionList[resolCnt].MinCBRTargetBitrate !== 'undefined') {
               minBitrate = GenResoltionList[resolCnt].MinCBRTargetBitrate;
             }
 
@@ -1039,7 +1036,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
 
 
-          if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined) {
+          if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined') {
             $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate;
           } else {
             if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate < minBitrate) {
@@ -1052,11 +1049,11 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
               var indx = 0;
               for (indx = 0; indx < $scope.ResoltionList.length; indx++) {
                 if (resol === $scope.ResoltionList[indx].Value) {
-                  if (DPTZResolutionList[indx].MaxCBRTargetBitrate !== undefined) {
+                  if (typeof DPTZResolutionList[indx].MaxCBRTargetBitrate !== 'undefined') {
                     maxBitrate = DPTZResolutionList[indx].MaxCBRTargetBitrate;
                   }
 
-                  if (DPTZResolutionList[indx].MinCBRTargetBitrate !== undefined) {
+                  if (typeof DPTZResolutionList[indx].MinCBRTargetBitrate !== 'undefined') {
                     minBitrate = DPTZResolutionList[indx].MinCBRTargetBitrate;
                   }
                   defaultBitrate = DPTZResolutionList[indx].DefaultCBRTargetBitrate;
@@ -1115,7 +1112,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
         LogManager.debug("Adjusting Bitrate to default ", $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate, " -> ", defaultBitrate);
         $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = defaultBitrate;
       }
-    } else if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate) {
+    } else if (typeof $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined' && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate) {
       /**
        * if the current Bitrate is more than max bitrate.
        * Adjust the bitrate automatically
@@ -1128,7 +1125,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   function setBitRateRange(min, max) {
-    if (min === undefined || max === undefined) {
+    if (typeof min === 'undefined' || typeof max === 'undefined') {
       return;
     }
 
@@ -1140,13 +1137,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   $scope.selectGOVLength = function(updateGov) {
     var encodingType = $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].EncodingType;
 
-    if (mAttr.GOVLength.H264 === undefined || encodingType === "MJPEG") {
+    if (typeof mAttr.GOVLength.H264 === 'undefined' || encodingType === "MJPEG") {
       return;
     }
 
     $scope.GOVLengthRange.Min = 1;
 
-    var maxGOV = mAttr["GOVLength"][encodingType].maxValue;
+    var maxGOV = mAttr.GOVLength[encodingType].maxValue;
     if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate === 1) {
       $scope.GOVLengthRange.Max = 1;
     } else {
@@ -1178,7 +1175,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     if (encodingType === "MJPEG") {
       return;
     }
-    var maxDynamicGOV = mAttr["DynamicGOV"][encodingType].maxValue;
+    var maxDynamicGOV = mAttr.DynamicGOV[encodingType].maxValue;
     if ($scope.DynamicGovSupported) {
       if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate === 1) {
         $scope.DynamicGovRange.Min = 1;
@@ -1228,10 +1225,11 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   $scope.selectEncoderSettings = function(updateGov) {
     var i = 0,
       j = 0,
-      priorityOptions,
-      SmartCodecEnableOptions;
+      priorityOptions = null,
+      SmartCodecEnableOptions = null,
+      temp = {};
 
-    if (mAttr.BitrateControlType.H264 !== undefined) {
+    if (typeof mAttr.BitrateControlType.H264 !== 'undefined') {
       if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].EncodingType === 'H264') {
         $scope.BitrateControlOptions = mAttr.BitrateControlType.H264;
         priorityOptions = mAttr.PriorityType.H264;
@@ -1241,7 +1239,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       }
     }
 
-    if (mAttr.BitrateControlType.H265 !== undefined) {
+    if (typeof mAttr.BitrateControlType.H265 !== 'undefined') {
       if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].EncodingType === 'H265') {
         $scope.BitrateControlOptions = mAttr.BitrateControlType.H265;
         priorityOptions = mAttr.PriorityType.H265;
@@ -1258,11 +1256,11 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     /**
      * Encoding Priority
      */
-    if (priorityOptions !== undefined) {
+    if (typeof priorityOptions !== 'undefined') {
       $scope.PriorityOptions = [];
 
-      for (var i = 0; i < priorityOptions.length; i++) {
-        var temp = {};
+      for (i = 0; i < priorityOptions.length; i++) {
+        temp = {};
         temp.Value = priorityOptions[i];
         if (priorityOptions[i] === 'FrameRate') {
           temp.Text = 'lang_framerate';
@@ -1287,11 +1285,11 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     /**
      *  Smart Codec
      */
-    if (SmartCodecEnableOptions !== undefined) {
+    if (typeof SmartCodecEnableOptions !== 'undefined') {
       $scope.SmartCodecEnableOptions = [];
 
-      for (var i = 0; i < 2; i++) {
-        var temp = {};
+      for (i = 0; i < 2; i++) {
+        temp = {};
         if (i === 0) {
           temp.Value = true;
           temp.Text = 'lang_enable';
@@ -1309,7 +1307,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   $scope.dewarpProfileDetails = {};
 
   function getResoltionList() {
-    var from, i, j, to, selectedCodecInfo, isSourceView = false,
+    var from = null, i = 0, to = null, selectedCodecInfo = null, isSourceView = false,
       codecInfoList = {},
       viewMode = "";
 
@@ -1350,13 +1348,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
         to.EncodingType = from.EncodingType;
 
-        if (from.General !== undefined) {
+        if (typeof from.General !== 'undefined') {
           /** General Profile details */
           to.General = {};
           fillProfileDetails(to.General, from.General, to.EncodingType);
         }
 
-        if (from.Record !== undefined) {
+        if (typeof from.Record !== 'undefined') {
           /** Record Profile details */
           to.Record = {};
           if (isSourceView === true) {
@@ -1366,7 +1364,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
           }
         }
 
-        if (from.Email !== undefined) {
+        if (typeof from.Email !== 'undefined') {
           /** Email Profile details */
           if (to.EncodingType === 'MJPEG') {
             to.Email = {};
@@ -1467,7 +1465,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   function setVideoSource() {
     var setData = {},
-      ignoredKeys;
+      ignoredKeys = null;
 
     if ($scope.isMultiChannel) {
       var currentChannel = UniversialManagerService.getChannelId();
@@ -1529,7 +1527,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   function getConnectionPolicy() {
     return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=rtsp&action=view', '',
       function(response) {
-        if (response.data.ProfileSessionPolicy !== undefined) {
+        if (typeof response.data.ProfileSessionPolicy !== 'undefined') {
           if (response.data.ProfileSessionPolicy === 'Continue') {
             $scope.ProfileSessionPolicy = true;
           } else {
@@ -1582,14 +1580,14 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   function setDefaultProfile() {
     /** Select the default selected profile, In case of NVR by default show Live profile details */
-    if ($scope.VideoProfilePolicies[$scope.ch].DefaultProfile !== undefined) {
+    if (typeof $scope.VideoProfilePolicies[$scope.ch].DefaultProfile !== 'undefined') {
       $scope.selectedProfile = getIndexByProfileNo($scope.VideoProfilePolicies[$scope.ch].DefaultProfile);
     } else {
       $scope.selectedProfile = getIndexByProfileNo($scope.VideoProfilePolicies[$scope.ch].LiveProfile);
     }
 
     /** Error handling, just in case if no profile is selected. show the first profile */
-    if ($scope.selectedProfile === undefined) {
+    if (typeof $scope.selectedProfile === 'undefined') {
       $scope.selectedProfile = 0;
     }
   }
@@ -1598,20 +1596,20 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     var profCnt = 0,
       typeCnt = 0,
       profType = [],
-      policy,
-      profList;
+      policy = null,
+      profList = null;
 
     var checkList = [
       'Default',
       'Record',
       'Event',
       'Live',
-      'Network'
+      'Network',
     ];
-    var typename;
+    var typename = '';
 
     policy = $scope.VideoProfilePolicies[0];
-    if ($scope.VideoProfilePolicies !== undefined) {
+    if (typeof $scope.VideoProfilePolicies !== 'undefined') {
 
       profile.Type = '';
       profile.DefaultProfile = false;
@@ -1671,7 +1669,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   function getProfiles() {
-    var Profiles,
+    var Profiles = null,
       profCnt = 0;
     var getData = {};
     if ($scope.isMultiChannel) {
@@ -1796,10 +1794,8 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     var i = 0,
       width = 0,
       height = 0,
-      resols,
+      resols = null,
       maxPixels = 0,
-      maxWidth = 0,
-      maxHeight = 0,
       maxIndex = 0;
 
     resols = getPRofileDetailsbyEncoding('H264');
@@ -1809,8 +1805,6 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       height = resols[i].Value.split('x')[1];
       if (maxPixels < (width * height)) {
         maxPixels = width * height;
-        maxWidth = width;
-        maxHeight = height;
         maxIndex = i;
       }
     }
@@ -1822,8 +1816,6 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       width = 0,
       height = 0,
       minPixels = 0,
-      maxWidth = 0,
-      maxHeight = 0,
       maxIndex = 0;
 
     for (i = 0; i < resolList.length; i++) {
@@ -1831,8 +1823,6 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       height = parseInt(resolList[i].Value.split('x')[1], 10);
       if (minPixels > (width * height) || minPixels === 0) {
         minPixels = width * height;
-        maxWidth = width;
-        maxHeight = height;
         maxIndex = i;
       }
     }
@@ -1842,7 +1832,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   function getDefaultEncoderSettings(profile) {
 
-    if ($scope.EncoderProfileOptions !== undefined) {
+    if (typeof $scope.EncoderProfileOptions !== 'undefined') {
       if (profile.EncodingType === 'H264') {
         profile.EncoderProfile = 'High';
         profile.H264 = {};
@@ -1856,20 +1846,20 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     /**
      * Dont change any of the encoder setting, when moving between H264 and H265
      */
-    if (profile.BitrateControlType === undefined) {
+    if (typeof profile.BitrateControlType === 'undefined') {
       profile.BitrateControlType = 'VBR';
     }
 
-    if (profile.PriorityType === undefined) {
+    if (typeof profile.PriorityType === 'undefined') {
       profile.PriorityType = 'FrameRate';
     }
 
 
-    if (profile.EncoderProfile === undefined) {
+    if (typeof profile.EncoderProfile === 'undefined') {
       profile.EncoderProfile = 'High';
     }
 
-    if (profile.EntropyCoding === undefined) {
+    if (typeof profile.EntropyCoding === 'undefined') {
       profile.EntropyCoding = 'CABAC';
     }
 
@@ -1900,12 +1890,12 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
     }
 
-    if (profile.SmartCodecEnable === undefined && $scope.SmartCodecEnableOptions !== undefined) {
+    if (typeof profile.SmartCodecEnable === 'undefined' && typeof $scope.SmartCodecEnableOptions !== 'undefined') {
       profile.SmartCodecEnable = false;
     }
 
-    if ($scope.profileBasedDPTZ !== undefined) {
-      if (profile.IsDigitalPTZProfile === undefined && $scope.DigitalPtzSupported === true) {
+    if (typeof $scope.profileBasedDPTZ !== 'undefined') {
+      if (typeof profile.IsDigitalPTZProfile === 'undefined' && $scope.DigitalPtzSupported === true) {
         profile.IsDigitalPTZProfile = false;
       }
     }
@@ -1913,7 +1903,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   function getDefaultProfile() {
-    var profile,
+    var profile = null,
       maxResolIndex = 0;
 
     profile = angular.copy($scope.VideoProfiles[$scope.ch].Profiles[1]);
@@ -1929,7 +1919,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     profile.DefaultProfile = false;
     profile.RecordProfile = false;
 
-    if ($scope.DigitalPtzSupported === true && $scope.profileBasedDPTZ !== undefined) {
+    if ($scope.DigitalPtzSupported === true && typeof $scope.profileBasedDPTZ !== 'undefined') {
       profile.IsDigitalPTZProfile = false;
     }
 
@@ -2033,9 +2023,9 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   $scope.addProfile = function() {
     var profCnt = 0,
-      profiles, profile;
+      profiles = null, profile = null;
     if ($scope.VideoProfiles[$scope.ch].Profiles.length === $scope.MaxProfiles) {
-      alert("max profiles reached");
+      console.log("max profiles reached");
       return;
     }
 
@@ -2054,7 +2044,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     profiles.push(profile);
 
     /** Init Codec details again, since codec supported for fixed profile changes in fisheye model */
-    if ($scope.viewModeIndex !== undefined) {
+    if (typeof $scope.viewModeIndex !== 'undefined') {
       initEncoderDetails();
     }
 
@@ -2070,7 +2060,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       var currentChannel = UniversialManagerService.getChannelId();
       setData.Channel = currentChannel;
     }
-    if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined) {
+    if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined') {
       setData.Profile = $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Profile;
       SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=remove', setData,
         function(response) {
@@ -2109,7 +2099,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   };
 
   $scope.changeCropStatus = function() {
-    if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropEncodingEnable == true) {
+    if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropEncodingEnable === true) {
       var tempCoordi = $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropAreaCoordinate.split(',');
       if (tempCoordi.length < 4) {
         tempCoordi = getCropInitSize().split(',');
@@ -2132,8 +2122,8 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
           }
 
           if (cropWidth >= width && cropHeight >= height) {
-            if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropRatio == resolRatio ||
-              $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropRatio == "Manual") {
+            if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropRatio === resolRatio ||
+              $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropRatio === "Manual") {
               $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Resolution = $scope.ResoltionList[i].Value;
               break;
             }
@@ -2164,10 +2154,10 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
             'cropArea': cropArea,
             'cropRatio': cropRatio,
             'cropEnable': cropEnable,
-            'channelId': UniversialManagerService.getChannelId()
+            'channelId': UniversialManagerService.getChannelId(),
           };
-        }
-      }
+        },
+      },
     });
 
     modalInstance.result.then(cropSuccessCallback, function() {});
@@ -2190,8 +2180,8 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       var height = parseInt(resolArray[1], 10);
       var resolRatio = tempResol[1];
       if (cropWidth >= width && cropHeight >= height) {
-        if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropRatio == resolRatio ||
-          $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropRatio == "Manual") {
+        if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropRatio === resolRatio ||
+          $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropRatio === "Manual") {
           $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Resolution = $scope.ResoltionList[i].Value;
           break;
         }
@@ -2202,7 +2192,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   $scope.cropEncodingSupport = function(resolution) {
     var returnValue = false;
-    if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropEncodingEnable == true) {
+    if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropEncodingEnable === true) {
       var tempCoordi = $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropAreaCoordinate.split(',');
       var tempResol = resolution.substring(0, resolution.length - 1).split("(");
       if (tempCoordi.length > 0) {
@@ -2233,19 +2223,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     return returnValue;
   }
 
-  function checkRecordAndDefaultProfile() {
-
-  }
-
   function setProfiles() {
-    var i = 0,
-      profiles, newVal, oldVal,
+    var newVal = null, oldVal = null,
       setData = {},
-      k, ignoredKeys, encoderParams, dptzParams,
+      k = 0, ignoredKeys = null, encoderParams = null, dptzParams = null,
       url = '',
-      SVNPParam, rtpParams,
-      atcParam, changed = false,
-      retVal = true;
+      SVNPParam = null, rtpParams = null,
+      atcParam = null, changed = false;
 
     newVal = $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile];
     oldVal = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile];
@@ -2253,7 +2237,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     /*
     Request to create new profile
      */
-    if (oldVal === undefined) {
+    if (typeof oldVal === 'undefined') {
       oldVal = {};
       $scope.isNewProfile = true;
     }
@@ -2318,7 +2302,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       ignoredKeys.push('ATCMode');
     }
 
-    if ($scope.DigitalPtzSupported === false || $scope.profileBasedDPTZ === undefined || $scope.FisheyeLens === true ||
+    if ($scope.DigitalPtzSupported === false || typeof $scope.profileBasedDPTZ === 'undefined' || $scope.FisheyeLens === true ||
       isDptzSupportedProfile($scope.selectedProfile) === false) {
       ignoredKeys.push('IsDigitalPTZProfile');
     }
@@ -2330,7 +2314,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
             continue;
           }
           if (oldVal[k] !== newVal[k]) {
-            if (newVal[k] !== '' && newVal[k] !== undefined) {
+            if (newVal[k] !== '' && typeof newVal[k] !== 'undefined') {
               /** Change Common Encoder param to individual encoder params */
               if (encoderParams.indexOf(k) !== -1) {
                 var tmp = '';
@@ -2446,7 +2430,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
 
   function setVideoProfilePolicies() {
-    var key, obj, setData = {};
+    var key = '', obj = null, setData = {};
     obj = $scope.VideoProfilePolicies[$scope.ch];
     var ignoredKeys = ['IsDigitalPTZProfile'];
     for (key in obj) {
@@ -2474,22 +2458,22 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   function CheckMulticast(ip, port, ttl, isRTP) {
-    var mcastArray = null;
+    var mcastArray = null, ErrorMessage = '';
     if (ip.search(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/) !== -1) {
       mcastArray = ip.split(/\./);
     }
 
-    var thisSegment;
+    var thisSegment = null;
 
     if (mcastArray === null || !COMMONUtils.TypeCheck(ip, COMMONUtils.getNUM() + '.')) {
-      var ErrorMessage = 'lang_msg_check_multicast';
+      ErrorMessage = 'lang_msg_check_multicast';
       COMMONUtils.ShowError(ErrorMessage);
       return false;
     }
 
     thisSegment = mcastArray[0];
     if (thisSegment < 224 || thisSegment > 239) {
-      var ErrorMessage = 'lang_msg_check_multicast';
+      ErrorMessage = 'lang_msg_check_multicast';
       COMMONUtils.ShowError(ErrorMessage);
       return false;
     }
@@ -2497,14 +2481,14 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     for (var index = 1; index < 4; ++index) {
       thisSegment = mcastArray[index];
       if (thisSegment > 255) {
-        var ErrorMessage = 'lang_msg_check_multicast';
+        ErrorMessage = 'lang_msg_check_multicast';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
     }
     thisSegment = mcastArray[3];
     if (thisSegment > 254) {
-      var ErrorMessage = 'lang_msg_check_multicast';
+      ErrorMessage = 'lang_msg_check_multicast';
       COMMONUtils.ShowError(ErrorMessage);
       return false;
     }
@@ -2512,13 +2496,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     var intport = COMMONUtils.getIntegerValue(port);
     if (isRTP === true) {
       if ((intport % 2) !== 0 || intport === 3702 || intport < 1024 || intport > 65535 || !COMMONUtils.TypeCheck(port, COMMONUtils.getNUM())) {
-        var ErrorMessage = 'lang_msg_error_multicast_rtp';
+        ErrorMessage = 'lang_msg_error_multicast_rtp';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
     } else {
       if (intport === 3702 || intport < 1024 || intport > 65535 || !COMMONUtils.TypeCheck(port, COMMONUtils.getNUM())) {
-        var ErrorMessage = 'lang_msg_error_multicast_svnp';
+        ErrorMessage = 'lang_msg_error_multicast_svnp';
         COMMONUtils.ShowError(ErrorMessage);
         return false;
       }
@@ -2527,7 +2511,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     var intttl = COMMONUtils.getIntegerValue(ttl);
 
     if (ttl === "" || intttl < 0 || intttl > 255 || !COMMONUtils.TypeCheck(ttl, COMMONUtils.getNUM())) {
-      var ErrorMessage = 'lang_msg_check_ttl';
+      ErrorMessage = 'lang_msg_check_ttl';
       COMMONUtils.ShowError(ErrorMessage);
       return false;
     }
@@ -2539,11 +2523,11 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
   function validatePage() {
     var retVal = true;
-    var ErrorMessage;
-    var newVal = $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile];
+    var ErrorMessage = '';
+    // var newVal = $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile];
     var oldVal = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile];
     $scope.isNewProfile = false;
-    if (oldVal === undefined) {
+    if (typeof oldVal === 'undefined') {
       oldVal = {};
       $scope.isNewProfile = true;
     }
@@ -2575,14 +2559,14 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     }
 
     if ($scope.isNewProfile === true) {
-      for (var ind = 0; ind < pageData.VideoProfiles[$scope.ch].Profiles.length; ind++) {
-        if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Name === pageData.VideoProfiles[$scope.ch].Profiles[ind].Name) {
+      for (var ii = 0; ii < pageData.VideoProfiles[$scope.ch].Profiles.length; ii++) {
+        if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Name === pageData.VideoProfiles[$scope.ch].Profiles[ii].Name) {
           invalidProfile_Name = true;
         }
       }
     } else {
-      for (var ind = 0; ind < pageData.VideoProfiles[$scope.ch].Profiles.length; ind++) {
-        if (ind !== $scope.selectedProfile && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Name === pageData.VideoProfiles[$scope.ch].Profiles[ind].Name) {
+      for (var jj = 0; jj < pageData.VideoProfiles[$scope.ch].Profiles.length; jj++) {
+        if (jj !== $scope.selectedProfile && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Name === pageData.VideoProfiles[$scope.ch].Profiles[jj].Name) {
           invalidProfile_Name = true;
         }
       }
@@ -2610,7 +2594,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit < $scope.ATCLimitRange.Min ||
         $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit > $scope.ATCLimitRange.Max ||
         $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit === '' ||
-        $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit === undefined) {
+        typeof $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit === 'undefined') {
         ErrorMessage = 'lang_msg_invalid_profile_atc_limit';
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
@@ -2754,7 +2738,6 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     $scope.EnableAddButton = true;
     $scope.isNewProfile = false;
     var promises = [getConnectionPolicy, getVideoSource, getVideoProfilePolicies, getProfiles, getVideoCodecInfo, getVideoRotate];
-    var temp;
 
     if ($scope.FisheyeLens === true) {
       promises.push(getFisheyeSetup);
@@ -2782,10 +2765,10 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       Give some time for profile to be created then send the policy command.
       Sometime is it not working, without delay */
       setVideoProfilePolicies().then(function(response) {
-          LogManager.debug("Set Video Profile policies succeded ");
-          UniversialManagerService.setChannelId($scope.targetChannel);
-          view();
-        },
+        LogManager.debug("Set Video Profile policies succeded ");
+        UniversialManagerService.setChannelId($scope.targetChannel);
+        view();
+      },
         function(error) {
           LogManager.debug("Set Video Profile policies failed ", error);
           view();
@@ -2809,7 +2792,9 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     if (!angular.equals(pageData.VideoProfiles, $scope.VideoProfiles)) {
       promises.push(setProfiles);
     }
-    if (promises.length <= 0) return;
+    if (promises.length <= 0) {
+      return; 
+    }
 
     $q.seqAll(promises).then(
       function(result) {
@@ -2824,14 +2809,14 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
     if (!angular.equals(pageData.VideoProfilePolicies, $scope.VideoProfilePolicies) ||
       !angular.equals(pageData.VideoProfiles, $scope.VideoProfiles)) {
-      COMMONUtils
-        .confirmChangeingChannel().then(function() {
-            if (validatePage()) {
-              $rootScope.$emit('changeLoadingBar', true);
-              $scope.targetChannel = data;
-              saveSettings();
-            }
-          },
+      COMMONUtils.
+        confirmChangeingChannel().then(function() {
+          if (validatePage()) {
+            $rootScope.$emit('changeLoadingBar', true);
+            $scope.targetChannel = data;
+            saveSettings();
+          }
+        },
           function() {});
     } else {
       $rootScope.$emit('changeLoadingBar', true);
@@ -2851,8 +2836,8 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       resolve: {
         infoTableData: function() {
           return $scope.infoTableData;
-        }
-      }
+        },
+      },
     });
   }, $scope);
 
