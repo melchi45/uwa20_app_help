@@ -87,8 +87,12 @@ var app = {
                 }
               }
             } else if (this.status === 401) {
-              document.getElementsByTagName('title')[0].innerHTML = "401 - Unauthorized";
-              document.getElementsByClassName('wrap')[0].innerHTML = "<h1>401 - Unauthorized</h1>";
+              if (detector.msedge){ //To avoid not to occur browser popup on edge V40
+                location.href = "../home/pw_check.cgi?check";
+              } else {
+                document.getElementsByTagName('title')[0].innerHTML = "401 - Unauthorized";
+                document.getElementsByClassName('wrap')[0].innerHTML = "<h1>401 - Unauthorized</h1>";
+              }
             } else if (this.status === 490) {
               document.getElementsByTagName('title')[0].innerHTML = "Account Blocked";
               document.getElementsByClassName('wrap')[0].innerHTML = "<h1>You have exceeded the maximum number of login attempts, please try after some time.</h1>";
