@@ -101,11 +101,12 @@
     "max-len" : ["warn",{
       "code" : 100,
       "ignoreComments": true,
-      "ignoreTrailingComments": true
+      "ignoreTrailingComments": true,
+      "ignoreStrings": true
     }],
     "new-cap" : ["warn",{
       "newIsCap": true,
-      "capIsNew": true
+      "capIsNew": false
     }],
     "no-continue" : "warn",
     "no-mixed-operators" : "warn",
