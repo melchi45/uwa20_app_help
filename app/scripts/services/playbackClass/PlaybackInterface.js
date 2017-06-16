@@ -6,8 +6,8 @@ kindFramework.
     'BasePlaybackInterface', 'BACKUP_STATUS', 'BrowserService',
     function($q, $filter, $rootScope, $injector, CAMERA_TYPE,
       SunapiClient, PlaybackService, ConnectionSettingService, PLAYBACK_TYPE, ModalManagerService,
-      SearchDataModel, PlayDataModel, ItemSetModel, Attributes, $timeout, UniversialManagerService, kindStreamInterface,
-      BasePlaybackInterface, BACKUP_STATUS, BrowserService) {
+      SearchDataModel, PlayDataModel, ItemSetModel, Attributes, $timeout, UniversialManagerService, 
+      kindStreamInterface, BasePlaybackInterface, BACKUP_STATUS, BrowserService) {
       "use strict";
 
       var PLAY_CMD = PLAYBACK_TYPE.playCommand;
@@ -208,7 +208,7 @@ kindFramework.
         kindStreamInterface.controlWorker({
           'channelId': this.playbackInfo.channel,
           'cmd': 'playbackSpeed',
-          'data': [defaultSpeed]
+          'data': [defaultSpeed],
         });
         $rootScope.$emit('changeLoadingBar', false);
         $rootScope.$emit("channelPlayer:command", "close");
@@ -597,7 +597,7 @@ kindFramework.
       kindStreamInterface.controlWorker({
         'channelId': 0,
         'cmd': 'setCallback',
-        'data': ['stepRequest', PlaybackInterface.stepRequestCallback, PlaybackInterface]
+        'data': ['stepRequest', PlaybackInterface.stepRequestCallback, PlaybackInterface],
       });
       return PlaybackInterface;
     },

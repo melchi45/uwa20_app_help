@@ -1,13 +1,16 @@
-kindFramework
-  .factory('PlaybackService', ['$q', 'BasePlaybackService', 'SunapiClient', '$filter',
+kindFramework.
+  factory('PlaybackService', ['$q', 'BasePlaybackService', 'SunapiClient', '$filter',
     function($q, BasePlaybackService, SunapiClient, $filter) {
       "use strict";
 
       var playbackService = new BasePlaybackService();
 
-      var pad = function(x) {
-        x *= 1;
-        return (x < 10 ? "0" + x : x);
+      var MIN_DOUBLE_FIGURES = 10;
+      var DATE_LENGTH = 2;
+      var YEAR_INDEX = 0, MONTH_INDEX=1, DATE_INDEX = 2;
+      var pad = function(input) {
+        var target = input*1;
+        return target < MIN_DOUBLE_FIGURES ? "0" + target : target;
       };
 
       var updateEventStatus = function(info, index) {
@@ -17,13 +20,13 @@ kindFramework
           ToDate: $filter('date')(info.date, 'yyyy-MM-dd') + " 23:59:59",
           Type: 'All',
           OverlappedID: info.overlappedId[index],
-          ChannelIDList: info.channel
+          ChannelIDList: info.channel,
         };
         var def = $q.defer();
         SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=timeline&action=view', updateDate,
           function(response) {
             var results = '';
-            if (response.data.TimeLineSearchResults === undefined) {
+            if (typeof response.data.TimeLineSearchResults === "undefined") {
               results = "TotalCount=0";
             } else {
               results = $filter('orderBy')(response.data.TimeLineSearchResults[0].Results, 'StartTime');
@@ -58,7 +61,7 @@ kindFramework
           ToDate: info.toTime,
           Type: info.eventSelect,
           OverlappedID: info.overlappedId,
-          ChannelIDList: info.channel
+          ChannelIDList: info.channel,
         };
         /*
          * for multiple event list (web case), request All event results & filtering in client side.
@@ -70,7 +73,8 @@ kindFramework
 
         SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=timeline&action=view', updateDate,
           function(response) {
-            if (response.data.TimeLineSearchResults === undefined || response.data.TimeLineSearchResults.length === 0) {
+            if (typeof response.data.TimeLineSearchResults === "undefined" || 
+            response.data.TimeLineSearchResults.length === 0) {
               if (response.data.Response === "Success") {
                 def.resolve([]);
               } else {
@@ -79,7 +83,8 @@ kindFramework
               return def.promise;
             }
             var resultData = $filter('orderBy')(response.data.TimeLineSearchResults[0].Results, 'StartTime');
-            if (typeof(info.eventSelect) !== 'undefined' && info.eventSelect !== null && info.eventSelect.length > 1) {
+            if (typeof(info.eventSelect) !== 'undefined' && info.eventSelect !== null && 
+            info.eventSelect.length > 1) {
               resultData = resultData.filter(function(value) {
                 for (var i = 0; i < info.eventSelect.length; i++) {
                   if (value.Type === info.eventSelect[i]) {
@@ -91,7 +96,7 @@ kindFramework
             }
             var dateArray = info.fromTime.split('-');
             var recordJson = self.generateTimelineItem(resultData, info.overlappedId,
-              dateArray[0], dateArray[1], dateArray[2].substring(0, 2));
+              dateArray[YEAR_INDEX], dateArray[MONTH_INDEX], dateArray[DATE_INDEX].substring(0, DATE_LENGTH));
             if (recordJson !== null) {
               def.resolve(recordJson);
             }
@@ -109,7 +114,7 @@ kindFramework
           channelId: 0,
           on: 'on',
           control: 'init',
-          scale: 0
+          scale: 0,
         };
         if (cmd === 'init') {
           return info;
@@ -132,19 +137,21 @@ kindFramework
 
         var updateDate = {
           Month: info.year + "-" + info.month,
-          ChannelIDList: info.channel
+          ChannelIDList: info.channel,
         };
 
         SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=calendarsearch&action=view', updateDate,
           function(response) {
-            if (response.data.CalenderSearchResults === null) return;
+            if (response.data.CalenderSearchResults === null) {
+              return;
+            }
             var results = response.data.CalenderSearchResults[0].Result;
             var index = -1;
             while ((index = results.indexOf('1', index + 1)) !== -1) {
               findResult.push({
                 year: info.year,
                 month: info.month,
-                day: pad(index + 1)
+                day: pad(index + 1),
               });
             }
             def.resolve(findResult);
@@ -164,13 +171,14 @@ kindFramework
           ToDate: query.year + "-" + query.month + "-" + pad(query.day) + " 23:59:59",
           OverlappedID: query.id,
           Type: query.type,
-          ChannelIDList: query.channel
+          ChannelIDList: query.channel,
         };
         var def = $q.defer();
         SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=timeline&action=view',
           updateDate,
           function(response) {
-            if (response.data.TimeLineSearchResults === undefined || response.data.TimeLineSearchResults.length === 0) {
+            if (typeof response.data.TimeLineSearchResults === "undefined" || 
+            response.data.TimeLineSearchResults.length === 0) {
               if (response.data.Response === "Success") {
                 def.resolve([]);
               } else {
@@ -179,8 +187,8 @@ kindFramework
               return def.promise;
             }
             var resultData = $filter('orderBy')(response.data.TimeLineSearchResults[0].Results, 'StartTime');
-            var recordJson = self.generateTimelineItem(resultData, query.id, query.year, query.month,
-              query.day);
+            var recordJson = self.generateTimelineItem(resultData, query.id, query.year, 
+                              query.month, query.day);
             if (recordJson !== null) {
               def.resolve(recordJson);
             }
@@ -197,14 +205,14 @@ kindFramework
         var updateDate = {
           FromDate: info.year + "-" + info.month + "-" + pad(info.day) + " 00:00:00",
           ToDate: info.year + "-" + info.month + "-" + pad(info.day) + " 23:59:59",
-          ChannelIDList: info.channel
+          ChannelIDList: info.channel,
         };
 
         var def = $q.defer();
         SunapiClient.get('/stw-cgi/recording.cgi?msubmenu=overlapped&action=view', updateDate,
           function(response) {
             var results = {
-              'OverlappedIDList': []
+              'OverlappedIDList': [],
             };
             var overlapList = [];
             for (var i = 0; i < response.data.OverlappedIDList.length; i++) {
@@ -256,15 +264,15 @@ kindFramework
 
       playbackService.getCurrentEventStatus = function(info, eventList) {
         var def = $q.defer();
-        updateEventStatus(info, 0)
-          .then(function(results) {
+        updateEventStatus(info, 0).
+          then(function(results) {
             if (info.overlappedId.length === 1) {
               var resultEventList = checkEventListEnable(results, eventList);
               def.resolve(resultEventList);
               return def.promise;
             }
-            updateEventStatus(info, 1)
-              .then(function(result) {
+            updateEventStatus(info, 1).
+              then(function(result) {
                 var resultEventList = checkEventListEnable(results + result, eventList);
                 def.resolve(resultEventList);
               }, function(error) {
@@ -277,5 +285,5 @@ kindFramework
       };
 
       return playbackService;
-    }
+    },
   ]);

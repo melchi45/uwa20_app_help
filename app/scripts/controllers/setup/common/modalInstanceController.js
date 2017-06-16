@@ -33,8 +33,8 @@ SelectedFromMinute, SelectedToMinute, Rule, COMMONUtils) {
   }
 
   $scope.MinuteOptions = [];
-  for (var m = 0; m < mAttr.MaxMinutes; m++) {
-    $scope.MinuteOptions.push(m);
+  for (var min = 0; min < mAttr.MaxMinutes; min++) {
+    $scope.MinuteOptions.push(min);
   }
 
   function inArray(arr, str) {

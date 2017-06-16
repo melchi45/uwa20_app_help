@@ -632,8 +632,8 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     //Focus
     json.Focus = 'lang_focus';
     json.OneShotAutoFocus = 'lang_oneShotAf';
-    json.AutoTracking = 'lang_autoTracking';
-    json.Tracking = 'lang_tracking';
+    json.AutoTracking = 'lang_auto';
+    json.Tracking = 'lang_manual';
 
     //Open SDK
     json.Uninstalling = 'lang_uninstalling';
@@ -1229,7 +1229,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       return 0;
     }
 
-    //¿¬¼ÓÀûÀÎ ¹®ÀÚ, ¼ýÀÚÃ¼Å©
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Ã¼Å©
     function isValidRule2(value, cnt) {
       var result = 0;
       var checkStr = "";
@@ -1237,7 +1237,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       var checkDesc = "";
       var acceptCount1 = 0;
 
-      //°°Àº¹®ÀÚ,¼ýÀÚ
+      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½
       if (value.match(mAttr.ConstantSymbol1)) acceptCount1++;
       if (value.match(mAttr.ConstantSymbol2)) acceptCount1++;
       if (acceptCount1 > 0) result = 5;
@@ -1265,7 +1265,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     var ret = isValidRule1(passwd);
 
     if (0 == ret) {
-      //¿¬¼ÓÀûÀÎ ¹®ÀÚ, ¼ýÀÚÃ¼Å©
+      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Ã¼Å©
       return isValidRule2(passwd, 3);
       //return isValidRule2(passwd);
     }
