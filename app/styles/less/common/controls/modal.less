@@ -9,6 +9,10 @@ body.modal-open {
 	-webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
+
+  &.ui-draggable {
+    overflow: hidden !important;
+  }
   
   *:not(input, textarea){
     user-select: none;
@@ -19,8 +23,6 @@ body.modal-open {
 
   .modal-dialog {
     z-index: 2200;
-
-
   }
 
   .modal-header {
@@ -90,12 +92,13 @@ body.modal-open {
       top: 50%;
       margin: 0 !important;
       .translate(-50%,-50%);
-      min-width: 450px;
+      min-width: 320px;
       max-width: 90%;
       width: 100%;
 
       @media(min-width: 768px){
-        width: 450px;
+        min-width: 450px;
+        width: auto;
       }
     }
   }

@@ -1,4 +1,4 @@
-<div class="cm-center">
+<div>
   <div ng-show="currentPtzType !== ptzType.NONE" id="ptz-components" ng-class="{'ptz-zoom' : currentPtzType === ptzType.ZOOMONLY}">
     <div class="cm-col cm-ptz-type" ng-show="currentPtzType === ptzType.EXTERNAL_DIGITAL">
       <h2><span>Type</span></h2>
@@ -224,7 +224,7 @@
             <button type="button" class="cm-btn-dark" title="Set" style="float: right;" ng-click="ptzPreset('Set')">{{'lang_set'|translate}}</button>
           </div>
         </div>
-        <table class="cm-table" ng-if="currentPtzType !== ptzType.OPTICAL && currentPtzType !== ptzType.ZOOMONLY">
+        <table class="live-table cm-table-theme" ng-if="currentPtzType !== ptzType.OPTICAL && currentPtzType !== ptzType.ZOOMONLY">
           <colgroup>
             <col width="50">
             <col width="180">
@@ -282,7 +282,7 @@
             <button type="button" class="cm-btn-dark" title="Stop" ng-click="ptzGroup('Stop')">{{'lang_stop' | translate }}</button>
           </div>
         </div>
-        <table class="cm-table" ng-if="currentPtzType !== ptzType.OPTICAL">
+        <table class="live-table cm-table-theme" ng-if="currentPtzType !== ptzType.OPTICAL">
           <colgroup>
             <col width="50">
             <col width="200">

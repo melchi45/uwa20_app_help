@@ -916,8 +916,33 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
 
   }
 
+  var alignModalTimer = null;
+  function alignModal(){
+    if(alignModalTimer !== null){
+      clearTimeout(alignModalTimer);
+    }
+
+    alignModalTimer = setTimeout(function(){
+      if($('.modal').hasClass('ui-draggable') === false){
+        return;
+      }
+      var privacyDialog = $(".modal-dialog");
+      var width = (privacyDialog.parent().width() + 30);
+      var height = (privacyDialog.parent().height() + 30);
+      
+      privacyDialog.
+        parents(".modal").
+        css({
+          top: "calc(50% - " + (height / 2) + "px)",
+          left: "calc(50% - " + (width / 2) + "px)"
+        });
+    }, 100);
+  }
+  $(window).bind("resize", alignModal);
+
   $scope.$on("$destroy", function() {
     $uibModalStack.dismissAll();
+    $(window).unbind("resize", alignModal);
   });
 
   $scope.setVideoSetupEnable = function() {

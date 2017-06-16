@@ -58,6 +58,8 @@ kindFramework.controller('ModalInstnceSliderCtrl', ['$scope', '$rootScope', '$ui
     }
 
     $scope.onOff = function() {
+      var vol = null;
+      
       if (data.tag === "speaker") {
         if (checkAudioInputState() === false) {
           console.log("AudioInput is disabled.");
@@ -67,9 +69,10 @@ kindFramework.controller('ModalInstnceSliderCtrl', ['$scope', '$rootScope', '$ui
         $scope.isSpeakerOn = UniversialManagerService.isSpeakerOn();
         $scope.isSpeakerOn = !$scope.isSpeakerOn;
         UniversialManagerService.setSpeakerOn($scope.isSpeakerOn);
+        
         if ($scope.isSpeakerOn) {
           kindStreamInterface.controlAudioIn('on');
-          var vol = UniversialManagerService.getSpeakerVol();
+          vol = UniversialManagerService.getSpeakerVol();
           kindStreamInterface.controlAudioIn(vol);
           UniversialManagerService.setSpeakerVol(vol);
         } else {
@@ -86,7 +89,7 @@ kindFramework.controller('ModalInstnceSliderCtrl', ['$scope', '$rootScope', '$ui
         UniversialManagerService.setMicOn($scope.isMicOn);
         if ($scope.isMicOn) {
           kindStreamInterface.controlAudioOut('on');
-          var vol = UniversialManagerService.getMicVol();
+          vol = UniversialManagerService.getMicVol();
           kindStreamInterface.controlAudioOut(vol);
           UniversialManagerService.setMicVol(vol);
         } else {
@@ -95,6 +98,8 @@ kindFramework.controller('ModalInstnceSliderCtrl', ['$scope', '$rootScope', '$ui
       }
     };
 
+    var iniVol = null;
+    
     if (data.tag === "speaker") {
       $scope.isSpeaker = true;
       $scope.isSpeakerOn = true;
@@ -104,7 +109,7 @@ kindFramework.controller('ModalInstnceSliderCtrl', ['$scope', '$rootScope', '$ui
       } else {
         $scope.isSpeakerOn = UniversialManagerService.isSpeakerOn();
       }
-      var iniVol = UniversialManagerService.getSpeakerVol();
+      iniVol = UniversialManagerService.getSpeakerVol();
       if (iniVol !== null) {
         $scope.slider.data = iniVol;
       }
@@ -117,7 +122,7 @@ kindFramework.controller('ModalInstnceSliderCtrl', ['$scope', '$rootScope', '$ui
       } else {
         $scope.isMicOn = UniversialManagerService.isMicOn();
       }
-      var iniVol = UniversialManagerService.getMicVol();
+      iniVol = UniversialManagerService.getMicVol();
       if (iniVol !== null) {
         $scope.slider.data = iniVol;
       }

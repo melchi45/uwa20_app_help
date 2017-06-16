@@ -54,6 +54,9 @@ kindFramework
           var errorCallback = function(error) {
             console.log("errorcode:", error.errorCode, "error string:", error.description, "error place:", error.place);
             if (error.errorCode === "200") {
+              // 초기에 Canvas, SVG의 사이즈를 반응형에 맞게 세팅
+              setTimeout(changePreviewSize);
+
               clearInterval(reconnectionInterval);
             } else if (error.errorCode === "999") {
               reconnectionInterval = setInterval(function() {
@@ -260,16 +263,13 @@ kindFramework
 
             //sketchbookService.sketchManager.init(sketchinfo, scope.videoinfo, updateCoordinates, privacyUpdate, autoTrackingUpdate);
             sketchbookService.sketchManager.init(sketchinfo, scope.videoinfo, updateCoordinates, privacyUpdate, getZoomValue, autoTrackingUpdate);
-
+            
             if (!(typeof scope.coordinates === "undefined" || scope.coordinates === null || scope.coordinates === {})) {
               sketchbookService.set(scope.coordinates, scope.flag);
             }
-
-            /*
-            초기에 Canvas, SVG의 사이즈를 반응형에 맞게 세팅
-            */
-            changePreviewSize();
-            $(window).bind('resize', changePreviewSize);
+            
+            // 초기에 Canvas, SVG의 사이즈를 반응형에 맞게 세팅
+            setTimeout(changePreviewSize);
           });
 
           $rootScope.$saveOn('channelSelector:changedChannel', function(event, index) {
@@ -360,30 +360,46 @@ kindFramework
           var previewRefreshTime = 100;
 
           function changePreviewSize(){
+            if(
+              !(
+                scope.sketchinfo !== null &&
+                "workType" in scope.sketchinfo &&
+                scope.sketchinfo.workType !== "ptLimit"
+              )
+            ){
+              return;
+            }
+
+            var width = elem.width();
+            var height = width * scope.videoinfo.height / scope.videoinfo.width;
+            var svg = elem.find("#sketchbook_svg")[0];
+
+            // console.log(width, height);
+            //IVA / Common의 alignCenter를 위해 넣어야 함 width, height 변경
+            
+            svg.setAttributeNS(null, 'width', width);
+            svg.setAttributeNS(null, 'height', height);
+            
+            svg.setAttributeNS(null, 'viewBox', '0 0 ' + width + ' ' + height);
+            sketchbookService.sketchManager.changeVideoInfo(width, height);
+          }
+
+          function resizeHandleForPreviewSize(){
             if(previewResizeTimer !== null){
               clearTimeout(previewResizeTimer);
             }
 
-            previewResizeTimer = setTimeout(function(){
-              var width = elem.width();
-              var height = width * scope.videoinfo.height / scope.videoinfo.width;
-              var svg = elem.find("#sketchbook_svg")[0];
-              // console.log(width, height);
-              //IVA / Common의 alignCenter를 위해 넣어야 함 width, height 변경
-              svg.setAttributeNS(null, 'width', width);
-              svg.setAttributeNS(null, 'height', height);
-              
-              svg.setAttributeNS(null, 'viewBox', '0 0 ' + width + ' ' + height);
-              sketchbookService.sketchManager.changeVideoInfo(width, height);
-            }, previewRefreshTime);
+            previewResizeTimer = setTimeout(changePreviewSize, previewRefreshTime);
           }
+
+          $(window).bind('resize', resizeHandleForPreviewSize);
           
           scope.$on('$destroy', function(){
             if(previewResizeTimer !== null){
               clearTimeout(previewResizeTimer);
             }
 
-            $(window).unbind('resize', changePreviewSize);
+            $(window).unbind('resize', resizeHandleForPreviewSize);
           });
         }
       };

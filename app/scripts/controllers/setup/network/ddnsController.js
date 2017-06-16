@@ -18,7 +18,6 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
   $scope.ddns_public_status = '';
 
   var pageData = {};
-  var PWSet = false;
 
   function get() {
     getAttributes();
@@ -32,19 +31,17 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
         if ($scope.DynamicDNSArr[0].Type !== 'Off') {
           CheckDDNSStatus($scope.DynamicDNSArr[0].Status, $scope.DynamicDNSArr[0].Type);
         }
-        if ($scope.DynamicDNSArr[0].PublicPassword === '') {
-          PWSet = false;
-        } else {
-          PWSet = true;
+        if ($scope.DynamicDNSArr[0].PublicPassword !== '') {
           $("#ddnspublicpwid").val("");
         }
+        
         pageData.DynamicDNSArr = angular.copy($scope.DynamicDNSArr);
         $scope.DynamicDNSArr[0].PublicPassword = "";
 
         try {
           $scope.$apply();
         } catch (e) {
-
+          console.log(e);
         }
       },
       function(errorData) {},
@@ -95,25 +92,27 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
       '', true);
   }
 
-  function validateHostname(str) {
-    return /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])$|^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/.test(str);
-  }
+  // function validateHostname(str) {
+  //   return /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])$|^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/.test(str);
+  // }
 
   function validatePage() {
 
     var retVal = true;
-    var setData, reqSaveData, idx;
+    var idx = null;
+    var ErrorMessage = null;
+
     for (idx = 0; idx < $scope.DynamicDNSArr.length; idx = idx + 1) {
       if ($scope.DynamicDNSArr[idx].Type === "SamsungDDNS") {
 
         if ($scope.ddnsform.servername.$valid === false) {
-          var ErrorMessage = 'lang_msg_WisenetDDNSserver';
+          ErrorMessage = 'lang_msg_WisenetDDNSserver';
           COMMONUtils.ShowError(ErrorMessage);
           return false;
         }
 
-        if ($scope.DynamicDNSArr[idx].SamsungServerName.length === 0 || $scope.DynamicDNSArr[idx].SamsungServerName == '') {
-          var ErrorMessage = 'lang_msg_WisenetDDNSserver';
+        if ($scope.DynamicDNSArr[idx].SamsungServerName.length === 0 || $scope.DynamicDNSArr[idx].SamsungServerName === '') {
+          ErrorMessage = 'lang_msg_WisenetDDNSserver';
           COMMONUtils.ShowError(ErrorMessage);
           return false;
         }
@@ -126,7 +125,7 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
 
 
         if ($scope.ddnsform.productid.$valid === false) {
-          var ErrorMessage = 'lang_msg_WisenetDDNSuser';
+          ErrorMessage = 'lang_msg_WisenetDDNSuser';
           COMMONUtils.ShowError(ErrorMessage);
           return false;
         }
@@ -148,25 +147,25 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
       } else if ($scope.DynamicDNSArr[idx].Type === "PublicDDNS") {
 
         if ($scope.ddnsform.host.$valid === false) {
-          var ErrorMessage = 'lang_msg_publicDDNShost';
+          ErrorMessage = 'lang_msg_publicDDNShost';
           COMMONUtils.ShowError(ErrorMessage);
           return false;
         }
 
         if ($scope.ddnsform.user.$valid === false) {
-          var ErrorMessage = 'lang_msg_publicDDNSuser';
+          ErrorMessage = 'lang_msg_publicDDNSuser';
           COMMONUtils.ShowError(ErrorMessage);
           return false;
         }
 
         if ($scope.ddnsform.password.$valid === false) {
-          var ErrorMessage = 'lang_msg_publicDDNSpass';
+          ErrorMessage = 'lang_msg_publicDDNSpass';
           COMMONUtils.ShowError(ErrorMessage);
           return false;
         }
 
         if ($scope.DynamicDNSArr[idx].PublicHostName === '') {
-          var ErrorMessage = 'lang_msg_publicDDNShost';
+          ErrorMessage = 'lang_msg_publicDDNShost';
           COMMONUtils.ShowError(ErrorMessage);
           return false;
         }
@@ -179,7 +178,7 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
         // }
 
         if ($scope.DynamicDNSArr[idx].PublicUserName === '') {
-          var ErrorMessage = 'lang_msg_publicDDNSuser';
+          ErrorMessage = 'lang_msg_publicDDNSuser';
           COMMONUtils.ShowError(ErrorMessage);
           return false;
         }
@@ -221,7 +220,9 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
   }
 
   function saveSettings() {
-    var setData, reqSaveData, idx;
+    var setData = null;
+    var idx = null;
+
     for (idx = 0; idx < $scope.DynamicDNSArr.length; idx = idx + 1) {
       setData = {};
       setData.Type = $scope.DynamicDNSArr[idx].Type;

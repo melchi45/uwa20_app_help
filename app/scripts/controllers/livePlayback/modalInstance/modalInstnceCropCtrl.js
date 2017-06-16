@@ -10,15 +10,15 @@ kindFramework.controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', '$uibM
     var mAttr = Attributes.get();
     var viewerWidth = 640;
     var viewerHeight = 360;
-    var maxWidth;
-    var maxHeight;
-    var rotate;
-    var flip;
-    var mirror;
-    var adjust;
-    var cropInfo;
-    var minCropResolution;
-    var maxCropResolution;
+    var maxWidth = null;
+    var maxHeight = null;
+    var rotate = null;
+    var flip = null;
+    var mirror = null;
+    var adjust = null;
+    var cropInfo = null;
+    var minCropResolution = null;
+    var maxCropResolution = null;
 
     $scope.getTranslatedOption = function(Option) {
       return COMMONUtils.getTranslatedOption(Option);
@@ -83,9 +83,9 @@ kindFramework.controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', '$uibM
     $scope.ratio = $scope.cropOption.selected;
 
     /* jshint ignore:start */
-    if ((mAttr.MaxROICoordinateX / mAttr.MaxROICoordinateY).toFixed(1) == 1.3) { //4:3
+    if ((mAttr.MaxROICoordinateX / mAttr.MaxROICoordinateY).toFixed(1) === 1.3) { //4:3
       viewerHeight = 480;
-    } else if ((mAttr.MaxROICoordinateX / mAttr.MaxROICoordinateY).toFixed(1) == 1.8) { //16:9
+    } else if ((mAttr.MaxROICoordinateX / mAttr.MaxROICoordinateY).toFixed(1) === 1.8) { //16:9
       viewerHeight = 360;
     }
     /* jshint ignore:end */

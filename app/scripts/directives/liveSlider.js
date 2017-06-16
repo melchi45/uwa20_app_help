@@ -1,6 +1,5 @@
 'use strict';
-kindFramework
-  .directive('liveSlider', ['Attributes', '$timeout',
+kindFramework.directive('liveSlider', ['Attributes', '$timeout',
     function(Attributes, $timeout) {
       return {
         restrict: 'E',
@@ -34,17 +33,19 @@ kindFramework
           }
 
           function validatedValue(_value) {
-            if (_value === undefined || _value === "") {
+            var isVal = _value;
+
+            if (typeof isVal === "undefined" || isVal === "") {
               return Number(scope.liveSliderProperty.floor);
             }
 
-            if (OnlyNumberRegExp.test(_value) === false) {
+            if (OnlyNumberRegExp.test(isVal) === false) {
               return Number(scope.liveSliderProperty.floor);
             }
 
             if (isFloat === true) {
-              if (typeof _value !== "number") {
-                _value = parseFloat(_value);
+              if (typeof isVal !== "number") {
+                isVal = parseFloat(isVal);
               }
 
               /**
@@ -52,19 +53,19 @@ kindFramework
                * 소수점이 4.3999999999999995 또는 4.1000000000000005
                * 이런 방식으로 나오는 것을 방지
                */
-              var tmpValue = _value.toFixed(3);
-              _value = parseFloat(tmpValue.substr(0, (tmpValue.indexOf('.') + 2)));
+              var tmpValue = isVal.toFixed(3);
+              isVal = parseFloat(tmpValue.substr(0, (tmpValue.indexOf('.') + 2)));
             }
 
-            if (_value < scope.liveSliderProperty.floor) {
+            if (isVal < scope.liveSliderProperty.floor) {
               return Number(scope.liveSliderProperty.floor);
             }
 
-            if (_value > scope.liveSliderProperty.ceil) {
+            if (isVal > scope.liveSliderProperty.ceil) {
               return Number(scope.liveSliderProperty.ceil);
             }
 
-            return Number(_value);
+            return Number(isVal);
           }
 
 
@@ -100,7 +101,9 @@ kindFramework
           }
 
           scope.InputBox_onBlurEventHandler = function() {
-            if (scope.liveSliderProperty.disabled) return;
+            if (scope.liveSliderProperty.disabled) {
+              return;
+            }
 
             var SliderValue = validatedValue(elem.find("input[type='text']").val());
             updateSliderUI(SliderValue);
@@ -114,7 +117,9 @@ kindFramework
           };
 
           scope.InputBox_onChangeEventHandler = function() {
-            if (scope.liveSliderProperty.disabled) return;
+            if (scope.liveSliderProperty.disabled) {
+              return;
+            }
 
             var SliderValue = validatedValue(elem.find("input[type='text']").val());
             inputOnChange = true;
@@ -129,11 +134,13 @@ kindFramework
           };
 
           function init() {
-            if (!(checkModel && checkProperty)) return;
+            if (!(checkModel && checkProperty)) {
+              return;
+            }
             checkLoad = true;
 
             // Slider UI 초기화
-            if (slider.slider("instance") === undefined) {
+            if (typeof slider.slider("instance") === "undefined") {
               slider.slider({
                 orientation: scope.liveSliderProperty.vertical ? "vertical" : "horizontal",
                 range: "min",
@@ -143,7 +150,9 @@ kindFramework
                 step: (('step' in scope.liveSliderProperty) ? scope.liveSliderProperty.step : 1),
                 disabled: (('disabled' in scope.liveSliderProperty) ? scope.liveSliderProperty.disabled : false),
                 slide: function(event, ui) {
-                  if (scope.liveSliderProperty.disabled) return;
+                  if (scope.liveSliderProperty.disabled) {
+                    return;
+                  }
                   updateSliderModel(ui.value);
                   updateInputBox(ui.value);
                 }
@@ -163,14 +172,19 @@ kindFramework
 
             // + - 버튼 이벤트 핸들러
             elem.bind('click', function(e) {
-              e = e || event;
-              var target = e.target || e.srcElement;
-              var SliderValue;
+              var isEvent = e;
+              isEvent = e || event;
+              var target = isEvent.target || isEvent.srcElement;
+              var SliderValue = null;
               var SliderStep = (('step' in scope.liveSliderProperty) ? scope.liveSliderProperty.step : 1);
 
-              if (target.className !== 'tui tui-wn5-minus cm-right' && target.className !== 'tui tui-wn5-add cm-left') return;
+              if (target.className !== 'tui tui-wn5-minus cm-right' && target.className !== 'tui tui-wn5-add cm-left') {
+                return;
+              }
 
-              if (scope.liveSliderProperty.disabled) return;
+              if (scope.liveSliderProperty.disabled) {
+                return;
+              }
 
               switch (target.className) {
                 case 'tui tui-wn5-minus cm-right':
@@ -189,9 +203,7 @@ kindFramework
           scope.$watch('liveSliderProperty', function(newValue, oldValue) {
             if (!checkLoad && scope.liveSliderProperty) {
               checkProperty = true;
-              if (scope.liveSliderProperty.step > 0 && scope.liveSliderProperty.step < 1) {
-
-              } else {
+              if (scope.liveSliderProperty.step <= 0 && scope.liveSliderProperty.step >= 1) {
                 scope.maxLength = String(scope.liveSliderProperty.ceil).length;
               }
               init();

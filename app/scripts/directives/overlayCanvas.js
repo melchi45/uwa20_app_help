@@ -4,9 +4,9 @@ kindFramework.directive('overlayCanvas', function(
   return {
     restrict: 'E',
     scope: false,
-    template: "<canvas id='cm-livecanvas'></canvas>",
+    template: "<canvas id='overlay-canvas'></canvas>",
     link: function(scope, element, attrs) {
-      var cvs = $("#cm-livecanvas")[0],
+      var cvs = $("#overlay-canvas")[0],
         ctx = null,
         rotateCheck = false;
       var OverlayCanvasMode = null;
@@ -60,7 +60,7 @@ kindFramework.directive('overlayCanvas', function(
       };
 
       function callbackManualTracking(event) {
-        if (event.target.id !== "cm-livecanvas") return;
+        if (event.target.id !== "overlay-canvas") return;
 
         //마우스 오른쪽 버튼만 허용
         if (event.button != 2) return;

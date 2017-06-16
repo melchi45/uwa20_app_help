@@ -11,13 +11,13 @@ kindFramework.controller('alarmoutputCtrl', function($scope, $timeout, $uibModal
     var defer = $q.defer();
     $scope.SelectedAlarm = 0;
     $scope.AlarmOutOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxAlarmOutput);
-    if (mAttr.AlarmOutputIdleStateOptions !== undefined) {
+    if (typeof mAttr.AlarmOutputIdleStateOptions !== "undefined") {
       $scope.AlarmOutputIdleStateOptions = mAttr.AlarmOutputIdleStateOptions;
     }
-    if (mAttr.AlarmoutModes !== undefined) {
+    if (typeof mAttr.AlarmoutModes !== "undefined") {
       $scope.AlarmoutModes = mAttr.AlarmoutModes;
     }
-    if (mAttr.AlarmoutManualDurations !== undefined) {
+    if (typeof mAttr.AlarmoutManualDurations !== "undefined") {
       $scope.ActiveAlarmDurations = ['Always'];
       $scope.PulseAlarmDurations = mAttr.AlarmoutManualDurations;
       var index = mAttr.AlarmoutManualDurations.indexOf('Always');
@@ -49,7 +49,6 @@ kindFramework.controller('alarmoutputCtrl', function($scope, $timeout, $uibModal
   }
 
   function setAlarmOutputs(promises) {
-    var promise = null;
     for (var i = 0; i < $scope.AlarmOutputs.length; i++) {
       if (!angular.equals(pageData.AlarmOutputs[i], $scope.AlarmOutputs[i])) {
         promises.push(function() {

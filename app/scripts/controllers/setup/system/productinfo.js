@@ -17,41 +17,46 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
 
   $scope.systemLanguage = {
     currentLanguage: null,
-    supportedLanguages: []
+    supportedLanguages: [],
   };
   $scope.Info = {
     DeviceName: null,
     Location: null,
     Description: null,
-    Memo: null
+    Memo: null,
   };
+
+  var DEVICE_NAME_LENGTH = 8;
+  var DEVICE_OPTION_LENGTH = 24;
+
+  var ATTRIBUTE_REQUEST_TIMEOUT = 500;
 
   function featureDetection() {
     $scope.DeviceNameRange = {};
     $scope.DeviceNameRange.PatternStr = "^[^#'\"&+:<>=\\%*\\\\]*$";
 
-    if (mAttr.DeviceName !== undefined) {
+    if (typeof mAttr.DeviceName !== 'undefined') {
       $scope.DeviceNameRange.Min = 1;
       $scope.DeviceNameRange.Max = mAttr.DeviceName.maxLength;
     }
 
     $scope.DeviceLocationRange = {};
     $scope.DeviceLocationRange.PatternStr = mAttr.FriendlyNameCharSetExpandedStr;
-    if (mAttr.DeviceLoc !== undefined) {
+    if (typeof mAttr.DeviceLoc !== 'undefined') {
       $scope.DeviceLocationRange.Min = 1;
       $scope.DeviceLocationRange.Max = mAttr.DeviceLoc.maxLength;
     }
 
     $scope.DeviceDescriptionRange = {};
     $scope.DeviceDescriptionRange.PatternStr = mAttr.FriendlyNameCharSetExpandedStr;
-    if (mAttr.DeviceDesc !== undefined) {
+    if (typeof mAttr.DeviceDesc !== 'undefined') {
       $scope.DeviceDescriptionRange.Min = 1;
       $scope.DeviceDescriptionRange.Max = mAttr.DeviceDesc.maxLength;
     }
 
     $scope.MemoRange = {};
     $scope.MemoRange.PatternStr = mAttr.FriendlyNameCharSetExpandedStr;
-    if (mAttr.Memo !== undefined) {
+    if (typeof mAttr.Memo !== 'undefined') {
       $scope.MemoRange.Min = 1;
       $scope.MemoRange.Max = mAttr.Memo.maxLength;
     }
@@ -91,8 +96,8 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
         function(errorData) {},
         '',
         true
-      )
-      .then(
+      ).
+      then(
         function() {
           $scope.pageLoaded = true;
           $("#prodinfopage").show();
@@ -105,19 +110,90 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
 
   function validDeviceName() {
     var val = $scope.Info.DeviceName;
-    if ($.trim(val).length === 0) return false; // only white space
+    if ($.trim(val).length === 0) { 
+      return false; 
+    } // only white space
     var len = val.length;
-    for (var i = 0; i < val.length; i++) {
-      var str = val[i];
+    for (var ii = 0; ii < val.length; ii++) {
+      // var str = val[ii];
       try {
-        var stringByteLen = ~-encodeURI(str).split(/%..|./).length;
-      } catch (e) {
-        i++;
+        // var stringByteLen = ~-encodeURI(str).split(/%..|./).length;
+      } catch (error) {
+        ii++;
         len--;
       }
     }
 
-    if (len > 8) {
+    if (len > DEVICE_NAME_LENGTH) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function validLocation() {
+    var val = $scope.Info.Location;
+    if ($.trim(val).length === 0) { 
+      return false; 
+    } // only white space
+    var len = val.length;
+    for (var ii = 0; ii < val.length; ii++) {
+      // var str = val[ii];
+      try {
+        // var stringByteLen = ~-encodeURI(str).split(/%..|./).length;
+      } catch (error) {
+        ii++;
+        len--;
+      }
+    }
+
+    if (len > DEVICE_OPTION_LENGTH) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function validDescription() {
+    var val = $scope.Info.Description;
+    if ($.trim(val).length === 0) { 
+      return false; 
+    } // only white space
+    var len = val.length;
+    for (var ii = 0; ii < val.length; ii++) {
+      // var str = val[ii];
+      try {
+        // var stringByteLen = ~-encodeURI(str).split(/%..|./).length;
+      } catch (error) {
+        ii++;
+        len--;
+      }
+    }
+
+    if (len > DEVICE_OPTION_LENGTH) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function validMemo() {
+    var val = $scope.Info.Memo;
+    if ($.trim(val).length === 0) { 
+      return false; 
+    } // only white space
+    var len = val.length;
+    for (var ii = 0; ii < val.length; ii++) {
+      // var str = val[ii];
+      try {
+        // var stringByteLen = ~-encodeURI(str).split(/%..|./).length;
+      } catch (error) {
+        ii++;
+        len--;
+      }
+    }
+
+    if (len > DEVICE_OPTION_LENGTH) {
       return false;
     } else {
       return true;
@@ -126,16 +202,38 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
 
   function validate() {
     var retVal = true;
+    var ErrorMessage = '';
 
     if ($scope.prodinfoForm.DeviceName.$valid === false) {
-      var ErrorMessage = 'lang_msg_check_deviceName';
+      ErrorMessage = 'lang_msg_check_deviceName';
       retVal = false;
       COMMONUtils.ShowError(ErrorMessage);
       return retVal;
     }
 
     if (validDeviceName() === false) {
-      var ErrorMessage = $translate.instant('lang_msg_check_deviceName') + ' ' + $translate.instant('lang_msg_allowed_upto_8_chars');
+      ErrorMessage = $translate.instant('lang_msg_check_deviceName') + ' ' + $translate.instant('lang_msg_allowed_upto_8_chars');
+      retVal = false;
+      COMMONUtils.ShowError(ErrorMessage);
+      return retVal;
+    }
+
+    if (validLocation() === false) {
+      ErrorMessage = $translate.instant('lang_msg_check_location');
+      retVal = false;
+      COMMONUtils.ShowError(ErrorMessage);
+      return retVal;
+    }
+
+    if (validDescription() === false) {
+      ErrorMessage = $translate.instant('lang_msg_check_description');
+      retVal = false;
+      COMMONUtils.ShowError(ErrorMessage);
+      return retVal;
+    }
+
+    if (validMemo() === false) {
+      ErrorMessage = $translate.instant('lang_msg_check_memo');
       retVal = false;
       COMMONUtils.ShowError(ErrorMessage);
       return retVal;
@@ -143,21 +241,21 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
 
     if ($scope.DeviceType === 'NWC') {
       if ($scope.prodinfoForm.Description.$valid === false) {
-        var ErrorMessage = 'lang_msg_check_description';
+        ErrorMessage = 'lang_msg_check_description';
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
         return retVal;
       }
 
       if ($scope.prodinfoForm.Location.$valid === false) {
-        var ErrorMessage = 'lang_msg_check_location';
+        ErrorMessage = 'lang_msg_check_location';
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
         return retVal;
       }
 
       if ($scope.prodinfoForm.Memo.$valid === false) {
-        var ErrorMessage = 'lang_msg_check_memo';
+        ErrorMessage = 'lang_msg_check_memo';
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
         return retVal;
@@ -187,7 +285,7 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
 
           },
           function(errorData) {
-            alert("Error!");
+            console.log(errorData);
           }, '', true);
       }, 
       'sm',
@@ -205,7 +303,7 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
       $timeout(function() {
         mAttr = Attributes.get();
         wait();
-      }, 500);
+      }, ATTRIBUTE_REQUEST_TIMEOUT);
     } else {
       view();
     }

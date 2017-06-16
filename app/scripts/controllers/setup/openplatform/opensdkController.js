@@ -55,14 +55,14 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
   };
 
   function getAttributes() {
-    if (mAttr.OpenSDKPriorityOptions !== undefined) {
+    if (typeof mAttr.OpenSDKPriorityOptions !== "undefined") {
       $scope.OpenSDKPriorityOptions = mAttr.OpenSDKPriorityOptions;
     }
   }
 
   $scope.openSDKOrder = function(sortName) {
-    if ($scope.appOrder.name == sortName) {
-      if ($scope.appOrder.type == '-') {
+    if ($scope.appOrder.name === sortName) {
+      if ($scope.appOrder.type === '-') {
         $scope.appOrder.type = '';
         $scope.appOrder.property = $scope.appOrder.name;
       } else {
@@ -76,8 +76,8 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
     }
   };
   $scope.openSDKOrderClass = function(sortName, type) {
-    if ($scope.appOrder.name == sortName) {
-      if ($scope.appOrder.type == type) {
+    if ($scope.appOrder.name === sortName) {
+      if ($scope.appOrder.type === type) {
         return 'order-i active';
       } else {
         return 'order-i';
@@ -97,25 +97,23 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
         function(errorData) {
           //alert(errorData);
           return;
-        }, '', true)
-      .finally(function() {
-        var index;
-        if ($scope.OpenSDK.Apps !== undefined) {
-          for (index = 0; index < $scope.OpenSDK.Apps.length; index = index + 1) {
-            $scope.OpenSDK.Apps[index].InstalledDate = convertOpenSDKAppTime($scope.OpenSDK.Apps[index].InstalledDate);
-            $scope.OpenSDK.Apps[index].No = index + 1;
-            if ($scope.OpenSDK.Apps[index].Priority === 'High') {
-              $scope.OpenSDK.Apps[index].PriorityOrder = 1;
-            } else if ($scope.OpenSDK.Apps[index].Priority === 'Medium') {
-              $scope.OpenSDK.Apps[index].PriorityOrder = 2;
-            } else {
-              $scope.OpenSDK.Apps[index].PriorityOrder = 3;
+        }, '', true).finally(function() {
+          if (typeof $scope.OpenSDK.Apps !== "undefined") {
+            for (var index = 0; index < $scope.OpenSDK.Apps.length; index = index + 1) {
+              $scope.OpenSDK.Apps[index].InstalledDate = convertOpenSDKAppTime($scope.OpenSDK.Apps[index].InstalledDate);
+              $scope.OpenSDK.Apps[index].No = index + 1;
+              if ($scope.OpenSDK.Apps[index].Priority === 'High') {
+                $scope.OpenSDK.Apps[index].PriorityOrder = 1;
+              } else if ($scope.OpenSDK.Apps[index].Priority === 'Medium') {
+                $scope.OpenSDK.Apps[index].PriorityOrder = 2;
+              } else {
+                $scope.OpenSDK.Apps[index].PriorityOrder = 3;
+              }
             }
           }
-        }
 
-        pageData.OpenSDK = angular.copy($scope.OpenSDK);
-      });
+          pageData.OpenSDK = angular.copy($scope.OpenSDK);
+        });
   }
 
   function convertOpenSDKAppTime(appInstallDate) {
@@ -124,7 +122,7 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
 
     // var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     var months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-    var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    // var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     var year = a.getFullYear();
     var month = months[a.getMonth()];
@@ -184,7 +182,7 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
 
     var index = 0;
     for (var i = 0; i < $scope.OpenSDK.Apps.length; i++) {
-      if ($scope.OpenSDK.Apps[i].AppID == AppID) {
+      if ($scope.OpenSDK.Apps[i].AppID === AppID) {
         index = i;
         break;
       }
@@ -199,7 +197,7 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
       SunapiClient.get('/stw-cgi/opensdk.cgi?msubmenu=apps&action=set', setData,
         function(response) {
           COMMONUtils.ShowDeatilInfo('lang_msg_settings_saved');
-          if ($scope.OpenSDK.Apps !== undefined) {
+          if (typeof $scope.OpenSDK.Apps !== "undefined") {
             for (index = 0; index < $scope.OpenSDK.Apps.length; index = index + 1) {
               if ($scope.OpenSDK.Apps[index].Priority === 'High') {
                 $scope.OpenSDK.Apps[index].PriorityOrder = 1;
@@ -239,7 +237,7 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
         function(response) {
           $scope.OpenSDKAppHealth = response.data;
 
-          if ($scope.OpenSDKAppHealth.Apps !== undefined) {
+          if (typeof $scope.OpenSDKAppHealth.Apps !== "undefined") {
             for (idx = 0; idx < $scope.OpenSDKAppHealth.Apps.length; idx = idx + 1) {
               var durmsg = convertDuration($scope.OpenSDKAppHealth.Apps[idx].Duration);
               $scope.OpenSDKAppHealth.Apps[idx].Duration = durmsg;
@@ -248,12 +246,11 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
         },
         function(errorData) {
           // COMMONUtils.ShowError(errorData);
-        }, '', true)
-      .finally(function() {
-        if ((mStopAppStatus === false) && (taskManager === true)) {
-          $timeout(OpenSDKAppHealth, 5000);
-        }
-      });
+        }, '', true).finally(function() {
+          if ((mStopAppStatus === false) && (taskManager === true)) {
+            $timeout(OpenSDKAppHealth, 5000);
+          }
+        });
   }
 
   $scope.OnOpenSDKAppHealth = function(AppID) {
@@ -405,18 +402,18 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
         function(errorData) {
           //COMMONUtils.ShowError(errorData);
           return;
-        }, '', true)
-      .finally(function() {
-        if (targetSDK !== '') {
-          msg = "../home/setup/opensdk/html/" + AppID + "/index.html?AppName=" + AppID;
-        } else {
-          msg = "../home/setup/opensdk/html/" + AppID + "/index.cgi?AppName=" + AppID;
-        }
+        }, '', true).finally(function() {
+          if (targetSDK !== '') {
+            msg = "../home/setup/opensdk/html/" + AppID + "/index.html?AppName=" + AppID;
+          } else {
+            msg = "../home/setup/opensdk/html/" + AppID + "/index.cgi?AppName=" + AppID;
+          }
 
-        window.open(msg);
-      });
+          window.open(msg);
+        });
   }
 
+  /*
   function deleteAllCookies() {
 
     // This function will attempt to remove a cookie from all paths.
@@ -431,6 +428,7 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
       document.cookie = 'AppInstallSessionID=; expires=Thu, 01-Jan-1970 00:00:01 GMT;' + pathCurrent + ';';
     }
   }
+  */
 
   function OpenSDKInstallConfirmMsg(ApplicationSessionId, isOk, installType) {
     var opensdkfileelm = document.getElementById("opensdkfileupload");
@@ -503,7 +501,7 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
 
   $scope.OnOpenSDKInstall = function() {
 
-    if (mAttr.OpenSDKMaxApps !== undefined && $scope.OpenSDK.InstalledApps == mAttr.OpenSDKMaxApps) {
+    if (typeof mAttr.OpenSDKMaxApps !== "undefined" && $scope.OpenSDK.InstalledApps === mAttr.OpenSDKMaxApps) {
       COMMONUtils.ShowInfo('lang_installed_max_app');
       return;
     }
@@ -517,12 +515,9 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
       return;
     }
 
-    var confirm_result;
-
     var permissionsMsg = "";
 
-    var setData = {},
-      postData;
+    var setData = {};
     var file = $scope.cerfile;
 
     var AppName = $scope.CertificateFile.split('.');
@@ -555,7 +550,7 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
           permissionsMsg = $translate.instant('lang_msg_permission2');
           ShowModalDialog("OpenSDKInstallConfirmMsg", permissionsMsg, response.data.ApplicationSessionId, response.data.InstallType);
         } else {
-          if (response.data.Permission !== 'undefined') {
+          if (typeof response.data.Permission !== "undefined" || response.data.Permission !== "undefined") {
             //console.log("App Premisssion", response.data.Permission);
             var func = new Array;
             for (var idx = 0; idx < response.data.Permission.length; idx = idx + 1) {
@@ -576,7 +571,7 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
       },
       function(errorData, errorCode, openSDKError) {
         document.getElementById('f1_upload_process').style.display = 'none';
-        var errorMsg;
+        var errorMsg = "";
         switch (openSDKError) {
           case 66:
             errorMsg = 'lang_tempUnavailable';
@@ -655,7 +650,6 @@ kindFramework.controller('opensdkCtrl', function($scope, SunapiClient, Attribute
   function convertDuration(t) {
     //dividing period from time
     var x = t.split('T'),
-      duration = '',
       time = {},
       period = {},
       //just shortcuts

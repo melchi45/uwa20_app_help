@@ -1,4 +1,4 @@
-<div class="wrapper wrapper-content" ng-if="pageLoaded">
+<div class="wrapper wrapper-content" ng-if="pageLoaded" id="setup-facedetection">
     <wn5-setup-main-title 
         data-title="lang_menu_facedetection">
     </wn5-setup-main-title>
@@ -80,6 +80,26 @@
                         <div style="width: 100%; max-width: 300px;">
                             <live_slider live-slider-property="SensitivitySliderProperty" live-slider-model="SensitivitySliderModel"></live_slider>
                         </div>
+                    </div>
+                </div>
+                <div
+                    class="form-group"
+                    ng-if="activeTab.title === tabs[0].title && overlayColorOptions !== undefined">
+                    <div class="wn5-setup-preview-heading">{{ 'Detection line color' | translate }}</div>
+                    <div class="wn5-setup-preview-content">
+                      <div class="wn5-gui-text-orange-100">
+                        <i class="tui tui-wn5-toolbar-status" style="margin-right: 5px; transform: scale(1.3);"></i>
+                        <span>{{ 'lang_msg_OSDBlink_apply' | translate }}</span>
+                      </div>
+                      <div class="setup-facedetection-color-wrapper">
+                        <div 
+                          class="setup-facedetection-color-box"
+                          data-color-name="{{colorItem.colorName}}"
+                          ng-class="{'active': overlayColorSection.selectedColorIndex === colorIndex}"
+                          ng-click="overlayColorSection.selectColor(colorIndex, colorItem.colorCode)"
+                          ng-repeat="(colorIndex, colorItem) in overlayColorSection.colorIndexList">
+                        </div>
+                      </div>
                     </div>
                 </div>
             </div>

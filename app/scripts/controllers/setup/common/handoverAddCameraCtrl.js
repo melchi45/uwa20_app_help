@@ -12,21 +12,21 @@ kindFramework.controller('handoverAddCameraCtrl', function($scope, $uibModalInst
   $scope.FriendlyNameCharSetExpandedStr2 = mAttr.FriendlyNameCharSetExpandedStr2;
   $scope.PasswordCharSet = mAttr.PasswordCharSet;
 
-  if (mAttr.IpFilterIPType !== undefined) {
+  if (typeof mAttr.IpFilterIPType !== "undefined") {
     $scope.IPTypes = mAttr.IpFilterIPType;
   }
 
-  if (mAttr.HandoverUserMaxLen !== undefined) {
+  if (typeof mAttr.HandoverUserMaxLen !== "undefined") {
     $scope.HandoverUserMinLen = 1;
     $scope.HandoverUserMaxLen = mAttr.HandoverUserMaxLen.maxLength;
   }
 
-  if (mAttr.HandoverPwdMaxLen !== undefined) {
+  if (typeof mAttr.HandoverPwdMaxLen !== "undefined") {
     $scope.HandoverPwdMinLen = 1;
     $scope.HandoverPwdMaxLen = mAttr.HandoverPwdMaxLen.maxLength;
   }
 
-  if (mAttr.HandoverPresetRange !== undefined) {
+  if (typeof mAttr.HandoverPresetRange !== "undefined") {
     $scope.HandoverPresetMin = mAttr.HandoverPresetRange.minValue;
     $scope.HandoverPresetMax = mAttr.HandoverPresetRange.maxValue;
   }
@@ -37,7 +37,7 @@ kindFramework.controller('handoverAddCameraCtrl', function($scope, $uibModalInst
 
   $scope.UserList.SelectedHandoverIndex = false;
 
-  if ($scope.HandoverList[SelectedArea] !== undefined) {
+  if (typeof $scope.HandoverList[SelectedArea] !== "undefined") {
     console.log("true");
     $scope.UserList.HandoverIndex = typeof $scope.HandoverList[SelectedArea].UserList !== 'undefined' ? $scope.HandoverList[SelectedArea].UserList.length + 1 : 1;
   } else {
@@ -61,29 +61,25 @@ kindFramework.controller('handoverAddCameraCtrl', function($scope, $uibModalInst
 
   function validatePage() {
     if ($scope.UserList.IPType === $scope.IPTypes[0]) {
-      if ($scope.UserList.IPV4Address === undefined) {
-        var ErrorMessage = 'lang_msg_chkIPAddress';
-        COMMONUtils.ShowError(ErrorMessage);
+      if (typeof $scope.UserList.IPV4Address === "undefined") {
+        COMMONUtils.ShowError("lang_msg_chkIPAddress");
         return false;
       } else if (COMMONUtils.CheckValidIPv4Address($scope.UserList.IPV4Address) === false) {
-        var ErrorMessage = 'lang_msg_chkIPAddress';
-        COMMONUtils.ShowError(ErrorMessage);
+        COMMONUtils.ShowError("lang_msg_chkIPAddress");
         return false;
       }
     } else {
-      if ($scope.UserList.IPV6Address === undefined) {
-        var ErrorMessage = 'lang_msg_chkIPAddress';
-        COMMONUtils.ShowError(ErrorMessage);
+      if (typeof $scope.UserList.IPV6Address === "undefined") {
+        COMMONUtils.ShowError("lang_msg_chkIPAddress");
         return false;
       } else if (COMMONUtils.CheckValidIPv6Address($scope.UserList.IPV6Address) === false) {
-        var ErrorMessage = 'lang_msg_chkIPv6Address';
-        COMMONUtils.ShowError(ErrorMessage);
+        COMMONUtils.ShowError("lang_msg_chkIPv6Address");
         return false;
       }
     }
 
     if (
-      $scope.UserList.Port === undefined ||
+      typeof $scope.UserList.Port === "undefined" ||
       $scope.UserList.Port <= 0 ||
       $scope.UserList.Port > $scope.HttpMaxPort) {
       var ErrorMessage = 'lang_msg_Theportshouldbebetween1and65535';
@@ -132,7 +128,7 @@ kindFramework.controller('handoverAddCameraCtrl', function($scope, $uibModalInst
     }
 
     if (
-      $scope.UserList.PresetNumber === undefined ||
+      typeof $scope.UserList.PresetNumber === "undefined" ||
       parseInt($scope.UserList.PresetNumber) < $scope.HandoverPresetMin ||
       parseInt($scope.UserList.PresetNumber) > $scope.HandoverPresetMax) {
       console.log("Wrong PresetNumber");
@@ -144,10 +140,10 @@ kindFramework.controller('handoverAddCameraCtrl', function($scope, $uibModalInst
         size: 'sm',
         resolve: {
           Message: function() {
-            return $translate
-              .instant('lang_range_alert')
-              .replace('%1', $scope.HandoverPresetMin)
-              .replace('%2', $scope.HandoverPresetMax);
+            return $translate.
+              instant('lang_range_alert').
+              replace('%1', $scope.HandoverPresetMin).
+              replace('%2', $scope.HandoverPresetMax);
           },
           Header: function() {
             return 'lang_error';

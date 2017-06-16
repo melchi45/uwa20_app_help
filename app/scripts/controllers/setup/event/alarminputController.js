@@ -14,13 +14,13 @@ kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScop
   function getAttributes() {
     var defer = $q.defer();
     $scope.MaxAlarmOutput = mAttr.MaxAlarmOutput;
-    if (mAttr.EnableOptions !== undefined) {
+    if (typeof mAttr.EnableOptions !== "undefined") {
       $scope.EnableOptions = mAttr.EnableOptions;
     }
-    if (mAttr.ActivateOptions !== undefined) {
+    if (typeof mAttr.ActivateOptions !== "undefined") {
       $scope.ActivateOptions = mAttr.ActivateOptions;
     }
-    if (mAttr.WeekDays !== undefined) {
+    if (typeof mAttr.WeekDays !== "undefined") {
       $scope.WeekDays = mAttr.WeekDays;
     }
     $scope.EventActions = [];
@@ -30,10 +30,10 @@ kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScop
       $scope.EventActions[ai] = [];
       $scope.EventActions[ai] = COMMONUtils.getSupportedEventActions("AlarmInput." + (ai + 1));
     }
-    if (mAttr.AlarmInputStateOptions !== undefined) {
+    if (typeof mAttr.AlarmInputStateOptions !== "undefined") {
       $scope.AlarmInputStateOptions = mAttr.AlarmInputStateOptions;
     }
-    if (mAttr.AlarmoutDurationOptions !== undefined) {
+    if (typeof mAttr.AlarmoutDurationOptions !== "undefined") {
       $scope.AlarmoutDurationOptions = mAttr.AlarmoutDurationOptions;
     }
     if (Attributes.isSupportGoToPreset() === true) {
@@ -96,7 +96,7 @@ kindFramework.controller('alarminputCtrl', function($scope, $location, $rootScop
   }
 
   function checkDayNightModeDependency() {
-    if ($scope.Camera !== undefined) {
+    if (typeof $scope.Camera !== "undefined") {
       if (mAttr.MaxAlarmInput === 0 || $scope.Camera.DayNightMode === 'ExternalBW') {
         $location.path($rootScope.monitoringPath);
       }
