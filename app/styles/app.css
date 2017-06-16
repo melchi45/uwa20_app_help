@@ -417,7 +417,7 @@ live-playback common {
 #cm-bottom-menu .ui-slider-horizontal .ui-slider-range {
   background: #797979;
   height: 2px;
-  top: 18px;
+  top: 20px;
 }
 #cm-bottom-menu .ui-slider .ui-state-default {
   width: 12px !important;
@@ -7604,6 +7604,7 @@ i.tui-ch-playback-stop {
   left: 50%;
   transform: translateX(-50%);
   padding: 0;
+  z-index: 1;
 }
 .kind-responsive-live #cm-bottom-menu #live-icon-list .ui-state-default {
   top: 13px;
@@ -7622,6 +7623,10 @@ i.tui-ch-playback-stop {
   height: 26px;
   float: left;
   background-color: #bbb;
+  border: none;
+  left: calc(50% - 1px);
+  margin-top: 12px;
+  z-index: 1;
 }
 .kind-responsive-live #cm-bottom-menu #live-icon-list [id$="slider"] {
   display: inline-block;
@@ -7630,7 +7635,32 @@ i.tui-ch-playback-stop {
   margin-left: 15px;
   margin-top: 5px;
 }
-.kind-responsive-live #cm-bottom-menu #live-icon-list .cm-alarm-button {
+.kind-responsive-live #cm-bottom-menu #live-icon-list .cm-col {
+  float: right;
+  height: 50px;
+}
+.kind-responsive-live #cm-bottom-menu #live-icon-list .live-channel-selector {
+  border: solid 1px #e9e9e9;
+  border-right: 0;
+  padding: 15px 25px 0 25px;
+}
+.kind-responsive-live #cm-bottom-menu #live-icon-list #live-controller {
+  max-height: 50px;
+  height: 50px;
+  float: left;
+  margin: 0 10px;
+}
+.kind-responsive-live #cm-bottom-menu #live-icon-list #live-controller li {
+  margin: 0 10px;
+  float: left;
+}
+.kind-responsive-live #cm-bottom-menu #live-icon-list #live-alarm-volume {
+  float: left;
+}
+.kind-responsive-live #cm-bottom-menu #live-icon-list #live-alarm-volume #alarm {
+  float: left;
+}
+.kind-responsive-live #cm-bottom-menu #live-icon-list #live-alarm-volume #alarm .cm-alarm-button {
   display: inline-block;
   width: 18px;
   height: 18px;
@@ -7639,61 +7669,23 @@ i.tui-ch-playback-stop {
   margin-top: 16px;
   border-radius: 100%;
 }
-.kind-responsive-live #cm-bottom-menu #live-icon-list .cm-alarm-button:hover {
+.kind-responsive-live #cm-bottom-menu #live-icon-list #live-alarm-volume #alarm .cm-alarm-button:hover {
   background-color: #4c4c4c !important;
   border: 1px solid #4c4c4c !important;
   color: #fff !important;
 }
-.kind-responsive-live #cm-bottom-menu #live-icon-list .cm-alarm-button:not(:last-of-type) {
+.kind-responsive-live #cm-bottom-menu #live-icon-list #live-alarm-volume #alarm .cm-alarm-button:not(:last-of-type) {
   margin-right: 10px;
 }
-.kind-responsive-live #cm-bottom-menu #live-icon-list .cm-alarm-button.cm-on {
+.kind-responsive-live #cm-bottom-menu #live-icon-list #live-alarm-volume #alarm .cm-alarm-button.cm-on {
   background-color: #000 !important;
   border: 1px solid #000 !important;
   color: #fff !important;
 }
-.kind-responsive-live #cm-bottom-menu #live-icon-list .cm-alarm-button[disabled="disabled"] {
+.kind-responsive-live #cm-bottom-menu #live-icon-list #live-alarm-volume #alarm .cm-alarm-button[disabled="disabled"] {
   background-color: #fff !important;
   border: 1px solid #d2d2d2 !important;
   color: #d2d2d2 !important;
-}
-.kind-responsive-live #cm-bottom-menu #live-icon-list .cm-col {
-  float: right;
-  height: 50px;
-}
-.kind-responsive-live #cm-bottom-menu #live-icon-list .cm-vline {
-  float: left;
-  width: 1px;
-  height: 26px;
-  border: none;
-  left: calc(50% - 1px);
-  background: #bbb;
-  margin-top: 12px;
-  z-index: 1;
-}
-.kind-responsive-live #cm-bottom-menu #live-icon-list .live-channel-selector {
-  border: solid 1px #e9e9e9;
-  border-right: 0;
-  padding: 15px 25px 0 25px;
-}
-.kind-responsive-live #cm-bottom-menu #live-icon-list #live-alarm-volume {
-  float: left;
-}
-.kind-responsive-live #cm-bottom-menu #live-icon-list #live-alarm-volume #alarm {
-  float: left;
-}
-.kind-responsive-live #cm-bottom-menu #live-icon-list .live-controller {
-  max-height: 50px;
-  height: 50px;
-  float: left;
-  margin: 0 10px;
-}
-.kind-responsive-live #cm-bottom-menu #live-icon-list .live-controller li {
-  margin: 0 10px;
-  float: left;
-}
-.kind-responsive-live #cm-bottom-menu #cm-menu-content {
-  /* table element */
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content .cm-col {
   float: left;
@@ -7728,9 +7720,6 @@ i.tui-ch-playback-stop {
   display: inline-table;
   text-align: left;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-setup-col h2 span {
-  margin-right: 5px;
-}
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-setup-col #live-profile {
   height: 30px;
   line-height: 30px;
@@ -7742,15 +7731,15 @@ i.tui-ch-playback-stop {
   line-height: 30px;
   margin-top: -8px;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-table th {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-setup-table tr {
+  height: 33px;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-setup-table tr th {
   width: 35%;
   text-align: left;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-table td {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-setup-table tr td {
   width: 65%;
-}
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-table tr {
-  height: 33px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-ptz #ptz-components #cm-live-ptz-control {
   width: 30%;
@@ -7929,6 +7918,8 @@ i.tui-ch-playback-stop {
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-ptz #ptz-components #cm-ptz-tabs .ui-state-default.ui-state-active {
   border-bottom: none;
+  background-color: #fff;
+  position: relative;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-ptz #ptz-components #cm-ptz-tabs .ui-state-default a {
   display: inline-block;
@@ -7962,31 +7953,34 @@ i.tui-ch-playback-stop {
   text-align: left;
   display: inline-table;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-table ::-webkit-scrollbar {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table ::-webkit-scrollbar {
   width: 12px;
   height: 1em;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-table ::-webkit-scrollbar-button:vertical {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table ::-webkit-scrollbar-button:vertical {
   background: #666;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-table ::-webkit-scrollbar-track-piece {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table ::-webkit-scrollbar-track-piece {
   background: #f1f1f1;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-table ::-webkit-scrollbar-thumb {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table ::-webkit-scrollbar-thumb {
   background: #c1c1c1;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-table th,
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-table td {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table ​ dummy {
+  display: none;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table th,
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table td {
   width: 1%;
   box-sizing: border-box;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-table thead {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table thead {
   display: block;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-table thead > tr > *:last-child {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table thead > tr > *:last-child {
   width: 1.23% !important;
 }
-.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-table tbody {
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table tbody {
   width: 100%;
   height: 95px;
   position: relative;
@@ -8032,7 +8026,7 @@ i.tui-ch-playback-stop {
   float: right;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider .ui-state-default {
-  top: 12px;
+  top: 15px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li[data-type="SharpnessLevel"] .cm-checkbox-wrap {
   display: inline-block;
@@ -8071,6 +8065,9 @@ i.tui-ch-playback-stop {
 }
 .kind-responsive-live #cm-bottom-menu.cm-full-menu .live-table::-webkit-scrollbar-thumb {
   opacity: 0.2;
+}
+.kind-responsive-live #cm-bottom-menu.cm-full-menu .live-table ​ dummy {
+  display: none;
 }
 .kind-responsive-live #cm-bottom-menu.cm-full-menu #cm-menu-content #live-ptz #ptz-components #live-ptz-add-form {
   background: #262626;
@@ -8118,9 +8115,25 @@ i.tui-ch-playback-stop {
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu {
     height: 150px;
   }
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu.cm-full-menu {
+    height: 150px;
+  }
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu.cm-full-menu.cm-show-menu {
+    height: 350px;
+  }
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu.cm-show-menu {
+    height: 360px;
+  }
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list {
     max-height: none;
     height: 150px;
+  }
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list .info-toggle {
+    width: 100vw;
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    transform: translateX(-50%);
   }
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list #pb-channel-holder > div,
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list .live-channel-selector {
@@ -8139,21 +8152,14 @@ i.tui-ch-playback-stop {
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list .live-channel-selector > button {
     margin-top: 8px;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list .info-toggle {
-    width: 100vw;
-    position: absolute;
-    left: 50%;
-    bottom: -1px;
-    transform: translateX(-50%);
-  }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list .live-controller {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list #live-controller {
     position: relative;
     max-height: 50px;
     width: 100%;
     height: 100px;
     display: inline-table;
   }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list .live-controller li {
+  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list #live-controller li {
     display: inline-table;
     float: none;
     line-height: 0;
@@ -8177,18 +8183,6 @@ i.tui-ch-playback-stop {
   }
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list .cm-list-2 {
     transform: translateY(-50px);
-  }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu #live-icon-list .cm-vline {
-    display: none;
-  }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu.cm-full-menu {
-    height: 150px;
-  }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu.cm-full-menu.cm-show-menu {
-    height: 350px;
-  }
-  .kind-responsive-live:not(.land-scape) #cm-bottom-menu.cm-show-menu {
-    height: 360px;
   }
   .kind-responsive-live:not(.land-scape) #cm-bottom-menu #cm-menu-content #live-ptz #ptz-components #cm-live-ptz-control {
     width: auto;
@@ -8313,12 +8307,12 @@ i.tui-ch-playback-stop {
 .kind-responsive-live.land-scape #cm-bottom-menu #live-icon-list .info-toggle li.cm-active {
   border-right: none;
 }
-.kind-responsive-live.land-scape #cm-bottom-menu #live-icon-list .live-controller {
+.kind-responsive-live.land-scape #cm-bottom-menu #live-icon-list #live-controller {
   float: none;
   display: inline;
   margin: 0;
 }
-.kind-responsive-live.land-scape #cm-bottom-menu #live-icon-list .live-controller li {
+.kind-responsive-live.land-scape #cm-bottom-menu #live-icon-list #live-controller li {
   line-height: 50px;
   top: 0;
   margin: 0 5px;
@@ -8353,6 +8347,10 @@ i.tui-ch-playback-stop {
   min-width: 360px;
   margin: 10px 0;
   position: relative;
+}
+.kind-responsive-live.land-scape #cm-bottom-menu #cm-menu-content #cm-live-ptz-control,
+.kind-responsive-live.land-scape #cm-bottom-menu #cm-menu-content #cm-ptz-zoom {
+  width: 80% !important;
 }
 .kind-responsive-live.land-scape #cm-bottom-menu.cm-show-menu #cm-menu-content {
   left: calc(100% - 400px);
@@ -8432,10 +8430,10 @@ i.tui-ch-playback-stop {
     height: 75px;
     font-size: 40px;
   }
-  .kind-responsive-live #cm-bottom-menu #live-icon-list .live-controller li {
+  .kind-responsive-live #cm-bottom-menu #live-icon-list #live-controller li {
     margin: 0 15px;
   }
-  .kind-responsive-live #cm-bottom-menu #live-icon-list .live-controller li .cm-icon-button-b {
+  .kind-responsive-live #cm-bottom-menu #live-icon-list #live-controller li .cm-icon-button-b {
     font-size: 40px;
     margin-top: 10px;
   }
@@ -8478,18 +8476,18 @@ i.tui-ch-playback-stop {
     font-size: 16px;
     margin-top: -6px;
   }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-table {
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-setup-table {
     font-size: 16px;
     height: 180px;
   }
   .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status {
     font-size: 16px;
   }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-table th,
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-table td {
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-table th,
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-table td {
     padding: 10px 10px;
   }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-table tbody {
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-table tbody {
     height: 150px !important;
     max-height: 150px !important;
   }
@@ -8534,24 +8532,24 @@ i.tui-ch-playback-stop {
     margin-top: -8px;
     padding-right: 25px;
   }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-table {
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-setup-table {
     font-size: 22px;
     height: 240px;
   }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-table th {
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-setup-table th {
     width: 26%;
   }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-table td {
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-setup .live-setup-table td {
     width: 74%;
   }
   .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status {
     font-size: 21px;
   }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-table th,
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-table td {
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-table th,
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-table td {
     padding: 15px 10px;
   }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-table tbody {
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-table tbody {
     height: 180px !important;
     max-height: 180px !important;
   }
@@ -8572,10 +8570,10 @@ i.tui-ch-playback-stop {
     height: 87.5px;
     font-size: 50px;
   }
-  .kind-responsive-live #cm-bottom-menu #live-icon-list .live-controller li {
+  .kind-responsive-live #cm-bottom-menu #live-icon-list #live-controller li {
     margin: 0 22px;
   }
-  .kind-responsive-live #cm-bottom-menu #live-icon-list .live-controller li .cm-icon-button-b {
+  .kind-responsive-live #cm-bottom-menu #live-icon-list #live-controller li .cm-icon-button-b {
     font-size: 50px;
     margin-top: 18px;
   }

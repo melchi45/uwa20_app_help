@@ -4,7 +4,7 @@
   <div ng-show="channelSetFunctions['setup']" id="live-setup">
     <div class="live-setup-col">
       <h2>
-        <span>{{'lang_profile' | translate}}</span>
+        <span>{{'lang_profile' | translate}}&nbsp;&nbsp;</span>
         <select 
           id="live-profile"
           class="cm-selectbox"
@@ -14,7 +14,7 @@
         </select>
       </h2>
       <div class="ng-binding">
-        <table class="live-table cm-table-theme">
+        <table class="live-table live-setup-table cm-table-theme">
           <tr>
             <th>{{'lang_resolution' | translate}}</th>
             <td>{{profileList[selectedProfile].Resolution}}</td>
@@ -45,7 +45,7 @@
 
     <div class="live-setup-col" ng-show="showImageController">
       <h2>
-        <span>{{'lang_display' | translate}}</span>
+        <span>{{'lang_display' | translate}}&nbsp;&nbsp;</span>
         <button 
           class="cm-btn-dark" 
           title="{{ 'lang_camerareset' | translate}}" 
@@ -111,7 +111,7 @@
   <div ng-show="channelSetFunctions['status']" id="live-status">
     <div class="live-status-col">
       <h2><span>{{'lang_menu_info' | translate}}</span></h2>
-      <table class="live-table cm-table-theme" id="cm-status-first">
+      <table class="live-table live-status-table cm-table-theme" id="cm-status-first">
         <thead>
           <tr>
             <th>{{'lang_profile' | translate}}</th>
@@ -135,7 +135,7 @@
 
     <div class="live-status-col">
       <h2><span>{{'lang_currentUsers' | translate}}</span></h2>
-      <table class="live-table cm-table-theme">
+      <table class="live-table live-status-table cm-table-theme">
         <thead>
           <tr>
             <th>{{'lang_profile' | translate}}</th>

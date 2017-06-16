@@ -7,6 +7,7 @@
             left: 50%;
             transform: translateX(-50%);
             padding: 0;
+            z-index: 1;
 
             .ui-state-default{
                 top: 13px;
@@ -39,7 +40,12 @@
                 height: 26px;
                 float: left;
                 background-color: #bbb;
+                border: none;
+                left: calc(~"50% - 1px");
+                margin-top: 12px;
+                z-index: 1;
             }
+
 
             [id$="slider"] {
                 display: inline-block;
@@ -49,53 +55,9 @@
                 margin-top: 5px;
             } 
 
-            .cm-alarm-button {
-                display: inline-block;
-                width: 18px;
-                height: 18px;
-                line-height: 18px;
-                padding: 0;
-                margin-top: 16px;
-                border-radius: 100%;
-
-
-                &:hover {
-                    background-color: #4c4c4c !important;
-                    border: 1px solid #4c4c4c !important;
-                    color: #fff !important;
-                }
-
-                &:not(:last-of-type) {
-                    margin-right : 10px;
-                }
-
-                &.cm-on {
-                    background-color: #000 !important;
-                    border: 1px solid #000 !important;
-                    color: #fff !important;
-                } 
-
-                &[disabled="disabled"] {
-                    background-color: #fff !important;
-                    border: 1px solid #d2d2d2 !important;
-                    color: #d2d2d2 !important;
-                } 
-            } 
-
             .cm-col {
                 float: right;
                 height: 50px;
-            }
-
-            .cm-vline {
-                float: left;
-                width: 1px;
-                height: 26px;
-                border: none;
-                left: calc(~"50% - 1px");
-                background: #bbb;
-                margin-top: 12px;
-                z-index: 1;
             }
 
             .live-channel-selector {
@@ -104,15 +66,7 @@
                 padding: 15px 25px 0 25px;
             }
 
-            #live-alarm-volume {
-                float: left;
-
-                #alarm {
-                    float: left;
-                }
-            }
-
-            .live-controller {
+            #live-controller {
                 max-height: 50px;
                 height: 50px;
                 float: left;
@@ -121,6 +75,46 @@
                 li {
                     margin: 0 10px;
                     float: left;
+                }
+            }
+
+            #live-alarm-volume {
+                float: left;
+
+                #alarm {
+                    float: left;
+
+                    .cm-alarm-button {
+                        display: inline-block;
+                        width: 18px;
+                        height: 18px;
+                        line-height: 18px;
+                        padding: 0;
+                        margin-top: 16px;
+                        border-radius: 100%;
+
+                        &:hover {
+                            background-color: #4c4c4c !important;
+                            border: 1px solid #4c4c4c !important;
+                            color: #fff !important;
+                        }
+
+                        &:not(:last-of-type) {
+                            margin-right : 10px;
+                        }
+
+                        &.cm-on {
+                            background-color: #000 !important;
+                            border: 1px solid #000 !important;
+                            color: #fff !important;
+                        } 
+
+                        &[disabled="disabled"] {
+                            background-color: #fff !important;
+                            border: 1px solid #d2d2d2 !important;
+                            color: #d2d2d2 !important;
+                        } 
+                    } 
                 }
             }
         }
@@ -141,8 +135,7 @@
                 max-width: 1024px;
             }
 
-            /* table element */
-            .live-table{
+            .live-table {
                 width: 100%;
                 position: relative;
                 word-break: break-all;
@@ -158,7 +151,6 @@
                 }
             }
 
-
             #live-setup {
                 .live-setup-col {
                     width: calc(~"50% - 10px");
@@ -166,10 +158,6 @@
                     padding: 0 20px;
                     display: inline-table;
                     text-align: left;
-
-                    h2 span {
-                        margin-right: 5px;
-                    }
 
                     #live-profile {
                         height: 30px;
@@ -186,18 +174,18 @@
                     margin-top: -8px;
                 }
 
-                .live-table {
-                    th {
-                        width: 35%;
-                        text-align: left;
-                    }
-
-                    td {
-                        width: 65%;
-                    }
-
+                .live-setup-table {
                     tr {
                         height: 33px;
+
+                        th {
+                            width: 35%;
+                            text-align: left;
+                        }
+
+                        td {
+                            width: 65%;
+                        }
                     }
                 } 
             }
@@ -418,6 +406,8 @@
 
                             &.ui-state-active {
                                 border-bottom: none;
+                                background-color: #fff;
+                                position: relative;
                             }
 
                             a {
@@ -463,7 +453,7 @@
                     text-align: left;
                     display: inline-table;
 
-                    .live-table {
+                    .live-status-table {
                         ::-webkit-scrollbar {
                             width: 12px;
                             height: 1em;
@@ -479,12 +469,11 @@
                         ::-webkit-scrollbar-thumb {
                             background: #c1c1c1;
                         }​
+                        
 
-                        /* 
-                            thumb 이후에 스타일이 죽습니다 
-                            지우면 안됩니다
-                        */
-                        dummy {}
+                        //  thumb 이후에 스타일이 죽습니다 
+                        //  지우면 안됩니다
+                        dummy { display: none; }
 
                         th, td {
                             width: 1%;
@@ -614,11 +603,9 @@
                     opacity: 0.2;
                 }​
 
-                /* 
-                    thumb 이후에 스타일이 죽습니다 
-                    지우면 안됩니다
-                */
-                dummy {}
+                //  thumb 이후에 스타일이 죽습니다 
+                //  지우면 안됩니다
+                dummy { display: none; }
             }
 
             #cm-menu-content {
@@ -685,9 +672,29 @@
             #cm-bottom-menu {
                 height: 150px;
                 
+                &.cm-full-menu {
+                    height: 150px;
+
+                    &.cm-show-menu {
+                        height: 350px;
+                    }
+                }
+
+                &.cm-show-menu {
+                    height: 360px;
+                }
+                
                 #live-icon-list {
                     max-height: none;
                     height: 150px;
+
+                    .info-toggle {
+                        width: 100vw;
+                        position: absolute;
+                        left: 50%;
+                        bottom: -1px;
+                        transform: translateX(-50%);
+                    }
 
                     #pb-channel-holder > div,
                     .live-channel-selector {
@@ -707,15 +714,7 @@
                         }
                     }
 
-                    .info-toggle {
-                        width: 100vw;
-                        position: absolute;
-                        left: 50%;
-                        bottom: -1px;
-                        transform: translateX(-50%);
-                    }
-
-                    .live-controller {
+                    #live-controller {
                         position: relative;
                         max-height: 50px;
                         width: 100%;
@@ -753,23 +752,8 @@
                     .cm-list-2 {
                         transform: translateY(-50px);
                     }
-
-                    .cm-vline {
-                        display: none;
-                    } 
                 }
 
-                &.cm-full-menu {
-                    height: 150px;
-
-                    &.cm-show-menu {
-                        height: 350px;
-                    }
-                }
-
-                &.cm-show-menu {
-                    height: 360px;
-                }
 
                 #cm-menu-content {
                     #live-ptz #ptz-components {
@@ -822,7 +806,7 @@
                             }
                         }
                     }
-                } 
+                }
 
                 #live-icon-list {
                     .cm-small-center {
@@ -935,7 +919,7 @@
                     }
                 }
 
-                .live-controller {
+                #live-controller {
                     float: none;
                     display:inline;
                     margin: 0;
@@ -981,6 +965,11 @@
                     min-width: 360px;
                     margin: 10px 0;
                     position: relative;
+                }
+
+                #cm-live-ptz-control,
+                #cm-ptz-zoom {
+                    width: 80% !important;
                 }
             }
 
@@ -1090,7 +1079,7 @@
                     }
                 }
 
-                .live-controller {
+                #live-controller {
                     li {
                         margin: 0 15px;
 
@@ -1155,7 +1144,7 @@
                         }
                     }
 
-                    .live-table {
+                    .live-setup-table {
                         font-size: 16px;
                         height: 180px;
                     }
@@ -1164,7 +1153,7 @@
                 #live-status {
                     font-size: 16px;
 
-                    .live-table {
+                    .live-status-table {
                         th, td {
                             padding: 10px 10px;
                         }
@@ -1234,7 +1223,7 @@
                         }
                     }
 
-                    .live-table {
+                    .live-setup-table {
                         font-size: 22px;
                         height: 240px;
 
@@ -1251,7 +1240,7 @@
                 #live-status {
                     font-size: 21px;
 
-                    .live-table {
+                    .live-status-table {
                         th, td {
                             padding: 15px 10px;
                         }
@@ -1288,7 +1277,7 @@
                     }
                 }
 
-                .live-controller {
+                #live-controller {
                     li {
                         margin: 0 22px;
 
