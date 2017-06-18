@@ -259,9 +259,6 @@ kind_stream {
 .channels-wrapper-pc {
   background-color: #fff !important;
 }
-live-playback common {
-  padding-bottom: 10px;
-}
 /* page interface */
 .cm-row {
   width: 100%;
@@ -400,7 +397,7 @@ live-playback common {
   background-color: #f37321;
   left: 10px;
 }
-/* bottom menu */
+/* live and playback bottom menu */
 #cm-bottom-menu {
   width: 100%;
   height: 50px;
@@ -453,8 +450,7 @@ live-playback common {
 #cm-bottom-menu .cm-opacity .ui-silder .ui-slider-range {
   background: #a5a5a5;
 }
-#cm-bottom-menu #timeline-setting,
-#cm-bottom-menu #backup-setting {
+#cm-bottom-menu #timeline-setting {
   width: 100%;
   line-height: 50px;
   padding: 0;
@@ -8868,7 +8864,10 @@ i.tui-ch-playback-stop {
   font-weight: bold;
 }
 .kind-responsive-playback #backup-setting {
-  height: auto !important;
+  width: 100%;
+  line-height: 50px;
+  padding: 0;
+  height: auto;
   line-height: 1em !important;
 }
 .kind-responsive-playback #pb-backup-section {
