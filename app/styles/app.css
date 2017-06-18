@@ -8063,7 +8063,7 @@ i.tui-ch-playback-stop {
   color: #000 !important;
 }
 .kind-responsive-live #cm-bottom-menu.cm-full-menu .ui-widget-content {
-  color: #ffffff;
+  color: #fbfbfb;
 }
 .kind-responsive-live #cm-bottom-menu.cm-full-menu .live-table::-webkit-scrollbar {
   opacity: 0.5;
@@ -8077,10 +8077,10 @@ i.tui-ch-playback-stop {
 .kind-responsive-live #cm-bottom-menu.cm-full-menu #cm-menu-content #live-ptz #ptz-components #live-ptz-add-form {
   background: #262626;
   border: 1px solid #333333;
-  color: #ffffff;
+  color: #fbfbfb;
 }
 .kind-responsive-live #cm-bottom-menu.cm-full-menu #cm-menu-content #live-ptz #ptz-components #live-ptz-add-form .form-group > span {
-  color: #ffffff;
+  color: #fbfbfb;
 }
 .kind-responsive-live #cm-bottom-menu.cm-full-menu #cm-menu-content #live-ptz #ptz-components #live-ptz-add-form .form-group .form-control {
   background: #262626;
@@ -8376,6 +8376,7 @@ i.tui-ch-playback-stop {
 }
 .kind-responsive-live.land-scape #live-ptz #ptz-components {
   padding: 0;
+  /* external digital only */
   /* ptz controller with tables */
 }
 .kind-responsive-live.land-scape #live-ptz #ptz-components > .cm-col {
