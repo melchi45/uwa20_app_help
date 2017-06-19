@@ -9,7 +9,7 @@
             <input type="date" class="date" id="SearchDateId" ng-model="CurrentDate" max={{MaxDate}} ng-required="true" ondrop="return false;" onpaste="return false;" style="cursor: pointer;"/>&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" type="button" class="btn btn-info" ng-click="onSearch()"><i class="fa fa-search"></i></button>
         </div>
-        <uib-tabset class="wn5-setup-tab">
+        <uib-tabset class="wn5-setup-tab cm-tabs-field">
             <uib-tab ng-repeat="tab in tabs" heading={{getTranslatedOption(tab)}} ng-click="onTabChange()">
                 <div ng-show="tab === 'AccessLog'">
                     <div class="wn5-setup-section-article form-group">

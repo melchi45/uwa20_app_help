@@ -2944,7 +2944,7 @@ body.modal-open {
   color: #000 !important;
 }
 .cm-table-field tr td {
-  background-color: #ffffff !important;
+  background-color: #fff !important;
   color: #4c4c4c !important;
 }
 .cm-table-field tr.wn5-setup-table-active td {
@@ -2965,111 +2965,41 @@ body.modal-open {
 .cm-full-menu .cm-table-field tr.wn5-setup-table-active td {
   background-color: #fef1e8 !important;
 }
-.cm-tabs-field .cm-tabs-list,
-.cm-tabs-field .nav-tabs {
+.cm-tabs-field .cm-tabs-list {
   border-left: 1px solid #e9e9e9 !important;
 }
-.cm-tabs-field .cm-tabs-list li,
-.cm-tabs-field .nav-tabs li {
-  border-top: 1px solid #e9e9e9 !important;
-}
-.cm-tabs-field .cm-tabs-list li button,
-.cm-tabs-field .nav-tabs li button,
-.cm-tabs-field .cm-tabs-list li a,
-.cm-tabs-field .nav-tabs li a {
-  border: 0 !important;
+.cm-tabs-field .cm-tabs-list li button {
+  color: #4c4c4c !important;
   background-color: #f2f2f2 !important;
-  color: #4c4c4c !important;
-  border-right: 1px solid #e9e9e9 !important;
+  border: 1px solid #e9e9e9 !important;
 }
-.cm-tabs-field .cm-tabs-list li button.active,
-.cm-tabs-field .nav-tabs li button.active,
-.cm-tabs-field .cm-tabs-list li a.active,
-.cm-tabs-field .nav-tabs li a.active {
+.cm-tabs-field .cm-tabs-list li button.active {
   background-color: #fff !important;
   border-bottom: 0 !important;
 }
-.cm-tabs-field .cm-tabs-list li button:hover,
-.cm-tabs-field .nav-tabs li button:hover,
-.cm-tabs-field .cm-tabs-list li a:hover,
-.cm-tabs-field .nav-tabs li a:hover {
+.cm-tabs-field .cm-tabs-list li button:hover {
   background-color: #fff !important;
-  color: #4c4c4c !important;
 }
-.cm-tabs-field .cm-tabs-list li a,
-.cm-tabs-field .nav-tabs li a {
-  border-bottom: 0 !important;
+.cm-tabs-field .cm-tabs-content {
+  background: #fff !important;
 }
-.cm-tabs-field .cm-tabs-list li.active a,
-.cm-tabs-field .nav-tabs li.active a {
-  background-color: #fff !important;
-  border-bottom: 0 !important;
-}
-.cm-tabs-field .cm-tabs-list::after,
-.cm-tabs-field .nav-tabs::after {
-  width: 100%;
-  height: 39px;
-  border: 0 !important;
-  border-bottom: 1px solid #e9e9e9 !important;
-}
-.cm-tabs-field .cm-tabs-content,
-.cm-tabs-field .tab-content {
-  border: 1px solid #e9e9e9;
-  background-color: #fff;
-  border-top: 0;
-}
-.cm-full-menu .cm-tabs-field .cm-tabs-list,
-.cm-full-menu .cm-tabs-field .nav-tabs {
+.cm-full-menu .cm-tabs-field .cm-tabs-list {
   border-left: 1px solid #333333 !important;
 }
-.cm-full-menu .cm-tabs-field .cm-tabs-list li,
-.cm-full-menu .cm-tabs-field .nav-tabs li {
-  border-top: 1px solid #333333 !important;
-}
-.cm-full-menu .cm-tabs-field .cm-tabs-list li button,
-.cm-full-menu .cm-tabs-field .nav-tabs li button,
-.cm-full-menu .cm-tabs-field .cm-tabs-list li a,
-.cm-full-menu .cm-tabs-field .nav-tabs li a {
-  border: 0 !important;
+.cm-full-menu .cm-tabs-field .cm-tabs-list li button {
+  color: #fff !important;
   background-color: #262626 !important;
-  color: #fff !important;
-  border-right: 1px solid #333333 !important;
+  border: 1px solid #333333 !important;
 }
-.cm-full-menu .cm-tabs-field .cm-tabs-list li button.active,
-.cm-full-menu .cm-tabs-field .nav-tabs li button.active,
-.cm-full-menu .cm-tabs-field .cm-tabs-list li a.active,
-.cm-full-menu .cm-tabs-field .nav-tabs li a.active {
+.cm-full-menu .cm-tabs-field .cm-tabs-list li button.active {
   background-color: #191919 !important;
   border-bottom: 0 !important;
 }
-.cm-full-menu .cm-tabs-field .cm-tabs-list li button:hover,
-.cm-full-menu .cm-tabs-field .nav-tabs li button:hover,
-.cm-full-menu .cm-tabs-field .cm-tabs-list li a:hover,
-.cm-full-menu .cm-tabs-field .nav-tabs li a:hover {
-  background-color: #191919 !important;
-  color: #fff !important;
+.cm-full-menu .cm-tabs-field .cm-tabs-list li button:hover {
+  background-color: #262626 !important;
 }
-.cm-full-menu .cm-tabs-field .cm-tabs-list li a,
-.cm-full-menu .cm-tabs-field .nav-tabs li a {
-  border-bottom: 0 !important;
-}
-.cm-full-menu .cm-tabs-field .cm-tabs-list li.active a,
-.cm-full-menu .cm-tabs-field .nav-tabs li.active a {
-  background-color: #191919 !important;
-  border-bottom: 0 !important;
-}
-.cm-full-menu .cm-tabs-field .cm-tabs-list::after,
-.cm-full-menu .cm-tabs-field .nav-tabs::after {
-  width: 100%;
-  height: 39px;
-  border: 0 !important;
-  border-bottom: 1px solid #333333 !important;
-}
-.cm-full-menu .cm-tabs-field .cm-tabs-content,
-.cm-full-menu .cm-tabs-field .tab-content {
-  border: 1px solid #333333;
-  background-color: #262626;
-  border-top: 0;
+.cm-full-menu .cm-tabs-field .cm-tabs-content {
+  background: #262626 !important;
 }
 html,
 body {
@@ -4072,9 +4002,6 @@ select option:disabled {
   height: 39px;
   border-radius: 0;
   border: 0 !important;
-  background-color: #f2f2f2;
-  border-right: 1px solid #e9e9e9 !important;
-  border-bottom: 1px solid #e9e9e9 !important;
   margin: 0;
   padding: 10px 0 10px 0;
   text-align: center;
@@ -4100,6 +4027,13 @@ select option:disabled {
   left: 0;
   top: 1px;
   content: ' ';
+  width: 100%;
+  height: 39px;
+  border-radius: 0;
+  border: 0 !important;
+  margin: 0;
+  background-color: #fbfbfb;
+  border-right: none !important;
 }
 .wn5-setup-tab > .nav.nav-tabs li,
 .wn5-setup-tab .wn5-setup-tab-list.nav-tabs li {
@@ -4108,8 +4042,10 @@ select option:disabled {
 .wn5-setup-tab > .tab-content,
 .wn5-setup-tab .wn5-setup-tab-content {
   position: relative;
+  border: 1px solid #e9e9e9;
   border-top: 0;
   padding: 20px 0;
+  background: #fff;
 }
 .wn5-setup-tab > .tab-content:after,
 .wn5-setup-tab .wn5-setup-tab-content:after,
@@ -5229,7 +5165,7 @@ body.kind-svg-editor-drawing .channel-content {
 #setup-facedetection .setup-facedetection-color-box {
   width: 42px;
   height: 42px;
-  line-height: 46px;
+  line-height: 52px;
   /* Check 아이콘 바꿀 예정(임시) */
   border-radius: 50%;
   float: left;
@@ -5239,7 +5175,7 @@ body.kind-svg-editor-drawing .channel-content {
   text-align: center;
 }
 #setup-facedetection .setup-facedetection-color-box i {
-  font-size: 18px;
+  font-size: 26px;
   /* Check 아이콘 바꿀 예정(임시) */
   font-weight: bold;
   color: #ffffff;
@@ -10003,3 +9939,4 @@ i.tui-ch-playback-stop {
   margin: 0 0 0 15px;
   color: #fff;
 }
+/*# sourceMappingURL=app.css.map */

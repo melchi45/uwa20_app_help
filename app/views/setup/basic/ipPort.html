@@ -6,8 +6,8 @@
 
         <hr class="wn5-setup-hr">
 
-        <div class="wn5-setup-tab">
-            <ul class="wn5-setup-tab-list">
+        <div class="wn5-setup-tab cm-tabs-field">
+            <ul class="wn5-setup-tab-list cm-tabs-list">
                 <li 
                     class="wn5-setup-tab-item"
                     ng-repeat="tab in tabs">
@@ -17,7 +17,7 @@
                         type="button">{{getTranslatedOption(tab)}}</button>
                 </li>
             </ul>
-            <div class="wn5-setup-tab-content">
+            <div class="wn5-setup-tab-content cm-tabs-content">
                 <div ng-if="activeTab === 'IPAddress'">
                     <div ng-if="DeviceType === 'NVR'" class="wn5-setup-section-article">
                         <div class="form-group">
