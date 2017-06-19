@@ -518,6 +518,15 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
       mAttributes.ViewModeIndex = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/fisheyesetup/ViewModeIndex/int');
       mAttributes.ViewModeType = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/fisheyesetup/ViewModeType/enum');
 
+      mAttributes.PtrPanOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/ptr/Pan/int');
+      mAttributes.PtrTiltOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/ptr/Tilt/int');
+      mAttributes.PtrRotateOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/ptr/Rotate/int');
+
+      if(mAttributes.PtrRotateOptions && mAttributes.PtrTiltOptions && mAttributes.PtrPanOptions)
+      {
+          mAttributes.PTRZModel = true;
+      }
+
       mAttributes.imageCgiAttrReady = true;
     }
   };
