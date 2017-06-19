@@ -9,8 +9,12 @@ kindFramework.
         if (ItemSetModel._instance) {
           return ItemSetModel._instance;
         }
+        var idx = 0;
         ItemSetModel._instance = this;
         var DUPLICATE_CLASS_NAME = 'vis-duplicate-view';
+        var TIMELINE_DATA_INTERVAL = 10;
+        var DAY_TO_HOUR = 24, HOUR_TO_MINUTE = 60, MINUTE_TO_SEC = 60, SEC_TO_MS = 1000;
+        var HALF = 2;
         /*
          * itemSet.timelineData : to be shown in timeline (normal,event, duplicated event)
          * itemSet.dupEventData : not to be shown in timeline (contents for duplicated event)
@@ -29,8 +33,8 @@ kindFramework.
           if (_start === 0 || _end === 0) {
             return;
           }
-          var startIndex = _start / 10;
-          var endIndex = _end / 10;
+          var startIndex = _start / TIMELINE_DATA_INTERVAL;
+          var endIndex = _end / TIMELINE_DATA_INTERVAL;
           if (startIndex !== null && endIndex !== null) {
             for (var i = startIndex; i <= endIndex; i++) {
               timeInfo[i] = 1;
@@ -43,24 +47,26 @@ kindFramework.
         };
 
         var makeTimelineItem = function(inputArray) {
-          var r = $filter('orderBy')(inputArray, 'length', true);
+          var list = $filter('orderBy')(inputArray, 'length', true);
           var WARNING_COUNT = 500; //if exceed WARNING_COUNT, then, roughly check timelien's item.
           var newArray = [];
-          for (var i = 0; i < r.length; i++) {
+          for (var i = 0; i < list.length; i++) {
             if (i < WARNING_COUNT) {
-              newArray.push(r[i]);
-              markingArray(r[i].startObj.getTime() / 1000, r[i].endObj.getTime() / 1000);
+              newArray.push(list[i]);
+              markingArray(list[i].startObj.getTime() / SEC_TO_MS, 
+                          list[i].endObj.getTime() / SEC_TO_MS);
             } else {
-              var timeInfoList = getTimeInfo(r[i].startObj, r[i].endObj);
+              var timeInfoList = getTimeInfo(list[i].startObj, list[i].endObj);
               var isEmptyItem = true;
-              for (var k = 0; k < timeInfoList.length; k++) {
-                if (timeInfoList[k] === 1) {
+              for (var index = 0; index < timeInfoList.length; index++) {
+                if (timeInfoList[index] === 1) {
                   isEmptyItem = false;
                 }
               }
               if (isEmptyItem) {
-                newArray.push(r[i]);
-                markingArray(r[i].startObj.getTime() / 1000, r[i].endObj.getTime() / 1000);
+                newArray.push(list[i]);
+                markingArray(list[i].startObj.getTime() / SEC_TO_MS, 
+                            list[i].endObj.getTime() / SEC_TO_MS);
               }
             }
           }
@@ -72,7 +78,8 @@ kindFramework.
          * @name: addData
          * @param: newArray - item Array.
          */
-        this.addData = function(newArray, showSequence) {
+        this.addData = function(newArray, _showSequence) {
+          var showSequence = _showSequence;
           if (typeof showSequence === "undefined") {
             showSequence = false;
           }
@@ -81,9 +88,10 @@ kindFramework.
           if (timeInfo !== null) {
             timeInfo = null;
           }
-          timeInfo = new Array(24 * 60 * 60 / 10);
+          timeInfo = new Array(
+                        DAY_TO_HOUR * HOUR_TO_MINUTE * MINUTE_TO_SEC / TIMELINE_DATA_INTERVAL);
           // Array.protoype.fill() not supported by IE
-          var idx = 0;
+          
           for ( idx = 0; idx < timeInfo.length; idx++) {
             timeInfo[idx] = 0;
           }
@@ -102,7 +110,8 @@ kindFramework.
           if (showSequence === true && itemSet.dupEventData.length !== 0) {
             for (idx = 0; idx < itemSet.timelineData.length; idx++) {
               if (idx + 1 < itemSet.timelineData.length &&
-                itemSet.timelineData[idx + 1].startObj.getTime() - itemSet.timelineData[idx].endObj.getTime() === 1000) {
+                itemSet.timelineData[idx + 1].startObj.getTime() - 
+                itemSet.timelineData[idx].endObj.getTime() === SEC_TO_MS) {
 
                 itemSet.timelineData[idx + 1].startObj = itemSet.timelineData[idx].endObj;
                 itemSet.timelineData[idx + 1].start = itemSet.timelineData[idx].end;
@@ -157,7 +166,7 @@ kindFramework.
             endIndex = 0;
           var guess = 0;
           while (min <= max) {
-            guess = Math.floor((max + min) / 2);
+            guess = Math.floor((max + min) / HALF);
             if (targetArray[guess].startObj > start) {
               if (guess === 0 || targetArray[guess - 1].endObj < start) {
                 startIndex = guess;
@@ -167,7 +176,8 @@ kindFramework.
             } else {
               if (targetArray[guess].endObj > start) {
                 if (guess !== 0 &&
-                  targetArray[guess - 1].startObj.getTime() === targetArray[guess].startObj.getTime()) {
+                  targetArray[guess - 1].startObj.getTime() === 
+                  targetArray[guess].startObj.getTime()) {
                   max = guess - 1;
                 } else {
                   startIndex = guess;
@@ -186,7 +196,7 @@ kindFramework.
           min = 0;
           max = (newTargetArray.length - 1);
           while (min <= max) {
-            guess = Math.floor((max + min) / 2);
+            guess = Math.floor((max + min) / HALF);
             if (newTargetArray[guess].startObj >= end) {
               if (guess !== 0 &&
                 newTargetArray[guess - 1].startObj < end) {
@@ -223,7 +233,7 @@ kindFramework.
           var guess = -1;
           var checkTimePosition = function(inputStart, inputEnd) {
             var includeEnd =
-              (typeof(direction) === 'undefined' || direction === null || direction > 0) ? false : true;
+              !(typeof(direction) === 'undefined' || direction === null || direction > 0);
             if (inputStart > time) {
               return 1;
             } else if (inputStart <= time && inputEnd > time) {
@@ -239,7 +249,7 @@ kindFramework.
             }
           };
           while (min <= max) {
-            guess = Math.floor((max + min) / 2);
+            guess = Math.floor((max + min) / HALF);
             var results = checkTimePosition(targetArray[guess].startObj, targetArray[guess].endObj);
             if (results > 0) {
               max = guess - 1;
@@ -304,7 +314,7 @@ kindFramework.
             max = itemSet.timelineData.length - 1;
           var guess = -1;
           while (min <= max) {
-            guess = Math.floor((max + min) / 2);
+            guess = Math.floor((max + min) / HALF);
             if (itemSet.timelineData[guess].startObj >= start) {
               if (guess === 0 || itemSet.timelineData[guess - 1].endObj <= start) {
                 break;
@@ -314,7 +324,8 @@ kindFramework.
               min = guess + 1;
             }
           }
-          if (guess < itemSet.timelineData.length && itemSet.timelineData[guess].startObj >= start) {
+          if (guess < itemSet.timelineData.length && 
+              itemSet.timelineData[guess].startObj >= start) {
             return itemSet.timelineData[guess];
           }
           return null;
@@ -340,7 +351,9 @@ kindFramework.
           for (var index = 0; index < targetList.length; index++) {
             var target = targetList[index];
             var newTargetList = targetList.filter(checkNoDuplicate);
-            if (typeof(target.className) !== 'undefined' || target.dupId !== -1) continue;
+            if (typeof(target.className) !== 'undefined' || target.dupId !== -1) {
+              continue;
+            }
 
             var timeInfo = {
               'start': target.start,
@@ -370,7 +383,7 @@ kindFramework.
                * calcularing duplicated event's range 
                *(set to minimum value for start, set to maximum value for end)
                */
-              for (var idx = 0; idx < itemContainning.length; idx++) {
+              for (idx = 0; idx < itemContainning.length; idx++) {
                 if (itemContainning[idx].startObj < timeInfo.startObj) {
                   timeInfo.startObj = itemContainning[idx].startObj;
                   timeInfo.start = itemContainning[idx].start;
@@ -399,7 +412,7 @@ kindFramework.
                 length: timeInfo.endObj.getTime() - timeInfo.startObj.getTime(),
               };
               objectList.push(dupItem);
-              for (var idx = 0; idx < itemContainning.length; idx++) {
+              for (idx = 0; idx < itemContainning.length; idx++) {
                 var targetItem = $filter('filter')(objectList, {
                   id: itemContainning[idx].id,
                 });
@@ -411,5 +424,5 @@ kindFramework.
         };
       };
       return ItemSetModel;
-    }
+    },
   ]);
