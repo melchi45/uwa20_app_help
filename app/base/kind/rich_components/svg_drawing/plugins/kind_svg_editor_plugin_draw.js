@@ -9,7 +9,6 @@ KindSVGEditor.addPlugin('draw', function(options) {
 
   var plusImage = './base/images/plus.svg';
   var minusImage = './base/images/minus.svg';
-  var smileImage = './base/images/setup/wn5-smile.svg';
 
   var imageWidth = 25;
   var imageHeight = 33;
@@ -184,25 +183,26 @@ KindSVGEditor.addPlugin('draw', function(options) {
     return returnVal;
 
     function changeFillColor(fillColor){
-      wiseFaceDetectionCircle.style.fill = fillColor;
+      wiseFaceDetectionCircle.style.color = fillColor;
     }
 
     function add() {
-      wiseFaceDetectionCircle = elemCtrl.createImage(smileImage, 14, 14)[0];
-      wiseFaceDetectionCircle.style.fill = wiseFaceDetection.fillColor;
+      wiseFaceDetectionCircle = document.createElement("span");
+      wiseFaceDetectionCircle.className = "tui tui-wn5-smile";
+      wiseFaceDetectionCircle.style.position = "absolute";
+      changeFillColor(wiseFaceDetection.fillColor);
     }
 
     function append() {
-      groupHelper.appendChild(wiseFaceDetectionCircle);
+      document.getElementById("sketchbook").appendChild(wiseFaceDetectionCircle);
     }
 
     function remove() {
-      groupHelper.removeChild(wiseFaceDetectionCircle);
+      document.getElementById("sketchbook").removeChild(wiseFaceDetectionCircle);
     }
 
     function updateCircle(xAxis, yAxis, height) {
       var radius = height / 100;
-      var svgMargin = 2;
 
       if ("heightRatio" in wiseFaceDetection) {
         radius *= wiseFaceDetection.heightRatio;
@@ -210,10 +210,9 @@ KindSVGEditor.addPlugin('draw', function(options) {
         radius *= wiseFaceDetection.widthRatio;
       }
 
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'x', xAxis - radius - svgMargin / 1);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'y', yAxis - radius - svgMargin / 1);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'width', radius * 2 + svgMargin);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'height', radius * 2 + svgMargin);
+      wiseFaceDetectionCircle.style.top = (yAxis - radius) + "px";
+      wiseFaceDetectionCircle.style.left = (xAxis - radius) + "px";
+      wiseFaceDetectionCircle.style.fontSize = (radius * 2) + "px";
     }
   })();
 
