@@ -93,7 +93,7 @@ function KindSVGEditorFactory(svgTag) {
     },
     createText: function(txt) {
       var textTag = document.createElementNS(self.NS.SVG, 'text');
-      textTag.textContent = txt;
+      textTag.innerHTML = txt;
       textTag.setAttributeNS(null, 'draggable', false);
 
       return textTag;

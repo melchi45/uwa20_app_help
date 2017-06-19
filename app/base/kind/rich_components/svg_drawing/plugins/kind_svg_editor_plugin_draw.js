@@ -9,6 +9,7 @@ KindSVGEditor.addPlugin('draw', function(options) {
 
   var plusImage = './base/images/plus.svg';
   var minusImage = './base/images/minus.svg';
+  var smileImage = './base/images/setup/wn5-smile.svg';
 
   var imageWidth = 25;
   var imageHeight = 33;
@@ -75,9 +76,7 @@ KindSVGEditor.addPlugin('draw', function(options) {
   var notUseAutoChangeOfArrow = typeof options.notUseAutoChangeOfArrow === "undefined" ? false : options.notUseAutoChangeOfArrow;
   //For WN5 Face Detection
   /**
-  wiseFaceDetection.strokeWidth
-  wiseFaceDetection.strokeColor
-  wiseFaceDetection.fillOpacity
+  wiseFaceDetection.fillColor
   wiseFaceDetection.heightRatio
   wiseFaceDetection.widthRatio
    */
@@ -169,10 +168,7 @@ KindSVGEditor.addPlugin('draw', function(options) {
     var wiseFaceDetectionCircle = null;
 
     if (wiseFaceDetection !== false) {
-      wiseFaceDetection.strokeColor = typeof wiseFaceDetection.strokeColor === "undefined" ? '#dd2200' : wiseFaceDetection.strokeColor;
-      wiseFaceDetection.strokeWidth = typeof wiseFaceDetection.strokeWidth === "undefined" ? 2 : wiseFaceDetection.strokeWidth;
-      wiseFaceDetection.fillOpacity = typeof wiseFaceDetection.fillOpacity === "undefined" ? .5 : wiseFaceDetection.fillOpacity;
-      wiseFaceDetection.fill = typeof wiseFaceDetection.fill === "undefined" ? '#ff000' : wiseFaceDetection.fill;
+      wiseFaceDetection.fillColor = typeof wiseFaceDetection.fillColor === "undefined" ? '#dd2200' : wiseFaceDetection.fillColor;
       wiseFaceDetection.heightRatio = typeof wiseFaceDetection.heightRatio === "undefined" ? 2.2 : wiseFaceDetection.heightRatio;
       wiseFaceDetection.widthRatio = typeof wiseFaceDetection.widthRatio === "undefined" ? false : wiseFaceDetection.widthRatio;
 
@@ -180,24 +176,20 @@ KindSVGEditor.addPlugin('draw', function(options) {
       returnVal.append = append;
       returnVal.add = add;
       returnVal.remove = remove;
-      returnVal.changeStrokeColor = changeStrokeColor;
+      returnVal.changeFillColor = changeFillColor;
     } else {
       returnVal = false;
     }
 
     return returnVal;
 
-    function changeStrokeColor(strokeColor){
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'stroke', strokeColor);
+    function changeFillColor(fillColor){
+      wiseFaceDetectionCircle.style.fill = fillColor;
     }
 
     function add() {
-      wiseFaceDetectionCircle = elemCtrl.createCircle(10);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'stroke', wiseFaceDetection.strokeColor);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'stroke-width', wiseFaceDetection.strokeWidth);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'fill-opacity', wiseFaceDetection.fillOpacity);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'fill', wiseFaceDetection.fill);
-      wiseFaceDetectionCircle.style.opacity = 0.4;
+      wiseFaceDetectionCircle = elemCtrl.createImage(smileImage, 14, 14)[0];
+      wiseFaceDetectionCircle.style.fill = wiseFaceDetection.fillColor;
     }
 
     function append() {
@@ -210,6 +202,7 @@ KindSVGEditor.addPlugin('draw', function(options) {
 
     function updateCircle(xAxis, yAxis, height) {
       var radius = height / 100;
+      var svgMargin = 2;
 
       if ("heightRatio" in wiseFaceDetection) {
         radius *= wiseFaceDetection.heightRatio;
@@ -217,9 +210,10 @@ KindSVGEditor.addPlugin('draw', function(options) {
         radius *= wiseFaceDetection.widthRatio;
       }
 
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'cx', xAxis);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'cy', yAxis);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'r', radius);
+      elemCtrl.setAttr(wiseFaceDetectionCircle, 'x', xAxis - radius - svgMargin / 1);
+      elemCtrl.setAttr(wiseFaceDetectionCircle, 'y', yAxis - radius - svgMargin / 1);
+      elemCtrl.setAttr(wiseFaceDetectionCircle, 'width', radius * 2 + svgMargin);
+      elemCtrl.setAttr(wiseFaceDetectionCircle, 'height', radius * 2 + svgMargin);
     }
   })();
 
@@ -2190,7 +2184,7 @@ KindSVGEditor.addPlugin('draw', function(options) {
 
     moveTopLayer: groupHelper.moveTopLayer,
 
-    changeWFDStrokeColor: wiseFaceDetectionHelper.changeStrokeColor
+    changeWFDFillColor: wiseFaceDetectionHelper.changeFillColor
   };
 
   return drawObj;
