@@ -158,7 +158,13 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
 
     if ((menuList[menuId] === mAttr.DeviceType) || (menuList[menuId] === 'common')) {
       if (menuId === "simpleFocus") {
-        retVal = mAttr.SimpleFocus;
+        if(mAttr.PTRZModel)
+        {
+          retVal = false;
+        } else {
+          retVal = mAttr.SimpleFocus;
+        }
+
       } else if (menuId === "ptz" || menuId === "ptzInfoSetup" || menuId === "preset" || menuId === "sequence" || menuId === "ptLimit" || menuId === "autoTrack" || menuId === "autoTrackEvent") {
         if (menuId === "preset" || menuId === "sequence" || menuId === "autoTrack") { // -> page change : ptzInfoSetup 
           retVal = false;
@@ -264,7 +270,12 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           retVal = false;
         }
       } else if (menuId === "ptrzSetup") {
-        retVal = false;
+        if(mAttr.PTRZModel)
+        {
+            retVal = true;
+        } else {
+            retVal = false;
+        }
       } else if (menuId === "peoplecounting" || menuId === "statistics") {
         if (mAttr.PeopleCount) {
           retVal = true;
