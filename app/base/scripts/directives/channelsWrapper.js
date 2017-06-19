@@ -66,7 +66,9 @@ kindFramework.directive('channelsWrapper', ['$rootScope', '$timeout',
             'margin': 0.06,
           };
           if (isPhone) {
-            if (typeof(rect) === 'undefined') return;
+            if (typeof(rect) === 'undefined') {
+              return;
+            }
             var body = angular.element('body')[0];
             var bodyWidth = body.clientWidth;
             var bodyHeight = body.clientHeight;
@@ -77,15 +79,19 @@ kindFramework.directive('channelsWrapper', ['$rootScope', '$timeout',
             //info.offsetPx = (rect.top + height/2) - bodyHeight/2;
             //info.offset = info.offsetPx/bodyHeight;
           } else {
-            var streamCanvas = element.find(".kind-stream-canvas")[0];
+            //var streamCanvas = element.find(".kind-stream-canvas")[0];
             height = width * (9 / 16);
             style.width = (width < 320 && width !== 0) ? 320 + "px" : 'initial';
           }
           info.height = (height > 10) ? height : 'initial';
-          if (scope.isShow === 'show') scope.channelPositionInfoCallback({
-            'info': info
-          });
-          if (height !== 0) style.height = info.height + "px";
+          if (scope.isShow === 'show') {
+            scope.channelPositionInfoCallback({
+              'info': info
+            });
+          }
+          if (height !== 0) {
+            style.height = info.height + "px";
+          }
         };
 
         /******************************

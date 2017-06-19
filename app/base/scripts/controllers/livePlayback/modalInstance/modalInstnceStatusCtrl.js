@@ -1,6 +1,7 @@
 'use strict';
 
-kindFramework.controller('modalInstnceStatusCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'data',
+kindFramework.controller('modalInstnceStatusCtrl', ['$scope', '$rootScope', '$uibModalInstance', 
+  'data',
   function($scope, $rootScope, $uibModalInstance, data) {
     $scope.profileInfoList = data.profileInfoList;
     $scope.userList = data.userList;
