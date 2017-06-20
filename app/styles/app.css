@@ -2715,7 +2715,7 @@ body.modal-open {
 }
 .wn5-graph-input {
   width: 51px;
-  margin-top: -15px;
+  margin-top: -1px;
 }
 .cm-slider-label {
   position: absolute;
@@ -2944,7 +2944,7 @@ body.modal-open {
   color: #000 !important;
 }
 .cm-table-field tr td {
-  background-color: #ffffff !important;
+  background-color: #fff !important;
   color: #4c4c4c !important;
 }
 .cm-table-field tr.wn5-setup-table-active td {
@@ -4420,7 +4420,7 @@ fieldset .ui-slider.ui-slider-vertical .ui-state-default.ui-state-active {
 }
 .wn5-setup-wrapper .ui-slider:not(.ui-slider-vertical) .ui-state-default,
 fieldset .ui-slider:not(.ui-slider-vertical) .ui-state-default {
-  top: 15px !important;
+  top: 13px !important;
   margin-left: -6px;
 }
 .wn5-setup-wrapper .ui-slider:not(.ui-slider-vertical) .ui-state-default.ui-state-hover,
