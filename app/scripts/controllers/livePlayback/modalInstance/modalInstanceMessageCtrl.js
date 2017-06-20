@@ -1,11 +1,14 @@
 'use strict';
 
-kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$sce', 'data', '$timeout', 'UniversialManagerService', 'CAMERA_STATUS', '$translate',
-  function($scope, $rootScope, $uibModalInstance, $sce, data, $timeout, UniversialManagerService, CAMERA_STATUS, $translate) {
-
+kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope',
+  '$uibModalInstance', '$sce', 'data', '$timeout', 'UniversialManagerService',
+  'CAMERA_STATUS', '$translate',
+  function ($scope, $rootScope, $uibModalInstance, $sce, data, $timeout,
+    UniversialManagerService, CAMERA_STATUS, $translate) {
+    var TIMEOUT = 2000;
     $scope.data = data;
 
-    if (typeof(data.isHtml) === 'undefined') {
+    if (typeof (data.isHtml) === 'undefined') {
       $scope.isHtml = false;
     } else {
       $scope.isHtml = true;
@@ -17,64 +20,64 @@ kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope', '$u
       $scope.modalMessagePlaybackflag = false;
     }
 
-    $scope.deliberatelyTrustDangerousSnippet = function() {
+    $scope.deliberatelyTrustDangerousSnippet = function () {
       return $sce.trustAsHtml($scope.data.message);
     };
 
-    $scope.ok = function() {
+    $scope.ok = function () {
       $uibModalInstance.close();
     };
 
-    $scope.cancel = function() {
+    $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.checkPlayback = function() {
+    $scope.checkPlayback = function () {
       if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
         return "modal-bottom-bar-timeline";
       }
     };
 
-    $rootScope.$saveOn('allpopupclose', function(event) {
+    $rootScope.$saveOn('allpopupclose', function (event) {
       $uibModalInstance.dismiss('cancel');
     }, $scope);
 
     /**
-     * $uibModalInstanceê°€ ë¹„ì •ìƒì ìœ¼ë¡œ 2ê°œì´ìƒ ì—´ë¦´ ë•Œ
-     * $uibModalInstance.close() ê¸°ëŠ¥ì´ ì •ìƒì ìœ¼ë¡œ ì‹¤í–‰ë˜ì§€ ì•ŠëŠ”ë‹¤.
-     * ê·¸ë˜ì„œ event.targetì„ í†µí•´ ëª¨ë‹¬ì„ ë‹«ì•„ ì¤€ë‹¤.
+     * $uibModalInstance°¡ ºñÁ¤»óÀûÀ¸·Î 2°³ÀÌ»ó ¿­¸± ¶§
+     * $uibModalInstance.close() ±â´ÉÀÌ Á¤»óÀûÀ¸·Î ½ÇÇàµÇÁö ¾Ê´Â´Ù.
+     * ±×·¡¼­ event.targetÀ» ÅëÇØ ¸ğ´ŞÀ» ´İ¾Æ ÁØ´Ù.
      */
     function closeModal(event) {
       var target = $(event.target);
       if (target.hasClass('tui-loading-wrapper')) {
-        target
-          .parent()
-          .parent()
-          .parent()
-          .remove();
+        target.
+        parent().
+        parent().
+        parent().
+        remove();
       } else if (target.hasClass('tui-close')) {
-        target
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .remove();
+        target.
+        parent().
+        parent().
+        parent().
+        parent().
+        parent().
+        remove();
       }
 
       $('.modal-backdrop').remove();
       $uibModalInstance.close();
-    };
+    }
 
     /**
-     * buttonCountê°€ 2ì¼ ë•ŒëŠ” Cancel ë²„íŠ¼ì´ ì¡´ì¬í•´ì•¼ í•˜ê¸° ë•Œë¬¸ì—
-     * ì˜ˆì™¸ ì²˜ë¦¬ë¥¼ í•œë‹¤.
-     * Wisenet5ì—ì„œëŠ” ê¸°ì¡´ Messageì˜ ìŠ¤íƒ€ì¼ì„ ì‚¬ìš©í•˜ì§€ ì•Šê³ ,
-     * ìƒˆë¡œìš´ ë””ìì¸ì„ ì‚¬ìš©í•˜ê¸° ë•Œë¬¸ì—
-     * ê¸°ì¡´ modalì˜ ìŠ¤íƒ€ì¼ì„ Reset í•´ì¤€ë‹¤.
+     * buttonCount°¡ 2ÀÏ ¶§´Â Cancel ¹öÆ°ÀÌ Á¸ÀçÇØ¾ß ÇÏ±â ¶§¹®¿¡
+     * ¿¹¿Ü Ã³¸®¸¦ ÇÑ´Ù.
+     * Wisenet5¿¡¼­´Â ±âÁ¸ MessageÀÇ ½ºÅ¸ÀÏÀ» »ç¿ëÇÏÁö ¾Ê°í,
+     * »õ·Î¿î µğÀÚÀÎÀ» »ç¿ëÇÏ±â ¶§¹®¿¡
+     * ±âÁ¸ modalÀÇ ½ºÅ¸ÀÏÀ» Reset ÇØÁØ´Ù.
      */
     if (data.buttonCount < 2) {
-      $uibModalInstance.rendered.then(function() {
+      $uibModalInstance.rendered.then(function () {
         var templateHtml = [
           '<div class="tui-loading-wrapper">',
           '<div class="tui-loading">',
@@ -85,37 +88,39 @@ kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope', '$u
         ];
         var tuiLoadingWrapper = $(templateHtml.join(''));
         var tuiLoadingCancel = $('<span class="tui tui-close"></span>');
-        var message = $scope.isHtml ? deliberatelyTrustDangerousSnippet() : $translate.instant(data.message);
+        var message = $scope.isHtml ? 
+                    $scope.deliberatelyTrustDangerousSnippet() : 
+                    $translate.instant(data.message);
 
         if (data.buttonCount === 1) {
           tuiLoadingCancel.on("click", closeModal);
-          tuiLoadingWrapper.on("click", function(event) {
+          tuiLoadingWrapper.on("click", function (event) {
             if ($(event.target).hasClass('tui-loading-wrapper')) {
               closeModal(event);
             }
           });
 
-          tuiLoadingWrapper
-            .find(".tui-loading")
-            .append(tuiLoadingCancel);
+          tuiLoadingWrapper.
+            find(".tui-loading").
+            append(tuiLoadingCancel);
         }
 
-        tuiLoadingWrapper
-          .find(".tui-loading-message")
-          .html(message);
+        tuiLoadingWrapper.
+          find(".tui-loading-message").
+          html(message);
 
         $('.modal-content > div').remove();
         $('.modal-content').append(tuiLoadingWrapper);
 
         $(".modal-dialog, .modal-content").
-          addClass('modal-message');
+        addClass('modal-message');
 
         if (data.buttonCount <= 0) {
           tuiLoadingWrapper.find(".tui.tui-ch-live-info").remove();
 
-          $timeout(function() {
+          $timeout(function () {
             $uibModalInstance.close();
-          }, 2000);
+          }, TIMEOUT);
         }
       });
     }

@@ -1,6 +1,6 @@
 /* global CryptoJS */
-kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q, SessionOfUserManager, 
-  ModalManagerService, $timeout, SunapiConverter) {
+kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q, 
+  SessionOfUserManager, ModalManagerService, $timeout, SunapiConverter) {
   'use strict';
 
   var digestInfo = null;
@@ -34,7 +34,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
       url += jsonToText(jsonData);
     }
 
-    return ajax_async("POST", url, SuccessFn, FailFn, $scope, fileData, specialHeaders);
+    return ajaxAsync("POST", url, SuccessFn, FailFn, $scope, fileData, specialHeaders);
   };
 
   sunapiClient.get = function (_url, jsonData, SuccessFn, FailFn, $scope, isAsyncCall, isText) {
@@ -52,9 +52,9 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
     }
 
     if (url.indexOf("configbackup") !== -1 || isAsyncCall === true) {
-      return ajax_async("GET", url, SuccessFn, FailFn, $scope, '', '', isText);
+      return ajaxAsync("GET", url, SuccessFn, FailFn, $scope, '', '', isText);
     } else {
-      return ajax_sync("GET", url, SuccessFn, FailFn, isText);
+      return ajaxSync("GET", url, SuccessFn, FailFn, isText);
     }
   };
 
@@ -548,21 +548,33 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
     var responseValue = null;
     var digestAuthHeader = null;
     if (digestCache.scheme.toLowerCase() === 'digest') {
-      digestCache.nc = digestCache.nc + 1;
+      digestCache.nc += 1;
       digestCache.cnonce = generateCnonce();
 
-      responseValue = formulateResponse(usrName, passWord, url, digestCache.realm, method.toUpperCase(), digestCache.nonce, digestCache.nc, digestCache.cnonce, digestCache.qop);
+      responseValue = formulateResponse(usrName, passWord, url, digestCache.realm, 
+                                        method.toUpperCase(), digestCache.nonce, digestCache.nc, 
+                                        digestCache.cnonce, digestCache.qop);
 
-      digestAuthHeader = digestCache.scheme + ' ' + 'username="' + usrName + '", ' + 'realm="' + digestCache.realm + '", ' + 'nonce="' + digestCache.nonce + '", ' + 'uri="' + url + '", ' + 'cnonce="' + digestCache.cnonce + '" ' + 'nc=' + decimalToHex(digestCache.nc, 8) + ', ' + 'qop=' + digestCache.qop + ', ' + 'response="' + responseValue + '"';
+      digestAuthHeader = digestCache.scheme + ' ' + 'username="' + usrName + '", ' + 
+                        'realm="' + digestCache.realm + '", ' + 'nonce="' + digestCache.nonce + 
+                        '", ' + 'uri="' + url + '", ' + 'cnonce="' + digestCache.cnonce + '" ' + 
+                        'nc=' + decimalToHex(digestCache.nc, 8) + ', ' + 'qop=' + digestCache.qop + 
+                        ', ' + 'response="' + responseValue + '"';
 
       xhr.setRequestHeader("Authorization", digestAuthHeader);
     } else if (digestCache.scheme.toLowerCase() === 'xdigest') {
-      digestCache.nc = digestCache.nc + 1;
+      digestCache.nc += 1;
       digestCache.cnonce = generateCnonce();
 
-      responseValue = formulateResponse(usrName, passWord, url, digestCache.realm, method.toUpperCase(), digestCache.nonce, digestCache.nc, digestCache.cnonce, digestCache.qop);
+      responseValue = formulateResponse(usrName, passWord, url, digestCache.realm, 
+                                        method.toUpperCase(), digestCache.nonce, digestCache.nc, 
+                                        digestCache.cnonce, digestCache.qop);
 
-      digestAuthHeader = digestCache.scheme + ' ' + 'username="' + usrName + '", ' + 'realm="' + digestCache.realm + '", ' + 'nonce="' + digestCache.nonce + '", ' + 'uri="' + url + '", ' + 'cnonce="' + digestCache.cnonce + '" ' + 'nc=' + decimalToHex(digestCache.nc, 8) + ', ' + 'qop=' + digestCache.qop + ', ' + 'response="' + responseValue + '"';
+      digestAuthHeader = digestCache.scheme + ' ' + 'username="' + usrName + '", ' + 
+                          'realm="' + digestCache.realm + '", ' + 'nonce="' + digestCache.nonce + 
+                          '", ' + 'uri="' + url + '", ' + 'cnonce="' + digestCache.cnonce + '" ' + 
+                          'nc=' + decimalToHex(digestCache.nc, 8) + ', ' + 'qop=' + digestCache.qop + 
+                          ', ' + 'response="' + responseValue + '"';
 
       xhr.setRequestHeader("Authorization", digestAuthHeader);
     } else if (digestCache.scheme.toLowerCase() === 'basic') {
@@ -582,7 +594,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
       var resp = '';
       try {
         resp = JSON.parse(xhr.response);
-      } catch (e) {
+      } catch (err) {
         failFn("Error Parsing response");
         return;
       }
@@ -713,7 +725,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
     }
   }
   var syncXhr = null;
-  var ajax_sync = function (method, url, successFn, failFn, isText) {
+  var ajaxSync = function (method, url, successFn, failFn, isText) {
     if (RESTCLIENT_CONFIG.serverType === 'grunt') {
       if (SessionOfUserManager.isLoggedin() === true) {
         usrName = SessionOfUserManager.getUsername();
@@ -769,7 +781,8 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
     }
   };
 
-  var ajax_async = function (method, url, successFn, failFn, $scope, fileData, specialHeaders, isText) {
+  var ajaxAsync = function (method, url, successFn, failFn, $scope, 
+                            fileData, specialHeaders, isText) {
     var deferred = $q.defer();
     if (RESTCLIENT_CONFIG.serverType === 'grunt') {
       if (SessionOfUserManager.isLoggedin() === true) {
@@ -789,7 +802,7 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
 
     if (typeof specialHeaders !== 'undefined') {
       var hdrindex = 0;
-      for (hdrindex = 0; hdrindex < specialHeaders.length; hdrindex = hdrindex + 1) {
+      for (hdrindex = 0; hdrindex < specialHeaders.length; hdrindex += 1) {
         xhr.setRequestHeader(specialHeaders[hdrindex].Type, specialHeaders[hdrindex].Header);
       }
     }
@@ -885,10 +898,12 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
     return token;
   };
 
-  var formulateResponse = function (username, password, url, realm, method, nonce, nc, cnonce, qop) {
+  var formulateResponse = function (username, password, url, realm, 
+                                    method, nonce, nc, cnonce, qop) {
     var HA1 = CryptoJS.MD5(username + ':' + realm + ':' + password).toString();
     var HA2 = CryptoJS.MD5(method + ':' + url).toString();
-    var response = CryptoJS.MD5(HA1 + ':' + nonce + ':' + decimalToHex(nc, 8) + ':' + cnonce + ':' + qop + ':' + HA2).toString();
+    var response = CryptoJS.MD5(HA1 + ':' + nonce + ':' + decimalToHex(nc, 8) + ':' + 
+                                cnonce + ':' + qop + ':' + HA2).toString();
 
     return response;
   };
@@ -947,8 +962,8 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
     return returnValue;
   };
 
-  var decimalToHex = function (d, _padding) {
-    var hex = Number(d).toString(16);
+  var decimalToHex = function (dec, _padding) {
+    var hex = Number(dec).toString(16);
     var padding = typeof (_padding) === 'undefined' || _padding === null ? 2 : _padding;
 
     while (hex.length < padding) {
@@ -986,8 +1001,8 @@ kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q
       if (debugMode === true) {
         console.info("[SUNAPI][" + msgType + "]", url);
       }
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
   };
 

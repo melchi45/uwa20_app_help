@@ -1,8 +1,8 @@
 /*global clearTimeout, setTimeout*/
 kindFramework.directive('fullCamera', ['$q', 'DisplayService',
   'CAMERA_TYPE', 'PLAYBACK_TYPE', 'PTZ_TYPE', 'UniversialManagerService',
-  'CAMERA_STATUS', '$rootScope', '$timeout', 'PlayDataModel', 'PTZContorlService', 'kindStreamInterface',
-  'BrowserService',
+  'CAMERA_STATUS', '$rootScope', '$timeout', 'PlayDataModel', 'PTZContorlService', 
+  'kindStreamInterface', 'BrowserService',
   function($q, DisplayService, CAMERA_TYPE, PLAYBACK_TYPE, PTZ_TYPE,
     UniversialManagerService, CAMERA_STATUS, $rootScope, $timeout,
     PlayDataModel, PTZContorlService, kindStreamInterface, BrowserService) {
