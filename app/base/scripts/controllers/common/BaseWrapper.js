@@ -161,8 +161,7 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
 
     if ((menuList[menuId] === mAttr.DeviceType) || (menuList[menuId] === 'common')) {
       if (menuId === "simpleFocus") {
-        if(mAttr.PTRZModel)
-        {
+        if (mAttr.PTRZModel) {
           retVal = false;
         } else {
           retVal = mAttr.SimpleFocus;
@@ -274,11 +273,10 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           retVal = false;
         }
       } else if (menuId === "ptrzSetup") {
-        if(mAttr.PTRZModel)
-        {
-            retVal = true;
+        if (mAttr.PTRZModel) {
+          retVal = true;
         } else {
-            retVal = false;
+          retVal = false;
         }
       } else if (menuId === "peoplecounting" || menuId === "statistics") {
         if (mAttr.PeopleCount) {
