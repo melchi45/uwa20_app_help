@@ -4,13 +4,16 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
   var self = this;
   var unsettransparentbackground = function() {
     console.log("WrapperCtrl::unsettransparentbackground");
-    if (typeof $('.body').css('background-color') !== "undefined" && $('body').css('background-color').indexOf('0, 0, 0, 0') !== -1) {
+    if (typeof $('.body').css('background-color') !== "undefined" && 
+        $('body').css('background-color').indexOf('0, 0, 0, 0') !== -1) {
       $('body').css('background-color', 'rgb(255,255,255)');
     }
-    if (typeof $('.main').css('background-color') !== "undefined" && $('.main').css('background-color').indexOf('0, 0, 0, 0') !== -1) {
+    if (typeof $('.main').css('background-color') !== "undefined" && 
+        $('.main').css('background-color').indexOf('0, 0, 0, 0') !== -1) {
       $('.main').css('background-color', 'rgb(255,255,255)');
     }
-    if (typeof $('html').css('background-color') !== "undefined" && $('.main').css('background-color').indexOf('0, 0, 0, 0') !== -1) {
+    if (typeof $('html').css('background-color') !== "undefined" && 
+        $('.main').css('background-color').indexOf('0, 0, 0, 0') !== -1) {
       $('.html').css('background-color', 'rgb(255,255,255)');
     }
   };
@@ -158,8 +161,15 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
 
     if ((menuList[menuId] === mAttr.DeviceType) || (menuList[menuId] === 'common')) {
       if (menuId === "simpleFocus") {
-        retVal = mAttr.SimpleFocus;
-      } else if (menuId === "ptz" || menuId === "ptzInfoSetup" || menuId === "preset" || menuId === "sequence" || menuId === "ptLimit" || menuId === "autoTrack" || menuId === "autoTrackEvent") {
+        if(mAttr.PTRZModel)
+        {
+          retVal = false;
+        } else {
+          retVal = mAttr.SimpleFocus;
+        }
+
+      } else if (menuId === "ptz" || menuId === "ptzInfoSetup" || menuId === "preset" || menuId === "sequence" || 
+          menuId === "ptLimit" || menuId === "autoTrack" || menuId === "autoTrackEvent") {
         if (menuId === "preset" || menuId === "sequence" || menuId === "autoTrack") { // -> page change : ptzInfoSetup 
           retVal = false;
         } else {
@@ -264,7 +274,12 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           retVal = false;
         }
       } else if (menuId === "ptrzSetup") {
-        retVal = false;
+        if(mAttr.PTRZModel)
+        {
+            retVal = true;
+        } else {
+            retVal = false;
+        }
       } else if (menuId === "peoplecounting" || menuId === "statistics") {
         if (mAttr.PeopleCount) {
           retVal = true;
@@ -284,7 +299,8 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
           retVal = false;
         }
       } else if (menuId === "snmp") {
-        if (mAttr.SNMPVersion1 || mAttr.SNMPVersion2 || mAttr.SNMPVersion3 || mAttr.SNMPTrapEnable) {
+        if (mAttr.SNMPVersion1 || mAttr.SNMPVersion2 || mAttr.SNMPVersion3 || 
+            mAttr.SNMPTrapEnable) {
           retVal = true;
         } else {
           retVal = false;

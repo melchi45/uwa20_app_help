@@ -1,5 +1,6 @@
-kindFramework
-  .service('BrowserService', ['$window', 'PluginModel', function($window, PluginModel) {
+/*global ActiveXObject */
+kindFramework.
+  service('BrowserService', ['$window', 'PluginModel', function($window, PluginModel) {
     'use strict';
     var BrowserServiceObj = (function() {
       // private area
@@ -15,12 +16,12 @@ kindFramework
         MACINTOSH: 'MACINTOSH'
       };
 
-      var ClientOS;
-      var ClientBrowser;
-      var PluginInstallationCheck;
-      var PlugInVersionValidation;
-      var ClientBrowserSupportPlugIn;
-      var PluginInstallerPath;
+      var ClientOS = null;
+      var ClientBrowser= null;
+      var PluginInstallationCheck= null;
+      var PlugInVersionValidation= null;
+      var ClientBrowserSupportPlugIn= null;
+      var PluginInstallerPath= null;
 
       function getOS() {
         var UserAgent = $window.navigator.userAgent;
@@ -66,7 +67,7 @@ kindFramework
             console.log("ActiveX isn't Detected");
             return false;
           }
-        } catch (e) {
+        } catch (err) {
           console.log("ActiveX isn't Detected");
           return false;
         }
@@ -86,8 +87,10 @@ kindFramework
       }
 
       function PlugInVersionCheck(_channelPlayerElement) {
-        if (PlugInVersionValidation === undefined) {
-          if (arguments.length !== 1) return new Error("PlugInVersionCheck :: the length of argument isn't one");
+        if (PlugInVersionValidation === null) {
+          if (arguments.length !== 1) {
+            return new Error("PlugInVersionCheck :: the length of argument isn't one");
+          }
 
           switch (ClientBrowser) {
             case BROWSER_TYPES.IE:

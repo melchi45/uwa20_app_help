@@ -11,7 +11,6 @@ kindFramework.controller('PCSetupCtrl',
     $translate,
 
     PcSetupModel,
-    PCRectanglePainter,
     pcModalService,
     pcSetupService,
 

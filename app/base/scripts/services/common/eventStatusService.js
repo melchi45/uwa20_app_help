@@ -1,17 +1,18 @@
 /*global clearTimeout, setTimeout*/
-kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $timeout, $location, SessionOfUserManager) {
+kindFramework.service('EventStatusService', function (SunapiClient, Attributes, $timeout, $location, SessionOfUserManager) {
   "use strict";
   var isMonitoring = false;
   var stopMonotoring = false;
-  var promiseBorder, promiseUpdate;
-  var ACTIVATED_LIVE_EVENT_TIME = 2000;
+  var promiseBorder = null,
+    promiseUpdate = null;
+  //var ACTIVATED_LIVE_EVENT_TIME = 2000;
   var mSubscriptionKey = "";
 
-  this.stopMonotoringEvents = function() {
+  this.stopMonotoringEvents = function () {
     stopEventService();
   };
 
-  this.startMonitoringEvents = function(element) {
+  this.startMonitoringEvents = function (element) {
     if (isMonitoring === true) {
       return;
     }
@@ -21,7 +22,7 @@ kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $
       isMonitoring = true;
       stopMonotoring = false;
 
-      var kindStream_Element = element;
+      //var kindStream_Element = element;
       var mAttr = Attributes.get();
 
       (function update() {
@@ -30,89 +31,69 @@ kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $
         if (!stopMonotoring) {
           $timeout.cancel(promiseUpdate);
 
-          promiseUpdate = $timeout(function() {
+          promiseUpdate = $timeout(function () {
             for (var i = 0; i < newEvents.EventCount; i++) {
               console.log("TimeStamp : ", newEvents.EventArray[i].Timestamp);
 
-              if (typeof newEvents.EventArray[i].ChannelEvent !== 'undefined') //ChannelEvents
-              {
+              if (typeof newEvents.EventArray[i].ChannelEvent !== 'undefined') { //ChannelEvents
                 var ChannelEvent = newEvents.EventArray[i].ChannelEvent[0];
                 var ChannelNumber = newEvents.EventArray[i].ChannelEvent[0].Channel;
 
-                if (ChannelEvent.MotionDetection) // 1. MotionDetection
-                {
+                if (ChannelEvent.MotionDetection) {// 1. MotionDetection
                   console.log("MotionDetection at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (ChannelEvent.FaceDetection) // 2.FaceDetection
-                {
+                } else if (ChannelEvent.FaceDetection) {// 2.FaceDetection
                   console.log("FaceDetection at CH:", ChannelNumber);
                   // paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (ChannelEvent.Videoloss) // 3.Videoloss
-                {
+                } else if (ChannelEvent.Videoloss) {// 3.Videoloss
                   console.log("Videoloss at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (ChannelEvent.Tampering) // 4.Tampering
-                {
+                } else if (ChannelEvent.Tampering) {// 4.Tampering
                   console.log("Tampering at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (ChannelEvent.AudioDetection) // 5.AudioDetection
-                {
+                } else if (ChannelEvent.AudioDetection) {// 5.AudioDetection
                   console.log("AudioDetection at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (typeof ChannelEvent.VideoAnalytics !== 'undefined') // 6.VideoAnalytics
-                {
-                  if (ChannelEvent.VideoAnalytics.Appearing) // 6.1 Appearing
-                  {
+                } else if (typeof ChannelEvent.VideoAnalytics !== 'undefined') { // 6.VideoAnalytics
+                  if (ChannelEvent.VideoAnalytics.Appearing) { // 6.1 Appearing
                     console.log("VideoAnalytics.Appearing at CH:", ChannelNumber);
                     //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                  } else if (ChannelEvent.VideoAnalytics.Disappering) // 6.2 Disappering
-                  {
+                  } else if (ChannelEvent.VideoAnalytics.Disappering) { // 6.2 Disappering
                     console.log("VideoAnalytics.Disappering at CH:", ChannelNumber);
                     //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                  } else if (ChannelEvent.VideoAnalytics.Entering) // 6.3 Entering
-                  {
+                  } else if (ChannelEvent.VideoAnalytics.Entering) { // 6.3 Entering                  
                     console.log("VideoAnalytics.Entering at CH:", ChannelNumber);
                     //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                  } else if (ChannelEvent.VideoAnalytics.Exiting) // 6.4 Exiting
-                  {
+                  } else if (ChannelEvent.VideoAnalytics.Exiting) { // 6.4 Exiting                  
                     console.log("VideoAnalytics.Exiting at CH:", ChannelNumber);
                     //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                  } else if (ChannelEvent.VideoAnalytics.Passing) // 6.5 Passing
-                  {
+                  } else if (ChannelEvent.VideoAnalytics.Passing) { // 6.5 Passing
                     console.log("VideoAnalytics.Passing at CH:", ChannelNumber);
                     //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
                   }
-                } else if (ChannelEvent.NetworkAlarmInput) // 7.NetworkAlarmInput
-                {
+                } else if (ChannelEvent.NetworkAlarmInput) { // 7.NetworkAlarmInput
                   console.log("NetworkAlarmInput at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (ChannelEvent.Tracking) // 8.Tracking
-                {
+                } else if (ChannelEvent.Tracking) { // 8.Tracking
                   console.log("Tracking at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (ChannelEvent.RecordingStatus) // 9.RecordingStatus
-                {
+                } else if (ChannelEvent.RecordingStatus) { // 9.RecordingStatus
                   console.log("RecordingStatus at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (ChannelEvent.PriorityRecordingStatus) // 10.PriorityRecordingStatus
-                {
+                } else if (ChannelEvent.PriorityRecordingStatus) { // 10.PriorityRecordingStatus
                   console.log("PriorityRecordingStatus at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (ChannelEvent.PTZMotion) // 11.PTZMotion
-                {
+                } else if (ChannelEvent.PTZMotion) { // 11.PTZMotion
                   console.log("PTZMotion at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (ChannelEvent.UserInput) // 12.UserInput
-                {
+                } else if (ChannelEvent.UserInput) { // 12.UserInput
                   console.log("UserInput at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
-                } else if (ChannelEvent.NetworkCameraConnect) // 13.NetworkCameraConnect
-                {
+                } else if (ChannelEvent.NetworkCameraConnect) { // 13.NetworkCameraConnect
                   console.log("NetworkCameraConnect at CH:", ChannelNumber);
                   //paintBorder(kindStream_Element, ACTIVATED_LIVE_EVENT_TIME, true);
                 }
-              } else if (typeof newEvents.EventArray[i].SystemEvent !== 'undefined') // System Events
-              {
+              } else if (typeof newEvents.EventArray[i].SystemEvent !== 'undefined') { // System Events
                 var SystemEvent = newEvents.EventArray[i].SystemEvent;
 
                 if (SystemEvent.CPUFanError) {
@@ -148,8 +129,7 @@ kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $
                   alert("FW Update");
                   logoutEventSession();
                 }
-              } else if (typeof newEvents.EventArray[i].AlarmInput !== 'undefined') // AlarmInput
-              {
+              } else if (typeof newEvents.EventArray[i].AlarmInput !== 'undefined') { // AlarmInput
                 var AlarmInputEvent = newEvents.EventArray[i].AlarmInput;
 
                 for (var ai = 1; ai <= mAttr.MaxAlarmInput; ai++) {
@@ -157,8 +137,7 @@ kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $
                     console.log("AlarmInput : ", ai);
                   }
                 }
-              } else if (typeof newEvents.EventArray[i].AlarmOutput !== 'undefined') // AlarmOutput
-              {
+              } else if (typeof newEvents.EventArray[i].AlarmOutput !== 'undefined') { // AlarmOutput
                 var AlarmOutputEvent = newEvents.EventArray[i].AlarmOutput;
 
                 for (var ao = 1; ao <= mAttr.MaxAlarmOutput; ao++) {
@@ -189,10 +168,10 @@ kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $
     var getData = {};
 
     SunapiClient.get('/stw-cgi/eventstatus.cgi?msubmenu=subscription&action=add', getData,
-      function(response) {
+      function (response) {
         mSubscriptionKey = angular.copy(response.data.SubscriptionKey);
       },
-      function(errorData) {
+      function (errorData) {
         alert("Event Subscription Fail");
         logoutEventSession();
       });
@@ -206,10 +185,10 @@ kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $
     getData.SubscriptionKey = mSubscriptionKey;
 
     SunapiClient.get('/stw-cgi/eventstatus.cgi?msubmenu=eventstatus&action=view', getData,
-      function(response) {
+      function (response) {
         newEvents = angular.copy(response.data);
       },
-      function(errorData) {
+      function (errorData) {
         console.log(errorData);
         logoutEventSession();
       });
@@ -223,10 +202,10 @@ kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $
     getData.SubscriptionKey = mSubscriptionKey;
 
     SunapiClient.get('/stw-cgi/eventstatus.cgi?msubmenu=subscription&action=remove', getData,
-      function(response) {
+      function (response) {
 
       },
-      function(errorData) {
+      function (errorData) {
         console.log(errorData);
       });
   }
@@ -237,7 +216,7 @@ kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $
     Attributes.reset();
     $location.path('/login');
   }
-
+/*
   function paintBorder(element, times, isOn) {
     if (isOn === true) {
       element.find('div').css({
@@ -252,11 +231,11 @@ kindFramework.service('EventStatusService', function(SunapiClient, Attributes, $
     } else if (isOn === false) {
       clearTimeout(promiseBorder);
 
-      promiseBorder = setTimeout(function() {
+      promiseBorder = setTimeout(function () {
         element.find('div').removeAttr("style");
       }, times);
     }
   }
-
+*/
 
 });

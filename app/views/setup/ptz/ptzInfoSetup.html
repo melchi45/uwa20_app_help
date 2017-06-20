@@ -4,8 +4,8 @@
     </wn5-setup-main-title>
     <hr class="wn5-setup-hr">
 
-    <div class="wn5-setup-tab" style="padding-bottom: 100px;">
-        <ul class="wn5-setup-tab-list use-margin-top">
+    <div class="wn5-setup-tab cm-tabs-field" style="padding-bottom: 100px;">
+        <ul class="wn5-setup-tab-list cm-tabs-list use-margin-top">
             <li
                 class="wn5-setup-tab-item"
                 ng-repeat="tab in tabs" style="width : 16%;">
@@ -20,7 +20,7 @@
             </li>
         </ul>
         <fieldset 
-            class="wn5-setup-tab-content wn5-setup-tab-content-use-padding preset-setup-fieldset">
+            class="wn5-setup-tab-content cm-tabs-content wn5-setup-tab-content-use-padding preset-setup-fieldset">
             <div class="wn5-setup-section" style="margin-top: 10px;">
                 <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'" videoinfo='videoinfo' style="margin-bottom: 10px;"></sketchbook>
                 
