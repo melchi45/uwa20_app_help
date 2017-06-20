@@ -19,9 +19,9 @@ kindFramework.factory('sketchbookService', function() {
         this.sketchManager.changeRatio(ratio);
       }
     },
-    changeWFDStrokeColor: function(strokeColor) {
+    changeWFDFillColor: function(fillColor) {
       if (typeof this.sketchManager !== "undefined") {
-        this.sketchManager.changeWFDStrokeColor(strokeColor);
+        this.sketchManager.changeWFDFillColor(fillColor);
       }
     },
     setEnableForSVG: function(index, enableOption) {
@@ -80,18 +80,27 @@ kindFramework.factory('sketchbookService', function() {
     getConvertedVideoHeight: function(maxWidth, maxHeight) {
       var ratio = (maxWidth / maxHeight).toFixed(1);
       var convertedHeight = 0;
+      var RATIO_FACTORY = {
+        R4x3: 1.3,
+        R16x9: 1.8,
+        R4096x2160: 1.9,
+        R2592x1520: 1.7,
+        R1x1: 1,
+        R21x9: 2.3
+      };
+
       ratio = parseFloat(ratio);
-      if (ratio === 1.3) { //4:3
+      if (ratio === RATIO_FACTORY.R4x3) { //4:3
         convertedHeight = 480;
-      } else if (ratio === 1.8) { //16:9
+      } else if (ratio === RATIO_FACTORY.R16x9) { //16:9
         convertedHeight = 360;
-      } else if (ratio === 1.9) { //4096x2160
+      } else if (ratio === RATIO_FACTORY.R4096x2160) { //4096x2160
         convertedHeight = 337;
-      } else if (ratio === 1.7) { //2592x1520
+      } else if (ratio === RATIO_FACTORY.R2592x1520) { //2592x1520
         convertedHeight = 376;
-      } else if (ratio === 1) { //1:1
+      } else if (ratio === RATIO_FACTORY.R1x1) { //1:1
         convertedHeight = 640;
-      } else if (ratio === 2.3) { //21:9
+      } else if (ratio === RATIO_FACTORY.R21x9) { //21:9
         convertedHeight = 278;
       }
       return convertedHeight;

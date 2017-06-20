@@ -1,13 +1,13 @@
 "use strict";
 
-kindFramework
-  .service('LocalStorageService', ['$q', 'LoggingService', function($q, LoggingService) {
-    var localStorage = (typeof window.localStorage === 'undefined') ? undefined : window.localStorage;
+kindFramework.
+  service('LocalStorageService', ['$q', 'LoggingService', function($q, LoggingService) {
+    var localStorage = (typeof window.localStorage === 'undefined') ? null : window.localStorage;
     var deferred = $q.defer();
     var logger = LoggingService.getInstance('LocalStorageService');
 
     this.setItem = function(key, item) { //store profile into local storage
-      if (localStorage !== undefined) {
+      if (localStorage !== null) {
         try {
           localStorage.setItem(key, JSON.stringify(item));
         } catch (err) {
@@ -19,7 +19,7 @@ kindFramework
       }
     };
     this.getItem = function(key) { //retrieve profile from local storage
-      if (localStorage !== undefined) {
+      if (localStorage !== null) {
         var profile = localStorage.getItem(key);
         if (profile !== null) {
           deferred.resolve(JSON.parse(profile));
@@ -32,7 +32,7 @@ kindFramework
       return deferred.promise;
     };
     this.getItemSync = function(key) { //retrieve profile from local storage
-      if (localStorage !== undefined) {
+      if (localStorage !== null) {
         var profile = localStorage.getItem(key);
         if (profile !== null) {
           return JSON.parse(profile);
@@ -40,7 +40,7 @@ kindFramework
           return null;
         }
       } else {
-        return undefined;
+        return null;
       }
     };
     this.removeItem = function(key) {

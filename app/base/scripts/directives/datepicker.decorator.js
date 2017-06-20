@@ -1,4 +1,3 @@
-/*global vis*/
 "use strict";
 angular.module('ui.bootstrap.datepicker').
 config(function($provide) {
@@ -28,17 +27,16 @@ config(function($provide) {
           });
         }
         scope.$watch(function() {
-            return ctrl[0].activeDate.getTime();
-          },
-          function(newVal, oldVal) {
-            if (scope.datepickerMode === 'day' || scope.datepickerMode === 'month') {
-              if (changeFormatMMYYYY(oldVal) !== changeFormatMMYYYY(newVal)) {
-                scope.$root.$broadcast('onChangedMonth', new Date(newVal));
-              }
-            } else {
-              console.log("unexpected scope.datepickerMode", scope.datepickerMode);
+          return ctrl[0].activeDate.getTime();
+        }, function(newVal, oldVal) {
+          if (scope.datepickerMode === 'day' || scope.datepickerMode === 'month') {
+            if (changeFormatMMYYYY(oldVal) !== changeFormatMMYYYY(newVal)) {
+              scope.$root.$broadcast('onChangedMonth', new Date(newVal));
             }
-          });
+          } else {
+            console.log("unexpected scope.datepickerMode", scope.datepickerMode);
+          }
+        });
       };
     };
     return $delegate;

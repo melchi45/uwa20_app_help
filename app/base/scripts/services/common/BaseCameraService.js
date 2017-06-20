@@ -1,6 +1,6 @@
 "use strict";
-kindFramework
-  .factory('BaseCameraService', ['$rootScope', 'ModalManagerService', 'UniversialManagerService',
+kindFramework.
+  factory('BaseCameraService', ['$rootScope', 'ModalManagerService', 'UniversialManagerService',
     function($rootScope, ModalManagerService, UniversialManagerService) {
       return function() {
         var self = this;

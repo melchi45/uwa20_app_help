@@ -734,10 +734,10 @@ var SketchManager = (function() {
       }
     },
     //TNB
-    changeWFDStrokeColor: function(strokeColor) {
+    changeWFDFillColor: function(strokeColor) {
       if (kindSVGEditor !== null) {
         colorFactory.circleForMETAInFD = strokeColor;
-        vaEnteringAppearing.changeWFDStrokeColor(strokeColor);
+        vaEnteringAppearing.changeWFDFillColor(strokeColor);
       }
     },
     drawMetaDataAll: function(metaData, expire) {
@@ -2642,15 +2642,13 @@ var SketchManager = (function() {
 
       if ("wiseFaceDetection" in sketchInfo) {
         kindSvgOptions.wiseFaceDetection = {
-          strokeWidth: 3,
-          strokeColor: colorFactory.includeArea.line,
-          fillOpacity: 0,
+          fillColor: colorFactory.includeArea.line,
           heightRatio: sketchInfo.wiseFDCircleHeightRatio //Wise Face Detection에 표현되는 원의 반지름 %
         };
 
-        if("wiseFDCircleStrokeColor" in sketchInfo){
-          colorFactory.circleForMETAInFD = sketchInfo.wiseFDCircleStrokeColor;
-          kindSvgOptions.wiseFaceDetection.strokeColor = sketchInfo.wiseFDCircleStrokeColor;
+        if("wiseFDCircleFillColor" in sketchInfo){
+          colorFactory.circleForMETAInFD = sketchInfo.wiseFDCircleFillColor;
+          kindSvgOptions.wiseFaceDetection.fillColor = sketchInfo.wiseFDCircleFillColor;
         }
 
         kindSvgOptions.lineStrokeWidth = 2;
@@ -2690,9 +2688,9 @@ var SketchManager = (function() {
           preMinHeight = height;
         }
       },
-      changeWFDStrokeColor: function(strokeColor){
-        svgObjs[0].changeWFDStrokeColor(strokeColor);
-        kindSvgOptions.wiseFaceDetection.strokeColor = strokeColor;
+      changeWFDFillColor: function(fillColor){
+        svgObjs[0].changeWFDFillColor(fillColor);
+        kindSvgOptions.wiseFaceDetection.fillColor = fillColor;
       },
       notifyUpdate: function(index, data) {
         _self.setCoordinate(index, data);

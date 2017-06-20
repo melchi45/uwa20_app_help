@@ -47,6 +47,10 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
     data: 5,
   };
 
+  $scope.TamperDetect = {};
+
+
+
   $scope.EventSource = 'TamperingDetection';
 
   $scope.EventRule = {};
@@ -120,6 +124,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
   $scope.$watch('TamperDetectChartOptions', function(newValue) {
     if (newValue.ThresholdLevel) {
       if ($scope.TamperDetect !== 'undefined') {
+        console.log($scope.TamperDetect);
         $scope.TamperDetect.ThresholdLevel = $scope.TamperDetectChartOptions.ThresholdLevel;
       }
     }

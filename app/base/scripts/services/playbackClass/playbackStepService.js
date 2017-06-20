@@ -8,10 +8,10 @@ kindFramework.factory('playbackStepService', ['$rootScope', '$filter',
       codec: "",
     };
 
-    var defaultNum = 7;
     var currentNum = 7;
     var settingNum = 0;
     var jpegBackwardFrame = 1;
+    var SEC_TO_MS = 1000, MIN_TO_SEC=60;
 
     var maxIframe = 6;
     var h264BufferMaxSize = maxIframe * 15;
@@ -27,8 +27,6 @@ kindFramework.factory('playbackStepService', ['$rootScope', '$filter',
 
     var requestTimeStamp = null;
     var currentTimeStamp = null;
-    var startTimeStamp = null;
-    var endTimeStamp = null;
 
     var stepBuffer = new Array(h264BufferMaxSize);
     for (var i = 0; i < stepBuffer.length; i++) {
@@ -74,10 +72,11 @@ kindFramework.factory('playbackStepService', ['$rootScope', '$filter',
     }
 
     function calcTimeStamp(time) {
-      var curTime = new Date(time.timestamp * 1000);
-      var calculatedTime = curTime.getTime() + curTime.getTimezoneOffset() * 60 * 1000;
+      var curTime = new Date(time.timestamp * SEC_TO_MS);
+      var calculatedTime = curTime.getTime() + 
+                            (curTime.getTimezoneOffset() * MIN_TO_SEC * SEC_TO_MS);
       if (typeof(time.timezone) !== 'undefined' && time.timezone !== null) {
-        calculatedTime += time.timezone * 60 * 1000;
+        calculatedTime += time.timezone * MIN_TO_SEC * SEC_TO_MS;
       }
       curTime.setTime(calculatedTime);
       return $filter('date')(curTime, 'yyyyMMddHHmmss');

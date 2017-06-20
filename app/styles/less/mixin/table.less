@@ -8,24 +8,20 @@
 	@table-data-bg: "@{theme-name}-data-bg";
 	@table-focus-bg: "@{theme-name}-focus-bg";
 
-	* {
-		color: inherit !important;
-		background-color: inherit !important;
-	}
 
 	tr {
 		th, td {
-			border: 1px solid @@table-border !important;
+			border: 1px solid @@table-border !important;  // @theme-color-gray-12
 		}
 
 		th {
-			background-color: @@table-header-bg !important;
-			color: @@table-header-text !important;
+			background-color: @@table-header-bg !important;   // @theme-color-gray-7
+			color: @@table-header-text !important;   // @theme-black-100
 		}
 
 		td {
-			background-color: @@table-data-bg !important;
-			color: @@table-data-text !important;
+			background-color: @@table-data-bg !important;   // @theme-color-white
+			color: @@table-data-text !important;   // @theme-color-gray-100
 		}
 
 		&.wn5-setup-table-active {

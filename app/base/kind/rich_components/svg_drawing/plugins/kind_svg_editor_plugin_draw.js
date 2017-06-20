@@ -75,9 +75,7 @@ KindSVGEditor.addPlugin('draw', function(options) {
   var notUseAutoChangeOfArrow = typeof options.notUseAutoChangeOfArrow === "undefined" ? false : options.notUseAutoChangeOfArrow;
   //For WN5 Face Detection
   /**
-  wiseFaceDetection.strokeWidth
-  wiseFaceDetection.strokeColor
-  wiseFaceDetection.fillOpacity
+  wiseFaceDetection.fillColor
   wiseFaceDetection.heightRatio
   wiseFaceDetection.widthRatio
    */
@@ -169,10 +167,7 @@ KindSVGEditor.addPlugin('draw', function(options) {
     var wiseFaceDetectionCircle = null;
 
     if (wiseFaceDetection !== false) {
-      wiseFaceDetection.strokeColor = typeof wiseFaceDetection.strokeColor === "undefined" ? '#dd2200' : wiseFaceDetection.strokeColor;
-      wiseFaceDetection.strokeWidth = typeof wiseFaceDetection.strokeWidth === "undefined" ? 2 : wiseFaceDetection.strokeWidth;
-      wiseFaceDetection.fillOpacity = typeof wiseFaceDetection.fillOpacity === "undefined" ? .5 : wiseFaceDetection.fillOpacity;
-      wiseFaceDetection.fill = typeof wiseFaceDetection.fill === "undefined" ? '#ff000' : wiseFaceDetection.fill;
+      wiseFaceDetection.fillColor = typeof wiseFaceDetection.fillColor === "undefined" ? '#dd2200' : wiseFaceDetection.fillColor;
       wiseFaceDetection.heightRatio = typeof wiseFaceDetection.heightRatio === "undefined" ? 2.2 : wiseFaceDetection.heightRatio;
       wiseFaceDetection.widthRatio = typeof wiseFaceDetection.widthRatio === "undefined" ? false : wiseFaceDetection.widthRatio;
 
@@ -180,32 +175,30 @@ KindSVGEditor.addPlugin('draw', function(options) {
       returnVal.append = append;
       returnVal.add = add;
       returnVal.remove = remove;
-      returnVal.changeStrokeColor = changeStrokeColor;
+      returnVal.changeFillColor = changeFillColor;
     } else {
       returnVal = false;
     }
 
     return returnVal;
 
-    function changeStrokeColor(strokeColor){
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'stroke', strokeColor);
+    function changeFillColor(fillColor){
+      wiseFaceDetectionCircle.style.color = fillColor;
     }
 
     function add() {
-      wiseFaceDetectionCircle = elemCtrl.createCircle(10);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'stroke', wiseFaceDetection.strokeColor);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'stroke-width', wiseFaceDetection.strokeWidth);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'fill-opacity', wiseFaceDetection.fillOpacity);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'fill', wiseFaceDetection.fill);
-      wiseFaceDetectionCircle.style.opacity = 0.4;
+      wiseFaceDetectionCircle = document.createElement("span");
+      wiseFaceDetectionCircle.className = "tui tui-wn5-smile";
+      wiseFaceDetectionCircle.style.position = "absolute";
+      changeFillColor(wiseFaceDetection.fillColor);
     }
 
     function append() {
-      groupHelper.appendChild(wiseFaceDetectionCircle);
+      document.getElementById("sketchbook").appendChild(wiseFaceDetectionCircle);
     }
 
     function remove() {
-      groupHelper.removeChild(wiseFaceDetectionCircle);
+      document.getElementById("sketchbook").removeChild(wiseFaceDetectionCircle);
     }
 
     function updateCircle(xAxis, yAxis, height) {
@@ -217,9 +210,9 @@ KindSVGEditor.addPlugin('draw', function(options) {
         radius *= wiseFaceDetection.widthRatio;
       }
 
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'cx', xAxis);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'cy', yAxis);
-      elemCtrl.setAttr(wiseFaceDetectionCircle, 'r', radius);
+      wiseFaceDetectionCircle.style.top = (yAxis - radius) + "px";
+      wiseFaceDetectionCircle.style.left = (xAxis - radius) + "px";
+      wiseFaceDetectionCircle.style.fontSize = (radius * 2) + "px";
     }
   })();
 
@@ -2190,7 +2183,7 @@ KindSVGEditor.addPlugin('draw', function(options) {
 
     moveTopLayer: groupHelper.moveTopLayer,
 
-    changeWFDStrokeColor: wiseFaceDetectionHelper.changeStrokeColor
+    changeWFDFillColor: wiseFaceDetectionHelper.changeFillColor
   };
 
   return drawObj;

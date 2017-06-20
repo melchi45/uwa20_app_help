@@ -1,8 +1,8 @@
-/*global cordova, clearTimeout, setTimeout*/
+/*global clearTimeout, setTimeout*/
 kindFramework.directive('fullCamera', ['$q', 'DisplayService',
   'CAMERA_TYPE', 'PLAYBACK_TYPE', 'PTZ_TYPE', 'UniversialManagerService',
-  'CAMERA_STATUS', '$rootScope', '$timeout', 'PlayDataModel', 'PTZContorlService', 'kindStreamInterface',
-  'BrowserService',
+  'CAMERA_STATUS', '$rootScope', '$timeout', 'PlayDataModel', 'PTZContorlService', 
+  'kindStreamInterface', 'BrowserService',
   function($q, DisplayService, CAMERA_TYPE, PLAYBACK_TYPE, PTZ_TYPE,
     UniversialManagerService, CAMERA_STATUS, $rootScope, $timeout,
     PlayDataModel, PTZContorlService, kindStreamInterface, BrowserService) {
@@ -34,8 +34,9 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
           var results = $scope.playPlayback(command);
           var PLAY_CMD = PLAYBACK_TYPE.playCommand;
           if (command.command === PLAY_CMD.PLAY) {
-            if (isPhone || isPhone === false && results !== null)
+            if (isPhone || (isPhone === false && results !== null)) {
               $scope.domControls.hiddenFunctions();
+            }
           }
         };
         this.setPlaySpeed = function(speed) {
@@ -46,7 +47,8 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
           $scope.setTimelineView(timelineView);
         };
         $scope.optionServiceType = ['WEB_SSM', 'WEB_IPOLIS', 'MOBILE_B2C', 'MOBILE_B2B'];
-        $scope.connectedService = $scope.optionServiceType[UniversialManagerService.getServiceType()];
+        $scope.connectedService = $scope.optionServiceType[
+                                  UniversialManagerService.getServiceType()];
         $scope.ptzKeepDzoom = false;
         $scope.ptzKeepAzoom = false;
       },
@@ -55,7 +57,6 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
         scope.ptzControl = {};
         scope.digitalZoom = {};
 
-        var currentDate = null;
         var visibleCameraFunctions = function() {
           scope.toggleNavOverlay({
             val: true
@@ -90,8 +91,8 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
             playData.setCurrentMenu('main');
             scope.visibility = false;
             domControls.resetUI();
-            if (scope.playControl.updatePlayIcon !== undefined) {
-              scope.playControl.updatePlayIcon(scope.enablePlayback === 'true' ? true : false);
+            if (typeof scope.playControl.updatePlayIcon !== "undefined") {
+              scope.playControl.updatePlayIcon(scope.enablePlayback === 'true');
             }
             UniversialManagerService.setViewMode(CAMERA_STATUS.VIEW_MODE.CHANNEL);
             if (PTZContorlService.getManualTrackingMode() === "True") {
@@ -150,7 +151,8 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
             }
           },
           showBackScreen: function() {
-            return domControls.visibilityFullScreenFuntions || domControls.visibilityPlaybackControl;
+            return domControls.visibilityFullScreenFuntions || 
+                    domControls.visibilityPlaybackControl;
           },
         };
 
@@ -159,19 +161,19 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
           domControls.hiddenFunctions,
           scope
         );
-        var actions = scope.actions = {
+        scope.actions = {
           zoomModeChange: function() {
-            if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM) {
+            if (UniversialManagerService.getZoomMode() === CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM) {
               UniversialManagerService.setZoomMode(CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ);
-            } else if (UniversialManagerService.getZoomMode() == CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
+            } else if (UniversialManagerService.getZoomMode() === 
+                CAMERA_STATUS.ZOOM_MODE.OPTICAL_PTZ) {
               UniversialManagerService.setZoomMode(CAMERA_STATUS.ZOOM_MODE.DIGITAL_ZOOM);
             }
           },
         };
 
 
-        var touchAction;
-        var lastTouchData;
+        var touchAction = null;
         var TOUCH_TIME_INTERVAL = 400;
         scope.fullCameraTapEvent = function(event) {
           console.log("kind fullCameraTapEvent");
@@ -186,15 +188,15 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
             scope.toggleNavOverlay({
               val: true
             });
-            var now = event.timeStamp;
-            var delta = now - lastTouchData;
-            if (touchAction !== null) clearTimeout(touchAction);
-            lastTouchData = now;
+            if (touchAction !== null) {
+              clearTimeout(touchAction);
+            }
             console.log("tap setTimeout");
-            touchAction = setTimeout(function(e) {
+            touchAction = setTimeout(function(err) {
               clearTimeout(touchAction);
               touchAction = null;
-              if (domControls.visibilityFullScreenFuntions || domControls.visibilityPlaybackControl) {
+              if (domControls.visibilityFullScreenFuntions || 
+                  domControls.visibilityPlaybackControl) {
                 domControls.hiddenFunctions();
               } else {
                 domControls.visibleFunctions();
@@ -204,7 +206,6 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
               });
               console.log("tap");
             }, TOUCH_TIME_INTERVAL, [event]);
-            lastTouchData = now;
           }
 
           if (event.changedPointers[0].target.id === "full-screen-channel") {
@@ -213,9 +214,10 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
                 var canvas = document.querySelector(".kind-stream-canvas");
                 var xPos = event.changedPointers[0].clientX;
                 var yPos = event.changedPointers[0].clientY;
-                xPos = xPos - canvas.offsetLeft;
-                yPos = yPos - canvas.offsetTop;
-                if (xPos < 0 || yPos < 0 || xPos > canvas.offsetWidth || yPos > canvas.offsetHeight) { // out of frame
+                xPos -= canvas.offsetLeft;
+                yPos -= canvas.offsetTop;
+                if (xPos < 0 || yPos < 0 || xPos > canvas.offsetWidth || 
+                    yPos > canvas.offsetHeight) { // out of frame
                   return;
                 } else {
                   var channelId = UniversialManagerService.getChannelId();
@@ -238,7 +240,7 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
           if (event.target.id === "full-screen-channel" ||
             event.target.id === "playback-controls" ||
             event.target.id === "full-screen-block" ||
-            typeof event.fullButton !== undefined) {
+            typeof event.fullButton !== "undefined") {
             scope.ptzControl.ptzMenuVisibility = false;
             scope.ptzControl.ptzControlMode = false;
 
@@ -252,7 +254,7 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
           }
         };
 
-        $rootScope.$saveOn("fullCamera:closeFullscreenButton", function(event, e) {
+        $rootScope.$saveOn("fullCamera:closeFullscreenButton", function(event, err) {
           $timeout(function() {
             if (scope.ptzControl.ptzControlMode === true) {
               scope.ptzControl.closePTZMode();
@@ -285,32 +287,33 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
         });
 
         scope.$watch(function() {
-            return scope.visibility;
-          },
-          function() {
-            if (scope.visibility) {
-              domControls.visibleFunctions();
-              currentDate = new Date();
-              $timeout(function() {
-                scope.$apply();
-              });
-            } else {
-              domControls.resetUI();
-              if (typeof(scope.ptzControl.stopAreaZoom) !== "undefined") {
-                scope.ptzControl.stopAreaZoom();
-              }
-              if (typeof(scope.playControl.reset) !== "undefined") {
-                scope.playControl.reset();
-              }
+          return scope.visibility;
+        }, function() {
+          if (scope.visibility) {
+            domControls.visibleFunctions();
+            $timeout(function() {
+              scope.$apply();
+            });
+          } else {
+            domControls.resetUI();
+            if (typeof(scope.ptzControl.stopAreaZoom) !== "undefined") {
+              scope.ptzControl.stopAreaZoom();
             }
-          });
+            if (typeof(scope.playControl.reset) !== "undefined") {
+              scope.playControl.reset();
+            }
+          }
+        });
 
         function resizeHandler(event) {
-          if (!scope.visibility) return;
+          if (!scope.visibility) {
+            return;
+          }
 
           // if(scope.windowSize !== undefined) {
           // if(scope.windowSize > window.innerWidth * window.innerHeight) {
-          if (UniversialManagerService.getIsCaptured() && !!window.chrome && !!window.chrome.webstore) { // check if full screen closed by capture and if chrome
+          if (UniversialManagerService.getIsCaptured() && !!window.chrome && 
+              !!window.chrome.webstore) { // check if full screen closed by capture and if chrome
             scope.afterActionCapture();
           }
           /**
@@ -349,7 +352,8 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
         });
 
         $(window).bind('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function(evt) {
-          var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen || document.msFullscreenElement;
+          var state = document.fullScreen || document.mozFullScreen || 
+                      document.webkitIsFullScreen || document.msFullscreenElement;
           if (!state) {
             resizeHandler(evt);
           }

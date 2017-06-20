@@ -16,8 +16,8 @@ kindFramework.directive('sideNavigation', function($timeout) {
       scope.$on('$stateChangeSuccess', function() {
         try {
           $(element).metisMenu();
-        } catch (e) {
-          console.info(e);
+        } catch (err) {
+          console.info(err);
         }
       });
     }
@@ -102,7 +102,8 @@ kindFramework.directive('addSpinButton', function() {
 
     if (changeFunc && typeof changeFunc === 'string') {
       changeFunc = changeFunc.replace(/[\(\)\;]/g, '');
-      if (scope.$parent && scope.$parent[changeFunc] && typeof scope.$parent[changeFunc] === 'function') {
+      if (scope.$parent && scope.$parent[changeFunc] && 
+          typeof scope.$parent[changeFunc] === 'function') {
         changeFunc = scope.$parent[changeFunc];
       } else {
         changeFunc = null;
@@ -211,7 +212,8 @@ kindFramework.directive('onSizeChanged', ['$window', function($window) {
       }
 
       function onWindowResize() {
-        var isSizeChanged = scope.cachedElementWidth !== element.offsetWidth || scope.cachedElementHeight !== element.offsetHeight;
+        var isSizeChanged = scope.cachedElementWidth !== element.offsetWidth || 
+                            scope.cachedElementHeight !== element.offsetHeight;
         if (isSizeChanged) {
           var expression = scope.onSizeChanged();
           expression();
@@ -230,9 +232,10 @@ kindFramework.directive('sliderNoFocus', ['$timeout', function($timeout) {
     restrict: 'A',
     transclude: true,
     link: function(scope, $element) {
+      var TIMEOUT = 1000;
       $timeout(function() {
         $element.find('span').attr('tabindex', '');
-      }, 1000);
+      }, TIMEOUT);
     }
   };
 }]);

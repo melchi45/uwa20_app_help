@@ -2,6 +2,8 @@ module.exports = function(injection){
 	var grunt = injection.grunt;
 	var projectStructure = injection.projectStructure;
 	return function(target, mode){
+			grunt.option("force", true);
+      
 			var task = '';
 			if(target == undefined){
 					//Mobile, 9081

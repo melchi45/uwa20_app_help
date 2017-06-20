@@ -368,7 +368,7 @@ kindFramework.
               ModalManagerService.open(
                 'message', {
                   'message': "lang_msg_not_export_saved_file",
-                  'buttonCount': 0,
+                  'buttonCount': 1,
                 }
               );
             } else if (error.errorCode === BACKUP_STATUS.MODE.CODEC_CHANGED ||
@@ -380,7 +380,7 @@ kindFramework.
               ModalManagerService.open(
                 'message', {
                   'message': "lang_msg_codecChange",
-                  'buttonCount': 0,
+                  'buttonCount': 1,
                 }
               );
             } else if (error.errorCode === BACKUP_STATUS.MODE.EXCEEDED_MAX_FILE) {
@@ -391,7 +391,7 @@ kindFramework.
               ModalManagerService.open(
                 'message', {
                   'message': "lang_max_filesize",
-                  'buttonCount': 0,
+                  'buttonCount': 1,
                 }
               );
             } else if (error.errorCode === BACKUP_STATUS.MODE.NO_LONGER_SUPPORT) {
@@ -402,7 +402,7 @@ kindFramework.
               ModalManagerService.open(
                 'message', {
                   'message': 'No longer be able to stream. Please set a shorter section ',
-                  'buttonCount': 0,
+                  'buttonCount': 1,
                 }
               );
             }

@@ -9,7 +9,7 @@
             <input type="date" class="date" id="SearchDateId" ng-model="CurrentDate" max={{MaxDate}} ng-required="true" ondrop="return false;" onpaste="return false;" style="cursor: pointer;"/>&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" type="button" class="btn btn-info" ng-click="onSearch()"><i class="fa fa-search"></i></button>
         </div>
-        <uib-tabset class="wn5-setup-tab">
+        <uib-tabset class="wn5-setup-tab cm-tabs-field">
             <uib-tab ng-repeat="tab in tabs" heading={{getTranslatedOption(tab)}} ng-click="onTabChange()">
                 <div ng-show="tab === 'AccessLog'">
                     <div class="wn5-setup-section-article form-group">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <div class="wn5-setup-section-article-content">
-                            <table class="table table-bordered logtable wn5-setup-table">
+                            <table class="table cm-table-field logtable wn5-setup-table">
                                 <thead>
                                     <tr>
                                         <th style="text-align:center" class="logtable-idx">{{ 'lang_num' | translate }}</th>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <div class="wn5-setup-section-article-content">
-                            <table class="table table-bordered logtable wn5-setup-table">
+                            <table class="table cm-table-field logtable wn5-setup-table">
                                 <thead>
                                     <tr>
                                         <th style="text-align:center" class="logtable-idx">{{ 'lang_num' | translate }}</th>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="form-group">
                         <div class="wn5-setup-section-article-content">
-                            <table class="table table-bordered logtable wn5-setup-table">
+                            <table class="table cm-table-field logtable wn5-setup-table">
                                 <thead>
                                     <tr>
                                         <th style="text-align:center" class="logtable-idx">{{ 'lang_num' | translate }}</th>

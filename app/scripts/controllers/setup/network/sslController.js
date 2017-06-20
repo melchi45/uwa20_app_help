@@ -75,6 +75,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       httpPortView,
       httpsPortView
     ]).then(function() {
+      $rootScope.$emit('changeLoadingBar', false);
       $scope.pageLoaded = true;
       $("#sslpage").show();
     }, function(errorData) {
@@ -183,6 +184,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       postData = "";
 
     if ($scope.cerfile) {
+      $rootScope.$emit('changeLoadingBar', true);
       var r = new FileReader();
       r.readAsArrayBuffer($scope.cerfile);
       r.onload = function(e) {
@@ -221,7 +223,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
               function(response) {
                 certfileelm.value = "";
                 keyfileelm.value = "";
-                $timeout(view, 2000);
+                $timeout(view, 5000);
                 //setRelocateURL();
                 SunapiClient.clearDigestCache();
                 //$scope.needReload = true;
@@ -330,6 +332,8 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       return;
     }
 
+    $rootScope.$emit('changeLoadingBar', true);
+
     var setData = {};
     setData.PublicCertificateName = $scope.SSL.PublicCertificateName;
 
@@ -337,7 +341,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       function(response) {
         $scope.CertificateFile = '';
         $scope.KeyFile = '';
-        $timeout(view, 2000);
+        $timeout(view, 5000);
         //setRelocateURL();
         SunapiClient.clearDigestCache();
       },

@@ -99,7 +99,7 @@ kindFramework.controller(
             return;
           }
           $scope.overlayColorSection.setSelectedColor(colorIndex);
-          sketchbookService.changeWFDStrokeColor(colorCode);
+          sketchbookService.changeWFDFillColor(colorCode);
           $scope.FD.OverlayColor = $scope.overlayColorSection.colorIndexList[colorIndex].colorName;
         },
         getSelectedColorCode: function(){
@@ -734,7 +734,7 @@ kindFramework.controller(
 
         //TNB 저장된 데이터로 영역 색상 설정
         if(typeof $scope.overlayColorOptions !== 'undefined') {
-          sketchinfo.wiseFDCircleStrokeColor = $scope.overlayColorSection.getSelectedColorCode();
+          sketchinfo.wiseFDCircleFillColor = $scope.overlayColorSection.getSelectedColorCode();
         }
       }
 
