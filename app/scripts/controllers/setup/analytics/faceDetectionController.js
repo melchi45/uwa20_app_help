@@ -36,7 +36,7 @@ kindFramework.controller(
     $scope.EventRule = {};
 
     $scope.overlayColorSection = {
-        selectedColorIndex: '0',
+        selectedColorIndex: 0,
         /*
          * facedetection.less 파일에 정의된 색상 코드와 동일해야 함.
          * JSON 포맷
@@ -87,10 +87,18 @@ kindFramework.controller(
           if(typeof tColour === 'undefined'){
             return;
           }
-          var colour = parseInt(tColour, 10);
-          for (var index = 0; index < $scope.overlayColorSection.colorIndexList.length; index++) {
-            if ($scope.overlayColorSection.colorIndexList[colour].colorName === $scope.overlayColorSection.colorIndexList[index].colorName) {
-              $scope.overlayColorSection.selectedColorIndex = index + '';
+          if(typeof tColour === 'string') {
+            for (var index = 0; index < $scope.overlayColorSection.colorIndexList.length; index++) {
+              if (tColour === $scope.overlayColorSection.colorIndexList[index].colorName) {
+                $scope.overlayColorSection.selectedColorIndex = index;
+              }
+            }
+          } else {
+            var colorIndex = tColour;
+            for (var index = 0; index < $scope.overlayColorSection.colorIndexList.length; index++) {
+              if ($scope.overlayColorSection.colorIndexList[colorIndex].colorName === $scope.overlayColorSection.colorIndexList[index].colorName) {
+                $scope.overlayColorSection.selectedColorIndex = index;
+              }
             }
           }
         },
