@@ -22,7 +22,7 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
       apply: 'lang_apply',
       realTime: {
         title: 'lang_realtime',
-        undefined: {
+        undefinedMsg: {
           title: '', //in lang init
           setup: 'lang_setup'
         },
@@ -94,22 +94,27 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
       var undefinedTitle = [
         $translate.instant('lang_msg_norule'),
         ' ',
-        $translate.instant('lang_msg_addrule').replace('%1', $translate.instant('lang_setup'))
+        $translate.
+          instant('lang_msg_addrule').
+          replace('%1', $translate.instant('lang_setup'))
       ];
 
       var peoplecount = $translate.instant('lang_peoplecounting');
       var heatmap = $translate.instant('lang_heatmap');
 
-      var peopleCountDisalbed = $translate.instant('lang_msg_please_enable').replace('%1', peoplecount);
+      var peopleCountDisalbed = $translate.
+        instant('lang_msg_please_enable').
+        replace('%1', peoplecount);
       var rule = $translate.instant('lang_rule');
 
       var calibrationGuide = [
         $translate.instant('lang_msg_calibration_guide_1'),
         '&nbsp;',
-        $translate.instant('lang_msg_calibration_guide_2').replace('%1', peoplecount + ', ' + heatmap)
+        $translate.instant('lang_msg_calibration_guide_2').
+          replace('%1', peoplecount + ', ' + heatmap)
       ];
 
-      lang.realTime.undefined.title = undefinedTitle.join('');
+      lang.realTime.undefinedMsg.title = undefinedTitle.join('');
       lang.realTime.peopleCountDisalbed = peopleCountDisalbed;
 
       lang.conditions.rule.title = rule.replace('%1', '').replace(' ', '');
@@ -178,23 +183,6 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
             msubmenu: 'deviceinfo',
             action: 'view',
             data: {},
-            successCallback: successCallback,
-            failCallback: failCallback
-          });
-        }
-      }
-    };
-
-    var eventRulesCgi = {
-      masterslave: {
-        view: function(successCallback, failCallback) {
-          pcSetupService.requestSunapi({
-            cgi: 'eventrules',
-            msubmenu: 'masterslave',
-            action: 'view',
-            data: {
-              Type: 'PeopleCount'
-            },
             successCallback: successCallback,
             failCallback: failCallback
           });
@@ -272,9 +260,11 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
       }
     };
 
-    function addZero(data) {
-      if (data < 10) {
-        data = "0" + data;
+    function addZero(_data) {
+      var TEN = 10;
+      var data = null;
+      if (_data < TEN) {
+        data = "0" + _data;
       }
 
       return data;
@@ -301,7 +291,7 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
         minutes,
         ':',
         seconds,
-        'Z',
+        'Z'
       ];
 
       return dateFormat.join('');
@@ -316,7 +306,8 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
       var searchView = recordingCgi.peoplecountsearch.view;
 
 
-      function failCallback(errorData) {
+      function failCallback(_errorData) {
+        var errorData = _errorData;
         if (asyncInterrupt === true) {
           errorData = interruptMessage;
         }
@@ -331,7 +322,8 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
       }
 
       function requestSearchView() {
-        searchView({
+        searchView(
+          {
             Type: 'Status',
             SearchToken: searchToken
           },
@@ -342,7 +334,8 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
 
       function viewStatusSuccessCallback(response) {
         if (response.data.Status === "Completed") {
-          searchView({
+          searchView(
+            {
               Type: 'Results',
               SearchToken: searchToken
             },
@@ -358,7 +351,7 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
         var responseData = response.data;
         var resultInterval = responseData.ResultInterval;
         var lineResults = responseData.PeopleCountSearchResults[channelIndex].LineResults;
-        var responseData = [];
+        responseData = [];
 
         for (var i = 0, len = lineResults.length; i < len; i++) {
           var lineSelf = lineResults[i];
@@ -392,8 +385,10 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
 
       function fillterResults(results, resultInterval) {
         var fillterData = [];
+        var NUMBER_TWO = 2; //for lint issue.
 
-        var changeDateObj = function(str) {
+        var changeDateObj = function(_str) {
+          var str = _str;
           str = str.replace('T', ' ').replace('Z', '');
           str = str.split(' ');
           str[0] = str[0].split('-');
@@ -402,10 +397,10 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
           str = new Date(
             str[0][0],
             str[0][1] - 1,
-            str[0][2],
+            str[0][NUMBER_TWO],
             str[1][0],
             str[1][1],
-            str[1][2]
+            str[1][NUMBER_TWO]
           );
 
           return str;
@@ -438,10 +433,14 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
         var fromDate = changeDateObj(searchOptions.FromDate);
         var toDate = changeDateObj(searchOptions.ToDate);
 
+        var i = 0;
+        var len = 0;
+        var data = {};
+
         switch (resultInterval) {
           case "Hourly":
-            for (var i = 0, len = results.length; i < len; i++) {
-              var data = {};
+            for (i = 0, len = results.length; i < len; i++) {
+              data = {};
               fromDate.setHours(i);
               data.timeStamp = changeFormatForGraph(fromDate);
               data.value = parseInt(results[i]);
@@ -450,8 +449,8 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
             break;
           case "Daily":
           case "Weekly":
-            for (var i = 0, len = results.length; i < len; i++) {
-              var data = {};
+            for (i = 0, len = results.length; i < len; i++) {
+              data = {};
 
               if (i === 0) {
                 data.timeStamp = changeFormatForGraph(fromDate);
@@ -473,8 +472,8 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
             }
             break;
           case "Monthly":
-            for (var i = 0, len = results.length; i < len; i++) {
-              var data = {};
+            for (i = 0, len = results.length; i < len; i++) {
+              data = {};
 
               if (
                 fromDate.getFullYear() === toDate.getFullYear() &&
@@ -525,9 +524,11 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
       var lineNames = lineName.get();
       var masterCameraName = masterName.get();
       var searchLineOptions = {};
+      var keyName = '';
 
       for (var i = 0; i < lineNames.length; i++) {
-        searchLineOptions['Camera.' + masterCameraName + '.Line.' + lineNames[i] + '.Direction'] = 'In,Out';
+        keyName = 'Camera.' + masterCameraName + '.Line.' + lineNames[i] + '.Direction';
+        searchLineOptions[keyName] = 'In,Out';
       }
 
       return searchLineOptions;
@@ -548,17 +549,19 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
       var nowDate = getSunapiDateFormat(newDate.getTime());
       var fromDate = null;
       var searchOptions = getBasicSearchOption();
+      var SIX_DAY = 6;
+      var TWO_THOUNSAND = 2000;
 
       //get date at the six day ago
-      newDate.setDate(newDate.getDate() - 6);
+      newDate.setDate(newDate.getDate() - SIX_DAY);
 
       /*
       카메라는 최소 2000/01/01까지 지원을 하기 때문에
       현재 날짜(newDate)가 2000년 이전을 설정될 경우
       강제로 2000/01/01로 설정한다.
       */
-      if (newDate.getFullYear() < 2000) {
-        newDate.setYear(2000);
+      if (newDate.getFullYear() < TWO_THOUNSAND) {
+        newDate.setYear(TWO_THOUNSAND);
         newDate.setMonth(0);
         newDate.setDate(1);
       }
@@ -581,6 +584,7 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
       for (var lineName in options.lines) {
         var self = options.lines[lineName];
         var direction = [];
+        var keyName = '';
 
         if (self.in === true) {
           direction.push('In');
@@ -588,15 +592,17 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
         if (self.out === true) {
           direction.push('Out');
         }
-
-        searchOptions['Camera.' + masterCameraName + '.Line.' + lineName + '.Direction'] = direction.join(',');
+        keyName = 'Camera.' + masterCameraName + '.Line.' + lineName + '.Direction';
+        searchOptions[keyName] = direction.join(',');
       }
 
       return getSearchData(searchOptions);
     };
 
     this.cancelSearch = function() {
-      if (searchToken === null) return;
+      if (searchToken === null) {
+        return;
+      }
 
       asyncInterrupt = true;
       recordingCgi.peoplecountsearch.control({
@@ -664,7 +670,7 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
                   for (var i = 0, len = viewData.Lines.length; i < len; i++) {
                     var lineInViewData = viewData.Lines[i];
 
-                    for (var j = 0, jLen = checkData.Lines.length; j < len; j++) {
+                    for (var j = 0, jLen = checkData.Lines.length; j < jLen; j++) {
                       var lineInCheckData = checkData.Lines[i];
 
                       if (lineInViewData.Line === lineInCheckData.LineIndex) {
@@ -719,17 +725,17 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
 
     this.getGraphData = function() {
       var deferred = $q.defer();
+      var DALAY = 500;
 
       setTimeout(function() {
         deferred.resolve({});
-      }, 500);
+      }, DALAY);
 
       return deferred.promise;
     };
 
     this.getDeviceName = function() {
       var deferred = $q.defer();
-      var masterSlaveData = {};
 
       var failCallback = function(errorData) {
         deferred.reject(errorData);
@@ -779,7 +785,7 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
         var item = axis[i];
         var changedItem = {
           x: multi.width * item.x / divition.width,
-          y: multi.height * item.y / divition.height,
+          y: multi.height * item.y / divition.height
         };
 
         changedAxis.push(changedItem);

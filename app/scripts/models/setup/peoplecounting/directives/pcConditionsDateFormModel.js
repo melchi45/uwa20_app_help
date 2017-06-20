@@ -24,14 +24,18 @@ kindFramework.factory('PcConditionsDateFormModel', function(SunapiClient, $trans
       }
     };
 
+    var LANG_INDEX = 2;
+
     this.getMainDateSearchOptions = function() {
       var date = lang.date;
 
-      return [{
+      return [
+        {
           name: $translate.instant(date.opts[0]),
           value: date.opts[0].toLowerCase(),
           selected: true,
-          subOptions: [{
+          subOptions: [
+            {
               name: '1 ' + $translate.instant(date.recendOpts[0]),
               value: date.recendOpts[0],
               selected: true
@@ -42,8 +46,8 @@ kindFramework.factory('PcConditionsDateFormModel', function(SunapiClient, $trans
               selected: false
             },
             {
-              name: '1 ' + $translate.instant(date.recendOpts[2]),
-              value: date.recendOpts[2],
+              name: '1 ' + $translate.instant(date.recendOpts[LANG_INDEX]),
+              value: date.recendOpts[LANG_INDEX],
               selected: false
             }
           ]
@@ -52,7 +56,8 @@ kindFramework.factory('PcConditionsDateFormModel', function(SunapiClient, $trans
           name: $translate.instant(date.opts[1]),
           value: date.opts[1].toLowerCase(),
           selected: false,
-          subOptions: [{
+          subOptions: [
+            {
               name: $translate.instant(date.periodOpts[0]),
               value: date.periodOpts[0],
               selected: true
@@ -63,8 +68,8 @@ kindFramework.factory('PcConditionsDateFormModel', function(SunapiClient, $trans
               selected: false
             },
             {
-              name: $translate.instant(date.periodOpts[2]),
-              value: date.periodOpts[2],
+              name: $translate.instant(date.periodOpts[LANG_INDEX]),
+              value: date.periodOpts[LANG_INDEX],
               selected: false
             }
           ]
