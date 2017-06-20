@@ -94,7 +94,7 @@
       "after": true
     }],
     "comma-style": ["warn", "last"],
-    "id-length" : ["warn",{"exceptions": ["x","y","i"] }],
+    "id-length" : ["warn",{"exceptions": ["x","y","i","j"] }],
     "indent" : ["warn",2,{"SwitchCase" : 1}],
     "keyword-spacing" : ["warn",{"before" : true}],
     "max-depth" : "warn",
