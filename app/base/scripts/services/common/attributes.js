@@ -1,7 +1,10 @@
 /* global isPhone */
-kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClient, XMLParser, SessionOfUserManager, RESTCLIENT_CONFIG, CAMERA_STATUS) {
+kindFramework.service('Attributes', 
+function($timeout, $location, $q, SunapiClient, XMLParser, SessionOfUserManager, 
+  RESTCLIENT_CONFIG, CAMERA_STATUS) {
   "use strict";
-
+  var TIMEOUT = 500;
+  var RETRY_COUNT = 999;
   var mAttributes = {};
   var loginInfo = {};
 
@@ -97,32 +100,58 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
 
   this.parseSystemCgiAttributes = function() {
     if (!mAttributes.systemCgiAttrReady) {
-      mAttributes.Languages = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/deviceinfo/Language/enum');
-      mAttributes.DeviceName = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/deviceinfo/DeviceName/string');
-      mAttributes.DeviceLoc = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/deviceinfo/DeviceLocation/string');
-      mAttributes.DeviceDesc = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/deviceinfo/DeviceDescription/string');
-      mAttributes.Memo = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/deviceinfo/Memo/string');
-      mAttributes.YearOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/date/Year/int');
-      mAttributes.MonthOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/date/Month/int');
-      mAttributes.DayOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/date/Day/int');
-      mAttributes.HourOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/date/Hour/int');
-      mAttributes.MinuteOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/date/Minute/int');
-      mAttributes.SecondOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/date/Second/int');
-      mAttributes.ExcludeSettings = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/factoryreset/ExcludeSettings/csv');
-      mAttributes.RestoreExclusions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/configrestore/ExcludeSettings/csv');
-      mAttributes.StorageEnable = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/storageinfo/Enable/bool');
-      mAttributes.FileSystemTypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/storageinfo/Storage.#.FileSystem/enum');
-      mAttributes.DefaultFolderMaxLen = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/storageinfo/DefaultFolder/string');
-      mAttributes.NASIPMaxLen = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/storageinfo/NASIP/string');
-      mAttributes.NASUserIDMaxLen = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/storageinfo/NASUserID/string');
-      mAttributes.NASPasswordMaxLen = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/storageinfo/NASPassword/string');
-      mAttributes.SystemLogTypes = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/systemlog/Type/enum');
-      mAttributes.AccessLogTypes = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/accesslog/Type/enum');
-      mAttributes.EventLogTypes = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/eventlog/Type/enum');
-      mAttributes.BaudRateOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/serial/BaudRate/enum');
-      mAttributes.ParityBitOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/serial/ParityBit/enum');
-      mAttributes.StopBitOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/serial/StopBits/enum');
-      mAttributes.DataBitOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'system/serial/DataBits/enum');
+      mAttributes.Languages = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                              'system/deviceinfo/Language/enum');
+      mAttributes.DeviceName = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                              'system/deviceinfo/DeviceName/string');
+      mAttributes.DeviceLoc = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                              'system/deviceinfo/DeviceLocation/string');
+      mAttributes.DeviceDesc = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                              'system/deviceinfo/DeviceDescription/string');
+      mAttributes.Memo = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                        'system/deviceinfo/Memo/string');
+      mAttributes.YearOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                'system/date/Year/int');
+      mAttributes.MonthOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                'system/date/Month/int');
+      mAttributes.DayOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                              'system/date/Day/int');
+      mAttributes.HourOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                'system/date/Hour/int');
+      mAttributes.MinuteOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'system/date/Minute/int');
+      mAttributes.SecondOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'system/date/Second/int');
+      mAttributes.ExcludeSettings = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                    'system/factoryreset/ExcludeSettings/csv');
+      mAttributes.RestoreExclusions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                    'system/configrestore/ExcludeSettings/csv');
+      mAttributes.StorageEnable = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'system/storageinfo/Enable/bool');
+      mAttributes.FileSystemTypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'system/storageinfo/Storage.#.FileSystem/enum');
+      mAttributes.DefaultFolderMaxLen = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                        'system/storageinfo/DefaultFolder/string');
+      mAttributes.NASIPMaxLen = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                'system/storageinfo/NASIP/string');
+      mAttributes.NASUserIDMaxLen = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                    'system/storageinfo/NASUserID/string');
+      mAttributes.NASPasswordMaxLen = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                      'system/storageinfo/NASPassword/string');
+      mAttributes.SystemLogTypes = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'system/systemlog/Type/enum');
+      mAttributes.AccessLogTypes = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'system/accesslog/Type/enum');
+      mAttributes.EventLogTypes = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'system/eventlog/Type/enum');
+      mAttributes.BaudRateOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                    'system/serial/BaudRate/enum');
+      mAttributes.ParityBitOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                    'system/serial/ParityBit/enum');
+      mAttributes.StopBitOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'system/serial/StopBits/enum');
+      mAttributes.DataBitOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'system/serial/DataBits/enum');
 
       mAttributes.systemCgiAttrReady = true;
     }
@@ -131,70 +160,112 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
 
   this.parseMediaCgiAttributes = function() {
     if (!mAttributes.mediaCgiAttrReady) {
-      mAttributes.EncodingTypes = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/EncodingType/enum');
-      mAttributes.ProfileName = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/Name/string');
-      mAttributes.ATCModes = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/ATCMode/enum');
-      mAttributes.ATCSensitivityOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/ATCSensitivity/enum');
-      mAttributes.ATCLimit = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/ATCLimit/enum');
-      mAttributes.ATCTrigger = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/ATCTrigger/enum');
-      mAttributes.ATCEventType = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/ATCEventType/enum');
-      mAttributes.FrameRateLimit = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/FrameRate/int');
-      mAttributes.CompressionLevel = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/CompressionLevel/int');
-      mAttributes.Bitrate = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/Bitrate/int');
-      mAttributes.SVNPMulticastPort = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/SVNPMulticastPort/int');
-      mAttributes.SVNPMulticastTTL = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/SVNPMulticastTTL/int');
-      mAttributes.RTPMulticastPort = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/RTPMulticastPort/int');
-      mAttributes.RTPMulticastTTL = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/RTPMulticastTTL/int');
-      mAttributes.SensorCaptureSize = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videosource/SensorCaptureSize/enum');
-      mAttributes.AudioInSourceOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/audioinput/Source/enum');
-      mAttributes.AudioInEncodingOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/audioinput/EncodingType/enum');
-      mAttributes.AudioInBitrateOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/audioinput/Bitrate/enum');
-      mAttributes.AudioInGainOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/audioinput/Gain/int');
-      mAttributes.AudioOutGainOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/audiooutput/Gain/int');
-      mAttributes.VideoTypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videooutput/Type/enum');
-      mAttributes.SensorModeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videosource/SensorCaptureFrameRate/enum');
+      mAttributes.EncodingTypes = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'media/videoprofile/EncodingType/enum');
+      mAttributes.ProfileName = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'media/videoprofile/Name/string');
+      mAttributes.ATCModes = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                      'media/videoprofile/ATCMode/enum');
+      mAttributes.ATCSensitivityOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                    'media/videoprofile/ATCSensitivity/enum');
+      mAttributes.ATCLimit = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                      'media/videoprofile/ATCLimit/enum');
+      mAttributes.ATCTrigger = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                        'media/videoprofile/ATCTrigger/enum');
+      mAttributes.ATCEventType = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'media/videoprofile/ATCEventType/enum');
+      mAttributes.FrameRateLimit = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'media/videoprofile/FrameRate/int');
+      mAttributes.CompressionLevel = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                              'media/videoprofile/CompressionLevel/int');
+      mAttributes.Bitrate = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                      'media/videoprofile/Bitrate/int');
+      mAttributes.SVNPMulticastPort = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                'media/videoprofile/SVNPMulticastPort/int');
+      mAttributes.SVNPMulticastTTL = XMLParser.parseCgiSection(mAttributes.cgiSection,
+                                              'media/videoprofile/SVNPMulticastTTL/int');
+      mAttributes.RTPMulticastPort = XMLParser.parseCgiSection(mAttributes.cgiSection,
+                                              'media/videoprofile/RTPMulticastPort/int');
+      mAttributes.RTPMulticastTTL = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                              'media/videoprofile/RTPMulticastTTL/int');
+      mAttributes.SensorCaptureSize = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                'media/videosource/SensorCaptureSize/enum');
+      mAttributes.AudioInSourceOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                  'media/audioinput/Source/enum');
+      mAttributes.AudioInEncodingOptions = XMLParser.parseCgiSection(mAttributes.cgiSection,
+                                                    'media/audioinput/EncodingType/enum');
+      mAttributes.AudioInBitrateOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                    'media/audioinput/Bitrate/enum');
+      mAttributes.AudioInGainOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                'media/audioinput/Gain/int');
+      mAttributes.AudioOutGainOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                  'media/audiooutput/Gain/int');
+      mAttributes.VideoTypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                              'media/videooutput/Type/enum');
+      mAttributes.SensorModeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                'media/videosource/SensorCaptureFrameRate/enum');
 
       mAttributes.BitrateControlType = {};
-      mAttributes.BitrateControlType.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H264.BitrateControlType/enum');
+      mAttributes.BitrateControlType.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'media/videoprofile/H264.BitrateControlType/enum');
 
       mAttributes.PriorityType = {};
-      mAttributes.PriorityType.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H264.PriorityType/enum');
-      mAttributes.PriorityType.MJPEG = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/MJPEG.PriorityType/enum');
+      mAttributes.PriorityType.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                'media/videoprofile/H264.PriorityType/enum');
+      mAttributes.PriorityType.MJPEG = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                'media/videoprofile/MJPEG.PriorityType/enum');
 
       mAttributes.EnocoderProfile = {};
-      mAttributes.EnocoderProfile.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H264.Profile/enum');
+      mAttributes.EnocoderProfile.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                  'media/videoprofile/H264.Profile/enum');
 
       mAttributes.EntropyCoding = {};
-      mAttributes.EntropyCoding.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H264.EntropyCoding/enum');
+      mAttributes.EntropyCoding.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                'media/videoprofile/H264.EntropyCoding/enum');
 
       mAttributes.SmartCodecEnable = {};
-      mAttributes.SmartCodecEnable.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H264.SmartCodecEnable/enum');
+      mAttributes.SmartCodecEnable.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                  'media/videoprofile/H264.SmartCodecEnable/enum');
 
       mAttributes.GOVLength = {};
-      mAttributes.GOVLength.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H264.GOVLength/int');
+      mAttributes.GOVLength.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'media/videoprofile/H264.GOVLength/int');
 
-      mAttributes.WiseStreamOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/wisestream/Mode/enum');
+      mAttributes.WiseStreamOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                              'media/wisestream/Mode/enum');
 
       mAttributes.DynamicGOV = {};
-      mAttributes.DynamicGOV.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H264.DynamicGOVLength/int');
+      mAttributes.DynamicGOV.H264 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'media/videoprofile/H264.DynamicGOVLength/int');
 
-      mAttributes.Resolution = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/Resolution/enum');
+      mAttributes.Resolution = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                        'media/videoprofile/Resolution/enum');
 
       if (typeof mAttributes.EncodingTypes !== 'undefined') {
         if (mAttributes.EncodingTypes.indexOf('H265') !== -1) {
-          mAttributes.BitrateControlType.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H265.BitrateControlType/enum');
-          mAttributes.PriorityType.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H265.PriorityType/enum');
-          mAttributes.EnocoderProfile.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H265.Profile/enum');
-          mAttributes.EntropyCoding.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H265.EntropyCoding/enum');
-          mAttributes.SmartCodecEnable.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H265.SmartCodecEnable/enum');
-          mAttributes.GOVLength.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H265.GOVLength/int');
-          mAttributes.DynamicGOV.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/H265.DynamicGOVLength/int');
+          mAttributes.BitrateControlType.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                'media/videoprofile/H265.BitrateControlType/enum');
+          mAttributes.PriorityType.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'media/videoprofile/H265.PriorityType/enum');
+          mAttributes.EnocoderProfile.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'media/videoprofile/H265.Profile/enum');
+          mAttributes.EntropyCoding.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                           'media/videoprofile/H265.EntropyCoding/enum');
+          mAttributes.SmartCodecEnable.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                              'media/videoprofile/H265.SmartCodecEnable/enum');
+          mAttributes.GOVLength.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                      'media/videoprofile/H265.GOVLength/int');
+          mAttributes.DynamicGOV.H265 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                        'media/videoprofile/H265.DynamicGOVLength/int');
         }
       }
 
-      mAttributes.viewModeIndex = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/ViewModeIndex/int');
-      mAttributes.profileViewModeType = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/ViewModeType/enum');
-      mAttributes.profileBasedDPTZ = XMLParser.parseCgiSection(mAttributes.cgiSection, 'media/videoprofile/IsDigitalPTZProfile/bool');
+      mAttributes.viewModeIndex = XMLParser.parseCgiSection(mAttributes.cgiSection,
+                                  'media/videoprofile/ViewModeIndex/int');
+      mAttributes.profileViewModeType = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                        'media/videoprofile/ViewModeType/enum');
+      mAttributes.profileBasedDPTZ = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                    'media/videoprofile/IsDigitalPTZProfile/bool');
 
       mAttributes.mediaCgiAttrReady = true;
     }
@@ -203,47 +274,88 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
 
   this.parseNetworkCgiAttributes = function() {
     if (!mAttributes.networkCgiAttrReady) {
-      mAttributes.InterfaceOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/interface/InterfaceName/csv');
-      mAttributes.IPv4TypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/interface/IPv4Type/enum');
-      mAttributes.IPv6TypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/interface/IPv6Type/enum');
-      mAttributes.PrefixLength = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/interface/IPv6PrefixLength/int');
-      mAttributes.HostNameOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/interface/HostName/int');
-      mAttributes.DnsTypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/dns/Type/enum');
-      mAttributes.RtspTimeoutOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/rtsp/Timeout/enum');
-      mAttributes.Http = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/http/Port/int');
-      mAttributes.Https = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/https/Port/int');
-      mAttributes.Rtsp = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/rtsp/Port/int');
-      mAttributes.Svnp = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/svnp/Port/int');
-      mAttributes.PPPoEUserName = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/interface/PPPoEUserName/string');
-      mAttributes.PPPoEPassword = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/interface/PPPoEPassword/string');
-      mAttributes.Upnp = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/upnpdiscovery/FriendlyName/string');
-      mAttributes.Bonjour = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/bonjour/FriendlyName/string');
-      mAttributes.QoSIndexRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/qos/Index/int');
-      mAttributes.DSCPRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/qos/DSCP/int');
-      mAttributes.QOSIPType = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/qos/IPType/enum');
-      mAttributes.SNMPVersion1 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/Version1/bool');
-      mAttributes.SNMPVersion2 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/Version2/bool');
-      mAttributes.SNMPVersion3 = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/Version3/bool');
-      mAttributes.ReadCommunity = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/ReadCommunity/string');
-      mAttributes.WriteCommunity = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/WriteCommunity/string');
-      mAttributes.UserPassword = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmp/UserPassword/string');
-      mAttributes.SNMPTrapEnable = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Enable/bool');
-      mAttributes.TrapCommunity = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.Community/string');
-      mAttributes.TrapAuthentificationFailure = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.AuthenticationFailure/bool');
-      mAttributes.TrapLinkUp = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.LinkUp/bool');
-      mAttributes.TrapLinkDown = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.LinkDown/bool');
-      mAttributes.TrapWarmStart = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.WarmStart/bool');
-      mAttributes.TrapColdStart = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.ColdStart/bool');
-      mAttributes.TrapAlarmInput = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.AlarmInput.#/bool');
-      mAttributes.TrapAlarmOutput = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.AlarmOutput.#/bool');
-      mAttributes.TrapTamperingDetection = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/snmptrap/Trap.#.TamperingDetection/bool');
-      mAttributes.SamsungServerNameRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/dynamicdns/SamsungServerName/string');
-      mAttributes.SamsungProductIDRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/dynamicdns/SamsungProductID/string');
-      mAttributes.PublicServiceEntryOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/dynamicdns/PublicServiceEntry/enum');
-      mAttributes.PublicHostNameRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/dynamicdns/PublicHostName/string');
-      mAttributes.PublicUserNameRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/dynamicdns/PublicUserName/string');
-      mAttributes.PublicPasswordRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/dynamicdns/PublicPassword/string');
-      mAttributes.IPv6DefaultAddress = XMLParser.parseCgiSection(mAttributes.cgiSection, 'network/interface/IPv6DefaultAddress/string');
+      mAttributes.InterfaceOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                              'network/interface/InterfaceName/csv');
+      mAttributes.IPv4TypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                              'network/interface/IPv4Type/enum');
+      mAttributes.IPv6TypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection,
+                                              'network/interface/IPv6Type/enum');
+      mAttributes.PrefixLength = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'network/interface/IPv6PrefixLength/int');
+      mAttributes.HostNameOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                              'network/interface/HostName/int');
+      mAttributes.DnsTypeOptions = XMLParser.parseCgiSection(mAttributes.cgiSection,
+                                              'network/dns/Type/enum');
+      mAttributes.RtspTimeoutOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                'network/rtsp/Timeout/enum');
+      mAttributes.Http = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'network/http/Port/int');
+      mAttributes.Https = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                    'network/https/Port/int');
+      mAttributes.Rtsp = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'network/rtsp/Port/int');
+      mAttributes.Svnp = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'network/svnp/Port/int');
+      mAttributes.PPPoEUserName = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'network/interface/PPPoEUserName/string');
+      mAttributes.PPPoEPassword = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'network/interface/PPPoEPassword/string');
+      mAttributes.Upnp = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                  'network/upnpdiscovery/FriendlyName/string');
+      mAttributes.Bonjour = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                      'network/bonjour/FriendlyName/string');
+      mAttributes.QoSIndexRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'network/qos/Index/int');
+      mAttributes.DSCPRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                      'network/qos/DSCP/int');
+      mAttributes.QOSIPType = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                        'network/qos/IPType/enum');
+      mAttributes.SNMPVersion1 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'network/snmp/Version1/bool');
+      mAttributes.SNMPVersion2 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'network/snmp/Version2/bool');
+      mAttributes.SNMPVersion3 = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'network/snmp/Version3/bool');
+      mAttributes.ReadCommunity = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'network/snmp/ReadCommunity/string');
+      mAttributes.WriteCommunity = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'network/snmp/WriteCommunity/string');
+      mAttributes.UserPassword = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'network/snmp/UserPassword/string');
+      mAttributes.SNMPTrapEnable = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'network/snmptrap/Enable/bool');
+      mAttributes.TrapCommunity = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'network/snmptrap/Trap.#.Community/string');
+      mAttributes.TrapAuthentificationFailure = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                        'network/snmptrap/Trap.#.AuthenticationFailure/bool');
+      mAttributes.TrapLinkUp = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                        'network/snmptrap/Trap.#.LinkUp/bool');
+      mAttributes.TrapLinkDown = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                          'network/snmptrap/Trap.#.LinkDown/bool');
+      mAttributes.TrapWarmStart = XMLParser.parseCgiSection(mAttributes.cgiSection,
+                                            'network/snmptrap/Trap.#.WarmStart/bool');
+      mAttributes.TrapColdStart = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'network/snmptrap/Trap.#.ColdStart/bool');
+      mAttributes.TrapAlarmInput = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'network/snmptrap/Trap.#.AlarmInput.#/bool');
+      mAttributes.TrapAlarmOutput = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'network/snmptrap/Trap.#.AlarmOutput.#/bool');
+      mAttributes.TrapTamperingDetection = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                    'network/snmptrap/Trap.#.TamperingDetection/bool');
+      mAttributes.SamsungServerNameRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                    'network/dynamicdns/SamsungServerName/string');
+      mAttributes.SamsungProductIDRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                  'network/dynamicdns/SamsungProductID/string');
+      mAttributes.PublicServiceEntryOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                      'network/dynamicdns/PublicServiceEntry/enum');
+      mAttributes.PublicHostNameRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                  'network/dynamicdns/PublicHostName/string');
+      mAttributes.PublicUserNameRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                  'network/dynamicdns/PublicUserName/string');
+      mAttributes.PublicPasswordRange = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                  'network/dynamicdns/PublicPassword/string');
+      mAttributes.IPv6DefaultAddress = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                                'network/interface/IPv6DefaultAddress/string');
 
       mAttributes.networkCgiAttrReady = true;
     }
@@ -594,7 +706,8 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
 
   this.parseOpenSDKCgiAttributes = function() {
     if (!mAttributes.openSDKCgiAttrReady) {
-      mAttributes.OpenSDKPriorityOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'opensdk/apps/<AppID>.Priority/enum');
+      mAttributes.OpenSDKPriorityOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 
+                                            'opensdk/apps/<AppID>.Priority/enum');
 
       mAttributes.openSDKCgiAttrReady = true;
     }
@@ -662,7 +775,9 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
         mAttributes.VAExit = XMLParser.parseAttributeSection(response.data, 'Eventsource/Support/VA.Exit');
         mAttributes.VAAppear = XMLParser.parseAttributeSection(response.data, 'Eventsource/Support/VA.Appear');
         mAttributes.VADisappear = XMLParser.parseAttributeSection(response.data, 'Eventsource/Support/VA.Disappear');
-        if ((mAttributes.VAPassing === true) || (mAttributes.VAEnter === true) || (mAttributes.VAExit === true) || (mAttributes.VAAppear === true) || (mAttributes.VADisappear === true)) {
+        if ((mAttributes.VAPassing === true) || (mAttributes.VAEnter === true) || 
+            (mAttributes.VAExit === true) || (mAttributes.VAAppear === true) || 
+            (mAttributes.VADisappear === true)) {
           mAttributes.VideoAnalyticsSupport = true;
         } else {
           mAttributes.VideoAnalyticsSupport = false;
@@ -733,18 +848,24 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
 
         mAttributes.AuxCommands = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Support/AuxCommands');
 
-        if (mAttributes.AbsolutePan === true && mAttributes.AbsoluteTilt === true && mAttributes.AbsoluteZoom === true && mAttributes.FisheyeLens === false && mAttributes.isDigitalPTZ === false) {
+        if (mAttributes.AbsolutePan === true && mAttributes.AbsoluteTilt === true && 
+            mAttributes.AbsoluteZoom === true && mAttributes.FisheyeLens === false && 
+            mAttributes.isDigitalPTZ === false) {
           mAttributes.PTZModel = true;
-        } else if (mAttributes.AbsoluteZoom === true && mAttributes.AbsolutePan === false && mAttributes.AbsoluteTilt === false) {
+        } else if (mAttributes.AbsoluteZoom === true && mAttributes.AbsolutePan === false && 
+            mAttributes.AbsoluteTilt === false) {
           mAttributes.ZoomOnlyModel = true;
-        } else if (mAttributes.AbsoluteZoom === false && mAttributes.AbsolutePan === false && mAttributes.AbsoluteTilt === false && mAttributes.RS485Support === true && mAttributes.MaxGroupCount === 0) {
+        } else if (mAttributes.AbsoluteZoom === false && mAttributes.AbsolutePan === false && 
+            mAttributes.AbsoluteTilt === false && mAttributes.RS485Support === true && 
+            mAttributes.MaxGroupCount === 0) {
           mAttributes.ExternalPTZModel = true;
         } else {
           mAttributes.PresetTypes = ['Global'];
           mAttributes.PTZModel = mAttributes.ZoomOnlyModel = mAttributes.ExternalPTZModel = false;
         }
 
-        if (mAttributes.PTZModel || mAttributes.FisheyeLens || mAttributes.ExternalPTZModel || mAttributes.ZoomOnlyModel) {
+        if (mAttributes.PTZModel || mAttributes.FisheyeLens || mAttributes.ExternalPTZModel || 
+            mAttributes.ZoomOnlyModel) {
           mAttributes.PresetTypes = ['Global', 'Preset'];
           mAttributes.ContinousZoom = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Support/Continuous.Zoom');
           mAttributes.PresetSupport = XMLParser.parseAttributeSection(response.data, 'PTZSupport/Support/Preset');
@@ -775,8 +896,8 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
 
   function setPresetOption() {
     mAttributes.PresetOptions = ["Off"];
-    for (var p = 1; p <= mAttributes.MaxPreset; p++) {
-      mAttributes.PresetOptions.push(p);
+    for (var preset = 1; preset <= mAttributes.MaxPreset; preset++) {
+      mAttributes.PresetOptions.push(preset);
     }
   }
 
@@ -801,7 +922,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
       }, '', true);
   }
 
-   var getDeviceInfo = this.getDeviceInfo = function (){
+  var getDeviceInfo = this.getDeviceInfo = function () {
     var getData = {};
 
     return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', getData,
@@ -832,7 +953,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
   };
 
 
-  var getEventSourceOptions = this.getEventSourceOptions = function (){
+  var getEventSourceOptions = this.getEventSourceOptions = function () {
     var getData = {};
 
     return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=sourceoptions&action=view', getData,
@@ -886,12 +1007,13 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
           (function wait() {
             if (!mAttributes.Ready && !mAttributes.GetFail) {
               $timeout(function() {
-                if (mAttributes.DeviceInfoReady && mAttributes.CgiSectionReady && mAttributes.AttributeSectionReady) {
+                if (mAttributes.DeviceInfoReady && mAttributes.CgiSectionReady && 
+                    mAttributes.AttributeSectionReady) {
                   if (isAdmin() && mAttributes.EventSourceOptionsReady === false) {
                     console.log("event sources Waiting ..", mAttributes.retryCount);
                     mAttributes.retryCount++;
 
-                    if (mAttributes.retryCount >= 999) {
+                    if (mAttributes.retryCount >= RETRY_COUNT) {
                       mAttributes.GetFail = true;
                     }
                   } else {
@@ -901,7 +1023,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
                   console.log("Waiting ..", mAttributes.retryCount);
                   mAttributes.retryCount++;
 
-                  if (mAttributes.retryCount >= 999) {
+                  if (mAttributes.retryCount >= RETRY_COUNT) {
                     mAttributes.GetFail = true;
                   }
                 }
@@ -916,7 +1038,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
                   LoginRedirect(); // jshint ignore:line
                 } else {
                   console.log("Retry Call attributes");
-                  initialize(500);
+                  initialize(TIMEOUT);
                 }
               }
             }
@@ -929,7 +1051,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
             LoginRedirect(); // jshint ignore:line
           } else {
             console.log("Retry Call attributes");
-            initialize(500);
+            initialize(TIMEOUT);
           }
         }
       );
@@ -1028,9 +1150,9 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
       } else {
         console.error("mAttributes.EventLogTypes is undefined");
       }
-    } catch (e) {
+    } catch (err) {
       returnVal = mAttributes.PresetOptions;
-      console.error(e);
+      console.error(err);
     }
 
     return returnVal;
@@ -1054,7 +1176,7 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
   };
 
 
-  var loginIPOLISWeb_No_Digest = function() {
+  var loginIPOLISWebNoDigest = function() {
     if (RESTCLIENT_CONFIG.serverType === 'camera') {
       SunapiClient.get(
         '/stw-cgi/security.cgi?msubmenu=users&action=view', {},
@@ -1062,10 +1184,10 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
           setAccountData(response);
           SessionOfUserManager.addSession(loginInfo.id, '', CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB);
           SessionOfUserManager.setLogin();
-          initialize(500);
+          initialize(TIMEOUT);
         },
         function(errorData) {
-          loginIPOLISWeb_No_Digest();
+          loginIPOLISWebNoDigest();
           console.error(errorData);
         }, '', true);
     }
@@ -1087,13 +1209,13 @@ kindFramework.service('Attributes', function($timeout, $location, $q, SunapiClie
 
 
   if (!isPhone) {
-    loginIPOLISWeb_No_Digest();
+    loginIPOLISWebNoDigest();
     /** Dont't initialize attributes during service initilization. It is causing password popup
      messages, it should be initilaized after login */
     if (RESTCLIENT_CONFIG.serverType === 'grunt') {
       console.log('Attributes is Logged in ', SessionOfUserManager.isLoggedin());
       if (SessionOfUserManager.isLoggedin() === true) {
-        this.initialize(500);
+        this.initialize(TIMEOUT);
       } else {
         console.log("Not LoggedIn");
         SessionOfUserManager.unSetLogin();

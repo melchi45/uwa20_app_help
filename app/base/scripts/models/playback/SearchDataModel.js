@@ -17,7 +17,6 @@ kindFramework.factory(
       var defaultSelectedEndedTime = ["23", "59", "59"];
       var defaultPlusTime = defaultPlusMinutes;
       var defaultOverlapId = 0;
-      var defaultChannelId = 0;
       var defaultChannelIdList = [];
       var defaultChannelNumList = [];
 
@@ -25,15 +24,7 @@ kindFramework.factory(
       var selectedDate = new Date(defaultSelectedDate.valueOf());
       var selectedStartedTime = defaultSelectedStartedTime;
       var selectedEndedTime = defaultSelectedEndedTime;
-      var holdStartedTime, holdEndedTime, holdStartedSecond, holdEndedSecond;
-      var validStartTime, validEndTime;
       var webIconStatus = false;
-      /**
-       * For playback pages with multiple channels. 
-       * Channel index of the channel that has been used for timeline event search. 
-       * This channel Index is the index based on channels showing on playback page.
-       */
-      var channelId = defaultChannelId;
       /**
        * For playback pages with multiple channels. 
        * For NVR Multiplayback only.
@@ -67,7 +58,9 @@ kindFramework.factory(
        * @param: index is number.
        */
       this.setOverlapId = function(index) {
-        if (typeof(index) === 'undefined') return;
+        if (typeof(index) === 'undefined') {
+          return;
+        }
         overlapId = index;
       };
 
@@ -107,18 +100,8 @@ kindFramework.factory(
         selectedStartedTime = defaultSelectedStartedTime;
         selectedEndedTime = defaultSelectedEndedTime;
         overlapId = defaultOverlapId;
-        channelId = defaultChannelId;
         channelIdList = defaultChannelIdList;
         channelNumList = defaultChannelNumList;
-      };
-
-      this.setRefreshHoldTimeValue = function() {
-        holdStartedTime = (defaultSelectedStartedTime[0] * 60) + (defaultSelectedStartedTime[1] * 1);
-        holdEndedTime = (defaultSelectedEndedTime[0] * 60) + (defaultSelectedEndedTime[1] * 1);
-        holdStartedSecond = (defaultSelectedStartedTime[2] * 1);
-        holdEndedSecond = (defaultSelectedEndedTime[2] * 1);
-        validStartTime = defaultSelectedStartedTime[0] + ":" + defaultSelectedStartedTime[1] + ":" + defaultSelectedStartedTime[2];
-        validEndTime = defaultSelectedEndedTime[0] + ":" + defaultSelectedEndedTime[1] + ":" + defaultSelectedEndedTime[2];
       };
 
       this.getDefaultPlusTime = function() {

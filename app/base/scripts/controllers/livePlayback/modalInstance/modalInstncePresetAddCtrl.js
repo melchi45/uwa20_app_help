@@ -1,4 +1,5 @@
-kindFramework.controller('ModalInstncePresetAddCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$sce', 'data', 'Attributes', 'ModalManagerService',
+kindFramework.controller('ModalInstncePresetAddCtrl', ['$scope', '$rootScope', '$uibModalInstance', 
+  '$sce', 'data', 'Attributes', 'ModalManagerService',
   function($scope, $rootScope, $uibModalInstance, $sce, data, Attributes, ModalManagerService) {
     "use strict";
 
@@ -8,10 +9,13 @@ kindFramework.controller('ModalInstncePresetAddCtrl', ['$scope', '$rootScope', '
     $scope.selectPreset = null;
     $scope.presetName = "";
     $scope.AlphaNumericStr = sunapiAttributes.AlphaNumericStr;
-    $scope.PresetNameMaxLen = ((sunapiAttributes.PresetNameMaxLen && sunapiAttributes.PresetNameMaxLen.maxLength) ? sunapiAttributes.PresetNameMaxLen.maxLength : "12");
+    $scope.PresetNameMaxLen = ((sunapiAttributes.PresetNameMaxLen && 
+                              sunapiAttributes.PresetNameMaxLen.maxLength) ? 
+                              sunapiAttributes.PresetNameMaxLen.maxLength : "12");
 
     $scope.ok = function() {
-      if ($scope.presetName === null | $scope.presetName === "" || typeof $scope.presetName === "undefined") {
+      if ($scope.presetName === null | $scope.presetName === "" || 
+          typeof $scope.presetName === "undefined") {
         ModalManagerService.open('message', {
           'buttonCount': 1,
           'message': "lang_msg_noname"
@@ -19,7 +23,8 @@ kindFramework.controller('ModalInstncePresetAddCtrl', ['$scope', '$rootScope', '
         return;
       }
 
-      if ($scope.selectPreset === null | $scope.selectPreset === "" || typeof $scope.selectPreset === "undefined") {
+      if ($scope.selectPreset === null | $scope.selectPreset === "" || 
+          typeof $scope.selectPreset === "undefined") {
         ModalManagerService.open('message', {
           'buttonCount': 1,
           'message': "lang_msg_selValidPresetNumber"
@@ -28,7 +33,8 @@ kindFramework.controller('ModalInstncePresetAddCtrl', ['$scope', '$rootScope', '
       }
 
       var values = {
-        'action': (typeof $scope.list[$scope.selectPreset - 1].name === "undefined" ? 'add' : 'update'),
+        'action': (typeof $scope.list[$scope.selectPreset - 1].name === "undefined" ? 
+                  'add' : 'update'),
         'num': $scope.selectPreset,
         'name': $scope.presetName
       };

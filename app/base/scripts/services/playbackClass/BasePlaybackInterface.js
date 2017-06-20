@@ -1,18 +1,18 @@
 "use strict"
-kindFramework
-  .factory('BasePlaybackInterface', ['$q', '$filter', '$rootScope', 'CAMERA_TYPE',
+kindFramework.
+  factory('BasePlaybackInterface', ['$q', '$filter', '$rootScope', 'CAMERA_TYPE',
     'SunapiClient', 'PlaybackService', 'PLAYBACK_TYPE', 'ModalManagerService',
-    'UniversialManagerService', 'CAMERA_STATUS', 'SearchDataModel', 'PlayDataModel', 'ItemSetModel',
-    function($q, $filter, $rootScope, CAMERA_TYPE, SunapiClient, PlaybackService, PLAYBACK_TYPE,
-      ModalManagerService, UniversialManagerService, CAMERA_STATUS, SearchDataModel, PlayDataModel,
-      ItemSetModel) {
-      var pad = function(x) {
-        x *= 1;
-        return (x < 10 ? "0" + x : x);
+    'UniversialManagerService', 'CAMERA_STATUS', 'SearchDataModel', 'PlayDataModel', 
+    'ItemSetModel',
+    function ($q, $filter, $rootScope, CAMERA_TYPE, SunapiClient, PlaybackService, 
+      PLAYBACK_TYPE, ModalManagerService, UniversialManagerService, CAMERA_STATUS, 
+      SearchDataModel, PlayDataModel, ItemSetModel) {
+      var MIN_DOUBLE_FIGURES = 10;  
+      var pad = function (_input) {
+        var input = _input*1;
+        return (input < MIN_DOUBLE_FIGURES ? "0" + input : input);
       };
       var PLAY_CMD = PLAYBACK_TYPE.playCommand;
-      var PLAY_MODE = CAMERA_STATUS.PLAY_MODE;
-      var VIEW_MODE = CAMERA_STATUS.VIEW_MODE;
       var today = new Date();
       var year = today.getFullYear();
       var month = pad(today.getMonth() + 1);
@@ -22,7 +22,7 @@ kindFramework
       var itemSet = new ItemSetModel();
 
       var BasePlaybackInterface = {
-        init: function() {
+        init: function () {
           this.sdInfo = {
             'status': false,
             'detail': ""
@@ -35,14 +35,14 @@ kindFramework
           };
         },
 
-        checkSDStatus: function(channelId) {
+        checkSDStatus: function (channelId) {
           var def = $q.defer();
           var myObj = this;
-          PlaybackService.checkRecordStatus(channelId)
-            .then(function(results) {
+          PlaybackService.checkRecordStatus(channelId).
+            then(function (results) {
               myObj.sdInfo.status = true;
               def.resolve(myObj.sdInfo);
-            }, function(error) {
+            }, function (error) {
               myObj.sdInfo.status = false;
               myObj.sdInfo.detail = "lang_turn_on_sd_card";
               def.reject(error);
@@ -51,12 +51,10 @@ kindFramework
           return def.promise;
         },
 
-        openEventTypeList: function(eventList) {
+        openEventTypeList: function (eventList) {
           var deferred = $q.defer();
-
-          var obj = this;
-          var successCallback = function(data) {
-            if (typeof(data.selectedEvent) === 'undefined' || data.selectedEvent === null) {
+          var successCallback = function (data) {
+            if (typeof (data.selectedEvent) === 'undefined' || data.selectedEvent === null) {
               console.log("data.selectedEvent is null...why?");
             }
             searchData.setEventTypeList(data.selectedEvent);
@@ -67,7 +65,7 @@ kindFramework
             };
             deferred.resolve(inputData);
           };
-          var errorCallback = function() {
+          var errorCallback = function () {
             console.log("dismiss event list");
             deferred.reject('openEventTypeList Failed');
           };
@@ -89,7 +87,7 @@ kindFramework
           return deferred.promise;
         },
 
-        checkCurrentStatus: function(date) {
+        checkCurrentStatus: function (date) {
           var myObj = this;
           var def = $q.defer();
           // $rootScope.$emit('changeLoadingBar', true);
@@ -101,24 +99,24 @@ kindFramework
             channel: UniversialManagerService.getChannelId()
           };
 
-          myObj.getOverlappedId(query)
-            .then(function(idList) {
+          myObj.getOverlappedId(query).
+            then(function (idList) {
               query.overlappedId = idList.OverlappedIDList;
               query.date = date;
-              myObj.getEventStatus(query)
-                .then(function(eventList) {
+              myObj.getEventStatus(query).
+                then(function (eventList) {
                   def.resolve(eventList);
-                }, function(error) {
+                }, function (error) {
                   console.log("Fail to get event status");
                   def.reject(error.description);
                 });
-            }, function(error) {
+            }, function (error) {
               console.log("Failed to get overlappedId list due to: ", error);
               def.reject("Failed to get overlappedId list");
             });
           return def.promise;
         },
-        requestTimeSearch: function(type, channelId) {
+        requestTimeSearch: function (type, channelId) {
           var query = {
             year: year,
             month: month,
@@ -126,11 +124,11 @@ kindFramework
             id: 0,
             type: 'All'
           };
-          PlaybackService.displayTimelineItem(query)
-            .then(function(value) {
+          PlaybackService.displayTimelineItem(query).
+            then(function (value) {
               itemSet.addData(value, playData.getTimelineMode());
               $rootScope.$emit('changeLoadingBar', false);
-            }, function() {
+            }, function () {
               console.log("There is no valid record item");
               ModalManagerService.open(
                 'message', {
@@ -142,9 +140,11 @@ kindFramework
             });
         },
 
-        timelineCallback: function(time) {
+        timelineCallback: function (time) {
           var callbackFnc = playData.getTimeCallback();
-          if (typeof(time) === 'undefined' || time === null || callbackFnc === null) return;
+          if (typeof (time) === 'undefined' || time === null || callbackFnc === null) {
+            return;
+          }
           var newTime = [];
           newTime.timestamp = time.time;
           newTime.timezone = time.timezone;
@@ -154,8 +154,10 @@ kindFramework
 
 
 
-        updatePlayIcon: function(enablePlayback) {
-          if (enablePlayback === false) return;
+        updatePlayIcon: function (enablePlayback) {
+          if (enablePlayback === false) {
+            return;
+          }
           if (playData.getStatus() === PLAY_CMD.PLAY) {
             $rootScope.$emit('playStatus', 'play');
           } else if (playData.getStatus() === PLAY_CMD.PAUSE ||
@@ -163,7 +165,7 @@ kindFramework
             $rootScope.$emit('playStatus', 'stop');
           }
         },
-        showErrorPopup: function(errorMessage) {
+        showErrorPopup: function (errorMessage) {
           ModalManagerService.open(
             'message', {
               'message': errorMessage,
@@ -172,13 +174,12 @@ kindFramework
           );
         },
 
-        requestEventSearch: function(inputData) {
+        requestEventSearch: function (inputData) {
           var deferred = $q.defer();
-          var eventList = typeof(inputData.eventList) === 'undefined' ? ['All'] : inputData.eventList;
           var timeInfo = {
-            'startTime': typeof(inputData.startTime) === 'undefined' ?
+            'startTime': typeof (inputData.startTime) === 'undefined' ?
               '00:00:00' : inputData.startTime,
-            'endTime': typeof(inputData.endTime) === 'undefined' ?
+            'endTime': typeof (inputData.endTime) === 'undefined' ?
               '23:59:59' : inputData.endTime,
             'date': $filter('date')(inputData.date, 'yyyy-MM-dd')
           };
@@ -187,7 +188,7 @@ kindFramework
           if (timeInfo.endTime === '24:00:00') {
             timeInfo.endTime = '23:59:59';
           }
-          var overlappedId = typeof(inputData.id) === 'undefined' ? 0 : inputData.id;
+          var overlappedId = typeof (inputData.id) === 'undefined' ? 0 : inputData.id;
           var channelId = UniversialManagerService.getChannelId();
           var overlapInfo = {
             'year': inputData.date.getFullYear(),
@@ -195,12 +196,14 @@ kindFramework
             'day': pad(inputData.date.getDate()),
             'channel': channelId
           };
-          this.getOverlappedId(overlapInfo)
-            .then(function(idList) {
+          this.getOverlappedId(overlapInfo).
+            then(function (idList) {
               // to check previous overlap id exits
               var index = 0;
               for (; index < idList.OverlappedIDList.length; index++) {
-                if (overlappedId === idList.OverlappedIDList[index]) break;
+                if (overlappedId === idList.OverlappedIDList[index]) {
+                  break;
+                }
               }
               //if not exist, then set default overlap id.
               if (index >= idList.OverlappedIDList.length && idList.OverlappedIDList.length !== 0) {
@@ -214,8 +217,8 @@ kindFramework
                 'overlappedId': overlappedId,
                 'channel': channelId
               };
-              PlaybackService.eventSearch(searchInfo)
-                .then(function(results) {
+              PlaybackService.eventSearch(searchInfo).
+                then(function (results) {
                   console.log("results.length", results.length);
                   if (results.length === 0) {
                     ModalManagerService.open(
@@ -227,7 +230,7 @@ kindFramework
                   }
                   itemSet.addData(results, playData.getTimelineMode()); // event 'changeLoadingBar' is emitted inside this function
                   deferred.resolve('requestEventSearch success');
-                }, function(error) {
+                }, function (error) {
                   console.log(error);
                   ModalManagerService.open(
                     'message', {
@@ -238,7 +241,7 @@ kindFramework
                   itemSet.addData([]);
                   deferred.reject(error);
                 });
-            }, function(error) {
+            }, function (error) {
               console.log("fail to get overlappedId");
               ModalManagerService.open(
                 'message', {
@@ -251,16 +254,16 @@ kindFramework
           return deferred.promise;
         },
 
-        getOverlappedId: function(info) {
+        getOverlappedId: function (info) {
           return PlaybackService.getOverlappedId(info);
         },
 
-        getEventStatus: function(info) {
+        getEventStatus: function (info) {
           return PlaybackService.getCurrentEventStatus(info, this.eventList);
         },
 
-        getEventName: function(event) {
-          if (event === null || typeof(event) === 'undefined') {
+        getEventName: function (event) {
+          if (event === null || typeof (event) === 'undefined') {
             return "lang_event";
           }
           if (event === "All") {
@@ -273,30 +276,30 @@ kindFramework
           }
           return "";
         },
-        preparePlayback: function(channelId) {},
-        revertLivePage: function() {},
-        openPlayback: function(inputData) {},
-        penPlaybackAfterAuth: function(inputData) {
+        preparePlayback: function (channelId) {},
+        revertLivePage: function () {},
+        openPlayback: function (inputData) {},
+        penPlaybackAfterAuth: function (inputData) {
           return null;
         },
-        play: function() {},
-        pause: function() {},
-        resume: function() {},
-        stop: function() {},
-        seek: function() {},
-        refreshLivePage: function(message) {
+        play: function () {},
+        pause: function () {},
+        resume: function () {},
+        stop: function () {},
+        seek: function () {},
+        refreshLivePage: function (message) {
           return null;
         },
-        applyPlaySpeed: function(speed) {
+        applyPlaySpeed: function (speed) {
           return null;
         },
-        startLive: function(profileInfo) {},
-        stopLive: function() {},
-        findRecordings: function(info) {},
-        stepPlay: function(command) {
+        startLive: function (profileInfo) {},
+        stopLive: function () {},
+        findRecordings: function (info) {},
+        stepPlay: function (command) {
           return null;
         },
-        backup: function() {
+        backup: function () {
           return null;
         },
       };

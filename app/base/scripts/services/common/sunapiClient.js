@@ -1,8 +1,9 @@
 /* global CryptoJS */
-kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q, SessionOfUserManager, ModalManagerService, $timeout, SunapiConverter) {
+kindFramework.factory('SunapiClient', function (RESTCLIENT_CONFIG, $location, $q, 
+  SessionOfUserManager, ModalManagerService, $timeout, SunapiConverter) {
   'use strict';
 
-  var digestInfo = undefined;
+  var digestInfo = null;
   var usrName = '';
   var passWord = '';
 
@@ -15,28 +16,28 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
   if (RESTCLIENT_CONFIG.serverType === 'camera') {
     RESTCLIENT_CONFIG.digest.hostName = window.location.hostname;
     RESTCLIENT_CONFIG.digest.port = window.location.port;
-    var loc_protocol = window.location.protocol;
-    var splitProt = loc_protocol.split(":");
+    var locProtocol = window.location.protocol;
+    var splitProt = locProtocol.split(":");
     RESTCLIENT_CONFIG.digest.protocol = splitProt[0];
   } else {
     try {
       debugMode = RESTCLIENT_CONFIG.debugMode;
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
   }
 
-
-  sunapiClient.post = function(_url, jsonData, SuccessFn, FailFn, $scope, fileData, specialHeaders) {
+  sunapiClient.post = function (_url, jsonData, SuccessFn, FailFn, $scope, 
+                                fileData, specialHeaders) {
     var url = _url;
     if (typeof jsonData !== 'undefined') {
       url += jsonToText(jsonData);
     }
 
-    return ajax_async("POST", url, SuccessFn, FailFn, $scope, fileData, specialHeaders);
+    return ajaxAsync("POST", url, SuccessFn, FailFn, $scope, fileData, specialHeaders);
   };
 
-  sunapiClient.get = function(_url, jsonData, SuccessFn, FailFn, $scope, isAsyncCall, isText) {
+  sunapiClient.get = function (_url, jsonData, SuccessFn, FailFn, $scope, isAsyncCall, isText) {
     var url = _url;
     if (typeof jsonData !== 'undefined') {
       url += jsonToText(jsonData);
@@ -51,9 +52,9 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     }
 
     if (url.indexOf("configbackup") !== -1 || isAsyncCall === true) {
-      return ajax_async("GET", url, SuccessFn, FailFn, $scope, '', '', isText);
+      return ajaxAsync("GET", url, SuccessFn, FailFn, $scope, '', '', isText);
     } else {
-      return ajax_sync("GET", url, SuccessFn, FailFn, isText);
+      return ajaxSync("GET", url, SuccessFn, FailFn, isText);
     }
   };
 
@@ -87,7 +88,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
         console.error(errorCode);
       });
    */
-  sunapiClient.sequence = function(queue, successCallback, errorCallback) {
+  sunapiClient.sequence = function (queue, successCallback, errorCallback) {
     var currentItem = queue.shift();
     if (typeof currentItem === "undefined") {
       return;
@@ -96,7 +97,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     sunapiClient.get(
       currentItem.url,
       currentItem.reqData,
-      function(response) {
+      function (response) {
         if ("successCallback" in currentItem) {
           currentItem.successCallback(response);
         }
@@ -116,7 +117,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
   };
 
   /*--------------------- Start sunapiClient.file export ---------------- */
-  sunapiClient.file = function(url, successFn, failFn, $scope, fileData, specialHeaders) {
+  sunapiClient.file = function (url, successFn, failFn, $scope, fileData, specialHeaders) {
     var method = 'POST';
     var deferred = $q.defer();
     var wwwAuthenticate = '';
@@ -148,7 +149,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
       digestInfo = getDigestInfoInWwwAuthenticate(wwwAuthenticate);
       setDigestHeader(xhr, method, url, digestInfo);
     } else {
-      if (typeof digestInfo !== 'undefined' && digestInfo !== 'undefined') {
+      if (typeof digestInfo !== 'undefined' && digestInfo !== 'undefined' && digestInfo!==null) {
         setDigestHeader(xhr, method, url, digestInfo);
       }
     }
@@ -157,12 +158,12 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
 
     if (typeof specialHeaders !== 'undefined') {
       var hdrindex = 0;
-      for (hdrindex = 0; hdrindex < specialHeaders.length; hdrindex = hdrindex + 1) {
+      for (hdrindex = 0; hdrindex < specialHeaders.length; hdrindex += 1) {
         xhr.setRequestHeader(specialHeaders[hdrindex].Type, specialHeaders[hdrindex].Header);
       }
     }
 
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       if (this.readyState === 4) {
         if (this.status === 401) {
           var wwwAuthenticate = this.getResponseHeader('www-authenticate');
@@ -187,7 +188,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
             digestInfo = getDigestInfoInWwwAuthenticate(wwwAuthenticate);
             setDigestHeader(xhr, method, url, digestInfo);
           } else {
-            if (typeof digestInfo !== 'undefined' && digestInfo !== 'undefined') {
+            if (typeof digestInfo !== 'undefined' && digestInfo !== 'undefined' && digestInfo!==null) {
               setDigestHeader(xhr, method, url, digestInfo);
             }
           }
@@ -195,7 +196,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
 
           setupAsyncCall(xhr, method, $scope, url, failFn);
 
-          xhr.onreadystatechange = function() {
+          xhr.onreadystatechange = function () {
             if (this.readyState === 4) {
               if (this.status === 200) {
                 if (typeof this.response !== 'undefined' && this.response !== "") {
@@ -271,31 +272,31 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
 
     TIMEOUTCOUNT: 30000,
 
-    mc: function(url, connect_info, SuccessFn, FailFn) {
+    mc: function (url, connectInfo, SuccessFn, FailFn) {
       var reqURL = "";
       var xhr = new XMLHttpRequest();
       var auth = false;
       var isTimeout = false;
 
-      reqURL = connect_info.host + url;
-      usrName = connect_info.rtsp_id;
-      passWord = connect_info.rtsp_pwd;
+      reqURL = connectInfo.host + url;
+      usrName = connectInfo.rtsp_id;
+      passWord = connectInfo.rtsp_pwd;
       console.log("%c request sunapi -> " + reqURL + " ", "color:#61BD4F");
 
-      xhr = mobile.makeNewRequest(connect_info, url, '');
+      xhr = mobile.makeNewRequest(connectInfo, url, '');
       console.log(xhr);
 
       // Mobile safari ( for iOS )
       if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0) {
-        xhr.onload = xhr.onabort = function() {
+        xhr.onload = xhr.onabort = function () {
           if (this.status === 401) {
             var wwwAuthenticate = this.getResponseHeader('www-authenticate');
             console.log("async wwwAuthenticate : ", wwwAuthenticate);
 
-            var xhr = mobile.makeNewRequest(connect_info, url, wwwAuthenticate);
+            var xhr = mobile.makeNewRequest(connectInfo, url, wwwAuthenticate);
             setDigestHeader(xhr, 'POST', url, digestInfo);
 
-            xhr.onload = xhr.onabort = function() {
+            xhr.onload = xhr.onabort = function () {
               isTimeout = false;
               if (this.status === 200) {
                 if (typeof this.response !== 'undefined' && this.response !== "") {
@@ -324,10 +325,10 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
               }
             };
 
-            xhr.onerror = function() {
+            xhr.onerror = function () {
               FailFn(xhr.status);
             };
-            xhr.ontimeout = function() {
+            xhr.ontimeout = function () {
               FailFn(408);
             }
 
@@ -370,22 +371,22 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
             }
           }
         };
-        xhr.onerror = function() {
+        xhr.onerror = function () {
           FailFn(xhr.status);
         };
-        xhr.ontimeout = function() {
+        xhr.ontimeout = function () {
           FailFn(408);
         }
 
         // Mobile Chrome
       } else {
         isTimeout = false;
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
           if (this.readyState === 4) {
             if (this.status === 401) {
               var xhr = new XMLHttpRequest();
 
-              xhr.onreadystatechange = function() {
+              xhr.onreadystatechange = function () {
                 if (this.readyState === 4) {
                   if (this.status === 200) {
                     if (typeof this.response !== 'undefined' && this.response !== "") {
@@ -423,7 +424,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
               // }
 
               xhr.setRequestHeader('Accept', 'application/json');
-              xhr.ontimeout = function() {
+              xhr.ontimeout = function () {
                 FailFn(408);
               }
               xhr.send();
@@ -462,23 +463,23 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
       xhr.open('GET', reqURL, true, usrName, passWord);
       xhr.timeout = mobile.TIMEOUTCOUNT;
       // }
-      xhr.ontimeout = function() {
+      xhr.ontimeout = function () {
         FailFn(408);
       }
-      xhr.onerror = function() {
+      xhr.onerror = function () {
         FailFn(xhr.status);
       };
       xhr.setRequestHeader('Accept', 'application/json');
       xhr.setRequestHeader('Cache-Control', 'no-cache');
 
       if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0) {
-        var process = $timeout(function() {
+        var process = $timeout(function () {
           isTimeout = true;
           xhr.send();
         }, 200);
 
         if (auth) {
-          $timeout(function() {
+          $timeout(function () {
             if (isTimeout) {
               $timeout.cancel(process);
               FailFn('408');
@@ -490,7 +491,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
       }
     },
 
-    parse: function(url, response) {
+    parse: function (url, response) {
       var result = '';
 
       try {
@@ -501,22 +502,22 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
           result = SunapiConverter.covert(url, response);
         } else {
           console.log("START HTML Converter");
-          var url_info = $('<div></div>').append(response).find('meta').attr('content');
-          url_info = url_info.substring(url_info.indexOf('htt'), url_info.length);
-          result = url_info;
+          var urlInfo = $('<div></div>').append(response).find('meta').attr('content');
+          urlInfo = urlInfo.substring(urlInfo.indexOf('htt'), urlInfo.length);
+          result = urlInfo;
         }
       }
 
       return result;
     },
 
-    makeNewRequest: function(connect_info, url, wwwAuthenticate, isText) {
-      var server = connect_info.host + url;
+    makeNewRequest: function (connectInfo, url, wwwAuthenticate, isText) {
+      var server = connectInfo.host + url;
       var xhr = new XMLHttpRequest();
 
-      xhr.open('POST', server, true, connect_info.rtsp_id, connect_info.rtsp_pwd);
+      xhr.open('POST', server, true, connectInfo.rtsp_id, connectInfo.rtsp_pwd);
 
-      if (connect_info.model_type === 'nwc') {
+      if (connectInfo.model_type === 'nwc') {
         xhr.withCredentials = true;
       }
 
@@ -529,14 +530,14 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
 
   };
 
-  sunapiClient.mobile = function(url, device_info) {
+  sunapiClient.mobile = function (url, deviceInfo) {
     var deferred = $q.defer();
 
-    mobile.mc(url, device_info,
-      function(success) {
+    mobile.mc(url, deviceInfo,
+      function (success) {
         deferred.resolve(success);
       },
-      function(error) {
+      function (error) {
         deferred.reject(error);
       });
 
@@ -547,21 +548,33 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     var responseValue = null;
     var digestAuthHeader = null;
     if (digestCache.scheme.toLowerCase() === 'digest') {
-      digestCache.nc = digestCache.nc + 1;
+      digestCache.nc += 1;
       digestCache.cnonce = generateCnonce();
 
-      responseValue = formulateResponse(usrName, passWord, url, digestCache.realm, method.toUpperCase(), digestCache.nonce, digestCache.nc, digestCache.cnonce, digestCache.qop);
+      responseValue = formulateResponse(usrName, passWord, url, digestCache.realm, 
+                                        method.toUpperCase(), digestCache.nonce, digestCache.nc, 
+                                        digestCache.cnonce, digestCache.qop);
 
-      digestAuthHeader = digestCache.scheme + ' ' + 'username="' + usrName + '", ' + 'realm="' + digestCache.realm + '", ' + 'nonce="' + digestCache.nonce + '", ' + 'uri="' + url + '", ' + 'cnonce="' + digestCache.cnonce + '" ' + 'nc=' + decimalToHex(digestCache.nc, 8) + ', ' + 'qop=' + digestCache.qop + ', ' + 'response="' + responseValue + '"';
+      digestAuthHeader = digestCache.scheme + ' ' + 'username="' + usrName + '", ' + 
+                        'realm="' + digestCache.realm + '", ' + 'nonce="' + digestCache.nonce + 
+                        '", ' + 'uri="' + url + '", ' + 'cnonce="' + digestCache.cnonce + '" ' + 
+                        'nc=' + decimalToHex(digestCache.nc, 8) + ', ' + 'qop=' + digestCache.qop + 
+                        ', ' + 'response="' + responseValue + '"';
 
       xhr.setRequestHeader("Authorization", digestAuthHeader);
     } else if (digestCache.scheme.toLowerCase() === 'xdigest') {
-      digestCache.nc = digestCache.nc + 1;
+      digestCache.nc += 1;
       digestCache.cnonce = generateCnonce();
 
-      responseValue = formulateResponse(usrName, passWord, url, digestCache.realm, method.toUpperCase(), digestCache.nonce, digestCache.nc, digestCache.cnonce, digestCache.qop);
+      responseValue = formulateResponse(usrName, passWord, url, digestCache.realm, 
+                                        method.toUpperCase(), digestCache.nonce, digestCache.nc, 
+                                        digestCache.cnonce, digestCache.qop);
 
-      digestAuthHeader = digestCache.scheme + ' ' + 'username="' + usrName + '", ' + 'realm="' + digestCache.realm + '", ' + 'nonce="' + digestCache.nonce + '", ' + 'uri="' + url + '", ' + 'cnonce="' + digestCache.cnonce + '" ' + 'nc=' + decimalToHex(digestCache.nc, 8) + ', ' + 'qop=' + digestCache.qop + ', ' + 'response="' + responseValue + '"';
+      digestAuthHeader = digestCache.scheme + ' ' + 'username="' + usrName + '", ' + 
+                          'realm="' + digestCache.realm + '", ' + 'nonce="' + digestCache.nonce + 
+                          '", ' + 'uri="' + url + '", ' + 'cnonce="' + digestCache.cnonce + '" ' + 
+                          'nc=' + decimalToHex(digestCache.nc, 8) + ', ' + 'qop=' + digestCache.qop + 
+                          ', ' + 'response="' + responseValue + '"';
 
       xhr.setRequestHeader("Authorization", digestAuthHeader);
     } else if (digestCache.scheme.toLowerCase() === 'basic') {
@@ -581,7 +594,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
       var resp = '';
       try {
         resp = JSON.parse(xhr.response);
-      } catch (e) {
+      } catch (err) {
         failFn("Error Parsing response");
         return;
       }
@@ -606,7 +619,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
   }
 
   function setupAsyncCall(xhr, method, callbackList, url, failFn) {
-    var onErrorEvent = function() {
+    var onErrorEvent = function () {
       failFn("Network Error");
     };
 
@@ -686,7 +699,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
       } else {
         /** Sometime the digest issued by the server becomes invalid,
         we need to request new digest from server again */
-        if (typeof digestInfo !== 'undefined' && digestInfo !== 'undefined') {
+        if (typeof digestInfo !== 'undefined' && digestInfo !== 'undefined'&& digestInfo!==null) {
           setDigestHeader(xhr, method, url, digestInfo);
         }
       }
@@ -694,9 +707,9 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     return xhr;
   }
 
-  sunapiClient.clearDigestCache = function() {
+  sunapiClient.clearDigestCache = function () {
     console.log('Clearing the Diegest cache !!!!!!!!!!!! ');
-    digestInfo = undefined;
+    digestInfo = null;
   };
 
   function handleAccountBlock(failFn) {
@@ -712,7 +725,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     }
   }
   var syncXhr = null;
-  var ajax_sync = function(method, url, successFn, failFn, isText) {
+  var ajaxSync = function (method, url, successFn, failFn, isText) {
     if (RESTCLIENT_CONFIG.serverType === 'grunt') {
       if (SessionOfUserManager.isLoggedin() === true) {
         usrName = SessionOfUserManager.getUsername();
@@ -768,7 +781,8 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     }
   };
 
-  var ajax_async = function(method, url, successFn, failFn, $scope, fileData, specialHeaders, isText) {
+  var ajaxAsync = function (method, url, successFn, failFn, $scope, 
+                            fileData, specialHeaders, isText) {
     var deferred = $q.defer();
     if (RESTCLIENT_CONFIG.serverType === 'grunt') {
       if (SessionOfUserManager.isLoggedin() === true) {
@@ -788,12 +802,12 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
 
     if (typeof specialHeaders !== 'undefined') {
       var hdrindex = 0;
-      for (hdrindex = 0; hdrindex < specialHeaders.length; hdrindex = hdrindex + 1) {
+      for (hdrindex = 0; hdrindex < specialHeaders.length; hdrindex += 1) {
         xhr.setRequestHeader(specialHeaders[hdrindex].Type, specialHeaders[hdrindex].Header);
       }
     }
 
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       if (this.readyState === 4) {
         if (this.status === 401 && RESTCLIENT_CONFIG.serverType === 'grunt') {
           var wwwAuthenticate = this.getResponseHeader('www-authenticate');
@@ -804,7 +818,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
 
           setupAsyncCall(xhr, method, $scope, url, failFn);
 
-          xhr.onreadystatechange = function() {
+          xhr.onreadystatechange = function () {
             if (this.readyState === 4) {
               if (this.status === 200) {
                 if (typeof this.response !== 'undefined' && this.response !== "") {
@@ -874,7 +888,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     return deferred.promise;
   };
 
-  var generateCnonce = function() {
+  var generateCnonce = function () {
     var characters = 'abcdef0123456789';
     var token = '';
     for (var i = 0; i < 16; i++) {
@@ -884,15 +898,17 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     return token;
   };
 
-  var formulateResponse = function(username, password, url, realm, method, nonce, nc, cnonce, qop) {
+  var formulateResponse = function (username, password, url, realm, 
+                                    method, nonce, nc, cnonce, qop) {
     var HA1 = CryptoJS.MD5(username + ':' + realm + ':' + password).toString();
     var HA2 = CryptoJS.MD5(method + ':' + url).toString();
-    var response = CryptoJS.MD5(HA1 + ':' + nonce + ':' + decimalToHex(nc, 8) + ':' + cnonce + ':' + qop + ':' + HA2).toString();
+    var response = CryptoJS.MD5(HA1 + ':' + nonce + ':' + decimalToHex(nc, 8) + ':' + 
+                                cnonce + ':' + qop + ':' + HA2).toString();
 
     return response;
   };
 
-  var getDigestInfoInWwwAuthenticate = function(wwwAuthenticate) {
+  var getDigestInfoInWwwAuthenticate = function (wwwAuthenticate) {
     var digestHeaders = wwwAuthenticate;
     var scheme = null;
     var realm = null;
@@ -946,9 +962,9 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     return returnValue;
   };
 
-  var decimalToHex = function(d, _padding) {
-    var hex = Number(d).toString(16);
-    var padding = typeof(_padding) === 'undefined' || _padding === null ? 2 : _padding;
+  var decimalToHex = function (dec, _padding) {
+    var hex = Number(dec).toString(16);
+    var padding = typeof (_padding) === 'undefined' || _padding === null ? 2 : _padding;
 
     while (hex.length < padding) {
       hex = "0" + hex;
@@ -956,7 +972,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     return hex;
   };
 
-  var jsonToText = function(json) {
+  var jsonToText = function (json) {
     var url = '';
 
     for (var key in json) {
@@ -970,7 +986,7 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
     return url;
   };
 
-  var loginRedirect = function() {
+  var loginRedirect = function () {
     if (RESTCLIENT_CONFIG.serverType === 'grunt') {
       $location.path('/login');
     }
@@ -979,14 +995,14 @@ kindFramework.factory('SunapiClient', function(RESTCLIENT_CONFIG, $location, $q,
   /**
    * @param {Int} msgType 0: Request, 1: Response
    */
-  var printDebug = function(_msgType, url) {
+  var printDebug = function (_msgType, url) {
     try {
       var msgType = _msgType === 0 ? "REQUEST" : "RESPONSE";
       if (debugMode === true) {
         console.info("[SUNAPI][" + msgType + "]", url);
       }
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
   };
 

@@ -1,8 +1,11 @@
 'use strict';
 
-kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$sce', 'data', '$timeout', 'UniversialManagerService', 'CAMERA_STATUS',
-  function($scope, $rootScope, $uibModalInstance, $sce, data, $timeout, UniversialManagerService, CAMERA_STATUS) {
+kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope', '$uibModalInstance', 
+  '$sce', 'data', '$timeout', 'UniversialManagerService', 'CAMERA_STATUS',
+  function($scope, $rootScope, $uibModalInstance, $sce, data, $timeout, UniversialManagerService, 
+    CAMERA_STATUS) {
 
+    var TIMEOUT = 3000;
     $scope.data = data;
 
     if (typeof(data.isHtml) === 'undefined') {
@@ -38,7 +41,7 @@ kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope', '$u
     if (data.buttonCount <= 0) {
       $timeout(function() {
         $uibModalInstance.close();
-      }, 3000);
+      }, TIMEOUT);
     }
 
     $rootScope.$saveOn('allpopupclose', function() {

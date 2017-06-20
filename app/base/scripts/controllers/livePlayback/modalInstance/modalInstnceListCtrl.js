@@ -1,5 +1,6 @@
 "use strict";
-kindFramework.controller('ModalInstnceListCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'data', 'UniversialManagerService', 'CAMERA_STATUS',
+kindFramework.controller('ModalInstnceListCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'data', 
+  'UniversialManagerService', 'CAMERA_STATUS',
   function($scope, $rootScope, $uibModalInstance, data, UniversialManagerService, CAMERA_STATUS) {
 
     $scope.ModalList = data.list;

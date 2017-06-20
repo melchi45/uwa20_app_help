@@ -1,4 +1,4 @@
-/*global detector, location */
+/*global location */
 function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, ModalManagerService,
   SunapiClient, DisplayService, UniversialManagerService, CAMERA_STATUS, RESTCLIENT_CONFIG) {
 
@@ -74,8 +74,8 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
     }
   };
 
-  var w = angular.element($window);
-  w.on('resize', function() {
+  var window = angular.element($window);
+  window.on('resize', function() {
     if (!$scope.$$phase) {
       $scope.$broadcast('resize::resize');
     }
@@ -83,7 +83,6 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
 
   $scope.goState = function(param) {
     console.info(param);
-    var path = $state.current.name;
     self.goState(param);
     $scope.navOpened = false;
   };
@@ -101,7 +100,6 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
   };
 
   $scope.showStatusPopup = function() {
-    var DEFAULT_CHANNEL = 0;
     $scope.profileInfoList = 0;
     $scope.userList = 0;
     $scope.videoProfileList = 0;
@@ -148,7 +146,8 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
     $scope.navOpened = data;
   }, $scope);
 
-  $rootScope.$saveOn('app/scripts/controllers/livePlayback/main.js::toggleOverlay', function(event, data) {
+  $rootScope.$saveOn('app/scripts/controllers/livePlayback/main.js::toggleOverlay', 
+  function(event, data) {
     console.log('toggleOverlay is ' + data);
     $scope.toggleOverlay(data);
   }, $scope);
@@ -165,7 +164,8 @@ function BaseMain($scope, $location, $window, $rootScope, $timeout, $state, Moda
     showLoadingBar(data);
   }, $scope);
 
-  $rootScope.$saveOn('scripts/controllers/common/wrapper.js::$locationChangeStart', function(event) {
+  $rootScope.$saveOn('scripts/controllers/common/wrapper.js::$locationChangeStart', 
+  function(event) {
     setInitialValue();
   }, $scope);
 }
@@ -174,8 +174,9 @@ BaseMain.prototype.gruntLogout = function() {};
 BaseMain.prototype.mobileLogout = function() {};
 BaseMain.prototype.goState = function(param) {};
 
-kindFramework
-  .controller('BaseUniversalMainCtrl', ['$scope', '$location', '$window', '$rootScope', '$timeout', '$state', 'ModalManagerService', 'SunapiClient',
-    'DisplayService', 'UniversialManagerService', 'CAMERA_STATUS', 'RESTCLIENT_CONFIG',
+kindFramework.
+  controller('BaseUniversalMainCtrl', ['$scope', '$location', '$window', '$rootScope', '$timeout', '$state', 
+    'ModalManagerService', 'SunapiClient', 'DisplayService', 'UniversialManagerService', 
+    'CAMERA_STATUS', 'RESTCLIENT_CONFIG',
     BaseMain
   ]);
