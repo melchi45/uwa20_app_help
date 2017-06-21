@@ -5504,6 +5504,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     $scope.titleMax = getOSDRanges('Title', selectedFontSize);
     $scope.dateMax = getOSDRanges('Date', selectedFontSize);
 
+    var queue = [];
+
     if ($scope.titleMax !== undefined && $scope.dateMax !== undefined) {
       //if(pageData.OSDFontSize !== selectedFontSize)
       {
@@ -5543,7 +5545,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
           refreshSliders();
 
-          updateMultiLineOSD($scope.TitleOSD[i].Index, 'Title', true, $scope.TitleOSD[i]);
+          updateMultiLineOSD($scope.TitleOSD[i].Index, 'Title', true, $scope.TitleOSD[i], queue);
         }
       }
 
@@ -5580,11 +5582,18 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
 
       if (typeof $scope.DateOSD !== 'undefined') {
-        updateMultiLineOSD($scope.DateOSD[0].Index, 'Date', true, $scope.DateOSD[0]);
+        updateMultiLineOSD($scope.DateOSD[0].Index, 'Date', true, $scope.DateOSD[0], queue);
       }
       refreshSliders();
     }
 
+    if(queue.length > 0) {
+      SunapiClient.sequence(queue,
+        function(){
+        }, function(errorData){
+            console.log(errorData);
+      });
+    }
   };
 
   $scope.OnPreviewSelect = function(selectedIndex, needtoAdd) {
@@ -6063,7 +6072,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
 
-  function updateMultiLineOSD(index, osdType, isPreview, OSDArrayElement) {
+  function updateMultiLineOSD(index, osdType, isPreview, OSDArrayElement, queue) {
     var setData = {};
 
     setData.Channel = 0;
@@ -6127,13 +6136,20 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       setData.Channel = currentChannel;
     }
 
-    return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=multilineosd&action=update', setData,
-      function(response) {
+    if(typeof queue !== 'undefined') {
+        queue.push({
+            url: '/stw-cgi/image.cgi?msubmenu=multilineosd&action=update', 
+            reqData: setData,
+        });
+    } else {
+      return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=multilineosd&action=update', setData,
+        function(response) {
 
-      },
-      function(errorData) {
-        //alert(errorData);
-      }, '', true);
+        },
+        function(errorData) {
+          //alert(errorData);
+        }, '', true);
+    }
   }
 
 
@@ -6428,7 +6444,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     if (typeof $scope.TitleOSD !== 'undefined' && $scope.TitleOSD.length) {
       for (var i = 0; i < $scope.TitleOSD.length; i++) {
         if ($scope.TitleOSD[i].aIndex === $scope.data.SelectedTitleIndex) {
-          $scope.TitleOSD[i].isPreviewed = false;
+          // $scope.TitleOSD[i].isPreviewed = false;
 
           if ($scope.titleMax !== undefined) {
             if (mAttr.NormalizedOSDRange === undefined || !mAttr.NormalizedOSDRange) {
