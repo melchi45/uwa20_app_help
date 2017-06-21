@@ -10,7 +10,7 @@
             <button type="button" type="button" class="btn btn-info" ng-click="onSearch()"><i class="fa fa-search"></i></button>
         </div>
         <uib-tabset class="wn5-setup-tab cm-tabs-field">
-            <uib-tab ng-repeat="tab in tabs" heading={{getTranslatedOption(tab)}} ng-click="onTabChange()">
+            <uib-tab ng-repeat="tab in tabs" heading={{getTranslatedOption(tab)}} ng-click="onTabChange()" style="width: 33.333%;">
                 <div ng-show="tab === 'AccessLog'">
                     <div class="wn5-setup-section-article form-group">
                         <div class="wn5-setup-section-article-heading">{{ 'lang_logType' | translate }}</div>
