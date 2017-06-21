@@ -44,7 +44,7 @@
                             <div class="wn5-setup-section-article-heading">{{ 'lang_presetList' | translate }}</div>
                             <div class="wn5-setup-section-article-content">
                                 <div class="form-group">
-                                    <table class="table table-bordered table-editor wn5-setup-table">
+                                    <table class="table cm-table-field table-editor wn5-setup-table">
                                         <thead>
                                             <th width="50%" height="40" style="text-align:center">{{ 'lang_from' | translate }} {{ 'lang_presetNo' | translate }}</th>
                                             <th width="50%" height="40" style="text-align:center">{{ 'lang_to' | translate }} {{ 'lang_presetNo' | translate }}</th>
@@ -103,7 +103,7 @@
                                         style="text-align:center">
                                         <tr>
                                             <td>
-                                                <table class="table-bordered wn5-setup-table" cellspacing="0" cellpadding="1" border="1" width="600px">
+                                                <table class="cm-table-field wn5-setup-table" cellspacing="0" cellpadding="1" border="1" width="600px">
                                                     <thead bgcolor="#F5F5F5">
                                                     <th width="10%" height="40" style="text-align:center">{{ 'lang_num' | translate }}</th>
                                                     <th width="40%" height="40" style="text-align:center">{{ 'lang_presetNo' | translate }}</th>
@@ -116,7 +116,7 @@
                                         <tr>
                                             <td>
                                                 <div style="overflow:scroll;height:auto;max-height:352px;width:630px;overflow:auto">
-                                                    <table class="table-bordered wn5-setup-table" cellspacing="0" cellpadding="1" border="1" width="600px" style="text-align:center">
+                                                    <table class="cm-table-field wn5-setup-table" cellspacing="0" cellpadding="1" border="1" width="600px" style="text-align:center">
                                                         <tr ng-repeat="Preset in PTZPresetArray"> 
                                                             <td width="10%"><span style="text-align:center">{{$index + 1}}</span></td>
                                                             <td width="40%">
@@ -152,7 +152,7 @@
                                     <button type="button" class="btn btn-primary cm-btn-dark" ng-click="removeTours()">{{ 'lang_remove' | translate }}</button>
                                 </div>
                                 <div class="form-group">
-                                    <table class="table table-bordered table-editor wn5-setup-table">
+                                    <table class="table cm-table-field table-editor wn5-setup-table">
                                         <thead>
                                             <th width="50%" height="40" style="text-align:center">{{ 'lang_groupNo' | translate }}</th>
                                             <th width="50%" height="40" style="text-align:center">{{ 'lang_dwt' | translate }} ({{DwellMinTime}}~{{DwellMaxTime}}{{ 'lang_sec' | translate }})</th>
