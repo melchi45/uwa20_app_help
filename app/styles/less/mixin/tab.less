@@ -33,6 +33,7 @@
 
 				&:hover {
 					background-color: @@tabs-active !important;
+					border-bottom: 0 !important;
 					color: @@tabs-text !important;
 				}
 			}
@@ -57,10 +58,24 @@
 		}
 	}
 
+	.nav-tabs {
+		border-bottom: 0 !important;
+	
+		&::after {
+			background-color: @@tabs-no-active !important;
+		}
+	    
+	}
+
 	.cm-tabs-content,
 	.tab-content {
 		border: 1px solid @@tabs-border;
 		background-color: @@tabs-content-bg;
 		border-top: 0;
+
+		.wn5-setup-section-article-heading,
+		.wn5-setup-section-article-content {
+			color: @@tabs-text;
+		}
 	}
 }
