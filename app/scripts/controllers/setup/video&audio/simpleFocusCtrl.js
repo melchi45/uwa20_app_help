@@ -12,6 +12,10 @@ kindFramework.controller('simpleFocusCtrl', function($scope, SunapiClient, Attri
 
   $scope.PageData = {};
 
+  $scope.ptzinfo = {
+      type: 'EPTZ'
+  };
+
   var mAttr = Attributes.get();
   COMMONUtils.getResponsiveObjects($scope);
 

@@ -23,6 +23,19 @@
                     sketchinfo='sketchinfo' 
                     coordinates='coordinates'>
                 </sketchbook>
+                <!-- PTZ Control -->
+
+
+                <div class="wn5-setup-preview">
+                    <div class="form-group" ng-show="PTRZModel">
+                        <div class="wn5-setup-preview-content">
+                            <div id="ptrz-control">
+                                <ptrz-control ptzinfo='ptzinfo'></ptrz-control>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="wn5-setup-preview">
                     <div class="form-group" ng-show="FastAutoFocusDefined && Lens !== 'ICS'">
                         <div class="wn5-setup-preview-heading">{{ 'lang_fastmode' | translate }} </div>
@@ -31,47 +44,6 @@
                             <label>{{'lang_enable'|translate}}</label>
                         </div>
                     </div>
-                    <!-- PTR Setup -->
-                    <div class="form-group" ng-show="PTRZModel">
-                        <div class="wn5-setup-preview-heading">
-                            {{ 'PTR Setup' | translate }}
-                            <button
-                                    type="button"
-                                    class="btn btn-white cm-btn-dark"
-                                    ng-click="focusMode('AutoRoll')" >
-                                    {{'Auto Roll' | translate}}
-                            </button>
-                        </div>
-                        <div class="wn5-setup-preview-content">
-                            <div class="form-group btn-list">
-                                <div class="simple-focus-icon" style="font-size:15px">
-                                    <label>{{'lang_pan'|translate}}</label>
-                                </div>
-                                <input class="btn btn-white cm-btn-dark" type="button" name="PanLevel" ng-model="PanLevel" ng-value="level" ng-repeat="level in PtrControlOptions" ng-click="manualPTR('pan',level)">
-                            </div>
-                        </div>
-                        <div class="wn5-setup-preview-content">
-
-                            <div class="form-group btn-list">
-                                <div class="simple-focus-icon" style="font-size:15px">
-                                    <label>{{'lang_tilt'|translate}}</label>
-                                </div>
-                                <input class="btn btn-white cm-btn-dark" type="button" name="TiltLevel" ng-model="TiltLevel" ng-value="level" ng-repeat="level in PtrControlOptions" ng-click="manualPTR('tilt',level)">
-                            </div>
-                        </div>
-                        <div class="wn5-setup-preview-content">
-                            <div class="form-group btn-list">
-                                <div class="simple-focus-icon">
-                                    <span class="tui tui-wn5-return"></span>
-                                </div>
-                                <input class="btn btn-white cm-btn-dark" type="button" name="RotateLevel" ng-model="RotateLevel" ng-value="level" ng-repeat="level in PtrControlOptions" ng-click="manualPTR('rotate', level)">
-                                <div class="simple-focus-icon">
-                                    <span class="tui  tui-wn5-return" style="transform: rotateY(180deg);"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- PTR Setup -->
                     <!-- Zoom Focus Setup -->
                     <div class="form-group" ng-show="PTRZModel">
                         <div class="wn5-setup-preview-heading">
