@@ -44,6 +44,7 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
     $scope.DeviceLocationRange.PatternStr = mAttr.FriendlyNameCharSetExpandedStr;
     if (typeof mAttr.DeviceLoc !== 'undefined') {
       $scope.DeviceLocationRange.Min = 1;
+      console.log(mAttr.DeviceLoc.maxLength);
       $scope.DeviceLocationRange.Max = mAttr.DeviceLoc.maxLength;
     }
 
@@ -147,7 +148,7 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
       }
     }
 
-    if (len > DEVICE_OPTION_LENGTH) {
+    if (len > $scope.DeviceLocationRange.Max) {
       return false;
     } else {
       return true;
@@ -170,7 +171,7 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
       }
     }
 
-    if (len > DEVICE_OPTION_LENGTH) {
+    if (len > $scope.DeviceDescriptionRange.Max) {
       return false;
     } else {
       return true;
@@ -193,7 +194,7 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
       }
     }
 
-    if (len > DEVICE_OPTION_LENGTH) {
+    if (len > $scope.MemoRange.Max) {
       return false;
     } else {
       return true;
