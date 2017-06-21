@@ -1317,7 +1317,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group" ng-if="PTZSettings.MaxDigitalZoom != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_digitalZoomLimit' | translate }}</div>
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_max_digitalZoom' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
                                         <select class="form-control" ng-model="PTZSettings.MaxDigitalZoom" ng-disabled="isDigitalZoomLimitDisabled()">
                                             <option ng-selected="PTZSettings.MaxDigitalZoom === Mode" value={{Mode}} ng-repeat="Mode in MaxDigitalZoomOptions">{{Mode}}</option>
@@ -1367,7 +1367,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.MaxDigitalZoom != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_digitalZoomLimit' | translate }}</div>
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_max_digitalZoom' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
                                         <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.MaxDigitalZoom" ng-disabled="isPresetDigitalZoomLimitDisabled()">
                                             <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.MaxDigitalZoom === Mode" value={{Mode}} ng-repeat="Mode in PresetMaxDigitalZoomOptions">{{Mode}}</option>

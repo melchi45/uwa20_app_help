@@ -250,7 +250,7 @@ kindFramework.controller('logCtrl', function($scope, $timeout, SunapiClient, Att
       return;
     }
 
-    var logData = null;
+    var logData = "";
     for (var i = 0; i < logArray.length; i++) {
       if (Option === 'EventLog' && logArray[i].Type === 'VideoAnalysis') {
         if (mAttr.VideoAnalyticsSupport === false) {

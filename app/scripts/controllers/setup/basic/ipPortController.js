@@ -1,4 +1,5 @@
-kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $translate, SunapiClient, Attributes, COMMONUtils, $q) {
+kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $translate, SunapiClient, 
+Attributes, COMMONUtils, $q) {
   "use strict";
 
   COMMONUtils.getResponsiveObjects($scope);
@@ -54,62 +55,62 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
     $scope.CannotNumberDashFirst = mAttr.CannotNumberDashFirst;
 
 
-    if (mAttr.BwOptions !== undefined) {
+    if (typeof mAttr.BwOptions !== "undefined") {
       $scope.BwOptions = mAttr.BwOptions;
     }
 
-    if (mAttr.InterfaceOptions !== undefined) {
+    if (typeof mAttr.InterfaceOptions !== "undefined") {
       $scope.InterfaceOptions = mAttr.InterfaceOptions;
     }
 
-    if (mAttr.IPv4TypeOptions !== undefined) {
+    if (typeof mAttr.IPv4TypeOptions !== "undefined") {
       $scope.IPv4TypeOptions = mAttr.IPv4TypeOptions;
     }
 
-    if (mAttr.IPv6TypeOptions !== undefined) {
+    if (typeof mAttr.IPv6TypeOptions !== 'undefined') {
       $scope.IPv6TypeOptions = mAttr.IPv6TypeOptions;
     }
 
-    if (mAttr.PrefixLength !== undefined) {
+    if (typeof mAttr.PrefixLength !== 'undefined') {
       $scope.PrefixMinLength = mAttr.PrefixLength.minValue;
       $scope.PrefixMaxLength = mAttr.PrefixLength.maxValue;
     }
 
-    if (mAttr.DnsTypeOptions !== undefined) {
+    if (typeof mAttr.DnsTypeOptions !== 'undefined') {
       $scope.DnsTypeOptions = mAttr.DnsTypeOptions;
     }
 
-    if (mAttr.RtspTimeoutOptions !== undefined) {
+    if (typeof mAttr.RtspTimeoutOptions !== 'undefined') {
       $scope.RtspTimeoutOptions = mAttr.RtspTimeoutOptions;
     }
 
-    if (mAttr.Http !== undefined) {
+    if (typeof mAttr.Http !== 'undefined') {
       $scope.HttpMinPort = mAttr.Http.minValue;
       $scope.HttpMaxPort = mAttr.Http.maxValue;
     }
 
-    if (mAttr.Https !== undefined) {
+    if (typeof mAttr.Https !== 'undefined') {
       $scope.HttpsMinPort = mAttr.Https.minValue;
       $scope.HttpsMaxPort = mAttr.Https.maxValue;
     }
 
-    if (mAttr.Rtsp !== undefined) {
+    if (typeof mAttr.Rtsp !== 'undefined') {
       $scope.RtspMinPort = mAttr.Rtsp.minValue;
       $scope.RtspMaxPort = mAttr.Rtsp.maxValue;
     }
 
-    // if (mAttr.Svnp !== undefined)
+    // if (typeof mAttr.Svnp !== 'undefined')
     // {
     //     $scope.SvnpMinPort = mAttr.Svnp.minValue;
     //     $scope.SvnpMaxPort = mAttr.Svnp.maxValue;
     // }
 
-    if (mAttr.PPPoEUserName !== undefined) {
+    if (typeof mAttr.PPPoEUserName !== 'undefined') {
       $scope.IdMinLength = 1;
       $scope.IdMaxLength = mAttr.PPPoEUserName.maxLength;
     }
 
-    if (mAttr.PPPoEPassword !== undefined) {
+    if (typeof mAttr.PPPoEPassword !== 'undefined') {
       $scope.PwdMinLength = 1;
       $scope.PwdMaxLength = mAttr.PPPoEPassword.maxLength;
     }
@@ -169,7 +170,7 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
         console.log(errorData);
       }, '', true);
   }
-
+/*
   function getHttpPort() {
     var getData = {};
 
@@ -221,7 +222,7 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
         console.log(errorData);
       }, '', true);
   }
-
+*/
   function setInterfaces() {
     var setData = {};
 
@@ -342,8 +343,8 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
   }
 
   function setDNS() {
+    var setData = {};
     if ($scope.DeviceType === 'NWC') {
-      var setData = {};
 
       setData.PrimaryDNS = $scope.DNS[$scope.SelectedInterface].PrimaryDNS;
       setData.SecondaryDNS = $scope.DNS[$scope.SelectedInterface].SecondaryDNS;
@@ -374,10 +375,8 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
     } else if ($scope.DeviceType === 'NVR') {
       var index = $scope.SelectedInterface;
 
-      if (!angular.equals(pageData.DNS[index].DNSByIPType[0], $scope.DNS[index].DNSByIPType[0])) //IPv4
-      {
-        var setData = {};
-
+      if (!angular.equals(pageData.DNS[index].DNSByIPType[0], $scope.DNS[index].DNSByIPType[0])) { //IPv4
+     
         setData.InterfaceName = $scope.NetworkInterfaces[index].InterfaceName;
         setData.IPType = $scope.DNS[index].DNSByIPType[0].IPType;
 
@@ -399,10 +398,10 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
           }, '', true);
       }
 
-      if (!angular.equals(pageData.DNS[index].DNSByIPType[1], $scope.DNS[index].DNSByIPType[1])) //IPv6
-      {
-        var setData = {};
+      setData = {};
 
+      if (!angular.equals(pageData.DNS[index].DNSByIPType[1], $scope.DNS[index].DNSByIPType[1])) { //IPv6
+      
         setData.InterfaceName = $scope.NetworkInterfaces[index].InterfaceName;
         setData.IPType = $scope.DNS[index].DNSByIPType[1].IPType;
 
@@ -426,71 +425,8 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
     }
   }
 
-  function setHttpPort() {
-    var setData = {};
-
-    setData.Port = pageData.Http.Port = $scope.Http.Port;
-
-    return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=http&action=set', setData,
-      function(response) {
-        COMMONUtils.onLogout();
-      },
-      function(errorData) {
-        console.log(errorData);
-      }, '', true);
-  }
-
-  function setHttpsPort() {
-    var setData = {};
-
-    setData.Port = pageData.Https.Port = $scope.Https.Port;
-
-    return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=https&action=set', setData,
-      function(response) {
-        COMMONUtils.onLogout();
-      },
-      function(errorData) {
-        console.log(errorData);
-      }, '', true);
-  }
-
-  function setRtspPort() {
-    var setData = {};
-
-    if (pageData.Rtsp.Port !== $scope.Rtsp.Port) {
-      setData.Port = pageData.Rtsp.Port = $scope.Rtsp.Port;
-    }
-
-    if ($scope.DeviceType === 'NWC') {
-      if (pageData.Rtsp.Timeout !== $scope.Rtsp.Timeout) {
-        setData.Timeout = pageData.Rtsp.Timeout = $scope.Rtsp.Timeout;
-      }
-    }
-
-    return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=rtsp&action=set', setData,
-      function(response) {
-
-      },
-      function(errorData) {
-        console.log(errorData);
-      }, '', true);
-  }
-
-  function setSvnpPort() {
-    var setData = {};
-
-    setData.Port = pageData.Svnp.Port = $scope.Svnp.Port;
-
-    return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=svnp&action=set', setData,
-      function(response) {
-
-      },
-      function(errorData) {
-        console.log(errorData);
-      }, '', true);
-  }
-
   function validatePortPage() {
+    var errorMessage = '';
     if ($scope.DeviceType === 'NWC') {
       //  var DevicePort = parseInt($scope.PortConf.DevicePort);
       // if (isNaN(DevicePort) || DevicePort === 3702 || DevicePort === 49152 || DevicePort < $scope.SvnpMinPort || DevicePort > $scope.SvnpMaxPort)
@@ -503,52 +439,52 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
 
     var RTSPPort = parseInt($scope.PortConf.RTSPPort);
     if (isNaN(RTSPPort)) {
-      var ErrorMessage = 'lang_msg_errRTSPport';
-      COMMONUtils.ShowError(ErrorMessage, 'lg');
+      errorMessage = 'lang_msg_errRTSPport';
+      COMMONUtils.ShowError(errorMessage, 'lg');
       return false;
     }
 
     var HTTPSPort = parseInt($scope.PortConf.HTTPSPort);
     if (isNaN(HTTPSPort)) {
-      var ErrorMessage = 'lang_msg_errHTTPSport';
-      COMMONUtils.ShowError(ErrorMessage, 'lg');
+      errorMessage = 'lang_msg_errHTTPSport';
+      COMMONUtils.ShowError(errorMessage, 'lg');
       return false;
     }
 
     var HTTPPort = parseInt($scope.PortConf.HTTPPort);
     if (isNaN(HTTPPort)) {
-      var ErrorMessage = 'lang_msg_errHTTPport';
-      COMMONUtils.ShowError(ErrorMessage, 'lg');
+      errorMessage = 'lang_msg_errHTTPport';
+      COMMONUtils.ShowError(errorMessage, 'lg');
       return false;
     }
 
     if (HTTPPort === HTTPSPort || HTTPPort === RTSPPort || RTSPPort === HTTPSPort) {
-      var ErrorMessage = 'lang_msg_portOverlap';
-      COMMONUtils.ShowError(ErrorMessage, 'lg');
+      errorMessage = 'lang_msg_portOverlap';
+      COMMONUtils.ShowError(errorMessage, 'lg');
       return false;
     }
 
     if (RTSPPort === 3702 || RTSPPort === 49152 || RTSPPort === 4520 || RTSPPort < $scope.RtspMinPort || RTSPPort > $scope.RtspMaxPort) {
       if (RTSPPort !== 554) {
         console.log("Wrong Rtsp");
-        var ErrorMessage = 'lang_msg_errRTSPport';
-        COMMONUtils.ShowError(ErrorMessage, 'lg');
+        errorMessage = 'lang_msg_errRTSPport';
+        COMMONUtils.ShowError(errorMessage, 'lg');
         return false;
       }
     }
 
     if (HTTPPort === 3702 || HTTPPort === 49152 || HTTPPort === 4520 || HTTPPort < $scope.HttpMinPort || HTTPPort > $scope.HttpMaxPort) {
       if (HTTPPort !== 80) {
-        var ErrorMessage = 'lang_msg_errHTTPport';
-        COMMONUtils.ShowError(ErrorMessage, 'lg');
+        errorMessage = 'lang_msg_errHTTPport';
+        COMMONUtils.ShowError(errorMessage, 'lg');
         return false;
       }
     }
 
     if (HTTPSPort === 3702 || HTTPSPort === 49152 || HTTPSPort === 4520 || HTTPSPort < $scope.HttpsMinPort || HTTPSPort > $scope.HttpsMaxPort) {
       if (HTTPSPort !== 443) {
-        var ErrorMessage = 'lang_msg_errHTTPSport';
-        COMMONUtils.ShowError(ErrorMessage, 'lg');
+        errorMessage = 'lang_msg_errHTTPSport';
+        COMMONUtils.ShowError(errorMessage, 'lg');
         return false;
       }
     }
@@ -558,10 +494,11 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
 
 
   function checkIPv4DNS(addr) {
-    if (addr === '')
+    if (addr === '') {
       return false;
+    }
 
-    var dnsArray1, thisSegment;
+    var dnsArray1=[], thisSegment=0;
     if (addr.search(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/) !== -1) {
       dnsArray1 = addr.split(/\./);
     }
@@ -587,77 +524,78 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
   }
 
   function validateIPPage() {
+    var errorMessage = '';
     if ($scope.$$childHead.ipPortForm.Ipv4Address.$invalid) {
-      var ErrorMessage = 'lang_msg_chkIPAddress';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_chkIPAddress';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
     var index = $scope.SelectedInterface;
 
     if (COMMONUtils.CheckValidIPv4Address($scope.NetworkInterfaces[index].IPv4Address) === false) {
-      var ErrorMessage = 'lang_msg_chkIPAddress';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage= 'lang_msg_chkIPAddress';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if ($scope.$$childHead.ipPortForm.Ipv4Subnet.$invalid) {
-      var ErrorMessage = 'lang_msg_chkSubnetMask';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_chkSubnetMask';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if (COMMONUtils.CheckValidIPv4Subnet($scope.NetworkInterfaces[index].IPv4SubnetMask) === false) {
-      var ErrorMessage = 'lang_msg_chkSubnetMask';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_chkSubnetMask';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if ($scope.$$childHead.ipPortForm.Ipv4Gateway.$invalid) {
-      var ErrorMessage = 'lang_msg_chkGateway';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_chkGateway';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if (COMMONUtils.CheckValidIPv4Address($scope.NetworkInterfaces[index].IPv4Gateway) === false) {
-      var ErrorMessage = 'lang_msg_chkGateway';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_chkGateway';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if (validateHostName($scope.NetworkInterfaces[$scope.SelectedInterface].HostName) === 'fisrtCharAlphabet') {
-      var ErrorMessage = 'lang_msg_first_character_alphabet';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_first_character_alphabet';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if (validateHostName($scope.NetworkInterfaces[$scope.SelectedInterface].HostName) === 'upto16Char') {
-      var ErrorMessage = 'lang_msg_allowed_upto_16_chars';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_allowed_upto_16_chars';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if ($scope.DeviceType === 'NWC') {
       if ($scope.$$childHead.ipPortForm.Dns1.$invalid) {
-        var ErrorMessage = 'lang_msg_chkDNSserver1';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage= 'lang_msg_chkDNSserver1';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
       if (COMMONUtils.CheckValidIPv4Address($scope.DNS[index].PrimaryDNS) === false) {
-        var ErrorMessage = 'lang_msg_chkDNSserver1';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_chkDNSserver1';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
       if ($scope.$$childHead.ipPortForm.Dns2.$invalid) {
-        var ErrorMessage = 'lang_msg_chkDNSserver2';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_chkDNSserver2';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
       if (COMMONUtils.CheckValidIPv4Address($scope.DNS[index].SecondaryDNS) === false) {
-        var ErrorMessage = 'lang_msg_chkDNSserver2';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_chkDNSserver2';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
@@ -679,84 +617,84 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
     var not_sm_num = COMMONUtils.IPv4ToNumNot($scope.NetworkInterfaces[index].IPv4SubnetMask);
 
     if (ip_num == gw_num) {
-      var ErrorMessage = 'lang_msg_chkIPAddress';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_chkIPAddress';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if (((ip_num & not_sm_num) == not_sm_num) || ((ip_num & not_sm_num) == 0) || ((ip_num & sm_num) == 0)) {
-      var ErrorMessage = 'lang_msg_chkIPAddress';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_chkIPAddress';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if (((gw_num & not_sm_num) == not_sm_num) || ((gw_num & not_sm_num) == 0) || ((gw_num & sm_num) == 0)) {
-      var ErrorMessage = 'lang_msg_chkGateway';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_chkGateway';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if ((ip_num & sm_num) != (gw_num & sm_num)) {
-      var ErrorMessage = 'lang_msg_chkIPAddress';
-      COMMONUtils.ShowError(ErrorMessage);
+      errorMessage = 'lang_msg_chkIPAddress';
+      COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
     if ($scope.NetworkInterfaces[$scope.SelectedInterface].IPv6Enable && $scope.NetworkInterfaces[$scope.SelectedInterface].IPv6Type === 'Manual') {
       if ($scope.$$childHead.ipPortForm.Ipv6Address.$invalid) {
-        var ErrorMessage = 'lang_msg_chkIPv6Address';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_chkIPv6Address';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
       if (COMMONUtils.CheckValidIPv6Address($scope.NetworkInterfaces[$scope.SelectedInterface].IPv6Address) === false) {
-        var ErrorMessage = 'lang_msg_chkIPv6Address';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_chkIPv6Address';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
       if ($scope.$$childHead.ipPortForm.PrefixLength.$invalid || $scope.NetworkInterfaces[$scope.SelectedInterface].IPv6PrefixLength > $scope.PrefixMaxLength ||
         $scope.NetworkInterfaces[$scope.SelectedInterface].IPv6PrefixLength < $scope.PrefixMinLength) {
-        var ErrorMessage = 'lang_msg_IPv6Prefix0to127';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_IPv6Prefix0to127';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
       if ($scope.$$childHead.ipPortForm.Ipv6Gateway.$invalid) {
-        var ErrorMessage = 'lang_msg_chkGateway';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_chkGateway';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
       if (COMMONUtils.CheckValidIPv6Address($scope.NetworkInterfaces[$scope.SelectedInterface].IPv6DefaultGateway) === false) {
-        var ErrorMessage = 'lang_msg_chkGateway';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_chkGateway';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
       if ($scope.NetworkInterfaces[$scope.SelectedInterface].IPv6Address === $scope.NetworkInterfaces[$scope.SelectedInterface].IPv6DefaultGateway) {
-        var ErrorMessage = 'lang_msg_chkGateway';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_chkGateway';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
     }
 
     if ($scope.NetworkInterfaces[$scope.SelectedInterface].IPv4Type === 'PPPoE') {
       if (typeof $scope.NetworkInterfaces[$scope.SelectedInterface].PPPoEUserName !== 'undefined' && !$scope.NetworkInterfaces[$scope.SelectedInterface].PPPoEUserName.length) {
-        var ErrorMessage = 'lang_msg_inputxDSLid';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_inputxDSLid';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
       if (typeof $scope.NetworkInterfaces[$scope.SelectedInterface].PPPoEPassword !== 'undefined' && !$scope.NetworkInterfaces[$scope.SelectedInterface].PPPoEPassword.length) {
-        var ErrorMessage = 'lang_msg_inputxDSLPass';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_inputxDSLPass';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
 
       if (($scope.$$childHead.ipPortForm.PPPoEId.$invalid) || ($scope.$$childHead.ipPortForm.PPPoEPwd.$invalid)) {
-        var ErrorMessage = 'lang_msg_invalid_idpw';
-        COMMONUtils.ShowError(ErrorMessage);
+        errorMessage = 'lang_msg_invalid_idpw';
+        COMMONUtils.ShowError(errorMessage);
         return false;
       }
     }
@@ -765,7 +703,7 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
   }
 
   function validateHostName(hostNamechk) {
-    if (hostNamechk !== undefined) {
+    if (typeof hostNamechk !== 'undefined') {
       if (hostNamechk.length > 16) {
         return 'upto16Char';
       }
@@ -825,10 +763,7 @@ kindFramework.controller('ipPortCtrl', function($scope, $timeout, $uibModal, $tr
 
   function setPortConf() {
     var setData = {},
-      ignoredKeys;
-    var changed = false;
-
-    ignoredKeys = ['FixedPorts', 'UsedPorts'];
+      ignoredKeys= ['FixedPorts', 'UsedPorts'];
 
     COMMONUtils.fillSetData(setData, $scope.PortConf, pageData.PortConf, ignoredKeys, false);
 
