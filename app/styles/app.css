@@ -3071,6 +3071,30 @@ body.modal-open {
   background-color: #262626;
   border-top: 0;
 }
+.cm-legend-red {
+  background-color: #e00001;
+}
+.cm-legend-orange {
+  background-color: #ffa52f;
+}
+.cm-legend-yellow {
+  background-color: #ffff77;
+}
+.cm-legend-green {
+  background-color: #5eec5f;
+}
+.cm-legend-blue {
+  background-color: #3464ff;
+}
+.cm-legend-sky-blue {
+  background-color: #54c0ff;
+}
+.cm-legend-purple {
+  background-color: #923ee6;
+}
+.cm-legend-pink {
+  background-color: #ef5ca8;
+}
 html,
 body {
   width: 100%;
@@ -4548,28 +4572,7 @@ body.kind-svg-editor-drawing .channel-content {
   background: SteelBlue;
   color: white;
 }
-.setHome {
-  background: #54c0ff;
-}
-.setPreset {
-  background: #ffa52f;
-}
-.setSwing {
-  background: #5eec5f;
-}
-.setGroup {
-  background: #923ee6;
-}
-.setTour {
-  background: #ef5ca8;
-}
-.setTrace {
-  background: #ffff77;
-}
-.setAutopan {
-  background: #3464ff;
-}
-.scheduleColorInfo {
+.schedule-color-info {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -6267,30 +6270,6 @@ img[id^="hm-results-image-"] {
 }
 #camerasetuppage .wn5-setup-camera-setup-activation-time {
   padding: 0;
-}
-#camerasetuppage .imagepreset-defineFocus {
-  background: #54c0ff !important;
-}
-#camerasetuppage .imagepreset-motionFocus {
-  background: #ffa52f !important;
-}
-#camerasetuppage .imagepreset-reduceNoise {
-  background: #5eec5f !important;
-}
-#camerasetuppage .imagepreset-brightVideo {
-  background: #923ee6 !important;
-}
-#camerasetuppage .imagepreset-motionFocus-reduceNoise {
-  background: #ef5ca8 !important;
-}
-#camerasetuppage .imagepreset-motionFocus-brightVideo {
-  background: #ffff77 !important;
-}
-#camerasetuppage .imagepreset-vividVideo {
-  background: #e00001 !important;
-}
-#camerasetuppage .imagepreset-userPreset {
-  background: #3464ff !important;
 }
 #camerasetuppage #scheduleColor {
   margin-top: 10px;

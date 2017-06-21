@@ -795,25 +795,25 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var scheduleColor = '';
 
     if (mode === 'DefinitionFocus') {
-      scheduleColor = 'imagepreset-defineFocus';
+      scheduleColor = 'cm-legend-sky-blue';
     } else if (mode === 'MotionFocus') {
-      scheduleColor = 'imagepreset-motionFocus';
+      scheduleColor = 'cm-legend-orange';
     } else if (mode === 'ReducedNoise') {
-      scheduleColor = 'imagepreset-reduceNoise';
+      scheduleColor = 'cm-legend-green';
     } else if (mode === 'BrightVideo') {
-      scheduleColor = 'imagepreset-brightVideo';
+      scheduleColor = 'cm-legend-purple';
     } else if (mode === 'MotionFocus+ReducedNoise') {
-      scheduleColor = 'imagepreset-motionFocus-reduceNoise';
+      scheduleColor = 'cm-legend-pink';
     } else if (mode === 'MotionFocus+BrightVideo') {
-      scheduleColor = 'imagepreset-motionFocus-brightVideo';
+      scheduleColor = 'cm-legend-yellow';
     } else if (mode === 'VividVideo') {
-      scheduleColor = 'imagepreset-vividVideo';
+      scheduleColor = 'cm-legend-red';
     } else if (mode === 'UserPreset') {
-      scheduleColor = 'imagepreset-userPreset';
+      scheduleColor = 'cm-legend-blue';
     }
 
     if (addSchdeuleInfo === true) {
-      scheduleColor += ' scheduleColorInfo'
+      scheduleColor += ' schedule-color-info'
     }
 
     return scheduleColor;
