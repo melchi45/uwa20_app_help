@@ -89,7 +89,7 @@
       "after": true
     }],
     "comma-style": ["warn", "last"],
-    "id-length" : ["warn",{"exceptions": ["x","y","i","j"] }],
+    "id-length" : ["warn",{"exceptions": ["x","y","z","i","j","u","v"] }],
     "indent" : ["warn",2,{"SwitchCase" : 1}],
     "keyword-spacing" : ["warn",{"before" : true}],
     "max-depth" : "warn",
