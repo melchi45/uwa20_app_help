@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStreamInterface', 'UniversialManagerService',
   function ($q, LoggingService, kindStreamInterface, UniversialManagerService) {
     "use strict";
@@ -12,14 +13,14 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     var moveX = 0;
     var moveY = 0;
     var zoomWidth = 0;
-    var zoomHeight = 0;
-    var movelimit = 5;
+    var defaultMovelimit = 5;
+    var movelimit = defaultMovelimit;
     var maxZoomZLevel = -0.215;
     var minZoomZLevel = -2.365;
 
     var zoomScale = 0.05;
     var zoomValue = 20.61;
-    var zoomData = [];
+    var conversionNum = 1000;
 
     //for Video Tag
     var leftLimit = 0;
@@ -38,7 +39,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
       zoomX = 0.0;
       zoomY = 0.0;
       zoomZ = initZoomZ;
-      movelimit = 5;
+      movelimit = defaultMovelimit;
       data = {
         channelId: 0,
         zoomArray: [zoomX, zoomY, zoomZ]
@@ -55,26 +56,26 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
         event.preventDefault();
         var zoomChange = false;
         var delta = event.wheelDelta ? event.wheelDelta : -event.detail;
-        delta = delta / 120;
-        if (delta > 0 && zoomZ <= maxZoomZLevel) {
+        var wheelCheck = delta / 120;
+        if (wheelCheck > 0 && zoomZ <= maxZoomZLevel) {
           zoomChange = true;
           zoomZ += zoomScale;
-        } else if (delta < 0 && zoomZ >= minZoomZLevel) {
+        } else if (wheelCheck < 0 && zoomZ >= minZoomZLevel) {
           zoomChange = true;
           zoomZ -= zoomScale;
-          if (Math.abs(zoomX * 1000) > zoomValue) {
+          if (Math.abs(zoomX * conversionNum) > zoomValue) {
             if (zoomX > 0) {
-              zoomX -= zoomValue / 1000;
+              zoomX -= zoomValue / conversionNum;
             } else {
-              zoomX += zoomValue / 1000;
+              zoomX += zoomValue / conversionNum;
             }
           }
 
-          if (Math.abs(zoomY * 1000) > zoomValue) {
+          if (Math.abs(zoomY * conversionNum) > zoomValue) {
             if (zoomY > 0) {
-              zoomY -= zoomValue / 1000;
+              zoomY -= zoomValue / conversionNum;
             } else {
-              zoomY += zoomValue / 1000;
+              zoomY += zoomValue / conversionNum;
             }
           }
         }
@@ -86,12 +87,11 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
         }
 
         zoomWidth = event.target.clientWidth * (1 + (-initZoomZ + zoomZ));
-        zoomHeight = event.target.clientHeight * (1 + (-initZoomZ + zoomZ));
 
         if (movelimit === 0) {
           movelimit = ((zoomWidth - event.target.clientWidth) / 2);
         } else if (zoomChange === true) {
-          if (delta > 0) {
+          if (wheelCheck > 0) {
             movelimit += zoomValue;
           } else {
             movelimit -= zoomValue;
@@ -118,41 +118,41 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
           curY = event.clientY;
 
           if (moveX < 0) { //left -> right
-            if (zoomX * 1000 < movelimit) {
-              tempZoomX = zoomX - moveX / 1000;
-              if (tempZoomX * 1000 < movelimit) {
-                zoomX -= moveX / 1000;
+            if (zoomX * conversionNum < movelimit) {
+              tempZoomX = zoomX - (moveX / conversionNum);
+              if (tempZoomX * conversionNum < movelimit) {
+                zoomX -= moveX / conversionNum;
               } else {
-                zoomX = movelimit / 1000;
+                zoomX = movelimit / conversionNum;
               }
             }
           } else { //right -> left
-            if (zoomX * 1000 > -movelimit) {
-              tempZoomX = zoomX - moveX / 1000;
-              if (tempZoomX * 1000 > -movelimit) {
-                zoomX -= moveX / 1000;
+            if (zoomX * conversionNum > -movelimit) {
+              tempZoomX = zoomX - (moveX / conversionNum);
+              if (tempZoomX * conversionNum > -movelimit) {
+                zoomX -= moveX / conversionNum;
               } else {
-                zoomX = -(movelimit / 1000);
+                zoomX = -(movelimit / conversionNum);
               }
             }
           }
 
           if (moveY < 0) { //top -> bottom
-            if (zoomY * 1000 > -movelimit) {
-              tempZoomY = zoomY + moveY / 1000;
-              if (tempZoomY * 1000 > -movelimit) {
-                zoomY += moveY / 1000;
+            if (zoomY * conversionNum > -movelimit) {
+              tempZoomY = zoomY + (moveY / conversionNum);
+              if (tempZoomY * conversionNum > -movelimit) {
+                zoomY += moveY / conversionNum;
               } else {
-                zoomY = -(movelimit / 1000);
+                zoomY = -(movelimit / conversionNum);
               }
             }
           } else { //bottom -> top
-            if (zoomY * 1000 < movelimit) {
-              tempZoomY = zoomY + moveY / 1000;
-              if (tempZoomY * 1000 < movelimit) {
-                zoomY += moveY / 1000;
+            if (zoomY * conversionNum < movelimit) {
+              tempZoomY = zoomY + (moveY / conversionNum);
+              if (tempZoomY * conversionNum < movelimit) {
+                zoomY += moveY / conversionNum;
               } else {
-                zoomY = movelimit / 1000;
+                zoomY = movelimit / conversionNum;
               }
             }
           }
@@ -170,26 +170,28 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
           event.stopPropagation();
           event.preventDefault();
           var delta = event.wheelDelta ? event.wheelDelta : -event.detail;
-          delta = delta / 120;
-          if (delta > 0 && zoom < 16) {
+          var wheelCheck = delta / 120;
+          var left = null;
+          var top = null;
+          if (wheelCheck > 0 && zoom < 16) {
             zoom = zoom + 0.1;
-          } else if (delta < 0 && zoom > 1) {
+          } else if (wheelCheck < 0 && zoom > 1) {
             zoom = zoom - 0.1;
-            var moveClac = ((videoElement.clientWidth * 0.1) / 2 ) - 1;
+            var moveClac = ((videoElement.clientWidth * 0.1) / 2) - 1;
             if (zoom !== 1) {
               if (parseInt(videoElement.style.left, 10) < 0) {
-                var left = (parseInt(videoElement.style.left, 10) + moveClac);
+                left = (parseInt(videoElement.style.left, 10) + moveClac);
                 videoElement.style.left = (left < 0 ? left : 0) + 'px';
               } else if (parseInt(videoElement.style.left, 10) > 0) {
-                var left = (parseInt(videoElement.style.left, 10) - moveClac);
+                left = (parseInt(videoElement.style.left, 10) - moveClac);
                 videoElement.style.left = (left > 0 ? left : 0) + 'px';
               }
 
               if (parseInt(videoElement.style.top, 10) < 0) {
-                var top = (parseInt(videoElement.style.top, 10) + moveClac);
+                top = (parseInt(videoElement.style.top, 10) + moveClac);
                 videoElement.style.top = (top < 0 ? top : 0) + 'px';
               } else if (parseInt(videoElement.style.top, 10) > 0) {
-                var top = (parseInt(videoElement.style.top, 10) - moveClac);
+                top = (parseInt(videoElement.style.top, 10) - moveClac);
                 videoElement.style.top = (top > 0 ? top : 0) + 'px';
               }
             } else {
@@ -198,8 +200,9 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
             }
           }
 
-          leftLimit = parseInt(((videoElement.clientWidth * (zoom - 1)) / 2), 10);
-          topLimit = parseInt(((videoElement.clientHeight * (zoom - 1)) / 2), 10);
+          var divideNum = 2;
+          leftLimit = parseInt(((videoElement.clientWidth * (zoom - 1)) / divideNum), 10);
+          topLimit = parseInt(((videoElement.clientHeight * (zoom - 1)) / divideNum), 10);
 
           videoElement.style[prop] = 'scale(' + zoom + ') rotate(' + rotate + 'deg)';
           break;
@@ -223,27 +226,29 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
             if (moveX < 0) { //left -> right
               if (parseInt(videoElement.style.left, 10) < leftLimit) {
                 videoElement.style.left = (parseInt(videoElement.style.left, 10) - moveX) + 'px';
-              } else if (parseInt(videoElement.style.left, 10) != leftLimit) {
+              } else if (parseInt(videoElement.style.left, 10) !== leftLimit) {
                 videoElement.style.left = leftLimit + 'px';
               }
             } else if (moveX > 0) { //right -> left
               if (parseInt(videoElement.style.left, 10) > -leftLimit) {
                 videoElement.style.left = (parseInt(videoElement.style.left, 10) - moveX) + 'px';
-              } else if (parseInt(videoElement.style.left, 10) != -leftLimit) {
+              } else if (parseInt(videoElement.style.left, 10) !== -leftLimit) {
                 videoElement.style.left = -leftLimit + 'px';
               }
             }
 
             if (moveY < 0) { //top -> bottom
-              if (parseInt(videoElement.style.top, 10) < parseInt(topLimit, 10))
+              if (parseInt(videoElement.style.top, 10) < parseInt(topLimit, 10)) {
                 videoElement.style.top = (parseInt(videoElement.style.top, 10) - moveY) + 'px';
-              else if (parseInt(videoElement.style.top, 10) != topLimit)
+              } else if (parseInt(videoElement.style.top, 10) !== topLimit) {
                 videoElement.style.top = topLimit + 'px';
+              }
             } else if (moveY > 0) { // bottom -> top
-              if (parseInt(videoElement.style.top, 10) > -topLimit)
+              if (parseInt(videoElement.style.top, 10) > -topLimit) {
                 videoElement.style.top = (parseInt(videoElement.style.top, 10) - moveY) + 'px';
-              else if (parseInt(videoElement.style.top, 10) != -topLimit)
+              } else if (parseInt(videoElement.style.top, 10) !== -topLimit) {
                 videoElement.style.top = -topLimit + 'px';
+              }
             }
           }
           break;
@@ -289,7 +294,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     }
 
     function mouseLeave(event) {
-      if (videoElement != null) {
+      if (videoElement !== null) {
         videoEventHandler(event, "mouseleave", null);
       } else {
         canvasEventHandler(event, "mouseleave", null);
@@ -336,3 +341,4 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     };
   }
 ]);
+/* eslint-enable no-magic-numbers */

@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStreamInterface',
   function($q, LoggingService, kindStreamInterface) {
     "use strict";
@@ -11,7 +12,6 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
     var moveX = 0;
     var moveY = 0;
     var zoomWidth = 0;
-    var zoomHeight = 0;
     var movelimit = 0;
     var maxZoomZLevel = -0.15;
     var minZoomZLevel = -2.35;
@@ -19,7 +19,6 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
 
     var zoomScale = 0.05;
     var zoomValue = 20;
-    var pixelData = [];
     var zoomData = [];
     var callbackFunc = null;
 
@@ -42,11 +41,11 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
         event.preventDefault();
         var zoomChange = false;
         var delta = event.wheelDelta ? event.wheelDelta : -event.detail;
-        delta = delta / 120;
-        if (delta > 0 && zoomZ <= maxZoomZLevel) {
+        var wheelCheck = delta / 120;
+        if (wheelCheck > 0 && zoomZ <= maxZoomZLevel) {
           zoomChange = true;
           zoomZ += zoomScale;
-        } else if (delta < 0 && zoomZ >= minZoomZLevel) {
+        } else if (wheelCheck < 0 && zoomZ >= minZoomZLevel) {
           zoomChange = true;
           zoomZ -= zoomScale;
           if (Math.abs(zoomX * 1000) > zoomValue) {
@@ -73,12 +72,11 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
         }
 
         zoomWidth = event.target.clientWidth * (1 + (2.4 + zoomZ));
-        zoomHeight = event.target.clientHeight * (1 + (2.4 + zoomZ));
 
         if (movelimit === 0) {
           movelimit = ((zoomWidth - event.target.clientWidth) / 2);
         } else if (zoomChange === true) {
-          if (delta > 0) {
+          if (wheelCheck > 0) {
             movelimit += zoomValue;
           } else {
             movelimit -= zoomValue;
@@ -90,7 +88,9 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
       } else if (eventType === "mousedown") {
         event.preventDefault();
         //마우스 왼쪽 버튼만 허용
-        if (event.button !== 0) return;
+        if (event.button !== 0) {
+          return;
+        }
 
         downCheck = true;
         curX = event.offsetX;
@@ -98,9 +98,6 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
       } else if (eventType === "mousemove") {
         event.preventDefault();
         if (downCheck) {
-          var tempZoomX = 0;
-          var tempZoomY = 0;
-
           moveX = curX - event.offsetX;
           moveY = curY - event.offsetY;
 
@@ -180,3 +177,4 @@ kindFramework.factory('PixelCounterService', ['$q', 'LoggingService', 'kindStrea
     };
   }
 ]);
+/* eslint-enable no-magic-numbers */
