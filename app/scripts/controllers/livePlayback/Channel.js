@@ -318,6 +318,29 @@ kindFramework.
           }, '', true);
       }
 
+      function getCameraLensModel() {
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=view', '',
+          function(response) {
+            pageData.CameraLensModel = $scope.CameraLensModel = response.data.Camera[0].LensModel;
+          },
+          function(errorData) {
+            console.log(errorData);
+          }, '', true);
+      }
+
+      function setCameraLensModel() {
+        var setData = {};
+        setData.LensModel = $scope.CameraLensModel;
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set', setData,
+          function(response) {
+            // pageData.CameraLensModel = $scope.CameraLensModel;
+            COMMONUtils.onLogout();
+          },
+          function(errorData) {
+            console.log(errorData);
+          }, '', true);
+      }
+
       $scope.enableSharpness = function() {
         if (pageData.ImageEnhancements.SharpnessEnable) {
           $scope.ImageEnhancements.SharpnessEnable = false;
@@ -520,6 +543,11 @@ kindFramework.
           function() {
             setProfileInfo();
             imageenhancementsView();
+            
+            if(typeof sunapiAttributes.LensModelOptions !== 'undefined') {
+              $scope.LensModelOptions = sunapiAttributes.LensModelOptions;
+              getCameraLensModel(); // XNB-6001
+            }
           },
           function(errorData) {
             console.error(errorData);
@@ -1060,6 +1088,18 @@ kindFramework.
             $scope.channelBasicFunctions.speakerStatus = true;
           }
         }
+      };
+
+      $scope.changeCameraLensModel = function() {
+        var message = '렌즈가 변경되면 카메라가 재부팅됩니다. 변경하시겠습니까?';
+        COMMONUtils.ApplyConfirmation(
+          setCameraLensModel,
+          'md',
+          function(){
+            $scope.CameraLensModel = pageData.CameraLensModel;
+          },
+          message
+        );
       };
 
       /* Channel Selector Direction */
