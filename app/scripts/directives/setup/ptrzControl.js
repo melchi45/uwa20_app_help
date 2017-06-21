@@ -242,7 +242,6 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
       var ptzMoveBtn = $("#ptrz-control_move-btn");
       var ptzControlBox = $("#ptrz-control_box");
       var ptzControlSlider = $("#ptrz-control_slider");
-      var ptzControlArrow = $("ptrz-control_box-arrow");
 
       ptzMoveBtn.unbind();
       ptzControlBox.unbind();
@@ -267,8 +266,8 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           isMove = false;
           var offset = $(this).position();
 
-          var xRadius = 88,
-              yRadius = 88,
+          var xRadius = 78,
+              yRadius = 78,
               x = ui.position.left - xRadius,
               y = yRadius - ui.position.top,
               h = Math.sqrt(x*x + y*y);
@@ -290,7 +289,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           yPos = -(parseInt(yPos, 10) - 100);
           if (-4 < yPos && yPos < 4) yPos = 0;
           if (-2 < xPos && xPos < 2) xPos = 0;
-          ptzJogMove(xPos, yPos);
+          scope.manualPTR('pantilt', xPos, yPos);
         },
         stop: function() {
           if (!isDrag && !isMove) {} else {
@@ -354,7 +353,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           xPos *= PAN_RATIO;
           yPos *= TILT_RATIO;
 
-          ptzJogMove(xPos, yPos);
+          scope.manualPTR('pantilt', xPos, yPos);
           if (isMove === true) {
             clearTimeout(downTimer);
             downTimer = setTimeout(function() {
@@ -529,6 +528,41 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           isJogUpdating = false;
         }, 100);
       }
+
+      scope.manualPTR = function(mode,level1, level2) {
+          var setData = {};
+          setData.Channel = UniversialManagerService.getChannelId();
+
+          switch(String(mode))
+          {
+              case "pantilt":
+                  setData.Pan = level1;
+                  setData.Tilt = level2;
+                  break;
+              case "rotate":
+                  setData.Rotate = level1;
+                  break;
+          }
+
+          if (ptzJogTimer === null) {
+              makeJogTimer();
+          }
+
+          if (isJogUpdating === false) {
+              isPtzControlStart = true;
+              return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=control', setData,
+                  function(response) {},
+                  function(errorData) {
+                      console.log(errorData);
+                  }, '', true);
+
+              isJogUpdating = true;
+          }
+      };
+
+      scope.stopPTR = function(){
+          ptzStop();
+      };
 
       function setPtzControlArrow(degree) {
           var moveAreaWidth = ptzControlBox.width();

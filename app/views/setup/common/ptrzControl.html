@@ -1,5 +1,5 @@
 <div id="ptrz-control_top-box">
-    {{ 'Angle' | translate }} 45
+    {{ 'Angle' | translate }}
 </div>
 <div id="ptrz-control" ng-class="ptzControlClass">
     <div id="ptrz-control_left-control-box">
@@ -17,10 +17,10 @@
     </div>
 </div>
 <div class="ptrz-control_bottom_box">
-    <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="clickPtzFocus('Auto');" style="float:left;">
+    <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="manualPTR('rotate', 50);" ng-mouseup="stopPTR()" style="float:left;">
     <i class="tui tui-wn5-return"></i>
     </button>
-    <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="clickPtzFocus('Auto');" style="float:right;">
+    <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="manualPTR('rotate', -50);" ng-mouseup="stopPTR()" style="float:right;">
     <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i>
     </button>
 </div>
@@ -32,10 +32,3 @@
         {{'Auto Roll' | translate}}
     </button>
 </div>
-
-<button
-        type="button"
-        class="btn btn-white cm-btn-dark"
-        ng-click="increaseRotate()" >
-        {{"IncreaseRotate" | translate}}
-</button>

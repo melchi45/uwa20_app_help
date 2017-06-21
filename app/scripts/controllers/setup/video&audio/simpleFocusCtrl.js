@@ -73,30 +73,6 @@ kindFramework.controller('simpleFocusCtrl', function($scope, SunapiClient, Attri
 
   getAttributes();
 
-  function manualPTR(mode,level) {
-      var setData = {};
-      setData.Channel = UniversialManagerService.getChannelId();
-
-      switch(String(mode))
-      {
-          case "pan":
-            setData.Pan = level;
-            break;
-          case "tilt":
-            setData.Tilt = level;
-            break;
-          case "rotate":
-            setData.Rotate = level;
-            break;
-      }
-
-      return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=control', setData,
-          function(response) {},
-          function(errorData) {
-              console.log(errorData);
-          }, '', true);
-  }
-
   function manualFocus(level) {
     var setData = {};
 
@@ -345,7 +321,6 @@ kindFramework.controller('simpleFocusCtrl', function($scope, SunapiClient, Attri
     }
   })();
 
-  $scope.manualPTR = manualPTR;
   $scope.manualFocus = manualFocus;
   $scope.manualZoom = manualZoom;
   $scope.focusMode = focusMode;
