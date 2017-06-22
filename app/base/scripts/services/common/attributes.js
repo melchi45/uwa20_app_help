@@ -634,7 +634,7 @@ function($timeout, $location, $q, SunapiClient, XMLParser, SessionOfUserManager,
       mAttributes.PtrTiltOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/ptr/Tilt/int');
       mAttributes.PtrRotateOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/ptr/Rotate/int');
 
-      mAttributes.LensModelOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/camera/set/enum');
+      mAttributes.LensModelOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'image/camera/LensModel/enum');
 
       if(mAttributes.PtrRotateOptions && mAttributes.PtrTiltOptions && mAttributes.PtrPanOptions)
       {
