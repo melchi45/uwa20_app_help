@@ -138,50 +138,50 @@ function (
 
   function getAttributes() {
     var defer = $q.defer();
-    if (mAttr.FileSystemTypeOptions !== 'undefined') {
+    if (typeof mAttr.FileSystemTypeOptions !== 'undefined') {
       $scope.FileSystemTypeOptions = mAttr.FileSystemTypeOptions;
     }
-    if (mAttr.DeviceType !== 'undefined') {
+    if (typeof mAttr.DeviceType !== 'undefined') {
       $scope.DeviceType = mAttr.DeviceType;
     }
-    if (mAttr.RecNormalModeOptions !== 'undefined') {
+    if (typeof mAttr.RecNormalModeOptions !== 'undefined') {
       $scope.RecNormalModeOptions = mAttr.RecNormalModeOptions;
     }
-    if (mAttr.RecEventModeOptions !== 'undefined') {
+    if (typeof mAttr.RecEventModeOptions !== 'undefined') {
       $scope.RecEventModeOptions = mAttr.RecEventModeOptions;
     }
-    if (mAttr.RecPreEventDurationOptions !== 'undefined') {
+    if (typeof mAttr.RecPreEventDurationOptions !== 'undefined') {
       $scope.RecPreEventDurationOptions = mAttr.RecPreEventDurationOptions;
     }
-    if (mAttr.RecPostEventDurationOptions !== 'undefined') {
+    if (typeof mAttr.RecPostEventDurationOptions !== 'undefined') {
       $scope.RecPostEventDurationOptions = mAttr.RecPostEventDurationOptions;
     }
-    if (mAttr.RecVideoFileTypeOptions !== 'undefined') {
+    if (typeof mAttr.RecVideoFileTypeOptions !== 'undefined') {
       $scope.RecVideoFileTypeOptions = mAttr.RecVideoFileTypeOptions;
     }
-    if (mAttr.EnableOptions !== 'undefined') {
+    if (typeof mAttr.EnableOptions !== 'undefined') {
       $scope.EnableOptions = mAttr.EnableOptions;
     }
-    if (mAttr.ActivateOptions !== 'undefined') {
+    if (typeof mAttr.ActivateOptions !== 'undefined') {
       $scope.ActivateOptions = mAttr.ActivateOptions;
     }
-    if (mAttr.WeekDays !== 'undefined') {
+    if (typeof mAttr.WeekDays !== 'undefined') {
       $scope.WeekDays = mAttr.WeekDays;
     }
-    if (mAttr.NASIPMaxLen !== 'undefined') {
+    if (typeof mAttr.NASIPMaxLen !== 'undefined') {
       $scope.NASIPMaxLen = parseInt(mAttr.NASIPMaxLen.maxLength);
       $scope.IPV4Pattern = mAttr.IPv4;
     }
-    if (mAttr.NASUserIDMaxLen !== 'undefined') {
+    if (typeof mAttr.NASUserIDMaxLen !== 'undefined') {
       $scope.NASUserIDMaxLen = parseInt(mAttr.NASUserIDMaxLen.maxLength);
     }
-    if (mAttr.NASPasswordMaxLen !== 'undefined') {
+    if (typeof mAttr.NASPasswordMaxLen !== 'undefined') {
       $scope.NASPasswordMaxLen = parseInt(mAttr.NASPasswordMaxLen.maxLength);
     }
-    if (mAttr.DefaultFolderMaxLen !== 'undefined') {
+    if (typeof mAttr.DefaultFolderMaxLen !== 'undefined') {
       $scope.DefaultFolderMaxLen = parseInt(mAttr.DefaultFolderMaxLen.maxLength);
     }
-    if (mAttr.AutoDeleteDayOptions !== 'undefined') {
+    if (typeof mAttr.AutoDeleteDayOptions !== 'undefined') {
       $scope.AutoDeleteDayOptions.min = parseInt(mAttr.AutoDeleteDayOptions.minValue);
       $scope.AutoDeleteDayOptions.max = parseInt(mAttr.AutoDeleteDayOptions.maxValue);
       $scope.IdPattern = mAttr.OnlyNumber;
@@ -385,7 +385,8 @@ function (
     setData.Enable = $scope.RecordStorageInfo.Enable;
     setData.OverWrite = $scope.RecordStorageInfo.OverWrite;
     setData.AutoDeleteEnable = $scope.RecordStorageInfo.AutoDeleteEnable;
-    if (!($scope.RecordStorageInfo.AutoDeleteDays === 'undefined' || $scope.RecordStorageInfo.AutoDeleteDays === '')) {
+    if (!(typeof $scope.RecordStorageInfo.AutoDeleteDays === 'undefined' || 
+        $scope.RecordStorageInfo.AutoDeleteDays === '')) {
       setData.AutoDeleteDays = $scope.RecordStorageInfo.AutoDeleteDays;
     }
 
@@ -459,7 +460,9 @@ function (
       otherStorage = 1;
     }
 
-    if ($scope.Storageinfo.Storages[otherStorage] !== 'undefined' && !angular.equals(pageData.Storageinfo.Storages[otherStorage], $scope.Storageinfo.Storages[otherStorage])) {
+    if (typeof $scope.Storageinfo.Storages[otherStorage] !== 'undefined' && 
+        !angular.equals(pageData.Storageinfo.Storages[otherStorage], 
+                        $scope.Storageinfo.Storages[otherStorage])) {
       storageinfoSet(otherStorage, queue);
     }
   }
@@ -828,7 +831,9 @@ function (
         otherstorage = 0;
       }
 
-      if ($scope.Storageinfo.Storages[otherstorage] !== 'undefined' && !angular.equals(pageData.Storageinfo.Storages[otherstorage], $scope.Storageinfo.Storages[otherstorage])) {
+      if (typeof $scope.Storageinfo.Storages[otherstorage] !== 'undefined' && 
+          !angular.equals(pageData.Storageinfo.Storages[otherstorage], 
+                          $scope.Storageinfo.Storages[otherstorage])) {
         if ($scope.Storageinfo.Storages[otherstorage].Type === 'SD') {
           if (pageData.Storageinfo.Storages[otherstorage].FileSystem !== $scope.Storageinfo.Storages[otherstorage].FileSystem) {
             $scope.DisplayMsg = $translate.instant('lang_msg_storage_format2');
@@ -1047,7 +1052,7 @@ function (
     } else {
       COMMONUtils.confirmChangeingChannel().then(function() {
         set().then(function() {
-          if (data !== 'undefined') {
+          if (typeof data !== 'undefined') {
             $rootScope.$emit("channelSelector:changeChannel", data);
             $scope.Channel = data;
           }
