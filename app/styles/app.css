@@ -15,7 +15,6 @@ uwa20-default는 색상 스키마 기준으로 각 컴포넌트의 색상을 부
 color-scheme.less를 만들어서 작성하였다.
 */
 /* Regular Expression style */
-.grunt-test{font-size: 10px;}
 [id^="cm-"],
 [class^="cm-"] {
   padding: 0;
