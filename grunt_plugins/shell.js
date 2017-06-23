@@ -141,7 +141,7 @@ module.exports = function(injection){
 				}
 
 				grunt.file.write(filePath, data);
-				return '';
+				return 'git --version';
 			}
 		},
 		removeCordova: {
@@ -222,7 +222,7 @@ module.exports = function(injection){
 					console.log(e);
 				}
 
-				return '';
+				return 'node --version';
 			}
 		},
 		less: {
