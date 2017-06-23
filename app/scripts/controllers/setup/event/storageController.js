@@ -741,7 +741,11 @@ function (
     }, '', true);
   };
 
-  function view() {
+  function view(data) {
+    if(data === 0) {
+      $rootScope.$emit('resetScheduleData', true);
+    }
+
     var promises = [];
 
     promises.push(changeVideoProfilePolicies);
@@ -1092,11 +1096,11 @@ function (
   })();
 
   $scope.submit = set;
-  $scope.view = function() {
+  $scope.view = function(data) {
     $rootScope.$emit("changeLoadingBar", true);
     $scope.$emit("offAlreadyCreated", true);
 
-    view();
+    view(data);
   }
   $scope.validate = validatePage;
 });
