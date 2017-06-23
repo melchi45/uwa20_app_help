@@ -44,7 +44,7 @@ module.exports = function(injection){
 					grunt.file.write(filePath, data);
 					//Temporary Added
 
-					return '';
+					return 'git --version';
 				}
 		},
 		modifyOnlineHelpIndex: {
@@ -53,7 +53,7 @@ module.exports = function(injection){
 
 				if(grunt.file.exists(filePath) === false){
 					console.error(filePath + "is not exists!!");
-					return '';
+					return 'git --version';
 				}
 
 				var data = grunt.file.read(filePath);
@@ -153,7 +153,7 @@ module.exports = function(injection){
 
 					grunt.file.write(filePath, data);
 
-					return '';
+					return 'git --version';
 				}
 		},
 		remove9011File: {
@@ -178,7 +178,7 @@ module.exports = function(injection){
 									
 				grunt.file.write(filePath, data);
 
-				return '';
+				return 'git --version';
 			}
 		},
 		remove9011Menu: {
@@ -190,7 +190,7 @@ module.exports = function(injection){
 				data = data.replace('var usePCHM=true;', 'var usePCHM=false;');
 				
 				grunt.file.write(filePath, data);
-				return '';
+				return 'git --version';
 			}
 		},
 		addCordovaPlugin: {
@@ -226,7 +226,9 @@ module.exports = function(injection){
 			}
 		},
 		less: {
-				command: 'node node_modules/less/bin/lessc ' + projectStructure.appCssPath + '/less/app.less ' + projectStructure.appCssPath + '/app.css'
+				command: function(){
+          return 'node node_modules/less/bin/lessc ' + projectStructure.appCssPath + '/less/app.less ' + projectStructure.appCssPath + '/app.css';
+        }
 		},
 		languages: {
 				command: 'node languages/UWA2_vba/Check_languages'

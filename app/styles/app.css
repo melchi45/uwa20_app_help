@@ -1,20 +1,3 @@
-/* 테마 수정 시 themes/theme.less 코드를 수정한다. */
-/*
-theme 코드는 각 폴더에 main.less를 작성하고,
-main.less를 통해서 수정한다.
-
-main.less
- ㄴ text-field.less
- ㄴ button.less
- ㄴ table.less
- ㄴ tab.less
- ㄴ slider.less
- 
-위와 같은 컴포넌트별 변수를 유지하고 각 less의 색상을 수정한다.
-uwa20-default는 색상 스키마 기준으로 각 컴포넌트의 색상을 부여하여,
-color-scheme.less를 만들어서 작성하였다.
-*/
-/* Regular Expression style */
 [id^="cm-"],
 [class^="cm-"] {
   padding: 0;
@@ -2250,6 +2233,105 @@ body.modal-open {
   float: left !important;
   padding: 15px 0 0 15px;
 }
+#ptrz-control {
+  width: 210px;
+  overflow: hidden;
+}
+#ptrz-control.w210 {
+  width: 210px;
+}
+#ptrz-control.w250 {
+  width: 250px;
+}
+#ptrz-control.w310 {
+  width: 310px;
+}
+#ptrz-control.w410 {
+  width: 410px;
+}
+#ptrz-control.w510 {
+  width: 510px;
+}
+#ptrz-control.w610 {
+  width: 610px;
+}
+#ptrz-control #ptrz-control_top-box {
+  line-height: 1.2;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+#ptrz-control .ptrz-control_bottom_box {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+#ptrz-control .ptrz-control_bottom_box button:last-of-type {
+  margin-bottom: 0;
+}
+#ptrz-control #ptrz-control_left-control-box {
+  width: 200px;
+  margin: 10px auto;
+}
+#ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline {
+  width: 190px;
+  height: 190px;
+  border: 2px dashed #d2d2d2;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+}
+#ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline #ptrz-control_box-arrow {
+  width: 10px;
+  height: 10px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #f37321;
+  top: 5px;
+  left: calc(47.5%);
+  position: absolute;
+}
+#ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline #ptrz-control_box {
+  width: 160px;
+  height: 160px;
+  margin: 15px auto;
+  background-color: #ffffff;
+  border: 1px solid #d2d2d2;
+  position: relative;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+#ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline #ptrz-control_box #ptrz-control_box-hline {
+  height: 0;
+  width: 100%;
+  border: 1px dashed #d2d2d2;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 0;
+  z-index: 1;
+}
+#ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline #ptrz-control_box #ptrz-control_box-vline {
+  width: 0;
+  height: 100%;
+  border: 1px dashed #d2d2d2;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1px);
+  z-index: 1;
+}
+#ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline #ptrz-control_box #ptrz-control_move-btn {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  position: absolute;
+  top: calc(50% - 12px);
+  left: calc(50% - 12px);
+  z-index: 2;
+  font-size: 24px;
+  color: #797979;
+}
 .ptz-control_box.ptz-control_ptz-menu-width {
   width: 100%;
   max-width: 640px;
@@ -2783,7 +2865,7 @@ body.modal-open {
 .ui-slider-horizontal .ui-slider-range {
   background: #797979;
   height: 2px;
-  top: 18px;
+  top: 19px;
 }
 .ui-slider-vertical {
   width: 2px;
@@ -2993,7 +3075,7 @@ body.modal-open {
 .cm-tabs-field .nav-tabs li button:hover,
 .cm-tabs-field .cm-tabs-list li a:hover,
 .cm-tabs-field .nav-tabs li a:hover {
-  background-color: #fff !important;
+  background-color: #ffffff !important;
   border-bottom: 0 !important;
   color: #4c4c4c !important;
 }
@@ -3061,7 +3143,7 @@ body.modal-open {
 .cm-full-menu .cm-tabs-field .nav-tabs li a:hover {
   background-color: #191919 !important;
   border-bottom: 0 !important;
-  color: #fff !important;
+  color: #ffffff !important;
 }
 .cm-full-menu .cm-tabs-field .cm-tabs-list li a,
 .cm-full-menu .cm-tabs-field .nav-tabs li a {
@@ -3088,10 +3170,15 @@ body.modal-open {
 .cm-full-menu .cm-tabs-field .cm-tabs-content,
 .cm-full-menu .cm-tabs-field .tab-content {
   border: 1px solid #333333;
-  background-color: #262626;
+  background-color: #333333;
   border-top: 0;
 }
-<<<<<<< HEAD
+.cm-full-menu .cm-tabs-field .cm-tabs-content .wn5-setup-section-article-heading,
+.cm-full-menu .cm-tabs-field .tab-content .wn5-setup-section-article-heading,
+.cm-full-menu .cm-tabs-field .cm-tabs-content .wn5-setup-section-article-content,
+.cm-full-menu .cm-tabs-field .tab-content .wn5-setup-section-article-content {
+  color: #ffffff;
+}
 .cm-legend-red {
   background-color: #e00001;
 }
@@ -3115,12 +3202,6 @@ body.modal-open {
 }
 .cm-legend-pink {
   background-color: #ef5ca8;
-}
-.cm-full-menu .cm-tabs-field .cm-tabs-content .wn5-setup-section-article-heading,
-.cm-full-menu .cm-tabs-field .tab-content .wn5-setup-section-article-heading,
-.cm-full-menu .cm-tabs-field .cm-tabs-content .wn5-setup-section-article-content,
-.cm-full-menu .cm-tabs-field .tab-content .wn5-setup-section-article-content {
-  color: #fff;
 }
 html,
 body {
@@ -4469,7 +4550,7 @@ fieldset .ui-slider.ui-slider-vertical .ui-state-default.ui-state-active {
 }
 .wn5-setup-wrapper .ui-slider:not(.ui-slider-vertical) .ui-state-default,
 fieldset .ui-slider:not(.ui-slider-vertical) .ui-state-default {
-  top: 13px !important;
+  top: 14px !important;
   margin-left: -6px;
 }
 .wn5-setup-wrapper .ui-slider:not(.ui-slider-vertical) .ui-state-default.ui-state-hover,
@@ -4730,6 +4811,10 @@ body.kind-svg-editor-drawing .channel-content {
 }
 .nav > li.active {
   border-left: 0;
+}
+.nav > li.active > a {
+  color: #c25c1a;
+  font-weight: bold;
 }
 .nav > li.active > a i,
 .nav > li.active > a span {
@@ -8012,6 +8097,9 @@ i.tui-ch-playback-stop {
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-ptz #ptz-components.ptz-zoom #cm-ptz-tabs {
   width: 60%;
 }
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status {
+  max-width: 1100px;
+}
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col {
   width: calc(50% - 10px);
   padding: 0 20px;
@@ -8038,6 +8126,7 @@ i.tui-ch-playback-stop {
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table td {
   width: 1%;
   box-sizing: border-box;
+  font-size: 11px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table thead {
   display: block;
