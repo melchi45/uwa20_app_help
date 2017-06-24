@@ -188,56 +188,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         }
       });
 
-      scope.blcAreaChange = function(mode, direction) {
-        var data = {};
-        data.mode = mode;
-        data.direction = direction;
-        data.step = scope.blcbox.select;
-        if (scope.showPTZControlBLC) data.type = 'BLC';
-        else data.type = 'HLC';
-        scope.$emit('changeBlcArea', data);
-      };
 
-      scope.setNorthView = function() {
-        COMMONUtils.ApplyConfirmation(setNorth);
-      };
-
-      function setNorth() {
-        var html = '<div id="set_North" class="ptz-control_set-north">';
-        html += '<i class="tui tui-wn5-north"></i>';
-        html += '</div>';
-        $('#sketchbook').append(html);
-
-        var removeNorth = function() {
-          $timeout(function() {
-            $('#sketchbook').find('#set_North').remove();
-          }, 1000);
-        };
-        var setData = {};
-        setData.NorthDirection = '';
-        SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set', setData,
-          function() {
-            removeNorth();
-          },
-          function() {
-            removeNorth();
-          }, '', true);
-      }
-      scope.$watch('showPTZControlOSD', function(value) {
-        if (value === false) {
-          $('#sketchbook').find('#set_North').remove();
-        }
-      });
-
-      function ptzLimitCheck(data) {
-        if (data > 100) {
-          data = 100;
-        } else if (data < -100) {
-          data = -100;
-        }
-
-        return data;
-      }
 
       var ptzMoveBtn = $("#ptrz-control_move-btn");
       var ptzControlBox = $("#ptrz-control_box");
@@ -396,32 +347,6 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         }
       });
 
-      function ptzJogMove(xPos, yPos) {
-        var setData = {};
-        setData.Channel = 0;
-        setData.NormalizedSpeed = 'True';
-        setData.Pan = ptzLimitCheck(xPos);
-        setData.Tilt = ptzLimitCheck(yPos);
-        setData.Zoom = 0;
-
-        if (scope.showPTZControlFisheyeDPTZ === true) {
-          setData.SubViewIndex = scope.quadrant.select;
-        }
-
-        if (ptzJogTimer === null) {
-          makeJogTimer();
-        }
-
-        if (isJogUpdating === false) {
-          isPtzControlStart = true;
-          SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control', setData,
-            function(response) {},
-            function(errorData) {}, '', true);
-
-          isJogUpdating = true;
-        }
-      }
-
         ptzControlSlider.slider({
         orientation: "vertical",
         min: -100,
@@ -453,72 +378,6 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         },
         stop: function() {
             ptzControlSlider.slider('value', 0);
-          ptrStop();
-        }
-      });
-
-      var ptzContorlSliderHorizontalZoom = $("#ptz-control_slider-horizontal-zoom");
-      ptzContorlSliderHorizontalZoom.unbind();
-
-      ptzContorlSliderHorizontalZoom.slider({
-        orientation: "horizontal",
-        min: -100,
-        max: 100,
-        value: 0,
-        revert: true,
-        slide: function(event, ui) {
-          if (ptzJogTimer === null) {
-            makeJogTimer();
-          }
-
-          if (isJogUpdating === false) {
-            var setData = {};
-            setData.Channel = 0;
-            setData.NormalizedSpeed = 'True';
-            setData.Zoom = ui.value;
-
-            isPtzControlStart = true;
-            SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control', setData,
-              function(response) {},
-              function(errorData) {}, '', true);
-            isJogUpdating = true;
-          }
-
-        },
-        stop: function() {
-           ptzContorlSliderHorizontalZoom.slider('value', 0);
-          ptrStop();
-        }
-      });
-
-      var ptzContorlSliderHorizontalFocus = $("#ptz-control_slider-horizontal-focus");
-
-      ptzContorlSliderHorizontalFocus.unbind();
-
-      ptzContorlSliderHorizontalFocus.slider({
-        orientation: "horizontal",
-        min: -100,
-        max: 100,
-        value: 0,
-        revert: true,
-        slide: function(event, ui) {
-          if (ptzJogTimer === null) {
-            makeJogTimer();
-          }
-
-          if (isJogUpdating === false) {
-            var sliderVal = ui.value;
-            if (sliderVal > 0) {
-              scope.clickPtzFocus('Far');
-            } else if (sliderVal < 0) {
-              scope.clickPtzFocus('Near');
-            }
-            isJogUpdating = true;
-          }
-
-        },
-        stop: function() {
-          ptzContorlSliderHorizontalFocus.slider('value', 0);
           ptrStop();
         }
       });
@@ -584,64 +443,6 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         setPtzControlArrow(degree);
       };
 
-      scope.clickPtzFocus = function(value) {
-        var setData = {};
-        setData.Channel = 0;
-        if (value === 'Stop') {
-          ptrStop();
-        } else if (value === 'Auto') {
-          setData.Mode = 'AutoFocus';
-
-          SunapiClient.get('/stw-cgi/image.cgi?msubmenu=focus&action=control', setData,
-            function(response) {},
-            function(errorData) {}, '', true);
-        } else {
-          setData.Focus = value;
-
-          SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control', setData,
-            function(response) {},
-            function(errorData) {}, '', true);
-          isPtzControlStart = true;
-        }
-      };
-
-      scope.clickHomePosition = function(value) {
-        var setData = {};
-        if (value === 'Set') {
-          SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=home&action=set', setData,
-            function() {
-              COMMONUtils.ShowInfo('lang_savingCompleted');
-            },
-            function(errorData) {}, '', true);
-        } else {
-          setData.Channel = 0;
-          SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=home&action=control', setData,
-            function(response) {},
-            function(errorData) {}, '', true);
-        }
-      };
-
-      scope.ptzControlZoom = function(value) {
-        if (value === 'Stop') {
-          if (UniversialManagerService.getDigitalPTZ() !== CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING) {
-            ptrStop();
-          }
-        } else {
-          var setData = {};
-          setData.Channel = 0;
-          setData.NormalizedSpeed = 'True';
-          setData.Zoom = value;
-
-          if (scope.showPTZControlFisheyeDPTZ === true) {
-            setData.SubViewIndex = scope.quadrant.select;
-          }
-          isPtzControlStart = true;
-          SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=continuous&action=control', setData,
-            function(response) {},
-            function(errorData) {}, '', true);
-        }
-      };
-
       function ptrStop() {
         if (ptzJogTimer !== null) {
           $interval.cancel(ptzJogTimer);
@@ -660,45 +461,6 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           function(response) {},
           function(errorData) {}, '', true);
       }
-
-      scope.showSetPreset = function() {
-        var setData = {};
-        SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=view', setData,
-          function(response) {
-            var mAttr = Attributes.get("attr");
-            var modalInstance = $uibModal.open({
-              templateUrl: 'views/setup/common/ptzPresetPopup.html',
-              controller: 'ptzPresetCtrl',
-              windowClass: 'modal-position-middle',
-              resolve: {
-                PresetData: function() {
-                  var presets = [];
-                  if (typeof response.data.PTZPresets !== 'undefined' && typeof response.data.PTZPresets[0].Presets !== 'undefined') {
-                    presets = response.data.PTZPresets[0].Presets;
-                  }
-                  return {
-                    'PTZPresets': presets,
-                    'PTZPresetOptionsMaxValue': mAttr.PTZPresetOptions.maxValue
-                  };
-                }
-              }
-            });
-            modalInstance.result.then(function(data) {
-              if (data.PresetIdx && data.PresetName) {
-                var addData = {};
-                addData.Preset = data.PresetIdx;
-                addData.Name = data.PresetName;
-
-                SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=preset&action=add', addData,
-                  function() {
-                    scope.$emit('changePTZPreset', data.PresetIdx);
-                  },
-                  function(errorData) {}, '', true);
-              }
-            }, function() {});
-          },
-          function(errorData) {}, '', true);
-      };
     }
   };
 });
