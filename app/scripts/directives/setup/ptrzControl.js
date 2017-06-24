@@ -289,7 +289,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           yPos = -(parseInt(yPos, 10) - 100);
           if (-4 < yPos && yPos < 4) yPos = 0;
           if (-2 < xPos && xPos < 2) xPos = 0;
-          scope.manualPTR('pantilt', xPos, yPos);
+          scope.runPTR('pantilt', xPos, yPos);
         },
         stop: function() {
           if (!isDrag && !isMove) {} else {
@@ -301,7 +301,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
               top: (moveAreaHeight / 2 - 12),
               left: (moveAreaWidth / 2 - 12)
             }, animateDuration, function() {
-              ptzStop();
+              ptrStop();
             });
           }
         }
@@ -353,7 +353,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           xPos *= PAN_RATIO;
           yPos *= TILT_RATIO;
 
-          scope.manualPTR('pantilt', xPos, yPos);
+          scope.runPTR('pantilt', xPos, yPos);
           if (isMove === true) {
             clearTimeout(downTimer);
             downTimer = setTimeout(function() {
@@ -375,7 +375,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
                     top: (moveAreaHeight / 2 - 12),
                     left: (moveAreaWidth / 2 - 12)
                 }, animateDuration, function() {
-                    ptzStop();
+                    ptrStop();
                 });
             }
         });
@@ -391,7 +391,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
             top: (moveAreaHeight / 2 - 12),
             left: (moveAreaWidth / 2 - 12)
           }, animateDuration, function() {
-            ptzStop();
+            ptrStop();
           });
         }
       });
@@ -453,7 +453,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         },
         stop: function() {
             ptzControlSlider.slider('value', 0);
-          ptzStop();
+          ptrStop();
         }
       });
 
@@ -487,7 +487,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         },
         stop: function() {
            ptzContorlSliderHorizontalZoom.slider('value', 0);
-          ptzStop();
+          ptrStop();
         }
       });
 
@@ -519,7 +519,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         },
         stop: function() {
           ptzContorlSliderHorizontalFocus.slider('value', 0);
-          ptzStop();
+          ptrStop();
         }
       });
 
@@ -529,20 +529,13 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         }, 100);
       }
 
-      scope.manualPTR = function(mode,level1, level2) {
+      scope.runPTR = function(pan, tilt, zoom) {
           var setData = {};
           setData.Channel = UniversialManagerService.getChannelId();
 
-          switch(String(mode))
-          {
-              case "pantilt":
-                  setData.Pan = level1;
-                  setData.Tilt = level2;
-                  break;
-              case "rotate":
-                  setData.Rotate = level1;
-                  break;
-          }
+          setData.Pan = pan;
+          setData.Tilt = tilt;
+          setData.Rotate = zoom;
 
           if (ptzJogTimer === null) {
               makeJogTimer();
@@ -561,7 +554,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
       };
 
       scope.stopPTR = function(){
-          ptzStop();
+          ptrStop();
       };
 
       function setPtzControlArrow(degree) {
@@ -577,7 +570,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
               top : (Math.sin(angle) * moveAreaWidth/2 + 5),
               left : (Math.cos(angle) * moveAreaWidth/2 + moveAreaHeight/2)
           }, animateDuration, function() {
-              ptzStop();
+              ptrStop();
           });
       }
 
@@ -595,7 +588,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         var setData = {};
         setData.Channel = 0;
         if (value === 'Stop') {
-          ptzStop();
+          ptrStop();
         } else if (value === 'Auto') {
           setData.Mode = 'AutoFocus';
 
@@ -631,7 +624,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
       scope.ptzControlZoom = function(value) {
         if (value === 'Stop') {
           if (UniversialManagerService.getDigitalPTZ() !== CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING) {
-            ptzStop();
+            ptrStop();
           }
         } else {
           var setData = {};
@@ -649,20 +642,21 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         }
       };
 
-      function ptzStop() {
+      function ptrStop() {
         if (ptzJogTimer !== null) {
           $interval.cancel(ptzJogTimer);
           ptzJogTimer = null;
         }
         if (!isPtzControlStart) return;
+
         var setData = {};
-        setData.Channel = 0;
-        setData.OperationType = 'All';
-        if (scope.showPTZControlFisheyeDPTZ === true) {
-          setData.SubViewIndex = scope.quadrant.select;
-        }
+        setData.Channel = UniversialManagerService.getChannelId();
+        setData.Pan = 0;
+        setData.Tilt = 0;
+        setData.Rotate = 0;
         isPtzControlStart = false;
-        SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=stop&action=control', setData,
+
+        SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=control', setData,
           function(response) {},
           function(errorData) {}, '', true);
       }
