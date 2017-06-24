@@ -188,8 +188,6 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         }
       });
 
-
-
       var ptzMoveBtn = $("#ptrz-control_move-btn");
       var ptzControlBox = $("#ptrz-control_box");
       var ptzControlSlider = $("#ptrz-control_slider");
@@ -202,8 +200,8 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
       var animateDuration = 50;
       // var PAN_RATIO = 1.205;
       // var TILT_RATIO = 1.755;
-      var PAN_RATIO = 1.495;
-      var TILT_RATIO = 1.790;
+      var PAN_RATIO = 200 / (ptzControlBox.width() - ptzMoveBtn.width());
+      var TILT_RATIO = 200 / (ptzControlBox.height() - ptzMoveBtn.height());
       var downTimer = null;
       var ptzJogTimer = null;
       var isJogUpdating = false;
@@ -217,14 +215,13 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           isMove = false;
           var offset = $(this).position();
 
-          var xRadius = 78,
-              yRadius = 78,
+          var xRadius = 80 - ptzMoveBtn.width()/2,
+              yRadius = 80 - ptzMoveBtn.height()/2,
               x = ui.position.left - xRadius,
               y = yRadius - ui.position.top,
               h = Math.sqrt(x*x + y*y);
           if (Math.floor(h) > Math.min(xRadius, yRadius)) {
-              var ye = Math.round(yRadius * y / h),
-                  xe = Math.round(xRadius * x / h);
+              var ye = Math.round(yRadius * y / h), xe = Math.round(xRadius * x / h);
               if ((Math.abs(y) > Math.abs(ye)) || (Math.abs(x) > Math.abs(xe))) {
                   ui.position.left = xe + xRadius;
                   ui.position.top = yRadius - ye;
@@ -238,9 +235,9 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
 
           xPos = parseInt(xPos, 10) - 100;
           yPos = -(parseInt(yPos, 10) - 100);
-          if (-4 < yPos && yPos < 4) yPos = 0;
-          if (-2 < xPos && xPos < 2) xPos = 0;
-          scope.runPTR('pantilt', xPos, yPos);
+          if (100 < yPos && yPos < -100) yPos = 0;
+          if (100 < xPos && xPos < -100) xPos = 0;
+          scope.runPTR(xPos, yPos, 0);
         },
         stop: function() {
           if (!isDrag && !isMove) {} else {
@@ -304,7 +301,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           xPos *= PAN_RATIO;
           yPos *= TILT_RATIO;
 
-          scope.runPTR('pantilt', xPos, yPos);
+          scope.runPTR(xPos, yPos, 0);
           if (isMove === true) {
             clearTimeout(downTimer);
             downTimer = setTimeout(function() {
@@ -417,31 +414,21 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
       };
 
       function setPtzControlArrow(degree) {
-          var moveAreaWidth = ptzControlBox.width();
-          var moveAreaHeight = ptzControlBox.height();
-          var ptrzArrow = $("#ptrz-control_box-arrow");
-          var angle = Math.PI * degree / 180.0;
-          ptrzArrow.css('transform','rotate(' + degree + 'deg)');
-          // ptrzArrow.css({ 'WebkitTransform': 'rotate(' + degree + 'deg)'});
-          // ptrzArrow.css({ '-moz-transform': 'rotate(' + degree + 'deg)'});
+          // var ptrzControlBox = $("#ptrz-control_box");
+          // ptrzControlBox.css('transform','rotate(' + degree + 'deg)');
 
-          ptrzArrow.animate({
-              top : (Math.sin(angle) * moveAreaWidth/2 + 5),
-              left : (Math.cos(angle) * moveAreaWidth/2 + moveAreaHeight/2)
-          }, animateDuration, function() {
-              ptrStop();
-          });
+          var hline = $("#ptrz-control_box-hline");
+          var vline = $("#ptrz-control_box-vline");
+
+          hline.css('transform','rotate(' + degree + 'deg)');
+          vline.css('transform','rotate(' + degree + 'deg)');
       }
 
+        var degree = 0;
       function getRotate(){
+          degree += 30;
           setPtzControlArrow();
       }
-
-      var degree = 0;
-      scope.increaseRotate = function(){
-        degree += 10;
-        setPtzControlArrow(degree);
-      };
 
       function ptrStop() {
         if (ptzJogTimer !== null) {
