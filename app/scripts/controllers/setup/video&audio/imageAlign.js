@@ -14,8 +14,14 @@ kindFramework.controller('imageAlignCtrl', function($scope, $timeout, SunapiClie
     rotate: null
   };
 
-  $scope.sensorIds = [0, 1, 2, 3];
-  $scope.selectedSensorId = $scope.sensorIds[0];
+  var sensorIndex = {
+    first: 0,
+    second: 1,
+    third: 2,
+    fourth: 3,
+  };
+  $scope.sensorIds = [sensorIndex.first, sensorIndex.second, sensorIndex.third, sensorIndex.fourth];
+  $scope.selectedSensorId = $scope.sensorIds[sensorIndex.first];
 
   $scope.selectSensorId = function(sensorId) {
     $scope.selectedSensorId = sensorId;
@@ -32,10 +38,12 @@ kindFramework.controller('imageAlignCtrl', function($scope, $timeout, SunapiClie
   var downButton = 'glyphicon glyphicon-chevron-down';
 
   $scope.pannelButtons = {
-    xAxis: [{
+    xAxis: [
+      {
         btnCls: 'pannel-yaxis-fast-left',
         clickCallback: function() {
-          moveImageAlign(false, -10);
+          var moveValue = -10;
+          moveImageAlign(false, moveValue);
         },
         iconCls: [
           leftButton,
@@ -54,7 +62,8 @@ kindFramework.controller('imageAlignCtrl', function($scope, $timeout, SunapiClie
       {
         btnCls: 'pannel-yaxis-fast-right',
         clickCallback: function() {
-          moveImageAlign(false, 10);
+          var moveValue = 10;
+          moveImageAlign(false, moveValue);
         },
         iconCls: [
           rightButton,
@@ -71,10 +80,12 @@ kindFramework.controller('imageAlignCtrl', function($scope, $timeout, SunapiClie
         ]
       }
     ],
-    yAxis: [{
+    yAxis: [
+      {
         btnCls: 'pannel-xaxis-fast-top',
         clickCallback: function() {
-          moveImageAlign(10, false);
+          var moveValue = 10;
+          moveImageAlign(moveValue, false);
         },
         iconCls: [
           upButton,
@@ -114,7 +125,8 @@ kindFramework.controller('imageAlignCtrl', function($scope, $timeout, SunapiClie
       {
         btnCls: 'pannel-xaxis-fast-down',
         clickCallback: function() {
-          moveImageAlign(-10, false);
+          var moveValue = -10;
+          moveImageAlign(moveValue, false);
         },
         iconCls: [
           downButton,
@@ -134,7 +146,9 @@ kindFramework.controller('imageAlignCtrl', function($scope, $timeout, SunapiClie
   var controlLocking = false;
 
   function controlImageAlign(mode, sensorId, vertical, horizontal) {
-    if (controlLocking === true) {return;}
+    if (controlLocking === true) {
+      return;
+    }
     controlLocking = true;
 
     var reqData = {};
@@ -245,10 +259,11 @@ kindFramework.controller('imageAlignCtrl', function($scope, $timeout, SunapiClie
 
   (function wait() {
     if (!mAttr.Ready) {
+      var time = 500;
       $timeout(function() {
         mAttr = Attributes.get();
         wait();
-      }, 500);
+      }, time);
     } else {
       view();
     }
