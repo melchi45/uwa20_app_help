@@ -41,7 +41,10 @@ kindFramework.directive('wn5AddSpinButton', function() {
 
     if (changeFunc && typeof changeFunc === 'string') {
       changeFunc = changeFunc.replace(/(\()([\w]){1,}(\))|(\;)]/g, '');
-      if (scope.$parent && scope.$parent[changeFunc] && typeof scope.$parent[changeFunc] === 'function') {
+      if (
+        scope.$parent && scope.$parent[changeFunc] &&
+        typeof scope.$parent[changeFunc] === 'function'
+        ) {
         changeFunc = scope.$parent[changeFunc];
       } else {
         changeFunc = null;
