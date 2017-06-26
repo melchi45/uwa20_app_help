@@ -10,6 +10,7 @@ kindFramework.controller('addSlaveModalCtrl', function($scope, $uibModalInstance
   ];
   $scope.ipType = $scope.ipTypeEnum[0];
   $scope.port = '';
+  var HTTP_DEFAULT_PORT = 80;
 
   $scope.ok = function() {
     var arr = [
@@ -41,7 +42,7 @@ kindFramework.controller('addSlaveModalCtrl', function($scope, $uibModalInstance
       if ($scope[key] === '') {
         elem = document.getElementById("pc-confirm-report-" + key);
         parent = elem.parentNode;
-        parent.className = parent.className + errClass;
+        parent.className += errClass;
         isOk = false;
       }
     }
@@ -55,7 +56,7 @@ kindFramework.controller('addSlaveModalCtrl', function($scope, $uibModalInstance
       id: $scope.id,
       pw: $scope.pw,
       ipType: $scope.ipType,
-      port: $scope.port === '' ? 80 : $scope.port
+      port: $scope.port === '' ? HTTP_DEFAULT_PORT : $scope.port
     });
   };
 

@@ -29,8 +29,8 @@ config(function($stateProvider, $urlRouterProvider) {
     }
 
     $urlRouterProvider.otherwise(supportRoute[0].urlName + supportRoute[1].urlName);
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
   }
 
   /*

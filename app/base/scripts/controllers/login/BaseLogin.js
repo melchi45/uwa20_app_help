@@ -19,11 +19,11 @@ function BaseLogin(
   var errorCallBack = function(error) {
     console.log(JSON.stringify(error));
     /*
-     *** login ½ÇÆÐ ½Ã native¿¡¼­ webÀ¸·Î Àü¼ÛµÇ´Â ¹®ÀÚ¿­
-    -. TimeoutÀ¸·Î ÀÎÇÑ ½ÇÆÐ : "loginResultFailTimeout"
-    -. id/password°¡ Àß¸øµÇ¾úÀ» °æ¿ì :  "loginResultFailUnauthorized"
-    -. ³×Æ®¿öÅ©°¡ ¿¬°áÀÌ ¾ÈµÇ¾úÀ» °æ¿ì : "loginResultFailNetworkNotConnected"
-    -. ±× ¿ÜÀÇ ÀÌÀ¯·Î ½ÇÆÐµÇ¾úÀ» °æ¿ì : "loginResultFailOther"
+     *** login ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ nativeï¿½ï¿½ï¿½ï¿½ webï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÛµÇ´ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½
+    -. Timeoutï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : "loginResultFailTimeout"
+    -. id/passwordï¿½ï¿½ ï¿½ß¸ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ :  "loginResultFailUnauthorized"
+    -. ï¿½ï¿½Æ®ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÇ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ : "loginResultFailNetworkNotConnected"
+    -. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÐµÇ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ : "loginResultFailOther"
     */
     var msg = loginModel.getErrorCallBackMessage(error);
     ModalManagerService.open('message', {
@@ -126,7 +126,7 @@ function BaseLogin(
         if (RESTCLIENT_CONFIG.serverType === 'grunt') {
           self.loginIPOLISWeb();
         } else {
-          self.loginIPOLISWeb_No_Digest();
+          self.loginIPOLISWebNoDigest();
         }
         break;
       case CAMERA_STATUS.WEB_APP_TYPE.SHC_MOBILE:
@@ -205,7 +205,7 @@ function BaseLogin(
 }
 
 BaseLogin.prototype.initServiceType = function() {};
-BaseLogin.prototype.loginIPOLISWeb_No_Digest = function() {};
+BaseLogin.prototype.loginIPOLISWebNoDigest = function() {};
 BaseLogin.prototype.loginIPOLISWeb = function() {};
 BaseLogin.prototype.loginSHCMobile = function() {};
 BaseLogin.prototype.loginIPOLISMobile = function() {};

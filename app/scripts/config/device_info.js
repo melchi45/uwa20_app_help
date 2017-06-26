@@ -8,8 +8,8 @@ kindFramework.
 config(function($urlRouterProvider) {
   try {
     $urlRouterProvider.deferIntercept();
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
   }
 }).
 run(function(
@@ -46,14 +46,14 @@ run(function(
 
         try {
           SunapiClient.get(protocolUrl, '', successCallback, failCallback, '', true);
-        } catch (e) {
-          failCallback(e);
+        } catch (error) {
+          failCallback(error);
         }
       }
     });
 
     $urlRouter.listen();
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
   }
 });

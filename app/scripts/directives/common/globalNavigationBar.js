@@ -1,10 +1,23 @@
-/*global workerManager*/
-kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$rootScope', '$timeout',
-  'SessionOfUserManager', 'BrowserService', '$location', 'UniversialManagerService',
-  'CAMERA_STATUS', 'ONLINE_HELP_CONFIG', 'ROUTE_CONFIG', '$translate', 'Attributes', 'kindStreamInterface',
-  function(SunapiClient, $state, $rootScope, $timeout, SessionOfUserManager, BrowserService, $location,
-    UniversialManagerService, CAMERA_STATUS, ONLINE_HELP_CONFIG, ROUTE_CONFIG, $translate, Attributes,
-    kindStreamInterface) {
+kindFramework.directive(
+  'globalNavigationBar',
+  function(
+    SunapiClient, 
+    $state, 
+    $rootScope, 
+    $timeout, 
+    SessionOfUserManager, 
+    BrowserService, 
+    $location,
+    
+    UniversialManagerService, 
+    CAMERA_STATUS, 
+    ONLINE_HELP_CONFIG, 
+    ROUTE_CONFIG, 
+    $translate, 
+    Attributes,
+    
+    kindStreamInterface
+  ) {
     "use strict";
     return {
       restrict: 'E',
@@ -12,6 +25,7 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
       replace: true,
       templateUrl: 'views/common/directives/globalNavigationBar.html',
       link: function(scope, element, attrs) {
+        var DELAY_TIME = 100;
         $rootScope.isCameraSetupPreview = false;
         scope.globalNavigationBar = {
           isSetup: false,
@@ -57,12 +71,21 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
               scope.globalNavigationBar.isLive = scope.globalNavigationBar.isSetup = false;
             }
 
-            SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', '', function(response) {
-              scope.globalNavigationBar.deviceModelName = response.data.Model;
-              console.log("[Init] deviceModelName = " + scope.globalNavigationBar.deviceModelName);
-            }, function(errorData) {
-              console.log(errorData);
-            }, '', true);
+            SunapiClient.get(
+              '/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view',
+              '',
+              function(response) {
+                scope.globalNavigationBar.deviceModelName = response.data.Model;
+                console.log(
+                  "[Init] deviceModelName = " + scope.globalNavigationBar.deviceModelName
+                );
+              }, 
+              function(errorData) {
+                console.log(errorData);
+              }, 
+              '', 
+              true
+            );
 
             if (SessionOfUserManager.getUsername() === 'admin') {
               scope.globalNavigationBar.isAdmin = true;
@@ -74,7 +97,7 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
               if ($rootScope.cameraSetupPreviewCount < $rootScope.cameraSetupPreviewMaxCount) {
                 $timeout(function() {
                   scope.globalNavigationBar.goToLive();
-                }, 100);
+                }, DELAY_TIME);
                 $rootScope.cameraSetupPreviewCount++;
               } else {
                 $rootScope.isCameraSetupPreview = false;
@@ -104,7 +127,7 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
               if ($rootScope.cameraSetupPreviewCount < $rootScope.cameraSetupPreviewMaxCount) {
                 $timeout(function() {
                   scope.globalNavigationBar.goToPlayback();
-                }, 100);
+                }, DELAY_TIME);
                 $rootScope.cameraSetupPreviewCount++;
               } else {
                 $rootScope.isCameraSetupPreview = false;
@@ -210,7 +233,10 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
 
                 menuData = {
                   title: childMenu.text().trim(),
-                  stateName: stateName.replace(ONLINE_HELP_CONFIG.SETUP_URL, ONLINE_HELP_CONFIG.HELP_URL),
+                  stateName: stateName.replace(
+                    ONLINE_HELP_CONFIG.SETUP_URL,
+                    ONLINE_HELP_CONFIG.HELP_URL
+                  ),
                   iconClass: iconClass,
                   childs: childs.data
                 };
@@ -261,7 +287,10 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
               var childs = getChildsMenu(mainMenu, name);
 
               menuData = {
-                stateName: stateName.replace(ONLINE_HELP_CONFIG.SETUP_URL, ONLINE_HELP_CONFIG.HELP_URL),
+                stateName: stateName.replace(
+                  ONLINE_HELP_CONFIG.SETUP_URL,
+                  ONLINE_HELP_CONFIG.HELP_URL
+                ),
                 title: title,
                 iconClass: iconClass,
                 childs: childs.data
@@ -304,7 +333,10 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
                 stateName = parentName ? parentName + prefix + route.urlName : route.urlName;
                 onlyMenuName = false;
 
-                if (route.templateUrl === undefined && route.controller === undefined) {
+                if (
+                  typeof route.templateUrl === "undefined" &&
+                  typeof route.controller === "undefined"
+                ) {
                   onlyMenuName = route.urlName;
                 } else {
                   urlName = route.urlName;
@@ -313,7 +345,10 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
                     var selfTemplate = null;
                     if (urlName === replaceUrlName) {
                       selfTemplate = ONLINE_HELP_CONFIG.REPLACE_TEMPLATE[replaceUrlName];
-                      route.templateUrl = route.templateUrl.replace(selfTemplate.from, selfTemplate.to);
+                      route.templateUrl = route.templateUrl.replace(
+                        selfTemplate.from,
+                        selfTemplate.to
+                      );
                       break;
                     }
                   }
@@ -326,7 +361,9 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
                   stateData = {
                     stateName: stateName,
                     urlName: urlName,
-                    templateUrl: route.templateUrl.replace('views/' + ONLINE_HELP_CONFIG.SETUP_URL + '/', rootPath) || null,
+                    templateUrl: route.templateUrl.replace(
+                      'views/' + ONLINE_HELP_CONFIG.SETUP_URL + '/',
+                      rootPath) || null,
                     controller: route.controller || null
                   };
 
@@ -335,7 +372,12 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
 
                 if (angular.isArray(route.childs)) {
                   if (route.childs.length > 0) {
-                    getSupportRoute(route.childs, stateName, onlyMenuName, childMenu[route.urlName].childs);
+                    getSupportRoute(
+                      route.childs,
+                      stateName,
+                      onlyMenuName,
+                      childMenu[route.urlName].childs
+                    );
                   }
                 }
               }
@@ -396,30 +438,59 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
 
           try {
             supportFeatures = {
-              IR: (cameraAttributes.IRledModeOptions !== undefined ? true : false),
-              Heater: (cameraAttributes.AuxCommands !== undefined && cameraAttributes.AuxCommands[0] == 'HeaterOn' ? true : false),
+              IR: typeof cameraAttributes.IRledModeOptions !== "undefined",
+              Heater: (
+                typeof cameraAttributes.AuxCommands !== "undefined" &&
+                cameraAttributes.AuxCommands[0] === 'HeaterOn'
+              ),
 
-              LDCAuto: (cameraAttributes.LDCModeOptions !== undefined && cameraAttributes.LDCModeOptions.indexOf('Auto') !== -1),
+              LDCAuto: (
+                typeof cameraAttributes.LDCModeOptions !== "undefined" &&
+                cameraAttributes.LDCModeOptions.indexOf('Auto') !== -1
+              ),
 
               //Newly Added
-              PresetAction: (cameraAttributes.EventActions !== undefined && cameraAttributes.EventActions.indexOf('GoToPreset') !== -1),
-              IrisModeOptions: (cameraAttributes.IrisModeOptions !== undefined && cameraAttributes.ExternalPTZModel !== true),
-              Lens: (cameraAttributes.IrisModeOptions !== undefined && cameraAttributes.ExternalPTZModel === true),
-              IrisFnoOptions: (cameraAttributes.IrisFnoOptions !== undefined),
-              PIrisModeOptions: (cameraAttributes.PIrisModeOptions !== undefined),
-              PIrisPosition: (cameraAttributes.PIrisPosition !== undefined),
-              SimpleFocusAfterDayNight: (cameraAttributes.SimpleFocusAfterDayNight !== undefined),
-              InternalMic: (cameraAttributes.AudioInSourceOptions !== undefined && cameraAttributes.AudioInSourceOptions[0] === "MIC"),
-              FastAutoFocusDefined: (cameraAttributes.FastAutoFocusEnable !== undefined),
-              ZoomOptionsDefined: (cameraAttributes.SimpleZoomOptions !== undefined),
-              PTZMode: (cameraAttributes.RS485Support && cameraAttributes.isDigitalPTZ && (cameraAttributes.MaxPreset > 0)),
+              PresetAction: (
+                typeof cameraAttributes.EventActions !== "undefined" &&
+                cameraAttributes.EventActions.indexOf('GoToPreset') !== -1
+              ),
+              IrisModeOptions: (
+                typeof cameraAttributes.IrisModeOptions !== "undefined" &&
+                cameraAttributes.ExternalPTZModel !== true
+              ),
+              Lens: (
+                typeof cameraAttributes.IrisModeOptions !== "undefined" &&
+                cameraAttributes.ExternalPTZModel === true
+              ),
+              IrisFnoOptions: (typeof cameraAttributes.IrisFnoOptions !== "undefined"),
+              PIrisModeOptions: (typeof cameraAttributes.PIrisModeOptions !== "undefined"),
+              PIrisPosition: (typeof cameraAttributes.PIrisPosition !== "undefined"),
+              SimpleFocusAfterDayNight: (
+                typeof cameraAttributes.SimpleFocusAfterDayNight !== "undefined"
+              ),
+              InternalMic: (
+                typeof cameraAttributes.AudioInSourceOptions !== "undefined" &&
+                cameraAttributes.AudioInSourceOptions[0] === "MIC"
+              ),
+              FastAutoFocusDefined: (typeof cameraAttributes.FastAutoFocusEnable !== "undefined"),
+              ZoomOptionsDefined: (typeof cameraAttributes.SimpleZoomOptions !== "undefined"),
+              PTZMode: (
+                cameraAttributes.RS485Support &&
+                cameraAttributes.isDigitalPTZ &&
+                (
+                  cameraAttributes.MaxPreset > 0
+                )
+              ),
               FisheyeLens: cameraAttributes.FisheyeLens,
               PTZModel: (cameraAttributes.PTZModel === true),
-              Focus: (cameraAttributes.PTZModel === true || cameraAttributes.ZoomOnlyModel === true),
+              Focus: (
+                cameraAttributes.PTZModel === true ||
+                cameraAttributes.ZoomOnlyModel === true
+              ),
               Zoom: (cameraAttributes.ZoomOnlyModel === true)
             };
-          } catch (e) {
-            console.error(e);
+          } catch (error) {
+            console.error(error);
           }
 
           console.log(supportFeatures);
@@ -430,10 +501,19 @@ kindFramework.directive('globalNavigationBar', ['SunapiClient', '$state', '$root
           localStorage.langOnlineHelp = $translate.instant('lang_online_help');
 
           setTimeout(function() {
-            window.open(helpUrl, "_blank", "resizable=yes,width=" + ONLINE_HELP_CONFIG.WIDTH + ",height=" + ONLINE_HELP_CONFIG.HEIGHT);
+            window.open(
+              helpUrl,
+              "_blank",
+              [
+                "resizable=yes,width=",
+                ONLINE_HELP_CONFIG.WIDTH,
+                ",height=",
+                ONLINE_HELP_CONFIG.HEIGHT
+              ].join('')
+            );
           });
         };
       }
     };
   }
-]);
+);
