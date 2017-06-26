@@ -21,6 +21,10 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
   var ftpModeOptions = ["Passive", "Active"];
   var smtpAuthOptions = ["SMTP", "None"];
   var smtpEncryOptions = ["SSL", "None"];
+  var modeStatus = {
+    enable: true,
+    disable: false,
+  };
 
   function featureDetection() {
     var defer = $q.defer();
@@ -60,9 +64,11 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
     var jData = {};
     return SunapiClient.get('/stw-cgi/transfer.cgi?msubmenu=ftp&action=view', jData, function(response) {
       pageDataFTP = response.data;
+
       $scope.FTPHost = response.data.Host;
       $scope.Mode = response.data.Mode;
-      $scope.ModeEnable = $scope.Mode === ftpModeOptions[0] ? true : false;
+      var checkMode = ($scope.Mode === ftpModeOptions[0]);
+      $scope.ModeEnable = checkMode ? modeStatus.enable : modeStatus.disable;
       $scope.FTPPort = response.data.Port;
       $scope.FTPPath = response.data.Path;
       $scope.FTPUsername = response.data.Username;
@@ -85,9 +91,10 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
       $scope.Authentication = response.data.Authentication;
       $scope.SMTPSender = response.data.Sender;
       $scope.Encryption = response.data.Encryption;
-
-      $scope.AuthenticationEnable = $scope.Authentication === smtpAuthOptions[0] ? true : false;
-      $scope.EncryptionEnable = $scope.Encryption === smtpEncryOptions[0] ? true : false;
+      var checkAuthEnable = ($scope.Authentication === smtpAuthOptions[0]);
+      $scope.AuthenticationEnable = checkAuthEnable? modeStatus.enable : modeStatus.disable;
+      var checkEncryptionEnable = ($scope.Encryption === smtpEncryOptions[0]);
+      $scope.EncryptionEnable = checkEncryptionEnable? modeStatus.enable : modeStatus.disable;
       if ($scope.DeviceType === 'NWC') {
         $scope.SMTPRecipient = response.data.Recipient;
         $scope.SMTPSubject = response.data.Subject;
@@ -115,8 +122,11 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
   function validateSMTP() {
     var retVal = true;
     var ErrorMessage = null;
+    var typeCheck = (COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getSIM());
+
     if ($scope.DeviceType === 'NWC') {
-      if ($scope.SMTPBody.length > 256) {
+      var maxSMTPBody = 256;
+      if ($scope.SMTPBody.length > maxSMTPBody) {
         ErrorMessage = 'lang_msg_body_maxlength';
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
@@ -127,7 +137,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
         return retVal;
-      } else if (!COMMONUtils.TypeCheck($scope.SMTPSubject, COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getSIM() + COMMONUtils.getSPACE() + '\r' + '\n' + COMMONUtils.getSIM2() + COMMONUtils.getQUOTATION() + '<>=+:')) {
+      } else if (!COMMONUtils.TypeCheck($scope.SMTPSubject, typeCheck + COMMONUtils.getSPACE() + '\r' + '\n' + COMMONUtils.getSIM2() + COMMONUtils.getQUOTATION() + '<>=+:')) {
         ErrorMessage = 'lang_msg_invalid_subject';
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
@@ -137,7 +147,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
         return retVal;
-      } else if (!COMMONUtils.TypeCheck($scope.SMTPBody, COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getSIM() + COMMONUtils.getSPACE() + '\r' + '\n' + COMMONUtils.getSIM2() + COMMONUtils.getQUOTATION() + '<>=+:')) {
+      } else if (!COMMONUtils.TypeCheck($scope.SMTPBody, typeCheck + COMMONUtils.getSPACE() + '\r' + '\n' + COMMONUtils.getSIM2() + COMMONUtils.getQUOTATION() + '<>=+:')) {
         ErrorMessage = 'lang_msg_invalid_body';
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
@@ -149,9 +159,11 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
         return retVal;
       }
     }
+
     if ($scope.SMTPPasswordDummy.length !== 0) {
       $scope.SMTPPassword = $scope.SMTPPasswordDummy;
     }
+
     if (
       typeof $scope.SMTPHost === 'undefined' ||
       $scope.SMTPHost === ""
@@ -170,21 +182,20 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
       retVal = false;
       COMMONUtils.ShowError(ErrorMessage);
       return retVal;
-    } else if (!COMMONUtils.TypeCheck($scope.SMTPUsername, COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getSIM())) {
+    } else if ( !COMMONUtils.TypeCheck($scope.SMTPUsername, typeCheck) ) {
       ErrorMessage = 'lang_msg_invalid_userID';
       retVal = false;
       COMMONUtils.ShowError(ErrorMessage);
       return retVal;
-    }
+    } else if (
     /* else if (typeof $scope.SMTPPassword === 'undefined' || $scope.SMTPPassword === '') {
                 ErrorMessage = 'lang_msg_invalid_userPW';
                 retVal = false;
                 COMMONUtils.ShowError(ErrorMessage);
                 return retVal;
             }*/
-    else if (
       pageDataSMTP.Password !== $scope.SMTPPassword &&
-      !COMMONUtils.TypeCheck($scope.SMTPPassword, COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getSIM())
+      !COMMONUtils.TypeCheck($scope.SMTPPassword, typeCheck)
     ) {
       ErrorMessage = 'lang_msg_invalid_userPW';
       retVal = false;
@@ -206,13 +217,19 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
       COMMONUtils.ShowError(ErrorMessage);
       return retVal;
     }
+
     var smtpPort = parseInt($scope.SMTPPort);
-    if (isNaN(smtpPort) || smtpPort > $scope.SMTPPortRange.maxValue || smtpPort < $scope.SMTPPortRange.minValue) {
+    if (
+      isNaN(smtpPort) || 
+      smtpPort > $scope.SMTPPortRange.maxValue || 
+      smtpPort < $scope.SMTPPortRange.minValue
+    ) {
       ErrorMessage = 'lang_msg_Theportshouldbebetween1and65535';
       retVal = false;
       COMMONUtils.ShowError(ErrorMessage);
       return retVal;
     }
+    
     return retVal;
   }
 
@@ -242,7 +259,9 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
         return retVal;
       }
     }
-    if (!COMMONUtils.TypeCheck($scope.FTPPath, COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getDIRECTORY() + COMMONUtils.getSPACE())) {
+    var alphaNum = (COMMONUtils.getALPHA() + COMMONUtils.getNUM());
+    var checkFTPPath = (alphaNum + COMMONUtils.getDIRECTORY() + COMMONUtils.getSPACE());
+    if (!COMMONUtils.TypeCheck($scope.FTPPath, checkFTPPath)) {
       ErrorMessage = 'lang_msg_invalid_path';
       retVal = false;
       COMMONUtils.ShowError(ErrorMessage);
@@ -265,7 +284,7 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
     }
     if (
       pageDataFTP.Password !== $scope.FTPPassword &&
-      !COMMONUtils.TypeCheck($scope.FTPPassword, COMMONUtils.getALPHA() + COMMONUtils.getNUM() + COMMONUtils.getSIM())
+      !COMMONUtils.TypeCheck($scope.FTPPassword, alphaNum + COMMONUtils.getSIM())
     ) {
       ErrorMessage = 'lang_msg_invalid_userPW';
       retVal = false;
@@ -279,7 +298,11 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
       return retVal;
     }
     var ftpPort = parseInt($scope.FTPPort);
-    if (isNaN(ftpPort) || ftpPort > $scope.FTPPortRange.maxValue || ftpPort < $scope.FTPPortRange.minValue) {
+    if (
+      isNaN(ftpPort) || 
+      ftpPort > $scope.FTPPortRange.maxValue || 
+      ftpPort < $scope.FTPPortRange.minValue
+    ) {
       ErrorMessage = 'lang_msg_Theportshouldbebetween1and65535';
       retVal = false;
       COMMONUtils.ShowError(ErrorMessage);
@@ -290,7 +313,9 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
 
   function CheckValidIPv4Address(address) {
     var textCheck = isNaN(address.split(/\./)[0]);
-    if (textCheck === true) {return true;}
+    if (textCheck === true) {
+      return true;
+    }
 
     return COMMONUtils.CheckValidIPv4Address(address);
   }
@@ -345,7 +370,8 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
         console.log(errorData);
       }, '', true);
     }
-    setTimeout(updateFTPStatus, 500);
+    var time = 500;
+    setTimeout(updateFTPStatus, time);
   }
 
   function setFTP() {
@@ -410,7 +436,8 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
         console.log(errorData);
       }, '', true);
     }
-    setTimeout(updateSMTPStatus, 500);
+    var time = 500;
+    setTimeout(updateSMTPStatus, time);
   }
 
   function setSMTP() {
@@ -445,7 +472,8 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
       $scope.$apply();
       if ($scope.DeviceType === 'NWC') {
         if (response.data.Status === 'Trying') {
-          setTimeout(updateSMTPStatus, 1000);
+          var time = 1000;
+          setTimeout(updateSMTPStatus, time);
         }
       }
     }, function(errorData) {}, '', true);
@@ -457,7 +485,8 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
       $scope.ftpStatus = checkStatus(response.data.Status);
       $scope.$apply();
       if (response.data.Status === 'Trying') {
-        setTimeout(updateFTPStatus, 1000);
+        var time = 1000;
+        setTimeout(updateFTPStatus, time);
       }
     }, function(errorData) {}, '', true);
   }
@@ -467,11 +496,13 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
   };
 
   $scope.updateDefaultAuth = function() {
-    $scope.Authentication = $scope.AuthenticationEnable === true ? smtpAuthOptions[0] : smtpAuthOptions[1];
+    var checkAuthentication = ($scope.AuthenticationEnable === true);
+    $scope.Authentication = checkAuthentication ? smtpAuthOptions[0] : smtpAuthOptions[1];
   };
 
   function updateDefaultSMTPPort() {
-    $scope.Encryption = $scope.EncryptionEnable === true ? smtpEncryOptions[0] : smtpEncryOptions[1];
+    var checkEncryption = ($scope.EncryptionEnable === true);
+    $scope.Encryption = checkEncryption? smtpEncryOptions[0] : smtpEncryOptions[1];
 
     if ($scope.Encryption === "SSL") {
       $scope.SMTPPort = 465;
@@ -481,10 +512,11 @@ kindFramework.controller('ftpemailCtrl', function($scope, $timeout, SunapiClient
   }
   (function wait() {
     if (!mAttr.Ready) {
+      var time = 500;
       $timeout(function() {
         mAttr = Attributes.get();
         wait();
-      }, 500);
+      }, time);
     } else {
       featureDetection().finally(function() {
         view();
