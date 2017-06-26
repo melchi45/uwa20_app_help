@@ -136,7 +136,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   $scope.activeTab = {};
 
   function resetTabData() {
-    $scope.tabs = [{
+    $scope.tabs = [
+      {
         title: 'Include',
         active: true,
         name: 'IncludeArea'
@@ -192,7 +193,6 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     }
   };
 
-  $scope.indexNumber = [1, 2, 3, 4, 5, 6, 7, 8];
   $scope.selectInclude = [{
     "ROI": 1
   }, {
@@ -253,8 +253,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     if (typeof $scope.isSelectedIncludeIndex === "undefined" || parseInt($scope.isSelectedIncludeIndex) === 0) {
       //$scope.SensitivitySliderOptions.data = 0;
     } else {
-      $scope.SensitivitySliderModel.data = $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].SensitivityLevel;
-      $scope.MDv2ChartOptions.ThresholdLevel = $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].ThresholdLevel;
+      $scope.SensitivitySliderModel.data = 
+        $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].SensitivityLevel;
+      $scope.MDv2ChartOptions.ThresholdLevel = 
+        $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].ThresholdLevel;
       activeShape(newVal - 1);
     }
   };
@@ -270,7 +272,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   $scope.$watch('SensitivitySliderModel.data', function() {
     if (typeof $scope.isSelectedIncludeIndex !== "undefined" && parseInt($scope.isSelectedIncludeIndex) !== 0) {
-      $scope.selectInclude[$scope.isSelectedIncludeIndex - 1].SensitivityLevel = $scope.SensitivitySliderModel.data;
+      $scope.selectInclude[$scope.isSelectedIncludeIndex - 1].SensitivityLevel = 
+        $scope.SensitivitySliderModel.data;
     }
   });
 
@@ -281,7 +284,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   $scope.$watch('MDv2ChartOptions.ThresholdLevel', function() {
     if (typeof $scope.isSelectedIncludeIndex !== "undefined" && parseInt($scope.isSelectedIncludeIndex) !== 0) {
-      $scope.selectInclude[$scope.isSelectedIncludeIndex - 1].ThresholdLevel = $scope.MDv2ChartOptions.ThresholdLevel;
+      $scope.selectInclude[$scope.isSelectedIncludeIndex - 1].ThresholdLevel = 
+        $scope.MDv2ChartOptions.ThresholdLevel;
     }
   });
 
@@ -300,16 +304,22 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   function setSizeChart() {
     var chart = "#md-line-chart";
     var width = $(chart).parent().width();
-    if (width > 480) {
-      width = 480;
+    var maxWidth = 480;
+    if (width > maxWidth) {
+      width = maxWidth;
     }
 
-    width -= 80;
+    var widthCalc = {
+      plus: 80,
+      minus: 27,
+      slider: 140,
+    };
+    width -= widthCalc.plus;
     $scope.MDv2ChartOptions.width = width;
 
     $(chart + " .graph").css("width", width + "px");
-    $(chart + " .graph-border").css("width", (width - 27) + "px");
-    $(chart + ".level-threshold-slider").css("width", (width + 140) + "px");
+    $(chart + " .graph-border").css("width", (width - widthCalc.minus) + "px");
+    $(chart + ".level-threshold-slider").css("width", (width + widthCalc.slider) + "px");
   }
 
   window.addEventListener('resize', setSizeChart);
@@ -409,12 +419,13 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
           }
         }
       }
+      var roiLen = 9;
       if (isValidCnt - isEnableCnt > 0) {
         for (i = 0; i < $scope.selectExclude.length; i++) {
           self = $scope.selectExclude[i];
           if (typeof self.Mode !== "undefined") {
             self.isEnable = true;
-            sketchbookService.setEnableForSVG(self.ROI - 9, true);
+            sketchbookService.setEnableForSVG(self.ROI - roiLen, true);
           }
         }
         $scope.selectAllCheckbox.exclude = true;
@@ -422,7 +433,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         for (i = 0; i < $scope.selectExclude.length; i++) {
           self = $scope.selectExclude[i];
           self.isEnable = false;
-          sketchbookService.setEnableForSVG(self.ROI - 9, false);
+          sketchbookService.setEnableForSVG(self.ROI - roiLen, false);
         }
         $scope.selectAllCheckbox.exclude = false;
       } else {
@@ -563,8 +574,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         if (!rzslider.hasClass('vertical')) {
           rzslider.addClass('vertical');
         }
-      } catch (e) {
-        console.info(e);
+      } catch (err) {
+        console.info(err);
       }
     });
   }
@@ -681,8 +692,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
           coordinates = sketchbookService.get();
           points = coordinates[modifiedIndex].points;
           var roi = modifiedIndex + 1;
+          var roiLen = 8;
           if (mode === 'Outside') {
-            roi += 8;
+            roi += roiLen;
           }
 
           $scope['select' + title][modifiedIndex] = {
@@ -700,7 +712,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
             isEnable: false
           };
 
-          if(typeof $scope['select' + title][modifiedIndex].Mode !== "undefined"){
+          if (typeof $scope['select' + title][modifiedIndex].Mode !== "undefined") {
             delete $scope['select' + title][modifiedIndex].Mode;
           }
 
@@ -739,8 +751,6 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
       $scope.coordinates = null;
       $scope.sketchinfo = null;
-
-      $scope.indexNumber = [1, 2, 3, 4, 5, 6, 7, 8];
 
       $scope.isSelectedIncludeIndex = "0"; // "0" means no selected
       $scope.isSelectedExcludeIndex = "0"; // "0" means no selected
@@ -782,8 +792,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
       $scope.SensitivitySliderModel.data = 80;
       $scope.MDv2ChartOptions.ThresholdLevel = 5;
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -797,15 +807,15 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     if (data === 0) {
       try {
         $rootScope.$emit('resetScheduleData', true);
-      } catch (e) {
-        console.error(e);
+      } catch (err) {
+        console.error(err);
       }
     }
 
     try {
       sketchbookService.removeDrawingGeometry();
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
 
     $scope.resetVariable();
@@ -925,15 +935,16 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     var excludeIndex = "0";
     pageData.rois = angular.copy(rois);
 
+    var roiLen = 8;
     for (var i = rois.length - 1; i >= 0; i--) {
-      if (rois[i].ROI <= 8) {
+      if (rois[i].ROI <= roiLen) {
         $scope.selectInclude[rois[i].ROI - 1] = angular.copy(rois[i]);
         //$scope.isSelectedIncludeIndex = rois[i].ROI;
         includeIndex = rois[i].ROI;
       } else {
-        $scope.selectExclude[rois[i].ROI - 9] = angular.copy(rois[i]);
+        $scope.selectExclude[rois[i].ROI - (roiLen+1)] = angular.copy(rois[i]);
         //$scope.isSelectedExcludeIndex = rois[i].ROI - 8;
-        excludeIndex = rois[i].ROI - 8;
+        excludeIndex = rois[i].ROI - roiLen;
       }
     }
 
@@ -988,8 +999,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     ];
 
     var areaType = null;
-    for (i = 1; i <= 16; i++) {
-      areaType = i > 8 ? 1 : 0; //include: 0, exclude: 1
+    var roiLen = 8;
+    var roiTypeCount = 2;
+    for (i = 1; i <= (roiLen*roiTypeCount); i++) {
+      areaType = i > roiLen ? 1 : 0; //include: 0, exclude: 1
       backupCoordinates[areaType].push({ //SketchManager에서 사용하는 포맷
         isSet: false,
         points: [],
@@ -1006,7 +1019,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       for (i = 0; i < rois.length; i++) {
         var self = rois[i];
         var roi = self.ROI;
-        var isExclude = roi > 8;
+        var isExclude = roi > roiLen;
         var coordinates = self.Coordinates;
         areaType = isExclude ? 1 : 0; //include: 0, exclude: 1
         var points = [];
@@ -1016,7 +1029,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
         }
 
         if (isExclude) {
-          roi -= 8;
+          roi -= roiLen;
         }
 
         for (var j = 0, jj = coordinates.length; j < jj; j++) {
@@ -1060,10 +1073,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
           rotate: rotate,
           adjust: adjust,
           currentPage: 'MotionDetection',
-          channelId: UniversialManagerService.getChannelId()
+          channelId: UniversialManagerService.getChannelId(),
         };
         $scope.ptzinfo = {
-          type: 'none'
+          type: 'none',
         };
 
       },
@@ -1083,7 +1096,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     if (monitoringTimer === null) {
       (function update() {
         getMotionLevel(function(data, index) {
-          if (destroyInterrupt) {return;}
+          if (destroyInterrupt) {
+            return;
+          }
           var newMotionLevel = angular.copy(data);
 
           if (!mStopMonotoringMotionLevel) {
@@ -1093,7 +1108,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
               while (i--) {
                 var level = newMotionLevel[index].Level;
 
-                if (level === null) {continue;}
+                if (level === null) {
+                  continue;
+                }
 
                 if ($scope.MDv2ChartOptions.EnqueueData) {
                   $scope.MDv2ChartOptions.EnqueueData(level);
@@ -1101,7 +1118,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
               }
             }
 
-            monitoringTimer = $timeout(update, 500); //500 msec
+            var time = 500;
+            monitoringTimer = $timeout(update, time); //500 msec
           }
         });
       })();
@@ -1198,8 +1216,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       Channel: UniversialManagerService.getChannelId()
     };
 
-    var checkPresetType = $scope.checkApplyButtonClick ? $scope.presetData.type : $scope.presetData.oldType;
-    var presetNo = $scope.checkApplyButtonClick ? $scope.presetData.preset : $scope.presetData.oldPreset;
+    var checkPresetType = 
+      $scope.checkApplyButtonClick ? $scope.presetData.type : $scope.presetData.oldType;
+    var presetNo = 
+      $scope.checkApplyButtonClick ? $scope.presetData.preset : $scope.presetData.oldPreset;
     var isPreset = $scope.PTZModel && (checkPresetType === "Preset");
 
     var cmd = $scope.va2CommonCmd + '&action=view';
@@ -1339,10 +1359,11 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   (function wait() {
     if (!mAttr.Ready) {
+      var time = 500;
       $timeout(function() {
         mAttr = Attributes.get();
         wait();
-      }, 500);
+      }, time);
     } else {
       mAttr = Attributes.get();
       getAttributes();
@@ -1358,7 +1379,7 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   function sunapiQueueRequest(queue, callback) {
     var currentItem = null;
 
-    if(queue.length > 0) {
+    if (queue.length > 0) {
       currentItem = queue.shift();
       currentItem.reqData.Channel = UniversialManagerService.getChannelId();  
 
@@ -1402,10 +1423,15 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     var item = null;
     var queue = [];
     globalQueue = [];
-
-    if ($scope.HandoverSupport && pageData.Handover && !angular.equals(pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList, $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList)) {
-      for (var i = 0; i < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList.length; i++) {
-        if (!angular.equals(pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i], $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i])) {
+    var scopeHandoverList = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+    var pageHandoverList = pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+    if (
+      $scope.HandoverSupport && 
+      pageData.Handover && 
+      !angular.equals(pageHandoverList, scopeHandoverList)
+    ) {
+      for (var i = 0; i < scopeHandoverList.length; i++) {
+        if (!angular.equals(pageHandoverList[i], scopeHandoverList[i])) {
           // var index = i;
           //promises.push(function(){return setHandoverList(index, $scope.presetTypeData.SelectedPreset);});
           // functionlist.push(function(){
@@ -1419,14 +1445,16 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
               return setHandoverList(keepIndex, keepSelectedPreset);
             };
           })(i, $scope.presetTypeData.SelectedPreset));
+        }
 
-          if (typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i] !== "undefined") {
-            if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i].UserList.length) {
-              for (var j = 0; j < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i].UserList.length; j++) {
-                item = updateHandoverList(i, j, $scope.presetTypeData.SelectedPreset);
-                queue.push(item);
-              }
-            }
+        if (
+          !angular.equals(pageHandoverList[i], scopeHandoverList[i]) && 
+          typeof scopeHandoverList[i] !== "undefined" && 
+          scopeHandoverList[i].UserList.length
+        ) {
+          for (var j = 0; j < scopeHandoverList[i].UserList.length; j++) {
+            item = updateHandoverList(i, j, $scope.presetTypeData.SelectedPreset);
+            queue.push(item);
           }
         }
       }
@@ -1470,12 +1498,13 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
     // console.log(pageData.rois);
 
+    var roiLen = 8;
     if (!($scope.MotionDetection.MotionDetectionEnable === false)) {
       for (var i = 0, ii = pageData.rois.length; i < ii; i++) {
         var roi = pageData.rois[i].ROI;
         var self = null;
-        if (roi > 8) {
-          self = $scope.selectExclude[roi - 9];
+        if (roi > roiLen) {
+          self = $scope.selectExclude[roi - (roiLen+1)];
         } else {
           self = $scope.selectInclude[roi - 1];
         }
@@ -1519,12 +1548,13 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   function getUnmodifiedROIIndex() {
     var unmodifiedROIIndex = [];
 
+    var roiLen = 8;
     for (var i = 0, ii = pageData.rois.length; i < ii; i++) {
       var pageDataItem = pageData.rois[i];
       var roi = pageDataItem.ROI;
       var self = null;
-      if (roi > 8) {
-        self = $scope.selectExclude[roi - 9];
+      if (roi > roiLen) {
+        self = $scope.selectExclude[roi - (roiLen+1)];
       } else {
         self = $scope.selectInclude[roi - 1];
       }
@@ -1568,7 +1598,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   function getModifiedROIIndex(unmodifiedROIIndex, deletedROIIndex) {
     var modifiedIndex = [];
-    for (var i = 1; i <= 16; i++) {
+    var roiLen = 8;
+    var roiTypeCount = 2;
+    for (var i = 1; i <= (roiLen*roiTypeCount); i++) {
       var isOk = true;
       var self = null;
 
@@ -1588,8 +1620,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       }
 
       if (isOk) {
-        if (i > 8) {
-          self = $scope.selectExclude[i - 9];
+        if (i > roiLen) {
+          self = $scope.selectExclude[i - (roiLen+1)];
         } else {
           self = $scope.selectInclude[i - 1];
         }
@@ -1613,19 +1645,21 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       };
 
       var unmodifiedROIIndex = getUnmodifiedROIIndex();
-      var setPresetType = $scope.checkApplyButtonClick ? $scope.presetData.type : $scope.presetData.oldType;
+      var setPresetType = 
+        $scope.checkApplyButtonClick ? $scope.presetData.type : $scope.presetData.oldType;
       deleteRemovedROI(setPresetType).then(
         function(deletedROIIndex) {
           var modifiedIndex = getModifiedROIIndex(unmodifiedROIIndex, deletedROIIndex);
 
+          var roiLen = 8;
           if (modifiedIndex.length > 0) {
             for (var i = 0, ii = modifiedIndex.length; i < ii; i++) {
               var self = modifiedIndex[i];
               var property = '';
               var index = self - 1;
-              if (self > 8) {
+              if (self > roiLen) {
                 property = 'selectExclude';
-                index -= 8;
+                index -= roiLen;
               } else {
                 property = 'selectInclude';
               }
@@ -1653,7 +1687,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
           var cmd = $scope.va2CommonCmd + '&action=set';
           if ($scope.PTZModel && setPresetType === 'Preset') {
-            setData.Preset = $scope.checkApplyButtonClick ? $scope.presetData.preset : $scope.presetData.oldPreset;
+            setData.Preset = 
+              $scope.checkApplyButtonClick ? $scope.presetData.preset : $scope.presetData.oldPreset;
             cmd = $scope.presetCmd + '&action=set';
           }
           SunapiClient.get(cmd, setData,
@@ -1798,17 +1833,21 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
         for (var i = 0; i < $scope.Handover[0].HandoverList.length; i++) {
           $scope.Handover[0].HandoverList[i].CheckAll = false;
-          $scope.Handover[0].HandoverList[i].Enable = $scope.Handover[0].HandoverList[i].Enable ? $scope.HandoverEnableOptions[0] : $scope.HandoverEnableOptions[1];
+          $scope.Handover[0].HandoverList[i].Enable = 
+            $scope.Handover[0].HandoverList[i].Enable ? 
+            $scope.HandoverEnableOptions[0] : $scope.HandoverEnableOptions[1];
 
           for (var j = 0; j < $scope.Handover[0].HandoverList[i].UserList.length; j++) {
             $scope.Handover[0].HandoverList[i].UserList[j].SelectedHandoverIndex = false;
 
             if ($scope.Handover[0].HandoverList[i].UserList[j].IPType === $scope.IPTypes[0]) {
-              $scope.Handover[0].HandoverList[i].UserList[j].IPV4Address = $scope.Handover[0].HandoverList[i].UserList[j].IPAddress;
+              $scope.Handover[0].HandoverList[i].UserList[j].IPV4Address = 
+                $scope.Handover[0].HandoverList[i].UserList[j].IPAddress;
               $scope.Handover[0].HandoverList[i].UserList[j].IPV6Address = 'fe80::209:18ff:fee1:61f';
             } else {
               $scope.Handover[0].HandoverList[i].UserList[j].IPV4Address = "1.1.1.1";
-              $scope.Handover[0].HandoverList[i].UserList[j].IPV6Address = $scope.Handover[0].HandoverList[i].UserList[j].IPAddress;
+              $scope.Handover[0].HandoverList[i].UserList[j].IPV6Address = 
+                $scope.Handover[0].HandoverList[i].UserList[j].IPAddress;
             }
           }
         }
@@ -1845,22 +1884,23 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
     return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=view', getData,
       function(response) {
+        var time = 100;
         $timeout(function() {
           var presetHandover = angular.copy(response.data.Handover[0].PresetList);
 
-          for (var a = 0; a < $scope.PresetNameValueOptions.length; a++) {
-            var index = a + 1;
+          for (var aa = 0; aa < $scope.PresetNameValueOptions.length; aa++) {
+            var index = aa + 1;
 
             var idx = -1;
-            for (var b = 0; b < presetHandover.length; b++) {
-              var Preset = $scope.PresetNameValueOptions[a].split(' : ');
-              if (parseInt(Preset[0], 10) === parseInt(presetHandover[b].PresetIndex, 10)) {
-                idx = b;
+            for (var bb = 0; bb < presetHandover.length; bb++) {
+              var Preset = $scope.PresetNameValueOptions[aa].split(' : ');
+              if (parseInt(Preset[0], 10) === parseInt(presetHandover[bb].PresetIndex, 10)) {
+                idx = bb;
                 break;
               }
             }
             $scope.Handover[index] = {};
-            $scope.Handover[index].PresetIndex = $scope.PresetNameValueOptions[a].Preset;
+            $scope.Handover[index].PresetIndex = $scope.PresetNameValueOptions[aa].Preset;
             $scope.Handover[index].HandoverList = [];
             if (idx !== -1) {
               $scope.Handover[index].HandoverList = angular.copy(presetHandover[idx].HandoverList);
@@ -1868,7 +1908,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
             for (var i = 0; i < $scope.Handover[index].HandoverList.length; i++) {
               $scope.Handover[index].HandoverList[i].CheckAll = false;
-              $scope.Handover[index].HandoverList[i].Enable = $scope.Handover[index].HandoverList[i].Enable ? $scope.HandoverEnableOptions[0] : $scope.HandoverEnableOptions[1];
+              $scope.Handover[index].HandoverList[i].Enable = 
+                $scope.Handover[index].HandoverList[i].Enable ? 
+                $scope.HandoverEnableOptions[0] : $scope.HandoverEnableOptions[1];
               if (typeof $scope.Handover[index].HandoverList[i].UserList === 'undefined') {
                 $scope.Handover[index].HandoverList[i].UserList = [];
               }
@@ -1876,12 +1918,16 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
               for (var j = 0; j < $scope.Handover[index].HandoverList[i].UserList.length; j++) {
                 $scope.Handover[index].HandoverList[i].UserList[j].SelectedHandoverIndex = false;
 
-                if ($scope.Handover[index].HandoverList[i].UserList[j].IPType === $scope.IPTypes[0]) {
-                  $scope.Handover[index].HandoverList[i].UserList[j].IPV4Address = $scope.Handover[index].HandoverList[i].UserList[j].IPAddress;
+                if (
+                  $scope.Handover[index].HandoverList[i].UserList[j].IPType === $scope.IPTypes[0]
+                ) {
+                  $scope.Handover[index].HandoverList[i].UserList[j].IPV4Address = 
+                    $scope.Handover[index].HandoverList[i].UserList[j].IPAddress;
                   $scope.Handover[index].HandoverList[i].UserList[j].IPV6Address = 'fe80::209:18ff:fee1:61f';
                 } else {
                   $scope.Handover[index].HandoverList[i].UserList[j].IPV4Address = "1.1.1.1";
-                  $scope.Handover[index].HandoverList[i].UserList[j].IPV6Address = $scope.Handover[index].HandoverList[i].UserList[j].IPAddress;
+                  $scope.Handover[index].HandoverList[i].UserList[j].IPV6Address = 
+                    $scope.Handover[index].HandoverList[i].UserList[j].IPAddress;
                 }
               }
             }
@@ -1889,15 +1935,15 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
           pageData.Handover = angular.copy($scope.Handover);
           $scope.$apply();
 
-        }, 100);
+        }, time);
 
       },
       function() {
         if ($scope.Handover.length <= 1) {
-          for (var a = 0; a < $scope.PresetNameValueOptions.length; a++) {
-            var index = a + 1;
+          for (var aa = 0; aa < $scope.PresetNameValueOptions.length; aa++) {
+            var index = aa + 1;
             $scope.Handover[index] = {};
-            $scope.Handover[index].PresetIndex = $scope.PresetNameValueOptions[a].Preset;
+            $scope.Handover[index].PresetIndex = $scope.PresetNameValueOptions[aa].Preset;
             $scope.Handover[index].HandoverList = [];
           }
           viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
@@ -1908,7 +1954,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   function viewHandoverAreaOptions(presetIdx) {
     var index = presetIdx;
-    if (typeof presetIdx === 'undefined') {index = 0;}
+    if (typeof presetIdx === 'undefined') {
+      index = 0;
+    }
 
     var HandoverAreaOptionsArray = [];
 
@@ -1920,7 +1968,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       }
       $scope.HandoverAreaOptions = HandoverAreaOptionsArray;
     } else {
-      $scope.HandoverAreaOptions = COMMONUtils.getArrayWithMinMax($scope.HandoverMin, $scope.HandoverMin);
+      $scope.HandoverAreaOptions = 
+        COMMONUtils.getArrayWithMinMax($scope.HandoverMin, $scope.HandoverMin);
     }
   }
 
@@ -1928,7 +1977,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     //console.log(" ::::: setHandoverList START ::::: ");
     var deferred = $q.defer();
     var index = indexParam;
-    if (typeof indexParam === 'undefined') {index = 0;}
+    if (typeof indexParam === 'undefined') {
+      index = 0;
+    }
     // if(handoverlistIndex > 0){
     // handoverlistIndex--;
     // }
@@ -1940,11 +1991,16 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     };
     try {
       setData.ROIIndex = $scope.Handover[index].HandoverList[handoverlistIndex].ROIIndex;
-    } catch (e) {
+    } catch (err) {
       setData.ROIIndex = $scope.isSelectedIncludeIndex;
     }
 
-    setData.Enable = ($scope.handoverEnDisable === $scope.HandoverEnableOptions[0]) ? true : false;
+    var status = {
+      enable: true,
+      disable: false,
+    };
+    var enableCheck = ($scope.handoverEnDisable === $scope.HandoverEnableOptions[0]);
+    setData.Enable = enableCheck ? status.enable : status.disable;
 
     // if (index > 0){
     //     setData.PresetIndex = index;
@@ -1977,8 +2033,12 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     //console.log(" ::::: roiIndex, userIndex, index", roiIndex, userIndex, index);
     var index = indexParam;
     var userIndex = userIndexParam;
-    if (typeof indexParam === 'undefined') {index = 0;}
-    if (typeof userIndexParam === 'undefined') {userIndex = 0;}
+    if (typeof indexParam === 'undefined') {
+      index = 0;
+    }
+    if (typeof userIndexParam === 'undefined') {
+      userIndex = 0;
+    }
 
     var setData = {};
     var userList = $scope.Handover[index].HandoverList[roiIndex].UserList[userIndex];
@@ -2041,7 +2101,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
     //console.log(" ::: roiIndex, index", roiIndex, index);
     var index = indexParam;
-    if (typeof indexParam === 'undefined') {index = 0;}
+    if (typeof indexParam === 'undefined') {
+      index = 0;
+    }
     var setData = {
       Channel: UniversialManagerService.getChannelId()
     };
@@ -2055,15 +2117,21 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
     setData.IPType = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].IPType;
 
     if (setData.IPType === $scope.IPTypes[0]) {
-      setData.IPAddress = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].IPV4Address;
+      setData.IPAddress = 
+        $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].IPV4Address;
     } else {
-      setData.IPAddress = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].IPV6Address;
+      setData.IPAddress = 
+        $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].IPV6Address;
     }
 
     setData.Port = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].Port;
     setData.Username = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].Username;
-    setData.Password = encodeURIComponent($scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].Password);
-    setData.PresetNumber = $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].PresetNumber;
+    setData.Password = 
+      encodeURIComponent(
+        $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].Password
+      );
+    setData.PresetNumber = 
+      $scope.Handover[index].HandoverList[areaIndex].UserList[userIndex].PresetNumber;
     // if (index > 0) {
     //     setData.PresetIndex = index;
     // }
@@ -2098,7 +2166,8 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       }
 
       if (setData.HandoverIndex.length) {
-        setData.HandoverIndex = setData.HandoverIndex.substring(0, setData.HandoverIndex.length - 1);
+        setData.HandoverIndex = 
+          setData.HandoverIndex.substring(0, setData.HandoverIndex.length - 1);
       }
     }
     // if (index > 0){
@@ -2121,9 +2190,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   $scope.removeHandover = function() {
     var functionlist = [];
     functionlist.push(function() {
+      var time = 200;
       return $timeout(function() {
         setHandoverList();
-      }, 200);
+      }, time);
     });
     functionlist.push(function() {
       return removeHandoverFunction();
@@ -2144,52 +2214,65 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
     var areaIndex = getHandoverListIndex();
     //console.log(" ::: removeHandover", areaIndex);
-
-    if (typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList !== 'undefined' && typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex] !== 'undefined') {
-      if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.length) {
+    var scopeHandoverList = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+    if (typeof scopeHandoverList !== 'undefined' && typeof scopeHandoverList[areaIndex] !== 'undefined') {
+      if (scopeHandoverList[areaIndex].UserList.length) {
         var userIndexArray = [];
 
-        for (var i = 0; i < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.length; i++) {
-          if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList[i].SelectedHandoverIndex) {
-            userIndexArray.push($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList[i].HandoverIndex);
+        for (var i = 0; i < scopeHandoverList[areaIndex].UserList.length; i++) {
+          if (scopeHandoverList[areaIndex].UserList[i].SelectedHandoverIndex) {
+            userIndexArray.push(scopeHandoverList[areaIndex].UserList[i].HandoverIndex);
           }
         }
 
         if (userIndexArray.length) {
           // ShowConfirmation(function() {
-            if (!angular.equals(pageData.VA[$scope.presetTypeData.SelectedPreset], $scope.VA[$scope.presetTypeData.SelectedPreset])) {
-              if ($scope.presetTypeData.SelectedPreset > 0) {
-                // setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
-              } else {
-                // setVideoAnalysis(promises);
-              }
-            }
+          // if (
+          //   !angular.equals(
+          //     pageData.VA[$scope.presetTypeData.SelectedPreset], 
+          //     $scope.VA[$scope.presetTypeData.SelectedPreset]
+          //   )
+          // ) {
+          //   if ($scope.presetTypeData.SelectedPreset > 0) {
+          //     // setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
+          //   } else {
+          //     // setVideoAnalysis(promises);
+          //   }
+          // }
 
-            if (userIndexArray.length === $scope.HandoverUserMax) {
-              promise = function() {
-                return removeUserFromHandover($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].ROIIndex, null, $scope.presetTypeData.SelectedPreset);
-              };
+          if (userIndexArray.length === $scope.HandoverUserMax) {
+            promise = function() {
+              return removeUserFromHandover(
+                scopeHandoverList[areaIndex].ROIIndex, 
+                null, 
+                $scope.presetTypeData.SelectedPreset
+              );
+            };
+          } else {
+            promise = function() {
+              return removeUserFromHandover(
+                scopeHandoverList[areaIndex].ROIIndex, 
+                userIndexArray, 
+                $scope.presetTypeData.SelectedPreset
+              );
+            };
+          }
+
+          promises.push(promise);
+
+          $q.seqAll(promises).then(function() {
+            var promises2 = [];
+            if ($scope.presetTypeData.SelectedPreset > 0) {
+              promises2.push(getPresetHandoverList);
             } else {
-              promise = function() {
-                return removeUserFromHandover($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].ROIIndex, userIndexArray, $scope.presetTypeData.SelectedPreset);
-              };
+              promises2.push(getHandoverList);
             }
-
-            promises.push(promise);
-
-            $q.seqAll(promises).then(function() {
-              var promises2 = [];
-              if ($scope.presetTypeData.SelectedPreset > 0) {
-                promises2.push(getPresetHandoverList);
-              } else {
-                promises2.push(getHandoverList);
-              }
-              $q.seqAll(promises2).then(function() {
-                viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
-              }, function() {});
-            }, function() {
-              //alert(errorData);
-            });
+            $q.seqAll(promises2).then(function() {
+              viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
+            }, function() {});
+          }, function() {
+            //alert(errorData);
+          });
           // }, 
           // 'lang_msg_confirm_remove_profile',
           // 'sm',
@@ -2206,9 +2289,10 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
     var functionlist = [];
     functionlist.push(function() {
+      var time = 200;
       return $timeout(function() {
         setHandoverList();
-      }, 200);
+      }, time);
     });
     functionlist.push(function() {
       return addHandoverFunction(prevIsSelectedIncludeIndex);
@@ -2238,102 +2322,108 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
       // if (true)
       //if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.length < $scope.HandoverUserMax)
       // {
-        if (modalInstance !== null) {
-          modalInstance.dismiss();
+    if (modalInstance !== null) {
+      modalInstance.dismiss();
+    }
+    modalInstance = $uibModal.open({
+      templateUrl: 'views/setup/common/handoverAddCamera.html',
+      controller: 'handoverAddCameraCtrl',
+      windowClass: 'modal-position-middle',
+      resolve: {
+        HandoverList: function() {
+          //console.log(" ::: $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList", $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList);
+          return $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+        },
+        SelectedArea: function() {
+          //console.log(" ::: areaIndex", areaIndex);
+          return areaIndex;
         }
-        modalInstance = $uibModal.open({
-          templateUrl: 'views/setup/common/handoverAddCamera.html',
-          controller: 'handoverAddCameraCtrl',
-          windowClass: 'modal-position-middle',
-          resolve: {
-            HandoverList: function() {
-              //console.log(" ::: $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList", $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList);
-              return $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
-            },
-            SelectedArea: function() {
-              //console.log(" ::: areaIndex", areaIndex);
-              return areaIndex;
+      }
+    });
+
+    var gUserList = [];
+    modalInstance.result.then(function(returnValue) {
+      modalInstance = null;
+      //console.log(" ::: returnValue, userList", returnValue[0],returnValue[1]);
+
+      gUserList = returnValue[1];
+      setEnable().then(function() {
+        getHandoverList(function() {
+
+          //$scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.push(gUserList);
+          var scopeHandoverList = 
+            $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+          scopeHandoverList[$scope.findHandoverIndex()].UserList.push(gUserList);
+
+          if (returnValue) {
+            if (
+              !angular.equals(
+                pageData.VA[$scope.presetTypeData.SelectedPreset], 
+                $scope.VA[$scope.presetTypeData.SelectedPreset]
+              )
+            ) {
+              if ($scope.presetTypeData.SelectedPreset > 0) {
+                // setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
+              } else {
+                // setVideoAnalysis(promises);
+              }
+              $q.seqAll(promises).then(function() {
+                var promises2 = [];
+                promises2.push(function() {
+                  return addUserToHandover(areaIndex + 1, $scope.presetTypeData.SelectedPreset);
+                });
+                $q.seqAll(promises2).then(function() {
+                  var promises3 = [];
+                  if ($scope.presetTypeData.SelectedPreset > 0) {
+                    promises3.push(getPresetHandoverList);
+                  } else {
+                    promises3.push(getHandoverList);
+                  }
+                  $q.seqAll(promises3).then(function() {
+                    viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
+                  }, function() {
+                    //alert(errorData);
+                  });
+                }, function() {
+                  //alert(errorData);
+                });
+              }, function() {
+                //alert(errorData);
+              });
+
+            } else {
+              promises.push(function() {
+                return addUserToHandover(areaIndex + 1, $scope.presetTypeData.SelectedPreset);
+              });
+              $q.seqAll(promises).then(function() {
+                var promises3 = [];
+                if ($scope.presetTypeData.SelectedPreset > 0) {
+                  promises3.push(getPresetHandoverList);
+                } else {
+                  promises3.push(getHandoverList);
+                }
+                $q.seqAll(promises3).then(function() {
+                  getMotionDetectionData(function(response) {
+                    updateROIData(response.data.VideoAnalysis[0].ROIs);
+                    viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
+                  });
+                }, function() {
+                  //alert(errorData);
+                });
+              }, function() {
+                //alert(errorData);
+              });
             }
           }
         });
-
-        var g_userList = [];
-        modalInstance.result.then(function(returnValue) {
-          modalInstance = null;
-          //console.log(" ::: returnValue, userList", returnValue[0],returnValue[1]);
-
-          g_userList = returnValue[1];
-          setEnable().then(function() {
-            getHandoverList(function() {
-
-              //$scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.push(g_userList);
-              console.info(":::::", $scope.Handover[$scope.presetTypeData.SelectedPreset]);
-              $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[$scope.findHandoverIndex()].UserList.push(g_userList);
-
-              if (returnValue) {
-                if (!angular.equals(pageData.VA[$scope.presetTypeData.SelectedPreset], $scope.VA[$scope.presetTypeData.SelectedPreset])) {
-                  if ($scope.presetTypeData.SelectedPreset > 0) {
-                    // setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
-                  } else {
-                    // setVideoAnalysis(promises);
-                  }
-                  $q.seqAll(promises).then(function() {
-                    var promises2 = [];
-                    promises2.push(function() {
-                      return addUserToHandover(areaIndex + 1, $scope.presetTypeData.SelectedPreset);
-                    });
-                    $q.seqAll(promises2).then(function() {
-                      var promises3 = [];
-                      if ($scope.presetTypeData.SelectedPreset > 0) {
-                        promises3.push(getPresetHandoverList);
-                      } else {
-                        promises3.push(getHandoverList);
-                      }
-                      $q.seqAll(promises3).then(function() {
-                        viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
-                      }, function() {
-                        //alert(errorData);
-                      });
-                    }, function() {
-                      //alert(errorData);
-                    });
-                  }, function() {
-                    //alert(errorData);
-                  });
-
-                } else {
-                  promises.push(function() {
-                    return addUserToHandover(areaIndex + 1, $scope.presetTypeData.SelectedPreset);
-                  });
-                  $q.seqAll(promises).then(function() {
-                    var promises3 = [];
-                    if ($scope.presetTypeData.SelectedPreset > 0) {
-                      promises3.push(getPresetHandoverList);
-                    } else {
-                      promises3.push(getHandoverList);
-                    }
-                    $q.seqAll(promises3).then(function() {
-                      getMotionDetectionData(function(response) {
-                        updateROIData(response.data.VideoAnalysis[0].ROIs);
-                        viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
-                      });
-                    }, function() {
-                      //alert(errorData);
-                    });
-                  }, function() {
-                    //alert(errorData);
-                  });
-                }
-              }
-            });
-          });
+      });
 
 
 
-        }, function() {
-          modalInstance = null;
-          //$log.info('Modal dismissed at: ' + new Date());
-        });
+    }, function() {
+      modalInstance = null;
+      //$log.info('Modal dismissed at: ' + new Date());
+    });
       // } else {
       //   $uibModal.open({
       //     templateUrl: 'views/setup/common/errorMessage.html',
@@ -2354,16 +2444,17 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
   function getHandoverListIndex() {
     var handoverListIndex = null;
-    for (var i = 0, ii = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList.length; i < ii; i++) {
-      var self = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i];
+    var scopeHandoverList = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+    for (var i = 0, ii = scopeHandoverList.length; i < ii; i++) {
+      var self = scopeHandoverList[i];
       try {
         if ("ROIIndex" in self) {
           if ($scope.isSelectedIncludeIndex === self.ROIIndex) {
             handoverListIndex = i;
           }
         }
-      } catch (e) {
-        console.error(e);
+      } catch (err) {
+        console.error(err);
       }
     }
 
@@ -2380,9 +2471,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
 
       //var areaIndex = parseInt($('#SelectedHandoverAreaId').val().split(':')[1]);
       var handoverListIndex = getHandoverListIndex();
-
-      for (var i = 0; i < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[handoverListIndex].UserList.length; i++) {
-        $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[handoverListIndex].UserList[i].SelectedHandoverIndex = checkboxValue;
+      var scopeHandoverList = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+      for (var i = 0; i < scopeHandoverList[handoverListIndex].UserList.length; i++) {
+        scopeHandoverList[handoverListIndex].UserList[i].SelectedHandoverIndex = checkboxValue;
       }
     }
   };
@@ -2408,8 +2499,9 @@ kindFramework.controller('motionDetectionCtrl', function($scope, $rootScope, Sun
   };
 
   $scope.findHandoverIndex = function() {
-    for (var i = 0; i < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList.length; i++) {
-      if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i].ROIIndex === $scope.isSelectedIncludeIndex) {
+    var scopeHandoverList = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+    for (var i = 0; i < scopeHandoverList.length; i++) {
+      if (scopeHandoverList[i].ROIIndex === $scope.isSelectedIncludeIndex) {
         return i;
       }
     }
