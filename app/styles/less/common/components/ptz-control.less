@@ -131,17 +131,36 @@
   }
 
   #ptrz-control_left-control-box{
-    width:200px;
+    width:205px;
     margin: 10px auto;
 
     #ptrz-control_box_outline{
-      width: 200px;
-      height: 200px;
-      border:2px dashed @theme-ptz-slider-line;
+      width: 205px;
+      height: 205px;
+      border:2px dashed transparent;
       -moz-border-radius: 50%;
       -webkit-border-radius: 50%;
       border-radius: 50%;
       position:relative;
+
+      #ptrz-control_box_reverse-arrow {
+        width: 15px;
+        height: 10px;
+        border-left: 7.5px solid transparent;
+        border-right: 7.5px solid transparent;
+        border-top: 7.5px solid @theme-ptz-active-icon;
+        left: 46%;
+        top: -8px;
+        position: absolute;
+        z-index: 1;
+      }
+
+      #ptrz-control_box_gradations {
+        width: 100%;
+        height: 100%;
+        position:absolute;
+        background:url("/base/images/ptrz_gradations.svg");
+      }
 
       #ptz-control_box_circle_slider {
         position: absolute;
@@ -183,7 +202,7 @@
             border-left: 7.5px solid transparent;
             border-right: 7.5px solid transparent;
             border-bottom: 7.5px solid @theme-ptz-active-icon;
-            top: -10px;
+            top: -11px;
             left: -7.5px;
             position: absolute;
           }
