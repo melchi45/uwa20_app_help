@@ -17,11 +17,11 @@ kindFramework.factory('ProfileCheckService', [
       '1280x1024', '1280x1280', '1600x1200', '1920x1080', '2560x1440', // 10 ~ 14
       '2560x1920', '3840x2160', '4096x2160', '4000x3000'
     ]; // 15 ~ 18
-
+    var i=0, j=0;
     //MJPEG Array Setting
-    for (var i = 0; i < resolutionArray.length; i++) {
+    for (i = 0; i < resolutionArray.length; i++) {
       mjpegAvalidableArray[i] = new Array(mjpegMaxFrameRate);
-      for (var j = 0; j < mjpegMaxFrameRate; j++) {
+      for (j = 0; j < mjpegMaxFrameRate; j++) {
         mjpegAvalidableArray[i][j] = {
           resolution: resolutionArray[i],
           frameRate: (j + 1),
@@ -44,9 +44,9 @@ kindFramework.factory('ProfileCheckService', [
     }
 
     //H264 Array Setting
-    for (var i = 0; i < resolutionArray.length; i++) {
+    for (i = 0; i < resolutionArray.length; i++) {
       h264AvalidableArray[i] = new Array(h264MaxFrameRate);
-      for (var j = 0; j < h264MaxFrameRate; j++) {
+      for (j = 0; j < h264MaxFrameRate; j++) {
         h264AvalidableArray[i][j] = {
           resolution: resolutionArray[i],
           frameRate: (j + 1),
@@ -67,9 +67,9 @@ kindFramework.factory('ProfileCheckService', [
     }
 
     //H265 Array Setting
-    for (var i = 0; i < resolutionArray.length; i++) {
+    for (i = 0; i < resolutionArray.length; i++) {
       h265AvalidableArray[i] = new Array(h265MaxFrameRate);
-      for (var j = 0; j < h265MaxFrameRate; j++) {
+      for (j = 0; j < h265MaxFrameRate; j++) {
         h265AvalidableArray[i][j] = {
           resolution: resolutionArray[i],
           frameRate: (j + 1),
@@ -94,9 +94,9 @@ kindFramework.factory('ProfileCheckService', [
     }
 
     var h264AvalidableCheck = function(profile) {
-      for (var i = 0; i < h264AvalidableArray.length; i++) {
+      for (i = 0; i < h264AvalidableArray.length; i++) {
         if (h264AvalidableArray[i][0].resolution === profile.Resolution) {
-          for (var j = 0; j < h264MaxFrameRate; j++) {
+          for (j = 0; j < h264MaxFrameRate; j++) {
             if (h264AvalidableArray[i][j].frameRate === profile.FrameRate) {
               return h264AvalidableArray[i][j].available;
             }
@@ -108,9 +108,9 @@ kindFramework.factory('ProfileCheckService', [
     };
 
     var h265AvalidableCheck = function(profile) {
-      for (var i = 0; i < h265AvalidableArray.length; i++) {
+      for (i = 0; i < h265AvalidableArray.length; i++) {
         if (h265AvalidableArray[i][0].resolution === profile.Resolution) {
-          for (var j = 0; j < h265MaxFrameRate; j++) {
+          for (j = 0; j < h265MaxFrameRate; j++) {
             if (h265AvalidableArray[i][j].frameRate === profile.FrameRate) {
               return h265AvalidableArray[i][j].available;
             }
@@ -122,9 +122,9 @@ kindFramework.factory('ProfileCheckService', [
     };
 
     var mjpegAvalidableCheck = function(profile) {
-      for (var i = 0; i < mjpegAvalidableArray.length; i++) {
+      for (i = 0; i < mjpegAvalidableArray.length; i++) {
         if (mjpegAvalidableArray[i][0].resolution === profile.Resolution) {
-          for (var j = 0; j < mjpegMaxFrameRate; j++) {
+          for (j = 0; j < mjpegMaxFrameRate; j++) {
             if (mjpegAvalidableArray[i][j].frameRate === profile.FrameRate) {
               return mjpegAvalidableArray[i][j].available;
             }
@@ -139,11 +139,11 @@ kindFramework.factory('ProfileCheckService', [
       var resolution = profile.Resolution.split('x');
       var size = resolution[0] * resolution[1];
 
-      for (var i = 0; i < h264AvalidableArray.length; i++) {
+      for (i = 0; i < h264AvalidableArray.length; i++) {
         var tresolution = h264AvalidableArray[i][0].resolution.split('x');
         var tSize = tresolution[0] * tresolution[1];
         if (tSize > size) {
-          for (var j = 0; j < h264MaxFrameRate; j++) {
+          for (j = 0; j < h264MaxFrameRate; j++) {
             if (h264AvalidableArray[i][j].frameRate === profile.FrameRate) {
               return h264AvalidableArray[i][j].available;
             }
@@ -189,8 +189,9 @@ kindFramework.factory('ProfileCheckService', [
     var availableCheck = function(profile) {
       var available = false;
 
-      if (profile === undefined)
+      if (typeof profile === "undefined") {
         return available;
+      }
 
       if (profile.EncodingType === "H264") {
         available = h264AvalidableCheck(profile);
@@ -211,7 +212,7 @@ kindFramework.factory('ProfileCheckService', [
       }
 
       //for setup profile
-      if (profile.FrameRate === undefined || profile.Resolution === undefined) {
+      if (typeof profile.FrameRate === "undefined" || typeof profile.Resolution === "undefined") {
         available = true;
       }
 

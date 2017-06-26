@@ -1,4 +1,5 @@
-kindFramework.controller('ModalCheckBoxListCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'data', 'SunapiClient',
+kindFramework.controller('ModalCheckBoxListCtrl', ['$scope', '$rootScope', 
+  '$uibModalInstance', 'data', 'SunapiClient',
   function($scope, $rootScope, $uibModalInstance, data, SunapiClient) {
     "use strict";
 
@@ -21,9 +22,11 @@ kindFramework.controller('ModalCheckBoxListCtrl', ['$scope', '$rootScope', '$uib
       for (var idx = 0; idx < data.list.length; idx++) {
         if (data.list[idx].name === item.name) {
           if (item.enable === true) {
-            SunapiClient.get('/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.' + (idx + 1) + '.State=On', {}, successCallback, errorCallBack, '', true);
+            SunapiClient.get('/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.' + 
+              (idx + 1) + '.State=On', {}, successCallback, errorCallBack, '', true);
           } else {
-            SunapiClient.get('/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.' + (idx + 1) + '.State=Off', {}, successCallback, errorCallBack, '', true);
+            SunapiClient.get('/stw-cgi/io.cgi?msubmenu=alarmoutput&action=control&AlarmOutput.' + 
+              (idx + 1) + '.State=Off', {}, successCallback, errorCallBack, '', true);
           }
         }
       }

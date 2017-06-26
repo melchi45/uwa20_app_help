@@ -2,28 +2,28 @@ kindFramework.service('UniversialManagerService', ['CAMERA_STATUS', 'LocalStorag
   function(CAMERA_STATUS, LocalStorageService) {
     'use strict';
     var self = this;
-    var ProfileInfo;
-    var SpeakerVol;
-    var MicVol;
-    var PlayMode;
-    var ViewMode;
-    var isLogin;
-    var Orientation;
-    var ProfileList;
-    var isSpeakerOn;
-    var isMicOn;
-    var ZoomMode;
-    var Ratio;
-    var PlayStatus;
-    var isAuthunicating;
-    var layout;
-    var filpMode;
-    var isPTZ;
-    var isAspectfit;
-    var isRendered;
-    var isDigitalPTZ;
-    var rotate;
-    var gotLiveStream;
+    var ProfileInfo=null;
+    var SpeakerVol=0;
+    var MicVol=0;
+    var PlayMode=null;
+    var ViewMode=null;
+    var isLogin=false;
+    var Orientation=null;
+    var ProfileList=null;
+    var isSpeakerOn=false;
+    var isMicOn=false;
+    var ZoomMode=null;
+    var Ratio=null;
+    var PlayStatus=null;
+    var isAuthunicating=false;
+    var layout=0;
+    var filpMode=null;
+    var isPTZ=false;
+    var isAspectfit=false;
+    var isRendered=false;
+    var isDigitalPTZ=false;
+    var rotate=null;
+    var gotLiveStream=false;
     var isCaptured = false;
     var isCapturedScreen = false;
     var isAudioOutEnabled = false;
@@ -35,7 +35,7 @@ kindFramework.service('UniversialManagerService', ['CAMERA_STATUS', 'LocalStorag
     var pluginElem = null;
     var isPixelCountOn = false;
     var channelId = 0;
-    var defaultProfileIndex;
+    var defaultProfileIndex={};
     var currentSetupPage = null;
 
     this.initialization = function() {
@@ -187,13 +187,19 @@ kindFramework.service('UniversialManagerService', ['CAMERA_STATUS', 'LocalStorag
       return ProfileInfo;
     };
 
-    this.setProfileList = function(_profileList, channelId) {
-      if (!channelId) channelId = 0;
+    this.setProfileList = function(_profileList, _channelId) {
+      var channelId = _channelId;
+      if (!channelId) {
+        channelId = 0;
+      }
       ProfileList[channelId] = _profileList;
     };
 
-    this.getProfileList = function(channelId) {
-      if (!channelId) channelId = 0;
+    this.getProfileList = function(_channelId) {
+      var channelId = _channelId;
+      if (!channelId) {
+        channelId = 0;
+      }
       return ProfileList[channelId];
     };
 
@@ -229,7 +235,6 @@ kindFramework.service('UniversialManagerService', ['CAMERA_STATUS', 'LocalStorag
           console.log("You set to wrong playmode :: " + _serviceType);
       }
 
-      var key = 'ServiceType';
       LocalStorageService.setItem('ServiceType', _serviceType);
     };
 
@@ -451,8 +456,11 @@ kindFramework.service('UniversialManagerService', ['CAMERA_STATUS', 'LocalStorag
       rotate = tRotate;
     };
 
-    this.getRotate = function(channelId) {
-      if (!channelId) channelId = 0;
+    this.getRotate = function(_channelId) {
+      var channelId = _channelId;
+      if (!channelId) {
+        channelId = 0;
+      }
       return rotate[channelId].Rotate;
     };
 

@@ -9,61 +9,6 @@ kindFramework.service('pcSetupService', function(
 ) {
   "use strict";
 
-  /**
-   * This function is forked from dptzSetupCtrl.js.
-   */
-  this.connectPreview = function(callback) {
-    var reconnectionPromise = null;
-    var quadview_preview_profile = {
-      Name: 'profile13'
-    };
-    var playerdata = '';
-    var timeCallback = function() {};
-    var closeCallback = function() {};
-    var errorCallback = function(error) {
-      console.log("errorcode:", error.errorCode, "error string:", error.description, "error place:", error.place);
-      if (error.errorCode === "200") {
-        $interval.cancel(reconnectionPromise);
-      } else if (error.errorCode === "999") {
-        reconnectionPromise = $interval(function() {
-          var data = ConnectionSettingService.getPlayerData('live', quadview_preview_profile, timeCallback, errorCallback, closeCallback);
-          kindStreamInterface.changeStreamInfo(data);
-        }, 5000);
-      } else if (error.errorCode === "404") {
-        $timeout(function() {
-          playerdata = ConnectionSettingService.getPlayerData('live', quadview_preview_profile, timeCallback, errorCallback, closeCallback);
-          callback(playerdata);
-        }, 1);
-      }
-    };
-
-    if (SessionOfUserManager.isLoggedin()) {
-      var id = SessionOfUserManager.getUsername();
-      var password = SessionOfUserManager.getPassword();
-      ConnectionSettingService.setConnectionInfo({
-        id: id,
-        password: password
-      });
-
-      if (SessionOfUserManager.getClientIPAddress() === '127.0.0.1') {
-        SunapiClient.get('/stw-cgi/system.cgi?msubmenu=getclientip&action=view', {},
-          function(response) {
-            SessionOfUserManager.setClientIPAddress(response.data.ClientIP);
-          },
-          function(errorData) {
-            console.error(errorData);
-          }, '', true);
-      }
-
-      kindStreamInterface.setIspreview(true);
-
-      $timeout(function() {
-        playerdata = ConnectionSettingService.getPlayerData('live', quadview_preview_profile, timeCallback, errorCallback, closeCallback);
-        callback(playerdata);
-      }, 1000);
-    }
-  };
-
   var eventSourceMaxResolution = {
     width: 0,
     height: 0
@@ -73,6 +18,7 @@ kindFramework.service('pcSetupService', function(
     var args = arguments;
     var width = 0;
     var height = 0;
+    var isWidthHeightOpt = 2;
 
     //When first argument is EventSourceOptions of Attributes.cgi
     if (args.length === 1) {
@@ -96,7 +42,7 @@ kindFramework.service('pcSetupService', function(
       height = maxObjSize.Height;
 
       //When first and second arguments are width and height
-    } else if (args.length === 2) {
+    } else if (args.length === isWidthHeightOpt) {
       width = args[0];
       height = args[1];
     } else {
@@ -112,7 +58,7 @@ kindFramework.service('pcSetupService', function(
   this.getMaxResolution = function() {
     return {
       width: eventSourceMaxResolution.width,
-      height: eventSourceMaxResolution.height,
+      height: eventSourceMaxResolution.height
     };
   };
 

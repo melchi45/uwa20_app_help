@@ -24,13 +24,17 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window', 'PLAYBACK_
         scope.disableButton = false;
         var PLAY_CMD = PLAYBACK_TYPE.playCommand;
         scope.play = function() {
-          if (playback.status === 'play') return;
+          if (playback.status === 'play') {
+            return;
+          }
           playback.status = 'play';
           playback.changeButtonVisible();
           wrapperController.playPlayback(PLAY_CMD.PLAY);
         };
         scope.pause = function() {
-          if (playback.status === 'pause') return;
+          if (playback.status === 'pause') {
+            return;
+          }
           playback.status = 'pause';
           playback.changeButtonVisible();
           wrapperController.playPlayback(PLAY_CMD.PAUSE);
@@ -82,14 +86,19 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window', 'PLAYBACK_
         scope.$watch(function() {
           return searchData.getWebIconStatus();
         }, function(newVal, oldVal) {
-          if (newVal === null || newVal === oldVal) return;
+          if (newVal === null || newVal === oldVal) {
+            return;
+          }
           scope.enablePlayback = newVal;
         });
         /*
          * Check playback status and sync for changing play button
          */
-        $rootScope.$saveOn('app/scripts/models/playback/PlayDataModel::changeButtonStatus', function(event, data) {
-          if (playback.status === data) return;
+        $rootScope.$saveOn('app/scripts/models/playback/PlayDataModel::changeButtonStatus', 
+        function(event, data) {
+          if (playback.status === data) {
+            return;
+          }
           if (data === 'stop') {
             playback.status = data;
             playback.changeButtonVisible();
@@ -99,7 +108,8 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window', 'PLAYBACK_
           }
         }, scope);
 
-        $rootScope.$saveOn('app/scripts/services/playbackClass::disableButton', function(event, data) {
+        $rootScope.$saveOn('app/scripts/services/playbackClass::disableButton', 
+        function(event, data) {
           if (scope.disableButton !== data) {
             scope.disableButton = data;
           }
@@ -108,18 +118,22 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window', 'PLAYBACK_
         interaction events handlers.........
         todo: want to change service or directive
         ******************************/
-        var touchAction;
+        var touchAction = null;
+        var info = {};
         scope.doubleTapcallBack = function(event) {
           console.log("KIND TOUCH DOUBLE TAP");
-          if (scope.isShow !== 'show') return;
-          if (event.target.tagName === "DIV" || event.target.tagName === "CANVAS" || typeof event.fullButton !== undefined) {
-            if (event.clientX !== undefined) {
-              var info = {
+          if (scope.isShow !== 'show') {
+            return;
+          }
+          if (event.target.tagName === "DIV" || event.target.tagName === "CANVAS" || 
+              typeof event.fullButton !== "undefined") {
+            if (typeof event.clientX !== "undefined") {
+              info = {
                 'clickedX': event.clientX,
                 'clickedY': event.clientY
               };
             } else {
-              var info = {
+              info = {
                 'clickedX': 0,
                 'clickedY': 51
               };
@@ -129,8 +143,8 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window', 'PLAYBACK_
           }
         };
 
-        $rootScope.$saveOn("channelContainer:openFullscreenButton", function(event, e) {
-          scope.doubleTapcallBack(e);
+        $rootScope.$saveOn("channelContainer:openFullscreenButton", function(event, err) {
+          scope.doubleTapcallBack(err);
         }, scope);
 
         function openFullScreen() {
@@ -139,7 +153,7 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window', 'PLAYBACK_
         }
 
         /**
-         * ÌîåÎü¨Í∑∏Ïù∏ÏóêÏÑú Full screen Ïó¥Í∏∞Î•º Ï†ëÍ∑º ÌïòÍ∏∞ ÏúÑÌï¥ bindÏùÑ Ìï¥Ï§ÄÎã§.
+         * ?îå?ü¨Í∑∏Ïù∏?óê?Ñú Full screen ?ó¥Í∏∞Î?? ?†ëÍ∑? ?ïòÍ∏? ?úÑ?ï¥ bind?ùÑ ?ï¥Ï§??ã§.
          * @example
          *   $(".channel-container").trigger("openfullscreen");
          */
@@ -147,23 +161,27 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window', 'PLAYBACK_
         //   $('.channel-container').bind("openfullscreen", openFullScreen);
         // });
 
-        var lastTouchData;
+        var lastTouchData = null;
         var TOUCH_TIME_INTERVAL = 400;
         scope.tapCallback = function(event) {
           var playData = new PlayDataModel();
           console.log("KIND TOUCH TAP");
           // if( playData.getStatus() === PLAY_CMD.LIVE ) return;
-          if (scope.isShow !== 'show') return;
+          if (scope.isShow !== 'show') {
+            return;
+          }
           if (event.target.tagName === "DIV" || event.target.tagName === "CANVAS") {
             if (isPhone) {
               var now = event.timeStamp;
               var delta = now - lastTouchData;
-              if (touchAction !== null) clearTimeout(touchAction);
+              if (touchAction !== null) {
+                clearTimeout(touchAction);
+              }
               if (delta < TOUCH_TIME_INTERVAL && delta > 0) {
                 //scope.doubleTapcallBack(event);
               } else {
                 lastTouchData = now;
-                touchAction = setTimeout(function(e) {
+                touchAction = setTimeout(function(err) {
                   console.log("KIND TOUCH TAP TOUCHACTION");
                   clearTimeout(touchAction);
                   touchAction = null;
@@ -183,11 +201,10 @@ kindFramework.directive('channelContainer', ['$rootScope', '$window', 'PLAYBACK_
 
 
         scope.$watch(function() {
-            return scope.zoomMode;
-          },
-          function(newVal) {
-            ExtendChannelContainerService.enablePTZ(newVal);
-          });
+          return scope.zoomMode;
+        }, function(newVal) {
+          ExtendChannelContainerService.enablePTZ(newVal);
+        });
         scope.isPc = ExtendChannelContainerService.getIsPcValue();
       }
     };

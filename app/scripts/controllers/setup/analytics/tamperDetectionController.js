@@ -119,7 +119,8 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
 
   $scope.$watch('TamperDetectChartOptions', function(newValue) {
     if (newValue.ThresholdLevel) {
-      if ($scope.TamperDetect !== 'undefined') {
+      if (typeof $scope.TamperDetect !== 'undefined') {
+        console.log($scope.TamperDetect);
         $scope.TamperDetect.ThresholdLevel = $scope.TamperDetectChartOptions.ThresholdLevel;
       }
     }
@@ -127,7 +128,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
 
   $scope.$watch('TamperDetectDurationSliderModel.data', function(newValue) {
     if (newValue) {
-      if ($scope.TamperDetect !== 'undefined') {
+      if (typeof $scope.TamperDetect !== 'undefined') {
         $scope.TamperDetect.Duration = $scope.TamperDetectDurationSliderModel.data;
       }
     }
@@ -135,7 +136,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
 
   $scope.$watch('TamperDetectSensitivitySliderModel.data', function(newValue) {
     if (newValue) {
-      if ($scope.TamperDetect !== 'undefined') {
+      if (typeof $scope.TamperDetect !== 'undefined') {
         $scope.TamperDetect.SensitivityLevel = $scope.TamperDetectSensitivitySliderModel.data;
       }
     }

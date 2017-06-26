@@ -29,7 +29,7 @@
 
                 <!-- Counting Table Start -->
                 <div class="pc-setup-counting-table">
-                    <table class="pc-n-hm-table table-bordered text-center wn5-setup-table">
+                    <table class="pc-n-hm-table cm-table-field text-center wn5-setup-table">
                         <colgroup>
                             <col class="pc-n-hm-per-10">
                             <col class="pc-n-hm-per-50">
@@ -102,7 +102,7 @@
                 <p>
                     <span class="tui tui-wn5-toolbar-status"></span>
                     <span ng-hide="realTimeSection.isPeopleCountDisabled">
-                        {{lang.realTime.undefined.title | translate}}
+                        {{lang.realTime.undefinedMsg.title | translate}}
                     </span>
                     <span ng-show="realTimeSection.isPeopleCountDisabled">
                         {{lang.realTime.peopleCountDisalbed | translate}}
@@ -113,7 +113,7 @@
                         class="btn btn-primary cm-btn-dark" 
                         type="button"
                         ng-click="realTimeSection.goToSetup()">
-                        {{ lang.realTime.undefined.setup | translate }}
+                        {{ lang.realTime.undefinedMsg.setup | translate }}
                     </button>
                 </div>
             </div>
@@ -134,7 +134,7 @@
                         {{ lang.conditions.rule.title | translate }}
                     </div>
                     <div class="wn5-setup-section-article-content">
-                        <table class="pc-n-hm-table table-bordered wn5-setup-table">
+                        <table class="pc-n-hm-table cm-table-field wn5-setup-table">
                             <colgroup>
                                 <col class="pc-n-hm-per-20">
                                 <col class="pc-n-hm-per-40">
@@ -246,7 +246,7 @@
             <div 
                 class="table-wrapper"
                 ng-hide="resultSection.noResults">
-                <table class="pc-n-hm-table table-bordered text-center">
+                <table class="pc-n-hm-table cm-table-field text-center">
                     <thead>
                         <tr>
                             <th class="text-center pc-results-table-rule">{{ lang.conditions.rule.title | translate }}</th>

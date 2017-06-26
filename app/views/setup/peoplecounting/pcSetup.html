@@ -11,8 +11,8 @@
         </div>
     </div>
     
-    <div class="wn5-setup-tab">
-        <ul class="wn5-setup-tab-list">
+    <div class="wn5-setup-tab cm-tabs-field">
+        <ul class="wn5-setup-tab-list cm-tabs-list">
             <li class="wn5-setup-tab-item">
                 <button 
                     ng-class="{'active': currentTapStatus[0] === true }"
@@ -38,7 +38,7 @@
                 </button>
             </li>
         </ul>
-        <div class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
+        <div class="wn5-setup-tab-content cm-tabs-content wn5-setup-tab-content-use-padding">
             <sketchbook 
                 class="wn5-setup-preview-video"
                 coordinates="coordinates" 
@@ -53,7 +53,7 @@
                             <label>{{ lang.ruleSetup.countingRule.title | translate }}</label>
                         </div>
                         <div class="wn5-setup-preview-content">
-                            <table class="pc-n-hm-table table-bordered text-center wn5-setup-table">
+                            <table class="pc-n-hm-table cm-table-field text-center wn5-setup-table">
                                 <colgroup>
                                     <col class="pc-n-hm-per-10">
                                     <col class="pc-n-hm-per-10">
@@ -169,7 +169,7 @@
                                 ng-if="countingSection.isDisabledAllRule || countingSection.isPeopleCountDisabled">
                             </span>
                             <span ng-if="countingSection.isDisabledAllRule">
-                                {{lang.realTime.undefined.title | translate}}
+                                {{lang.realTime.undefinedMsg.title | translate}}
                             </span>
                             <span ng-if="countingSection.isPeopleCountDisabled">
                                 {{lang.realTime.peopleCountDisalbed | translate}}
@@ -179,7 +179,7 @@
                 </article>
                 <div class="pc-setup-counting-table pc-n-hm-per-50">
                     <table 
-                        class="table table-bordered wn5-setup-table"
+                        class="table cm-table-field wn5-setup-table"
                         ng-hide="countingSection.isDisabledAllRule"
                         ng-if="!countingSection.isPeopleCountDisabled">
                         <colgroup>

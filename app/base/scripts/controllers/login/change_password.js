@@ -1,5 +1,5 @@
-kindFramework
-  .controller('ChangePasswordCtrl', function(
+kindFramework.
+  controller('ChangePasswordCtrl', function(
     $scope,
     $state,
     $timeout,
@@ -142,7 +142,7 @@ kindFramework
 
     function isSafePassword(passwd) {
       var minLen = 8;
-      var SecurityCapability_three = 1;
+      var securityCapabilityThree = 1;
 
       if (passwd.length < minLen) {
         return 'short_password_length';
@@ -168,7 +168,7 @@ kindFramework
           acceptCount++;
         }
 
-        if (SecurityCapability_three) {
+        if (securityCapabilityThree) {
           if (passwd.length < 10) {
             if (acceptCount < 3) {
               return 'Three_Special_Character';
@@ -191,12 +191,15 @@ kindFramework
         var checkStr = "";
         var checkAsc = "";
         var checkDesc = "";
-        if (SecurityCapability_three) {
-          var checkQwerty = "qwertyuiop[]asdfghjklzxcvbnm";
-          var checkCapQwerty = "QWERTYUIOP{}ASDFGHJKLZXCVBNM";
-          var checkSpecialChar1 = "~!@#$%^";
-          var checkSpecialChar2 = "*()_+";
-          var seq = "_" + value.slice(value.length - 2, value.length);
+        var checkQwerty = "";
+        var checkCapQwerty="", checkSpecialChar1="", checkSpecialChar2="";
+        var seq = '';
+        if (securityCapabilityThree) {
+          checkQwerty = "qwertyuiop[]asdfghjklzxcvbnm";
+          checkCapQwerty = "QWERTYUIOP{}ASDFGHJKLZXCVBNM";
+          checkSpecialChar1 = "~!@#$%^";
+          checkSpecialChar2 = "*()_+";
+          seq = "_" + value.slice(value.length - 2, value.length);
         }
         for (var z = 1; z < cnt; z++) {
           checkStr += "value.charAt(i) == value.charAt(i + " + z + ")";
@@ -211,7 +214,7 @@ kindFramework
         }
         for (var i = 0; i < value.length - 2; i++) {
           /* jshint ignore:start */
-          if (SecurityCapability_three) {
+          if (securityCapabilityThree) {
             seq = seq.slice(1) + value.charAt(i);
             if (eval(checkStr) || eval(checkAsc) || eval(checkDesc) || checkQwerty.indexOf(seq) > -1 ||
               checkCapQwerty.indexOf(seq) > -1 || checkSpecialChar1.indexOf(seq) > -1 || checkSpecialChar2.indexOf(seq) > -1) {

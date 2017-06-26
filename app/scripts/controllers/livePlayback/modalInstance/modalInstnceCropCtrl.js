@@ -1,5 +1,11 @@
-kindFramework.controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$sce', 'data', '$timeout', 'UniversialManagerService', 'sketchbookService', '$translate', 'Attributes', 'SunapiClient', 'COMMONUtils',
-  function($scope, $rootScope, $uibModalInstance, $sce, data, $timeout, UniversialManagerService, sketchbookService, $translate, Attributes, SunapiClient, COMMONUtils) {
+kindFramework.
+controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', 
+  '$uibModalInstance', '$sce', 'data', '$timeout',
+  'UniversialManagerService', 'sketchbookService', '$translate', 'Attributes',
+  'SunapiClient', 'COMMONUtils',
+  function ($scope, $rootScope, $uibModalInstance, $sce, data, $timeout,
+    UniversialManagerService, sketchbookService, $translate, Attributes,
+    SunapiClient, COMMONUtils) {
     "use strict";
 
     $scope.data = data;
@@ -20,11 +26,11 @@ kindFramework.controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', '$uibM
     var minCropResolution = null;
     var maxCropResolution = null;
 
-    $scope.getTranslatedOption = function(Option) {
+    $scope.getTranslatedOption = function (Option) {
       return COMMONUtils.getTranslatedOption(Option);
     };
 
-    $scope.ok = function() {
+    $scope.ok = function () {
       var cropArray = sketchbookService.get();
 
       var data = {
@@ -36,7 +42,7 @@ kindFramework.controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', '$uibM
       $uibModalInstance.close(data);
     };
 
-    $scope.cancel = function() {
+    $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
     };
 
@@ -45,9 +51,9 @@ kindFramework.controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', '$uibM
       options: ['16:9', '4:3', 'Manual'],
     };
 
-    $scope.$watch(function() {
+    $scope.$watch(function () {
       return $scope.cropOption.selected;
-    }, function(newVal, oldVal) {
+    }, function (newVal, oldVal) {
       console.log("cropOption = newVal :" + newVal + ", oldVal :" + oldVal);
       if (newVal !== oldVal) {
         $scope.ratio = newVal;
@@ -58,11 +64,11 @@ kindFramework.controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', '$uibM
       }
     });
 
-    $rootScope.$saveOn('<app/scripts/directives>::<updateCoordinates>', function(args) {
+    $rootScope.$saveOn('<app/scripts/directives>::<updateCoordinates>', function (args) {
       var coordinates = sketchbookService.get();
 
       if (!$scope.$$phase) {
-        $scope.$apply(function() {
+        $scope.$apply(function () {
           $scope.displayCoordi = "x: " + coordinates.x1 + " y: " + coordinates.y1 + " width: " + coordinates.width + " height :" + coordinates.height;
         });
       } else {
@@ -103,7 +109,7 @@ kindFramework.controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', '$uibM
     function showVideo() {
       var getData = {};
       SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
-        function(response) {
+        function (response) {
           viewerWidth = 640;
           viewerHeight = 360;
           maxWidth = mAttr.MaxROICoordinateX;
@@ -113,11 +119,11 @@ kindFramework.controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', '$uibM
           mirror = response.data.Flip[0].HorizontalFlipEnable;
           adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
 
-          SunapiClient.get('/stw-cgi/media.cgi?msubmenu=mediaoptions&action=view', getData, function(response) {
+          SunapiClient.get('/stw-cgi/media.cgi?msubmenu=mediaoptions&action=view', getData, function (response) {
             cropInfo = response.data.MediaOptions[0].ViewModes[0].ResolutionsByCropRatio;
             setCropResolution();
 
-            $timeout(function() {
+            $timeout(function () {
               $scope.videoinfo = {
                 width: viewerWidth,
                 height: viewerHeight,
@@ -140,11 +146,11 @@ kindFramework.controller('ModalInstnceCropCtrl', ['$scope', '$rootScope', '$uibM
                 modalId: null
               };
             });
-          }, function(errorData) {
+          }, function (errorData) {
             console.log(errorData);
           }, '', false);
         },
-        function(errorData) {
+        function (errorData) {
           console.log(errorData);
         }, '', false);
     }

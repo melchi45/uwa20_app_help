@@ -218,7 +218,6 @@ kindFramework.
 
                   $scope.timelineControl.changePopupName();
                   //revert from/to time to default value.
-                  searchData.setRefreshHoldTimeValue();
                   timelineCtrl.refreshTimelineView();
                   $rootScope.$emit('changeLoadingBar', true);
                   playbackInterfaceService.requestEventSearch(inputData).

@@ -318,6 +318,55 @@ kindFramework.
           }, '', true);
       }
 
+      function getCameraLensModel() {
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=view', '',
+          function(response) {
+            pageData.CameraLensModel = $scope.CameraLensModel = response.data.Camera[0].LensModel;
+          },
+          function(errorData) {
+            console.log(errorData);
+          }, '', true);
+      }
+
+      function setCameraLensModel() {
+        var setData = {};
+        setData.LensModel = $scope.CameraLensModel;
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set', setData,
+          function(response) {
+            restart();
+          },
+          function(errorData) {
+            console.log(errorData);
+            restart();
+          }, '', true);
+      }
+
+      function reboot(msg) {
+        COMMONUtils.ShowConfirmation(
+          setCameraLensModel, 
+          msg,
+          'md',
+        function() {
+        });
+      };
+
+      function restart() {
+        var getData = {};
+        getData.Type = 'Restart';
+
+        SunapiClient.get('/stw-cgi/system.cgi?msubmenu=power&action=control', getData,
+          function(response) {
+            window.open('', '_self');
+            window.close();
+            COMMONUtils.onLogout();
+          },
+          function(errorData) {
+            window.open('', '_self');
+            window.close();
+            COMMONUtils.onLogout();
+          }, '', true);
+      }
+
       $scope.enableSharpness = function() {
         if (pageData.ImageEnhancements.SharpnessEnable) {
           $scope.ImageEnhancements.SharpnessEnable = false;
@@ -496,7 +545,8 @@ kindFramework.
         } else {
           if (SessionOfUserManager.isLoggedin()) {
             functionList.push(GetLanguage);
-            $scope.connectedService = self.optionServiceType[UniversialManagerService.getServiceType()];
+            $scope.connectedService = 
+              self.optionServiceType[UniversialManagerService.getServiceType()];
             var id = SessionOfUserManager.getUsername();
             var password = SessionOfUserManager.getPassword();
             ConnectionSettingService.setConnectionInfo({
@@ -520,6 +570,11 @@ kindFramework.
           function() {
             setProfileInfo();
             imageenhancementsView();
+            
+            if(typeof sunapiAttributes.LensModelOptions !== 'undefined') {
+              $scope.LensModelOptions = sunapiAttributes.LensModelOptions;
+              getCameraLensModel(); // XNB-6001
+            }
           },
           function(errorData) {
             console.error(errorData);
@@ -591,10 +646,10 @@ kindFramework.
           BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.CHROME) {
           return 'video';
         } else {
-          rec
-            .removeClass("cm-disabled")
-            .parent()
-            .removeAttr("disabled");
+          rec.
+            removeClass("cm-disabled").
+            parent().
+            removeAttr("disabled");
           return 'canvas';
         }
       }
@@ -625,8 +680,11 @@ kindFramework.
       function startStreaming(_requestProfile, isReconnect) {
         var playData = new PlayDataModel();
         var isPlaybackEnable = playData.isPlaybackEnable();
-        if (isPlaybackEnable === true) return;
-        var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true : false;
+        if (isPlaybackEnable === true) {
+          return;
+        }
+        var plugin = (UniversialManagerService.getStreamingMode() === 
+                    CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
         var ip = RESTCLIENT_CONFIG.digest.rtspIp;
         var port = RESTCLIENT_CONFIG.digest.rtspPort;
         var profile = _requestProfile.Profile;
@@ -710,7 +768,8 @@ kindFramework.
           if (RESTCLIENT_CONFIG.serverType === 'grunt') {
             getVideoProfile().then(
               function(response) {
-                startStreaming(getProfileByIndex($scope.profileList, $scope.profileInfo.Profile), true);
+                startStreaming(
+                  getProfileByIndex($scope.profileList, $scope.profileInfo.Profile), true);
               },
               function(errorData) {
                 reconnect();
@@ -731,16 +790,17 @@ kindFramework.
       xmlHttp.onreadystatechange = function() {
         if (this.readyState === 4) {
           if (this.status == 200) {
-            if (xmlHttp.responseText == "OK") {
+            if (xmlHttp.responseText === "OK") {
               window.setTimeout(RefreshPage, 500);
             } else {
               return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=interface&action=view', {},
                 function(response) {
                   var macIp = response.data.NetworkInterfaces[0].MACAddress;
-                  if (macIp == RESTCLIENT_CONFIG.digest.macAddress) {
+                  if (macIp === RESTCLIENT_CONFIG.digest.macAddress) {
                     getVideoProfile().then(
                       function(response) {
-                        startStreaming(getProfileByIndex($scope.profileList, $scope.profileInfo.Profile), true);
+                        startStreaming(
+                          getProfileByIndex($scope.profileList, $scope.profileInfo.Profile), true);
                       },
                       function(errorData) {
                         console.log(errorData);
@@ -774,7 +834,7 @@ kindFramework.
         //var DEFAULT_CHANNEL=0;
         return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', '',
           function(response) {
-            var ProfileList;
+            var ProfileList=null;
             if (sunapiAttributes.MaxChannel > 1) {
               for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
                 ProfileList = response.data.VideoProfiles[i].Profiles;
@@ -783,7 +843,7 @@ kindFramework.
             }
 
             ProfileList = response.data.VideoProfiles[channelId].Profiles;
-            if (ProfileList.length > 1 && ProfileList[1].IsDigitalPTZProfile !== undefined) {
+            if (ProfileList.length > 1 && typeof ProfileList[1].IsDigitalPTZProfile !== "undefined") {
               sunapiAttributes.isDigitalPTZ = true;
               $scope.changeWisenetCameraFunctions();
             }
@@ -798,7 +858,8 @@ kindFramework.
       var setAudioInEnable = function() {
         if (AccountService.isAudioInAble()) {
           if (audioEncodingType === 'AAC') {
-            if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.FIREFOX || BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.EDGE) {
+            if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.FIREFOX || 
+                BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.EDGE) {
               $scope.channelBasicFunctions.speakerEnable = false;
             } else {
               $scope.channelBasicFunctions.speakerEnable = $scope.profileInfo.AudioInputEnable;
@@ -813,10 +874,10 @@ kindFramework.
       };
 
       var setAudioOutEnable = function(isEnabled) {
-        var browserType = navigator.userAgent.toLowerCase();
 
         if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI) { //Safari
-          if (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) {
+          if (UniversialManagerService.getStreamingMode() === 
+              CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) {
             UniversialManagerService.setIsAudioOutEnabled(false);
             $scope.channelBasicFunctions.micEnable = false;
           } else {
@@ -824,7 +885,8 @@ kindFramework.
             $scope.channelBasicFunctions.micEnable = isEnabled;
           }
         } else {
-          if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.CHROME && $location.protocol() === 'http') { //chrome && http
+          if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.CHROME && 
+              $location.protocol() === 'http') { //chrome && http
             UniversialManagerService.setIsAudioOutEnabled(false);
             $scope.channelBasicFunctions.micEnable = false;
           } else {
@@ -872,11 +934,13 @@ kindFramework.
             UniversialManagerService.setStreamingMode(CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
             startStreaming(RequestProfile);
 
-            if ($scope.channelSetFunctions['show'] === true && $scope.channelSetFunctions['status'] === true) {
+            if ($scope.channelSetFunctions.show === true && 
+                $scope.channelSetFunctions.status === true) {
               $rootScope.$emit('liveIconList:setProfileAccessInfo', true);
             }
 
-            if (sunapiAttributes.MaxAudioOutput !== undefined && sunapiAttributes.MaxAudioOutput !== 0) {
+            if (typeof sunapiAttributes.MaxAudioOutput !== "undefined" && 
+                sunapiAttributes.MaxAudioOutput !== 0) {
               switch (UniversialManagerService.getUserId()) {
                 case "admin":
                   getAudioOutEnabled();
@@ -910,7 +974,7 @@ kindFramework.
 
       $timeout(function() {
         $scope.isMultiImager = sunapiAttributes.MultiImager;
-        $scope.MI_openFullScreen = false;
+        $scope.MIOpenFullScreen = false;
       });
 
       $scope.videotagMode = function(value) {
@@ -924,8 +988,8 @@ kindFramework.
         }
       };
 
-      $scope.MI_toggleFullScreen = function(type) {
-        $scope.MI_openFullScreen = type;
+      $scope.MIToggleFullScreen = function(type) {
+        $scope.MIOpenFullScreen = type;
         if (type === true) {
           $scope.play3d();
         } else {
@@ -946,7 +1010,8 @@ kindFramework.
           }
         };
 
-        if (BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI) {
+        if (BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && 
+            BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI) {
           if ($scope.channelBasicFunctions.rec === true) {
             $rootScope.$emit('channelPlayer:command', 'record', 'stop', backupCallback);
           }
@@ -992,7 +1057,8 @@ kindFramework.
 
       $scope.checkPlugin = function() {
         //OverlayCanvas should be showed up only for Kind Stream Mode
-        if (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) {
+        if (UniversialManagerService.getStreamingMode() === 
+            CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) {
           if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) {
             return false;
           } else {
@@ -1040,7 +1106,7 @@ kindFramework.
 
       $scope.togglePTZFunction = function() {
         console.log("togglePTZFunction = " + $scope.domControls.zoomMode);
-        if ($scope.domControls.zoomMode == "Digital Zoom") {
+        if ($scope.domControls.zoomMode === "Digital Zoom") {
           $scope.domControls.zoomMode = "PTZ";
         } else {
           $scope.domControls.zoomMode = "Digital Zoom";
@@ -1062,6 +1128,11 @@ kindFramework.
         }
       };
 
+      $scope.changeCameraLensModel = function() {
+        var message = '렌즈가 변경되면 카메라가 재부팅됩니다. 변경하시겠습니까?';
+        reboot(message);
+      };
+
       /* Channel Selector Direction */
       $rootScope.$saveOn('channelSelector:selectChannel', function(event, index) {
         console.log("Select Channel Id = " + index);
@@ -1080,15 +1151,17 @@ kindFramework.
       }, $scope);
 
       $scope.$watch('channelBasicFunctions.speakerStatus', function(newVal, oldVal) {
-        if (newVal === oldVal || oldVal === undefined)
+        if (newVal === oldVal || typeof oldVal === "undefined") {
           return;
+        }
 
         $rootScope.$emit('channelPlayer:command', 'speakerStatus', newVal);
       });
 
       $scope.$watch('channelBasicFunctions.speakerVolume', function(newVal, oldVal) {
-        if (newVal === oldVal)
+        if (newVal === oldVal) {
           return;
+        }
 
         $rootScope.$emit('channelPlayer:command', 'speakerVolume', newVal);
       });
@@ -1104,15 +1177,17 @@ kindFramework.
       };
 
       $scope.$watch('channelBasicFunctions.micStatus', function(newVal, oldVal) {
-        if (newVal === oldVal)
+        if (newVal === oldVal) {
           return;
+        }
 
         $rootScope.$emit('channelPlayer:command', 'micStatus', newVal);
       });
 
       $scope.$watch('channelBasicFunctions.micVolume', function(newVal, oldVal) {
-        if (newVal === oldVal)
+        if (newVal === oldVal) {
           return;
+        }
 
         $rootScope.$emit('channelPlayer:command', 'micVolume', newVal);
       });
@@ -1170,8 +1245,8 @@ kindFramework.
         });
 
         $(".cm-video-slider").each(function(i, self) {
-          $(self).find("div")
-            .slider({
+          $(self).find("div").
+            slider({
               min: 0,
               max: 5,
               step: 1

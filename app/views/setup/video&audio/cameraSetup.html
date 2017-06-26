@@ -62,7 +62,7 @@
                                 <div class="form-group" ng-show="SSDRLevel !== undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_level' | translate }} </div>
                                     <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== undefined && ImagePreset[ch].Mode !== 'UserPreset'">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="ImageOptions.ImagePresetModes[ImageOptionsIndex]" 
                                                 live-slider-model-name="SSDRLevel"
@@ -74,7 +74,7 @@
                                         </div>                                        
                                     </div>
                                     <div class="wn5-setup-section-article-content" ng-if="ImagePreset === undefined || ImagePreset[ch].Mode === 'UserPreset'">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="SSDR[ch]" 
                                                 live-slider-model-name="Level"
@@ -104,7 +104,7 @@
                                 <div class="form-group" ng-show="PresetSSDRLevel !== undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_level' | translate }} </div>
                                     <div class="wn5-setup-section-article-content" ng-show="PresetImageConfig[presetTypeData.PresetIndex].SSDR.Level !== undefined">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].SSDR" 
                                                 live-slider-model-name="Level"
@@ -138,7 +138,7 @@
                                 <div class="form-group" ng-show="WBRedLevel !== undefined" align="left">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_redgain' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 class="live-slider-input-big"
                                                 live-slider-model="WhiteBalance" 
@@ -154,7 +154,7 @@
                                 <div class="form-group" ng-show="WBBlueLevel !== undefined" align="left">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_bluegain' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 class="live-slider-input-big"
                                                 live-slider-model="WhiteBalance" 
@@ -178,7 +178,7 @@
                                 <div class="form-group" nf-show="PresetWBRedLevel !== undefined">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_redgain' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].WhiteBalance" 
                                                 live-slider-model-name="WhiteBalanceManualRedLevel"
@@ -193,7 +193,7 @@
                                 <div class="form-group" ng-if="PresetWBBlueLevel !== undefined">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_bluegain' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].WhiteBalance" 
                                                 live-slider-model-name="WhiteBalanceManualBlueLevel"
@@ -305,7 +305,7 @@
                                 <div class="form-group" ng-if="Camera.HLCMaskTone !== undefined && Camera.CompensationMode === 'HLC' && Camera.HLCMode !== 'Off'">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_masktone' | translate }}</div>
                                     <div class="wn5-setup-section-article-content" align="left">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="Camera" 
                                                 live-slider-model-name="HLCMaskTone"
@@ -327,7 +327,7 @@
                                 <div class="form-group" ng-if="!PTZModel && Camera.CompensationMode === 'HLC'">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_top' | translate }} </div>
                                     <div class="wn5-setup-section-article-content" align="left">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="Camera"
                                                 live-slider-model-name="HLCAreaTop"
@@ -342,7 +342,7 @@
                                 <div class="form-group" ng-if="!PTZModel && Camera.CompensationMode === 'HLC'">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_bottom' | translate }} </div>
                                     <div class="wn5-setup-section-article-content" align="left">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="Camera"
                                                 live-slider-model-name="HLCAreaBottom"
@@ -357,7 +357,7 @@
                                 <div class="form-group" ng-if="!PTZModel && Camera.CompensationMode === 'HLC'">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_left' | translate }} </div>
                                     <div class="wn5-setup-section-article-content" align="left">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="Camera" 
                                                 live-slider-model-name="HLCAreaLeft"
@@ -372,7 +372,7 @@
                                 <div class="form-group" ng-if="!PTZModel && Camera.CompensationMode === 'HLC'">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_right' | translate }} </div>
                                     <div class="wn5-setup-section-article-content" align="left">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="Camera" 
                                                 live-slider-model-name="HLCAreaRight"
@@ -404,7 +404,7 @@
                                 <div class="form-group" ng-if="!PTZModel && Camera.BLCLevel !== undefined && Camera.CompensationMode === 'BLC'">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_top' | translate }} </div>
                                     <div class="wn5-setup-section-article-content" align="left">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="Camera" 
                                                 live-slider-model-name="BLCAreaTop"
@@ -419,7 +419,7 @@
                                 <div class="form-group" ng-if="!PTZModel && Camera.BLCLevel !== undefined && Camera.CompensationMode === 'BLC'">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_bottom' | translate }} </div>
                                     <div class="wn5-setup-section-article-content" align="left">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="Camera" 
                                                 live-slider-model-name="BLCAreaBottom"
@@ -434,7 +434,7 @@
                                 <div class="form-group" ng-if="!PTZModel && Camera.BLCLevel !== undefined && Camera.CompensationMode === 'BLC'">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_left' | translate }} </div>
                                     <div class="wn5-setup-section-article-content" align="left">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="Camera" 
                                                 live-slider-model-name="BLCAreaLeft"
@@ -449,7 +449,7 @@
                                 <div class="form-group" ng-if="!PTZModel && Camera.BLCLevel !== undefined && Camera.CompensationMode === 'BLC'">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_right' | translate }} </div>
                                     <div class="wn5-setup-section-article-content" align="left">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="Camera" 
                                                 live-slider-model-name="BLCAreaRight"
@@ -469,7 +469,7 @@
                                     <div class="form-group" align="left">
                                         <div class="wn5-setup-section-article-heading"> {{ 'lang_brightness' | translate }} </div>
                                         <div class="wn5-setup-section-article-content">
-                                            <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                            <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                                 <live_slider 
                                                     live-slider-model="ImageEnhancements" 
                                                     live-slider-model-name="Brightness"
@@ -620,7 +620,7 @@
                                     <div class="form-group" ng-if="PIrisModeOptions != undefined">
                                         <div class="wn5-setup-section-article-heading"> {{ 'lang_pirisposition' | translate }} </div>
                                         <div class="wn5-setup-section-article-content" align="left">
-                                            <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                            <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                                 <live_slider 
                                                     live-slider-model="Camera" 
                                                     live-slider-model-name="PIrisPosition"
@@ -659,7 +659,7 @@
                                 <div class="form-group" align="left">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_brightness' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements" 
                                                 live-slider-model-name="Brightness"
@@ -881,7 +881,7 @@
                                 <div class="form-group" ng-if="ImageEnhancements.SharpnessLevel != undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_sharpnesslevel' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="ImageEnhancements" 
                                                 live-slider-model-name="SharpnessLevel"
@@ -903,7 +903,7 @@
                                 <div class="form-group">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_contrast' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="ImageEnhancements" 
                                                 live-slider-model-name="Contrast"
@@ -920,7 +920,7 @@
                                     <div 
                                         class="wn5-setup-section-article-content" 
                                         ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="ImageOptions.ImagePresetModes[ImageOptionsIndex]" 
                                                 live-slider-model-name="Saturation"
@@ -934,7 +934,7 @@
                                     <div 
                                         class="wn5-setup-section-article-content" 
                                         ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="ImageEnhancements" 
                                                 live-slider-model-name="Saturation"
@@ -964,7 +964,7 @@
                                 <div class="form-group" ng-if="ImageEnhancements.DefogLevel != undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_defoglevel' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="ImageEnhancements" 
                                                 live-slider-model-name="DefogLevel"
@@ -987,7 +987,7 @@
                                 <div class="form-group" ng-if="ImageEnhancements.LDCLevel != undefined">
                                     <div class="wn5-setup-section-article-heading"> LDC {{ 'lang_level' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="ImageEnhancements" 
                                                 live-slider-model-name="LDCLevel"
@@ -1023,7 +1023,7 @@
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.SharpnessLevel != undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_sharpnesslevel' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements" 
                                                 live-slider-model-name="SharpnessLevel"
@@ -1038,7 +1038,7 @@
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.Saturation != undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_colorlevel' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements" 
                                                 live-slider-model-name="Saturation"
@@ -1061,7 +1061,7 @@
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogLevel != undefined">
                                     <div class="wn5-setup-section-article-heading"> {{ 'lang_defoglevel' | translate }} </div>
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements" 
                                                 live-slider-model-name="DefogLevel"
@@ -1317,7 +1317,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group" ng-if="PTZSettings.MaxDigitalZoom != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_digitalZoomLimit' | translate }}</div>
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_max_digitalZoom' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
                                         <select class="form-control" ng-model="PTZSettings.MaxDigitalZoom" ng-disabled="isDigitalZoomLimitDisabled()">
                                             <option ng-selected="PTZSettings.MaxDigitalZoom === Mode" value={{Mode}} ng-repeat="Mode in MaxDigitalZoomOptions">{{Mode}}</option>
@@ -1367,7 +1367,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.MaxDigitalZoom != undefined">
-                                    <div class="wn5-setup-section-article-heading">{{ 'lang_digitalZoomLimit' | translate }}</div>
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_max_digitalZoom' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
                                         <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.MaxDigitalZoom" ng-disabled="isPresetDigitalZoomLimitDisabled()">
                                             <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.MaxDigitalZoom === Mode" value={{Mode}} ng-repeat="Mode in PresetMaxDigitalZoomOptions">{{Mode}}</option>
@@ -1437,7 +1437,7 @@
                                         <label class="slider-label"> {{ IRled.Level}}</label>
                                     </div> -->
                                     <div class="wn5-setup-section-article-content">
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="IRled" 
                                                 live-slider-model-name="Level"
@@ -1466,7 +1466,7 @@
                                             class="slider-label"> 
                                             {{ IRled.LEDOnLevel}}
                                         </label> -->
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="IRled" 
                                                 live-slider-model-name="LEDOnLevel"
@@ -1494,7 +1494,7 @@
                                         <label for="LEDOffLevel" class="slider-label">
                                             {{ IRled.LEDOffLevel}}.
                                         </label> -->
-                                        <div class="slider-fields live-slider-field col-sm-6 col-xs-9">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
                                             <live_slider 
                                                 live-slider-model="IRled" 
                                                 live-slider-model-name="LEDOffLevel"
@@ -1512,7 +1512,7 @@
                                         <div class="ir_led_time">
                                             <select class="form-control" ng-model="IRled.Schedule.EveryDay.SelectedFromHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-disabled="IRled.Mode !== 'Schedule'"></select>
                                         </div>
-                                        <div class="col-sm-1">:</div>
+                                        <div class="col-xs-1">:</div>
                                         <div class="ir_led_time">
                                             <select class="form-control" ng-model="IRled.Schedule.EveryDay.SelectedFromMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" ng-disabled="IRled.Mode !== 'Schedule'"></select>
                                         </div>
@@ -1522,7 +1522,7 @@
                                         <div class="ir_led_time">
                                             <select class="form-control" ng-model="IRled.Schedule.EveryDay.SelectedToHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-disabled="IRled.Mode !== 'Schedule'"></select>
                                         </div>
-                                        <div class="col-sm-1">:</div>
+                                        <div class="col-xs-1">:</div>
                                         <div class="ir_led_time">
                                             <select class="form-control" ng-model="IRled.Schedule.EveryDay.SelectedToMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" ng-disabled="IRled.Mode !== 'Schedule'"></select>
                                         </div>
@@ -1560,11 +1560,11 @@
                 <div class="wn5-setup-section-article-content">
                     <div class="form-group">
                         <div class="wn5-setup-preview-table-col-8">
-                            <div class="col-sm-6 col-xs-12 field-radio-wrapper wn5-setup-camera-setup-activation-time">
+                            <div class="col-xs-6 col-xs-12 field-radio-wrapper wn5-setup-camera-setup-activation-time">
                                 <input type="radio" class="radio" name="Off" ng-model="ImagePreset[ch].ScheduleEnable" ng-value="false" ng-change="setScheduleColor()">
                                 <label class="control-label col-sub-label"> {{ 'lang_off' | translate }} </label>
                             </div>
-                            <div class="col-sm-6 col-xs-12 field-radio-wrapper wn5-setup-camera-setup-activation-time">
+                            <div class="col-xs-6 col-xs-12 field-radio-wrapper wn5-setup-camera-setup-activation-time">
                                 <input type="radio" class="radio" name="Schedule" ng-model="ImagePreset[ch].ScheduleEnable" ng-value="true" ng-change="setScheduleColor()">
                                 <label class="control-label col-sub-label"> {{ 'lang_only_schedule' | translate }} </label>
                             </div>
@@ -1639,25 +1639,25 @@
     <div class="modal-header modal-setup">
         <h3 class="modal-title">{{ getTranslation(SelectedDay) }}</h3>
     </div>
-    <div class="modal-body modal-setup">
+    <div class="modal-body modal-setup" style="padding: 30px 20px;">
         <div class="form-group">
-            <div style="width: 40%; float:left; padding-left:20px">
+            <div style="width: 40%; float:left; padding-left:20px;">
                 <label class="control-label" style="display: inline-block; float:left; margin-right: 20px;">{{ 'lang_from' | translate }}</label>
                 <div class="col-sm-4">
-                    <select class="form-control" ng-model="SelectedFromHour" ng-options="Hour for Hour in HourOptions track by Hour"></select>
+                    <select class="form-control" ng-model="SelectedFromHour" ng-options="Hour for Hour in HourOptions track by Hour" style="width: 70px;"></select>
                 </div>
                 <div class="col-sm-4">
-                    <select class="form-control" ng-model="SelectedFromMinute" ng-options="Minute for Minute in MinuteOptions track by Minute"></select>
+                    <select class="form-control" ng-model="SelectedFromMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" style="width: 70px; margin-left: 10px;"></select>
                 </div>
             </div>
-            <div align="center" style="width: 10%; float:left; margin-top:5px;"> : </div>
+            <div align="center" style="width: 8%; float:left; margin-top:5px; margin-left: 30px;"> : </div>
             <div style="width: 40%; float:left; padding-left:20px;">
                 <label class="control-label" style="display: inline-block; float:left; margin-right: 20px;">{{ 'lang_to' | translate }}</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="selectedToHour" ng-model="SelectedToHour" ng-options="Hour for Hour in HourOptions track by Hour"></select>
+                    <select class="form-control" id="selectedToHour" ng-model="SelectedToHour" ng-options="Hour for Hour in HourOptions track by Hour" style="width: 70px;"></select>
                 </div>
                 <div class="col-sm-4">
-                    <select class="form-control" id="selectedToMinute" ng-model="SelectedToMinute" ng-options="Minute for Minute in MinuteOptions track by Minute"></select>
+                    <select class="form-control" id="selectedToMinute" ng-model="SelectedToMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" style="width: 70px; margin-left: 10px;"></select>
                 </div>
             </div>
         </div>
@@ -1671,36 +1671,65 @@
     <div class="modal-header modal-setup">
         <h3 class="modal-title" style="">{{ 'lang_setup' | translate  }}</h3>
     </div>
-    <div class="modal-body modal-setup form-horizontal" style="padding-top: 0">
-        <div class="form-group">
-            <h3> {{ 'lang_msg_cannot_preset_duplicate'| translate }} </h3>
+    <div class="modal-body modal-setup form-horizontal" style="padding: 10px 20px 0">
+        <div class="wn5-setup-info-msg">
+          <i class="tui tui-wn5-toolbar-status"></i>
+          <span>{{ 'lang_msg_cannot_preset_duplicate' | translate }}</span>
         </div>
         <div ng-repeat="schedule in ImagePreset.Schedules">
+            <hr class="wn5-setup-hr" style="margin: 10px 0">
             <div class="form-group" ng-if="ImagePreset != undefined">
-                <label class="col-sm-1 control-label">{{ 'lang_mode' | translate }}</label>
-                <div class="col-sm-4">
+                <label class="col-xs-2 control-label">{{ 'lang_mode' | translate }}</label>
+                <div class="col-xs-4">
                     <select class="form-control" ng-model="schedule.Mode" ng-change="resetScheduleTime($index)">
                         <option ng-selected="schedule.Mode === option" value={{option}} ng-repeat="option in ImagePresetSchedModeOptions"> {{ getTranslation(option) }} </option>
                     </select>
                 </div>
             </div>
             <div class="form-group" ng-if="ImagePreset != undefined">
-                <label class="col-sm-1 control-label">{{ 'lang_from' | translate }}</label>
-                <div class="col-sm-2">
-                    <select class="form-control" ng-disabled="schedule.Mode === 'Off'" ng-model="schedule.SelectedFromHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-change="extendPreviewMode()"></select>
+                <label class="col-xs-2 control-label">{{ 'lang_from' | translate }}</label>
+                <div class="col-xs-2" style="padding-right: 3px">
+                    <select 
+                      style="padding-right: 0"
+                      class="form-control" 
+                      ng-disabled="schedule.Mode === 'Off'" 
+                      ng-model="schedule.SelectedFromHour" 
+                      ng-options="Hour for Hour in HourOptions track by Hour" 
+                      ng-change="extendPreviewMode()">
+                    </select>
                 </div>
-                <div class="col-sm-2">
-                    <select class="form-control" ng-disabled="schedule.Mode === 'Off'" ng-model="schedule.SelectedFromMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" ng-change="extendPreviewMode()"></select>
+                <div class="col-xs-2" style="padding-left: 3px">
+                    <select 
+                      style="padding-right: 0"
+                      class="form-control" 
+                      ng-disabled="schedule.Mode === 'Off'" 
+                      ng-model="schedule.SelectedFromMinute" 
+                      ng-options="Minute for Minute in MinuteOptions track by Minute" 
+                      ng-change="extendPreviewMode()">
+                    </select>
                 </div>
-                <label class="col-sm-1 control-label">{{ 'lang_to' | translate }}</label>
-                <div class="col-sm-2">
-                    <select class="form-control" ng-disabled="schedule.Mode === 'Off'" ng-model="schedule.SelectedToHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-change="extendPreviewMode()"></select>
+                <label class="col-xs-2 control-label">{{ 'lang_to' | translate }}</label>
+                <div class="col-xs-2" style="padding-right: 3px">
+                    <select 
+                      style="padding-right: 0"
+                      class="form-control" 
+                      ng-disabled="schedule.Mode === 'Off'" 
+                      ng-model="schedule.SelectedToHour" 
+                      ng-options="Hour for Hour in HourOptions track by Hour" 
+                      ng-change="extendPreviewMode()">
+                    </select>
                 </div>
-                <div class="col-sm-2">
-                    <select class="form-control" ng-disabled="schedule.Mode === 'Off'" ng-model="schedule.SelectedToMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" ng-change="extendPreviewMode()"></select>
+                <div class="col-xs-2" style="padding-left: 3px">
+                    <select 
+                      style="padding-right: 0"
+                      class="form-control" 
+                      ng-disabled="schedule.Mode === 'Off'" 
+                      ng-model="schedule.SelectedToMinute" 
+                      ng-options="Minute for Minute in MinuteOptions track by Minute" 
+                      ng-change="extendPreviewMode()">
+                    </select>
                 </div>
             </div>
-            <div class="hr-line-dashed"></div>
         </div>
     </div>
     <div class="modal-footer modal-setup" style="text-align:center">

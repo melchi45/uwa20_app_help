@@ -66,6 +66,16 @@
                 padding: 15px 25px 0 25px;
             }
 
+            #live-select-box {
+              float: left;
+              height: 50px;
+              padding: 8px 25px;
+              
+              > select {
+                width: 160px;
+              }
+            }
+
             #live-controller {
                 max-height: 50px;
                 height: 50px;
@@ -447,6 +457,8 @@
             }
 
             #live-status {
+                max-width: 1100px;
+                
                 .live-status-col {
                     width: calc(~"50% - 10px");
                     padding: 0 20px;
@@ -478,6 +490,7 @@
                         th, td {
                             width: 1%;
                             box-sizing: border-box;
+                            font-size: 11px;
                         }
 
                         thead {
@@ -698,7 +711,8 @@
                     }
 
                     #pb-channel-holder > div,
-                    .live-channel-selector {
+                    .live-channel-selector,
+                    #live-select-box {
                         width: 100%;
                         height: 40px;
                         padding: 0;
@@ -713,6 +727,12 @@
                         & > button {
                             margin-top: 8px;
                         }
+                    }
+
+                    #live-select-box {
+                      > select {
+                        width: 60%;
+                      }
                     }
 
                     #live-controller {

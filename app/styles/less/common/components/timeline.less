@@ -1,0 +1,266 @@
+// The comment '//add' is tag to modify timeline's margin
+@timeline-padding-size: 13px;
+.timeline-container {
+  margin-top: -@timeline-padding-size;
+  padding: 0 @timeline-padding-size; //add
+}
+.vis-timeline.vis-bottom {
+  overflow:visible; //add
+  
+   border: 0 !important;
+  .vis-panel.vis-background {
+    &.vis-vertical {
+      overflow: inherit; //add
+      .vis-axis {
+        display: none;
+      }
+      .vis-time-axis {
+        overflow: inherit; //add
+        
+        right: 0;
+        &:before {
+          content: ' ';
+          display: block;
+          height: 1px;
+          background-color: @theme-color-gray-25;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 30px;
+          
+          margin: 0 -@timeline-padding-size; //add
+        }
+        .vis-grid.vis-vertical {
+          border: 0 !important;
+          &:after {
+            content: ' ';
+            display: block;
+            width: 1px;
+            height: 9px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border: none;
+            background-color: @theme-color-gray-25;
+          }
+          &.vis-major {
+            display: none;
+          }
+          &.vis-yesterday {
+          }
+          &.vis-odd {
+          }
+          &.vis-even {
+          }
+        }
+      }
+      .vis-current-time {
+      }
+    }
+    &.vis-horizontal {
+    }
+  }
+  .vis-panel{
+    &.vis-center {
+      overflow: inherit; //add
+      border: 0px !important;
+      .vis-shadow {
+        display: none !important;
+      }
+      .vis-content {
+        top: -20px !important;
+        .vis-itemset {
+          .vis-background {
+          }
+          .vis-foreground {
+            .vis-item.vis-range.vis-readonly {
+              height: 40px !important;
+              background-color: transparent !important;
+              border-radius: 50% !important;;
+              border: 0px !important;;
+              top: 0px !important;
+              margin-left: -2px;
+              margin-right: -1px;
+              .vis-item-overflow {
+                height : 20px;
+                background-color: #ff0000;
+                top: 9px;
+              }
+              &.vis-item-normal {
+                .vis-item-overflow{
+                  background-color: #8dc63f;
+                }
+              }
+              &.vis-item-normal.vis-selected{
+                .vis-item-overflow{
+                }
+              }
+              &.vis-duplicate-view, &.vis-duplicate-view.vis-selected {
+                .vis-item-overflow {
+                  background-color: #980000;
+                }
+              }
+              &.vis-selected {
+                .vis-item-overflow {
+                }
+              }
+              .vis-item-content {
+                display: none !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.vis-left {
+      .vis-content {
+      }
+      .vis-shadow.vis-top {
+      }
+      .vis-shadow.vis-bottom {
+      }
+    }
+    &.vis-right {
+      .vis-content {
+        &:before {
+          content: ' ';
+          display: block;
+          width: 100%;
+          border-top: 1px solid @theme-color-gray-25;
+          position: absolute;
+          top: 10px;
+        }
+      }
+      .vis-shadow.vis-top {
+      }
+      .vis-shadow.vis-bottom {
+      }
+    }
+    &.vis-top {
+      border: 0px;
+      .vis-time-axis.vis-foreground {
+        overflow: inherit;
+        .vis-text {
+          font-size: 11px;
+          color: #797979 !important;
+//          .translate(-50%, 5px);
+          .translate(-50%, 1px); //add
+          &.vis-major {
+            top: -13px !important;
+            color: #999;
+          }
+          &.vis-minor {
+            top: 0 !important;
+          }
+          &.vis-measure {
+          }
+          &.vis-yesterday {
+          }
+          &.vis-odd {
+          }
+          &.vis-even {
+          }
+        }
+      }
+    }
+    &.vis-bottom {
+    }
+  }
+}
+.vis-current-time {
+  display: none;
+}
+
+.vis-custom-time {
+  background-color: transparent !important;
+  z-index: 5 !important;
+
+  div {
+    width: 24px !important;
+    height: 24px !important;
+    z-index: 5;
+    margin-top: 28px;
+    border: 2px solid #797979;
+    border-radius: 50%;
+    background-color: white;
+    &:active {
+      .scale(1.5);
+    }
+    &:after {
+      position: absolute;
+      content: "";
+      left: 7px;
+      top: 5px;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 9px solid #797979;
+      display: block;    
+    }
+  }
+}
+.playback-details {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  height: 40px;
+  margin-top: 0px;
+  border-top: 1px solid rgba(255,255,255,0);
+  padding: 0 5px;
+	z-index: 3;
+  &.border-show {
+    border-top: 1px solid rgba(255,255,255,.3);
+  }
+  li{
+    font-size: 12px;
+    min-width: 250px;
+    padding-top: 4px;
+    color: @theme-color-gray-100;
+    padding: 2px 10px 2px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    &:active, &.selected {
+      color: @theme-color-point-100;
+    }
+  }
+  div{
+    position: absolute;
+    width: 140px;
+    a {
+      padding: 0 5px;
+      border-radius: 15px;
+      &:active, &.selected {
+        color: @theme-color-point-100;
+      }
+    }
+  }
+  .select-overlap-event {
+    font-weight: bold;
+    text-align:left;
+    font-size: 12px;
+    i {
+      font-size: 18px;
+    }
+  }  
+}
+.full-mode {
+  .playback-details li a:active, .playback-details li a {
+    color: white;
+    &:active, &.selected {
+      color: white;
+      background-color: @theme-color-point-100;
+    }
+  }
+  .playback-details div a {
+    color: white;
+    &:active, &.selected {
+      color: @theme-color-point-100;
+    }
+  }
+  .vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text {
+    color: white !important;
+  }
+}
+
+/* .vis-timeline.vis-bottom .vis-panel.vis-top .vis-time-axis.vis-foreground .vis-text.vis-minor */
+

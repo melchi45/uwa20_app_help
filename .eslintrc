@@ -82,19 +82,14 @@
     "block-spacing" : ["warn","always"],
     "brace-style" : ["warn", "1tbs"],
     "camelcase" : ["warn", { "properties": "always" }],
-    "comma-dangle": ["warn", {
-      "arrays": "always-multiline",
-      "objects": "always-multiline",
-      "imports": "ignore",
-      "exports": "ignore",
-      "functions": "never"
-    }],
+    "comma-dangle": ["off", {"arrays": "only-multiline",
+      "objects": "only-multiline"}],
     "comma-spacing" : ["warn",{ 
       "before": false,
       "after": true
     }],
     "comma-style": ["warn", "last"],
-    "id-length" : ["warn",{"exceptions": ["x","y","i"] }],
+    "id-length" : ["warn",{"exceptions": ["x","y","z","i","j","u","v"] }],
     "indent" : ["warn",2,{"SwitchCase" : 1}],
     "keyword-spacing" : ["warn",{"before" : true}],
     "max-depth" : "warn",
@@ -102,7 +97,8 @@
       "code" : 100,
       "ignoreComments": true,
       "ignoreTrailingComments": true,
-      "ignoreStrings": true
+      "ignoreStrings": true,
+      "ignoreRegExpLiterals" : true
     }],
     "new-cap" : ["warn",{
       "newIsCap": true,

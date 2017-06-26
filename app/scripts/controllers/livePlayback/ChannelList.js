@@ -1,6 +1,6 @@
 kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScope, $state,
-  kindStreamInterface, Attributes, SunapiClient, ConnectionSettingService, UniversialManagerService,
-  CAMERA_STATUS, BrowserService, RESTCLIENT_CONFIG, PluginModel) {
+  kindStreamInterface, Attributes, SunapiClient, ConnectionSettingService, 
+  UniversialManagerService, CAMERA_STATUS, BrowserService, RESTCLIENT_CONFIG, PluginModel) {
   "use strict";
 
   var channlistClass = 'channellist-video-wrapper';
@@ -155,7 +155,7 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
         try {
           xmlHttp.open("POST", "../home/pw_check.cgi", true); // false for synchronous request
           xmlHttp.send(null);
-        } catch (e) {
+        } catch (err) {
           reconnect();
         }
       }

@@ -34,20 +34,19 @@ function BaseLogin(
 
   $scope.showFindIP = function() {
     var action = function(data) {
-      var type_index = data.value;
-      $scope.loginInfo.serviceType = optionServiceType[type_index];
+      var typeIndex = data.value;
+      $scope.loginInfo.serviceType = optionServiceType[typeIndex];
     };
     var list = [{
-        'name': optionServiceType[CAMERA_STATUS.WEB_APP_TYPE.SSM_MOBILE],
-        'action': action,
-        'value': CAMERA_STATUS.WEB_APP_TYPE.SSM_MOBILE,
-      },
-      {
-        'name': optionServiceType[CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB],
-        'action': action,
-        'value': CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB,
-      },
-    ];
+      'name': optionServiceType[CAMERA_STATUS.WEB_APP_TYPE.SSM_MOBILE],
+      'action': action,
+      'value': CAMERA_STATUS.WEB_APP_TYPE.SSM_MOBILE,
+    },
+    {
+      'name': optionServiceType[CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB],
+      'action': action,
+      'value': CAMERA_STATUS.WEB_APP_TYPE.IPOLIS_WEB,
+    }];
     ModalManagerService.open(
       'list', {
         'buttonCount': 0,
@@ -108,7 +107,8 @@ function BaseLogin(
      */
     $('input').blur();
 
-    console.log($scope.loginInfo.serviceType + ' -- ' + $scope.loginInfo.id + '--' + $scope.loginInfo.password);
+    console.log($scope.loginInfo.serviceType + ' -- ' + 
+                $scope.loginInfo.id + '--' + $scope.loginInfo.password);
     if (loginFormIsEmpty()) {
       errorCallBack({
         'type': 'empty'
@@ -180,8 +180,7 @@ function BaseLogin(
         UniversialManagerService.setisLogin(false);
         self.resetLoadingText();
 
-        if (error !== null && typeof error !== "undefined") // jshint ignore:line
-        {
+        if (error !== null && typeof error !== "undefined") { // jshint ignore:line
           errorCallBack(error);
         }
       });

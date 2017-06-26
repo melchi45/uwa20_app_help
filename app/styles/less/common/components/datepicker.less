@@ -1,0 +1,107 @@
+.ua-datepicker {
+  table {
+    margin: 0 auto;
+    border: 0;
+    color: @theme-color-gray-100;
+    .btn.btn-default {
+      border: 0;
+      color: inherit;
+      font-size: 12px;
+      background-color: @theme-light-button-point-normal-bg;
+      &.active {
+        .box-shadow(none);
+      }
+      &.btn-info {
+        background-color: @theme-color-point-100 !important;
+        border-color: @theme-color-point-100;
+        span {
+          color: @theme-light-button-point-focus-text;
+        }
+      }
+      &.btn-sm {
+        padding: 5px 8px;
+      }
+      //today
+      .text-info {
+        color: inherit;
+      }
+      //other month
+      .text-muted {
+        color: lighten(@theme-color-gray-100, 40%);
+      }
+      .glyphicon {
+        &:before {
+          content: '';
+          display: block;
+          width: 10px;
+          height: 10px;
+          border-left: 2px solid @theme-dark-button-point-normal;
+          border-bottom: 2px solid @theme-dark-button-point-normal;
+        }
+        &.glyphicon-chevron-left {
+          &:before {
+            .rotate(45deg);
+          }
+        }
+        &.glyphicon-chevron-right {
+          &:before {
+            .rotate(225deg);
+          }
+        }
+      }
+    }
+    thead {
+      tr:first-child {
+        th {
+          padding-bottom: 10px;
+        }
+      }
+      strong, th {
+        font-weight: normal;
+        &.text-center {
+          &:first-child, &:nth-child(7) {
+            color: lighten(@theme-color-gray-100, 20%);
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          &.week {
+            color: lighten(@theme-color-gray-100, 20%);
+          }
+          &.today {
+            button {
+              font-weight: bold;
+            }
+          }
+          &.event {
+            position: relative;
+            &:after {
+              .make-circle(4px);
+              .horizon-center();
+              bottom: 2px;
+              //background-color: lighten(@theme-color-gray-100, 40%);
+              background-color: lighten(@theme-color-point-100, 15%);
+            }
+          }
+          &.monthSearch {
+            button {
+              width : 70px !important;
+              padding-right: 0px !important;
+              padding-left: 0px !important;
+            }
+          }
+          &.yearSearch {
+            button {
+              width : 40px !important;            
+              padding-right: 0px !important;
+              padding-left: 0px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
