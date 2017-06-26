@@ -91,7 +91,8 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
     var renderCallBack = function() {
       count++;
       changeCanvas();
-      if (count >= 5) {
+      var maxCount = 5;
+      if (count >= maxCount) {
         window.cancelAnimationFrame(requestId);
         count = 0;
         requestId = null;
@@ -123,7 +124,8 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
       var obejct = $('#channel' + channelId)[0];
       obejct.SetWMDInitialize(channelId, channelId + 1, "PluginJSONEvent");
       obejct.SetUserFps(Number(MultiDirectionProfile.FrameRate));
-      obejct.PlayLiveStream(ip, port, 13, userID, '', '');
+      var playLiveStreamIndex = 13;
+      obejct.PlayLiveStream(ip, port, playLiveStreamIndex, userID, '', '');
     }
   }
 
@@ -141,6 +143,7 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
       $timeout.cancel(reconnectionTimeout);
     }
 
+    var time = 500;
     reconnectionTimeout = $timeout(function() {
       var getData = null;
       if (RESTCLIENT_CONFIG.serverType === 'grunt') {
@@ -159,18 +162,22 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
           reconnect();
         }
       }
-    }, 500);
+    }, time);
   }
 
   function changeCanvas() {
     var wrapElems = document.querySelectorAll('.' + channlistClass);
     var getRatio = function(classList) {
       var ratio = [];
+      var ratioIndex = {
+        first: 1,
+        second: 2,
+      };
       for (var i = 0, ii = classList.length; i < ii; i++) {
         var self = classList[i];
         if (self.indexOf('ratio-') !== -1) {
-          ratio.push(self.split('-')[1]);
-          ratio.push(self.split('-')[2]);
+          ratio.push(self.split('-')[ratioIndex.first]);
+          ratio.push(self.split('-')[ratioIndex.second]);
           break;
         }
       }
@@ -185,7 +192,8 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
       var maxWidth = 'none';
       var maxHeight = 'none';
 
-      if (self.clientHeight >= parentNode.clientHeight - 3) {
+      var heightCalc = 3;
+      if (self.clientHeight >= parentNode.clientHeight - heightCalc) {
         ratio = getRatio(self.classList);
 
         maxWidth = (parentNode.clientHeight / ratio[1] * ratio[0]) + 'px';
@@ -207,21 +215,21 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
     $state.go('uni.channel');
   }, $scope);
 
-  function timeCallback(e) {
-    console.log("timeCallback msg =", e);
+  function timeCallback(err) {
+    console.log("timeCallback msg =", err);
   }
 
-  function errorCallback(e) {
-    console.log("errorCallback msg =", e);
-    if (e.errorCode === "999" && reconnectCheck === false) {
+  function errorCallback(err) {
+    console.log("errorCallback msg =", err);
+    if (err.errorCode === "999" && reconnectCheck === false) {
       reconnectCheck = true;
-      console.log("Disconnect channelId = " + e.channelId);
+      console.log("Disconnect channelId = " + err.channelId);
       reconnect();
     }
   }
 
-  function closeCallback(e) {
-    console.log("closeCallback msg =", e);
+  function closeCallback(err) {
+    console.log("closeCallback msg =", err);
   }
 
   function _PluginJSONEvent(ch, evId, sdata) {
@@ -230,19 +238,22 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
 
     try {
       jsonData = JSON.parse(sdata); //safari
-    } catch (e) {
+    } catch (err) {
       jsonData = sdata; //ie
     }
 
+    var time = 100;
+    var err401 = 401;
+    var err402 = 402;
     switch (evId) {
-      case 401: //rtsp unauthorized(401)
+      case err401: //rtsp unauthorized(401)
         $timeout(function() {
           if (jsonData.type === 0) {
             rtspDigestAuth('live', (ch - 1));
           }
-        }, 100);
+        }, time);
         break;
-      case 402:
+      case err402:
         var pluginElement = $('#channel' + (ch - 1))[0];
         pluginElement.CloseStream();
 
@@ -259,18 +270,26 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
     window.location.reload(true);
   }
 
+  var readyCheck = {
+    readyState: 4,
+    status: 200,
+    time: 500,
+    status401: 401,
+    status490: 490,
+  };
+
   xmlHttp.onreadystatechange = function() {
-    if (this.readyState === 4) {
-      if (this.status === 200) {
+    if (this.readyState === readyCheck.readyState) {
+      if (this.status === readyCheck.status) {
         if (xmlHttp.responseText === "OK") {
-          window.setTimeout(RefreshPage, 500);
+          window.setTimeout(RefreshPage, readyCheck.time);
         } else {
           startVideoStreaming();
         }
-      } else if (this.status === 401) {
+      } else if (this.status === readyCheck.status401) {
         var unAuthHtml = "<html><head><title>401 - Unauthorized</title></head><body><h1>401 - Unauthorized</h1></body></html>";
         document.write(unAuthHtml);
-      } else if (this.status === 490) {
+      } else if (this.status === readyCheck.status490) {
         var blockHtml = "<html><head><title>Account Blocked</title></head><body><h1>You have exceeded the maximum number of login attempts, please try after some time.</h1></body></html>";
         document.write(blockHtml);
       } else {
@@ -295,7 +314,8 @@ kindFramework.controller('ChannelListCtrl', function($scope, $timeout, $rootScop
         var responseValue = response.data.Response;
         // var fps = UniversialManagerService.getProfileInfo().FrameRate;
         pluginElement.SetWMDInitialize(channelId, channelId + 1, "PluginJSONEvent");
-        pluginElement.PlayLiveStream(ip, port, 12, userID, '', responseValue);
+        var playLiveStreamIndex = 12;
+        pluginElement.PlayLiveStream(ip, port, playLiveStreamIndex, userID, '', responseValue);
       },
       function(errorData, errorCode) {
         console.error(errorData);
