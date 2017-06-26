@@ -6,6 +6,7 @@ kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope',
   function ($scope, $rootScope, $uibModalInstance, $sce, data, $timeout,
     UniversialManagerService, CAMERA_STATUS, $translate) {
     var TIMEOUT = 2000;
+    var LOADING_OPTION = 2;
     $scope.data = data;
 
     if (typeof (data.isHtml) === 'undefined') {
@@ -43,9 +44,9 @@ kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope',
     }, $scope);
 
     /**
-     * $uibModalInstance°¡ ºñÁ¤»óÀûÀ¸·Î 2°³ÀÌ»ó ¿­¸± ¶§
-     * $uibModalInstance.close() ±â´ÉÀÌ Á¤»óÀûÀ¸·Î ½ÇÇàµÇÁö ¾Ê´Â´Ù.
-     * ±×·¡¼­ event.targetÀ» ÅëÇØ ¸ð´ÞÀ» ´Ý¾Æ ÁØ´Ù.
+     * $uibModalInstanceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+     * $uibModalInstance.close() ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
+     * ï¿½×·ï¿½ï¿½ï¿½ event.targetï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½ ï¿½Ø´ï¿½.
      */
     function closeModal(event) {
       var target = $(event.target);
@@ -70,13 +71,13 @@ kindFramework.controller('ModalInstnceMessageCtrl', ['$scope', '$rootScope',
     }
 
     /**
-     * buttonCount°¡ 2ÀÏ ¶§´Â Cancel ¹öÆ°ÀÌ Á¸ÀçÇØ¾ß ÇÏ±â ¶§¹®¿¡
-     * ¿¹¿Ü Ã³¸®¸¦ ÇÑ´Ù.
-     * Wisenet5¿¡¼­´Â ±âÁ¸ MessageÀÇ ½ºÅ¸ÀÏÀ» »ç¿ëÇÏÁö ¾Ê°í,
-     * »õ·Î¿î µðÀÚÀÎÀ» »ç¿ëÇÏ±â ¶§¹®¿¡
-     * ±âÁ¸ modalÀÇ ½ºÅ¸ÀÏÀ» Reset ÇØÁØ´Ù.
+     * buttonCountï¿½ï¿½ 2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Cancel ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     * ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
+     * Wisenet5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Messageï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½,
+     * ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     * ï¿½ï¿½ï¿½ï¿½ modalï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ Reset ï¿½ï¿½ï¿½Ø´ï¿½.
      */
-    if (data.buttonCount < 2) {
+    if (data.buttonCount < LOADING_OPTION) {
       $uibModalInstance.rendered.then(function () {
         var templateHtml = [
           '<div class="tui-loading-wrapper">',
