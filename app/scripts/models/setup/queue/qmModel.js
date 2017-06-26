@@ -21,7 +21,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
       realTime: {
         occupancy: 'lang_occupancy',
         button: 'lang_setup',
-        message: 'lang_msg_delete_all_data'
+        message: 'lang_msg_delete_all_data',
       },
       graph: {
         today: 'lang_today',
@@ -31,7 +31,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
         sec: 'lang_sec',
         average: 'lang_average',
         high: 'lang_high',
-        medium: 'lang_medium'
+        medium: 'lang_medium',
       },
       search: {
         title: 'lang_search',
@@ -42,8 +42,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
           peopleTitle: 'lang_people',
           totalTitle: 'lang_total_time',
           mediumTitle: 'lang_medium',
-          highTitle: 'lang_high'
-        }
+          highTitle: 'lang_high',
+        },
       },
       results: {
         title: 'lang_results',
@@ -51,49 +51,62 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
         button: 'lang_download',
         table: {
           queue: 'lang_queue',
-          sum: 'lang_sum'
-        }
+          sum: 'lang_sum',
+        },
       },
       setupTabTitle: {
         configuration: 'lang_configuration',
-        calibration: 'lang_calibration'
+        calibration: 'lang_calibration',
       },
       areaList: {
         title: 'lang_area',
         no: 'lang_num',
-        name: 'lang_name'
+        name: 'lang_name',
       },
       queueUndefined: {
         disable: '',
-        noRule: ''
+        noRule: '',
       },
       queueEvent: {
-        title: 'lang_queue_event'
+        title: 'lang_queue_event',
       },
       queueEventLevel: {
         title: 'lang_level_of_detection',
         people: 'lang_people',
         max: 'lang_maximumSize',
         high: 'lang_high',
-        medium: 'lang_medium'
+        medium: 'lang_medium',
       },
       queueEventDuration: {
         title: '',
         high: 'lang_high',
         medium: 'lang_medium',
         sec: 'lang_sec',
-        message: 'lang_msg_queue_events'
+        message: 'lang_msg_queue_events',
       },
       calibration: {
-        message: ''
-      }
+        message: '',
+      },
     };
 
     (function langInit() {
-      lang.queueUndefined.disable = $translate.instant('lang_msg_please_enable').replace('%1', $translate.instant(lang.queueManagement));
-      lang.queueUndefined.noRule = $translate.instant('lang_msg_norule') + ' ' + $translate.instant('lang_msg_addrule').replace('%1', $translate.instant('lang_setup'));
-      lang.queueEventDuration.title = $translate.instant('lang_minimum_duration') + ' (' + $translate.instant('lang_sec') + ')';
-      lang.calibration.message = $translate.instant('lang_msg_calibration_guide_1') + ' ' + $translate.instant('lang_msg_calibration_guide_2').replace('%1', $translate.instant(lang.queueManagement));
+      var langMsgPleaseEnable = $translate.instant('lang_msg_please_enable');
+      var langQueueManagement = $translate.instant(lang.queueManagement);
+      lang.queueUndefined.disable = langMsgPleaseEnable.replace('%1', langQueueManagement);
+      
+      var langMsgNorule = $translate.instant('lang_msg_norule');
+      var langMsgAddrule = $translate.instant('lang_msg_addrule');
+      var langSetup = $translate.instant('lang_setup');
+      lang.queueUndefined.noRule = langMsgNorule + ' ' + langMsgAddrule.replace('%1', langSetup);
+
+      var langMinimumDuration = $translate.instant('lang_minimum_duration');
+      var langSec = $translate.instant('lang_sec');
+      lang.queueEventDuration.title = langMinimumDuration + ' (' + langSec + ')';
+
+      var langMsgCalibrationGuide1 = $translate.instant('lang_msg_calibration_guide_1');
+      var langMsgCalibrationGuide2 = $translate.instant('lang_msg_calibration_guide_2');
+      langMsgCalibrationGuide2 = langMsgCalibrationGuide2.replace('%1', langQueueManagement);
+      lang.calibration.message = langMsgCalibrationGuide1 + ' ' + langMsgCalibrationGuide2;
     })();
 
     this.getStLang = function() {
@@ -109,7 +122,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             action: 'view',
             data: {},
             successCallback: successCallback,
-            failCallback: failCallback
+            failCallback: failCallback,
           });
         },
         set: function(data, successCallback, failCallback) {
@@ -119,7 +132,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             action: 'set',
             data: data,
             successCallback: successCallback,
-            failCallback: failCallback
+            failCallback: failCallback,
           });
         },
         add: function(data, successCallback, failCallback) {
@@ -129,7 +142,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             action: 'add',
             data: data,
             successCallback: successCallback,
-            failCallback: failCallback
+            failCallback: failCallback,
           });
         },
         update: function(data, successCallback, failCallback) {
@@ -139,7 +152,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             action: 'update',
             data: data,
             successCallback: successCallback,
-            failCallback: failCallback
+            failCallback: failCallback,
           });
         },
         remove: function(successCallback, failCallback, _data) {
@@ -153,7 +166,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             action: 'remove',
             data: data,
             successCallback: successCallback,
-            failCallback: failCallback
+            failCallback: failCallback,
           });
         },
         check: function(successCallback, failCallback, _data) {
@@ -167,9 +180,9 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             action: 'check',
             data: data,
             successCallback: successCallback,
-            failCallback: failCallback
+            failCallback: failCallback,
           });
-        }
+        },
       },
       sourceoptions: {
         view: function(successCallback, failCallback) {
@@ -179,10 +192,10 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             action: 'view',
             data: {},
             successCallback: successCallback,
-            failCallback: failCallback
+            failCallback: failCallback,
           });
-        }
-      }
+        },
+      },
     };
 
     var eventRulesCgi = {
@@ -193,10 +206,10 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             msubmenu: 'scheduler',
             action: 'view',
             data: {
-              Type: 'QueueManagement'
+              Type: 'QueueManagement',
             },
             successCallback: successCallback,
-            failCallback: failCallback
+            failCallback: failCallback,
           });
         },
         set: function(data, successCallback, failCallback) {
@@ -207,10 +220,10 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             action: 'set',
             data: data,
             successCallback: successCallback,
-            failCallback: failCallback
+            failCallback: failCallback,
           });
-        }
-      }
+        },
+      },
     };
 
     var recordingCgi = {
@@ -221,7 +234,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
           action: 'control',
           data: data,
           successCallback: successCallback,
-          failCallback: failCallback
+          failCallback: failCallback,
         });
       },
       view: function(data, successCallback, failCallback) {
@@ -231,9 +244,9 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
           action: 'view',
           data: data,
           successCallback: successCallback,
-          failCallback: failCallback
+          failCallback: failCallback,
         });
-      }
+      },
     };
 
     var cameraLocalTime = {
@@ -243,7 +256,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
       },
       getDateObj: function() {
         return new Date(cameraLocalTime.data);
-      }
+      },
     };
 
     this.initModel = function() {
@@ -263,7 +276,8 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 
     function addZero(_data) {
       var data = _data;
-      if (data < 10) {
+      var maxData = 10;
+      if (data < maxData) {
         data = "0" + data;
       }
 
@@ -271,13 +285,13 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
     }
 
     function getSunapiDateFormat(timeStamp) {
-      var d = new Date(timeStamp);
-      var year = d.getFullYear();
-      var month = addZero(d.getMonth() + 1);
-      var date = addZero(d.getDate());
-      var hours = addZero(d.getHours());
-      var minutes = addZero(d.getMinutes());
-      var seconds = addZero(d.getSeconds());
+      var day = new Date(timeStamp);
+      var year = day.getFullYear();
+      var month = addZero(day.getMonth() + 1);
+      var date = addZero(day.getDate());
+      var hours = addZero(day.getHours());
+      var minutes = addZero(day.getMinutes());
+      var seconds = addZero(day.getSeconds());
 
       var dateFormat = [
         year,
@@ -413,9 +427,10 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
       }
 
       function requestSearchView() {
-        searchView({
+        searchView(
+          {
             Type: 'Status',
-            SearchToken: searchToken
+            SearchToken: searchToken,
           },
           viewStatusSuccessCallback,
           failCallback
@@ -424,9 +439,10 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 
       function viewStatusSuccessCallback(response) {
         if (response.data.Status === "Completed") {
-          searchView({
+          searchView(
+            {
               Type: 'Results',
-              SearchToken: searchToken
+              SearchToken: searchToken,
             },
             viewResultSuccessCallback,
             failCallback
@@ -443,7 +459,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
         var queueResults = response.QueueResults;
         var responseData = {
           resultInterval: resultInterval,
-          data: []
+          data: [],
         };
 
         for (var i = 0, len = queueResults.length; i < len; i++) {
@@ -452,7 +468,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             name: queueSelf.Queue,
             direction: null,
             results: null,
-            resultInterval: resultInterval
+            resultInterval: resultInterval,
           };
 
           if (type === graphType[0]) {
@@ -467,15 +483,15 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             responseData.data.push(data);
           } else {
             var queueLevels = queueSelf.QueueLevels;
-            for (var j = 0; j < queueLevels.length; j++) {
+            for (var jj = 0; jj < queueLevels.length; jj++) {
               if (checkList) {
-                var checkListKey = queueLevels[j].Level.toLowerCase();
+                var checkListKey = queueLevels[jj].Level.toLowerCase();
                 if (typeof checkList[checkListKey] === "undefined" || checkList[checkListKey].indexOf(i) === -1) {
                   continue;
                 }
               }
-              data.direction = queueLevels[j].Level;
-              data.results = fillterResults(queueLevels[j].CumulativeTimeResult, resultInterval);
+              data.direction = queueLevels[jj].Level;
+              data.results = fillterResults(queueLevels[jj].CumulativeTimeResult, resultInterval);
 
               responseData.data.push(angular.copy(data));
             }
@@ -496,13 +512,14 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
           str[0] = str[0].split('-');
           str[1] = str[1].split(':');
 
+          var n2 = 2;
           str = new Date(
             str[0][0],
             str[0][1] - 1,
-            str[0][2],
+            str[0][n2],
             str[1][0],
             str[1][1],
-            str[1][2]
+            str[1][n2]
           );
 
           return str;
@@ -526,7 +543,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             date,
             hours,
             minutes,
-            seconds
+            seconds,
           ];
 
           return parseInt(str.join(''));
@@ -535,33 +552,33 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
         var fromDate = changeDateObj(searchOptions.FromDate);
         var toDate = changeDateObj(searchOptions.ToDate);
 
-        var i = 0;
+        var ii = 0;
         var len = 0;
         var data = {};
 
         switch (resultInterval) {
           case "Hourly":
-            for (i = 0, len = results.length; i < len; i++) {
+            for (ii = 0, len = results.length; ii < len; ii++) {
               data = {};
-              fromDate.setHours(i);
+              fromDate.setHours(ii);
               data.timeStamp = changeFormatForGraph(fromDate);
-              data.value = parseInt(results[i]);
+              data.value = parseInt(results[ii]);
               fillterData.push(data);
             }
             break;
           case "Daily":
           case "Weekly":
-            for (i = 0, len = results.length; i < len; i++) {
+            for (ii = 0, len = results.length; ii < len; ii++) {
               data = {};
 
-              if (i === 0) {
+              if (ii === 0) {
                 data.timeStamp = changeFormatForGraph(fromDate);
               } else {
                 fromDate.setDate(fromDate.getDate() + 1);
                 data.timeStamp = changeFormatForGraph(fromDate);
               }
 
-              data.value = parseInt(results[i]);
+              data.value = parseInt(results[ii]);
               fillterData.push(data);
 
               if (
@@ -574,7 +591,7 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
             }
             break;
           case "Monthly":
-            for (i = 0, len = results.length; i < len; i++) {
+            for (ii = 0, len = results.length; ii < len; ii++) {
               data = {};
 
               if (
@@ -584,14 +601,14 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
                 break;
               }
 
-              if (i === 0) {
+              if (ii === 0) {
                 data.timeStamp = changeFormatForGraph(fromDate);
               } else {
                 fromDate.setMonth(fromDate.getMonth() + 1);
                 data.timeStamp = changeFormatForGraph(fromDate);
               }
 
-              data.value = parseInt(results[i]);
+              data.value = parseInt(results[ii]);
               fillterData.push(data);
             }
             break;
@@ -602,15 +619,16 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
 
       searchOptions.Channel = channelIndex;
       searchOptions.Mode = 'Start';
-      var i = 1;
+      var ii = 1;
+      var maxI = 3;
       if (type === graphType[0]) {
-        for (i = 1; i <= 3; i++) {
-          searchOptions["Queue." + i + ".AveragePeople"] = 'True';
+        for (ii = 1; ii <= maxI; ii++) {
+          searchOptions["Queue." + ii + ".AveragePeople"] = 'True';
         }
       } else {
-        for (i = 1; i <= 3; i++) {
-          searchOptions["Queue." + i + ".Level.High.CumulativeTime"] = 'True';
-          searchOptions["Queue." + i + ".Level.Medium.CumulativeTime"] = 'True';
+        for (ii = 1; ii <= maxI; ii++) {
+          searchOptions["Queue." + ii + ".Level.High.CumulativeTime"] = 'True';
+          searchOptions["Queue." + ii + ".Level.Medium.CumulativeTime"] = 'True';
         }
       }
 
@@ -639,10 +657,12 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
       var fromDate = null;
       var searchOptions = {};
 
-      newDate.setDate(newDate.getDate() - 6);
+      var n6 = 6;
+      newDate.setDate(newDate.getDate() - n6);
 
-      if (newDate.getFullYear() < 2000) {
-        newDate.setYear(2000);
+      var minY = 2000;
+      if (newDate.getFullYear() < minY) {
+        newDate.setYear(minY);
         newDate.setMonth(0);
         newDate.setDate(1);
       }
@@ -658,18 +678,20 @@ kindFramework.factory('QmModel', function($q, $translate, $interval, pcSetupServ
     this.getSearchGraphData = function(type, options, checkList) {
       var searchOptions = {
         FromDate: removeTime(getSunapiDateFormat(options.fromDate)),
-        ToDate: getSunapiDateFormat(options.toDate)
+        ToDate: getSunapiDateFormat(options.toDate),
       };
 
       return getSearchData(searchOptions, type, checkList);
     };
 
     this.cancelSearch = function() {
-      if (searchToken === null) {return;}
+      if (searchToken === null) {
+        return;
+      }
 
       recordingCgi.control({
         Mode: 'Cancel',
-        SearchToken: searchToken
+        SearchToken: searchToken,
       }, function(response) {
         console.log("Search is canceled.");
       }, function(errorData) {

@@ -57,8 +57,9 @@ kindFramework.controller('QMSetupCtrl',
     }
 
     $scope.maxValues = [];
-    for (var i = 0; i <= 50; i++) {
-      $scope.maxValues[i] = i;
+    var maxI = 50;
+    for (var ii = 0; ii <= maxI; ii++) {
+      $scope.maxValues[ii] = ii;
     }
 
     function getAttributes() {
@@ -111,7 +112,6 @@ kindFramework.controller('QMSetupCtrl',
         function(data) {
           $scope.queueData = data;
           $scope.queueData.dataLoad = true;
-          // console.info($scope.queueData);
 
           if (data.Enable === true) {
             //Realtime
@@ -155,18 +155,18 @@ kindFramework.controller('QMSetupCtrl',
         $scope.realtimeSection.coordinates = [];
 
         var datas = $scope.queueData.Queues;
-        for (var i = 0; i < datas.length; i++) {
+        for (var ii = 0; ii < datas.length; ii++) {
           var points = [];
-          var data = datas[i].Coordinates;
-          for (var j = 0; j < data.length; j++) {
-            points.push([data[j].x, data[j].y]);
+          var data = datas[ii].Coordinates;
+          for (var jj = 0; jj < data.length; jj++) {
+            points.push([data[jj].x, data[jj].y]);
           }
 
           $scope.realtimeSection.coordinates.push({
-            points: points
+            points: points,
           });
         }
-      }
+      },
     };
 
     $scope.queueListSection = {
@@ -193,34 +193,35 @@ kindFramework.controller('QMSetupCtrl',
         }
       },
       enableStatusAll: function() {
-        for (var i = 0, ii = $scope.queueData.Queues.length; i < ii; i++) {
-          $scope.queueData.Queues[i].Enable = $scope.queueListSection.allEnableStatus;
-          $scope.queueListSection.changeUseState(i);
+        for (var ii = 0, len = $scope.queueData.Queues.length; ii < len; ii++) {
+          $scope.queueData.Queues[ii].Enable = $scope.queueListSection.allEnableStatus;
+          $scope.queueListSection.changeUseState(ii);
         }
       },
       checkAllStatus: function() {
         var isOk = true;
-        for (var i = 0, ii = $scope.queueData.Queues.length; i < ii; i++) {
-          if ($scope.queueData.Queues[i].Enable === false) {
+        for (var ii = 0, len = $scope.queueData.Queues.length; ii < len; ii++) {
+          if ($scope.queueData.Queues[ii].Enable === false) {
             isOk = false;
           }
         }
 
         $scope.queueListSection.allEnableStatus = isOk;
-      }
+      },
     }
 
     function activeShape(modifiedIndex) {
-      try{
+      try {
         sketchbookService.activeShape(modifiedIndex);
         sketchbookService.moveTopLayer(modifiedIndex);
-      }catch(e){
-        console.log(e);
+      } catch (errorData) {
+        console.log(errorData);
       }
     }
 
     function getPercent(val, max) {
-      return (val / max) * 100;
+      var maxPercent = 100;
+      return (val / max) * maxPercent;
     }
 
     function setInt(val) {
@@ -228,9 +229,11 @@ kindFramework.controller('QMSetupCtrl',
     }
 
     function getPeopleData() {
-      var max = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].MaxPeople;
-      var high = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId].QueueLevels[0].Count;
-      var medium = Math.ceil(high / 2);
+      var selectedQueue = $scope.queueData.Queues[$scope.queueListSection.selectedQueueId];
+      var max = selectedQueue.MaxPeople;
+      var high = selectedQueue.QueueLevels[0].Count;
+      var midCalc = 2;
+      var medium = Math.ceil(high / midCalc);
       if (high === 1) {
         medium = 0;
       }
@@ -238,7 +241,7 @@ kindFramework.controller('QMSetupCtrl',
       return {
         max: max,
         high: high,
-        medium: medium
+        medium: medium,
       };
     }
 
@@ -248,10 +251,10 @@ kindFramework.controller('QMSetupCtrl',
       start: function() {
         $scope.queueLevelSection.stop();
         $scope.queueLevelSection.change();
-
+        var time = 1000;
         gaugeTimer = setInterval(function() {
           $scope.queueLevelSection.change();
-        }, 1000);
+        }, time);
       },
       stop: function() {
         if (gaugeTimer !== null) {
@@ -265,32 +268,48 @@ kindFramework.controller('QMSetupCtrl',
           var data = getPeopleData();
 
           var colorList = ["#2beddb", "#0dd8eb", "#57ed06", "#0ec20e", "#ffab33", "#ff5400"];
-
+          var maxPercent = 100;
           $("#qm-bar .qm-bar-mask").css({
-            width: (100 - getPercent(queue, data.max)) + "%"
+            width: (maxPercent - getPercent(queue, data.max)) + "%",
           });
 
           //Bar 2
+          var colorListIndex = {
+            mid: {
+              start: 0,
+              end: 1,
+            },
+            high: {
+              start: 2,
+              end: 3,
+            },
+            max: {
+              start: 4,
+              end: 5,
+            },
+          };
+          
           var startColor = null;
           var endColor = null;
           var elem = $(".qm-bar-wrap.qm-bar-setup");
           elem.find(".over").removeClass("over");
+
           if (queue < data.medium) {
-            startColor = colorList[0];
-            endColor = colorList[1];
+            startColor = colorList[colorListIndex.mid.start];
+            endColor = colorList[colorListIndex.mid.end];
           } else if (queue < data.high) {
-            startColor = colorList[2];
-            endColor = colorList[3];
+            startColor = colorList[colorListIndex.high.start];
+            endColor = colorList[colorListIndex.high.end];
             elem = elem.find(".qm-bar-mid");
           } else {
-            startColor = colorList[4];
-            endColor = colorList[5];
+            startColor = colorList[colorListIndex.max.start];
+            endColor = colorList[colorListIndex.max.end];
             elem = elem.find(".qm-bar-mid, .qm-bar-high");
           }
 
           elem.addClass("over");
           $("#qm-bar .qm-bar").css({
-            background: "linear-gradient(to right, " + startColor + ", " + endColor + ")"
+            background: "linear-gradient(to right, " + startColor + ", " + endColor + ")",
           });
         };
 
@@ -300,12 +319,12 @@ kindFramework.controller('QMSetupCtrl',
 
         qmModel.checkData({
           Channel: channel,
-          QueueIndex: ($scope.queueListSection.selectedQueueId + 1)
+          QueueIndex: ($scope.queueListSection.selectedQueueId + 1),
         }).then(successCallback, failCallback);
       },
       resetBar: function() {
         $("#qm-bar .qm-bar-mask").css({
-          width: "100%"
+          width: "100%",
         });
         $(".qm-bar-wrap.qm-bar-setup").find(".over").removeClass("over");
       },
@@ -328,8 +347,8 @@ kindFramework.controller('QMSetupCtrl',
         var data = getPeopleData();
 
         var arr = {};
-        for (var i = 0; i < data.max; i++) {
-          arr[i] = i;
+        for (var ii = 0; ii < data.max; ii++) {
+          arr[ii] = ii;
         }
         if (data.max === 0) {
           arr[0] = 0;
@@ -347,8 +366,9 @@ kindFramework.controller('QMSetupCtrl',
 
         val = setInt(val);
         if (type === 'max') {
-          if (val > 50) {
-            val = 50;
+          var maxVal = 50;
+          if (val > maxVal) {
+            val = maxVal;
           }
 
           $scope.queueData.Queues[id].MaxPeople = val;
@@ -375,7 +395,7 @@ kindFramework.controller('QMSetupCtrl',
         $scope.queueLevelSection.resetBar();
         $scope.queueLevelSection.bindHtml();
         $scope.queueLevelSection.setPosition();
-      }
+      },
     };
 
     $scope.queueEventSection = {
@@ -387,8 +407,8 @@ kindFramework.controller('QMSetupCtrl',
           vertical: false,
           showInputBox: true,
           disabled: false,
-          onEnd: function() {}
-        }
+          onEnd: function() {},
+        },
       },
       medium: {
         sliderProperty: {
@@ -398,9 +418,9 @@ kindFramework.controller('QMSetupCtrl',
           vertical: false,
           showInputBox: true,
           disabled: false,
-          onEnd: function() {}
-        }
-      }
+          onEnd: function() {},
+        },
+      },
     };
 
     // $scope.calibrationSection = {
@@ -447,7 +467,7 @@ kindFramework.controller('QMSetupCtrl',
     $scope.reportSection = {
       init: function() {
         $scope.pcSetupReport.getReport();
-      }
+      },
     };
 
     $scope.eventSection = {
@@ -460,7 +480,7 @@ kindFramework.controller('QMSetupCtrl',
             var data = {
               FtpEnable: false,
               SmtpEnable: false,
-              RecordEnable: false
+              RecordEnable: false,
             };
             var actions = response.EventAction;
             if (actions !== 'undefined') {
@@ -486,9 +506,9 @@ kindFramework.controller('QMSetupCtrl',
               for (ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
                 data.AlarmOutputs[ao] = {};
                 var duration = 'Off';
-                for (var j = 0; j < response.AlarmOutputs.length; j++) {
-                  if ((ao + 1) === response.AlarmOutputs[j].AlarmOutput) {
-                    duration = response.AlarmOutputs[j].Duration;
+                for (var jj = 0; jj < response.AlarmOutputs.length; jj++) {
+                  if ((ao + 1) === response.AlarmOutputs[jj].AlarmOutput) {
+                    duration = response.AlarmOutputs[jj].Duration;
                     break;
                   }
                 }
@@ -517,9 +537,10 @@ kindFramework.controller('QMSetupCtrl',
           setData.EventAction += 'Record,';
         }
         for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
-          if ($scope.eventSection.data.AlarmOutputs[ao].Duration !== 'Off') {
+          var duration = $scope.eventSection.data.AlarmOutputs[ao].Duration;
+          if (duration !== 'Off') {
             setData.EventAction += 'AlarmOutput.' + (ao + 1) + ',';
-            setData["AlarmOutput." + (ao + 1) + ".Duration"] = $scope.eventSection.data.AlarmOutputs[ao].Duration;
+            setData["AlarmOutput." + (ao + 1) + ".Duration"] = duration;
           }
         }
         if (setData.EventAction.length) {
@@ -533,16 +554,16 @@ kindFramework.controller('QMSetupCtrl',
             console.error(failData);
           }
         );
-      }
+      },
     };
 
     $scope.currentTapStatus = [true, false];
     $scope.changeTabStatus = function(value) {
-      for (var i = 0, len = $scope.currentTapStatus.length; i < len; i++) {
-        if (i === value) {
-          $scope.currentTapStatus[i] = true;
+      for (var ii = 0, len = $scope.currentTapStatus.length; ii < len; ii++) {
+        if (ii === value) {
+          $scope.currentTapStatus[ii] = true;
         } else {
-          $scope.currentTapStatus[i] = false;
+          $scope.currentTapStatus[ii] = false;
         }
       }
 
@@ -620,34 +641,37 @@ kindFramework.controller('QMSetupCtrl',
     // 	calibrationData[1] = [ pointsFromSketchbook[secondIndex][0], pointsFromSketchbook[firstIndex][1] ];
     // }
 
-    $scope.areaColor = [{
-        color: "#238bc1"
+    $scope.areaColor = [
+      {
+        color: "#238bc1",
       },
       {
-        color: "#ff6633"
+        color: "#ff6633",
       },
       {
-        color: "#32ac3a"
-      }
+        color: "#32ac3a",
+      },
     ];
 
     function getSketchinfo(flag) {
-      if (!$scope.queueData.Enable) {return null;}
+      if (!$scope.queueData.Enable) {
+        return null;
+      }
       var sketchinfo = {
         shape: 1,
-        modalId: "./views/setup/common/confirmMessage.html"
+        modalId: "./views/setup/common/confirmMessage.html",
       };
       $scope.coordinates = [];
 
       //Configuration
       if (flag === "area") {
         var data = $scope.realtimeSection.coordinates;
-        for (var i = 0; i < data.length; i++) {
+        for (var ii = 0; ii < data.length; ii++) {
           $scope.coordinates.push({
             isSet: true,
-            enable: $scope.queueData.Queues[i].Enable,
-            points: data[i].points,
-            areaColor: $scope.areaColor[i].color
+            enable: $scope.queueData.Queues[ii].Enable,
+            points: data[ii].points,
+            areaColor: $scope.areaColor[ii].color,
           });
         }
 
@@ -722,7 +746,8 @@ kindFramework.controller('QMSetupCtrl',
     $rootScope.$saveOn('<app/scripts/directives>::<updateCoordinates>', function(obj, args) {
       var modifiedIndex = args[0];
       // var modifiedType = args[1]; //생성: create, 삭제: delete
-      var modifiedPoints = args[2];
+      var pointIndex = 2;
+      var modifiedPoints = args[pointIndex];
       // var modifiedDirection = args[3];
 
       // console.info("updateCoordinates", modifiedIndex, modifiedType, modifiedPoints, modifiedDirection);
@@ -787,28 +812,28 @@ kindFramework.controller('QMSetupCtrl',
       // 	].join();
       // }catch(e){}
 
-      for (var i = 1; i <= data.Queues.length; i++) {
-        var j = i - 1;
-        var queue = data.Queues[j];
-        setData['Queue.' + i + '.Enable'] = queue.Enable;
-        setData['Queue.' + i + '.MaxPeople'] = queue.MaxPeople;
-        setData['Queue.' + i + '.Name'] = queue.Name;
-        setData['Queue.' + i + '.Level.High.AlarmEnable'] = queue.QueueLevels[0].AlarmEnable;
-        setData['Queue.' + i + '.Level.High.Count'] = queue.QueueLevels[0].Count;
-        setData['Queue.' + i + '.Level.High.Threshold'] = queue.QueueLevels[0].Threshold;
-        setData['Queue.' + i + '.Level.Medium.AlarmEnable'] = queue.QueueLevels[1].AlarmEnable;
-        setData['Queue.' + i + '.Level.Medium.Threshold'] = queue.QueueLevels[1].Threshold;
+      for (var ii = 1; ii <= data.Queues.length; ii++) {
+        var jj = ii - 1;
+        var queue = data.Queues[jj];
+        setData['Queue.' + ii + '.Enable'] = queue.Enable;
+        setData['Queue.' + ii + '.MaxPeople'] = queue.MaxPeople;
+        setData['Queue.' + ii + '.Name'] = queue.Name;
+        setData['Queue.' + ii + '.Level.High.AlarmEnable'] = queue.QueueLevels[0].AlarmEnable;
+        setData['Queue.' + ii + '.Level.High.Count'] = queue.QueueLevels[0].Count;
+        setData['Queue.' + ii + '.Level.High.Threshold'] = queue.QueueLevels[0].Threshold;
+        setData['Queue.' + ii + '.Level.Medium.AlarmEnable'] = queue.QueueLevels[1].AlarmEnable;
+        setData['Queue.' + ii + '.Level.Medium.Threshold'] = queue.QueueLevels[1].Threshold;
         try {
-          setData['Queue.' + i + '.Coordinates'] = $scope.realtimeSection.coordinates[j].points.join();
-        } catch (e) {
-          console.log(e);
+          var points = $scope.realtimeSection.coordinates[jj].points;
+          setData['Queue.' + ii + '.Coordinates'] = points.join();
+        } catch (errorData) {
+          console.log(errorData);
         }
       }
 
       return qmModel.setData(
         setData,
         function(responseData) {
-          console.info(responseData);
         },
         function(errorData) {
           console.error(errorData);
@@ -838,11 +863,11 @@ kindFramework.controller('QMSetupCtrl',
     }
 
     $scope.submitEnable = function() {
-      COMMONUtils.ApplyConfirmation(
+      COMMONUtils.ApplyConfirmation (
         function() {
           qmModel.
             setData({
-              Enable: $scope.queueData.Enable
+              Enable: $scope.queueData.Enable,
             }).
             then(
               function(successData) {
@@ -864,12 +889,17 @@ kindFramework.controller('QMSetupCtrl',
       var data = $scope.queueData.Queues;
       var isOk = true;
       var alertMessage = '';
+      var dataIndex = {
+        first: 0,
+        second: 1,
+        third: 2,
+      };
 
       if (data.length !== 0) {
         if (
-          (data[0].Name === '' && data[0].Enable === true) ||
-          (data[1].Name === '' && data[1].Enable === true) ||
-          (data[2].Name === '' && data[2].Enable === true)
+          (data[dataIndex.first].Name === '' && data[dataIndex.first].Enable === true) ||
+          (data[dataIndex.second].Name === '' && data[dataIndex.second].Enable === true) ||
+          (data[dataIndex.third].Name === '' && data[dataIndex.third].Enable === true)
         ) {
           isOk = false;
           alertMessage = $translate.instant('lang_msg_noname');
@@ -896,39 +926,43 @@ kindFramework.controller('QMSetupCtrl',
 
     function showVideo() {
       var getData = {};
-      return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
-        var viewerWidth = 640;
-        var viewerHeight = 360;
-        var maxWidth = mAttr.MaxROICoordinateX;
-        var maxHeight = mAttr.MaxROICoordinateY;
-        var rotate = response.data.Flip[0].Rotate;
-        var flip = response.data.Flip[0].VerticalFlipEnable;
-        var mirror = response.data.Flip[0].HorizontalFlipEnable;
-        var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
-        $scope.videoinfo = {
-          width: viewerWidth,
-          height: viewerHeight,
-          maxWidth: maxWidth,
-          maxHeight: maxHeight,
-          flip: flip,
-          mirror: mirror,
-          support_ptz: false,
-          rotate: rotate,
-          adjust: adjust,
-          currentPage: 'Queue'
-        };
-      }, function(errorData) {
-        console.error(errorData);
-      }, '', true);
+      return SunapiClient.get(
+        '/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, 
+        function(response) {
+          var viewerWidth = 640;
+          var viewerHeight = 360;
+          var maxWidth = mAttr.MaxROICoordinateX;
+          var maxHeight = mAttr.MaxROICoordinateY;
+          var rotate = response.data.Flip[0].Rotate;
+          var flip = response.data.Flip[0].VerticalFlipEnable;
+          var mirror = response.data.Flip[0].HorizontalFlipEnable;
+          var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
+          $scope.videoinfo = {
+            width: viewerWidth,
+            height: viewerHeight,
+            maxWidth: maxWidth,
+            maxHeight: maxHeight,
+            flip: flip,
+            mirror: mirror,
+            support_ptz: false,
+            rotate: rotate,
+            adjust: adjust,
+            currentPage: 'Queue',
+          };
+        }, function(errorData) {
+          console.error(errorData);
+        }, '', true
+      );
     }
 
     (function wait() {
       $timeout(function() {
         if (!mAttr.Ready) {
+          var time = 500;
           $timeout(function() {
             mAttr = Attributes.get();
             wait();
-          }, 500);
+          }, time);
         } else {
           getAttributes().finally(function() {
             view();
