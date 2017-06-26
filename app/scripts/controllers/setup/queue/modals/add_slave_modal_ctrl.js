@@ -10,6 +10,7 @@ kindFramework.controller('addSlaveModalCtrl', function($scope, $uibModalInstance
   ];
   $scope.ipType = $scope.ipTypeEnum[0];
   $scope.port = '';
+  var DEFAULT_PORT = 80;
 
   $scope.ok = function() {
     var arr = [
@@ -56,7 +57,7 @@ kindFramework.controller('addSlaveModalCtrl', function($scope, $uibModalInstance
       id: $scope.id,
       pw: $scope.pw,
       ipType: $scope.ipType,
-      port: $scope.port === '' ? 80 : $scope.port
+      port: $scope.port === '' ? DEFAULT_PORT : $scope.port
     });
   };
 
