@@ -2294,17 +2294,23 @@ body.modal-open {
   position: absolute;
 }
 #ptrz-control #ptrz-control_left-control-box {
-  width: 200px;
+  width: 205px;
   margin: 10px auto;
 }
 #ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline {
-  width: 200px;
-  height: 200px;
-  border: 2px dashed #d2d2d2;
+  width: 205px;
+  height: 205px;
+  border: 2px dashed transparent;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   position: relative;
+}
+#ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline #ptrz-control_box_gradations {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: url("/base/images/ptrz_gradations.svg");
 }
 #ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline #ptz-control_box_circle_slider {
   position: absolute;
