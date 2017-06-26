@@ -21,13 +21,13 @@ kindFramework.controller('imgPresetScheduleCtrl', function($scope, $uibModalInst
   $scope.getTranslation = COMMONUtils.getTranslatedOption;
 
   $scope.HourOptions = [];
-  for (var h = 0; h < mAttr.MaxHours; h++) {
-    $scope.HourOptions.push(h);
+  for (var hh = 0; hh < mAttr.MaxHours; hh++) {
+    $scope.HourOptions.push(hh);
   }
 
   $scope.MinuteOptions = [];
-  for (var m = 0; m < mAttr.MaxMinutes; m++) {
-    $scope.MinuteOptions.push(m);
+  for (var mm = 0; mm < mAttr.MaxMinutes; mm++) {
+    $scope.MinuteOptions.push(mm);
   }
 
   if (typeof mAttr.ImagePresetSchedModeOptions !== "undefined") {
@@ -50,8 +50,11 @@ kindFramework.controller('imgPresetScheduleCtrl', function($scope, $uibModalInst
         continue;
       }
 
-      var baseStartTime = new Date(2000, 1, 1, schedule.SelectedFromHour, schedule.SelectedFromMinute, 0).valueOf();
-      var baseEndTime = new Date(2000, 1, 1, schedule.SelectedToHour, schedule.SelectedToMinute, 0).valueOf();
+      var year = 2000;
+      var baseStartTime = 
+        new Date(year, 1, 1, schedule.SelectedFromHour, schedule.SelectedFromMinute, 0).valueOf();
+      var baseEndTime = 
+        new Date(year, 1, 1, schedule.SelectedToHour, schedule.SelectedToMinute, 0).valueOf();
 
       //if (baseStartTime >= baseEndTime) {
       if (baseStartTime > baseEndTime) {
@@ -61,19 +64,27 @@ kindFramework.controller('imgPresetScheduleCtrl', function($scope, $uibModalInst
 
       for (j = i + 1; j < $scope.ImagePreset.Schedules.length; j++) {
         temp = $scope.ImagePreset.Schedules[j];
-        var compareStartTime = new Date(2000, 1, 1, temp.SelectedFromHour, temp.SelectedFromMinute, 0).valueOf();
-        var compareEndTime = new Date(2000, 1, 1, temp.SelectedToHour, temp.SelectedToMinute, 0).valueOf();
+        var compareStartTime = 
+          new Date(year, 1, 1, temp.SelectedFromHour, temp.SelectedFromMinute, 0).valueOf();
+        var compareEndTime = 
+          new Date(year, 1, 1, temp.SelectedToHour, temp.SelectedToMinute, 0).valueOf();
 
         /** If there is not schedule skip it */
         if (temp.Mode === 'Off') {
           continue;
         }
-        if ((baseStartTime <= compareStartTime && compareStartTime <= baseEndTime) || (baseStartTime <= compareEndTime && compareEndTime <= baseEndTime)) {
+        if (
+          (baseStartTime <= compareStartTime && compareStartTime <= baseEndTime) || 
+          (baseStartTime <= compareEndTime && compareEndTime <= baseEndTime)
+        ) {
           COMMONUtils.ShowError('lang_msg_preset_duplicate');
           return false;
         }
 
-        if ((compareStartTime <= baseStartTime && baseStartTime <= compareEndTime) || (compareStartTime <= baseEndTime && baseEndTime <= compareEndTime)) {
+        if (
+          (compareStartTime <= baseStartTime && baseStartTime <= compareEndTime) || 
+          (compareStartTime <= baseEndTime && baseEndTime <= compareEndTime)
+        ) {
           COMMONUtils.ShowError('lang_msg_preset_duplicate');
           return false;
         }
@@ -85,15 +96,16 @@ kindFramework.controller('imgPresetScheduleCtrl', function($scope, $uibModalInst
   function updatePresetSchedule() {
     var i = 0,
       temp = null;
+    var format = 2;
     for (i = 0; i < $scope.ImagePreset.Schedules.length; i++) {
       schedule = $scope.ImagePreset.Schedules[i];
 
       if (schedule.Mode !== 'Off') {
         temp = '';
 
-        temp = COMMONUtils.getFormatedInteger(schedule.SelectedFromHour, 2) + ':' + COMMONUtils.getFormatedInteger(schedule.SelectedFromMinute, 2);
+        temp = COMMONUtils.getFormatedInteger(schedule.SelectedFromHour, format) + ':' + COMMONUtils.getFormatedInteger(schedule.SelectedFromMinute, format);
         temp += '-';
-        temp += COMMONUtils.getFormatedInteger(schedule.SelectedToHour, 2) + ':' + COMMONUtils.getFormatedInteger(schedule.SelectedToMinute, 2);
+        temp += COMMONUtils.getFormatedInteger(schedule.SelectedToHour, format) + ':' + COMMONUtils.getFormatedInteger(schedule.SelectedToMinute, format);
         schedule.EveryDay.FromTo = temp;
       }
     }
