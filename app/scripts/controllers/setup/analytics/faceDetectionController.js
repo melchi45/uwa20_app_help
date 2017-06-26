@@ -608,13 +608,11 @@ kindFramework.controller(
       if (validatePage()) {
         COMMONUtils.ApplyConfirmation(
           setChangedData,
-          function() {
-            if (isEnable === true) {
-              $scope.FD.Enable = pageData.FD.Enable;
-            }
-          },
+          'sm',
           function(){
-            $scope.FD.Enable = !$scope.FD.Enable;
+            if(isEnable === true){
+              $scope.FD.Enable = !$scope.FD.Enable; 
+            }
           }
         );
       }
