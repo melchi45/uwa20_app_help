@@ -167,7 +167,7 @@
                             </input>
                         </div>
                         <div ng-show="VideoProfilePolicies[ch].EventProfile != undefined && VideoProfiles[ch].Profiles[selectedProfile].EncodingType == 'MJPEG'">
-                            <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].EventProfile" ng-checked="VideoProfilePolicies[ch].EventProfile == VideoProfiles[ch].Profiles[selectedProfile].Profile" ng-change="setProfileType('Event', VideoProfiles[ch].Profiles[selectedProfile].Profile)">
+                            <input type="checkbox" ng-model="VideoProfiles[ch].Profiles[selectedProfile].EventProfile" ng-change="setProfileType('Event', VideoProfiles[ch].Profiles[selectedProfile].Profile)">
                             <label>  {{ 'lang_emailFtpProfile' | translate }}</label>
                             </input>
                         </div>

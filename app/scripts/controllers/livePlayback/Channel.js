@@ -333,11 +333,37 @@ kindFramework.
         setData.LensModel = $scope.CameraLensModel;
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set', setData,
           function(response) {
-            // pageData.CameraLensModel = $scope.CameraLensModel;
-            COMMONUtils.onLogout();
+            restart();
           },
           function(errorData) {
             console.log(errorData);
+            restart();
+          }, '', true);
+      }
+
+      function reboot(msg) {
+        COMMONUtils.ShowConfirmation(
+          setCameraLensModel, 
+          msg,
+          'md',
+        function() {
+        });
+      };
+
+      function restart() {
+        var getData = {};
+        getData.Type = 'Restart';
+
+        SunapiClient.get('/stw-cgi/system.cgi?msubmenu=power&action=control', getData,
+          function(response) {
+            window.open('', '_self');
+            window.close();
+            COMMONUtils.onLogout();
+          },
+          function(errorData) {
+            window.open('', '_self');
+            window.close();
+            COMMONUtils.onLogout();
           }, '', true);
       }
 
@@ -1104,14 +1130,7 @@ kindFramework.
 
       $scope.changeCameraLensModel = function() {
         var message = '렌즈가 변경되면 카메라가 재부팅됩니다. 변경하시겠습니까?';
-        COMMONUtils.ApplyConfirmation(
-          setCameraLensModel,
-          'md',
-          function(){
-            $scope.CameraLensModel = pageData.CameraLensModel;
-          },
-          message
-        );
+        reboot(message);
       };
 
       /* Channel Selector Direction */
