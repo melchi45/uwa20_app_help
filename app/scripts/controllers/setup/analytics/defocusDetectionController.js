@@ -29,16 +29,22 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
   function setSizeChart() {
     var chart = "#defocus-line-chart";
     var width = $(chart).parent().width();
-    if (width > 480) {
-      width = 480;
+    var maxWidth = 480;
+    if (width > maxWidth) {
+      width = maxWidth;
     }
 
-    width -= 80;
+    var widthCalc = {
+      option: 80,
+      border: 27,
+      slider: 140,
+    };
+    width -= widthCalc.option;
     $scope.DefocusChartOptions.width = width;
 
     $(chart + " .graph").css("width", width + "px");
-    $(chart + " .graph-border").css("width", (width - 27) + "px");
-    $(chart + ".level-threshold-slider").css("width", (width + 140) + "px");
+    $(chart + " .graph-border").css("width", (width - widthCalc.border) + "px");
+    $(chart + ".level-threshold-slider").css("width", (width + widthCalc.slider) + "px");
 
     $scope.$broadcast('reCalcViewDimensions');
   }
@@ -139,8 +145,10 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
     }
 
     if (typeof mAttr.DefocusDetectSensitivityLevelRange !== "undefined") {
-      $scope.DefocusDetectSensitivitySliderProperty.floor = mAttr.DefocusDetectSensitivityLevelRange.minValue;
-      $scope.DefocusDetectSensitivitySliderProperty.ceil = mAttr.DefocusDetectSensitivityLevelRange.maxValue;
+      $scope.DefocusDetectSensitivitySliderProperty.floor = 
+        mAttr.DefocusDetectSensitivityLevelRange.minValue;
+      $scope.DefocusDetectSensitivitySliderProperty.ceil = 
+        mAttr.DefocusDetectSensitivityLevelRange.maxValue;
     }
 
     defer.resolve("success");
@@ -161,11 +169,23 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
         $scope.DefocusDetect = response.data.DefocusDetection[0];
         $scope.DefocusChartOptions.ThresholdLevel = $scope.DefocusDetect.ThresholdLevel;
 
-        if (between($scope.DefocusDetect.Duration, $scope.DefocusDetectDurationSliderProperty.floor, $scope.DefocusDetectDurationSliderProperty.ceil)) {
+        if (
+          between(
+            $scope.DefocusDetect.Duration, 
+            $scope.DefocusDetectDurationSliderProperty.floor, 
+            $scope.DefocusDetectDurationSliderProperty.ceil
+          )
+        ) {
           $scope.DefocusDetectDurationSliderModel.data = $scope.DefocusDetect.Duration;
         }
 
-        if (between($scope.DefocusDetect.Sensitivity, $scope.DefocusDetectSensitivitySliderProperty.floor, $scope.DefocusDetectSensitivitySliderProperty.ceil)) {
+        if (
+          between(
+            $scope.DefocusDetect.Sensitivity, 
+            $scope.DefocusDetectSensitivitySliderProperty.floor, 
+            $scope.DefocusDetectSensitivitySliderProperty.ceil
+          )
+        ) {
           $scope.DefocusDetectSensitivitySliderModel.data = $scope.DefocusDetect.Sensitivity;
         }
 
@@ -368,7 +388,9 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
     if (monitoringTimer === null) {
       (function update() {
         getDefocusLevel(function(data) {
-          if (destroyInterrupt) {return;}
+          if (destroyInterrupt) {
+            return;
+          }
           var newDefocusLevel = angular.copy(data);
 
           if (!mStopMonotoringDefocusLevel) {
@@ -378,14 +400,17 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
               while (index--) {
                 var level = validateLevel(newDefocusLevel[index]);
 
-                if (level === null) {continue;}
+                if (level === null) {
+                  continue;
+                }
 
                 if ($scope.DefocusChartOptions.EnqueueData) {
                   $scope.DefocusChartOptions.EnqueueData(level);
                 }
               }
             }
-            monitoringTimer = $timeout(update, 500); //300 msec
+            var time = 500;
+            monitoringTimer = $timeout(update, time);
           }
         });
       })();
@@ -450,7 +475,10 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
   $rootScope.$saveOn('channelSelector:selectChannel', function(event, index) {
     stopMonitoringDefocusLevel();
 
-    if (!angular.equals(pageData.DefocusDetect, $scope.DefocusDetect) || !eventRuleService.checkEventRuleValidation()) {
+    if (
+      !angular.equals(pageData.DefocusDetect, $scope.DefocusDetect) || 
+      !eventRuleService.checkEventRuleValidation()
+    ) {
       if (validatePage()) {
         COMMONUtils.
           confirmChangeingChannel().
@@ -513,10 +541,11 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
 
   (function wait() {
     if (!mAttr.Ready) {
+      var time = 500;
       $timeout(function() {
         mAttr = Attributes.get();
         wait();
-      }, 500);
+      }, time);
     } else {
       getAttributes().finally(function() {
         view();
