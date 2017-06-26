@@ -9,6 +9,7 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
         },
         templateUrl: './views/setup/common/liveSlider.html',
         link: function(scope, elem, attrs) {
+          console.log(elem);
           var mAttr = Attributes.get();
           var slider = elem.find(".cm-slider div");
           var checkLoad = false;
@@ -55,7 +56,9 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
                */
               var tmpValue = isVal.toFixed(3);
               isVal = parseFloat(tmpValue.substr(0, (tmpValue.indexOf('.') + 2)));
+
             }
+
 
             if (isVal < scope.liveSliderProperty.floor) {
               return Number(scope.liveSliderProperty.floor);
@@ -73,6 +76,7 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
             if (applySkip) {
               scope.liveSliderModel[scope.modelName] = _value;
             } else {
+              scope.liveSliderModel[scope.modelName] = _value;
               scope.$apply(function() {
                 scope.liveSliderModel[scope.modelName] = _value;
               });
@@ -125,12 +129,13 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
             inputOnChange = true;
 
             if (scope.liveSliderModel[scope.modelName] === SliderValue) {
-              updateSliderUI(SliderValue);
-              revokeUpdateCallback(SliderValue);
-              revokeOnEnd();
-            } else {
-              updateSliderModel(SliderValue, true);
-            }
+                updateSliderUI(scope.liveSliderModel[scope.modelName]);
+                revokeUpdateCallback(scope.liveSliderModel[scope.modelName]);
+                revokeOnEnd();
+              } else {
+                updateSliderModel(scope.liveSliderModel[scope.modelName], true);
+              }
+            
           };
 
           function init() {
@@ -233,6 +238,8 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
           }, true);
 
           scope.$watch('liveSliderModel', function(newVal, oldVal) {
+
+
             if (!checkLoad) {
               if (scope.liveSliderModel) {
                 scope.modelName = attrs.liveSliderModelName ? attrs.liveSliderModelName : "data";
@@ -243,6 +250,7 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
                 }
               }
             }
+
 
             if (checkLoad && newVal !== oldVal) {
               if (newVal[scope.modelName]) {

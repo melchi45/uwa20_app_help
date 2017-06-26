@@ -33,7 +33,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
 
   var chartColor = {
     default: '#ddd',
-    selected: '#399'
+    selected: '#399',
   };
   var graphTypes = ["average", "cumulative"];
   var graphDateTypes = ["today", "weekly", "search"];
@@ -59,7 +59,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
     },
     getDateObj: function() {
       return new Date(cameraLocalTime.data);
-    }
+    },
   };
 
   function getAttributes() {
@@ -73,15 +73,16 @@ kindFramework.controller('QMStatisticsCtrl', function(
     return pcSetupService.setMaxResolution(mAttr.EventSourceOptions);
   }
 
-  $scope.areaColor = [{
-      color: "#238bc1"
+  $scope.areaColor = [
+    {
+      color: "#238bc1",
     },
     {
-      color: "#ff6633"
+      color: "#ff6633",
     },
     {
-      color: "#32ac3a"
-    }
+      color: "#32ac3a",
+    },
   ];
   $scope.previewSection = {
     coordinates: [],
@@ -96,36 +97,54 @@ kindFramework.controller('QMStatisticsCtrl', function(
         maxNumber: 3,
         useEvent: false,
         workType: 'qmArea',
-        modalId: "./views/setup/common/confirmMessage.html"
+        modalId: "./views/setup/common/confirmMessage.html",
       };
 
       //coordinates
       var datas = $scope.queueData.Queues;
-      for (var i = 0; i < datas.length; i++) {
+      for (var ii = 0; ii < datas.length; ii++) {
         var points = [];
-        var data = datas[i].Coordinates;
-        for (var j = 0; j < data.length; j++) {
-          points.push([data[j].x, data[j].y]);
+        var data = datas[ii].Coordinates;
+        for (var jj = 0; jj < data.length; jj++) {
+          points.push([data[jj].x, data[jj].y]);
         }
 
         $scope.coordinates.push({
           isSet: true,
-          enable: datas[i].Enable,
+          enable: datas[ii].Enable,
           points: points,
-          textInCircle: (i + 1) + '',
-          areaColor: $scope.areaColor[i].color
+          textInCircle: (ii + 1) + '',
+          areaColor: $scope.areaColor[ii].color,
         });
       }
-    }
+    },
   };
 
   function changeFormatForGraph(_timeForamtForGraph, dateFormat) {
     var timeForamtForGraph = _timeForamtForGraph;
     timeForamtForGraph += ""; //Change Type
-    var year = timeForamtForGraph.substr(0, 4);
-    var month = timeForamtForGraph.substr(4, 2);
-    var date = timeForamtForGraph.substr(6, 2);
-    var hours = timeForamtForGraph.substr(8, 2);
+    var stringCut = {
+      year: {
+        start: 0,
+        count: 4,
+      },
+      month: {
+        start: 4,
+        count: 2,
+      },
+      date: {
+        start: 6,
+        count: 2,
+      },
+      hours: {
+        start: 8,
+        count: 2,
+      },
+    };
+    var year = timeForamtForGraph.substr(stringCut.year.start, stringCut.year.count);
+    var month = timeForamtForGraph.substr(stringCut.month.start, stringCut.month.count);
+    var date = timeForamtForGraph.substr(stringCut.date.start, stringCut.date.count);
+    var hours = timeForamtForGraph.substr(stringCut.hours.start, stringCut.hours.count);
 
     var returnVal = null;
 
@@ -146,54 +165,67 @@ kindFramework.controller('QMStatisticsCtrl', function(
   }
 
   function changeYAxisFormat(data) {
-    function isFloat(x) {
-      return typeof(x, 'Number') && !!(x % 1);
+    function isFloat(xx) {
+      return typeof(xx, 'Number') && !!(xx % 1);
     }
 
     /* tickFormat이 비정상일 때 null 처리 */
-    if (isFloat(data) || data < 0) {return null;}
+    if (isFloat(data) || data < 0) {
+      return null;
+    }
+    var digitCheck = {
+      single: 10,
+      double: 100,
+    };
+    var format = {
+      lessThan100: 2,
+      moreThan100: 3,
+    };
 
-    var num = data < 10 ? 1 : data < 100 ? 2 : 3;
+    var num = 1;
+    if ( !(data < digitCheck.single) ) {
+      num = data < digitCheck.double ? format.lessThan100 : format.moreThan100;
+    }
     return d3.format('.' + num + 's')(data);
   }
 
   $scope.graphSection = {
     chartConfig: {
-      deepWatchData: false
+      deepWatchData: false,
     },
     average: {
       today: {
         options: {},
         data: [],
-        xAxisData: []
+        xAxisData: [],
       },
       weekly: {
         options: {},
         data: [],
-        xAxisData: []
+        xAxisData: [],
       },
       search: {
         options: {},
         data: [],
-        xAxisData: []
-      }
+        xAxisData: [],
+      },
     },
     cumulative: {
       today: {
         options: {},
         data: [],
-        xAxisData: []
+        xAxisData: [],
       },
       weekly: {
         options: {},
         data: [],
-        xAxisData: []
+        xAxisData: [],
       },
       search: {
         options: {},
         data: [],
-        xAxisData: []
-      }
+        xAxisData: [],
+      },
     },
     setData: function(data, dateType, type) {
       $scope.graphSection[type][dateType].data = data;
@@ -201,17 +233,17 @@ kindFramework.controller('QMStatisticsCtrl', function(
         if (type === graphTypes[0]) {
           if (typeof $scope.graphSection[type][dateType].options.chart.legend !== "undefined") {
             $scope.graphSection[type][dateType].options.chart.legend.dispatch.legendClick({
-              seriesIndex: 0
+              seriesIndex: 0,
             });
           }
         }
       });
     },
     update: function() {
-      for (var t = 0; t < graphTypes.length; t++) {
-        var type = graphTypes[t];
-        for (var d = 0; d < graphDateTypes.length; d++) {
-          var dateType = graphDateTypes[d];
+      for (var tt = 0; tt < graphTypes.length; tt++) {
+        var type = graphTypes[tt];
+        for (var dd = 0; dd < graphDateTypes.length; dd++) {
+          var dateType = graphDateTypes[dd];
           var api = $scope.graphSection[type][dateType].options.chart.api;
           if (api !== null) {
             $scope.graphSection[type][dateType].options.chart.api.update();
@@ -234,9 +266,9 @@ kindFramework.controller('QMStatisticsCtrl', function(
         this.parentNode.appendChild(this);
       });
 
-      for (var i = 0, len = chartData.length; i < len; i++) {
-        var color = i === seriesIndex ? chartColor.selected : chartColor.default;
-        chartData[i].color = color;
+      for (var ii = 0, len = chartData.length; ii < len; ii++) {
+        var color = ii === seriesIndex ? chartColor.selected : chartColor.default;
+        chartData[ii].color = color;
       }
     },
     resizeHandle: function() {
@@ -303,25 +335,25 @@ kindFramework.controller('QMStatisticsCtrl', function(
           height: 300,
           margin: {
             bottom: 20,
-            left: 40
+            left: 40,
           },
-          x: function(d) {
-            return d[0];
+          x: function(dd) {
+            return dd[0];
           },
           clipEdge: true,
           api: null,
           useInteractiveGuideline: true,
           xAxis: {
             showMaxMin: true,
-            tickFormat: null
+            tickFormat: null,
           },
           yAxis: {
             showMaxMin: true,
-            tickFormat: changeYAxisFormat
+            tickFormat: changeYAxisFormat,
           },
           showLegend: true,
-          yDomain: [0, 1]
-        }
+          yDomain: [0, 1],
+        },
       };
 
       var eachChartOptions = {
@@ -332,20 +364,20 @@ kindFramework.controller('QMStatisticsCtrl', function(
           dispatch: {
             renderEnd: function() {
               console.log("renderEnd");
-            }
+            },
           },
-          legend: {}
+          legend: {},
         },
         cumulative: {
           type: 'multiBarChart',
           duration: 500,
           stacked: false,
-          showControls: false
-        }
+          showControls: false,
+        },
       };
 
-      graphTypes.forEach(function(type, t) {
-        graphDateTypes.forEach(function(dateType, d) {
+      graphTypes.forEach(function(type, tt) {
+        graphDateTypes.forEach(function(dateType, dd) {
           gs[type][dateType].options = angular.copy(commonOptions);
           //tickFormat
           gs[type][dateType].options.chart.xAxis.tickFormat = function(index) {
@@ -353,16 +385,16 @@ kindFramework.controller('QMStatisticsCtrl', function(
             var resultInterval = gs[type][dateType].data[0].resultInterval;
             return changeFormatForGraph(data, resultInterval);
           };
-          gs[type][dateType].options.chart.y = function(d) {
-            if (gs[type][dateType].options.chart.yDomain[1] < d[1]) {
-              gs[type][dateType].options.chart.yDomain[1] = d[1];
+          gs[type][dateType].options.chart.y = function(data) {
+            if (gs[type][dateType].options.chart.yDomain[1] < data[1]) {
+              gs[type][dateType].options.chart.yDomain[1] = data[1];
             }
-            return d[1];
+            return data[1];
           };
-          for (var k in eachChartOptions[type]) {
-            gs[type][dateType].options.chart[k] = eachChartOptions[type][k];
-            if (type === graphTypes[0] && k === "legend") {
-              gs[type][dateType].options.chart[k] = {
+          for (var kk in eachChartOptions[type]) {
+            gs[type][dateType].options.chart[kk] = eachChartOptions[type][kk];
+            if (type === graphTypes[0] && kk === "legend") {
+              gs[type][dateType].options.chart[kk] = {
                 dispatch: {
                   legendClick: function(item) {
                     gs.selectChartItem(
@@ -370,8 +402,8 @@ kindFramework.controller('QMStatisticsCtrl', function(
                       gs.average[dateType].data,
                       item
                     );
-                  }
-                }
+                  },
+                },
               };
             }
           }
@@ -392,14 +424,14 @@ kindFramework.controller('QMStatisticsCtrl', function(
         var allChartData = [];
         var tableData = {
           rules: [],
-          timeTable: []
+          timeTable: [],
         };
-
+        
         $scope.graphSection[type][dateType].options.chart.yDomain = [0, 1];
         $scope.resultSection.setXAxisFormat(data[0].resultInterval);
 
-        for (var i = 0, len = data.length; i < len; i++) {
-          var self = data[i];
+        for (var ii = 0, len = data.length; ii < len; ii++) {
+          var self = data[ii];
 
           var key = $scope.queueData.Queues[self.name - 1].Name;
           if (type === graphTypes[1]) {
@@ -409,45 +441,50 @@ kindFramework.controller('QMStatisticsCtrl', function(
           var chartData = {
             key: key,
             values: [],
-            seriesIndex: i,
-            resultInterval: self.resultInterval
+            seriesIndex: ii,
+            resultInterval: self.resultInterval,
           };
 
           if (type === graphTypes[0]) {
-            chartData.color = i === 0 ? chartColor.selected : chartColor.default;
+            chartData.color = ii === 0 ? chartColor.selected : chartColor.default;
             chartData.area = true;
           }
 
-          var tableKey = $scope.queueData.Queues[data[i].name - 1].Name + ' - ' + $translate.instant($scope.lang.graph[data[i].direction.toLowerCase()]);
-          tableData.rules[i] = [];
-          tableData.rules[i].push(tableKey);
-          var sum = 0;
-          for (var j = 0, jLen = self.results.length; j < jLen; j++) {
-            var resultSelf = self.results[j];
-            chartData.values.push([j, resultSelf.value]);
-            xAxisData[j] = resultSelf.timeStamp;
+          var queueName = $scope.queueData.Queues[data[ii].name - 1].Name;
+          var langDirection = $scope.lang.graph[data[ii].direction.toLowerCase()];
+          langDirection = $translate.instant(langDirection);
 
-            tableData.rules[i].push(resultSelf.value);
+          var tableKey = queueName + ' - ' + langDirection;
+          tableData.rules[ii] = [];
+          tableData.rules[ii].push(tableKey);
+          var sum = 0;
+          for (var jj = 0, jLen = self.results.length; jj < jLen; jj++) {
+            var resultSelf = self.results[jj];
+            chartData.values.push([jj, resultSelf.value]);
+            xAxisData[jj] = resultSelf.timeStamp;
+
+            tableData.rules[ii].push(resultSelf.value);
             sum += resultSelf.value;
 
-            if (i === 0) {
+            if (ii === 0) {
               var time = changeFormatForGraph(resultSelf.timeStamp, self.resultInterval);
               tableData.timeTable.push(time);
             }
           }
 
           allChartData.push(chartData);
-          tableData.rules[i].push(sum);
+          tableData.rules[ii].push(sum);
         }
 
         $scope.graphSection.setData(allChartData, dateType, type);
         $scope.graphSection.setXAxisData(xAxisData, dateType, type);
 
-        if (dateType === graphDateTypes[2]) {
+        var dateTypeCheckIndex = 2;
+        if (dateType === graphDateTypes[dateTypeCheckIndex]) {
           if (type === graphTypes[1]) {
             var oldTableData = $scope.resultSection.getTableData().rules;
             oldTableData.reverse();
-            oldTableData.forEach(function(rule, i) {
+            oldTableData.forEach(function(rule, ii) {
               tableData.rules.unshift(rule);
             });
           }
@@ -477,18 +514,19 @@ kindFramework.controller('QMStatisticsCtrl', function(
 
         var searchOptions = {
           fromDate: fromCalenderTimeStamp,
-          toDate: toCalenderTimeStamp
+          toDate: toCalenderTimeStamp,
         };
 
         var checkList = {};
         var typeArr = type === graphTypes[0] ? ["average"] : ["medium", "high"];
 
-        typeArr.forEach(function(typeSelf, i) {
+        typeArr.forEach(function(typeSelf, ii) {
           var arr = [];
-          $("input[type='checkbox'][id^='qm-search-" + typeSelf + "-']:checked").each(function(j, self) {
-            var index = parseInt($(self).attr("data-index"), 10);
-            arr.push(index);
-          });
+          $("input[type='checkbox'][id^='qm-search-" + typeSelf + "-']:checked").
+            each(function(jj, self) {
+              var index = parseInt($(self).attr("data-index"), 10);
+              arr.push(index);
+            });
 
           if (arr.length > 0) {
             checkList[typeSelf] = arr;
@@ -506,7 +544,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
       }
 
       return deferred.promise;
-    }
+    },
   };
 
   $scope.searchSection = {
@@ -524,11 +562,12 @@ kindFramework.controller('QMStatisticsCtrl', function(
         console.error(errorData);
         deferred.reject("Fail");
       };
+      var dateTypeCheckIndex = 2;
       var searchAverage = function() {
-        return gs.getGraph(graphDateTypes[2], graphTypes[0]);
+        return gs.getGraph(graphDateTypes[dateTypeCheckIndex], graphTypes[0]);
       };
       var searchCumulative = function() {
-        return gs.getGraph(graphDateTypes[2], graphTypes[1]);
+        return gs.getGraph(graphDateTypes[dateTypeCheckIndex], graphTypes[1]);
       };
 
       promises.push(searchAverage);
@@ -548,7 +587,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
       }
 
       return deferred.promise;
-    }
+    },
   };
 
   function exportSuccessCallback(data) {
@@ -569,11 +608,12 @@ kindFramework.controller('QMStatisticsCtrl', function(
       var minute = dateObj.getMinutes();
       var second = dateObj.getSeconds();
 
-      month = month < 10 ? "0" + month : month;
-      day = day < 10 ? "0" + day : day;
-      hour = hour < 10 ? "0" + hour : hour;
-      minute = minute < 10 ? "0" + minute : minute;
-      second = second < 10 ? "0" + second : second;
+      var singleDigitCheck = 10;
+      month = month < singleDigitCheck ? "0" + month : month;
+      day = day < singleDigitCheck ? "0" + day : day;
+      hour = hour < singleDigitCheck ? "0" + hour : hour;
+      minute = minute < singleDigitCheck ? "0" + minute : minute;
+      second = second < singleDigitCheck ? "0" + second : second;
 
       var str = [
         year,
@@ -586,7 +626,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
         ':',
         minute,
         ':',
-        second
+        second,
       ];
 
       return str.join('');
@@ -604,8 +644,8 @@ kindFramework.controller('QMStatisticsCtrl', function(
         "format": "",
         "recCnt": "",
         "curOffset": "0",
-        "recInfo": []
-      }
+        "recInfo": [],
+      },
     };
 
     var format = $scope.resultSection.getXAxisFormat();
@@ -617,13 +657,13 @@ kindFramework.controller('QMStatisticsCtrl', function(
 
     postData.searchResultData.recCnt = resultTableData.timeTable.length + "";
 
-    for (var i = 0, len = resultTableData.timeTable.length; i < len; i++) {
+    for (var ii = 0, len = resultTableData.timeTable.length; ii < len; ii++) {
       var recInfoItem = {};
-      recInfoItem.time = resultTableData.timeTable[i];
+      recInfoItem.time = resultTableData.timeTable[ii];
       //Zero index is always rule name.
-      for (var j = 0, jLen = resultTableData.rules.length; j < jLen; j++) {
-        var name = resultTableData.rules[j][0];
-        recInfoItem[name] = resultTableData.rules[j][i + 1] + "";
+      for (var jj = 0, jLen = resultTableData.rules.length; jj < jLen; jj++) {
+        var name = resultTableData.rules[jj][0];
+        recInfoItem[name] = resultTableData.rules[jj][ii + 1] + "";
       }
 
       recInfo.push(recInfoItem);
@@ -650,7 +690,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
           console.log("Trying SaveBlob method ...");
 
           blob = new Blob([response.data], {
-            type: contentType
+            type: contentType,
           });
           if (navigator.msSaveBlob) {
             navigator.msSaveBlob(blob, filename);
@@ -676,14 +716,17 @@ kindFramework.controller('QMStatisticsCtrl', function(
                 console.log("Trying DownloadLink method ...");
 
                 blob = new Blob([response.data], {
-                  type: contentType
+                  type: contentType,
                 });
                 var url = urlCreator.createObjectURL(blob);
                 link.setAttribute('href', url);
                 link.setAttribute("download", filename);
 
                 var event = document.createEvent('MouseEvents');
-                event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+                var tr = true;
+                var fls = false;
+                event.
+                initMouseEvent('click', tr, tr, window, 1, 0, 0, 0, 0, fls, fls, fls, fls, 0, null);
                 link.dispatchEvent(event);
 
                 console.log("Succeeded File Export");
@@ -696,7 +739,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
               try {
                 console.log("Trying DownloadLink method with WindowLocation ...");
                 blob = new Blob([response.data], {
-                  type: contentType
+                  type: contentType,
                 });
                 var reader = new FileReader();
                 var downloadText = function() {
@@ -738,11 +781,12 @@ kindFramework.controller('QMStatisticsCtrl', function(
                   var captureFrame = $('#' + iframe.id);
                   var captureForm = $('#' + form.id);
                   captureFrame.unbind();
+                  var time = 1000;
                   setTimeout(function() {
                     captureFrame.unbind();
                     captureForm.remove();
                     captureFrame.remove();
-                  }, 1000);
+                  }, time);
                 };
                 reader.readAsText(blob);
                 reader.onload = downloadText;
@@ -776,12 +820,12 @@ kindFramework.controller('QMStatisticsCtrl', function(
     },
     viewGraph: {
       average: false,
-      cumulative: false
+      cumulative: false,
     },
     noResults: false,
     tableData: {
       rules: [],
-      timeTable: []
+      timeTable: [],
     },
     setTable: function(data) {
       $scope.resultSection.tableData = data;
@@ -792,7 +836,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
     resetTableData: function() {
       $scope.resultSection.tableData = {
         rules: [],
-        timeTable: []
+        timeTable: [],
       };
     },
     getReport: function() {
@@ -822,66 +866,71 @@ kindFramework.controller('QMStatisticsCtrl', function(
     },
     getXAxisFormat: function() {
       return $scope.resultSection.xAxisFormat;
-    }
+    },
   };
 
   function showVideo() {
     var getData = {};
-    return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, function(response) {
-      var viewerWidth = 640;
-      var viewerHeight = 360;
-      var maxWidth = mAttr.MaxROICoordinateX;
-      var maxHeight = mAttr.MaxROICoordinateY;
-      var rotate = response.data.Flip[0].Rotate;
-      var flip = response.data.Flip[0].VerticalFlipEnable;
-      var mirror = response.data.Flip[0].HorizontalFlipEnable;
-      var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
-      $scope.videoinfo = {
-        width: viewerWidth,
-        height: viewerHeight,
-        maxWidth: maxWidth,
-        maxHeight: maxHeight,
-        flip: flip,
-        mirror: mirror,
-        support_ptz: false,
-        rotate: rotate,
-        adjust: adjust,
-        currentPage: 'Queue'
-      };
-    }, function(errorData) {
-      console.log(errorData);
-    }, '', true);
+    return SunapiClient.get(
+      '/stw-cgi/image.cgi?msubmenu=flip&action=view', getData, 
+      function(response) {
+        var viewerWidth = 640;
+        var viewerHeight = 360;
+        var maxWidth = mAttr.MaxROICoordinateX;
+        var maxHeight = mAttr.MaxROICoordinateY;
+        var rotate = response.data.Flip[0].Rotate;
+        var flip = response.data.Flip[0].VerticalFlipEnable;
+        var mirror = response.data.Flip[0].HorizontalFlipEnable;
+        var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
+        $scope.videoinfo = {
+          width: viewerWidth,
+          height: viewerHeight,
+          maxWidth: maxWidth,
+          maxHeight: maxHeight,
+          flip: flip,
+          mirror: mirror,
+          support_ptz: false,
+          rotate: rotate,
+          adjust: adjust,
+          currentPage: 'Queue',
+        };
+      }, function(errorData) {
+        console.log(errorData);
+      }, '', true);
   }
 
   function getPercent(val, max) {
-    return (val / max) * 100;
+    var maxPercent = 100;
+    return (val / max) * maxPercent;
   }
 
   function getPeopleData(id) {
     var max = $scope.queueData.Queues[id].MaxPeople;
     var high = $scope.queueData.Queues[id].QueueLevels[0].Count;
-    var mid = Math.ceil(high / 2);
+    var midCalc = 2;
+    var mid = Math.ceil(high / midCalc);
 
     return {
       max: max,
       high: high,
-      mid: mid
+      mid: mid,
     };
   }
 
   var gaugeTimer = {
     timer0: null,
     timer1: null,
-    timer2: null
+    timer2: null,
   };
   $scope.queueLevelSection = {
     maxArr: {},
     start: function(id) {
       $scope.queueLevelSection.change(id);
-
+      
+      var time = 1000;
       gaugeTimer['timer' + id] = setInterval(function() {
         $scope.queueLevelSection.change(id);
-      }, 1000);
+      }, time);
     },
     stop: function(id) {
       var name = 'timer' + id;
@@ -898,22 +947,37 @@ kindFramework.controller('QMStatisticsCtrl', function(
 
         var colorList = ["#2beddb", "#0dd8eb", "#57ed06", "#0ec20e", "#ffab33", "#ff5400"];
 
+        var maxPercent = 100;
         parent.find(".qm-bar-mask").css({
-          width: (100 - getPercent(queue, data.max)) + "%"
+          width: (maxPercent - getPercent(queue, data.max)) + "%",
         });
 
         //Bar 2
         var startColor = null;
         var endColor = null;
+        var colorListIndex = {
+          mid: {
+            start: 0,
+            end: 1,
+          },
+          high: {
+            start: 2,
+            end: 3,
+          },
+          max: {
+            start: 4,
+            end: 5,
+          },
+        };
         if (queue < data.mid) {
-          startColor = colorList[0];
-          endColor = colorList[1];
+          startColor = colorList[colorListIndex.mid.start];
+          endColor = colorList[colorListIndex.mid.end];
         } else if (queue < data.high) {
-          startColor = colorList[2];
-          endColor = colorList[3];
+          startColor = colorList[colorListIndex.high.start];
+          endColor = colorList[colorListIndex.high.end];
         } else {
-          startColor = colorList[4];
-          endColor = colorList[5];
+          startColor = colorList[colorListIndex.max.start];
+          endColor = colorList[colorListIndex.max.end];
         }
 
         parent.find(".qm-bar").css({
@@ -921,7 +985,7 @@ kindFramework.controller('QMStatisticsCtrl', function(
           // background: "-webkit-linear-gradient(left, " + startColor + ", " + endColor + ")",
           // background: "-o-linear-gradient(right, " + startColor + ", " + endColor + ")",
           // background: "-moz-linear-gradient(right, " + startColor + ", " + endColor + ")",
-          background: "linear-gradient(to right, " + startColor + ", " + endColor + ")"
+          background: "linear-gradient(to right, " + startColor + ", " + endColor + ")",
         });
       };
 
@@ -931,9 +995,9 @@ kindFramework.controller('QMStatisticsCtrl', function(
 
       qmModel.checkData({
         Channel: channel,
-        QueueIndex: (id + 1)
+        QueueIndex: (id + 1),
       }).then(successCallback, failCallback);
-    }
+    },
   };
 
   $scope.init = function() {
@@ -953,9 +1017,10 @@ kindFramework.controller('QMStatisticsCtrl', function(
     };
 
     var resizeGraph = function() {
+      var time = 100;
       setTimeout(function() {
         $scope.graphSection.resizeHandle();
-      }, 100);
+      }, time);
     }
 
     qmModel.initModel().then(
@@ -964,20 +1029,23 @@ kindFramework.controller('QMStatisticsCtrl', function(
           function(data) {
             $scope.queueData = data;
             $scope.queueData.dataLoad = true;
-            console.info($scope.queueData);
 
             //Search
             $scope.pcConditionsDateForm.init(
               function() {
-                console.info("Success");
               },
               failCallback
             );
             if (data.Enable === true) {
               // Queue Level(Start graph)
-              $scope.queueLevelSection.start(0);
-              $scope.queueLevelSection.start(1);
-              $scope.queueLevelSection.start(2);
+              var guageIndex = {
+                first: 0,
+                second: 1,
+                third: 2,
+              };
+              $scope.queueLevelSection.start(guageIndex.first);
+              $scope.queueLevelSection.start(guageIndex.second);
+              $scope.queueLevelSection.start(guageIndex.third);
               // Preview
               $scope.previewSection.init();
               //Graph
@@ -1014,10 +1082,15 @@ kindFramework.controller('QMStatisticsCtrl', function(
   /* Queue management Search page를 벗어 날 때 */
   $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
     if (fromState.controller === 'QMStatisticsCtrl') {
+      var guageIndex = {
+        first: 0,
+        second: 1,
+        third: 2,
+      };
       $scope.graphSection.unbindResize();
-      $scope.queueLevelSection.stop(0);
-      $scope.queueLevelSection.stop(1);
-      $scope.queueLevelSection.stop(2);
+      $scope.queueLevelSection.stop(guageIndex.first);
+      $scope.queueLevelSection.stop(guageIndex.second);
+      $scope.queueLevelSection.stop(guageIndex.third);
       qmModel.cancelSearch();
     }
   });
@@ -1050,10 +1123,11 @@ kindFramework.controller('QMStatisticsCtrl', function(
   (function wait() {
     $timeout(function() {
       if (!mAttr.Ready) {
+        var time = 500;
         $timeout(function() {
           mAttr = Attributes.get();
           wait();
-        }, 500);
+        }, time);
       } else {
         getAttributes().finally(function() {
           view();
