@@ -1100,7 +1100,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
 
   function adjustBitrate(defaultBitrate, maxBitrate) {
-    if (defaultBitrate < maxBitrate) {
+    if (defaultBitrate <= maxBitrate) {
       if (maxBitrate === 0) {
         LogManager.debug("Not Adjusting Bitrate since max Bitrate is zero ");
         return;
@@ -1121,8 +1121,8 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
         LogManager.debug("Adjusting Bitrate to Max ", $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate, " -> ", maxBitrate);
         $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = maxBitrate;
       }
+      }
     }
-  }
 
   function setBitRateRange(min, max) {
     if (typeof min === 'undefined' || typeof max === 'undefined') {
