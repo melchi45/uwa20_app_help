@@ -2323,7 +2323,7 @@ body.modal-open {
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url("../../base/images/ptrz_gradations.svg");
+  background: url("../base/images/ptrz_gradations.svg");
 }
 #ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline #ptz-control_box_circle_slider {
   position: absolute;
