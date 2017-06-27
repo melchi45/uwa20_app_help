@@ -105,7 +105,7 @@
                             <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
                             <div class="wn5-setup-section-article-content">
                                 <input type="text" class="form-control wp25" ng-model="LastPosition.RememberLastPositionDuration" maxlength="{{LastPositionAttr.DurLen}}" required ng-pattern-restrict="{{OnlyNumStr}}"/>
-                                <label class="col-lg-2 control-label" style="text-align:left">({{LastPositionAttr.RememberLastPositionDuration.minValue}}-{{LastPositionAttr.RememberLastPositionDuration.maxValue}} {{ 'lang_sec' | translate }})</label>
+                                <label class="col-lg-3 control-label" style="text-align:left">{{ rangeFormat(LastPositionAttr.RememberLastPositionDuration.minValue, LastPositionAttr.RememberLastPositionDuration.maxValue, 'lang_sec') }}</label>
                             </div>
                         </div>
                     </div>
@@ -140,8 +140,8 @@
                             <thead>
                                 <th width="20%" height="40" style="text-align:center">{{ 'lang_from' | translate }} {{ 'lang_presetNo' | translate }}</th>
                                 <th width="20%" height="40" style="text-align:center">{{ 'lang_to' | translate }} {{ 'lang_presetNo' | translate }}</th>
-                                <th width="20%" height="40" style="text-align:center">{{ 'lang_speed' | translate }} ({{PresetMinSpeed}}-{{PresetMaxSpeed}})</th>
-                                <th width="20%" height="40" style="text-align:center">{{ 'lang_dwt' | translate }} ({{DwellMinTime}}-{{DwellMaxTime}} {{ 'lang_sec' | translate }})</th>
+                                <th width="20%" height="40" style="text-align:center">{{ rangeFormat(PresetMinSpeed, PresetMaxSpeed, "undefined", "lang_speed") }}</th>
+                                <th width="20%" height="40" style="text-align:center">{{ rangeFormat(DwellMinTime, DwellMaxTime, "lang_sec", "lang_dwt") }}</th>
                                 <th width="20%" height="40" style="text-align:center">{{ 'lang_swingMode' | translate }}</th>
                             </thead>
                             <tbody>
@@ -196,8 +196,8 @@
                             <thead bgcolor="#F5F5F5">
                                 <th width="10%" height="40" style="text-align:center">{{ 'lang_num' | translate }}</th>
                                 <th width="40%" height="40" style="text-align:center">{{ 'lang_presetNo' | translate }}</th>
-                                <th width="25%" height="40" style="text-align:center">{{ 'lang_speed' | translate }} ({{PresetMinSpeed}}-{{PresetMaxSpeed}})</th>
-                                <th width="25%" height="40" style="text-align:center">{{ 'lang_dwt' | translate }} ({{DwellMinTime}}-{{DwellMaxTime}}{{ 'lang_sec' | translate }})</th>
+                                <th width="25%" height="40" style="text-align:center">{{ rangeFormat(PresetMinSpeed, PresetMaxSpeed, "undefined", "lang_speed") }}</th>
+                                <th width="25%" height="40" style="text-align:center">{{ rangeFormat(DwellMinTime, DwellMaxTime, "lang_sec", "lang_dwt") }}</th>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="Preset in PTZGroupPage.presetList[PTZGroupPage.currentPage-1]"> 
@@ -254,7 +254,7 @@
                             <table class="table cm-table-field table-editor wn5-setup-table">
                                 <thead>
                                     <th width="50%" height="40" style="text-align:center">{{ 'lang_groupNo' | translate }}</th>
-                                    <th width="50%" height="40" style="text-align:center">{{ 'lang_dwt' | translate }} ({{DwellMinTime}}-{{DwellMaxTime}}{{ 'lang_sec' | translate }})</th>
+                                    <th width="50%" height="40" style="text-align:center">{{ rangeFormat(DwellMinTime, DwellMaxTime, "lang_sec", "lang_dwt") }}</th>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="SeqIndex in PTZGroupArray">
@@ -417,7 +417,7 @@
                             <div class="wn5-setup-section-article">
                                 <div class="wn5-setup-section-article-content">
                                     <input type="text"  class="form-control wp25" ng-model="AutoRun.ModeAutoPan.AutoPanSpeed" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}">
-                                    <label class="col-lg-1 control-label" style="text-align:left">({{AutoPanMinSpeed}}-{{AutoPanMaxSpeed}})</label>
+                                    <label class="col-lg-2 control-label" style="text-align:left">{{ rangeFormat(AutoPanMinSpeed, AutoPanMaxSpeed) }}</label>
                                 </div>
                             </div>
                         </div>
@@ -426,7 +426,7 @@
                             <div class="wn5-setup-section-article">
                                 <div class="wn5-setup-section-article-content">
                                     <input type="text"  class="form-control wp25" ng-model="AutoRun.ModeAutoPan.AutoPanTiltAngle" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}">
-                                    <label class="col-lg-1 control-label" style="text-align:left">({{AutoPanTiltMinAngle}}-{{AutoPanTiltMaxAngle}})</label>
+                                    <label class="col-lg-2 control-label" style="text-align:left">{{ rangeFormat(AutoPanTiltMinAngle, AutoPanTiltMaxAngle) }}</label>
                                 </div>
                             </div>
                         </div>
@@ -481,12 +481,8 @@
             </wn5-setup-common-button>
         </div>   
     </div>
-
-
-
-
-
 </div>
+
 <script type="text/ng-template" id="autorunModal.html">
     <form name="scheduleForm" method="get" class="form-horizontal" novalidate>
     <div class="modal-header modal-setup">
@@ -517,12 +513,12 @@
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'AutoPan'">                                            
         <label class="col-sm-3 control-label">{{ 'lang_speed' | translate }}</label>
         <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.AutoPanSpeed" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
-        <label class="col-lg-1 control-label">({{AutoPanMinSpeed}}-{{AutoPanMaxSpeed}})</label>        
+        <label class="col-lg-1 control-label">({{AutoPanMinSpeed}}-{{AutoPanMaxSpeed}})</label>
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'AutoPan'">
         <label class="col-sm-3 control-label">{{ 'lang_tiltAngle' | translate }}</label>
         <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.AutoPanTiltAngle" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
-        <label class="col-lg-1 control-label">({{AutoPanTiltMinAngle}}-{{AutoPanTiltMaxAngle}})</label>                                                   
+        <label class="col-lg-1 control-label">({{AutoPanTiltMinAngle}}-{{AutoPanTiltMaxAngle}})</label>
     </div>
     <div class="modal-body modal-setup">
         <label class="col-sm-3 control-label">{{ 'lang_from' | translate }}</label>

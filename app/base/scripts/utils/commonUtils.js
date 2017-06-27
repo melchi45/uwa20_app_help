@@ -1208,6 +1208,30 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return ret;
   };
 
+  commonUtils.rangeFormat = function(min, max, type, label) {
+    var formatText = "";
+
+    if(typeof label !== "undefined" && label !== "undefined") {
+      formatText += $translate.instant(label);
+      if ($translate.use() !== "Korean") formatText += " ";
+    }
+
+    formatText += "(" + min;
+      // $translate
+      if ($translate.use() === "Korean") formatText += "~";
+      else formatText += "-";
+
+    formatText += max;
+
+    if(typeof type !== "undefined" && type !== "undefined") {
+      formatText += " " + $translate.instant(type);
+    }
+
+    formatText += ")";
+
+    return formatText
+  }
+
   function isSafePassword_S1(passwd, id) {
     if (passwd.length < minLen) {
       return 1;

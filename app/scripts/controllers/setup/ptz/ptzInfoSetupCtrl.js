@@ -72,6 +72,10 @@ kindFramework.controller('ptzInfoSetupCtrl', function($scope, $location, $uibMod
     }
     return COMMONUtils.getTranslatedOption(Option);
   };
+  
+  $scope.rangeFormat = function (min, max, type, label) {
+    return COMMONUtils.rangeFormat(min, max, type, label);
+  }
 
   $scope.iSSupportedAutoTracking = function(AfterAction) {
     if (AfterAction == 'Tracking') {
