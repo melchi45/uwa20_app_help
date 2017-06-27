@@ -25,7 +25,7 @@ kindFramework.
       var supportAutoTracking = false;
       var openErrorPopup = false;
       var defaultSpeed = 1;
-      var isBackupDone = false;
+      var isShowPopup = false;
       var MIN_DOUBLE_FIGURES = 10;
       var TIMEOUT = 500;
       var pad = function(input) {
@@ -340,6 +340,18 @@ kindFramework.
           }
         }
       };
+			var showPopup = function(message, autoClose) {
+				if ( isShowPopup === true ) {
+					return;
+				}
+				ModalManagerService.open(
+					'message', {
+						'message': message,
+						'buttonCount': autoClose === true ? 0 : 1,
+					}
+				);
+				isShowPopup = true;
+			};
       var backupErrorCallback = function(error) {
         console.log("errorcode:", error.errorCode, "error string:", error.description);
         $rootScope.$emit('channelSelector:on', true);
@@ -350,65 +362,20 @@ kindFramework.
             $rootScope.$emit('changeLoadingBar', false);
             playData.setStatus(PLAY_CMD.STOP);
             if (error.errorCode === BACKUP_STATUS.MODE.STOP) {
-              if (isBackupDone === true) {
-                return;
-              }
-              isBackupDone = true;
-              ModalManagerService.open(
-                'message', {
-                  'message': "lang_msg_savingComplete",
-                  'buttonCount': 0,
-                }
-              );
+							showPopup("lang_msg_savingComplete", true);
             } else if (error.errorCode === BACKUP_STATUS.MODE.NO_FILE_CREATED) {
-              if (isBackupDone === true) {
-                return;
-              }
-              isBackupDone = true;
-              ModalManagerService.open(
-                'message', {
-                  'message': "lang_msg_not_export_saved_file",
-                  'buttonCount': 1,
-                }
-              );
+              showPopup("lang_msg_not_export_saved_file", false);
             } else if (error.errorCode === BACKUP_STATUS.MODE.CODEC_CHANGED ||
               error.errorCode === BACKUP_STATUS.MODE.PROFILE_CHANGED) {
-              if (isBackupDone === true) {
-                return;
-              }
-              isBackupDone = true;
-              ModalManagerService.open(
-                'message', {
-                  'message': "lang_msg_codecChange",
-                  'buttonCount': 1,
-                }
-              );
+              showPopup("lang_msg_codecChange", false);
             } else if (error.errorCode === BACKUP_STATUS.MODE.EXCEEDED_MAX_FILE) {
-              if (isBackupDone === true) {
-                return;
-              }
-              isBackupDone = true;
-              ModalManagerService.open(
-                'message', {
-                  'message': "lang_max_filesize",
-                  'buttonCount': 1,
-                }
-              );
+							showPopup("lang_max_filesize", false);
             } else if (error.errorCode === BACKUP_STATUS.MODE.NO_LONGER_SUPPORT) {
-              if (isBackupDone === true) {
-                return;
-              }
-              isBackupDone = true;
-              ModalManagerService.open(
-                'message', {
-                  'message': 'No longer be able to stream. Please set a shorter section ',
-                  'buttonCount': 1,
-                }
-              );
+							showPopup("No longer be able to stream. Please set a shorter section ", false);
             }
           } else {
-            // recording status
-            isBackupDone = false;
+            // popup status
+            isShowPopup = false;
           }
         } else {
           if (error.errorCode !== "200") {
@@ -435,6 +402,7 @@ kindFramework.
         this.playbackInfo.rtspPort = rtspInfo.rtspPort;
         this.playbackInfo.userID = rtspInfo.user;
         this.playbackInfo.channel = UniversialManagerService.getChannelId();
+				isShowPopup = false;
         $rootScope.$emit("channelPlayer:command", "playbackBackup", this.playbackInfo, backupErrorCallback);
       };
       var checkEventSource = function() {
