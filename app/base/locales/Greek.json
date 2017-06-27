@@ -556,7 +556,7 @@
     "lang_msg_chkDNSserver2": "Ελέγξτε το διακομ. DNS2.",
     "lang_msg_inputxDSLid": "Εισαγ. αναγν. PPPoE",
     "lang_msg_inputxDSLPass": "Εισαγ. κωδ. πρόσβ. PPPoE",
-    "lang_msg_IPv6Prefix0to127": "Το Πρόθεμα IPv6 πρέπει να είναι",
+    "lang_msg_IPv6Prefix0to127": "Η τιμή του προθέματος IPv6 πρέπει να είναι μεταξύ 0 και 127.",
     "lang_filteringType": "Τύπος φιλτρ.",
     "lang_deny": "Απόρ.",
     "lang_allow": "Αποδ.",

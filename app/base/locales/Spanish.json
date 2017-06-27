@@ -556,7 +556,7 @@
     "lang_msg_chkDNSserver2": "Compruebe el Servidor2 de DNS.",
     "lang_msg_inputxDSLid": "Introduzca el ID de PPPoE.",
     "lang_msg_inputxDSLPass": "Introduzca la contraseña de PPPoE.",
-    "lang_msg_IPv6Prefix0to127": "El valor del prefijo de IPv6 debe estar entre 1 y 127",
+    "lang_msg_IPv6Prefix0to127": "El valor del prefijo de IPv6 debe estar entre 0 y 127",
     "lang_filteringType": "Tipo de filtro",
     "lang_deny": "Denegar PI registrada",
     "lang_allow": "Permitir IP registrada",
