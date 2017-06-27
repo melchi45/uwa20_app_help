@@ -156,17 +156,25 @@ kindFramework.directive('playbackDatepicker', function() {
           'month': month,
           'channel': channelId,
         };
-        playbackInterfaceService.findRecordings(dateInfo).then(function(results) {
-          recordingDate = results;
-          $timeout(function() {
-            $scope.$broadcast('refreshDatepickers');
-            $scope.isLoading = false;
-          });
-        }, function() {
-          console.log("findRecordings fail");
-          $scope.isLoading = false;
-          $scope.showError("lang_timeout");
-        });
+        return playbackInterfaceService.findRecordings(dateInfo);
+      };
+      
+      var showErrorIfInvalidDate = function(currentDate) {
+        if (recordingDate.length === 0) {
+          $scope.showError("lang_msg_timebackupDateError");
+        } else {
+          var isExistFlag = false;
+          for (var idx in recordingDate) {
+            if (recordingDate[idx].day === pad($scope.playback.search.selectedDate.getDate()) && 
+              recordingDate[idx].month === 
+                  pad($scope.playback.search.selectedDate.getMonth()+1)) {
+              isExistFlag = true;
+            }
+          }
+          if (isExistFlag === false) {
+            $scope.showError("lang_msg_timebackupDateError");
+          }
+        }
       };
       $scope.playback = {
         'search': {
@@ -201,21 +209,26 @@ kindFramework.directive('playbackDatepicker', function() {
           }
         },
         recordingDataIsExist: function() {
+          var prevMonth = currentDate.getMonth();
+          var toMonth = $scope.playback.search.selectedDate.getMonth();
+
           currentDate = $scope.playback.search.selectedDate;
-          if (recordingDate.length === 0) {
-            $scope.showError("lang_msg_timebackupDateError");
+          if (prevMonth !== toMonth) {
+            showRecordingDate(currentDate.getFullYear(), pad(currentDate.getMonth() + 1)).
+              then(function(results) {
+                recordingDate = results;
+                $timeout(function() {
+                  $scope.$broadcast('refreshDatepickers');
+                  $scope.isLoading = false;
+                  showErrorIfInvalidDate(currentDate);
+                });
+              }, function() {
+                console.log("findRecordings fail");
+                $scope.isLoading = false;
+                $scope.showError("lang_timeout");
+              });
           } else {
-            var isExistFlag = false;
-            for (var idx in recordingDate) {
-              if (recordingDate[idx].day === pad($scope.playback.search.selectedDate.getDate()) && 
-                recordingDate[idx].month === 
-                    pad($scope.playback.search.selectedDate.getMonth()+1)) {
-                isExistFlag = true;
-              }
-            }
-            if (isExistFlag === false) {
-              $scope.showError("lang_msg_timebackupDateError");
-            }
+            showErrorIfInvalidDate(currentDate);
           }
         },
       };
@@ -411,7 +424,18 @@ kindFramework.directive('playbackDatepicker', function() {
       };
       $rootScope.$saveOn('onChangedMonth', function(event, data) {
         $scope.playback.search.selectedDate = data;
-        showRecordingDate(data.getFullYear(), pad(data.getMonth() + 1));
+        showRecordingDate(data.getFullYear(), pad(data.getMonth() + 1)).
+          then(function(results) {
+            recordingDate = results;
+            $timeout(function() {
+              $scope.$broadcast('refreshDatepickers');
+              $scope.isLoading = false;
+            });
+          }, function() {
+            console.log("findRecordings fail");
+            $scope.isLoading = false;
+            $scope.showError("lang_timeout");
+          });
       }, $scope);
 
       /*
@@ -452,7 +476,18 @@ kindFramework.directive('playbackDatepicker', function() {
       $scope.showMenu = function() {
         currentDate = searchData.getSelectedDate();
         $scope.playback.search.selectedDate = new Date(currentDate);
-        showRecordingDate(currentDate.getFullYear(), pad(currentDate.getMonth() + 1));
+        showRecordingDate(currentDate.getFullYear(), pad(currentDate.getMonth() + 1)).
+          then(function(results) {
+            recordingDate = results;
+            $timeout(function() {
+              $scope.$broadcast('refreshDatepickers');
+              $scope.isLoading = false;
+            });
+          }, function() {
+            console.log("findRecordings fail");
+            $scope.isLoading = false;
+            $scope.showError("lang_timeout");
+          });
         $timeout(function() {
           $scope.$apply();
         });
