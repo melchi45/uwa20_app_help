@@ -231,7 +231,7 @@ module.exports = function(injection){
         }
 		},
 		languages: {
-				command: 'node languages/UWA2_vba/Check_languages'
+				command: 'node languages/UWA2_vba/Check_languages.js'
 		}
 	};
 };
