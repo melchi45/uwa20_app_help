@@ -1,4 +1,6 @@
 .kind-responsive-live {
+    
+
     #cm-bottom-menu {
         #live-icon-list {
             width: auto;
@@ -487,17 +489,91 @@
                         //  지우면 안됩니다
                         dummy { display: none; }
 
-                        th, td {
-                            width: 1%;
-                            box-sizing: border-box;
-                            font-size: 11px;
-                        }
-
                         thead {
                             display: block;
+                        }
 
-                            & > tr > *:last-child {
-                                width: 1.23% !important;
+                        &#cm-status-first {
+                            th, td {
+                                box-sizing: border-box;
+                                font-size: 11px;
+
+                                &:nth-child(1) {
+                                    width: 100px;
+                                }
+
+                                &:nth-child(2) {
+                                    width: 100px;
+                                }
+
+                                &:nth-child(3) {
+                                    width: 120px;
+                                }
+
+                                &:nth-child(4) {
+                                    width: 90px;
+                                }
+
+                                &:nth-child(5) {
+                                    width: 100px;
+                                }
+                            }
+
+                            th {
+                                &:nth-child(1) {
+                                    width: 95px;
+                                }
+
+                                &:nth-child(2) {
+                                    width: 95px;
+                                }
+
+                                &:nth-child(3) {
+                                    width: 115px;
+                                }
+
+                                &:nth-child(4) {
+                                    width: 85px;
+                                }
+
+                                &:nth-child(5) {
+                                    width: 110px;
+                                }
+                            }
+                        }
+
+                        &#cm-status-second {
+                            th, td {
+                                box-sizing: border-box;
+                                font-size: 11px;
+
+                                &:nth-child(1),
+                                &:nth-child(2) {
+                                    width: 120px;
+                                }
+
+                                &:nth-child(3) {
+                                    width: 135px;
+                                }
+
+                                &:nth-child(4) {
+                                    width: 130px;
+                                }
+                            }
+
+                            th {
+                                &:nth-child(1),
+                                &:nth-child(2) {
+                                    width: 115px;
+                                }
+
+                                &:nth-child(3) {
+                                    width: 130px;
+                                }
+
+                                &:nth-child(4) {
+                                    width: 140px;
+                                }
                             }
                         }
 
@@ -824,6 +900,18 @@
 
                             &:nth-child(n+2) {
                                 margin: 20px 0;
+                            }
+
+                            #cm-status-first {
+                                th, td {
+                                    width: 1% !important;
+                                }
+                            }
+
+                            #cm-status-second {
+                                th, td {
+                                    width: 1% !important;
+                                }
                             }
                         }
                     }
