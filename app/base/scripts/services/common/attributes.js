@@ -756,6 +756,7 @@ function($timeout, $location, $q, SunapiClient, XMLParser, SessionOfUserManager,
         mAttributes.ModelType = XMLParser.parseAttributeSection(response.data, 'System/Property/ModelType');
         mAttributes.IsAdminUse = mAttributes.FWUpdateSupport = XMLParser.parseAttributeSection(response.data, 'System/Support/FWUpdate');
         mAttributes.MaxChannel = XMLParser.parseAttributeSection(response.data, 'System/Limit/MaxChannel');
+        mAttributes.MaxHDMIOut = XMLParser.parseAttributeSection(response.data, 'System/Limit/Max/MaxHDMIOut');
 
         mAttributes.TamperingDetection = XMLParser.parseAttributeSection(response.data, 'Eventsource/Support/TamperingDetection');
         mAttributes.FaceDetectionSupport = XMLParser.parseAttributeSection(response.data, 'Eventsource/Support/FaceDetection');

@@ -1461,7 +1461,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
                   var defaultShutterSpeed = CameraSpec.getDefaultShutterSpeed($scope.MaxSensorFrameRate).ShutterSpeedDetails.CompensationModes[compModeCnt];
                   $scope.Camera.AutoShortShutterSpeed = defaultShutterSpeed.SensorCaptureFrameRates[sensorModeCnt].DefaultAutoShortShutterSpeed;
                   $scope.Camera.AutoLongShutterSpeed = defaultShutterSpeed.SensorCaptureFrameRates[sensorModeCnt].DefaultAutoLongShutterSpeed;
-                  $scope.Camera.PreferShutterSpeed = modeDetails.SensorCaptureFrameRates[sensorModeCnt].DefaultPreferShutterSpeed;
+                  if($scope.isHDMIOutSupported) {
+                    $scope.Camera.PreferShutterSpeed = $scope.Camera.AutoShortShutterSpeed;
+                  } else {
+                    $scope.Camera.PreferShutterSpeed = modeDetails.SensorCaptureFrameRates[sensorModeCnt].DefaultPreferShutterSpeed;
+                  }
                   changePreferShutterByFPS();
                 }
                 return true;
@@ -2733,6 +2737,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function getAttributes() {
     if (mAttr.MaxChannel > 1) {
       $scope.isMultiChannel = true;
+    }
+    if(typeof mAttr.MaxHDMIOut !== 'undefined') {
+      $scope.isHDMIOutSupported = true;
+    } else {
+      $scope.isHDMIOutSupported = false;
     }
     var deferred = $q.defer();
     var promise = initCommonSettings();
