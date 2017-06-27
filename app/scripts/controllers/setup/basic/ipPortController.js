@@ -616,25 +616,25 @@ Attributes, COMMONUtils, $q) {
     var sm_num = COMMONUtils.IPv4ToNum($scope.NetworkInterfaces[index].IPv4SubnetMask);
     var not_sm_num = COMMONUtils.IPv4ToNumNot($scope.NetworkInterfaces[index].IPv4SubnetMask);
 
-    if (ip_num == gw_num) {
+    if (ip_num === gw_num) {
       errorMessage = 'lang_msg_chkIPAddress';
       COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
-    if (((ip_num & not_sm_num) == not_sm_num) || ((ip_num & not_sm_num) == 0) || ((ip_num & sm_num) == 0)) {
+    if (((ip_num & not_sm_num) === not_sm_num) || ((ip_num & not_sm_num) === 0) || ((ip_num & sm_num) === 0)) {
       errorMessage = 'lang_msg_chkIPAddress';
       COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
-    if (((gw_num & not_sm_num) == not_sm_num) || ((gw_num & not_sm_num) == 0) || ((gw_num & sm_num) == 0)) {
+    if (((gw_num & not_sm_num) === not_sm_num) || ((gw_num & not_sm_num) === 0) || ((gw_num & sm_num) === 0)) {
       errorMessage = 'lang_msg_chkGateway';
       COMMONUtils.ShowError(errorMessage);
       return false;
     }
 
-    if ((ip_num & sm_num) != (gw_num & sm_num)) {
+    if ((ip_num & sm_num) !== (gw_num & sm_num)) {
       errorMessage = 'lang_msg_chkIPAddress';
       COMMONUtils.ShowError(errorMessage);
       return false;
