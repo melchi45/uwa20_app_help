@@ -448,6 +448,15 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           function(response) {},
           function(errorData) {}, '', true);
       }
+
+        scope.runAutoRotate = function() {
+            var setData = {};
+            setData.AutoRotate = true;
+
+            SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=control', setData,
+                function(response) {},
+                function(errorData) {}, '', true);
+        }
     }
   };
 });
