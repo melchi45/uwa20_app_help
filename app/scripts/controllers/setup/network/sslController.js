@@ -80,6 +80,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       $("#sslpage").show();
     }, function(errorData) {
       console.log(errorData);
+      $rootScope.$emit('changeLoadingBar', false);
     });
   }
 
@@ -232,6 +233,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
                 console.log(errorData);
                 certfileelm.value = "";
                 keyfileelm.value = "";
+                $rootScope.$emit('changeLoadingBar', false);
               }, $scope, encodedata, specialHeaders);
           };
 
@@ -347,6 +349,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       },
       function(errorData) {
         console.log(errorData);
+        $rootScope.$emit('changeLoadingBar', false);
       }, '', true);
   };
 
