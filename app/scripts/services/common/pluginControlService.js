@@ -62,7 +62,7 @@ kindFramework.
         EventNotificationService.setBorderElement($(pluginElement), 'live');
 
         if (PlugInPromise !== null) {
-          // pluginElement.PlayLiveStream ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ ï¿½? Profile ï¿½?ï¿½? ?ï¿½ï¿½ï¿½??ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ê²½ìš°
+          // pluginElement.PlayLiveStream ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ ï¿?? Profile ï¿??ï¿?? ?ï¿½ï¿½ï¿???ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ê²½ìš°
           $timeout.cancel(PlugInPromise);
         }
 
@@ -283,8 +283,9 @@ kindFramework.
 
       this.applyPlaySpeed = function(speed, data) {
         playSpeed = Number(speed);
-        pluginElement.ChangePlaySpeed(Number(speed));
-        console.log("pluginControlService::applyPlaySpeed() ===> speed: " + speed);
+        pluginElement.SetPlaySpeed(Number(speed), data.time);
+        console.log("pluginControlService::applyPlaySpeed() ===> speed: " + speed,
+                    "time:", data.time);
       };
 
       this.closePlaybackSession = function() {
@@ -749,7 +750,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
                 }
             */
             if (jsonData.type === 1) {
@@ -769,7 +770,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
                 }
             */
             $timeout(function() {
@@ -813,7 +814,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
                 }
             */
             break;
@@ -821,7 +822,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
                 }
             */
             break;
@@ -829,7 +830,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
                 }
             */
             break;
@@ -841,7 +842,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿½? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
                 }
             */
             if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
