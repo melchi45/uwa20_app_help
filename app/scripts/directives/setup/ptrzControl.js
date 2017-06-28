@@ -440,6 +440,15 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           circleSlider.setRotate(degree);
       }
 
+      scope.runAutoRotate = function() {
+          var setData = {};
+          setData.AutoRotate = true;
+
+          SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=control', setData,
+              function(response) {},
+              function(errorData) {}, '', true);
+      };
+
       function ptrStop() {
         if (ptzJogTimer !== null) {
           $interval.cancel(ptzJogTimer);
@@ -459,17 +468,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           function(errorData) {}, '', true);
       }
 
-        scope.runAutoRotate = function() {
-            var setData = {};
-            setData.AutoRotate = true;
-
-            SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=control', setData,
-                function(response) {},
-                function(errorData) {}, '', true);
-        };
-
-
-        var circleSlider = (function(){
+      var circleSlider = (function(){
             var tau = 2 * Math.PI;
 
             var svg = d3.select(document.querySelector("#ptz-control_box_circle_slider svg")),
@@ -509,16 +508,16 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
                 degree = degree || 0;
 
                 if(degree <0)
-                  degree = 0;
+                    degree = 0;
 
                 if(degree > 360)
-                  degree = 360;
+                    degree = 360;
 
                 foreground.transition().duration(200).attrTween("d", arcTween(degree / 360 * tau));
             }
 
             return {
-              setRotate : setDegree
+                setRotate : setDegree
             };
         })();
     }
