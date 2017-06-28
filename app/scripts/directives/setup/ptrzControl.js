@@ -1,4 +1,4 @@
-kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibModal, $state, $timeout, COMMONUtils, $interval, CAMERA_STATUS, UniversialManagerService, $rootScope) {
+kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibModal, $state, $timeout, COMMONUtils, $interval, CAMERA_STATUS, UniversialManagerService, RESTCLIENT_CONFIG) {
   "use strict";
   return {
     restrict: 'E',
@@ -74,6 +74,13 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
             scope.isShowPTZControl = true;
           }
         }
+
+          // set gradiants relative path
+          if (RESTCLIENT_CONFIG.serverType === 'grunt') {
+            document.querySelector("#ptrz-control_box_gradations").style.background = 'url("../../base/images/ptrz_gradations.svg")';
+          } else {
+              document.querySelector("#ptrz-control_box_gradations").style.background = 'url("./base/images/ptrz_gradations.svg")';
+          }
       };
 
       (function wait() {
@@ -414,9 +421,6 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
       };
 
       function setPtzControlArrow(degree) {
-          // var ptrzControlBox = $("#ptrz-control_box");
-          // ptrzControlBox.css('transform','rotate(' + degree + 'deg)');
-
           var hline = $("#ptrz-control_box-hline");
           var vline = $("#ptrz-control_box-vline");
 
@@ -424,10 +428,16 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
           vline.css('transform','rotate(' + degree + 'deg)');
       }
 
+      function setAngleLabel(degree) {
+        document.querySelector("#ptrz-control_top-box").textContent = "Angle " + degree + "˚";
+      }
+
         var degree = 0;
       function getRotate(){
           degree += 30;
-          setPtzControlArrow();
+          setAngleLabel(degree);
+          setPtzControlArrow(degree);
+          circleSlider.setRotate(degree);
       }
 
       function ptrStop() {
@@ -456,7 +466,61 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
             SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=control', setData,
                 function(response) {},
                 function(errorData) {}, '', true);
-        }
+        };
+
+
+        var circleSlider = (function(){
+            var tau = 2 * Math.PI;
+
+            var svg = d3.select(document.querySelector("#ptz-control_box_circle_slider svg")),
+                width = +svg.attr("width"),
+                height = +svg.attr("height"),
+                g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+            var arc = d3.svg.arc()
+                .innerRadius(94)
+                .outerRadius(97)
+                .startAngle(0);
+
+            var background = g.append("path")
+                .datum({endAngle: tau})
+                .style("fill", "transparent")
+                .attr("d", arc);
+
+            var foreground = g.append("path")
+                .datum({endAngle: 0 * tau})
+                .style("fill", "#f37321")
+                .style("opacity", ".8")
+                .attr("d", arc);
+
+            function arcTween(newAngle) {
+                return function(d) {
+                    var interpolate = d3.interpolate(d.endAngle, newAngle);
+                    return function(t) {
+                        d.endAngle = interpolate(t);
+                        return arc(d);
+                    };
+                };
+            }
+
+            function setDegree(degree)
+            {
+                //degree range 0 to 360
+                degree = degree || 0;
+
+                if(degree <0)
+                  degree = 0;
+
+                if(degree > 360)
+                  degree = 360;
+
+                foreground.transition().duration(200).attrTween("d", arcTween(degree / 360 * tau));
+            }
+
+            return {
+              setRotate : setDegree
+            };
+        })();
     }
   };
 });
