@@ -1,4 +1,6 @@
 [
 	"app/scripts/config/route_config.js",
-	"app/scripts/controllers"
+	"app/scripts/",
+	"app/base/scripts/",
+	"app/media"
 ]
