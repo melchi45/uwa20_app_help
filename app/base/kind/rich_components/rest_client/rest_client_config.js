@@ -25,7 +25,7 @@ constant('RESTCLIENT_CONFIG', {
   serverType: 'grunt', // 'grunt' or 'camera'
   debugMode: false, // serverType이 camera 일 때 동작안함.
   digest: {
-    hostName: '192.168.123.198', // 5M
+    hostName: '192.168.71.10', // 5M
     port: 80,
     protocol: 'http',
     rtspIp: '',
