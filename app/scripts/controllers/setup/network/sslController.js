@@ -79,6 +79,7 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       $scope.pageLoaded = true;
       $("#sslpage").show();
     }, function(errorData) {
+      view();       //try again sunapi to avoid sunapi failure
       console.log(errorData);
       $rootScope.$emit('changeLoadingBar', false);
     });
