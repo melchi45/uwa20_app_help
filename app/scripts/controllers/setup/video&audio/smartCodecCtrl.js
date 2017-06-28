@@ -10,7 +10,7 @@ kindFramework.controller('smartCodecCtrl', function($scope, $timeout, SunapiClie
 
   $scope.clearAll = function() {
     var removeSetData = {};
-    removeSetData['Area'] = 'All';
+    removeSetData.Area = 'All';
     removeSetData.Channel = UniversialManagerService.getChannelId();
     return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=remove', removeSetData,
       function(response) {
@@ -49,43 +49,21 @@ kindFramework.controller('smartCodecCtrl', function($scope, $timeout, SunapiClie
     $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
     $scope.PTZModel = mAttr.PTZModel;
     $scope.MaxChannel = mAttr.MaxChannel;
-    if (mAttr.SmartCodecOptions !== undefined) {
+    if (typeof mAttr.SmartCodecOptions !== "undefined") {
       $scope.SmartCodecOptions = mAttr.SmartCodecOptions;
     }
 
-    if (mAttr.SmartCodecQualityOptions !== undefined) {
+    if (typeof mAttr.SmartCodecQualityOptions !== "undefined") {
       $scope.QualityOptions = mAttr.SmartCodecQualityOptions;
     }
 
-    if (mAttr.FaceDetectionSupport !== undefined) {
+    if (typeof mAttr.FaceDetectionSupport !== "undefined") {
       $scope.FaceDetectionSupport = mAttr.FaceDetectionSupport;
     }
 
-    if (mAttr.MaxSmartCodecArea !== undefined) {
+    if (typeof mAttr.MaxSmartCodecArea !== "undefined") {
       $scope.MaxSmartCodecArea = mAttr.MaxSmartCodecArea;
     }
-  }
-
-  function setQuality() {
-    var setData = $scope.qSetData;
-    return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=set', setData,
-      function(response) {
-        if (!angular.equals(pageData.SmartCodec, $scope.SmartCodec)) {
-          pageData.SmartCodec = angular.copy($scope.SmartCodec);
-        }
-      },
-      function(errorData) {
-        console.log(errorData);
-      }, '', true);
-  }
-
-  function setPOI() {
-    var setData = $scope.pSetData;
-    return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=add', setData,
-      function(response) {},
-      function(errorData) {
-        console.log(errorData);
-      }, '', true);
   }
 
   function setSmartCodec() {
@@ -101,7 +79,7 @@ kindFramework.controller('smartCodecCtrl', function($scope, $timeout, SunapiClie
       $.each(setData, function(k, value) {
         changed++;
       });
-      if (changed != 0) {
+      if (changed !== 0) {
         setData.Channel = UniversialManagerService.getChannelId();
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=set', setData,
           function(response) {},
@@ -114,12 +92,14 @@ kindFramework.controller('smartCodecCtrl', function($scope, $timeout, SunapiClie
     functionList.push(function() {
       var setData = {},
         changed = 0;
+      var i = 0;
+      var coordi = '';
 
       if (!angular.equals($scope.SmartCodec[$scope.ch].Areas, pageData.SmartCodec[$scope.ch].Areas)) {
-        if (typeof pageData.SmartCodec[$scope.ch].Areas == "undefined") {
-          for (var i = 0; i < mAttr.MaxSmartCodecArea; i++) {
-            if (typeof $scope.SmartCodec[$scope.ch].Areas[i] != "undefined") {
-              var coordi = $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].x + ',';
+        if (typeof pageData.SmartCodec[$scope.ch].Areas === "undefined") {
+          for (i = 0; i < mAttr.MaxSmartCodecArea; i++) {
+            if (typeof $scope.SmartCodec[$scope.ch].Areas[i] !== "undefined") {
+              coordi = $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].x + ',';
               coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].y + ',';
               coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].x + ',';
               coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].y;
@@ -129,9 +109,9 @@ kindFramework.controller('smartCodecCtrl', function($scope, $timeout, SunapiClie
             }
           }
         } else {
-          for (var i = 0; i < mAttr.MaxSmartCodecArea; i++) {
-            if (typeof $scope.SmartCodec[$scope.ch].Areas[i] != "undefined" && typeof pageData.SmartCodec[$scope.ch].Areas[i] == "undefined") {
-              var coordi = $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].x + ',';
+          for (i = 0; i < mAttr.MaxSmartCodecArea; i++) {
+            if (typeof $scope.SmartCodec[$scope.ch].Areas[i] !== "undefined" && typeof pageData.SmartCodec[$scope.ch].Areas[i] === "undefined") {
+              coordi = $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].x + ',';
               coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[0].y + ',';
               coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].x + ',';
               coordi += $scope.SmartCodec[$scope.ch].Areas[i].Coordinate[1].y;
@@ -143,7 +123,7 @@ kindFramework.controller('smartCodecCtrl', function($scope, $timeout, SunapiClie
         }
       }
 
-      if (changed != 0) {
+      if (changed !== 0) {
         setData.Channel = UniversialManagerService.getChannelId();
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=smartcodec&action=add', setData,
           function(response) {},
@@ -194,7 +174,7 @@ kindFramework.controller('smartCodecCtrl', function($scope, $timeout, SunapiClie
     for (var i = 0; i < smartCodecArray.length; i++) {
       var areaSelf = null;
       if (smartCodecArray[i].isSet) {
-        if ($scope.SmartCodec[0].Areas == undefined) {
+        if (typeof $scope.SmartCodec[0].Areas === "undefined") {
           $scope.SmartCodec[0].Areas = new Array(smartCodecArray.length);
         }
 
@@ -205,7 +185,7 @@ kindFramework.controller('smartCodecCtrl', function($scope, $timeout, SunapiClie
          * 오차 범위 값내에 변경 되었을 때만 수정 되었다고 판단한다.
          */
         if (
-          areaSelf === undefined ||
+          typeof areaSelf === "undefined" ||
           !(
             validateErrorRange(smartCodecArray[i].x1, areaSelf.Coordinate[0].x, errorRange) &&
             validateErrorRange(smartCodecArray[i].y1, areaSelf.Coordinate[0].y, errorRange) &&
@@ -319,8 +299,8 @@ kindFramework.controller('smartCodecCtrl', function($scope, $timeout, SunapiClie
         $scope.coordinates = new Array(drawMax);
 
         for (var i = 0; i < drawMax; i++) {
-          if ($scope.SmartCodec[0].Areas != undefined) {
-            if ($scope.SmartCodec[0].Areas[i] != undefined) {
+          if (typeof $scope.SmartCodec[0].Areas !== "undefined") {
+            if (typeof $scope.SmartCodec[0].Areas[i] !== "undefined") {
               var codecArea = $scope.SmartCodec[0].Areas[i];
               var areaX1 = codecArea.Coordinate[0].x;
               var areaY1 = codecArea.Coordinate[0].y;
@@ -391,9 +371,9 @@ kindFramework.controller('smartCodecCtrl', function($scope, $timeout, SunapiClie
 
   $rootScope.$saveOn('channelSelector:selectChannel', function(event, index) {
     if (checkChangedData()) {
-      COMMONUtils
-        .confirmChangeingChannel()
-        .then(function() {
+      COMMONUtils.
+        confirmChangeingChannel().
+        then(function() {
           setSmartCodec().then(function() {
             changeChannel(index);
           });
