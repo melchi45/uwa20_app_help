@@ -42,11 +42,9 @@ kindFramework.directive('ptzControl', function(Attributes, SunapiClient, $uibMod
         scope.showPTZControlOSD = false;
         scope.disablePTZControlBLC = true;
         scope.disablePTZControlHLC = true;
-        scope.showPTZControlBasicDPTZ = false;
         scope.showPTZControlFisheyeDPTZ = false;
         scope.showPTZControlEPTZ = false;
         scope.showPTZControlFocus = false;
-        scope.DATFlag = false;
         scope.isShowPTZControl = false;
         scope.showZoomFocus = false;
         scope.showPTZControlBox = true;

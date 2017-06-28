@@ -28,6 +28,10 @@ kindFramework.controller('dptzSetupCtrl', function($scope, $interval, $timeout, 
     }
   ];
 
+  $scope.ptzinfo = {
+        type: 'DPTZ'
+  };
+
   $scope.activeTab = $scope.tabs[0];
 
   $scope.changeActiveTab = function(tab) {
@@ -67,9 +71,6 @@ kindFramework.controller('dptzSetupCtrl', function($scope, $interval, $timeout, 
           rotate: rotate,
           adjust: adjust,
           currentPage: 'DigitalAutoTracking'
-        };
-        $scope.ptzinfo = {
-          type: 'DPTZ'
         };
 
         if ($scope.browserType === BrowserService.BROWSER_TYPES.IE) {
