@@ -596,6 +596,7 @@ SunapiClient, XMLParser, Attributes, $q) {
     if ($scope.data.DeviceType === 'NWC' && pageData.AccessType === "Allow") {
       if ($scope.data.selected6 <= $scope.originalIPv6Length) {
         if ($scope.FilterIPv6[$scope.data.selected6 - 1].Address === $scope.ClientIPAddr) {
+          console.log("A");
           retval = false;
         }
       }
@@ -609,6 +610,7 @@ SunapiClient, XMLParser, Attributes, $q) {
     if ($scope.data.DeviceType === 'NWC' && pageData.AccessType === "Allow") {
       if ($scope.data.selected4 <= $scope.originalIPv4Length) {
         if ($scope.FilterIPv4[$scope.data.selected4 - 1].Address === $scope.ClientIPAddr) {
+          console.log("B");
           retval = false;
         }
       }
@@ -622,6 +624,7 @@ SunapiClient, XMLParser, Attributes, $q) {
     if ($scope.data.DeviceType === 'NWC' && pageData.AccessType === "Allow") {
       if ($scope.data.selected6 <= $scope.originalIPv6Length) {
         if ($scope.FilterIPv6[$scope.data.selected6 - 1].Address === $scope.ClientIPAddr) {
+          console.log("C");
           retval = false;
         }
       }
@@ -630,14 +633,68 @@ SunapiClient, XMLParser, Attributes, $q) {
     return retval;
   }
 
+  function DeleteRangeCheck4 (pcIp, range) {
+    var selfIp = null;
+    var rangeIp = null;
+
+    var splitRangeIp1 = null;
+    var splitRangeIp2 = null;
+
+    var IPCondition = true;
+
+    selfIp = pcIp.split(".");
+
+    if( range.indexOf("~") !== -1 ) {
+      rangeIp = range.split(" ~ ");
+
+      splitRangeIp1 = rangeIp[0].split(".");
+      splitRangeIp2 = rangeIp[1].split(".");
+
+      $.each(selfIp, function(index, data) {
+        selfIp[index] = parseInt(data);
+      })
+
+      $.each(splitRangeIp1, function(index, data) {
+        splitRangeIp1[index] = parseInt(data);
+      })
+
+      $.each(splitRangeIp2, function(index, data) {
+        splitRangeIp2[index] = parseInt(data);
+      })
+
+      if ( selfIp[0] >= splitRangeIp1[0] && selfIp[0] <= splitRangeIp2[0] ) {
+
+        if ( selfIp[1] >= splitRangeIp1[1] && selfIp[1] <= splitRangeIp2[1] ) {
+
+          if ( selfIp[2] >= splitRangeIp1[2] && selfIp[2] <= splitRangeIp2[2] ) {
+
+            if ( selfIp[3] >= splitRangeIp1[3] && selfIp[3] <= splitRangeIp2[3] ) {
+              IPCondition = false;
+            }
+          }
+        }
+      }
+
+
+    }
+
+    return IPCondition;
+  }
+
 
   function DeleteCheck4() {
     var retval = true;
+
     if ($scope.data.DeviceType === 'NWC' && pageData.AccessType === "Allow") {
+
       if ($scope.data.selected4 <= $scope.originalIPv4Length) {
-        if ($scope.FilterIPv4[$scope.data.selected4 - 1].Address === $scope.ClientIPAddr) {
-          retval = false;
-        }
+
+        retval = DeleteRangeCheck4($scope.ClientIPAddr, $scope.FilterIPv4[$scope.data.selected4 - 1].Range);
+        
+
+        // if ($scope.FilterIPv4[$scope.data.selected4 - 1].Address === $scope.ClientIPAddr) {
+        //   retval = false;
+        // }
       }
 
     }
@@ -850,6 +907,7 @@ SunapiClient, XMLParser, Attributes, $q) {
 
     if (accessIpv6 && $scope.data.DeviceType === 'NWC' && ($scope.data.AccessType === "Allow")) {
       if (accessIpv6 && clientIpFoundIpv6 === false) {
+        console.log("F");
         COMMONUtils.ShowError('lang_msg_chkIPAddress');
         return false;
       }
@@ -880,6 +938,7 @@ SunapiClient, XMLParser, Attributes, $q) {
       if (FilterIPv4Element.isNew === false) {
         if (FilterIPv4Element.isUpdated === true) {
           functionList.push(function() {
+
             var jData = {};
             jData.IPType = "IPv4";
             jData.Address = FilterIPv4Element.Address;
@@ -887,6 +946,8 @@ SunapiClient, XMLParser, Attributes, $q) {
             jData.IPIndex = FilterIPv4Element.IPIndex;
             jData.Enable = FilterIPv4Element.Enable;
             jData.AccessType = $scope.data.AccessType;
+
+            console.log(jData);
 
             return SunapiClient.get('/stw-cgi/security.cgi?msubmenu=ipfilter&action=update', jData,
               function(response) {},
@@ -901,9 +962,11 @@ SunapiClient, XMLParser, Attributes, $q) {
           var jData = {};
           jData.IPType = "IPv4";
           jData.Address = FilterIPv4Element.Address;
-          jData.Mask = FilterIPv4Element.Mask;
+          jData.Mask = parseInt(FilterIPv4Element.Mask);
           jData.Enable = FilterIPv4Element.Enable;
           jData.AccessType = $scope.data.AccessType;
+
+          console.log(jData);
 
           return SunapiClient.get('/stw-cgi/security.cgi?msubmenu=ipfilter&action=add', jData,
             function(response) {},
