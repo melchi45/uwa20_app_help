@@ -18,7 +18,7 @@ kindFramework.controller('HMSetupCtrl', function(
   sketchbookService
 ) {
   var mAttr = Attributes.get();
-  var HMStatisticsModel = new HMStatisticsModel();
+  var hMStatisticsModel = new HMStatisticsModel();
 
   var asyncInterrupt = false;
   var modalInstance = null;
@@ -56,24 +56,12 @@ kindFramework.controller('HMSetupCtrl', function(
     return pcSetupService.setMaxResolution(mAttr.EventSourceOptions);
   }
 
-  function setImageSize() {
-    var defaultResolution = pcSetupService.getDefaultResolution();
-    var imageSize = {
-      width: defaultResolution.width + "px",
-      height: defaultResolution.height + "px"
-    };
-
-    $(".hm-setup-overlay-heatmap img").css(imageSize);
-    $(".hm-setup-overlay-heatmap").css(imageSize);
-  }
-
   function getSketchinfo(flag) {
     var sketchinfo = {
       shape: 1,
       modalId: "./views/setup/common/confirmMessage.html"
     };
     $scope.coordinates = [];
-    var data = null;
 
     //Exclude Area
     if (flag === "area") {
@@ -203,7 +191,7 @@ kindFramework.controller('HMSetupCtrl', function(
       $scope.configurationSection.enableHeatMap = false;
     },
     loadImage: function(SearchToken) {
-      var src = HMStatisticsModel.getResultPath(SearchToken);
+      var src = hMStatisticsModel.getResultPath(SearchToken);
       var imgTag = $('.hm-setup-overlay-heatmap img');
       var deferred = $q.defer();
 
@@ -243,9 +231,9 @@ kindFramework.controller('HMSetupCtrl', function(
     }
   };
 
-  function changeDateFormat(date, useMonth, useDay, useTime) {
-    var useMonth = useMonth === false ? false : true;
-    var useDay = useDay === false ? false : true;
+  function changeDateFormat(date, _useMonth, _useDay, useTime) {
+    var useMonth = _useMonth === false ? false : true;
+    var useDay = _useDay === false ? false : true;
 
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -268,6 +256,8 @@ kindFramework.controller('HMSetupCtrl', function(
   }
 
   var isErrorFirst = false;
+  var searchFromDate = '';
+  var searchToDate = '';
   $scope.conditionsSection = {
     startSearch: function(withoutBG) {
       isErrorFirst = false;
@@ -283,12 +273,12 @@ kindFramework.controller('HMSetupCtrl', function(
       cameraLocalTime.set().then(function() {
         var localTime = cameraLocalTime.getDateObj();
 
-        var searchFromDate = changeDateFormat(localTime) + "T00:00:00Z";
-        var searchToDate = changeDateFormat(localTime) + "T23:59:59Z";
+        searchFromDate = changeDateFormat(localTime) + "T00:00:00Z";
+        searchToDate = changeDateFormat(localTime) + "T23:59:59Z";
 
         var ResultImageType = withoutBG ? "WithoutBackground" : "WithBackground";
 
-        HMStatisticsModel.startSearch(searchFromDate, searchToDate, ResultImageType).then(
+        hMStatisticsModel.startSearch(searchFromDate, searchToDate, ResultImageType).then(
           function(responseData) {
             $scope.conditionsSection.checkSearch(withoutBG, responseData.SearchToken, 0);
           },
@@ -298,7 +288,8 @@ kindFramework.controller('HMSetupCtrl', function(
         );
       });
     },
-    checkSearch: function(withoutBG, SearchToken, time) {
+    checkSearch: function(withoutBG, SearchToken, _time) {
+      var time = _time;
       if (asyncInterrupt || time >= 60000) {
         $scope.conditionsSection.cancelSearch(SearchToken);
         return;
@@ -310,7 +301,7 @@ kindFramework.controller('HMSetupCtrl', function(
         }, 100);
       };
 
-      HMStatisticsModel.checkSearch(SearchToken).then(
+      hMStatisticsModel.checkSearch(SearchToken).then(
         function(responseData) {
           console.log(responseData);
           if (responseData.Status === "Completed") {
@@ -344,7 +335,7 @@ kindFramework.controller('HMSetupCtrl', function(
     cancelSearch: function(SearchToken) {
       $scope.checkSearching = false;
       /*
-      HMStatisticsModel.cancelSearch(SearchToken).then(
+      hMStatisticsModel.cancelSearch(SearchToken).then(
           function(responseData){
               console.log(responseData);
           },
@@ -424,14 +415,6 @@ kindFramework.controller('HMSetupCtrl', function(
     var modifiedIndex = args[0];
     var modifiedType = args[1]; //생성: create, 삭제: delete
     var modifiedPoints = args[2];
-    var modifiedDirection = args[3];
-    var vaLinesIndex = null;
-    var vaAreaIndex = null;
-
-    // console.log("updateCoordinates", modifiedIndex, modifiedType, modifiedPoints, modifiedDirection);
-
-    var coordinates = [];
-    var mode = [];
 
     if ($scope.currentTapStatus[1] === true) { //Exclude area
       switch (modifiedType) {
@@ -475,7 +458,7 @@ kindFramework.controller('HMSetupCtrl', function(
     $scope.configurationSection.hide();
 
     showVideo().then(function() {
-      HMStatisticsModel.deviceInfo().then(function(successData) {
+      hMStatisticsModel.deviceInfo().then(function(successData) {
         $scope.deviceName = successData.DeviceName;
         $scope.Model = successData.Model;
 
@@ -483,10 +466,12 @@ kindFramework.controller('HMSetupCtrl', function(
         // setImageSize();
 
         //Exclude Area 임의 설정
-        HMStatisticsModel.getReportInfo().then(function(data) {
+        hMStatisticsModel.getReportInfo().then(function(data) {
+          var i = 0;
+          var ii = 0;
           try {
             //초기화
-            for (var i = 0; i < 4; i++) {
+            for (i = 0; i < 4; i++) {
               $scope.excludeAreaSection.update(i, {
                 points: [],
                 isEnable: false,
@@ -495,7 +480,7 @@ kindFramework.controller('HMSetupCtrl', function(
             }
 
             if ("Areas" in data) {
-              for (var i = 0, ii = data.Areas.length; i < ii; i++) {
+              for (i = 0, ii = data.Areas.length; i < ii; i++) {
                 var self = data.Areas[i];
                 var coordinates = self.Coordinates;
                 var points = [];
@@ -566,7 +551,7 @@ kindFramework.controller('HMSetupCtrl', function(
       }
     }
 
-    requestData['BackgroundColourLevel'] = $scope.colorLevelSection.BackgroundColourLevel === 'true' ? 100 : 0;
+    requestData.BackgroundColourLevel = $scope.colorLevelSection.BackgroundColourLevel === 'true' ? 100 : 0;
 
     if (deleteAreaData.length > 0) {
       if (deleteAreaData.length === 4) {

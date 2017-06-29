@@ -241,7 +241,7 @@ kindFramework.controller('PCStatisticsCtrl',
       }
 
       function getRuleInfoSuccessCallback(data) {
-        if (asyncInterrupt === true) return;
+        if (asyncInterrupt === true) {return;}
 
         //If people count is disabled.
         if (data.Enable === false) {
@@ -253,8 +253,10 @@ kindFramework.controller('PCStatisticsCtrl',
         //Counting Rule Validation
         var haveRule = false;
         var haveNameOfLine = false;
+        var i = 0;
+        var len = 0;
 
-        for (var i = 0, len = data.Lines.length; i < len; i++) {
+        for (i = 0, len = data.Lines.length; i < len; i++) {
           if (data.Lines[i].Enable === true) {
             haveRule = true;
           }
@@ -266,9 +268,9 @@ kindFramework.controller('PCStatisticsCtrl',
 
         if (haveNameOfLine === true) {
           //Draw Graph
-          pcSetupModel
-            .getDeviceName()
-            .then(getDeviceNameSuccessCallback, failCallback);
+          pcSetupModel.
+            getDeviceName().
+            then(getDeviceNameSuccessCallback, failCallback);
         } else {
           deferred.resolve('No Name');
         }
@@ -280,7 +282,7 @@ kindFramework.controller('PCStatisticsCtrl',
 
         //Draw Line of Counting Rule in Video
 
-        for (var i = 0, len = data.Lines.length; i < len; i++) {
+        for (i = 0, len = data.Lines.length; i < len; i++) {
           var self = data.Lines[i];
           var inCount = self.Enable === true ? self.InCount : '';
           var outCount = self.Enable === true ? self.OutCount : '';
@@ -325,8 +327,8 @@ kindFramework.controller('PCStatisticsCtrl',
       //Display Counting Rule
 
       pcSetupModel.initModel().then(function() {
-        pcSetupModel.getRuleInfo()
-          .then(
+        pcSetupModel.getRuleInfo().
+          then(
             getRuleInfoSuccessCallback,
             function() {
               $scope.realTimeSection.setUndefinedRule();
@@ -427,7 +429,7 @@ kindFramework.controller('PCStatisticsCtrl',
       postData.searchResultData = JSON.stringify(postData.searchResultData);
 
       var encodedta = encodeURI(JSON.stringify(postData));
-
+      var blob = '';
       var url = "/home/exportToExcel.cgi?dumy=" + new Date().getTime();
       SunapiClient.file(url,
         function(response) {
@@ -440,14 +442,14 @@ kindFramework.controller('PCStatisticsCtrl',
           try {
             console.log("Trying SaveBlob method ...");
 
-            var blob = new Blob([response.data], {
+            blob = new Blob([response.data], {
               type: contentType
             });
             if (navigator.msSaveBlob) {
               navigator.msSaveBlob(blob, filename);
             } else {
               var saveBlob = navigator.webkitSaveBlob || navigator.mozSaveBlob || navigator.saveBlob;
-              if (saveBlob === undefined) {
+              if (typeof saveBlob === "undefined") {
                 throw "Not supported";
               }
               saveBlob(blob, filename);
@@ -466,7 +468,7 @@ kindFramework.controller('PCStatisticsCtrl',
                 try {
                   console.log("Trying DownloadLink method ...");
 
-                  var blob = new Blob([response.data], {
+                  blob = new Blob([response.data], {
                     type: contentType
                   });
                   var url = urlCreator.createObjectURL(blob);
@@ -486,7 +488,7 @@ kindFramework.controller('PCStatisticsCtrl',
               if (!success) {
                 try {
                   console.log("Trying DownloadLink method with WindowLocation ...");
-                  var blob = new Blob([response.data], {
+                  blob = new Blob([response.data], {
                     type: contentType
                   });
                   var reader = new FileReader();
@@ -526,11 +528,10 @@ kindFramework.controller('PCStatisticsCtrl',
 
                     form.submit();
 
-                    var interval;
                     var captureFrame = $('#' + iframe.id);
                     var captureForm = $('#' + form.id);
                     captureFrame.unbind();
-                    interval = setTimeout(function() {
+                    setTimeout(function() {
 
                       captureFrame.unbind();
                       captureForm.remove();
@@ -589,7 +590,7 @@ kindFramework.controller('PCStatisticsCtrl',
       },
       isSearching: false, //Searching Validation
       getResults: function() {
-        if ($scope.conditionsSection.isSearching === true) return;
+        if ($scope.conditionsSection.isSearching === true) {return;}
 
         $scope.conditionsSection.isSearching = true;
         var dateForm = $scope.pcConditionsDateForm;
@@ -639,18 +640,16 @@ kindFramework.controller('PCStatisticsCtrl',
           return;
         }
 
-        var dateForm = $scope.pcConditionsDateForm;
+        dateForm = $scope.pcConditionsDateForm;
         var toCalenderTimeStamp = dateForm.toCalender.getTime();
         var fromCalenderTimeStamp = dateForm.fromCalender.getTime();
-        var secondSelectOptions = dateForm.secondSelectOptions;
-        var firstSelectOptions = dateForm.firstSelectOptions;
 
         searchOptions.fromDate = fromCalenderTimeStamp;
         searchOptions.toDate = toCalenderTimeStamp;
 
-        pcSetupModel
-          .getSearchResults(searchOptions)
-          .then(function(data) {
+        pcSetupModel.
+          getSearchResults(searchOptions).
+          then(function(data) {
             $scope.resultSection.setXAxisFormat(data.resultInterval);
 
             var haveResults = false;
@@ -748,14 +747,12 @@ kindFramework.controller('PCStatisticsCtrl',
 
     /* Graph Start
     ------------------------------------------ */
-    function changeFormatForGraph(timeForamtForGraph, dateFormat) {
-      timeForamtForGraph += ""; //Change Type
+    function changeFormatForGraph(_timeForamtForGraph, dateFormat) {
+      var timeForamtForGraph = _timeForamtForGraph + ""; //Change Type
       var year = timeForamtForGraph.substr(0, 4);
       var month = timeForamtForGraph.substr(4, 2);
       var date = timeForamtForGraph.substr(6, 2);
       var hours = timeForamtForGraph.substr(8, 2);
-      var minutes = timeForamtForGraph.substr(10, 2);
-      var seconds = timeForamtForGraph.substr(12, 2);
 
       var returnVal = null;
 
@@ -786,7 +783,7 @@ kindFramework.controller('PCStatisticsCtrl',
       }
 
       /* tickFormat이 비정상일 때 null 처리 */
-      if (isFloat(data) || data < 0) return null;
+      if (isFloat(data) || data < 0){ return null;}
 
       var num = data < 10 ? 1 : data < 100 ? 2 : 3;
       return d3.format('.' + num + 's')(data);
@@ -1036,7 +1033,7 @@ kindFramework.controller('PCStatisticsCtrl',
         item.disabled = true;
 
         var seriesIndex = item.seriesIndex;
-        if (seriesIndex === undefined) {
+        if (typeof seriesIndex === "undefined") {
           seriesIndex = item.values[0].series;
         }
 

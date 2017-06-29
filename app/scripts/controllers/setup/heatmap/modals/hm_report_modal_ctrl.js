@@ -1,3 +1,4 @@
+/* globals Uint8Array */
 "use strict";
 kindFramework.controller('hmReportModalCtrl', function($scope, $uibModalInstance, CameraName, FromDate, ToDate, pcSetupService) {
   $scope.confirmTitle = 'lang_download';
@@ -6,11 +7,11 @@ kindFramework.controller('hmReportModalCtrl', function($scope, $uibModalInstance
   $scope.fileName = '';
   $scope.fileNameRegExp = pcSetupService.regExp.getAlphaNum();
 
-  FromDate = FromDate.slice(0, 10).replace(/-/g, "");
-  ToDate = ToDate.slice(0, 10).replace(/-/g, "");
+  var fromDate = FromDate.slice(0, 10).replace(/-/g, "");
+  var toDate = ToDate.slice(0, 10).replace(/-/g, "");
 
   function saveImageFile() {
-    var fileName = $scope.fileName + '_' + CameraName + '_' + FromDate + "_" + ToDate + '.png';
+    var fileName = $scope.fileName + '_' + CameraName + '_' + fromDate + "_" + toDate + '.png';
     var img = document.getElementById("hm-results-image-1");
     var canvas = document.createElement("canvas");
     canvas.width = img.width;
@@ -21,7 +22,8 @@ kindFramework.controller('hmReportModalCtrl', function($scope, $uibModalInstance
 
     var success = false;
     var contentType = 'image/png';
-    var imageDataBuffer;
+    var imageDataBuffer = '';
+    var blob = null;
     if (typeof atob !== 'undefined') {
       var dataAtob = atob(imageData);
       var asArray = new Uint8Array(dataAtob.length);
@@ -35,14 +37,14 @@ kindFramework.controller('hmReportModalCtrl', function($scope, $uibModalInstance
     }
     try {
       //console.log("Trying SaveBlob method ...");
-      var blob = new Blob([imageDataBuffer], {
+      blob = new Blob([imageDataBuffer], {
         type: contentType
       });
       if (navigator.msSaveBlob) {
         navigator.msSaveBlob(blob, fileName);
       } else {
         var saveBlob = navigator.webkitSaveBlob || navigator.mozSaveBlob || navigator.saveBlob;
-        if (saveBlob === undefined) {
+        if (typeof saveBlob === "undefined") {
           throw "Not supported";
         }
         saveBlob(blob, fileName);
@@ -60,7 +62,7 @@ kindFramework.controller('hmReportModalCtrl', function($scope, $uibModalInstance
         if ('download' in link) {
           try {
             //console.log("Trying DownloadLink method ...");
-            var blob = new Blob([imageDataBuffer], {
+            blob = new Blob([imageDataBuffer], {
               type: contentType
             });
             var url = urlCreator.createObjectURL(blob);
@@ -109,11 +111,10 @@ kindFramework.controller('hmReportModalCtrl', function($scope, $uibModalInstance
       document.body.appendChild(form);
       form.submit();
 
-      var interval;
       var captureFrame = $('#' + iframe.id);
       var captureForm = $('#' + form.id);
       captureFrame.unbind();
-      interval = setTimeout(function() {
+      setTimeout(function() {
 
         captureFrame.unbind();
         captureForm.remove();
@@ -127,13 +128,16 @@ kindFramework.controller('hmReportModalCtrl', function($scope, $uibModalInstance
       'fileName'
     ];
     var errClass = 'has-error';
-
+    var i = 0;
+    var key = null;
+    var elem = null;
+    var parent = null;
     //trim
-    for (var i = 0; i < arr.length; i++) {
-      var key = arr[i];
+    for (i = 0; i < arr.length; i++) {
+      key = arr[i];
       var tmpVal = $scope[key].trim();
-      var elem = $("#pc-confirm-report-" + key);
-      var parent = elem.parent();
+      elem = $("#pc-confirm-report-" + key);
+      parent = elem.parent();
       parent.removeClass(errClass);
 
       $scope[key] = tmpVal;
@@ -141,11 +145,11 @@ kindFramework.controller('hmReportModalCtrl', function($scope, $uibModalInstance
     }
 
     var isOk = true;
-    for (var i = 0; i < arr.length; i++) {
-      var key = arr[i];
+    for (i = 0; i < arr.length; i++) {
+      key = arr[i];
       if ($scope[key] === '') {
-        var elem = $("#pc-confirm-report-" + key);
-        var parent = elem.parent();
+        elem = $("#pc-confirm-report-" + key);
+        parent = elem.parent();
         parent.addClass(errClass);
         isOk = false;
       }

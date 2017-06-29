@@ -17,6 +17,8 @@ kindFramework.service('MJPEGPollingControlService', ['$rootScope', '$timeout', '
       var resolution = UniversialManagerService.getProfileInfo().Resolution.split("x");
       checkElementSize = false;
 
+      $interval.cancel(MJPEGIntervalPromise);
+
       MJPEGIntervalPromise = $interval(function () {
         MJPEG_SUNAPI_URL = getMJPEGPollingURL(_sequencenum);
         var channelId = UniversialManagerService.getChannelId();

@@ -1,9 +1,12 @@
+/* globals Uint8Array */
 kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibModal, SunapiClient, Attributes, COMMONUtils, APP_CONFIG) {
   "use strict";
 
   COMMONUtils.getResponsiveObjects($scope);
 
   var mAttr = Attributes.get();
+
+  var modalInstance = '';
 
   $scope.UWAVersion = [
     APP_CONFIG.VERSION,
@@ -13,7 +16,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
 
 
   $scope.getTranslatedOption = function(Option) {
-    if (Option == 'Network') {
+    if (Option === 'Network') {
       if (mAttr.OpenSDKSupport) {
         return COMMONUtils.getTranslatedOption("ExcludeNetworkOpenPlatform");
       } else {
@@ -29,23 +32,23 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
     $scope.ModelName = mAttr.ModelName;
     $scope.PTZModel = mAttr.PTZModel;
 
-    if (mAttr.ISPVersion !== undefined) {
+    if (typeof mAttr.ISPVersion !== "undefined") {
       $scope.ISPVersion = mAttr.ISPVersion;
     }
 
-    if (mAttr.CGIVersion !== undefined) {
+    if (typeof mAttr.CGIVersion !== "undefined") {
       $scope.CGIVersion = mAttr.CGIVersion;
     }
 
-    if (mAttr.TrackingVersion !== undefined) {
+    if (typeof mAttr.TrackingVersion !== "undefined") {
       $scope.TrackingVersion = mAttr.TrackingVersion;
     }
 
-    if (mAttr.ExcludeSettings !== undefined) {
+    if (typeof mAttr.ExcludeSettings !== "undefined") {
       $scope.ExcludeSettings = mAttr.ExcludeSettings;
     }
 
-    if (mAttr.RestoreExclusions !== undefined) {
+    if (typeof mAttr.RestoreExclusions !== "undefined") {
       $scope.RestoreExclusions = mAttr.RestoreExclusions;
     }
 
@@ -162,7 +165,8 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
 
   $scope.backupConfig = function() {
     var getData = {};
-
+    var blob = '';
+    var url = '';
     SunapiClient.get('/stw-cgi/system.cgi?msubmenu=configbackup&action=control', getData,
       function(response) {
         if (response.data.Response === "Fail") {
@@ -176,7 +180,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
           try {
             console.log("Trying SaveBlob method ...");
 
-            var blob = new Blob([response.data], {
+            blob = new Blob([response.data], {
               type: contentType
             });
 
@@ -184,7 +188,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
               navigator.msSaveBlob(blob, filename);
             } else {
               var saveBlob = navigator.webkitSaveBlob || navigator.mozSaveBlob || navigator.saveBlob;
-              if (saveBlob === undefined) {
+              if (typeof saveBlob === "undefined") {
                 throw "Not supported";
               }
               saveBlob(blob, filename);
@@ -204,11 +208,11 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
                 try {
                   console.log("Trying DownloadLink method ...");
 
-                  var blob = new Blob([response.data], {
+                  blob = new Blob([response.data], {
                     type: contentType
                   });
 
-                  var url = urlCreator.createObjectURL(blob);
+                  url = urlCreator.createObjectURL(blob);
                   link.setAttribute('href', url);
                   link.setAttribute("download", filename);
 
@@ -226,10 +230,10 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
               if (!success) {
                 try {
                   console.log("Trying DownloadLink method with WindowLocation ...");
-                  var blob = new Blob([response.data], {
+                  blob = new Blob([response.data], {
                     type: contentType
                   });
-                  var url = urlCreator.createObjectURL(blob);
+                  url = urlCreator.createObjectURL(blob);
                   window.location = url;
 
                   console.log("DownloadLink method with WindowLocation succeeded");
@@ -280,7 +284,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
 
     SunapiClient.get('/stw-cgi/system.cgi?msubmenu=factoryreset&action=control', setData,
       function(response) {
-        var modalInstance = $uibModal.open({
+        modalInstance = $uibModal.open({
           templateUrl: 'errorPopup.html',
           controller: 'errorMessageCtrl',
           windowClass: 'modal-position-middle',
@@ -328,7 +332,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
 
     SunapiClient.get('/stw-cgi/system.cgi?msubmenu=power&action=control', getData,
       function(response) {
-        var modalInstance = $uibModal.open({
+        modalInstance = $uibModal.open({
           templateUrl: 'errorPopup.html',
           controller: 'errorMessageCtrl',
           windowClass: 'modal-position-middle',
@@ -409,9 +413,11 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
           $scope.ProgressVisible = false;
         }, $scope, btoa(fileToPost), specialHeaders);
     };
-  };
+  }
 
-  function updateProgress(TimeDelay, ProgressBarName, MaxValue) {
+  function updateProgress(_TimeDelay, _ProgressBarName, MaxValue) {
+    var ProgressBarName = _ProgressBarName;
+    var TimeDelay = _TimeDelay;
     (function update() {
       if ($scope.ProgressBar > 25) {
         ProgressBarName = "Updating FW";
@@ -495,7 +501,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
 
       } else {
         if ($scope.IsRestoreRunning) {
-          var modalInstance = $uibModal.open({
+          modalInstance = $uibModal.open({
             templateUrl: 'errorPopup.html',
             controller: 'errorMessageCtrl',
             windowClass: 'modal-position-middle',
@@ -519,7 +525,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
             COMMONUtils.onLogout();
           });
         } else if ($scope.IsFWUpdating) {
-          var modalInstance = $uibModal.open({
+          modalInstance = $uibModal.open({
             templateUrl: 'errorPopup.html',
             controller: 'errorMessageCtrl',
             windowClass: 'modal-position-middle',
@@ -546,7 +552,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
       }
     } else {
       console.log("Config Download Success");
-      var modalInstance = $uibModal.open({
+      modalInstance = $uibModal.open({
         templateUrl: 'errorPopup.html',
         controller: 'errorMessageCtrl',
         windowClass: 'modal-position-middle',
@@ -582,7 +588,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
     });
 
     if (evt.target.responseType !== 'arraybuffer') {
-      var modalInstance = $uibModal.open({
+      modalInstance = $uibModal.open({
         templateUrl: 'errorPopup.html',
         controller: 'errorMessageCtrl',
         windowClass: 'modal-position-middle',
@@ -599,7 +605,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
 
       console.log("Upload Fail");
     } else {
-      var modalInstance = $uibModal.open({
+      modalInstance = $uibModal.open({
         templateUrl: 'errorPopup.html',
         controller: 'errorMessageCtrl',
         windowClass: 'modal-position-middle',
@@ -627,7 +633,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
     });
 
     if (evt.target.responseType !== 'arraybuffer') {
-      var modalInstance = $uibModal.open({
+      modalInstance = $uibModal.open({
         templateUrl: 'errorPopup.html',
         controller: 'errorMessageCtrl',
         windowClass: 'modal-position-middle',
@@ -642,7 +648,7 @@ kindFramework.controller('upgradeRebootCtrl', function($scope, $timeout, $uibMod
         }
       });
     } else {
-      var modalInstance = $uibModal.open({
+      modalInstance = $uibModal.open({
         templateUrl: 'errorPopup.html',
         controller: 'errorMessageCtrl',
         windowClass: 'modal-position-middle',

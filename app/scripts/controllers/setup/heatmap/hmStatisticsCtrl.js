@@ -29,7 +29,7 @@ kindFramework.controller('HMStatisticsCtrl', function(
   var asyncInterrupt = false;
 
   var mAttr = Attributes.get();
-  var HMStatisticsModel = new HMStatisticsModel();
+  var hMStatisticsModel = new HMStatisticsModel();
 
   var searchFromDate = null;
   var searchToDate = null;
@@ -102,14 +102,6 @@ kindFramework.controller('HMStatisticsCtrl', function(
     return pcSetupService.setMaxResolution(mAttr.EventSourceOptions);
   }
 
-  function setImageSize() {
-    var defaultResolution = pcSetupService.getDefaultResolution();
-    $("#hm-realtime-overimg, #hm-realtime-overimg img").css({
-      width: defaultResolution.width + "px",
-      height: defaultResolution.height + "px"
-    });
-  }
-
   function setResultImageSize(width, height) {
     $("#hm-results-image-1").css({
       width: width + "px",
@@ -139,8 +131,8 @@ kindFramework.controller('HMStatisticsCtrl', function(
     },
     loadImage: function(SearchToken) {
       var hmRealTimeOverImg = $("#hm-realtime-overimg img");
-      hmRealTimeOverImg
-        .attr("src", HMStatisticsModel.getResultPath(SearchToken));
+      hmRealTimeOverImg.
+        attr("src", hMStatisticsModel.getResultPath(SearchToken));
 
       var deferred = $q.defer();
 
@@ -175,7 +167,7 @@ kindFramework.controller('HMStatisticsCtrl', function(
         searchToDate = calenderDate.ToDate;
         var ResultImageType = withoutBG ? "WithoutBackground" : "WithBackground";
 
-        HMStatisticsModel.startSearch(searchFromDate, searchToDate, ResultImageType).then(
+        hMStatisticsModel.startSearch(searchFromDate, searchToDate, ResultImageType).then(
           function(responseData) {
             $scope.conditionsSection.checkSearch(withoutBG, responseData.SearchToken, 0);
           },
@@ -191,7 +183,7 @@ kindFramework.controller('HMStatisticsCtrl', function(
         return;
       }
 
-      HMStatisticsModel.checkSearch(SearchToken).then(
+      hMStatisticsModel.checkSearch(SearchToken).then(
         function(responseData) {
           console.log(responseData);
           if (responseData.Status === "Completed") {
@@ -231,7 +223,7 @@ kindFramework.controller('HMStatisticsCtrl', function(
     cancelSearch: function(SearchToken) {
       $scope.checkSearching = false;
       /*
-      HMStatisticsModel.cancelSearch(SearchToken).then(
+      hMStatisticsModel.cancelSearch(SearchToken).then(
       	function(responseData){
       		console.log(responseData);
       	},
@@ -279,7 +271,7 @@ kindFramework.controller('HMStatisticsCtrl', function(
     },
     loadImage: function(SearchToken) {
       var hmResultsImage = $("#hm-results-image-1");
-      hmResultsImage.attr("src", HMStatisticsModel.getResultPath(SearchToken));
+      hmResultsImage.attr("src", hMStatisticsModel.getResultPath(SearchToken));
 
       var deferred = $q.defer();
 
@@ -403,36 +395,6 @@ kindFramework.controller('HMStatisticsCtrl', function(
     return modalInstance.result;
   }
 
-  /**
-   * @param options {Object} view, controller, title, message, data
-   * @return Promise {Promise}
-   */
-  function openConfirm(options) {
-    if (asyncInterrupt) {
-      return;
-    }
-    var view = options.view || 'views/setup/peoplecounting/modals/confirm.html';
-    var controller = options.controller || 'confirmModalCtrl';
-    var data = {
-      title: function() {
-        return options.title;
-      },
-      message: function() {
-        return options.message;
-      }
-    };
-    data = $.extend(data, options.data);
-
-    modalInstance = $uibModal.open({
-      templateUrl: view,
-      controller: controller,
-      windowClass: 'modal-position-middle',
-      resolve: data,
-      size: 'sm'
-    });
-
-    return modalInstance.result;
-  }
 
   /*TBD{ (SDCard)
   	$scope.useReport = true;
@@ -449,7 +411,7 @@ kindFramework.controller('HMStatisticsCtrl', function(
   	};
 
   	$scope.checkSDCard = function(){
-  		if(!HMStatisticsModel.mockupData.SDCard){
+  		if(!hMStatisticsModel.mockupData.SDCard){
   			$scope.useReport = false;
   			if(SDCard.get() === null){
   				SDCard.set();
@@ -475,12 +437,12 @@ kindFramework.controller('HMStatisticsCtrl', function(
 
     // setImageSize();
 
-    HMStatisticsModel.deviceInfo().then(
+    hMStatisticsModel.deviceInfo().then(
       function(successData) {
         $scope.deviceName = successData.DeviceName;
         $scope.Model = successData.Model;
 
-        HMStatisticsModel.getReportInfo().then(
+        hMStatisticsModel.getReportInfo().then(
           function(data) {
             if ("BackgroundColourLevel" in data) {
               $scope.colorLevelSection.init(data.BackgroundColourLevel);

@@ -84,18 +84,19 @@ kindFramework.controller(
           },
         ],
         setSelectedColor: function(tColour){
+          var index = 0;
           if(typeof tColour === 'undefined'){
             return;
           }
           if(typeof tColour === 'string') {
-            for (var index = 0; index < $scope.overlayColorSection.colorIndexList.length; index++) {
+            for (index = 0; index < $scope.overlayColorSection.colorIndexList.length; index++) {
               if (tColour === $scope.overlayColorSection.colorIndexList[index].colorName) {
                 $scope.overlayColorSection.selectedColorIndex = index;
               }
             }
           } else {
             var colorIndex = tColour;
-            for (var index = 0; index < $scope.overlayColorSection.colorIndexList.length; index++) {
+            for (index = 0; index < $scope.overlayColorSection.colorIndexList.length; index++) {
               if ($scope.overlayColorSection.colorIndexList[colorIndex].colorName === $scope.overlayColorSection.colorIndexList[index].colorName) {
                 $scope.overlayColorSection.selectedColorIndex = index;
               }

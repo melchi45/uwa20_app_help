@@ -1,6 +1,6 @@
-/* global SketchManager, setInterval, clearInterval, getClientIP */
-kindFramework
-  .directive('sketchbook', ['$rootScope', '$location', 'sketchbookService', 'SessionOfUserManager', 'ConnectionSettingService', 'kindStreamInterface', 'SunapiClient', 'PTZ_TYPE', 'PTZContorlService', 'DigitalPTZContorlService', 'Attributes', 'RESTCLIENT_CONFIG', '$timeout', 'UniversialManagerService',
+/* global SketchManager, setInterval, clearInterval */
+kindFramework.
+  directive('sketchbook', ['$rootScope', '$location', 'sketchbookService', 'SessionOfUserManager', 'ConnectionSettingService', 'kindStreamInterface', 'SunapiClient', 'PTZ_TYPE', 'PTZContorlService', 'DigitalPTZContorlService', 'Attributes', 'RESTCLIENT_CONFIG', '$timeout', 'UniversialManagerService',
     function($rootScope, $location, sketchbookService, SessionOfUserManager, ConnectionSettingService, kindStreamInterface, SunapiClient, PTZ_TYPE, PTZContorlService, DigitalPTZContorlService, Attributes, RESTCLIENT_CONFIG, $timeout, UniversialManagerService) {
       'use strict';
       return {
@@ -103,15 +103,15 @@ kindFramework
           xmlHttp.onreadystatechange = function() {
             if (this.readyState === 4) {
               retryStatus = true;
-              if (this.status == 200) {
-                if (xmlHttp.responseText == "OK") {
+              if (this.status === 200) {
+                if (xmlHttp.responseText === "OK") {
                   window.setTimeout(RefreshPage, 500);
                 } else {
                   retryStatus = false;
                   return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=interface&action=view', {},
                     function(response) {
                       var macIp = response.data.NetworkInterfaces[0].MACAddress;
-                      if (macIp == RESTCLIENT_CONFIG.digest.macAddress) {
+                      if (macIp === RESTCLIENT_CONFIG.digest.macAddress) {
                         var data = getPlayerData();
                         kindStreamInterface.changeStreamInfo(data);
                       } else {
@@ -122,17 +122,18 @@ kindFramework
                       console.error(errorData);
                     }, '', true);
                 }
-              } else if (this.status == 401) {
+              } else if (this.status === 401) {
                 retryStatus = false;
                 var unAuthHtml = "<html><head><title>401 - Unauthorized</title></head><body><h1>401 - Unauthorized</h1></body></html>";
                 document.write(unAuthHtml);
-              } else if (this.status == 490) {
+              } else if (this.status === 490) {
                 retryStatus = false;
                 var blockHtml = "<html><head><title>Account Blocked</title></head><body><h1>You have exceeded the maximum number of login attempts, please try after some time.</h1></body></html>";
                 document.write(blockHtml);
-              } else {
+              } 
+              // else {
 
-              }
+              // }
             }
           }
 
@@ -156,7 +157,7 @@ kindFramework
                 videoinfo.maxHeight = temp;
               }
 
-              if (videoinfo.channelId !== undefined) {
+              if (typeof videoinfo.channelId !== "undefined") {
                 currentChannel = videoinfo.channelId;
               }
 

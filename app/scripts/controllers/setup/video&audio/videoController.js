@@ -7,7 +7,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
 
   var mAttr = Attributes.get();
   COMMONUtils.getResponsiveObjects($scope);
-  var idx;
+  
   var pageData = {};
   $scope.SelectedChannel = 0;
   $scope.PrivacyMaskListCheck = false;
@@ -47,7 +47,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
 
           var privacyMask = privacyMasks[i];
 
-          if (privacyMask.Masks !== undefined && privacyMask.Masks.length > 0) {
+          if (typeof privacyMask.Masks !== "undefined" && privacyMask.Masks.length > 0) {
             $scope.infoTableData[i].privacyMask = 'On';
           } else {
             $scope.infoTableData[i].privacyMask = 'Off';
@@ -129,18 +129,18 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     $scope.MaxChannel = mAttr.MaxChannel;
 
 
-    if (mAttr.MaxZoom !== undefined) {
+    if (typeof mAttr.MaxZoom !== "undefined") {
       $scope.MaxZoom = mAttr.MaxZoom.maxValue;
     }
     $scope.RotateOptions = mAttr.RotateOptions;
 
-    if (mAttr.ViewModeIndex !== undefined) {
+    if (typeof mAttr.ViewModeIndex !== "undefined") {
       //Fisheye Features
       $scope.minViewModeIndex = mAttr.ViewModeIndex.minValue;
       $scope.maxViewModeIndex = mAttr.ViewModeIndex.maxValue;
       $scope.cameraPositionList = mAttr.CameraPosition; // "Wall", "Ceiling"
     }
-    $scope.privacyMaskDrawType = (mAttr.PrivacyMaskRectangle == '0') ? 1 : 0;
+    $scope.privacyMaskDrawType = (mAttr.PrivacyMaskRectangle === '0') ? 1 : 0;
   }
 
   function getMessagePrivacyZoom() {
@@ -156,7 +156,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     var getData = {};
     if ($scope.isMultiChannel) {
       var currentChannel = UniversialManagerService.getChannelId();
-      var getData = {
+      getData = {
         Channel: currentChannel
       };
     }
@@ -175,16 +175,18 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     if (mAttr.PTZModel || mAttr.ZoomOnlyModel) {
       var getData = {};
       if ($scope.isMultiChannel) {
-        var getData = {
+        getData = {
           Channel: currentChannel
         };
       }
       SunapiClient.get('/stw-cgi/ptzcontrol.cgi?msubmenu=query&action=view&Query=Zoom', getData,
         function(response) {
-          var resValue;
+          var resValue = '';
           try {
             resValue = response.data.Query[0].Zoom;
-          } catch (e) {}
+          } catch (error) {
+            console.error(error);
+          }
           if (resValue) {
             deferred.resolve(resValue);
           } else {
@@ -204,7 +206,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     var getData = {};
     if ($scope.isMultiChannel) {
       var currentChannel = UniversialManagerService.getChannelId();
-      var getData = {
+      getData = {
         Channel: currentChannel
       };
     }
@@ -222,19 +224,18 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     var getData = {};
     if ($scope.isMultiChannel) {
       var currentChannel = UniversialManagerService.getChannelId();
-      var getData = {
+      getData = {
         Channel: currentChannel
       };
     }
     return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
       function(response) {
-        var FlipRadioValue;
 
         $scope.DefaultSelectedData = response.data.Flip;
         $scope.Flip = response.data.Flip;
         pageData.Flip = angular.copy($scope.Flip);
 
-        // if( typeof( $scope.DefaultSelectedData ) != "undefined" ) {
+        // if( typeof( $scope.DefaultSelectedData ) !== "undefined" ) {
         //     $.each( $scope.DefaultSelectedData[0], function ( index, element ) {
         //         console.log()
         //     });
@@ -247,29 +248,29 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
 
   }
 
-  function videoSourceView() {
-    var getData = {};
-    if ($scope.isMultiChannel) {
-      var currentChannel = UniversialManagerService.getChannelId();
-      var getData = {
-        Channel: currentChannel
-      };
-    }
-    return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=view', getData,
-      function(response) {
-        $scope.VideoSources = response.data.VideoSources;
-        pageData.VideoSources = angular.copy($scope.VideoSources);
-      },
-      function(errorData) {
-        console.log(errorData);
-      }, '', true);
+  // function videoSourceView() {
+  //   var getData = {};
+  //   if ($scope.isMultiChannel) {
+  //     var currentChannel = UniversialManagerService.getChannelId();
+  //     var getData = {
+  //       Channel: currentChannel
+  //     };
+  //   }
+  //   return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=view', getData,
+  //     function(response) {
+  //       $scope.VideoSources = response.data.VideoSources;
+  //       pageData.VideoSources = angular.copy($scope.VideoSources);
+  //     },
+  //     function(errorData) {
+  //       console.log(errorData);
+  //     }, '', true);
 
-  }
+  // }
 
   function fisheyeSetupView() {
     var getData = {};
     if ($scope.isMultiChannel) {
-      var getData = {
+      getData = {
         Channel: currentChannel
       };
     }
@@ -286,14 +287,14 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
   var dummyIncValue = 0;
 
   var updatePrivacyMaskCoordinate = function(index) {
-    if (!(index == null)) {
-      if ($scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined) {
+    if (!(index === null)) {
+      if (typeof $scope.PrivacyMask[$scope.SelectedChannel].Masks !== "undefined") {
         for (var i = 0; i < $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++) {
-          if ($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].MaskIndex == index) {
-            if (mAttr.PTZModel == true || mAttr.ZoomOnlyModel == true) {
+          if ($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].MaskIndex === index) {
+            if (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true) {
               var setData = {};
-              setData["Mode"] = "Move";
-              setData["MaskIndex"] = index;
+              setData.Mode = "Move";
+              setData.MaskIndex = index;
               if ($scope.isMultiChannel) {
                 var currentChannel = UniversialManagerService.getChannelId();
                 setData.Channel = currentChannel;
@@ -313,7 +314,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
                 function(errorData) {
                   console.log(errorData);
                 }, '', true);
-              //} else if(mAttr.ZoomOnlyModel == true){
+              //} else if(mAttr.ZoomOnlyModel === true){
               //    sketchbookService.set({name:"", color:"", x1:0, y1:0, x2:0, y2:0, selectedMask:true});
             } else {
               var maskCoor = $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].MaskCoordinate;
@@ -321,7 +322,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
               $scope.coordinates.y1 = maskCoor[0].y;
               $scope.coordinates.x2 = maskCoor[1].x;
               $scope.coordinates.y2 = maskCoor[1].y;
-              if ($scope.sketchinfo.shape == 1) {
+              if ($scope.sketchinfo.shape === 1) {
                 $scope.coordinates.x3 = maskCoor[2].x;
                 $scope.coordinates.y3 = maskCoor[2].y;
                 $scope.coordinates.x4 = maskCoor[3].x;
@@ -335,7 +336,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
         }
       }
     } else {
-      if ($scope.sketchinfo.shape == 0) {
+      if ($scope.sketchinfo.shape === 0) {
         sketchbookService.set({
           name: "",
           color: "",
@@ -367,13 +368,13 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     var getData = {};
     if ($scope.isMultiChannel) {
       var currentChannel = UniversialManagerService.getChannelId();
-      var getData = {
+      getData = {
         Channel: currentChannel
       };
     }
     var prevSelectedMaskCoordinate = null;
     if ($scope.PrivacyMaskSelected !== null) {
-      if ($scope.PrivacyMask[$scope.SelectedChannel].Masks !== undefined) {
+      if (typeof $scope.PrivacyMask[$scope.SelectedChannel].Masks !== "undefined") {
         for (var i = 0; i < $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++) {
           if ($scope.PrivacyMaskSelected === $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].MaskIndex) {
             prevSelectedMaskCoordinate = $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].MaskCoordinate;
@@ -393,9 +394,9 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
         $scope.PrivacyMask = response.data.PrivacyMask;
         pageData.PrivacyMask = angular.copy($scope.PrivacyMask);
 
-        if ((mAttr.PTZModel || mAttr.ZoomOnlyModel) && $scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined /*&& $scope.PrivacyMask[$scope.SelectedChannel].Enable*/ ) {
+        if ((mAttr.PTZModel || mAttr.ZoomOnlyModel) && typeof $scope.PrivacyMask[$scope.SelectedChannel].Masks !== "undefined" /*&& $scope.PrivacyMask[$scope.SelectedChannel].Enable*/ ) {
           for (var i = 0; i < $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++) {
-            if ($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable == true) {
+            if ($scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable === true) {
               $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "[" + $translate.instant('lang_zoom') + "]";
             } else {
               $scope.PrivacyMask[$scope.SelectedChannel].Masks[i].ZoomThresholdEnable = "";
@@ -403,11 +404,11 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
           }
         }
 
-        if ($scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined && $scope.PrivacyMask[$scope.SelectedChannel].Enable) {
+        if (typeof $scope.PrivacyMask[$scope.SelectedChannel].Masks !== "undefined" && $scope.PrivacyMask[$scope.SelectedChannel].Enable) {
           $scope.$apply(function() {
             $scope.PrivacyMaskListCheck = true;
             if ($scope.PrivacyMaskSelected !== $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskIndex) {
-              if (inputIndex != undefined && (mAttr.PTZModel == true || mAttr.ZoomOnlyModel == true)) {
+              if (typeof inputIndex !== "undefined" && (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true)) {
                 $scope.PrivacyMaskSelected = inputIndex;
               } else {
                 $scope.PrivacyMaskSelected = $scope.PTZModel ? null : $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskIndex;
@@ -415,7 +416,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
             } else if (prevSelectedMaskCoordinate !== $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskCoordinate) {
               if (mAttr.PTZModel || mAttr.ZoomOnlyModel) {
                 $scope.PrivacyMaskSelected = inputIndex;
-                if (!doNotMoveFunction) updatePrivacyMaskCoordinate(inputIndex);
+                if (!doNotMoveFunction){ updatePrivacyMaskCoordinate(inputIndex);}
               } else {
                 updatePrivacyMaskCoordinate($scope.PrivacyMaskSelected);
               }
@@ -438,8 +439,8 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     if (mAttr.PTZModel) {
       var coordi = sketchbookService.get();
       var setData = {};
-      setData["Mode"] = "Start";
-      setData["MaskCoordinate"] = coordi.x1 + "," + coordi.y1 + "," + coordi.x2 + "," + coordi.y2;
+      setData.Mode = "Start";
+      setData.MaskCoordinate = coordi.x1 + "," + coordi.y1 + "," + coordi.x2 + "," + coordi.y2;
 
       if ($scope.isMultiChannel) {
         var currentChannel = UniversialManagerService.getChannelId();
@@ -469,8 +470,8 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     } else {
       var setData = {};
 
-      if ($scope.PrivacyMask[$scope.SelectedChannel].Masks == undefined) {
-        setData["MaskIndex"] = 1;
+      if (typeof $scope.PrivacyMask[$scope.SelectedChannel].Masks === "undefined") {
+        setData.MaskIndex = 1;
       } else {
         //Make do not send SUNAPI call, if there are max items.
         //console.log("Item Cnt = " + $scope.sketchinfo.currentNumber + " , Max = " + $scope.sketchinfo.maxNumber );
@@ -478,25 +479,25 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
           return;
         }
         for (var i = 1; i <= $scope.PrivacyMask[$scope.SelectedChannel].Masks.length; i++) {
-          if ($scope.PrivacyMask[$scope.SelectedChannel].Masks[(i - 1)].MaskIndex != i) {
-            setData["MaskIndex"] = i;
+          if ($scope.PrivacyMask[$scope.SelectedChannel].Masks[(i - 1)].MaskIndex !== i) {
+            setData.MaskIndex = i;
             break;
-          } else if ($scope.PrivacyMask[$scope.SelectedChannel].Masks.length == i) {
-            setData["MaskIndex"] = (i + 1);
+          } else if ($scope.PrivacyMask[$scope.SelectedChannel].Masks.length === i) {
+            setData.MaskIndex = (i + 1);
           }
         }
       }
 
-      ($scope.PrivacyMask[$scope.SelectedChannel].Masks == undefined ?
+      (typeof $scope.PrivacyMask[$scope.SelectedChannel].Masks === "undefined" ?
         1 : $scope.PrivacyMask[$scope.SelectedChannel].Masks.length + 1);
-      data.name = (data.name == undefined ? '' : data.name);
-      setData["MaskName"] = encodeURIComponent(data.name);
+      data.name = (typeof data.name === "undefined" ? '' : data.name);
+      setData.MaskName = encodeURIComponent(data.name);
 
       if ($scope.PrivacyMasGlobalColor === false) {
-        setData["MaskColor"] = data.color;
+        setData.MaskColor = data.color;
       }
 
-      setData["MaskCoordinate"] = data.position;
+      setData.MaskCoordinate = data.position;
 
       if ($scope.isMultiChannel) {
         var currentChannel = UniversialManagerService.getChannelId();
@@ -520,7 +521,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
                     $interval.cancel(ptzJogTimer);
                     ptzJogTimer = null;
                   }
-                  if (!isPtzControlStart) return;
+                  if (!isPtzControlStart) {return;}
                   var setData = {};
                   setData.Channel = 0;
                   setData.OperationType = 'All';
@@ -531,7 +532,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
                 };
 
                 scope.ptzControlZoom = function(value) {
-                  if (value == 'Stop') {
+                  if (value === 'Stop') {
                     if (UniversialManagerService.getDigitalPTZ() !== CAMERA_STATUS.DPTZ_MODE.DIGITAL_AUTO_TRACKING) {
                       ptzStop();
                     }
@@ -554,7 +555,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
                   }, 100);
                 };
                 (function wait() {
-                  if ($("#ptz-privacy-zoom-slider").length == 0) {
+                  if ($("#ptz-privacy-zoom-slider").length === 0) {
                     $timeout(function() {
                       wait();
                     }, 100);
@@ -620,17 +621,17 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
                             var privacyDialog = $("#privacy-popup-3");
                             var width = (privacyDialog.parent().width() + 30);
                             var height = (privacyDialog.parent().height() + 30);
-                            privacyDialog
-                              .parents(".modal")
-                              .draggable()
-                              .css({
+                            privacyDialog.
+                              parents(".modal").
+                              draggable().
+                              css({
                                 width: (privacyDialog.width() + 30) + "px",
                                 height: (privacyDialog.height() + 30) + "px",
                                 top: "calc(50% - " + (height / 2) + "px)",
                                 left: "calc(50% - " + (width / 2) + "px)"
-                              })
-                              .find(".modal-dialog")
-                              .css({
+                              }).
+                              find(".modal-dialog").
+                              css({
                                 margin: 0
                               });
                           });
@@ -644,8 +645,8 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
                       );
                     } else {
                       var updateData = {};
-                      updateData["MaskIndex"] = setData["MaskIndex"];
-                      updateData["ZoomThresholdEnable"] = data.thresholdEnable;
+                      updateData.MaskIndex = setData.MaskIndex;
+                      updateData.ZoomThresholdEnable = data.thresholdEnable;
 
                       if ($scope.isMultiChannel) {
                         var currentChannel = UniversialManagerService.getChannelId();
@@ -653,7 +654,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
                       }
                       SunapiClient.get('/stw-cgi/image.cgi?msubmenu=privacy&action=update', updateData,
                         function(response) {
-                          privacyAreaView(setData["MaskIndex"]);
+                          privacyAreaView(setData.MaskIndex);
                           $uibModalInstance.close();
                         },
                         function(errorData) {
@@ -671,17 +672,17 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
                   var privacyDialog = $("#privacy-popup-2");
                   var width = (privacyDialog.parent().width() + 30);
                   var height = (privacyDialog.parent().height() + 30);
-                  privacyDialog
-                    .parents(".modal")
-                    .draggable()
-                    .css({
+                  privacyDialog.
+                    parents(".modal").
+                    draggable().
+                    css({
                       width: (privacyDialog.width() + 30) + "px",
                       height: (privacyDialog.height() + 30) + "px",
                       top: "calc(50% - " + (height / 2) + "px)",
                       left: "calc(50% - " + (width / 2) + "px)"
-                    })
-                    .find(".modal-dialog")
-                    .css({
+                    }).
+                    find(".modal-dialog").
+                    css({
                       margin: 0
                     });
                 });
@@ -706,7 +707,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
                 };
               },
               function() {
-                $scope.deletePrivacy(setData["MaskIndex"]);
+                $scope.deletePrivacy(setData.MaskIndex);
                 var coordinates = {};
                 coordinates = {
                   name: "",
@@ -727,7 +728,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
           } else {
             doNotMoveFunction = true;
             $("[type='radio'][name='VideoOutput']").prop("disabled", false);
-            privacyAreaView(setData["MaskIndex"]);
+            privacyAreaView(setData.MaskIndex);
             $scope.coordinates = {};
             $scope.coordinates = {
               name: "",
@@ -789,30 +790,29 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
       }, '', true);
   }
 
-  function videoSourceSet() {
+  // function videoSourceSet() {
 
-    var setData = {};
+  //   var setData = {};
 
-    setData.SensorCaptureFrameRate = pageData.VideoSources[$scope.SelectedChannel].SensorCaptureFrameRate = $scope.VideoSources[$scope.SelectedChannel].SensorCaptureFrameRate;
+  //   setData.SensorCaptureFrameRate = pageData.VideoSources[$scope.SelectedChannel].SensorCaptureFrameRate = $scope.VideoSources[$scope.SelectedChannel].SensorCaptureFrameRate;
 
-    if ($scope.isMultiChannel) {
-      var currentChannel = UniversialManagerService.getChannelId();
-      setData.Channel = currentChannel;
-    }
-    return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=set', setData,
-      function(response) {},
-      function(errorData) {
-        console.log(errorData);
-      }, '', true);
+  //   if ($scope.isMultiChannel) {
+  //     var currentChannel = UniversialManagerService.getChannelId();
+  //     setData.Channel = currentChannel;
+  //   }
+  //   return SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videosource&action=set', setData,
+  //     function(response) {},
+  //     function(errorData) {
+  //       console.log(errorData);
+  //     }, '', true);
 
-  }
+  // }
 
   function flipSet() {
     var setData = {},
-      ignoredKeys,
       changed = true;
 
-    ignoredKeys = ['Channel'];
+    var ignoredKeys = ['Channel'];
 
     changed = COMMONUtils.fillSetData(setData, $scope.Flip[$scope.SelectedChannel], pageData.Flip[$scope.SelectedChannel],
       ignoredKeys, false);
@@ -980,7 +980,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
 
     var functionlist = [];
 
-    if ($scope.VideoTypeOptions !== undefined) {
+    if (typeof $scope.VideoTypeOptions !== "undefined") {
       functionlist.push(videoOutputView);
     }
     //        if($scope.SensorModeOptions !== undefined)
@@ -990,7 +990,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
 
     functionlist.push(flipView);
 
-    if ($scope.MaxPrivacyMask !== undefined && $scope.MaxPrivacyMask > 0) {
+    if (typeof $scope.MaxPrivacyMask !== "undefined" && $scope.MaxPrivacyMask > 0) {
       functionlist.push(privacyAreaView);
     }
 
@@ -998,7 +998,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
       functionlist.push(digitalFlipView);
     }
 
-    if ($scope.cameraPositionList != undefined) {
+    if (typeof $scope.cameraPositionList !== "undefined") {
       functionlist.push(fisheyeSetupView);
     }
 
@@ -1079,11 +1079,10 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
   function saveSettings() {
     var deferred = $q.defer();
     var rotateChanged = false;
-    var mountModeChanged = false;
     var functionlist = [];
 
     if (!angular.equals(pageData.Flip, $scope.Flip)) {
-      var i, rotateChanged = false;
+      var i = 0;
       for (i = 0; i < pageData.Flip.length && i < $scope.Flip.length; i++) {
         if (pageData.Flip[i].Rotate !== $scope.Flip[i].Rotate) {
           rotateChanged = true;
@@ -1098,13 +1097,13 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     //                functionlist.push(videoSourceSet);
     //            }
     //        }
-    if ($scope.VideoTypeOptions !== undefined) {
+    if (typeof $scope.VideoTypeOptions !== "undefined") {
       if (!angular.equals(pageData.VideoOutputs, $scope.VideoOutputs)) {
         functionlist.push(videoOutputSet);
       }
     }
 
-    if ($scope.MaxPrivacyMask !== undefined && $scope.MaxPrivacyMask > 0) {
+    if (typeof $scope.MaxPrivacyMask !== "undefined" && $scope.MaxPrivacyMask > 0) {
       if (!angular.equals(pageData.PrivacyMask, $scope.PrivacyMask)) {
         functionlist.push(privacyAreaSet);
       }
@@ -1120,10 +1119,9 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
       $q.seqAll(functionlist).then(
         function() {
           deferred.resolve();
-          if ($scope.cameraPositionList !== undefined) {
+          if (typeof $scope.cameraPositionList !== "undefined") {
             if (!angular.equals(pageData.viewModes, $scope.viewModes)) {
               COMMONUtils.ShowConfirmation(changeMountMode, 'lang_msg_mountModeChange_Profile', 'md');
-              mountModeChanged = true;
             }
           }
 
@@ -1168,7 +1166,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     if ($scope.PrivacyMaskSelected || maskIndex) {
       $scope.deletingPrivacy = true;
       var setData = {};
-      setData["MaskIndex"] = maskIndex ? maskIndex : $scope.PrivacyMaskSelected;
+      setData.MaskIndex = maskIndex ? maskIndex : $scope.PrivacyMaskSelected;
 
       if ($scope.isMultiChannel) {
         var currentChannel = UniversialManagerService.getChannelId();
@@ -1206,19 +1204,19 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
   function runWatcher() {
     //update privacy enable/disable for sketchbook
     $scope.$watch(function() {
-      if (pageData.PrivacyMask != undefined) return pageData.PrivacyMask[$scope.SelectedChannel].Enable;
+      if (typeof pageData.PrivacyMask !== "undefined"){ return pageData.PrivacyMask[$scope.SelectedChannel].Enable;}
     }, function(newVal, oldVal) {
-      if (newVal != oldVal) {
-        if (newVal == true) {
+      if (newVal !== oldVal) {
+        if (newVal === true) {
           var drawType = $scope.privacyMaskDrawType;
           var drawMax = 0;
-          if (drawType == 0) {
+          if (drawType === 0) {
             drawMax = mAttr.PrivacyMaskRectangle;
           } else {
             drawMax = mAttr.PrivacyMaskPolygon;
           }
           var privacyCount = 0;
-          if ($scope.PrivacyMask[$scope.SelectedChannel].Masks !== undefined) {
+          if (typeof $scope.PrivacyMask[$scope.SelectedChannel].Masks !== "undefined") {
             $scope.PrivacyMaskListCheck = true;
             privacyCount = parseInt($scope.PrivacyMask[$scope.SelectedChannel].Masks.length, 10);
           }
@@ -1248,7 +1246,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
             message: getMessagePrivacyZoom()
           };
 
-          if (privacyCount != 0) {
+          if (privacyCount !== 0) {
             $scope.PrivacyMaskSelected = $scope.PrivacyMask[$scope.SelectedChannel].Masks[0].MaskIndex;
           }
         } else {
@@ -1266,10 +1264,10 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     });
 
     $scope.$watch(function() {
-      if ($scope.PrivacyMask[$scope.SelectedChannel].Masks != undefined) return $scope.PrivacyMask[$scope.SelectedChannel].Masks.length;
+      if (typeof $scope.PrivacyMask[$scope.SelectedChannel].Masks !== "undefined"){ return $scope.PrivacyMask[$scope.SelectedChannel].Masks.length;}
     }, function(newVal, oldVal) {
-      if (newVal != oldVal) {
-        if (newVal == undefined) {
+      if (newVal !== oldVal) {
+        if (typeof newVal === "undefined") {
           $scope.sketchinfo.currentNumber = 0;
         } else {
           var privacyCount = parseInt($scope.PrivacyMask[$scope.SelectedChannel].Masks.length, 10);
@@ -1279,9 +1277,9 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     });
     //update Flip for sketchbook
     $scope.$watch(function() {
-      if (pageData.Flip != undefined) return pageData.Flip[$scope.SelectedChannel].VerticalFlipEnable;
+      if (typeof pageData.Flip !== "undefined"){ return pageData.Flip[$scope.SelectedChannel].VerticalFlipEnable;}
     }, function(newVal, oldVal) {
-      if (newVal != oldVal && oldVal != undefined) {
+      if (newVal !== oldVal && typeof oldVal !== "undefined") {
         privacyAreaView();
         showVideo();
       }
@@ -1289,9 +1287,9 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     });
     //update Mirror for sketchbook
     $scope.$watch(function() {
-      if (pageData.Flip != undefined) return pageData.Flip[$scope.SelectedChannel].HorizontalFlipEnable;
+      if (typeof pageData.Flip !== "undefined") {return pageData.Flip[$scope.SelectedChannel].HorizontalFlipEnable;}
     }, function(newVal, oldVal) {
-      if (newVal != oldVal && oldVal != undefined) {
+      if (newVal !== oldVal && typeof oldVal !== "undefined") {
         privacyAreaView();
         showVideo();
       }
@@ -1344,13 +1342,13 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
 
     var drawType = $scope.privacyMaskDrawType;
     var drawMax = 0;
-    if (drawType == 0) {
+    if (drawType === 0) {
       drawMax = mAttr.PrivacyMaskRectangle;
     } else {
       drawMax = mAttr.PrivacyMaskPolygon;
     }
 
-    if (pageData.PrivacyMask[$scope.SelectedChannel].Enable == true) {
+    if (pageData.PrivacyMask[$scope.SelectedChannel].Enable === true) {
       $scope.coordinates = {};
       $scope.coordinates = {
         name: "",
@@ -1365,8 +1363,9 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
         y4: 0
       };
       var privacyCount = 0;
-      if ($scope.PrivacyMask[$scope.SelectedChannel].Masks !== undefined)
+      if (typeof $scope.PrivacyMask[$scope.SelectedChannel].Masks !== "undefined"){
         privacyCount = parseInt($scope.PrivacyMask[$scope.SelectedChannel].Masks.length, 10);
+      }
 
       $scope.sketchinfo = {
         workType: "privacy",
@@ -1418,8 +1417,8 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
       !angular.equals(pageData.VideoOutputs, $scope.VideoOutputs) ||
       !angular.equals(pageData.PrivacyMask, $scope.PrivacyMask) ||
       ($scope.PTZModel === true && !angular.equals(pageData.PTZSettings, $scope.PTZSettings))) {
-      COMMONUtils
-        .confirmChangeingChannel().then(function() {
+      COMMONUtils.
+        confirmChangeingChannel().then(function() {
             if (flipChanged === true && rotateChanged === false) {
               tMessage = $translate.instant('lang_msg_initialized_video_rotation_changed').replace('[%1]', $translate.instant('lang_menu_iva')).replace('%1', $translate.instant('lang_filpMirror'));
             } else if (flipChanged === true && rotateChanged === true) {
