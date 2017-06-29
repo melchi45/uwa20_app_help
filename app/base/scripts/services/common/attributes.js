@@ -653,6 +653,7 @@ function($timeout, $location, $q, SunapiClient, XMLParser, SessionOfUserManager,
         mAttributes.MaxZoom = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzcontrol/absolute/Zoom/float');
 
         mAttributes.DigitalZoomEnable = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/ptzsettings/DigitalZoomEnable/bool');
+        mAttributes.AutoFlipEnable = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/ptzsettings/AutoFlipEnable/bool');
         mAttributes.MaxDigitalZoomOptions = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/ptzsettings/MaxDigitalZoom/enum');
         mAttributes.RememberLastPosition = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/ptzsettings/RememberLastPosition/bool');
         mAttributes.RememberLastPositionDuration = XMLParser.parseCgiSection(mAttributes.cgiSection, 'ptzconfig/ptzsettings/RememberLastPositionDuration/int');
