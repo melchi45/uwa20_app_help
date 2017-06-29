@@ -2591,7 +2591,8 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       return retVal;
     }
 
-    if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode !== 'Disabled') {
+    if ($scope.ATCModes === true && 
+        $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode !== 'Disabled') {
       if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit < $scope.ATCLimitRange.Min ||
         $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit > $scope.ATCLimitRange.Max ||
         $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit === '' ||
