@@ -888,7 +888,7 @@ var SketchManager = (function() {
       var coordinateSystemWidth = parseInt((1 - translate[0]) / scale[0]);
       var coordinateSystemHeight = parseInt((-1 - translate[1]) / scale[1]);
 
-      var DIS_RADIUS = 1.2;
+      var DIS_RADIUS = 1; //var DIS_RADIUS = 1.2; 8월 변경점 적용 예정
       var DOUBLE_INDEX = 2;
 
       var magnification = this.DISMode ? DIS_RADIUS : 1;
