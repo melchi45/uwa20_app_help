@@ -42,7 +42,7 @@ kindFramework.
                   '</live-playback-channel-selector>');
                 $('#pb-channel-holder').append(selectorDirective(childScope)).
                   append('<div class="cm-vline"></div>');
-              } else {
+              } else if (mode === false && selectorDirective !==null) {
                 $('#pb-channel-holder').remove();
               }
             }

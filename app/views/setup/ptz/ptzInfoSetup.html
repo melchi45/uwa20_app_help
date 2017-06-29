@@ -138,8 +138,8 @@
                     <div class="table-wrapper form-group">
                         <table class="table cm-table-field table-editor wn5-setup-table">
                             <thead>
-                                <th width="20%" height="40" style="text-align:center">{{ 'lang_from' | translate }} {{ 'lang_presetNo' | translate }}</th>
-                                <th width="20%" height="40" style="text-align:center">{{ 'lang_to' | translate }} {{ 'lang_presetNo' | translate }}</th>
+                                <th width="20%" height="40" style="text-align:center">{{ 'lang_from' | translate }} {{ 'lang_presetNo' | translate | lowercase }}</th>
+                                <th width="20%" height="40" style="text-align:center">{{ 'lang_to' | translate }} {{ 'lang_presetNo' | translate | lowercase }}</th>
                                 <th width="20%" height="40" style="text-align:center">{{ rangeFormat(PresetMinSpeed, PresetMaxSpeed, "undefined", "lang_speed") }}</th>
                                 <th width="20%" height="40" style="text-align:center">{{ rangeFormat(DwellMinTime, DwellMaxTime, "lang_sec", "lang_dwt") }}</th>
                                 <th width="20%" height="40" style="text-align:center">{{ 'lang_swingMode' | translate }}</th>
@@ -513,12 +513,12 @@
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'AutoPan'">                                            
         <label class="col-sm-3 control-label">{{ 'lang_speed' | translate }}</label>
         <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.AutoPanSpeed" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
-        <label class="col-lg-1 control-label">({{AutoPanMinSpeed}}-{{AutoPanMaxSpeed}})</label>
+        <label class="control-label" style="float:left;">({{AutoPanMinSpeed}}-{{AutoPanMaxSpeed}})</label>
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'AutoPan'">
         <label class="col-sm-3 control-label">{{ 'lang_tiltAngle' | translate }}</label>
         <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.AutoPanTiltAngle" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
-        <label class="col-lg-1 control-label">({{AutoPanTiltMinAngle}}-{{AutoPanTiltMaxAngle}})</label>
+        <label class="control-label" style="float:left;">({{AutoPanTiltMinAngle}}-{{AutoPanTiltMaxAngle}})</label>
     </div>
     <div class="modal-body modal-setup">
         <label class="col-sm-3 control-label">{{ 'lang_from' | translate }}</label>

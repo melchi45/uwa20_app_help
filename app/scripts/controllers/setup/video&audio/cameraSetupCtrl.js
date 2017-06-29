@@ -261,7 +261,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     var promise = imageOptionsView();
-
+    if (mAttr.MaxZoom !== undefined) {
+        $scope.MaxZoom = mAttr.MaxZoom.maxValue;
+    }
     $scope.PTZModel = mAttr.PTZModel;
     $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
     $scope.CurrentLanguage = mAttr.CurrentLanguage;
@@ -1394,12 +1396,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     });
   };
 
-  $scope.getHeaterTranslation = function(option) {
-    if (mAttr.PTZModel && option == 'Heater') {
-      return COMMONUtils.getTranslatedOption('Heater');
-    } else {
-      return COMMONUtils.getTranslatedOption(option)
-    }
+  $scope.getHeaterTranslation = function () {
+      if (mAttr.PTZModel && $scope.MaxZoom == 12) {
+          return COMMONUtils.getTranslatedOption('Heater');
+      } else {
+          return COMMONUtils.getTranslatedOption('Fan');
+      }
   };
   $scope.heaterEveryDayChanged = function() {
 
@@ -2339,7 +2341,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       $scope.disChanged.preset = false;
     }
   };
-  $scope.isPresetSupportedDayNightMode = function(mode) {
+    
+  $scope.iSSupportedPresetDayNightMode = function () {
+      var retVal = true;
+      if(mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode == 'On' || $scope.IRled.Mode == 'Sensor' || $scope.IRled.Mode == 'Schedule' || $scope.IRled.Mode == 'DayNight')){
+          retVal = false;
+      } else if (mAttr.PTZModel && $scope.Camera.DayNightMode==='Schedule') {
+          retVal = false;
+      }
+      return retVal;
+  };
+  $scope.iSSupportedPresetDayNightModeOption = function (mode) {
     var retVal = true;
 
     if (mode === 'Auto') {
@@ -2350,10 +2362,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
     return retVal;
   };
-  $scope.iSSuportedPresetDwellTimeDuration = function() {
+  $scope.iSSupportedPresetDwellTimeDuration = function () {
     var retVal = true;
     if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.DayNightMode != 'Auto' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode == 'Off' ||
       (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode == 'On' || $scope.IRled.Mode == 'Sensor' || $scope.IRled.Mode == 'Schedule'))) {
+        retVal = false;
+    } else if (mAttr.PTZModel && $scope.Camera.DayNightMode==='Schedule') {
       retVal = false;
     }
     return retVal;
@@ -2399,7 +2413,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         setData.ImagePreview = 'Start';
       }
 
-      if (setData.hasOwnProperty('IrisMode')) {
+      if (setData.hasOwnProperty('IrisFno')) {
         setData.IrisMode = $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.IrisMode;
       }
 
@@ -3327,7 +3341,10 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     if ($scope.Camera.IrisMode === 'Auto' || $scope.Camera.IrisMode === 'Manual' || $scope.Camera.PIrisMode !== 'Manual') {
       ignoredKeys.push('PIrisPosition');
     }
-
+    if ($scope.Camera.IrisMode !== undefined && $scope.Camera.IrisMode !== 'Manual') {
+      ignoredKeys.push('IrisFno');
+    }
+      
     if ($scope.Camera.DayNightMode !== 'ExternalBW') {
       ignoredKeys.push('DayNightAlarmIn');
     }

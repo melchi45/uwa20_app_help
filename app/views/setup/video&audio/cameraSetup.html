@@ -604,7 +604,7 @@
                                     <div class="form-group" ng-if="IrisFnoOptions != undefined">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_iris' | translate }} F-No</div>
                                         <div class="wn5-setup-section-article-content">
-                                            <select class="form-control" ng-model="Camera.IrisFno" ng-disabled="Camera.IrisMode != 'Manual'" ng-change="initExposureSliders()">
+                                            <select class="form-control" ng-model="Camera.IrisFno" ng-disabled="Camera.IrisMode != 'Manual'" ng-change="cameraChangeHandler();initExposureSliders()">
                                                 <option ng-selected="Camera.IrisFno === option" value={{option}} ng-repeat="option in IrisFnoOptions"> {{ getTranslatedOption(option)}} </option>
                                             </select>
                                         </div>
@@ -713,7 +713,7 @@
                                 <div class="form-group" ng-show="IrisModeOptions !== undefined">
                                     <div class="wn5-setup-section-article-heading">{{ 'lang_iris' | translate }}</div>
                                     <div class="wn5-setup-section-article-content">
-                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.IrisMode" ng-change="presetCameraChangeHandler()">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.IrisMode" ng-change="initPresetExposureSliders()">
                                             <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.IrisMode === option" value={{option}} ng-repeat="option in PresetIrisModeOptions"> {{ option == 'Auto' ? 'DC(' + getTranslatedOption(option) + ')' : getTranslatedOption(option)}} </option>
                                         </select>
                                     </div>
@@ -835,15 +835,15 @@
                                     <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode != undefined">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
-                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode" ng-change="presetCameraChangeHandler()" ng-disabled="!iSSupportedDayNightMode()">
-                                                <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightModeOptions" ng-disabled="!isPresetSupportedDayNightMode(Mode)">{{getDayNightModeTranslatedOption(Mode)}}</option>
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode" ng-change="presetCameraChangeHandler()" ng-disabled="!iSSupportedPresetDayNightMode()">
+                                                <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightModeOptions" ng-disabled="!iSSupportedPresetDayNightModeOption(Mode)">{{getDayNightModeTranslatedOption(Mode)}}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime != undefined">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_dwelltime' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
-                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime" ng-disabled="!iSSuportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime" ng-disabled="!iSSupportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
                                                 <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightSwitchingTimeOptions">{{getTranslatedOption(Mode)}}</option>
                                             </select>
                                         </div>
@@ -851,7 +851,7 @@
                                     <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode != undefined">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_duration' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
-                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode" ng-disabled="!iSSuportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode" ng-disabled="!iSSupportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
                                                 <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightSwitchingModeOptions">{{getTranslatedOption(Mode)}}</option>
                                             </select>
                                         </div>
@@ -1376,7 +1376,7 @@
                                 </div>
                             </div>
                         </uib-tab>
-                        <uib-tab heading="{{getHeaterTranslation('Heater')}}" active="tabActiveData.heater" ng-if="tabMenu.Heater">
+                        <uib-tab heading="{{getHeaterTranslation()}}" active="tabActiveData.heater" ng-if="tabMenu.Heater">
                             <div class="form-group">
                                 <div class="wn5-setup-section-article-heading">{{ 'lang_onetime_act' | translate }}</div>
                                 <div class="wn5-setup-section-article-content">

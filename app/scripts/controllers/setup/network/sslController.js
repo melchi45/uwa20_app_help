@@ -21,15 +21,17 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
   }
 
   function sslView() {
-    $scope.CertificateFile = '';
-    $scope.KeyFile = '';
+    $scope.CertificateFile = {};
+    $scope.CertificateFile.name = '';
+    $scope.KeyFile = {};
+    $scope.KeyFile.name = '';
 
     return SunapiClient.get('/stw-cgi/security.cgi?msubmenu=ssl&action=view', '',
       function(response) {
-        $scope.$evalAsync(function() {
+        //$scope.$evalAsync(function() {
           $scope.SSL = response.data;
           $scope.pageData.SSL = angular.copy($scope.SSL);
-        });
+        //});
       },
       function(errorData) {
         console.log(errorData);
@@ -61,6 +63,10 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       }, '', true);
   }
 
+  var showLoadingBar = function(_val) {
+    $rootScope.$emit('changeLoadingBar', _val);
+  };
+
   function view() {
 
     var certfileelm = document.getElementById("certificatefileid");
@@ -75,13 +81,13 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       httpPortView,
       httpsPortView
     ]).then(function() {
-      $rootScope.$emit('changeLoadingBar', false);
       $scope.pageLoaded = true;
       $("#sslpage").show();
+      showLoadingBar(false);
     }, function(errorData) {
       view();       //try again sunapi to avoid sunapi failure
       console.log(errorData);
-      $rootScope.$emit('changeLoadingBar', false);
+      showLoadingBar(false);
     });
   }
 
@@ -135,19 +141,13 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
 
   $scope.setCertificateFile = function(element) {
     $scope.$apply(function($scope) {
-      $scope.CertificateFile = element.files[0].name;
-      $scope.cerfilesize = element.files[0].size;
-      $scope.cerfile = element.files[0];
-      //console.log("Certificate File:",$scope.CertificateFile,$scope.cerfilesize);
+      $scope.CertificateFile = element.files[0];
     });
   };
 
   $scope.setKeyFile = function(element) {
     $scope.$apply(function($scope) {
-      $scope.KeyFile = element.files[0].name;
-      $scope.keyfilesize = element.files[0].size;
-      $scope.keyfile = element.files[0];
-      //console.log("Certificate File:",$scope.KeyFile,$scope.keyfilesize);
+      $scope.KeyFile = element.files[0];
     });
   };
 
@@ -185,10 +185,9 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
     var setData = {},
       postData = "";
 
-    if ($scope.cerfile) {
-      $rootScope.$emit('changeLoadingBar', true);
+    if ($scope.CertificateFile) {
       var r = new FileReader();
-      r.readAsArrayBuffer($scope.cerfile);
+      r.readAsArrayBuffer($scope.CertificateFile);
       r.onload = function(e) {
         $scope.certcontents = e.target.result;
 
@@ -199,9 +198,9 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
           cerfileToPost += String.fromCharCode(certbytes[index]);
         }
 
-        if ($scope.keyfile) {
+        if ($scope.KeyFile) {
           var p = new FileReader();
-          p.readAsArrayBuffer($scope.keyfile);
+          p.readAsArrayBuffer($scope.KeyFile);
           p.onload = function(e) {
             $scope.keycontents = e.target.result;
             var keybytes = new Uint8Array($scope.keycontents);
@@ -216,25 +215,27 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
             specialHeaders[0].Type = 'Content-Type';
             specialHeaders[0].Header = 'application/x-www-form-urlencoded';
 
-            postData = '<SetHTTPSData><PublicCertName>' + $scope.SSL.PublicCertificateName + '</PublicCertName><CertLength>' + $scope.cerfilesize + '</CertLength>' +
-              '<CertData>' + cerfileToPost + '</CertData><KeyLength>' + $scope.keyfilesize + '</KeyLength><KeyData>' + keyfileToPost + '</KeyData></SetHTTPSData>';
+            postData = '<SetHTTPSData><PublicCertName>' + $scope.SSL.PublicCertificateName + '</PublicCertName><CertLength>' + $scope.CertificateFile.size + '</CertLength>' +
+                '<CertData>' + cerfileToPost + '</CertData><KeyLength>' + $scope.KeyFile.size + '</KeyLength><KeyData>' + keyfileToPost + '</KeyData></SetHTTPSData>';
 
             var encodedata = encodeURI(postData);
             //console.log("Read file:",encodedata);
+            showLoadingBar(true);
             SunapiClient.post('/stw-cgi/security.cgi?msubmenu=ssl&action=install', setData,
               function(response) {
                 certfileelm.value = "";
                 keyfileelm.value = "";
-                $timeout(view, 5000);
+                $timeout(view, 10000);
                 //setRelocateURL();
-                SunapiClient.clearDigestCache();
+                //SunapiClient.clearDigestCache();
                 //$scope.needReload = true;
               },
               function(errorData) {
                 console.log(errorData);
                 certfileelm.value = "";
                 keyfileelm.value = "";
-                $rootScope.$emit('changeLoadingBar', false);
+                showLoadingBar(false);
+                window.location.reload(true);
               }, $scope, encodedata, specialHeaders);
           };
 
@@ -335,22 +336,22 @@ kindFramework.controller('sslCtrl', function($rootScope, $scope, $location, Suna
       return;
     }
 
-    $rootScope.$emit('changeLoadingBar', true);
-
     var setData = {};
     setData.PublicCertificateName = $scope.SSL.PublicCertificateName;
+    showLoadingBar(true);
 
     SunapiClient.get('/stw-cgi/security.cgi?msubmenu=ssl&action=remove', setData,
       function(response) {
-        $scope.CertificateFile = '';
-        $scope.KeyFile = '';
-        $timeout(view, 5000);
+        $scope.CertificateFile.name = '';
+        $scope.KeyFile.name = '';
+        $timeout(view, 10000);
         //setRelocateURL();
-        SunapiClient.clearDigestCache();
+        //SunapiClient.clearDigestCache();
       },
       function(errorData) {
         console.log(errorData);
-        $rootScope.$emit('changeLoadingBar', false);
+        showLoadingBar(false);
+        window.location.reload(true);
       }, '', true);
   };
 

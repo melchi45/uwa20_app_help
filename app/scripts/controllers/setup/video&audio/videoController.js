@@ -141,6 +141,10 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
       $scope.cameraPositionList = mAttr.CameraPosition; // "Wall", "Ceiling"
     }
     $scope.privacyMaskDrawType = (mAttr.PrivacyMaskRectangle === '0') ? 1 : 0;
+
+    if (mAttr.AutoFlipEnable !== undefined) {
+        $scope.showAutoFlip = mAttr.AutoFlipEnable;
+    }
   }
 
   function getMessagePrivacyZoom() {

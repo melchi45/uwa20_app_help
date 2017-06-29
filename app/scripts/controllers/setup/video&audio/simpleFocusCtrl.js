@@ -186,8 +186,10 @@ kindFramework.controller('simpleFocusCtrl', function($scope, SunapiClient, Attri
       function(response) {
         $scope.Camera = response.data.Camera[0];
         $scope.Lens = angular.copy($scope.Camera.IrisMode);
-        if ($scope.Lens.substring(0, 3) === 'ICS') {
-          $scope.Lens = 'ICS';
+        if(typeof $scope.Lens !== 'undefined') {
+          if ($scope.Lens.substring(0, 3) === 'ICS') {
+            $scope.Lens = 'ICS';
+          }
         }
       },
       function(errorData) {
