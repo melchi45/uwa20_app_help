@@ -245,6 +245,10 @@ kindFramework
               yScale.range([scope.liveChartOptions.ceil, scope.liveChartOptions.floor]);
             }
 
+            if(newValue.disabled !== oldValue.disabled) {
+              scope.liveSliderProperty.disabled = newValue.disabled;
+            }
+
             if (newValue.ThresholdLevel !== oldValue.ThresholdLevel) {
               scope.liveSliderModel.updateCallback(newValue.ThresholdLevel);
             }
