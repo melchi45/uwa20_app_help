@@ -2413,7 +2413,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         setData.ImagePreview = 'Start';
       }
 
-      if (setData.hasOwnProperty('IrisMode')) {
+      if (setData.hasOwnProperty('IrisFno')) {
         setData.IrisMode = $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.IrisMode;
       }
 
@@ -3341,7 +3341,10 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     if ($scope.Camera.IrisMode === 'Auto' || $scope.Camera.IrisMode === 'Manual' || $scope.Camera.PIrisMode !== 'Manual') {
       ignoredKeys.push('PIrisPosition');
     }
-
+    if ($scope.Camera.IrisMode !== undefined && $scope.Camera.IrisMode !== 'Manual') {
+      ignoredKeys.push('IrisFno');
+    }
+      
     if ($scope.Camera.DayNightMode !== 'ExternalBW') {
       ignoredKeys.push('DayNightAlarmIn');
     }
