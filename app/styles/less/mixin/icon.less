@@ -7,38 +7,44 @@
 	@icon-disabled: "@{theme-name}-disabled";
 
 	i {
-		color: @@icon-normal;
-
-		&:focus,
-		&:hover {
-			color: @@icon-focus;/
-		}
+		color: @@icon-normal !important;
 
 		&:active {
-			color: @@icon-press;
+			color: @@icon-press !important;
+		}
+
+		&[disabled],
+		&[readonly],
+		&.cm-disabled,
+		&.disabled {
+			i {
+				.disabled(){
+					color: @@icon-disabled !important;
+				}
+
+				.disabled();
+
+				&:focus,
+				&:active,
+				&:hover {
+					.disabled();
+				}
+			}	
 		}
 	}
 
-	&[disabled],
-	&[readonly],
-	&.cm-disabled,
-	&.disabled {
+	&.cm-active {
 		i {
-			.disabled(){
-				border: 1px solid @@disabled-line !important;
-				color: @@disabled-text !important;
-				background-color: @@disabled-bg !important;
-			}
-
-			.disabled();
-
-			&:focus,
-			&:active,
-			&:hover {
-				.disabled();
-			}
-		}	
+			color: @@icon-focus !important;
+		}
 	}
+
+	button.cm-active {
+		i {
+			color: @@icon-focus !important;
+		}
+	}
+	
 }
 
 .mixin-vline ( @bg-type ) {
