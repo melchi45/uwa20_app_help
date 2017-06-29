@@ -44,7 +44,7 @@
                     <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_certfile' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
                         <div class="col-xs-12 col-sm-6 file-browser-field">
-                            <input type="text" class="form-control" name ="cerName" id="certificateFile" ng-model="CertificateFile" ng-disabled="true">
+                            <input type="text" class="form-control" name ="cerName" id="certificateFile" ng-model="CertificateFile.name" ng-disabled="true">
                             <label for="certificatefileid"> <span class="btn btn-primary cm-btn-dark" ng-disabled="IsCerticateInstalled()">...</span></label>
                             <input style="visibility: hidden; position: relative; display:none" id="certificatefileid" class="form-control" type="file" name="certificatefileid" ng-disabled="IsCerticateInstalled()" ng-model-instant accept=".crt"  onchange="angular.element(this).scope().setCertificateFile(this)">
                         </div>
@@ -54,7 +54,7 @@
                     <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_keyfile' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
                         <div class="col-xs-12 col-sm-6 file-browser-field">
-                            <input type="text" class="form-control" name ="keyName" id="keyFile" ng-model="KeyFile" ng-disabled="true">
+                            <input type="text" class="form-control" name ="keyName" id="keyFile" ng-model="KeyFile.name" ng-disabled="true">
                             <label for="keyfileid"> <span class="btn btn-primary cm-btn-dark" ng-disabled="IsCerticateInstalled()">...</span></label>
                             <input style="visibility: hidden; position: relative; display:none" id="keyfileid" class="form-control" type="file" name="keyfileid" ng-disabled="IsCerticateInstalled()" ng-model-instant accept=".key" onchange="angular.element(this).scope().setKeyFile(this)">
                         </div>
