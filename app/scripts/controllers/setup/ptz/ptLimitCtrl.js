@@ -177,7 +177,7 @@ kindFramework.controller('ptLimitCtrl', function($scope, $timeout, $uibModal, Su
     $scope.sketchinfo = {
       workType: "ptLimit",
       ptStatus: status,
-      guideText: $translate.instant("lang_msg_start_limit")
+      guideText : selectedPTLimitMode ? $translate.instant("lang_startTilt_limit") : $translate.instant("lang_startPan_leftLimit")
     };
   };
 
@@ -220,16 +220,16 @@ kindFramework.controller('ptLimitCtrl', function($scope, $timeout, $uibModal, Su
       if (selectedPTLimitMode) {
         controlMode = 'TiltBegin';
         stauts = 4;
+        stautsText = $translate.instant("lang_endTilt_limit");
       } else {
         controlMode = 'PanBegin';
         stauts = 2;
+        stautsText = $translate.instant("lang_endPan_rightLimit");
       }
 
       if (mAttr.PTLimitControlModes.indexOf(controlMode) !== -1) {
         controlPTLimit(controlMode);
       }
-
-      stautsText = $translate.instant("lang_msg_end_limit");
     }
     $scope.sketchinfo = {
       workType: "ptLimit",
