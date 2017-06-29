@@ -835,15 +835,15 @@
                                     <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode != undefined">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
-                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode" ng-change="presetCameraChangeHandler()" ng-disabled="!iSSupportedDayNightMode()">
-                                                <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightModeOptions" ng-disabled="!isPresetSupportedDayNightMode(Mode)">{{getDayNightModeTranslatedOption(Mode)}}</option>
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode" ng-change="presetCameraChangeHandler()" ng-disabled="!iSSupportedPresetDayNightMode()">
+                                                <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightModeOptions" ng-disabled="!iSSupportedPresetDayNightModeOption(Mode)">{{getDayNightModeTranslatedOption(Mode)}}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime != undefined">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_dwelltime' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
-                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime" ng-disabled="!iSSuportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime" ng-disabled="!iSSupportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
                                                 <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightSwitchingTimeOptions">{{getTranslatedOption(Mode)}}</option>
                                             </select>
                                         </div>
@@ -851,7 +851,7 @@
                                     <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode != undefined">
                                         <div class="wn5-setup-section-article-heading">{{ 'lang_duration' | translate }}</div>
                                         <div class="wn5-setup-section-article-content">
-                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode" ng-disabled="!iSSuportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode" ng-disabled="!iSSupportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
                                                 <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightSwitchingModeOptions">{{getTranslatedOption(Mode)}}</option>
                                             </select>
                                         </div>

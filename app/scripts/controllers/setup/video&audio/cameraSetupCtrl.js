@@ -2341,7 +2341,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       $scope.disChanged.preset = false;
     }
   };
-  $scope.isPresetSupportedDayNightMode = function(mode) {
+    
+  $scope.iSSupportedPresetDayNightMode = function () {
+      var retVal = true;
+      if(mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode == 'On' || $scope.IRled.Mode == 'Sensor' || $scope.IRled.Mode == 'Schedule' || $scope.IRled.Mode == 'DayNight')){
+          retVal = false;
+      } else if (mAttr.PTZModel && $scope.Camera.DayNightMode==='Schedule') {
+          retVal = false;
+      }
+      return retVal;
+  };
+  $scope.iSSupportedPresetDayNightModeOption = function (mode) {
     var retVal = true;
 
     if (mode === 'Auto') {
@@ -2352,10 +2362,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
     return retVal;
   };
-  $scope.iSSuportedPresetDwellTimeDuration = function() {
+  $scope.iSSupportedPresetDwellTimeDuration = function () {
     var retVal = true;
     if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.DayNightMode != 'Auto' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode == 'Off' ||
       (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode == 'On' || $scope.IRled.Mode == 'Sensor' || $scope.IRled.Mode == 'Schedule'))) {
+        retVal = false;
+    } else if (mAttr.PTZModel && $scope.Camera.DayNightMode==='Schedule') {
       retVal = false;
     }
     return retVal;
