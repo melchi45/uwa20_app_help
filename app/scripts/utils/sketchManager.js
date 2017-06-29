@@ -4268,7 +4268,7 @@ var SketchManager = (function() {
           } else {
             if (selectedCoordinates !== null) {
               // to draw selected area
-              _self.drawArea(selectedCoordinates);
+              // _self.drawArea(selectedCoordinates);
             }
           }
           clearRect(0);
