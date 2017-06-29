@@ -261,7 +261,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     var promise = imageOptionsView();
-
+    if (mAttr.MaxZoom !== undefined) {
+        $scope.MaxZoom = mAttr.MaxZoom.maxValue;
+    }
     $scope.PTZModel = mAttr.PTZModel;
     $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
     $scope.CurrentLanguage = mAttr.CurrentLanguage;
@@ -1394,12 +1396,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     });
   };
 
-  $scope.getHeaterTranslation = function(option) {
-    if (mAttr.PTZModel && option == 'Heater') {
-      return COMMONUtils.getTranslatedOption('Heater');
-    } else {
-      return COMMONUtils.getTranslatedOption(option)
-    }
+  $scope.getHeaterTranslation = function () {
+      if (mAttr.PTZModel && $scope.MaxZoom == 12) {
+          return COMMONUtils.getTranslatedOption('Heater');
+      } else {
+          return COMMONUtils.getTranslatedOption('Fan');
+      }
   };
   $scope.heaterEveryDayChanged = function() {
 
