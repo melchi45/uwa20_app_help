@@ -470,8 +470,10 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].IsDigitalPTZProfile) {
       $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].CropEncodingEnable = false;
     }
-    $scope.selectResolutionList(true, false, true);
-    $scope.selectGOVLength(true);
+    if(type !== 'Default'){
+      $scope.selectResolutionList(true, false, true);
+      $scope.selectGOVLength(true);
+    }
   };
 
   function isDptzSupportedProfile(profIdx) {
@@ -884,10 +886,11 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     If the current frame rate is more than allowed frame rate.
     Automatically set it to Max FPSselectResolutionList*/
 
-    if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] === 'undefined') {
-      $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate = defaultfps;
-    } else {
+    if(pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined){
       $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate;
+    }
+    if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate == undefined || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate > maxfps) {
+      $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate = defaultfps;
     }
 
     if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate > limitFPS && isAdjustFrate === true) {
@@ -1004,10 +1007,9 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
           if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined') {
             $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate;
-          } else {
-            if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate < minBitrate) {
-              $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = defaultBitrate;
-            }
+          }
+          if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate == undefined || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate < minBitrate) {
+            $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = defaultBitrate;
           }
 
         } else {
@@ -1038,10 +1040,9 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
 
           if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined') {
             $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate;
-          } else {
-            if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate < minBitrate) {
-              $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = defaultBitrate;
-            }
+          }
+          if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate == undefined || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate < minBitrate) {
+            $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = defaultBitrate;
           }
 
           if (isDptzSupportedProfile($scope.selectedProfile)) {
@@ -2590,7 +2591,8 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       return retVal;
     }
 
-    if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode !== 'Disabled') {
+    if ($scope.ATCModes === true && 
+        $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode !== 'Disabled') {
       if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit < $scope.ATCLimitRange.Min ||
         $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit > $scope.ATCLimitRange.Max ||
         $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCLimit === '' ||

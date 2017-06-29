@@ -212,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" ng-show="PTZModel">
+                <div class="form-group" ng-show="PTZModel && showAutoFlip">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_digitalFlip' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
                         <div ng-class="RadioClassSm" ng-repeat="Enable in EnableOptions">{{getTranslatedOption(Enable)}}
