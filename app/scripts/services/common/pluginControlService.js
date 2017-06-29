@@ -62,7 +62,7 @@ kindFramework.
         EventNotificationService.setBorderElement($(pluginElement), 'live');
 
         if (PlugInPromise !== null) {
-          // pluginElement.PlayLiveStream ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ ï¿?? Profile ï¿??ï¿?? ?ï¿½ï¿½ï¿???ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ê²½ìš°
+          // pluginElement.PlayLiveStream ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ ï¿½ï¿½?? Profile ï¿½ï¿½??ï¿½ï¿½?? ?ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ê²½ìš°
           $timeout.cancel(PlugInPromise);
         }
 
@@ -77,7 +77,18 @@ kindFramework.
                 pluginElement.SetWMDInitialize(Number(UniversialManagerService.getChannelId()), 
                                                 1, "WebCamJSONEvent");
               }
+
+              var renderDelay = 1;
+              if(typeof window.sessionStorage.getItem("HTW-PLUGIN-QUALITY") !== undefined && window.sessionStorage.getItem("HTW-PLUGIN-QUALITY") !== null){
+                var quality = window.sessionStorage.getItem("HTW-PLUGIN-QUALITY") === "true"? true : false;
+                if(quality !== true){
+                  renderDelay = 0;
+                }
+              }
+
               pluginElement.SetUserFps(fps);
+              pluginElement.SetRenderDelay(renderDelay);
+
               pluginElement.PlayLiveStream(rtspIP, Number(rtspPort), Number(currentProfile - 1), 
                                           userID, '', '');
               $rootScope.$emit('changeLoadingBar', false);
@@ -198,6 +209,7 @@ kindFramework.
               pluginElement.SetWMDInitialize(Number(UniversialManagerService.getChannelId()), 1, "WebCamJSONEvent");
             }
             pluginElement.SetUserFps(DEFAULT_FPS);
+            pluginElement.SetRenderDelay(1);
             pluginElement.OpenRecordStream(rtspIP, Number(rtspPort), userID, '', '', overlappedID, playbackTime, '', playbackMode);
             $rootScope.$emit('changeLoadingBar', false);
             $(pluginElement).removeClass("cm_vn");
@@ -750,7 +762,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿½ï¿½?? ????ï¿½ï¿½
                 }
             */
             if (jsonData.type === 1) {
@@ -770,7 +782,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿½ï¿½?? ????ï¿½ï¿½
                 }
             */
             $timeout(function() {
@@ -814,7 +826,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿½ï¿½?? ????ï¿½ï¿½
                 }
             */
             break;
@@ -822,7 +834,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿½ï¿½?? ????ï¿½ï¿½
                 }
             */
             break;
@@ -830,7 +842,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿½ï¿½?? ????ï¿½ï¿½
                 }
             */
             break;
@@ -842,7 +854,7 @@ kindFramework.
             /*  jsonData
                 {
                     retrycnt: ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½,
-                    type: ?ï¿½ï¿½ï¿?? ????ï¿½ï¿½
+                    type: ?ï¿½ï¿½ï¿½ï¿½?? ????ï¿½ï¿½
                 }
             */
             if (UniversialManagerService.getPlayMode() === CAMERA_STATUS.PLAY_MODE.PLAYBACK) {
@@ -892,11 +904,20 @@ kindFramework.
             switch (mode) {
               case 'live':
                 var fps = UniversialManagerService.getProfileInfo().FrameRate;
+                var renderDelay = 1;
+                if(typeof window.sessionStorage.getItem("HTW-PLUGIN-QUALITY") !== undefined && window.sessionStorage.getItem("HTW-PLUGIN-QUALITY") !== null){
+                  var quality = window.sessionStorage.getItem("HTW-PLUGIN-QUALITY") === "true"? true : false;
+                  if(quality !== true){
+                    renderDelay = 0;
+                  }
+                }
                 pluginElement.SetUserFps(fps);
+                pluginElement.SetRenderDelay(renderDelay);
                 pluginElement.PlayLiveStream(rtspIP, Number(rtspPort), Number(currentProfile - 1), userID, '', responseValue);
                 break;
               case 'playback':
                 pluginElement.SetUserFps(30);
+                pluginElement.SetRenderDelay(1);
                 pluginElement.OpenRecordStream(rtspIP, Number(rtspPort), userID, '', responseValue, overlappedID, playbackTime, '', playbackMode);
                 break;
               case 'audioTalk':

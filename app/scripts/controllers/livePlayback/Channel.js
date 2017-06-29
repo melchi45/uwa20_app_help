@@ -1088,8 +1088,35 @@ kindFramework.
         startStreaming(RequestProfile);
       }, $scope);
 
+      $scope.pluginStatus = {
+        showQualityBox: false,
+        quality: true,
+        initQuality: function() {
+          //quality form
+          var ie = (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) ? true : false;
+          var plugin = (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) ? true : false;
+          if (ie && plugin) {
+            $scope.pluginStatus.showQualityBox = true;
+          }
+
+          //quality value
+          if (typeof window.sessionStorage.getItem("HTW-PLUGIN-QUALITY") !== undefined && window.sessionStorage.getItem("HTW-PLUGIN-QUALITY") !== null) {
+            $scope.pluginStatus.quality = window.sessionStorage.getItem("HTW-PLUGIN-QUALITY") === "true"? true : false;
+          } else {
+            $scope.pluginStatus.quality = true;
+          }
+        },
+        changeQuality: function() {
+          window.sessionStorage.setItem("HTW-PLUGIN-QUALITY", $scope.pluginStatus.quality);
+          $timeout(function() {
+            window.location.reload(true);
+          });
+        },
+      };
+
       $scope.changeProfile = function(profileIndex) {
         newProfile($scope.profileList[profileIndex]);
+        $scope.pluginStatus.initQuality();
       };
 
       $scope.channelSetFunctions = {

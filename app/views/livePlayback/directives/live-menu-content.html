@@ -12,6 +12,16 @@
           ng-change="changeProfile(selectedProfile)" 
           ng-options="profileList.indexOf(profile) as profile.Name for profile in profileList">
         </select>
+        <label 
+          class="live-plugin-quality" 
+          ng-show="pluginStatus.showQualityBox">
+          <input 
+            type="checkbox"
+            id="plugin-quality"
+            ng-model="pluginStatus.quality"
+            ng-change="pluginStatus.changeQuality()">
+          Plugin Quality
+        </label>
       </h2>
       <div class="ng-binding">
         <table class="live-table live-setup-table cm-table-field">

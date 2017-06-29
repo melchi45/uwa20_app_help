@@ -5,6 +5,8 @@ kindFramework.directive('liveMenuContent', function(
   SunapiClient,
   CameraService,
   AccountService,
+	CAMERA_STATUS,
+	BrowserService,
   UniversialManagerService
 ) {
   "use strict";
@@ -304,6 +306,7 @@ kindFramework.directive('liveMenuContent', function(
           isMultiChannel = true;
         }
         initDisplay();
+        scope.pluginStatus.initQuality();
       }
 
       (function wait() {
