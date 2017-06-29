@@ -473,6 +473,8 @@ function($timeout, $location, $q, SunapiClient, XMLParser, SessionOfUserManager,
       mAttributes.FogDetectDuration = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/fogdetection/Duration/int');
       mAttributes.FogDetectSensitivityLevel = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/fogdetection/SensitivityLevel/int');
 
+      mAttributes.QueueDurations = XMLParser.parseCgiSection(mAttributes.cgiSection, 'eventsources/queuemanagementsetup/Queue.#.Level.#.Threshold/int');
+
       mAttributes.eventsourceCgiAttrReady = true;
     }
   };
