@@ -4346,7 +4346,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var i;
 
     var height = 39;
-    var headerWidthPercent = 4.16; //100 / 24;
+    var headerWidthPercent = 100 / 24; //100 / 24;
     var width;
 
     var enabled = $scope.ImagePreset[$scope.ch].ScheduleEnable;
@@ -4363,7 +4363,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
       width = headerWidthPercent * (schedule.SelectedToHour - schedule.SelectedFromHour);
       width += headerWidthPercent * ((schedule.SelectedToMinute / 60) - (schedule.SelectedFromMinute / 60));
-      calcedStyle.width = 'calc(' + width + '% + 1px)'; // 1px for border
+      if(width >= 99.93){
+          width = 100;
+      }
+
+      if(width <= 0.1){
+          width = '2px';
+      }else{
+          width += '%';
+      }
+      
+      calcedStyle.width = width;
 
       calcedStyle.visibility = schedule.Mode === 'Off' ? 'hidden' : 'visible';
       calcedStyle.visibility = enabled ? calcedStyle.visibility : 'hidden';
@@ -4451,7 +4461,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var calcedStyle = null;
     var width;
     var height = 39;
-    var headerWidthPercent = 4.16; //100 / 24;
+    var headerWidthPercent = 100 / 24; //100 / 24;
     var i;
     var enabled = $scope.ImagePreset[$scope.ch].ScheduleEnable;
     for (i = 0; i < result.length; i++) {
@@ -4467,7 +4477,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
       width = headerWidthPercent * (userPreset.toHour - userPreset.fromHour);
       width += headerWidthPercent * ((userPreset.toMin / 60) - (userPreset.fromMin / 60));
-      calcedStyle.width = 'calc(' + width + '% + 1px)'; // 1px for border
+      if(width >= 99.93){
+          width = 100;
+      }
+
+      if(width <= 0.1){
+          width = '2px';
+      }else{
+          width += '%';
+      }
+
+      calcedStyle.width = width;
 
       userPreset.tooltip = COMMONUtils.getTranslatedOption('Mode') + ' : ' + COMMONUtils.getTranslatedOption($scope.ImagePreset[$scope.ch].Mode);
       userPreset.tooltip += '\r\n' + COMMONUtils.getTranslatedOption('Time') + ' : ' + COMMONUtils.getFormatedInteger(userPreset.fromHour, 2) + ':' + COMMONUtils.getFormatedInteger(userPreset.fromMin, 2);
