@@ -513,12 +513,12 @@
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'AutoPan'">                                            
         <label class="col-sm-3 control-label">{{ 'lang_speed' | translate }}</label>
         <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.AutoPanSpeed" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
-        <label class="col-lg-1 control-label">({{AutoPanMinSpeed}}-{{AutoPanMaxSpeed}})</label>
+        <label class="control-label" style="float:left;">({{AutoPanMinSpeed}}-{{AutoPanMaxSpeed}})</label>
     </div>
     <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'AutoPan'">
         <label class="col-sm-3 control-label">{{ 'lang_tiltAngle' | translate }}</label>
         <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.AutoPanTiltAngle" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
-        <label class="col-lg-1 control-label">({{AutoPanTiltMinAngle}}-{{AutoPanTiltMaxAngle}})</label>
+        <label class="control-label" style="float:left;">({{AutoPanTiltMinAngle}}-{{AutoPanTiltMaxAngle}})</label>
     </div>
     <div class="modal-body modal-setup">
         <label class="col-sm-3 control-label">{{ 'lang_from' | translate }}</label>
