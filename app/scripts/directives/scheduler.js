@@ -771,12 +771,11 @@ kindFramework
             }
 
             function deleteAll(flag) {//console.info('deleteAll ::: ');
-              var objs = angular.copy(eventObjs);
+              // var objs = angular.copy(eventObjs);
+              var objs = angular.copy($('#calendar').fullCalendar('clientEvents'));
               for(var j = 0; j < objs.length; j++) {
                   removeEvent(objs[j]);
               }
-              // var objs = angular.copy($('#calendar').fullCalendar('clientEvents'));
-              // $('#calendar').fullCalendar('removeEvents', objs);
             }
 
             function setMinusOneMin(data, type) { // minus 1 from endMinute in case of hour so BE set time from 0 ~ 59
