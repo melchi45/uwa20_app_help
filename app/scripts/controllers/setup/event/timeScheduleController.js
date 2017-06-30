@@ -13,22 +13,22 @@ kindFramework.controller('timeScheduleCtrl', function($scope, $uibModal, $transl
   function getAttributes() {
     var defer = $q.defer();
     $scope.MaxAlarmOutput = mAttr.MaxAlarmOutput;
-    if (mAttr.EnableOptions !== undefined) {
+    if (typeof mAttr.EnableOptions !== 'undefined') {
       $scope.EnableOptions = mAttr.EnableOptions;
     }
-    if (mAttr.ActivateOptions !== undefined) {
+    if (typeof mAttr.ActivateOptions !== 'undefined') {
       $scope.ActivateOptions = mAttr.ActivateOptions;
     }
-    if (mAttr.WeekDays !== undefined) {
+    if (typeof mAttr.WeekDays !== 'undefined') {
       $scope.WeekDays = mAttr.WeekDays;
     }
-    if (mAttr.ScheduleIntervalUnits !== undefined) {
+    if (typeof mAttr.ScheduleIntervalUnits !== 'undefined') {
       $scope.ScheduleIntervalUnits = mAttr.ScheduleIntervalUnits;
     }
-    if (mAttr.ScheduleIntervalOptions !== undefined) {
+    if (typeof mAttr.ScheduleIntervalOptions !== 'undefined') {
       $scope.ScheduleIntervalOptions = mAttr.ScheduleIntervalOptions;
     }
-    if (mAttr.AlarmoutDurationOptions !== undefined) {
+    if (typeof mAttr.AlarmoutDurationOptions !== 'undefined') {
       $scope.AlarmoutDurationOptions = mAttr.AlarmoutDurationOptions;
     }
     if (Attributes.isSupportGoToPreset() === true) {

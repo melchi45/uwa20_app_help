@@ -6,19 +6,19 @@ kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XM
   var mAttr = Attributes.get();
   $scope.SelectedChannel = 0;
   COMMONUtils.getResponsiveObjects($scope);
-  var idx;
+  var idx = 0;
   var pageData = {};
   $scope.EventSource = "FrostDetection";
 
   function getAttributes() {
     var defer = $q.defer();
-    if (mAttr.EnableOptions !== undefined) {
+    if (typeof mAttr.EnableOptions !== 'undefined') {
       $scope.EnableOptions = mAttr.EnableOptions;
     }
-    if (mAttr.ActivateOptions !== undefined) {
+    if (typeof mAttr.ActivateOptions !== 'undefined') {
       $scope.ActivateOptions = mAttr.ActivateOptions;
     }
-    if (mAttr.WeekDays !== undefined) {
+    if (typeof mAttr.WeekDays !== 'undefined') {
       $scope.WeekDays = mAttr.WeekDays;
     }
     $scope.getHourArray = COMMONUtils.getArray(mAttr.MaxHours);
@@ -35,15 +35,15 @@ kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XM
     pageData.EventRule = angular.copy($scope.EventRule);
   }
 
-  function getFrostDetection() {
-    var getData = {};
-    return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=frostdetection&action=view', getData, function(response) {
-      $scope.FrostDetect = response.data.FrostDetection[0];
-      pageData.FrostDetect = angular.copy($scope.FrostDetect);
-    }, function(errorData) {
-      console.log(errorData);
-    }, '', true);
-  }
+  // function getFrostDetection() {
+  //   var getData = {};
+  //   return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=frostdetection&action=view', getData, function(response) {
+  //     $scope.FrostDetect = response.data.FrostDetection[0];
+  //     pageData.FrostDetect = angular.copy($scope.FrostDetect);
+  //   }, function(errorData) {
+  //     console.log(errorData);
+  //   }, '', true);
+  // }
 
   function getEventRules() {
     var getData = {};
@@ -70,7 +70,7 @@ kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XM
   }
 
   function setEventRules() {
-    var setData = {};
+    var setData = {}, s = 0, str = '', d = 0;
     setData.RuleIndex = $scope.EventRule.RuleIndex;
     setData.EventAction = "";
     if (setData.EventAction.length) {
@@ -87,9 +87,9 @@ kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XM
         thu = 0,
         fri = 0,
         sat = 0;
-      for (var s = 0; s < diff.length; s++) {
-        var str = diff[s].split('.');
-        for (var d = 0; d < mAttr.WeekDays.length; d++) {
+      for (s = 0; s < diff.length; s++) {
+        str = diff[s].split('.');
+        for (d = 0; d < mAttr.WeekDays.length; d++) {
           if (str[0] === mAttr.WeekDays[d]) {
             switch (d) {
               case 0:
@@ -126,9 +126,9 @@ kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XM
           }
         }
       }
-      for (var s = 0; s < $scope.EventRule.ScheduleIds.length; s++) {
-        var str = $scope.EventRule.ScheduleIds[s].split('.');
-        for (var d = 0; d < mAttr.WeekDays.length; d++) {
+      for (s = 0; s < $scope.EventRule.ScheduleIds.length; s++) {
+        str = $scope.EventRule.ScheduleIds[s].split('.');
+        for (d = 0; d < mAttr.WeekDays.length; d++) {
           if (str[0] === mAttr.WeekDays[d]) {
             switch (d) {
               case 0:
@@ -276,15 +276,15 @@ kindFramework.controller('frostDetectionCtrl', function($scope, SunapiClient, XM
   });
   $scope.getTooltipMessage = function() {
     if (typeof $scope.MouseOverMessage !== 'undefined') {
-      var hr, fr, to;
+      var hr = '', fr = '', to = '';
       if ($scope.MouseOverMessage.length === 2) {
-        var hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
-        var fr = '00';
-        var to = '59';
+        hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
+        fr = '00';
+        to = '59';
       } else if ($scope.MouseOverMessage.length === 4) {
-        var hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
-        var fr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[2], 2);
-        var to = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[3], 2);
+        hr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[1], 2);
+        fr = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[2], 2);
+        to = COMMONUtils.getFormatedInteger($scope.MouseOverMessage[3], 2);
       } else {
         return;
       }

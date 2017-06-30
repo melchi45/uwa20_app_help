@@ -709,7 +709,7 @@ COMMONUtils, $timeout, $translate, SessionOfUserManager, $q) {
   function validatepassword(elem) {
     var name = $scope[elem];
     var reg = /[^a-zA-Z0-9-~`!@#$%^*()_\-\+=|{}\[\].?/]/;
-    var bfound = false;
+    // var bfound = false;
     var match=null;
     while ((match = reg.exec(name)) !== null) {
       var re=null;
@@ -721,19 +721,19 @@ COMMONUtils, $timeout, $translate, SessionOfUserManager, $q) {
 
       $scope[elem] = name.replace(re, '');
       name = $scope[elem];
-      bfound = true;
+      // bfound = true;
     }
 
-    if (bfound) {
-      alert($translate.instant('lang_msg_pw_rule9'));
-    }
+    // if (bfound) {
+    //   alert($translate.instant('lang_msg_pw_rule9'));
+    // }
 
   }
 
   function validateuserpassword() {
     var vvar = $scope.Users[$scope.selected];
     var reg = /[^a-zA-Z0-9-~`!@#$%^*()_\-\+=|{}\[\].?/]/;
-    var bfound = false;
+    // var bfound = false;
     var match=null;
     while ((match = reg.exec(vvar.Password)) !== null) {
       var re=null;
@@ -745,11 +745,11 @@ COMMONUtils, $timeout, $translate, SessionOfUserManager, $q) {
 
       $scope.Users[$scope.selected].Password = vvar.Password.replace(re, '');
       vvar.Password = $scope.Users[$scope.selected].Password;
-      bfound = true;
+      // bfound = true;
     }
-    if (bfound) {
-      alert($translate.instant('lang_msg_pw_rule9'));
-    }
+    // if (bfound) {
+    //   alert($translate.instant('lang_msg_pw_rule9'));
+    // }
   }
 
   $scope.validatepassword = validatepassword;

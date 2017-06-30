@@ -9,7 +9,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
   function getInfoTableData() {
     $scope.infoTableData = [];
     var getData = {};
-    var dataArray;
+    var dataArray = [];
     var resultArray = [];
 
     return SunapiClient.get('/stw-cgi/eventactions.cgi?msubmenu=complexaction&action=view', getData,
@@ -17,7 +17,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
         var eventActionList = response.data.ComplexActions;
 
-        var data = {};
+        // var data = {};
 
         console.log(eventActionList);
 
@@ -31,7 +31,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
           var actions = eventActionList[i].Actions;
 
-          if (actions[0].Channel === undefined) {
+          if (typeof actions[0].Channel === 'undefined') {
             continue;
           }
 
@@ -163,10 +163,10 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
     }
     $scope.MaxAlarmInput = mAttr.MaxAlarmInput;
     $scope.MaxAlarmOutput = mAttr.MaxAlarmOutput;
-    if (mAttr.EventSources !== undefined) {
+    if (typeof mAttr.EventSources !== 'undefined') {
       $scope.EventSources = mAttr.EventSources;
     }
-    if (mAttr.EventActions !== undefined) {
+    if (typeof mAttr.EventActions !== 'undefined') {
       eventActions = mAttr.EventActions;
     }
     $scope.isEventActionSupported = mAttr.EventActionSupport;
@@ -174,7 +174,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
     $scope.smtpActionSupported = (eventActions.indexOf('SMTP') !== -1);
     $scope.recordActionSupported = (eventActions.indexOf('Record') !== -1);
     $scope.presetActionSupported = (eventActions.indexOf('GoToPreset') !== -1);
-    if (mAttr.AlarmoutDurationOptions !== undefined) {
+    if (typeof mAttr.AlarmoutDurationOptions !== 'undefined') {
       $scope.AlarmoutDurationOptions = mAttr.AlarmoutDurationOptions;
     }
     if (Attributes.isSupportGoToPreset() === true) {
@@ -190,6 +190,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
   // get Common events by eventrules.cgi
   function prepareEventRules(eventRules) {
     $scope.EventRules = [];
+    var ao = 0;
     for (var i = 0, len = eventRules.length; i < len; i++) {
       var mRule = {};
       var eventSource = eventRules[i].EventSource;
@@ -197,14 +198,14 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
       mRule = angular.copy(eventRules[i]);
       if (typeof mRule.AlarmOutputs === 'undefined') {
         mRule.AlarmOutputs = [];
-        for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+        for (ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
           mRule.AlarmOutputs[ao] = {
             Duration: 'Off'
           };
         }
       } else {
         mRule.AlarmOutputs = [];
-        for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+        for (ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
           mRule.AlarmOutputs[ao] = {};
           var duration = 'Off';
           for (var j = 0, jLen = alarmOutputs.length; j < jLen; j++) {
@@ -304,12 +305,13 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
       var mRule = {};
       var eventAction = eventActionList[i].Actions;
       var currentChannel = UniversialManagerService.getChannelId();
-      if (eventAction[currentChannel] === undefined) {
+      if (typeof eventAction[currentChannel] === 'undefined') {
         currentChannel = 0;
       }
       var eventType = eventActionList[i].EventType;
       var eventSource = convertEventTypeToEventSource(eventType);
-      var alarmOutputs = eventAction.AlarmOutputs;
+      // var alarmOutputs = eventAction.AlarmOutputs;
+      var ao = 0;
       mRule = angular.copy(eventActionList[i]);
       mRule.EventSource = eventSource;
       mRule.FtpEnable = false;
@@ -332,13 +334,13 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
       mRule.AlarmOutputs = [];
       if (typeof eventAction[currentChannel].AlarmOutputs[0].Duration === 'undefined' || eventAction[currentChannel].AlarmOutputs[0].Duration === 'None') {
         mRule.AlarmOutputs = [];
-        for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+        for (ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
           mRule.AlarmOutputs[ao] = {
             Duration: 'Off'
           };
         }
       } else {
-        for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+        for (ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
           mRule.AlarmOutputs[ao] = {};
           var duration = 'Off';
           for (var j = 0; j < eventAction[currentChannel].AlarmOutputs.length; j++) {
@@ -474,7 +476,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
   }
   $scope.isSupportedEventSource = function(rule) {
     var retVal = true;
-    if ($scope.Camera !== undefined) {
+    if (typeof $scope.Camera !== 'undefined') {
       if (rule.RuleName.indexOf('AlarmInput') !== -1) {
         if ($scope.Camera.DayNightMode === 'ExternalBW') {
           retVal = false;
@@ -486,7 +488,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
   $scope.isSupportedEventSourceForMultiChannel = function(rule) {
     var retVal = true;
-    if ($scope.Camera !== undefined) {
+    if (typeof $scope.Camera !== 'undefined') {
       if (rule.EventType.indexOf('AlarmInput.#') !== -1) {
         if ($scope.Camera.DayNightMode === 'ExternalBW') {
           retVal = false;
@@ -579,10 +581,12 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
   function setEventActions() {
     var queue = [];
-
-    for (var i = 0; i < $scope.CommonEventRules.length; i++) {
-      var tEventRule = $scope.CommonEventRules[i];
-      var setData = {};
+    var tEventRule = null;
+    var setData = {};
+    var i = 0, ao = 0;
+    for (i = 0; i < $scope.CommonEventRules.length; i++) {
+      tEventRule = $scope.CommonEventRules[i];
+      setData = {};
       if (!angular.equals(pageData.CommonEventRules[i], tEventRule)) {
         if (pageData.CommonEventRules[i].Enable !== tEventRule.Enable) {
           setData.Enable = tEventRule.Enable;
@@ -597,7 +601,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         if (tEventRule.RecordEnable) {
           setData.EventAction.push('Record');
         }
-        for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+        for (ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
           if (tEventRule.AlarmOutputs[ao].Duration !== 'Off') {
             setData.EventAction.push('AlarmOutput.' + (ao + 1));
             setData["AlarmOutput." + (ao + 1) + ".Duration"] = tEventRule.AlarmOutputs[ao].Duration;
@@ -628,9 +632,9 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
       }
     }
 
-    for (var i = 0; i < $scope.ChannelEventRules.length; i++) {
-      var tEventRule = $scope.ChannelEventRules[i];
-      var setData = {};
+    for (i = 0; i < $scope.ChannelEventRules.length; i++) {
+      tEventRule = $scope.ChannelEventRules[i];
+      setData = {};
       if (!angular.equals(pageData.ChannelEventRules[i], tEventRule)) {
         if (pageData.ChannelEventRules[i].Enable !== tEventRule.Enable) {
           setData.Enable = tEventRule.Enable;
@@ -645,7 +649,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         if (tEventRule.RecordEnable) {
           setData.EventAction.push('Record');
         }
-        for (var ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
+        for (ao = 0; ao < mAttr.MaxAlarmOutput; ao++) {
           if (tEventRule.AlarmOutputs[ao].Duration !== 'Off') {
             setData.EventAction.push('AlarmOutput.' + (ao + 1));
             setData["AlarmOutput." + (ao + 1) + ".Duration"] = tEventRule.AlarmOutputs[ao].Duration;
@@ -685,12 +689,13 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
     //if(BrowserDetect.isIE ||BrowserDetect.isEdge){
     if (BrowserDetect.isIE) {
       var changeOptions = function() {
-        if ($scope.presetGotoSelectOptions[index].Options.length !== $scope.PresetOptions.length)
+        if ($scope.presetGotoSelectOptions[index].Options.length !== $scope.PresetOptions.length) {
           $scope.presetGotoSelectOptions[index].Options = $scope.PresetOptions;
+        }
       };
-      if (event != undefined) {
+      if (typeof event !== undefined) {
         var code = event.which;
-        if (code == 32 || code == 13 || code == 188 || code == 186) {
+        if (code === 32 || code === 13 || code === 188 || code === 186) {
           event.preventDefault();
           changeOptions();
         }
@@ -702,19 +707,21 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
 
   function initPresetSelectOptions() {
     $scope.presetGotoSelectOptions = [];
+    var  i = 0;
+    var eventSource = null;
     if ($scope.isMultiChannel && $scope.isEventActionSupported) {
-      for (var i = 0; i < $scope.CommonEventRules.length; i++) {
+      for (i = 0; i < $scope.CommonEventRules.length; i++) {
         if ($scope.CommonEventRules[i].presetActionSupported) {
-          var eventSource = $scope.CommonEventRules[i].EventSource;
+          eventSource = $scope.CommonEventRules[i].EventSource;
           $scope.presetGotoSelectOptions[eventSource] = {
             Options: []
           };
           $scope.presetGotoSelectOptions[eventSource].Options.push($scope.EventRules[i].PresetNumber);
         }
       }
-      for (var i = 0; i < $scope.ChannelEventRules.length; i++) {
+      for (i = 0; i < $scope.ChannelEventRules.length; i++) {
         if ($scope.ChannelEventRules[i].presetActionSupported) {
-          var eventSource = $scope.ChannelEventRules[i].EventSource;
+          eventSource = $scope.ChannelEventRules[i].EventSource;
           $scope.presetGotoSelectOptions[eventSource] = {
             Options: []
           };
@@ -722,9 +729,9 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
         }
       }
     } else {
-      for (var i = 0; i < $scope.EventRules.length; i++) {
+      for (i = 0; i < $scope.EventRules.length; i++) {
         if ($scope.EventRules[i].presetActionSupported) {
-          var eventSource = $scope.EventRules[i].EventSource;
+          eventSource = $scope.EventRules[i].EventSource;
           $scope.presetGotoSelectOptions[eventSource] = {
             Options: []
           };
@@ -735,26 +742,28 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
   }
 
   function resetPresetSelectOptions() {
+    var i = 0;
+    var eventSource = null;
     //if(!(BrowserDetect.isIE ||BrowserDetect.isEdge)){
     if (!BrowserDetect.isIE) {
       $timeout(function() {
         if ($scope.isMultiChannel && $scope.isEventActionSupported) {
-          for (var i = 0; i < $scope.CommonEventRules.length; i++) {
+          for (i = 0; i < $scope.CommonEventRules.length; i++) {
             if ($scope.CommonEventRules[i].presetActionSupported) {
-              var eventSource = $scope.CommonEventRules[i].EventSource;
+              eventSource = $scope.CommonEventRules[i].EventSource;
               $scope.presetGotoSelectOptions[eventSource].Options = $scope.PresetOptions;
             }
           }
-          for (var i = 0; i < $scope.ChannelEventRules.length; i++) {
+          for (i = 0; i < $scope.ChannelEventRules.length; i++) {
             if ($scope.ChannelEventRules[i].presetActionSupported) {
-              var eventSource = $scope.ChannelEventRules[i].EventSource;
+              eventSource = $scope.ChannelEventRules[i].EventSource;
               $scope.presetGotoSelectOptions[eventSource].Options = $scope.PresetOptions;
             }
           }
         } else {
-          for (var i = 0; i < $scope.EventRules.length; i++) {
+          for (i = 0; i < $scope.EventRules.length; i++) {
             if ($scope.EventRules[i].presetActionSupported) {
-              var eventSource = $scope.EventRules[i].EventSource;
+              eventSource = $scope.EventRules[i].EventSource;
               $scope.presetGotoSelectOptions[eventSource].Options = $scope.PresetOptions;
             }
           }
@@ -816,8 +825,7 @@ kindFramework.controller('eventSetupCtrl', function($scope, $location, $timeout,
   $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
     if (!angular.equals(pageData.CommonEventRules, $scope.CommonEventRules) ||
       !angular.equals(pageData.ChannelEventRules, $scope.ChannelEventRules)) {
-      COMMONUtils
-        .confirmChangeingChannel().then(function() {
+      COMMONUtils.confirmChangeingChannel().then(function() {
             $rootScope.$emit('changeLoadingBar', true);
             $scope.targetChannel = data;
             setEventActions();

@@ -19,12 +19,12 @@ kindFramework.controller('autoIpConfigureCtrl', function($scope, $timeout, $uibM
     $scope.UpnpDiscoveryPattern = mAttr.FriendlyNameCharSetStr;
     $scope.BonjourPattern = mAttr.FriendlyNameCharSetStr;
 
-    if (mAttr.Upnp !== undefined) {
+    if (typeof mAttr.Upnp !== 'undefined') {
       $scope.UpnpFriendlyNameMinLength = 1;
       $scope.UpnpFriendlyNameMaxLength = mAttr.Upnp.maxLength;
     }
 
-    if (mAttr.Bonjour !== undefined) {
+    if (typeof mAttr.Bonjour !== 'undefined') {
       $scope.BonjourFriendlyNameMinLength = 1;
       $scope.BonjourFriendlyNameMaxLength = mAttr.Bonjour.maxLength;
     }
@@ -65,7 +65,7 @@ kindFramework.controller('autoIpConfigureCtrl', function($scope, $timeout, $uibM
           $scope.$apply(function() {
             $scope.ZeroConf = response.data.ZeroConf;
 
-            if ($scope.ZeroConf[0].Enable == false) {
+            if ($scope.ZeroConf[0].Enable === false) {
               $scope.ZeroConf[0].IPAddress = "";
               $scope.ZeroConf[0].SubnetMask = "";
             }
@@ -186,16 +186,17 @@ kindFramework.controller('autoIpConfigureCtrl', function($scope, $timeout, $uibM
   }
 
   function validatePage() {
+    var ErrorMessage = '';
     if (($scope.$$childHead.autoIpConfigForm.UpnpFriendlyName.$invalid) || ($scope.$$childHead.autoIpConfigForm.BonjourFriendlyName.$invalid)) {
       console.log("Wrong Friendly name");
-      var ErrorMessage = 'lang_msg_invalid_friendlyname';
+      ErrorMessage = 'lang_msg_invalid_friendlyname';
       COMMONUtils.ShowError(ErrorMessage);
       return false;
     }
 
     if ($scope.Bonjour.FriendlyName.charAt(0) === " " || $scope.UpnpDiscovery[0].FriendlyName.charAt(0) === " ") {
       console.log("Wrong Friendly name");
-      var ErrorMessage = 'lang_msg_invalid_friendlyname';
+      ErrorMessage = 'lang_msg_invalid_friendlyname';
       COMMONUtils.ShowError(ErrorMessage);
       return false;
     }

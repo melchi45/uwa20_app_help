@@ -27,7 +27,7 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
   };
 
   var DEVICE_NAME_LENGTH = 8;
-  var DEVICE_OPTION_LENGTH = 24;
+  // var DEVICE_OPTION_LENGTH = 24;
 
   var ATTRIBUTE_REQUEST_TIMEOUT = 500;
 

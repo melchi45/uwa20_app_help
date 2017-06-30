@@ -2,7 +2,7 @@ kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal,
   "use strict";
   COMMONUtils.getResponsiveObjects($scope);
   var mAttr = Attributes.get();
-  var pageData = {};
+  // var pageData = {};
   $scope.EventSource = 'OpenSDK';
   $scope.EventRule = {};
 
@@ -13,16 +13,16 @@ kindFramework.controller('appEventCtrl', function($rootScope, $scope, $uibModal,
   function getAttributes() {
     var defer = $q.defer();
     $scope.MaxAlarmOutput = mAttr.MaxAlarmOutput;
-    if (mAttr.EnableOptions !== undefined) {
+    if (typeof mAttr.EnableOptions !== 'undefined') {
       $scope.EnableOptions = mAttr.EnableOptions;
     }
-    if (mAttr.ActivateOptions !== undefined) {
+    if (typeof mAttr.ActivateOptions !== 'undefined') {
       $scope.ActivateOptions = mAttr.ActivateOptions;
     }
-    if (mAttr.WeekDays !== undefined) {
+    if (typeof mAttr.WeekDays !== 'undefined') {
       $scope.WeekDays = mAttr.WeekDays;
     }
-    if (mAttr.AlarmoutDurationOptions !== undefined) {
+    if (typeof mAttr.AlarmoutDurationOptions !== 'undefined') {
       $scope.AlarmoutDurationOptions = mAttr.AlarmoutDurationOptions;
     }
     if (Attributes.isSupportGoToPreset() === true) {

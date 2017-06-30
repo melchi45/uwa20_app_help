@@ -28,7 +28,7 @@ kindFramework.controller('simpleFocusCtrl', function($scope, SunapiClient, Attri
 
   function getAttributes() {
     var defer = $q.defer();
-    if (mAttr.SimpleFocusOptions !== undefined) {
+    if (typeof mAttr.SimpleFocusOptions !== 'undefined') {
       $scope.SimpleFocusOptions = mAttr.SimpleFocusOptions;
       $scope.SimpleZoomOptions = mAttr.SimpleZoomOptions;
       $scope.FastAutoFocusEnable = mAttr.FastAutoFocusEnable;
@@ -62,7 +62,7 @@ kindFramework.controller('simpleFocusCtrl', function($scope, SunapiClient, Attri
   $scope.isSupportedFocusMode = function(mode) {
     var retVal = false;
 
-    if ($scope.FocusModeOptions !== undefined) {
+    if (typeof $scope.FocusModeOptions !== 'undefined') {
       if ($scope.FocusModeOptions.indexOf(mode) !== -1) {
         return true;
       }
@@ -143,17 +143,6 @@ kindFramework.controller('simpleFocusCtrl', function($scope, SunapiClient, Attri
     });
   }
 
-  function setFBEnable() {
-    // COMMONUtils.ApplyConfirmation(SaveFBEnable);
-    COMMONUtils.ApplyConfirmation(function() {
-      SaveFBEnable();
-    }, 
-    'sm',
-    function() {
-      $scope.FBAdjustEnable = !$scope.FBAdjustEnable;
-    });
-  }
-
   function setTCEnable() {
     // COMMONUtils.ApplyConfirmation(SaveTCEnable);
     COMMONUtils.ApplyConfirmation(function() {
@@ -198,7 +187,7 @@ kindFramework.controller('simpleFocusCtrl', function($scope, SunapiClient, Attri
   }
 
   function checkICSLensSupport() {
-    if ($scope.IrisModeOptions !== undefined) {
+    if (typeof $scope.IrisModeOptions !== 'undefined') {
       for (var i = 0; i < $scope.IrisModeOptions.length; i++) {
         var option = $scope.IrisModeOptions[i];
         if (option.indexOf('ICS') !== -1) {
@@ -327,7 +316,6 @@ kindFramework.controller('simpleFocusCtrl', function($scope, SunapiClient, Attri
   $scope.manualZoom = manualZoom;
   $scope.focusMode = focusMode;
   $scope.setFastAutoFocus = setFastAutoFocus;
-  $scope.setFBEnable = setFBEnable;
   $scope.setTCEnable = setTCEnable;
 
 });

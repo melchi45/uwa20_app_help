@@ -886,10 +886,10 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     If the current frame rate is more than allowed frame rate.
     Automatically set it to Max FPSselectResolutionList*/
 
-    if(pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined){
+    if(typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined'){
       $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate;
     }
-    if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate == undefined || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate > maxfps) {
+    if (typeof $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate === 'undefined' || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate > maxfps) {
       $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].FrameRate = defaultfps;
     }
 
@@ -1008,7 +1008,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
           if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined') {
             $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate;
           }
-          if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate == undefined || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate < minBitrate) {
+          if (typeof $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate === 'undefined' || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate < minBitrate) {
             $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = defaultBitrate;
           }
 
@@ -1041,7 +1041,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
           if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined') {
             $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate;
           }
-          if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate == undefined || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate < minBitrate) {
+          if (typeof $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate === 'undefined' || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate > maxBitrate || $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate < minBitrate) {
             $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].Bitrate = defaultBitrate;
           }
 
@@ -1092,7 +1092,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
         Handle Video Codec Change
         When Video Codec is changed from MPEG -> H264,H265 default codec specifc details should be shown
      */
-    if (pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== undefined) {
+    if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined') {
       if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].EncodingType !== pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].EncodingType) {
         handleCodecChange();
       }
