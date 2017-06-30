@@ -58,15 +58,15 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
             //4. Check Requested Profile
             if (channelPlayerObj.checkProfileAvailable(isPluginMode, intProfileNumber) === false) {
               if (BrowserService.PlugInSupport && BrowserService.PlugInDetect) {
-                //IE ÇÃ·¯±×ÀÎ È°¼ºÈ­ // PlugIn Off »óÅÂ¿¡¼­ H264, H265 ¿äÃ» ½Ã
+                //IE ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ // PlugIn Off ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ H264, H265 ï¿½ï¿½Ã» ï¿½ï¿½
                 $rootScope.$emit("channel:setPlugin");
               } else {
-                //¼³Ä¡ ½Ã³ª¸®¿À
+                //ï¿½ï¿½Ä¡ ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½
                 createPlugInInstallElement();
                 $rootScope.$emit('changeLoadingBar', false);
               }
 
-              //NonPlugIn Àç»ý ½Ã³ª¸®¿À
+              //NonPlugIn ï¿½ï¿½ï¿½ ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½
               //requestAvailableProfile(profile);
               return;
             }
@@ -185,6 +185,9 @@ directive('channelPlayer', ['BrowserService', 'UniversialManagerService', 'CAMER
             case 'areaZoomAction':
               channelPlayerObj.setAreaZoomAction(command);
               break;
+            case 'installPlugIn' :
+              channelPlayerObj.stopStreaming();
+              createPlugInInstallElement();
             default:
               break;
           }
