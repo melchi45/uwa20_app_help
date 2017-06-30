@@ -409,8 +409,7 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
                 }
               }
             }
-            var time = 500;
-            monitoringTimer = $timeout(update, time);
+            monitoringTimer = $timeout(update, 300);
           }
         });
       })();

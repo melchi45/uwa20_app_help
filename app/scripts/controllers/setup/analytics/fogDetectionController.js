@@ -169,7 +169,7 @@ kindFramework.controller('fogDetectionCtrl', function($scope, SunapiClient, XMLP
                 }
               }
             }
-            monitoringTimer = $timeout(update, 500); //300 msec
+            monitoringTimer = $timeout(update, 300); //300 msec
           }
         });
       })();

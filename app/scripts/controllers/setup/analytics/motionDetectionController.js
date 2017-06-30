@@ -1053,7 +1053,7 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
                             }
                         }
 
-                        monitoringTimer = $timeout(update, 500); //500 msec
+                        monitoringTimer = $timeout(update, 300); //300 msec
                     }
                 });
             })();
