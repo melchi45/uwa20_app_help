@@ -192,6 +192,15 @@ kindFramework.directive('liveIconList', function(
             'show': true,
             'disabled': false,
           },
+          mode3d: {
+            'label': '3D mode',
+            'action': function(){
+              scope.MI_toggleFullScreen(true);
+            },
+            'class': 'tui-wn5-3d',
+            'show': scope.show3DModeButton,
+            'disabled' : false,
+          },
           capture: {
             'label': 'lang_capture',
             'action': function() {
@@ -247,9 +256,9 @@ kindFramework.directive('liveIconList', function(
             'action': function() {
               toggleChannelFunctions('fisheye');
             },
-            'class': 'tui-eye',
+            'class': 'tui-wn5-toolbar-fisheye',
             'ngClass': 'fisheye',
-            'show': false,
+            'show': scope.showFisheye,
           },
           status: {
             'label': 'lang_status',
@@ -311,6 +320,14 @@ kindFramework.directive('liveIconList', function(
       $timeout(view);
       $timeout(wait);
 
+			scope.showFisheye = function(){
+				var isFisheyeProfile = false;
+				if(scope.profileInfo !== undefined && scope.profileInfo.ViewModeIndex === 0){
+					isFisheyeProfile = true;
+				}
+				return ( mAttr.FisheyeLens && (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) && isFisheyeProfile );
+			};
+
 			scope.changeFisheyeMode = function(elem){
 				var self = $(elem.currentTarget);
 				var type = self.attr("data-mode");
@@ -332,9 +349,12 @@ kindFramework.directive('liveIconList', function(
 					}, '', true);
 			}
 
+			scope.show3DModeButton = function(){
+				return ( mAttr.FisheyeLens && (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) );
+			};
+
       function loadedAttr() {
         scope.wisenetCameraFuntions2.ptz.show = (mAttr.ZoomOnlyModel || mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
-        scope.wisenetCameraFuntions2.fisheye.show = mAttr.FisheyeLens && (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
         getFisheyeMode();
 
         if (mAttr.MaxChannel > 1) {

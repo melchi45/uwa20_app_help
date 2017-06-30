@@ -327,7 +327,7 @@ kindFramework.directive('liveMenuContent', function(
 				var self = $(elem.currentTarget);
 				var type = self.attr("data-mode");
 
-				$("#cm-fisheye-mode button").removeClass("active");
+				$(".cm-mode-wrap button").removeClass("active");
 				self.addClass("active");
         kindStreamInterface.setCanvasStyle(scope.viewMode, scope.channelSetFunctions.show);
         var position = scope.fisheyeMode === scope.fisheyeModeList[0]? 2 : 1;

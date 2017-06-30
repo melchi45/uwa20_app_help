@@ -112,66 +112,91 @@
 
   <!-- Fisheye 버튼을 클릭했을 때 -->
   <div ng-show="channelSetFunctions['fisheye']" id="cm-fisheye">
-    <div class="cm-center">
+    <div class="cm-wrap">
+      <h2>
+        <span title="{{ 'lang_wall' | translate }}" ng-show="fisheyeMode === fisheyeModeList[0]">{{ 'lang_wall' | translate }}</span>
+        <span title="{{ 'lang_ceiling' | translate }}" ng-show="fisheyeMode === fisheyeModeList[1]">{{ 'lang_ceiling' | translate }}</span>
 
-      <div class="cm-setup-col">
-        <h2>
-          <span>{{'Fisheye View Mode' | translate}}</span>
-          <img src="./base/images/fisheye/wall.png" alt="Wall" title="Wall" ng-show="fisheyeMode === fisheyeModeList[0]">
-          <img src="./base/images/fisheye/ceiling.png" alt="Ceiling" title="Ceiling" ng-show="fisheyeMode === fisheyeModeList[1]">
-        </h2>
-        <div style="margin-top: 10px;">
-          <button type="button" class="cm-str-button" title="Reset">Reset</button>
-          <button type="button" class="cm-str-button" title="Reset All">Reset All</button>
-        </div>
-        <div id="cm-fisheye-mode" style="margin-top: 10px;">
-          <!-- Wall -->
-          <div ng-if="fisheyeMode === fisheyeModeList[0]">
-            <button type="button" class="cm-str-button active" title="Fisheye" data-mode="fisheye" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/original.png" alt="Fisheye">
-            </button>
-            <button type="button" class="cm-str-button" title="Single Panorama" data-mode="single-panorama" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/1panorama.png" alt="Single Panorama">
-            </button>
-            <button type="button" class="cm-str-button" title="Fisheye + 3PTZ" data-mode="fisheye-3PTZ" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/1origin+3rect.png" alt="Fisheye + 3PTZ">
-            </button>
-            <button type="button" class="cm-str-button" title="Quad View" data-mode="quad-view" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/1origin+4rect.png" alt="Quad View">
-            </button>
-            <button type="button" class="cm-str-button" title="Panorama + 2PTZ" data-mode="panorama-2PTZ" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/1panorama+2rect.png" alt="Panorama + 2PTZ">
-            </button>
-            <button type="button" class="cm-str-button" title="Fisheye + 8PTZ" data-mode="fisheye-8PTZ" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/9rect.png" alt="Fisheye + 8PTZ">
-            </button>
-          </div>
-          <!-- Ceiling -->
-          <div ng-if="fisheyeMode === fisheyeModeList[1]">
-            <button type="button" class="cm-str-button active" title="Fisheye" data-mode="fisheye" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/original.png" alt="Fisheye">
-            </button>
-            <button type="button" class="cm-str-button" title="Single Panorama" data-mode="single-panorama" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/1panorama.png" alt="Single Panorama">
-            </button>
-            <button type="button" class="cm-str-button" title="Double Panorama" data-mode="double-panorama" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/2panoramas.png" alt="Double Panorama">
-            </button>
-            <button type="button" class="cm-str-button" title="Fisheye + 3PTZ" data-mode="fisheye-3PTZ" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/1origin+3rect.png" alt="Fisheye + 3PTZ">
-            </button>
-            <button type="button" class="cm-str-button" title="Quad View" data-mode="quad-view" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/1origin+4rect.png" alt="Quad View">
-            </button>
-            <button type="button" class="cm-str-button" title="Panorama + 2PTZ" data-mode="panorama-2PTZ" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/1panorama+2rect.png" alt="Panorama + 2PTZ">
-            </button>
-            <button type="button" class="cm-str-button" title="Fisheye + 8PTZ" data-mode="fisheye-8PTZ" ng-click="changeFisheyeMode($event)">
-              <img src="./base/images/fisheye/1origin+8rect.png" alt="Fisheye + 8PTZ">
-            </button>
-          </div>
-        </div>
-      </div>
+        <button type="button" class="cm-str-button cm-reset-all" title="{{ 'Reset All' | translate }}" ng-click="resetFisheye('ResetPTZAll')">
+          <i class="tui tui-wn5-reset-all"></i>
+        </button>
+
+        <button type="button" class="cm-str-button cm-reset" title="{{ 'lang_camerareset' | translate }}" ng-click="resetFisheye('ResetPTZ')">
+          <i class="tui tui-wn5-reset"></i>
+        </button>
+
+      </h2>
+      <!-- Wall -->
+      <ul ng-if="fisheyeMode === fisheyeModeList[0]" class="cm-mode-wrap">
+        <li>
+          <button type="button" class="cm-icon-button active" title="{{ 'lang_fisheye_view' | translate }}" data-mode-num="1" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_singlePanorama' | translate }}" data-mode-num="2" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-single-panorama"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Fisheye + 3PTZ' | translate }}" data-mode-num="3" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye-3ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_quadView' | translate }}" data-mode-num="4" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-quad-view"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Panorama + 2PTZ' | translate }}" data-mode-num="5" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-panorama-2ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ '9PTZ' | translate }}" data-mode-num="6" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-thumnailgroup"></i>
+          </button>
+        </li>
+      </ul>
+      <!-- Ceiling -->
+      <ul ng-if="fisheyeMode === fisheyeModeList[1]" class="cm-mode-wrap">
+        <li>
+          <button type="button" class="cm-icon-button active" title="{{ 'lang_fisheye_view' | translate }}" data-mode-num="1" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_singlePanorama' | translate }}" data-mode-num="2" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-single-panorama"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_doublePanorama' | translate }}" data-mode-num="3" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-double-panorama"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Fisheye + 3PTZ' | translate }}" data-mode-num="4" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye-3ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_quadView' | translate }}" data-mode-num="5" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-quad-view"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Panorama + 2PTZ' | translate }}" data-mode-num="6" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-panorama-2ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Fisheye + 8PTZ' | translate }}" data-mode-num="7" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye-8ptz"></i>
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 

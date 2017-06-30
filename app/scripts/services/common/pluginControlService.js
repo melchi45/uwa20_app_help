@@ -3,10 +3,10 @@ kindFramework.
   service('PluginControlService', ['$rootScope', '$timeout', 'Attributes', 'SunapiClient', 
     'UniversialManagerService', '$interval', 'kindStreamInterface', 'ModalManagerService', 
     '$translate', 'CAMERA_STATUS', 'EventNotificationService', 'PlayDataModel', 
-    'PTZContorlService', 'PTZ_TYPE', 'RESTCLIENT_CONFIG',
+    'PTZContorlService', 'PTZ_TYPE', 'RESTCLIENT_CONFIG', 'BrowserService',
     function($rootScope, $timeout, Attributes, SunapiClient, UniversialManagerService, $interval,
       kindStreamInterface, ModalManagerService, $translate, CAMERA_STATUS, 
-      EventNotificationService, PlayDataModel, PTZContorlService, PTZ_TYPE, RESTCLIENT_CONFIG) {
+      EventNotificationService, PlayDataModel, PTZContorlService, PTZ_TYPE, RESTCLIENT_CONFIG, BrowserService) {
       var sunapiAttributes = Attributes.get(); //--> not common.
       var pluginElement = null,
         rtspIP = null,
@@ -24,6 +24,7 @@ kindFramework.
       var stepFlag = null;
       var playbackMode = 1;
       var liveStatusCallback = null;
+      var macWheelEvent = false;
       var TIMEOUT = 500;
       var DEFAULT_FPS = 30;
       var DECIMAL = 10;
@@ -101,6 +102,17 @@ kindFramework.
           }, TIMEOUT);
         }
         startPlay();
+
+        if(BrowserService.OSDetect === BrowserService.OS_TYPES.MACINTOSH && macWheelEvent === false){
+          $(".cm-play-area").bind('mousewheel', function(event){
+            try {
+              pluginElement.FireMouseWheel(event.clientX,event.clientY,event.deltaY);
+              macWheelEvent = true;
+            }
+            catch (err) {
+            } 
+          });
+        }
       };
 
       this.stopStreaming = function() {

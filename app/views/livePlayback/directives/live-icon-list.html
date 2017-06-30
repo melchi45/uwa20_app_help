@@ -14,7 +14,7 @@
   <ul class="info-toggle">
     <li 
       class="cm-icon-point"
-      ng-if="function.show" 
+      ng-show="function.ngClass === 'fisheye'? function.show() : function.show" 
       ng-repeat="function in wisenetCameraFuntions2"
       ng-class="{ 'cm-active' : channelSetFunctions[function.ngClass] }">
       <button 
@@ -33,7 +33,7 @@
   <ul class="cm-col" id="live-controller">
     <li 
       class="cm-icon-point"
-      ng-if="function.show" 
+      ng-if="function.class === 'tui-wn5-3d'? function.show() : function.show"
       ng-repeat="function in wisenetCameraFuntions">
       <button 
         class="cm-icon-button-b"

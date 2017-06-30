@@ -13,11 +13,12 @@
   playback-control="playbackController" 
   set-play-speed="setPlaySpeed(speed)" 
   set-timeline-view="setTimelineView(timelineView)" 
-  is-loading="isLoading">
+  is-loading="isLoading"
+  class="cm-play-area">
 </full-camera>
 
 <!-- Video -->
-<div id="cm-video" ng-class="{'cm-fullscreen' : domControls.visibilityFullScreen}">
+<div id="cm-video" ng-class="{'cm-fullscreen' : domControls.visibilityFullScreen}" class="cm-play-area">
 
   <overlay-canvas ng-if="checkPlugin()"></overlay-canvas>
   <div  
