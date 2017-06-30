@@ -78,13 +78,8 @@ kindFramework
             case "MoveStatus:PanTilt":
             case "MoveStatus:Zoom":
             case "DigitalAutoTracking":
+            case "TrackingEnable":
               updatePtzEvent(targetData);
-              break;
-            case "AutoTracking":
-              updatePtzEvent(targetData);
-              if (targetData.value == 'true') {
-                setTimeoutEventNoti();
-              }
               break;
             case "DigitalInput":
               if (targetData.value == 'true') {

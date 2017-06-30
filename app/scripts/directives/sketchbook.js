@@ -37,9 +37,8 @@ kindFramework.
           var timeCallback = function() {};
           var closeCallback = function() {};
 
-          var reconnectionInterval = null;
-          var xmlHttp = new XMLHttpRequest();
-          var retryStatus = true;
+            var reconnectionTimeout = null;
+            var xmlHttp = new XMLHttpRequest();
 
           var getPlayerData = function() {
             if (mAttr.MaxChannel > 1) {
@@ -51,31 +50,30 @@ kindFramework.
             return ConnectionSettingService.getPlayerData('live', profileInfo, timeCallback, errorCallback, closeCallback);
           };
 
+          function reconnect(){
+            if(reconnectionTimeout !== null)
+            {
+              $timeout.cancel(reconnectionTimeout);
+            }
+
+            reconnectionTimeout = $timeout(function(){
+              if(RESTCLIENT_CONFIG.serverType === 'grunt'){
+                var data = getPlayerData();
+                kindStreamInterface.changeStreamInfo(data);
+              }else{
+                xmlHttp.open( "POST", "../home/pw_check.cgi", true); // false for synchronous request
+                xmlHttp.send( null );
+              }        
+            },500);
+          }
+	    
           var errorCallback = function(error) {
             console.log("errorcode:", error.errorCode, "error string:", error.description, "error place:", error.place);
             if (error.errorCode === "200") {
               // 초기에 Canvas, SVG의 사이즈를 반응형에 맞게 세팅
               setTimeout(changePreviewSize);
-
-              clearInterval(reconnectionInterval);
             } else if (error.errorCode === "999") {
-              reconnectionInterval = setInterval(function() {
-                if (RESTCLIENT_CONFIG.serverType === 'grunt') {
-                  var data = getPlayerData();
-                  kindStreamInterface.changeStreamInfo(data);
-                } else {
-                  if (retryStatus) {
-                    try {
-                      retryStatus = false;
-                      xmlHttp.open("POST", "../home/pw_check.cgi", true); // false for synchronous request
-                      xmlHttp.send(null);
-                    } catch (e) {
-
-                    }
-                  }
-                }
-
-              }, 5000);
+              reconnect();
             } else if (error.errorCode === "404") {
               SunapiClient.get('/stw-cgi/media.cgi?msubmenu=videoprofile&action=view', {
                   Channel: currentChannel
@@ -102,38 +100,40 @@ kindFramework.
 
           xmlHttp.onreadystatechange = function() {
             if (this.readyState === 4) {
-              retryStatus = true;
               if (this.status === 200) {
                 if (xmlHttp.responseText === "OK") {
                   window.setTimeout(RefreshPage, 500);
                 } else {
-                  retryStatus = false;
-                  return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=interface&action=view', {},
+                  try{
+                    SunapiClient.get('/stw-cgi/network.cgi?msubmenu=interface&action=view',{},
                     function(response) {
                       var macIp = response.data.NetworkInterfaces[0].MACAddress;
-                      if (macIp === RESTCLIENT_CONFIG.digest.macAddress) {
-                        var data = getPlayerData();
-                        kindStreamInterface.changeStreamInfo(data);
-                      } else {
-                        window.setTimeout(RefreshPage, 500);
+                      if(macIp == RESTCLIENT_CONFIG.digest.macAddress){
+                          var data = getPlayerData();
+                          kindStreamInterface.changeStreamInfo(data);
+                      }else{
+                          window.setTimeout(RefreshPage, 500);
                       }
                     },
-                    function(errorData, errorCode) {
+                    function(errorData,errorCode) {
                       console.error(errorData);
-                    }, '', true);
+                      reconnect();
+                    }, '', true);                  
+                  }catch(e){
+                    reconnect();
+                  }
                 }
               } else if (this.status === 401) {
-                retryStatus = false;
                 var unAuthHtml = "<html><head><title>401 - Unauthorized</title></head><body><h1>401 - Unauthorized</h1></body></html>";
                 document.write(unAuthHtml);
               } else if (this.status === 490) {
-                retryStatus = false;
                 var blockHtml = "<html><head><title>Account Blocked</title></head><body><h1>You have exceeded the maximum number of login attempts, please try after some time.</h1></body></html>";
                 document.write(blockHtml);
-              } 
-              // else {
-
-              // }
+              }else{
+                if(this.status === "" || this.status === 0){
+                  reconnect();
+                }
+              }
             }
           }
 
