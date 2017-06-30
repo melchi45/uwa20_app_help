@@ -384,6 +384,27 @@ kindFramework.directive(
             }
           }
 
+          function checkICSSupport(){
+            var irisModeOptions = cameraAttributes.IrisModeOptions;
+            var isSupport = false;
+            var i = 0;
+            var len = 0;
+            var option = '';
+
+            if (typeof irisModeOptions !== "undefined") {
+              len = irisModeOptions.length;
+              for (; i < len; i++) {
+                option = irisModeOptions[i];
+                if (option.indexOf('ICS') !== -1) {
+                  isSupport = true;
+                  break;
+                }
+              }
+            }
+
+            return isSupport;
+          }
+
           var currentCameraLanguage = $translate.use();
           var rootPath = '';
           if (ONLINE_HELP_CONFIG.USE_MULTI_LANGUAGE) {
@@ -487,13 +508,14 @@ kindFramework.directive(
                 cameraAttributes.PTZModel === true ||
                 cameraAttributes.ZoomOnlyModel === true
               ),
-              Zoom: (cameraAttributes.ZoomOnlyModel === true)
+              Zoom: (cameraAttributes.ZoomOnlyModel === true),
+              ICS: checkICSSupport()
             };
           } catch (error) {
             console.error(error);
           }
 
-          console.log(supportFeatures);
+          // console.log(supportFeatures);
 
           localStorage.supportMenu = JSON.stringify(supportMenu.data);
           localStorage.supportRoute = JSON.stringify(supportRoute);
