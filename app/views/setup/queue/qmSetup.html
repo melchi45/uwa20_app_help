@@ -11,8 +11,8 @@
         </div>
     </div>
     
-    <div class="wn5-setup-tab cm-tabs-field">
-        <ul class="wn5-setup-tab-list cm-tabs-list">
+    <div class="wn5-setup-tab">
+        <ul class="wn5-setup-tab-list">
             <li class="wn5-setup-tab-item">
                 <button 
                     ng-class="{'active': currentTapStatus[0] === true }"
@@ -30,7 +30,7 @@
                 </button>
             </li>-->
         </ul>
-        <div class="wn5-setup-tab-content cm-tabs-content wn5-setup-tab-content-use-padding">
+        <div class="wn5-setup-tab-content wn5-setup-tab-content-use-padding">
             <sketchbook 
                 class="wn5-setup-preview-video"
                 coordinates="coordinates" 
@@ -70,7 +70,7 @@
                         </div>
                         <div class="wn5-setup-preview-content">
                             <table 
-                                class="pc-n-hm-table cm-table-field text-center wn5-setup-table"
+                                class="pc-n-hm-table table-bordered text-center wn5-setup-table"
                                 style="max-width: 400px;">
                                 <colgroup>
                                     <col class="pc-n-hm-per-10">
@@ -123,8 +123,12 @@
                             <span ng-show="!queueData.Enable">
                                 <i class="tui tui-wn5-toolbar-status"></i> {{ lang.queueUndefined.disable | translate }}
                             </span>
-                            <span ng-show="countingSection.isPeopleCountDisabled">
-                                <i class="tui tui-wn5-toolbar-status"></i> {{ lang.queueUndefined.noRule | translate }}
+                            <span 
+                                ng-show="queueData.Enable && queueData.Queues[0].Enable === false && queueData.Queues[1].Enable === false && queueData.Queues[2].Enable === false"
+                                style="color: #f37321;">
+                                <br>
+                                <span class="tui tui-wn5-toolbar-status"></span>
+                                {{ lang.queueUndefined.noRule | translate }}
                             </span>
                         </p>
                     </div>

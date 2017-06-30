@@ -1,4 +1,4 @@
-<div class="wrapper wrapper-content">
+<div class="wrapper wrapper-content ng-hide" ng-show="pageLoaded">
     <wn5-setup-main-title
         data-title="{{lang.searchTitle}}">
     </wn5-setup-main-title>
@@ -37,7 +37,9 @@
                         </div>
                     </div>
                 </div>
-                <p class="wn5-gui-body-large" style="width: 100%; float: left;">{{ lang.realTime.message | translate }}</p>
+                <p class="wn5-gui-body-large" style="width: 100%; float: left;">
+                    {{ lang.realTime.rotationMessage | translate }} {{ lang.realTime.message | translate }}
+                </p>
             </section>
         </section>
 
@@ -47,6 +49,23 @@
                 <p>
                     <span class="tui tui-wn5-toolbar-status"></span>
                     {{ lang.queueUndefined.disable | translate }}
+                </p>
+                <div class="text-center">
+                    <button 
+                        class="btn btn-primary cm-btn-dark" 
+                        type="button"
+                        ng-click="previewSection.goToSetup()"
+                        >{{ lang.realTime.button | translate }}</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="pc-statistics-dialog"
+            ng-show="queueData.Enable && queueData.Queues[0].Enable === false && queueData.Queues[1].Enable === false && queueData.Queues[2].Enable === false">
+            <div class="pc-statistics-dialog-title">
+                <p>
+                    <span class="tui tui-wn5-toolbar-status"></span>
+                    {{ lang.queueUndefined.noRule | translate }}
                 </p>
                 <div class="text-center">
                     <button 
@@ -224,14 +243,14 @@
 
             <article 
                 class="pc-statistics-dialog"
-                ng-show="resultSection.noResults || !(resultSection.viewGraph.average || resultSection.viewGraph.cumulative)">
+                ng-show="resultSection.noResults">
                 <p 
                     class="pc-statistics-dialog-title">
                     {{lang.results.noResults | translate}}
                 </p>
             </article>
 
-            <div id="qm-realtime-graph-3" class="pc-graph-fix-tooltip">
+            <div id="qm-realtime-graph-3" ng-hide="resultSection.noResults" class="pc-graph-fix-tooltip">
                 <figure 
                     ng-class="resultSection.viewGraph.cumulative&&resultSection.viewGraph.average? 'pc-realtime-graph-today' : 'pc-results-graph'"
                     ng-show="resultSection.viewGraph.average && !resultSection.noResults">

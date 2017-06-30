@@ -1,67 +1,63 @@
 "use strict";
-kindFramework.controller('addSlaveModalCtrl', function($scope, $uibModalInstance) {
-  $scope.confirmTitle = 'Add Slave';
-  $scope.ip = '';
-  $scope.id = '';
-  $scope.pw = '';
-  $scope.ipTypeEnum = [
-    'IPV4',
-    'IPV6'
-  ];
-  $scope.ipType = $scope.ipTypeEnum[0];
-  $scope.port = '';
-  var DEFAULT_PORT = 80;
-
-  $scope.ok = function() {
-    var arr = [
-      'ip',
-      'id',
-      'pw'
+kindFramework.controller('addSlaveModalCtrl', function ($scope, $uibModalInstance)
+{  
+    $scope.confirmTitle = 'Add Slave';
+    $scope.ip = '';
+    $scope.id = '';
+    $scope.pw = '';
+    $scope.ipTypeEnum = [
+        'IPV4',
+        'IPV6'
     ];
+    $scope.ipType = $scope.ipTypeEnum[0];
+    $scope.port = '';
 
-    var errClass = ' has-error';
-    var i = 0;
-    var key = null;
-    var elem = null;
-    var parent = null;
+    $scope.ok = function (){
+        var arr = [
+            'ip',
+            'id',
+            'pw'
+        ];
 
-    //trim
-    for (i = 0; i < arr.length; i++) {
-      key = arr[i];
-      var tmpVal = $scope[key].trim();
-      elem = document.getElementById("pc-confirm-report-" + key);
-      parent = elem.parentNode;
-      parent.className = parent.className.replace(errClass, '');
+        var errClass = ' has-error';
 
-      $scope[key] = tmpVal;
-      elem.value = tmpVal;
-    }
+        //trim
+        for(var i = 0; i < arr.length; i++){
+            var key = arr[i];
+            var tmpVal = $scope[key].trim();
+            var elem = document.getElementById("pc-confirm-report-" + key);
+            var parent = elem.parentNode;
+            parent.className = parent.className.replace(errClass, '');
 
-    var isOk = true;
-    for (i = 0; i < arr.length; i++) {
-      key = arr[i];
-      if ($scope[key] === '') {
-        elem = document.getElementById("pc-confirm-report-" + key);
-        parent = elem.parentNode;
-        parent.className = parent.className + errClass;
-        isOk = false;
-      }
-    }
+            $scope[key] = tmpVal;
+            elem.value = tmpVal;
+        }
 
-    if (isOk === false) {
-      return;
-    }
+        var isOk = true;
+        for(var i = 0; i < arr.length; i++){
+            var key = arr[i];
+            if($scope[key] === ''){
+                var elem = document.getElementById("pc-confirm-report-" + key);
+                var parent = elem.parentNode;
+                parent.className = parent.className + errClass;
+                isOk = false;
+            }
+        }
 
-    $uibModalInstance.close({
-      ip: $scope.ip,
-      id: $scope.id,
-      pw: $scope.pw,
-      ipType: $scope.ipType,
-      port: $scope.port === '' ? DEFAULT_PORT : $scope.port
-    });
-  };
+        if(isOk === false){
+            return;
+        }
 
-  $scope.cancel = function() {
-    $uibModalInstance.dismiss();
-  };
+        $uibModalInstance.close({
+            ip: $scope.ip,
+            id: $scope.id,
+            pw: $scope.pw,
+            ipType: $scope.ipType,
+            port: $scope.port === '' ? 80 : $scope.port
+        });        
+    };
+
+    $scope.cancel = function (){
+        $uibModalInstance.dismiss();
+    };
 });
