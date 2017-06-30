@@ -1,5 +1,4 @@
-kindFramework
-    .directive('eventActionSetup', ['LoggingService', 'COMMONUtils', 'Attributes', 'SunapiClient', '$rootScope', 'eventRuleService', 'UniversialManagerService',
+kindFramework.directive('eventActionSetup', ['LoggingService', 'COMMONUtils', 'Attributes', 'SunapiClient', '$rootScope', 'eventRuleService', 'UniversialManagerService',
     function(LoggingService, COMMONUtils, Attributes, SunapiClient, $rootScope, eventRuleService, UniversialManagerService){
     'use strict';
     return{

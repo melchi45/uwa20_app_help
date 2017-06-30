@@ -3,7 +3,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
   var mAttr = Attributes.get();
   COMMONUtils.getResponsiveObjects($scope);
   $scope.TableElementClass = COMMONUtils.getTableElementClass(6);
-  var dstUpdated = false;
+  // var dstUpdated = false;
   $scope.isPCDSTOn = false;
 
   var idx = 0;
@@ -33,7 +33,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
 
     var deferred = $q.defer();
 
-    if (mAttr.YearOptions !== undefined) {
+    if (typeof mAttr.YearOptions !== 'undefined') {
       $scope.YearMin = parseInt(mAttr.YearOptions.minValue, 10);
       $scope.YearMax = parseInt(mAttr.YearOptions.maxValue, 10);
       $scope.YearOptions = [];
@@ -42,7 +42,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
       }
 
     }
-    if (mAttr.MonthOptions !== undefined) {
+    if (typeof mAttr.MonthOptions !== 'undefined') {
       $scope.MonthMin = parseInt(mAttr.MonthOptions.minValue, 10);
       $scope.MonthMax = parseInt(mAttr.MonthOptions.maxValue, 10);
       $scope.MonthOptions = [];
@@ -51,7 +51,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
       }
 
     }
-    if (mAttr.DayOptions !== undefined) {
+    if (typeof mAttr.DayOptions !== 'undefined') {
       $scope.DayMin = parseInt(mAttr.DayOptions.minValue, 10);
       $scope.DayMax = parseInt(mAttr.DayOptions.maxValue, 10);
       $scope.DayOptions = [];
@@ -60,7 +60,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
       }
 
     }
-    if (mAttr.HourOptions !== undefined) {
+    if (typeof mAttr.HourOptions !== 'undefined') {
       $scope.HourMin = parseInt(mAttr.HourOptions.minValue, 10);
       $scope.HourMax = parseInt(mAttr.HourOptions.maxValue, 10);
       $scope.HourOptions = [];
@@ -69,7 +69,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
       }
 
     }
-    if (mAttr.MinuteOptions !== undefined) {
+    if (typeof mAttr.MinuteOptions !== 'undefined') {
       $scope.MinuteMin = parseInt(mAttr.MinuteOptions.minValue, 10);
       $scope.MinuteMax = parseInt(mAttr.MinuteOptions.maxValue, 10);
       $scope.MinuteOptions = [];
@@ -78,7 +78,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
 
       }
     }
-    if (mAttr.SecondOptions !== undefined) {
+    if (typeof mAttr.SecondOptions !== 'undefined') {
       $scope.SecondMin = parseInt(mAttr.SecondOptions.minValue, 10);
       $scope.SecondMax = parseInt(mAttr.SecondOptions.maxValue, 10);
       $scope.SecondOptions = [];
@@ -160,27 +160,27 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
   //     return Markday;
   // }
 
-  function IsDSTUpdated() {
-    if (pageData.DateTime.DSTEnable === true) {
-      var DstStart = DSTStringToDate($scope.CurrentTimeZone.StartTime);
-      var DstEnd = DSTStringToDate($scope.CurrentTimeZone.EndTime);
-      var curTime = new Date($scope.cameratimeMillsec);
+  // function IsDSTUpdated() {
+  //   if (pageData.DateTime.DSTEnable === true) {
+  //     var DstStart = DSTStringToDate($scope.CurrentTimeZone.StartTime);
+  //     var DstEnd = DSTStringToDate($scope.CurrentTimeZone.EndTime);
+  //     var curTime = new Date($scope.cameratimeMillsec);
 
-      if (DstEnd.getTime() < DstStart.getTime()) {
-        if (curTime.getTime() < DstEnd.getTime()) {
-          DstStart.setFullYear(DstStart.getFullYear() - 1);
-        } else {
-          DstEnd.setFullYear(DstEnd.getFullYear() + 1);
-        }
-      }
+  //     if (DstEnd.getTime() < DstStart.getTime()) {
+  //       if (curTime.getTime() < DstEnd.getTime()) {
+  //         DstStart.setFullYear(DstStart.getFullYear() - 1);
+  //       } else {
+  //         DstEnd.setFullYear(DstEnd.getFullYear() + 1);
+  //       }
+  //     }
 
-      //console.log(curTime.toString(), DstStart.toString(), DstEnd.toString());
-      if ((curTime.getTime() >= DstStart.getTime()) && (curTime.getTime() < DstEnd.getTime())) {
-        return true;
-      }
-    }
-    return false;
-  }
+  //     //console.log(curTime.toString(), DstStart.toString(), DstEnd.toString());
+  //     if ((curTime.getTime() >= DstStart.getTime()) && (curTime.getTime() < DstEnd.getTime())) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
 
   // function getDateTime() {
   //     var getData = {};
@@ -274,7 +274,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
   // };
 
   function isValidNTPURL(ntpaddr) {
-    var i;
+    var i = 0;
     if (ntpaddr.length <= 0 || ntpaddr.length > $scope.NTPUrlMaxLen) {
       return false;
     }
@@ -316,8 +316,11 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
 
   function getLastday(year, month) {
     var last_month = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-    if (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)) last_month[1] = 29;
-    else last_month[1] = 28;
+    if (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)) {
+      last_month[1] = 29;
+    } else {
+      last_month[1] = 28;
+    }
     return last_month[month - 1];
   }
 
@@ -326,6 +329,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
     var invalid_year = false;
     var invalid_dayInMonth = false;
     var invalid_address = false;
+    var ErrorMessage = '';
 
     if (pageData.DateTime !== $scope.DateTime) {
       if ($scope.DateTime.SyncType === 'Manual') {
@@ -354,17 +358,17 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
 
 
       if (invalid_year === true) {
-        var ErrorMessage = 'lang_msg_invalid_year';
+        ErrorMessage = 'lang_msg_invalid_year';
         COMMONUtils.ShowError(ErrorMessage);
       }
 
       if (invalid_dayInMonth === true) {
-        var ErrorMessage = 'lang_msg_invalid_day';
+        ErrorMessage = 'lang_msg_invalid_day';
         COMMONUtils.ShowError(ErrorMessage);
       }
 
       if (invalid_address === true) {
-        var ErrorMessage = 'lang_msg_invalid_address';
+        ErrorMessage = 'lang_msg_invalid_address';
         COMMONUtils.ShowError(ErrorMessage);
       }
     }
@@ -379,7 +383,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
       TimezoneMinute = 0;
     var minTime = new Date("2000/01/01 00:00:00");
     var result = true;
-    var manualTime;
+    var manualTime = null;
     if ($scope.DateTime.SyncType === 'Manual') {
       if ($scope.SyncPc === true) {
         manualTime = new Date($scope.pctime);
@@ -408,7 +412,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
     var setData = {};
     var is_changed = false;
 
-    if ($scope.CurrentTimeZone.StartTime === undefined) {
+    if (typeof $scope.CurrentTimeZone.StartTime === 'undefined') {
       $scope.DateTime.DSTEnable = false;
     }
     if (!angular.equals(pageData.CurrentTimeZone, $scope.CurrentTimeZone) || (pageData.DSTEnable !== $scope.DateTime.DSTEnable)) {
@@ -716,7 +720,7 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
   //     $scope.cameratimeformat = cameratime;
   // });
   $scope.$watch('isViewed', function(newVal, oldVal) {
-    if (newVal != oldVal && newVal == false) {
+    if (newVal !== oldVal && newVal === false) {
       $("#datetimepage").show();
     }
   });
@@ -728,7 +732,9 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
   function startTicking() {
     (function update() {
       getCamLocalTime(function(data) {
-        if (destroyInterrupt) return;
+        if (destroyInterrupt) {
+          return;
+        }
         var newLocalTime = angular.copy(data);
         if (!mStopTicking) {
           $scope.cameratime = newLocalTime;
