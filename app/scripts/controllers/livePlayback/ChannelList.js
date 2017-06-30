@@ -1,6 +1,6 @@
 kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootScope, $state,
     kindStreamInterface, Attributes, SunapiClient, ConnectionSettingService, UniversialManagerService,
-    CAMERA_STATUS, BrowserService, RESTCLIENT_CONFIG) {
+    CAMERA_STATUS, BrowserService, RESTCLIENT_CONFIG, SessionOfUserManager, PluginModel) {
     "use strict";
 
     var channlistClass = 'channellist-video-wrapper';
@@ -23,6 +23,7 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
         }
     };
     var reconnectionTimeout = null;
+    var laodTimeout = null;
     var xmlHttp = new XMLHttpRequest();
     var reconnectCheck = false;
     var aspectWitdth = 0;
@@ -36,86 +37,7 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
             plugin = true;
         }
 
-        SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', '',
-            function (response) {
-                UniversialManagerService.setRotate();
-                var section = $('#channellist-containner');
-                for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
-                    var figure = document.createElement('figure');
-                    var div = document.createElement('div');
-                    if (response.data.Flip[i].Rotate === "0" || response.data.Flip[i].Rotate === "180") {
-                        $(div).addClass('channellist-video-wrapper ratio-4-3');
-                    } else {
-                        $(div).addClass('channellist-video-wrapper ratio-3-4');
-                    }
-                    if (plugin === false) {
-                        var videoElement = document.createElement(videoMode);
-                        $(videoElement).attr('id', "live" + videoMode + i);
-                        $(videoElement).attr('kind-channel-id', i);
-                        $(section).append($(figure).append($(div).append(videoElement)));
-                    } else {
-                        var object = '';
-                        if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) {
-                            object = '<object classid="clsid:FC4C00B9-5A98-461C-88E8-B24B528DDBF5" width="100%" height="100%" name="channel' + i + '" id="channel' + i + '"></object>';
-                        } else {
-                            object = '<object type="application/HTWisenetViewer-plugin" width="100%" height="100%" name="channel' + i + '" id="channel' + i + '"></object>';
-                        }
-                        div.innerHTML = object;
-                        $(section).append($(figure).append($(div)));
-                    }
-                }
-                startVideoStreaming();
-                setTimeout(changeCanvas);
-            },
-            function (errorData) {
-                console.log(errorData);
-            }, '', true);
-
-
-    });
-
-    $scope.$on("$destroy", function () {
-        window.removeEventListener('resize', resizeHandle);
-        var closeData = ConnectionSettingService.closeStream();
-
-        setResolutionAndRatio();
-
-        SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', '',
-            function (response) {
-                UniversialManagerService.setRotate();
-                var section = $('#channellist-containner');
-                for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
-                    var figure = document.createElement('figure');
-                    var div = document.createElement('div');
-                    if (response.data.Flip[i].Rotate === "0" || response.data.Flip[i].Rotate === "180") {
-                        $(div).addClass('channellist-video-wrapper ratio-' + aspectWitdth + '-' + aspectHeight);
-                    } else {
-                        $(div).addClass('channellist-video-wrapper ratio-' + aspectHeight + '-' + aspectWitdth);
-                    }
-                    if (plugin === false) {
-                        var videoElement = document.createElement(videoMode);
-                        $(videoElement).attr('id', "live" + videoMode + i);
-                        $(videoElement).attr('kind-channel-id', i);
-                        $(section).append($(figure).append($(div).append(videoElement)));
-                    } else {
-                        var object = '';
-                        if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) {
-                            object = '<object classid="clsid:FC4C00B9-5A98-461C-88E8-B24B528DDBF5" width="100%" height="100%" name="channel' + i + '" id="channel' + i + '"></object>';
-                        } else {
-                            object = '<object type="application/HTWisenetViewer-plugin" width="100%" height="100%" name="channel' + i + '" id="channel' + i + '"></object>';
-                        }
-                        div.innerHTML = object;
-                        $(section).append($(figure).append($(div)));
-                    }
-                }
-                startVideoStreaming();
-                setTimeout(changeCanvas);
-            },
-            function (errorData) {
-                console.log(errorData);
-            }, '', true);
-
-
+        loadPage();
     });
 
     $scope.$on("$destroy", function () {
@@ -132,6 +54,92 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
             }
         }
     });
+
+    function loadPage() {
+        if (laodTimeout !== null) {
+            $timeout.cancel(laodTimeout);
+        }
+
+        laodTimeout = $timeout(function () {
+            if (sunapiAttributes.Ready) {
+                if (sunapiAttributes.MaxChannel > 1) {
+                    ConnectionSettingService.SetMultiChannelSupport(true);
+                }
+
+                getRtspIpMac();
+                setResolutionAndRatio();
+
+                if (SessionOfUserManager.IsLoggedin()) {
+                    var id = SessionOfUserManager.getUsername();
+                    var password = SessionOfUserManager.getPassword();
+                    ConnectionSettingService.setConnectionInfo({
+                        id: id,
+                        password: password
+                    });
+                }
+
+                SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', '',
+                    function (response) {
+                        UniversialManagerService.setRotate(response.data.Flip);
+                        var section = $('#channellist-containner');
+                        for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
+                            var figure = document.createElement('figure');
+                            var div = document.createElement('div');
+                            if (response.data.Flip[i].Rotate === "0" || response.data.Flip[i].Rotate === "180") {
+                                $(div).addClass('channellist-video-wrapper ratio-' + aspectWitdth + '-' + aspectHeight);
+                            } else {
+                                $(div).addClass('channellist-video-wrapper ratio-' + aspectHeight + '-' + aspectWitdth);
+                            }
+                            if (plugin === false) {
+                                var videoElement = document.createElement(videoMode);
+                                $(videoElement).attr('id', "live" + videoMode + i);
+                                $(videoElement).attr('kind-channel-id', i);
+                                $(section).append($(figure).append($(div).append(videoElement)));
+                            } else {
+                                var object = '';
+                                if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) {
+                                    object = '<object classid="clsid:' + PluginModel.ActiveX.ObjectID + '" width="100%" height="100%" name="channel' + i + '" id="channel' + i + '"></object>';
+                                } else {
+                                    object = '<object type="' + PluginModel.NPAPI.ObjectID + '" width="100%" height="100%" name="channel' + i + '" id="channel' + i + '"></object>';
+                                }
+                                div.innerHTML = object;
+                                $(section).append($(figure).append($(div)))
+                            }
+                        }
+                        startVideoStreaming();
+                        setTimeout(changeCanvas);
+                    },
+                    function (errorData) {
+                        console.log(errorData);
+                    }, '', true);
+            } else {
+                loadPage();
+            }
+        }, 500);
+    }
+
+    function getClientIP() {
+        return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=getclientip&action=view', {},
+            function (response) {
+                $scope.ClientIPAddress = response.data.ClientIP;
+                SessionOfUserManager.SetClientIPAddress($scope.ClientIPAddress);
+            },
+            function (errorData, errorCode) {
+                console.error(errorData);
+            }, '', true);
+    }
+
+    function getRtspIpMac() {
+        return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=interface&action=view', {},
+            function (response) {
+                var rtspIp = response.data.NetworkInterfaces[0].IPv4Address;
+                var macIp = response.data.NetworkInterfaces[0].MACAddress;
+                ConnectionSettingService.SetRtspIpMac(rtspIp, macIp);
+            },
+            function (errorData, errorCode) {
+                console.error(errorData);
+            }, '', true);
+    }
 
     function gcd(a, b) {
         return (b === 0) ? a : gcd(b, a % b);
@@ -210,7 +218,8 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
                 SunapiClient.get('/stw-cgi/image.cgi?msubmenu=flip&action=view', getData,
                     function (response) {
                         startVideoStreaming();
-                    }, function (errorData) {
+                    },
+                    function (errorData) {
                         reconnect();
                     });
             } else {
@@ -327,7 +336,23 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
                 if (xmlHttp.responseText == "OK") {
                     window.setTimeout(RefreshPage, 500);
                 } else {
-                    startVideoStreaming();
+                    try {
+                        SunapiClient.get('/stw-cgi/network.cgi?msubmenu=interface&action=view', {},
+                            function (response) {
+                                var macIp = response.data.NetworkInterfaces[0].MACAddress;
+                                if (macIp == RESTCLIENT_CONFIG.digest.macAddress) {
+                                    startVideoStreaming();
+                                } else {
+                                    window.setTimeout(RefreshPage, 500);
+                                }
+                            },
+                            function (errorData, errorCode) {
+                                console.error(errorData);
+                                reconnect();
+                            }, '', true);
+                    } catch (e) {
+                        reconnect();
+                    }
                 }
             } else if (this.status == 401) {
                 var unAuthHtml = "<html><head><title>401 - Unauthorized</title></head><body><h1>401 - Unauthorized</h1></body></html>";
@@ -336,7 +361,9 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
                 var blockHtml = "<html><head><title>Account Blocked</title></head><body><h1>You have exceeded the maximum number of login attempts, please try after some time.</h1></body></html>";
                 document.write(blockHtml);
             } else {
-                reconnect();
+                if (this.status === "" || this.status === 0) {
+                    reconnect();
+                }
             }
         }
     }

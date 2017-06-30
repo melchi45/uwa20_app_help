@@ -751,6 +751,8 @@ kindFramework.
             break;
           case 999: //Try reconnection
             reconnect();
+            UniversialManagerService.setVideoMode("canvas");
+            kindStreamInterface.setTagType("canvas");
             break;
           default:
             break;
