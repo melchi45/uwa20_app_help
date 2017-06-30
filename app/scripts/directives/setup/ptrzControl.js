@@ -9,78 +9,18 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
     templateUrl: './views/setup/common/ptrzControl.html',
     link: function(scope) {
       var mAttr = Attributes.get("attr");
-      scope.showPTZControlPreset = false;
-      scope.showPTZControlPresetText = false;
-      scope.showPTZControlHome = false;
-      scope.showPTZControlAT = false;
-      scope.showPTZControlBLC = false;
-      scope.showPTZControlHLC = false;
-      scope.disablePTZControlBLC = true;
-      scope.disablePTZControlHLC = true;
-      scope.showPTZControlBasicDPTZ = false;
-      scope.showPTZControlFisheyeDPTZ = false;
-      scope.showPTZControlEPTZ = false;
-      scope.showPTZControlFocus = false;
-      scope.DATFlag = false;
-      scope.isShowPTZControl = false;
-      scope.showZoomFocus = false;
-      scope.showPTZControlBox = true;
-      scope.ptzControlClass = '';
-      scope.zoomPresetClass = '';
-      scope.disablePosition = false;
-      scope.autoTrackingFlag = false;
 
       var isPtzControlStart = false, IsDigitalPTZProfile = false;
 
       var initControlUI = function() {
-        scope.showPTZControlPreset = false;
-        scope.showPTZControlPresetText = false;
-        scope.showPTZControlHome = false;
-        scope.showPTZControlAT = false;
-        scope.showPTZControlBLC = false;
-        scope.showPTZControlHLC = false;
-        scope.showPTZControlOSD = false;
-        scope.disablePTZControlBLC = true;
-        scope.disablePTZControlHLC = true;
-        scope.showPTZControlBasicDPTZ = false;
-        scope.showPTZControlFisheyeDPTZ = false;
-        scope.showPTZControlEPTZ = false;
-        scope.showPTZControlFocus = false;
-        scope.DATFlag = false;
-        scope.isShowPTZControl = false;
-        scope.showZoomFocus = false;
-        scope.showPTZControlBox = true;
-        scope.ptzControlClass = '';
-        scope.zoomPresetClass = '';
-        scope.disablePosition = false;
-        scope.autoTrackingFlag = false;
-        if (mAttr.ZoomOnlyModel) {
-          scope.isShowPTZControl = true;
-          scope.showZoomFocus = true;
-          scope.showPTZControlBox = false;
-          scope.showPTZControlFocus = false;
-          if ($('.wn5-setup-section-article .ptz-control-viewer').length > 0) {
-            scope.ptzControlClass = 'ptz-zoom-article-width';
-          } else {
-            scope.ptzControlClass = 'ptz-zoom-width';
-          }
-        } else if (mAttr.PTZModel) {
-          scope.isShowPTZControl = true;
-          scope.showPTZControlFocus = true;
-        } else {
-          if ($state.current.name === "setup.ptzSetup_dptzSetup") {
-            scope.isShowPTZControl = (mAttr.ExternalPTZModel === false && IsDigitalPTZProfile === true);
-          } else if ($state.current.name === "setup.ptzSetup_externalPtzSetup") {
-            scope.isShowPTZControl = true;
-          }
-        }
-
           // set gradiants relative path
           if (RESTCLIENT_CONFIG.serverType === 'grunt') {
             document.querySelector("#ptrz-control_box_gradations").style.background = 'url("../../base/images/ptrz_gradations.svg")';
           } else {
               document.querySelector("#ptrz-control_box_gradations").style.background = 'url("./base/images/ptrz_gradations.svg")';
           }
+
+          getRotate();
       };
 
       (function wait() {
@@ -113,28 +53,9 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
       scope.$watch('ptzinfo', function(ptzinfo) {
         if (typeof ptzinfo !== 'undefined') {
           if (ptzinfo.type === 'preset') {
-            //scope.showPTZControlPreset = true;
-            scope.showPTZControlPresetText = true;
-            scope.showPTZControlHome = true;
-            scope.zoomPresetClass = 'zoompreset';
             scope.ptzControlClass = 'ptz-ui-width';
-            //if(ptzinfo.disablePosition == true){
-            //    scope.disablePosition = true;
-            //} else {
-            //    scope.disablePosition = false;
-            //}
           } else if (ptzinfo.type === 'AT') {
             scope.ptzControlClass = 'ptz-ui-width';
-            scope.zoomPresetClass = 'zoompreset';
-            scope.showPTZControlAT = true;
-            // autoTrackingList Data
-            if (ptzinfo.isViewTrackingData) {
-              if (!ptzinfo.TrackingAreas) ptzinfo.TrackingAreas = [];
-              scope.TrackingAreas = angular.copy(ptzinfo.TrackingAreas);
-              scope.autoTrackingFlag = ptzinfo.autoTrackingFlag;
-              scope.selectTrackingArea = ptzinfo.selectTrackingArea;
-            }
-
           } else if (ptzinfo.type === 'BLC' || ptzinfo.type === 'HLC') {
             if (mAttr.PTZModel) {
               if (ptzinfo.type === 'BLC') {
@@ -166,29 +87,10 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
               }
               scope.ptzControlClass = 'w510';
             }
-          } else if (ptzinfo.type === 'OSD') {
-            if (mAttr.PTZModel) {
-              scope.showPTZControlOSD = true;
-              scope.ptzControlClass = 'w310';
-            }
-          } else if (ptzinfo.type === 'DPTZ') {
-            scope.showPTZControlBasicDPTZ = true;
-            scope.DATFlag = true;
-          } else if (ptzinfo.type === 'EPTZ') {
-            scope.showPTZControlEPTZ = true;
           } else if (ptzinfo.type === 'PTRZ') {
             scope.showPTZControlHome = true;
             scope.isShowPTZControl = true;
             scope.showPTZControlFocus = true;
-          } else if (ptzinfo.type === 'presetZoom') {
-            scope.showPTZControlPresetText = true;
-            scope.showPTZControlHome = false;
-            scope.zoomPresetClass = 'zoompreset';
-            //if(ptzinfo.disablePosition == true){
-            //    scope.disablePosition = true;
-            //} else {
-            //    scope.disablePosition = false;
-            //}
           } else {
             initControlUI();
           }
@@ -417,7 +319,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
       };
 
       scope.stopPTR = function(){
-          ptrStop();
+          ptrStop(getRotate);
       };
 
       function setPtzControlArrow(degree) {
@@ -432,12 +334,15 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         document.querySelector("#ptrz-control_top-box").textContent = "Angle " + degree + "˚";
       }
 
-        var degree = 0;
       function getRotate(){
-          degree += 30;
-          setAngleLabel(degree);
-          setPtzControlArrow(degree);
-          circleSlider.setRotate(degree);
+          return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=view', "",
+              function(response) {
+                  var degree = response.data.ptr.RotateAngle;
+                  setAngleLabel(degree);
+                  setPtzControlArrow(degree);
+                  circleSlider.setRotate(degree);
+              },
+              function(errorData) {}, '', true);
       }
 
       scope.runAutoRotate = function() {
@@ -449,7 +354,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
               function(errorData) {}, '', true);
       };
 
-      function ptrStop() {
+      function ptrStop(successCallback, errorCallback) {
         if (ptzJogTimer !== null) {
           $interval.cancel(ptzJogTimer);
           ptzJogTimer = null;
@@ -463,9 +368,10 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
         setData.Rotate = 0;
         isPtzControlStart = false;
 
-        SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=control', setData,
-          function(response) {},
-          function(errorData) {}, '', true);
+        successCallback  = successCallback || function() {};
+        errorCallback = errorCallback || function () {};
+
+        SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=control', setData, successCallback, errorCallback, '', true);
       }
 
       var circleSlider = (function(){
