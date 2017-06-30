@@ -307,7 +307,7 @@ kindFramework.directive('liveMenuContent', function(
         if (mAttr.MaxChannel > 1) {
           isMultiChannel = true;
         }
-        if(mAttr.ATCModes === undefined){
+        if(typeof mAttr.ATCModes === 'undefined'){
           scope.supportATC = false;
         }else{
           scope.supportATC = true;
@@ -331,13 +331,13 @@ kindFramework.directive('liveMenuContent', function(
 
 			scope.changeFisheyeMode = function(elem){
 				var self = $(elem.currentTarget);
-				var type = self.attr("data-mode");
+				// var type = self.attr("data-mode");
 
 				$(".cm-mode-wrap button").removeClass("active");
 				self.addClass("active");
         kindStreamInterface.setCanvasStyle(scope.viewMode, scope.channelSetFunctions.show);
         var position = scope.fisheyeMode === scope.fisheyeModeList[0]? 2 : 1;
-				PluginControlService.changeViewMode(position, modeNum);
+				PluginControlService.changeViewMode(position);
 			};
       
 			function getFisheyeMode() {
