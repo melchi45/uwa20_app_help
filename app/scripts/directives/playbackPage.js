@@ -420,7 +420,6 @@ kindFramework.
           scope.showMenuContent = true;
           scope.toggleShowMenuContent = function() {
             scope.showMenuContent = !scope.showMenuContent;
-            console.log(scope.showMenuContent);
 
             if (scope.showMenuContent === true) {
               angular.element('#cm-video').removeClass('smaller');
