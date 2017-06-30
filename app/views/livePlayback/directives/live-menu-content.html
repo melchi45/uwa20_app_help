@@ -216,7 +216,7 @@
             <th>{{'lang_profile' | translate}}</th>
             <th>{{'lang_bitrate' | translate}}(kbps)</th>
             <th>{{'lang_framerate' | translate}}(fps)</th>
-            <th>ATC(%)</th>
+            <th ng-show="supportATC">ATC(%)</th>
             <th>{{'lang_accessNumber' | translate}}</th>
           </tr>
         </thead>
@@ -225,7 +225,7 @@
             <td>{{Profiles.Name}}</td>
             <td>{{Profiles.CurrentBitrate}}/{{Profiles.TotalBitrate}}</td>
             <td>{{Profiles.CurrentFPS}}/{{Profiles.TotalFPS}}</td>
-            <td>{{Profiles.ATC}}</td>
+            <td ng-show="supportATC">{{Profiles.ATC}}</td>
             <td>{{Profiles.ConcurrentUserCount}}</td>
           </tr>
         </tbody>

@@ -307,6 +307,12 @@ kindFramework.directive('liveMenuContent', function(
         if (mAttr.MaxChannel > 1) {
           isMultiChannel = true;
         }
+        if(mAttr.ATCModes === undefined){
+          scope.supportATC = false;
+        }else{
+          scope.supportATC = true;
+        }
+				
         initDisplay();
         getFisheyeMode();
         scope.pluginStatus.initQuality();

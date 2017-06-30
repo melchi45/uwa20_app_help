@@ -200,7 +200,7 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
 
     var startVideoStreaming = function () {
         reconnectCheck = false;
-        ip = RESTCLIENT_CONFIG.digest.rtspIp;
+        ip = RESTCLIENT_CONFIG.digest.hostName;
         port = RESTCLIENT_CONFIG.digest.rtspPort;
         for (var i = 0; i < sunapiAttributes.MaxChannel; i++) {
             playVideo(i);
@@ -314,8 +314,10 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
                 }, 100);
                 break;
             case 402:
-                var pluginElement = $('#channel' + (ch - 1))[0];
-                pluginElement.CloseStream();
+                for (var idx = 0; idx < sunapiAttributes.MaxChannel; idx++) {
+                  var pluginElement = $('#channel' + idx)[0];
+                  pluginElement.CloseStream();
+                }
 
                 if (reconnectCheck === false) {
                     reconnectCheck = true;
