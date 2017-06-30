@@ -1179,6 +1179,14 @@ kindFramework.
 
       $rootScope.$saveOn('channelSelector:changeQuadView', function(event, response) {
         console.log(response);
+        if(UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) {
+            if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.IE) {
+                if(!BrowserService.PlugInDetect || !BrowserService.PlugInVersionCheck())
+                {
+                    return $rootScope.$emit('channelPlayer:command', 'installPlugIn');
+                }
+            }
+        }
         $state.go('uni.channellist');
       }, $scope);
 
