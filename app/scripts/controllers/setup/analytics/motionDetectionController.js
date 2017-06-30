@@ -64,7 +64,8 @@ kindFramework.controller('motionDetectionCtrl', function ($scope, $rootScope, Su
         oldPreset: null
     };
     
-    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){        
+    $rootScope.$saveOn('channelSelector:selectChannel', function(event, index){
+        stopMonitoringMotionLevel();
         if(validatePage()){
             COMMONUtils
                 .confirmChangeingChannel()
