@@ -492,8 +492,8 @@ kindFramework.
         setData.X2 = parseInt(Number(Pos2) / 10000);
         setData.Y2 = Number(String(Pos2).substring(String(setData.X2).length, LengthPos2));
 
-        setData.TileWidth = pluginElement.offsetWidth;
-        setData.TileHeight = pluginElement.offsetHeight;
+        setData.TileWidth = pluginElement.GetWidth();
+        setData.TileHeight = pluginElement.GetHeight();
 
         PTZContorlService.setPTZAreaZoom("start");
         PTZContorlService.runPTZAreaZoom(setData.X1, setData.Y1, setData.X2, setData.Y2, 
