@@ -138,9 +138,10 @@ kindFramework.directive('liveIconList', function(
               var channelId = UniversialManagerService.getChannelId();
               scope.profileAccessInfoList = response.data.ProfileAccessInfo.ProfileInfo[channelId].Profiles;
               var currentUsers = response.data.ProfileAccessInfo.Users;
+              var index = 0;
               if (scope.isMultiChannel) {
-                for (var index = 0; index < currentUsers.length; index++) {
-                  if (currentUsers[index].ChannelBasedUserProfile !== undefined) {
+                for (index = 0; index < currentUsers.length; index++) {
+                  if (currentUsers[index].ChannelBasedUserProfile !== "undefined") {
                     currentUsers[index].ProfileNameList = {};
                     for (var j = 0; j < currentUsers[index].ChannelBasedUserProfile.length; j++) {
                       if (currentUsers[index].ChannelBasedUserProfile[j].Channel === channelId) {
@@ -155,7 +156,7 @@ kindFramework.directive('liveIconList', function(
               }
 
               scope.profileAccessUserList = currentUsers;
-              for (var index = 0; index < scope.profileAccessInfoList.length; index++) {
+              for (index = 0; index < scope.profileAccessInfoList.length; index++) {
                 scope.profileAccessInfoList[index].Name = scope.profileList[index].Name;
               }
 
@@ -297,18 +298,21 @@ kindFramework.directive('liveIconList', function(
       }
 
       var watchPluginMode = scope.$watch(function() {
-          return UniversialManagerService.getStreamingMode();
-        },
-        function(newVal, oldVal) {
-          if (scope.wisenetCameraFuntions === undefined) return;
-          if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI) {
-            if (newVal === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) {
-              scope.wisenetCameraFuntions.record.disabled = true;
-            } else {
-              scope.wisenetCameraFuntions.record.disabled = false;
-            }
+        return UniversialManagerService.getStreamingMode();
+      },
+      function(newVal, oldVal) {
+        if (scope.wisenetCameraFuntions === "undefined") {
+          return;
+        }
+        if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.SAFARI) {
+          if (newVal === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) {
+            scope.wisenetCameraFuntions.record.disabled = true;
+          } else {
+            scope.wisenetCameraFuntions.record.disabled = false;
           }
-        });
+        }
+      });
+
       scope.$on('$destroy', function() {
         watchPluginMode();
       });
@@ -320,41 +324,42 @@ kindFramework.directive('liveIconList', function(
       $timeout(view);
       $timeout(wait);
 
-			scope.showFisheye = function(){
-				var isFisheyeProfile = false;
-				if(scope.profileInfo !== undefined && scope.profileInfo.ViewModeIndex === 0){
-					isFisheyeProfile = true;
-				}
-				return ( mAttr.FisheyeLens && (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) && isFisheyeProfile );
-			};
+      scope.showFisheye = function() {
+        var isFisheyeProfile = false;
+        if (scope.profileInfo !== "undefined" && scope.profileInfo.ViewModeIndex === 0) {
+          isFisheyeProfile = true;
+        }
+        return ( mAttr.FisheyeLens && (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) && isFisheyeProfile );
+      };
 
-			scope.changeFisheyeMode = function(elem){
-				var self = $(elem.currentTarget);
-				var type = self.attr("data-mode");
+      scope.changeFisheyeMode = function(elem){
+        var self = $(elem.currentTarget);
+        // var type = self.attr("data-mode");
         
-				$("#cm-fisheye-mode button").removeClass("active");
-				self.addClass("active");
-			};
+        $("#cm-fisheye-mode button").removeClass("active");
+        self.addClass("active");
+      };
       
-			function getFisheyeMode() {
-				var getData = {};
-				return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=fisheyesetup&action=view', getData,
-					function (response) {
-						scope.fisheyeModeList = mAttr.CameraPosition;
-						scope.fisheyeMode = response.data.Viewmodes[0].CameraPosition;
-						console.info(scope.fisheyeModeList, scope.fisheyeMode);
-					},
-					function (errorData) {
-						console.log(errorData);
-					}, '', true);
-			}
+      function getFisheyeMode() {
+        var getData = {};
+        return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=fisheyesetup&action=view', getData,
+          function (response) {
+            scope.fisheyeModeList = mAttr.CameraPosition;
+            scope.fisheyeMode = response.data.Viewmodes[0].CameraPosition;
+            console.info(scope.fisheyeModeList, scope.fisheyeMode);
+          },
+          function (errorData) {
+            console.log(errorData);
+          }, '', true);
+      }
 
-			scope.show3DModeButton = function(){
-				return ( mAttr.FisheyeLens && (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) );
-			};
+      scope.show3DModeButton = function(){
+        return ( mAttr.FisheyeLens && (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) );
+      };
 
       function loadedAttr() {
-        scope.wisenetCameraFuntions2.ptz.show = (mAttr.ZoomOnlyModel || mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
+        scope.wisenetCameraFuntions2.ptz.show = 
+          (mAttr.ZoomOnlyModel || mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
         getFisheyeMode();
 
         if (mAttr.MaxChannel > 1) {
@@ -363,13 +368,13 @@ kindFramework.directive('liveIconList', function(
         if (AccountService.isPTZAble() === false) {
           scope.wisenetCameraFuntions2.ptz.show = false;
         }
-        if (mAttr.MaxAudioInput !== undefined) {
+        if (mAttr.MaxAudioInput !== "undefined") {
           scope.MaxAudioInput = mAttr.MaxAudioInput;
         }
-        if (mAttr.MaxAudioOutput !== undefined) {
+        if (mAttr.MaxAudioOutput !== "undefined") {
           scope.MaxAudioOutput = mAttr.MaxAudioOutput;
         }
-        if(mAttr.MaxAlarmOutput !== undefined)
+        if(mAttr.MaxAlarmOutput !== "undefined")
         {
           scope.alarmOutputMax = new Array(mAttr.MaxAlarmOutput);
         }
