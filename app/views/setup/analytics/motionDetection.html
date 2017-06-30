@@ -177,8 +177,7 @@
                                 <input 
                                     type="radio" 
                                     name="Enable" 
-                                    ng-model="$parent.handoverEnDisable" 
-                                    ng-change="changeHandoverEnDisable()"
+                                    ng-model="handoverStatus.enDisable" 
                                     ng-value="Enable" 
                                     ng-disabled='isOccupied() === 0'>
                                     {{getTranslatedOption(Enable)}}
