@@ -74,7 +74,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
   });
 
 
-  //sketchbook ?—?„œ ?“°?´?Š” ë¯¸ì‚¬?š© ë³??ˆ˜
+  //sketchbook ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë¯¸ì‚¬?ï¿½ï¿½ ï¿½??ï¿½ï¿½
   $scope.coordinates = null;
   $scope.sketchinfo = null;
 
@@ -376,7 +376,6 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
   }
 
   $scope.setTamperDetectionEnable = function() {
-    stopMonitoringTamperingLevel();
     COMMONUtils.ApplyConfirmation(
       function() {
         $rootScope.$emit('changeLoadingBar', true);
