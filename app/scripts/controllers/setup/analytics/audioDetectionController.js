@@ -24,7 +24,7 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
 
   $scope.EventRule = {};
 
-  $scope.$watch('AudioDetectChartOptions', function(newValue, oldValue) {
+  $scope.$watch('AudioDetectChartOptions', function(newValue) {
     if (newValue.ThresholdLevel) {
       if ($scope.AD !== undefined) {
         $scope.AD.InputThresholdLevel = $scope.AudioDetectChartOptions.ThresholdLevel;
@@ -106,7 +106,7 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
     }
 
     return SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=audiodetection&action=set', setData,
-      function(response) {
+      function() {
         pageData.AD = angular.copy($scope.AD);
       },
       function(errorData) {
@@ -199,12 +199,12 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
         setData.Enable = $scope.AD.Enable;
 
         SunapiClient.get('/stw-cgi/eventsources.cgi?msubmenu=audiodetection&action=set', setData,
-          function(response) {
+          function() {
             if ($scope.AD.Enable) {
               startMonitoringAudioLevel();
             }
           },
-          function(errorData) {
+          function() {
             if ($scope.AD.Enable) {
               startMonitoringAudioLevel();
             }
@@ -265,7 +265,7 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
     mStopMonotoringAudioLevel = false;
     $scope.$broadcast('liveChartStart');
 
-    if (monitoringTimer == null) {
+    if (monitoringTimer === null) {
       (function update() {
         getAudioLevel(function(data) {
           if (destroyInterrupt) return;
@@ -308,8 +308,6 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
     destroyInterrupt = true;
     stopMonitoringAudioLevel();
   });
-
-  var mLastSequenceLevel = 0;
 
   function getAudioLevel(func) {
     var newAudioLevel = {};
