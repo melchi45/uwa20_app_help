@@ -10,7 +10,7 @@ kindFramework.factory('PluginModel', function() {
         },
         ActiveX: {
             Name: 'Wisenet_ACTIVEX.wisenet2_activexCtrl.1',
-            Version: 314,
+            Version: 316,
             Path: 'plugin/HTWWisenetViewer2.exe',
             ObjectID : 'FC4C00B9-5A98-461C-88E8-B24B528DDBFF'
         }
