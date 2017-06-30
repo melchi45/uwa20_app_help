@@ -42,7 +42,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   $scope.tabUI = {};
 
   COMMONUtils.getResponsiveObjects($scope);
-  var BrowserDetect = COMMONUtils.getBrowserDetect();
+  // var BrowserDetect = COMMONUtils.getBrowserDetect();
   $scope.TableElementClass = COMMONUtils.getTableElementClass(5);
   $scope.IsImageInstalled = false;
 
@@ -102,13 +102,13 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   $scope.channelChanged = false;
 
   $scope.HLCOnOffChange = function() {
-    if ($scope.Camera.HLCOnOff === undefined) {
+    if (typeof $scope.Camera.HLCOnOff === 'undefined') {
       $scope.Camera.HLCOnOff = 'HLCOff';
     }
   }
 
   $scope.HLCMaskChange = function() {
-    if ($scope.Camera.HLCMask === undefined) {
+    if (typeof $scope.Camera.HLCMask === 'undefined') {
       $scope.Camera.HLCMask = 'MaskOff';
     }
 
@@ -116,23 +116,24 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   $scope.HLCMaskColorChange = function() {
-    if ($scope.Camera.HLCMaskColor === undefined) {
+    if (typeof $scope.Camera.HLCMaskColor === 'undefined') {
       $scope.Camera.HLCMaskColor = 'MaskColorBlack';
     }
   }
 
-  function getHLCSliderColor(value) {
-    if ($scope.Camera.CompensationMode !== 'HLC') {
-      return mAttr.sliderDisableColor;
-    } else {
-      return mAttr.sliderEnableColor;
-    }
-  }
+
+  // function getHLCSliderColor(value) {
+  //   if ($scope.Camera.CompensationMode !== 'HLC') {
+  //     return mAttr.sliderDisableColor;
+  //   } else {
+  //     return mAttr.sliderEnableColor;
+  //   }
+  // }
 
   function initHLCSliders() {
     initHLCBoundary();
 
-    if ($scope.Camera.HLCAreaTop !== undefined) {
+    if (typeof $scope.Camera.HLCAreaTop !== 'undefined') {
       $scope.HLCAreaTopAdj.minValue = $scope.Camera.HLCAreaBottom - $scope.maxHLCLength;
       $scope.HLCAreaTopAdj.maxValue = $scope.Camera.HLCAreaBottom - $scope.minHLCHeightLength;
 
@@ -177,7 +178,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         $scope.HLCAreaRightAdj.maxValue = 100;
       }
 
-      if ($scope.Camera.HLCAreaTop !== undefined) {
+      if (typeof $scope.Camera.HLCAreaTop !== 'undefined') {
         $scope.HLCTopSliderOptions = {
           floor: $scope.HLCAreaTopAdj.minValue,
           ceil: $scope.HLCAreaTopAdj.maxValue,
@@ -261,7 +262,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     var promise = imageOptionsView();
-    if (mAttr.MaxZoom !== undefined) {
+    if (typeof mAttr.MaxZoom !== 'undefined') {
         $scope.MaxZoom = mAttr.MaxZoom.maxValue;
     }
     $scope.PTZModel = mAttr.PTZModel;
@@ -305,8 +306,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function getSelectedPreset() {
     if (typeof mAttr.DefaultPresetNumber === 'undefined' || !mAttr.DefaultPresetNumber) {
       $scope.presetTypeData.PresetIndex = 0;
-      if ($scope.PresetNameValueOptions.length > 0) $scope.presetTypeData.SelectedPreset = $scope.PresetNameValueOptions[0].Preset;
-      else $scope.presetTypeData.SelectedPreset = 0;
+      if ($scope.PresetNameValueOptions.length > 0) { 
+        $scope.presetTypeData.SelectedPreset = $scope.PresetNameValueOptions[0].Preset; 
+}      else { 
+        $scope.presetTypeData.SelectedPreset = 0; 
+      }
       $scope.presetTypeData.SelectedPresetType = 0;
     } else {
       var isCheck = false;
@@ -321,8 +325,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
       if (!isCheck) {
         $scope.presetTypeData.PresetIndex = 0;
-        if ($scope.PresetNameValueOptions.length > 0) $scope.presetTypeData.SelectedPreset = $scope.PresetNameValueOptions[0].Preset;
-        else $scope.presetTypeData.SelectedPreset = 0;
+        if ($scope.PresetNameValueOptions.length > 0) {
+          $scope.presetTypeData.SelectedPreset = $scope.PresetNameValueOptions[0].Preset;
+        }        else {
+          $scope.presetTypeData.SelectedPreset = 0;
+      }
       }
       $scope.presetTypeData.SelectedPresetType = 1;
       Attributes.setDefaultPresetNumber(0);
@@ -330,8 +337,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   $scope.onPresetChange = function(Preset) {
-    if ($scope.PresetNameValueOptions.length > 0) $scope.presetTypeData.SelectedPreset = $scope.PresetNameValueOptions[Preset].Preset;
-    else $scope.presetTypeData.SelectedPreset = 0;
+    if ($scope.PresetNameValueOptions.length > 0) { 
+      $scope.presetTypeData.SelectedPreset = $scope.PresetNameValueOptions[Preset].Preset;
+    }    else {
+      $scope.presetTypeData.SelectedPreset = 0;
+    }
   };
 
   function onPresetTypeChange(Type) {
@@ -341,23 +351,26 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     } else {
       $scope.presetTypeData.SelectedPresetType = 1;
       $scope.presetTypeData.PresetIndex = 0;
-      if ($scope.PresetNameValueOptions.length > 0) $scope.presetTypeData.SelectedPreset = $scope.PresetNameValueOptions[0].Preset;
-      else $scope.presetTypeData.SelectedPreset = 0;
+      if ($scope.PresetNameValueOptions.length > 0) {
+        $scope.presetTypeData.SelectedPreset = $scope.PresetNameValueOptions[0].Preset; 
+}      else {
+        $scope.presetTypeData.SelectedPreset = 0; 
+      }
       //gotoPreset('Start',$scope.presetTypeData.SelectedPreset,false);
     }
     view();
   }
   $scope.onPresetTypeChange = onPresetTypeChange;
   $scope.$watch('presetTypeData.SelectedPresetType', function(newVal, oldVal) {
-    if (newVal != oldVal) {
+    if (newVal !== oldVal) {
       $scope.refreshSliders(200);
       initTabActiveData();
     }
   });
   $scope.$watch('presetTypeData.SelectedPreset', function(newVal, oldVal) {
-    if (newVal > 0 && oldVal == 0) {
-      if ($scope.presetTypeData.SelectedPresetType == 1) {
-        if ($scope.ptzToPreset == true) {
+    if (newVal > 0 && oldVal === 0) {
+      if ($scope.presetTypeData.SelectedPresetType === 1) {
+        if ($scope.ptzToPreset === true) {
           $scope.ptzToPreset = false;
           return;
         }
@@ -368,8 +381,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         gotoPreset('Start', newVal, true, oldVal);
         initPresetImageConfig();
       }
-    } else if (newVal == 0 && oldVal > 0) {
-      if ($scope.presetTypeData.SelectedPresetType == 0) {
+    } else if (newVal === 0 && oldVal > 0) {
+      if ($scope.presetTypeData.SelectedPresetType === 0) {
         gotoPreset('Stop', oldVal);
       }
     }
@@ -378,17 +391,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function gotoPreset(mode, Preset, presetChanged, oldPreset) {
     var promises = [];
 
-    if (presetChanged == false) {
+    if (presetChanged === false) {
       promises.push(cameraStop);
-    } else if (presetChanged == true) {
-      if (oldPreset !== undefined) {
+    } else if (presetChanged === true) {
+      if (typeof oldPreset !== 'undefined') {
         promises.push(oldPresetStop);
       }
     }
-    if (presetChanged == false || typeof presetChanged == 'undefined') {
+    if (presetChanged === false || typeof presetChanged === 'undefined') {
       promises.push(newPreset);
     }
-    if (mode == 'Stop') {
+    if (mode === 'Stop') {
       //promises.push(oldPresetGo);
     }
     $q.seqAll(promises).then(
@@ -427,8 +440,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     function newPreset() {
       var setData = {};
       setData.Channel = 0;
-      setData.Preset = Preset == 0 ? 1 : Preset;
-      if (mode == 'Start') {
+      setData.Preset = Preset === 0 ? 1 : Preset;
+      if (mode === 'Start') {
         $scope.presetPreview = true;
         $scope.previewMode = true;
         extendPreviewMode();
@@ -495,7 +508,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       $scope.tabMenu.Sensor = true;
       $scope.tabMenu.DayNight = true;
 
-      if ($scope.presetTypeData.SelectedPresetType == 0) {
+      if ($scope.presetTypeData.SelectedPresetType === 0) {
         //Global
         $scope.tabMenu.Sensor = true;
         $scope.tabMenu.SSDR = true;
@@ -506,7 +519,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         $scope.tabMenu.OSD = $scope.MaxOSDTitles ? true : false;
         $scope.tabMenu.Focus = true;
         $scope.tabMenu.Heater = $scope.HeaterSupport;
-        $scope.tabMenu.IR = $scope.IRledModeOptions !== undefined ? true : false;
+        $scope.tabMenu.IR = (typeof $scope.IRledModeOptions !== 'undefined') ? true : false;
         $scope.tabMenu.DayNight = true;
 
         $scope.tabUI.SSDR = 0;
@@ -547,7 +560,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       $scope.tabMenu.OSD = $scope.MaxOSDTitles ? true : false;
       $scope.tabMenu.Focus = true;
       $scope.tabMenu.Heater = $scope.HeaterSupport;
-      $scope.tabMenu.IR = $scope.IRledModeOptions !== undefined ? true : false;
+      $scope.tabMenu.IR = (typeof $scope.IRledModeOptions !== 'undefined');
 
       $scope.tabUI.SSDR = 0;
       $scope.tabUI.WhiteBalance = 0;
@@ -565,7 +578,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       $scope.tabMenu.OSD = $scope.MaxOSDTitles ? true : false;
       $scope.tabMenu.Focus = false;
       $scope.tabMenu.Heater = $scope.HeaterSupport;
-      $scope.tabMenu.IR = $scope.IRledModeOptions !== undefined ? true : false;
+      $scope.tabMenu.IR = (typeof $scope.IRledModeOptions !== 'undefined') ? true : false;
 
       $scope.tabUI.SSDR = 0;
       $scope.tabUI.WhiteBalance = 0;
@@ -574,14 +587,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
   }
   $scope.$watch('tabActiveData.backLight', function(newVal, oldVal) {
-    if (oldVal == false && newVal == true) {
+    if (oldVal === false && newVal === true) {
       $timeout(function() {
-        if ($scope.Camera.CompensationMode == 'BLC') {
+        if ($scope.Camera.CompensationMode === 'BLC') {
           $scope.ptzinfo = {
             type: 'BLC',
             disable: false
           };
-        } else if ($scope.Camera.CompensationMode == 'HLC') {
+        } else if ($scope.Camera.CompensationMode === 'HLC') {
           $scope.ptzinfo = {
             type: 'HLC',
             disable: false
@@ -593,31 +606,31 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
           };
         }
       });
-    } else if (oldVal == true && newVal == false) {
+    } else if (oldVal === true && newVal === false) {
       $scope.ptzinfo = {
         type: 'none'
       };
     }
   });
   $scope.$watch('tabActiveData.osd', function(newVal, oldVal) {
-    if (oldVal == false && newVal == true) {
+    if (oldVal === false && newVal === true) {
       $timeout(function() {
         $scope.ptzinfo = {
           type: 'OSD'
         };
       });
-    } else if (oldVal == true && newVal == false) {
+    } else if (oldVal === true && newVal === false) {
       $scope.ptzinfo = {
         type: 'none'
       };
     }
   });
   $scope.$on('changeBlcArea', function(args, data) {
-    if (data.mode == 'top') {
-      if (data.type == 'BLC') {
-        if (data.direction == 'up') {
+    if (data.mode === 'top') {
+      if (data.type === 'BLC') {
+        if (data.direction === 'up') {
           $scope.Camera.BLCAreaTop = $scope.Camera.BLCAreaTop + data.step;
-        } else if (data.direction == 'down') {
+        } else if (data.direction === 'down') {
           $scope.Camera.BLCAreaTop = $scope.Camera.BLCAreaTop - data.step;
         }
         if ($scope.BLCTopSliderOptions.ceil <= $scope.Camera.BLCAreaTop) {
@@ -626,9 +639,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
           $scope.Camera.BLCAreaTop = $scope.BLCTopSliderOptions.floor;
         }
       } else {
-        if (data.direction == 'up') {
+        if (data.direction === 'up') {
           $scope.Camera.HLCAreaTop = $scope.Camera.HLCAreaTop + data.step;
-        } else if (data.direction == 'down') {
+        } else if (data.direction === 'down') {
           $scope.Camera.HLCAreaTop = $scope.Camera.HLCAreaTop - data.step;
         }
         if ($scope.HLCTopSliderOptions.ceil <= $scope.Camera.HLCAreaTop) {
@@ -639,11 +652,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
       //SetBlcRange('blcAreaTop');
       SetAreaRange(data.type + 'AreaTop');
-    } else if (data.mode == 'left') {
-      if (data.type == 'BLC') {
-        if (data.direction == 'left') {
+    } else if (data.mode === 'left') {
+      if (data.type === 'BLC') {
+        if (data.direction === 'left') {
           $scope.Camera.BLCAreaLeft = $scope.Camera.BLCAreaLeft - data.step;
-        } else if (data.direction == 'right') {
+        } else if (data.direction === 'right') {
           $scope.Camera.BLCAreaLeft = $scope.Camera.BLCAreaLeft + data.step;
         }
         if ($scope.BLCLeftSliderOptions.ceil <= $scope.Camera.BLCAreaLeft) {
@@ -652,9 +665,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
           $scope.Camera.BLCAreaLeft = $scope.BLCLeftSliderOptions.floor;
         }
       } else {
-        if (data.direction == 'left') {
+        if (data.direction === 'left') {
           $scope.Camera.HLCAreaLeft = $scope.Camera.HLCAreaLeft - data.step;
-        } else if (data.direction == 'right') {
+        } else if (data.direction === 'right') {
           $scope.Camera.HLCAreaLeft = $scope.Camera.HLCAreaLeft + data.step;
         }
         if ($scope.HLCLeftSliderOptions.ceil <= $scope.Camera.HLCAreaLeft) {
@@ -665,11 +678,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
       //SetBlcRange('blcAreaLeft');
       SetAreaRange(data.type + 'AreaLeft');
-    } else if (data.mode == 'right') {
-      if (data.type == 'BLC') {
-        if (data.direction == 'left') {
+    } else if (data.mode === 'right') {
+      if (data.type === 'BLC') {
+        if (data.direction === 'left') {
           $scope.Camera.BLCAreaRight = $scope.Camera.BLCAreaRight - data.step;
-        } else if (data.direction == 'right') {
+        } else if (data.direction === 'right') {
           $scope.Camera.BLCAreaRight = $scope.Camera.BLCAreaRight + data.step;
         }
         if ($scope.BLCRightSliderOptions.ceil <= $scope.Camera.BLCAreaRight) {
@@ -678,9 +691,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
           $scope.Camera.BLCAreaRight = $scope.BLCRightSliderOptions.floor;
         }
       } else {
-        if (data.direction == 'left') {
+        if (data.direction === 'left') {
           $scope.Camera.HLCAreaRight = $scope.Camera.HLCAreaRight - data.step;
-        } else if (data.direction == 'right') {
+        } else if (data.direction === 'right') {
           $scope.Camera.HLCAreaRight = $scope.Camera.HLCAreaRight + data.step;
         }
         if ($scope.HLCRightSliderOptions.ceil <= $scope.Camera.HLCAreaRight) {
@@ -691,11 +704,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
       //SetBlcRange('blcAreaRight');
       SetAreaRange(data.type + 'AreaRight');
-    } else if (data.mode == 'bottom') {
-      if (data.type == 'BLC') {
-        if (data.direction == 'up') {
+    } else if (data.mode === 'bottom') {
+      if (data.type === 'BLC') {
+        if (data.direction === 'up') {
           $scope.Camera.BLCAreaBottom = $scope.Camera.BLCAreaBottom + data.step;
-        } else if (data.direction == 'down') {
+        } else if (data.direction === 'down') {
           $scope.Camera.BLCAreaBottom = $scope.Camera.BLCAreaBottom - data.step;
         }
         if ($scope.BLCBottomSliderOptions.ceil <= $scope.Camera.BLCAreaBottom) {
@@ -704,9 +717,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
           $scope.Camera.BLCAreaBottom = $scope.BLCBottomSliderOptions.floor;
         }
       } else {
-        if (data.direction == 'up') {
+        if (data.direction === 'up') {
           $scope.Camera.HLCAreaBottom = $scope.Camera.HLCAreaBottom + data.step;
-        } else if (data.direction == 'down') {
+        } else if (data.direction === 'down') {
           $scope.Camera.HLCAreaBottom = $scope.Camera.HLCAreaBottom - data.step;
         }
         if ($scope.HLCBottomSliderOptions.ceil <= $scope.Camera.HLCAreaBottom) {
@@ -788,7 +801,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function initPresetGlobalType() {
-    if (mAttr.PresetTypes !== undefined) {
+    if (typeof mAttr.PresetTypes !== 'undefined') {
       $scope.PresetTypes = mAttr.PresetTypes;
     }
   }
@@ -832,7 +845,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       fromHour = 0,
       toMin = 0,
       toHour = 0,
-      schedCnt,
+      schedCnt = 0,
       schedFrom = 0,
       schedTo = 0;
 
@@ -846,7 +859,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     /** If any particular schedule is applicable, check here */
     if ($scope.ImagePreset[$scope.ch].ScheduleEnable === true) {
 
-      if ($scope.ImagePreset[$scope.ch].Schedules !== undefined) {
+      if (typeof $scope.ImagePreset[$scope.ch].Schedules !== 'undefined') {
         for (preset = 0; preset < $scope.ImagePreset[$scope.ch].Schedules.length; preset += 1) {
           schedule = $scope.ImagePreset[$scope.ch].Schedules[preset];
           range = schedule.EveryDay.FromTo.split('-');
@@ -931,7 +944,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function isSSDRModeEnabled() {
-    if ($scope.SSDR !== undefined) {
+    if (typeof $scope.SSDR !== 'undefined') {
       if ($scope.SSDR[$scope.ch].Enable === true) {
         return true;
       }
@@ -939,13 +952,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     return false;
   }
 
-  function getSSDRSliderColor(value) {
-    if (isSSDRModeEnabled() === false || isNotUserpresetMode() === true) {
-      return mAttr.sliderDisableColor;
-    } else {
-      return mAttr.sliderEnableColor;
-    }
-  }
+
+  // function getSSDRSliderColor(value) {
+  //   if (isSSDRModeEnabled() === false || isNotUserpresetMode() === true) {
+  //     return mAttr.sliderDisableColor;
+  //   } else {
+  //     return mAttr.sliderEnableColor;
+  //   }
+  // }
 
   function initSSDRSlider() {
     $scope.SSDRSliderOptions = {
@@ -971,7 +985,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     $scope.SSDRDynamicRangeOptions = mAttr.SSDRDynamicRangeOptions;
     $scope.SSDRLevel = mAttr.SSDRLevel;
 
-    if ($scope.SSDRLevel !== undefined) {
+    if (typeof $scope.SSDRLevel !== 'undefined') {
       initSSDRSlider();
     }
 
@@ -980,16 +994,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   $scope.initSSDRSettings = initSSDRSettings;
 
-  function getWBSliderColor(value) {
-    if (isWBManualMode() === false) {
-      return mAttr.sliderDisableColor;
-    } else {
-      return mAttr.sliderEnableColor;
-    }
-  }
+
+  // function getWBSliderColor(value) {
+  //   if (isWBManualMode() === false) {
+  //     return mAttr.sliderDisableColor;
+  //   } else {
+  //     return mAttr.sliderEnableColor;
+  //   }
+  // }
 
   function isWBManualMode() {
-    if ($scope.WhiteBalance !== undefined) {
+    if (typeof $scope.WhiteBalance !== 'undefined') {
       if ($scope.WhiteBalance.WhiteBalanceMode === 'Manual') {
         return true;
       }
@@ -1008,7 +1023,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     $scope.WBBlueLevel = mAttr.WhiteBalanceManualBlueLevel;
     $scope.WBRedLevel = mAttr.WhiteBalanceManualRedLevel;
 
-    if ($scope.WBBlueLevel !== undefined) {
+    if (typeof $scope.WBBlueLevel !== 'undefined') {
       $scope.WBBlueSliderOptions = {
         floor: $scope.WBBlueLevel.minValue,
         ceil: $scope.WBBlueLevel.maxValue,
@@ -1059,7 +1074,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   $scope.compensationModeChange = function(isChanged) {
-    if (isBLCCompensataionMode() == false) {
+    if (isBLCCompensataionMode() === false) {
       $scope.BLCTopSliderOptions.disabled = true;
       $scope.BLCBottomSliderOptions.disabled = true;
       $scope.BLCLeftSliderOptions.disabled = true;
@@ -1097,12 +1112,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     if ($scope.tabActiveData.backLight) {
-      if ($scope.Camera.CompensationMode == 'BLC') {
+      if ($scope.Camera.CompensationMode === 'BLC') {
         $scope.ptzinfo = {
           type: 'BLC',
           disable: false
         };
-      } else if ($scope.Camera.CompensationMode == 'HLC') {
+      } else if ($scope.Camera.CompensationMode === 'HLC') {
         $scope.ptzinfo = {
           type: 'HLC',
           disable: false
@@ -1120,7 +1135,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
 
   function isBLCCompensataionMode() {
-    if ($scope.Camera !== undefined) {
+    if (typeof $scope.Camera !== 'undefined') {
       if ($scope.Camera.CompensationMode === 'BLC') {
         return true;
       }
@@ -1131,7 +1146,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function initBLCSliders() {
     initBLCBoundary();
 
-    if ($scope.Camera.BLCAreaTop !== undefined) {
+    if (typeof $scope.Camera.BLCAreaTop !== 'undefined') {
       $scope.BLCAreaTopAdj.minValue = $scope.Camera.BLCAreaBottom - $scope.maxBLCLength;
       $scope.BLCAreaTopAdj.maxValue = $scope.Camera.BLCAreaBottom - $scope.minBLCHeightLength;
 
@@ -1230,11 +1245,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function initBLCBoundary() {
-    var rotate = 0;
 
-    if ($scope.Flip !== undefined) {
-      rotate = $scope.Flip.Rotate;
-    }
+
+
+    // if (typeof $scope.Flip !== 'undefined') {
+    //   rotate = $scope.Flip.Rotate;
+    // }
 
     $scope.minBLCHeightLength = $scope.BLCAreaBottom.maxValue - $scope.BLCAreaTop.maxValue;
     $scope.minBLCWidthLength = $scope.BLCAreaRight.maxValue - $scope.BLCAreaLeft.maxValue;
@@ -1250,11 +1266,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function initHLCBoundary() {
-    var rotate = 0;
 
-    if ($scope.Flip !== undefined) {
-      rotate = $scope.Flip.Rotate;
-    }
+
+
+    // if ($scope.Flip !== undefined) {
+    //   rotate = $scope.Flip.Rotate;
+    // }
 
     $scope.minHLCHeightLength = $scope.HLCAreaBottom.maxValue - $scope.HLCAreaTop.maxValue;
     $scope.minHLCWidthLength = $scope.HLCAreaRight.maxValue - $scope.HLCAreaLeft.maxValue;
@@ -1268,7 +1285,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function cameraChangeHandler() {
-    if ($scope.Camera.CompensationMode !== undefined) {
+    if (typeof $scope.Camera.CompensationMode !== 'undefined') {
       cameraSet(true);
     }
   }
@@ -1296,7 +1313,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     $scope.WDRIRLEDEnableOptions = mAttr.WDRIRLEDEnableOptions;
     $scope.CAROptions = mAttr.CAROptions;
 
-    if ($scope.BLCAreaTop !== undefined) {
+    if (typeof $scope.BLCAreaTop !== 'undefined') {
       $scope.BLCAreaTopAdj = angular.copy($scope.BLCAreaTop);
       $scope.BLCAreaLeftAdj = angular.copy($scope.BLCAreaLeft);
       $scope.BLCAreaRightAdj = angular.copy($scope.BLCAreaRight);
@@ -1306,7 +1323,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       initBLCSliders();
     }
 
-    if ($scope.HLCAreaTop !== undefined) {
+    if (typeof $scope.HLCAreaTop !== 'undefined') {
       $scope.HLCAreaTopAdj = angular.copy($scope.HLCAreaTop);
       $scope.HLCAreaLeftAdj = angular.copy($scope.HLCAreaLeft);
       $scope.HLCAreaRightAdj = angular.copy($scope.HLCAreaRight);
@@ -1319,14 +1336,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     $scope.MinShutterOptions = mAttr.MinShutterOptions;
     $scope.MaxShutterOptions = mAttr.MaxShutterOptions;
 
-    if (mAttr.PreferShutterOptions !== undefined) {
+    if (typeof mAttr.PreferShutterOptions !== 'undefined') {
       $scope.PreferShutterOptions = mAttr.PreferShutterOptions;
     }
 
     $scope.AFLKModeOptions = mAttr.AFLKModeOptions;
 
     $scope.SSNRModeOptions = mAttr.SSNRModeOptions;
-    if (mAttr.SSNRLevel !== undefined) {
+    if (typeof mAttr.SSNRLevel !== 'undefined') {
       $scope.SSNRLevelOptions = COMMONUtils.getArray(mAttr.SSNRLevel.maxValue, true);
     }
     $scope.IrisModeOptions = mAttr.IrisModeOptions;
@@ -1336,7 +1353,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     if (mAttr.PTZModel === true) {
       $scope.AGCModeOptions = [];
       for (var i = 0; i < mAttr.AGCModeOptions.length; i++) {
-        if (mAttr.AGCModeOptions[i] != 'Manual') {
+        if (mAttr.AGCModeOptions[i] !== 'Manual') {
           $scope.AGCModeOptions.push(mAttr.AGCModeOptions[i]);
         }
       }
@@ -1344,7 +1361,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       $scope.AGCModeOptions = mAttr.AGCModeOptions;
     }
 
-    if (mAttr.AGCLevel !== undefined) {
+    if (typeof mAttr.AGCLevel !== 'undefined') {
       $scope.AGCLevelOptions = COMMONUtils.getArray(mAttr.AGCLevel.maxValue, false);
     }
 
@@ -1353,7 +1370,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     $scope.DayNightSwitchingModeOptions = mAttr.DayNightSwitchingModeOptions;
     $scope.DayNightAlarmInOptions = mAttr.DayNightAlarmInOptions;
 
-    $scope.HeaterSupport = mAttr.AuxCommands[0] == 'HeaterOn' ? true : false;
+    $scope.HeaterSupport = (mAttr.AuxCommands[0] === 'HeaterOn') ? true : false;
 
     initExposureSliders();
   }
@@ -1363,7 +1380,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       return true;
     }
 
-    if ($scope.Camera.SSNRMode !== undefined) {
+    if (typeof $scope.Camera.SSNRMode !== 'undefined') {
       return ($scope.Camera.SSNRMode === 'Off')
     } else {
       return ($scope.Camera.SSNREnable === 'false' || $scope.Camera.SSNREnable === false);
@@ -1420,41 +1437,41 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
 
   function initShutterSpeeds(isChanged) {
-    if (($scope.ImageOptions !== undefined) && ($scope.ImageOptions.ShutterSpeedDetails !== undefined)) {
+    if ((typeof $scope.ImageOptions !== 'undefined') && (typeof $scope.ImageOptions.ShutterSpeedDetails !== 'undefined')) {
       var compMode = 'Off',
-        sensorMode = "30",
+        sensorMode = 30,
         ShutterSpeedDetails = {},
         sensorModeCnt = 0,
         compModeCnt = 0;
 
-      if ($scope.ImageOptions.ShutterSpeedDetails !== undefined) {
+      if (typeof $scope.ImageOptions.ShutterSpeedDetails !== 'undefined') {
         ShutterSpeedDetails = $scope.ImageOptions.ShutterSpeedDetails;
       } else {
         LogManager.debug("initShutterSpeeds: Image options doesnt have shutter speed details");
       }
 
-      if ($scope.Camera !== undefined) {
+      if (typeof $scope.Camera !== 'undefined') {
         compMode = $scope.Camera.CompensationMode;
       } else {
         LogManager.debug("initShutterSpeeds: compensation mode not initilaized ");
       }
 
-      if ($scope.VideoSources !== undefined) {
-        sensorMode = $scope.VideoSources.SensorCaptureFrameRate;
+      if (typeof $scope.VideoSources !== 'undefined') {
+        sensorMode = parseInt($scope.VideoSources.SensorCaptureFrameRate);
       } else {
         LogManager.debug(" initShutterSpeeds: sensor capture ");
       }
 
-      if (ShutterSpeedDetails.CompensationModes !== undefined) {
+      if (typeof ShutterSpeedDetails.CompensationModes !== 'undefined') {
         for (compModeCnt = 0; compModeCnt < ShutterSpeedDetails.CompensationModes.length; compModeCnt += 1) {
           if (ShutterSpeedDetails.CompensationModes[compModeCnt].CompensationMode === compMode) {
             var modeDetails = ShutterSpeedDetails.CompensationModes[compModeCnt];
             for (sensorModeCnt = 0; sensorModeCnt < modeDetails.SensorCaptureFrameRates.length; sensorModeCnt += 1) {
-              if (modeDetails.SensorCaptureFrameRates[sensorModeCnt].SensorCaptureFrameRate == sensorMode) {
+              if (modeDetails.SensorCaptureFrameRates[sensorModeCnt].SensorCaptureFrameRate === sensorMode) {
                 $scope.selectedShutterDetails = modeDetails.SensorCaptureFrameRates[sensorModeCnt];
 
                 /** Adjust Shutter Speeds  based on compenstation mode */
-                if (($scope.Camera !== undefined) && (isChanged === true)) {
+                if ((typeof $scope.Camera !== 'undefined') && (isChanged === true)) {
                   LogManager.debug("Min Shutter Adjusted ", $scope.Camera.AutoShortShutterSpeed, " -> ", modeDetails.DefaultAutoShortShutterSpeed);
                   LogManager.debug("Max Shutter Adjusted ", $scope.Camera.AutoLongShutterSpeed, " -> ", modeDetails.DefaultAutoLongShutterSpeed);
                   LogManager.debug("Prefer Shutter Adjusted ", $scope.Camera.PreferShutterSpeed, " -> ", modeDetails.DefaultPreferShutterSpeed);
@@ -1492,7 +1509,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
 
   function isSupportesShutterSpeed(shutterSpeed, type) {
-    if ($scope.selectedShutterDetails !== undefined) {
+    if (typeof $scope.selectedShutterDetails !== 'undefined') {
       var minShutterList = {},
         maxShutterList = {},
         preferShutterList = {},
@@ -1507,11 +1524,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       minShutterList = $scope.selectedShutterDetails.AutoShortShutterSpeed;
       maxShutterList = $scope.selectedShutterDetails.AutoLongShutterSpeed;
 
-      if (type == 'min') {
+      if (type === 'min') {
         retVal = (minShutterList.indexOf(shutterSpeed) === -1) ? true : false;
 
         /* If valid then check if min > max, min > prefer*/
-        if ((retVal === false) && ($scope.Camera !== undefined)) {
+        if ((retVal === false) && (typeof $scope.Camera !== 'undefined')) {
           maxShutterIndex = $scope.MinShutterOptions.indexOf($scope.Camera.AutoLongShutterSpeed);
           preferShutterIndex = $scope.PreferShutterOptions.indexOf($scope.Camera.PreferShutterSpeed);
           curMinIndex = $scope.MinShutterOptions.indexOf(shutterSpeed);
@@ -1524,11 +1541,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         /*else {
          console.log('Not supported speeed', shutterSpeed, type);
          }*/
-      } else if (type == 'max') {
+      } else if (type === 'max') {
         retVal = (maxShutterList.indexOf(shutterSpeed) === -1) ? true : false;
 
         /* If valid then check if max < min, max < prefer */
-        if ((retVal == false) && ($scope.Camera !== undefined)) {
+        if ((retVal === false) && (typeof $scope.Camera !== 'undefined')) {
           minShutterIndex = $scope.MaxShutterOptions.indexOf($scope.Camera.AutoShortShutterSpeed);
           preferShutterIndex = $scope.PreferShutterOptions.indexOf($scope.Camera.PreferShutterSpeed);
           curMaxIndex = $scope.MaxShutterOptions.indexOf(shutterSpeed);
@@ -1544,13 +1561,13 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
          }*/
       }
 
-      if ($scope.PreferShutterOptions !== undefined) {
+      if (typeof $scope.PreferShutterOptions !== 'undefined') {
         preferShutterList = $scope.selectedShutterDetails.PreferShutterSpeed;
-        if (type == 'prefer') {
+        if (type === 'prefer') {
           retVal = (preferShutterList.indexOf(shutterSpeed) === -1) ? true : false;
 
           /* If valid then check if prefer < min, prefer > max */
-          if ((retVal == false) && ($scope.Camera !== undefined)) {
+          if ((retVal === false) && (typeof $scope.Camera !== 'undefined')) {
             minShutterIndex = $scope.MaxShutterOptions.indexOf($scope.Camera.AutoShortShutterSpeed);
             maxShutterIndex = $scope.MinShutterOptions.indexOf($scope.Camera.AutoLongShutterSpeed);
             curPrefIndex = $scope.PreferShutterOptions.indexOf(shutterSpeed);
@@ -1569,7 +1586,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   $scope.isSupportesShutterSpeed = isSupportesShutterSpeed;
 
   function isPirisManualMode() {
-    if ($scope.Camera !== undefined) {
+    if (typeof $scope.Camera !== 'undefined') {
       if ($scope.Camera.IrisMode !== 'Auto' && $scope.Camera.IrisMode !== 'Manual' && $scope.Camera.PIrisMode === 'Manual') {
         return true;
       }
@@ -1577,16 +1594,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     return false;
   }
 
-  function getPIrisSliderColor() {
-    if (isPirisManualMode() === true) {
-      return mAttr.sliderEnableColor;
-    } else {
-      return mAttr.sliderDisableColor;
-    }
-  }
+
+  // function getPIrisSliderColor() {
+  //   if (isPirisManualMode() === true) {
+  //     return mAttr.sliderEnableColor;
+  //   } else {
+  //     return mAttr.sliderDisableColor;
+  //   }
+  // }
 
   function initExposureSliders() {
-    if ($scope.Brightness !== undefined) {
+    if (typeof $scope.Brightness !== 'undefined') {
       $scope.BrigntnesSliderOptions = {
         floor: $scope.Brightness.minValue,
         ceil: $scope.Brightness.maxValue,
@@ -1597,7 +1615,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         vertical: false
       };
     }
-    if ($scope.PIrisPosition !== undefined) {
+    if (typeof $scope.PIrisPosition !== 'undefined') {
       $scope.PIrisSliderOptions = {
         floor: $scope.PIrisPosition.minValue,
         ceil: $scope.PIrisPosition.maxValue,
@@ -1617,7 +1635,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
     }
 
-    if ($scope.SharpnessLevel !== undefined) {
+    if (typeof $scope.SharpnessLevel !== 'undefined') {
       $scope.SharpnessSliderOptions = {
         floor: $scope.SharpnessLevel.minValue,
         ceil: $scope.SharpnessLevel.maxValue,
@@ -1637,7 +1655,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
     }
 
-    if ($scope.Contrast !== undefined) {
+    if (typeof $scope.Contrast !== 'undefined') {
       $scope.ContrastSliderOptions = {
         floor: $scope.Contrast.minValue,
         ceil: $scope.Contrast.maxValue,
@@ -1650,14 +1668,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         vertical: false
       };
 
-      if ($scope.ImageEnhancements.Contrast == false) {
+      if ($scope.ImageEnhancements.Contrast === false) {
         $scope.ContrastSliderOptions.disabled = true;
       } else {
         $scope.ContrastSliderOptions.disabled = false;
       }
     }
 
-    if ($scope.Saturation !== undefined) {
+    if (typeof $scope.Saturation !== 'undefined') {
       $scope.SaturationSliderOptions = {
         floor: $scope.Saturation.minValue,
         ceil: $scope.Saturation.maxValue,
@@ -1676,7 +1694,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
     }
 
-    if ($scope.DefogLevel !== undefined) {
+    if (typeof $scope.DefogLevel !== 'undefined') {
       $scope.DefogSliderOptions = {
         floor: $scope.DefogLevel.minValue,
         ceil: $scope.DefogLevel.maxValue,
@@ -1695,7 +1713,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
     }
 
-    if ($scope.LDCLevel !== undefined) {
+    if (typeof $scope.LDCLevel !== 'undefined') {
       $scope.LDCSliderOptions = {
         floor: $scope.LDCLevel.minValue,
         ceil: $scope.LDCLevel.maxValue,
@@ -1729,7 +1747,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     $scope.SharpnessLevel = mAttr.SharpnessLevel;
     $scope.Gamma = mAttr.Gamma;
 
-    if (mAttr.Gamma !== undefined) {
+    if (typeof mAttr.Gamma !== 'undefined') {
       var offset = mAttr.Gamma.minValue;
       $scope.GammaOptions = [];
       for (var i = mAttr.Gamma.minValue; i <= mAttr.Gamma.maxValue; i++) {
@@ -1750,21 +1768,27 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   $scope.isDigitalZoomDisabled = function() {
-    if (typeof $scope.ImageEnhancements == 'undefined') return;
+    if (typeof $scope.ImageEnhancements === 'undefined') {
+      return; 
+    }
     return ($scope.ImageEnhancements.DISEnable === 'true' || $scope.ImageEnhancements.DISEnable === true);
   };
   $scope.isDigitalZoomLimitDisabled = function() {
     if ($scope.PTZSettings.DigitalZoomEnable === 'false' || $scope.PTZSettings.DigitalZoomEnable === false) {
       return true;
     }
-    if (typeof $scope.ImageEnhancements == 'undefined') return;
+    if (typeof $scope.ImageEnhancements === 'undefined') { 
+      return; 
+    }
     return ($scope.ImageEnhancements.DISEnable === 'true' || $scope.ImageEnhancements.DISEnable === true);
   };
   $scope.isDisDisabled = function() {
-    if (typeof $scope.ImageEnhancements == 'undefined') return;
+    if (typeof $scope.ImageEnhancements === 'undefined') {
+      return; 
+    }
 
     if (mAttr.PTZModel || mAttr.ZoomOnlyModel) {
-      return ($scope.disDisable.TamperDetectEnable == true || $scope.disDisable.DetectionType != 'Off');
+      return ($scope.disDisable.TamperDetectEnable === true || $scope.disDisable.DetectionType !== 'Off');
     } else {
       return false;
     }
@@ -1781,7 +1805,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function initIRLedSliders() {
-    if ($scope.IRledLevel !== undefined) {
+    if (typeof $scope.IRledLevel !== 'undefined') {
       $scope.IRledSliderOptions = {
         floor: $scope.IRledLevel.minValue,
         ceil: $scope.IRledLevel.maxValue,
@@ -1800,7 +1824,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
     }
 
-    if ($scope.LEDOnLevel !== undefined) {
+    if (typeof $scope.LEDOnLevel !== 'undefined') {
       $scope.LEDOnLevelSliderOptions = {
         floor: $scope.LEDOnLevel.minValue,
         ceil: $scope.LEDOnLevel.maxValue,
@@ -1810,7 +1834,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         showInputBox: true,
         disabled: true,
         vertical: false,
-        onEnd: irLedOnLevelChanged
+        onEnd: $scope.irLedOnLevelChanged
       };
 
       if ($scope.IRled.Mode !== 'Sensor') {
@@ -1820,7 +1844,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
     }
 
-    if ($scope.LEDOffLevel !== undefined) {
+    if (typeof $scope.LEDOffLevel !== 'undefined') {
       $scope.LEDOffLevelSliderOptions = {
         floor: $scope.LEDOffLevel.minValue,
         ceil: $scope.LEDOffLevel.maxValue,
@@ -1830,7 +1854,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         showInputBox: true,
         disabled: true,
         vertical: false,
-        onEnd: irLedOffLevelChanged
+        onEnd: $scope.irLedOffLevelChanged
       };
 
       if ($scope.IRled.Mode !== 'Sensor') {
@@ -1865,7 +1889,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
 
   function isPresetSSDRModelEnabled() {
-    if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== undefined) {
+    if (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== 'undefined') {
       if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR.Enable === true) {
         return true;
       }
@@ -1873,13 +1897,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     return false;
   }
 
-  function getPresetSSDRSliderColor() {
-    if (isPresetSSDRModelEnabled() === false) {
-      return mAttr.sliderDisableColor;
-    } else {
-      return mAttr.sliderEnableColor;
-    }
-  }
+
+  // function getPresetSSDRSliderColor() {
+  //   if (isPresetSSDRModelEnabled() === false) {
+  //     return mAttr.sliderDisableColor;
+  //   } else {
+  //     return mAttr.sliderEnableColor;
+  //   }
+  // }
 
   function initPresetSSDRSlider() {
     $scope.PresetSSDRSliderOptions = {
@@ -1901,7 +1926,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function initPresetSSDRSettings() {
     $scope.PresetDynamicRangeOptions = mAttr.PresetDynamicRangeOptions;
     $scope.PresetSSDRLevel = mAttr.PresetSSDRLevel;
-    if ($scope.PresetSSDRLevel !== undefined) {
+    if (typeof $scope.PresetSSDRLevel !== 'undefined') {
       initPresetSSDRSlider();
     }
     refreshSliders();
@@ -1909,7 +1934,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   $scope.initPresetSSDRSettings = initPresetSSDRSettings;
 
   function registerPresetSsdrWatcher() {
-    if ($scope.PresetSSDRWatcherReady == true) {
+    if ($scope.PresetSSDRWatcherReady === true) {
       return;
     }
 
@@ -1924,7 +1949,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var setData = {},
       ignoredKeys = [],
       changed = false;
-    if ($scope.PresetImageConfig.length == 0) return;
+    if ($scope.PresetImageConfig.length === 0) {
+      return; 
+    }
     if (isPreview === true) {
       if (angular.equals(previewData.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR, $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR)) {
         return;
@@ -1959,7 +1986,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         setData.SSDRLevel = setData.Level;
         delete setData.Level;
       }
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -1986,16 +2013,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     return deferred.promise;
   }
 
-  function getPresetWBSliderColor() {
-    if (isPresetWBManualMode() === false) {
-      return mAttr.sliderDisableColor;
-    } else {
-      return mAttr.sliderEnableColor;
-    }
-  }
+
+  // function getPresetWBSliderColor() {
+  //   if (isPresetWBManualMode() === false) {
+  //     return mAttr.sliderDisableColor;
+  //   } else {
+  //     return mAttr.sliderEnableColor;
+  //   }
+  // }
 
   function isPresetWBManualMode() {
-    if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== undefined) {
+    if (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== 'undefined') {
       if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].WhiteBalance.WhiteBalanceMode === 'Manual') {
         return true;
       }
@@ -2013,7 +2041,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     $scope.PresetWhiteBalanceModeOptions = mAttr.PresetWhiteBalanceModeOptions;
     $scope.PresetWBRedLevel = mAttr.PresetWhiteBalanceManualRedLevel;
     $scope.PresetWBBlueLevel = mAttr.PresetWhiteBalanceManualBlueLevel;
-    if ($scope.PresetWBRedLevel !== undefined) {
+    if (typeof $scope.PresetWBRedLevel !== 'undefined') {
       $scope.PresetWBRedSliderOptions = {
         floor: $scope.PresetWBRedLevel.minValue,
         ceil: $scope.PresetWBRedLevel.maxValue,
@@ -2053,7 +2081,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var setData = {},
       ignoredKeys = [],
       changed = false;
-    if ($scope.PresetImageConfig.length == 0) return;
+    if ($scope.PresetImageConfig.length === 0) {
+      return;
+    }
     if (isPreview === true) {
       if (angular.equals(previewData.PresetImageConfig[$scope.presetTypeData.PresetIndex].WhiteBalance, $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].WhiteBalance)) {
         return;
@@ -2081,11 +2111,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       setData = {};
       setData.Preset = $scope.presetTypeData.SelectedPreset;
       setData.WhiteBalanceMode = $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].WhiteBalance.WhiteBalanceMode;
-      if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].WhiteBalance.WhiteBalanceMode == 'Manual') {
+      if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].WhiteBalance.WhiteBalanceMode === 'Manual') {
         setData.WhiteBalanceManualRedLevel = $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].WhiteBalance.WhiteBalanceManualRedLevel;
         setData.WhiteBalanceManualBlueLevel = $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].WhiteBalance.WhiteBalanceManualBlueLevel;
       }
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -2122,14 +2152,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function registerPresetImgEnhancementsWatcher() {
-    if ($scope.PresetImageEnhaneWatcherReady == true) {
+    if ($scope.PresetImageEnhaneWatcherReady === true) {
       return;
     }
 
     $scope.PresetImageEnhaneWatcherReady = true;
 
     $scope.$watch('PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements', function(newVal, oldVal) {
-      if (mAttr.PTZModel && $scope.disChanged.preset == true) {} else {
+      if (!mAttr.PTZModel || $scope.disChanged.preset !== true) {
         presetImageenhancementsSet(true);
       }
     }, true);
@@ -2140,7 +2170,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var setData = {},
       ignoredKeys = [],
       changed = false;
-    if ($scope.PresetImageConfig.length == 0) return;
+    if ($scope.PresetImageConfig.length === 0) {
+      return;
+    }
     if (isPreview === true) {
       if (angular.equals(previewData.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements, $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements)) {
         return;
@@ -2170,7 +2202,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     if (changed) {
       var uri = '/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set';
       setData.Preset = $scope.presetTypeData.SelectedPreset;
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -2241,7 +2273,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       disabled: false
     };
     if ($scope.PresetImageConfig.length > 0 &&
-      (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] != 'undefined')) {
+      (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== 'undefined')) {
       if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.SharpnessEnable === false) {
         $scope.PresetSharpnessSliderOptions.disabled = true;
       } else {
@@ -2261,7 +2293,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       disabled: false
     };
 
-    if ($scope.PresetDefogLevel !== undefined) {
+    if (typeof $scope.PresetDefogLevel !== 'undefined') {
       $scope.PresetDefogLevelSliderOptions = {
         floor: $scope.PresetDefogLevel.minValue,
         ceil: $scope.PresetDefogLevel.maxValue,
@@ -2273,7 +2305,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         disabled: false
       };
       if ($scope.PresetImageConfig.length > 0 &&
-        (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] != 'undefined')) {
+        (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== 'undefined')) {
 
 
         if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode === 'Off' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode === 'Auto') {
@@ -2300,7 +2332,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function presetCameraChangeHandler() {
-    if ($scope.Camera.CompensationMode !== undefined) {
+    if (typeof $scope.Camera.CompensationMode !== 'undefined') {
       presetCameraSet(true);
     }
   }
@@ -2322,11 +2354,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     presetCameraChangeHandler();
   };
   $scope.onPresetDISEnableChange = function() {
-    if (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings == 'undefined' ||
-      typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable == 'undefined')
+    if (typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings === 'undefined' ||
+      typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable === 'undefined')      {
       return;
+    }
 
-    if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true && $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable == true) {
+    if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable === true && $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable === true) {
       $scope.disChanged.preset = true;
       $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable = false;
     } else {
@@ -2334,7 +2367,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
   };
   $scope.onPresetDefogEnableChange = function() {
-    if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode == true) {
+    if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DefogMode === true) {
       $scope.PresetDefogLevel.preset = true;
       $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable = false;
     } else {
@@ -2355,7 +2388,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var retVal = true;
 
     if (mode === 'Auto') {
-      if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode == 'Off') {
+      if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode === 'Off') {
         retVal = false;
       }
     }
@@ -2364,8 +2397,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
   $scope.iSSupportedPresetDwellTimeDuration = function () {
     var retVal = true;
-    if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.DayNightMode != 'Auto' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode == 'Off' ||
-      (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode == 'On' || $scope.IRled.Mode == 'Sensor' || $scope.IRled.Mode == 'Schedule'))) {
+    if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.DayNightMode !== 'Auto' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode === 'Off' ||
+      (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode === 'On' || $scope.IRled.Mode === 'Sensor' || $scope.IRled.Mode === 'Schedule'))) {
         retVal = false;
     } else if (mAttr.PTZModel && $scope.Camera.DayNightMode==='Schedule') {
       retVal = false;
@@ -2377,10 +2410,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var deferred = $q.defer();
     var setData = {},
       ignoredKeys = ['DayNightModeSchedules'],
-      changed = false,
-      key = null,
-      scheduleList = [];
-    if ($scope.PresetImageConfig.length == 0) return;
+      changed = false;
+      // key = null,
+      // scheduleList = [];
+    if ($scope.PresetImageConfig.length === 0) { 
+      return;
+    }
     if (isPreview === true) {
       if (angular.equals(previewData.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera, $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera)) {
         return;
@@ -2471,7 +2506,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function presetCameraDayNightPreview() {
     var setData = {},
       ignoredKeys = [];
-    if ($scope.PresetImageConfig.length == 0) return;
+    if ($scope.PresetImageConfig.length === 0) { 
+      return; 
+    }
     $scope.previewMode = true;
     extendPreviewMode();
     setData.ImagePreview = 'Start';
@@ -2493,13 +2530,13 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   function initPresetCameraSettings() {
     $scope.PresetAFLKModeOptions = mAttr.PresetAFLKModeOptions;
-    if (mAttr.PresetSSNRLevel !== undefined) {
+    if (typeof mAttr.PresetSSNRLevel !== 'undefined') {
       $scope.PresetSSNRLevel = COMMONUtils.getArray(mAttr.PresetSSNRLevel.maxValue, true);
     }
     $scope.PresetIrisModeOptions = mAttr.PresetIrisModeOptions;
     $scope.PresetIrisFnoOptions = mAttr.PresetIrisFnoOptions;
     $scope.PresetAGCModeOptions = mAttr.PresetAGCModeOptions;
-    if (mAttr.PresetAGCLevel !== undefined) {
+    if (typeof mAttr.PresetAGCLevel !== 'undefined') {
       $scope.PresetAGCLevel = COMMONUtils.getArray(mAttr.PresetAGCLevel.maxValue, false);
     }
     $scope.PresetDayNightModeOptions = mAttr.PresetDayNightModeOptions;
@@ -2509,7 +2546,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function registerPresetFocusWatcher() {
-    if ($scope.PresetFocusWatcherReady == true) {
+    if ($scope.PresetFocusWatcherReady === true) {
       return;
     }
 
@@ -2525,7 +2562,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var setData = {},
       ignoredKeys = [],
       changed = false;
-    if ($scope.PresetImageConfig.length == 0) return;
+    if ($scope.PresetImageConfig.length === 0) {
+      return; 
+    }
     if (isPreview === true) {
       if (angular.equals(previewData.PresetImageConfig[$scope.presetTypeData.PresetIndex].Focus, $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Focus)) {
         return;
@@ -2545,7 +2584,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     if (changed) {
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -2585,7 +2624,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
   $scope.isPresetDisDisabled = function() {
     if (mAttr.PTZModel) {
-      return ($scope.disDisable.TamperDetectEnable == true || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].AfterAction == 'VideoAnalytics');
+      return ($scope.disDisable.TamperDetectEnable === true || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].AfterAction == 'VideoAnalytics');
     } else {
       return false;
     }
@@ -2593,7 +2632,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   function presetAdd() {
     var deferred = $q.defer();
-    if ($scope.PresetNameValueOptions == undefined || $scope.PresetNameValueOptions.length == 0) return;
+    if (typeof $scope.PresetNameValueOptions === 'undefined' || $scope.PresetNameValueOptions.length === 0) {
+      return; 
+    }
     var setData = {};
     setData.Preset = $scope.PresetNameValueOptions[$scope.presetTypeData.PresetIndex].Preset;
     setData.Name = $scope.PresetNameValueOptions[$scope.presetTypeData.PresetIndex].Name
@@ -2609,7 +2650,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function registerPresetPTZSettingsWatcher() {
-    if ($scope.PresetPTZSettingWatcherReady == true) {
+    if ($scope.PresetPTZSettingWatcherReady === true) {
       return;
     }
 
@@ -2617,7 +2658,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
     $scope.$watch('PresetImageConfig[presetTypeData.PresetIndex].PTZSettings', function(newVal, oldVal) {
       presetPtzsettingsSet(true);
-      if (mAttr.PTZModel && $scope.disChanged.preset == true) {
+      if (mAttr.PTZModel && $scope.disChanged.preset === true) {
         presetImageenhancementsSet(true);
       }
     }, true);
@@ -2629,7 +2670,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var setData = {},
       ignoredKeys = [],
       changed = false;
-    if ($scope.PresetImageConfig.length == 0) return;
+    if ($scope.PresetImageConfig.length === 0) { 
+      return; 
+    }
     if (isPreview === true) {
       if (angular.equals(previewData.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings, $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings)) {
         return;
@@ -2640,7 +2683,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
     }
 
-    if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable == false) {
+    if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable === false) {
       ignoredKeys.push('MaxDigitalZoom');
     }
 
@@ -2653,7 +2696,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     if (changed) {
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -2766,16 +2809,16 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     initImageEnhancementSettings();
     initOverlaySettings();
 
-    if (mAttr.PTZModel == true || mAttr.ZoomOnlyModel == true) {
+    if (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true) {
       initFocusSettings();
     }
-    if (mAttr.PTZModel == true) {
+    if (mAttr.PTZModel === true) {
       initPresetImageConfig();
     }
     initIRLedSetting();
     initTabActiveData();
 
-    if (mAttr.VideoAnalysis2Support !== undefined && mAttr.VideoAnalysis2Support === true) {
+    if (typeof mAttr.VideoAnalysis2Support !== 'undefined' && mAttr.VideoAnalysis2Support === true) {
       $scope.VideoAnalysis2Support = true;
     } else {
       $scope.VideoAnalysis2Support = false;
@@ -2796,29 +2839,31 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     return COMMONUtils.getTranslatedOption(Option);
   };
   $scope.getDayNightModeTranslatedOption = function(option) {
-    if (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode == 'On' || $scope.IRled.Mode == 'Sensor' || $scope.IRled.Mode == 'Schedule')) {
+    if (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode === 'On' || $scope.IRled.Mode === 'Sensor' || $scope.IRled.Mode === 'Schedule')) {
       return '---';
     } else {
       return COMMONUtils.getTranslatedOption(option)
     }
   };
   $scope.getSSNRModeTranslation = function(option) {
-    if (option == 'Auto') {
+    if (option === 'Auto') {
       return $scope.getTranslatedOption('wiseNR');
-    } else if (option == 'Manual') {
+    } else if (option === 'Manual') {
       return $scope.getTranslatedOption('On');
     } else {
       return $scope.getTranslatedOption(option)
     }
   };
   $scope.getLedMaxPowerTranslation = function(Option) {
-    if (Option == "Medium") return COMMONUtils.getTranslatedOption("MediumOrig");
+    if (Option === "Medium") { 
+      return COMMONUtils.getTranslatedOption("MediumOrig");
+    }
     return COMMONUtils.getTranslatedOption(Option);
 
   };
 
   function validatePage() {
-    if (titleOSDCheckAllowedChars() == false) {
+    if (titleOSDCheckAllowedChars() === false) {
       return false;
     }
 
@@ -2835,7 +2880,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   $scope.iSSupportedAGCMode = function(mode) {
     if (mAttr.PTZModel && mAttr.IRLedSupport) {
-      if ($scope.IRled.Mode == 'DayNight' && (mode == 'Off' || mode == 'Manual')) {
+      if ($scope.IRled.Mode === 'DayNight' && (mode === 'Off' || mode === 'Manual')) {
         return false;
       }
     }
@@ -2853,10 +2898,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
 
   $scope.onDISEnableChange = function() {
-    if (typeof $scope.PTZSettings == 'undefined' ||
-      typeof $scope.PTZSettings.DigitalZoomEnable == 'undefined')
+    if (typeof $scope.PTZSettings === 'undefined' ||
+      typeof $scope.PTZSettings.DigitalZoomEnable === 'undefined')      {
       return;
-    if ($scope.ImageEnhancements.DISEnable == true && $scope.PTZSettings.DigitalZoomEnable == true) {
+    }
+    if ($scope.ImageEnhancements.DISEnable === true && $scope.PTZSettings.DigitalZoomEnable === true) {
       $scope.disChanged.global = true;
       $scope.PTZSettings.DigitalZoomEnable = false;
     } else {
@@ -2868,8 +2914,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var retVal = true;
 
     if (mode === 'Auto') {
-      if ($scope.Camera.AGCMode == 'Off' ||
-        (mAttr.PTZModel && mAttr.IRLedSupport && $scope.IRled.Mode == 'DayNight')) {
+      if ($scope.Camera.AGCMode === 'Off' ||
+        (mAttr.PTZModel && mAttr.IRLedSupport && $scope.IRled.Mode === 'DayNight')) {
         retVal = false;
       }
     }
@@ -2878,15 +2924,15 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
   $scope.iSSupportedDayNightMode = function() {
     var retVal = true;
-    if (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode == 'On' || $scope.IRled.Mode == 'Sensor' || $scope.IRled.Mode == 'Schedule' || $scope.IRled.Mode == 'DayNight')) {
+    if (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode === 'On' || $scope.IRled.Mode === 'Sensor' || $scope.IRled.Mode === 'Schedule' || $scope.IRled.Mode === 'DayNight')) {
       retVal = false;
     }
     return retVal;
   };
   $scope.iSSuportedDwellTimeDuration = function() {
     var retVal = true;
-    if ($scope.Camera.DayNightMode != 'Auto' || $scope.Camera.AGCMode == 'Off' ||
-      (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode == 'On' || $scope.IRled.Mode == 'Sensor' || $scope.IRled.Mode == 'Schedule'))) {
+    if ($scope.Camera.DayNightMode !== 'Auto' || $scope.Camera.AGCMode === 'Off' ||
+      (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode === 'On' || $scope.IRled.Mode === 'Sensor' || $scope.IRled.Mode === 'Schedule'))) {
       retVal = false;
     }
     return retVal;
@@ -2895,7 +2941,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function isNotUserpresetMode() {
     var retVal = false;
 
-    if ($scope.ImagePreset !== undefined) {
+    if (typeof $scope.ImagePreset !== 'undefined') {
       retVal = ($scope.ImagePreset[$scope.ch].Mode !== 'UserPreset');
     }
 
@@ -2989,7 +3035,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       ignoredKeys = ['Level', 'DynamicRange'];
     }
 
-    if ($scope.ImagePreset !== undefined) {
+    if (typeof $scope.ImagePreset !== 'undefined') {
       if ($scope.ImagePreset[$scope.ch].Mode !== 'UserPreset') {
         ignoredKeys.push('Level');
       }
@@ -3005,7 +3051,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
 
     if (changed) {
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -3037,14 +3083,13 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   function setImagePresetShedule(setData) {
     var i = 0,
-      schedule, temp, changed = false;
+      schedule = null, changed = false;
 
     if (!angular.equals($scope.ImagePreset[$scope.ch].Schedules, pageData.ImagePreset[$scope.ch].Schedules)) {
       changed = true;
       if ($scope.ImagePreset[$scope.ch].ScheduleEnable === true) {
         setData.ScheduleEnable = 'True';
         for (i = 0; i < $scope.ImagePreset[$scope.ch].Schedules.length; i++) {
-          temp = '';
           schedule = $scope.ImagePreset[$scope.ch].Schedules[i];
 
           setData['Schedule.' + (i + 1) + '.Mode'] = schedule.Mode;
@@ -3063,7 +3108,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function setImagePreset(isPreview) {
     var deferred = $q.defer();
     var setData = {},
-      ignoredKeys,
+      ignoredKeys = null,
       changed = false,
       scheduleChanged = false;
 
@@ -3099,7 +3144,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
 
     // Schedule is not supported in Preview feature
-    if ((isPreview !== true) || (isPreview === undefined)) {
+    if ((isPreview !== true) || (typeof isPreview === 'undefined')) {
       scheduleChanged = setImagePresetShedule(setData);
     }
 
@@ -3165,7 +3210,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
 
     if (changed) {
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -3180,15 +3225,19 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         function(response) {
           if (isPreview === true) {
             $scope.isChangedSensorCaptureFrameRate = previewData.VideoSources.SensorCaptureFrameRate !== $scope.VideoSources.SensorCaptureFrameRate;
-            if ($scope.isChangedSensorCaptureFrameRate === true) $timeout(function() {
+            if ($scope.isChangedSensorCaptureFrameRate === true) {
+              $timeout(function() {
               cameraChangeHandler();
             }, 300);
+            }
             COMMONUtils.updatePageData($scope.VideoSources, previewData.VideoSources, '');
           } else {
             $scope.isChangedSensorCaptureFrameRate = pageData.VideoSources.SensorCaptureFrameRate !== $scope.VideoSources.SensorCaptureFrameRate;
-            if ($scope.isChangedSensorCaptureFrameRate === true) $timeout(function() {
+            if ($scope.isChangedSensorCaptureFrameRate === true) {
+              $timeout(function() {
               cameraSet();
             }, 300);
+            }
             COMMONUtils.updatePageData($scope.VideoSources, pageData.VideoSources, '');
           }
           deferred.resolve();
@@ -3232,7 +3281,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     if (changed) {
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -3268,9 +3317,6 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function setDaynightSchedule(setData) {
-    var day = {},
-      dayDetails = {};
-
     $.each($scope.Camera.DayNightModeSchedules, function(day, dayDetails) {
       var setCmd = '';
 
@@ -3328,7 +3374,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       ignoredKeys.push('HLCAreaBottom');
       ignoredKeys.push('HLCAreaLeft');
       ignoredKeys.push('HLCAreaRight');
-      if ($scope.Camera.HLCMode === 'Off') ignoredKeys.push('HLCMaskColor');
+      if ($scope.Camera.HLCMode === 'Off') {
+        ignoredKeys.push('HLCMaskColor'); 
+    }
     }
 
     if ($scope.Camera.CompensationMode !== 'WDR') {
@@ -3361,7 +3409,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       ignoredKeys.push('PreferShutterSpeed');
     }
 
-    if ($scope.ImagePreset !== undefined) {
+    if (typeof $scope.ImagePreset !== 'undefined') {
       if ($scope.ImagePreset[$scope.ch].Mode !== 'UserPreset') {
         ignoredKeys.push('AutoShortShutterSpeed');
         ignoredKeys.push('AutoLongShutterSpeed');
@@ -3388,7 +3436,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       setData.PreferShutterSpeed = $scope.Camera.PreferShutterSpeed;
     }
 
-    if (($scope.Camera.DayNightModeSchedules !== undefined) && (isPreview !== true || isPreview === undefined)) {
+    if ((typeof $scope.Camera.DayNightModeSchedules !== 'undefined') && (isPreview !== true || typeof isPreview === 'undefined')) {
       if (!angular.equals(pageData.Camera.DayNightModeSchedules, $scope.Camera.DayNightModeSchedules)) {
         scheduleChanged = true;
         setDaynightSchedule(setData);
@@ -3462,7 +3510,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
       /*If SSNR Level is set then SSNR Mode/ SSND Enable shall be set */
       if (setData.hasOwnProperty('SSNRLevel')) {
-        if ($scope.SSNRModeOptions !== undefined) {
+        if (typeof $scope.SSNRModeOptions !== 'undefined') {
           setData.SSNRMode = $scope.Camera.SSNRMode;
         } else {
           setData.SSNREnable = $scope.Camera.SSNREnable;
@@ -3482,7 +3530,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
 
       for (key in setData) {
-        if (key.search('DayNightModeSchedule') !== -1 && setData[key] !== undefined) {
+        if (key.search('DayNightModeSchedule') !== -1 && typeof setData[key] !== 'undefined') {
           scheduleChanged = true;
           scheduleList.push(key);
         }
@@ -3506,7 +3554,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
           } else {
             COMMONUtils.updatePageData($scope.Camera, pageData.Camera, ignoredKeys);
             pageData.Camera.DayNightModeSchedules = $scope.Camera.DayNightModeSchedules;
-            if (mAttr.MaxAlarmInput !== undefined) {
+            if (typeof mAttr.MaxAlarmInput !== 'undefined') {
               if ($scope.Camera.DayNightMode === 'ExternalBW' && mAttr.MaxAlarmInput > 0) {
                 mAttr.MaxAlarmInput = 0;
                 $rootScope.$broadcast('menureload', "Alarmin disabled");
@@ -3582,7 +3630,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       ignoredKeys.push('LDCLevel');
     }
 
-    if ($scope.ImagePreset !== undefined) {
+    if (typeof $scope.ImagePreset !== 'undefined') {
       if ($scope.ImagePreset[$scope.ch].Mode !== 'UserPreset') {
         ignoredKeys.push('Saturation');
       }
@@ -3598,7 +3646,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     if (changed) {
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -3673,7 +3721,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     if (changed) {
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -3716,9 +3764,6 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     if (changed) {
-      var day = {},
-        dayDetails = {};
-
       $.each($scope.HeaterSchedules, function(day, dayDetails) {
         var setCmd = '';
 
@@ -3772,7 +3817,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       ignoredKeys = [],
       changed = false;
 
-    if ($scope.PTZSettings.DigitalZoomEnable == false) {
+    if ($scope.PTZSettings.DigitalZoomEnable === false) {
       ignoredKeys.push('MaxDigitalZoom');
     }
 
@@ -3783,7 +3828,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     if (changed) {
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -3808,7 +3853,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function setIRLedSchedule(setData) {
-    var fromToString,
+    var fromToString = '',
       schedule = $scope.IRled.Schedule.EveryDay;
 
     fromToString = COMMONUtils.getFormatedInteger(schedule.SelectedFromHour, 2) + ':' + COMMONUtils.getFormatedInteger(schedule.SelectedFromMinute, 2);
@@ -3852,7 +3897,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     if (changed || scheduleChanged) {
-      if (isPreview == true) {
+      if (isPreview === true) {
         $scope.previewMode = true;
         extendPreviewMode();
         setData.ImagePreview = 'Start';
@@ -3911,7 +3956,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   function livePreviewMode(mode, event) {
     var asyncVal = true;
-    if (typeof event !== 'undefined' && event == 'unload') {
+    if (typeof event !== 'undefined' && event === 'unload') {
       asyncVal = false;
     }
     var setData = {};
@@ -3920,11 +3965,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       setData.Channel = currentChannel;
     }
     setData.ImagePreview = mode;
-    if ($scope.presetTypeData.SelectedPresetType == 1) {
-      if (mode == 'Stop') {
+    if ($scope.presetTypeData.SelectedPresetType === 1) {
+      if (mode === 'Stop') {
         $scope.presetPreview = false;
         setData.Channel = 0;
-        setData.Preset = $scope.presetTypeData.SelectedPreset == 0 ? 1 : $scope.presetTypeData.SelectedPreset;
+        setData.Preset = $scope.presetTypeData.SelectedPreset === 0 ? 1 : $scope.presetTypeData.SelectedPreset;
         SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set', setData,
           function(response) {
             $rootScope.isCameraSetupPreview = false;
@@ -3950,13 +3995,13 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   $scope.$watch(function() {
     return $rootScope.cameraSetupToLive;
   }, function(newVal, oldVal) {
-    if (newVal == true) {
-      if ($scope.previewMode === true || $scope.previewTimer !== undefined) {
-        if ($scope.previewTimer !== undefined) {
+    if (newVal === true) {
+      if ($scope.previewMode === true || typeof $scope.previewTimer !== 'undefined' || $scope.previewTimer !== null) {
+        if (typeof $scope.previewTimer !== 'undefined') {
           $timeout.cancel($scope.previewTimer);
-          $scope.previewTimer = undefined;
+          $scope.previewTimer = null;
         }
-        if ($scope.previewMode == false) {
+        if ($scope.previewMode === false) {
           $rootScope.isCameraSetupPreview = false;
         } else {
           stopLivePreviewMode();
@@ -3968,12 +4013,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   $rootScope.$watch(function $locationWatch() {
     var changedUrl = $location.absUrl();
 
-    if (($rootScope.cameraSetupToLive != true) && ($scope.previewMode === true || $scope.previewTimer !== undefined)) {
+    if (($rootScope.cameraSetupToLive !== true) && ($scope.previewMode === true || typeof $scope.previewTimer !== 'undefined' || $scope.previewTimer !== null)) {
       if (changedUrl.indexOf('videoAudio_cameraSetup') === -1) {
-        if ($scope.previewTimer !== undefined) {
+        if (typeof $scope.previewTimer !== 'undefined') {
           //LogManager.debug(' Preview timer cancelled ');
           $timeout.cancel($scope.previewTimer);
-          $scope.previewTimer = undefined;
+          $scope.previewTimer = null;
         }
         $rootScope.isCameraSetupPreview = false;
         stopLivePreviewMode();
@@ -3997,17 +4042,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     functionList.push(videoSourceSet);
     //}
 
-    if ($scope.ImagePresetModeOptions !== undefined) {
+    if (typeof $scope.ImagePresetModeOptions !== 'undefined') {
       ///stw-cgi/image.cgi?msubmenu=imagepreset&action=set
       functionList.push(setImagePreset);
     }
 
-    if (mAttr.SSDRLevel !== undefined) {
+    if (typeof mAttr.SSDRLevel !== 'undefined') {
       ///stw-cgi/image.cgi?msubmenu=ssdr&action=set
       functionList.push(setSSDR);
     }
 
-    if (mAttr.WhiteBalanceModeOptions !== undefined) {
+    if (typeof mAttr.WhiteBalanceModeOptions !== 'undefined') {
       ///stw-cgi/image.cgi?msubmenu=whitebalance&action=set
       functionList.push(whiteBalanceSet);
     }
@@ -4017,12 +4062,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       functionList.push(irLedSet);
     }
 
-    if (mAttr.CompensationModeOptions !== undefined) {
+    if (typeof mAttr.CompensationModeOptions !== 'undefined') {
       ///stw-cgi/image.cgi?msubmenu=camera&action=set
       functionList.push(cameraSet);
     }
 
-    if (mAttr.FocusModeOptions !== undefined && (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true)) {
+    if (typeof mAttr.FocusModeOptions !== 'undefined' && (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true)) {
       ///stw-cgi/image.cgi?msubmenu=focus&action=set
       functionList.push(focusSet);
     }
@@ -4033,16 +4078,16 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
     if (mAttr.PTZModel === true) {
       if (typeof $scope.ImageEnhancements !== 'undefined' &&
-        pageData.ImageEnhancements.DISEnable == false &&
-        $scope.ImageEnhancements.DISEnable == true) {
+        pageData.ImageEnhancements.DISEnable === false &&
+        $scope.ImageEnhancements.DISEnable === true) {
         ///stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set
         functionList.push(ptzsettingsSet);
-        if (mAttr.Brightness !== undefined) {
+        if (typeof mAttr.Brightness !== 'undefined') {
           ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
           functionList.push(imageenhancementsSet);
         }
       } else {
-        if (mAttr.Brightness !== undefined) {
+        if (typeof mAttr.Brightness !== 'undefined') {
           ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
           functionList.push(imageenhancementsSet);
         }
@@ -4051,42 +4096,42 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
 
 
-      if ($scope.presetTypeData.SelectedPresetType == 1) {
-        if (mAttr.PresetSSDRLevel !== undefined) {
+      if ($scope.presetTypeData.SelectedPresetType === 1) {
+        if (typeof mAttr.PresetSSDRLevel !== 'undefined') {
           ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
           functionList.push(setPresetSSDR);
         }
-        if (mAttr.PresetWhiteBalanceModeOptions !== undefined) {
+        if (typeof mAttr.PresetWhiteBalanceModeOptions !== 'undefined') {
           ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
           functionList.push(presetWhiteBalanceSet);
         }
-        if (mAttr.PresetAFLKModeOptions !== undefined) {
+        if (typeof mAttr.PresetAFLKModeOptions !== 'undefined') {
           ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
           functionList.push(presetCameraSet);
         }
-        if (mAttr.PresetFocusModeOptions !== undefined) {
+        if (typeof mAttr.PresetFocusModeOptions !== 'undefined') {
           ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
           functionList.push(presetFocusSet);
         }
         if (typeof $scope.PresetImageConfig !== 'undefined' &&
           typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex] !== 'undefined' &&
           typeof $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements !== 'undefined' &&
-          pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == false &&
-          $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable == true) {
-          if (mAttr.PresetMaxDigitalZoomOptions !== undefined) {
+          pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable === false &&
+          $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.DISEnable === true) {
+          if (typeof mAttr.PresetMaxDigitalZoomOptions !== 'undefined') {
             ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
             functionList.push(presetPtzsettingsSet);
           }
-          if (mAttr.PresetBrightness !== undefined) {
+          if (typeof mAttr.PresetBrightness !== 'undefined') {
             ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
             functionList.push(presetImageenhancementsSet);
           }
         } else {
-          if (mAttr.PresetBrightness !== undefined) {
+          if (typeof mAttr.PresetBrightness !== 'undefined') {
             ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
             functionList.push(presetImageenhancementsSet);
           }
-          if (mAttr.PresetMaxDigitalZoomOptions !== undefined) {
+          if (typeof mAttr.PresetMaxDigitalZoomOptions !== 'undefined') {
             ///stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=set
             functionList.push(presetPtzsettingsSet);
           }
@@ -4095,16 +4140,16 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
     } else if (mAttr.ZoomOnlyModel === true) {
       if (typeof $scope.ImageEnhancements !== 'undefined' &&
-        pageData.ImageEnhancements.DISEnable == false &&
-        $scope.ImageEnhancements.DISEnable == true) {
+        pageData.ImageEnhancements.DISEnable === false &&
+        $scope.ImageEnhancements.DISEnable === true) {
         ///stw-cgi/ptzconfig.cgi?msubmenu=ptzsettings&action=set
         functionList.push(ptzsettingsSet);
-        if (mAttr.Brightness !== undefined) {
+        if (typeof mAttr.Brightness !== 'undefined') {
           ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
           functionList.push(imageenhancementsSet);
         }
       } else {
-        if (mAttr.Brightness !== undefined) {
+        if (typeof mAttr.Brightness !== 'undefined') {
           ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
           functionList.push(imageenhancementsSet);
         }
@@ -4112,7 +4157,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         functionList.push(ptzsettingsSet);
       }
     } else {
-      if (mAttr.Brightness !== undefined) {
+      if (typeof mAttr.Brightness !== 'undefined') {
         ///stw-cgi/image.cgi?msubmenu=imageenhancements&action=set
         functionList.push(imageenhancementsSet);
       }
@@ -4171,12 +4216,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
    * Frame Rate and WDR Dependancy
    */
   $scope.iSWDRSupported = function(mode) {
-    if ($scope.ImageOptions === undefined || $scope.ImageOptions.MaxAGCSensorFrameRate === undefined) {
+    if (typeof $scope.ImageOptions === 'undefined' || typeof $scope.ImageOptions.MaxAGCSensorFrameRate === 'undefined') {
       return true;
     }
     var maxAllowdFrameRate = parseInt($scope.ImageOptions.MaxAGCSensorFrameRate, 10);
-    if (mode == 'WDR') {
-      if ($scope.VideoSources !== undefined) {
+    if (mode === 'WDR') {
+      if (typeof $scope.VideoSources !== 'undefined') {
         if (parseInt($scope.VideoSources.SensorCaptureFrameRate, 10) <= maxAllowdFrameRate) {
           return true;
         } else {
@@ -4191,17 +4236,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   $scope.iSSupportedSensorMode = function(frameRate) {
-    if ($scope.ImageOptions === undefined || $scope.ImageOptions.MaxAGCSensorFrameRate === undefined) {
+    if (typeof $scope.ImageOptions === 'undefined' || typeof $scope.ImageOptions.MaxAGCSensorFrameRate === 'undefined') {
       return true;
     }
 
-    if ($scope.Camera === undefined) {
+    if (typeof $scope.Camera === 'undefined') {
       return true;
     }
 
     var maxAllowdFrameRate = parseInt($scope.ImageOptions.MaxAGCSensorFrameRate, 10);
     if ($scope.Camera.CompensationMode === 'WDR') {
-      if (frameRate !== undefined) {
+      if (typeof frameRate !== 'undefined') {
         if (parseInt(frameRate, 10) <= maxAllowdFrameRate) {
           return true;
         } else {
@@ -4234,9 +4279,6 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
 
   function uploadoverlayimage() {
-
-    var imagefilelm = document.getElementById("ImageField");
-
     var element = '';
     var fileName = '';
     var ext = '';
@@ -4247,12 +4289,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
 
     //Check for file extension validity.
-    if (ext.toUpperCase() != "BMP") {
+    if (ext.toUpperCase() !== "BMP") {
       COMMONUtils.ShowError('lang_msg_no_bitmap_file');
       $scope.ImageFile = "";
       $scope.ImageFileFull = {};
       //reset the file name after remove
-      if (document.getElementById('ImageField')) document.getElementById('ImageField').value = null;
+      if (document.getElementById('ImageField')) { 
+        document.getElementById('ImageField').value = null; 
+      }
       return;
     }
 
@@ -4261,13 +4305,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       $scope.ImageFile = "";
       $scope.ImageFileFull = {};
       //reset the file name after remove
-      if (document.getElementById('ImageField')) document.getElementById('ImageField').value = null;
+      if (document.getElementById('ImageField')) { 
+        document.getElementById('ImageField').value = null; 
+      }
       return;
     }
 
     if (typeof $scope.ImageFileFull !== 'undefined') {
-      var setData = {},
-        postData;
+      var setData = {};
       var specialHeaders = [];
       specialHeaders[0] = {};
       specialHeaders[0].Type = 'Content-Type';
@@ -4314,9 +4359,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
 
   function parseImagePresetSchedule() {
-    var schedule,
-      from,
-      to;
+    var schedule = null,
+      from = null,
+      to = null;
 
     for (var presetCnt = 0; presetCnt < $scope.ImagePreset[$scope.ch].Schedules.length; presetCnt++) {
       schedule = $scope.ImagePreset[$scope.ch].Schedules[presetCnt];
@@ -4343,11 +4388,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var schedules = $scope.ImagePreset[$scope.ch].Schedules;
     var schedule = null;
     var calcedStyle = null;
-    var i;
+    var i = 0;
 
     var height = 39;
     var headerWidthPercent = 100 / 24; //100 / 24;
-    var width;
+    var width = 0;
 
     var enabled = $scope.ImagePreset[$scope.ch].ScheduleEnable;
 
@@ -4459,10 +4504,10 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     var calcedStyle = null;
-    var width;
+    var width = 0;
     var height = 39;
     var headerWidthPercent = 100 / 24; //100 / 24;
-    var i;
+    var i = 0;
     var enabled = $scope.ImagePreset[$scope.ch].ScheduleEnable;
     for (i = 0; i < result.length; i++) {
       userPreset = result[i];
@@ -4513,7 +4558,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       /**
        * Enable SSDR
        */
-      if (mAttr.SSDRLevel !== undefined) {
+      if (typeof mAttr.SSDRLevel !== 'undefined') {
         if ($scope.SSDR[$scope.ch].Enable === false) {
           LogManager.debug('SSDR Enable is adjusted ', $scope.SSDR[$scope.ch].Enable, ' -> ', true);
           $scope.SSDR[$scope.ch].Enable = true;
@@ -4523,7 +4568,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       /**
        * Reset SSDR Level
        */
-      if (mAttr.SSDRLevel !== undefined) {
+      if (typeof mAttr.SSDRLevel !== 'undefined') {
         if (newVal.SSDRLevel !== $scope.SSDR[$scope.ch].Level) {
           LogManager.debug('SSDR Value is adjusted ', $scope.SSDR[$scope.ch].Level, ' -> ', newVal.SSDRLevel);
           $scope.SSDR[$scope.ch].Level = newVal.SSDRLevel;
@@ -4533,7 +4578,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       /**
        * Reset Min Shutter
        */
-      if (mAttr.MinShutterOptions !== undefined) {
+      if (typeof mAttr.MinShutterOptions !== 'undefined') {
         if ($scope.Camera.AutoShortShutterSpeed !== newVal.AutoShortShutterSpeed) {
           LogManager.debug('Min Shutter Value is adjusted ', $scope.Camera.AutoShortShutterSpeed, ' -> ', newVal.AutoShortShutterSpeed);
           $scope.Camera.AutoShortShutterSpeed = newVal.AutoShortShutterSpeed;
@@ -4544,7 +4589,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       /**
        * Reset Max Shutter
        */
-      if (mAttr.MinShutterOptions !== undefined) {
+      if (typeof mAttr.MinShutterOptions !== 'undefined') {
         /** In case of WDR mode, max value is only 1/240 so dont adjust Max shutter speed */
         if ($scope.Camera.CompensationMode !== 'WDR') {
           if ($scope.Camera.AutoLongShutterSpeed !== newVal.AutoLongShutterSpeed) {
@@ -4557,7 +4602,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       /**
        * Reset AFLK Mode
        */
-      if ($scope.AFLKModeOptions !== undefined) {
+      if (typeof $scope.AFLKModeOptions !== 'undefined') {
         if ($scope.Camera.AFLKMode !== 'Off') {
           LogManager.debug('AFLK Value is adjusted ', $scope.Camera.AFLKMode, ' -> ', 'Off');
           $scope.Camera.AFLKMode = 'Off';
@@ -4567,7 +4612,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       /**
        * Reset SSNR3 Mode
        */
-      if (mAttr.SSNRLevel !== undefined) {
+      if (typeof mAttr.SSNRLevel !== 'undefined') {
         if ($scope.Camera.SSNRMode === 'Off') {
           LogManager.debug('SSNR Mode is adjusted ', $scope.Camera.SSNRMode, ' ->  Manual');
           $scope.Camera.SSNRMode = 'Manual';
@@ -4577,7 +4622,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       /**
        * Reset SSNR3 Level
        */
-      if (mAttr.SSNRLevel !== undefined) {
+      if (typeof mAttr.SSNRLevel !== 'undefined') {
         if ($scope.Camera.SSNRLevel !== newVal.SSNRLevel) {
           LogManager.debug('SSNR Level is adjusted ', $scope.Camera.SSNRLevel, ' -> ', newVal.SSNRLevel);
           $scope.Camera.SSNRLevel = newVal.SSNRLevel;
@@ -4587,7 +4632,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       /**
        * Reset AGC Mode
        */
-      if ($scope.AGCModeOptions !== undefined) {
+      if (typeof $scope.AGCModeOptions !== 'undefined') {
         if ($scope.Camera.AGCMode !== newVal.AGCMode) {
           LogManager.debug('AGC Mode is adjusted ', $scope.Camera.AGCMode, ' -> ', newVal.AGCMode);
           $scope.Camera.AGCMode = newVal.AGCMode;
@@ -4597,7 +4642,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       /**
        * Reset Color Level
        */
-      if ($scope.Saturation !== undefined) {
+      if (typeof $scope.Saturation !== 'undefined') {
         if ($scope.ImageEnhancements.Saturation !== newVal.Saturation) {
           LogManager.debug('Color Level is adjusted ', $scope.ImageEnhancements.Saturation, ' -> ', newVal.Saturation);
           $scope.ImageEnhancements.Saturation = newVal.Saturation;
@@ -4630,60 +4675,60 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var RightSliderOptions = compenstationMode + 'RightSliderOptions';
     var LeftSliderOptions = compenstationMode + 'LeftSliderOptions';
 
-    if (areaDirection == "AreaTop") {
+    if (areaDirection === "AreaTop") {
 
-      if (Number($scope['Camera'][direction]) + Number($scope[maxLength]) <= Number($scope[AbsMax])) {
-        $scope[BottomSliderOptions]['ceil'] = Number($scope['Camera'][direction]) + Number($scope[maxLength]);
+      if (Number($scope.Camera[direction]) + Number($scope[maxLength]) <= Number($scope[AbsMax])) {
+        $scope[BottomSliderOptions].ceil = Number($scope.Camera[direction]) + Number($scope[maxLength]);
       } else {
-        $scope[BottomSliderOptions]['ceil'] = Number($scope[AbsMax]);
+        $scope[BottomSliderOptions].ceil = Number($scope[AbsMax]);
       }
 
-      if (Number($scope['Camera'][direction]) + Number($scope[minHeightLength]) >= Number($scope[minHeightLength])) {
-        $scope[BottomSliderOptions]['floor'] = Number($scope['Camera'][direction]) + Number($scope[minHeightLength]);
+      if (Number($scope.Camera[direction]) + Number($scope[minHeightLength]) >= Number($scope[minHeightLength])) {
+        $scope[BottomSliderOptions].floor = Number($scope.Camera[direction]) + Number($scope[minHeightLength]);
       } else {
-        $scope[BottomSliderOptions]['floor'] = Number($scope[minHeightLength]);
+        $scope[BottomSliderOptions].floor = Number($scope[minHeightLength]);
       }
 
-    } else if (areaDirection == "AreaBottom") {
+    } else if (areaDirection === "AreaBottom") {
 
-      if (Number($scope['Camera'][direction]) - Number($scope[minHeightLength]) <= Number($scope[AbsMax]) - Number($scope[minHeightLength])) {
-        $scope[TopSliderOptions]['ceil'] = Number($scope['Camera'][direction]) - Number($scope[minHeightLength]);
+      if (Number($scope.Camera[direction]) - Number($scope[minHeightLength]) <= Number($scope[AbsMax]) - Number($scope[minHeightLength])) {
+        $scope[TopSliderOptions].ceil = Number($scope.Camera[direction]) - Number($scope[minHeightLength]);
       } else {
-        $scope[TopSliderOptions]['ceil'] = Number($scope[AbsMax]) - Number($scope[minHeightLength]);
+        $scope[TopSliderOptions].ceil = Number($scope[AbsMax]) - Number($scope[minHeightLength]);
       }
 
-      if (Number($scope['Camera'][direction]) - Number($scope[maxLength]) > 0) {
-        $scope[TopSliderOptions]['floor'] = Number($scope['Camera'][direction]) - Number($scope[maxLength]);
+      if (Number($scope.Camera[direction]) - Number($scope[maxLength]) > 0) {
+        $scope[TopSliderOptions].floor = Number($scope.Camera[direction]) - Number($scope[maxLength]);
       } else {
-        $scope[TopSliderOptions]['floor'] = Number($scope[AbsMin]);
+        $scope[TopSliderOptions].floor = Number($scope[AbsMin]);
       }
 
-    } else if (areaDirection == "AreaLeft") {
+    } else if (areaDirection === "AreaLeft") {
 
-      if (Number($scope['Camera'][direction]) + Number($scope[maxLength]) <= Number($scope[AbsMax])) {
-        $scope[RightSliderOptions]['ceil'] = Number($scope['Camera'][direction]) + Number($scope[maxLength]);
+      if (Number($scope.Camera[direction]) + Number($scope[maxLength]) <= Number($scope[AbsMax])) {
+        $scope[RightSliderOptions].ceil = Number($scope.Camera[direction]) + Number($scope[maxLength]);
       } else {
-        $scope[RightSliderOptions]['ceil'] = Number($scope[AbsMax]);
+        $scope[RightSliderOptions].ceil = Number($scope[AbsMax]);
       }
 
-      if (Number($scope['Camera'][direction]) + Number($scope[minWidthLength]) >= Number($scope[minWidthLength])) {
-        $scope[RightSliderOptions]['floor'] = Number($scope['Camera'][direction]) + Number($scope[minWidthLength]);
+      if (Number($scope.Camera[direction]) + Number($scope[minWidthLength]) >= Number($scope[minWidthLength])) {
+        $scope[RightSliderOptions].floor = Number($scope.Camera[direction]) + Number($scope[minWidthLength]);
       } else {
-        $scope[RightSliderOptions]['floor'] = Number($scope[minWidthLength]);
+        $scope[RightSliderOptions].floor = Number($scope[minWidthLength]);
       }
 
-    } else if (areaDirection == "AreaRight") {
+    } else if (areaDirection === "AreaRight") {
 
-      if (Number($scope['Camera'][direction]) - Number($scope[minWidthLength]) <= Number($scope[AbsMax]) - Number($scope[minWidthLength])) {
-        $scope[LeftSliderOptions]['ceil'] = Number($scope['Camera'][direction]) - Number($scope[minWidthLength]);
+      if (Number($scope.Camera[direction]) - Number($scope[minWidthLength]) <= Number($scope[AbsMax]) - Number($scope[minWidthLength])) {
+        $scope[LeftSliderOptions].ceil = Number($scope.Camera[direction]) - Number($scope[minWidthLength]);
       } else {
-        $scope[LeftSliderOptions]['ceil'] = Number($scope[AbsMax]) - Number($scope[minWidthLength]);
+        $scope[LeftSliderOptions].ceil = Number($scope[AbsMax]) - Number($scope[minWidthLength]);
       }
 
-      if (Number($scope['Camera'][direction]) - Number($scope[maxLength]) > 0) {
-        $scope[LeftSliderOptions]['floor'] = Number($scope['Camera'][direction]) - Number($scope[maxLength]);
+      if (Number($scope.Camera[direction]) - Number($scope[maxLength]) > 0) {
+        $scope[LeftSliderOptions].floor = Number($scope.Camera[direction]) - Number($scope[maxLength]);
       } else {
-        $scope[LeftSliderOptions]['floor'] = Number($scope[AbsMin]);
+        $scope[LeftSliderOptions].floor = Number($scope[AbsMin]);
       }
     }
 
@@ -4713,7 +4758,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var ImagePresetModes = $scope.ImageOptions.ImagePresetModes,
       presetCnt = 0;
 
-    if (ImagePresetModes !== undefined) {
+    if (typeof ImagePresetModes !== 'undefined') {
       for (presetCnt = 0; presetCnt < ImagePresetModes.length; presetCnt++) {
         var presetDetail = ImagePresetModes[presetCnt];
 
@@ -4728,7 +4773,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var ImagePresetModes = $scope.ImageOptions.ImagePresetModes,
       presetCnt = 0;
 
-    if (ImagePresetModes !== undefined) {
+    if (typeof ImagePresetModes !== 'undefined') {
       changePreferShutterByFPS();
       for (presetCnt = 0; presetCnt < ImagePresetModes.length; presetCnt++) {
         var presetDetail = ImagePresetModes[presetCnt];
@@ -4762,7 +4807,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function extendPreviewMode() {
-    if ($scope.previewTimer !== undefined) {
+    if (typeof $scope.previewTimer !== 'undefined') {
       $timeout.cancel($scope.previewTimer);
     }
     $scope.previewTimer = $timeout(stopLivePreviewMode, previewTimeout);
@@ -4790,8 +4835,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   $scope.$watch('previewMode', function(newVal, oldVal) {
-    if (newVal === true) $rootScope.isCameraSetupPreview = true;
-    if ($rootScope.cameraSetupToLive == true) return;
+    if (newVal === true) { 
+      $rootScope.isCameraSetupPreview = true; 
+    }
+    if ($rootScope.cameraSetupToLive === true) { 
+      return; 
+    }
     if (oldVal === false && newVal === true) {
       extendPreviewMode();
     }
@@ -4810,7 +4859,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   });
 
   function registerVideoSourceWatcher() {
-    if ($scope.videoSourceWatcherReady == true) {
+    if ($scope.videoSourceWatcherReady === true) {
       return;
     }
 
@@ -4822,11 +4871,6 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   function videoSourceView() {
     var getData = {};
-    if ($scope.isMultiChannel) {
-      var currentChannel = UniversialManagerService.getChannelId();
-      getData.Channel = currentChannel;
-    }
-
     if ($scope.isMultiChannel) {
       var currentChannel = UniversialManagerService.getChannelId();
       getData.Channel = currentChannel;
@@ -4846,7 +4890,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function registerSsdrWatcher() {
-    if ($scope.SSDRWatcherReady == true) {
+    if ($scope.SSDRWatcherReady === true) {
       return;
     }
 
@@ -4877,7 +4921,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function registerimagePresetWatcher() {
-    if ($scope.imgPresetWatcherReady == true) {
+    if ($scope.imgPresetWatcherReady === true) {
       return;
     }
 
@@ -4941,7 +4985,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=view', getData,
       function(response) {
         $scope.Camera = response.data.Camera[$scope.ch];
-        if (mAttr.MaxAlarmInput !== undefined) {
+        if (typeof mAttr.MaxAlarmInput !== 'undefined') {
           if ($scope.Camera.DayNightMode === 'ExternalBW' && mAttr.MaxAlarmInput > 0) {
             mAttr.MaxAlarmInput = 0;
             mAttr.cameraCommandResponse = response.data.Camera[0];
@@ -5045,14 +5089,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function registerImgEnhancementsWatcher() {
-    if ($scope.ImageEnhaneWatcherReady == true) {
+    if ($scope.ImageEnhaneWatcherReady === true) {
       return;
     }
 
     $scope.ImageEnhaneWatcherReady = true;
 
     $scope.$watch('ImageEnhancements', function(newVal, oldVal) {
-      if ((mAttr.ZoomOnlyModel || mAttr.PTZModel) && $scope.disChanged.global == true) {} else {
+      if (!(mAttr.ZoomOnlyModel || mAttr.PTZModel) || $scope.disChanged.global !== true) {
         imageenhancementsSet(true);
       }
     }, true);
@@ -5072,7 +5116,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         registerImgEnhancementsWatcher();
         initExposureSliders();
 
-        if ($scope.ImageEnhancements.DISEnable != undefined) {
+        if (typeof $scope.ImageEnhancements.DISEnable !== 'undefined') {
           getTamperDetection();
           getVideoAnalysis();
         }
@@ -5128,7 +5172,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function registerFocusWatcher() {
-    if ($scope.focusWatcherReady == true) {
+    if ($scope.focusWatcherReady === true) {
       return;
     }
 
@@ -5153,7 +5197,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
           }
           $scope.ImageFile = "";
           $scope.ImageFileFull = {};
-          if (document.getElementById('ImageField')) document.getElementById('ImageField').value = null;
+          if (document.getElementById('ImageField')) { 
+            document.getElementById('ImageField').value = null;
+        }
         }
       },
       function(errorData) {
@@ -5175,22 +5221,22 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function registerPTZSettingWatcher() {
-    if ($scope.PTZSettingWatcherReady == true) {
+    if ($scope.PTZSettingWatcherReady === true) {
       return;
     }
 
     $scope.PTZSettingWatcherReady = true;
     $scope.$watch('PTZSettings', function(newVal, oldVal) {
       ptzsettingsSet(true);
-      if ((mAttr.ZoomOnlyModel || mAttr.PTZModel) && $scope.disChanged.global == true) {
+      if ((mAttr.ZoomOnlyModel || mAttr.PTZModel) && $scope.disChanged.global === true) {
         imageenhancementsSet(true);
       }
     }, true);
   }
 
   function parseIrledSchedule() {
-    var from, to, Fromto, everyDay;
-    if ($scope.IRled.Schedule !== undefined) {
+    var from = '', to = '', Fromto = '', everyDay = '';
+    if (typeof $scope.IRled.Schedule !== 'undefined') {
       everyDay = $scope.IRled.Schedule.EveryDay;
       Fromto = everyDay.FromTo;
       from = Fromto.split('-')[0];
@@ -5205,7 +5251,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function registerIRLedWatcher() {
-    if ($scope.irLEDWatcherReady == true) {
+    if ($scope.irLEDWatcherReady === true) {
       return;
     }
 
@@ -5236,9 +5282,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }, '', true);
   }
   $scope.getIRModeTranslation = function(option) {
-    if (mAttr.PTZModel && option == 'Schedule') {
+    if (mAttr.PTZModel && option === 'Schedule') {
       return COMMONUtils.getTranslatedOption('Timed');
-    } else if (mAttr.PTZModel && option == 'Heater') {
+    } else if (mAttr.PTZModel && option === 'Heater') {
       return COMMONUtils.getTranslatedOption('Heater/Fan');
     } else {
       return COMMONUtils.getTranslatedOption(option)
@@ -5246,24 +5292,24 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
   $scope.irledChangeHandler = function() {
     if (mAttr.PTZModel && mAttr.IRLedSupport) {
-      if (mAttr.PTZModel && $scope.IRled.Mode == 'DayNight') {
+      if (mAttr.PTZModel && $scope.IRled.Mode === 'DayNight') {
         $scope.Camera.DayNightMode = 'Auto';
-        if ($scope.Camera.AGCMode == 'Off' || $scope.Camera.AGCMode == 'Manual') {
+        if ($scope.Camera.AGCMode === 'Off' || $scope.Camera.AGCMode === 'Manual') {
           $scope.Camera.AGCMode = 'High';
         }
         if ($scope.PresetImageConfig.length > 0) {
           $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.DayNightMode = 'Auto';
-          if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode == 'Off' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode == 'Manual') {
+          if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode === 'Off' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode === 'Manual') {
             $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode = 'High';
           }
         }
       }
-      if ($scope.IRled.Mode == 'Off') {
-        if ($scope.Camera.AGCMode == 'Off' || $scope.Camera.AGCMode == 'Manual') {
+      if ($scope.IRled.Mode === 'Off') {
+        if ($scope.Camera.AGCMode === 'Off' || $scope.Camera.AGCMode === 'Manual') {
           $scope.Camera.AGCMode = 'High';
         }
         if ($scope.PresetImageConfig.length > 0) {
-          if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode == 'Off' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode == 'Manual') {
+          if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode === 'Off' || $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode === 'Manual') {
             $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode = 'High';
           }
         }
@@ -5308,7 +5354,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function presetImageConfigView() {
     return SunapiClient.get('/stw-cgi/ptzconfig.cgi?msubmenu=presetimageconfig&action=view', '',
       function(response) {
-        if (response.data.PresetImageConfig !== undefined) {
+        if (typeof response.data.PresetImageConfig !== 'undefined') {
           $scope.PresetImageConfig = response.data.PresetImageConfig[$scope.ch].Presets;
         } else {
           $scope.PresetImageConfig = [];
@@ -5395,10 +5441,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   function getVideoAnalysis() {
     var cmd = '/stw-cgi/eventsources.cgi?msubmenu=videoanalysis&action=view';
-    if ($scope.VideoAnalysis2Support !== undefined && $scope.VideoAnalysis2Support === true) {
+    if (typeof $scope.VideoAnalysis2Support !== 'undefined' && $scope.VideoAnalysis2Support === true) {
       cmd = '/stw-cgi/eventsources.cgi?msubmenu=videoanalysis2&action=view';
     }
-    var getData = {};
     var getData = {};
     if ($scope.isMultiChannel) {
       var currentChannel = UniversialManagerService.getChannelId();
@@ -5432,7 +5477,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     $scope.FontSizeOptions = mAttr.FontSizeOptions;
     $scope.OSDColorOptions = mAttr.OSDColorOptions;
     $scope.OSDBlinkOptions = mAttr.OSDBlinkOptions;
-    if (mAttr.OSDTransparencyOptions !== undefined) {
+    if (typeof mAttr.OSDTransparencyOptions !== 'undefined') {
       $scope.OSDTransparencyOptions = [];
 
       for (var i = 0; i < mAttr.OSDTransparencyOptions.length; i++) {
@@ -5451,7 +5496,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
     }
 
-    if (mAttr.MultiImageIndex !== undefined) {
+    if (typeof mAttr.MultiImageIndex !== 'undefined') {
       if (mAttr.MultiImageIndex.maxValue > 0) {
         $scope.MultiImageOverlayFeature = true;
         $scope.ImageOverlayMaxResolution = mAttr.ImageOverlayMaxResolution;
@@ -5513,10 +5558,10 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       i = 0,
       selectedOSDDetails = {};
 
-    if ($scope.ImageOptions.OSDOptions !== undefined) {
+    if (typeof $scope.ImageOptions.OSDOptions !== 'undefined') {
       /** If Fonr size is not supported  */
-      if ($scope.ImageOptions.OSDOptions.FontSizes === undefined) {
-        if ($scope.ImageOptions.OSDOptions.OSDTypes !== undefined) {
+      if (typeof $scope.ImageOptions.OSDOptions.FontSizes === 'undefined') {
+        if (typeof $scope.ImageOptions.OSDOptions.OSDTypes !== 'undefined') {
           selectedOSDDetails = $scope.ImageOptions.OSDOptions.OSDTypes;
         }
       } else {
@@ -5529,7 +5574,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         }
       }
 
-      if (selectedOSDDetails !== undefined) {
+      if (typeof selectedOSDDetails !== 'undefined') {
         for (i = 0; i < selectedOSDDetails.length; i++) {
           if (type === selectedOSDDetails[i].OSDType) {
             ret = selectedOSDDetails[i];
@@ -5543,7 +5588,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   $scope.OnFontSizeChange = function(selectedFontSize) {
-    if (selectedFontSize === undefined) {
+    if (typeof selectedFontSize === 'undefined') {
       return;
     }
 
@@ -5552,7 +5597,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
     var queue = [];
 
-    if ($scope.titleMax !== undefined && $scope.dateMax !== undefined) {
+    if (typeof $scope.titleMax !== 'undefined' && typeof $scope.dateMax !== 'undefined') {
       //if(pageData.OSDFontSize !== selectedFontSize)
       {
         $scope.OSD.FontSize = selectedFontSize;
@@ -5563,7 +5608,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
           $scope.TitleOSD[i].TitlePositionXSliderOptions.floor = $scope.PositionX.minValue;
           $scope.TitleOSD[i].TitlePositionXSliderOptions.ceil = $scope.titleMax.PositionX;
 
-          if (mAttr.NormalizedOSDRange === undefined || !mAttr.NormalizedOSDRange) {
+          if (typeof mAttr.NormalizedOSDRange === 'undefined' || !mAttr.NormalizedOSDRange) {
             $scope.TitleOSD[i].TitlePositionXSliderOptions.ceil = $scope.titleMax.PositionX - ($scope.TitleOSD[i].OSD.length - 1);
 
             if ($scope.TitleOSD[i].TitlePositionXSliderOptions.ceil < $scope.PositionX.minValue) {
@@ -5726,22 +5771,22 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     updateMultiLineOSD($scope.DateOSD[0].Index, 'Date', false);
   };
 
-  function getTitleSliderDisableColor() {
-    return mAttr.sliderDisableColor;
-  }
+  // function getTitleSliderDisableColor() {
+  //   return mAttr.sliderDisableColor;
+  // }
 
-  function getTitleSliderEnableColor() {
-    return mAttr.sliderEnableColor;
-  }
+  // function getTitleSliderEnableColor() {
+  //   return mAttr.sliderEnableColor;
+  // }
 
-  function getDateSliderColor() {
-    if ($scope.DateOSD !== 'undefined') {
-      if ($scope.DateOSD.Enable) {
-        return mAttr.sliderEnableColor;
-      }
-    }
-    return mAttr.sliderDisableColor;
-  }
+  // function getDateSliderColor() {
+  //   if ($scope.DateOSD !== 'undefined') {
+  //     if ($scope.DateOSD.Enable) {
+  //       return mAttr.sliderEnableColor;
+  //     }
+  //   }
+  //   return mAttr.sliderDisableColor;
+  // }
 
   $scope.addTitleOSD = function() {
     if ($scope.TitleOSD.length < mAttr.MaxOSDTitles) {
@@ -5808,8 +5853,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     if (typeof $scope.TitleOSD !== 'undefined') {
       if ($scope.TitleOSD.length) {
         var indexToRemove = 0;
-
-        for (var i = 0; i < $scope.TitleOSD.length; i++) {
+        var i = 0;
+        for (i = 0; i < $scope.TitleOSD.length; i++) {
           if ($scope.TitleOSD[i].aIndex === $scope.data.SelectedTitleIndex) {
             indexToRemove = $scope.TitleOSD[i].Index;
             break;
@@ -5817,14 +5862,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         }
 
         removeMultiLineOSD(indexToRemove, isPreview);
-        for (var i = 0; i < $scope.TitleOSD.length; i++) {
+        for (i = 0; i < $scope.TitleOSD.length; i++) {
           if (indexToRemove === $scope.TitleOSD[i].Index) {
             $scope.TitleOSD.splice(i, 1);
             break;
           }
         }
 
-        for (var i = 0; i < $scope.TitleOSD.length; i++) {
+        for (i = 0; i < $scope.TitleOSD.length; i++) {
           $scope.TitleOSD[i].aIndex = i;
         }
 
@@ -5883,14 +5928,15 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       if (!angular.equals(pageData.TitleOSD, $scope.TitleOSD)) {
         var existedTitleIndex = [mAttr.MaxOSDTitles];
         var deletedTitleIndex = [];
+        var i = 0;
 
-        for (var i = 0; i < mAttr.MaxOSDTitles; i++) {
+        for (i = 0; i < mAttr.MaxOSDTitles; i++) {
           existedTitleIndex[i] = false;
           deletedTitleIndex[i] = false;
         }
 
         if (typeof pageData.TitleOSD !== 'undefined' && pageData.TitleOSD.length) {
-          for (var i = 0; i < pageData.TitleOSD.length; i++) {
+          for (i = 0; i < pageData.TitleOSD.length; i++) {
             existedTitleIndex[pageData.TitleOSD[i].Index - 1] = true;
           }
         }
@@ -5915,7 +5961,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
         /* If Existed index is not available in page data, then it is deleted */
         for (var orig = 0; orig < existedTitleIndex.length; orig++) {
-          if (existedTitleIndex[orig] == false) {
+          if (existedTitleIndex[orig] === false) {
             continue;
           }
 
@@ -6200,7 +6246,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
 
   function updateOSDArray(oldArr, newArr, type) {
-    var i;
+    var i = 0;
     var newArrIdxMap = {};
 
     for (i = 0; i < newArr.length; i++) {
@@ -6210,8 +6256,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     }
 
     // update/remove obj
-    var oldObj, newObj;
-    var k;
+    var oldObj = null, newObj = null;
+    var k = 0;
     for (i = 0; i < oldArr.length; i++) {
       newObj = newArrIdxMap[oldArr[i].Index];
       oldObj = oldArr[i];
@@ -6260,6 +6306,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         $scope.OSD.Transparency = $scope.DateOSD[0].Transparency;
         $scope.titleMax = getOSDRanges('Title', $scope.OSD.FontSize);
         $scope.dateMax = getOSDRanges('Date', $scope.OSD.FontSize);
+        var xCeil = 1;
+
         if (typeof $scope.OSDBlinkOptions !== 'undefined') {
           if ($scope.DateOSD[0].OSDBlink === 'HDMI') {
             $scope.OSD.OSDBlink = true;
@@ -6268,7 +6316,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
           }
         }
         if ($scope.TitleOSD.length) {
-          if ($scope.data.SelectedTitleIndex === undefined) {
+          if (typeof $scope.data.SelectedTitleIndex === 'undefined') {
             $scope.data.SelectedTitleIndex = 0;
           }
 
@@ -6282,11 +6330,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
               $scope.TitleOSD[i].IsOSDSelected = false;
             }
 
-            var xCeil = 1;
-
             xCeil = $scope.titleMax.PositionX;
 
-            if (mAttr.NormalizedOSDRange === undefined || !mAttr.NormalizedOSDRange) {
+            if (typeof mAttr.NormalizedOSDRange === 'undefined' || !mAttr.NormalizedOSDRange) {
               if ($scope.TitleOSD[i].OSD.length) {
                 xCeil -= ($scope.TitleOSD[i].OSD.length - 1);
               }
@@ -6332,7 +6378,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
           }
         }
 
-        var xCeil = 1;
+        xCeil = 1;
 
         if ($scope.DateOSD[0].WeekDay) {
           xCeil = $scope.dateMax.PositionX - $scope.OffsetToReduceOnWeekDay;
@@ -6415,9 +6461,10 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function titleOSDCheckAllowedChars() {
     var currentCharCount = 0,
       retVal = true,
-      osdRange = {};
+      osdRange = {},
+      i = 0;
 
-    if ($scope.ImageOptions === undefined) {
+    if (typeof $scope.ImageOptions === 'undefined') {
       return retVal;
     }
 
@@ -6425,8 +6472,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     osdRange = getOSDRanges('Title', 'Small');
 
     if (typeof $scope.TitleOSD !== 'undefined' && $scope.TitleOSD.length) {
-      for (var i = 0; i < $scope.TitleOSD.length; i++) {
-        if ($scope.TitleOSD[i].OSD !== undefined) {
+      for (i = 0; i < $scope.TitleOSD.length; i++) {
+        if (typeof $scope.TitleOSD[i].OSD !== 'undefined') {
           currentCharCount += $scope.TitleOSD[i].OSD.length;
         }
       }
@@ -6437,9 +6484,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       retVal = false;
     }
     if (typeof $scope.TitleOSD !== 'undefined' && $scope.TitleOSD.length) {
-      for (var i = 0; i < $scope.TitleOSD.length; i++) {
+      for (i = 0; i < $scope.TitleOSD.length; i++) {
         if ($scope.TitleOSD[i].aIndex === $scope.data.SelectedTitleIndex) {
-          if ($scope.TitleOSD[i].OSD !== undefined && $scope.TitleOSD[i].OSD.length > 0) {
+          if (typeof $scope.TitleOSD[i].OSD !== 'undefined' && $scope.TitleOSD[i].OSD.length > 0) {
             if ($scope.CurrentLanguage === "Chinese") {
               //var hangul = new RegExp("[\u1100-\u11FF|\u3130-\u318F|\uA960-\uA97F|\uAC00-\uD7AF|\uD7B0-\uD7FF]");
               var china = new RegExp("[^a-zA-Z0-9-.\u4E00-\u9FFF\u2FF0-\u2FFF\u31C0-\u31EF\u3200-\u9FBF\uF900-\uFAFF]");
@@ -6469,7 +6516,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
 
   $scope.previewTitleOSD = function() {
-    if (titleOSDCheckAllowedChars() == false) {
+    if (titleOSDCheckAllowedChars() === false) {
       return;
     }
 
@@ -6492,8 +6539,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         if ($scope.TitleOSD[i].aIndex === $scope.data.SelectedTitleIndex) {
           // $scope.TitleOSD[i].isPreviewed = false;
 
-          if ($scope.titleMax !== undefined) {
-            if (mAttr.NormalizedOSDRange === undefined || !mAttr.NormalizedOSDRange) {
+          if (typeof $scope.titleMax !== 'undefined') {
+            if (typeof mAttr.NormalizedOSDRange === 'undefined' || !mAttr.NormalizedOSDRange) {
               if (typeof $scope.TitleOSD[i].OSD !== 'undefined' && $scope.TitleOSD[i].OSD.length) {
                 $scope.TitleOSD[i].TitlePositionXSliderOptions.ceil = $scope.titleMax.PositionX - ($scope.TitleOSD[i].OSD.length - 1);
               } else {
@@ -6533,7 +6580,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   function OSDDateChanged(sliderId, modelValue, highValue) {
     if (typeof $scope.DateOSD !== 'undefined' && typeof pageData.DateOSD !== 'undefined') {
-      if ($scope.dateMax !== undefined) {
+      if (typeof $scope.dateMax !== 'undefined') {
         var xCeil = 1;
 
         if ($scope.DateOSD[0].WeekDay) {
@@ -6586,7 +6633,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       $scope.ImageFile = "";
       $scope.ImageFileFull = {};
       //reset the file name after remove
-      if (document.getElementById('ImageField')) document.getElementById('ImageField').value = null;
+      if (document.getElementById('ImageField')) { 
+        document.getElementById('ImageField').value = null;
+      }
 
       SunapiClient.get('/stw-cgi/image.cgi?msubmenu=multiimageosd&action=remove', setData,
         function(response) {
@@ -6602,23 +6651,23 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   function viewNoDependency(promises) {
     /** If there is not dependency between paramters that make calls at the same time  */
 
-    if (mAttr.SSDRLevel !== undefined) {
+    if (typeof mAttr.SSDRLevel !== 'undefined') {
       promises.push(viewSSDR);
     }
 
-    if (mAttr.WhiteBalanceModeOptions !== undefined) {
+    if (typeof mAttr.WhiteBalanceModeOptions !== 'undefined') {
       promises.push(whitebalanceView);
     }
 
-    if (mAttr.Brightness !== undefined) {
+    if (typeof mAttr.Brightness !== 'undefined') {
       promises.push(imageenhancementsView);
     }
 
-    if (mAttr.MultiImageIndex !== undefined) {
+    if (typeof mAttr.MultiImageIndex !== 'undefined') {
       promises.push(multiimageoverlayView);
     }
 
-    if (mAttr.RotateOptions !== undefined) {
+    if (typeof mAttr.RotateOptions !== 'undefined') {
       promises.push(flipView);
     }
 
@@ -6637,7 +6686,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       promises.push(getOverlay);
     }
 
-    if (mAttr.FocusModeOptions !== undefined && (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true)) {
+    if (typeof mAttr.FocusModeOptions !== 'undefined' && (mAttr.PTZModel === true || mAttr.ZoomOnlyModel === true)) {
       promises.push(focusView);
     }
 
@@ -6657,14 +6706,15 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   function view() {
     var promises = [];
-    var isReady = false;
     $scope.channelChanged = false;
-    if ($scope.pageLoaded == true && $scope.isLoading == false) showLoadingBar(true);
+    if ($scope.pageLoaded === true && $scope.isLoading === false) { 
+      showLoadingBar(true);
+    }
 
     showVideo();
 
     /** Image preset is shown first, so call it first  */
-    if ($scope.ImagePresetModeOptions !== undefined) {
+    if (typeof $scope.ImagePresetModeOptions !== 'undefined') {
       promises.push(viewImagePreset);
     }
 
@@ -6675,7 +6725,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     promises.push(videoSourceView);
     //}
 
-    if (mAttr.CompensationModeOptions !== undefined) {
+    if (typeof mAttr.CompensationModeOptions !== 'undefined') {
       promises.push(cameraView);
     }
 
@@ -6683,7 +6733,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       promises.push(heaterScheduleView);
     }
 
-    if (mAttr.ExternalPTZModel !== undefined) {
+    if (typeof mAttr.ExternalPTZModel !== 'undefined') {
       if (mAttr.ExternalPTZModel === true) {
         $scope.isBoxModel = true; // Box
       } else {
@@ -6707,16 +6757,15 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
         function excView() {
           initShutterSpeeds(false);
-          isReady = true;
           $scope.pageLoaded = true;
-          if (mAttr.PTZModel == true) {
+          if (mAttr.PTZModel === true) {
             if ($scope.tabActiveData.backLight) {
-              if ($scope.Camera.CompensationMode == 'BLC') {
+              if ($scope.Camera.CompensationMode === 'BLC') {
                 $scope.ptzinfo = {
                   type: 'BLC',
                   disable: false
                 };
-              } else if ($scope.Camera.CompensationMode == 'HLC') {
+              } else if ($scope.Camera.CompensationMode === 'HLC') {
                 $scope.ptzinfo = {
                   type: 'HLC',
                   disable: false
@@ -6810,21 +6859,24 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
   $scope.imagePresetScheduleTableWidth = function(index, mode) {
     var ul = $('#imagePresetScheduleTable');
+    var li_width = 0;
     if (ul.length > 0) {
-      if (mode == 'time') {
-        var li_width = ul.width() / 24;
-        if (index == 0)
-          li_width = li_width - 1;
-        else if (index == 23)
-          li_width = li_width - 1;
+      if (mode === 'time') {
+        li_width = ul.width() / 24;
+        if (index === 0)
+          { 
+li_width -= 1; }        else if (index === 23)
+          { 
+li_width -= 1; 
+}
         return li_width + 'px';
       } else {
-        if (index % 60 == 0) {
-          var li_width = ul.width() / 24;
-          if (index == 0)
-            li_width = li_width - 1;
-          else if (index == 1380)
-            li_width = li_width - 1;
+        if (index % 60 === 0) {
+          li_width = ul.width() / 24;
+          if (index === 0)
+            { 
+li_width -= 1; }          else if (index === 1380)            { li_width -= 1;
+ }
           return li_width + 'px';
         } else {
           return '0px';
@@ -6836,12 +6888,14 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   };
   $scope.imagePresetScheduleTableClass = function(n, index) {
     var classNames = $scope.ScheduleColor[n] + ' scheduleColorList';
-    if (index == 0)
+    if (index === 0)      {
       classNames += ' firstChild';
-    else if (index == 1380)
+}    else if (index === 1380)      {
       classNames += ' lastChild';
-    if (index % 60 == 0)
+ }
+    if (index % 60 === 0)      { 
       classNames += ' realWidthChild';
+    }
 
     return classNames;
   };
@@ -6862,15 +6916,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   function detectOSDChanges() {
     var isChanged = false;
+    var osd = null;
+    var pageOsd = null;
 
-    if (!angular.equals(pageData.TitleOSD['Enable'], $scope.TitleOSD['Enable'])) {
+    if (!angular.equals(pageData.TitleOSD.Enable, $scope.TitleOSD.Enable)) {
       isChanged = true;
     } else {
       if ($scope.TitleOSD.length === pageData.TitleOSD.length) {
         for (var i = 0; i < $scope.TitleOSD.length; i++) {
           if (typeof $scope.TitleOSD[i] === 'object' && typeof pageData.TitleOSD[i] === 'object') {
-            var osd = $scope.TitleOSD[i];
-            var pageOsd = pageData.TitleOSD[i];
+            osd = $scope.TitleOSD[i];
+            pageOsd = pageData.TitleOSD[i];
             if (!angular.equals(osd.Enable, pageOsd.Enable) ||
               !angular.equals(osd.FontSize, pageOsd.FontSize) ||
               !angular.equals(osd.Transparency, pageOsd.Transparency) ||
@@ -6889,12 +6945,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
     }
 
-    if (!angular.equals(pageData.DateOSD['Enable'], $scope.DateOSD['Enable'])) {
+    if (!angular.equals(pageData.DateOSD.Enable, $scope.DateOSD.Enable)) {
       isChanged = true;
     } else {
       if (typeof $scope.DateOSD[0] === 'object' && typeof pageData.DateOSD[0] === 'object') {
-        var osd = $scope.DateOSD[0];
-        var pageOsd = pageData.DateOSD[0];
+        osd = $scope.DateOSD[0];
+        pageOsd = pageData.DateOSD[0];
         if (!angular.equals(osd.Enable, pageOsd.Enable) ||
           !angular.equals(osd.DateFormat, pageOsd.DateFormat) ||
           !angular.equals(osd.Transparency, pageOsd.Transparency) ||
@@ -6913,9 +6969,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   $rootScope.$saveOn("channelSelector:selectChannel", function(event, data) {
     $scope.channelChanged = true;
-    if (($scope.ImagePresetModeOptions !== undefined && !angular.equals(pageData.ImagePreset, $scope.ImagePreset)) ||
+    if ((typeof $scope.ImagePresetModeOptions !== 'undefined' && !angular.equals(pageData.ImagePreset, $scope.ImagePreset)) ||
       !angular.equals(pageData.VideoSources, $scope.VideoSources) ||
-      (mAttr.CompensationModeOptions !== undefined && !angular.equals(pageData.Camera, $scope.Camera)) ||
+      (typeof mAttr.CompensationModeOptions !== 'undefined' && !angular.equals(pageData.Camera, $scope.Camera)) ||
       ($scope.HeaterSupport && $scope.PTZModel !== true && !angular.equals(pageData.HeaterSchedules, $scope.HeaterSchedules)) ||
       !angular.equals(pageData.SSDR, $scope.SSDR) ||
       !angular.equals(pageData.WhiteBalance, $scope.WhiteBalance) ||
@@ -6924,8 +6980,8 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       // || !angular.equals(pageData.IRled, $scope.IRled)
       ||
       detectOSDChanges()) {
-      COMMONUtils
-        .confirmChangeingChannel().then(function() {
+      COMMONUtils.
+        confirmChangeingChannel().then(function() {
             if (validatePage()) {
               $scope.targetChannel = data;
               saveSettings().then(function() {

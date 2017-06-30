@@ -110,6 +110,95 @@
     </div>
   </div>
 
+  <!-- Fisheye 버튼을 클릭했을 때 -->
+  <div ng-show="channelSetFunctions['fisheye']" id="cm-fisheye">
+    <div class="cm-wrap">
+      <h2>
+        <span title="{{ 'lang_wall' | translate }}" ng-show="fisheyeMode === fisheyeModeList[0]">{{ 'lang_wall' | translate }}</span>
+        <span title="{{ 'lang_ceiling' | translate }}" ng-show="fisheyeMode === fisheyeModeList[1]">{{ 'lang_ceiling' | translate }}</span>
+
+        <button type="button" class="cm-str-button cm-reset-all" title="{{ 'Reset All' | translate }}" ng-click="resetFisheye('ResetPTZAll')">
+          <i class="tui tui-wn5-reset-all"></i>
+        </button>
+
+        <button type="button" class="cm-str-button cm-reset" title="{{ 'lang_camerareset' | translate }}" ng-click="resetFisheye('ResetPTZ')">
+          <i class="tui tui-wn5-reset"></i>
+        </button>
+
+      </h2>
+      <!-- Wall -->
+      <ul ng-if="fisheyeMode === fisheyeModeList[0]" class="cm-mode-wrap">
+        <li>
+          <button type="button" class="cm-icon-button active" title="{{ 'lang_fisheye_view' | translate }}" data-mode-num="1" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_singlePanorama' | translate }}" data-mode-num="2" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-single-panorama"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Fisheye + 3PTZ' | translate }}" data-mode-num="3" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye-3ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_quadView' | translate }}" data-mode-num="4" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-quad-view"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Panorama + 2PTZ' | translate }}" data-mode-num="5" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-panorama-2ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ '9PTZ' | translate }}" data-mode-num="6" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-thumnailgroup"></i>
+          </button>
+        </li>
+      </ul>
+      <!-- Ceiling -->
+      <ul ng-if="fisheyeMode === fisheyeModeList[1]" class="cm-mode-wrap">
+        <li>
+          <button type="button" class="cm-icon-button active" title="{{ 'lang_fisheye_view' | translate }}" data-mode-num="1" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_singlePanorama' | translate }}" data-mode-num="2" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-single-panorama"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_doublePanorama' | translate }}" data-mode-num="3" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-double-panorama"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Fisheye + 3PTZ' | translate }}" data-mode-num="4" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye-3ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_quadView' | translate }}" data-mode-num="5" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-quad-view"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Panorama + 2PTZ' | translate }}" data-mode-num="6" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-panorama-2ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Fisheye + 8PTZ' | translate }}" data-mode-num="7" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye-8ptz"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <!-- PTZ 버튼을 클릭했을 때 -->
   <div ng-show="channelSetFunctions['ptz']" id="live-ptz">
@@ -127,7 +216,7 @@
             <th>{{'lang_profile' | translate}}</th>
             <th>{{'lang_bitrate' | translate}}(kbps)</th>
             <th>{{'lang_framerate' | translate}}(fps)</th>
-            <th>ATC(%)</th>
+            <th ng-show="supportATC">ATC(%)</th>
             <th>{{'lang_accessNumber' | translate}}</th>
           </tr>
         </thead>
@@ -136,7 +225,7 @@
             <td>{{Profiles.Name}}</td>
             <td>{{Profiles.CurrentBitrate}}/{{Profiles.TotalBitrate}}</td>
             <td>{{Profiles.CurrentFPS}}/{{Profiles.TotalFPS}}</td>
-            <td>{{Profiles.ATC}}</td>
+            <td ng-show="supportATC">{{Profiles.ATC}}</td>
             <td>{{Profiles.ConcurrentUserCount}}</td>
           </tr>
         </tbody>

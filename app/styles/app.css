@@ -1168,6 +1168,23 @@ input[type='text'] {
   color: white;
   text-shadow: -1px -1px 0 #666, 1px -1px 0 #666, -1px 1px 0 #666, 1px 1px 0 #666;
 }
+#mi-full-camera {
+  z-index: 2000;
+  background-color: black;
+}
+#mi-full-camera .mi-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-family: "Malgun Gothic";
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: white;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.35);
+  font-size: 30px;
+  font-weight: bold;
+}
 /* Function */
 .tui-loading-wrapper {
   width: 100%;
@@ -8927,6 +8944,50 @@ i.tui-ch-playback-stop {
   .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-table tbody {
     height: 150px !important;
     max-height: 150px !important;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye {
+    width: 320px;
+    display: inline-table;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap {
+    width: 100%;
+    padding: 0 20px;
+    text-align: left;
+    display: inline-table;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap h2 .cm-str-button {
+    float: right;
+    height: 30px;
+    line-height: 28px;
+    padding: 0;
+    text-align: center;
+    font-size: 25px;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap h2 .cm-str-button.cm-reset {
+    width: 30px;
+    margin-right: 7px;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap h2 .cm-str-button.cm-reset-all {
+    width: 40px;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap {
+    margin-top: 20px;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li {
+    width: 80px;
+    float: left;
+    text-align: left;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li .cm-icon-button {
+    padding: 0;
+    font-size: 26px;
+    margin: 10px 0;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li .cm-icon-button.active {
+    color: #f37321;
+  }
+  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li:nth-of-type(4n) {
+    width: auto;
   }
   .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li {
     height: 25px;

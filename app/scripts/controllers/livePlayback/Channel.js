@@ -751,6 +751,8 @@ kindFramework.
             break;
           case 999: //Try reconnection
             reconnect();
+            UniversialManagerService.setVideoMode("canvas");
+            kindStreamInterface.setTagType("canvas");
             break;
           default:
             break;
@@ -776,15 +778,11 @@ kindFramework.
                 console.log(errorData);
               }
             );
-          } else {
-            try {
-              xmlHttp.open("POST", "../home/pw_check.cgi", true); // false for synchronous request
-              xmlHttp.send(null);
-            } catch (e) {
-              reconnect();
-            }
+          }else{
+            xmlHttp.open( "POST", "../home/pw_check.cgi", true); // false for synchronous request
+            xmlHttp.send( null );
           }
-        }, 500);
+        },500);
       }
 
       xmlHttp.onreadystatechange = function() {
@@ -793,7 +791,8 @@ kindFramework.
             if (xmlHttp.responseText === "OK") {
               window.setTimeout(RefreshPage, 500);
             } else {
-              return SunapiClient.get('/stw-cgi/network.cgi?msubmenu=interface&action=view', {},
+              try{
+                SunapiClient.get('/stw-cgi/network.cgi?msubmenu=interface&action=view',{},
                 function(response) {
                   var macIp = response.data.NetworkInterfaces[0].MACAddress;
                   if (macIp === RESTCLIENT_CONFIG.digest.macAddress) {
@@ -812,7 +811,13 @@ kindFramework.
                 },
                 function(errorData, errorCode) {
                   console.error(errorData);
+                  reconnect();
                 }, '', true);
+              }catch(e){
+                if(this.status === "" || this.status === 0){
+                  reconnect();
+                }
+              }
             }
           } else if (this.status == 401) {
             var unAuthHtml = "<html><head><title>401 - Unauthorized</title></head><body><h1>401 - Unauthorized</h1></body></html>";

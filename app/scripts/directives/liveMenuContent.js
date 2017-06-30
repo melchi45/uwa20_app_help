@@ -7,7 +7,9 @@ kindFramework.directive('liveMenuContent', function(
   AccountService,
 	CAMERA_STATUS,
 	BrowserService,
-  UniversialManagerService
+  UniversialManagerService,
+  PluginControlService,
+  kindStreamInterface
 ) {
   "use strict";
   return {
@@ -305,7 +307,14 @@ kindFramework.directive('liveMenuContent', function(
         if (mAttr.MaxChannel > 1) {
           isMultiChannel = true;
         }
+        if(mAttr.ATCModes === undefined){
+          scope.supportATC = false;
+        }else{
+          scope.supportATC = true;
+        }
+				
         initDisplay();
+        getFisheyeMode();
         scope.pluginStatus.initQuality();
       }
 
@@ -319,6 +328,29 @@ kindFramework.directive('liveMenuContent', function(
           view();
         }
       })();
+
+			scope.changeFisheyeMode = function(elem){
+				var self = $(elem.currentTarget);
+				var type = self.attr("data-mode");
+
+				$(".cm-mode-wrap button").removeClass("active");
+				self.addClass("active");
+        kindStreamInterface.setCanvasStyle(scope.viewMode, scope.channelSetFunctions.show);
+        var position = scope.fisheyeMode === scope.fisheyeModeList[0]? 2 : 1;
+				PluginControlService.changeViewMode(position, modeNum);
+			};
+      
+			function getFisheyeMode() {
+				var getData = {};
+				return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=fisheyesetup&action=view', getData,
+					function (response) {
+						scope.fisheyeModeList = mAttr.CameraPosition;
+						scope.fisheyeMode = response.data.Viewmodes[0].CameraPosition;
+					},
+					function (errorData) {
+						console.log(errorData);
+					}, '', true);
+			}
     },
   };
 });
