@@ -249,7 +249,7 @@ kindFramework.directive('liveIconList', function(
             },
             'class': 'tui-eye',
             'ngClass': 'fisheye',
-            'show': false
+            'show': false,
           },
           status: {
             'label': 'lang_status',
@@ -311,8 +311,32 @@ kindFramework.directive('liveIconList', function(
       $timeout(view);
       $timeout(wait);
 
+			scope.changeFisheyeMode = function(elem){
+				var self = $(elem.currentTarget);
+				var type = self.attr("data-mode");
+        
+				$("#cm-fisheye-mode button").removeClass("active");
+				self.addClass("active");
+			};
+      
+			function getFisheyeMode() {
+				var getData = {};
+				return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=fisheyesetup&action=view', getData,
+					function (response) {
+						scope.fisheyeModeList = mAttr.CameraPosition;
+						scope.fisheyeMode = response.data.Viewmodes[0].CameraPosition;
+						console.info(scope.fisheyeModeList, scope.fisheyeMode);
+					},
+					function (errorData) {
+						console.log(errorData);
+					}, '', true);
+			}
+
       function loadedAttr() {
         scope.wisenetCameraFuntions2.ptz.show = (mAttr.ZoomOnlyModel || mAttr.PTZModel || mAttr.ExternalPTZModel || mAttr.isDigitalPTZ);
+        scope.wisenetCameraFuntions2.fisheye.show = mAttr.FisheyeLens && (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE);
+        getFisheyeMode();
+
         if (mAttr.MaxChannel > 1) {
           scope.isMultiChannel = true;
         }
