@@ -178,6 +178,7 @@ kindFramework.controller('fogDetectionCtrl', function($scope, SunapiClient, XMLP
 
   function stopMonitoringFogLevel() {
     mStopMonotoringFogLevel = true;
+    mLastSequenceLevel = 0;
     $scope.$broadcast('liveChartStop');
 
     if (monitoringTimer !== null) {

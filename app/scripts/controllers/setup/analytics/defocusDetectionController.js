@@ -457,6 +457,7 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
 
   function stopMonitoringDefocusLevel() {
     mStopMonotoringDefocusLevel = true;
+    mLastSequenceLevel = 0;
     $scope.$broadcast('liveChartStop');
 
     if (monitoringTimer !== null) {

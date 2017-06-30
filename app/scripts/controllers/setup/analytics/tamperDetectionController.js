@@ -184,6 +184,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
 
   function stopMonitoringTamperingLevel() {
     mStopMonotoringTamperingLevel = true;
+    mLastSequenceLevel = 0;
     $scope.$broadcast('liveChartStop');
 
     if (monitoringTimer !== null) {

@@ -296,6 +296,7 @@ kindFramework.controller('soundClassificationCtrl', function($scope, SunapiClien
 
   function stopMonitoringSoundLevel() {
     mStopMonotoringSoundLevel = true;
+    mLastSequenceLevel = 0;
     $scope.$broadcast('liveChartStop');
 
     if (monitoringTimer !== null) {
