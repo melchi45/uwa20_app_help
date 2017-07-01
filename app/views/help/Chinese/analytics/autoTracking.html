@@ -1,0 +1,155 @@
+﻿<h1 class="wn5-setup-main-title">自动跟踪</h1>
+<div class="wn5-setup-section">
+    <p>使用自动跟踪功能，通过视频分析识别和跟踪对象。可以设置使用自动跟踪的详细信息。</p>
+    <p>完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。</p>
+</div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+    <ul>
+        <li>使用摄像机自动跟踪的方法如下所示。</li>
+        <ul>
+            <li><span class="tui tui-ch-live-ptz-tracking-auto-on"></span> 单击自动跟踪图标。从整个区域分析、选择和跟踪移动焦点。</li>
+            <li>在 <a class="wn5-online-help-link" href="../Monitoring.html" ng-href="#/help/uni/channel">实时</a> 页面视频屏幕上，单击鼠标右键，即可根据点击的区域，对移动焦点进行分析，并开始自动跟踪。</li>
+            <li><a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html#preset" ng-href="#/help/ptz_ptzInfoSetup?#preset">设置预设</a>时，在<strong class="UI">[操作后]</strong>中选择&ldquo;跟踪&rdquo;，摄像机即可移动到对应预设，并自动执行自动跟踪功能。</li>
+        </ul>
+    </ul>
+        </div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>非测试区域</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+
+
+        <div class="wn5-setup-section-article-content">
+            <p>显示探测跟踪对象的非探测区域列表。可设置多达 8 个区域。</p>
+			</div>
+        <div class="wn5-online-help-action">
+            <h4><span class="tui tui-wn5-help-warning"></span><a name="exclude"></a>设置非探测区域</h4>
+            <ol>
+                <li>在摄像机图像屏幕上拖动鼠标，设置非探测区域。</li>
+                <li>在 <strong class="UI">[自动跟踪]</strong> 对话框中输入非探测区域名称，然后单击 <strong class="UI">[确定] </strong>按钮。</li>
+            </ol>
+        </div>
+            <div class="wn5-online-help-action">
+                <h4><span class="tui tui-wn5-help-warning"></span>删除非探测区域</h4>
+                <ol>
+                    <li>选择想从非探测区域列表中删除的数量。</li>
+                    <li>单击<strong class="UI">[删除]</strong>按钮。</li>
+                </ol>
+            </div>
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+            <ul>
+                <li>只有选择 <strong class="UI">[自动跟踪设置]</strong> &gt; <strong class="UI">[区域激活]</strong> 时，非探测区域自动跟踪功能才有效。</li>
+                <li>自动跟踪非探测区域是指不包含在初始对象探测区域的区域。如果跟踪对象处于非探测区域，则将会被不断跟踪。</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>自动跟踪设置</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><!-- ??? ????? <li>???</li> ??? ????? --></p>
+            <h3>摄像机高度</h3>
+            <p>设置摄像机高度。输入的高度与摄像机的实际安装高度越接近，自动跟踪功能的运行越精确。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>缩放</h3>
+            <p>选择是否使用变焦操作进行自动跟踪。 &nbsp;</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>保持大小</h3>
+            <p>如果选择使用变焦，自动跟踪对象的大小会根据整个图像屏幕的尺寸进行调整，并且在保持跟踪对象的大小的同时进行自动跟踪。</p>
+            <p>只有当从 <strong class="UI">[缩放]</strong> 中选择<strong class="UI">[使用]</strong>时，才会运行。</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>指示灯显示</h3>
+            <p>选择是否在图像屏幕上使用指示跟踪对象的指示灯。</p>
+            <p>如果选择<strong class="UI">[使用]</strong> 进行指示灯显示，则指示灯也会显示在录制的图像上。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>区域激活</h3>
+            <p>从设置区域探测到的对象不包括在自动跟踪中。请访问&amp;apos;<a class="wn5-online-help-link" href="autoTrackEvent#exclude" ng-href="#/help/analytics_autoTrackEvent?#exclude">设置自动跟踪非探测区域</a>&amp;apos，了解如何设置非探测区域。</p>
+            <p>如果选择 <strong class="UI">[使用]</strong> ，则将使用所有设置的非探测区域。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>自动模式</h3>
+            <p>设置是否自动终止自动跟踪功能。选择<strong class="UI">[使用]</strong>时，自动跟踪功能自动终止，这意味着一段时间内（60 秒）未检测到跟踪物体时，跟踪操作不再保留。不选择<strong class="UI">[使用]</strong>时，搜索跟踪物体的整个过程中，自动跟踪操作会保留。</p>
+        </div>
+
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>事件动作</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        
+        <div class="wn5-setup-section-article-content">
+            <h3>电子邮件</h3>
+            <p>自动跟踪事件已经创建时，如需通过电子邮件发送图像，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/电子邮件]</strong></a>完成具体的电子邮件设置。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>录制</h3>
+            <p>创建自动跟踪事件时，如需将图像保存至 SD 卡或 NAS，请选择<strong class="UI">[使用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>警报输出</h3>
+            <p>创建自动跟踪事件时，可为某个特定的警报设置警报输出编号。选择警报输出编号后，如果不想使用警报，请选择<strong class="UI">[关闭]</strong>。如果要使用警报，请选择输出时间。您可以通过选择<strong class="UI">[始终]</strong>或将警报设置为 5、10 或 15 秒，将警报设置为持续发声，直到用户关闭。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a>完成具体的警报输出设置。</p>
+        </div>
+		
+         <div class="wn5-setup-section-article-content" ng-if="PresetAction && !PTZModel">
+            <h3>转至预设位</h3>
+                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。可以在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a> 或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[外部 PTZ]</a></strong>的<strong class="UI">[预设]</strong>预设摄像机设置。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>转至预设位</h3>
+                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。可以在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ设置]</strong></a>预设摄像机设置。</p>
+        </div>
+		
+		<div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
+            <h3>简单对焦</h3>
+            <p>创建自动跟踪事件时，会使用简单对焦，来调整自动调焦。只有创建一个事件时，才会执行简单对焦。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>激活时间</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>从<strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_defocusDetection?#action">事件操作设置</a>]</strong>中将事件操作状态设置为始终，或仅在跟踪事件已经创建时进行操作。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- ??? ????? <li>???</li> ??? ????? --></p>
+            </ul>
+            <h3>始终</h3>
+            <p>创建自动跟踪事件时，始终执行事件操作设置。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>仅预约时间</h3>
+            <p>仅在已设置的时间内创建自动跟踪事件时，使用事件操作设置。选择<strong class="UI">[仅预约时间]</strong>时，时间表会根据当前的摄像机时间显示相应的日期（从星期日至星期六）。可在时间表上用鼠标进行单击或拖动，来设置事件操作设置的时间。已设置的激活时间会在相应的工作日和时间重复执行。</p>
+			<p>单击<strong class="UI">[1 分钟]</strong>、<strong class="UI">[30 分钟]</strong>或<strong class="UI">[1 小时]</strong>按钮，可更改时间视图单位。单击<strong class="UI">[重置]</strong>按钮时，所有已设置的激活时间将被删除。如需确认或更改摄像机时间，请参照<strong class="UI">[基本设置]</strong>&gt;<strong class="UI">[日期和时间]</strong>。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

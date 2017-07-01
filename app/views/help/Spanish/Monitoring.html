@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Pantalla en vivo</h1>
+﻿<h1 class="wn5-setup-main-title">Pantalla en vivo</h1>
 <div class="wn5-setup-section">
     <p>Puede comprobar la pantalla en vivo para ver lo que est&aacute; siendo capturado por la c&aacute;mara y el control de captura de pantalla, salida de alarma y micr&oacute;fono y otras funciones. Al hacer clic en el bot&oacute;n <span class="tui tui-wn5-top-live"></span> de la pantalla, aparecer&aacute; la pantalla grabada. </p>
 </div>
@@ -60,8 +60,9 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Puede controlar los movimientos de Panor&aacute;mica/Inclinaci&oacute;n/Zoom de la c&aacute;mara. PTZ s&oacute;lo funciona si el perfil de v&iacute;deo aplicado a la pantalla en vivo actual soporta PTZ digital. Para cambiar a un perfil de control PTZ digital, seleccione <strong class="UI">[Perfil PTZ digital]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. </p>
-                            <p>&nbsp;</p>
+                            <p ng-if="PTZMode">Puede controlar los movimientos de Panor&aacute;mica/Inclinaci&oacute;n/Zoom de la c&aacute;mara. PTZ s&oacute;lo funciona si el perfil de v&iacute;deo aplicado a la pantalla en vivo actual soporta PTZ digital. Para cambiar a un perfil de control PTZ digital, seleccione <strong class="UI">[Perfil PTZ digital]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. </p>
+                            
+                            <p ng-if="PTZModel">Puede controlar las acciones de panorámica, inclinación y zoom de la cámara. Puede moverse hasta la ubicación del preajuste definido en la página <strong class="UI">[Configuración]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">[Configuración PTZ</a>]</strong> o iniciar/detener las funciones de oscilación, grupo, tour y seguimiento. </p>
                         </td>
                     </tr>
 
@@ -187,8 +188,36 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+
+<hr class="wn5-setup-hr" ng-if="Zoom">
+<div class="wn5-setup-section" ng-if="Zoom">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Puede ajustar el zoom o enfoque de la c&aacute;mara.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Ajuste del zoom</h3>
+            <p>Al hacer clic en el bot&oacute;n <strong class="UI">[+]</strong> en el &aacute;rea incluida de zoom, la pantalla acerca el zoom. Cuando se hace clic en el bot&oacute;n <strong class="UI">[-]</strong>, la pantalla aleja el zoom.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Ajuste del enfoque</h3>
+            <p><span class="tui tui-wn5-ptz-near"></span>Ajuste el enfoque de la c&aacute;mara haciendo clic en un bot&oacute;n o el bot&oacute;n <span class="tui tui-wn5-ptz-far"></span>.</p>
+            <p>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente de una vez, haga clic en el bot&oacute;n <span class="tui tui-wn5-simple-focus"></span>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Mover un preajuste</h3>
+            <p>Cuando selecciona un preajuste que desee desde la lista de preajustes y hace clic en el bot&oacute;n <strong class="UI">[Ir]</strong>, se mover&aacute; hasta la ubicaci&oacute;n de preajuste deseada.</p>
+            <p>Para agregar un preajuste, haga clic en el bot&oacute;n <strong class="UI">[Configuraci&oacute;n] </strong>, introduzca el nombre de preajuste, defina un n&uacute;mero, y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. Un preajuste puede ser a&ntilde;adido o cambiado desde la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de preajustes]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- <hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -208,8 +237,9 @@
         <div class="wn5-setup-section-article-content">
             <h3>Mover un preajuste</h3>
             <p>Cuando selecciona un valor preajuste que desee de la lista predeterminada y hace clic en el bot&oacute;n <strong class="UI">[Reproducci&oacute;n]</strong>, se mover&aacute; a la posici&oacute;n de memoria deseada. La lista de predefinidos puede ser a&ntilde;adida o cambiada desde la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Preajuste]</strong>.</p>
-        <div class="wn5-setup-section-article-content">
         </div>
+        <div class="wn5-setup-section-article-content">
+
             <h3>Ejecuci&oacute;n de un movimiento de grupo</h3>
             <p>Al seleccionar un grupo deseado de <strong class="UI">[Grupo]</strong> y hacer clic en el bot&oacute;n <strong class="UI">[Reproducci&oacute;n]</strong>, el movimiento de grupo preajuste se ejecutar&aacute;. La lista de grupos puede ser a&ntilde;adida o cambiada desde la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Grupo]</strong>.</p>
         </div>
@@ -218,6 +248,52 @@
                      
             <p>Un objeto o persona en movimiento se pueden seguir autom&aacute;ticamente en la pantalla en vivo. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>Al hacer clic en el bot&oacute;n (Seguimiento autom&aacute;tico), se ejecutar&aacute; la funci&oacute;n de seguimiento autom&aacute;tico. Al hacer clic en <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(Seguimiento autom&aacute;tico) de nuevo, la funci&oacute;n de seguimiento se detendr&aacute;. Si se utiliza la funci&oacute;n PTZ durante el uso de la funci&oacute;n de seguimiento autom&aacute;tico, la funci&oacute;n de seguimiento autom&aacute;tico se detendr&aacute;.</p>
         </div>
+        </div>
+    </div>
+-->
+
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Puede controlar los movimientos de panorámica/inclinación/zoom de la cámara o usar la función de seguimiento automático.  </p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Control del movimiento de zoom</h3>
+            <p>Cuando haga clic en el botón <strong class="UI">[+]</strong> de la barra del zoom &nbsp;, se acercará el zoom. Cuando haga clic en el botón <strong class="UI">[-]</strong>, se alejará el zoom.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Control del movimiento de panorámica/inclinación</h3>
+            <p> Mueva la dirección de la cámara haciendo clic en el botón <span class="tui tui-wn5-ptz-handle"></span> del área de Panorámica e Inclinación. </p>
+        </div>
+            <div class="wn5-setup-section-article-content">
+                        <h3>Ajuste del enfoque</h3>
+            <p> Ajuste el enfoque de la cámara haciendo clic en el botón <span class="tui tui-wn5-ptz-near"></span> o el botón <span class="tui tui-wn5-ptz-far"></span>.</p>
+            <p> Para ajustar el enfoque de la cámara automáticamente de una vez,&nbsp;haga clic en el botón <span class="tui tui-wn5-simple-focus"></span>.
+        </div> 
+  <div class="wn5-setup-section-article-content">
+            <h3>Seguimiento automático</h3>
+                     
+            <p>Un objeto o persona en movimiento puede ser seguido automáticamente en la vista en vivo. Cuando haga clic en el botón de Seguimiento automático <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, &nbsp;la función de seguimiento automático se ejecutará. Cuando haga clic de nuevo en el botón de Seguimiento automático<span class="tui tui-ch-live-ptz-tracking-auto-on"></span>, &nbsp;la función de seguimiento automático se detendrá. </p>
+            <p>Además, cuando haga clic en el botón derecho del ratón sobre la imagen en pantalla, el área sobre el que haya hecho clic asociada a un movimiento será analizada, y entonces comenzará el seguimiento automático.</p>
+        </div>    
+        <div class="wn5-setup-section-article-content">
+            <h3>Uso de la función PTZ</h3>
+            <p>Puede mover la cámara hasta una posición definida con antelación o iniciar y detener las funciones de oscilación, grupo, tour y seguimiento. Para conocer el ajuste adecuado, consulte la página <strong class="UI">[Configuración]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">[Configuración PTZ</a>]</strong>.</p>
+  </div>
+        
+          
+        <div class="wn5-setup-section-article-content">
+            <h3>Zoom de área</h3>
+                     
+            <p>El zoom de área permite acercar el zoom y ver un área específica.</p>
+            <p>Cuando selecciona un área arrastrando el ratón sobre la pantalla con la imagen de la cámara después de hacer clic en el botón <span class="tui tui-chi-live-ptz-areazoom"></span>, la función de zoom se ejecutará sobre el área seleccionada y la posición de la cámara se moverá hasta el área seleccionada.&nbsp;Puede moverse hasta el área seleccionada y configuración anteriores haciendo clic en el botón <span class="tui tui-chi-live-ptz-areazoom-back"></span>. En caso de que se haya movido al área seleccionada y configuración anteriores, haga clic en el botón <span class="tui tui-chi-live-ptz-areazoom-pre"></span>si desea regresar al área y configuraciones anteriores a éstas otra vez. Cuando haga clic en el botón <span class="tui tui-chi-live-ptz-areazoom-1x"></span>, el aumento del zoom se cambiará a 1x y la cámara se moverá a su posición original.  </p>
+            <p>  </p>
+            <p> Para finalizar la configuración del zoom de área, haga clic de nuevo en el botón <span class="tui tui-chi-live-ptz-areazoom"></span>. El zoom de área definido actualmente se mantendrá y la función de configuración de zoom de área finalizará.</p>
         </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
 ﻿<h1 class="wn5-setup-main-title">IVA</h1>
 <div class="wn5-setup-section">
-    <p>An IVA event can be created when the rule for video analytics is set and a motion which satisfies the event rule condition is detected. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the IVA event applies to <strong class="UI">[IVA]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
+    <p>An IVA event can be created when the rule for video analytics is set and a motion which satisfies the event rule condition is detected. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the IVA event applies to <strong class="UI">[IVA]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a>
+pages equally.</p>
 </div>
 
 <hr class="wn5-setup-hr">
@@ -13,7 +14,13 @@
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
             <h3>Enable IVA</h3>
             <p>To use the IVA event, select <strong class="UI">[Enable IVA]</strong>.</p>
+ </div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>Type</h3>
+            <p>To set the same IVA (Intelligent video analytics) for all presets, select <strong class="UI">[Global]</strong>. To set a different IVA (Intelligent video analytics)&nbsp;for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.htm" ng-href="#/help/ptzSetup_ptzInfoSetup">Preset setup</a> page.</p>
         </div>
+		
     </div>
 </div>    
 
@@ -29,7 +36,8 @@
         </div>
         <div class="wn5-online-help-action">
             <h4>Setting a virtual line  </h4>
-			<p>When you click the start point and the end point of the line at each desired position on the camera image screen, the virtual line will be set and the color of the number button in <strong class="UI">[Line]</strong> will change. You can change the direction from A to B, B to A or both directions by clicking the arrow in the middle of the virtual line, or you can select a desired direction from <strong class="UI">[Direction]</strong> in <strong class="UI">[Categories]</strong>. Up to 8 virtual lines can be set.</p>
+			<p>When you click the start point and the end point of the line at each desired position on the camera image screen, the virtual line will be set and the color of the number button in <strong class="UI">[Line]</strong> will change. You can change the direction from A to B, B to A or both directions by clicking the arrow in the middle of the virtual line, or you can select a desired direction from <strong class="UI">[Direction]</strong> in <strong class="UI">[Categories]</strong>. Up to 8 virtual lines
+can be set.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Changing a virtual line  </h4>
@@ -187,13 +195,20 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Alarm output</h3>
-            <p>It is possible to set the alarm output number for a specific alarm when an IVA event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+            <p>It is possible to set the alarm output number for a specific alarm when an IVA event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a
+class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
 		
-		<div class="wn5-setup-section-article-content" ng-if="PresetAction">
-		<h3>Goto preset</h3>
-            <p>You can change the settings for the camera view position to switch to a preset number (which was set in advance), in case an IVA event occurs. Camera presets can be set in <strong class="UI">[Preset]</strong> from <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[External PTZ]</a></strong>.</p>
-		</div>
+        <div class="wn5-setup-section-article-content" ng-if="PresetAction && !PTZModel">
+            <h3>Goto preset</h3>
+                    <p>You can set the position of camera view to move to a preset number when a queue management event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[External PTZ]</a></strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>Goto preset</h3>
+                <p>You can set the position of camera to move to a preset position when a queue management event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
+        </div>
+
 		
     </div>
 </div>

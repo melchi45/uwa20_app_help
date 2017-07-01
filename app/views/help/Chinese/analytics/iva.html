@@ -1,5 +1,4 @@
-﻿
-<h1 class="wn5-setup-main-title">IVA</h1>
+﻿<h1 class="wn5-setup-main-title">IVA</h1>
 <div class="wn5-setup-section">
     <p>设置好视频分析规则，且检测到满足事件规则条件的移动时，会创建一个 IVA 事件。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。IVA 事件的设置同样可在<strong class="UI">[事件]</strong>中的 <strong class="UI">[IVA]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[事件设置]</strong></a>页面中完成。</p>
 </div>
@@ -11,49 +10,83 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --></ul>
-            <h3>启用 IVA </h3>
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>启用 IVA</h3>
             <p>如需执行 IVA 事件，请选择<strong class="UI">[启用 IVA]</strong>。</p>
+ </div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>类型</h3>
+            <p>如需设置所有预设的 IVA（智能视频分析），选择<strong class="UI">[全局]</strong>。如需设置各 PTZ 预设的不同 IVA（智能视频分析），选择 <strong class="UI">[预设]</strong>。只有当通过<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">预设位设置</a>页面设置预设时，才会激活<strong class="UI">[预设]</strong>选项。</p>
         </div>
+		
+    </div>
+</div>    
+
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>虚拟线</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+
         <div class="wn5-setup-section-article-content">
-            <h3>虚拟线</h3>
-            <p>根据用户设置的虚拟线和方向，检测物体的移动。 </p>
-            <h5>设置虚拟线  </h5>
-            <p>选定摄像机图像屏幕上的两个位置，单击虚拟线的起始两端，即可设置虚拟线，且<strong class="UI">[</strong><strong>线</strong><strong class="UI">]</strong>内的数字键会发生颜色变化。单击虚拟线中间的箭头，或从<strong class="UI">[类别]</strong>中的<strong class="UI">[方向]</strong>选择所需方向，可在 A、B 两个方向进行转变。可设置多达 8 条虚拟线。</p>
-            <h5>更改虚拟线  </h5>
+            <p>根据用户设置的虚拟线和方向，检测物体的移动。</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>设置虚拟线</h4>
+			<p>选定摄像机图像屏幕上的两个位置，单击虚拟线的起始两端，即可设置虚拟线，且<strong class="UI">[线]</strong>内的数字键会发生颜色变化。单击虚拟线中间的箭头，或从<strong class="UI">[类别]</strong>中的<strong class="UI">[方向]</strong>选择所需方向，可在 A、B 两个方向进行转变。可设置多达 8 条虚拟线。</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>更改虚拟线</h4>
 			<p>移动虚拟线的一角，可以改变虚拟线的大小。用鼠标单击并拖动虚拟线，可改变虚拟线的位置。</p>
-			<h5>删除虚拟线  </h5>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>删除虚拟线</h4>
 			<p>如需删除虚拟线，在屏幕上的相应区域单击鼠标右键，并在删除确认窗口单击<strong class="UI">[确认]</strong>按钮。</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <h5>线</h5>
-            <p>添加虚拟线时，<strong class="UI">[</strong><strong>线</strong><strong class="UI">]</strong>内的数字键会发生颜色改变。单击数字键禁用虚拟线时，对应的虚拟线将不会显示在预览屏幕中。再次单击数字键时，该虚拟线将重现。</p>
+            <h3>线</h3>
+            <p>添加虚拟线时，<strong class="UI">[线]</strong>内的数字键会发生颜色改变。单击数字键禁用虚拟线时，对应的虚拟线将不会显示在预览屏幕中。再次单击数字键时，该虚拟线将重现。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h5>类别</h5>
+            <h3>类别</h3>
             <ul>
                 <li><strong class="UI">通过</strong>：如需在检测出有物体经过虚拟线时创建一个事件，请选择该复选框。</li>
                 <li><strong class="UI">方向</strong>：设置物体经过虚拟线的方向。</li>
             </ul>
         </div>
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>虚拟区域</h2>
+    </div>
+<div class="wn5-setup-section-article">
+
         <div class="wn5-setup-section-article-content">
-            <h3>虚拟区域</h3>
-            
-			<p>用户在相关区域设置虚拟区域，并使用侵入、进入/退出、出现（消失）和滞留图像规则，来监测物体的移动情况。 </p>
-			<h5>设置虚拟区域  </h5>
-			<p>用鼠标选择一个图像的四个角时，该区域被设置为虚拟区域，且<strong class="UI">[区域]</strong>内的数字键将发生颜色变化。可设置多达 8 个虚拟区域，且可为每个区域设置图像分析规则。 </p>
-			<h5>更改虚拟区域  </h5>
+			<p>用户在相关区域设置虚拟区域，并使用侵入、进入/退出、出现（消失）和滞留图像规则，来监测物体的移动情况。</p>
+        </div>
+        <div class="wn5-online-help-action">
+			<h4>设置虚拟区域</h4>
+			<p>用鼠标选择一个图像的四个角时，该区域被设置为虚拟区域，且<strong class="UI">[区域]</strong>内的数字键将发生颜色变化。可设置多达 8 个虚拟区域，且可为每个区域设置图像分析规则。</p>
+        </div>
+        <div class="wn5-online-help-action">
+			<h4>更改虚拟区域</h4>
             <p>移动虚拟区域的一角，可以改变虚拟区域的大小。如需移动虚拟区域，用鼠标单击或拖动相应的区域。单击一条线后，出现一个角时，移动这个角，可以设置一个多边形虚拟区域。</p>
-			<h5>删除虚拟区域  </h5>
+        </div>
+        <div class="wn5-online-help-action">
+			<h4>删除虚拟区域</h4>
 			<p>如需删除虚拟区域，在屏幕上的相应区域单击鼠标右键，并在删除确认窗口单击<strong class="UI">[确认]</strong>按钮。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h5>区域  </h5>
+            <h3>区域</h3>
             <p>添加虚拟区域时，<strong class="UI">[区域]</strong>内的数字键会发生颜色改变。单击数字键禁用虚拟区域时，对应的虚拟区域将不会显示在预览屏幕中。再次单击数字键时，该虚拟区域将重现。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h5>类别  </h5>
+            <h3>类别</h3>
             <p>可以为每个虚拟区域设置规则。</p>
             <ul>
                 <li><strong class="UI">侵入中</strong>：当物体移至设置区域内时，将创建一个事件。</li>
@@ -61,45 +94,73 @@
                 <li><strong class="UI">退出</strong>：当一个移动物体退出用户设定的区域时，将创建一个事件。</li>
                 <li><strong class="UI">出现（消失）</strong>：如果用户指定区域内不存在的一个物体出现在该区域内，但没有越过区域线，且持续了一段时间，或如果存在于该区域内的物体消失了，则将创建一个事件。</li>
                 <ul>
-                    <li><strong class="UI">最短持续时间(秒)</strong>：为探测物体的出现（消失）设置最短时间。当在设置时间内存在于检测区域的物体消失时，探测结果显示该物体为消失的物体，而当监测区域不存在的物体出现一段时间时，则探测结果显示该物体为出现的物体。</li>
+                    <li><strong class="UI">最短持续时间（秒）</strong>：为探测物体的出现（消失）设置最短时间。当在设置时间内存在于检测区域的物体消失时，探测结果显示该物体为消失的物体，而当监测区域不存在的物体出现一段时间时，则探测结果显示该物体为出现的物体。</li>
                 </ul>
                 <li><strong class="UI">滞留中</strong>：检测到一个物体滞留在设置的探测区域内时，将创建一个事件。</li>
                 <ul>
-                    <li><strong class="UI">最短持续时间(秒)</strong>：为探测滞留物体和创建事件设置最短时间。当探测到物体滞留的时间大于设置的时间时，将创建一个事件。</li>
+                    <li><strong class="UI">最短持续时间（秒）</strong>：为探测滞留物体和创建事件设置最短时间。当探测到物体滞留的时间大于设置的时间时，将创建一个事件。</li>
                 </ul>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
-            <div class="wn5-online-help-info">
-                <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
-                <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>与其它 IVA 事件检测一同使用时，滞留检测效果可能不及单独使用时的效果。</li>
-                </ul>
-            </div>
-			        <div class="wn5-setup-section-article-content">
-            <h3>除外区域</h3>
-            <p>在虚拟线和虚拟区域采用分析规则时，将未探测到移动的区域设置为除外区域。<h5>设置除外区域</h5>用鼠标选择一个图像的四个角时，该区域被设置为除外区域，且<strong class="UI">[区域]</strong>内的数字键将发生颜色变化。可设置多达 8 个除外区域。<br><h5>更改除外区域  </h5>
-            <p>移动设置的除外区域的一角，可更改除外区域的大小，用鼠标选择并拖动除外区域，可移动除外区域的位置。 </p>
-			<h5>删除除外区域  </h5>
-			<p>如需删除除外区域，在屏幕上的相应区域单击鼠标右键，并在删除确认窗口单击<strong class="UI">[确认]</strong>按钮。</p>
+		
+				<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+            <ul>
+                <li>与其它 IVA 事件检测一同使用时，滞留检测效果可能不及单独使用时的效果。</li>
+            </ul>
         </div>
+	</div>
+</div>	
+
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>非测试区域</h2>
+    </div>
+
+    <div class="wn5-setup-section-article">
+
         <div class="wn5-setup-section-article-content">
-            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --></ul>
-            <h5>区域</h5>
-            <p>添加除外区域时，<strong class="UI">[区域]</strong>内的数字键会发生颜色改变。单击数字键禁用除外区域时，对应的虚拟区域将不会显示在预览屏幕中。再次单击数字键时，该除外区域将重现。</p>
+            <p>在虚拟线和虚拟区域采用分析规则时，将未探测到移动的区域设置为除外区域。</div>
+        <div class="wn5-online-help-action">
+            <h4>设置非测试区域</h4>
+            <p>用鼠标选择一个图像的四个角时，该区域被设置为非测试区域，且<strong class="UI">[区域]</strong>内的数字键将发生颜色变化。可设置多达 8 个非测试区域。</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>更改非测试区域</h4>
+            <p>移动设置的除外区域的一角，可更改除外区域的大小，用鼠标选择并拖动除外区域，可移动除外区域的位置。</p>
+        </div>
+        <div class="wn5-online-help-action">
+			<h4>删除非测试区域</h4>
+			<p>如需删除非测试区域，在屏幕上的相应区域单击鼠标右键，并在删除确认窗口单击<strong class="UI">[确认]</strong>按钮。</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <h3>通用</h3>
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>区域</h3>
+            <p>添加除外区域时，<strong class="UI">[区域]</strong>内的数字键会发生颜色改变。单击数字键禁用除外区域时，对应的虚拟区域将不会显示在预览屏幕中。再次单击数字键时，该非测试区域将重现。</p>
+        </div>
+    </div>
+</div>
+
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>通用</h2>
+    </div>
+
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
             <p>为检测的物体设置灵敏度和最小大小和最大大小，均适用于供虚拟线和虚拟区域。</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <h5>灵敏度 </h5>
+            <h3>灵敏度</h3>
             <p>为虚拟线和虚拟区域设置移动探测灵敏度。为物体和背景截然不同的环境设置较低的灵敏度，为物体和背景相差不大的环境设置较高的灵敏度。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h5>大小</h5>
-            <p>为检测的物体设置最小大小和最大大小，均适用于虚拟线和虚拟区域。用鼠标单击并拖动一角，可更改大小。更改大小时，<strong class="UI">[大小]</strong>中的<strong class="UI">[最小大小]</strong>和 <strong class="UI">[最大大小]</strong>也会发生改变。 </p>
+            <h3>大小</h3>
+            <p>为检测的物体设置最小大小和最大大小，均适用于虚拟线和虚拟区域。用鼠标单击并拖动一角，可更改大小。更改大小时，<strong class="UI">[大小]</strong>中的<strong class="UI">[最小大小]</strong>和 <strong class="UI">[最大大小]</strong>也会发生改变。</p>
         </div>
 
         <div class="wn5-online-help-info">
@@ -110,7 +171,6 @@
         </div>
     </div>
 </div>
-</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -120,24 +180,32 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>FTP</h3>
-            <p>创建 IVA 事件时，如需将图像保存至 FTP 服务器中，请选择<strong class="UI">[使用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/电子邮件]</strong></a>完成具体的 FTP 设置。</p>
+            <p>创建 IVA 事件时，如需将图像保存至 FTP 服务器中，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/电子邮件]</strong></a>完成具体的 FTP 设置。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>电子邮件</h3>
-            <p>出现 IVA 事件时，如需通过电子邮件发送图像，请选择<strong class="UI">[使用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/电子邮件]</strong></a>完成具体的电子邮件设置。</p>
+            <p>出现 IVA 事件时，如需通过电子邮件发送图像，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/电子邮件]</strong></a>完成具体的电子邮件设置。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>正在录制</h3>
-            <p>创建 IVA 事件时，如需将图像保存至 SD 卡或 NAS，请选择<strong class="UI">[使用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
+            <h3>录制</h3>
+            <p>创建 IVA 事件时，如需将图像保存至 SD 卡或 NAS，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>警报输出</h3>
-            <p>创建 IVA 事件时，可为某个特定的警报设置警报输出数。选择警报输出编号后，如果不希望输出任何警报，请选择<strong class="UI">[关]</strong>，如果希望输出警报，则选择输出时间。用户关闭警报之前，可以选择<strong class="UI">[始终]</strong>设置连续警报，或将警报时间设置为 5、10 或 15 秒。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a>完成具体的警报输出设置。</p>
-            <div class="wn5-setup-section-article-content" ng-if="PresetAction">
-                <h3>转至预设位</h3>
-                <p>可更改设置，以便在出现警报输入事件时，将摄像机视图位置切换至一个（提前设置的）预设编号。可在 <strong class="UI">[PTZ]</strong>&nbsp;&gt; <a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a>或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[外部 PTZ]</a></strong> &gt; <strong class="UI">[预设]</strong>选项卡中设置摄像机预设。</p>
-            </div>
+            <p>创建 IVA 事件时，可为某个特定的警报设置警报输出数。选择警报输出编号后，如果不希望输出任何警报，请选择<strong class="UI">[关]</strong>，如果希望输出警报，则选择输出时间。用户关闭警报之前，可以选择<strong class="UI">[始终]</strong>设置连续警报，或将警报时间设置为 5、10 或 15 秒。可从<strong class="UI">[事件]</strong>&gt;<a
+class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a>完成具体的警报输出设置。</p>
         </div>
+		
+	        <div class="wn5-setup-section-article-content" ng-if="PresetAction && !PTZModel">
+            <h3>转至预设位</h3>
+                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。可以在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a> 或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[外部 PTZ]</a></strong>的<strong class="UI">[预设]</strong>预设摄像机设置。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>转至预设位</h3>
+                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。可以在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ设置]</strong></a>预设摄像机设置。</p>
+        </div>
+		
     </div>
 </div>
 

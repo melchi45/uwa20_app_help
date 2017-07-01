@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Live screen</h1>
+﻿<h1 class="wn5-setup-main-title">Live screen</h1>
 <div class="wn5-setup-section">
     <p>You can check the live screen to view what is being captured by the camera and control screen capture, alarm output and microphone and other features. When you click the <span class="tui tui-wn5-top-live"></span> button on the screen, the live screen will appear. </p>
 </div>
@@ -60,8 +60,10 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the video profile applied to the current live screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>. </p>
-                            <p>&nbsp;</p>
+                            <p ng-if="PTZMode">You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the video profile applied to the current live screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>. </p>
+
+
+                            <p ng-if="PTZModel">You can control the pen/tilt/zoom motions of the camera. You can move to the preset location set on the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">[PTZ setup</a>]</strong> page or start/stop the swing, group, tour, and tracking functions. </p>
                         </td>
                     </tr>
 					
@@ -190,8 +192,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<!-- <hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -211,8 +213,9 @@
         <div class="wn5-setup-section-article-content">
             <h3>Moving a preset</h3>
             <p>When you select a desired preset from the preset list and click the <strong class="UI">[Playback]</strong> button, it will move to the desired preset location. The preset list can be added to or changed from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab.</p>
-        <div class="wn5-setup-section-article-content">
         </div>
+        <div class="wn5-setup-section-article-content">
+
             <h3>Operating a group motion</h3>
             <p>When you select a desired group from <strong class="UI">[Group]</strong> and click the <strong class="UI">[Playback]</strong> button, the preset group motion will operate. The group list can be added to or changed from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Group]</strong> tab.</p>
         </div>
@@ -221,9 +224,84 @@
                      
             <p>A moving object or person can be tracked automatically on the live screen. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>When you click the (Auto tracking) button, the auto tracking function will be executed. When you click the <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(Auto tracking) button again, the tracking function will stop. If you operate the PTZ function while using the auto tracking function, the auto tracking function will stop.</p>
         </div>
+    </div>
+</div>
+-->
+
+
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can control the pan/tilt/zoom motions of the camera or use the auto tracking function.  </p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Controlling zoom motion</h3>
+            <p>When you click the <strong class="UI">[+]</strong> button in the zoom &nbsp;bar, the screen will zoom in. When you click the <strong class="UI">[-]</strong> button, the screen will zoom out.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Controlling pan/tilt motions</h3>
+            <p> Move the camera direction by clicking the <span class="tui tui-wn5-ptz-handle"></span> button in the Pan & Tilt area. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+                        <h3>Adjusting the focus</h3>
+            <p> Adjust the camera focus by clicking the <span class="tui tui-wn5-ptz-near"></span> button or the <span class="tui tui-wn5-ptz-far"></span> button.</p>
+            <p> To adjust the camera focus automatically once,&nbsp;click the <span class="tui tui-wn5-simple-focus"></span> button.
+        </div> 
+        <div class="wn5-setup-section-article-content">
+            <h3>Auto tracking</h3>
+                     
+            <p>A moving object or person can automatically be tracked in the live view. When you click the Auto tracking button <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, &nbsp;the auto tracking function will be executed. When you click the Auto tracking button <span class="tui tui-ch-live-ptz-tracking-auto-on"></span> again, the tracking function will stop. </p>
+            <p>In addition, when you click the right mouse button on the image screen, the motion based clicked area will be analyzed, and then auto tracking will begin.</p>
+        </div>    
+        <div class="wn5-setup-section-article-content">
+            <h3>Using the PTZ function</h3>
+            <p>You can move the camera to a position set in advance or start and stop the swing, group, tour, and tracking functions. For relevant setting, refer to <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">[PTZ setup</a>]</strong> page.</p>
+  </div>
+        
+          
+        <div class="wn5-setup-section-article-content">
+            <h3>Area zoom</h3>
+                     
+            <p>The area zoom allows to zoom in and view a specified area.</p>
+            <p>When you select an area by dragging the mouse on the camera image screen after clicking the button <span class="tui tui-chi-live-ptz-areazoom"></span>, the zoom function will operate based on the selected area and the camera position will move to the selected area. You can move to the previously selected area and configuration by clicking the button <span class="tui tui-chi-live-ptz-areazoom-back"></span>. In case you have moved to the previously selected area and configuration, click the <span class="tui tui-chi-live-ptz-areazoom-pre"></span>button if you wish to move back to the previous area and configuration again. When you click the button <span class="tui tui-chi-live-ptz-areazoom-1x"></span>, the zoom magnification will change to 1x and the camera will move to its original position.  </p>
+            <p>  </p>
+            <p> To end the area zoom setup, click the <span class="tui tui-chi-live-ptz-areazoom"></span>button again. The currently set area zoom will be maintained and the area zoom setup function will end.</p>
         </div>
     </div>
 </div>
+
+
+<hr class="wn5-setup-hr" ng-if="Zoom">
+<div class="wn5-setup-section" ng-if="Zoom">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can adjust the camera zoom or focus.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Adjusting the zoom</h3>
+            <p>When you click the <strong class="UI">[+]</strong> button in the zoom area, the screen will zoom in. When you click the <strong class="UI">[-]</strong> button, the screen will zoom out.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Adjusting the focus</h3>
+            <p><span class="tui tui-wn5-ptz-near"></span>Adjust the camera focus by clicking a button or the <span class="tui tui-wn5-ptz-far"></span>button.</p>
+            <p>To adjust the camera focus automatically once, click the <span class="tui tui-wn5-simple-focus"></span> button.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Moving a preset</h3>
+            <p>When you select a desired preset from the preset list and click the <strong class="UI">[Go]</strong> button, it will move to the desired preset location. </p>
+            <p>To add a preset, click the <strong class="UI">[Setup] </strong>button, enter the preset name, set a number, and click the <strong class="UI">[Apply]</strong>&nbsp;button. A preset can be added to or changed from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Preset setup]</strong> tab.</p>
+        </div>
+    </div>
+</div>
+
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">

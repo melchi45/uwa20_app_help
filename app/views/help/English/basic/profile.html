@@ -133,7 +133,7 @@
                 <li><strong class="UI">Default profile</strong>: This is the default profile applied for streaming a live camera image. &lsquo;Default&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>: This video profile is used for sending the captured screen of an image when an event is created. &lsquo;Event&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The E-mail/FTP profile option will appear only when MJPEG is set for the codec.</li>
                 <li><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card or NAS. &lsquo;Record&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
-                <li><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
+                <li ng-if="!PTZModel"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
                 
             </ul>
         </div>

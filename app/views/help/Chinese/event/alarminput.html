@@ -68,11 +68,16 @@
         <div class="wn5-setup-section-article-content">
             <h4>警报输出</h4>
             <p>创建了警报输入事件时，可为某个特定的警报设置警报输出。选择警报输出编号后，如果不希望输出任何警报，请选择<strong class="UI">[关]</strong>，如果希望输出警报，则选择输出时间。用户关闭警报之前，可以选择<strong class="UI">[始终]</strong>设置连续警报，或将警报时间设置为 5、10 或 15 秒。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a>完成具体的警报输出设置。</p>
-			
-            <div class="wn5-setup-section-article-content" ng-if="PresetAction">
-                <h3>转至预设位</h3>
-                <p>可更改设置，以便在出现警报输入事件时，将摄像机视图位置切换至一个（提前设置的）预设编号。可在 <strong class="UI">[PTZ]</strong>&nbsp;&gt; <a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a>或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[外部 PTZ]</a></strong> &gt; <strong class="UI">[预设]</strong>选项卡中设置摄像机预设。</p>
-            </div>
+        </div>			
+           <div class="wn5-setup-section-article-content" ng-if="PresetAction && !PTZModel">
+            <h3>转至预设位</h3>
+                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。可以在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a> 或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[外部 PTZ]</a></strong>的<strong class="UI">[预设]</strong>预设摄像机设置。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>转至预设位</h3>
+                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。可以在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ设置]</strong></a>预设摄像机设置。</p>
+        </div>
         </div>
     </div>
 </div>

@@ -135,7 +135,7 @@
                 <li><strong class="UI">Perfil predet.</strong>: Este es el perfil predeterminado que se aplica para la transmisi&oacute;n de una imagen de la c&aacute;mara en vivo. &apos;Predeterminado&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
                 <li><strong class="UI">Perfil de E-mail/FTP</strong>: Este perfil de v&iacute;deo se utiliza para el env&iacute;o de la pantalla capturada de una imagen cuando se crea un evento. &apos;Evento&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil E-mail/FTP aparecer&aacute; s&oacute;lo cuando MJPEG se establezca para el c&oacute;dec.</li>
                 <li><strong class="UI">Perfil de grabaci&oacute;n</strong>: Este perfil se aplica para la grabaci&oacute;n de una imagen en una tarjeta SD o NAS. &apos;Grabar&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
-                <li><strong class="UI">Perfil PTZ digital</strong>: Este perfil se utiliza para controlar los movimientos PTZ. &apos;DPTZ&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil PTZ digital aparecer&aacute; s&oacute;lo cuando H.264 o H.265 se establezca para el c&oacute;dec.</li>
+                <li ng-if="!PTZModel"><strong class="UI">Perfil PTZ digital</strong>: Este perfil se utiliza para controlar los movimientos PTZ. &apos;DPTZ&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil PTZ digital aparecer&aacute; s&oacute;lo cuando H.264 o H.265 se establezca para el c&oacute;dec.</li>
                 
             </ul>
         </div>
