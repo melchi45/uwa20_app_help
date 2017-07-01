@@ -2204,6 +2204,8 @@ var SketchManager = (function() {
           //_self.updatePolygon();
           isDrawDragging = false;
           index = 1;
+          Ax = 0;
+          Ay = 0;
         } else {
           var coord = getCoordinate(event, this);
           var xVal = coord[0];
