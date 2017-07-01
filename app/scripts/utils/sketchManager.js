@@ -2350,6 +2350,8 @@ var SketchManager = (function() {
               'y3': data.y3,
               'y4': data.y4
             };
+          } else {
+            selectedCoordinates = null;
           }
           if (selectedCoordinates !== null) {
             // to draw selected area
@@ -4335,6 +4337,8 @@ var SketchManager = (function() {
               'y3': data.y3,
               'y4': data.y4
             };
+          } else {
+            selectedCoordinates = null;
           }
           if (selectedCoordinates !== null) {
             // to draw selected area
