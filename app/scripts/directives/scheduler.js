@@ -400,7 +400,11 @@ kindFramework.
                 for (index = 0; index < tEventObjs.length; index++) {
                   target = tEventObjs[index];
                   if (target.id !== id) {
-                              // except between
+                    // except between
+                    if(moment(target.start).format('HH:mm') === '00:00' && moment(target.end).format('HH:mm') === '00:00' && moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) {
+                      // 00:00 ~ 00:00 & 00:00 ~ 00:00
+                      return 'exception';
+                    }
                     if (moment(target.start).format('YYYY-MM-DDTHH:mm') === moment(end).format('YYYY-MM-DDTHH:mm')) { // merging case
                       return true;
                     } else if (moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) { // merging case
