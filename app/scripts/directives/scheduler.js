@@ -620,6 +620,7 @@ kindFramework.
                 selectable: true,
                 selectHelper: true,
                 editable: true,
+                eventDurationEditable: true,
                 dayNames: ['', '', '', '', '', '', ''],
                 dayNamesShort:['', '', '', '', '', '', ''],
 
@@ -659,6 +660,7 @@ kindFramework.
                     eventObjs = angular.copy($('#calendar').fullCalendar('clientEvents'));
                     updateScheduler();
                   }
+                  resized = false;
                 },
                 eventAfterRender: function(event, $el, view) {
                       // Triggered after an event has been placed on the calendar in its final position.
