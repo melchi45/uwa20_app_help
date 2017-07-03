@@ -252,13 +252,13 @@ kindFramework.controller('datetimeCtrl', function($scope, SunapiClient, $timeout
   // }
 
   function view() {
+    startTicking();
     $q.seqAll([getAttributes, getTimeZoneList, getTimeZone]).then(
       function(result) {
         $scope.isViewed = true;
         $scope.pageLoaded = true;
         $scope.SyncPc = false;
         //$("#datetimepage").show();
-        startTicking();
       },
       function(error) {
         console.log(error);
