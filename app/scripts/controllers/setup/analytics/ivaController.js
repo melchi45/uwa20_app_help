@@ -864,7 +864,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
       setData.Preset = $scope.VA[index].Preset;
       var isRemoved = 0;
       var isSetted = 0;
-      var detectionType = getCurrentDetectionType();
+      // var detectionType = getCurrentDetectionType();
 
       if (pageData.VA[index].DetectionResultOverlay !== $scope.VA[index].DetectionResultOverlay) {
         setData.DetectionResultOverlay = $scope.VA[index].DetectionResultOverlay;
@@ -931,7 +931,7 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
           }
 
           isSetted++;
-          setData.DetectionType = detectionType;
+          setData.DetectionType = $scope.VA[index].DetectionType;
         }
         //EnterExit, Appearing
         if (!angular.equals(pageData.VA[index].DefinedAreas, $scope.VA[index].DefinedAreas)) {
@@ -974,11 +974,11 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             }
           }
 
-          setData.DetectionType = detectionType;
+          setData.DetectionType = $scope.VA[index].DetectionType;
           isSetted++;
         }
 
-        setData.DetectionType = detectionType;
+        setData.DetectionType = $scope.VA[index].DetectionType;
         isSetted++;
 
         if (isRemoved) {
@@ -1866,7 +1866,6 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
           }
 
           if ($scope.PTZModel && $scope.VA.length > 1) {
-            queue = queue.concat(setPresetVideoAnalysis());
             // for (var i = 0; i < $scope.VA.length - 1; i++)
             // {
             //     var index = i + 1;
@@ -1875,6 +1874,10 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             //         queue = queue.concat(setPresetVideoAnalysis(index));
             //     }
             // }
+            if($scope.presetTypeData.SelectedPreset > 0) {
+              queue = queue.concat(setPresetVideoAnalysis());
+              queue = queue.concat(presetAdd());
+            }
           }
 
           if (queue.length > 0) {
