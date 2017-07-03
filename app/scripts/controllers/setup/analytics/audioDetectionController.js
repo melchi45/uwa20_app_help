@@ -184,6 +184,7 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
       );
     } else {
       $scope.pageLoaded = true;
+      $scope.$emit('pageLoaded', $scope.EventSource);
     }
   }
 

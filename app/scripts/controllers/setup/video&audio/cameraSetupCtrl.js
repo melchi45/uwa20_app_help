@@ -2728,58 +2728,58 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     $scope.PresetMaxDigitalZoomOptions = mAttr.PresetMaxDigitalZoomOptions;
   }
 
-  function setDefaultPresetForPreset() {
-    var presetName = $scope.ImagePreset[$scope.ch].Mode;
+  // function setDefaultPresetForPreset() {
+  //   var presetName = $scope.ImagePreset[$scope.ch].Mode;
 
-    if (presetName === 'UserPreset') {
-      /** reset all the values back to page data  */
-      $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements = angular.copy(pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements);
-      $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera = angular.copy(pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera);
-      $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR = angular.copy(pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR);
-    } else {
-      var newVal = getDefaultPresetValue(presetName);
+  //   if (presetName === 'UserPreset') {
+  //     /** reset all the values back to page data  */
+  //     $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements = angular.copy(pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements);
+  //     $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera = angular.copy(pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera);
+  //     $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR = angular.copy(pageData.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR);
+  //   } else {
+  //     var newVal = getDefaultPresetValue(presetName);
 
-      /** Enable SSDR, Reset SSDR Level */
-      if (mAttr.PresetSSDRLevel !== undefined) {
-        if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR.Enable === false) {
-          $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR.Enable = true;
-        }
+  //     /** Enable SSDR, Reset SSDR Level */
+  //     if (typeof mAttr.PresetSSDRLevel !== 'undefined') {
+  //       if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR.Enable === false) {
+  //         $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR.Enable = true;
+  //       }
 
-        if (newVal.SSDRLevel !== $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR.Level) {
-          $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR.Level = newVal.SSDRLevel;
-        }
-      }
+  //       if (newVal.SSDRLevel !== $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR.Level) {
+  //         $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].SSDR.Level = newVal.SSDRLevel;
+  //       }
+  //     }
 
-      /** Reset AFLK Mode */
-      if ($scope.PresetAFLKModeOptions !== undefined) {
-        if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AFLKMode !== 'Off') {
-          $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AFLKMode = 'Off';
-        }
-      }
+  //     /** Reset AFLK Mode */
+  //     if (typeof $scope.PresetAFLKModeOptions !== 'undefined') {
+  //       if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AFLKMode !== 'Off') {
+  //         $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AFLKMode = 'Off';
+  //       }
+  //     }
 
-      /** Reset SSNR3 Level */
-      if (mAttr.PresetSSNRLevel !== undefined) {
-        if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.SSNRLevel !== newVal.SSNRLevel) {
-          $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.SSNRLevel = newVal.SSNRLevel;
-        }
-      }
+  //     /** Reset SSNR3 Level */
+  //     if (typeof mAttr.PresetSSNRLevel !== 'undefined') {
+  //       if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.SSNRLevel !== newVal.SSNRLevel) {
+  //         $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.SSNRLevel = newVal.SSNRLevel;
+  //       }
+  //     }
 
-      /** Reset AGC Mode */
-      if ($scope.PresetAGCModeOptions !== undefined) {
-        if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode !== newVal.AGCMode) {
-          $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode = newVal.AGCMode;
-        }
-      }
+  //     /** Reset AGC Mode */
+  //     if (typeof $scope.PresetAGCModeOptions !== 'undefined') {
+  //       if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode !== newVal.AGCMode) {
+  //         $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].Camera.AGCMode = newVal.AGCMode;
+  //       }
+  //     }
 
-      /** Reset Color Level */
-      if ($scope.PresetSaturation !== undefined) {
-        if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.Saturation !== newVal.Saturation) {
-          $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.Saturation = newVal.Saturation;
-        }
-      }
-    }
-    presetCameraChangeHandler();
-  }
+  //     /** Reset Color Level */
+  //     if (typeof $scope.PresetSaturation !== 'undefined') {
+  //       if ($scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.Saturation !== newVal.Saturation) {
+  //         $scope.PresetImageConfig[$scope.presetTypeData.PresetIndex].ImageEnhancements.Saturation = newVal.Saturation;
+  //       }
+  //     }
+  //   }
+  //   presetCameraChangeHandler();
+  // }
 
   function initPresetImageConfig() {
     initPresetSSDRSettings();
@@ -4184,6 +4184,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         function() {
           deferred.resolve();
           if ($scope.isMultiChannel && $scope.channelChanged) {
+            UniversialManagerService.setChannelId($scope.targetChannel);
             var promise = getAttributes();
             promise.then(function() {
               view();
