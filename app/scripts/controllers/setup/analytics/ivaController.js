@@ -1542,7 +1542,11 @@ kindFramework.controller('ivaCtrl', function($scope, $uibModal, $translate, $tim
             setData["DefinedArea." + definedAreaIndex + ".Type"] = $scope.VA[0].DefinedAreas[i].Type;
 
             if (definedAreaIndex < 9) {
-              setData["DefinedArea." + definedAreaIndex + ".Mode"] = $scope.VA[0].DefinedAreas[i].Mode.join(',');
+              if($scope.VA[0].DefinedAreas[i].Mode.length > 0) {
+                setData["DefinedArea." + definedAreaIndex + ".Mode"] = $scope.VA[0].DefinedAreas[i].Mode.join(',');
+              } else {
+                setData["DefinedArea." + definedAreaIndex + ".Mode"] = '';
+              }
               setData["DefinedArea." + definedAreaIndex + ".AppearanceDuration"] = $scope.VA[0].DefinedAreas[i].AppearanceDuration;
               setData["DefinedArea." + definedAreaIndex + ".LoiteringDuration"] = $scope.VA[0].DefinedAreas[i].LoiteringDuration;
             }
