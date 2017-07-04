@@ -23,7 +23,7 @@ kindFramework.controller('QMSetupCtrl',
 		sketchbookService
 		){
 	"use strict";
-
+ 
 	var asyncInterrupt = false;
 
 	var mAttr = Attributes.get();
