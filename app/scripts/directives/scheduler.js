@@ -399,6 +399,8 @@ kindFramework.
                 }
               }
 
+              resized = false;
+
               // console.info('end of mergeTheResized ====================== ');
               return null;
             }
