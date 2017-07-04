@@ -509,7 +509,9 @@ kindFramework.directive(
                 cameraAttributes.ZoomOnlyModel === true
               ),
               Zoom: (cameraAttributes.ZoomOnlyModel === true),
-              ICS: checkICSSupport()
+              ICS: checkICSSupport(),
+              LensModelOptions: (typeof cameraAttributes.LensModelOptions !== "undefined"),
+              PTRZModel: (cameraAttributes.PTRZModel === true)
             };
           } catch (error) {
             console.error(error);
