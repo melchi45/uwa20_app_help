@@ -364,6 +364,7 @@ kindFramework.
             if(
               !(
                 scope.sketchinfo !== null &&
+                typeof scope.sketchinfo !== "undefined" &&
                 "workType" in scope.sketchinfo &&
                 scope.sketchinfo.workType !== "ptLimit"
               )
