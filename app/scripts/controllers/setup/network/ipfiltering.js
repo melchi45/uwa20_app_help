@@ -901,11 +901,11 @@ SunapiClient, XMLParser, Attributes, $q) {
 
     if (accessIpv4 && $scope.data.DeviceType === 'NWC' && ($scope.data.AccessType === "Allow") )
     {
-      if (accessIpv4 === true && clientIPFound_Ipv4 === false) // client ip is excluded
+      if (accessIpv4 === true && clientIpFoundIpv4 === false) // client ip is excluded
       {
         COMMONUtils.ShowError('lang_msg_chkAllowedClientIP');
         return false;
-      } else if(accessIpv4 === true && clientIPFound_Ipv4 === true)
+      } else if(accessIpv4 === true && clientIpFoundIpv4 === true)
       {
         var enable = false;
         for (var i = 0; i < $scope.FilterIPv4.length; i++)
