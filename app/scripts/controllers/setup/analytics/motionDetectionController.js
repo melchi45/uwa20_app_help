@@ -133,7 +133,8 @@ kindFramework.controller(
     $scope.activeTab = {};
 
     function resetTabData() {
-      $scope.tabs = [{
+      $scope.tabs = [
+        {
           title: 'Include',
           active: true,
           name: 'IncludeArea'
@@ -189,7 +190,6 @@ kindFramework.controller(
       }
     };
 
-    $scope.indexNumber = [1, 2, 3, 4, 5, 6, 7, 8];
     $scope.selectInclude = [{
       "ROI": 1
     }, {
@@ -268,10 +268,12 @@ kindFramework.controller(
         //$scope.SensitivitySliderOptions.data = 0;
       } else {
         if (typeof $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].SensitivityLevel !== "undefined") {
-          $scope.SensitivitySliderModel.data = $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].SensitivityLevel;
+          $scope.SensitivitySliderModel.data = 
+            $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].SensitivityLevel;
         }
         if (typeof $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].ThresholdLevel !== "undefined") {
-          $scope.MDv2ChartOptions.ThresholdLevel = $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].ThresholdLevel;
+          $scope.MDv2ChartOptions.ThresholdLevel = 
+            $scope.selectInclude[parseInt($scope.isSelectedIncludeIndex) - 1].ThresholdLevel;
         }
         activeShape(newVal - 1);
       }
@@ -288,7 +290,8 @@ kindFramework.controller(
 
     $scope.$watch('SensitivitySliderModel.data', function (newVal, oldVal) {
       if (typeof $scope.isSelectedIncludeIndex !== "undefined" && parseInt($scope.isSelectedIncludeIndex) !== 0) {
-        $scope.selectInclude[$scope.isSelectedIncludeIndex - 1].SensitivityLevel = $scope.SensitivitySliderModel.data;
+        $scope.selectInclude[$scope.isSelectedIncludeIndex - 1].SensitivityLevel = 
+          $scope.SensitivitySliderModel.data;
       }
     });
 
@@ -299,7 +302,8 @@ kindFramework.controller(
 
     $scope.$watch('MDv2ChartOptions.ThresholdLevel', function (newVal, oldVal) {
       if (typeof $scope.isSelectedIncludeIndex !== "undefined" && parseInt($scope.isSelectedIncludeIndex) !== 0) {
-        $scope.selectInclude[$scope.isSelectedIncludeIndex - 1].ThresholdLevel = $scope.MDv2ChartOptions.ThresholdLevel;
+        $scope.selectInclude[$scope.isSelectedIncludeIndex - 1].ThresholdLevel = 
+          $scope.MDv2ChartOptions.ThresholdLevel;
       }
     });
 
@@ -318,16 +322,22 @@ kindFramework.controller(
     function setSizeChart() {
       var chart = "#md-line-chart";
       var width = $(chart).parent().width();
-      if (width > 480) {
-        width = 480;
+      var maxWidth = 480;
+      if (width > maxWidth) {
+        width = maxWidth;
       }
 
-      width -= 80;
+      var widthCalc = {
+        first: 80,
+        second: 27,
+        third: 140
+      };
+      width -= widthCalc.first;
       $scope.MDv2ChartOptions.width = width;
 
       $(chart + " .graph").css("width", width + "px");
-      $(chart + " .graph-border").css("width", (width - 27) + "px");
-      $(chart + ".level-threshold-slider").css("width", (width + 140) + "px");
+      $(chart + " .graph-border").css("width", (width - widthCalc.second) + "px");
+      $(chart + ".level-threshold-slider").css("width", (width + widthCalc.third) + "px");
     }
 
     window.addEventListener('resize', setSizeChart);
@@ -414,6 +424,7 @@ kindFramework.controller(
       }
 
       if ($scope.activeTab.title === 'Exclude') {
+        var roiLen = 9;
         for (idx = 0; idx < $scope.selectExclude.length; idx++) {
           if (typeof $scope.selectExclude[idx].Mode !== "undefined") {
             isValidCnt++;
@@ -427,7 +438,7 @@ kindFramework.controller(
             self = $scope.selectExclude[idx];
             if (typeof self.Mode !== "undefined") {
               self.isEnable = true;
-              sketchbookService.setEnableForSVG(self.ROI - 9, true);
+              sketchbookService.setEnableForSVG(self.ROI - roiLen, true);
             }
           }
           $scope.selectAllCheckbox.exclude = true;
@@ -435,7 +446,7 @@ kindFramework.controller(
           for (idx = 0; idx < $scope.selectExclude.length; idx++) {
             self = $scope.selectExclude[idx];
             self.isEnable = false;
-            sketchbookService.setEnableForSVG(self.ROI - 9, false);
+            sketchbookService.setEnableForSVG(self.ROI - roiLen, false);
           }
           $scope.selectAllCheckbox.exclude = false;
         } else {
@@ -572,8 +583,8 @@ kindFramework.controller(
           if (!rzslider.hasClass('vertical')) {
             rzslider.addClass('vertical');
           }
-        } catch (e) {
-          console.error(e);
+        } catch (err) {
+          console.error(err);
         }
       });
     }
@@ -684,6 +695,7 @@ kindFramework.controller(
       var title = $scope.activeTab.title;
       var coordinates = {};
       var points = [];
+      var roiLen = 8;
 
       $timeout(function () {
         if (modifiedType === "create" || modifiedType === "delete") {
@@ -694,7 +706,7 @@ kindFramework.controller(
             points = coordinates[modifiedIndex].points;
             var roi = modifiedIndex + 1;
             if (mode === 'Outside') {
-              roi += 8;
+              roi += roiLen;
             }
 
             $scope['select' + title][modifiedIndex] = {
@@ -748,8 +760,6 @@ kindFramework.controller(
         $scope.coordinates = null;
         $scope.sketchinfo = null;
 
-        $scope.indexNumber = [1, 2, 3, 4, 5, 6, 7, 8];
-
         $scope.isSelectedIncludeIndex = "0"; // "0" means no selected
         $scope.isSelectedExcludeIndex = "0"; // "0" means no selected
 
@@ -794,8 +804,8 @@ kindFramework.controller(
         };
         // $scope.SensitivitySliderModel.data = 80;
         // $scope.MDv2ChartOptions.ThresholdLevel = 5;
-      } catch (e) {
-        console.error(e);
+      } catch (err) {
+        console.error(err);
       }
     };
 
@@ -809,15 +819,15 @@ kindFramework.controller(
       if (data === 0) {
         try {
           $rootScope.$emit('resetScheduleData', true);
-        } catch (e) {
-          console.error(e);
+        } catch (err) {
+          console.error(err);
         }
       }
 
       try {
         sketchbookService.removeDrawingGeometry();
-      } catch (e) {
-        console.error(e);
+      } catch (err) {
+        console.error(err);
       }
 
       $scope.resetVariable();
@@ -945,15 +955,16 @@ kindFramework.controller(
       var excludeIndex = "0";
       pageData.rois = angular.copy(rois);
 
+      var roiLen = 8;
       for (var i = rois.length - 1; i >= 0; i--) {
-        if (rois[i].ROI <= 8) {
+        if (rois[i].ROI <= roiLen) {
           $scope.selectInclude[rois[i].ROI - 1] = angular.copy(rois[i]);
           //$scope.isSelectedIncludeIndex = rois[i].ROI;
           includeIndex = rois[i].ROI;
         } else {
-          $scope.selectExclude[rois[i].ROI - 9] = angular.copy(rois[i]);
+          $scope.selectExclude[rois[i].ROI - (roiLen + 1)] = angular.copy(rois[i]);
           //$scope.isSelectedExcludeIndex = rois[i].ROI - 8;
-          excludeIndex = rois[i].ROI - 8;
+          excludeIndex = rois[i].ROI - roiLen;
         }
       }
 
@@ -1006,8 +1017,12 @@ kindFramework.controller(
       ];
 
       var areaType = 0;
-      for (idx = 1; idx <= 16; idx++) {
-        areaType = idx > 8 ? 1 : 0; //include: 0, exclude: 1
+      var roiLen = {
+        one: 8,
+        two: 16
+      };
+      for (idx = 1; idx <= roiLen.two; idx++) {
+        areaType = idx > roiLen.one ? 1 : 0; //include: 0, exclude: 1
         backupCoordinates[areaType].push({ //SketchManager에서 사용하는 포맷
           isSet: false,
           points: [],
@@ -1024,7 +1039,7 @@ kindFramework.controller(
         for (idx = 0; idx < rois.length; idx++) {
           var self = rois[idx];
           var roi = self.ROI;
-          var isExclude = roi > 8;
+          var isExclude = roi > roiLen.one;
           var coordinates = self.Coordinates;
           areaType = isExclude ? 1 : 0; //include: 0, exclude: 1
           var points = [];
@@ -1120,7 +1135,8 @@ kindFramework.controller(
                 }
               }
 
-              monitoringTimer = $timeout(update, 300); //300 msec
+              var mTimeout = 300;
+              monitoringTimer = $timeout(update, mTimeout); //300 msec
             }
           });
         })();
@@ -1211,7 +1227,8 @@ kindFramework.controller(
           );
         },
         function () {
-          $scope.MotionDetection.MotionDetectionEnable = pageData.MotionDetection.MotionDetectionEnable;
+          $scope.MotionDetection.MotionDetectionEnable = 
+            pageData.MotionDetection.MotionDetectionEnable;
 
           if ($scope.MotionDetection.MotionDetectionEnable) {
             startMonitoringMotionLevel();
@@ -1390,10 +1407,11 @@ kindFramework.controller(
 
     (function wait() {
       if (!mAttr.Ready) {
+        var waitTimeout = 500;
         $timeout(function () {
           mAttr = Attributes.get();
           wait();
-        }, 500);
+        }, waitTimeout);
       } else {
         mAttr = Attributes.get();
         getAttributes();
@@ -1452,9 +1470,22 @@ kindFramework.controller(
       var queue = [];
       globalQueue = [];
 
-      if ($scope.HandoverSupport && pageData.Handover && !angular.equals(pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList, $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList)) {
-        for (var i = 0; i < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList.length; i++) {
-          if (!angular.equals(pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i], $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i])) {
+      if (
+        $scope.HandoverSupport && 
+        pageData.Handover && 
+        !angular.equals(
+          pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList, 
+          $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList
+        )
+      ) {
+        var handoverLen = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList.length;
+        for (var i = 0; i < handoverLen; i++) {
+          if (
+            !angular.equals(
+              pageData.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i], 
+              $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i]
+            )
+          ) {
             //promises.push(function(){return setHandoverList(index, $scope.presetTypeData.SelectedPreset);});
             // functionlist.push(function(){
             //     return setHandoverList(index, $scope.presetTypeData.SelectedPreset);
@@ -1468,12 +1499,15 @@ kindFramework.controller(
               };
             })(i, $scope.presetTypeData.SelectedPreset));
 
-            if (typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i] !== "undefined") {
-              if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i].UserList.length) {
-                for (var j = 0; j < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i].UserList.length; j++) {
-                  item = updateHandoverList(i, j, $scope.presetTypeData.SelectedPreset);
-                  queue.push(item);
-                }
+            var userLen = 
+              $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i].UserList.length;
+            if (
+              typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i] !== "undefined" && 
+              userLen
+            ) {
+              for (var j = 0; j < userLen; j++) {
+                item = updateHandoverList(i, j, $scope.presetTypeData.SelectedPreset);
+                queue.push(item);
               }
             }
           }
@@ -1522,8 +1556,9 @@ kindFramework.controller(
         for (var i = 0, ii = pageData.rois.length; i < ii; i++) {
           var roi = pageData.rois[i].ROI;
           var self = null;
-          if (roi > 8) {
-            self = $scope.selectExclude[roi - 9];
+          var roiLen = 8;
+          if (roi > roiLen) {
+            self = $scope.selectExclude[roi - (roiLen + 1)];
           } else {
             self = $scope.selectInclude[roi - 1];
           }
@@ -1571,8 +1606,9 @@ kindFramework.controller(
         var pageDataItem = pageData.rois[i];
         var roi = pageDataItem.ROI;
         var self = null;
-        if (roi > 8) {
-          self = $scope.selectExclude[roi - 9];
+        var roiLen = 8;
+        if (roi > roiLen) {
+          self = $scope.selectExclude[roi - (roiLen + 1)];
         } else {
           self = $scope.selectInclude[roi - 1];
         }
@@ -1588,10 +1624,10 @@ kindFramework.controller(
 
         if (typeof self.Mode !== "undefined") {
           if (self.Coordinates[0].toString() === "[object Object]") {
-            for (var q = 0, qq = self.Coordinates.length; q < qq; q++) {
+            for (var qq = 0; qq < self.Coordinates.length; qq++) {
               selfCoor.push([
-                self.Coordinates[q].x,
-                self.Coordinates[q].y
+                self.Coordinates[qq].x,
+                self.Coordinates[qq].y
               ]);
             }
           } else {
@@ -1612,7 +1648,11 @@ kindFramework.controller(
 
     function getModifiedROIIndex(unmodifiedROIIndex, deletedROIIndex) {
       var modifiedIndex = [];
-      for (var i = 1; i <= 16; i++) {
+      var roiLen = {
+        one: 8,
+        two: 16
+      };
+      for (var i = 1; i <= roiLen.two; i++) {
         var isOk = true;
         var self = null;
 
@@ -1630,8 +1670,8 @@ kindFramework.controller(
         }
 
         if (isOk) {
-          if (i > 8) {
-            self = $scope.selectExclude[i - 9];
+          if (i > roiLen.one) {
+            self = $scope.selectExclude[i - (roiLen.one + 1)];
           } else {
             self = $scope.selectInclude[i - 1];
           }
@@ -1654,7 +1694,8 @@ kindFramework.controller(
         };
 
         var unmodifiedROIIndex = getUnmodifiedROIIndex();
-        var setPresetType = $scope.checkAutoSubmit ? $scope.presetData.oldType : $scope.presetData.type;
+        var setPresetType = 
+          $scope.checkAutoSubmit ? $scope.presetData.oldType : $scope.presetData.type;
         deleteRemovedROI(setPresetType).then(
           function (deletedROIIndex) {
             var modifiedIndex = getModifiedROIIndex(unmodifiedROIIndex, deletedROIIndex);
@@ -1664,16 +1705,17 @@ kindFramework.controller(
                 var self = modifiedIndex[i];
                 var property = '';
                 var index = self - 1;
-                if (self > 8) {
+                var roiLen = 8;
+                if (self > roiLen) {
                   property = 'selectExclude';
-                  index -= 8;
+                  index -= roiLen;
                 } else {
                   property = 'selectInclude';
                 }
                 var data = $scope[property][index];
                 var coor = [];
 
-                if (data.Mode !== undefined) {
+                if (typeof data.Mode !== "undefined") {
                   if (data.Coordinates[0].toString() === "[object Object]") {
                     for (var j = 0, jj = data.Coordinates.length; j < jj; j++) {
                       coor.push([
@@ -1727,14 +1769,14 @@ kindFramework.controller(
       function validateHandOverItem(handoverData) {
         //IPv4
         if (handoverData.IPType === $scope.IPTypes[0]) {
-          if (handoverData.IPV4Address === undefined) {
+          if (typeof handoverData.IPV4Address === "undefined") {
             return 'lang_msg_chkIPAddress';
           } else if (COMMONUtils.CheckValidIPv4Address(handoverData.IPV4Address) === false) {
             return 'lang_msg_chkIPAddress';
           }
           //IPv6
         } else {
-          if (handoverData.IPV6Address === undefined) {
+          if (typeof handoverData.IPV6Address === "undefined") {
             return 'lang_msg_chkIPv6Address';
           } else if (COMMONUtils.CheckValidIPv6Address(handoverData.IPV6Address) === false) {
             return 'lang_msg_chkIPv6Address';
@@ -1743,31 +1785,31 @@ kindFramework.controller(
 
         //Port
         if (
-          handoverData.Port === undefined ||
+          typeof handoverData.Port === "undefined" ||
           parseInt(handoverData.Port) <= 0 ||
           parseInt(handoverData.Port) > mAttr.Http.maxValue) {
           return 'lang_msg_Theportshouldbebetween1and65535';
         }
 
         //UserName
-        if (handoverData.Username === undefined) {
+        if (typeof handoverData.Username === "undefined") {
           return 'lang_msg_invalid_userID';
         }
 
         //Password
-        if (handoverData.Password === undefined) {
+        if (typeof handoverData.Password === "undefined") {
           return 'lang_msg_invalid_pw';
         }
 
         //PresetNumber
         if (
-          handoverData.PresetNumber === undefined ||
+          typeof handoverData.PresetNumber === "undefined" ||
           parseInt(handoverData.PresetNumber) < $scope.HandoverPresetMin ||
           parseInt(handoverData.PresetNumber) > $scope.HandoverPresetMax) {
-          return $translate
-            .instant('lang_range_alert')
-            .replace('%1', $scope.HandoverPresetMin)
-            .replace('%2', $scope.HandoverPresetMax);
+          return $translate.
+            instant('lang_range_alert').
+            replace('%1', $scope.HandoverPresetMin).
+            replace('%2', $scope.HandoverPresetMax);
         }
 
         return true;
@@ -1828,6 +1870,7 @@ kindFramework.controller(
       }
       return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=view', getData,
         function (response) {
+          var idx = 0;
           //Enable이 비활성화 일 때 Handover는 필요없으므로 Return
           // if($scope.MotionDetection.MotionDetectionEnable === false) {
           //     if(successCallback !== undefined){
@@ -1838,9 +1881,9 @@ kindFramework.controller(
           if ($scope.PTZModel && ($scope.presetData.type === "Preset")) {
             var presetList = response.data.Handover[0].PresetList;
             var listIndex = 0;
-            for (var i = 0; i < presetList.length; i++) {
-              if (presetList[i].PresetIndex === $scope.presetData.preset) {
-                listIndex = i;
+            for (idx = 0; idx < presetList.length; idx++) {
+              if (presetList[idx].PresetIndex === $scope.presetData.preset) {
+                listIndex = idx;
                 break;
               }
             }
@@ -1848,30 +1891,35 @@ kindFramework.controller(
           } else {
             $scope.Handover[0].HandoverList = response.data.Handover[0].HandoverList;
           }
-          for (var i = 0; i < $scope.Handover[0].HandoverList.length; i++) {
-            $scope.Handover[0].HandoverList[i].CheckAll = false;
-            $scope.Handover[0].HandoverList[i].Enable = $scope.Handover[0].HandoverList[i].Enable ? $scope.HandoverEnableOptions[0] : $scope.HandoverEnableOptions[1];
+          for (idx = 0; idx < $scope.Handover[0].HandoverList.length; idx++) {
+            $scope.Handover[0].HandoverList[idx].CheckAll = false;
+            $scope.Handover[0].HandoverList[idx].Enable = 
+              $scope.Handover[0].HandoverList[idx].Enable ? 
+              $scope.HandoverEnableOptions[0] : $scope.HandoverEnableOptions[1];
 
-            for (var j = 0; j < $scope.Handover[0].HandoverList[i].UserList.length; j++) {
-              $scope.Handover[0].HandoverList[i].UserList[j].SelectedHandoverIndex = false;
+            for (var j = 0; j < $scope.Handover[0].HandoverList[idx].UserList.length; j++) {
+              $scope.Handover[0].HandoverList[idx].UserList[j].SelectedHandoverIndex = false;
 
-              if ($scope.Handover[0].HandoverList[i].UserList[j].IPType === $scope.IPTypes[0]) {
-                $scope.Handover[0].HandoverList[i].UserList[j].IPV4Address = $scope.Handover[0].HandoverList[i].UserList[j].IPAddress;
-                $scope.Handover[0].HandoverList[i].UserList[j].IPV6Address = 'fe80::209:18ff:fee1:61f';
+              if ($scope.Handover[0].HandoverList[idx].UserList[j].IPType === $scope.IPTypes[0]) {
+                $scope.Handover[0].HandoverList[idx].UserList[j].IPV4Address = 
+                  $scope.Handover[0].HandoverList[idx].UserList[j].IPAddress;
+                $scope.Handover[0].HandoverList[idx].UserList[j].IPV6Address = 'fe80::209:18ff:fee1:61f';
               } else {
-                $scope.Handover[0].HandoverList[i].UserList[j].IPV4Address = "1.1.1.1";
-                $scope.Handover[0].HandoverList[i].UserList[j].IPV6Address = $scope.Handover[0].HandoverList[i].UserList[j].IPAddress;
+                $scope.Handover[0].HandoverList[idx].UserList[j].IPV4Address = "1.1.1.1";
+                $scope.Handover[0].HandoverList[idx].UserList[j].IPV6Address = 
+                  $scope.Handover[0].HandoverList[idx].UserList[j].IPAddress;
               }
             }
           }
 
           pageData.Handover = angular.copy($scope.Handover);
           if ($scope.handoverStatus.set === true && $scope.Handover[0].HandoverList.length > 0) {
-            $scope.handoverStatus.enDisable = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[0].Enable;
+            $scope.handoverStatus.enDisable = 
+              $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[0].Enable;
             $scope.handoverStatus.set = false;
           }
 
-          if (successCallback !== undefined) {
+          if (typeof successCallback !== "undefined") {
             successCallback();
           }
           $scope.$apply();
@@ -1884,7 +1932,7 @@ kindFramework.controller(
           }*/
           $scope.Handover[0].HandoverList = [];
           pageData.Handover = angular.copy($scope.Handover);
-          if (successCallback !== undefined) {
+          if (typeof successCallback !== "undefined") {
             successCallback();
           }
         }, '', true);
@@ -1898,56 +1946,65 @@ kindFramework.controller(
 
       return SunapiClient.get('/stw-cgi/eventrules.cgi?msubmenu=handover&action=view', getData,
         function (response) {
+          var handoverViewTimeout = 100;
           $timeout(function () {
             var presetHandover = angular.copy(response.data.Handover[0].PresetList);
 
-            for (var a = 0; a < $scope.PresetNameValueOptions.length; a++) {
-              var index = a + 1;
+            for (var aa = 0; aa < $scope.PresetNameValueOptions.length; aa++) {
+              var index = aa + 1;
 
               var idx = -1;
-              for (var b = 0; b < presetHandover.length; b++) {
-                var Preset = $scope.PresetNameValueOptions[a].split(' : ');
-                if (Preset[0] == presetHandover[b].PresetIndex) {
-                  idx = b;
+              for (var bb = 0; bb < presetHandover.length; bb++) {
+                var Preset = $scope.PresetNameValueOptions[aa].split(' : ');
+                if (parseInt(Preset[0], 10) === parseInt(presetHandover[bb].PresetIndex, 10)) {
+                  idx = bb;
                   break;
                 }
               }
               $scope.Handover[index] = {};
-              $scope.Handover[index].PresetIndex = $scope.PresetNameValueOptions[a].Preset;
+              $scope.Handover[index].PresetIndex = $scope.PresetNameValueOptions[aa].Preset;
               $scope.Handover[index].HandoverList = [];
-              if (idx != -1) {
-                $scope.Handover[index].HandoverList = angular.copy(presetHandover[idx].HandoverList);
+              if (idx !== -1) {
+                $scope.Handover[index].HandoverList = 
+                  angular.copy(presetHandover[idx].HandoverList);
               }
 
               for (var i = 0; i < $scope.Handover[index].HandoverList.length; i++) {
                 $scope.Handover[index].HandoverList[i].CheckAll = false;
-                $scope.Handover[index].HandoverList[i].Enable = $scope.Handover[index].HandoverList[i].Enable ? $scope.HandoverEnableOptions[0] : $scope.HandoverEnableOptions[1];
-                if (typeof $scope.Handover[index].HandoverList[i].UserList == 'undefined') $scope.Handover[index].HandoverList[i].UserList = [];
+                $scope.Handover[index].HandoverList[i].Enable = 
+                  $scope.Handover[index].HandoverList[i].Enable ? 
+                  $scope.HandoverEnableOptions[0] : $scope.HandoverEnableOptions[1];
+                if (typeof $scope.Handover[index].HandoverList[i].UserList === 'undefined') {
+                  $scope.Handover[index].HandoverList[i].UserList = [];
+                }
                 for (var j = 0; j < $scope.Handover[index].HandoverList[i].UserList.length; j++) {
                   $scope.Handover[index].HandoverList[i].UserList[j].SelectedHandoverIndex = false;
 
-                  if ($scope.Handover[index].HandoverList[i].UserList[j].IPType === $scope.IPTypes[0]) {
-                    $scope.Handover[index].HandoverList[i].UserList[j].IPV4Address = $scope.Handover[index].HandoverList[i].UserList[j].IPAddress;
+                  if (
+                    $scope.Handover[index].HandoverList[i].UserList[j].IPType === $scope.IPTypes[0]
+                  ) {
+                    $scope.Handover[index].HandoverList[i].UserList[j].IPV4Address = 
+                      $scope.Handover[index].HandoverList[i].UserList[j].IPAddress;
                     $scope.Handover[index].HandoverList[i].UserList[j].IPV6Address = 'fe80::209:18ff:fee1:61f';
                   } else {
                     $scope.Handover[index].HandoverList[i].UserList[j].IPV4Address = "1.1.1.1";
-                    $scope.Handover[index].HandoverList[i].UserList[j].IPV6Address = $scope.Handover[index].HandoverList[i].UserList[j].IPAddress;
+                    $scope.Handover[index].HandoverList[i].UserList[j].IPV6Address = 
+                      $scope.Handover[index].HandoverList[i].UserList[j].IPAddress;
                   }
                 }
               }
             }
             pageData.Handover = angular.copy($scope.Handover);
             $scope.$apply();
-
-          }, 100);
+          }, handoverViewTimeout);
 
         },
         function (errorData) {
           if ($scope.Handover.length <= 1) {
-            for (var a = 0; a < $scope.PresetNameValueOptions.length; a++) {
-              var index = a + 1;
+            for (var aa = 0; aa < $scope.PresetNameValueOptions.length; aa++) {
+              var index = aa + 1;
               $scope.Handover[index] = {};
-              $scope.Handover[index].PresetIndex = PresetNameValueOptions[a].Preset;
+              $scope.Handover[index].PresetIndex = $scope.PresetNameValueOptions[aa].Preset;
               $scope.Handover[index].HandoverList = [];
             }
             viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
@@ -1958,26 +2015,32 @@ kindFramework.controller(
 
     function viewHandoverAreaOptions(presetIdx) {
       var index = presetIdx;
-      if (typeof presetIdx == 'undefined') index = 0;
+      if (typeof presetIdx === 'undefined') {
+        index = 0;
+      }
 
       var HandoverAreaOptionsArray = [];
 
-      if (typeof $scope.Handover[index] != 'undefined' && $scope.Handover[index].HandoverList.length) {
+      if (typeof $scope.Handover[index] !== 'undefined' && $scope.Handover[index].HandoverList.length) {
         for (var i = 0; i < $scope.Handover[index].HandoverList.length; i++) {
-          if (typeof $scope.Handover[index].HandoverList[i] != 'undefined') {
+          if (typeof $scope.Handover[index].HandoverList[i] !== 'undefined') {
             HandoverAreaOptionsArray.push($scope.Handover[index].HandoverList[i].ROIIndex);
           }
         }
         $scope.HandoverAreaOptions = HandoverAreaOptionsArray;
       } else {
-        $scope.HandoverAreaOptions = COMMONUtils.getArrayWithMinMax($scope.HandoverMin, $scope.HandoverMin);
+        $scope.HandoverAreaOptions = 
+          COMMONUtils.getArrayWithMinMax($scope.HandoverMin, $scope.HandoverMin);
       }
     }
 
-    function setHandoverList(handoverlistIndex, index) {
+    function setHandoverList(handoverlistIndex, _index) {
+      var index = _index;
       //console.log(" ::::: setHandoverList START ::::: ");
       var deferred = $q.defer();
-      if (typeof index == 'undefined') index = 0;
+      if (typeof index === 'undefined') {
+        index = 0;
+      }
       // if(handoverlistIndex > 0){
       // handoverlistIndex--;
       // }
@@ -1989,11 +2052,12 @@ kindFramework.controller(
       };
       try {
         setData.ROIIndex = $scope.Handover[index].HandoverList[handoverlistIndex].ROIIndex;
-      } catch (e) {
+      } catch (err) {
         setData.ROIIndex = $scope.isSelectedIncludeIndex;
       }
 
-      setData.Enable = ($scope.handoverStatus.enDisable === $scope.HandoverEnableOptions[0]) ? true : false;
+      setData.Enable = 
+        ($scope.handoverStatus.enDisable === $scope.HandoverEnableOptions[0]) ? true : false;
 
       // if (index > 0){
       //     setData.PresetIndex = index;
@@ -2039,10 +2103,16 @@ kindFramework.controller(
     }
 
 
-    function updateHandoverList(roiIndex, userIndex, index) {
+    function updateHandoverList(roiIndex, _userIndex, _index) {
+      var userIndex = _userIndex;
+      var index = _index;
       //console.log(" ::::: roiIndex, userIndex, index", roiIndex, userIndex, index);
-      if (typeof index == 'undefined') index = 0;
-      if (typeof userIndex == 'undefined') userIndex = 0;
+      if (typeof index === 'undefined') {
+        index = 0;
+      }
+      if (typeof userIndex === 'undefined') {
+        userIndex = 0;
+      }
 
       var setData = {};
       var userList = $scope.Handover[index].HandoverList[roiIndex].UserList[userIndex];
@@ -2056,7 +2126,7 @@ kindFramework.controller(
       //HandoverIndex = $scope.isSelectedIncludeIndex-1;
       setData.HandoverIndex = userList.HandoverIndex;
 
-      if (typeof pageDataUserList.IPType !== undefined && pageDataUserList.IPType !== userList.IPType) {
+      if (typeof pageDataUserList.IPType !== "undefined" && pageDataUserList.IPType !== userList.IPType) {
         setData.IPType = userList.IPType;
       }
 
@@ -2103,11 +2173,14 @@ kindFramework.controller(
       };
     }
 
-    function addUserToHandover(roiIndex, index, usetListData) {
+    function addUserToHandover(roiIndex, _index, usetListData) {
+      var index = _index;
 
       //console.log(" ::: roiIndex, index", roiIndex, index);
       var deferred = $q.defer();
-      if (typeof index == 'undefined') index = 0;
+      if (typeof index === 'undefined') {
+        index = 0;
+      }
       var setData = {
         Channel: UniversialManagerService.getChannelId()
       };
@@ -2163,7 +2236,7 @@ kindFramework.controller(
 
       setData.ROIIndex = roiIndex;
 
-      if (typeof userIndexArray !== 'undefined' && userIndexArray.length) {
+      if (userIndexArray !== null && userIndexArray.length) {
         setData.HandoverIndex = '';
 
         for (var i = 0; i < userIndexArray.length; i++) {
@@ -2171,7 +2244,8 @@ kindFramework.controller(
         }
 
         if (setData.HandoverIndex.length) {
-          setData.HandoverIndex = setData.HandoverIndex.substring(0, setData.HandoverIndex.length - 1);
+          setData.HandoverIndex = 
+            setData.HandoverIndex.substring(0, setData.HandoverIndex.length - 1);
         }
       }
       // if (index > 0){
@@ -2196,9 +2270,10 @@ kindFramework.controller(
     $scope.removeHandover = function () {
       var functionlist = [];
       functionlist.push(function () {
+        var setHandoverTimeout = 200;
         return $timeout(function () {
           setHandoverList();
-        }, 200);
+        }, setHandoverTimeout);
       });
       functionlist.push(function () {
         return removeHandoverFunction();
@@ -2213,7 +2288,7 @@ kindFramework.controller(
 
     function removeHandoverFunction() {
       var promises = [];
-      var promise;
+      var promise = null;
 
       //var areaIndex = parseInt($('#SelectedHandoverAreaId').val().split(':')[1]);
 
@@ -2221,12 +2296,14 @@ kindFramework.controller(
       //console.log(" ::: removeHandover", areaIndex);
 
       if (typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList !== 'undefined' && typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex] !== 'undefined') {
-        if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.length) {
+        var userList = 
+          $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList;
+        if (userList.length) {
           var userIndexArray = [];
 
-          for (var i = 0; i < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.length; i++) {
-            if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList[i].SelectedHandoverIndex) {
-              userIndexArray.push($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList[i].HandoverIndex);
+          for (var i = 0; i < userList.length; i++) {
+            if (userList[i].SelectedHandoverIndex) {
+              userIndexArray.push(userList[i].HandoverIndex);
             }
           }
 
@@ -2243,21 +2320,30 @@ kindFramework.controller(
             });
 
             modalInstance.result.then(function () {
-              if (!angular.equals(pageData.VA[$scope.presetTypeData.SelectedPreset], $scope.VA[$scope.presetTypeData.SelectedPreset])) {
-                if ($scope.presetTypeData.SelectedPreset > 0) {
-                  setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
-                } else {
-                  setVideoAnalysis(promises);
-                }
-              }
+              // if (!angular.equals(pageData.VA[$scope.presetTypeData.SelectedPreset], $scope.VA[$scope.presetTypeData.SelectedPreset])) {
+              //   if ($scope.presetTypeData.SelectedPreset > 0) {
+              //     setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
+              //   } else {
+              //     setVideoAnalysis(promises);
+              //   }
+              // }
 
+              var handoverList = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
               if (userIndexArray.length === $scope.HandoverUserMax) {
                 promise = function () {
-                  return removeUserFromHandover($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].ROIIndex, undefined, $scope.presetTypeData.SelectedPreset);
+                  return removeUserFromHandover(
+                    handoverList[areaIndex].ROIIndex, 
+                    null, 
+                    $scope.presetTypeData.SelectedPreset
+                  );
                 };
               } else {
                 promise = function () {
-                  return removeUserFromHandover($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].ROIIndex, userIndexArray, $scope.presetTypeData.SelectedPreset);
+                  return removeUserFromHandover(
+                    handoverList[areaIndex].ROIIndex, 
+                    userIndexArray, 
+                    $scope.presetTypeData.SelectedPreset
+                  );
                 };
               }
 
@@ -2282,16 +2368,17 @@ kindFramework.controller(
           }
         }
       }
-    };
+    }
 
     $scope.addHandover = function () {
       var prevIsSelectedIncludeIndex = $scope.isSelectedIncludeIndex;
 
       var functionlist = [];
       functionlist.push(function () {
+        var setHandoverListTimeout = 200;
         return $timeout(function () {
           setHandoverList();
-        }, 200);
+        }, setHandoverListTimeout);
       });
       functionlist.push(function () {
         return addHandoverFunction(prevIsSelectedIncludeIndex);
@@ -2309,157 +2396,149 @@ kindFramework.controller(
 
     function addHandoverFunction(prevIsSelectedIncludeIndex) {
       var promises = [];
-      var promise;
       //        var areaIndex = parseInt($('#SelectedHandoverAreaId').val().split(':')[1]);
       //        var areaIndex = $scope.isSelectedIncludeIndex - 1;
       $scope.isSelectedIncludeIndex = prevIsSelectedIncludeIndex;
       var areaIndex = prevIsSelectedIncludeIndex - 1;
 
-      if (true)
-      //if (typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList !== 'undefined' && typeof $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex] !== 'undefined')
-      {
-        //if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.length < $scope.HandoverUserMax)
-        if (true)
-        //if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[areaIndex].UserList.length < $scope.HandoverUserMax)
-        {
-          if (modalInstance !== null) {
-            modalInstance.dismiss();
-          }
-          modalInstance = $uibModal.open({
-            templateUrl: 'views/setup/common/handoverAddCamera.html',
-            controller: 'handoverAddCameraCtrl',
-            resolve: {
-              HandoverList: function () {
-                //console.log(" ::: $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList", $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList);
-                return $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
-              },
-              SelectedArea: function () {
-                //console.log(" ::: areaIndex", areaIndex);
-                return areaIndex;
-              }
-            }
-          });
-
-          var g_userList = [];
-          modalInstance.result.then(function (returnValue) {
-            modalInstance = null;
-            //console.log(" ::: returnValue, userList", returnValue[0],returnValue[1]);
-            g_userList = returnValue[1];
-            setEnable().then(function () {
-              getHandoverList(function () {
-                try {
-                  $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[$scope.findHandoverIndex()].UserList.push(g_userList);
-                } catch (e) {}
-
-                if (returnValue) {
-                  if (!angular.equals(pageData.VA[$scope.presetTypeData.SelectedPreset], $scope.VA[$scope.presetTypeData.SelectedPreset])) {
-                    if ($scope.presetTypeData.SelectedPreset > 0) {
-                      setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
-                    } else {
-                      setVideoAnalysis(promises);
-                    }
-                    $q.seqAll(promises).then(function () {
-                      var promises2 = [];
-                      promises2.push(function () {
-                        return addUserToHandover(areaIndex + 1, $scope.presetTypeData.SelectedPreset, g_userList);
-                      });
-                      $q.seqAll(promises2).then(function () {
-                        var promises3 = [];
-                        if ($scope.presetTypeData.SelectedPreset > 0) {
-                          promises3.push(getPresetHandoverList);
-                        } else {
-                          promises3.push(getHandoverList);
-                        }
-                        $q.seqAll(promises3).then(function () {
-                          viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
-                        }, function (errorData3) {
-                          //alert(errorData);
-                        });
-                      }, function (errorData2) {
-                        //alert(errorData);
-                      });
-                    }, function (errorData) {
-                      //alert(errorData);
-                    });
-
-                  } else {
-                    promises.push(function () {
-                      return addUserToHandover(areaIndex + 1, $scope.presetTypeData.SelectedPreset, g_userList);
-                    });
-                    $q.seqAll(promises).then(function () {
-                      var promises3 = [];
-                      if ($scope.presetTypeData.SelectedPreset > 0) {
-                        promises3.push(getPresetHandoverList);
-                      } else {
-                        promises3.push(getHandoverList);
-                      }
-                      $q.seqAll(promises3).then(function () {
-                        var isPreset = false;
-                        if ($scope.PTZModel) {
-                          var presetType = $scope.checkAutoSubmit ? $scope.presetData.oldType : $scope.presetData.type;
-                          if (presetType === "Preset") {
-                            isPreset = true;
-                          }
-                        }
-
-                        getMotionDetectionData(
-                          function (response) {
-                            if (isPreset) {
-                              var presetList = response.data.PresetVideoAnalysis[0].Presets;
-                              var i = 0;
-                              for (i = 0; i < presetList.length; i++) {
-                                if (presetList[i].Preset === $scope.presetData.preset) {
-                                  break;
-                                }
-                              }
-
-                              updateROIData(presetList[i].ROIs);
-                              viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
-                            } else {
-                              updateROIData(response.data.VideoAnalysis[0].ROIs);
-                              viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
-                            }
-                          },
-                          isPreset
-                        );
-                      }, function (errorData3) {
-                        //alert(errorData);
-                      });
-                    }, function (errorData2) {
-                      //alert(errorData);
-                    });
-                  }
-                }
-              });
-            });
-
-
-
-          }, function () {
-            modalInstance = null;
-            //$log.info('Modal dismissed at: ' + new Date());
-          });
-        } else {
-          $uibModal.open({
-            templateUrl: 'views/setup/common/errorMessage.html',
-            controller: 'errorMessageCtrl',
-            size: 'sm',
-            resolve: {
-              Message: function () {
-                return 'lang_msg_cannot_add';
-              },
-              Header: function () {
-                return 'lang_error';
-              }
-            }
-          });
-        }
+      if (modalInstance !== null) {
+        modalInstance.dismiss();
       }
+      modalInstance = $uibModal.open({
+        templateUrl: 'views/setup/common/handoverAddCamera.html',
+        controller: 'handoverAddCameraCtrl',
+        resolve: {
+          HandoverList: function () {
+            //console.log(" ::: $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList", $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList);
+            return $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+          },
+          SelectedArea: function () {
+            //console.log(" ::: areaIndex", areaIndex);
+            return areaIndex;
+          }
+        }
+      });
+
+      var gUserList = [];
+      modalInstance.result.then(function (returnValue) {
+        modalInstance = null;
+        //console.log(" ::: returnValue, userList", returnValue[0],returnValue[1]);
+        gUserList = returnValue[1];
+        setEnable().then(function () {
+          getHandoverList(function () {
+            try {
+              var handoverList = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+              handoverList[$scope.findHandoverIndex()].UserList.push(gUserList);
+            } catch (err) {
+              console.error(err);
+            }
+
+            if (returnValue) {
+              if (
+                !angular.equals(
+                  pageData.VA[$scope.presetTypeData.SelectedPreset], 
+                  $scope.VA[$scope.presetTypeData.SelectedPreset]
+                )
+              ) {
+                // if ($scope.presetTypeData.SelectedPreset > 0) {
+                //   setPresetVideoAnalysis($scope.presetTypeData.SelectedPreset, promises);
+                // } else {
+                //   setVideoAnalysis(promises);
+                // }
+                $q.seqAll(promises).then(function () {
+                  var promises2 = [];
+                  promises2.push(function () {
+                    return addUserToHandover(
+                      areaIndex + 1, 
+                      $scope.presetTypeData.SelectedPreset, 
+                      gUserList
+                    );
+                  });
+                  $q.seqAll(promises2).then(function () {
+                    var promises3 = [];
+                    if ($scope.presetTypeData.SelectedPreset > 0) {
+                      promises3.push(getPresetHandoverList);
+                    } else {
+                      promises3.push(getHandoverList);
+                    }
+                    $q.seqAll(promises3).then(function () {
+                      viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
+                    }, function (errorData3) {
+                      //alert(errorData);
+                    });
+                  }, function (errorData2) {
+                    //alert(errorData);
+                  });
+                }, function (errorData) {
+                  //alert(errorData);
+                });
+
+              } else {
+                promises.push(function () {
+                  return addUserToHandover(
+                    areaIndex + 1, 
+                    $scope.presetTypeData.SelectedPreset, 
+                    gUserList
+                  );
+                });
+                $q.seqAll(promises).then(function () {
+                  var promises3 = [];
+                  if ($scope.presetTypeData.SelectedPreset > 0) {
+                    promises3.push(getPresetHandoverList);
+                  } else {
+                    promises3.push(getHandoverList);
+                  }
+                  $q.seqAll(promises3).then(function () {
+                    var isPreset = false;
+                    if ($scope.PTZModel) {
+                      var presetType = 
+                        $scope.checkAutoSubmit ? 
+                        $scope.presetData.oldType : $scope.presetData.type;
+                      if (presetType === "Preset") {
+                        isPreset = true;
+                      }
+                    }
+
+                    getMotionDetectionData(
+                      function (response) {
+                        if (isPreset) {
+                          var presetList = response.data.PresetVideoAnalysis[0].Presets;
+                          var i = 0;
+                          for (i = 0; i < presetList.length; i++) {
+                            if (presetList[i].Preset === $scope.presetData.preset) {
+                              break;
+                            }
+                          }
+
+                          updateROIData(presetList[i].ROIs);
+                          viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
+                        } else {
+                          updateROIData(response.data.VideoAnalysis[0].ROIs);
+                          viewHandoverAreaOptions($scope.presetTypeData.SelectedPreset);
+                        }
+                      },
+                      isPreset
+                    );
+                  }, function (errorData3) {
+                    //alert(errorData);
+                  });
+                }, function (errorData2) {
+                  //alert(errorData);
+                });
+              }
+            }
+          });
+        });
+      }, function () {
+        modalInstance = null;
+        //$log.info('Modal dismissed at: ' + new Date());
+      });
     }
 
     function getHandoverListIndex() {
       var handoverListIndex = null;
-      for (var i = 0, ii = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList.length; i < ii; i++) {
+      var handoverList = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+      for (var i = 0, ii = handoverList.length; i < ii; i++) {
         var self = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i];
         try {
           if ("ROIIndex" in self) {
@@ -2467,8 +2546,8 @@ kindFramework.controller(
               handoverListIndex = i;
             }
           }
-        } catch (e) {
-          console.error(e);
+        } catch (err) {
+          console.error(err);
         }
       }
 
@@ -2486,24 +2565,27 @@ kindFramework.controller(
         //var areaIndex = parseInt($('#SelectedHandoverAreaId').val().split(':')[1]);
         var handoverListIndex = getHandoverListIndex();
 
-        for (var i = 0; i < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[handoverListIndex].UserList.length; i++) {
-          $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[handoverListIndex].UserList[i].SelectedHandoverIndex = checkboxValue;
+        var handoverList = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+        var userList = handoverList[handoverListIndex].UserList;
+        for (var i = 0; i < userList.length; i++) {
+          userList[i].SelectedHandoverIndex = checkboxValue;
         }
       }
     };
     //////////////////////////////////////////////////////////////////////////////////////////////////
     $scope.isOccupied = function () {
       var returnValue = 0;
+      var idx = 0;
       if ($scope.activeTab.title === 'Include') {
-        for (var i = 0; i < $scope.selectInclude.length; i++) {
-          if ($scope.selectInclude[i].Coordinates !== undefined) {
+        for (idx = 0; idx < $scope.selectInclude.length; idx++) {
+          if (typeof $scope.selectInclude[idx].Coordinates !== "undefined") {
             returnValue++;
           }
         }
       }
       if ($scope.activeTab.title === 'Exclude') {
-        for (var i = 0; i < $scope.selectExclude.length; i++) {
-          if ($scope.selectExclude[i].Coordinates === undefined) {
+        for (idx = 0; idx < $scope.selectExclude.length; idx++) {
+          if (typeof $scope.selectExclude[idx].Coordinates === "undefined") {
             returnValue++;
           }
         }
@@ -2512,8 +2594,9 @@ kindFramework.controller(
     };
 
     $scope.findHandoverIndex = function () {
-      for (var i = 0; i < $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList.length; i++) {
-        if ($scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList[i].ROIIndex === $scope.isSelectedIncludeIndex) {
+      var handoverList = $scope.Handover[$scope.presetTypeData.SelectedPreset].HandoverList;
+      for (var i = 0; i < handoverList.length; i++) {
+        if (handoverList[i].ROIIndex === $scope.isSelectedIncludeIndex) {
           return i;
         }
       }
@@ -2556,7 +2639,7 @@ kindFramework.controller(
     }
 
     function getSelectedPreset() {
-      if (!(typeof mAttr.DefaultPresetNumber === undefined || !mAttr.DefaultPresetNumber)) {
+      if (!(typeof mAttr.DefaultPresetNumber === "undefined" || !mAttr.DefaultPresetNumber)) {
         var isCheck = false;
         for (var i = 0; i < $scope.presetList.length; i++) {
           var Preset = $scope.presetList[i].Preset;

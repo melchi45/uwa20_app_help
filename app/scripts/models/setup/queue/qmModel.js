@@ -8,7 +8,6 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
     }
 
     var channelIndex = 0;
-    var asyncInterrupt = false;
     var interruptMessage = "interrupt with cancel";
     this.getInterruptMessage = function () {
       return interruptMessage;
@@ -145,7 +144,8 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
             failCallback: failCallback
           });
         },
-        remove: function (successCallback, failCallback, data) {
+        remove: function (successCallback, failCallback, _data) {
+          var data = _data;
           if (!data) {
             data = {};
           }
@@ -158,7 +158,8 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
             failCallback: failCallback
           });
         },
-        check: function (successCallback, failCallback, data) {
+        check: function (successCallback, failCallback, _data) {
+          var data = _data;
           if (!data) {
             data = {};
           }
@@ -214,45 +215,6 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
       }
     };
 
-    var eventStatusCgi = {
-      check: function (successCallback, failCallback) {
-        pcSetupService.requestSunapi({
-          cgi: 'eventstatus',
-          msubmenu: 'eventstatus',
-          action: 'check',
-          data: {
-            'Channel.0.EventType': 'QueueEvent'
-          },
-          successCallback: successCallback,
-          failCallback: failCallback
-        });
-      },
-      monitor: function (successCallback, failCallback) {
-        pcSetupService.requestSunapi({
-          cgi: 'eventstatus',
-          msubmenu: 'eventstatus',
-          action: 'monitor',
-          data: {
-            'Channel.0.EventType': 'QueueEvent'
-          },
-          successCallback: successCallback,
-          failCallback: failCallback
-        });
-      },
-      monitordiff: function (successCallback, failCallback) {
-        pcSetupService.requestSunapi({
-          cgi: 'eventstatus',
-          msubmenu: 'eventstatus',
-          action: 'monitordiff',
-          data: {
-            'Channel.0.EventType': 'QueueEvent'
-          },
-          successCallback: successCallback,
-          failCallback: failCallback
-        });
-      }
-    };
-
     var recordingCgi = {
       control: function (data, successCallback, failCallback) {
         pcSetupService.requestSunapi({
@@ -301,8 +263,10 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
       return deferred.promise;
     };
 
-    function addZero(data) {
-      if (data < 10) {
+    function addZero(_data) {
+      var data = _data;
+      var minValue = 10;
+      if (data < minValue) {
         data = "0" + data;
       }
 
@@ -310,13 +274,13 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
     }
 
     function getSunapiDateFormat(timeStamp) {
-      var d = new Date(timeStamp);
-      var year = d.getFullYear();
-      var month = addZero(d.getMonth() + 1);
-      var date = addZero(d.getDate());
-      var hours = addZero(d.getHours());
-      var minutes = addZero(d.getMinutes());
-      var seconds = addZero(d.getSeconds());
+      var day = new Date(timeStamp);
+      var year = day.getFullYear();
+      var month = addZero(day.getMonth() + 1);
+      var date = addZero(day.getDate());
+      var hours = addZero(day.getHours());
+      var minutes = addZero(day.getMinutes());
+      var seconds = addZero(day.getSeconds());
 
       var dateFormat = [
         year,
@@ -348,7 +312,8 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
     this.getData = function () {
       var deferred = $q.defer();
 
-      function successCallback(data) {
+      function successCallback(_data) {
+        var data = _data;
         data = data.data.QueueManagementSetup[0];
         deferred.resolve(data);
       }
@@ -381,7 +346,8 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
     this.checkData = function (data) {
       var deferred = $q.defer();
 
-      function successCallback(successData) {
+      function successCallback(_successData) {
+        var successData = _successData;
         successData = successData.data.QueueCount[0].Queues;
 
         deferred.resolve(successData);
@@ -399,7 +365,8 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
     this.getEventActionData = function () {
       var deferred = $q.defer();
 
-      function successCallback(data) {
+      function successCallback(_data) {
+        var data = _data;
         data = data.data.QueueManagement[0];
         deferred.resolve(data);
       }
@@ -449,7 +416,8 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
       }
 
       function requestSearchView() {
-        searchView({
+        searchView(
+          {
             Type: 'Status',
             SearchToken: searchToken
           },
@@ -460,7 +428,8 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
 
       function viewStatusSuccessCallback(response) {
         if (response.data.Status === "Completed") {
-          searchView({
+          searchView(
+            {
               Type: 'Results',
               SearchToken: searchToken
             },
@@ -472,7 +441,8 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
         }
       }
 
-      function viewResultSuccessCallback(response) {
+      function viewResultSuccessCallback(_response) {
+        var response = _response;
         response = response.data;
         var resultInterval = response.ResultInterval;
         var queueResults = response.QueueResults;
@@ -505,7 +475,7 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
             for (var j = 0; j < queueLevels.length; j++) {
               if (checkList) {
                 var checkListKey = queueLevels[j].Level.toLowerCase();
-                if (checkList[checkListKey] === undefined || checkList[checkListKey].indexOf(i) === -1) {
+                if (typeof checkList[checkListKey] === "undefined" || checkList[checkListKey].indexOf(i) === -1) {
                   continue;
                 }
               }
@@ -524,19 +494,26 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
       function fillterResults(results, resultInterval) {
         var fillterData = [];
 
-        var changeDateObj = function (str) {
+        var changeDateObj = function (_str) {
+          var str = _str;
           str = str.replace('T', ' ').replace('Z', '');
           str = str.split(' ');
           str[0] = str[0].split('-');
           str[1] = str[1].split(':');
 
+          var arrayIndex = {
+            first: 0,
+            second: 1,
+            third: 2,
+          };
+
           str = new Date(
-            str[0][0],
-            str[0][1] - 1,
-            str[0][2],
-            str[1][0],
-            str[1][1],
-            str[1][2]
+            str[0][arrayIndex.first],
+            str[0][arrayIndex.second] - 1,
+            str[0][arrayIndex.third],
+            str[1][arrayIndex.first],
+            str[1][arrayIndex.second],
+            str[1][arrayIndex.third]
           );
 
           return str;
@@ -569,29 +546,32 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
         var fromDate = changeDateObj(searchOptions.FromDate);
         var toDate = changeDateObj(searchOptions.ToDate);
 
+        var idx = 0;
+        var len = 0;
+        var data = {};
         switch (resultInterval) {
           case "Hourly":
-            for (var i = 0, len = results.length; i < len; i++) {
-              var data = {};
-              fromDate.setHours(i);
+            for (idx = 0, len = results.length; idx < len; idx++) {
+              data = {};
+              fromDate.setHours(idx);
               data.timeStamp = changeFormatForGraph(fromDate);
-              data.value = parseInt(results[i]);
+              data.value = parseInt(results[idx]);
               fillterData.push(data);
             }
             break;
           case "Daily":
           case "Weekly":
-            for (var i = 0, len = results.length; i < len; i++) {
-              var data = {};
+            for (idx = 0, len = results.length; idx < len; idx++) {
+              data = {};
 
-              if (i === 0) {
+              if (idx === 0) {
                 data.timeStamp = changeFormatForGraph(fromDate);
               } else {
                 fromDate.setDate(fromDate.getDate() + 1);
                 data.timeStamp = changeFormatForGraph(fromDate);
               }
 
-              data.value = parseInt(results[i]);
+              data.value = parseInt(results[idx]);
               fillterData.push(data);
 
               if (
@@ -604,8 +584,8 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
             }
             break;
           case "Monthly":
-            for (var i = 0, len = results.length; i < len; i++) {
-              var data = {};
+            for (idx = 0, len = results.length; idx < len; idx++) {
+              data = {};
 
               if (
                 fromDate.getFullYear() === toDate.getFullYear() &&
@@ -614,14 +594,14 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
                 break;
               }
 
-              if (i === 0) {
+              if (idx === 0) {
                 data.timeStamp = changeFormatForGraph(fromDate);
               } else {
                 fromDate.setMonth(fromDate.getMonth() + 1);
                 data.timeStamp = changeFormatForGraph(fromDate);
               }
 
-              data.value = parseInt(results[i]);
+              data.value = parseInt(results[idx]);
               fillterData.push(data);
             }
             break;
@@ -632,14 +612,16 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
 
       searchOptions.Channel = channelIndex;
       searchOptions.Mode = 'Start';
+      var idx = 1;
+      var queueLen = 3;
       if (type === graphType[0]) {
-        for (var i = 1; i <= 3; i++) {
-          searchOptions["Queue." + i + ".AveragePeople"] = 'True';
+        for (idx = 1; idx <= queueLen; idx++) {
+          searchOptions["Queue." + idx + ".AveragePeople"] = 'True';
         }
       } else {
-        for (var i = 1; i <= 3; i++) {
-          searchOptions["Queue." + i + ".Level.High.CumulativeTime"] = 'True';
-          searchOptions["Queue." + i + ".Level.Medium.CumulativeTime"] = 'True';
+        for (idx = 1; idx <= queueLen; idx++) {
+          searchOptions["Queue." + idx + ".Level.High.CumulativeTime"] = 'True';
+          searchOptions["Queue." + idx + ".Level.Medium.CumulativeTime"] = 'True';
         }
       }
 
@@ -668,10 +650,12 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
       var fromDate = null;
       var searchOptions = {};
 
-      newDate.setDate(newDate.getDate() - 6);
+      var weekCalc = 6;
+      newDate.setDate(newDate.getDate() - weekCalc);
 
-      if (newDate.getFullYear() < 2000) {
-        newDate.setYear(2000);
+      var minYear = 2000;
+      if (newDate.getFullYear() < minYear) {
+        newDate.setYear(minYear);
         newDate.setMonth(0);
         newDate.setDate(1);
       }
@@ -694,9 +678,10 @@ kindFramework.factory('QmModel', function ($q, $translate, $interval, pcSetupSer
     };
 
     this.cancelSearch = function () {
-      if (searchToken === null) return;
+      if (searchToken === null) {
+        return;
+      }
 
-      // asyncInterrupt = true;
       recordingCgi.control({
         Mode: 'Cancel',
         SearchToken: searchToken
