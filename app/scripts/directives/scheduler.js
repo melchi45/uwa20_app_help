@@ -1,6 +1,6 @@
 kindFramework.
-    directive('scheduler', ['$rootScope', '$timeout', 'eventRuleService', 'SunapiClient', '$translate', '$uibModal', '$window', 'UniversialManagerService',
-      function($rootScope, $timeout, eventRuleService, SunapiClient, $translate, $uibModal, $window, UniversialManagerService) {
+    directive('scheduler', ['$rootScope', '$timeout', 'eventRuleService', 'SunapiClient', '$translate', '$uibModal', '$window', 'UniversialManagerService', 'Attributes',
+      function($rootScope, $timeout, eventRuleService, SunapiClient, $translate, $uibModal, $window, UniversialManagerService, Attributes) {
         'use strict';
         return {
           restrict: 'E',
@@ -24,6 +24,18 @@ kindFramework.
             var currentUnit = '30';
             var currentScheduleType = null;
             var currentPage = UniversialManagerService.getCurrentSetupPage();
+            var prevChannel = 0;
+            var prevEventObjs = null;
+            var currentScheduleType = null;
+            var channelChanged = false;
+            var channelChangedAndInit = false;
+            var isMultiChannel = false;
+            var mAttr = Attributes.get();
+            if(mAttr.MaxChannel > 1) {
+                isMultiChannel = true;
+            } else {
+                isMultiChannel = false;
+            }
             // var prevEventObjs = null;
 
             // eventObjs = setEventSources();
@@ -1294,6 +1306,11 @@ kindFramework.
 
             function initCalendar(data) {
               if (typeof data !== 'undefined') {
+                if(isMultiChannel) {
+                  $('#calendar').fullCalendar('destroy');
+                  initialRendered = false;
+                  alreadyCreated = true;
+                }
                 EventRule = data;
                 ScheduleIds = EventRule.ScheduleIds;
                 getCameraDate();
@@ -1324,13 +1341,29 @@ kindFramework.
                 return;
               }
               activeMenu = null;
-              if (newVal === 'Always') {
-                setVisibility(newVal);
-              } else if (newVal === 'Scheduled') {
-                if (visibility === null || alreadyCreated === false) {
-                  initCalendar(scope.EventRule);
+              if(isMultiChannel) {
+                if(newVal === 'Always') {
+                  setVisibility(newVal);
+                } else if(newVal === 'Scheduled') {
+                  if(channelChanged) {
+                      channelChanged = false;
+                      initCalendar(scope.EventRule);
+                  } else {
+                      if(visibility === null || alreadyCreated === false) {
+                          initCalendar(scope.EventRule);
+                      }
+                  }
+                  setVisibility(newVal);
                 }
-                setVisibility(newVal);
+              } else {
+                if (newVal === 'Always') {
+                  setVisibility(newVal);
+                } else if (newVal === 'Scheduled') {
+                  if (visibility === null || alreadyCreated === false) {
+                    initCalendar(scope.EventRule);
+                  }
+                  setVisibility(newVal);
+                }
               }
             });
 
@@ -1338,14 +1371,32 @@ kindFramework.
               if (typeof newVal === "undefined" || newVal === oldVal) {
                 return;
               }
-              activeMenu = 'storage';
-              if (newVal === 'Always') {
-                setVisibility(newVal);
-              } else if (newVal === 'Scheduled') {
-                if (visibility === null || alreadyCreated === false) {
-                  initCalendar(scope.RecordSchedule);
+              activeMenu = 'storage'
+              if(isMultiChannel) {
+                // scope.$watch('RecordSchedule[0].Activate', function(newVal, oldVal){ // for storage controller
+                if(newVal === 'Always') {
+                    setVisibility(newVal);
+                } else if(newVal === 'Scheduled') {
+                  if(channelChanged) {
+                      channelChanged = false;
+                      initCalendar(scope.RecordSchedule);
+                      channelChangedAndInit = true;
+                  } else {
+                      if(visibility === null || alreadyCreated === false) {
+                          initCalendar(scope.RecordSchedule);
+                      }
+                  }
+                  setVisibility(newVal);
+                  }
+              } else {
+                if (newVal === 'Always') {
+                  setVisibility(newVal);
+                } else if (newVal === 'Scheduled') {
+                  if (visibility === null || alreadyCreated === false) {
+                    initCalendar(scope.RecordSchedule);
+                  }
+                  setVisibility(newVal);
                 }
-                setVisibility(newVal);
               }
             });
 
@@ -1381,43 +1432,104 @@ kindFramework.
 
             // in case of event rules reset by sunapi call in eventActionSetup for multi channel
             scope.$on('EventRulePrepared', function(event, data) { // console.info('scheduler saveon EventRulePrepared : ');console.info(data);console.info(scope.EventSource);
-              currentPage = UniversialManagerService.getCurrentSetupPage();
-              if (currentPage === 'AlarmInput') {
-                activeMenu = 'alarmInput';
-                if (data === 'Always') {
-                  setVisibility(data);
-                } else if (data === 'Scheduled') {
-                  if (!alreadyCreated) {
-                    initCalendar(scope.EventRules[0]);
-                    setVisibility(data);
-                  }
+              if(isMultiChannel) {
+                var currentChannel = 0;
+                currentChannel = UniversialManagerService.getChannelId();
+                if(scope.EventSource === 'AlarmInput') {
+                    activeMenu = 'alarmInput';
+                    if(data === 'Always') {
+                        setVisibility(data);
+                    } else if(data === 'Scheduled') {
+                        if(!alreadyCreated || prevChannel !== currentChannel) {
+                            // $('#calendar').fullCalendar('destroy');
+                            // initialRendered = false;
+                            initCalendar(scope.EventRules[0]);
+                            setVisibility(data);
+                        }
+                    }
+                } else {
+                    if(data === 'Always') {
+                        setVisibility(data);
+                    } else if(data === 'Scheduled') {
+                        if(!alreadyCreated || prevChannel !== currentChannel) {
+                            // $('#calendar').fullCalendar('destroy');
+                            // initialRendered = false;
+                            initCalendar(scope.EventRule);
+                            setVisibility(data);
+                        }
+                    }
                 }
+                prevChannel = currentChannel;
               } else {
-                if (data === 'Always') {
-                  setVisibility(data);
-                } else if (data === 'Scheduled') {
-                  if (!alreadyCreated) {
-                    initCalendar(scope.EventRule);
+                currentPage = UniversialManagerService.getCurrentSetupPage();
+                if (currentPage === 'AlarmInput') {
+                  activeMenu = 'alarmInput';
+                  if (data === 'Always') {
                     setVisibility(data);
+                  } else if (data === 'Scheduled') {
+                    if (!alreadyCreated) {
+                      initCalendar(scope.EventRules[0]);
+                      setVisibility(data);
+                    }
+                  }
+                } else {
+                  if (data === 'Always') {
+                    setVisibility(data);
+                  } else if (data === 'Scheduled') {
+                    if (!alreadyCreated) {
+                      initCalendar(scope.EventRule);
+                      setVisibility(data);
+                    }
                   }
                 }
               }
             });
 
             scope.$on('recordPageLoaded', function(event, data) {
-              UniversialManagerService.setCurrentSetupPage('Storage');
-              currentPage = 'Storage';
-              activeMenu = 'storage';
-              if (data === 'Always') {
-                setVisibility(data);
-              } else if (data === 'Scheduled') {
-                if (!alreadyCreated) {
-                  initCalendar(scope.RecordSchedule);
-                  setVisibility(data);
+              if(isMultiChannel) {
+                var currentChannel = 0;
+                currentChannel = UniversialManagerService.getChannelId();
+                if(scope.EventSource === 'Storage') {
+                    activeMenu = 'storage';
+                    if(data === 'Always') {
+                        setVisibility(data);
+                    } else if(data === 'Scheduled') {
+                        if(channelChanged) {
+                            channelChanged = false;
+                            initCalendar(scope.RecordSchedule);
+                        } else {
+                            if(!alreadyCreated || prevChannel !== currentChannel) {
+                                // $('#calendar').fullCalendar('destroy');
+                                // initialRendered = false;
+                                if(!channelChangedAndInit) {
+                                    initCalendar(scope.RecordSchedule);
+                                    setVisibility(data);
+                                }
+                            }
+                        }
+                    }
+                    eventRuleService.setInitialScheduleData({menu: scope.EventSource, type:data, data:scope.RecordSchedule.ScheduleIds});
                 }
+                prevChannel = currentChannel;
+              } else {
+                UniversialManagerService.setCurrentSetupPage('Storage');
+                currentPage = 'Storage';
+                activeMenu = 'storage';
+                if (data === 'Always') {
+                  setVisibility(data);
+                } else if (data === 'Scheduled') {
+                  if (!alreadyCreated) {
+                    initCalendar(scope.RecordSchedule);
+                    setVisibility(data);
+                  }
+                }
+                eventRuleService.setInitialScheduleData({menu: currentPage, type:data, data:scope.RecordSchedule.ScheduleIds});
               }
-              eventRuleService.setInitialScheduleData({menu: currentPage, type:data, data:scope.RecordSchedule.ScheduleIds});
             });
+
+            $rootScope.$saveOn("channelSelector:changeChannel", function(event, data) {
+                channelChanged = true;
+            }, scope);
 
             scope.$watch('pageLoaded', function(newVal, oldVal) {
               if (typeof newVal === "undefined") {

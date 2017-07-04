@@ -114,9 +114,9 @@ controller('ModalInstnceCropCtrl', ['$scope', '$rootScope',
           viewerHeight = 360;
           maxWidth = mAttr.MaxROICoordinateX;
           maxHeight = mAttr.MaxROICoordinateY;
-          rotate = response.data.Flip[0].Rotate;
-          flip = response.data.Flip[0].VerticalFlipEnable;
-          mirror = response.data.Flip[0].HorizontalFlipEnable;
+          rotate = response.data.Flip[channelId].Rotate;
+          flip = response.data.Flip[channelId].VerticalFlipEnable;
+          mirror = response.data.Flip[channelId].HorizontalFlipEnable;
           adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
 
           SunapiClient.get('/stw-cgi/media.cgi?msubmenu=mediaoptions&action=view', getData, function (response) {

@@ -434,7 +434,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
         }
       },
       function(errorData) {
-        alert(" [View] " + errorData);
+        console.log(errorData);
       }, '', true);
 
   }

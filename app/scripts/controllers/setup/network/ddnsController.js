@@ -243,7 +243,9 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
 
       SunapiClient.get('/stw-cgi/network.cgi?msubmenu=dynamicdns&action=set', angular.copy(setData),
         function(response) {
-          get();
+          $timeout(function() {
+            get();
+          }, 500);
         },
         function(errorData) {
           console.log(errorData);

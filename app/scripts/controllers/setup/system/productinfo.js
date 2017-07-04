@@ -241,21 +241,21 @@ kindFramework.controller('productinfo', function($scope, $timeout, $uibModal, $t
     }
 
     if ($scope.DeviceType === 'NWC') {
-      if ($scope.prodinfoForm.Description.$valid === false) {
+      if ($scope.prodinfoForm.Description.$valid === false || $.trim($scope.Info.Description).length === 0) {
         ErrorMessage = 'lang_msg_check_description';
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
         return retVal;
       }
 
-      if ($scope.prodinfoForm.Location.$valid === false) {
+      if ($scope.prodinfoForm.Location.$valid === false || $.trim($scope.Info.Location).length === 0) {
         ErrorMessage = 'lang_msg_check_location';
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);
         return retVal;
       }
 
-      if ($scope.prodinfoForm.Memo.$valid === false) {
+      if ($scope.prodinfoForm.Memo.$valid === false || $.trim($scope.Info.Memo).length === 0) {
         ErrorMessage = 'lang_msg_check_memo';
         retVal = false;
         COMMONUtils.ShowError(ErrorMessage);

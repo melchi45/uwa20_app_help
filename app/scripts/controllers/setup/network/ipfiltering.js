@@ -683,23 +683,38 @@ SunapiClient, XMLParser, Attributes, $q) {
 
 
   function DeleteCheck4() {
-    var retval = true;
+    var retVal = true;
+      if ($scope.data.DeviceType === 'NWC' && pageData.AccessType === "Allow")
+      {
+        if ($scope.data.selected4 <= $scope.originalIPv4Length)
+        {
+          if ($scope.FilterIPv4[$scope.data.selected4 - 1].Address === $scope.ClientIPAddr)
+          {
+            retVal = false;
+          } else {
+            if (CurrentIPInRangeIPv4($scope.FilterIPv4[$scope.data.selected4 - 1].Address, $scope.ClientIPAddr, $scope.FilterIPv4[$scope.data.selected4 - 1].Mask) === true)
+            {
+              retVal = false;
+            }
+          }
 
-    if ($scope.data.DeviceType === 'NWC' && pageData.AccessType === "Allow") {
+          if(retVal === false) {
+            for (var i = 0; i < $scope.FilterIPv4.length; i++)
+            {
+              if(i !== $scope.data.selected4 - 1) {
+                if (CurrentIPInRangeIPv4($scope.FilterIPv4[i].Address, $scope.ClientIPAddr, $scope.FilterIPv4[i].Mask) === true)
+                {
+                    retVal = true;
+                }
+              }
+            }
+          }
+        }
 
-      if ($scope.data.selected4 <= $scope.originalIPv4Length) {
-
-        retval = DeleteRangeCheck4($scope.ClientIPAddr, $scope.FilterIPv4[$scope.data.selected4 - 1].Range);
-        
-
-        // if ($scope.FilterIPv4[$scope.data.selected4 - 1].Address === $scope.ClientIPAddr) {
-        //   retval = false;
-        // }
       }
 
+      return retVal;
     }
-    return retval;
-  }
 
   function delFilter4() {
     var jData = {};
@@ -742,7 +757,7 @@ SunapiClient, XMLParser, Attributes, $q) {
 
   function deleteFilter4(ind) {
     if (DeleteCheck4() === false) {
-      COMMONUtils.ShowError('lang_msg_chkIPAddress');
+      COMMONUtils.ShowError('lang_msg_chkAllowedClientIP');
     } else {
       if ($scope.FilterIPv4.length > 0) {
         COMMONUtils.ShowConfirmation(delFilter4, 'lang_msg_confirm_remove_profile');
@@ -884,10 +899,30 @@ SunapiClient, XMLParser, Attributes, $q) {
       }
     }
 
-    if (accessIpv4 && $scope.data.DeviceType === 'NWC' && ($scope.data.AccessType === "Allow")) {
-      if (accessIpv4 === true && clientIpFoundIpv4 === false) {
-        COMMONUtils.ShowError('lang_msg_chkIPAddress');
+    if (accessIpv4 && $scope.data.DeviceType === 'NWC' && ($scope.data.AccessType === "Allow") )
+    {
+      if (accessIpv4 === true && clientIPFound_Ipv4 === false) // client ip is excluded
+      {
+        COMMONUtils.ShowError('lang_msg_chkAllowedClientIP');
         return false;
+      } else if(accessIpv4 === true && clientIPFound_Ipv4 === true)
+      {
+        var enable = false;
+        for (var i = 0; i < $scope.FilterIPv4.length; i++)
+        {
+            if (CurrentIPInRangeIPv4($scope.FilterIPv4[i].Address, $scope.ClientIPAddr, $scope.FilterIPv4[i].Mask) === true)
+            {
+                if($scope.FilterIPv4[i].Enable === true)
+                {
+                  enable = true;
+                }
+            }
+        }
+        if(!enable)
+        {
+          COMMONUtils.ShowError('lang_msg_chkAllowedClientIP');
+          return false;
+        }
       }
     }
 

@@ -101,6 +101,10 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
 
   $scope.channelChanged = false;
 
+  $scope.gettingMultiLineOSD = false;
+
+  $scope.loading = false;
+
   $scope.HLCOnOffChange = function() {
     if (typeof $scope.Camera.HLCOnOff === 'undefined') {
       $scope.Camera.HLCOnOff = 'HLCOff';
@@ -4184,6 +4188,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         function() {
           deferred.resolve();
           if ($scope.isMultiChannel && $scope.channelChanged) {
+            $scope.pageLoaded = false;
             UniversialManagerService.setChannelId($scope.targetChannel);
             var promise = getAttributes();
             promise.then(function() {
@@ -4573,6 +4578,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         if (newVal.SSDRLevel !== $scope.SSDR[$scope.ch].Level) {
           LogManager.debug('SSDR Value is adjusted ', $scope.SSDR[$scope.ch].Level, ' -> ', newVal.SSDRLevel);
           $scope.SSDR[$scope.ch].Level = newVal.SSDRLevel;
+          pageData.SSDR[$scope.ch].Level = $scope.SSDR[$scope.ch].Level;
         }
       }
 
@@ -4647,6 +4653,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         if ($scope.ImageEnhancements.Saturation !== newVal.Saturation) {
           LogManager.debug('Color Level is adjusted ', $scope.ImageEnhancements.Saturation, ' -> ', newVal.Saturation);
           $scope.ImageEnhancements.Saturation = newVal.Saturation;
+          pageData.ImageEnhancements.Saturation = $scope.ImageEnhancements.Saturation;
         }
       }
     }
@@ -6280,6 +6287,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   function getMultiLineOSD() {
+    $scope.gettingMultiLineOSD = true;
     var getData = {};
     if ($scope.isMultiChannel) {
       var currentChannel = UniversialManagerService.getChannelId();
@@ -6431,7 +6439,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         pageData.OSDFontSize = angular.copy($scope.OSD.FontSize);
         pageData.OSDColor = angular.copy($scope.OSD.Color);
         pageData.OSDTransparency = angular.copy($scope.OSD.Transparency);
-
+        $scope.gettingMultiLineOSD = false;
       },
       function(errorData) {
         //alert(errorData);
@@ -6612,7 +6620,17 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
         }
 
         refreshSliders();
-        updateMultiLineOSD($scope.DateOSD[0].Index, 'Date', true, $scope.DateOSD[0]);
+
+        var imagePreview = true;
+        if($scope.isMultiChannel) {
+          if($scope.gettingMultiLineOSD) {
+            imagePreview = false;
+            // if(!$scope.loading) {
+            //     $scope.gettingMultiLineOSD = false;
+            // }
+          }
+        }
+        updateMultiLineOSD($scope.DateOSD[0].Index, 'Date', imagePreview, $scope.DateOSD[0]);
         pageData.recentUpdate = "Date";
       }
     }
@@ -6702,6 +6720,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   var showLoadingBar = function(_val) {
+    $scope.loading = val;
     $rootScope.$emit('changeLoadingBar', _val);
   };
 
@@ -6992,6 +7011,7 @@ li_width -= 1; }          else if (index === 1380)            { li_width -= 1;
           },
           function() {});
     } else {
+      $scope.pageLoaded = false;
       showLoadingBar(true);
       $scope.targetChannel = data;
       $rootScope.$emit("channelSelector:changeChannel", data);

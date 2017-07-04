@@ -589,7 +589,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].RecordProfile ||
       $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].IsDigitalPTZProfile ||
       $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].BitrateControlType === 'CBR' ||
-      $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode !== 'Disabled') {
+      (typeof $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode !== 'undefined' && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode !== 'Disabled')) {
       return false;
     }
     return true;
@@ -821,9 +821,13 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     }
 
     if (isDptzSupportedProfile($scope.selectedProfile) && $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].IsDigitalPTZProfile === true) {
-      $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode = "Disabled";
+      if(!$scope.isMultiChannel) {
+        $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode = "Disabled";
+      }
     } else if ($scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].RecordProfile === true) {
-      $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode = "Disabled";
+      if(!$scope.isMultiChannel) {
+        $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode = "Disabled";
+      }
     } else {
       if (typeof pageData.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile] !== 'undefined' &&
         typeof $scope.VideoProfiles[$scope.ch].Profiles[$scope.selectedProfile].ATCMode === 'undefined') {
@@ -1935,10 +1939,12 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
     /*
         Default ATC Settings
      */
-    profile.ATCMode = "Disabled";
-    profile.ATCSensitivity = 'VeryHigh';
-    profile.ATCLimit = 50;
-    profile.ATCTrigger = "Network";
+     if(!$scope.isMultiChannel) {
+      profile.ATCMode = "Disabled";
+      profile.ATCSensitivity = 'VeryHigh';
+      profile.ATCLimit = 50;
+      profile.ATCTrigger = "Network";
+    }
 
     if ($scope.cropSupport === true) {
       /*
@@ -2757,7 +2763,10 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
         $rootScope.$emit('changeLoadingBar', false);
         $rootScope.$emit("channelSelector:changeChannel", $scope.targetChannel);
       },
-      function(error) {});
+      function(error) {
+        console.log(error);
+        $rootScope.$emit('changeLoadingBar', false);
+      });
   }
 
 
@@ -2779,6 +2788,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
   }
 
   function saveSettings() {
+    $rootScope.$emit('changeLoadingBar', true);
     var promises = [];
 
     /* Try to set profile policy both before and after setting video profile,
@@ -2795,6 +2805,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
       promises.push(setProfiles);
     }
     if (promises.length <= 0) {
+      $rootScope.$emit('changeLoadingBar', false);
       return; 
     }
 
