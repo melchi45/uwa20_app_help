@@ -21,11 +21,17 @@ kindFramework.controller('addSlaveModalCtrl', function ($scope, $uibModalInstanc
     var errClass = ' has-error';
 
     //trim
-    for (var i = 0; i < arr.length; i++) {
-      var key = arr[i];
-      var tmpVal = $scope[key].trim();
-      var elem = document.getElementById("pc-confirm-report-" + key);
-      var parent = elem.parentNode;
+    var idx = 0;
+    var key = null;
+    var tmpVal = null;
+    var elem = null;
+    var parent = null;
+
+    for (idx = 0; idx < arr.length; idx++) {
+      key = arr[idx];
+      tmpVal = $scope[key].trim();
+      elem = document.getElementById("pc-confirm-report-" + key);
+      parent = elem.parentNode;
       parent.className = parent.className.replace(errClass, '');
 
       $scope[key] = tmpVal;
@@ -33,11 +39,11 @@ kindFramework.controller('addSlaveModalCtrl', function ($scope, $uibModalInstanc
     }
 
     var isOk = true;
-    for (var i = 0; i < arr.length; i++) {
-      var key = arr[i];
+    for (idx = 0; idx < arr.length; idx++) {
+      key = arr[idx];
       if ($scope[key] === '') {
-        var elem = document.getElementById("pc-confirm-report-" + key);
-        var parent = elem.parentNode;
+        elem = document.getElementById("pc-confirm-report-" + key);
+        parent = elem.parentNode;
         parent.className = parent.className + errClass;
         isOk = false;
       }
