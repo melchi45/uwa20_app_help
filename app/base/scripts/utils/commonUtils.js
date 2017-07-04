@@ -694,7 +694,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       return $translate.instant("lang_middle");
     } else if (Option === "TransparencyHigh") {
       return $translate.instant("lang_high");
-    } else if (Option === "360Panorama") {
+    } else if (Option === "Panorama") {
       //return "360 Panorama";
       return $translate.instant('lang_singlePanorama');
     } else if (Option === "Mosaic1") {

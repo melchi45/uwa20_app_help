@@ -6720,7 +6720,7 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   var showLoadingBar = function(_val) {
-    $scope.loading = val;
+    $scope.loading = _val;
     $rootScope.$emit('changeLoadingBar', _val);
   };
 

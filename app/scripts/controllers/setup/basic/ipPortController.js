@@ -623,7 +623,8 @@ Attributes, COMMONUtils, $q) {
     }
 
     if (((ip_num & not_sm_num) === not_sm_num) || ((ip_num & not_sm_num) === 0) || ((ip_num & sm_num) === 0)) {
-      errorMessage = 'lang_msg_chkIPAddress';
+      // errorMessage = 'lang_msg_chkIPAddress';
+      var ErrorMessage = 'lang_msg_chkSubnetMask';
       COMMONUtils.ShowError(errorMessage);
       return false;
     }

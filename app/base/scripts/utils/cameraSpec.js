@@ -59,7 +59,7 @@ kindFramework.factory('CameraSpec', function(Attributes, SunapiClient, COMMONUti
       "CameraPositions": [{
           "CameraPosition": "Ceiling",
           "ViewModes": [
-            "360Panorama",
+            "Panorama",
             "QuadView",
             "DoublePanorama"
           ],

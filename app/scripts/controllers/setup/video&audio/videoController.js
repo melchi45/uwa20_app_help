@@ -1153,6 +1153,30 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
       );
     } else {
       setTimeout(function() {
+        if ($scope.cameraPositionList !== undefined) {
+          if (!angular.equals(pageData.viewModes, $scope.viewModes)) {
+            COMMONUtils.ShowConfirmation(changeMountMode, 'lang_msg_mountModeChange_Profile', 'md');
+            mountModeChanged = true;
+          }
+        }
+
+        if (rotateChanged) {
+          var modalInstance = $uibModal.open({
+              templateUrl: 'views/setup/common/errorMessage.html',
+              controller: 'errorMessageCtrl',
+              resolve: {
+                Message: function () {
+                    return 'lang_msg_windowClose';
+                },
+                Header: function () {
+                    return 'lang_Confirm';
+                }
+              }
+          });
+          modalInstance.result.then(COMMONUtils.onLogout, COMMONUtils.onLogout);
+        }
+        UniversialManagerService.setChannelId($scope.targetChannel);
+        view();
         deferred.resolve();
       });
     }

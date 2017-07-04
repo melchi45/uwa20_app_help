@@ -2762,6 +2762,7 @@ kindFramework.controller('profileCtrl', function($scope, $uibModal, $timeout, $c
         $("#profilepage").show();
         $rootScope.$emit('changeLoadingBar', false);
         $rootScope.$emit("channelSelector:changeChannel", $scope.targetChannel);
+        $scope.handleViewModeChange();
       },
       function(error) {
         console.log(error);
