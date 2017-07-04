@@ -326,10 +326,18 @@ kindFramework.directive('liveIconList', function(
 
       scope.showFisheye = function() {
         var isFisheyeProfile = false;
-        if (scope.profileInfo !== "undefined" && scope.profileInfo.ViewModeIndex === 0) {
+        if (
+          typeof scope.profileInfo !== "undefined" && 
+          typeof scope.profileInfo.ViewModeIndex !== "undefined" &&
+          scope.profileInfo.ViewModeIndex === 0
+        ) {
           isFisheyeProfile = true;
         }
-        return ( mAttr.FisheyeLens && (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) && isFisheyeProfile );
+        return ( 
+          mAttr.FisheyeLens && 
+          (UniversialManagerService.getStreamingMode() === 
+          CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) && 
+          isFisheyeProfile );
       };
 
       scope.changeFisheyeMode = function(elem){
@@ -354,7 +362,12 @@ kindFramework.directive('liveIconList', function(
       }
 
       scope.show3DModeButton = function(){
-        return ( mAttr.FisheyeLens && (UniversialManagerService.getStreamingMode() === CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) );
+        return ( 
+          mAttr.FisheyeLens && 
+          (UniversialManagerService.getStreamingMode() === 
+          CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) &&
+          (BrowserService.BrowserDetect !== BrowserService.BROWSER_TYPES.IE) 
+        );
       };
 
       function loadedAttr() {
