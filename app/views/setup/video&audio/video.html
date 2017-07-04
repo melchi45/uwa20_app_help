@@ -228,13 +228,8 @@
                 <div class="form-group" ng-show="cameraPositionList !== undefined">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_cameraMountingMode' | translate }}</div>
                     <div class="wn5-setup-section-article-content">
-                        <select class="form-control" ng-model="viewModes.CameraPosition">
-                            <option 
-                                ng-selected="viewModes.CameraPosition == option" 
-                                value={{option}} 
-                                ng-repeat="option in cameraPositionList"> 
-                                {{ getTranslatedOption(option) }} 
-                            </option>
+                        <select class="form-control" ng-model="viewModes.CameraPosition" ng-change="onMountModeChange(viewModes.CameraPosition)"
+                        ng-options="option as getTranslatedOption(option) for option in cameraPositionList">
                         </select>
                     </div>
                 </div>

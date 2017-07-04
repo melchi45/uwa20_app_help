@@ -14,7 +14,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
   $scope.PrivacyMaskSelected = null;
   $scope.DefaultSelectedData = null;
   $scope.deletingPrivacy = false;
-
+  $scope.viewModes = null;
 
   var disValue = null;
   var doNotMoveFunction = false;
@@ -270,6 +270,10 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
   //     }, '', true);
 
   // }
+
+  $scope.onMountModeChange = function(mode) {
+    $scope.viewModes.CameraPosition = angular.copy(mode);
+  };
 
   function fisheyeSetupView() {
     var getData = {};
