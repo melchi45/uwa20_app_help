@@ -1,13 +1,21 @@
 ﻿
 <h1 class="wn5-setup-main-title">카메라 설정</h1>
-<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <p>카메라가 설치된 환경에서 최적의 영상을 촬영할 수 있도록 카메라의 설정을 변경할 수 있습니다. 다양한 환경에 적합한 이미지 프리셋을 기본적으로 제공하고 있으며, 사용자가 직접 카메라 설정값을 지정할 수도 있습니다. 카메라 미리보기 화면에서 설정한 값에 따라 카메라 영상이 어떻게 나타나는지 확인할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 설정을 변경한 후 <strong class="UI">[적용]</strong> 버튼을 클릭하지 않고 타임아웃 시간(240초)이 경과하면 설정값이 변경
 전으로 돌아갑니다.</p>
 </div>
 
 <hr class="wn5-setup-hr">
-
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>타입</h2>
+	</div>	
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>모든 프리셋에 동일한 IVA(지능형 영상 분석)을 설정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 IVA(지능형 영상 분석)을 설정하려면 <strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다.</p>
+        </div>
+</div>
+</div>
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>이미지 프리셋 모드</h2>
@@ -201,7 +209,9 @@
                 </li>
                 <li><strong class="UI">실내</strong>: 카메라의 색상을 실내 환경에 최적화되도록 보정합니다. 
                 </li>
-                <li><strong class="UI">AWC</strong>: 카메라의 색상을 현재 조명 환경에 최적화 되도록 화면을 보정합니다. 카메라에 흰 종이를 비추고 <strong class="UI">[설정]</strong> 버튼을 누르면 적색/청색 게인값이 조절되어 영상에 적용됩니다. 환경이 바뀌면 다시 조정해야 합니다.  </li>
+                <li><strong class="UI">AWC</strong>: 카메라의 색상을 현재 조명 환경에 최적화 되도록 화면을 보정합니다. 카메라에 흰 종이를 비추고 <strong class="UI">[설정]</strong> 버튼을 누르면 적색/청색 게인값이 조절되어 영상에 적용됩니다. 환경이 바뀌면 다시 조정해야 합니다.</li>
+                <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: 카메라 색상을 수은등 조명 환경에 최적화되도록 자동 보정합니다.</li>
+                <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: 카메라 색상을 나트룸등&nbsp;조명 환경에 최적화되도록 자동 보정합니다.</li>
             </ul>
         </div>
 
@@ -381,7 +391,7 @@
             <ul>
                 <li><strong class="UI">DC(자동)</strong>: 들어오는 빛의 양을 판단하여 조리개를 조절합니다. </li>
                 <li><strong class="UI">수동</strong>: 조리개를 수동으로 조절합니다.</li>
-                <li><strong class="UI">P-조리개</strong>:  스텝 모터를 통해 조리개를 조절합니다. 다양한 거리에 있는 여러 물체를 동시에 포커스를 맞출 수 있어 깊은 심도를 가질 수 있습니다. </li>
+                <li ng-if="!PTZModel"><strong class="UI">P-조리개</strong>:  스텝 모터를 통해 조리개를 조절합니다. 다양한 거리에 있는 여러 물체를 동시에 포커스를 맞출 수 있어 깊은 심도를 가질 수 있습니다. </li>
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions">
@@ -436,9 +446,9 @@
                 </li>
                 <li><strong class="UI">자동</strong>: 주간에는 컬러 모드로, 야간이나 저조도시에는 흑백으로 전환합니다. 단 <strong class="UI">[노출 보정]</strong>의 <strong class="UI">[AGC]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정하면 주야간 모드를 자동으로 설정할 수 없습니다. 
                 </li>
-                <li><strong class="UI">외부 입력</strong>: 알람 입력 단자를 외부 기기와 연동했을 경우에 영상의 컬러와 흑백을 제어할 수 있습니다.
+                <li ng-if="!PTZModel"><strong class="UI">외부 입력</strong>: 알람 입력 단자를 외부 기기와 연동했을 경우에 영상의 컬러와 흑백을 제어할 수 있습니다.
                 </li>
-                <li><strong class="UI">스케줄</strong>: <strong class="UI">[컬러 영상 동작 시간]</strong>에서 설정한 스케줄로 주야간 모드가 변경됩니다.</li>
+                <li ng-if="!PTZModel"><strong class="UI">스케줄</strong>: <strong class="UI">[컬러 영상 동작 시간]</strong>에서 설정한 스케줄로 주야간 모드가 변경됩니다.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -449,7 +459,7 @@
             <h3>실행 시간</h3>
             <p>컬러나 흑백으로 전환 동작이 일어나는 시간 간격을 설정합니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
             <h3>알람 입력</h3>
             <p>알람 센서의 열림/닫힘 상태에 따라 영상을 컬러나 흑백으로 설정할 수 있습니다. <strong class="UI">[주야간 모드]</strong>의 <strong class="UI">[모드]</strong>를&nbsp;<strong class="UI">[외부 입력]</strong>으로 설정하면 <strong class="UI">[이벤트]</strong>&gt;<strong class="UI">[알람 입력]</strong> 기능이 비활성화되고 설정 페이지가 나타나지 않습니다. </p>
         </div>
@@ -508,7 +518,7 @@
             <h3>안개 제거 레벨</h3>
             <p>안개 제거가 <strong class="UI">[수동]</strong>인 경우 활성화되며 안개 제거 레벨을 조절합니다. 안개 제거 레벨이 높으면 영상이 더 선명하게 보입니다. 안개가 낀 정도가 약하면서 안개 제거 레벨이 높으면 화면이 어두워 보일 수 있습니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
             <h3>LDC</h3>
             <p> LDC (Lens Distortion Correction)는 광각 렌즈의 모서리 부분의 영상 왜곡 현상을 보정해줍니다. </p>
             <ul>
@@ -517,7 +527,7 @@
                 <li ng-if="LDCAuto"><strong class="UI">자동</strong>: 자동으로 영상 왜곡을 조절합니다.  </li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
             <h3>LDC 레벨</h3>
             <p>LDC 기능의 레벨을 조절합니다. <strong class="UI">[LDC]</strong>를 <strong class="UI">[수동]</strong>으로 설정하면 활성화됩니다. </p>
         </div>
@@ -559,6 +569,11 @@
             <h3>OSD 텍스트 투명도</h3>
             <p>OSD의 투명도를 설정합니다.</p>
         </div>
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>오버레이</h3>
+            <p>PTZ 좌표나 프리셋 이름을 등 카메라 영상 화면에 나타낼 데이터를 선택합니다.</p>
+        </div>
+		
         <!--<div class="wn5-setup-section-article-content">
             <h3>오버레이 이미지 </h3>
             <p>사용자가 원하는 이미지를 화면 좌측 상단에 표시할 수 있습니다. <strong class="UI">[이미지 업로드]</strong> 메뉴에서 이미지를 업로드할 수 있습니다.</p>
@@ -569,6 +584,69 @@
         </div> -->
     </div>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="Focus">
+<div class="wn5-setup-section" ng-if="Focus">
+    <div class="wn5-setup-section-heading">
+        <h2>포커스</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>카메라 초점 작동 방식 및 디지털 줌 사용 여부, 카메라 초기화 등을 설정할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>모드</h3>
+            <p>카메라 초점 작동 방식을 설정합니다.</p>
+            <ul>
+                <li>수동: 카메라 초점을 수동으로 조정합니다.</li>
+                <li>자동: 카메라 초점이 자동으로 조정됩니다.</li>
+                <li>포커스 조정: 사용자 이벤트(자동 포커스 혹은 줌 동작) 발생 시&nbsp;&nbsp;자동으로 초점이 한 번 조정됩니다.</li>
+            </ul>
+        </div>
+		<div class="wn5-setup-section-article-content">
+            <h3>디지털 줌</h3>
+            <p>디지털 줌을 사용하려면 &nbsp;<strong class="UI">[사용함]</strong>을 선택합니다.</p>
+        </div>
+		<div class="wn5-setup-section-article-content">
+            <h3>디지털 줌 범위</h3>
+            <p>사용할 수 있는&nbsp;디지털 줌의 최대 범위를 설정합니다. <strong class="UI">[디지털 줌]</strong>을 <strong class="UI">[사용함]</strong>으로 설정하면 디지털 줌&nbsp;범위를 설정할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>줌 모드</h3>
+            <p>줌 동작 시 카메라 초점이 연동되는 방식을 설정합니다.</p>
+            <ul>
+                <li>자동: 줌 배율이 변경되더라도 초점이 맞는 상태를 계속적으로 판단하고 수정하여,&nbsp;초점을 유지하면서 줌이 동작합니다.   </li>
+                <li>수동: 설정되어 있는 초점 트랙을 따라 줌이 동작합니다. 줌 배율이 변경되면 초점이 맞지 않을 수 있습니다.</li>
+            </ul>
+        </div>
+		<div class="wn5-setup-section-article-content">
+            <h3>줌 속도</h3>
+            <p><strong class="UI">줌 모드</strong> 기능 작동 시 줌 속도를 설정합니다.</p>
+        </div>
+	    <div class="wn5-setup-section-article-content">
+            <h3>렌즈 초기화</h3>
+            <p>렌즈를 수동으로 한 번 초기화하거나 렌즈가 자동으로 초기화되도록 초기화 주기를 설정할 수 있습니다.</p>
+            <p>렌즈를 수동으로 초기화하려면 <strong class="UI">[렌즈 초기화]</strong> 옵션에서 <strong class="UI">[수동]</strong>을 선택하고 <strong class="UI">[설정]</strong> 버튼을 클릭합니다. 자동 초기화 주기를 설정하려면 1~7일까지 원하는 시간을 선택합니다. 설정된 시각부터 설정된 주기로 렌즈를 초기화합니다.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>자동 초점은 화면 중앙에 있는 피사체를 중심으로 초점을 맞추기 때문에 화면 주변에 있는 피사체는 초점이 맞지 않을 수 있습니다.</li>
+                <li>자동 초점 기능은 다음 조건에서는 정상적으로 동작하지 않을 수 있습니다.</li>
+                <ul>
+                    <li>밝은 조명이나 네온사인 등과 같이 점멸하는 조명이 있는 경우 </li>
+                    <li>감시 영역 내의 조도가 낮을 경우</li>
+                    <li>감시 영역 내의 조도가 과도하게 높은 경우</li>
+                    <li>느린 셔터로 동작하는 경우</li>
+                    <li>피사체가 어두운 경우</li>
+                    <li>하늘 및 벽과 같이 명암 차가 없는 경우</li>
+                    <li>가느다란 수평 라인을 응시하는 경우</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
 
 <hr class="wn5-setup-hr" ng-if="Heater">
 <div class="wn5-setup-section" ng-if="Heater">
@@ -582,6 +660,20 @@
         </div>
     </div>
 </div>
+
+<!-- <hr class="wn5-setup-hr" ng-if="Heater">
+<div class="wn5-setup-section" ng-if="Heater">
+    <div class="wn5-setup-section-heading">
+   <h2>팬</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>한 번만 동작</h3>
+            <p>성애가 발생한 경우 팬을 작동시켜 성애를 제거하려면 동작 버튼<span class="tui tui-ch-playback-reset"></span>을 한 번 클릭합니다.</p>
+        </div>
+    </div>
+</div> --> 
+
 
 <hr class="wn5-setup-hr" ng-if="IR">
 <div class="wn5-setup-section" ng-if="IR">
@@ -602,8 +694,8 @@
 
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!PTZModel">
+<div class="wn5-setup-section" ng-if="!PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>이벤트 동작 스케줄</h2>
     </div>

@@ -12,8 +12,8 @@
 
   <!-- information toggle buttons -->
   <ul class="info-toggle">
-    <li 
-      class="cm-icon-point"
+    <li
+      class="cm-icon-dark"
       ng-show="function.ngClass === 'fisheye'? function.show() : function.show" 
       ng-repeat="function in wisenetCameraFuntions2"
       ng-class="{ 'cm-active' : channelSetFunctions[function.ngClass] }">
@@ -31,14 +31,14 @@
 
   <!-- live controller -->
   <ul class="cm-col" id="live-controller">
-    <li 
-      class="cm-icon-point"
+    <li
+      class="cm-icon-dark"
       ng-if="function.class === 'tui-wn5-3d'? function.show() : function.show"
       ng-repeat="function in wisenetCameraFuntions">
       <button 
         class="cm-icon-button-b"
         ng-click="function.action($event);" 
-        ng-class="{ 'cm-active' : channelBasicFunctions[function.ngClass] }"
+        ng-class="{ 'cm-icon-active' : channelBasicFunctions[function.ngClass] }"
         title="{{(function.label === 'viewMode'? viewModeTitle : function.label) | translate}}"
         data-ng-disabled="function.disabled">
         <span class="sr-only">{{ (function.label === 'viewMode'? viewModeTitle : function.label) | translate }}</span>
@@ -64,7 +64,7 @@
   <div id="live-alarm-volume" ng-show="MaxAudioInput !== 0">
     <div class="cm-col" ng-if="alarmOutputUser()" id="alarm">
       <span 
-        class="cm-icon-button-b"
+        class="cm-icon-button-b cm-icon-dark"
         title="{{'lang_alarmOutput' | translate}}">
         <span class="sr-only">{{ 'lang_alarmOutput' | translate }}</span>
         <i class="tui tui-wn5-toolbar-alarm"></i>
@@ -77,7 +77,7 @@
 
     <div class="cm-col" id="volume-control" ng-show="MaxAudioInput !== 0">
       <button 
-        class="cm-icon-button-s"
+        class="cm-icon-button-s cm-icon-dark"
         ng-click="changeSpeaker()" 
         ng-class="{'cm-opacity':!channelBasicFunctions.speakerEnable}"
         title="{{'lang_Speaker' | translate}}">

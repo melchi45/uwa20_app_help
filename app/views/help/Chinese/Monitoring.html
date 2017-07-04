@@ -54,8 +54,11 @@
                             <p>&nbsp;</p>
 </td>
                     <td width="235">
-                        <p>可控制摄像机的平移/倾斜/缩放。仅当当前实时屏幕所用的视频配置文件支持数字 PTZ 时，才能运行 PTZ。如需更改数字 PTZ 控制配置文件，请在<STRONG class="UI">[设置]</STRONG>&gt;<STRONG class="UI">[基本设置]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[配置文件类型]</STRONG>中选择<STRONG class="UI">[数字 PTZ 配置文件]</STRONG>。</p>
-                        <p>&nbsp;</p>
+                        <p ng-if="PTZMode">可控制摄像机的平移/倾斜/缩放。仅当当前实时屏幕所用的视频配置文件支持数字 PTZ 时，才能运行 PTZ。如需更改数字 PTZ 控制配置文件，请在<STRONG class="UI">[设置]</STRONG>&gt;<STRONG class="UI">[基本设置]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[配置文件类型]</STRONG>中选择<STRONG class="UI">[数字 PTZ 配置文件]</STRONG>。</p>
+
+                        
+                        <p ng-if="PTZModel">您可控制摄像机的平移/倾斜/缩放。您可转到在<strong class="UI">[设置]</strong>&gt、<strong class="UI">[PTZ]</strong>&gt、<strong class="UI"><a class="wn5-online-help-link" href="ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">[PTZ 设置</a>]</strong>页面中设置的预设或开始/停止摆动、分组巡航、巡航和跟踪功能。</p>
+
                     </td>
                 </tr>
                     <tr>
@@ -182,8 +185,36 @@
 </div>
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+
+<hr class="wn5-setup-hr" ng-if="Zoom">
+<div class="wn5-setup-section" ng-if="Zoom">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>您可以调整摄像机缩放和对焦。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>调整缩放</h3>
+            <p>单击缩放区域中的<strong class="UI">[+]</strong>按钮时，屏幕将放大。单击<strong class="UI">[-]</strong>按钮时，屏幕将缩小。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>调整对焦</h3>
+            <p><span class="tui tui-wn5-ptz-near"></span>单击按钮或<span class="tui tui-wn5-ptz-far"></span>按钮即可调整摄像机对焦。</p>
+            <p>如需自动调整摄像机对焦一次，请单击<span class="tui tui-wn5-simple-focus"></span>按钮。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>移动预设</h3>
+            <p>从预设列表中选择所需预设后，单击<strong class="UI">[跳转]</strong>按钮，将自动移动到想要的预设位置。</p>
+            <p>如需添加预设，请单击<strong class="UI">[设置]</strong>按钮，输入预设名称，设置编号，然后单击<strong class="UI">[应用]</strong>按钮。预设可通过<strong class="UI">[设置]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[预设位设置]</strong>选项卡进行添加或更改。</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- <hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -202,8 +233,9 @@
         <div class="wn5-setup-section-article-content">
             <h3>移动预设</h3>
             <p>从预设列表中选择所需预设后，单击 <strong class="UI">[播放]</strong>按钮，将自动移动到想要的预设位置。预设列表可通过<strong class="UI">[设置]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[预设]</strong>选项卡进行添加或更改。</p>
-        <div class="wn5-setup-section-article-content">
         </div>
+        <div class="wn5-setup-section-article-content">
+
             <h3>执行群组移动</h3>
             <p>从<strong class="UI">[群组]</strong>中选择所需的群组，然后单击<strong class="UI">[播放]</strong>按钮，将执行预设组操作。组列表可通过<strong class="UI">[设置]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[群组]</strong>选项卡进行添加或更改。</p>
         </div>
@@ -214,6 +246,55 @@
         </div>
         </div>
     </div>
+-->
+
+
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>可控制摄像机的平移/倾斜/缩放动作，或使用自动跟踪功能。  </p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>控制缩放移动焦点</h3>
+            <p>单击缩放工具栏中的<strong class="UI">[+]</strong>按钮时，&nbsp;屏幕将放大。单击<strong class="UI">[-]</strong>按钮时，屏幕将缩小。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>控制平移/倾斜移动焦点</h3>
+            <p>单击<span class="tui tui-wn5-ptz-handle"></span>平移和倾斜区域中的按钮，控制摄像机的方向。</p>
+        </div>
+            <div class="wn5-setup-section-article-content">
+                        <h3>调整对焦</h3>
+            <p>单击<span class="tui tui-wn5-ptz-near"></span>按钮或<span class="tui tui-wn5-ptz-far"></span>按钮即可调整摄像机对焦。</p>
+            <p>如需自动调整摄像机对焦一次，&nbsp;请单击<span class="tui tui-wn5-simple-focus"></span>按钮。
+        </div> 
+  <div class="wn5-setup-section-article-content">
+            <h3>自动跟踪</h3>
+                     
+            <p>在实时视图中能够自动跟踪正在移动的物体或人。单击自动跟踪按钮后<span class="tui tui-ch-live-ptz-tracking-auto-off"></span>,&nbsp;将执行自动跟踪功能。再次单击自动跟踪按钮后<span class="tui tui-ch-live-ptz-tracking-auto-on"></span>，跟踪功能将停止。</p>
+            <p>此外，当您在图像屏幕单击鼠标右键时，将在移动焦点基础上对选中的区域进行分析，然后开始自动跟踪。</p>
+        </div>    
+        <div class="wn5-setup-section-article-content">
+            <h3>使用 PTZ 功能</h3>
+            <p>您可将摄像机转到一个预设位置或开始和停止摆动、分组巡航、巡航和跟踪功能。若要了解相关设置，请参见<strong class="UI">[设置]</strong>&gt、<strong class="UI">[PTZ]</strong>&gt、<strong class="UI"><a class="wn5-online-help-link" href="ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">[PTZ 设置</a>]</strong>页面。</p>
+  </div>
+        
+          
+        <div class="wn5-setup-section-article-content">
+            <h3>区域缩放</h3>
+                     
+            <p>区域缩放使您能够放大并查看特定区域。</p>
+            <p>当您在摄像机图像屏幕上单击鼠标按钮<span class="tui tui-chi-live-ptz-areazoom"></span>、拖拽鼠标并选中一个区域时，缩放功能将对选定区域生效，摄像机位置将转至选定区域。&nbsp;您可通过单击按钮<span class="tui tui-chi-live-ptz-areazoom-back"></span>，转到之前选定的区域和配置。转到之前选定的区域和配置后，如果您想要返回之前的区域和配置，单击按钮<span class="tui tui-chi-live-ptz-areazoom-pre"></span>。单击该按钮后<span class="tui tui-chi-live-ptz-areazoom-1x"></span>，
+放大倍数将更改为 1x，摄像机将回到初始位置。  </p>
+            <p>  </p>
+            <p> 若要终止区域缩放设置，再次单击按钮<span class="tui tui-chi-live-ptz-areazoom"></span>。将保持当前设置区域放大状态并终止区域缩放设置功能。</p>
+        </div>
+    </div>
+</div>
 
 
 

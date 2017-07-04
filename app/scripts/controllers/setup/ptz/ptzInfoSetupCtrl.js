@@ -697,6 +697,9 @@ kindFramework.controller('ptzInfoSetupCtrl', function($scope, $location, $uibMod
 
   function getAttributes() {
     $scope.tabs = [];
+    $scope.tabWidth = {
+      width: '25%'
+    };
     $scope.MaxPreset = mAttr.MaxPreset;
     $scope.OnlyNumStr = mAttr.OnlyNumStr;
     $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
@@ -815,6 +818,8 @@ kindFramework.controller('ptzInfoSetupCtrl', function($scope, $location, $uibMod
 
     if (mAttr.AutorunSupport) {
       $scope.tabs.push('AutoRun');
+      //AutoRun의 러시아어의 길이 이슈로 33.3333으로 수정
+      $scope.tabWidth.width = '33.33333%';
 
       if (mAttr.AutoRunModes !== undefined) {
         $scope.AutoRunModes = mAttr.AutoRunModes;

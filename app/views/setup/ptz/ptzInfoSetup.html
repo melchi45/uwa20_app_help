@@ -4,11 +4,12 @@
     </wn5-setup-main-title>
     <hr class="wn5-setup-hr">
 
-    <div class="wn5-setup-tab cm-tabs-field" style="padding-bottom: 100px;">
+    <div class="wn5-setup-tab cm-tabs-field wn5-tab-fill" style="padding-bottom: 100px;">
         <ul class="wn5-setup-tab-list cm-tabs-list use-margin-top">
             <li
                 class="wn5-setup-tab-item"
-                ng-repeat="tab in tabs" style="width : 16%;">
+                ng-repeat="tab in tabs" 
+                ng-style="tabWidth">
                 <button 
                     ng-click="changeCurrentTab(tab)"
                     ng-class="{'active': activeTab.title === tab}"

@@ -2204,6 +2204,8 @@ var SketchManager = (function() {
           //_self.updatePolygon();
           isDrawDragging = false;
           index = 1;
+          Ax = 0;
+          Ay = 0;
         } else {
           var coord = getCoordinate(event, this);
           var xVal = coord[0];
@@ -2350,6 +2352,8 @@ var SketchManager = (function() {
               'y3': data.y3,
               'y4': data.y4
             };
+          } else {
+            selectedCoordinates = null;
           }
           if (selectedCoordinates !== null) {
             // to draw selected area
@@ -4335,6 +4339,8 @@ var SketchManager = (function() {
               'y3': data.y3,
               'y4': data.y4
             };
+          } else {
+            selectedCoordinates = null;
           }
           if (selectedCoordinates !== null) {
             // to draw selected area

@@ -1,10 +1,22 @@
 ﻿<h1 class="wn5-setup-main-title">Camera setup</h1>
-<hr class="wn5-setup-hr">
+
 <div class="wn5-setup-section">
-    <p>You can change the camera settings to capture the best image in the environment where the camera is installed. Image presets suitable for various environments are provided by default; the user can also specify camera settings directly. You can check on the camera preview screen how the camera image is displayed according to the settings. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. If the time-out time (240 seconds) has passed without clicking the <strong class="UI">[Apply]</strong> button after changing the setting, the previous setting will be restored.</p>
+    <p>You can change the camera settings to capture the best image in the environment where the camera is installed. Image presets suitable for various environments are provided by default; the user can also specify camera settings directly. You can check on the camera preview screen how the camera image is displayed according to the settings. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. If the time-out time (240 seconds) has passed without clicking
+the <strong class="UI">[Apply]</strong> button after changing the setting, the previous setting will be restored.</p>
 </div>
 
 <hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>Type</h2>
+	</div>	
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>To set the same motion detection for all presets, select <strong class="UI">[Global]</strong>. To set a different motion detection for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Preset setup</a> page.</p>
+        </div>
+</div>
+</div>
 
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -180,7 +192,9 @@
                 <li><strong class="UI">ATW</strong>: Corrects the camera color automatically. </li>
                 <li><strong class="UI">Outdoor</strong>: The colors of the camera are corrected to be optimized for an outdoor environment.</li>
                 <li><strong class="UI">Indoor</strong>: Correction is made to optimize colors for an indoor environment.</li>
-                <li><strong class="UI">AWC</strong>: Screen correction is made to optimize the colors for the current lighting environment. When you aim the camera at white paper and press the <strong class="UI">[Setup]</strong> button, the red gain and blue gain will be adjusted and applied to the image. If the environment changes, this should be adjusted again.  </li>
+                <li><strong class="UI">AWC</strong>: Screen correction is made to optimize the colors for the current lighting environment. When you aim the camera at white paper and press the <strong class="UI">[Setup]</strong> button, the red gain and blue gain will be adjusted and applied to the image. If the environment changes, this should be adjusted again.</li>
+                <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: Screen correction is made to optimize the colors for the mercury&nbsp;lighting environment.  </li>
+                <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: Screen correction is made to optimize the colors for the sodium&nbsp;lighting environment.</li>
             </ul>
         </div>
 
@@ -353,7 +367,7 @@
             <ul>
                 <li><strong class="UI">DC (Auto)</strong>: Adjusts the iris by determining the amount of incoming light. </li>
                 <li><strong class="UI">Manual</strong>: Adjusts the iris manually.</li>
-                <li><strong class="UI">P-Iris</strong>: Adjusts the iris through the step motor. A large depth of field can be secured so that a number of objects at various distances can be brought into focus at the same time.</li>
+                <li ng-if="!PTZModel"><strong class="UI">P-Iris</strong>: Adjusts the iris through the step motor. A large depth of field can be secured so that a number of objects at various distances can be brought into focus at the same time.</li>
             </ul>
         </div>
 		
@@ -394,7 +408,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Change the image to color or b/w according to the camera&rsquo;s environment. When the dwell time is set, the image can be changed to color or b/w according to preference. When switching to Day/Night, a motion detection event or image analysis event cannot be detected. </p> 
+            <p>Change the image to color or b/w according to the camera’s environment. When the dwell time is set, the image can be changed to color or b/w according to preference. When switching to Day/Night, a motion detection event or image analysis event cannot be detected. </p> 
         </div>
         <div class="wn5-setup-section-article-content">
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
@@ -404,8 +418,8 @@
                 <li><strong class="UI">Color</strong>: Outputs an image in color.</li>
                 <li><strong class="UI">B/W</strong>: Outputs an image in b/w.</li>
                 <li><strong class="UI">Auto</strong>: Switch to color mode during the daytime and b/w at night or in low light. If <strong class="UI">[Off]</strong> is set for <strong class="UI">[AGC]</strong> of <strong class="UI">[Exposure]</strong>, Day/Night cannot be set automatically.</li>
-                <li><strong class="UI">External</strong>: When an alarm input terminal is linked with external equipment, color and b/w can be controlled.</li>
-                <li><strong class="UI">Schedule</strong>: Day/Night is changed to the schedule set from <strong class="UI">[Activation time (Color)]</strong>.</li>
+                <li ng-if="!PTZModel"><strong class="UI">External</strong>: When an alarm input terminal is linked with external equipment, color and b/w can be controlled.</li>
+                <li ng-if="!PTZModel"><strong class="UI">Schedule</strong>: Day/Night is changed to the schedule set from <strong class="UI">[Activation time (Color)]</strong>.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -416,7 +430,7 @@
             <h3>Duration</h3>
             <p>Sets the time interval when switching to color or b/w occurs.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
             <h3>Alarm in</h3>
             <p>Set the image to color or b/w according to the opening and closing status of the alarm sensor. When <strong class="UI">[External]</strong> is set for <strong class="UI">[Mode]</strong> of <strong class="UI">[Day/Night]</strong>, the <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm input]</strong> function will be deactivated and the setup page will not appear. </p>
         </div>
@@ -473,7 +487,7 @@
             <h3>Defog level</h3>
             <p>Activated when <strong class="UI">[Manual]</strong> is set for Defog; it adjusts the defog level. A higher defog level displays the image more clearly. If the fog level is low and a high defog level is set, the screen may look darker. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
             <h3>LDC</h3>
             <p> LDC (Lens Distortion Correction) corrects image distortion at the edge of a wide angle lens. </p>
 			 <ul>
@@ -482,7 +496,7 @@
                 <li ng-if="LDCAuto"><strong class="UI">Auto</strong>: Adjusts the image distortion automatically.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
             <h3>LDC Level</h3>
             <p> Adjust the level of the LDC function. Activated when <strong class="UI">[Manual]</strong> is set for <strong class="UI">[LDC]</strong>. </p>
         </div>
@@ -522,6 +536,10 @@
             <h3>Transparency</h3>
             <p>Set the transparency of OSD.</p>
         </div>
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>Overlay</h3>
+            <p>The user can display the camera's PTZ coordiates, or preset names on the screen.</p>
+        </div>
         <!-- <div class="wn5-setup-section-article-content">
             <h3>Overlay image </h3>
             <p>The user can display a desired image at the top left of the screen. Upload an image from the <strong class="UI">[Upload image]</strong> menu.</p>
@@ -533,6 +551,70 @@
     </div>
 </div>
 
+
+<hr class="wn5-setup-hr" ng-if="Focus">
+<div class="wn5-setup-section" ng-if="Focus">
+    <div class="wn5-setup-section-heading">
+        <h2>Focus</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can set the camera focus operation method, whether or not to use digital zoom, and reset the camera.</p>
+        </div>    
+        <div class="wn5-setup-section-article-content">
+            <h3>Mode</h3>
+            <p>Set the camera focus operation method.</p>
+            <ul>
+                <li>Manual: Adjust the camera focus manually.</li>
+                <li>Auto: The camera focus is adjusted automatically.</li>
+                <li>One shot AF: In case of a user event (Auto Focus or Zoom Action) the focus will be automatically adjusted one time.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Digital zoom</h3>
+            <p>To use digital zoom, select <strong class="UI">[Enable]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Max digital zoom</h3>
+            <p>Set the maximum range of available digital zoom. You can set the range of digital zoom by setting <strong class="UI">[Enable]</strong> for <strong class="UI">[Digital zoom]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Zoom mode</h3>
+            <p>Set the method to synchronize the camera focus when the zoom is operating.</p>
+            <ul>
+                <li>Auto: Even if the zoom magnification is changed, the zoom operates while maintaining the focus by continuously appraising and modifying the condition in focus.</li>
+                <li>Manual: The zoom operates according to the set focus track. The image may be out of focus if the zoom magnification is changed.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Zoom speed</h3>
+            <p>Set the zoom speed when the <strong class="UI">Zoom mode</strong> function is enabled.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Lens reset</h3>
+            <p>You can reset the lens manually once or set the reset period to reset the lens automatically.</p>
+            <p>To reset the lens manually, select <strong class="UI">[Manual]</strong> from <strong class="UI">[Init. lens]</strong> option and click the <strong class="UI">[Set]</strong> button. To set auto reset period, select a desired time between 1 and 7 days. The lens will be reset at the set period from the set time.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note<u></u></h4>
+            <ul>
+                <li>Since the automatic focusing function adjusts the focus based on a subject in the middle of the screen, subjects on the periphery of the screen may be out of focus.</li>
+                <li>The automatic focusing function may not operate normally under the following conditions.</li>
+                <ul>
+                    <li>If there is a bright light or flashing light, such as a neon sign</li>
+                    <li>If the illumination in the monitoring area is low</li>
+                    <li>If the illumination in the monitoring area is excessively high</li>
+                    <li>If the camera operates with a slow shutter</li>
+                    <li>If the subject is dark</li>
+                    <li>If there is no intensity difference, such as between the sky and a wall</li>
+                    <li>If the camera is aimed at a thin horizontal line</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
 <hr class="wn5-setup-hr" ng-if="Heater">
 <div class="wn5-setup-section" ng-if="Heater">
     <div class="wn5-setup-section-heading">
@@ -541,11 +623,25 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>One time act</h3>
-            <p>If frost is present and you would like to defrost by operating the heater, click {Icon} once.</p>
+            <p>If frost is present and you would like to defrost by operating the heater, click the <span class="tui tui-ch-playback-reset"></span> button once.</p>
         </div>
 
     </div>
 </div>
+
+<!-- <hr class="wn5-setup-hr" ng-if="Heater">
+<div class="wn5-setup-section" ng-if="Heater">
+    <div class="wn5-setup-section-heading">
+          <h2>Fan</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>One time act</h3>
+            <p>If frost is present and you would like to defrost by operating the fan, click the <span class="tui tui-ch-playback-reset"></span> button once.</p>
+        </div>
+
+    </div>
+</div> -->
 
 <hr class="wn5-setup-hr" ng-if="IR">
 <div class="wn5-setup-section" ng-if="IR">
@@ -566,8 +662,8 @@
 
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!PTZModel">
+<div class="wn5-setup-section" ng-if="!PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>Activation time</h2>
     </div>

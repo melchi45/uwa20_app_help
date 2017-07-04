@@ -90,12 +90,15 @@
             <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de clasificaci&oacute;n de sonidos.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
         </div>
 		
-		<div class="wn5-setup-section-article" ng-if="PresetAction">
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PresetAction && !PTZModel">
+            <h3>Ir a predefinido.</h3>
+                    <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de gesti&oacute;n de colas. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI">[Predefinido]</strong> de <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[PTZ externa]</a></strong>.</p>
+        </div>
 
-            <h3>Ir a preajuste.</h3>
-			<p>Usted puede cambiar los ajustes para la ubicaci&oacute;n de la vista de la c&aacute;mara para pasar a un n&uacute;mero de preajuste (que fue definido anteriormente), en caso de que ocurra un evento de clasificaci&oacute;n de sonidos. Los predefinidos de la c&aacute;mara pueden ser definidos en <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ Digital]</strong></a> o la pesta&ntilde;a <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[PTZ Externo]</a></strong>&gt;<strong class="UI">[Predefinidos]</strong>.</div>
-		</div>		
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de gesti&oacute;n de colas. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
+        </div>
     </div>
 </div>
 
