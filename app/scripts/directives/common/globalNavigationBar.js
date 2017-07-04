@@ -511,7 +511,13 @@ kindFramework.directive(
               Zoom: (cameraAttributes.ZoomOnlyModel === true),
               ICS: checkICSSupport(),
               LensModelOptions: (typeof cameraAttributes.LensModelOptions !== "undefined"),
-              PTRZModel: (cameraAttributes.PTRZModel === true)
+              PTRZModel: (cameraAttributes.PTRZModel === true),
+              OverlayColorOptions: (typeof cameraAttributes.OverlayColorOptions !== "undefined"),
+
+              DPTZSetupPage: cameraAttributes.isDigitalPTZ === true && cameraAttributes.MaxGroupCount > 0,
+              ExternalPTZPage: (cameraAttributes.ExternalPTZModel === true),
+              PTZSetupPage: (cameraAttributes.PTZModel === true),
+              PresetSetupPage: (cameraAttributes.ZoomOnlyModel === true)
             };
           } catch (error) {
             console.error(error);
