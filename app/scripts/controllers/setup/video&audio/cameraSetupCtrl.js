@@ -4259,6 +4259,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var maxAllowdFrameRate = parseInt($scope.ImageOptions.MaxAGCSensorFrameRate, 10);
     if ($scope.Camera.CompensationMode === 'WDR') {
       if (typeof frameRate !== 'undefined') {
+        if(typeof mAttr.LensModelOptions !== 'undefined') { // XNB-6001
+          maxAllowdFrameRate = 30;
+        }
         if (parseInt(frameRate, 10) <= maxAllowdFrameRate) {
           return true;
         } else {
