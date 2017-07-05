@@ -2840,7 +2840,13 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   $scope.getTranslatedOption = function(Option) {
-    return COMMONUtils.getTranslatedOption(Option);
+    if (Option === "AutoTracking") {
+      return COMMONUtils.getTranslatedOption("Auto");
+    } else if (Option === "Tracking") {
+      return COMMONUtils.getTranslatedOption("Manual");
+    } else {
+      return COMMONUtils.getTranslatedOption(Option);
+    }
   };
   $scope.getDayNightModeTranslatedOption = function(option) {
     if (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode === 'On' || $scope.IRled.Mode === 'Sensor' || $scope.IRled.Mode === 'Schedule')) {

@@ -637,8 +637,8 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     //Focus
     json.Focus = 'lang_focus';
     json.OneShotAutoFocus = 'lang_oneShotAf';
-    json.AutoTracking = 'lang_auto';
-    json.Tracking = 'lang_manual';
+    json.AutoTracking = 'lang_autoTracking';
+    json.Tracking = 'lang_tracking';
 
     //Open SDK
     json.Uninstalling = 'lang_uninstalling';
