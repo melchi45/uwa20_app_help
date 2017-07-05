@@ -6,4 +6,6 @@
 	url = ssh://ctf1.stw.net:29418/uwa_base
 [submodule "app/media"]
 	path = app/media
-	url = ssh://ctf1.stw.net:29418/ump_module
+	url = ../ump_module
+	branch = master
+	revision = .
