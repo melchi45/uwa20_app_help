@@ -123,6 +123,8 @@ fieldset {
       width: @setup-slider-small-size !important;
       height: @setup-slider-small-size !important;
       background: @theme-light-slider-normal-line-top;
+      left: -4px;
+
 
       &.ui-state-hover {
         background: @theme-light-slider-focus-line-top;
@@ -130,6 +132,10 @@ fieldset {
 
       &.ui-state-active {
         background: @theme-light-slider-click-line-top;
+      }
+
+      &:focus {
+          outline: 0;
       }
     }
 
