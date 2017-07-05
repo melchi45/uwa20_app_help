@@ -459,6 +459,60 @@ SunapiClient, XMLParser, Attributes, $q) {
         });
   }
 
+  function IPRangeCheck4 (pcIp, range) {
+    var selfIp = null;
+    var rangeIp = null;
+
+    var splitRangeIp1 = null;
+    var splitRangeIp2 = null;
+
+    var IPCondition = true;
+
+    selfIp = pcIp.split(".");
+
+    if( range.indexOf("~") !== -1 ) {
+      rangeIp = range.split(" ~ ");
+
+      splitRangeIp1 = rangeIp[0].split(".");
+      splitRangeIp2 = rangeIp[1].split(".");
+
+      $.each(selfIp, function(index, data) {
+        selfIp[index] = parseInt(data);
+      })
+
+      $.each(splitRangeIp1, function(index, data) {
+        splitRangeIp1[index] = parseInt(data);
+      })
+
+      $.each(splitRangeIp2, function(index, data) {
+        splitRangeIp2[index] = parseInt(data);
+      })
+
+      if ( selfIp[0] >= splitRangeIp1[0] && selfIp[0] <= splitRangeIp2[0] ) {
+
+        if ( selfIp[1] >= splitRangeIp1[1] && selfIp[1] <= splitRangeIp2[1] ) {
+
+          if ( selfIp[2] >= splitRangeIp1[2] && selfIp[2] <= splitRangeIp2[2] ) {
+
+            if ( selfIp[3] >= splitRangeIp1[3] && selfIp[3] <= splitRangeIp2[3] ) {
+              IPCondition = false;
+            }
+          }
+        }
+      }
+
+
+    } else {
+
+      if ( pcIp === range ) {
+        IPCondition = false;
+      }
+    
+    }
+
+    return IPCondition;
+  }
+
 
   function updateIPv4(selected4) {
     var filterIdx = 0;
@@ -591,12 +645,13 @@ SunapiClient, XMLParser, Attributes, $q) {
 
 
 
+
+
   function editCheck6() {
     var retval = true;
     if ($scope.data.DeviceType === 'NWC' && pageData.AccessType === "Allow") {
       if ($scope.data.selected6 <= $scope.originalIPv6Length) {
         if ($scope.FilterIPv6[$scope.data.selected6 - 1].Address === $scope.ClientIPAddr) {
-          console.log("A");
           retval = false;
         }
       }
@@ -605,14 +660,13 @@ SunapiClient, XMLParser, Attributes, $q) {
     return retval;
   }
 
+
+
   function editCheck4() {
     var retval = true;
     if ($scope.data.DeviceType === 'NWC' && pageData.AccessType === "Allow") {
       if ($scope.data.selected4 <= $scope.originalIPv4Length) {
-        if ($scope.FilterIPv4[$scope.data.selected4 - 1].Address === $scope.ClientIPAddr) {
-          console.log("B");
-          retval = false;
-        }
+        retval = IPRangeCheck4($scope.ClientIPAddr, $scope.FilterIPv4[$scope.data.selected4 - 1].Range);
       }
 
     }
@@ -624,7 +678,6 @@ SunapiClient, XMLParser, Attributes, $q) {
     if ($scope.data.DeviceType === 'NWC' && pageData.AccessType === "Allow") {
       if ($scope.data.selected6 <= $scope.originalIPv6Length) {
         if ($scope.FilterIPv6[$scope.data.selected6 - 1].Address === $scope.ClientIPAddr) {
-          console.log("C");
           retval = false;
         }
       }
@@ -633,53 +686,7 @@ SunapiClient, XMLParser, Attributes, $q) {
     return retval;
   }
 
-  function DeleteRangeCheck4 (pcIp, range) {
-    var selfIp = null;
-    var rangeIp = null;
-
-    var splitRangeIp1 = null;
-    var splitRangeIp2 = null;
-
-    var IPCondition = true;
-
-    selfIp = pcIp.split(".");
-
-    if( range.indexOf("~") !== -1 ) {
-      rangeIp = range.split(" ~ ");
-
-      splitRangeIp1 = rangeIp[0].split(".");
-      splitRangeIp2 = rangeIp[1].split(".");
-
-      $.each(selfIp, function(index, data) {
-        selfIp[index] = parseInt(data);
-      })
-
-      $.each(splitRangeIp1, function(index, data) {
-        splitRangeIp1[index] = parseInt(data);
-      })
-
-      $.each(splitRangeIp2, function(index, data) {
-        splitRangeIp2[index] = parseInt(data);
-      })
-
-      if ( selfIp[0] >= splitRangeIp1[0] && selfIp[0] <= splitRangeIp2[0] ) {
-
-        if ( selfIp[1] >= splitRangeIp1[1] && selfIp[1] <= splitRangeIp2[1] ) {
-
-          if ( selfIp[2] >= splitRangeIp1[2] && selfIp[2] <= splitRangeIp2[2] ) {
-
-            if ( selfIp[3] >= splitRangeIp1[3] && selfIp[3] <= splitRangeIp2[3] ) {
-              IPCondition = false;
-            }
-          }
-        }
-      }
-
-
-    }
-
-    return IPCondition;
-  }
+  
 
 
   function DeleteCheck4() {
@@ -688,29 +695,31 @@ SunapiClient, XMLParser, Attributes, $q) {
       {
         if ($scope.data.selected4 <= $scope.originalIPv4Length)
         {
-          if ($scope.FilterIPv4[$scope.data.selected4 - 1].Address === $scope.ClientIPAddr)
-          {
-            retVal = false;
-          } else {
-            if (CurrentIPInRangeIPv4($scope.FilterIPv4[$scope.data.selected4 - 1].Address, $scope.ClientIPAddr, $scope.FilterIPv4[$scope.data.selected4 - 1].Mask) === true)
-            {
-              retVal = false;
-            }
-          }
+          retVal = IPRangeCheck4($scope.ClientIPAddr, $scope.FilterIPv4[$scope.data.selected4 - 1].Range);
 
-          if(retVal === false) {
-            for (var i = 0; i < $scope.FilterIPv4.length; i++)
-            {
-              if(i !== $scope.data.selected4 - 1) {
-                if (CurrentIPInRangeIPv4($scope.FilterIPv4[i].Address, $scope.ClientIPAddr, $scope.FilterIPv4[i].Mask) === true)
-                {
-                    retVal = true;
-                }
-              }
-            }
-          }
+            // if ($scope.FilterIPv4[$scope.data.selected4 - 1].Address === $scope.ClientIPAddr)
+            // {
+            //   retVal = false;
+            // } else {
+            //   if (CurrentIPInRangeIPv4($scope.FilterIPv4[$scope.data.selected4 - 1].Address, $scope.ClientIPAddr, $scope.FilterIPv4[$scope.data.selected4 - 1].Mask) === true)
+            //   {
+            //     retVal = false;
+            //   }
+            // }
+
+            // if(retVal === false) {
+            //   for (var i = 0; i < $scope.FilterIPv4.length; i++)
+            //   {
+            //     if(i !== $scope.data.selected4 - 1) {
+            //       if (CurrentIPInRangeIPv4($scope.FilterIPv4[i].Address, $scope.ClientIPAddr, $scope.FilterIPv4[i].Mask) === true)
+            //       {
+            //           retVal = true;
+            //       }
+            //     }
+            //   }
+            // }
         }
-
+        
       }
 
       return retVal;
@@ -968,6 +977,7 @@ SunapiClient, XMLParser, Attributes, $q) {
   function saveSetting(isValid) {
     var functionList = [];
     var accessTypeUpdated = false;
+    var saveIPCondition = true;
 
     $scope.FilterIPv4.forEach(function(FilterIPv4Element) {
       if (FilterIPv4Element.isNew === false) {
@@ -982,7 +992,9 @@ SunapiClient, XMLParser, Attributes, $q) {
             jData.Enable = FilterIPv4Element.Enable;
             jData.AccessType = $scope.data.AccessType;
 
-            console.log(jData);
+            console.log(saveIPCondition + " - " + jData.Enable);
+
+
 
             return SunapiClient.get('/stw-cgi/security.cgi?msubmenu=ipfilter&action=update', jData,
               function(response) {},
@@ -1001,7 +1013,11 @@ SunapiClient, XMLParser, Attributes, $q) {
           jData.Enable = FilterIPv4Element.Enable;
           jData.AccessType = $scope.data.AccessType;
 
-          console.log(jData);
+          
+          saveIPCondition = CurrentIPInRangeIPv4(jData.Address, $scope.ClientIPAddr, jData.Mask);
+
+
+          console.log(saveIPCondition);
 
           return SunapiClient.get('/stw-cgi/security.cgi?msubmenu=ipfilter&action=add', jData,
             function(response) {},
