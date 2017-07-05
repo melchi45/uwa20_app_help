@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Clasificaci&oacute;n de sonidos</h1>
+ï»¿<h1 class="wn5-setup-main-title">Clasificaci&oacute;n de sonidos</h1>
 <div class="wn5-setup-section">
     <p>El tipo de sonido detectado mientras que la c&aacute;mara est&aacute; capturando una imagen puede ser clasificado y creado como un evento de clasificaci&oacute;n de sonidos. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste del evento de clasificaci&oacute;n de sonidos se aplica a <strong class="UI">[Clasificaci&oacute;n de sonidos]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
 </div>
@@ -49,8 +49,8 @@
 				<li>Si <strong class="UI">[Micr&oacute;fono externo]</strong> est&aacute; ajustado para <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[Fuente]</strong></a> en <strong class="UI">[V&iacute;deo &amp; Audio]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de audio]</strong>&gt;<strong class="UI">[Entrada de audio]</strong>, las especificaciones recomendadas para el micr&oacute;fono son las siguientes.</li>
 				<ul>
 				<li>Gama de frecuencia 40 ~ 16.000Hz</li>
-				<li>Impedancia : 1,500 &Icirc;©</li>
-				<li>Sensibilidad : -40&Acirc;±3 dB (7.1~14.1 mV)</li>
+				<li>Impedancia : 1,500 &Icirc;?/li>
+				<li>Sensibilidad : -40&Acirc;? dB (7.1~14.1 mV)</li>
 				</ul>
 				
 				<li>En cualquiera de los casos siguientes, el rendimiento de la clasificaci&oacute;n de sonidos se podr&iacute;a deteriorar o producirse un fallo de funcionamiento. </li>
@@ -90,14 +90,19 @@
             <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de clasificaci&oacute;n de sonidos.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="PresetAction && !PTZModel">
+    <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>Ir a predefinido.</h3>
-                    <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de gesti&oacute;n de colas. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI">[Predefinido]</strong> de <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[PTZ externa]</a></strong>.</p>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de clasificaci&oacute;n de sonidos. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
             <h3>Ir a predefinido.</h3>
-                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de gesti&oacute;n de colas. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de clasificaci&oacute;n de sonidos. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Configuraci? de preajustes]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuraci? de preajustes]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de clasificaci&oacute;n de sonidos. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
         </div>
     </div>
 </div>
