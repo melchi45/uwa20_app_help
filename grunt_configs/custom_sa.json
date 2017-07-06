@@ -1,6 +1,16 @@
 [
-	"app/scripts/config/route_config.js",
 	"app/scripts/",
 	"app/base/scripts/",
-	"app/media"
+	"app/media/angularInterface",
+	"app/media/ump/Interface",
+	"app/media/ump/Listen",
+	"app/media/ump/MediaSession",
+	"app/media/ump/Network",
+	"app/media/ump/Talk",
+	"app/media/ump/Video/Renderer",
+	"app/media/ump/Video/Decoder/videoDecoder.js",
+	"app/media/ump/Video/Decoder/videoDecoderH264.js",
+	"app/media/ump/Video/Decoder/videoDecoderH265.js",
+	"app/media/ump/Video/Decoder/videoDecoderMjpeg.js",
+	"app/media/ump/Workers"
 ]
