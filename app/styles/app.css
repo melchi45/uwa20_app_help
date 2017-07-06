@@ -2311,6 +2311,7 @@ body.modal-open {
   width: 100%;
   bottom: 35px;
   position: absolute;
+  z-index: 1;
 }
 @media (min-width: 2300px) and (min-height: 1294px) {
   #ptrz-control .ptrz-control_bottom_box .ptrz-control_bottom_box_rotate-btn .cm-ptrz-icon {
