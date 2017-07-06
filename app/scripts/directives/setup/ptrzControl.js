@@ -337,7 +337,7 @@ kindFramework.directive('ptrzControl', function(Attributes, SunapiClient, $uibMo
       function getRotate(){
           return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=ptr&action=view', "",
               function(response) {
-                  var degree = response.data.ptr.RotateAngle;
+                  var degree = parseInt(response.data.ptr[0].RotateAngle);
                   setAngleLabel(degree);
                   setPtzControlArrow(degree);
                   circleSlider.setRotate(degree);
