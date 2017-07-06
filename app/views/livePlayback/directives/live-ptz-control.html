@@ -260,7 +260,7 @@
         <div>{{'lang_swingMode' | translate}}</div>
         <select class="form-control cm-selectbox"
           ng-model="selectedObj.swingObj"
-          ng-options="Mode as Mode for Mode in SwingModes">
+          ng-options="Mode as getTranslatedOption(Mode) for Mode in SwingModes">
         </select>
         <div style="margin-top: 5px;">
           <button type="button" class="cm-btn-dark" title="Start" ng-click="ptzSwing('Go')">{{'lang_start' | translate }}</button>

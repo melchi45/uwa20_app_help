@@ -99,14 +99,19 @@
             <p>음원 분류 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다.&nbsp;알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다.</p>
 </div>
-         <div class="wn5-setup-section-article-content" ng-if="PresetAction && !PTZModel">
+         <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>프리셋 이동</h3>
-                    <p>자동 추적 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 프리셋 번호로 이동하도록 설정할 수 있습니다. 카메라 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[디지털 PTZ]</strong></a>나 <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[외부 PTZ]</a></strong>의 <strong class="UI">[프리셋]</strong>에서 설정할 수 있습니다.</p>
+                    <p>음원 분류 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 프리셋 번호로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[디지털 PTZ]</strong></a>나 <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[외부 PTZ]</a></strong>의 <strong class="UI">[프리셋]</strong>에서 설정할 수 있습니다.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
             <h3>프리셋 이동</h3>
-                    <p>자동 추적 이벤트가 발생했을 때 카메라 위치를 미리 설정해 둔 위치로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ 설정]</strong></a>의 <strong class="UI">[프리셋] </strong>탭에서 설정할 수 있습니다.</p>
+                    <p>음원 분류 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 위치로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[프리셋 설정]</strong></a>의 <strong class="UI">[프리셋 설정]</strong> 영역에서 설정할 수 있습니다.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>프리셋 이동</h3>
+                    <p>음원 분류 이벤트가 발생했을 때 카메라 위치를 미리 설정해 둔 위치로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ 설정]</strong></a>의 <strong class="UI">[프리셋] </strong>탭에서 설정할 수 있습니다.</p>
         </div>
         
 

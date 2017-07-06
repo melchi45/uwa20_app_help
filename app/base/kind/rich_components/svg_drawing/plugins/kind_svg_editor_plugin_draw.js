@@ -21,7 +21,7 @@ KindSVGEditor.addPlugin('draw', function(options) {
   var commonFunc = this.common;
   var NS = this.NS;
 
-  var MINIMUM_ANGLE = 4;
+  var MINIMUM_ANGLE = 2;
 
   var parentSvg = elemCtrl.getParentSvg();
 

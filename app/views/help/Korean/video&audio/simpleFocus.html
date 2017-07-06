@@ -30,7 +30,7 @@
             <p>화면에 제시된 포커스 버튼을 눌러 수동으로 포커스를 조절합니다. 심플 포커스로 자동 포커스 조절이 어려운 경우에 수동으로 포커스를 조절합니다. 버튼에 표시된 값은 포커스 이동 간격을 뜻합니다. 1은 포커스를 한번에 1만큼 이동하고, 10은 포커스를 10만큼 이동하고, 100은 포커스를 100만큼 이동시킵니다. ‘-‘ 값은 포커스를 가까이(near) 이동하고, ‘+’ 값은 멀리(far) 이동합니다.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="ZoomOptionsDefined">
+        <div class="wn5-setup-section-article-content" ng-if="Zoom">
             <h3>줌 </h3>
             <p>줌 배율을 수동으로 조절합니다. 버튼에 표시된 값은 줌 이동 간격을 뜻합니다. 1은 줌을 한번에 1만큼, 10은 줌을 10만큼, 100은 줌을 100만큼 이동시킵니다. ‘-‘ 값은 줌아웃(Zoom out, wide)하고, ‘+’ 값은 줌인(Zoom in, tele)합니다.</p>
         </div>
@@ -48,6 +48,31 @@
 
             </ul>
         </div>
+		 <div class="wn5-setup-section-article-content" ng-if="ICS">
+            <h3>IR 보상</h3>
+            <p>야간 모드에서 IR 광원 사용시 가시광과 IR광의 포커스 오차를 자동으로 보정합니다. </p>
+        </div>
+		        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+                <li><strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[카메라 설정]</strong> &gt; <strong class="UI">[노출 보정]</strong> &gt; <strong class="UI">[렌즈]</strong>에서 &quot;ICS&quot; 렌즈를 선택한 경우에만 IR 보상 기능을 설정할 수 있습니다. </li>
+
+            </ul>
+        </div>
+ <div class="wn5-setup-section-article-content" ng-if="ICS">
+            <h3>온도 보상</h3>
+            <p>사막처럼 낮과 밤 온도 차가 심한 지역에서 유용한 기능으로, 온도 차이에 따른 렌즈의 수축과 팽창을 감지하여 포커스 오차를 자동으로 보정합니다. </p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+                              <li><strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[카메라 설정]</strong> &gt; <strong class="UI">[노출 보정]</strong> &gt; <strong class="UI">[렌즈]</strong>에서 &quot;ICS&quot; 렌즈를 선택한 경우에만 온도 보상 기능을 설정할 수 있습니다. </li>
+
+            </ul>
+        </div>
+		
     </div>
 </div>
 

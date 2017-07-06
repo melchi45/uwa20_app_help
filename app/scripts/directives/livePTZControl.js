@@ -22,6 +22,7 @@ kindFramework.directive('livePtzControl', ['CAMERA_STATUS', 'UniversialManagerSe
           DigitalAutoTracking: false,
         };
 
+        scope.getTranslatedOption = COMMONUtils.getTranslatedOption;
         scope.dptzMode = CAMERA_STATUS.DPTZ_MODE;
         scope.ptzType = CAMERA_STATUS.PTZ_MODE;
         scope.ptzMode = "external"; //external or dptz or zoomonly

@@ -258,7 +258,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     }
 
     function mouseWheel(event) {
-      if (videoElement !== null) {
+      if (UniversialManagerService.getVideoMode() === 'video') {
         videoEventHandler(event, "mousewheel", null);
       } else {
         var zoomData = canvasEventHandler(event, "mousewheel", null);
@@ -268,7 +268,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     }
 
     function mouseDown(event) {
-      if (videoElement !== null) {
+      if (UniversialManagerService.getVideoMode() === 'video') {
         videoEventHandler(event, "mousedown", null);
       } else {
         canvasEventHandler(event, "mousedown", null);
@@ -276,7 +276,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     }
 
     function mouseMove(event) {
-      if (videoElement !== null) {
+      if (UniversialManagerService.getVideoMode() === 'video') {
         videoEventHandler(event, "mousemove", null);
       } else {
         var zoomData = canvasEventHandler(event, "mousemove", null);
@@ -286,7 +286,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     }
 
     function mouseUp(event) {
-      if (videoElement !== null) {
+      if (UniversialManagerService.getVideoMode() === 'video') {
         videoEventHandler(event, "mouseup", null);
       } else {
         canvasEventHandler(event, "mouseup", null);
@@ -294,7 +294,7 @@ kindFramework.factory('DigitalZoomService', ['$q', 'LoggingService', 'kindStream
     }
 
     function mouseLeave(event) {
-      if (videoElement !== null) {
+      if (UniversialManagerService.getVideoMode() === 'video') {
         videoEventHandler(event, "mouseleave", null);
       } else {
         canvasEventHandler(event, "mouseleave", null);

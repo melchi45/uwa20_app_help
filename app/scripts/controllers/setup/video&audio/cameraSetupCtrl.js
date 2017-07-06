@@ -2840,7 +2840,13 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
   }
 
   $scope.getTranslatedOption = function(Option) {
-    return COMMONUtils.getTranslatedOption(Option);
+    if (Option === "AutoTracking") {
+      return COMMONUtils.getTranslatedOption("Auto");
+    } else if (Option === "Tracking") {
+      return COMMONUtils.getTranslatedOption("Manual");
+    } else {
+      return COMMONUtils.getTranslatedOption(Option);
+    }
   };
   $scope.getDayNightModeTranslatedOption = function(option) {
     if (mAttr.PTZModel && mAttr.IRLedSupport && ($scope.IRled.Mode === 'On' || $scope.IRled.Mode === 'Sensor' || $scope.IRled.Mode === 'Schedule')) {
@@ -4253,6 +4259,9 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
     var maxAllowdFrameRate = parseInt($scope.ImageOptions.MaxAGCSensorFrameRate, 10);
     if ($scope.Camera.CompensationMode === 'WDR') {
       if (typeof frameRate !== 'undefined') {
+        if(typeof mAttr.LensModelOptions !== 'undefined') { // XNB-6001
+          maxAllowdFrameRate = 30;
+        }
         if (parseInt(frameRate, 10) <= maxAllowdFrameRate) {
           return true;
         } else {
