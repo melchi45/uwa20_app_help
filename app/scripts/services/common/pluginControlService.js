@@ -142,6 +142,18 @@ kindFramework.
         }
       };
 
+      this.changeViewMode = function(position, viewMode) {
+        if (pluginElement !== null && typeof pluginElement !== "undefined") {
+          pluginElement.ChangeViewMode(parseInt(position), parseInt(viewMode));
+        }      
+      };
+
+      this.commandViewMode = function(command) {
+        if (pluginElement !== null && typeof pluginElement !== "undefined") {
+          pluginElement.CommandViewMode(command);
+        }      
+      };
+      
       this.startAudioListen = function() {
         if (pluginElement !== null && typeof pluginElement !== "undefined") {
           pluginElement.SetVolume(0);
