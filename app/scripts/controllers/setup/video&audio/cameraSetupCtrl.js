@@ -1115,6 +1115,12 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       initShutterSpeeds(isChanged);
     }
 
+    if(typeof mAttr.LensModelOptions !== 'undefined' && currentValue === 'WDR') { // XNB-6001
+      if(parseInt($scope.VideoSources.SensorCaptureFrameRate) >= 50) {
+        $scope.VideoSources.SensorCaptureFrameRate = '30';
+      }
+    }
+
     if ($scope.tabActiveData.backLight) {
       if ($scope.Camera.CompensationMode === 'BLC') {
         $scope.ptzinfo = {
@@ -1461,7 +1467,11 @@ kindFramework.controller('cameraSetupCtrl', function($scope, $uibModal, $uibModa
       }
 
       if (typeof $scope.VideoSources !== 'undefined') {
-        sensorMode = parseInt($scope.VideoSources.SensorCaptureFrameRate);
+        if(typeof mAttr.LensModelOptions !== 'undefined' && compMode === 'WDR') { // XNB-6001
+          sensorMode = 30;
+        } else {
+          sensorMode = parseInt($scope.VideoSources.SensorCaptureFrameRate);
+        }
       } else {
         LogManager.debug(" initShutterSpeeds: sensor capture ");
       }
