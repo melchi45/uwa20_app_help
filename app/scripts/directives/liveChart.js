@@ -19,7 +19,7 @@ kindFramework
             left: 40
           };
           var limit = 100;
-          var duration = 100;
+          var duration = 70;
           var now = new Date(Date.now() - duration);
           var DataQueue = [];
           var svg;
@@ -27,6 +27,7 @@ kindFramework
           var timer_promise = null;
           var threshold;
           var dataprocessing_promise = null;
+          var stop_promise = null;
 
           var SliderWidth = 140;
           /////  UI Style Calculate
@@ -271,17 +272,29 @@ kindFramework
           scope.$on('liveChartStop', function() {
             if (dataprocessing_promise !== null) {
               scope.$broadcast('liveChartDataClearAll');
-
-              $timeout(function() {
-                $interval.cancel(dataprocessing_promise);
-                dataprocessing_promise = null;
-              }, 200);
+              if(stop_promise === null)
+              {
+                  stop_promise = $timeout(function() {
+                      $interval.cancel(dataprocessing_promise);
+                      dataprocessing_promise = null;
+                      stop_promise = null;
+                  }, 200);
+              }
             }
           }, true);
 
           scope.$on('liveChartStart', function() {
             if (dataprocessing_promise === null) {
-              dataprocessing_promise = $interval(run, duration);
+              if(stop_promise !== null)
+              {
+                $timeout(function(){
+                    dataprocessing_promise = $interval(run, duration);
+                },200);
+              }
+              else
+              {
+                  dataprocessing_promise = $interval(run, duration);
+              }
             }
           }, true);
 
