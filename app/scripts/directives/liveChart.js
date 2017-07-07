@@ -19,7 +19,7 @@ kindFramework
             left: 40
           };
           var limit = 100;
-          var duration = 50;
+          var duration = 100;
           var now = new Date(Date.now() - duration);
           var DataQueue = [];
           var svg;

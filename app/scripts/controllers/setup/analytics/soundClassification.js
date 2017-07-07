@@ -256,7 +256,7 @@ kindFramework.controller('soundClassificationCtrl', function($scope, SunapiClien
   var mStopMonotoringSoundLevel = false;
   var monitoringTimer = null;
   var destroyInterrupt = false;
-  var maxSample = 5;
+  var maxSample = 3;
 
   $scope.$on("$destroy", function() {
     destroyInterrupt = true;
