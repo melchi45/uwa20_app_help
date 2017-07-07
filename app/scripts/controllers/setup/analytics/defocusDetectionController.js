@@ -379,7 +379,7 @@ kindFramework.controller('defocusDetectionCtrl', function($rootScope, $location,
 
   var mStopMonotoringDefocusLevel = false;
   var monitoringTimer = null;
-  var maxSample = 3;
+  var maxSample = 4;
 
   function startMonitoringDefocusLevel() {
     mStopMonotoringDefocusLevel = false;

@@ -144,7 +144,7 @@ kindFramework.controller('tamperDetectionCtrl', function($scope, $uibModal, $tra
 
   var mStopMonotoringTamperingLevel = false;
   var monitoringTimer = null;
-  var maxSample = 3;
+  var maxSample = 4;
 
   function startMonitoringTamperingLevel() {
     mStopMonotoringTamperingLevel = false;

@@ -145,7 +145,7 @@ kindFramework.controller('fogDetectionCtrl', function($scope, SunapiClient, XMLP
 
   var mStopMonotoringFogLevel = false;
   var monitoringTimer = null;
-  var maxSample = 3;
+  var maxSample = 4;
 
   function startMonitoringFogLevel() {
     mStopMonotoringFogLevel = false;

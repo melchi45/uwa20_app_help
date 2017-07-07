@@ -1104,7 +1104,7 @@ kindFramework.controller(
 
     var mStopMonotoringMotionLevel = false;
     var monitoringTimer = null;
-    var maxSample = 3;
+    var maxSample = 4;
 
     function startMonitoringMotionLevel() {
       mStopMonotoringMotionLevel = false;

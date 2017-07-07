@@ -260,7 +260,7 @@ kindFramework.controller('audioDetectionCtrl', function($scope, $uibModal, $tran
 
   var mStopMonotoringAudioLevel = false;
   var monitoringTimer = null;
-  var maxSample = 3;
+  var maxSample = 4;
 
   function startMonitoringAudioLevel() {
     mStopMonotoringAudioLevel = false;
