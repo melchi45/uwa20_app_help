@@ -2,8 +2,9 @@ kindFramework.
   factory('PlaybackInterface', ['$q', '$filter', '$rootScope', '$injector', 'CAMERA_TYPE',
     'SunapiClient', 'PlaybackService',
     'ConnectionSettingService', 'PLAYBACK_TYPE', 'ModalManagerService',
-    'SearchDataModel', 'PlayDataModel', 'ItemSetModel', 'Attributes', '$timeout', 'UniversialManagerService', 'kindStreamInterface',
-    'BasePlaybackInterface', 'BACKUP_STATUS', 'BrowserService',
+    'SearchDataModel', 'PlayDataModel', 'ItemSetModel', 'Attributes', '$timeout', 
+    'UniversialManagerService', 'kindStreamInterface','BasePlaybackInterface', 'BACKUP_STATUS', 
+    'BrowserService',
     function($q, $filter, $rootScope, $injector, CAMERA_TYPE,
       SunapiClient, PlaybackService, ConnectionSettingService, PLAYBACK_TYPE, ModalManagerService,
       SearchDataModel, PlayDataModel, ItemSetModel, Attributes, $timeout, UniversialManagerService, 
@@ -327,7 +328,9 @@ kindFramework.
             BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.EDGE) {
             if (openErrorPopup === false) {
               openErrorPopup = true;
-              var message = (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.FIREFOX ? 'lang_unavailable_aac_firefox' : 'lang_unavailable_aac_edge');
+              var message = 
+                (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.FIREFOX ? 
+                'lang_unavailable_aac_firefox' : 'lang_unavailable_aac_edge');
               ModalManagerService.open(
                 'message', {
                   'message': message,
@@ -340,18 +343,18 @@ kindFramework.
           }
         }
       };
-			var showPopup = function(message, autoClose) {
-				if ( isShowPopup === true ) {
-					return;
-				}
-				ModalManagerService.open(
-					'message', {
-						'message': message,
-						'buttonCount': autoClose === true ? 0 : 1,
-					}
-				);
-				isShowPopup = true;
-			};
+      var showPopup = function(message, autoClose) {
+        if ( isShowPopup === true ) {
+          return;
+        }
+        ModalManagerService.open(
+          'message', {
+            'message': message,
+            'buttonCount': autoClose === true ? 0 : 1,
+          }
+        );
+        isShowPopup = true;
+      };
       var backupErrorCallback = function(error) {
         console.log("errorcode:", error.errorCode, "error string:", error.description);
         $rootScope.$emit('channelSelector:on', true);
@@ -362,16 +365,20 @@ kindFramework.
             $rootScope.$emit('changeLoadingBar', false);
             playData.setStatus(PLAY_CMD.STOP);
             if (error.errorCode === BACKUP_STATUS.MODE.STOP) {
-							showPopup("lang_msg_savingComplete", true);
-            } else if (error.errorCode === BACKUP_STATUS.MODE.NO_FILE_CREATED) {
+              showPopup("lang_msg_savingComplete", true);
+            } else if (error.errorCode === 
+                          BACKUP_STATUS.MODE.NO_FILE_CREATED) {
               showPopup("lang_msg_not_export_saved_file", false);
-            } else if (error.errorCode === BACKUP_STATUS.MODE.CODEC_CHANGED ||
+            } else if (error.errorCode === 
+                          BACKUP_STATUS.MODE.CODEC_CHANGED ||
               error.errorCode === BACKUP_STATUS.MODE.PROFILE_CHANGED) {
               showPopup("lang_msg_codecChange", false);
-            } else if (error.errorCode === BACKUP_STATUS.MODE.EXCEEDED_MAX_FILE) {
-							showPopup("lang_max_filesize", false);
-            } else if (error.errorCode === BACKUP_STATUS.MODE.NO_LONGER_SUPPORT) {
-							showPopup("No longer be able to stream. Please set a shorter section ", false);
+            } else if (error.errorCode === 
+                          BACKUP_STATUS.MODE.EXCEEDED_MAX_FILE) {
+              showPopup("lang_max_filesize", false);
+            } else if (error.errorCode === 
+                          BACKUP_STATUS.MODE.NO_LONGER_SUPPORT) {
+              showPopup("No longer be able to stream. Please set a shorter section ", false);
             }
           } else {
             // popup status
@@ -402,8 +409,9 @@ kindFramework.
         this.playbackInfo.rtspPort = rtspInfo.rtspPort;
         this.playbackInfo.userID = rtspInfo.user;
         this.playbackInfo.channel = UniversialManagerService.getChannelId();
-				isShowPopup = false;
-        $rootScope.$emit("channelPlayer:command", "playbackBackup", this.playbackInfo, backupErrorCallback);
+        isShowPopup = false;
+        $rootScope.$emit("channelPlayer:command", "playbackBackup", 
+                          this.playbackInfo, backupErrorCallback);
       };
       var checkEventSource = function() {
         var eventSource = mAttr.EventSourceOptions;

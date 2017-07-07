@@ -337,7 +337,11 @@ kindFramework.directive('liveMenuContent', function(
 				self.addClass("active");
         kindStreamInterface.setCanvasStyle(scope.viewMode, scope.channelSetFunctions.show);
         var position = scope.fisheyeMode === scope.fisheyeModeList[0]? 2 : 1;
-				PluginControlService.changeViewMode(position);
+				PluginControlService.changeViewMode(position, self.attr("data-mode-num"));
+			};
+
+			scope.resetFisheye = function(cmd) {
+				PluginControlService.commandViewMode(cmd);
 			};
       
 			function getFisheyeMode() {

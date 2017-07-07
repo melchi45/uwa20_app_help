@@ -127,6 +127,7 @@
       width: 100%;
       bottom: 35px;
       position: absolute;
+      z-index: 1;
 
       .cm-ptrz-icon {
         @media(min-width:2300px) and (min-height:1294px) {
@@ -203,6 +204,7 @@
           width: 100%;
           border:1px dashed @theme-ptz-slider-line;
           position: absolute;
+          transition-duration : 200ms;
           top: calc(~"50% - 1px");
           left: 0;
           z-index: 1;
@@ -213,6 +215,7 @@
           height: 100%;
           border:1px dashed @theme-ptz-slider-line;
           position: absolute;
+          transition-duration : 200ms;
           top: 0;
           left: calc(~"50% - 1px");
           z-index: 1;
