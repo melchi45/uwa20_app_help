@@ -2300,17 +2300,14 @@ body.modal-open {
 }
 #ptrz-control .ptrz-control_bottom_box {
   width: 100%;
+  top: -40px;
+  z-index: 10;
+  margin-bottom: 20px;
   float: left;
   position: relative;
 }
-#ptrz-control .ptrz-control_bottom_box button:last-of-type {
-  margin-left: 55px;
-  margin-bottom: 20px;
-}
 #ptrz-control .ptrz-control_bottom_box .ptrz-control_bottom_box_rotate-btn {
   width: 100%;
-  bottom: 35px;
-  position: absolute;
   z-index: 1;
 }
 @media (min-width: 2300px) and (min-height: 1294px) {
@@ -2322,6 +2319,12 @@ body.modal-open {
   #ptrz-control .ptrz-control_bottom_box .ptrz-control_bottom_box_rotate-btn .cm-ptrz-icon {
     font-size: 40px;
   }
+}
+#ptrz-control .ptrz-control_bottom_box > .btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 40px;
 }
 #ptrz-control #ptrz-control_left-control-box {
   width: 205px;
@@ -2414,6 +2417,17 @@ body.modal-open {
   z-index: 2;
   font-size: 24px;
   color: #797979;
+}
+#zoom-focus-heading {
+  line-height: 2em;
+}
+#ptrz-simplefocus {
+  margin-top: 10px;
+}
+#ptrz-simplefocus .btn-simple-focus {
+  display: inline;
+  position: relative;
+  top: 5px;
 }
 .ptz-control_box.ptz-control_ptz-menu-width {
   width: 100%;
@@ -4772,10 +4786,6 @@ fieldset .ui-slider.ui-slider-vertical .ui-state-default.ui-state-active {
 fieldset .ui-slider:not(.ui-slider-vertical) .ui-state-default {
   top: 14px !important;
   margin-left: -6px;
-}
-.wn5-setup-wrapper .ui-slider:not(.ui-slider-vertical) .ui-state-default:focus,
-fieldset .ui-slider:not(.ui-slider-vertical) .ui-state-default:focus {
-  outline: 0;
 }
 .wn5-setup-wrapper .ui-slider:not(.ui-slider-vertical) .ui-state-default.ui-state-hover,
 fieldset .ui-slider:not(.ui-slider-vertical) .ui-state-default.ui-state-hover {

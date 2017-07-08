@@ -45,8 +45,8 @@
                     </div>
                     <!-- Zoom Focus Setup -->
                     <div class="form-group" ng-show="PTRZModel">
-                        <div class="wn5-setup-preview-heading">
-                            {{ 'Zoom Focus Setup' | translate }}
+                        <div class="wn5-setup-preview-heading" id="zoom-focus-heading">
+                            {{ 'Zoom Focus Setup' | translate }}&nbsp;&nbsp;
                             <button
                                     type="button"
                                     class="btn btn-white cm-btn-dark"
@@ -74,17 +74,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="wn5-setup-preview-content">
-                            <div class="form-group btn-list">
-                                <div class="simple-focus-icon btn-simple-focus">
-                                    <span
-                                            ng-click="focusMode('SimpleFocus')"
-                                            class="tui tui-wn5-simple-focus">
-                                    </span>
-                                </div>
-                                <label>
-                                    {{'lang_simpleFocus' | translate}}</label>
-
+                        
+                        <div class="wn5-setup-preview-heading" id="ptrz-simplefocus">
+                            <label>{{'lang_simpleFocus' | translate}}</label>&nbsp;
+                            <div class="simple-focus-icon btn-simple-focus">
+                                <span
+                                        ng-click="focusMode('SimpleFocus')"
+                                        class="tui tui-wn5-simple-focus">
+                                </span>
                             </div>
                         </div>
                     </div>
