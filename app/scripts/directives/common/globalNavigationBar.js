@@ -517,7 +517,13 @@ kindFramework.directive(
               DPTZSetupPage: cameraAttributes.isDigitalPTZ === true && cameraAttributes.MaxGroupCount > 0,
               ExternalPTZPage: (cameraAttributes.ExternalPTZModel === true),
               PTZSetupPage: (cameraAttributes.PTZModel === true),
-              PresetSetupPage: (cameraAttributes.ZoomOnlyModel === true)
+              PresetSetupPage: (cameraAttributes.ZoomOnlyModel === true),
+
+              HallwayView: typeof cameraAttributes.RotateOptions !== "undefined",
+              AutoPan: (
+                typeof cameraAttributes.AutoRunModes !== "undefined" &&
+                cameraAttributes.AutoRunModes.indexOf("AutoPan") > -1
+              )
             };
           } catch (error) {
             console.error(error);
