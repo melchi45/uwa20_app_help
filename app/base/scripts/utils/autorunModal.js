@@ -1,4 +1,6 @@
-kindFramework.controller('autorunModalCtrl', function($scope, $uibModalInstance, $translate, Attributes, COMMONUtils, SelectedDay, SelectedHour, AutoRunScheduler) {
+kindFramework.
+controller('autorunModalCtrl', function($scope, $uibModalInstance, $translate, Attributes, 
+COMMONUtils, SelectedDay, SelectedHour, AutoRunScheduler) {
   'use strict';
   var mAttr = Attributes.get();
   $scope.OnlyNumStr = mAttr.OnlyNumStr;
@@ -15,21 +17,21 @@ kindFramework.controller('autorunModalCtrl', function($scope, $uibModalInstance,
     $scope.GroupOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxGroupCount);
     $scope.TraceOptions = COMMONUtils.getArrayWithMinMax(1, mAttr.MaxTraceCount);
 
-    if (mAttr.AutoPanSpeed !== undefined) {
+    if (typeof mAttr.AutoPanSpeed !== "undefined") {
       $scope.AutoPanMinSpeed = mAttr.AutoPanSpeed.minValue;
       $scope.AutoPanMaxSpeed = mAttr.AutoPanSpeed.maxValue;
     }
 
-    if (mAttr.AutoPanTiltAngle !== undefined) {
+    if (typeof mAttr.AutoPanTiltAngle !== "undefined") {
       $scope.AutoPanTiltMinAngle = mAttr.AutoPanTiltAngle.minValue;
       $scope.AutoPanTiltMaxAngle = mAttr.AutoPanTiltAngle.maxValue;
     }
 
-    if (mAttr.AutoRunScheduleModes !== undefined) {
+    if (typeof mAttr.AutoRunScheduleModes !== "undefined") {
       $scope.AutoRunScheduleModes = mAttr.AutoRunScheduleModes;
     }
 
-    if (mAttr.SwingModes !== undefined) {
+    if (typeof mAttr.SwingModes !== "undefined") {
       $scope.SwingModes = mAttr.SwingModes;
     }
 
@@ -39,14 +41,14 @@ kindFramework.controller('autorunModalCtrl', function($scope, $uibModalInstance,
 
     $scope.FromOptions = [];
     $scope.ToOptions = [];
-    for (var h = 0; h < mAttr.MaxHours; h++) {
-      var fromOption = COMMONUtils.getFormatedInteger(h, 2) + ':00';
+    for (var hour = 0; hour < mAttr.MaxHours; hour++) {
+      var fromOption = COMMONUtils.getFormatedInteger(hour, 2) + ':00';
       $scope.FromOptions.push(fromOption);
 
-      var toOption = COMMONUtils.getFormatedInteger(h, 2) + ':59';
+      var toOption = COMMONUtils.getFormatedInteger(hour, 2) + ':59';
       $scope.ToOptions.push(toOption);
 
-      if (SelectedHour === h) {
+      if (SelectedHour === hour) {
         $scope.FromTime = fromOption;
         $scope.ToTime = toOption;
         pageData.ToTime = $scope.ToTime;
@@ -64,34 +66,53 @@ kindFramework.controller('autorunModalCtrl', function($scope, $uibModalInstance,
 
   function validatePage() {
     if ($scope.SelectedSchedule.Mode === 'Preset') {
-      if ((typeof $scope.SelectedSchedule.Preset === 'undefined') || ($scope.SelectedSchedule.Preset < 1) || ($scope.SelectedSchedule.Preset > mAttr.MaxPreset)) {
-        COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', 1).replace('%2', mAttr.MaxPreset));
+      if ((typeof $scope.SelectedSchedule.Preset === 'undefined') || 
+          ($scope.SelectedSchedule.Preset < 1) || 
+          ($scope.SelectedSchedule.Preset > mAttr.MaxPreset)) {
+        COMMONUtils.ShowError($translate.instant('lang_range_alert').
+                              replace('%1', 1).replace('%2', mAttr.MaxPreset));
         return false;
       }
     }
 
     if ($scope.SelectedSchedule.Mode === 'Group') {
-      if ((typeof $scope.SelectedSchedule.Group === 'undefined') || ($scope.SelectedSchedule.Group < 1) || ($scope.SelectedSchedule.Group > $scope.MaxGroupCount)) {
-        COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', 1).replace('%2', $scope.MaxGroupCount));
+      if ((typeof $scope.SelectedSchedule.Group === 'undefined') || 
+          ($scope.SelectedSchedule.Group < 1) || 
+          ($scope.SelectedSchedule.Group > $scope.MaxGroupCount)) {
+        COMMONUtils.ShowError($translate.instant('lang_range_alert').
+                              replace('%1', 1).replace('%2', $scope.MaxGroupCount));
         return false;
       }
     }
 
     if ($scope.SelectedSchedule.Mode === 'Trace') {
-      if ((typeof $scope.SelectedSchedule.Trace === 'undefined') || ($scope.SelectedSchedule.Trace < 1) || ($scope.SelectedSchedule.Trace > $scope.MaxTraceCount)) {
-        COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', 1).replace('%2', $scope.MaxTraceCount));
+      if ((typeof $scope.SelectedSchedule.Trace === 'undefined') || 
+          ($scope.SelectedSchedule.Trace < 1) || 
+          ($scope.SelectedSchedule.Trace > $scope.MaxTraceCount)) {
+        COMMONUtils.ShowError($translate.instant('lang_range_alert').
+                              replace('%1', 1).replace('%2', $scope.MaxTraceCount));
         return false;
       }
     }
 
     if ($scope.SelectedSchedule.Mode === 'AutoPan') {
-      if ((typeof $scope.SelectedSchedule.AutoPanSpeed === 'undefined') || ($scope.SelectedSchedule.AutoPanSpeed === '') || ($scope.SelectedSchedule.AutoPanSpeed < $scope.AutoPanMinSpeed) || ($scope.SelectedSchedule.AutoPanSpeed > $scope.AutoPanMaxSpeed)) {
-        COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.AutoPanMinSpeed).replace('%2', $scope.AutoPanMaxSpeed));
+      if ((typeof $scope.SelectedSchedule.AutoPanSpeed === 'undefined') || 
+          ($scope.SelectedSchedule.AutoPanSpeed === '') || 
+          ($scope.SelectedSchedule.AutoPanSpeed < $scope.AutoPanMinSpeed) || 
+          ($scope.SelectedSchedule.AutoPanSpeed > $scope.AutoPanMaxSpeed)) {
+        COMMONUtils.ShowError($translate.instant('lang_range_alert').
+                              replace('%1', $scope.AutoPanMinSpeed).
+                              replace('%2', $scope.AutoPanMaxSpeed));
         return false;
       }
 
-      if ((typeof $scope.SelectedSchedule.AutoPanTiltAngle === 'undefined') || ($scope.SelectedSchedule.AutoPanTiltAngle === '') || ($scope.SelectedSchedule.AutoPanTiltAngle < $scope.AutoPanTiltMinAngle) || ($scope.SelectedSchedule.AutoPanTiltAngle > $scope.AutoPanTiltMaxAngle)) {
-        COMMONUtils.ShowError($translate.instant('lang_range_alert').replace('%1', $scope.AutoPanTiltMinAngle).replace('%2', $scope.AutoPanTiltMaxAngle));
+      if ((typeof $scope.SelectedSchedule.AutoPanTiltAngle === 'undefined') || 
+          ($scope.SelectedSchedule.AutoPanTiltAngle === '') || 
+          ($scope.SelectedSchedule.AutoPanTiltAngle < $scope.AutoPanTiltMinAngle) || 
+          ($scope.SelectedSchedule.AutoPanTiltAngle > $scope.AutoPanTiltMaxAngle)) {
+        COMMONUtils.ShowError($translate.instant('lang_range_alert').
+                    replace('%1', $scope.AutoPanTiltMinAngle).
+                    replace('%2', $scope.AutoPanTiltMaxAngle));
         return false;
       }
     }
@@ -101,75 +122,78 @@ kindFramework.controller('autorunModalCtrl', function($scope, $uibModalInstance,
 
   $scope.apply = function() {
     if (validatePage()) {
-      if (!angular.equals(pageData.SelectedSchedule, $scope.SelectedSchedule) || pageData.ToDay !== $scope.ToDay || pageData.ToTime !== $scope.ToTime) {
+      if (!angular.equals(pageData.SelectedSchedule, $scope.SelectedSchedule) || 
+        pageData.ToDay !== $scope.ToDay || pageData.ToTime !== $scope.ToTime) {
         var fdIndex = $scope.WeekDays.indexOf($scope.FromDay);
         var ftIndex = $scope.FromOptions.indexOf($scope.FromTime);
 
         var tdIndex = $scope.WeekDays.indexOf($scope.ToDay);
         var ttIndex = $scope.ToOptions.indexOf($scope.ToTime);
 
+        var day=0, hour=0;
+
         if (fdIndex === tdIndex) {
           if (ftIndex > ttIndex) {
-            for (var d = 0; d < $scope.WeekDays.length; d++) {
-              if (d === fdIndex) {
-                for (var h = 0; h <= ttIndex; h++) {
-                  $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+            for (day = 0; day < $scope.WeekDays.length; day++) {
+              if (day === fdIndex) {
+                for (hour = 0; hour <= ttIndex; hour++) {
+                  $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
                 }
-                for (var h = ftIndex; h < mAttr.MaxHours; h++) {
-                  $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+                for (hour = ftIndex; hour < mAttr.MaxHours; hour++) {
+                  $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
                 }
               } else {
-                for (var h = 0; h < mAttr.MaxHours; h++) {
-                  $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+                for (hour = 0; hour < mAttr.MaxHours; hour++) {
+                  $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
                 }
               }
             }
           } else {
-            for (var h = ftIndex; h <= ttIndex; h++) {
-              $scope.AutoRunScheduler[$scope.ToDay][h] = $scope.SelectedSchedule;
+            for (hour = ftIndex; hour <= ttIndex; hour++) {
+              $scope.AutoRunScheduler[$scope.ToDay][hour] = $scope.SelectedSchedule;
             }
           }
         } else if (fdIndex < tdIndex) {
-          for (var d = fdIndex; d <= tdIndex; d++) {
-            if (d === fdIndex) {
-              for (var h = ftIndex; h < mAttr.MaxHours; h++) {
-                $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+          for (day = fdIndex; day <= tdIndex; day++) {
+            if (day === fdIndex) {
+              for (hour = ftIndex; hour < mAttr.MaxHours; hour++) {
+                $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
               }
-            } else if (d === tdIndex) {
-              for (var h = 0; h <= ttIndex; h++) {
-                $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+            } else if (day === tdIndex) {
+              for (hour = 0; hour <= ttIndex; hour++) {
+                $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
               }
             } else {
-              for (var h = 0; h < mAttr.MaxHours; h++) {
-                $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+              for (hour = 0; hour < mAttr.MaxHours; hour++) {
+                $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
               }
             }
           }
         } else if (fdIndex > tdIndex) {
-          for (var d = fdIndex; d < $scope.WeekDays.length; d++) {
-            if (d === fdIndex) {
-              for (var h = ftIndex; h < mAttr.MaxHours; h++) {
-                $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+          for (day = fdIndex; day < $scope.WeekDays.length; day++) {
+            if (day === fdIndex) {
+              for ( hour = ftIndex; hour < mAttr.MaxHours; hour++) {
+                $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
               }
-            } else if (d === tdIndex) {
-              for (var h = 0; h <= ttIndex; h++) {
-                $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+            } else if (day === tdIndex) {
+              for (hour = 0; hour <= ttIndex; hour++) {
+                $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
               }
             } else {
-              for (var h = 0; h < mAttr.MaxHours; h++) {
-                $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+              for (hour = 0; hour < mAttr.MaxHours; hour++) {
+                $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
               }
             }
           }
 
-          for (var d = 0; d <= tdIndex; d++) {
-            if (d === tdIndex) {
-              for (var h = 0; h <= ttIndex; h++) {
-                $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+          for (day = 0; day <= tdIndex; day++) {
+            if (day === tdIndex) {
+              for (hour = 0; hour <= ttIndex; hour++) {
+                $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
               }
             } else {
-              for (var h = 0; h < mAttr.MaxHours; h++) {
-                $scope.AutoRunScheduler[$scope.WeekDays[d]][h] = $scope.SelectedSchedule;
+              for (hour = 0; hour < mAttr.MaxHours; hour++) {
+                $scope.AutoRunScheduler[$scope.WeekDays[day]][hour] = $scope.SelectedSchedule;
               }
             }
           }
