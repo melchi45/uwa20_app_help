@@ -1,4 +1,6 @@
-kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, Attributes, SessionOfUserManager, EventStatusService, SunapiClient) {
+kindFramework.
+factory('COMMONUtils', function ($translate, $location, $uibModal, Attributes,
+  SessionOfUserManager, EventStatusService, SunapiClient) {
   "use strict";
   var commonUtils = {};
 
@@ -14,18 +16,18 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
   var FILE_SIM = '~`!@$^()_-{}[];,.';
   var SPACE = ' ';
   //var TAB = '\t';
-  var CR = '\r';
-  var LF = '\n';
-  var IPv6 = '0123456789abcdefABCDEF:';
+  //var CR = '\r';
+  //var LF = '\n';
+  //var IPv6 = '0123456789abcdefABCDEF:';
   var SIM2 = '#"%&';
   var QUOTATION = "'";
   var Directory = "`~!@#$%^&()-_=+[]{};',./";
   var Folder = "'-!#$%&(),;@[]^_`{}~+=";
-  var PATTERN_NUM = /\d+/;
-  var PATTERN_UPPER_ALPHA = /[A-Z]/;
-  var PATTERN_LOWER_ALPHA = /[a-z]/;
+  //var PATTERN_NUM = /\d+/;
+  //var PATTERN_UPPER_ALPHA = /[A-Z]/;
+  //var PATTERN_LOWER_ALPHA = /[a-z]/;
 
-  commonUtils.getResponsiveObjects = function($scope) {
+  commonUtils.getResponsiveObjects = function ($scope) {
     $scope.SmallLabelClass = "col-sm-2 col-xs-6 field-label control-label";
     $scope.LabelClass = "col-sm-3 col-xs-12";
     $scope.LabelClassLg = "col-lg-5 col-md-5 col-sm-5 col-xs-6 control-label";
@@ -54,54 +56,54 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     $scope.FriendlyNameClass = "col-lg-5 col-md-5 col-sm-7 col-xs-7";
   };
 
-  commonUtils.getTableElementClass = function(elemcnt) {
+  commonUtils.getTableElementClass = function (elemcnt) {
     var emwd = Math.ceil(12 / elemcnt);
     var ret = "col-lg-" + emwd + " col-md-" + emwd + " col-sm-" + emwd + " col-xs-" + emwd;
     return ret;
   };
 
 
-  commonUtils.getFRIENDLY_NAME = function() {
+  commonUtils.getFriendlyName = function () {
     return FRIENDLY_NAME;
   };
 
-  commonUtils.getSIM = function() {
+  commonUtils.getSIM = function () {
     return SIM;
   };
-  commonUtils.getNUM = function() {
+  commonUtils.getNUM = function () {
     return NUM;
   };
-  commonUtils.getALPHA = function() {
+  commonUtils.getALPHA = function () {
     return ALPHA;
   };
-  commonUtils.getPATH_SIM = function() {
+  commonUtils.getPATH_SIM = function () {
     return PATH_SIM;
   };
 
-  commonUtils.getFILE_SIM = function() {
+  commonUtils.getFILE_SIM = function () {
     return FILE_SIM;
   };
 
-  commonUtils.getSPACE = function() {
+  commonUtils.getSPACE = function () {
     return SPACE;
   };
 
-  commonUtils.getSIM2 = function() {
+  commonUtils.getSIM2 = function () {
     return SIM2;
   };
 
-  commonUtils.getQUOTATION = function() {
+  commonUtils.getQUOTATION = function () {
     return QUOTATION;
   };
 
-  commonUtils.getDIRECTORY = function() {
+  commonUtils.getDIRECTORY = function () {
     return Directory;
   };
-  commonUtils.getFOLDER = function() {
+  commonUtils.getFOLDER = function () {
     return Folder;
   };
 
-  commonUtils.getBrowserDetect = function() {
+  commonUtils.getBrowserDetect = function () {
     var BrowserDetectRes = {};
     BrowserDetectRes.isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
     // Firefox 1.0+
@@ -120,7 +122,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return BrowserDetectRes;
   };
 
-  commonUtils.TypeCheck = function(s, spc) {
+  commonUtils.TypeCheck = function (s, spc) {
     var i;
     var check = 0;
     var ls = 0;
@@ -135,11 +137,15 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       }
     }
 
-    if (check === 1) return true;
-    else return false;
+    if (check === 1) {
+      return true;
+    }
+    else {
+      return false;
+    }
   };
 
-  commonUtils.CheckAddrKorean = function(str) {
+  commonUtils.CheckAddrKorean = function (str) {
     var korean = false;
     for (var i = 0; i < str.length; i++) {
       if (((str.charCodeAt(i) > 0x3130 && str.charCodeAt(i) < 0x318F) || (str.charCodeAt(i) >= 0xAC00 && str.charCodeAt(i) <= 0xD7A3))) {
@@ -152,7 +158,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return korean;
   };
 
-  commonUtils.CheckSpace = function(str) {
+  commonUtils.CheckSpace = function (str) {
     if (str.search(/\s/) != -1) {
       return true;
     } else {
@@ -161,7 +167,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
   };
 
 
-  commonUtils.getIntegerValue = function(data) {
+  commonUtils.getIntegerValue = function (data) {
     var ret = data;
 
     if (typeof data === 'string') {
@@ -171,7 +177,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return ret;
   };
 
-  commonUtils.onLogout = function() {
+  commonUtils.onLogout = function () {
     EventStatusService.stopMonotoringEvents();
     SessionOfUserManager.unSetLogin();
     Attributes.reset();
@@ -185,7 +191,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     }
   };
 
-  commonUtils.ApplyConfirmation = function(Callback, ModalSize, errorCallback, tMessage) {
+  commonUtils.ApplyConfirmation = function (Callback, ModalSize, errorCallback, tMessage) {
     var modalSize = 'sm';
     var message = 'lang_apply_question';
 
@@ -193,7 +199,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       modalSize = ModalSize;
     }
 
-    if(typeof tMessage !== 'undefined') {
+    if (typeof tMessage !== 'undefined') {
       message = tMessage;
     }
 
@@ -203,20 +209,20 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       windowClass: 'modal-position-middle',
       size: modalSize,
       resolve: {
-        Message: function() {
+        Message: function () {
           return message;
         }
       }
     });
 
-    modalInstance.result.then(Callback, function(){
-      if(typeof errorCallback !== "undefined"){
+    modalInstance.result.then(Callback, function () {
+      if (typeof errorCallback !== "undefined") {
         errorCallback();
       }
     });
   };
 
-  commonUtils.confirmChangeingChannel = function() {
+  commonUtils.confirmChangeingChannel = function () {
     var msgMoveToAnother = $translate.instant('lang_msg_save_and_move_to_another');
     var otherChannel = $translate.instant('lang_other_channel');
     var msg = msgMoveToAnother.replace("%1", otherChannel);
@@ -227,7 +233,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       windowClass: 'modal-position-middle',
       size: 'sm',
       resolve: {
-        Message: function() {
+        Message: function () {
           return msg;
         }
       }
@@ -235,7 +241,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return modalInstance.result;
   };
 
-  commonUtils.ShowError = function(ErrorMessage, ModalSize, callback) {
+  commonUtils.ShowError = function (ErrorMessage, ModalSize, callback) {
     var modalSize = 'sm';
 
     if (ModalSize === 'md' || ModalSize === 'lg') {
@@ -248,43 +254,43 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       windowClass: 'modal-position-middle',
       size: modalSize,
       resolve: {
-        Message: function() {
+        Message: function () {
           return ErrorMessage;
         },
-        Header: function() {
+        Header: function () {
           return 'lang_error';
         }
       }
     });
 
-    if (callback !== undefined) {
-      modalInstance.result.then(callback, function() {});
+    if (typeof callback !== "undefined") {
+      modalInstance.result.then(callback, function () {});
     }
   };
 
-  commonUtils.ShowInfo = function(Msg, callback) {
+  commonUtils.ShowInfo = function (Msg, callback) {
     var modalInstance = $uibModal.open({
       templateUrl: 'views/setup/common/errorMessage.html',
       controller: 'errorMessageCtrl',
       windowClass: 'modal-position-middle',
       size: 'sm',
       resolve: {
-        Message: function() {
+        Message: function () {
 
           return Msg;
         },
-        Header: function() {
+        Header: function () {
           return 'lang_info';
         }
       }
     });
 
-    if (callback !== undefined) {
-      modalInstance.result.then(callback, function() {});
+    if (typeof callback !== "undefined") {
+      modalInstance.result.then(callback, function () {});
     }
   };
 
-  commonUtils.ShowDeatilInfo = function(Msg, callback, ModalSize) {
+  commonUtils.ShowDeatilInfo = function (Msg, callback, ModalSize) {
     var modalSize = 'sm';
 
     if (ModalSize === 'md' || ModalSize === 'lg') {
@@ -296,24 +302,24 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       windowClass: 'modal-position-middle',
       size: modalSize,
       resolve: {
-        Message: function() {
+        Message: function () {
 
           return Msg;
         },
-        Header: function() {
+        Header: function () {
           return 'lang_information';
         }
       }
     });
 
-    if (callback !== undefined) {
-      modalInstance.result.then(callback, function() {});
+    if (typeof callback !== "undefined") {
+      modalInstance.result.then(callback, function () {});
     }
   };
 
-  commonUtils.ShowConfirmation = function(callback, Msg, size, errorCallback) {
+  commonUtils.ShowConfirmation = function (callback, Msg, size, errorCallback) {
     var actualSize = 'sm';
-    if (size !== undefined) {
+    if (typeof size !== "undefined") {
       actualSize = size;
     }
 
@@ -323,17 +329,17 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       windowClass: 'modal-position-middle',
       size: actualSize,
       resolve: {
-        Message: function() {
+        Message: function () {
           return Msg;
         }
       }
     });
-    if (callback !== undefined) {
+    if (typeof callback !== "undefined") {
       modalInstance.result.then(callback, errorCallback);
     }
   };
 
-  commonUtils.isValidSchedule = function(cDay, cHour, fromToString) {
+  commonUtils.isValidSchedule = function (cDay, cHour, fromToString) {
     var str = fromToString.split('-');
 
     var fTime = parseInt(str[0].split(' ')[1].split(':')[0]);
@@ -377,20 +383,20 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
   };
 
   //Returns device language
-  commonUtils.getCurrentLanguage = function() {
+  commonUtils.getCurrentLanguage = function () {
     var lang = '';
     SunapiClient.get('/stw-cgi/system.cgi?msubmenu=deviceinfo&action=view', '',
-      function(response) {
+      function (response) {
         lang = response.data.Language;
       },
-      function(errorData) {
+      function (errorData) {
         console.log(errorData);
       });
     return lang;
   };
 
   //Returns Datetime in YYYYMMDDHHMMSS
-  commonUtils.getCurrentDatetime = function() {
+  commonUtils.getCurrentDatetime = function () {
     var date = new Date();
 
     var year = this.getFormatedInteger(date.getFullYear(), 4).toString();
@@ -403,10 +409,10 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return year + month + day + hour + minute + second;
   };
 
-  commonUtils.filterArrayByObject = function(data, filter) {
+  commonUtils.filterArrayByObject = function (data, filter) {
     var filteredArray = [];
 
-    $.each(data, function(i, value) {
+    $.each(data, function (i, value) {
       if (data[i].Type === filter) {
         filteredArray.push(data[i]);
       }
@@ -416,21 +422,21 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
   };
 
   //Usage : Array.sort(COMMONUtils.sortArray('ObjectNameInArray', true, function(a){return a.toUpperCase();}));
-  commonUtils.sortArray = function(field, ascendingOrder, primer) {
-    var key = primer ? function(x) {
+  commonUtils.sortArray = function (field, ascendingOrder, primer) {
+    var key = primer ? function (x) {
       return primer(x[field]);
-    } : function(x) {
+    } : function (x) {
       return x[field];
     };
 
     ascendingOrder = !ascendingOrder ? 1 : -1;
 
-    return function(a, b) {
+    return function (a, b) {
       return a = key(a), b = key(b), ascendingOrder * ((a > b) - (b > a));
     };
   };
 
-  commonUtils.chunkArray = function(iArray, chunkSize) {
+  commonUtils.chunkArray = function (iArray, chunkSize) {
     var chunkedArr = [];
 
     for (var i = 0; i < iArray.length; i += chunkSize) {
@@ -444,21 +450,21 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
    This function adds 0 padding to integer and return a string
    Ex: leftpad(1, 4)  -> 0001
    */
-  commonUtils.getFormatedInteger = function(num, length) {
+  commonUtils.getFormatedInteger = function (num, length) {
     var intNum = parseInt(num, 10);
 
     return (intNum / Math.pow(10, length)).toFixed(length).substr(2);
   };
 
-  commonUtils.getDrawDots = function(option, num) {
+  commonUtils.getDrawDots = function (option, num) {
     var json = {};
     json.drawDots = 'lang_msg_make_draw_dots';
-    if (json[option] !== undefined) {
+    if (typeof json[option] !== "undefined") {
       return $translate.instant(json[option]).replace('%1', num);
     }
   };
 
-  commonUtils.getTranslatedOption = function(Option) {
+  commonUtils.getTranslatedOption = function (Option) {
     var json = {};
 
     json.On = 'lang_on';
@@ -489,7 +495,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     json.FogDetection = 'lang_menu_fogdetection';
     json.AudioAnalysis = 'lang_menu_soundclassification';
     json.VideoAnalysis = 'lang_menu_iva';
-    if (mAttr.MotionDetectModes !== undefined) {
+    if (typeof mAttr.MotionDetectModes !== "undefined") {
       json.MDAndIV = (mAttr.VideoAnalyticsSupport === true) ? 'lang_md_va' : 'lang_md';
       json.MD_VA_short = (mAttr.VideoAnalyticsSupport === true) ? 'lang_menu_videoanalytics' : 'lang_md';
     }
@@ -593,8 +599,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     json.AllDay = 'lang_all_day';
     json.Heater = 'lang_heater';
     json['Heater/Fan'] = 'lang_heater_fan';
-    json['Fan'] = 'lang_fan';
-
+    json.Fan = 'lang_fan';
     //SSDR
     json.Narrow = 'lang_narrow';
     json.Wide = 'lang_wide';
@@ -658,7 +663,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     json.DoublePanorama = 'lang_doublePanorama';
     json.Panorama = 'lang_singlePanorama';
 
-    if (json[Option] !== undefined) {
+    if (typeof json[Option] !== "undefined") {
       return $translate.instant(json[Option]);
     } else if (Option === true) {
       return $translate.instant('lang_on');
@@ -675,15 +680,19 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     } else if (Option === 'AccessLog') {
       return $translate.instant("lang_access_log");
     } else if (Option === 'SystemLog') {
-      return $translate.instant("lang_left_system") + " " + $translate.instant("lang_menu_small_log");
+      return $translate.instant("lang_left_system") + " " + 
+              $translate.instant("lang_menu_small_log");
     } else if (Option === 'EventLog') {
-      return $translate.instant("lang_left_event") + " " + $translate.instant("lang_menu_small_log");
+      return $translate.instant("lang_left_event") + " " + 
+              $translate.instant("lang_menu_small_log");
     } else if (Option === 'I-Frame') {
       return $translate.instant("lang_iFrame");
     } else if (Option === 'MotionFocus+ReducedNoise') {
-      return $translate.instant("lang_motionFocus") + " " + $translate.instant("lang_ampersand") + " " + $translate.instant("lang_reduceNoise");
+      return $translate.instant("lang_motionFocus") + " " + $translate.instant("lang_ampersand") + 
+            " " + $translate.instant("lang_reduceNoise");
     } else if (Option === 'MotionFocus+BrightVideo') {
-      return $translate.instant("lang_motionFocus") + " " + $translate.instant("lang_ampersand") + " " + $translate.instant("lang_brightVideo");
+      return $translate.instant("lang_motionFocus") + " " + $translate.instant("lang_ampersand") + 
+            " " + $translate.instant("lang_brightVideo");
     } else if (Option === "Auto1") {
       return $translate.instant("lang_auto") + " " + 1;
     } else if (Option === "Auto2") {
@@ -706,26 +715,26 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     } else if (Option === "Mosaic4") {
       return $translate.instant("lang_mosaic") + " " + 4;
     } else {
-      if (typeof(Option) === 'string') {
+      if (typeof (Option) === 'string') {
+        var str = '';
         if (Option.indexOf(':') !== -1) {
           return $translate.instant(Option);
         } else if (Option.indexOf('AlarmInput') !== -1) {
           return $translate.instant('lang_alarm');
         } else if (Option.indexOf('-Lowest') !== -1) {
-          var str = Option.split('-');
+          str = Option.split('-');
 
           if (str.length === 2) {
             return str[0] + '(' + $translate.instant('lang_very_low') + ')';
           }
         } else if (Option.indexOf('-Highest') !== -1) {
-          var str = Option.split('-');
+          str = Option.split('-');
 
           if (str.length === 2) {
             return str[0] + '(' + $translate.instant('lang_very_high') + ')';
           }
-        } else //Alarm Durations [5s,10s..]
-        {
-          var str = Option.split('s');
+        } else { //Alarm Durations [5s,10s..]
+          str = Option.split('s');
 
           if (str.length === 2) {
             if (str[1] === 'full') {
@@ -735,7 +744,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
             }
           }
 
-          var str = Option.split('m');
+          str = Option.split('m');
 
           if (str.length === 2) {
             return str[0] + ' ' + $translate.instant('lang_min');
@@ -747,7 +756,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return $translate.instant(Option); // Integer values
   };
 
-  commonUtils.getHourIds = function(dayIndex, hrArray) {
+  commonUtils.getHourIds = function (dayIndex, hrArray) {
     var ids = [];
 
     for (var h = 0; h < mAttr.MaxHours; h++) {
@@ -763,7 +772,8 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
             str[1] = str[1].substring(0, 2);
           }
           //ids.push(mAttr.WeekDays[dayIndex] + '.' + h);
-          ids.push(mAttr.WeekDays[dayIndex] + '.' + h + '.' + Math.round(str[0]) + '.' + Math.round(str[1]));
+          ids.push(mAttr.WeekDays[dayIndex] + '.' + h + '.' + 
+                  Math.round(str[0]) + '.' + Math.round(str[1]));
         }
       }
     }
@@ -771,7 +781,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return ids;
   };
 
-  commonUtils.getSchedulerIds = function(schedule) {
+  commonUtils.getSchedulerIds = function (schedule) {
     var ids = [];
 
     ids.push.apply(ids, this.getHourIds(0, schedule.SUN));
@@ -785,7 +795,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return ids;
   };
 
-  commonUtils.getSupportedEventActions = function(sourceName) {
+  commonUtils.getSupportedEventActions = function (sourceName) {
     var eventActions = [];
 
     for (var i = 0; i < mAttr.EventSourceOptions.length; i++) {
@@ -798,7 +808,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return eventActions;
   };
 
-  commonUtils.getArray = function(num, startFrom1) {
+  commonUtils.getArray = function (num, startFrom1) {
     var arr = [];
 
     for (var i = 0; i < num; i++) {
@@ -813,7 +823,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return arr;
   };
 
-  commonUtils.getDescendingArray = function(num) {
+  commonUtils.getDescendingArray = function (num) {
     var arr = [],
       i = 0;
 
@@ -825,32 +835,32 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
   };
 
 
-  commonUtils.isValidSetData = function(setData) {
+  commonUtils.isValidSetData = function (setData) {
     var k;
     var changed = false;
 
-    $.each(setData, function(k, value) {
+    $.each(setData, function (k, value) {
       changed = true;
     });
 
     return changed;
   };
 
-  commonUtils.fillSetData = function(setData, newVal, oldVal, ignoredKeys, copyAll) {
+  commonUtils.fillSetData = function (setData, newVal, oldVal, ignoredKeys, copyAll) {
     var k;
     var changed = false;
 
 
-    $.each(newVal, function(k, value) {
+    $.each(newVal, function (k, value) {
 
-      if (ignoredKeys !== undefined && ignoredKeys !== '') {
+      if (typeof ignoredKeys !== "undefined" && ignoredKeys !== '') {
 
         if (ignoredKeys.indexOf(k) !== -1) {
           return;
         }
       }
 
-      if (newVal[k] !== '' && newVal[k] !== undefined) {
+      if (newVal[k] !== '' && typeof newVal[k] !== "undefined") {
 
         if (oldVal[k] !== newVal[k] || copyAll === true) {
 
@@ -869,26 +879,26 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return changed;
   };
 
-  commonUtils.updatePageData = function(newVal, oldVal, ignoredKeys) {
-    var k;
+  commonUtils.updatePageData = function (newVal, oldVal, ignoredKeys) {
+    var key=0;
 
-    for (k in newVal) {
-      if (newVal.hasOwnProperty(k)) {
+    for (key in newVal) {
+      if (newVal.hasOwnProperty(key)) {
 
-        if (ignoredKeys !== undefined && ignoredKeys !== '') {
-          if (ignoredKeys.indexOf(k) !== -1) {
+        if (typeof ignoredKeys !== "undefined" && ignoredKeys !== '') {
+          if (ignoredKeys.indexOf(key) !== -1) {
             continue;
           }
         }
 
-        if (newVal[k] !== '' && newVal[k] !== undefined) {
-          oldVal[k] = newVal[k];
+        if (newVal[key] !== '' && typeof newVal[key] !== "undefined") {
+          oldVal[key] = newVal[key];
         }
       }
     }
   };
 
-  commonUtils.getArrayWithMinMax = function(min, max) {
+  commonUtils.getArrayWithMinMax = function (min, max) {
     var arr = [];
 
     for (var i = min; i <= max; i++) {
@@ -898,7 +908,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return arr;
   };
 
-  commonUtils.CheckNumCharSym = function(value) {
+  commonUtils.CheckNumCharSym = function (value) {
     for (var i = 0; i < value.length; i++) {
       var ch = value.charAt(i);
       var check = 0;
@@ -908,19 +918,22 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
         check++;
       } else if (ch >= '0' && ch <= '9') {
         check++;
-      } else if (ch === '~' || ch === '`' || ch === '!' || ch === '@' || ch === '#' || ch === '$' || ch === '%' || ch === '^' || ch === '*' ||
-        ch === '(' || ch === ')' || ch === '_' || ch === '-' || ch === '+' || ch === '=' || ch === '|' ||
-        ch === '{' || ch === '}' || ch === '[' || ch === ']' || ch === '.' || ch === '?' || ch === '/') {
+      } else if (ch === '~' || ch === '`' || ch === '!' || ch === '@' || ch === '#' || 
+                ch === '$' || ch === '%' || ch === '^' || ch === '*' || ch === '(' || ch === ')' || 
+                ch === '_' || ch === '-' || ch === '+' || ch === '=' || ch === '|' ||
+                ch === '{' || ch === '}' || ch === '[' || ch === ']' || ch === '.' || ch === '?' || 
+                ch === '/') {
         check++;
       }
-      if (check === 0)
+      if (check === 0) {
         return false;
+      }
     }
 
     return true;
   };
 
-  commonUtils.CheckSpace = function(str) {
+  commonUtils.CheckSpace = function (str) {
     if (str.search(/\s/) != -1) {
       return true;
     } else {
@@ -928,25 +941,26 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     }
   };
 
-  commonUtils.CheckValidHostName = function(address) {
+  commonUtils.CheckValidHostName = function (address) {
     return /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/.test(address);
   };
 
-  commonUtils.CheckValidIPv6Address = function(ip) {
+  commonUtils.CheckValidIPv6Address = function (ip) {
     var digits = "0123456789abcdef";
-    var check_digit = false;
+    var checkDigit = false;
     var val = 0;
     var colonp = -1;
     var i = 0;
     var j = 0;
-    var len;
-    var letter1;
-    var curtok;
-    var ch;
+    var len = -1;
+    var curtok =0;
+    var ch =-1;
     var V6_INADDRSZ = 16;
 
-    if ((letter1 = ip.charAt(i)) == ':') {
-      if ((letter1 = ip.charAt(i++)) != ':') return false;
+    if (ip.charAt(i) == ':') {
+      if (ip.charAt(i++) != ':') {
+        return false;
+      }
     }
 
     curtok = i;
@@ -957,57 +971,77 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       if ((len = digits.indexOf(ch)) != -1) {
         val <<= 4;
         val |= len;
-        if (val > 0xffff) return false;
-        check_digit = true;
+        if (val > 0xffff) {
+          return false;
+        }
+        checkDigit = true;
         continue;
       }
 
-      if (ch == '%') break;
+      if (ch == '%') {
+        break;
+      }
 
       if (ch == ':') {
         curtok = i;
-        if (!check_digit) {
-          if (colonp != -1) return false;
+        if (!checkDigit) {
+          if (colonp != -1) {
+            return false;
+          }
           colonp = j;
           continue;
-        } else if (i == ip.length) return false;
+        } else if (i == ip.length) {
+          return false;
+        }
 
-        if ((j + 2) > V6_INADDRSZ) return false;
+        if ((j + 2) > V6_INADDRSZ) {
+          return false;
+        }
         j += 2;
         val = 0;
-        check_digit = false;
+        checkDigit = false;
         continue;
       }
 
       if (ch == '.' && ((j + 4) <= V6_INADDRSZ)) {
         // TODO: IPv4 mapped IPv6 address is not supported
-        if (!commonUtils.CheckValidIPv4Address(ip.substring(curtok))) return false;
+        if (!commonUtils.CheckValidIPv4Address(ip.substring(curtok))) {
+          return false;
+        }
         j += 4;
-        check_digit = false;
+        checkDigit = false;
         break;
       }
       return false;
     }
 
-    if (check_digit) {
-      if ((j + 2) > V6_INADDRSZ) return false;
+    if (checkDigit) {
+      if ((j + 2) > V6_INADDRSZ) {
+        return false;
+      }
       j += 2;
     }
 
     if (colonp != -1) {
-      if (j == V6_INADDRSZ) return false;
+      if (j == V6_INADDRSZ) {
+        return false;
+      }
       j = V6_INADDRSZ;
     }
 
-    if (j != V6_INADDRSZ) return false;
+    if (j != V6_INADDRSZ) {
+      return false;
+    }
 
     return true;
   };
 
-  commonUtils.CheckValidIPv4Address = function(addr) {
-    if (addr == '') return false;
+  commonUtils.CheckValidIPv4Address = function (addr) {
+    if (addr == '') {
+      return false;
+    }
 
-    var ipArray;
+    var ipArray=null;
 
     var textCheck = isNaN(addr.split(/\./)[0]);
     if (textCheck === true) {
@@ -1018,47 +1052,63 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       ipArray = addr.split(/\./);
     }
 
-    if (ipArray == null) return false;
-
+    if (ipArray == null) {
+      return false;
+    }
     var ip_num = ((ipArray[0] & 0xFF) << 24) + ((ipArray[1] & 0xFF) << 16) + ((ipArray[2] & 0xFF) << 8) + ((ipArray[3] & 0xFF) << 0);
     var thisSegment = ipArray[0];
 
-    if (thisSegment < 1 || thisSegment > 223) return false;
+    if (thisSegment < 1 || thisSegment > 223) {
+      return false;
+    }
     for (var i = 1; i < 4; i++) {
       thisSegment = ipArray[i];
-      if (thisSegment > 255) return false;
+      if (thisSegment > 255) {
+        return false;
+      }
     }
 
     for (var i = 0; i < 4; i++) {
       if (ipArray[i].length > 1) {
-        if (ipArray[i].charAt(0) == '0')
+        if (ipArray[i].charAt(0) == '0') {
           return false;
+        }
       }
     }
     return true;
   }
 
-  commonUtils.CheckValidIPv4Subnet = function(addr) {
-    if (addr == '') return false;
+  commonUtils.CheckValidIPv4Subnet = function (addr) {
+    if (addr == '') {
+      return false;
+    }
 
-    var smArray;
+    var smArray = null;
     if (addr.search(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/) != -1) {
       smArray = addr.split(/\./);
     }
 
-    if (smArray == null) return false;
+    if (smArray === null) {
+      return false;
+    }
 
     var sm_num = ((smArray[0] & 0xFF) << 24) + ((smArray[1] & 0xFF) << 16) + ((smArray[2] & 0xFF) << 8) + ((smArray[3] & 0xFF) << 0);
     var thisSegment;
     for (var i = 0; i < 4; i++) {
       thisSegment = smArray[i];
-      if (thisSegment > 255) return false;
-      if (i === 3 && thisSegment > 253) return false;
+      if (thisSegment > 255) {
+        return false;
+      }
+      if (i === 3 && thisSegment > 253) {
+        return false;
+      }
     }
 
     for (i = 0; i < 32; i++) {
       var token = 1 << i;
-      if ((sm_num & token) > 0) break;
+      if ((sm_num & token) > 0) {
+        break;
+      }
     }
 
     for (i++; i < 32; i++) {
@@ -1070,28 +1120,32 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return true;
   }
 
-  commonUtils.IPv4ToNum = function(addr) {
-    var smArray;
+  commonUtils.IPv4ToNum = function (addr) {
+    var smArray=null;
     if (addr.search(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/) != -1) {
       smArray = addr.split(/\./);
     }
 
-    if (smArray == null) return 0;
+    if (smArray == null) {
+      return 0;
+    }
     var sm_num = ((smArray[0] & 0xFF) << 24) + ((smArray[1] & 0xFF) << 16) + ((smArray[2] & 0xFF) << 8) + ((smArray[3] & 0xFF) << 0);
     return sm_num;
   }
 
-  commonUtils.IPv4ToNumNot = function(addr) {
-    var smArray;
+  commonUtils.IPv4ToNumNot = function (addr) {
+    var smArray=null;
     if (addr.search(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/) != -1) {
       smArray = addr.split(/\./);
     }
 
-    if (smArray == null) return 0;
+    if (smArray == null) {
+      return 0;
+    }
     var sm_num = (((~smArray[0]) & 0xFF) << 24) + (((~smArray[1]) & 0xFF) << 16) + (((~smArray[2]) & 0xFF) << 8) + (((~smArray[3]) & 0xFF) << 0);
     return sm_num;
   }
-  commonUtils.SafePassword = function(password, id) {
+  commonUtils.SafePassword = function (password, id) {
     var pattern_num = 0;
     var pattern_upper_alpha = 0;
     var pattern_lower_alpha = 0;
@@ -1099,8 +1153,9 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     var check = 0;
 
     var passwordlength = password.length;
-    if (passwordlength < 8)
+    if (passwordlength < 8) {
       return 1;
+    }
     if (password == id) {
       return 2;
     }
@@ -1121,21 +1176,33 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       }
     }
 
-    if (pattern_lower_alpha != 0) check++;
-    if (pattern_upper_alpha != 0) check++;
-    if (pattern_num != 0) check++;
-    if (pattern_simbol != 0) check++;
+    if (pattern_lower_alpha != 0) {
+      check++;
+    }
+    if (pattern_upper_alpha != 0) {
+      check++;
+    }
+    if (pattern_num != 0) {
+      check++;
+    }
+    if (pattern_simbol != 0) {
+      check++;
+    }
 
     if (passwordlength < 10) {
-      if (check < 3) return 3;
+      if (check < 3) {
+        return 3;
+      }
     } else {
-      if (check < 2) return 4;
+      if (check < 2) {
+        return 4;
+      }
     }
 
     return 0;
   }
 
-  commonUtils.isSafePassword = function(passwd, id) {
+  commonUtils.isSafePassword = function (passwd, id) {
     if (passwd.length < minLen) {
       return 1;
     }
@@ -1146,10 +1213,10 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
 
     function strncmp(str1, str2, lgth) {
 
-      var s1 = (str1 + '')
-        .substr(0, lgth);
-      var s2 = (str2 + '')
-        .substr(0, lgth);
+      var s1 = (str1 + '').
+        substr(0, lgth);
+      var s2 = (str2 + '').
+        substr(0, lgth);
 
       return ((s1 === s2) ? 0 : ((s1 > s2) ? 1 : -1));
     }
@@ -1159,21 +1226,27 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
 
       var acceptCount = 0;
 
-      if (passwd.match(mAttr.OnlyNumber))
+      if (passwd.match(mAttr.OnlyNumber)) {
         acceptCount++;
-      if (passwd.match(mAttr.UpperAlpha))
+      }
+      if (passwd.match(mAttr.UpperAlpha)) {
         acceptCount++;
-      if (passwd.match(mAttr.LowerAlpha))
+      }
+      if (passwd.match(mAttr.LowerAlpha)) {
         acceptCount++;
-      if (passwd.match(mAttr.AlphaNumericWithSpace))
+      } 
+      if (passwd.match(mAttr.AlphaNumericWithSpace)) {
         acceptCount++;
+      }
 
       if (passwd.length < 10) {
-        if (acceptCount < 3)
+        if (acceptCount < 3) {
           return 3;
+        }
       } else {
-        if (acceptCount < 2)
+        if (acceptCount < 2) {
           return 4;
+        }
       }
       return 0;
     }
@@ -1213,22 +1286,28 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return ret;
   };
 
-  commonUtils.rangeFormat = function(min, max, type, label) {
+  commonUtils.rangeFormat = function (min, max, type, label) {
     var formatText = "";
 
-    if(typeof label !== "undefined" && label !== "undefined") {
+    if (typeof label !== "undefined" && label !== "undefined") {
       formatText += $translate.instant(label);
-      if ($translate.use() !== "Korean") formatText += " ";
+      if ($translate.use() !== "Korean") {
+        formatText += " ";
+      }
     }
 
     formatText += "(" + min;
-      // $translate
-      if ($translate.use() === "Korean") formatText += "~";
-      else formatText += "-";
+    // $translate
+    if ($translate.use() === "Korean") {
+      formatText += "~";
+    }
+    else {
+      formatText += "-";
+    }
 
     formatText += max;
 
-    if(typeof type !== "undefined" && type !== "undefined") {
+    if (typeof type !== "undefined" && type !== "undefined") {
       formatText += " " + $translate.instant(type);
     }
 
@@ -1250,15 +1329,27 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
 
       var acceptCount = 0;
 
-      if (passwd.match(mAttr.OnlyNumber)) acceptCount++;
-      if (passwd.match(mAttr.UpperAlpha)) acceptCount++;
-      if (passwd.match(mAttr.LowerAlpha)) acceptCount++;
-      if (passwd.match(mAttr.AlphaNumeric)) acceptCount++;
+      if (passwd.match(mAttr.OnlyNumber)) {
+        acceptCount++;
+      }
+      if (passwd.match(mAttr.UpperAlpha)) {
+        acceptCount++;
+      }
+      if (passwd.match(mAttr.LowerAlpha)) {
+        acceptCount++;
+      }
+      if (passwd.match(mAttr.AlphaNumeric)) {
+        acceptCount++;
+      }
 
       if (passwd.length < 10) {
-        if (acceptCount < 3) return 3;
+        if (acceptCount < 3) {
+          return 3;
+        }
       } else {
-        if (acceptCount < 2) return 4;
+        if (acceptCount < 2) {
+          return 4;
+        }
       }
       return 0;
     }
@@ -1272,9 +1363,15 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       var acceptCount1 = 0;
 
       //��������,����
-      if (value.match(mAttr.ConstantSymbol1)) acceptCount1++;
-      if (value.match(mAttr.ConstantSymbol2)) acceptCount1++;
-      if (acceptCount1 > 0) result = 5;
+      if (value.match(mAttr.ConstantSymbol1)) {
+        acceptCount1++;
+      }
+      if (value.match(mAttr.ConstantSymbol2)) {
+        acceptCount1++;
+      }
+      if (acceptCount1 > 0) {
+        result = 5;
+      }
 
       for (var z = 1; z < cnt; z++) {
         checkStr += "value.charAt(i) == value.charAt(i + " + z + ")";
@@ -1309,7 +1406,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
 
 
 
-  var Dig2Dec = function(s) {
+  var Dig2Dec = function (s) {
     var retV = 0;
     if (s.length == 4) {
       for (var i = 0; i < 4; i++) {
@@ -1320,7 +1417,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return -1;
   }
 
-  var Hex2Utf8 = function(s) {
+  var Hex2Utf8 = function (s) {
     var retS = "";
     var tempS = "";
     var ss = "";
@@ -1340,7 +1437,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return "";
   }
 
-  var Dec2Dig = function(n1) {
+  var Dec2Dig = function (n1) {
     var s = "";
     var n2 = 0;
     for (var i = 0; i < 4; i++) {
@@ -1348,13 +1445,14 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
       if (n1 >= n2) {
         s += '1';
         n1 = n1 - n2;
-      } else
+      } else {
         s += '0';
+      }
     }
     return s;
   }
 
-  var Str2Hex = function(s) {
+  var Str2Hex = function (s) {
     var c = "";
     var n;
     var ss = "0123456789ABCDEF";
@@ -1367,7 +1465,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return digS;
   }
 
-  commonUtils.GB2312ToUTF8 = function(s1) {
+  commonUtils.GB2312ToUTF8 = function (s1) {
     var s = escape(s1);
     var sa = s.split("%");
     var retV = "";
@@ -1391,13 +1489,15 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
     return retV;
   }
 
-  commonUtils.UTF8ToGB2312 = function(str1) {
+  commonUtils.UTF8ToGB2312 = function (_str1) {
     var substr = "";
     var a = "";
     var b = "";
     var c = "";
     var i = -1;
+    var widechar = '';
     i = str1.indexOf("%");
+    var str1 = _str1;
     if (i == -1) {
       return str1;
     }
@@ -1412,7 +1512,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
         } else if (parseInt("0x" + a) & 0xE0 == 0xC0) { //two byte
           b = str1.substr(1, 2);
           str1 = str1.substr(3, str1.length - 3);
-          var widechar = (parseInt("0x" + a) & 0x1F) << 6;
+          widechar = (parseInt("0x" + a) & 0x1F) << 6;
           widechar = widechar | (parseInt("0x" + b) & 0x3F);
           substr = substr + String.fromCharCode(widechar);
         } else {
@@ -1420,7 +1520,7 @@ kindFramework.factory('COMMONUtils', function($translate, $location, $uibModal, 
           str1 = str1.substr(3, str1.length - 3);
           c = str1.substr(1, 2);
           str1 = str1.substr(3, str1.length - 3);
-          var widechar = (parseInt("0x" + a) & 0x0F) << 12;
+          widechar = (parseInt("0x" + a) & 0x0F) << 12;
           widechar = widechar | ((parseInt("0x" + b) & 0x3F) << 6);
           widechar = widechar | (parseInt("0x" + c) & 0x3F);
           substr = substr + String.fromCharCode(widechar);

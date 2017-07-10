@@ -137,7 +137,7 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
             return false;
         }*/
 
-        // if (!COMMONUtils.TypeCheck($scope.DynamicDNSArr[idx].SamsungProductID, COMMONUtils.getNUM()+COMMONUtils.getALPHA()+COMMONUtils.getFRIENDLY_NAME()))
+        // if (!COMMONUtils.TypeCheck($scope.DynamicDNSArr[idx].SamsungProductID, COMMONUtils.getNUM()+COMMONUtils.getALPHA()+COMMONUtils.getFriendlyName()))
         // {
         //     var ErrorMessage = 'lang_msg_SamsungDDNSuser';
         //     COMMONUtils.ShowError(ErrorMessage);
@@ -183,7 +183,7 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
           return false;
         }
 
-        /* if (!COMMONUtils.TypeCheck($scope.DynamicDNSArr[idx].PublicUserName, COMMONUtils.getNUM()+COMMONUtils.getALPHA()+COMMONUtils.getFRIENDLY_NAME()))
+        /* if (!COMMONUtils.TypeCheck($scope.DynamicDNSArr[idx].PublicUserName, COMMONUtils.getNUM()+COMMONUtils.getALPHA()+COMMONUtils.getFriendlyName()))
          {
               var ErrorMessage = 'lang_msg_publicDDNSuser';
              COMMONUtils.ShowError(ErrorMessage);
@@ -199,7 +199,7 @@ kindFramework.controller('ddnsCtrl', function($scope, $timeout, SunapiClient, XM
          }*/
 
         /*
-        if (PWSet === false && !COMMONUtils.TypeCheck($scope.DynamicDNSArr[idx].PublicPassword, COMMONUtils.getNUM()+COMMONUtils.getALPHA()+COMMONUtils.getFRIENDLY_NAME()))
+        if (PWSet === false && !COMMONUtils.TypeCheck($scope.DynamicDNSArr[idx].PublicPassword, COMMONUtils.getNUM()+COMMONUtils.getALPHA()+COMMONUtils.getFriendlyName()))
         {
            var ErrorMessage = 'lang_msg_publicDDNSpass';
             COMMONUtils.ShowError(ErrorMessage);

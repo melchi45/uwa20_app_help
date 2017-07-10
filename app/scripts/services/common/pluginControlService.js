@@ -406,7 +406,7 @@ kindFramework.
           if (pluginElement !== null && typeof pluginElement !== "undefined") {
             // jshint ignore:line
             if (_mode !== true && _mode !== false) {
-              throw new Error(ERROR_CODE.ARGUMENT_ERR, "Argument Error");s
+              throw new Error(ERROR_CODE.ARGUMENT_ERR, "Argument Error");
             }
 
             if (_mode) {
