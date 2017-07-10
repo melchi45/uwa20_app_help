@@ -308,7 +308,8 @@ kindFramework.
       this.applySeekCommand = function(data) {
         if (pluginElement !== null && typeof pluginElement !== "undefined") {
           pluginElement.PlayRecordStream(data.time, '', playSpeed);
-          console.log("pluginControlService::applySeekCommand() ===> data time: " + data.time + "playSpeed" + playSpeed);
+          console.log("pluginControlService::applySeekCommand() ===> data time: " + 
+                      data.time + "playSpeed" + playSpeed);
         }
       };
 
@@ -390,7 +391,8 @@ kindFramework.
             } else {
               pluginElement.SetManualTrackingModeOnOff(0);
             }
-            console.log("pluginControlService::setManualTrackingMode() ===>" + _mode + " Manual Tracking");
+            console.log("pluginControlService::setManualTrackingMode() ===>" + 
+                        _mode + " Manual Tracking");
           } else {
             throw new Error(ERROR_CODE.PLUGIN_EMPTY, "PlugIn Element is empty");
           }
