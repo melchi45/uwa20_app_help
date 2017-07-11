@@ -1982,11 +1982,11 @@ body.modal-open {
   left: 50%;
   top: 50%;
   margin: 0 !important;
-  -webkit-transform: translateZ(0) translate(-50%, -50%);
-  -moz-transform: translateZ(0) translate(-50%, -50%);
-  -ms-transform: translateZ(0) translate(-50%, -50%);
-  -o-transform: translateZ(0) translate(-50%, -50%);
-  transform: translateZ(0) translate(-50%, -50%);
+  -webkit-transform: translateZ(0) translate(-49%, -50%);
+  -moz-transform: translateZ(0) translate(-49%, -50%);
+  -ms-transform: translateZ(0) translate(-49%, -50%);
+  -o-transform: translateZ(0) translate(-49%, -50%);
+  transform: translateZ(0) translate(-49%, -50%);
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
