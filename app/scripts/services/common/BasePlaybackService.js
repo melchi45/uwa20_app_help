@@ -34,7 +34,7 @@ kindFramework.
           var item = {};
           var isWaitingNextItem = false;
           for (var idx = 0; idx < results.length; idx++) {
-            if (results[idx].StartTime === results[idx].EndTime ||
+            if (results[idx].StartTime !== results[idx].EndTime &&
               checkValidDate(results[idx], year + "-" + month + "-" + day) === true) {
 
               if (isWaitingNextItem !== true) {
