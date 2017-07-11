@@ -36,7 +36,7 @@
                     <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
                     <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="PTLimitMode.SelectedIndex" ng-options="PTLimitModes.indexOf(Option) as getTranslatedOption(Option) for Option in PTLimitModes"></select></div>
                 </div>
-                <div class="form-group" ng-show="isTiltShow()">
+                <div class="form-group" ng-show="isTiltShow() && TiltRangeOptions !== undefined">
                     <div class="wn5-setup-section-article-heading">{{ 'lang_tiltAngle' | translate }}</div>
                     <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="PTLimit.TiltRange" ng-change="changePTLimit()" ng-options="Option as getTranslatedOption(Option) for Option in TiltRangeOptions"></select></div>
                 </div>
@@ -47,8 +47,8 @@
                             <tr>
                                 <td align="left">
                                     <div class="col-sm-4"><button type="button" class="btn btn-primary cm-btn-dark" ng-click="startPTLimit()" ng-disabled="IsPTStarted">{{ 'lang_start' | translate }}</button></div>
-                                    <div class="col-sm-4"><button type="button" class="btn btn-primary cm-btn-dark" ng-click="enterPTLimit()" ng-disabled="!IsPTStarted">{{ 'lang_set' | translate }}</button></div>
-                                    <div class="col-sm-4"><button type="button" class="btn btn-primary cm-btn-dark" ng-click="exitPTLimit()" ng-disabled="!IsPTStarted">{{ 'lang_cancel' | translate }}</button></div>
+                                    <div class="col-sm-4"><button type="button" class="btn btn-primary cm-btn-dark" ng-click="enterPTLimit()" ng-disabled="!IsPTStarted">{{ 'lang_entering' | translate }}</button></div>
+                                    <div class="col-sm-4"><button type="button" class="btn btn-primary cm-btn-dark" ng-click="exitPTLimit()" ng-disabled="!IsPTStarted">{{ 'lang_exit' | translate }}</button></div>
                                 </td>                                                                
                             </tr>                                    
                         </table>
