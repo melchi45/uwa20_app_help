@@ -17,13 +17,13 @@ kindFramework.directive('dragSelect', function($window, $document) {
         return false;
       }
 
-      //tmp-selected = í˜„ì¬ ì„ íƒì¤‘ì¸ ì…€ë“¤
-      //already-selected = ì„ íƒë¼ìˆëŠ” ì…€ë“¤
-      //setHour = ì„ íƒë¼ìˆëŠ” ì…€ë“¤
-      //ui-selected = ui ê¸°ë³¸ ì„ íƒ ì‹œ ì¶”ê°€ë˜ëŠ” í´ë˜ìŠ¤. ì•ˆì“¸ê±°ì„
+      //tmp-selected = ÇöÀç ¼±ÅÃÁßÀÎ ¼¿µé
+      //already-selected = ¼±ÅÃµÅÀÖ´Â ¼¿µé
+      //setHour = ¼±ÅÃµÅÀÖ´Â ¼¿µé
+      //ui-selected = ui ±âº» ¼±ÅÃ ½Ã Ãß°¡µÇ´Â Å¬·¡½º. ¾È¾µ°ÅÀÓ
       var date = null;
-      $element.find("tbody")
-        .selectable({
+      $element.find("tbody").
+        selectable({
           filter: 'td',
           selecting: function(event, ui) {
             $(ui.selecting).addClass('tmp-selected');
@@ -37,40 +37,40 @@ kindFramework.directive('dragSelect', function($window, $document) {
           stop: function() {
             var selectedItems = $element.find('.tmp-selected');
             if (selectedItems.length === 1) {
-              //í´ë¦­
+              //Å¬¸¯
               openTimeSetup();
             } else {
-              //ë“œë˜ê·¸ ë
+              //µå·¡±× ³¡
               var alreadySelectedLen = $element.find('.tmp-selected.already-selected').length;
               var tmpSelectedLen = selectedItems.length;
 
-              // ì„ íƒí•´ì œ
+              // ¼±ÅÃÇØÁ¦
               if (alreadySelectedLen === tmpSelectedLen) {
                 selectedItems.each(function(i, self) {
                   var index = inArray($scope.dragSelectIds, $(self).attr('id'));
                   $scope.dragSelectIds.splice(index, 1);
                 });
 
-                selectedItems
-                  .removeClass('tmp-selected')
-                  .removeClass('already-selected')
-                  .removeClass('setHour')
-                  .removeClass('setMinite');
-                //ì„ íƒ
+                selectedItems.
+                  removeClass('tmp-selected').
+                  removeClass('already-selected').
+                  removeClass('setHour').
+                  removeClass('setMinite');
+                //¼±ÅÃ
               } else if (alreadySelectedLen < tmpSelectedLen) {
                 selectedItems.each(function(i, self) {
                   var index = inArray($scope.dragSelectIds, $(self).attr('id'));
                   if (index === false) {
-                    //ì¤‘ë³µë°©ì§€
+                    //Áßº¹¹æÁö
                     $scope.dragSelectIds.push($(self).attr('id'));
                     $(self).addClass('setHour');
                   }
                 });
 
-                selectedItems
-                  .removeClass('tmp-selected')
-                  .removeClass('ui-selected')
-                  .addClass('already-selected');
+                selectedItems.
+                  removeClass('tmp-selected').
+                  removeClass('ui-selected').
+                  addClass('already-selected');
               }
             }
           }
