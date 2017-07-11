@@ -2,6 +2,5 @@
 	"media/**",
 	"views/**",
 	"*.html",
-	"*.js",
-	"plugin/**"
+	"*.js"
 ]
