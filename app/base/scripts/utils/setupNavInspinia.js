@@ -24,7 +24,7 @@ $(window).on('resize', function() {
 $(document).ready(function() {
 
   // Full height of sidebar
-  function fix_height() {
+  function fixHeight() {
     var heightWithoutNavbar = $("body").height() - (17 + 71);
 
     var navbarHeigh = $('nav.navbar-default').height();
@@ -43,7 +43,7 @@ $(document).ready(function() {
 
   $(window).bind("load resize scroll", function() {
     if (!$("body").hasClass('body-small')) {
-      fix_height();
+      fixHeight();
     }
   });
 
@@ -58,7 +58,7 @@ $(document).ready(function() {
 
 
   setTimeout(function() {
-    fix_height();
+    fixHeight();
   });
 });
 
