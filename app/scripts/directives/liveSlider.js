@@ -4,7 +4,25 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
     return {
       restrict: 'E',
       scope: {
+        /**
+         * @param {Number} floor minValue
+         * @param {Number} ceil maxValue
+         * @param {Function} onEnd when ui is updated, onEnd is called.
+         * @param {Boolean} disabled disable or enable
+         * @param {Boolean} vertical orientation, true = 'vertical' false = 'horizontal'
+         * @param {Number} step 데이터가 증가하는 Step값
+         * @param {Boolean} showInputBox Input 박스를 보여줄지 설정함
+         */
         liveSliderProperty: '=',
+        /**
+         * Controller에서 받은 Model값
+         * 기본적으로 data property를 사용하고,
+         * liveSliderModelName Attribute가 있을 경우
+         * data 대신 사용한다.
+         * 
+         * @param {Function} updateCallback liveChart에서 사용됨
+         * @param {Number} data 데이터 정보, liveSliderModelName Attribute가 있을 경우 미사용
+         */
         liveSliderModel: '='
       },
       templateUrl: './views/setup/common/liveSlider.html',
@@ -12,7 +30,7 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
         console.log(elem);
         var mAttr = Attributes.get();
         var slider = elem.find(".cm-slider div");
-        var checkLoad = false;
+        var checkLoad = false; //init 함수가 실행이 되었는 지 체크
         var checkModel = false;
         var checkProperty = false;
         var inputOnChange = false;

@@ -1,4 +1,70 @@
 /* global SketchManager, setInterval, clearInterval */
+/**
+ * 영상과 영역 설정 도구 사용을 위한 컴포넌트
+ * 
+ * @class sketchbook
+ * @example
+<caption>Resouces</caption>
+<link href="base/kind/rich_components/svg_drawing/plugins/kind_svg_editor_plugin_draw.css" rel="stylesheet">
+
+<script src="scripts/directives/sketchbook.js"></script>
+<script src="scripts/services/common/sketchbookService.js"></script>
+<script src="scripts/utils/sketchManager.js"></script> 
+
+<script src="base/kind/rich_components/svg_drawing/modules/kind_svg_editor_factory.js"></script>
+<script src="base/kind/rich_components/svg_drawing/modules/kind_svg_editor.js"></script>
+<script src="base/kind/rich_components/svg_drawing/plugins/kind_svg_editor_plugin_draw.js"></script>
+<script src="base/kind/rich_components/svg_drawing/plugins/kind_svg_editor_plugin_customeditor.js"></script>
+ * @example
+<caption>HTML</caption>
+<sketchbook 
+  coordinates="coordinates" 
+  flag="flag" 
+  sketchinfo="sketchinfo" 
+  videoinfo="videoinfo">
+</sketchbook>
+ * @example
+<caption>Javascript</caption>
+var getData = {
+  Channel: UniversialManagerService.getChannelId()
+};
+SunapiClient.get(
+  '/stw-cgi/image.cgi?msubmenu=flip&action=view', 
+  getData,
+  function(response) {
+    var viewerWidth = 640;
+    var viewerHeight = 360;
+    var maxWidth = mAttr.MaxROICoordinateX;
+    var maxHeight = mAttr.MaxROICoordinateY;
+    var rotate = response.data.Flip[0].Rotate;
+    var flip = response.data.Flip[0].VerticalFlipEnable;
+    var mirror = response.data.Flip[0].HorizontalFlipEnable;
+    var adjust = mAttr.AdjustMDIVRuleOnFlipMirror;
+
+    $scope.videoinfo = {
+      width: viewerWidth,
+      height: viewerHeight,
+      maxWidth: maxWidth,
+      maxHeight: maxHeight,
+      flip: flip,
+      mirror: mirror,
+      support_ptz: false,
+      rotate: rotate,
+      adjust: adjust,
+      channelId: UniversialManagerService.getChannelId()
+    };
+
+    $scope.coordinates = [];
+    $scope.sketchinfo = {
+      workType: "smartCodec",
+      shape: 0,
+      maxNumber: 1,
+      modalId: null
+    };
+  }
+);
+ */
+
 kindFramework.
   directive('sketchbook', ['$rootScope', '$location', 'sketchbookService', 'SessionOfUserManager', 'ConnectionSettingService', 'kindStreamInterface', 'SunapiClient', 'PTZ_TYPE', 'PTZContorlService', 'DigitalPTZContorlService', 'Attributes', 'RESTCLIENT_CONFIG', '$timeout', 'UniversialManagerService',
     function($rootScope, $location, sketchbookService, SessionOfUserManager, ConnectionSettingService, kindStreamInterface, SunapiClient, PTZ_TYPE, PTZContorlService, DigitalPTZContorlService, Attributes, RESTCLIENT_CONFIG, $timeout, UniversialManagerService) {
