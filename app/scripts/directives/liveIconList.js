@@ -196,7 +196,7 @@ kindFramework.directive('liveIconList', function(
           mode3d: {
             'label': '3D mode',
             'action': function(){
-              scope.MI_toggleFullScreen(true);
+              scope.MIToggleFullScreen(true);
             },
             'class': 'tui-wn5-3d',
             'show': scope.show3DModeButton,
