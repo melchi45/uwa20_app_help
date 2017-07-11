@@ -25,16 +25,15 @@ kindFramework.
             var currentScheduleType = null;
             var currentPage = UniversialManagerService.getCurrentSetupPage();
             var prevChannel = 0;
-            var prevEventObjs = null;
-            var currentScheduleType = null;
+            // var prevEventObjs = null;
             var channelChanged = false;
             var channelChangedAndInit = false;
             var isMultiChannel = false;
             var mAttr = Attributes.get();
-            if(mAttr.MaxChannel > 1) {
-                isMultiChannel = true;
+            if (mAttr.MaxChannel > 1) {
+              isMultiChannel = true;
             } else {
-                isMultiChannel = false;
+              isMultiChannel = false;
             }
             // var prevEventObjs = null;
 
@@ -415,7 +414,7 @@ kindFramework.
                   target = tEventObjs[index];
                   if (target.id !== id) {
                     // except between
-                    if(moment(target.start).format('HH:mm') === '00:00' && moment(target.end).format('HH:mm') === '00:00' && moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) {
+                    if (moment(target.start).format('HH:mm') === '00:00' && moment(target.end).format('HH:mm') === '00:00' && moment(target.end).format('YYYY-MM-DDTHH:mm') === moment(start).format('YYYY-MM-DDTHH:mm')) {
                       // 00:00 ~ 00:00 & 00:00 ~ 00:00
                       return 'exception';
                     }
@@ -898,7 +897,8 @@ kindFramework.
             // }
 
             function convertDateToId(data) { //console.info('convertDateToId :: ');
-              var result;
+              var result = null;
+              var index = 0;
               var start = moment(data.start).format('YYYY-MM-DDTHH:mm');//console.info(start);
               var end = moment(data.end).format('YYYY-MM-DDTHH:mm');//console.info(end);
               if (start.indexOf('P') !== -1) {
@@ -910,9 +910,9 @@ kindFramework.
               }
               var startDate = start[0];
               var startTime = start[1];
-              startDate = new Date(startDate);
-              var startDay = startDate.getDay();
-              var startTime = startTime.split(':');
+              startDate = moment(startDate);
+              var startDay = startDate.day();
+              startTime = startTime.split(':');
               var startHour = startTime[0];
               var startMinute = startTime[1];
 
@@ -923,11 +923,11 @@ kindFramework.
               } else if (end.indexOf('T') !== -1) {
                 end = end.split('T');
               }
-              var endDate = end[0];
+              // var endDate = end[0];
               var endTime = end[1];
-              endDate = new Date(endDate);
-              var endDay = endDate.getDay();
-              var endTime = endTime.split(':');
+              // endDate = moment(endDate);
+              // var endDay = endDate.day();
+              endTime = endTime.split(':');
               var endHour = endTime[0];
               var endMinute = endTime[1];
               var array = null;
@@ -967,37 +967,38 @@ kindFramework.
 
               // set time
               if (endMinute === 0 && startMinute === 0) { // hour
+                var tDate = result;
+                var first = 0;
                 if ((endHour - startHour) > 1) { // hours
                   array = [];
-                      var tDate = result;
-                      var first;
-                      first = startHour;
-                      for(var i = first; i < endHour; i++) {
-                          tDate += ('.' + i);
-                          array.push(tDate);
-                          tDate = result;
+                  tDate = result;
+                  first = startHour;
+                  for (index = first; index < endHour; index++) {
+                    tDate += ('.' + index);
+                    array.push(tDate);
+                    tDate = result;
                   }//console.info(array);console.info('+++++++++++++++++++++++');
                 } else if ((endHour - startHour) < 0) {
                   if (startHour === 23) { // hour
                     result += ('.' + 23);
                   } else { // hours
                     array = [];
-                          var first = startHour;
-                          var tDate = result;
-                          for(var i = first; i <= 23; i++) {
-                              tDate += ('.' + i);
-                              array.push(tDate);
-                              tDate = result;
+                    first = startHour;
+                    tDate = result;
+                    for (index = first; index <= 23; index++) {
+                      tDate += ('.' + index);
+                      array.push(tDate);
+                      tDate = result;
                     }
                   }
                 } else if (startHour === 0 && endHour === 0) { // 00:00 ~ 00:00
                   array = [];
-                      var first = startHour;
-                      var tDate = result;
-                      for(var i = first; i <= 23; i++) {
-                          tDate += ('.' + i);
-                          array.push(tDate);
-                          tDate = result;
+                  first = startHour;
+                  tDate = result;
+                  for (index = first; index <= 23; index++) {
+                    tDate += ('.' + index);
+                    array.push(tDate);
+                    tDate = result;
                   }
                 } else { // an hour
                   if (endHour === 0) {
@@ -1008,133 +1009,133 @@ kindFramework.
                 }
               } else if ((endMinute !== 0 || startMinute !== 0) && (endHour - startHour >= 1) || (endMinute !== 0 || startMinute !== 0) && (endHour - startHour < 0)) { // hours & minutes
                 array = []; // 02:00 ~ 03:30 , 02:30 ~ 3:00, 02:30 ~ 03:30..
-                  var tDate = result;
-                  var first;
+                var tDate2 = result;
+                var first2 = 0;
 
                 if (endHour === 0) {
                   if (startHour === 0) { // in 00:00 ~ 00:59
                     array = [];
-                          var tDate = result;
-                          var first = 0;
-                          for(var i = first; i <= endHour; i++) {
-                              tDate += (('.' + i) + '.' + startMinute + '.' + endMinute);
-                              array.push(tDate);
-                              tDate = result;
+                    tDate2 = result;
+                    first2 = 0;
+                    for (index = first2; index <= endHour; index++) {
+                      tDate2 += (('.' + index) + '.' + startMinute + '.' + endMinute);
+                      array.push(tDate2);
+                      tDate2 = result;
                     }//console.info(array);console.info('+++++++++++++++++++++++');
                   } else { // in ~ 24:59
                     array = [];
-                          var tDate = result;
-                          var first = 23;
-                          for(var i = first; i >= startHour; i--) {
-                              if(i === first && startMinute === 0 && endMinute === 0) {
-                                  tDate += ('.' + 23);
-                              } else if(i === first && endMinute !== 0) {
-                                  tDate += (('.' + 23) + '.0.' + endMinute);
-                              } else if(i === startHour && startMinute !== 0) {
-                                  tDate += (('.' + i) + '.' + startMinute + '.' + '59');
-                              } else if(i === startHour && startMinute === 0) {
-                                  tDate += ('.' + i);
+                    tDate2 = result;
+                    first2 = 23;
+                    for (index = first2; index >= startHour; index--) {
+                      if (index === first2 && startMinute === 0 && endMinute === 0) {
+                        tDate2 += ('.' + 23);
+                      } else if (index === first2 && endMinute !== 0) {
+                        tDate2 += (('.' + 23) + '.0.' + endMinute);
+                      } else if (index === startHour && startMinute !== 0) {
+                        tDate2 += (('.' + index) + '.' + startMinute + '.' + '59');
+                      } else if (index === startHour && startMinute === 0) {
+                        tDate2 += ('.' + index);
                       } else {
-                                  tDate += ('.' + i);
+                        tDate2 += ('.' + index);
                       }
-                              array.push(tDate);
-                              tDate = result;
+                      array.push(tDate2);
+                      tDate2 = result;
                     }//console.info(array);console.info('+++++++++++++++++++++++');
                   }
                 } else if (startHour === 0 && startMinute === 0 && endMinute !== 0) { // 0:00 ~ 1:30
                       // first = endHour - startHour;
-                      first = endHour;
-                      for(var i = first; i >= startHour; i--) {
-                          if(i === first) { // 3:00 ~ 3:30
-                              tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                          } else if(i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                              tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                  first2 = endHour;
+                  for (index = first2; index >= startHour; index--) {
+                    if (index === first2) { // 3:00 ~ 3:30
+                      tDate2 += (('.' + index) + '.' + (0 + '') + '.' + endMinute);
+                    } else if (index === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                      tDate2 += (('.' + index) + '.' + startMinute + '.' + '59'); // issue!
                     } else { // 2:00 ~ 3:00
-                              tDate += ('.' + i);
+                      tDate2 += ('.' + index);
                     }
-                    array.push(tDate);
-                    tDate = result;
+                    array.push(tDate2);
+                    tDate2 = result;
                   }//console.info(array);console.info('+++++++++++++++++++++++');
                 } else if (startHour === 0 && startMinute !== 0 && endMinute !== 0) { // 0:30 ~ 1:30
                       // first = endHour - startHour;
-                  first = endHour;
-                  for (var i = first; i >= startHour; i--) {
-                    if (i === first) { // 3:00 ~ 3:30
-                      tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                    } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                      tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                  first2 = endHour;
+                  for (index = first2; index >= startHour; index--) {
+                    if (index === first2) { // 3:00 ~ 3:30
+                      tDate2 += (('.' + index) + '.' + (0 + '') + '.' + endMinute);
+                    } else if (index === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                      tDate2 += (('.' + index) + '.' + startMinute + '.' + '59'); // issue!
                     } else { // 2:00 ~ 3:00
-                      tDate += ('.' + i);
+                      tDate2 += ('.' + index);
                     }
-                    array.push(tDate);
-                    tDate = result;
+                    array.push(tDate2);
+                    tDate2 = result;
                   }//console.info(array);console.info('+++++++++++++++++++++++');
                 } else if (startHour === 0 && startMinute !== 0 && endMinute === 0) { // 0:30 ~ 1:00
                       // first = endHour - startHour - 1;
-                  first = endHour - 1;
+                  first2 = endHour - 1;
                   if (endHour - startHour > 1) {
-                    for (var i = first; i >= startHour; i--) {
-                      if (i === first && endMinute !== 0) { // 3:00 ~ 3:30
-                        tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                      } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                        tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                    for (index = first2; index >= startHour; index--) {
+                      if (index === first2 && endMinute !== 0) { // 3:00 ~ 3:30
+                        tDate2 += (('.' + index) + '.' + (0 + '') + '.' + endMinute);
+                      } else if (index === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                        tDate2 += (('.' + index) + '.' + startMinute + '.' + '59'); // issue!
                       } else { // 2:00 ~ 3:00
-                        tDate += ('.' + i);
+                        tDate2 += ('.' + index);
                       }
-                      array.push(tDate);
-                      tDate = result;
+                      array.push(tDate2);
+                      tDate2 = result;
                     }//console.info(array);console.info('+++++++++++++++++++++++');
                   } else {
-                    tDate += (('.' + startHour) + '.' + startMinute + '.' + '59');
-                    array.push(tDate);
-                    tDate = result;//console.info(array);console.info('+++++++++++++++++++++++');
+                    tDate2 += (('.' + startHour) + '.' + startMinute + '.' + '59');
+                    array.push(tDate2);
+                    tDate2 = result;//console.info(array);console.info('+++++++++++++++++++++++');
                   }
                 } else if (startHour !== 0 && startMinute === 0 && endMinute !== 0) { // 1:00 ~ 2:30
                       // first = endHour - startHour + 1;
-                  first = endHour;
-                  for (var i = first; i >= startHour; i--) {
-                    if (i === first) { // 3:00 ~ 3:30
-                      tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                    } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                      tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                  first2 = endHour;
+                  for (index = first2; index >= startHour; index--) {
+                    if (index === first2) { // 3:00 ~ 3:30
+                      tDate2 += (('.' + index) + '.' + (0 + '') + '.' + endMinute);
+                    } else if (index === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                      tDate2 += (('.' + index) + '.' + startMinute + '.' + '59'); // issue!
                     } else { // 2:00 ~ 3:00
-                      tDate += ('.' + i);
+                      tDate2 += ('.' + index);
                     }
-                    array.push(tDate);
-                    tDate = result;
+                    array.push(tDate2);
+                    tDate2 = result;
                   }//console.info(array);console.info('+++++++++++++++++++++++');
                 } else if (startHour !== 0 && startMinute !== 0 && endMinute === 0) { // 1:30 ~ 2:00
                       // first = endHour - startHour;
-                  first = endHour - 1;
+                  first2 = endHour - 1;
                   if (endHour - startHour > 1) {
-                    for (var i = first; i >= startHour; i--) {
-                      if (i === first && endMinute !== 0) { // 3:00 ~ 3:30
-                        tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                      } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                        tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                    for (index = first2; index >= startHour; index--) {
+                      if (index === first2 && endMinute !== 0) { // 3:00 ~ 3:30
+                        tDate2 += (('.' + index) + '.' + (0 + '') + '.' + endMinute);
+                      } else if (index === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                        tDate2 += (('.' + index) + '.' + startMinute + '.' + '59'); // issue!
                       } else { // 2:00 ~ 3:00
-                        tDate += ('.' + i);
+                        tDate2 += ('.' + index);
                       }
-                      array.push(tDate);
-                      tDate = result;
+                      array.push(tDate2);
+                      tDate2 = result;
                     }//console.info(array);console.info('+++++++++++++++++++++++');
                   } else {
-                    tDate += (('.' + startHour) + '.' + startMinute + '.' + '59');
-                    array.push(tDate);
-                    tDate = result;//console.info(array);console.info('+++++++++++++++++++++++');
+                    tDate2 += (('.' + startHour) + '.' + startMinute + '.' + '59');
+                    array.push(tDate2);
+                    tDate2 = result;//console.info(array);console.info('+++++++++++++++++++++++');
                   }
                 } else if (startHour !== 0 && startMinute !== 0 && endMinute !== 0) { // 1:30 ~ 2:30
-                  first = endHour;
-                  for (var i = first; i >= startHour; i--) {
-                    if (i === first) { // 3:00 ~ 3:30
-                      tDate += (('.' + i) + '.' + (0 + '') + '.' + endMinute);
-                    } else if (i === startHour && startMinute !== 0) { // 1:30 ~ 1:59
-                      tDate += (('.' + i) + '.' + startMinute + '.' + '59'); // issue!
+                  first2 = endHour;
+                  for (index = first2; index >= startHour; index--) {
+                    if (index === first2) { // 3:00 ~ 3:30
+                      tDate2 += (('.' + index) + '.' + (0 + '') + '.' + endMinute);
+                    } else if (index === startHour && startMinute !== 0) { // 1:30 ~ 1:59
+                      tDate2 += (('.' + index) + '.' + startMinute + '.' + '59'); // issue!
                     } else { // 2:00 ~ 3:00
-                      tDate += ('.' + i);
+                      tDate2 += ('.' + index);
                     }
-                    array.push(tDate);
-                    tDate = result;
+                    array.push(tDate2);
+                    tDate2 = result;
                   }//console.info(array);console.info('+++++++++++++++++++++++');
                 }
               } else if ((endMinute === 0 && startMinute !== 0) && (endHour - startHour === 1) || (endMinute === 0 && startMinute !== 0) && (endHour - startHour === -23)) { // 1:30 ~ 2:00
@@ -1158,11 +1159,11 @@ kindFramework.
             function convertIdToDate(data) { //console.info('convertIdToDate :: ');
               var target = data.split('.');
               var tDay = target[0];
-              var result = new Date(defaultDate);
-              var today = result.getDay();
-              var distance;
+              var result = moment(defaultDate);
+              var today = result.day();
+              var distance = 0;
               var eventObj = {};
-              var month, startHour, endHour, startMinute, endMinute, date;
+              var month = 0, startHour = 0, endHour = 0, startMinute = 0, endMinute = 0, date = 0;
 
               switch (tDay) {
                 case 'lang_sun':
@@ -1218,14 +1219,15 @@ kindFramework.
                   break;
               }
 
-              result.setDate(result.getDate() + distance);
+              // result.setDate(result.getDate() + distance);
+              result.date(result.date() + distance);
 
               if (target.length > 2) { // minute
-                month = (result.getMonth() + 1) + '';
+                month = (result.month() + 1) + '';
                 if (month.length === 1) {
                   month = '0' + month;
                 }
-                date = result.getDate() + '';
+                date = result.date() + '';
                 if (date.length === 1) {
                   date = '0' + date;
                 }
@@ -1271,32 +1273,32 @@ kindFramework.
                   endMinute = '0' + endMinute;
                 }
 
-                eventObj.start = result.getFullYear() + '-' + month + '-' + date + 'T' + startHour + ':' + startMinute + ':' + '00';
-                eventObj.end = result.getFullYear() + '-' + month + '-' + date + 'T' + endHour + ':' + endMinute + ':' + '00';
+                eventObj.start = result.year() + '-' + month + '-' + date + 'T' + startHour + ':' + startMinute + ':' + '00';
+                eventObj.end = result.year() + '-' + month + '-' + date + 'T' + endHour + ':' + endMinute + ':' + '00';
                 eventObj.id = eventCount;
                 eventObj.title = '';
                 eventIdArray.push(eventCount);
                 eventCount++;
               } else { // hour
-                result.setHours(parseInt(target[1]));
-                month = (result.getMonth() + 1) + '';
+                result.hour(parseInt(target[1]));
+                month = (result.month() + 1) + '';
                 if (month.length === 1) {
                   month = '0' + month;
                 }
-                date = result.getDate() + '';
+                date = result.date() + '';
                 if (date.length === 1) {
                   date = '0' + date;
                 }
-                startHour = result.getHours() + '';
-                endHour = (result.getHours() + 1) + '';
+                startHour = result.hour() + '';
+                endHour = (result.hour() + 1) + '';
                 if (startHour.length === 1) {
                   startHour = '0' + startHour;
                 }
                 if (endHour.length === 1) {
                   endHour = '0' + endHour;
                 }
-                eventObj.start = result.getFullYear() + '-' + month + '-' + date + 'T' + startHour + ':' + '00' + ':' + '00';
-                eventObj.end = result.getFullYear() + '-' + month + '-' + date + 'T' + endHour + ':' + '00' + ':' + '00';
+                eventObj.start = result.year() + '-' + month + '-' + date + 'T' + startHour + ':' + '00' + ':' + '00';
+                eventObj.end = result.year() + '-' + month + '-' + date + 'T' + endHour + ':' + '00' + ':' + '00';
                 eventObj.id = eventCount;
                 eventObj.title = '';
                 eventIdArray.push(eventCount);
@@ -1308,7 +1310,7 @@ kindFramework.
 
             function initCalendar(data) {
               if (typeof data !== 'undefined') {
-                if(isMultiChannel) {
+                if (isMultiChannel) {
                   $('#calendar').fullCalendar('destroy');
                   initialRendered = false;
                   alreadyCreated = true;
@@ -1343,17 +1345,17 @@ kindFramework.
                 return;
               }
               activeMenu = null;
-              if(isMultiChannel) {
-                if(newVal === 'Always') {
+              if (isMultiChannel) {
+                if (newVal === 'Always') {
                   setVisibility(newVal);
-                } else if(newVal === 'Scheduled') {
-                  if(channelChanged) {
-                      channelChanged = false;
-                      initCalendar(scope.EventRule);
+                } else if (newVal === 'Scheduled') {
+                  if (channelChanged) {
+                    channelChanged = false;
+                    initCalendar(scope.EventRule);
                   } else {
-                      if(visibility === null || alreadyCreated === false) {
-                          initCalendar(scope.EventRule);
-                      }
+                    if (visibility === null || alreadyCreated === false) {
+                      initCalendar(scope.EventRule);
+                    }
                   }
                   setVisibility(newVal);
                 }
@@ -1374,22 +1376,22 @@ kindFramework.
                 return;
               }
               activeMenu = 'storage'
-              if(isMultiChannel) {
+              if (isMultiChannel) {
                 // scope.$watch('RecordSchedule[0].Activate', function(newVal, oldVal){ // for storage controller
-                if(newVal === 'Always') {
-                    setVisibility(newVal);
-                } else if(newVal === 'Scheduled') {
-                  if(channelChanged) {
-                      channelChanged = false;
-                      initCalendar(scope.RecordSchedule);
-                      channelChangedAndInit = true;
+                if (newVal === 'Always') {
+                  setVisibility(newVal);
+                } else if (newVal === 'Scheduled') {
+                  if (channelChanged) {
+                    channelChanged = false;
+                    initCalendar(scope.RecordSchedule);
+                    channelChangedAndInit = true;
                   } else {
-                      if(visibility === null || alreadyCreated === false) {
-                          initCalendar(scope.RecordSchedule);
-                      }
+                    if (visibility === null || alreadyCreated === false) {
+                      initCalendar(scope.RecordSchedule);
+                    }
                   }
                   setVisibility(newVal);
-                  }
+                }
               } else {
                 if (newVal === 'Always') {
                   setVisibility(newVal);
@@ -1434,32 +1436,32 @@ kindFramework.
 
             // in case of event rules reset by sunapi call in eventActionSetup for multi channel
             scope.$on('EventRulePrepared', function(event, data) { // console.info('scheduler saveon EventRulePrepared : ');console.info(data);console.info(scope.EventSource);
-              if(isMultiChannel) {
+              if (isMultiChannel) {
                 var currentChannel = 0;
                 currentChannel = UniversialManagerService.getChannelId();
-                if(scope.EventSource === 'AlarmInput') {
-                    activeMenu = 'alarmInput';
-                    if(data === 'Always') {
-                        setVisibility(data);
-                    } else if(data === 'Scheduled') {
-                        if(!alreadyCreated || prevChannel !== currentChannel) {
+                if (scope.EventSource === 'AlarmInput') {
+                  activeMenu = 'alarmInput';
+                  if (data === 'Always') {
+                    setVisibility(data);
+                  } else if (data === 'Scheduled') {
+                    if (!alreadyCreated || prevChannel !== currentChannel) {
                             // $('#calendar').fullCalendar('destroy');
                             // initialRendered = false;
-                            initCalendar(scope.EventRules[0]);
-                            setVisibility(data);
-                        }
+                      initCalendar(scope.EventRules[0]);
+                      setVisibility(data);
                     }
+                  }
                 } else {
-                    if(data === 'Always') {
-                        setVisibility(data);
-                    } else if(data === 'Scheduled') {
-                        if(!alreadyCreated || prevChannel !== currentChannel) {
+                  if (data === 'Always') {
+                    setVisibility(data);
+                  } else if (data === 'Scheduled') {
+                    if (!alreadyCreated || prevChannel !== currentChannel) {
                             // $('#calendar').fullCalendar('destroy');
                             // initialRendered = false;
-                            initCalendar(scope.EventRule);
-                            setVisibility(data);
-                        }
+                      initCalendar(scope.EventRule);
+                      setVisibility(data);
                     }
+                  }
                 }
                 prevChannel = currentChannel;
               } else {
@@ -1488,29 +1490,29 @@ kindFramework.
             });
 
             scope.$on('recordPageLoaded', function(event, data) {
-              if(isMultiChannel) {
+              if (isMultiChannel) {
                 var currentChannel = 0;
                 currentChannel = UniversialManagerService.getChannelId();
-                if(scope.EventSource === 'Storage') {
-                    activeMenu = 'storage';
-                    if(data === 'Always') {
-                        setVisibility(data);
-                    } else if(data === 'Scheduled') {
-                        if(channelChanged) {
-                            channelChanged = false;
-                            initCalendar(scope.RecordSchedule);
-                        } else {
-                            if(!alreadyCreated || prevChannel !== currentChannel) {
+                if (scope.EventSource === 'Storage') {
+                  activeMenu = 'storage';
+                  if (data === 'Always') {
+                    setVisibility(data);
+                  } else if (data === 'Scheduled') {
+                    if (channelChanged) {
+                      channelChanged = false;
+                      initCalendar(scope.RecordSchedule);
+                    } else {
+                      if (!alreadyCreated || prevChannel !== currentChannel) {
                                 // $('#calendar').fullCalendar('destroy');
                                 // initialRendered = false;
-                                if(!channelChangedAndInit) {
-                                    initCalendar(scope.RecordSchedule);
-                                    setVisibility(data);
-                                }
-                            }
+                        if (!channelChangedAndInit) {
+                          initCalendar(scope.RecordSchedule);
+                          setVisibility(data);
                         }
+                      }
                     }
-                    eventRuleService.setInitialScheduleData({menu: scope.EventSource, type:data, data:scope.RecordSchedule.ScheduleIds});
+                  }
+                  eventRuleService.setInitialScheduleData({menu: scope.EventSource, type:data, data:scope.RecordSchedule.ScheduleIds});
                 }
                 prevChannel = currentChannel;
               } else {
@@ -1530,7 +1532,7 @@ kindFramework.
             });
 
             $rootScope.$saveOn("channelSelector:changeChannel", function(event, data) {
-                channelChanged = true;
+              channelChanged = true;
             }, scope);
 
             scope.$watch('pageLoaded', function(newVal, oldVal) {
