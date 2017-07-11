@@ -73,8 +73,62 @@ kindFramework.
         restrict: 'E',
         replace: true,
         scope: {
+          /**
+           * 영상의 프리뷰 사이즈, 최대 사이즈, Flip/Mirror, Rotate, Adjust 등 상태 정보
+           * 
+           * @memberof sketchbook
+           * @name videoinfo
+           * @property {Number} width 프리뷰 영상의 가로 사이즈
+           * @property {Number} height 프리뷰 영상의 세로 사이즈
+           * @property {Number} maxWidth 영상의 최대 가로 해상도
+           * @property {Number} maxHeight 영상의 최대 세로 해상도
+           * @property {Boolean} flip Flip 모드 활성화 여부
+           * @property {Boolean} mirror Mirror 모드 활성화 여부
+           * @property {String} rotate Rotate 각도, "0, 90, 270"
+           * @property {Number} minCropResolution 최소 Crop 해상도
+           * @property {Number} maxCropResolution 최대 Crop 해상도
+           * @property {Number} channelId 채널 Index
+           * @property {Number} currentPage META 데이터 전달을 위한 Page 정보
+           * @property {String} support_ptz PTZ 지원 여부 "PTZ, Digital PTZ"
+           * @property {Boolean} support_zoomOnly Zoom 지원 여부
+           */
           videoinfo: '=',
+          /**
+           * 영역 설정 도구 종류 선택
+           * 
+           * @memberof sketchbook
+           * @name sketchinfo
+           * @property {String} workType [공통][필수] 영역 도구 종류, "commonArea, calibration, qmArea, mdArea, fdArea, smartCodec, vaEntering, vaAppearing, vaPassing, peoplecout, autoTracking, privacy, ptLimit, crop, simpleFocus"
+           * @property {Number} maxNumber [공통][필수] 영역 최대 갯수
+           * @property {Number} shape [Canvas] 0: Rectangle, 1: Polygon
+           * @property {String} modalId Modal 경로 및 Modal 아이디
+           * @property {String} useEvent [SVG] 사용자 이벤트를 사용할지 설정
+           * @property {String} color ROI, Exclude Area 색상 구분 0: ROI 1: Exclude Area
+           * @property {String} aspectRatio 고정비율로 확대/축소 될것인지 설정
+           * @property {Array} ratio 비율설정, ratio[0]: 가로 비율 ratio[1]: 세로 비율
+           * @property {Object} minSize [SVG] Polygon의 최소 사이즈, minSize.width: 가로 사이즈 minSize.height: 세로 사이즈 
+           * @property {Object} maxSize [SVG] Polygon의 최대 사이즈, minSize.width: 가로 사이즈 minSize.height: 세로 사이즈
+           * @property {Number} minSizePercentage [SVG] Polygon의 최소 사이즈 퍼센테이지로 정의
+           * @property {Number} minLineLength [SVG] Line의 최소 사이즈
+           * @property {String} wiseFDCircleHeightRatio [SVG][workType=fdArea] Wise Face Detection의 Circle 높이 비율
+           * @property {String} wiseFDCircleFillColor [SVG][workType=fdArea] Wise Face Detection의 Circle 색상
+           * @property {String} initCenter [SVG] 초기에 중앙으로 위치할 지 설정
+           * @property {String} maxArrow [SVG] "L, R, LR" 순서 중 변경할 수 있는 최대 순서
+           * @property {String} message [workType=privacy] Modal에 표시할 메시지
+           * @property {String} MaxZoomValue [workType=privacy] 최대 줌 설정값
+           * @property {String} disValue [workType=privacy] DIS 설정 여부
+           * @property {Function} getZoomValue [workType=privacy] ptzconfig cgi를 통해서 Zoom을 가져오는 함수 대입
+           * @property {Number} ptStatus [workType=ptLimit] PT Limit 상태
+           * @property {String} guideText [workType=ptLimit] PT Limit 가이드 텍스트
+           */
           sketchinfo: '=',
+          /**
+           * 영역 좌표 정보
+           * 
+           * @memberof sketchbook
+           * @name coordinates
+           * @type {Array}
+           */
           coordinates: '=',
           modalId: '=',
           flag: '=',
