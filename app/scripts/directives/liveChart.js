@@ -8,6 +8,17 @@ kindFramework
         replace: true,
         templateUrl: "./views/setup/common/liveChart.html",
         scope: {
+         /**
+          * @param {Numer} ceil liveSlider.liveSliderProperty.ceil
+          * @param {Numer} floor liveSlider.liveSliderProperty.floor
+          * @param {Boolean} showInputBox liveSlider.liveSliderProperty.showInputBox
+          * @param {Boolean} disabled liveSlider.liveSliderProperty.disabled
+          * @param {Function} onEnd liveSlider.liveSliderProperty.onEnd
+          * @param {Number} ThresholdLevel thresholdLevel value, Controller에서 $watch해서 사용함
+          * @param {Number} width Chart 가로 사이즈
+          * @param {Number} height Chart 세로 사이즈
+          * @param {Function} EnqueueData Queue에 데이터를 넣음
+          */
           liveChartOptions: "="
         },
         link: function(scope, elem) {
