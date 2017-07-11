@@ -2376,6 +2376,7 @@ body.modal-open {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+  z-index: 3;
 }
 #ptrz-control #ptrz-control_left-control-box #ptrz-control_box_outline #ptrz-control_box #ptrz-control_box-hline {
   height: 0;
@@ -8476,6 +8477,50 @@ i.tui-ch-playback-stop {
   overflow-x: hidden;
   overflow-y: scroll;
 }
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye {
+  width: 320px;
+  display: inline-table;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap {
+  width: 100%;
+  padding: 0 20px;
+  text-align: left;
+  display: inline-table;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap h2 .cm-btn-dark {
+  float: right;
+  height: 30px;
+  line-height: 28px;
+  padding: 0;
+  text-align: center;
+  font-size: 25px;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap h2 .cm-btn-dark.cm-reset {
+  width: 30px;
+  margin-right: 7px;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap h2 .cm-btn-dark.cm-reset-all {
+  width: 40px;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap {
+  margin-top: 20px;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li {
+  width: 80px;
+  float: left;
+  text-align: left;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li .cm-icon-button {
+  padding: 0;
+  font-size: 26px;
+  margin: 10px 0;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li .cm-icon-button.active {
+  color: #f37321;
+}
+.kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li:nth-of-type(4n) {
+  width: auto;
+}
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider {
   width: 100%;
   margin-top: -5px;
@@ -8999,50 +9044,6 @@ i.tui-ch-playback-stop {
   .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-table tbody {
     height: 150px !important;
     max-height: 150px !important;
-  }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye {
-    width: 320px;
-    display: inline-table;
-  }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap {
-    width: 100%;
-    padding: 0 20px;
-    text-align: left;
-    display: inline-table;
-  }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap h2 .cm-str-button {
-    float: right;
-    height: 30px;
-    line-height: 28px;
-    padding: 0;
-    text-align: center;
-    font-size: 25px;
-  }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap h2 .cm-str-button.cm-reset {
-    width: 30px;
-    margin-right: 7px;
-  }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap h2 .cm-str-button.cm-reset-all {
-    width: 40px;
-  }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap {
-    margin-top: 20px;
-  }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li {
-    width: 80px;
-    float: left;
-    text-align: left;
-  }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li .cm-icon-button {
-    padding: 0;
-    font-size: 26px;
-    margin: 10px 0;
-  }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li .cm-icon-button.active {
-    color: #f37321;
-  }
-  .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-fisheye .cm-wrap .cm-mode-wrap li:nth-of-type(4n) {
-    width: auto;
   }
   .kind-responsive-live #cm-bottom-menu #cm-menu-content #cm-display-slider li {
     height: 25px;
