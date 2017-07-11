@@ -1,8 +1,23 @@
 module.exports = function(injection) {
     var grunt = injection.grunt;
     var projectStructure = injection.projectStructure;
-
+    var taskName = grunt.cli.tasks[0];
+    var mode = 'default';
     var appToWwwConfig = grunt.file.readJSON('./grunt_configs/app_to_www_config.json');
+    var pluginInfoConfig = grunt.file.readJSON('./grunt_configs/plugin_info.json');
+
+    if(taskName.indexOf("minimize") > -1){
+      taskName = taskName.split(":");
+      if(
+        taskName.length > 2 && 
+        Object.keys(pluginInfoConfig).indexOf(taskName[2]) > -1
+        ){
+          mode = taskName[2];
+      }
+    }
+
+    appToWwwConfig.push(pluginInfoConfig.rootPath + "/*.js");
+    appToWwwConfig.push(pluginInfoConfig.rootPath + "/" + pluginInfoConfig[mode] + ".*");
     
     return {
         indexHtmlToWww: {
