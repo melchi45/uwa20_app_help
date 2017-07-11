@@ -63,13 +63,13 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
         laodTimeout = $timeout(function () {
             if (sunapiAttributes.Ready) {
                 if (sunapiAttributes.MaxChannel > 1) {
-                    ConnectionSettingService.SetMultiChannelSupport(true);
+                    ConnectionSettingService.setMultiChannelSupport(true);
                 }
 
                 getRtspIpMac();
                 setResolutionAndRatio();
 
-                if (SessionOfUserManager.IsLoggedin()) {
+                if (SessionOfUserManager.isLoggedin()) {
                     var id = SessionOfUserManager.getUsername();
                     var password = SessionOfUserManager.getPassword();
                     ConnectionSettingService.setConnectionInfo({
@@ -122,7 +122,7 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
         return SunapiClient.get('/stw-cgi/system.cgi?msubmenu=getclientip&action=view', {},
             function (response) {
                 $scope.ClientIPAddress = response.data.ClientIP;
-                SessionOfUserManager.SetClientIPAddress($scope.ClientIPAddress);
+                SessionOfUserManager.setClientIPAddress($scope.ClientIPAddress);
             },
             function (errorData, errorCode) {
                 console.error(errorData);
@@ -134,7 +134,7 @@ kindFramework.controller('ChannelListCtrl', function ($scope, $timeout, $rootSco
             function (response) {
                 var rtspIp = response.data.NetworkInterfaces[0].IPv4Address;
                 var macIp = response.data.NetworkInterfaces[0].MACAddress;
-                ConnectionSettingService.SetRtspIpMac(rtspIp, macIp);
+                ConnectionSettingService.setRtspIpMac(rtspIp, macIp);
             },
             function (errorData, errorCode) {
                 console.error(errorData);
