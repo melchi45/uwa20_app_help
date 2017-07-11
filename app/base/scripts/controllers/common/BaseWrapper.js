@@ -196,13 +196,8 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         retVal = mAttr.ExternalPTZModel;
       } else if (menuId === 'ptzSetup') {
         if (mAttr.isDigitalPTZ && (mAttr.MaxGroupCount > 0)) {
-          if (mAttr.FisheyeLens) {
-            // PNF-9010 model doesn't have PTZ tab. DPTZ setup is in Basic Tab.
-            // WN5 models has PTZ tab, DPTZ setup is in PTZ tab
-            retVal = false;
-          } else {
-            retVal = true;
-          }
+          //DPTZ support model has ptzSetup
+          retVal = true;
         } else {
           retVal = (mAttr.ExternalPTZModel || mAttr.PTZModel || mAttr.ZoomOnlyModel);
         }
