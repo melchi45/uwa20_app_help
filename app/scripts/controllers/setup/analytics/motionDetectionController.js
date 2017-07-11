@@ -1165,8 +1165,6 @@ kindFramework.controller(
         },
         function (errorData) {
           console.log("getMotionLevel Error : ", errorData);
-          stopMonitoringMotionLevel();
-          startMonitoringMotionLevel();
         }, '', true);
     }
 
@@ -1212,10 +1210,6 @@ kindFramework.controller(
           functionlist.push(setOnlyEnable);
           $q.seqAll(functionlist).then(
             function () {
-              if ($scope.MotionDetection.MotionDetectionEnable) {
-                startMonitoringMotionLevel();
-              }
-
               view();
             },
             function (errorData) {
