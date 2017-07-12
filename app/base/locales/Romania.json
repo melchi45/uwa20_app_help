@@ -300,6 +300,7 @@
     "lang_msg_megamode_change": "Se încearcă schimbarea în modul Megapixeli. Setările pentru profilul video, configurarea video, configurarea camerei şi analiza video vor fi schimbate. Doriţi să continuaţi?",
     "lang_msg_2megamode_change": "Se încearcă schimbarea în modul 2-Megapixeli. Setările pentru profilul video, configurarea video, configurarea camerei şi analiza video vor fi schimbate. Doriţi să continuaţi?",
     "lang_msg_check_gov": "Lungime GOV nevalid",
+    "lang_msg_check_dynamic_gov": "Please check the Dynamic GOV value and enter again.",
     "lang_videosrc": "Sursă video",
     "lang_flip": "Mod întoarcere",
     "lang_mirror": "Mod oglindă",

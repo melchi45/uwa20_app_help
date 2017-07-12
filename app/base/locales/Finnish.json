@@ -300,6 +300,7 @@
     "lang_msg_megamode_change": "Yritetään vaihtaa 3 megapikselin tilaan. Videoprofiilin, videoasetusten, kamera-asetusten ja videoanalyysin asetukset muutetaan. Haluatko jatkaa?",
     "lang_msg_2megamode_change": "Yritetään vaihtaa megapikselin tilaan. Videoprofiilin, videoasetusten, kamera-asetusten ja videoanalyysin asetukset muutetaan. Haluatko jatkaa?",
     "lang_msg_check_gov": "Please check the GOV length value and enter again.",
+    "lang_msg_check_dynamic_gov": "Please check the Dynamic GOV value and enter again.",
     "lang_videosrc": "Virheellinen GOV-pituus",
     "lang_flip": "Videolähde",
     "lang_mirror": "Kääntötila",

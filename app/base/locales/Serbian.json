@@ -300,6 +300,7 @@
     "lang_msg_megamode_change": "Pokušava se prelazak u režim megapiksela. Postavke za video profil, podeš. videa, podeš. kamere i analizu videa biće promenjene. Da li želite da nastavite?",
     "lang_msg_2megamode_change": "Pokušava se prelazak u režim 2 megapiksela. Postavke za video profil, podeš. videa, podeš. kamere i analizu videa biće promenjene. Da li želite da nastavite?",
     "lang_msg_check_gov": "Nevažeći GOV dužina",
+    "lang_msg_check_dynamic_gov": "Please check the Dynamic GOV value and enter again.",
     "lang_videosrc": "Video izvor",
     "lang_flip": "Mod preokret.",
     "lang_mirror": "Mod ogledala",
