@@ -125,6 +125,7 @@ kindFramework.controller('videoCtrl', function($scope, SunapiClient, XMLParser, 
     $scope.PrivacyMasGlobalColor = mAttr.PrivacyMasGlobalColor;
     $scope.MaskPatternArray = mAttr.PrivacyMaskPattern;
     $scope.PTZModel = mAttr.PTZModel;
+    $scope.PTRZModel = mAttr.PTRZModel;
     $scope.ZoomOnlyModel = mAttr.ZoomOnlyModel;
     $scope.MaxChannel = mAttr.MaxChannel;
 
