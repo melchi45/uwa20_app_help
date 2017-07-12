@@ -9,7 +9,8 @@ kindFramework.directive('liveIconList', function(
   BrowserService,
   UniversialManagerService,
   CAMERA_STATUS,
-  SearchDataModel
+  SearchDataModel,
+  PluginControlService
 ) {
   "use strict";
   return {
@@ -91,6 +92,9 @@ kindFramework.directive('liveIconList', function(
         e.fullButton = true;
         $rootScope.$emit('channel:changeFullSetRec');
         $rootScope.$emit('channelContainer:openFullscreenButton', e);
+        
+        var blackColorCode = 0x00000000;
+        PluginControlService.setBackgroundColor(blackColorCode);
       }
 
       function closeFullscreenButton(e) {

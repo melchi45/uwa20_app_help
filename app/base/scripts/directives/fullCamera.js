@@ -2,10 +2,10 @@
 kindFramework.directive('fullCamera', ['$q', 'DisplayService',
   'CAMERA_TYPE', 'PLAYBACK_TYPE', 'PTZ_TYPE', 'UniversialManagerService',
   'CAMERA_STATUS', '$rootScope', '$timeout', 'PlayDataModel', 'PTZContorlService', 
-  'kindStreamInterface', 'BrowserService',
+  'kindStreamInterface', 'BrowserService', 'PluginControlService',
   function($q, DisplayService, CAMERA_TYPE, PLAYBACK_TYPE, PTZ_TYPE,
     UniversialManagerService, CAMERA_STATUS, $rootScope, $timeout,
-    PlayDataModel, PTZContorlService, kindStreamInterface, BrowserService) {
+    PlayDataModel, PTZContorlService, kindStreamInterface, BrowserService, PluginControlService) {
     'use strict';
     return {
       restrict: 'E',
@@ -101,6 +101,9 @@ kindFramework.directive('fullCamera', ['$q', 'DisplayService',
             if (PTZContorlService.getAutoTrackingMode() === "True") {
               PTZContorlService.setAutoTrackingMode("False");
             }
+            
+            var whiteColorCode = 0xffffffff;
+            PluginControlService.setBackgroundColor(whiteColorCode);
 
             $timeout(function() {
               $rootScope.$emit('channel:changeFullSetRec');

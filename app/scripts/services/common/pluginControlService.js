@@ -378,6 +378,16 @@ kindFramework.
         }
       };
 
+      this.setBackgroundColor = function(colorCode) {
+        if (
+          UniversialManagerService.getStreamingMode() === 
+          CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE &&
+          sunapiAttributes.FisheyeLens
+        ) {
+          pluginElement.SetFisheyeBackgroundColor(colorCode);
+        }
+      };
+
       this.setManualTrackingMode = function(_mode) {
         try {
           if (pluginElement !== null && typeof pluginElement !== "undefined") {
@@ -559,6 +569,7 @@ kindFramework.
 
       function _WebCamEvent(evId, lp, rp) {
         console.log("Plugin WebEvent callback =======> EventID :" + evId + " Lparam : " + lp + "  Rparam : " + rp);
+        var eventESC = 601;
         switch (evId) {
           case CALLBACK.INSTANCE_START:
           case CALLBACK.INSTANCE_END:
@@ -680,6 +691,9 @@ kindFramework.
             break;
           case 600:
             $rootScope.$emit('changeLoadingBar', (lp == 0 ? false : true));
+            break;
+          case eventESC: //ESC
+            $rootScope.$emit('fullCamera:closeFullscreenButton');
             break;
         }
       };
