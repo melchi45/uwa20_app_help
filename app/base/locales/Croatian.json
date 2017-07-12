@@ -300,6 +300,7 @@
     "lang_msg_megamode_change": "Pokušaj prebacivanja na način rada s megapiksela. Bit će promijenjene postavke videoprofila, postavljanja videozapisa, postavljanja kamere i analize videozapisa. Želite li nastaviti?",
     "lang_msg_2megamode_change": "Pokušaj prebacivanja na način rada s 2 megapiksela. Bit će promijenjene postavke videoprofila, postavljanja videozapisa, postavljanja kamere i analize videozapisa. Želite li nastaviti?",
     "lang_msg_check_gov": "Nevaljani Duljina GOV-a",
+    "lang_msg_check_dynamic_gov": "Please check the Dynamic GOV value and enter again.",
     "lang_videosrc": "Videoizvor",
     "lang_flip": "Način preokretanja",
     "lang_mirror": "Način zrcaljenja",

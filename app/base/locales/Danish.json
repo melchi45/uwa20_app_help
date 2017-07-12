@@ -300,6 +300,7 @@
     "lang_msg_megamode_change": "Forsøger at skifte til tilstanden megapixel. Indstillinger for videoprofil, videoopsætning, kameraopsætning og videoanalyse ændres. Vil du fortsætte?",
     "lang_msg_2megamode_change": "Forsøger at skifte til tilstanden 2 megapixel. Indstillinger for videoprofil, videoopsætning, kameraopsætning og videoanalyse ændres. Vil du fortsætte?",
     "lang_msg_check_gov": "Ugyldig GOV-længde",
+    "lang_msg_check_dynamic_gov": "Please check the Dynamic GOV value and enter again.",
     "lang_videosrc": "Videokilde",
     "lang_flip": "Flipfunktion",
     "lang_mirror": "Spejlfunktion",

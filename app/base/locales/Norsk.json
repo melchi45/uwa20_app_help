@@ -300,6 +300,7 @@
     "lang_msg_megamode_change": "Forsøk å endre til mekapiksler modus. Innstillinger for videoprofil, videooppsett, kameraoppstt og videoanalyse blir endret. Vil du fortsette?",
     "lang_msg_2megamode_change": "Forsøk å endre til 2-mekapiksler modus. Innstillinger for videoprofil, videooppsett, kameraoppstt og videoanalyse blir endret. Vil du fortsette?",
     "lang_msg_check_gov": "Ugyldig GOV-lengde",
+    "lang_msg_check_dynamic_gov": "Please check the Dynamic GOV value and enter again.",
     "lang_videosrc": "Videokilde",
     "lang_flip": "Vendemodus",
     "lang_mirror": "Speilmodus",
