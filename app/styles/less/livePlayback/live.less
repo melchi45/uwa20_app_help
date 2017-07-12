@@ -470,7 +470,7 @@
             }
 
             #live-status {
-                max-width: 1100px;
+                max-width: 1200px;
                 
                 .live-status-col {
                     width: calc(~"50% - 10px");
@@ -479,27 +479,6 @@
                     display: inline-table;
 
                     .live-status-table {
-                        ::-webkit-scrollbar {
-                            width: 12px;
-                            height: 1em;
-                        }
-                        ::-webkit-scrollbar-button {
-                            &:vertical {
-                                background: #666;
-                            }
-                        }
-                        ::-webkit-scrollbar-track-piece {
-                            background: #f1f1f1;
-                        }
-                        ::-webkit-scrollbar-thumb {
-                            background: #c1c1c1;
-                        }​
-                        
-
-                        //  thumb 이후에 스타일이 죽습니다 
-                        //  지우면 안됩니다
-                        dummy { display: none; }
-
                         thead {
                             display: block;
                         }
@@ -510,45 +489,23 @@
                                 font-size: 11px;
 
                                 &:nth-child(1) {
-                                    width: 100px;
-                                }
-
-                                &:nth-child(2) {
-                                    width: 100px;
-                                }
-
-                                &:nth-child(3) {
                                     width: 120px;
                                 }
 
+                                &:nth-child(2) {
+                                    width: 160px;
+                                }
+
+                                &:nth-child(3) {
+                                    width: 150px;
+                                }
+
                                 &:nth-child(4) {
-                                    width: 90px;
+                                    width: 70px;
                                 }
 
                                 &:nth-child(5) {
                                     width: 100px;
-                                }
-                            }
-
-                            th {
-                                &:nth-child(1) {
-                                    width: 95px;
-                                }
-
-                                &:nth-child(2) {
-                                    width: 95px;
-                                }
-
-                                &:nth-child(3) {
-                                    width: 115px;
-                                }
-
-                                &:nth-child(4) {
-                                    width: 85px;
-                                }
-
-                                &:nth-child(5) {
-                                    width: 110px;
                                 }
                             }
                         }
@@ -571,21 +528,6 @@
                                     width: 130px;
                                 }
                             }
-
-                            th {
-                                &:nth-child(1),
-                                &:nth-child(2) {
-                                    width: 115px;
-                                }
-
-                                &:nth-child(3) {
-                                    width: 130px;
-                                }
-
-                                &:nth-child(4) {
-                                    width: 140px;
-                                }
-                            }
                         }
 
                         tbody {
@@ -594,9 +536,7 @@
                             position: relative;
                             max-height: 95px;
                             display: block;
-                            overflow: auto;
-                            overflow-x: hidden;
-                            overflow-y: scroll;
+                            overflow: hidden;
                         }
                     } 
                 } 
@@ -747,22 +687,20 @@
             .ui-widget-content {
                 color: @theme-color-gray-2;
             }
-
     
-            .live-table {
-                &::-webkit-scrollbar {
-                    opacity: 0.5;
-                }
-                &::-webkit-scrollbar-thumb {
-                    opacity: 0.2;
-                }​
-
-                //  thumb 이후에 스타일이 죽습니다 
-                //  지우면 안됩니다
-                dummy { display: none; }
-            }
-
             #cm-menu-content {
+                #live-status {
+                    .live-status-col {
+                        .live-status-table tbody tr:last-child * {
+                            border-bottom: 1px solid #333 !important;
+                        }
+                    } 
+
+                    .overscroll {
+                        background: rgba(255,255,255,0.5) !important;
+                    }
+                } 
+
                 #live-ptz {
                     #ptz-components {
                         #live-ptz-add-form {
