@@ -197,15 +197,15 @@ kindFramework.directive('liveIconList', function(
             'show': true,
             'disabled': false,
           },
-          mode3d: {
-            'label': '3D mode',
-            'action': function(){
-              scope.MIToggleFullScreen(true);
-            },
-            'class': 'tui-wn5-3d',
-            'show': scope.show3DModeButton,
-            'disabled' : false,
-          },
+          // mode3d: {
+          //   'label': '3D mode',
+          //   'action': function(){
+          //     scope.MIToggleFullScreen(true);
+          //   },
+          //   'class': 'tui-wn5-3d',
+          //   'show': scope.show3DModeButton,
+          //   'disabled' : false,
+          // },
           capture: {
             'label': 'lang_capture',
             'action': function() {
@@ -365,14 +365,14 @@ kindFramework.directive('liveIconList', function(
           }, '', true);
       }
 
-      scope.show3DModeButton = function(){
-        return ( 
-          mAttr.FisheyeLens && 
-          (UniversialManagerService.getStreamingMode() === 
-          CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) &&
-          (BrowserService.BrowserDetect !== BrowserService.BROWSER_TYPES.IE) 
-        );
-      };
+      // scope.show3DModeButton = function(){
+      //   return ( 
+      //     mAttr.FisheyeLens && 
+      //     (UniversialManagerService.getStreamingMode() === 
+      //     CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) &&
+      //     (BrowserService.BrowserDetect !== BrowserService.BROWSER_TYPES.IE) 
+      //   );
+      // };
 
       function loadedAttr() {
         scope.wisenetCameraFuntions2.ptz.show = 

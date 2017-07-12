@@ -1291,5 +1291,31 @@ kindFramework.
             });
         });
       });
+
+      var documentBody = document.body;
+      var keyUpHandler = function(event) {
+        if (!(
+          sunapiAttributes.FisheyeLens && 
+          (UniversialManagerService.getStreamingMode() === 
+          CAMERA_STATUS.STREAMING_MODE.NO_PLUGIN_MODE) &&
+          (BrowserService.BrowserDetect !== BrowserService.BROWSER_TYPES.IE) 
+          )) {
+          return;
+        }
+        var keyCode = event.which || event.keyCode;
+        var TIMEOUT = 100;
+        var number3KeyCode = 51
+
+        if (event.ctrlKey && event.altKey && keyCode === number3KeyCode) { // 51 = Number 3
+          $timeout(function() {
+            $scope.MIToggleFullScreen(true);
+          }, TIMEOUT);
+        }
+      };
+      documentBody.addEventListener("keyup", keyUpHandler);
+
+      $scope.$on('$destroy', function() {
+        documentBody.removeEventListener('keyup', keyUpHandler);
+      });
     }
   ]);
