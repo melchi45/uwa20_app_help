@@ -251,44 +251,9 @@ kindFramework.directive('liveMenuContent', function(
       });*/
 
       function setTableSize() {
-        /*
-        var padding = 20;
-        var allWidth = $(".live-status-col")[0].clientWidth - (padding * 2);
-        var size = {
-          first: [
-            18,
-            20,
-            20,
-            15,
-            27,
-          ],
-          second: [
-            22,
-            23,
-            30,
-            25,
-          ],
-        };
-
-        for(var key in size){
-        	var table = $("#cm-status-" + key);
-        	table.css({width: allWidth + "px"});
-
-        	table.find("thead tr, tbody tr").each(function(trNum, tr){
-        		tr = $(tr);
-        		var cols = tr.find("th, td");
-        		cols.each(function(colNum, col){
-        			col = $(col);
-        			var width = (allWidth / 100) * size[key][colNum];
-        			if(colNum === cols.length-1){
-        				col.css({width: width + "px"});
-        			}else{
-        				col.css({minWidth: width + "px"});
-        			}
-        		});
-        	});
-        }
-        */
+        $("#cm-status-first tbody, #cm-status-second tbody").overscroll({
+          direction:"vertical"
+        });
       }
 
       $rootScope.$saveOn('liveMenuContent:setTableSize', setTableSize);

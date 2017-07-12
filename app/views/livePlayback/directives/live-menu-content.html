@@ -214,18 +214,18 @@
         <thead>
           <tr>
             <th>{{'lang_profile' | translate}}</th>
-            <th>{{'lang_bitrate' | translate}}(kbps)</th>
-            <th>{{'lang_framerate' | translate}}(fps)</th>
-            <th ng-show="supportATC">ATC(%)</th>
+            <th>{{'lang_bitrate' | translate}}</th>
+            <th>{{'lang_framerate' | translate}}</th>
+            <th ng-show="supportATC">ATC</th>
             <th>{{'lang_accessNumber' | translate}}</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="Profiles in profileAccessInfoList">
             <td>{{Profiles.Name}}</td>
-            <td>{{Profiles.CurrentBitrate}}/{{Profiles.TotalBitrate}}</td>
-            <td>{{Profiles.CurrentFPS}}/{{Profiles.TotalFPS}}</td>
-            <td ng-show="supportATC">{{Profiles.ATC}}</td>
+            <td>{{Profiles.CurrentBitrate}}/{{Profiles.TotalBitrate}} kbps</td>
+            <td>{{Profiles.CurrentFPS}}/{{Profiles.TotalFPS}} fps</td>
+            <td ng-show="supportATC">{{Profiles.ATC}} %</td>
             <td>{{Profiles.ConcurrentUserCount}}</td>
           </tr>
         </tbody>
@@ -238,7 +238,7 @@
         <thead>
           <tr>
             <th>{{'lang_profile' | translate}}</th>
-            <th>{{'lang_bitrate' | translate}}(kbps)</th>
+            <th>{{'lang_bitrate' | translate}}</th>
             <th>{{'lang_networkConnectionStatus' | translate}}</th>
             <th>{{'lang_IPAddress' | translate}}</th>
           </tr>
@@ -246,7 +246,7 @@
         <tbody>
           <tr ng-repeat="Users in profileAccessUserList">
             <td><div ng-repeat="profileName in Users.ProfileNameList track by $index">{{profileName}}</div></td>
-            <td>{{Users.ClientBitrate}}</td>
+            <td>{{Users.ClientBitrate}} kbps</td>
             <td>{{Users.ClientNetworkConnectionStatus}}</td>
             <td>{{Users.ClientIPAddress}}</td>
           </tr>
