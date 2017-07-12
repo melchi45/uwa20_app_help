@@ -1165,6 +1165,8 @@ kindFramework.controller(
         },
         function (errorData) {
           console.log("getMotionLevel Error : ", errorData);
+          stopMonitoringMotionLevel();
+          $timeout(startMonitoringMotionLevel, 300);
         }, '', true);
     }
 
