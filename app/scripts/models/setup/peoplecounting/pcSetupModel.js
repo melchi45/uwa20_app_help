@@ -261,10 +261,10 @@ kindFramework.factory('PcSetupModel', function($q, $interval, pcSetupService, $t
     };
 
     function addZero(_data) {
+      var data = _data;
       var TEN = 10;
-      var data = null;
-      if (_data < TEN) {
-        data = "0" + _data;
+      if (data < TEN) {
+        data = "0" + data;
       }
 
       return data;

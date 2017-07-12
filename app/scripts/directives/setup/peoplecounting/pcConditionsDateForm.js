@@ -611,8 +611,8 @@ kindFramework.directive(
         element.on("$destroy", closeEvent.unbind);
 
         function changeDateFormat(date, _useMonth, _useDay) {
-          var useMonth = _useMonth;
-          var useDay = _useDay;
+          var useMonth = (_useMonth !== false);
+          var useDay = (_useDay !== false);
 
           var year = date.getFullYear();
           var month = date.getMonth() + 1;
