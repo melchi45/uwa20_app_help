@@ -26,7 +26,7 @@
           ng-mousedown="ptzFocus('Near')" 
           ng-mouseup="ptzFocus('Stop')" 
           ng-mouseleave="ptzFocus('Stop')" 
-          class="cm-icon-button-s cm-near"
+          class="cm-icon-button-s cm-icon-dark cm-near"
           title="{{'lang_near' | translate}}">
           <span class="sr-only">{{ 'lang_near' | translate }}</span>
           <i class="tui tui-wn5-ptz-near"></i>
@@ -34,7 +34,7 @@
         <button 
           ng-if="show.DigitalAutoTracking && ptzMode !== 'external'"
           ng-click="digitalAutoTracking()"
-          class="cm-icon-button-s cm-at"
+          class="cm-icon-button-s cm-icon-dark cm-at"
           ng-class="{'cm-ptz-at' : currentPtzType === ptzType.OPTICAL}"
           title="{{'lang_autotracking_on' | translate}}">
           <span class="sr-only">{{ 'lang_autotracking_on' | translate }}</span>
@@ -43,7 +43,7 @@
         <button
           ng-if="show.AutoTracking"
           ng-click="autoTracking()"
-          class="cm-icon-button-s cm-at"
+          class="cm-icon-button-s cm-icon-dark cm-at"
           ng-class="{'cm-ptz-at' : currentPtzType === ptzType.OPTICAL}"
           title="{{'lang_autotracking_on' | translate}}">
           <span class="sr-only">{{ 'lang_autotracking_on' | translate }}</span>
@@ -54,7 +54,7 @@
           ng-mousedown="ptzFocus('Far')" 
           ng-mouseup="ptzFocus('Stop')" 
           ng-mouseleave="ptzFocus('Stop')" 
-          class="cm-icon-button-s cm-far"
+          class="cm-icon-button-s cm-icon-dark cm-far"
           title="{{'lang_far' | translate}}">
           <span class="sr-only">{{ 'lang_far' | translate }}</span>
           <i class="tui tui-wn5-ptz-far"></i>
@@ -62,14 +62,14 @@
         <button 
           ng-if="currentPtzType === ptzType.OPTICAL"
            ng-click="ptzFocus('Auto')"
-          class="cm-icon-button-s cm-home"
+          class="cm-icon-button-s cm-icon-dark cm-home"
           title="{{'lang_autoFocus' | translate}}">
           <span class="sr-only">{{ 'lang_autoFocus' | translate }}</span>
           <i class="tui tui-wn5-simple-focus"></i>
         </button>
         <!-- 
         <button 
-          class="cm-icon-button-s cm-home"
+          class="cm-icon-button-s cm-icon-dark cm-home"
           title="{{'lang_goHomePosition' | translate}}"
           ng-show="ptzMode == 'external'">
           <span class="sr-only">{{ 'lang_goHomePosition' | translate }}</span>
@@ -82,7 +82,7 @@
       <div id="cm-ptz-control-box" ng-show="currentPtzType !== ptzType.ZOOMONLY">
         <div class="cm-ptz-line horizontal"></div>
         <div class="cm-ptz-line vertical"></div>
-        <div id="cm-ptz-control-move-btn">
+        <div id="cm-ptz-control-move-btn" class="cm-icon-dark">
             <i class="tui tui-wn5-ptz-handle"></i>
         </div>
       </div>
@@ -91,7 +91,7 @@
           ng-mousedown="ptzZoom('in')"
           ng-mouseup="ptzZoom('stop')"
           ng-mouseleave="ptzZoom('stop')"
-          class="cm-icon-button-s cm-zoom-in"
+          class="cm-icon-button-s cm-icon-dark cm-zoom-in"
           title="{{'lang_zoomIn' | translate}}">
           <span class="sr-only">{{ 'lang_zoomIn' | translate }}</span>
           <i class="tui tui-wn5-ptz-plus"></i>
@@ -100,7 +100,7 @@
           ng-mousedown="ptzZoom('out')"
           ng-mouseup="ptzZoom('stop')"
           ng-mouseleave="ptzZoom('stop')"
-          class="cm-icon-button-s cm-zoom-out"
+          class="cm-icon-button-s cm-icon-dark cm-zoom-out"
           title="{{'lang_zoomOut' | translate}}">
           <span class="sr-only">{{ 'lang_zoomOut' | translate }}</span>
           <i class="tui tui-wn5-ptz-minus"></i>
@@ -113,11 +113,11 @@
         <div>
           <h4>{{ 'lang_zoom' | translate }}</h4>
           <div class="ptz-control_horizontal" style="line-height: normal;height: 40px;">
-            <button class="cm-icon-button-s ptz-control_horizontal-item slider-button left-btn" title="{{'lang_zoomOut' | translate}}" ng-mousedown="ptzZoom('out');" ng-mouseup="ptzZoom('stop')" ng-mouseleave="ptzZoom('stop')">
+            <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item slider-button left-btn" title="{{'lang_zoomOut' | translate}}" ng-mousedown="ptzZoom('out');" ng-mouseup="ptzZoom('stop')" ng-mouseleave="ptzZoom('stop')">
               <i class="tui tui-wn5-ptz-minus" ></i>
             </button>
             <div class="ptz-control_horizontal-item ptz-control_horizontal-slider slider-cursor-btn" id="ptz-control_slider-horizontal-zoom"></div>
-            <button class="cm-icon-button-s ptz-control_horizontal-item slider-button right-btn" title="{{'lang_zoomIn' | translate}}" ng-mousedown="ptzZoom('in');" ng-mouseup="ptzZoom('stop')" ng-mouseleave="ptzZoom('stop')">
+            <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item slider-button right-btn" title="{{'lang_zoomIn' | translate}}" ng-mousedown="ptzZoom('in');" ng-mouseup="ptzZoom('stop')" ng-mouseleave="ptzZoom('stop')">
               <i class="tui tui-wn5-ptz-plus"></i>
             </button>
           </div>
@@ -125,13 +125,13 @@
         <div>
           <h4>{{ 'lang_focus' | translate }}</h4>
           <div class="ptz-control_horizontal" style="line-height: normal;height: 40px;">
-            <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_near' | translate}}" ng-mousedown="ptzFocus('Near')" ng-mouseup="ptzFocus('Stop')" ng-mouseleave="ptzFocus('Stop')">
+            <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item item-button" title="{{'lang_near' | translate}}" ng-mousedown="ptzFocus('Near')" ng-mouseup="ptzFocus('Stop')" ng-mouseleave="ptzFocus('Stop')">
               <i class="tui tui-wn5-ptz-near" ></i>
             </button>
-            <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_far' | translate}}" ng-mousedown="ptzFocus('Far');" ng-mouseup="ptzFocus('Stop')" ng-mouseleave="ptzFocus('Stop')">
+            <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item item-button" title="{{'lang_far' | translate}}" ng-mousedown="ptzFocus('Far');" ng-mouseup="ptzFocus('Stop')" ng-mouseleave="ptzFocus('Stop')">
               <i class="tui tui-wn5-ptz-far"></i>
             </button>
-            <button class="cm-icon-button-s ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="ptzFocus('Auto');">
+            <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="ptzFocus('Auto');">
               <i class="tui tui-wn5-simple-focus"></i>
             </button>
           </div>
