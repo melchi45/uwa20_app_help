@@ -523,7 +523,9 @@ kindFramework.directive(
               AutoPan: (
                 typeof cameraAttributes.AutoRunModes !== "undefined" &&
                 cameraAttributes.AutoRunModes.indexOf("AutoPan") > -1
-              )
+              ),
+              
+              Crop: cameraAttributes.CropSupport
             };
           } catch (error) {
             console.error(error);
