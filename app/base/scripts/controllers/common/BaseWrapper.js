@@ -124,6 +124,8 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
     "motionDetection": "NWC",
     "videoAnalytics": "NWC",
     "faceDetection": "NWC",
+    "shockDetection": "NWC",
+    "temperatureDetection": "NWC",
     "audioDetection": "NWC",
     "nwDisconnection": "NWC",
     "autoTrackEvent": "NWC",
@@ -291,6 +293,10 @@ function BaseWrapper($rootScope, $scope, RESTCLIENT_CONFIG, MultiLanguage,
         } else {
           retVal = false;
         }
+      } else if (menuId === "shockDetection") {
+        retVal = false;
+      } else if (menuId === "temperatureDetection") {  
+        retVal = false;
       } else if (menuId === "snmp") {
         if (mAttr.SNMPVersion1 || mAttr.SNMPVersion2 || mAttr.SNMPVersion3 || 
             mAttr.SNMPTrapEnable) {
