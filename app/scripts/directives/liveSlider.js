@@ -27,7 +27,6 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
       },
       templateUrl: './views/setup/common/liveSlider.html',
       link: function(scope, elem, attrs) {
-        console.log(elem);
         var mAttr = Attributes.get();
         var slider = elem.find(".cm-slider div");
         var checkLoad = false; //init 함수가 실행이 되었는 지 체크
@@ -37,11 +36,22 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
         var isFloat = false;
         var OnlyNumberRegExp = /^[0-9]+$/;
 
+        var ICON_CLASS = {
+          ADD: 'tui tui-wn5-add cm-left',
+          MINUS: 'tui tui-wn5-minus cm-right'
+        };
+        
         scope.levelPattern = mAttr.OnlyNumStr;
 
         function changePatternToFloat(maxlength) {
           isFloat = true;
-          scope.levelPattern = "^$|^[0-9]{1}$|^[0-9]{1}[.]{1}[0-9]{0,1}$|^[1-9]{1}[0-9]{0," + String(maxlength - 1) + "}[.]{1}[0-9]{0,1}$|^[1-9]{1}[0-9]{0," + String(maxlength - 1) + "}$";
+          scope.levelPattern = [
+            "^$",
+            "^[0-9]{1}$",
+            "^[0-9]{1}[.]{1}[0-9]{0,1}$",
+            "^[1-9]{1}[0-9]{0," + String(maxlength - 1) + "}[.]{1}[0-9]{0,1}$",
+            "^[1-9]{1}[0-9]{0," + String(maxlength - 1) + "}$"
+          ].join("|");
           OnlyNumberRegExp = /^[0-9.]*$/;
         }
 
@@ -199,7 +209,7 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
             var SliderValue = null;
             var SliderStep = (('step' in scope.liveSliderProperty) ? scope.liveSliderProperty.step : 1);
 
-            if (target.className !== 'tui tui-wn5-minus cm-right' && target.className !== 'tui tui-wn5-add cm-left') {
+            if (target.className !== ICON_CLASS.MINUS && target.className !== ICON_CLASS.ADD) {
               return;
             }
 
@@ -208,10 +218,10 @@ kindFramework.directive('liveSlider', ['Attributes', '$timeout',
             }
 
             switch (target.className) {
-              case 'tui tui-wn5-minus cm-right':
+              case ICON_CLASS.MINUS:
                 SliderValue = validatedValue(scope.liveSliderModel[scope.modelName] - SliderStep);
                 break;
-              case 'tui tui-wn5-add cm-left':
+              case ICON_CLASS.ADD:
                 SliderValue = validatedValue(scope.liveSliderModel[scope.modelName] + SliderStep);
                 break;
             }
