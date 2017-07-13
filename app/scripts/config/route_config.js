@@ -338,6 +338,18 @@ kindFramework.constant('ROUTE_CONFIG', {
         controller: 'faceDetectionCtrl'
       },
       {
+        urlName: 'shockDetection',
+        name: 'lang_shock_detection',
+        templateUrl: 'views/setup/analytics/shockDetection.html',
+        controller: 'shockDetectionCtrl'
+      },
+      {
+        urlName: 'temperatureDetection',
+        name: 'lang_temperature_detection',
+        templateUrl: 'views/setup/analytics/temperatureDetection.html',
+        controller: 'temperatureDetectionCtrl'
+      },
+      {
         urlName: 'iva',
         name: 'lang_menu_iva',
         templateUrl: 'views/setup/analytics/iva.html',
