@@ -1,0 +1,54 @@
+.mixin-icon( @bg-type, @icon-type ) {
+	@theme-name: "theme-@{bg-type}-button-@{icon-type}";
+	
+	@icon-normal: "@{theme-name}-normal";
+	@icon-focus: "@{theme-name}-focus";
+	@icon-press: "@{theme-name}-press";
+	@icon-disabled: "@{theme-name}-disabled";
+
+	i {
+		color: @@icon-normal !important;
+
+		&:active {
+			color: @@icon-press !important;
+		}
+
+		&[disabled],
+		&[readonly],
+		&.cm-disabled,
+		&.disabled {
+			i {
+				.disabled(){
+					color: @@icon-disabled !important;
+				}
+
+				.disabled();
+
+				&:focus,
+				&:active,
+				&:hover {
+					.disabled();
+				}
+			}	
+		}
+	}
+
+	&.cm-active {
+		a > i {
+			color: @@icon-focus !important;
+		}
+	}
+
+	button.cm-icon-active {
+		i {
+			color: @@icon-focus !important;
+		}
+	}
+	
+}
+
+.mixin-vline ( @bg-type ) {
+	@vline-color: "theme-@{bg-type}-vline-dark";
+
+	background-color: @@vline-color;
+}

@@ -1,0 +1,118 @@
+﻿
+<h1 class="wn5-setup-main-title">篡改检测</h1>
+
+<div class="wn5-setup-section">
+    <p>当屏幕受阻或摄像机机位置发生变动时，会创建一个篡改检测事件。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。篡改检测事件的设置同样可在<strong class="UI">[事件]</strong>中的<strong class="UI">[篡改检测]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[事件设置]</strong></a>页面中完成。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>篡改检测</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --></ul>
+            <h3>启用篡改探测</h3>
+            <p>如需执行篡改检测事件，请选择<strong class="UI">[启用篡改探测]</strong>。 </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>级别 </h3>
+            <p>设置篡改检测的标准级别。检测出设定级别的篡改时，会创建一个篡改检测事件。 </p>
+            <p>此外，检测出篡改时，会出现一个图表，显示相应级别，创建篡改检测事件时，该图表的颜色会发生变化。 </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>灵敏度</h3>
+            <p>灵敏度越高，监测级别图的反应更灵敏。</p>
+            <h3>最短持续时间（秒）</h3>
+            <p>设置篡改检测和事件创建的最短时间。仅当干扰存在的时间达到最短持续时间时，才会创建一个篡改检测事件。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>暗图像除外  </h3>
+            <p>为了防止屏幕亮度突然变暗，比如因篡改检测事件而突然出现息屏，请选择<strong class="UI">[启用]</strong>。 </p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>在均匀背景中或夜间低光环境中，检测效果可能欠佳。</li>
+                <li>出现篡改后，可能需要 5 秒钟才能创建一个篡改检测事件。</li>
+                <li>检测出摄像机篡改时，经过大约 5 秒种的稳定后，将重新进行篡改检测，稳定过程中，将无法检测出任何篡改。</li>
+                <li>重复创建一个错误事件时，逐渐降低等级，可将错误降至最低水平。 </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>事件操作设置</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --></p>
+            </ul>
+            <h3>FTP</h3>
+            <p>创建篡改检测事件时，如需将图像保存至 FTP 服务器中，请选择<strong class="UI">[使用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/电子邮件]</strong></a>完成具体的 FTP 设置。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>电子邮件</h3>
+            <p>创建篡改检测事件时，如需通过电子邮件发送图像，请选择 <strong class="UI">[使用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/电子邮件]</strong></a>完成具体的电子邮件设置。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>正在录制</h3>
+            <p>创建篡改检测事件时，如需将图像保存至 SD 卡或 NAS 中，请选择<strong class="UI">[使用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>警报输出</h3>
+            <p>创建篡改检测事件时，可为某个特定的警报设置警报输出数。选择警报输出编号后，如果不希望输出任何警报，请选择<strong class="UI">[关]</strong>，如果希望输出警报，则选择输出时间。用户关闭警报之前，可以选择<strong class="UI">[始终]</strong>设置连续警报，或将警报时间设置为 5、10 或 15 秒。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a>完成具体的警报输出设置。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+            <h3>转至预设位</h3>
+                    <p>创建篡改检测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a>或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部 PTZ]</a></strong>。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>转至预设位</h3>
+                    <p>创建篡改检测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[预设位设置]</strong></a>。</p>
+        </div>
+
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>转至预设位</h3>
+                    <p>创建篡改检测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ设置]</strong></a>。</p>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>激活时间</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>从<strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_tamperDetection?#action">事件操作设置</a>]</strong>中将事件操作状态设置为始终，或仅在设定的创建篡改检测事件的时间进行操作。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --></p>
+            </ul>
+            <h3>始终</h3>
+            <p>创建篡改检测事件时，始终执行事件操作设置。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>仅预约时间</h3>
+            <p>仅在已设置的时间内创建篡改检测事件时，执行事件操作设置。选择<strong class="UI">[仅预约时间]</strong>时，时间表会根据当前的摄像机时间显示相应的日期（从星期日至星期六）。可在时间表上用鼠标进行单击或拖动，来设置事件操作设置的时间。已设置的激活时间会在相应的工作日和时间重复执行。</p>
+			<p>单击<strong class="UI">[1 分钟]</strong>、<strong class="UI">[30 分钟]</strong>或<strong class="UI">[1 小时]</strong>按钮，可更改时间视图单位。单击<strong class="UI">[重置]</strong>按钮时，所有已设置的激活时间将被删除。如需确认或更改摄像机时间，请参照<strong class="UI">[基本设置]</strong>&gt;<strong class="UI">[日期和时间]</strong>。</p>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

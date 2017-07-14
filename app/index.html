@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="img-src data: *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="base/images/wisenet_icon.ico" rel="shortcut icon" type="image/x-icon">
+    <title>Wisenet WEBVIEWER</title>
+
+    <script>
+        /**
+         * AngluarJs does not support the IE 8 or lower than version 8.
+         * So it should be redirect to Root URL.
+         */
+         try {
+            (function ieDetection(){
+                var documentUrl = document.URL;
+                //Mobile Detection
+                if (documentUrl.indexOf("http://") === -1 && documentUrl.indexOf("https://") === -1) {
+                    return;
+                }
+
+                var userAgent = window.navigator.userAgent;
+                var msie = userAgent.indexOf('MSIE ');
+                var trident = userAgent.indexOf('Trident/');
+                var rv = userAgent.indexOf('rv:');
+                var version = false;
+                var VERSION_LIMIT = 10;
+
+                if (msie > 0) {
+                    version = parseInt(userAgent.substring(msie + 5, userAgent.indexOf('.', msie)), 10);
+                }else if (trident > 0) {
+                    version = parseInt(userAgent.substring(rv + 3, userAgent.indexOf('.', rv)), 10);
+                }
+
+                if(version <= VERSION_LIMIT && version !== false){
+                    location.href = 'views/login/compatible.htm';
+                }
+            })();
+        }catch(e){
+            console.error("IE Detection Error in index.html", e);
+        }
+    </script>
+
+        <!-- build:css styles/libraries.css -->
+    <link href="external-lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="external-lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="external-lib/jquery-ui/jquery-ui.css" rel="stylesheet">
+    <link href="external-lib/nvd3/build/nv.d3.min.css" rel="stylesheet">
+    <link href="external-lib/fullcalendar/fullcalendar.min.css" rel="stylesheet">
+        <!-- endbuild -->
+    
+        <!-- build:css styles/customs.css -->
+    <link href="base/kind/common_modules/kind_client_cm_strm-display/display.css" rel="stylesheet">
+    <link href="base/kind/rich_components/svg_drawing/plugins/kind_svg_editor_plugin_draw.css" rel="stylesheet">
+    
+    <link href="styles/fonts/notosans.css" rel="stylesheet">
+    <link href="styles/fonts/Techwin-Universal-Icon/icons.css" rel="stylesheet">
+    <link href="styles/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+    <link href="styles/plugins/datapicker/angular-datapicker.css" rel="stylesheet">
+    
+    <link href="styles/animate.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/app.css" rel="stylesheet">
+
+    <link href="external-lib/vis/vis.css" rel="stylesheet">
+        <!-- endbuild -->
+    <link href="styles/less/app.less" rel="stylesheet/less">
+</head>
+
+<body>
+    <div ui-view ng-controller="WrapperCtrl" class="wrap"></div>
+
+    <!-- build:js scripts/base_component.js -->
+    <script src="external-lib/jquery/jquery.js"></script>
+    <script src="external-lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="external-lib/jquery-ui/jquery.ui.touch-punch.min.js"></script>
+    <script src="external-lib/jquery-overscroll/jquery.overscroll.js"></script>
+    <script src="external-lib/metisMenu/jquery.metisMenu.js"></script>
+    <script src="external-lib/angular/angular.js"></script>
+    <script src="external-lib/angular-ios9-uiwebview-patch/angular-ios9-uiwebview-patch.js"></script>
+    <script src="external-lib/angular-mocks/angular-mocks.js"></script>
+    <script src="external-lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="external-lib/angular-translate/angular-translate.min.js"></script>
+    <script src="external-lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script src="external-lib/ui-router/angular-ui-router.min.js"></script>
+    <script src="external-lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="external-lib/fullcalendar/moment.min.js"></script>
+    <script src="external-lib/fullcalendar/fullcalendar.min.js"></script>
+    <!-- ui-bootstrap-tpls-0.14.3 is modified due to Datepicker Issue, so that is renamed. -->
+    <script src="external-lib/angular-bootstrap/ui-bootstrap-tpls-0.14.3-custom.js"></script>
+    <script src="external-lib/angular-animate/angular-animate.js"></script>
+    <script src="external-lib/angular-touch/angular-touch.min.js"></script>
+    <script src="external-lib/bower-angular-cookies-master/angular-cookies.js"></script>
+    <script src="external-lib/datapicker/angular-datepicker.js"></script>
+    <script src="external-lib/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="external-lib/hammer.js/hammer.js"></script>
+    <script src="external-lib/ng-pattern-restrict/ng-pattern-restrict.min.js"></script>
+    <script src="external-lib/d3/d3.min.js"></script>
+    <script src="external-lib/nvd3/build/nv.d3.min.js"></script>
+    <script src="external-lib/angular-nvd3/dist/angular-nvd3.min.js"></script>
+    <!-- endbuild -->
+    <script src="external-lib/less/dist/less.js"></script>
+
+    <!-- build:js scripts/kind_components.js -->
+    <script src="external-lib/util/md5.js"></script>
+    <script src="external-lib/util/three.js"></script>
+    <script src="external-lib/util/FileSaver.js"></script>
+    <script src="external-lib/util/rgbCanvas.js"></script>
+    <script src="external-lib/util/fpsCounter.js"></script>
+    <script src="external-lib/util/sylvester.js"></script>
+    <script src="external-lib/util/glUtils.js"></script>
+    <script src="external-lib/util/crypto.js"></script>
+    <script src="external-lib/util/aes.js"></script>
+    <script src="external-lib/util/moment-timezone.min.js"></script>
+
+    <script src="/media/ump/Util/mp4Generator.js"></script>
+    <script src="/media/ump/Util/audioUtil.js"></script>
+    <script src="/media/ump/Util/digestGenerator.js"></script>
+    <script src="/media/ump/Util/displayFactory.js"></script>
+    <script src="/media/ump/Util/displayDirective.js"></script>
+    <script src="/media/ump/Util/metaDataParser.js"></script>
+    <script src="/media/ump/Util/sunapi.js"></script>
+    <script src="/media/ump/Util/sunapiParser.js"></script>
+    <script src="/media/ump/Util/profileController.js"></script>
+    <script src="/media/ump/Util/util.js"></script>
+    <script src="/media/ump/Util/videoDigitalPTZ.js"></script>
+    <script src="/media/ump/Util/fishEye3D.js"></script>
+
+    <script src="/media/angularInterface/streamCanvas.js"></script>
+    <script src="/media/angularInterface/streamInterface.js"></script>
+
+    <script src="/media/ump/MediaSession/TextSession/metaSession.js"></script>
+    <script src="/media/ump/MediaSession/rtpSession.js"></script>
+    <script src="/media/ump/MediaSession/BackupSession/FileMaker.js"></script>
+    
+    <script src="/media/ump/Network/RTSPoverWebsocket/rtspClient.js"></script>
+    <script src="/media/ump/Network/RTSPoverWebsocket/rtspClientManager.js"></script>
+    <script src="/media/ump/Network/RTSPoverWebsocket/transport.js"></script>
+
+    <script src="/media/ump/Interface/streamManager.js"></script>
+    <script src="/media/ump/Interface/streamPlayer.js"></script>
+
+    <script src="/media/ump/Listen/Renderer/audioPlayer.js"></script>
+    <script src="/media/ump/Listen/Renderer/audioPlayerAAC.js"></script>
+    <script src="/media/ump/Listen/Renderer/audioPlayerGxx.js"></script>
+    <script src="/media/ump/Talk/Talk.js"></script>
+      
+    <script src="/media/ump/Video/Renderer/streamDrawer.js"></script>
+    <script src="/media/ump/Video/Renderer/videoRenderer.js"></script> 
+    <script src="/media/ump/Video/Renderer/yuvCanvas.js"></script> 
+	<script src="/media/ump/Video/Renderer/videoMediaSource.js"></script>
+
+    <script src="/media/ump/Workers/workerManager.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/customs.js -->
+    <script src="scripts/config/initialization/module.config.js"></script>
+    <script src="base/kind/rich_components/initialization/module.js"></script>
+    <script src="base/kind/rich_components/rest_client/rest_client.js"></script>
+    <script src="base/kind/rich_components/rest_client/rest_client_config.js"></script>
+    <script src="base/kind/rich_components/multi_language/multi_language.js"></script>
+    <script src="base/kind/rich_components/multi_language/multi_language_config.js"></script>
+    <script src="base/kind/rich_components/log_manager/log_manager_config.js"></script>
+    <script src="base/kind/rich_components/log_manager/log_manager.js"></script>
+    <script src="base/kind/rich_components/touch_event/touch_event.js"></script>
+    <script src="base/kind/rich_components/touch_event/touch_event_config.js"></script>
+
+    <script src="base/kind/rich_components/svg_drawing/modules/kind_svg_editor_factory.js"></script>
+    <script src="base/kind/rich_components/svg_drawing/modules/kind_svg_editor.js"></script>
+    <script src="base/kind/rich_components/svg_drawing/plugins/kind_svg_editor_plugin_draw.js"></script>
+    <script src="base/kind/rich_components/svg_drawing/plugins/kind_svg_editor_plugin_customeditor.js"></script>
+
+<!-- #### Commonly Used Files -->
+
+    <script src="external-lib/vis/vis.js"></script>
+    <script src="external-lib/slider/slider.js"></script>
+    <script src="external-lib/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+
+    <script src="plugin/pluginModel.js"></script>
+    <script src="base/scripts/config/monkey_patch.js"></script>
+    <script src="scripts/config/route_config.js"></script>
+    <script src="base/scripts/config/camera_option.js"></script>
+    <script src="base/scripts/config/playback_type.js"></script>
+    <script src="base/scripts/config/ptz_type.js"></script>
+    <script src="base/scripts/config/camera_status.js"></script>
+    <script src="base/scripts/config/q_sequence.js"></script>
+    <script src="base/scripts/config/dptz_error_type.js"></script>
+    <script src="base/scripts/config/application_config.js"></script>
+
+    <script src="scripts/config/serviceTypeConfig.js"></script>
+    <script src="scripts/config/device_info.js"></script>
+    <script src="scripts/config/wise_face_detection.js"></script>
+    
+    <script src="scripts/config/online_help_config.js"></script>
+
+    <script src="base/scripts/controllers/common/BaseWrapper.js"></script>
+    <script src="scripts/controllers/common/Wrapper.js"></script>
+    <script src="base/scripts/controllers/login/BaseLogin.js"></script>
+    <script src="scripts/controllers/login/Login.js"></script>
+    <script src="base/scripts/controllers/login/change_password.js"></script>
+
+    <script src="base/scripts/services/playbackClass/BasePlaybackInterface.js"></script>
+    <script src="scripts/services/playbackClass/PlaybackInterface.js"></script>
+    <script src="base/scripts/services/playbackClass/playbackStepService.js"></script>
+    <script src="scripts/services/playbackClass/timelineService.js"></script>
+    <script src="base/scripts/services/common/storage.js"></script>
+    <script src="scripts/services/common/accountService.js"></script>
+    <script src="base/scripts/services/common/browserService.js"></script>
+    <script src="scripts/services/common/BasePlaybackService.js"></script>
+    <script src="scripts/services/common/PlaybackService.js"></script>
+    <script src="base/scripts/services/common/dateConverter.js"></script>
+    <script src="base/scripts/services/common/SessionOfUserManager.js"></script>
+    <script src="base/scripts/services/common/menuService.js"></script>
+    <script src="base/scripts/services/common/attributes.js"></script>
+    <script src="base/scripts/services/common/eventStatusService.js"></script>
+    <script src="base/scripts/services/common/sunapiClient.js"></script>
+    <script src="base/scripts/services/common/logService.js"></script>
+    <script src="base/scripts/services/common/modalManagerService.js"></script>
+    <script src="base/scripts/services/common/BaseCameraService.js"></script>
+    <script src="scripts/services/common/CameraService.js"></script>
+    <script src="base/scripts/services/common/universialManagerService.js"></script>
+    <script src="scripts/services/common/profileCheckService.js"></script>
+    <script src="base/scripts/services/common/sunapiConverter.js"></script>
+    <script src="base/scripts/services/DzoomPTZ/ptzControlService.js"></script>
+    <script src="base/scripts/services/DzoomPTZ/digitalPtzControlService.js"></script>
+    <script src="scripts/services/common/pluginControlService.js"></script>
+    <script src="scripts/services/common/kindControlService.js"></script>
+    <script src="scripts/services/common/mjpegPollingControlService.js"></script>
+    <script src="scripts/services/common/EventNotificationService.js"></script>
+    <script src="base/scripts/utils/xmlParser.js"></script>
+    <script src="base/scripts/utils/commonUtils.js"></script>
+    <script src="base/scripts/utils/cameraSpec.js"></script>
+    <script src="base/scripts/utils/dragSelect.js"></script>
+    <script src="base/scripts/utils/filters.js"></script>
+    <script src="base/scripts/utils/autorunModal.js"></script>
+
+    <script src="base/scripts/controllers/livePlayback/BaseMain.js"></script>
+    <script src="scripts/controllers/livePlayback/Main.js"></script>
+    <script src="base/scripts/controllers/livePlayback/BaseChannel.js"></script>
+    <script src="scripts/controllers/livePlayback/Channel.js"></script>
+    <script src="scripts/controllers/livePlayback/ChannelList.js"></script>
+
+    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceProfileCtrl.js"></script>
+    <script src="scripts/controllers/livePlayback/modalInstance/modalInstanceMessageCtrl.js"></script>
+    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceListCtrl.js"></script>
+    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceCheckBoxListCtrl.js"></script>
+    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceSliderCtrl.js"></script>
+    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstncePresetAddCtrl.js"></script>
+    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceLogoutCtrl.js"></script>
+    <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceStatusCtrl.js"></script>
+    <!-- <script src="base/scripts/controllers/livePlayback/modalInstance/modalInstnceOverlapEventCtrl.js"></script> -->
+
+    <script src="base/scripts/directives/loadingBar.js"></script>
+    <script src="base/scripts/directives/channelContainer.js"></script>
+    <script src="scripts/services/common/ExtendChannelContainerService.js"></script>
+    <script src="base/scripts/directives/channelsWrapper.js"></script>
+    <script src="base/scripts/directives/datepicker.decorator.js"></script>
+    <script src="base/scripts/directives/directives.js"></script>
+    <script src="scripts/directives/fullcamera/extendFullCamera.js"></script>
+    <script src="base/scripts/directives/fullCamera.js"></script>
+    <script src="scripts/directives/timeline.js"></script>
+    <!--<script src="base/scripts/directives/fullcamera/playbackFunctions.js"></script> -->
+    <script src="scripts/directives/common/globalNavigationBar.js"></script>
+    <script src="scripts/directives/common/channel_selector.js"></script>
+    <script src="scripts/directives/common/wn5SetupCommonDirective.js"></script>
+    <script src="scripts/directives/livePlaybackCommon.js"></script>
+    <script src="scripts/directives/livePTZControl.js"></script>
+    <script src="scripts/directives/liveIconList.js"></script>
+    <script src="scripts/directives/liveMenuContent.js"></script>
+
+    <script src="base/scripts/models/playback/SearchDataModel.js"></script>
+    <script src="scripts/models/playback/PlayDataModel.js"></script>
+    <script src="scripts/models/playback/ItemSetModel.js"></script>
+    <script src="base/scripts/models/login/login.js"></script>
+    <script src="base/scripts/models/login/change_password.js"></script>
+    <script src="base/scripts/models/setup/ptz/sequence.js"></script>
+
+<!-- ### Web Used Files -->
+
+    <script src="scripts/config/backup_status.js"></script>
+    <script src="scripts/controllers/livePlayback/PlaybackChannel.js"></script>
+    <script src="scripts/controllers/setup/basic/datetimeController.js"></script>
+    <script src="scripts/controllers/setup/basic/ipPortController.js"></script>
+    <script src="scripts/controllers/setup/basic/profileCtrl.js"></script>
+    <script src="scripts/controllers/setup/basic/recordCtrl.js"></script>
+    <script src="scripts/controllers/setup/basic/userController.js"></script>
+    <script src="scripts/controllers/setup/common/mainController.js"></script>
+    <script src="scripts/controllers/setup/common/menuController.js"></script> 
+    <script src="scripts/controllers/setup/event/eventSetup.js"></script>
+    <script src="scripts/controllers/setup/event/ftpemail.js"></script>
+    <script src="scripts/controllers/setup/event/storageController.js"></script>
+    <script src="scripts/controllers/setup/event/alarmoutputController.js"></script>
+    <script src="scripts/controllers/setup/event/alarminputController.js"></script>
+    <script src="scripts/controllers/setup/event/frostDetectionController.js"></script>
+    <script src="scripts/controllers/setup/event/timeScheduleController.js"></script>
+    <script src="scripts/controllers/setup/event/nwDisconnectionController.js"></script>
+    <script src="scripts/controllers/setup/event/appEventController.js"></script>
+
+    <script src="scripts/controllers/setup/analytics/motionDetectionController.js"></script>
+    <script src="scripts/controllers/setup/analytics/fogDetectionController.js"></script>
+    <script src="scripts/controllers/setup/analytics/shockDetectionController.js"></script>
+    <script src="scripts/controllers/setup/analytics/temperatureDetectionController.js"></script>
+    <script src="scripts/controllers/setup/analytics/tamperDetectionController.js"></script>
+    <script src="scripts/controllers/setup/analytics/defocusDetectionController.js"></script>
+    <script src="scripts/controllers/setup/analytics/faceDetectionController.js"></script>
+    <script src="scripts/controllers/setup/analytics/ivaController.js"></script>
+    <script src="scripts/controllers/setup/analytics/audioDetectionController.js"></script>
+    <script src="scripts/controllers/setup/analytics/soundClassification.js"></script>
+    <script src="scripts/controllers/setup/analytics/autoTrackController.js"></script>
+    
+    <script src="scripts/controllers/setup/network/ddnsController.js"></script>
+    <script src="scripts/controllers/setup/network/snmpController.js"></script>
+    <script src="scripts/controllers/setup/network/autoIpConfigureController.js"></script>
+    <script src="scripts/controllers/setup/network/8021xController.js"></script>
+    <script src="scripts/controllers/setup/network/sslController.js"></script>
+    <script src="scripts/controllers/setup/network/ipfiltering.js"></script>
+    <script src="scripts/controllers/setup/network/qos.js"></script>
+    <script src="scripts/controllers/setup/ptz/presetCtrl.js"></script>
+    <script src="scripts/controllers/setup/ptz/presetZoomCtrl.js"></script>
+    <script src="scripts/controllers/setup/ptz/ptzInfoSetupCtrl.js"></script>
+    <script src="scripts/controllers/setup/ptz/sequenceCtrl.js"></script>
+    <script src="scripts/controllers/setup/ptz/ptLimitCtrl.js"></script>
+    <script src="scripts/controllers/setup/ptz/autoTrackCtrl.js"></script>
+    <script src="scripts/controllers/setup/system/productinfo.js"></script>
+    <script src="scripts/controllers/setup/system/upgradeReboot.js"></script>
+    <script src="scripts/controllers/setup/system/logCtrl.js"></script>
+    <script src="scripts/controllers/setup/openplatform/opensdkController.js"></script>
+    <script src="scripts/controllers/setup/video&audio/videoController.js"></script>
+    <script src="scripts/controllers/setup/video&audio/dewarpSetupCtrl.js"></script>
+    <script src="scripts/controllers/setup/video&audio/audioController.js"></script>
+    <script src="scripts/controllers/setup/video&audio/cameraSetupCtrl.js"></script>
+    <script src="scripts/controllers/setup/video&audio/dnScheduleController.js"></script>
+    <script src="scripts/controllers/setup/video&audio/imgPresetScheduleCtrl.js"></script>
+    <script src="scripts/controllers/setup/video&audio/smartCodecCtrl.js"></script>
+    <script src="scripts/controllers/setup/video&audio/simpleFocusCtrl.js"></script>
+    <script src="scripts/controllers/setup/video&audio/wisestream.js"></script>
+    <script src="scripts/controllers/setup/video&audio/externalPTZController.js"></script>
+    <script src="scripts/controllers/setup/video&audio/imageAlign.js"></script>
+    <script src="scripts/controllers/setup/video&audio/dptzSetupCtrl.js"></script>
+
+    <script src="scripts/services/common/sketchbookService.js"></script>
+    <script src="scripts/services/common/connection.js"></script>
+    <script src="scripts/services/common/eventRuleService.js"></script>
+    <script src="scripts/services/DzoomPTZ/digitalZoomService.js"></script>
+    <script src="scripts/services/DzoomPTZ/pixelCounterService.js"></script>
+    
+    <script src="scripts/utils/sketchManager.js"></script> 
+
+    <script src="scripts/controllers/setup/common/alarmScheduleController.js"></script>
+    <script src="scripts/controllers/setup/common/modalInstanceController.js"></script>
+    <script src="scripts/controllers/setup/common/handoverAddCameraCtrl.js"></script>
+    <script src="scripts/controllers/setup/common/recordScheduleController.js"></script>
+    <script src="scripts/controllers/setup/common/confirmMessageCtrl.js"></script>
+    <script src="scripts/controllers/setup/common/ptzPresetController.js"></script>
+
+    <script src="scripts/controllers/setup/basic/modal/ModalInstanceVideoProfileInfoCtrl.js"></script>
+    <script src="scripts/controllers/setup/event/modal/ModalInstanceVideoSetupInfoCtrl.js"></script>
+    <script src="scripts/controllers/setup/video&audio/modal/ModalInstanceEventSetupInfoCtrl.js"></script>
+    <script src="scripts/controllers/setup/event/modal/ModalInstanceStorageInfoCtrl.js"></script>
+
+    <script src="scripts/controllers/livePlayback/modalInstance/modalInstnceCropCtrl.js"></script>
+    <script src="scripts/directives/sketchbook.js"></script>
+    <script src="scripts/directives/scheduler.js"></script>
+    <script src="scripts/directives/eventActionSetup.js"></script>
+    <script src="scripts/directives/playbackPage.js"></script>
+    <script src="scripts/directives/dateControl.js"></script>
+    <script src="scripts/directives/playbackDatepicker.js"></script>
+    <script src="scripts/directives/playbackEvent.js"></script>
+    <script src="scripts/directives/playbackBackup.js"></script>
+    <script src="scripts/directives/liveChart.js"></script>
+    <script src="scripts/directives/liveSlider.js"></script>
+    <script src="scripts/directives/channelPlayer.js"></script>
+    <script src="scripts/models/setup/video&audio/dewarpSetupModel.js"></script>
+    <script src="scripts/directives/miFullCamera.js"></script>
+    <script src="scripts/directives/overlayCanvas.js"></script>
+
+    <script src="scripts/directives/setup/ptzControl.js"></script>
+    <script src="scripts/directives/setup/ptrzControl.js"></script>
+    <script src="scripts/directives/setup/wn5AddSpinButton.js"></script>
+    <script src="scripts/directives/setup/peoplecounting/pcConditionsDateForm.js"></script>
+    <script src="scripts/directives/setup/peoplecounting/pcSetupReport.js"></script>
+    <script src="scripts/directives/setup/peoplecounting/pcCameraManagement.js"></script>
+
+    <script src="scripts/controllers/setup/peoplecounting/pcStatisticsSetupCtrl.js"></script>
+    <script src="scripts/controllers/setup/peoplecounting/pcSetupCtrl.js"></script>
+
+    <script src="scripts/controllers/setup/queue/qmStatisticsSetupCtrl.js"></script>
+    <script src="scripts/controllers/setup/queue/qmSetupCtrl.js"></script>
+
+    <script src="scripts/controllers/setup/peoplecounting/modals/alert_modal_ctrl.js"></script>
+    <script src="scripts/controllers/setup/peoplecounting/modals/confirm_modal_ctrl.js"></script>
+    <script src="scripts/controllers/setup/peoplecounting/modals/report_modal_ctrl.js"></script>
+    <script src="scripts/controllers/setup/peoplecounting/modals/add_slave_modal_ctrl.js"></script>
+
+    <script src="scripts/services/setup/peoplecounting/pcModalService.js"></script>
+    <script src="scripts/services/setup/peoplecounting/pcSetupService.js"></script>
+
+    <script src="scripts/models/setup/peoplecounting/pcSetupModel.js"></script>
+    <script src="scripts/models/setup/peoplecounting/directives/pcSetupReportModel.js"></script>
+    <script src="scripts/models/setup/peoplecounting/directives/pcConditionsDateFormModel.js"></script>
+    <script src="scripts/models/setup/peoplecounting/directives/pcCameraManagementModel.js"></script>
+    
+    <script src="scripts/models/setup/queue/qmModel.js"></script>
+
+    <script src="scripts/models/setup/heatmap/hmSetupModel.js"></script>
+    <script src="scripts/models/setup/heatmap/hmStatisticsModel.js"></script>
+    
+    <script src="scripts/controllers/setup/heatmap/hmStatisticsCtrl.js"></script>
+    <script src="scripts/controllers/setup/heatmap/hmSetupCtrl.js"></script>
+    <script src="scripts/controllers/setup/heatmap/modals/hm_report_modal_ctrl.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- build:js scripts/online_help.js -->
+    <script src="scripts/controllers/help/onlineHelpCtrl.js"></script>   
+    <!-- endbuild -->
+
+    <!-- build:js scripts/init.js -->
+    <script src="base/scripts/init/detecter.js"></script>
+    <script src="base/scripts/init/init.js"></script>
+    <!-- endbuild -->
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+@media-min-width1 : 760px;
+@media-min-multiply1 : 1.3;
+@mobile-portrait:    ~"only screen and (orientation : portrait)";
+
+.btn {
+  border-radius: 0;
+}
+
+.tui {
+  vertical-align: baseline;
+}
+
+//Layout 정렬 Class Start
+.vertical-middle {
+  position: absolute;
+  top: 43%;
+  .translate(-0,-50%);
+  @media(max-width: 700px) {
+    top: 40%;
+  }
+}
+
+.middle-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  .translate(-50%,-50%);
+}
+
+.horizon-center {
+  position: absolute;
+  left: 51%;
+  .translate(-50%);
+}
+//Layout 정렬 Class End
+
+.text-outline {
+  color: white;
+  .text-shadow("-1px -1px 0 #666, 1px -1px 0 #666, -1px 1px 0 #666, 1px 1px 0 #666");
+}
+
+#mi-full-camera{
+  z-index: 2000;
+  background-color: black;
+
+  .mi-close-btn{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-family: "Malgun Gothic";
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: white;
+    text-shadow: 0px 0px 3px rgba(0,0,0,.35);
+    font-size: 30px;
+    font-weight: bold;
+  }
+}

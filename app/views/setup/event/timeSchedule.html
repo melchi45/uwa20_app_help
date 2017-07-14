@@ -1,0 +1,72 @@
+<div class="wrapper wrapper-content" ng-if='pageLoaded'>
+    <form name="timerForm" method="get" class="form-horizontal" novalidate> 
+        <wn5-setup-main-title
+            data-title="lang_menu_timeschedule">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_timerSetup' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article form-group">
+                <div class="wn5-setup-section-article-heading">
+                    {{ 'lang_timerSetup' | translate }}
+                </div>
+                <div class="wn5-setup-section-article-content">
+                    <input type="checkbox" name="Enable" ng-model="$parent.Timer.Enable">
+                    <label>{{ 'lang_enable' | translate }}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_transferInterval' | translate }}</h3>
+            </div>
+
+            <div class="wn5-setup-section-article form-group">
+                <div class="wn5-setup-section-article-heading">{{ 'lang_oneImagePer' | translate }}</div>
+                <div class="wn5-setup-section-article-content">
+                    <div class="wn5-setup-preview-table-col-2" style="width: 70px;">
+                        <select class="form-control" ng-model="Timer.ScheduleInterval" ng-options="Interval for Interval in ScheduleIntervalOptions">
+                        </select>
+                    </div>
+                    <div class="wn5-setup-preview-table-col-6 col-margin-left">
+                        <select class="form-control" ng-model="Timer.ScheduleIntervalUnit">
+                            <option ng-selected="Timer.ScheduleIntervalUnit == Unit" value={{Unit}} ng-repeat="Unit in ScheduleIntervalUnits">
+                                {{getTranslatedOption(Unit)}}
+                            </option>
+                        </select>                                                                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <event-action-setup></event-action-setup>
+        
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_activation_time' | translate }}</h3>
+            </div>
+
+            <div class="wn5-setup-section-article form-group">
+                <div class="wn5-setup-section-article-content">
+                    <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
+                        {{getTranslatedOption(Activate)}}
+                        <input type="radio" class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate">
+                    </div>
+                </div>                            
+            </div>
+        </div>
+
+        <scheduler></scheduler>
+        <hr class="wn5-setup-hr">
+
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view(0)">
+        </wn5-setup-common-button>
+    </form>
+</div>

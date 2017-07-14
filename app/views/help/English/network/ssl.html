@@ -1,0 +1,72 @@
+﻿<h1 class="wn5-setup-main-title">HTTPS</h1>
+<div class="wn5-setup-section">
+	<p>You can select a secure connection system or install a public certificate. When you complete the setting, click the [Apply] button at the bottom of the page.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>Secure connection system</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>The secure connection system is selected according to the service environment in consideration of the security level. HTTPS (HyperText Transfer Protocol over Secure Socket Layer) exchanges data through the encryption and decryption of the user&apos;s page request at the SSL sub layer below the hypertext transfer protocol layer. Therefore, it is considered to be more secure than HTTP mode. You can select whether a unique or public certificate is used for secure connection in HTTPS mode.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>HTTP (Do not use a secure connection)  </h3>
+		    <p>Select when sending data without encryption</p>
+	    </div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>HTTPS (Secure connection mode using a unique certificate)</h3>
+		    <p>Establishes a secure connection by using a unique certificate provided by the camera. When you select <strong class="UI">[HTTPS (Secure connection mode using a unique certificate)]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page, a secure connection will be made in HTTPS mode.</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>HTTPS (Secure connection mode using the public certificate)</h3>
+		    <p>Establishes a secure connection using the public certificate. You can select this after installing the public certificate. When you select <strong class="UI">[HTTPS (Secure connection mode using the public certificate)]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page, a secure connection will be made in HTTPS mode.</p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+<div class="wn5-setup-section-heading">
+	<h2>Install a public certificate</h2>
+</div>
+<div class="wn5-setup-section-article">
+	<div class="wn5-setup-section-article-content">
+		<p>This is activated when either <strong class="UI">[HTTP (Do not use a secure connection)]</strong> or <strong class="UI">[HTTPS (Secure connection mode using a unique certificate)]</strong> is selected; you can register or delete a certificate.</p>
+		
+		<ul>
+			<li><strong class="UI">Name for the certificate</strong>: Enter the name of the certificate to install.</li>
+			<li><strong class="UI">Certificate file</strong>: Select the path of the certificate to install.  </li>
+			<li><strong class="UI">Key file</strong>: Select the path of the key file to install.</li>
+		</ul>
+		
+		
+		<div class="wn5-online-help-action">
+		<h4><span class="tui tui-wn5-help-warning"></span>Installing a public certificate</h4>
+		<ol>
+			<li>Select either <strong class="UI">[HTTP (Do not use a secure connection)]</strong> or <strong class="UI">[HTTPS (Secure connection mode using a unique certificate)]</strong>.</li>
+			<li>Enter the name of the certificate to install in <strong class="UI">[Name for the certificate]</strong>. </li>
+			<li>Click the <strong class="UI">[...]</strong> button in <strong class="UI">[Certificate file]</strong>, select a certificate file from the open window and click the <strong class="UI">[Open]</strong> button.</li>
+			<li>Click the <strong class="UI">[...]</strong> button in Key file, select a key file from the open window and click the <strong class="UI">[Open]</strong> button.</li>
+			<li>Click the <strong class="UI">[Install]</strong> button. Installation of the certificate is complete.</li>
+		</ol>
+	</div>
+
+	<div class="wn5-online-help-action">
+		<h4><span class="tui tui-wn5-help-warning"></span>Deleting a public certificate</h4>
+		<p>Connect to the camera at http://&lt;Camera IP address&gt; and click the <strong class="UI">[Delete]</strong> button. </p>
+	</div>
+
+	<div class="wn5-online-help-info">
+		<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+		<ul>
+			<li>To connect to the camera using HTTPS mode, https://&lt;Camera IP address&gt; should be entered for the IP address of the camera.</li>
+			<li>A public certificate cannot be deleted in HTTPS mode.</li>
+		</ul>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">

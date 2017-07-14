@@ -1,0 +1,36 @@
+.mixin-text-field(@bg-type){
+  @theme-name: "theme-@{bg-type}-text-fields";
+
+  @normal: "@{theme-name}-normal-input";
+  @normal-line: "@{normal}-line";
+  @normal-text: "@{normal}-text";
+  @normal-bg: "@{normal}-bg";
+
+  @focus: "@{theme-name}-focus";
+  @focus-line: "@{focus}-line";
+  @focus-text: "@{focus}-text";
+  @focus-bg: "@{focus}-bg";
+
+  @disabled: "@{theme-name}-disabled";
+  @disabled-line: "@{disabled}-line";
+  @disabled-text: "@{disabled}-text";
+  @disabled-bg: "@{disabled}-bg";
+
+  border: 1px solid @@normal-line !important;
+  color: @@normal-text !important;
+  background-color: @@normal-bg !important;
+
+  &:not([readonly]):focus {
+    border-color: @@focus-line !important;
+    color: @@focus-text !important;
+    background-color: @@focus-bg !important;      
+  }
+
+  &[disabled],
+  &[readonly]:not(.not-readonly-style),
+  &[readonly]:not(.not-readonly-style):focus {
+    border-color: @@disabled-line !important;
+    color: @@disabled-text !important;
+    background-color: @@disabled-bg !important;  
+  }
+}

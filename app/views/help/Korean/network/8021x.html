@@ -1,0 +1,79 @@
+﻿<h1 class="wn5-setup-main-title">802.1x</h1>
+<div class="wn5-setup-section">
+	<p>네트워크 연결 시 802.1x 프로토콜 사용 여부를 선택하고 인증서를 설치할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h3 >IEEE 802.1x 설정</h3>
+	</div>
+
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+		    <h3>IEEE 802.1x </h3>
+		    <p>네트워크 연결 시 IEEE 802.1x 프로토콜을 사용하려면 <strong class="UI">[사용]</strong>을 선택합니다. IEEE 802.1x는 IEEE 802.1이라는 네트워크 프로토콜 그룹의 일부분으로 포트 기반의 네트워크 접근 제어(port-based Network Access Control &ndash; PNAC)에 관한 IEEE의 표준입니다. 주로 무선랜(WIFI) 환경에서 보안을 강화하기 위해 사용됩니다.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>EAP 형식 </h3>
+		    <p>EAP (Extensible Authentication Protocol)는 무선 네트워크와 점대점 통신 규약(Point to Point Protocol)에서 규정된 인증 방식으로 확장이 용이하도록 고안된 프로토콜입니다. LEAP 방식이 보안에 취약한 인증 방식이므로 EAP-TLS를 사용할 수 없는 환경에서만 사용하기를 권장합니다.
+			</p>
+		    <ul>
+		        <li><strong class="UI">EAP-TLS</strong>: EAP-TLS (Transport Layer Security)는 서버와 클라이언트의 인증서를 필요로 하는 상호 인증을 수행하며, 연결된 후의 보안을 생각해 동적 WEP 키를 사용합니다.
+						</li>
+		        <li><strong class="UI">LEAP</strong>: LEAP (Lightweight Extensible Authentication Protocol)는 인증서를 요구하지 않고, 동적 WEP 키만 사용하기 때문에 반드시 강력한 암호를 사용해야 합니다.  </li>
+		    </ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>EAPOL 버전 </h3>
+		    <p>네트워크 스위치에서 사용되는 <strong class="UI">[EAPOL]</strong> (EAP over LANs)의 버전을 <strong class="UI">[1]</strong> 또는 <strong class="UI">[2]</strong> 중에 선택합니다.</p>
+	    </div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>ID</h3>
+		    <p><strong class="UI">[EAP-TLS]</strong>에서는 클라이언트 인증서 ID를 입력하고, <strong class="UI">[LEAP]</strong>에서는 사용자 ID를 입력합니다.</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>비밀번호</h3>
+		    <p><strong class="UI">[EAP-TLS]</strong>에서는 클라이언트 사설 키 비밀번호를 입력하고, <strong class="UI">[LEAP]</strong>에서는 사용자 비밀번호를 입력합니다. <strong class="UI">[EAP-TLS]</strong>에서 암호화되지 않은 키 파일을 사용하는 경우에는 입력하지 않아도 됩니다. </p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+			<ul>
+				<li>연결된 네트워크 장비가 802.1x를 지원하지 않을 경우에 802.1x를 <strong class="UI">[사용]</strong>으로 설정을 하더라도 정상적으로 작동하지 않을 수 있습니다.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h3 >인증서</h3>
+	</div>
+	<div class="wn5-setup-section-article">
+
+		<div class="wn5-setup-section-article-content">
+			<p>인증서는 <strong class="UI">[EAP-TLS]</strong>를 사용하는 경우에만 필요합니다. 해당하는 인증서와 키를 설치하거나 삭제할 수 있습니다.</p>
+			<ul>
+				<li><strong class="UI">공인 인증서</strong>: 공개 키가 포함된 공인 인증서인 경우에 선택합니다.</li>
+				<li><strong class="UI">클라이언트 인증서</strong>: 클라이언트 인증키가 포함된 공인 인증서인 경우에 선택합니다.</li>
+				<li><strong class="UI">클라이언트 사설 키</strong>: 클라이언트 사설 키가 포함된 공인 인증서인 경우에 선택합니다. </li>
+			</ul>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>인증서 설치하기</h4>
+			<ol>
+				<li><strong class="UI">[...]</strong> 버튼을 클릭하여 인증서 또는 키를 선택한 후 <strong class="UI">[열기]</strong> 버튼을 클릭합니다.</li>
+				<li><strong class="UI">[설치]</strong> 버튼을 클릭합니다. 인증서의 설치가 완료되면 ‘설치됨’이라는 메시지가 표시됩니다. </li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>인증서 삭제하기</h4>
+			<p>설치된 인증서 또는 설치된 키 뒤에 있는 <strong class="UI">[삭제]</strong> 버튼을 클릭합니다. 인증서 또는 키가 삭제되면 ‘사용 불가’라는 메시지가 표시됩니다.</p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">

@@ -1,0 +1,159 @@
+<div id="externalptzpage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <div class="row">
+        <wn5-setup-main-title
+            data-title="{{getTitle}}">
+        </wn5-setup-main-title>
+        <hr class="wn5-setup-hr">
+        
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form name="externalPTZForm" method="get" class="form-horizontal" novalidate>
+                        <fieldset class="ptz-control_external-fieldset">
+                            <div class="preset-setup-fieldset">
+                                <div class="wn5-setup-section" style="margin-top: 10px;">
+                                    <sketchbook 
+                                        class="wn5-setup-preview-video"
+                                        sketchinfo='sketchinfo' 
+                                        videoinfo='videoinfo'>    
+                                    </sketchbook>
+                                    
+                                    <!-- PTZ Control -->
+                                    <div class="ptz-control_box">
+                                        <ptz-control ptzinfo='ptzinfo'></ptz-control>
+                                    </div>
+                                    <!-- //PTZ Control End -->
+                                </div>
+                            </div>
+                                
+                            <div class="wn5-setup-section" ng-show="ExternalPTZModel">
+                                <hr class="wn5-setup-hr">
+                                <div class="wn5-setup-section-heading">
+                                    <h3>{{ 'lang_preset' | translate}}</h3>
+                                </div>
+                                <div class="wn5-setup-section-article">
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-content wn5-setup-section-article-heading-offset">
+                                            <div class="wn5-setup-preview-table-col-6 text-right">
+                                                <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="false" style="text-align:left" ng-click="PresetControl()">{{ 'lang_go' | translate }}</button>
+                                                <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="false" style="text-align:left" ng-click="PresetAdd()">{{ 'lang_add' | translate }}</button>
+                                                <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="false" style="text-align:left" ng-click="PresetRemove()">{{ 'lang_remove' | translate }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-heading">
+                                            {{ 'lang_number' | translate }}
+                                        </div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="CurrentPreset">
+                                                <option ng-selected="CurrentPreset == PresetNum" value={{PresetNum}} ng-repeat="PresetNum in PTZPresetOptionsList">{{PresetNum}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_name' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    name="PresetName"
+                                                    maxlength="12"
+                                                    ng-model="PresetName"
+                                                    required ng-pattern-restrict="{{AlphaNumericStr}}"
+                                                    ng-maxlength="PresetNameMaxLen"
+                                                    maxlength="{{PresetNameMaxLen}}"
+                                            >
+                                        </div>
+                                        <div role="alert">
+                                            <span class="error col-sm-2 control-label" ng-show="externalPTZForm.PresetName.$error.maxlength">Too long!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wn5-setup-section">
+                                <hr class="wn5-setup-hr">
+                                <div class="wn5-setup-section-heading">
+                                    <h3>{{ getSerialSetup | translate}}</h3>
+                                </div>
+                                <div class="wn5-setup-section-article">
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_protocol' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="PTZProtocol[SelectedChannel].Protocol">
+                                                <option ng-selected="PTZProtocol[SelectedChannel].Protocol == Protocol" value={{Protocol}} ng-repeat="Protocol in PTZProtocolOptions">{{Protocol}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_cameraID' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select
+                                                class="form-control"
+                                                ng-disabled="CameraIDOptions.Max === 1"
+                                                ng-options="cameraId for cameraId in CameraIDOptionsList"
+                                                ng-model="PTZProtocol[SelectedChannel].CameraID">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_baudRate' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Serial.BaudRate">
+                                                <option ng-selected="Serial.BaudRate == BaudRate" value={{BaudRate}} ng-repeat="BaudRate in BaudRateOptions">{{BaudRate}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="PTZModel">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_termination' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <input type="checkbox" name="Enable" ng-model="Serial.SignalTermination">
+                                            {{ 'lang_enable' | translate }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="ExternalPTZModel">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_dataBit' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Serial.DataBits">
+                                                <option ng-selected="Serial.DataBits == DataBits" value={{DataBits}} ng-repeat="DataBits in DataBitOptions">{{DataBits}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="ExternalPTZModel">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_parityBit' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Serial.ParityBit">
+                                                <option ng-selected="Serial.ParityBit == ParityBit" value={{ParityBit}} ng-repeat="ParityBit in ParityBitOptions">{{ParityBit}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="ExternalPTZModel">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_stopBit' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Serial.StopBits">
+                                                <option ng-selected="Serial.StopBits == StopBits" value={{StopBits}} ng-repeat="StopBits in StopBitOptions">{{StopBits}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="ExternalPTZModel">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_onvifFocusMove' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="FocusControl">
+                                                <option ng-selected="FocusControl == FcsControl" value={{FcsControl}} ng-repeat="FcsControl in ONVIFFocusControlOptions">{{getTranslation(FcsControl)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="wn5-setup-hr">
+                            <div class="confirm-button-area">
+                                <button type="button" class="btn cm-btn-point" ng-click="submit()">{{ 'lang_apply' | translate }}</button>
+                                <button type="button" class="btn cm-btn-dark" ng-click="view()">{{ 'lang_cancel' | translate }}</button>
+                            </div>
+                         </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

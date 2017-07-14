@@ -1,0 +1,77 @@
+<div id="pb-backup-section">
+
+	<div class="pb-block cm-m0-10" id="backup-date">
+		<input 
+			type="text" 
+			disabled="disabled"
+			class="cm-textbox"
+			ng-model="currentDate">
+	</div>
+
+	<div class="pb-block cm-m0-10 pb-timeboxes start-time">
+        <input 
+        	type="text" 
+        	maxlength="2" 
+	        ng-pattern-restrict="{{control.timeValidation.pattern.hour}}"
+	        ng-blur="control.timeValidation.blur($event)"
+	        ng-focus="control.timeValidation.focus($event)"
+        	class="cm-textbox cm-text-field" 
+            data-ng-disabled='blockTimeInput'
+        	ng-model="startTime.hours">
+        :
+        <input 
+        	type="text" 
+        	maxlength="2" 
+	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
+	        ng-blur="control.timeValidation.blur($event)"
+	        ng-focus="control.timeValidation.focus($event)"
+        	class="cm-textbox cm-text-field" 
+            data-ng-disabled='blockTimeInput'
+        	ng-model="startTime.minutes">
+        :
+        <input 
+        	type="text" 
+        	maxlength="2" 
+	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
+	        ng-blur="control.timeValidation.blur($event)"
+	        ng-focus="control.timeValidation.focus($event)"
+        	class="cm-textbox cm-text-field" 
+            data-ng-disabled='blockTimeInput'
+        	ng-model="startTime.seconds">
+    </div>
+
+    <div class="pb-range">~</div>
+
+    <div class="pb-block cm-m0-10 pb-timeboxes end-time">
+        <input 
+        	type="text" 
+        	maxlength="2" 
+	        ng-pattern-restrict="{{control.timeValidation.pattern.hour}}"
+	        ng-blur="control.timeValidation.blur($event)"
+	        ng-focus="control.timeValidation.focus($event)"
+        	class="cm-textbox cm-text-field" 
+            data-ng-disabled='blockTimeInput'
+        	ng-model="endTime.hours">
+        :
+        <input 
+        	type="text" 
+        	maxlength="2" 
+	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
+	        ng-blur="control.timeValidation.blur($event)"
+	        ng-focus="control.timeValidation.focus($event)"
+        	class="cm-textbox cm-text-field" 
+            data-ng-disabled='blockTimeInput'
+        	ng-model="endTime.minutes">
+        :      
+        <input 
+        	type="text" 
+        	maxlength="2" 
+	        ng-pattern-restrict="{{control.timeValidation.pattern.minuteSecond}}"
+	        ng-blur="control.timeValidation.blur($event)"
+	        ng-focus="control.timeValidation.focus($event)"
+        	class="cm-textbox cm-text-field" 
+            data-ng-disabled='blockTimeInput'
+        	ng-model="endTime.seconds">
+    </div>
+
+</div>

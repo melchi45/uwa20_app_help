@@ -1,0 +1,105 @@
+#setup-facedetection {
+  .setup-facedetection-color-wrapper {
+    width: 100%;
+    max-width: 300px;
+    float: left;
+    padding-bottom: 10px;
+  }
+  .setup-facedetection-color-box {
+    @size: 42px;
+    @opacity: 30%;
+    @active-border: 4px;
+    @color-red: rgb(241, 24, 19);
+    @color-orange: rgb(243, 115, 33);
+    @color-yellow: rgb(255, 211, 0);
+    @color-green:  rgb(37, 225, 18);
+    @color-blue: rgb(0, 145, 255);
+    @color-navy: rgb(6, 67, 114);
+    @color-violet: rgb(106, 113, 229);
+    @color-black:  rgb(0, 0, 0);
+    @color-white:  rgb(255, 255, 255);
+    @color-white-border: rgb(216, 216, 216);
+    @check-color-all:  rgb(255, 255, 255);
+    @check-color-white:  rgb(0, 0, 0);
+
+    width: @size;
+    height: @size;
+    line-height: 46px; /* Check 아이콘 바꿀 예정(임시) */
+    border-radius:50%;
+    float: left;
+    margin-right: 15px;
+    margin-top: 20px;
+    cursor: pointer;
+    text-align: center;
+
+    i{
+      font-size: 18px; /* Check 아이콘 바꿀 예정(임시) */
+      font-weight: bold;
+      color: @check-color-all;
+      display: none;
+    }
+
+    &.active i{
+      display: inline-block;
+    }
+
+    &[data-color-name="Red"] {
+      background-color: @color-red;
+      /*&:hover, &.active {
+        box-shadow: 0 0 0 @active-border fade(@color-red, @opacity);
+      }*/
+    }
+    &[data-color-name="Orange"] {
+      background-color: @color-orange;
+      /*&:hover, &.active {
+        box-shadow: 0 0 0 @active-border fade(@color-orange, @opacity);
+      }*/
+    }
+    &[data-color-name="Yellow"] {
+      background-color: @color-yellow;
+      /*&:hover, &.active {
+        box-shadow: 0 0 0 @active-border fade(@color-yellow, @opacity);
+      }*/
+    }
+    &[data-color-name="Green"] {
+      background-color: @color-green;
+      /*&:hover, &.active {
+        box-shadow: 0 0 0 @active-border fade(@color-green, @opacity);
+      }*/
+    }
+    &[data-color-name="Blue"] {
+      background-color: @color-blue;
+      /*&:hover, &.active {
+        box-shadow: 0 0 0 @active-border fade(@color-blue, @opacity);
+      }*/
+    }
+    &[data-color-name="Navy"] {
+      background-color: @color-navy;
+      /*&:hover, &.active {
+        box-shadow: 0 0 0 @active-border fade(@color-navy, @opacity);
+      }*/
+    }
+    &[data-color-name="Violet"] {
+      background-color: @color-violet;
+      /*&:hover, &.active {
+        box-shadow: 0 0 0 @active-border fade(@color-violet, @opacity);
+      }*/
+    }
+    &[data-color-name="Black"] {
+      background-color: @color-black;
+      /*&:hover, &.active {
+        box-shadow: 0 0 0 @active-border fade(@color-black, @opacity);
+      }*/
+    }
+    &[data-color-name="White"] {
+      background-color: @color-white;
+      border: 1px solid @color-white-border;
+      /*&:hover, &.active {
+        box-shadow: 0 0 0 @active-border fade(@color-white, @opacity);
+      }*/
+      i{
+        color: @check-color-white;
+      }
+    }
+  }
+}

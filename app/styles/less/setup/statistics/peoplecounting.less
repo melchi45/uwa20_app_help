@@ -1,0 +1,407 @@
+/* People Counting 
+---------------------------------------*/
+.nvd3() {
+	display: block;
+	height: 100%;
+}
+
+#pc-realtime {
+	position: relative;
+	margin: 0;
+	padding-top: 10px;
+	.section();
+}
+
+#pc-realtime-live {
+	overflow: visible;
+	width: 100%;
+	padding: 0 @setup-responsive-ui-content-padding-left;
+
+	kind_stream,
+	kind_stream > div {
+		display: block;
+		overflow: hidden !important;
+	}
+
+	.kind-stream-canvas {
+		width: 100%;
+		height: 100%;
+	}
+
+	> p {
+		margin-top: 20px;
+	}
+}
+
+#pc-setup-counting {
+	.pc-n-hm-table {
+		th, td {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+	}
+
+	.pc-n-hm-heading-lv2 {
+		line-height: 18px;
+		float: left;
+	}
+
+	.pc-setup-counting-table {
+		width: 640px + @setup-responsive-ui-content-padding-left * 2;
+		padding: 0 @setup-responsive-ui-content-padding-left;
+	}
+}
+
+.pc-setup-counting-table {
+	@media(max-width: @setup-mobile-max-width){
+		width: 100%;
+	}
+}
+
+#pc-realtime-graph,
+[id^="qm-realtime-graph-"] {
+	.section();
+	margin-bottom: 10px;
+
+	> figcaption {
+		margin-bottom: 10px;
+	}
+
+	.pc-realtime-graph-today,
+	.pc-realtime-graph-week {
+		position: relative;
+		width: 50%;
+		height: 330px;
+		padding-right: 10px;
+
+		@media(max-width: @setup-mobile-max-width){
+			width: 100%;
+		}
+	}
+
+	nvd3 {
+		.nvd3();
+	}
+
+	.pc-realtime-graph-today {
+		float: left;
+	}
+
+	.pc-realtime-graph-week {
+		float: right;
+	}
+}
+
+#pc-setup-collapse-buttons {
+	.btn {
+		width: 50%;
+		float: left;
+	}
+}
+
+#pc-setup-collapse-calibration {
+	> div {
+		position: relative;
+		width: calc(~"100% - 116px");
+		height: 99px;
+		padding-left: 20px;
+		float: left;
+	}
+
+	.pc-setup-collapse-calibration-slider {
+		position: relative;
+
+		i {
+			position: absolute;
+			top: 5px;
+		}
+	}
+
+	.pc-setup-collapse-calibration-cameraheight {
+		padding: 10px 0;
+	}
+}
+
+#pc-setup-collapse-calibration-icon {
+	width: 116px;
+	height: 99px;
+	float: left;
+	background-image:url("@{images}/setup/calibration_icon.png");
+	background-repeat: no-repeat;
+}
+
+#pc-setup-counting-rule {
+	.pc-n-hm-heading-lv2 {
+		line-height: 29px;
+		float: left;
+	}
+
+	input[type="text"] {
+		margin-bottom: 0 !important;
+	}
+}
+
+#pc-setup-report {
+	.pc-n-hm-grid-2,
+	.pc-n-hm-grid-4 {
+		padding-left: 15px;
+
+		@media(max-width: @setup-mobile-max-width){
+			width: 35%;
+		}
+	}
+}
+
+#pc-setup-report-schedule {
+	overflow: hidden;
+
+	.pc-setup-report-schedule-txt {
+		padding-left: 15px;
+		float: left;
+	}
+
+	.pc-setup-report-schedule-hour {
+		@margin-top: 5px;
+		@media(max-width: @setup-mobile-max-width){
+			clear: left;
+			margin-top: @margin-top;
+
+			~div,
+			~span {
+				margin-top: @margin-top;
+			}
+		}
+	}
+}
+
+#pc-results {
+	.section();
+	margin: 10px 0;
+
+	.pc-results-graph {
+		position: relative;
+		width: 100%;
+		height: 400px;
+		margin-bottom: 20px;
+
+		nvd3 {
+			.nvd3();
+		}
+	}
+
+	figcaption {
+		margin-bottom: 10px;
+	}
+
+	.pc-n-hm-table {
+		th, td {
+			padding: 10px;
+		}
+	}
+
+	.table-wrapper {
+		padding: 0 !important;
+	}
+
+	@padding-size: 70px;
+	.pc-results-table-rule {
+		padding-left: @padding-size !important;
+		padding-right: @padding-size !important;
+	}
+}
+
+/* Common */
+.pc-btn-background-none {
+	background: none;
+	border: 0;
+	font-size: 20px;
+}
+
+.pc-graph-fix-tooltip .nvtooltip {
+	top: 60px !important;
+}
+
+/* Statistics Real time Start 
+------------------------------------------ */
+.pc-realtime-video {
+	position: relative;
+	.clearfix();
+}
+
+#pc-realtime-calibration,
+#pc-realtime-live-svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#pc-realtime-calibration {
+	z-index: 10;
+	width: auto;
+	height: auto;
+}
+
+#pc-realtime-live-svg {
+overflow: visible;
+	z-index: 9;
+}
+
+.pc-statistics-dialog {
+	padding: 20px;
+	.section();
+}
+
+.pc-statistics-dialog-title {
+	font-size: @setup-body-l;
+	color: @theme-color-point-100;
+	float: left;
+
+	.tui {
+		font-size: 18px;
+		margin-right: 2px;
+	}
+
+	@media(max-width: @setup-mobile-max-width){
+		font-size: @setup-body-m;
+	}
+}
+
+.pc-conditions-buttons {
+	.section();
+	padding-top: 20px;
+}
+
+.pc-conditions-buttons button {
+	width: 20%;
+	min-width: 100px;
+}
+/* Statistics Real time End 
+------------------------------------------ */
+
+/* Statistics Conditions Start
+------------------------------------------ */
+.pc-conditions {
+	margin-top: 5px;
+	.section();
+
+	.pc-conditions-rule {
+		margin-top: 10px !important;
+	}
+}
+
+.pc-calender-icon {
+	position: relative;
+	width: 115px;
+	float: left;
+
+	.pc-calender-button {
+		position: absolute;
+		left: 5px;
+		top: 0;
+		background: none;
+		border: 0;
+		outline: 0;
+		padding: 3px 0 0 3px;
+		height: 30px;
+	}
+
+	.pc-calender-button > span {
+		font-size: 18px;
+	}
+
+	.form-control {
+		text-align: right;
+	}
+
+	@media(max-width: @setup-mobile-max-width){
+		width: 105px;
+		margin-top: 5px;
+	}
+}
+
+.pc-swing-dash {
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	float: left;
+	font-size: 16px;
+
+	@media(max-width: @setup-mobile-max-width){
+		width: 20px;
+		margin-top: 5px;
+	}
+}
+
+.pc-calender {
+	position: absolute;
+	z-index: 10;
+	left: -133px;
+	top: 50px;
+	width: 300px;
+	padding: 10px 20px;
+	border: 1px solid @theme-side-tree-menu-line;
+	background-color: @theme-color-white;
+	border-radius: 3px;
+}
+
+.pc-calender-arrow-top {
+	transform: rotate(-90deg);
+	position: absolute;
+	z-index: 100;
+	top: 35px;
+	left: 6px;
+	font-size: 20px;
+}
+
+/* Statistics Conditions End
+------------------------------------------ */
+
+
+/* Setup Counting Start
+------------------------------------------ */
+
+.pc-question-button {
+	background: none;
+	border: 0;
+	font-size: 20px;
+	font-weight: bold;
+}
+/* Setup Counting End
+------------------------------------------ */
+
+/* Setup Collapse Start
+------------------------------------------ */
+
+.pc-setup-collapse-show-rule {
+	margin-bottom: 15px;
+}
+
+.pc-select-large {
+	display: inline;
+	width: 200px;
+}
+.pc-select-small {
+	display: inline;
+	width: 100px;
+}
+
+
+/* Setup Collapse End
+------------------------------------------ */
+
+/* Camera Management Start */
+
+.pc-setup-cameramanagement-slave-use {
+	margin-bottom: 10px;
+	
+	span {
+		margin-left: 5px;
+	}
+}
+
+.pc-setup-cameramanagement-button {
+	margin: 10px 0;
+}
+/* Camera Management End*/
+/* People Counting 
+---------------------------------------*/

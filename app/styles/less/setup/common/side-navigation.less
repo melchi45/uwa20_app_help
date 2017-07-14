@@ -1,0 +1,111 @@
+.nav-hover() {
+  background-color: @theme-side-tree-menu-hover-bg !important;
+  color: @theme-side-tree-menu-hover-text !important;
+  i, span {
+    color: @theme-side-tree-menu-hover-text !important;
+  }
+}
+.side-nav-wrapper {
+  @width-left-padding: 15px;
+  list-style: none;
+  position: absolute;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: @theme-side-tree-menu-background;
+  overflow-y: auto;
+  z-index: 1;
+  border-right: 1px solid @theme-side-tree-menu-line;
+  -webkit-transition: -webkit-transform @animation-timing-function @animation-time-side-nav;
+  -moz-transition: -moz-transform @animation-timing-function @animation-time-side-nav;
+  -ms-transition: -ms-transform @animation-timing-function @animation-time-side-nav;
+  -o-transition: -o-transform @animation-timing-function @animation-time-side-nav;
+  transition: transform @animation-timing-function @animation-time-side-nav;
+  .translate(-100%);
+  width: @width-side-nav;
+  .sid-nav-inner {
+    height: 100%;
+  }
+  nav {
+    height: 100%;
+    #side-menu{
+      margin-top: 50px;
+    }
+    dl, > ul {
+      height: 100%;
+      margin: 0;
+      position: relative;
+      dt, > li {
+        padding-bottom: 7px;
+        a, a:hover {
+          font-weight: 700;
+          font-size: @setup-title-s;
+          color: @theme-color-gray-100;
+          width: 100%;
+          display: block;
+          padding: 10px @setup-tree-1depth-padding-left 10px @setup-tree-1depth-padding-right;
+
+          span {
+            margin-left: @setup-tree-1depth-text-margin-left;
+          }
+          i {
+            color: @theme-color-gray-100;
+            font-size: 17px;
+            vertical-align: text-top;
+          }
+          &.on {
+            .nav-hover()
+          }
+          &.default-cursor {
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nav {
+  &>li {
+    &.active {
+      border-left: 0;
+      
+      &>a {
+        color: @theme-color-point-dark;
+        font-weight: bold;
+
+        i, span {
+          color: @theme-side-tree-menu-normal-text;
+        }
+      }
+    }
+  }
+  li {
+    a {
+      &:hover {
+        .nav-hover();
+      }
+    }
+  }
+  .nav {
+    &.nav-second-level {
+      a {
+        padding-left: 45px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        font-weight: normal !important;
+        font-size: @setup-title-s;
+      }
+      
+    }
+    &.nav-third-level {
+      a {
+        padding-left: 70px !important;
+        font-weight: normal !important;
+      }
+      &.in {
+          height: auto !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,213 @@
+<div ng-show="!isShowPTZControl && showPTZControlBasicDPTZ">
+    {{ 'lang_digital_ptz_profile_setting' | translate }}
+</div>
+<div ng-show="isShowPTZControl">
+
+    <div id="ptz-control" ng-class="ptzControlClass">
+        <div id="ptz-control-zoomonly" class="zoomctrl" ng-show="showZoomFocus">
+            <div class="slider-fields live-slider-field col-xs-3 ptz-control_horizontal-wrap">
+                <h4>{{ 'lang_zoom' | translate }}</h4>
+                <div class="ptz-control_horizontal">
+                    <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item slider-button left-btn" title="{{'lang_zoomOut' | translate}}" ng-mousedown="ptzControlZoom(-50);" ng-mouseup="ptzControlZoom('Stop')" ng-mouseleave="ptzControlZoom('Stop')">
+                        <i class="tui tui-wn5-ptz-minus" ></i>
+                    </button>                                                            
+                    <div class="ptz-control_horizontal-item ptz-control_horizontal-slider" id="ptz-control_slider-horizontal-zoom"></div>
+                    <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item slider-button right-btn" title="{{'lang_zoomIn' | translate}}" ng-mousedown="ptzControlZoom(50);" ng-mouseup="ptzControlZoom('Stop')" ng-mouseleave="ptzControlZoom('Stop')">
+                        <i class="tui tui-wn5-ptz-plus"></i>
+                    </button>
+                </div>
+            </div>  
+            <div class="slider-fields live-slider-field col-xs-3 ptz-control_horizontal-wrap">
+                <h4>{{ 'lang_focus' | translate }}</h4>
+                <div class="ptz-control_horizontal">
+                    <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item item-button" title="{{'lang_near' | translate}}" ng-mousedown="clickPtzFocus('Near')" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
+                        <i class="tui tui-wn5-ptz-near" ></i>
+                    </button>                                                            
+                    <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item item-button" title="{{'lang_far' | translate}}" ng-mousedown="clickPtzFocus('Far');" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
+                        <i class="tui tui-wn5-ptz-far"></i>
+                    </button>
+                    <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="clickPtzFocus('Auto');">
+                        <i class="tui tui-wn5-simple-focus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="ptz-control_left-box" ng-show="showPTZControlBasicDPTZ">
+            <button type="button" class="cm-icon-button-s cm-icon-dark" ng-click="clickDigitalAutoTracking()" title="{{'lang_autotracking' | translate}}">
+                <i ng-class="DATFlag ? 'tui-ch-live-ptz-tracking-auto-on' : 'tui-ch-live-ptz-tracking-auto-off'" class="tui"></i>
+            </button>
+        </div>
+        <!-- DPTZ Left Button -->
+
+
+        <!-- External PTZ Left Button -->
+        <div id="ptz-control_left-box" ng-if="showPTZControlEPTZ">
+            <button type="button" class="cm-icon-button-s cm-icon-dark" title="{{'lang_near' | translate}}" ng-mousedown="clickPtzFocus('Near')" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
+                <i class="tui tui-wn5-ptz-near"></i>
+            </button>
+            <button type="button" class="cm-icon-button-s cm-icon-dark" title="{{'lang_far' | translate}}" ng-mousedown="clickPtzFocus('Far')" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
+                <i class="tui tui-wn5-ptz-far"></i>
+            </button>
+        </div>
+        <!-- External PTZ Left Button -->
+        <div id="ptz-control_left-box" ng-if="showPTZControlFocus">
+            <button type="button" class="cm-icon-button-s cm-icon-dark" title="{{'lang_near' | translate}}" ng-mousedown="clickPtzFocus('Near')" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
+                <i class="tui tui-wn5-ptz-near"></i>
+            </button>
+            <button type="button" class="cm-icon-button-s cm-icon-dark" title="{{'lang_far' | translate}}" ng-mousedown="clickPtzFocus('Far')" ng-mouseup="clickPtzFocus('Stop')" ng-mouseleave="clickPtzFocus('Stop')">
+                <i class="tui tui-wn5-ptz-far"></i>
+            </button>
+            <button ng-show="showPTZControlAT" type="button" ng-click="clickAutoTracking()" class="cm-icon-button-s cm-icon-dark" title="{{'lang_autotracking_on' | translate}}">
+              <span class="sr-only">{{ 'lang_autotracking_on' | translate }}</span>
+              <i class="tui" ng-class="autoTrackingFlag === false ? 'tui-ch-live-ptz-tracking-auto-off' : 'tui-ch-live-ptz-tracking-auto-on active'"></i>
+            </button>
+            <button class="cm-icon-button-s cm-icon-dark ptz-control_horizontal-item item-button" title="{{'lang_autoFocus' | translate}}" ng-mousedown="clickPtzFocus('Auto');">
+                <i class="tui tui-wn5-simple-focus"></i>
+            </button>
+        </div>
+
+        <div id="ptz-control_left-control-box" ng-show="showPTZControlBox">
+            <div id="ptz-control_box">
+                <div id="ptz-control_box-hline"></div>
+                <div id="ptz-control_box-vline"></div>
+
+                <div id="ptz-control_move-btn">
+                    <i class="tui tui-wn5-ptz-handle"></i>
+                </div>
+            </div>
+
+            <div id="ptz-control_slider-box">
+                <button 
+                    class="cm-icon-button-s cm-icon-dark"
+                    title="{{'lang_zoomIn' | translate}}"
+                    ng-mousedown="ptzControlZoom(50);" 
+                    ng-mouseup="ptzControlZoom('Stop')" 
+                    ng-mouseleave="ptzControlZoom('Stop')">
+                    <i class="tui tui-wn5-ptz-plus"></i>
+                </button>
+                <div id="ptz-control_slider"></div>
+                <button
+                    class="cm-icon-button-s cm-icon-dark"
+                    title="{{'lang_zoomOut' | translate}}"
+                    ng-mousedown="ptzControlZoom(-50);" 
+                    ng-mouseup="ptzControlZoom('Stop')" 
+                    ng-mouseleave="ptzControlZoom('Stop')">
+                    <i class="tui tui-wn5-ptz-minus"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <div id="ptz-control_right-box" ng-class="zoomPresetClass">
+            <div id="ptz-control_preset-box" ng-if="showPTZControlPreset" >
+                <button type="button" class="wn5-icon-button-xs btn btn-primary cm-btn-dark" title="{{'lang_setPreset' | translate}}" ng-click="showSetPreset()">
+                    <i class="tui tui-ch-live-ptz-preset"></i>
+                </button>
+                <button type="button" class="wn5-icon-button-xs btn btn-primary cm-btn-dark" title="{{'lang_goHomePosition' | translate}}" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                    <i class="tui tui-ch-live-home"></i>
+                </button>
+                <button type="button" class="wn5-icon-button-xs btn btn-primary cm-btn-dark" title="{{'lang_setHomePosition' | translate}}" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                    <i class="tui tui-setup"></i>
+                </button>
+            </div>
+            <div id="ptz-control_preset-box" ng-if="showPTZControlPresetText" >
+                <button type="button" class="btn btn-primary cm-btn-dark" style="min-width: 110px;" ng-click="showSetPreset()">
+                    {{'lang_setPreset' | translate}}
+                </button>
+                <button type="button" class="btn btn-primary cm-btn-dark" style="min-width: 110px;margin-bottom: 5px;" ng-click="clickHomePosition('Go')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                    {{'lang_goHome' | translate}}
+                </button>
+                <button type="button" class="btn btn-primary cm-btn-dark" style="min-width: 110px;" ng-click="clickHomePosition('Set')" ng-disabled="disablePosition" ng-show="showPTZControlHome">
+                    {{'lang_setHome' | translate}}
+                </button>
+            </div>
+            <div id="ptz-control_at-right" ng-show="showPTZControlAT">
+                <h4>{{ 'lang_nondetectionArea' | translate }}</h4>
+                <button type="button" class="btn btn-primary cm-btn-dark" style="min-width: 110px;" title="{{'lang_delete' | translate}}" ng-click="deleteAutoTracking()">
+                    {{'lang_delete' | translate}}
+                </button>
+                <div id="ptz-control_at-selectable">
+                    <table class="table cm-table-field wn5-setup-table video-setup-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>{{ 'lang_num' | translate }}</th>
+                            <th>{{ 'lang_name' | translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="TrackingArea in TrackingAreas" ng-class="{'wn5-setup-table-active': selectTrackingArea === TrackingArea.TrackingArea }">
+                            <td>
+                                <input
+                                        type="radio"
+                                        name="autotrackingButton"
+                                        ng-model="$parent.selectTrackingArea"
+                                        ng-click="moveAutoTracking()"
+                                        ng-value="TrackingArea.TrackingArea">
+                                </input>
+                            </td>
+                            <td>
+                                {{$index+1}}
+                            </td>
+                            <td>
+                                {{TrackingArea.TrackingArea}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div ng-show="showPTZControlOSD">
+                <button type="button" class="wn5-icon-button-xs btn btn-primary cm-btn-dark" title="{{'lang_setNorth' | translate}}" ng-click="setNorthView()">
+                    <i class="tui tui-wn5-north"></i>
+                </button>
+            </div>
+            <div id="ptz-control_blc-box" ng-show="showPTZControlBLC || showPTZControlHLC" style="margin-left: 20px;">
+                <div id="ptz-control_blc-left">
+                    <h4>{{"lang_blcboxadjust" | translate}}</h4>
+                    <div id="ptz-control_blc-adj">
+                        <button type="button" class="btn btn-primary cm-btn-dark top-up" ng-disabled="(showPTZControlBLC && disablePTZControlBLC) || (showPTZControlHLC && disablePTZControlHLC)" ng-click="blcAreaChange('top','down')">
+                            <i class="tui tui-top"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary cm-btn-dark top-down" ng-disabled="(showPTZControlBLC && disablePTZControlBLC) || (showPTZControlHLC && disablePTZControlHLC)" ng-click="blcAreaChange('top','up')">
+                            <i class="tui tui-down"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary cm-btn-dark left-left" ng-disabled="(showPTZControlBLC && disablePTZControlBLC) || (showPTZControlHLC && disablePTZControlHLC)" ng-click="blcAreaChange('left','left')">
+                            <i class="tui tui-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary cm-btn-dark left-right" ng-disabled="(showPTZControlBLC && disablePTZControlBLC) || (showPTZControlHLC && disablePTZControlHLC)" ng-click="blcAreaChange('left','right')">
+                            <i class="tui tui-right"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary cm-btn-dark right-left" ng-disabled="(showPTZControlBLC && disablePTZControlBLC) || (showPTZControlHLC && disablePTZControlHLC)" ng-click="blcAreaChange('right','left')">
+                            <i class="tui tui-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary cm-btn-dark right-right" ng-disabled="(showPTZControlBLC && disablePTZControlBLC) || (showPTZControlHLC && disablePTZControlHLC)" ng-click="blcAreaChange('right','right')">
+                            <i class="tui tui-right"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary cm-btn-dark bottom-up" ng-disabled="(showPTZControlBLC && disablePTZControlBLC) || (showPTZControlHLC && disablePTZControlHLC)" ng-click="blcAreaChange('bottom','down')">
+                            <i class="tui tui-top"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary cm-btn-dark bottom-down" ng-disabled="(showPTZControlBLC && disablePTZControlBLC) || (showPTZControlHLC && disablePTZControlHLC)" ng-click="blcAreaChange('bottom','up')">
+                            <i class="tui tui-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="ptz-control_blc-right">
+                    <h4>{{"lang_boxstep" | translate}}</h4>
+                    <select class="form-control" ng-disabled="(showPTZControlBLC && disablePTZControlBLC) || (showPTZControlHLC && disablePTZControlHLC)" ng-model="blcbox.select" ng-options="Option for Option in blcbox.options"></select>
+                </div>
+            </div>
+            <div id="ptz-control_dptz-box" ng-show="showPTZControlDPTZ">
+                <span>{{"lang_quadrant" | translate}}</span>
+                <select class="form-control" ng-model="quadrant.select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+</div>

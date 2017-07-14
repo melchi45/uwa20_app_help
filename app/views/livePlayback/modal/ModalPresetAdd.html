@@ -1,0 +1,33 @@
+﻿<div class="modal-body ua-modal-body">
+  <div id="ptz-detail-modal">
+    <div class="ptz-detail-label">
+        {{ 'lang_presetNo' | translate }}
+    </div>
+    <select ng-model="selectPreset" class="ptz-detail-select">
+        <option ng-repeat="item in list" value="{{item.value}}">
+        {{item.value}} : {{item.name}}
+        </option>
+    </select>
+    <div class="ptz-detail-label">
+        {{ 'lang_presetName' | translate }} (A~Z, a~z, 0~9)
+    </div>
+    <input 
+      class="ptz-detail-input" 
+      type="text" 
+      ng-model="presetName"                  
+      required ng-pattern-restrict="{{AlphaNumericStr}}"
+      ng-maxlength="PresetNameMaxLen" 
+      maxlength="{{PresetNameMaxLen}}"
+    /><p>
+  </div>
+</div>
+
+<div class="button-groups" ng-show="true">
+  <button class="button button-background-active" type="button" ng-class="{'buttons': true}" ng-click="ok()">
+      {{ 'lang_ok' | translate }}
+  </button>
+  <button class="button button-background-active" type="button" ng-show="true" ng-class="{'buttons': true}" ng-click="cancel()">
+      {{ 'lang_cancel' | translate }}
+  </button>
+</div>
+<div class="modal-bottom-bar"></div>

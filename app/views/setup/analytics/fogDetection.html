@@ -1,0 +1,84 @@
+<div id="imagepage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <form name="fogDetectForm" method="get" class="form-horizontal" novalidate>
+        <wn5-setup-main-title
+            data-title="lang_menu_fogdetection">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+
+            <setup-channel-selector 
+                ng-if="MaxChannel > 1"
+                use-confirm="true">
+            </setup-channel-selector>
+
+            <div class="wn5-gui-body-large">
+                <input type="checkbox" name="Enable" ng-model="FogDetect.Enable" ng-click="setFogDetectionEnable()">
+                <label>{{ 'lang_enable_feature_fog_detection' | translate }}</label>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section">
+            <sketchbook class="wn5-setup-preview-video"
+                sketchinfo='sketchinfo' videoinfo='videoinfo' coordinates='coordinates'></sketchbook>
+            <!-- PTZ Control -->
+            <div class="ptz-control_box">
+                <ptz-control ptzinfo='ptzinfo'></ptz-control>
+            </div>
+            <!-- //PTZ Control End -->
+
+            <div class="wn5-setup-preview">
+                <div class="form-group">
+                    <div class="wn5-setup-preview-heading">{{ 'lang_level_of_detection' | translate }}</div>
+                    <div class="wn5-setup-preview-content wn5-setup-realtime-chart">
+                        <live_chart id="fog-line-chart" live-chart-options="FogDetectChartOptions"\></live_chart>
+                    </div>
+                </div>
+
+                <!-- Sensitivity -->
+                <div class="form-group">
+                    <div class="wn5-setup-preview-heading">{{ 'lang_sensitivity' | translate }}</div>
+                    <div class="wn5-setup-preview-content slider-fields">
+                        <div style="width: 100%; max-width: 300px;">
+                            <live_slider live-slider-property="FogDetectSensitivitySliderProperty" live-slider-model="FogDetectSensitivitySliderModel"></live_slider>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duration -->
+                <div class="form-group">
+                    <div class="wn5-setup-preview-heading">{{ 'lang_minimum_duration' | translate }} ({{ 'lang_sec' | translate }})</div>
+                    <div class="wn5-setup-preview-content slider-fields">
+                        <div style="width: 100%; max-width: 300px;">
+                            <live_slider live-slider-property="FogDetectDurationSliderProperty" live-slider-model="FogDetectDurationSliderModel"></live_slider>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="wn5-setup-hr">
+
+        <event-action-setup></event-action-setup>
+
+        <div class="wn5-setup-section">                  
+            <hr class="wn5-setup-hr">      
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_activation_time' | translate }}</h3>
+            </div>
+
+            <div class="wn5-setup-section-article form-group">
+                <div class="wn5-setup-section-article-content">
+                    <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">{{getTranslatedOption(Activate)}}<input type="radio" class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate"></div>
+                </div>
+            </div>
+        </div>
+
+        <scheduler></scheduler>
+
+        <hr class="wn5-setup-hr">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view(0)">
+        </wn5-setup-common-button>
+    </form>
+</div>

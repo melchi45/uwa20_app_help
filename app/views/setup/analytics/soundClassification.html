@@ -1,0 +1,90 @@
+<div id="imagepage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <form name="audioForm" method="get" class="form-horizontal" novalidate>
+        <wn5-setup-main-title
+            data-title="lang_menu_soundclassification">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-gui-body-large">
+                <input type="checkbox" name="Enable" ng-model="SoundClassfication.Enable" ng-change="setAudioanalysisEnable()">
+                <label>{{ 'lang_enable_feature_sound_classification' | translate }}</label>
+            </div>
+        </div>
+        
+        <hr class="wn5-setup-hr">
+
+        <div class="wn5-setup-section">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_configuration' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_reduceNoise' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" name="NoiseReduction" ng-model="SoundClassfication.NoiseReduction">
+                        <label>{{'lang_enable' | translate}}</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_level_of_classification' | translate }}</div>
+                    <div class="wn5-setup-section-article-content wn5-setup-realtime-chart">
+                        <live_chart id="sound-line-chart" live-chart-options="SoundClassificationtChartOptions"></live_chart>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
+                    <div class="wn5-setup-section-article-content wn5-gui-text-orange-100" style="padding-left: 10;">
+                        <i class="tui tui-wn5-toolbar-status" style="margin-right: 5px; transform: scale(1.3);"></i>
+                        <span> {{ 'lang_msg_enable_AAC_codec' | translate }} </span> &nbsp;
+                        <a ng-click="msgClick()" ng-href="" style="padding-bottom: 1px; border-bottom: 1px solid #000;">
+                            [{{ 'lang_menu_audiosrc' | translate }}] 
+                        </a>
+                    </div>
+                </div> -->
+
+                <!-- <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_sensitivity' | translate }}</div>
+                    <div class="wn5-setup-section-article-content slider-fields">
+                        <div style="width: 300px;">
+                            <live_slider live-slider-property="SensitivitySliderProperty" live-slider-model="SensitivitySliderModel"></live_slider>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_categories' | translate }}</div> 
+                    <div class="wn5-setup-section-article-content">     <!-- will change ng-repeat or nothing-->
+                        <div ng-repeat="(soundTypeKey, soundTypeVal) in SoundClassfication.SoundType">
+                            <input type="checkbox" ng-model="SoundClassfication.SoundType[soundTypeKey]" name="soundtype"><label>{{soundTypeKey | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="wn5-setup-hr">
+        
+        <event-action-setup></event-action-setup>
+
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_activation_time' | translate }}</h3>
+            </div>
+
+            <div class="wn5-setup-section-article form-group">
+                <div class="wn5-setup-section-article-content">
+                    <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">{{getTranslatedOption(Activate)}}<input type="radio" class="radio" name="Activate" ng-model="$parent.EventRule.ScheduleType" ng-value="Activate"></div>
+                </div>
+            </div>
+        </div>
+
+        <scheduler></scheduler>
+        <hr class="wn5-setup-hr">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view(0)">
+        </wn5-setup-common-button>
+    </form>
+</div>

@@ -1,0 +1,257 @@
+<div id="cm-menu-content">
+
+  <!-- Setup 버튼을 클릭했을 때 -->
+  <div ng-show="channelSetFunctions['setup']" id="live-setup">
+    <div class="live-setup-col">
+      <h2>
+        <span>{{'lang_profile' | translate}}&nbsp;&nbsp;</span>
+        <select 
+          id="live-profile"
+          class="cm-selectbox"
+          ng-model="selectedProfile" 
+          ng-change="changeProfile(selectedProfile)" 
+          ng-options="profileList.indexOf(profile) as profile.Name for profile in profileList">
+        </select>
+        <label 
+          class="live-plugin-quality" 
+          ng-show="pluginStatus.showQualityBox">
+          <input 
+            type="checkbox"
+            id="plugin-quality"
+            ng-model="pluginStatus.quality"
+            ng-change="pluginStatus.changeQuality()">
+          Plugin Quality
+        </label>
+      </h2>
+      <div class="ng-binding">
+        <table class="live-table live-setup-table cm-table-field">
+          <tr>
+            <th>{{'lang_resolution' | translate}}</th>
+            <td>{{profileList[selectedProfile].Resolution}}</td>
+          </tr>
+          <tr>
+            <th>{{'lang_codec' | translate}}</th>
+            <td>{{profileList[selectedProfile].EncodingType}}</td>
+          </tr>
+          <tr>
+            <th>{{'lang_framerate' | translate}}</th>
+            <td>{{profileList[selectedProfile].FrameRate}}</td>
+          </tr>
+          <!-- <tr>
+            <th>{{'lang_compression' | translate}}</th>
+            <td>{{profileList[selectedProfile].CompressionLevel}}</td>
+          </tr> -->
+          <tr>
+            <th>{{'lang_targetBitrate' | translate}}</th>
+            <td>
+              {{profileList[selectedProfile].Bitrate}} Kbps
+              <span ng-show="profileList[selectedProfile].H264 !== undefined">,{{profileList[selectedProfile].H264.BitrateControlType}}</span>
+              <span ng-show="profileList[selectedProfile].H265 !== undefined">,{{profileList[selectedProfile].H265.BitrateControlType}}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="live-setup-col" ng-show="showImageController">
+      <h2>
+        <span>{{'lang_display' | translate}}&nbsp;&nbsp;</span>
+        <button 
+          class="cm-btn-dark" 
+          title="{{ 'lang_camerareset' | translate}}" 
+          ng-click="resetDisplay()"
+          style="padding: 0 5px 0 4px; height: 25px; line-height: 25px; transform: translateY(-3px);">
+          <span class="sr-only">{{ 'lang_camerareset' | translate}}</span>
+          <i class="tui tui-wn5-return"></i>
+        </button>
+      </h2>
+      <ul id="cm-display-slider" class="cm-profile-ul">
+        <li data-type="Contrast">
+          <h3>{{'lang_contrast' | translate}}</h3>
+          <span class="cm-min">0</span>
+          <div class="cm-slider">
+            <div></div>
+          </div>
+          <span class="cm-max">0</span>
+          <input type="number" min="0" max="100" class="cm-textbox">
+        </li>
+        <li data-type="Brightness">
+          <h3>{{'lang_brightness' | translate}}</h3>
+          <span class="cm-min">0</span>
+          <div class="cm-slider">
+            <div></div>
+          </div>
+          <span class="cm-max">0</span>
+          <input type="number" min="0" max="100" class="cm-textbox">
+        </li>
+        <li data-type="SharpnessLevel">
+          <h3>{{'lang_sharpness' | translate}}</h3>
+          <div class="cm-checkbox-wrap">
+            <input type="checkbox" id="sharpness-enable">
+            <label for="sharpness-enable"></label>
+          </div>
+          <span class="cm-min">0</span>
+          <div class="cm-slider">
+            <div></div>
+          </div>
+          <span class="cm-max">0</span>
+          <input type="number" min="0" max="100" class="cm-textbox">
+        </li>
+        <li data-type="Saturation">
+          <h3>{{'lang_colorlevel' | translate}}</h3>
+          <span class="cm-min">0</span>
+          <div class="cm-slider">
+            <div></div>
+          </div>
+          <span class="cm-max">0</span>
+          <input type="number" min="0" max="100" class="cm-textbox">
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Fisheye 버튼을 클릭했을 때 -->
+  <div ng-show="channelSetFunctions['fisheye']" id="cm-fisheye">
+    <div class="cm-wrap">
+      <h2>
+        <span title="{{ 'lang_wall' | translate }}" ng-show="fisheyeMode === fisheyeModeList[0]">{{ 'lang_wall' | translate }}</span>
+        <span title="{{ 'lang_ceiling' | translate }}" ng-show="fisheyeMode === fisheyeModeList[1]">{{ 'lang_ceiling' | translate }}</span>
+
+        <button type="button" class="cm-btn-dark cm-reset-all" title="{{ 'Reset All' | translate }}" ng-click="resetFisheye('ResetPTZAll')">
+          <i class="tui tui-wn5-reset-all"></i>
+        </button>
+
+        <button type="button" class="cm-btn-dark cm-reset" title="{{ 'lang_camerareset' | translate }}" ng-click="resetFisheye('ResetPTZ')">
+          <i class="tui tui-wn5-reset"></i>
+        </button>
+
+      </h2>
+      <!-- Wall -->
+      <ul ng-if="fisheyeMode === fisheyeModeList[0]" class="cm-mode-wrap">
+        <li>
+          <button type="button" class="cm-icon-button active" title="{{ 'lang_fisheye_view' | translate }}" data-mode-num="1" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_singlePanorama' | translate }}" data-mode-num="2" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-single-panorama"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Fisheye + 3PTZ' | translate }}" data-mode-num="3" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye-3ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_quadView' | translate }}" data-mode-num="4" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-quad-view"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Panorama + 2PTZ' | translate }}" data-mode-num="5" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-panorama-2ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ '9PTZ' | translate }}" data-mode-num="6" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-thumnailgroup"></i>
+          </button>
+        </li>
+      </ul>
+      <!-- Ceiling -->
+      <ul ng-if="fisheyeMode === fisheyeModeList[1]" class="cm-mode-wrap">
+        <li>
+          <button type="button" class="cm-icon-button active" title="{{ 'lang_fisheye_view' | translate }}" data-mode-num="1" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_singlePanorama' | translate }}" data-mode-num="2" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-single-panorama"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_doublePanorama' | translate }}" data-mode-num="3" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-double-panorama"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Fisheye + 3PTZ' | translate }}" data-mode-num="4" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye-3ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'lang_quadView' | translate }}" data-mode-num="5" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-quad-view"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Panorama + 2PTZ' | translate }}" data-mode-num="6" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-panorama-2ptz"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="cm-icon-button" title="{{ 'Fisheye + 8PTZ' | translate }}" data-mode-num="7" ng-click="changeFisheyeMode($event)">
+            <i class="tui tui-wn5-fisheye-8ptz"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PTZ 버튼을 클릭했을 때 -->
+  <div ng-show="channelSetFunctions['ptz']" id="live-ptz">
+    <live-ptz-control></live-ptz-control>
+  </div>
+
+
+  <!-- Status 버튼을 클릭했을 때 -->
+  <div ng-show="channelSetFunctions['status']" id="live-status">
+    <div class="live-status-col">
+      <h2><span>{{'lang_menu_info' | translate}}</span></h2>
+      <table class="live-table live-status-table cm-table-field" id="cm-status-first">
+        <thead>
+          <tr>
+            <th>{{'lang_profile' | translate}}</th>
+            <th>{{'lang_bitrate' | translate}}</th>
+            <th>{{'lang_framerate' | translate}}</th>
+            <th ng-show="supportATC">ATC</th>
+            <th>{{'lang_accessNumber' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="Profiles in profileAccessInfoList">
+            <td>{{Profiles.Name}}</td>
+            <td>{{Profiles.CurrentBitrate}}/{{Profiles.TotalBitrate}} kbps</td>
+            <td>{{Profiles.CurrentFPS}}/{{Profiles.TotalFPS}} fps</td>
+            <td ng-show="supportATC">{{Profiles.ATC}} %</td>
+            <td>{{Profiles.ConcurrentUserCount}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="live-status-col">
+      <h2><span>{{'lang_currentUsers' | translate}}</span></h2>
+      <table class="live-table live-status-table cm-table-field" id="cm-status-second">
+        <thead>
+          <tr>
+            <th>{{'lang_profile' | translate}}</th>
+            <th>{{'lang_bitrate' | translate}}</th>
+            <th>{{'lang_networkConnectionStatus' | translate}}</th>
+            <th>{{'lang_IPAddress' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="Users in profileAccessUserList">
+            <td><div ng-repeat="profileName in Users.ProfileNameList track by $index">{{profileName}}</div></td>
+            <td>{{Users.ClientBitrate}} kbps</td>
+            <td>{{Users.ClientNetworkConnectionStatus}}</td>
+            <td>{{Users.ClientIPAddress}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

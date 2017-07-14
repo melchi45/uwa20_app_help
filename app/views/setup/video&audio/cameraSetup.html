@@ -1,0 +1,1739 @@
+<div id="camerasetuppage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <form name="cameraForm" method="get" class="form-horizontal" novalidate>
+        <wn5-setup-main-title
+            data-title="lang_menu_camera">
+        </wn5-setup-main-title>
+        <hr class="wn5-setup-hr">
+        <setup-channel-selector use-info="false" ng-if="isMultiChannel === true" use-confirm="true"></setup-channel-selector>
+        <div class="wn5-setup-section">
+            <div class="wn5-setup-section-article">
+                <div class="form-group" style="margin: 20px 0 15px 0;">
+                    <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : ''" videoinfo='videoinfo'></sketchbook>
+                    <!-- PTZ Control -->
+                    <div class="ptz-control_box">
+                        <ptz-control ptzinfo='ptzinfo'></ptz-control>
+                    </div>
+                    <!-- //PTZ Control End -->
+                </div>
+
+                <div class="form-group" ng-if="PTZModel">
+                    <div class="wn5-setup-section-article-heading wn5-outline-title">{{ 'lang_type' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div class="field-radio-wrapper" ng-repeat="Type in PresetTypes" style="width: 40%;float: left;">
+                            <input type="radio" class="radio" id="{{Type}}" name="Type" ng-model="presetTypeData.SelectedPresetType" ng-value="PresetTypes.indexOf(Type)" ng-disabled="Type == 'Preset' && !PresetNameValueOptions.length" ng-change="onPresetTypeChange(Type)">
+                            <label for="{{Type}}">{{getTranslatedOption(Type)}}</label>
+                            <div class="preset-selectbox" ng-if="Type == 'Preset' && presetTypeData.SelectedPresetType && PresetNameValueOptions.length">
+                                <select class="form-control" ng-model="presetTypeData.PresetIndex" ng-change="onPresetChange(presetTypeData.PresetIndex)" ng-options="PresetNameValueOptions.indexOf(Option) as Option.Text for Option in PresetNameValueOptions"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="ImagePresetModeOptions && ImagePreset !== undefined && presetTypeData.SelectedPresetType == 0">
+                    <div id="ImagePresetModeLabel" class="wn5-setup-section-article-heading wn5-outline-title">{{ 'lang_imagePreset' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select id="ImagePresetMode" class="form-control" ng-model="ImagePreset[ch].Mode" ng-change="handlePresetChange()" ng-options="Mode as getTranslatedOption(Mode) for Mode in ImagePresetModeOptions"></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <uib-tabset class="wn5-setup-tab cm-tabs-field wn5-tab-fill">
+                        <uib-tab heading="{{getTranslatedOption('Sensor')}}" active="tabActiveData.sensor" ng-if="tabMenu.Sensor">
+                            <div ng-show="SensorTabReady" ng-if="tabUI.Sensor === undefined || tabUI.Sensor == 0">
+                                <div class="form-group" ng-show="SensorModeOptions !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="VideoSources.SensorCaptureFrameRate" ng-change="initShutterSpeeds(true)">
+                                            <option ng-selected="VideoSources.SensorCaptureFrameRate === SensorMode" value={{SensorMode}} ng-repeat="SensorMode in SensorModeOptions" ng-disabled="!iSSupportedSensorMode(SensorMode)">{{SensorMode}} fps</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        
+                        <uib-tab heading="{{getTranslatedOption('SSDR')}}" active="tabActiveData.ssdr" select="OnTabClick('SSDR')" ng-if="tabMenu.SSDR">
+                            <div ng-show="SSDRTabReady" ng-if="SSDR !== undefined && (tabUI.SSDR === undefined || tabUI.SSDR == 0)">
+                                <div class="form-group" ng-show="SSDR[ch].Enable !== undefined">
+                                    <div class="wn5-setup-section-article-heading">SSDR</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <input type="checkbox" name="Enable" ng-model="SSDR[ch].Enable" ng-disabled="isNotUserpresetMode()" ng-change="initSSDRSettings()">
+                                        <label>{{ 'lang_enable' | translate }}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="SSDRLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_level' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== undefined && ImagePreset[ch].Mode !== 'UserPreset'">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="ImageOptions.ImagePresetModes[ImageOptionsIndex]" 
+                                                live-slider-model-name="SSDRLevel"
+                                                live-slider-property="SSDRSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{SSDRLevel.minValue}} ~ {{SSDRLevel.maxValue}}) 
+                                            </label>
+                                        </div>                                        
+                                    </div>
+                                    <div class="wn5-setup-section-article-content" ng-if="ImagePreset === undefined || ImagePreset[ch].Mode === 'UserPreset'">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="SSDR[ch]" 
+                                                live-slider-model-name="Level"
+                                                live-slider-property="SSDRSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{SSDRLevel.minValue}} ~ {{SSDRLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="SSDRDynamicRangeOptions != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_drange' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="SSDR[ch].DynamicRange" ng-disabled="SSDR[ch].Enable == false" ng-options="Option as getTranslatedOption(Option) for Option in SSDRDynamicRangeOptions"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="SSDRTabReady" ng-if="PresetImageConfig !== undefined && tabUI.SSDR == 1">
+                                <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].SSDR.Enable !== undefined">
+                                    <div class="wn5-setup-section-article-heading">SSDR</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <input type="checkbox" name="Enable" ng-model="PresetImageConfig[presetTypeData.PresetIndex].SSDR.Enable" ng-change="initPresetSSDRSettings()">
+                                        <label>{{ 'lang_enable' | translate }}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="PresetSSDRLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_level' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content" ng-show="PresetImageConfig[presetTypeData.PresetIndex].SSDR.Level !== undefined">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].SSDR" 
+                                                live-slider-model-name="Level"
+                                                live-slider-property="PresetSSDRSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{PresetSSDRLevel.minValue}} ~ {{PresetSSDRLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="PresetDynamicRangeOptions != undefined && PresetImageConfig[presetTypeData.PresetIndex].SSDR.DynamicRange !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_drange' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].SSDR.DynamicRange" ng-disabled="PresetImageConfig[presetTypeData.PresetIndex].SSDR.Enable == false" ng-options="Option as getTranslatedOption(Option) for Option in PresetDynamicRangeOptions"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="{{getTranslatedOption('WhiteBalance')}}" active="tabActiveData.whiteBalance" select="OnTabClick( 'WhiteBalance')" ng-if="tabMenu.WhiteBalance">
+                            <div ng-if="tabUI.WhiteBalance === undefined || tabUI.WhiteBalance == 0" class="form-group">
+                                <div ng-if="WhiteBalance !== undefined" class="form-group">
+                                    <div ng-show="WhiteBalanceModeOptions != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="WhiteBalance.WhiteBalanceMode" ng-change="whiteBalanceChangeHandler()" ng-options="Mode as getTranslatedOption(Mode) for Mode in WhiteBalanceModeOptions"></select>
+                                            <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="WhiteBalance.WhiteBalanceMode !== 'AWC'" ng-click="setAWCMode()">{{ 'lang_set' | translate }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="WBRedLevel !== undefined" align="left">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_redgain' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                class="live-slider-input-big"
+                                                live-slider-model="WhiteBalance" 
+                                                live-slider-model-name="WhiteBalanceManualRedLevel"
+                                                live-slider-property="WBRedSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{WBRedLevel.minValue}} ~ {{WBRedLevel.maxValue}}) 
+                                            </label>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="WBBlueLevel !== undefined" align="left">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_bluegain' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                class="live-slider-input-big"
+                                                live-slider-model="WhiteBalance" 
+                                                live-slider-model-name="WhiteBalanceManualBlueLevel"
+                                                live-slider-property="WBBlueSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{WBBlueLevel.minValue}} ~ {{WBBlueLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="PresetImageConfig !== undefined && tabUI.WhiteBalance == 1" class="form-group">
+                                <div class="form-group" ng-show="PresetWhiteBalanceModeOptions !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].WhiteBalance.WhiteBalanceMode" ng-change="presetWhiteBalanceChangeHandler()" ng-options="Mode as getTranslatedOption(Mode) for Mode in PresetWhiteBalanceModeOptions"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group" nf-show="PresetWBRedLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_redgain' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].WhiteBalance" 
+                                                live-slider-model-name="WhiteBalanceManualRedLevel"
+                                                live-slider-property="PresetWBRedSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{PresetWBRedLevel.minValue}} ~ {{PresetWBRedLevel.maxValue}}) 
+                                            </label>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetWBBlueLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_bluegain' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].WhiteBalance" 
+                                                live-slider-model-name="WhiteBalanceManualBlueLevel"
+                                                live-slider-property="PresetWBBlueSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{PresetWBBlueLevel.minValue}} ~ {{PresetWBBlueLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="{{getTranslatedOption('BackLight')}}" active="tabActiveData.backLight" select="OnTabClick( 'BackLight')" ng-if="tabMenu.BackLight">
+                            <div>
+                                <div class="form-group" ng-if="Camera.CompensationMode !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="Camera.CompensationMode" ng-change="compensationModeChange(true)">
+                                            <option ng-selected="Camera.CompensationMode === Mode" value={{Mode}} ng-repeat="Mode in CompensationModeOptions" ng-disabled="!iSWDRSupported(Mode)">{{getTranslatedOption(Mode)}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="Camera.WDRLevel !== undefined && Camera.CompensationMode === 'WDR'">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_wdrlevel' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="Camera.WDRLevel" ng-disabled="Camera.CompensationMode != 'WDR'" ng-change="cameraChangeHandler()">
+                                            <option ng-selected="Camera.WDRLevel === option" value={{option}} ng-repeat="option in WDRLevelOptions">{{getTranslatedOption(mediumToMiddle(option))}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-if="Camera.WDRLevel !== undefined && Camera.CompensationMode === 'WDR'">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_auto' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <input 
+                                            type="checkbox" 
+                                            name="Enable" 
+                                            ng-model="Camera.WDRSeamlessTransition" 
+                                            ng-change="cameraChangeHandler()">
+                                        <label>{{ 'lang_enable' | translate }}</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-if="Camera.WDRLevel !== undefined && Camera.CompensationMode === 'WDR'">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_lowlight_turnoff' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <input 
+                                            type="checkbox" 
+                                            name="Enable" 
+                                            ng-model="Camera.WDRLowLight" 
+                                            ng-change="cameraChangeHandler()">
+                                        <label>{{ 'lang_enable' | translate }}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="Camera.WDRLevel !== undefined && Camera.CompensationMode === 'WDR'">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ir_turnoff' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <input 
+                                            type="checkbox" 
+                                            name="Enable" 
+                                            ng-model="Camera.WDRIRLEDEnable" 
+                                            ng-change="cameraChangeHandler()">
+                                        <label>{{ 'lang_enable' | translate }}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="Camera.HLCLevel !== undefined && Camera.CompensationMode === 'HLC'">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_hlclevel' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select 
+                                            class="form-control" 
+                                            ng-model="Camera.HLCLevel" 
+                                            ng-disabled="Camera.CompensationMode != 'HLC'" 
+                                            ng-change="cameraChangeHandler()">
+                                            <option 
+                                                ng-selected="Camera.HLCLevel === option" 
+                                                value={{option}} 
+                                                ng-repeat="option in HLCLevelOptions">
+                                                {{getTranslatedOption(mediumToMiddle(option))}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+<!--
+                                <div class="form-group" ng-if="Camera.HLCMaskTone !== undefined && Camera.CompensationMode === 'HLC' && Camera.HLCOnOff === 'HLCOn'">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_masktone' | translate }} </label>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div name="HLCMaskTone" ui-slider slider-no-focus id="HLCMaskTone" ng-model="Camera.HLCMaskTone" min=" {{ HLCMaskTone.minValue}}" max=" {{ HLCMaskTone.maxValue}}" ng-disabled="Camera.CompensationMode != 'HLC'" ng-change="cameraChangeHandler()"></div>
+                                    </div>
+                                    <div align="left">
+                                        <label class="slider-label"> {{ Camera.HLCMaskTone}}</label>
+                                    </div>
+                                </div>
+-->                                    
+                                <div class="form-group" ng-if="Camera.HLCMaskTone !== undefined && Camera.CompensationMode === 'HLC'">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_mask' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="Camera.HLCMode"  ng-options="Mode as getTranslatedOption(Mode) for Mode in HLCModeOptions" ng-change="cameraChangeHandler()"></select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-if="Camera.HLCMaskTone !== undefined && Camera.CompensationMode === 'HLC' && Camera.HLCMode !== 'Off'">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_mask_color' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="Camera.HLCMaskColor"  ng-options="Mode as getTranslatedOption(Mode) for Mode in HLCMaskColorOptions" ng-change="cameraChangeHandler()"></select>
+                                    </div>                                     
+                                </div>
+
+                                <div class="form-group" ng-if="Camera.HLCMaskTone !== undefined && Camera.CompensationMode === 'HLC' && Camera.HLCMode !== 'Off'">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_masktone' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content" align="left">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="Camera" 
+                                                live-slider-model-name="HLCMaskTone"
+                                                live-slider-property="HLCMaskToneSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{HLCMaskTone.minValue}} ~ {{HLCMaskTone.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="Camera.HLCMaskTone !== undefined && Camera.CompensationMode === 'HLC'">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_dimming' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="Camera.HLCDimming" ng-options="Mode as getTranslatedOption(Mode) for Mode in HLCDimmingOptions" ng-change="cameraChangeHandler()">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="!PTZModel && Camera.CompensationMode === 'HLC'">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_top' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content" align="left">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="Camera"
+                                                live-slider-model-name="HLCAreaTop"
+                                                live-slider-property="HLCTopSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{HLCTopSliderOptions.floor}} ~ {{HLCTopSliderOptions.ceil}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="!PTZModel && Camera.CompensationMode === 'HLC'">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_bottom' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content" align="left">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="Camera"
+                                                live-slider-model-name="HLCAreaBottom"
+                                                live-slider-property="HLCBottomSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{HLCBottomSliderOptions.floor}} ~ {{HLCBottomSliderOptions.ceil}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="!PTZModel && Camera.CompensationMode === 'HLC'">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_left' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content" align="left">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="Camera" 
+                                                live-slider-model-name="HLCAreaLeft"
+                                                live-slider-property="HLCLeftSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{HLCLeftSliderOptions.floor}} ~ {{HLCLeftSliderOptions.ceil}}) 
+                                            </label>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="!PTZModel && Camera.CompensationMode === 'HLC'">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_right' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content" align="left">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="Camera" 
+                                                live-slider-model-name="HLCAreaRight"
+                                                live-slider-property="HLCRightSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{HLCRightSliderOptions.floor}} ~ {{HLCRightSliderOptions.ceil}}) 
+                                            </label>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="Camera.BLCLevel !== undefined && Camera.CompensationMode === 'BLC'">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_blclevel' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select 
+                                            class="form-control" 
+                                            ng-model="Camera.BLCLevel" 
+                                            ng-disabled="Camera.CompensationMode != 'BLC'" 
+                                            ng-change="cameraChangeHandler()">
+                                            <option 
+                                                ng-selected="Camera.BLCLevel === option" 
+                                                value={{option}} 
+                                                ng-repeat="option in BLCLevelOptions">
+                                                {{getTranslatedOption(mediumToMiddle(option))}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="!PTZModel && Camera.BLCLevel !== undefined && Camera.CompensationMode === 'BLC'">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_top' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content" align="left">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="Camera" 
+                                                live-slider-model-name="BLCAreaTop"
+                                                live-slider-property="BLCTopSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{BLCTopSliderOptions.floor}} ~ {{BLCTopSliderOptions.ceil}}) 
+                                            </label>
+                                        </div>                                         
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="!PTZModel && Camera.BLCLevel !== undefined && Camera.CompensationMode === 'BLC'">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_bottom' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content" align="left">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="Camera" 
+                                                live-slider-model-name="BLCAreaBottom"
+                                                live-slider-property="BLCBottomSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{BLCBottomSliderOptions.floor}} ~ {{BLCBottomSliderOptions.ceil}}) 
+                                            </label>
+                                        </div>    
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="!PTZModel && Camera.BLCLevel !== undefined && Camera.CompensationMode === 'BLC'">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_left' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content" align="left">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="Camera" 
+                                                live-slider-model-name="BLCAreaLeft"
+                                                live-slider-property="BLCLeftSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{BLCLeftSliderOptions.floor}} ~ {{BLCLeftSliderOptions.ceil}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="!PTZModel && Camera.BLCLevel !== undefined && Camera.CompensationMode === 'BLC'">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_right' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content" align="left">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="Camera" 
+                                                live-slider-model-name="BLCAreaRight"
+                                                live-slider-property="BLCRightSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{BLCRightSliderOptions.floor}} ~ {{BLCRightSliderOptions.ceil}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="{{getTranslatedOption('Exposure')}}" active="tabActiveData.exposure" select="OnTabClick( 'Exposure')" ng-if="tabMenu.Exposure">
+                            <div ng-if="tabUI.Exposure === undefined || tabUI.Exposure == 0">
+                                <div ng-if="ImageEnhancements !== undefined && Camera !== undefined">
+                                    <div class="form-group" align="left">
+                                        <div class="wn5-setup-section-article-heading"> {{ 'lang_brightness' | translate }} </div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                                <live_slider 
+                                                    live-slider-model="ImageEnhancements" 
+                                                    live-slider-model-name="Brightness"
+                                                    live-slider-property="BrigntnesSliderOptions">
+                                                </live_slider>
+                                                <label class="cm-slider-label"> 
+                                                    ({{Brightness.minValue}} ~ {{Brightness.maxValue}}) 
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_minshutter' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
+                                            <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].AutoShortShutterSpeed" ng-disabled="isShutterSpeedDisabled()" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="ImageOptions.ImagePresetModes[ImageOptionsIndex].AutoShortShutterSpeed === option" value={{option}} ng-repeat="option in MinShutterOptions" ng-disabled="isSupportesShutterSpeed(option, 'min')"> {{ option}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                            <select class="form-control" ng-model="Camera.AutoShortShutterSpeed" ng-disabled="isShutterSpeedDisabled()" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="Camera.AutoShortShutterSpeed === option" value={{option}} ng-repeat="option in MinShutterOptions" ng-disabled="isSupportesShutterSpeed(option, 'min')"> {{ option}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_maxshutter' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
+                                            <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].AutoLongShutterSpeed" ng-disabled="isShutterSpeedDisabled()" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="ImageOptions.ImagePresetModes[ImageOptionsIndex].AutoLongShutterSpeed === option" value={{option}} ng-repeat="option in MaxShutterOptions" ng-disabled="isSupportesShutterSpeed(option, 'max')"> {{ option}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                            <select class="form-control" ng-model="Camera.AutoLongShutterSpeed" ng-disabled="isShutterSpeedDisabled()" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="Camera.AutoLongShutterSpeed === option" value={{option}} ng-repeat="option in MaxShutterOptions" ng-disabled="isSupportesShutterSpeed(option, 'max')"> {{ option}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_prefer_shutter' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
+                                            <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].PreferShutterSpeed" ng-disabled="isNotUserpresetMode() || Camera.AFLKMode !== 'Off'" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="ImageOptions.ImagePresetModes[ImageOptionsIndex].PreferShutterSpeed === option" value={{option}} ng-repeat="option in PreferShutterOptions" ng-disabled="isSupportesShutterSpeed(option, 'prefer')"> {{ option}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                            <select class="form-control" ng-model="Camera.PreferShutterSpeed" ng-disabled="isNotUserpresetMode() || Camera.AFLKMode !== 'Off'" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="Camera.PreferShutterSpeed === option" value={{option}} ng-repeat="option in PreferShutterOptions" ng-disabled="isSupportesShutterSpeed(option, 'prefer')"> {{ option}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_aflk' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
+                                            <select class="form-control" ng-model="imagePresetAFLKDefaultMode" ng-change="cameraChangeHandler()" ng-disabled="isNotUserpresetMode()">
+                                                <option ng-selected="imagePresetAFLKDefaultMode === option" value={{option}} ng-repeat="option in AFLKModeOptions"> {{ option}}
+                                                    <span> {{ option === 'Off' || option === 'On'? '': 'HZ' }} </span></option>
+                                            </select>
+                                        </div>
+                                        <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                            <select class="form-control" ng-model="Camera.AFLKMode" ng-change="cameraChangeHandler()" ng-disabled="isNotUserpresetMode()">
+                                                <option ng-selected="Camera.AFLKMode === option" value={{option}} ng-repeat="option in AFLKModeOptions"> {{ option}}
+                                                    <span> {{ option === 'Off' || option === 'On'? '': 'HZ' }} </span></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div ng-if="Camera.SSNREnable != undefined" class="form-group">
+                                        <div class="form-group" ng-show="SSNRModeOptions === undefined">
+                                            <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }}</div>
+                                            <div class="wn5-setup-section-article-content">
+                                                <select name="SSNREnable" class="form-control" ng-model="Camera.SSNREnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="isNotUserpresetMode() || Camera.AGCMode === 'Off'" ng-change="cameraChangeHandler()">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-show="SSNRModeOptions !== undefined">
+                                            <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }}</div>
+                                            <div class="wn5-setup-section-article-content">
+                                                <select name="SSNRMode" class="form-control" ng-model="Camera.SSNRMode" ng-disabled="isNotUserpresetMode() || Camera.AGCMode === 'Off'" ng-change="cameraChangeHandler()">
+                                                    <option ng-selected="Camera.SSNRMode === option" value={{option}} ng-repeat="option in SSNRModeOptions"> {{ getSSNRModeTranslation(option)}} </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- TO DO : feature branch 
+                                        <div class="form-group" ng-show="SSNRLevelOptions !== undefined">
+                                            <div class="wn5-setup-section-article-heading">{{ 'lang_ssnrlevel' | translate }}</label>
+                                            <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
+                                                <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].SSNRLevel" ng-disabled="isSSNRLevelDisabled()" ng-selected="ImageOptions.ImagePresetModes[ImageOptionsIndex].SSNRLevel === option" ng-options="option for option in SSNRLevelOptions" ng-change="cameraChangeHandler()">
+                                                </select>
+                                            </div>
+                                            <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                                <select class="form-control" ng-model="Camera.SSNRLevel" ng-disabled="isSSNRLevelDisabled()" ng-selected="Camera.SSNRLevel === option" ng-options="option for option in SSNRLevelOptions" ng-change="cameraChangeHandler()">
+                                                </select>
+                                            </div>
+                                        </div -->
+                                        <div class="form-group" ng-show="SSNRLevelOptions !== undefined">
+                                            <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }} 2D {{ 'lang_level' | translate }}</div>
+                                            <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
+                                                <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].SSNR2DLevel" ng-disabled="isSSNRLevelDisabled()" ng-selected="ImageOptions.ImagePresetModes[ImageOptionsIndex].SSNR2DLevel === option" ng-options="option for option in SSNRLevelOptions" ng-change="cameraChangeHandler()">
+                                                </select>
+                                            </div>
+                                            <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                                <select class="form-control" ng-model="Camera.SSNR2DLevel" ng-disabled="isSSNRLevelDisabled()" ng-selected="Camera.SSNR2DLevel === option" ng-options="option for option in SSNRLevelOptions" ng-change="cameraChangeHandler()">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-show="SSNRLevelOptions !== undefined">
+                                            <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }} 3D {{ 'lang_level' | translate }}</div>
+                                            <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
+                                                <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].SSNR3DLevel" ng-disabled="isSSNRLevelDisabled()" ng-selected="ImageOptions.ImagePresetModes[ImageOptionsIndex].SSNR3DLevel === option" ng-options="option for option in SSNRLevelOptions" ng-change="cameraChangeHandler()">
+                                                </select>
+                                            </div>
+                                            <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                                <select class="form-control" ng-model="Camera.SSNR3DLevel" ng-disabled="isSSNRLevelDisabled()" ng-selected="Camera.SSNR3DLevel === option" ng-options="option for option in SSNRLevelOptions" ng-change="cameraChangeHandler()">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-if="IrisModeOptions !== undefined">
+                                        <div ng-switch on="ModelType" class="wn5-setup-section-article-heading">
+                                            <!--
+                                            <div ng-switch-when="Box" >{{ 'lang_lens' | translate }}</div>
+                                            <div ng-switch-default >{{ 'lang_iris' | translate }}</div>
+                                            -->
+                                            <div ng-if="isBoxModel" >{{ 'lang_lens' | translate }}</div>
+                                            <div ng-if="!isBoxModel" >{{ 'lang_iris' | translate }}</div>
+                                        </div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Camera.IrisMode" ng-change="cameraChangeHandler();initExposureSliders()">
+                                                <option ng-selected="Camera.IrisMode === option" value={{option}} ng-repeat="option in IrisModeOptions"> {{ option == 'Auto' ? 'DC(' + getTranslatedOption(option) + ')' : getTranslatedOption(option)}} </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-if="IrisFnoOptions != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_iris' | translate }} F-No</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Camera.IrisFno" ng-disabled="Camera.IrisMode != 'Manual'" ng-change="cameraChangeHandler();initExposureSliders()">
+                                                <option ng-selected="Camera.IrisFno === option" value={{option}} ng-repeat="option in IrisFnoOptions"> {{ getTranslatedOption(option)}} </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-if="PIrisModeOptions != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_piris' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Camera.PIrisMode" ng-disabled="Camera.IrisMode == 'Auto' || Camera.IrisMode == 'Manual'" ng-change="initExposureSliders()">
+                                                <option ng-selected="Camera.PIrisMode === option" value={{option}} ng-repeat="option in PIrisModeOptions"> {{ getTranslatedOption(option)}} </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-if="PIrisModeOptions != undefined">
+                                        <div class="wn5-setup-section-article-heading"> {{ 'lang_pirisposition' | translate }} </div>
+                                        <div class="wn5-setup-section-article-content" align="left">
+                                            <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                                <live_slider 
+                                                    live-slider-model="Camera" 
+                                                    live-slider-model-name="PIrisPosition"
+                                                    live-slider-property="PIrisSliderOptions">
+                                                </live_slider>
+                                                <label class="cm-slider-label"> 
+                                                    ({{PIrisPosition.minValue}} ~ {{PIrisPosition.maxValue}}) 
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-if="AGCModeOptions != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_agcmode' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content" ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
+                                            <select class="form-control" ng-model="ImageOptions.ImagePresetModes[ImageOptionsIndex].AGCMode" ng-disabled="isNotUserpresetMode()" ng-change="onAGCModeChange()">
+                                                <option ng-selected="ImageOptions.ImagePresetModes[ImageOptionsIndex].AGCMode === option" value={{option}} ng-repeat="option in AGCModeOptions" ng-disabled="!iSSupportedAGCMode(option)"> {{ getTranslatedOption(mediumToMiddle(option))}} </option>
+                                            </select>
+                                        </div>
+                                        <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                            <select class="form-control" ng-model="Camera.AGCMode" ng-disabled="isNotUserpresetMode()" ng-change="onAGCModeChange()">
+                                                <option ng-selected="Camera.AGCMode === option" value={{option}} ng-repeat="option in AGCModeOptions" ng-disabled="!iSSupportedAGCMode(option)"> {{ getTranslatedOption(mediumToMiddle(option))}} </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-if="AGCLevelOptions != undefined && !PTZModel">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_agclevel' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Camera.AGCLevel" ng-disabled="Camera.AGCMode !== 'Manual'" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="Camera.AGCLevel === option" value={{option}} ng-repeat="option in AGCLevelOptions"> {{ option + ' db'}} </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="PresetImageConfig !== undefined && tabUI.Exposure == 1">
+                                <div class="form-group" align="left">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_brightness' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements" 
+                                                live-slider-model-name="Brightness"
+                                                live-slider-property="PresetBrigntnesSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{PresetBrightness.minValue}} ~ {{PresetBrightness.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_aflk' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.AFLKMode !== undefined">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.AFLKMode" ng-change="presetCameraChangeHandler()">
+                                            <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.AFLKMode === option" value={{option}} ng-repeat="option in PresetAFLKModeOptions"> {{ option}}
+                                                <span> {{ option === 'Off' || option === 'On'? '': 'HZ' }} </span></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select name="SSNREnable" class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="PresetImageConfig[presetTypeData.PresetIndex].Camera.AGCMode === 'Off'" ng-change="presetCameraChangeHandler()">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable != undefined" ng-show="Camera.SSNR2DLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }} 2D {{ 'lang_level' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNR2DLevel" ng-disabled="isPresetSSNRLevelDisabled()"  ng-options="option for option in PresetSSNRLevel" ng-change="presetCameraChangeHandler()">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable != undefined" ng-show="Camera.SSNR3DLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ssnr' | translate }} 3D {{ 'lang_level' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content" ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNR3DLevel" ng-disabled="isPresetSSNRLevelDisabled()" ng-options="option for option in PresetSSNRLevel" ng-change="presetCameraChangeHandler()">
+                                        </select>
+                                    </div>
+                                </div>
+<!--
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNREnable != undefined" ng-show="Camera.SSNRLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ssnrlevel' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.SSNRLevel" ng-disabled="isPresetSSNRLevelDisabled()" ng-options="option for option in PresetSSNRLevel" ng-change="presetCameraChangeHandler()">
+                                        </select>
+                                    </div>
+                                </div>
+-->
+                                <div class="form-group" ng-show="IrisModeOptions !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_iris' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.IrisMode" ng-change="initPresetExposureSliders()">
+                                            <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.IrisMode === option" value={{option}} ng-repeat="option in PresetIrisModeOptions"> {{ option == 'Auto' ? 'DC(' + getTranslatedOption(option) + ')' : getTranslatedOption(option)}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="IrisFnoOptions != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_iris' | translate }} F-No</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.IrisFno" ng-disabled="PresetImageConfig[presetTypeData.PresetIndex].Camera.IrisMode != 'Manual'" ng-change="initPresetExposureSliders()">
+                                            <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.IrisFno === option" value={{option}} ng-repeat="option in PresetIrisFnoOptions"> {{ getTranslatedOption(option)}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetAGCModeOptions != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_agcmode' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.AGCMode" ng-change="onPresetAGCModeChange()">
+                                            <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.AGCMode === option" value={{option}} ng-repeat="option in PresetAGCModeOptions" ng-disabled="!iSSupportedAGCMode(option)"> {{ getTranslatedOption(mediumToMiddle(option))}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="{{getTranslatedOption('DayNight')}}" active="tabActiveData.dayNight" select="OnTabClick( 'DayNight')" ng-if="tabMenu.DayNight">
+                            <div ng-if="tabUI.DayNight === undefined || tabUI.DayNight == 0">
+                                <div class="wn5-setup-section-article wn5-setup-section-article-ratio-3-7">
+                                    <div class="form-group" ng-show="Camera.DayNightMode != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Camera.DayNightMode" ng-change="cameraChangeHandler()" ng-disabled="!iSSupportedDayNightMode()">
+                                                <option ng-selected="Camera.DayNightMode === Mode" value={{Mode}} ng-repeat="Mode in DayNightModeOptions" ng-disabled="!iSSupportedDayNightModeOption(Mode)">{{getDayNightModeTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="Camera.DayNightSwitchingTime != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_dwelltime' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Camera.DayNightSwitchingTime" ng-disabled="!iSSuportedDwellTimeDuration()" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="Camera.DayNightSwitchingTime === Mode" value={{Mode}} ng-repeat="Mode in DayNightSwitchingTimeOptions">{{getTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="Camera.DayNightSwitchingMode != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_duration' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Camera.DayNightSwitchingMode" ng-disabled="!iSSuportedDwellTimeDuration()" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="Camera.DayNightSwitchingMode === Mode" value={{Mode}} ng-repeat="Mode in DayNightSwitchingModeOptions">{{getTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="Camera.DayNightAlarmIn != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_alarmin' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="Camera.DayNightAlarmIn" ng-disabled="Camera.DayNightMode != 'ExternalBW'" ng-change="cameraChangeHandler()">
+                                                <option ng-selected="Camera.DayNightAlarmIn === Mode" value={{Mode}} ng-repeat="Mode in DayNightAlarmInOptions">{{getTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="Camera.SimpleFocus != undefined && isBoxModel == true">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_simplefocusafterdn' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select 
+                                                class="form-control" 
+                                                ng-model="Camera.SimpleFocus" 
+                                                ng-change="cameraChangeHandler()" 
+                                                ng-options="option.value as option.text | translate for option in EnableDropdownOptions">
+                                            </select>
+                                        </div>
+                                    </div>
+    
+                                    <div ng-if="Camera.DayNightModeSchedules != undefined" class="form-group use-margin-top">
+                                        <div class="form-group">
+                                            <div class="wn5-setup-section-article-heading">{{ 'lang_dnActivation_time' | translate }}</div>
+                                            <div class="wn5-setup-section-article-content">
+                                                <!-- <label class="control-label">{{ 'lang_startTime' | translate }} - {{ 'lang_endTime' | translate }}</label> -->
+                                                <span>{{ 'lang_startTime' | translate }} - {{ 'lang_endTime' | translate }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="text-align: left">
+                                            <div class="wn5-setup-section">
+                                                <div class="wn5-setup-section-article-heading">
+                                                    <input type="checkbox" ng-model="Camera.DayNightModeSchedules.EveryDay.DayNightSchedule" ng-disabled="Camera.DayNightMode != 'Schedule'" ng-change="dayNightEveryDayChanged()"> {{ 'lang_everyday' | translate }}
+                                                </div>
+                                                <div class="wn5-setup-section-article-content">
+                                                    <input 
+                                                        name="EveryDay" 
+                                                        class="form-control no-clear-button" 
+                                                        type="text" 
+                                                        ng-model="Camera.DayNightModeSchedules.EveryDay.FromTo" 
+                                                        ng-disabled="Camera.DayNightMode !== 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule === false" 
+                                                        ng-readonly="Camera.DayNightMode === 'Schedule' && Camera.DayNightModeSchedules.EveryDay.DayNightSchedule !== false"
+                                                        ng-class="{'cm-readonly-click' : (Camera.DayNightMode === 'Schedule' && Camera.DayNightModeSchedules.EveryDay.DayNightSchedule !== false)}" 
+                                                        ng-click="dNScheduleUpdate('EveryDay')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="text-align: left" ng-repeat="dayName in dayNames">
+                                            <div class="wn5-setup-section">
+                                                <div class="wn5-setup-section-article-heading">
+                                                    <input type="checkbox" ng-model="Camera.DayNightModeSchedules[dayName].DayNightSchedule" ng-disabled="Camera.DayNightMode !== 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true"> {{ prepareToTranslateDayName(dayName) | translate }}
+                                                </input>
+                                                </div>
+                                                <div class="wn5-setup-section-article-content">
+                                                    <input 
+                                                        class="form-control no-clear-button" 
+                                                        type="text" 
+                                                        ng-model="Camera.DayNightModeSchedules[dayName].FromTo" 
+                                                        ng-disabled="Camera.DayNightMode != 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true || Camera.DayNightModeSchedules[dayName].DayNightSchedule == false" 
+                                                        ng-readonly="!(Camera.DayNightMode != 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true || Camera.DayNightModeSchedules[dayName].DayNightSchedule == false)" 
+                                                        ng-class="{'cm-readonly-click' : (!(Camera.DayNightMode != 'Schedule' || Camera.DayNightModeSchedules.EveryDay.DayNightSchedule == true || Camera.DayNightModeSchedules[dayName].DayNightSchedule == false))}"
+                                                        ng-click="dNScheduleUpdate(dayName)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="tabUI.DayNight == 1">
+                                <div class="wn5-setup-section-article wn5-setup-section-article-ratio-3-7">
+                                    <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode" ng-change="presetCameraChangeHandler()" ng-disabled="!iSSupportedPresetDayNightMode()">
+                                                <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightModeOptions" ng-disabled="!iSSupportedPresetDayNightModeOption(Mode)">{{getDayNightModeTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_dwelltime' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime" ng-disabled="!iSSupportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
+                                                <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingTime === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightSwitchingTimeOptions">{{getTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode != undefined">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_duration' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode" ng-disabled="!iSSupportedPresetDwellTimeDuration()" ng-change="presetCameraChangeHandler()">
+                                                <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Camera.DayNightSwitchingMode === Mode" value={{Mode}} ng-repeat="Mode in PresetDayNightSwitchingModeOptions">{{getTranslatedOption(Mode)}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="{{getTranslatedOption('Special')}}" active="tabActiveData.special" select="OnTabClick( 'Special')" ng-if="tabMenu.Special">
+                            <div ng-if="tabUI.Special === undefined || tabUI.Special == 0">
+                                <div class="form-group" ng-if="ImageEnhancements.DISEnable != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_dis' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select name="DISEnable" class="form-control" ng-model="ImageEnhancements.DISEnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-change="onDISEnableChange()" ng-disabled="isDisDisabled()"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="ImageEnhancements.SharpnessEnable != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_sharpness' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select 
+                                            class="form-control" 
+                                            ng-model="ImageEnhancements.SharpnessEnable" 
+                                            ng-options="option.value as option.text | translate for option in EnableDropdownOptions"
+                                            ng-change="initExposureSliders()">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="ImageEnhancements.SharpnessLevel != undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_sharpnesslevel' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="ImageEnhancements" 
+                                                live-slider-model-name="SharpnessLevel"
+                                                live-slider-property="SharpnessSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{SharpnessLevel.minValue}} ~ {{SharpnessLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="Gamma != undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_gammavalue' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="ImageEnhancements.Gamma" ng-selected="ImageEnhancements.Gamma == option.Value" ng-options="option.Value as option.Text for option in GammaOptions">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_contrast' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="ImageEnhancements" 
+                                                live-slider-model-name="Contrast"
+                                                live-slider-property="ContrastSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{Contrast.minValue}} ~ {{Contrast.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="ImageEnhancements.Saturation != undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_colorlevel' | translate }} </div>
+                                    <div 
+                                        class="wn5-setup-section-article-content" 
+                                        ng-if="ImagePreset !== 'undefined' && ImagePreset[ch].Mode !== 'UserPreset'">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="ImageOptions.ImagePresetModes[ImageOptionsIndex]" 
+                                                live-slider-model-name="Saturation"
+                                                live-slider-property="SaturationSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{Saturation.minValue}} ~ {{Saturation.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div 
+                                        class="wn5-setup-section-article-content" 
+                                        ng-if="ImagePreset === 'undefined' || ImagePreset[ch].Mode === 'UserPreset'">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="ImageEnhancements" 
+                                                live-slider-model-name="Saturation"
+                                                live-slider-property="SaturationSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{Saturation.minValue}} ~ {{Saturation.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="ImageEnhancements.DefogMode != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_defog' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select 
+                                            class="form-control" 
+                                            ng-model="ImageEnhancements.DefogMode" 
+                                            ng-change="initExposureSliders()">
+                                            <option 
+                                                ng-selected="ImageEnhancements.DefogMode == option" 
+                                                value="{{option}}"
+                                                ng-repeat="option in DefogModeOptions">
+                                            {{ getTranslatedOption(option)}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="ImageEnhancements.DefogLevel != undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_defoglevel' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="ImageEnhancements" 
+                                                live-slider-model-name="DefogLevel"
+                                                live-slider-property="DefogSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{DefogLevel.minValue}} ~ {{DefogLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="ImageEnhancements.LDCMode != undefined">
+                                    <div class="wn5-setup-section-article-heading"> LDC </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="ImageEnhancements.LDCMode" ng-change="initExposureSliders()">
+                                            <option ng-selected="ImageEnhancements.LDCMode == option" value={{option}} ng-repeat="option in LDCModeOptions"> {{ getTranslatedOption(option)}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="ImageEnhancements.LDCLevel != undefined">
+                                    <div class="wn5-setup-section-article-heading"> LDC {{ 'lang_level' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="ImageEnhancements" 
+                                                live-slider-model-name="LDCLevel"
+                                                live-slider-property="LDCSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{LDCLevel.minValue}} ~ {{LDCLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- div class="form-group" ng-if="ImageEnhancements.CAR != undefined">
+                                    <div class="wn5-setup-section-article-heading"> CAR </label>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="ImageEnhancements.CAR"  ng-options="Mode as getTranslatedOption(Mode) for Mode in CAROptions"></select>
+                                    </div>
+                                </div -->
+                            </div>
+                            <div ng-if="tabUI.Special == 1">
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DISEnable != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_dis' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select name="DISEnable" class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DISEnable" ng-change="onPresetDISEnableChange()" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="isPresetDisDisabled()"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.SharpnessEnable != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_sharpness' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.SharpnessEnable"  ng-change="initPresetExposureSliders()" ng-options="option.value as option.text | translate for option in EnableDropdownOptions">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.SharpnessLevel != undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_sharpnesslevel' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements" 
+                                                live-slider-model-name="SharpnessLevel"
+                                                live-slider-property="PresetSharpnessSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{PresetSharpnessLevel.minValue}} ~ {{PresetSharpnessLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.Saturation != undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_colorlevel' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements" 
+                                                live-slider-model-name="Saturation"
+                                                live-slider-property="PresetSaturationSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{PresetSaturation.minValue}} ~ {{PresetSaturation.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogMode != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_defog' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogMode" ng-change="initPresetExposureSliders()">
+                                            <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogMode == option" value={{option}} ng-repeat="option in PresetDefogModeOptions"> {{ getTranslatedOption(option)}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements.DefogLevel != undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_defoglevel' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="PresetImageConfig[presetTypeData.PresetIndex].ImageEnhancements" 
+                                                live-slider-model-name="DefogLevel"
+                                                live-slider-property="PresetDefogLevelSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{PresetDefogLevel.minValue}} ~ {{PresetDefogLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="{{getTranslatedOption('OSD')}}" active="tabActiveData.osd" select="OnTabClick( 'OSD')" ng-if="tabMenu.OSD">
+                            <div>
+                                <div ng-if="OSDBlinkOptions !== undefined">
+                                    <div class="wn5-setup-section-article-heading">
+                                        <label> {{ 'lang_OSDBlink' | translate }} </label>
+                                    </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div>
+                                            <input 
+                                                type="checkbox" 
+                                                ng-model="OSD.OSDBlink" 
+                                                ng-change="OnOSDBlinkStatusChange()"
+                                                > 
+                                                <label> {{ 'lang_enable' | translate }} </label>
+                                        </div>
+                                    </div>
+                                    <div class="wn5-setup-section-article-content wn5-gui-text-orange-100" style="padding-left: 20px;">
+                                        <i class="tui tui-wn5-toolbar-status" style="margin-right: 5px; transform: scale(1.3);"></i>
+                                        <span>{{ 'lang_msg_OSDBlink_apply' | translate }}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_camtitle' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div>
+                                            <input 
+                                                type="checkbox" 
+                                                ng-model="TitleOSD.Enable" 
+                                                ng-change="OnOSDTitleStatusChange()"> 
+                                                <label>{{ 'lang_enable' | translate }} </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="wn5-setup-section-article-content">
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-primary cm-btn-dark" 
+                                            ng-click="addTitleOSD()" 
+                                            ng-disabled="TitleOSD.Enable !== true">
+                                            {{ 'lang_add' | translate }}
+                                        </button>
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-primary cm-btn-dark btn-margin-both" 
+                                            ng-click="removeTitleOSD(true)" 
+                                            ng-disabled="TitleOSD.Enable !== true">
+                                            {{ 'lang_delete' | translate }}
+                                        </button>
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-primary cm-btn-dark" 
+                                            ng-click="previewTitleOSD()" 
+                                            ng-disabled="TitleOSD.Enable !== true">
+                                            {{ 'lang_preview' | translate }}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="wn5-setup-section-article-content wn5-setup-table-responsive">
+                                        <table class="table cm-table-field table-editor wn5-setup-table" cellspacing="0" cellpadding="1" border="1" width="100%">
+                                            <thead>
+                                                <th width="10%" height="40" style="text-align:center"></th>
+                                                <th width="30%" height="40" style="text-align:center">{{ 'lang_camtitleOverlay' | translate }} ({{OSDTitleLang}}a~z,A~Z,0~9,-,.)</th>
+                                                <th width="30%" height="40" style="text-align:center">X</th>
+                                                <th width="30%" height="40" style="text-align:center">Y</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="Title in TitleOSD"
+                                                    ng-class="{'wn5-setup-table-active': data.SelectedTitleIndex === Title.aIndex}">
+                                                    <td width="10%" height="60" style="text-align:center">
+                                                        <input type="radio" style="text-align:center" ng-model="data.SelectedTitleIndex" ng-value="Title.aIndex" ng-disabled="!TitleOSD.Enable" ng-change="OnPreviewSelect(Title.aIndex)">
+                                                    </td>
+                                                    <td width="30%" height="60" style="text-align:center">
+                                                        <input type="text" style="text-align:center" class="form-control" ng-model="Title.OSD" ng-disabled="!TitleOSD.Enable || !Title.IsOSDSelected"  maxlength="{{MultilineOSDTitle.maxLength}}" ng-keyup="OSDTitleChanged()" ng-pattern-restrict="{{ OSDCharSet }}">
+                                                    </td>
+                                                    <td width="30%" height="60">
+                                                        <div ng-class="TableSliderClass" class="slider-fields live-slider-field cm-osd-slider-wrap">
+                                                            <live_slider 
+                                                                live-slider-model="Title" 
+                                                                live-slider-model-name="PositionX"
+                                                                live-slider-property="Title.TitlePositionXSliderOptions">
+                                                            </live_slider>
+                                                        </div>
+                                                    </td>
+                                                    <td width="30%" height="60">
+                                                        <div ng-class="TableSliderClass" class="slider-fields live-slider-field cm-osd-slider-wrap">
+                                                            <live_slider 
+                                                                live-slider-model="Title" 
+                                                                live-slider-model-name="PositionY"
+                                                                live-slider-property="Title.TitlePositionYSliderOptions">
+                                                            </live_slider>                                                            
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="form-group wn5-setup-section-content">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_datetime' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <label>
+                                            <input type="checkbox" ng-model="DateOSD.Enable" ng-change="OnOSDDateStatusChange()"> <label>{{ 'lang_enable' | translate }} </label>
+                                        </input>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="wn5-setup-section-article-content wn5-setup-table-responsive">
+                                        <table class="table cm-table-field table-editor wn5-setup-table" cellspacing="0" cellpadding="1" border="1" width="100%">
+                                            <thead>
+                                                <th width="20%" height="40" style="text-align:center">{{ 'lang_weekdaydisplay' | translate }}</th>
+                                                <th width="20%" height="40" style="text-align:center">{{ 'lang_format' | translate }}</th>
+                                                <th width="30%" height="40" style="text-align:center">X</th>
+                                                <th width="30%" height="40" style="text-align:center">Y</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="Date in DateOSD">
+                                                    <td width="20%" height="60" style="text-align:center">
+                                                        <input type="checkbox" style="text-align:center" ng-model="Date.WeekDay" ng-disabled="!DateOSD.Enable" ng-change="OSDDateChanged()">
+                                                    </td>
+                                                    <td width="20%" height="60" style="text-align:center">
+                                                        <select class="form-control" ng-model="Date.DateFormat" ng-options="option for option in TimeFormatOptions" ng-disabled="!DateOSD.Enable" ng-change="OSDDateChanged()">
+                                                            {{ option}}
+                                                        </select>
+                                                    </td>
+                                                    <td width="30%" height="60">
+                                                        <div ng-class="TableSliderClass" class="slider-fields live-slider-field cm-osd-slider-wrap">
+                                                            <live_slider 
+                                                                live-slider-model="Date" 
+                                                                live-slider-model-name="PositionX"
+                                                                live-slider-property="DatePositionXSliderOptions">
+                                                            </live_slider>
+                                                        </div>
+                                                    </td>
+                                                    <td width="30%" height="60">
+                                                        <div ng-class="TableSliderClass" class="slider-fields live-slider-field cm-osd-slider-wrap">
+                                                            <live_slider 
+                                                                live-slider-model="Date" 
+                                                                live-slider-model-name="PositionY"
+                                                                live-slider-property="DatePositionYSliderOptions">
+                                                            </live_slider>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-if="FontSizeOptions !== undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_size' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="OSD.FontSize" ng-change="OnFontSizeChange(OSD.FontSize)" ng-options="getTranslatedOption(mediumToMediumOrig(option)) for option in FontSizeOptions"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="OSDColorOptions !== undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_color' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="OSD.Color" ng-change="OnColorChange(OSD.Color)" ng-options="getTranslatedOption(option) for option in OSDColorOptions"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="OSDTransparencyOptions !== undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_transparency' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="OSD.Transparency" ng-change="OnTransparencyChange(OSD.Transparency)" ng-options="option.value as getTranslatedOption(option.text) for option in OSDTransparencyOptions"> </select>
+                                    </div>
+                                </div>
+                                <!-- Overlay Start  -->
+                                <div class="form-group" ng-if="PTZPositionEnable || PresetNameEnable || CameraIDEnable || AzimuthEnable">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_overlay' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div ng-if="PTZPositionEnable">
+                                            <input type="checkbox" ng-model="Overlay.PTZPositionEnable" id="OverlayPTZPositionEnable" ng-change="overlayChangeHandler()">
+                                            <label for="OverlayPTZPositionEnable" ng-if="!ZoomOnlyModel">{{ 'lang_ptzPosition' | translate }}</label>
+                                            <label for="OverlayPTZPositionEnable" ng-if="ZoomOnlyModel">{{ 'lang_zoom_magnification' | translate }}</label>
+                                        </div>
+                                        <div ng-if="PresetNameEnable">
+                                            <input type="checkbox" ng-model="Overlay.PresetNameEnable" id="OverlayPresetNameEnable" ng-change="overlayChangeHandler()">
+                                            <label for="OverlayPresetNameEnable">{{ 'lang_presetName' | translate }}</label>
+                                        </div>
+                                        <div ng-if="CameraIDEnable">
+                                            <input type="checkbox" ng-model="Overlay.CameraIDEnable" id="OverlayCameraIDEnable" ng-change="overlayChangeHandler()">
+                                            <label for="OverlayCameraIDEnable">{{ 'lang_cameraID' | translate }}</label>
+                                        </div>
+                                        <div ng-if="AzimuthEnable">
+                                            <input type="checkbox" ng-model="Overlay.AzimuthEnable" id="OverlayAzimuthEnable" ng-change="overlayChangeHandler()">
+                                            <label for="OverlayAzimuthEnable">{{ 'lang_azimuth' | translate }}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Overlay End -->
+                                <div class="form-group" ng-if="MultiImageOverlayFeature" style="margin-bottom: 0px;">
+                                    <div class="wn5-setup-section-article-content" style="text-align: left">
+                                        {{ 'lang_overlay_image' | translate }}
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="MultiImageOverlayFeature">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_upload_image' | translate }}</div>
+                                    <div ng-class="TextClassVlg" class="file-browser-field">
+                                        <input  type="text" class="form-control" name="cerName" id="ImageFile" ng-model="ImageFile" ng-disabled="true">
+                                        <label for="ImageField">
+                                            <span class="btn btn-primary cm-btn-dark" ng-disabled="IsImageInstalled">...</span>
+                                        </label>
+                                    </div>
+                                    <table cellspacing="0" cellpadding="0" border="0" style="float: left;">
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn btn-primary cm-btn-dark" ng-click="UploadImage()" ng-disabled="IsImageInstalled">{{ 'lang_upload' | translate }}</button>&nbsp;&nbsp;
+                                                <button type="button" class="btn btn-primary cm-btn-dark" ng-click="RemoveImage()" ng-disabled="!IsImageInstalled">{{ 'lang_remove' | translate }}</button>
+                                                <input style="visibility: hidden; position: relative;" id="ImageField" class="form-control" type="file" name="imageField" ng-disabled="IsImageInstalled" ng-model-instant accept=".bmp" onchange="angular.element(this).scope().setImageFile(this)">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="form-group" ng-if="MultiImageOverlayFeature">
+                                    <div class="wn5-setup-section-article-content wn5-setup-section-article-heading-offset">
+                                        <strong>Max Resolution:{{OverlayImageMaxResolution}}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="{{getTranslatedOption('Focus')}}" active="tabActiveData.focus" select="OnTabClick( 'Focus')" ng-if="tabMenu.Focus">
+                            <div ng-if="tabUI.Focus === undefined || tabUI.Focus == 0">
+                                <div class="form-group" ng-if="Focus.Mode != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="Focus.Mode">
+                                            <option ng-selected="Focus.Mode === Mode" value={{Mode}} ng-repeat="Mode in FocusModeOptions">{{getTranslatedOption(Mode)}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PTZSettings.DigitalZoomEnable != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_digitalZoom' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PTZSettings.DigitalZoomEnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="isDigitalZoomDisabled()">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PTZSettings.MaxDigitalZoom != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_max_digitalZoom' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PTZSettings.MaxDigitalZoom" ng-disabled="isDigitalZoomLimitDisabled()">
+                                            <option ng-selected="PTZSettings.MaxDigitalZoom === Mode" value={{Mode}} ng-repeat="Mode in MaxDigitalZoomOptions">{{Mode}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="Focus.ZoomTrackingMode != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_zoomMode' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="Focus.ZoomTrackingMode">
+                                            <option ng-selected="Focus.ZoomTrackingMode === Mode" value={{Mode}} ng-repeat="Mode in ZoomTrackingModeOptions">{{getTranslatedOption(Mode)}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="Focus.ZoomTrackingSpeed != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_zoomSpeed' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="Focus.ZoomTrackingSpeed">
+                                            <option ng-selected="Focus.ZoomTrackingSpeed === Mode" value={{Mode}} ng-repeat="Mode in ZoomTrackingSpeedOptions">{{getTranslatedOption(Mode)}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="Focus.LensResetSchedule != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_initLens' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="Focus.LensResetSchedule">
+                                            <option ng-selected="Focus.LensResetSchedule === Mode" value={{Mode}} ng-repeat="Mode in LensResetScheduleOptions">{{Mode === 'Manual' ? getTranslatedOption(Mode) : Mode.split('D')[0] + ' ' + getTranslatedOption('Day').toLowercase() }}</option>
+                                        </select>
+                                        <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="Focus.LensResetSchedule !== 'Manual'" ng-click="setLensReset()">{{ 'lang_reset' | translate }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="tabUI.Focus == 1">
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].Focus.Mode != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].Focus.Mode">
+                                            <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].Focus.Mode === Mode" value={{Mode}} ng-repeat="Mode in PresetFocusModeOptions">{{getTranslatedOption(Mode)}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_digitalZoom' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.DigitalZoomEnable" ng-options="option.value as option.text | translate for option in EnableDropdownOptions" ng-disabled="isPresetDigitalZoomDisabled()">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.MaxDigitalZoom != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_max_digitalZoom' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.MaxDigitalZoom" ng-disabled="isPresetDigitalZoomLimitDisabled()">
+                                            <option ng-selected="PresetImageConfig[presetTypeData.PresetIndex].PTZSettings.MaxDigitalZoom === Mode" value={{Mode}} ng-repeat="Mode in PresetMaxDigitalZoomOptions">{{Mode}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="{{getHeaterTranslation()}}" active="tabActiveData.heater" ng-if="tabMenu.Heater">
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_onetime_act' | translate }}</div>
+                                <div class="wn5-setup-section-article-content">
+                                    <div>
+                                        <a class="col-xs-2 btn btn-white cm-btn-dark" ng-click="heaterSet()" style="font-size: 20px;">
+                                            <i class="tui tui-ch-playback-reset"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-content">
+                                    {{ 'lang_heater_alert_msg' | translate }}
+                                </div>
+                            </div>
+                            <!-- div ng-if="Camera.DayNightModeSchedules != undefined">
+                                    <div class="form-group">
+                                        <div class="wn5-setup-section-article-heading">{{ 'lang_activation_time' | translate }}</div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <label class="control-label">{{ 'lang_startTime' | translate }} - {{ 'lang_endTime' | translate }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="text-align: left">
+                                        <div class="wn5-setup-section-article-heading">
+                                            <input type="checkbox" ng-model="HeaterSchedules.EveryDay.Enable" ng-change="heaterEveryDayChanged()"> {{ 'lang_everyday' | translate }}
+                                        </div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <input name="EveryDay" class="form-control no-clear-button" type="text" ng-model="HeaterSchedules.EveryDay.FromTo" ng-disabled="HeaterSchedules.EveryDay.Enable === false" ng-readonly="HeaterSchedules.EveryDay.Enable !== false" ng-click="heaterScheduleUpdate('EveryDay')">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="text-align: left" ng-repeat="dayName in dayNames">
+                                        <div class="wn5-setup-section-article-heading">
+                                            <input type="checkbox" ng-model="HeaterSchedules[dayName].Enable" ng-disabled="HeaterSchedules.EveryDay.Enable == true"> {{ prepareToTranslateDayName(dayName) | translate }}
+                                        </input>
+                                        </div>
+                                        <div class="wn5-setup-section-article-content">
+                                            <input class="form-control no-clear-button" type="text" ng-model="HeaterSchedules[dayName].FromTo" ng-disabled="HeaterSchedules.EveryDay.Enable == true || HeaterSchedules[dayName].Enable == false" ng-readonly="!(HeaterSchedules.EveryDay.Enable == true || HeaterSchedules[dayName].Enable == false)" ng-click="heaterScheduleUpdate(dayName)">
+                                        </div>
+                                    </div>
+                                </div -->
+                        </uib-tab>
+                        <uib-tab heading="{{getTranslatedOption('IR')}}" active="tabActiveData.ir" select="OnTabClick( 'IR')" ng-if="tabMenu.IR">
+                            <div>
+                                <div class="form-group" ng-show="IRled.Mode != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="IRled.Mode" ng-change="irledChangeHandler()">
+                                            <option ng-selected="IRled.Mode === Mode" value={{Mode}} ng-repeat="Mode in IRledModeOptions">{{getIRModeTranslation(Mode)}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="IRledLevel != undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_level' | translate }} </div>
+                                    <!-- <div class="wn5-setup-section-article-content">
+                                        <div class="col-xs-6">
+                                            <div id="LEDLevel" ui-slider slider-no-focus ng-model="IRled.Level" min=" {{ IRledLevel.minValue}}" max=" {{ IRledLevel.maxValue}}" ng-disabled="IRled.Mode !== 'Manual'"></div>
+                                        </div>
+                                        <label class="slider-label"> {{ IRled.Level}}</label>
+                                    </div> -->
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="IRled" 
+                                                live-slider-model-name="Level"
+                                                live-slider-property="IRledSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{IRledLevel.minValue}} ~ {{IRledLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="LEDOnLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_ledOnLevel' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <!-- <div class="col-xs-6">
+                                            <div 
+                                                id="LEDOnLevel" 
+                                                ui-slider slider-no-focus ng-model="IRled.LEDOnLevel" 
+                                                min=" {{ LEDOnLevel.minValue}}" 
+                                                max=" {{ LEDOnLevel.maxValue}}" 
+                                                ng-disabled="IRled.Mode !== 'Sensor'" 
+                                                ng-change="irLedOnLevelChanged()"></div>
+                                        </div>
+                                        <label 
+                                            for="LEDOnLevel" 
+                                            class="slider-label"> 
+                                            {{ IRled.LEDOnLevel}}
+                                        </label> -->
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="IRled" 
+                                                live-slider-model-name="LEDOnLevel"
+                                                live-slider-property="LEDOnLevelSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{LEDOnLevel.minValue}} ~ {{LEDOnLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="LEDOffLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading"> {{ 'lang_ledOffLevel' | translate }} </div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <!-- <div class="col-xs-6">
+                                            <div 
+                                                id="LEDOffLevel" 
+                                                ui-slider slider-no-focus ng-model="IRled.LEDOffLevel" 
+                                                min="{{ LEDOffLevel.minValue}}" 
+                                                max="{{ LEDOffLevel.maxValue}}" 
+                                                ng-disabled="IRled.Mode !== 'Sensor'" 
+                                                ng-change="irLedOffLevelChanged()">
+                                            </div>
+                                        </div>
+                                        <label for="LEDOffLevel" class="slider-label">
+                                            {{ IRled.LEDOffLevel}}.
+                                        </label> -->
+                                        <div class="slider-fields live-slider-field col-xs-6 col-xs-9">
+                                            <live_slider 
+                                                live-slider-model="IRled" 
+                                                live-slider-model-name="LEDOffLevel"
+                                                live-slider-property="LEDOffLevelSliderOptions">
+                                            </live_slider>
+                                            <label class="cm-slider-label"> 
+                                                ({{LEDOffLevel.minValue}} ~ {{LEDOffLevel.maxValue}}) 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="LEDOnLevel !== undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ledOnTime' | translate }}</div>
+                                    <div ng-class="RadioClassSm">
+                                        <div class="ir_led_time">
+                                            <select class="form-control" ng-model="IRled.Schedule.EveryDay.SelectedFromHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-disabled="IRled.Mode !== 'Schedule'"></select>
+                                        </div>
+                                        <div class="col-xs-1">:</div>
+                                        <div class="ir_led_time">
+                                            <select class="form-control" ng-model="IRled.Schedule.EveryDay.SelectedFromMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" ng-disabled="IRled.Mode !== 'Schedule'"></select>
+                                        </div>
+                                    </div>
+                                    <span class="ir_led_span">~</span>
+                                    <div ng-class="RadioClassSm">
+                                        <div class="ir_led_time">
+                                            <select class="form-control" ng-model="IRled.Schedule.EveryDay.SelectedToHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-disabled="IRled.Mode !== 'Schedule'"></select>
+                                        </div>
+                                        <div class="col-xs-1">:</div>
+                                        <div class="ir_led_time">
+                                            <select class="form-control" ng-model="IRled.Schedule.EveryDay.SelectedToMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" ng-disabled="IRled.Mode !== 'Schedule'"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="IRled.LEDMaxPower != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ledMaxPower' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="IRled.LEDMaxPower" ng-disabled="IRled.Mode === 'Off'">
+                                            <option ng-selected="IRled.LEDMaxPower === Mode" value={{Mode}} ng-repeat="Mode in LEDMaxPowerOptions">{{getLedMaxPowerTranslation(Mode)}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="IRled.LEDPowerControlMode != undefined">
+                                    <div class="wn5-setup-section-article-heading">{{ 'lang_ledPowerControl' | translate }}</div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <select class="form-control" ng-model="IRled.LEDPowerControlMode" ng-disabled="IRled.Mode === 'Off'">
+                                            <option ng-selected="IRled.LEDPowerControlMode === Mode" value={{Mode}} ng-repeat="Mode in LEDPowerControlModeOptions">{{getTranslatedOption(Mode)}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="ImagePresetModeOptions != undefined && !PTZModel" class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{'lang_activation_time_no_event'| translate}}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <div class="form-group">
+                        <div class="wn5-setup-preview-table-col-8">
+                            <div class="col-xs-6 col-xs-12 field-radio-wrapper wn5-setup-camera-setup-activation-time">
+                                <input type="radio" class="radio" name="Off" ng-model="ImagePreset[ch].ScheduleEnable" ng-value="false" ng-change="setScheduleColor()">
+                                <label class="control-label col-sub-label"> {{ 'lang_off' | translate }} </label>
+                            </div>
+                            <div class="col-xs-6 col-xs-12 field-radio-wrapper wn5-setup-camera-setup-activation-time">
+                                <input type="radio" class="radio" name="Schedule" ng-model="ImagePreset[ch].ScheduleEnable" ng-value="true" ng-change="setScheduleColor()">
+                                <label class="control-label col-sub-label"> {{ 'lang_only_schedule' | translate }} </label>
+                            </div>
+                        </div>
+                        <div class="wn5-setup-preview-table-col-4 text-right">
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="!ImagePreset[ch].ScheduleEnable" ng-click="openImagePresetSched()" style="padding: 0; width: 30px; height: 30px;"><i class="tui tui-wn5-top-setup"></i></button>
+                        </div>
+                    </div>
+                    <div class="form-group" id="imagePresetScheduleDiv" ng-show="imagePresetScheduleReady && ImagePreset[ch].ScheduleEnable === true">
+                        <div id="imagePresetSchedule-head">
+                            <div ng-repeat="n in HourArray" class="imagePresetSchedule-head-item" ng-class="$first ? 'first-item' : ''">{{n}}</div>
+                        </div>
+                        <div id="imagePresetSchedule-body">
+
+                            <div id="imagePresetSchedule-userpreset" class="imagePresetSchedule-schedule" ng-class="getScheduleColorByMode(ImagePreset[ch].Mode, false)" title="{{getTranslatedOption(ImagePreset[ch].Mode)}}"></div>
+
+                            <div ng-repeat="schedule in ImagePreset[ch].Schedules" class="imagePresetSchedule-schedule" ng-style="schedule.style" ng-class="getScheduleColorByMode(schedule.Mode, false)" title="{{schedule.tooltip}}"></div>
+
+                            <div ng-repeat="userPreset in UserPreset" class="imagePresetSchedule-schedule" ng-style="userPreset.style" title="{{userPreset.tooltip}}"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="scheduleColor" ng-show="imagePresetScheduleReady && ImagePreset[ch].ScheduleEnable === true">
+                        <div class="scheduleColorWrapper">
+                            <div>
+                                <a ng-class="getScheduleColorByMode('MotionFocus+BrightVideo', true)"></a>
+                                <span>{{getTranslatedOption('MotionFocus+BrightVideo')}}</span>
+                            </div>
+                            <div>
+                                <a ng-class="getScheduleColorByMode('MotionFocus', true)"></a>
+                                <span>{{getTranslatedOption('MotionFocus')}}</span>
+                            </div>
+                            <div>
+                                <a ng-class="getScheduleColorByMode('ReducedNoise', true)"></a>
+                                <span>{{getTranslatedOption('ReducedNoise')}}</span>
+                            </div>
+                            <div>
+                                <a ng-class="getScheduleColorByMode('BrightVideo', true)"></a>
+                                <span>{{getTranslatedOption('BrightVideo')}}</span>
+                            </div>
+                        </div>
+                        <div class="scheduleColorWrapper">
+                            <div>
+                                <a ng-class="getScheduleColorByMode('MotionFocus+ReducedNoise', true)"></a>
+                                <span>{{getTranslatedOption('MotionFocus+ReducedNoise')}}</span>
+                            </div>
+                            <div>
+                                <a ng-class="getScheduleColorByMode('DefinitionFocus', true)"></a>
+                                <span>{{getTranslatedOption('DefinitionFocus')}}</span>
+                            </div>
+                            <div>
+                                <a ng-class="getScheduleColorByMode('VividVideo', true)"></a>
+                                <span>{{getTranslatedOption('VividVideo')}}</span>
+                            </div>
+                            <div>
+                                <a ng-class="getScheduleColorByMode('UserPreset', true)"></a>
+                                <span>{{getTranslatedOption('UserPreset')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="wn5-setup-hr">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="cancel()">
+        </wn5-setup-common-button>
+    </form>
+</div>
+<script type="text/ng-template" id="dayNightSchedulePopup.html">
+    <div class="modal-header modal-setup">
+        <h3 class="modal-title">{{ getTranslation(SelectedDay) }}</h3>
+    </div>
+    <div class="modal-body modal-setup" style="padding: 30px 20px;">
+        <div class="form-group">
+            <div style="width: 40%; float:left; padding-left:20px;">
+                <label class="control-label" style="display: inline-block; float:left; margin-right: 20px;">{{ 'lang_from' | translate }}</label>
+                <div class="col-sm-4">
+                    <select class="form-control" ng-model="SelectedFromHour" ng-options="Hour for Hour in HourOptions track by Hour" style="width: 70px;"></select>
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-control" ng-model="SelectedFromMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" style="width: 70px; margin-left: 10px;"></select>
+                </div>
+            </div>
+            <div align="center" style="width: 8%; float:left; margin-top:5px; margin-left: 30px;"> : </div>
+            <div style="width: 40%; float:left; padding-left:20px;">
+                <label class="control-label" style="display: inline-block; float:left; margin-right: 20px;">{{ 'lang_to' | translate }}</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="selectedToHour" ng-model="SelectedToHour" ng-options="Hour for Hour in HourOptions track by Hour" style="width: 70px;"></select>
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-control" id="selectedToMinute" ng-model="SelectedToMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" style="width: 70px; margin-left: 10px;"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer modal-setup" style="text-align:center">
+        <button type="button" class="btn cm-btn-point" type="button" ng-click="ok()">{{ 'lang_ok' | translate }}</button>
+        <button type="button" class="btn cm-btn-dark" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>
+    </div>
+</script>
+<script type="text/ng-template" id="imagePresetScheduleModal.html">
+    <div class="modal-header modal-setup">
+        <h3 class="modal-title" style="">{{ 'lang_setup' | translate  }}</h3>
+    </div>
+    <div class="modal-body modal-setup form-horizontal" style="padding: 10px 20px 0">
+        <div class="wn5-setup-info-msg">
+          <i class="tui tui-wn5-toolbar-status"></i>
+          <span>{{ 'lang_msg_cannot_preset_duplicate' | translate }}</span>
+        </div>
+        <div ng-repeat="schedule in ImagePreset.Schedules">
+            <hr class="wn5-setup-hr" style="margin: 10px 0">
+            <div class="form-group" ng-if="ImagePreset != undefined">
+                <label class="col-xs-2 control-label">{{ 'lang_mode' | translate }}</label>
+                <div class="col-xs-4">
+                    <select class="form-control" ng-model="schedule.Mode" ng-change="resetScheduleTime($index)">
+                        <option ng-selected="schedule.Mode === option" value={{option}} ng-repeat="option in ImagePresetSchedModeOptions"> {{ getTranslation(option) }} </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" ng-if="ImagePreset != undefined">
+                <label class="col-xs-2 control-label">{{ 'lang_from' | translate }}</label>
+                <div class="col-xs-2" style="padding-right: 3px">
+                    <select 
+                      style="padding-right: 0"
+                      class="form-control" 
+                      ng-disabled="schedule.Mode === 'Off'" 
+                      ng-model="schedule.SelectedFromHour" 
+                      ng-options="Hour for Hour in HourOptions track by Hour" 
+                      ng-change="extendPreviewMode()">
+                    </select>
+                </div>
+                <div class="col-xs-2" style="padding-left: 3px">
+                    <select 
+                      style="padding-right: 0"
+                      class="form-control" 
+                      ng-disabled="schedule.Mode === 'Off'" 
+                      ng-model="schedule.SelectedFromMinute" 
+                      ng-options="Minute for Minute in MinuteOptions track by Minute" 
+                      ng-change="extendPreviewMode()">
+                    </select>
+                </div>
+                <label class="col-xs-2 control-label">{{ 'lang_to' | translate }}</label>
+                <div class="col-xs-2" style="padding-right: 3px">
+                    <select 
+                      style="padding-right: 0"
+                      class="form-control" 
+                      ng-disabled="schedule.Mode === 'Off'" 
+                      ng-model="schedule.SelectedToHour" 
+                      ng-options="Hour for Hour in HourOptions track by Hour" 
+                      ng-change="extendPreviewMode()">
+                    </select>
+                </div>
+                <div class="col-xs-2" style="padding-left: 3px">
+                    <select 
+                      style="padding-right: 0"
+                      class="form-control" 
+                      ng-disabled="schedule.Mode === 'Off'" 
+                      ng-model="schedule.SelectedToMinute" 
+                      ng-options="Minute for Minute in MinuteOptions track by Minute" 
+                      ng-change="extendPreviewMode()">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer modal-setup" style="text-align:center">
+        <button type="button" class="btn cm-btn-point" type="button" ng-click="ok()">{{ 'lang_ok' | translate }}</button>
+        <button type="button" class="btn cm-btn-dark" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>
+    </div>
+</script>

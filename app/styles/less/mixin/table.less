@@ -1,0 +1,26 @@
+.mixin-table ( @table-type ) {
+	@theme-name: "theme-@{table-type}-table";
+	
+	@table-border: "@{theme-name}-border";
+	@table-header-text: "@{theme-name}-header-text";
+	@table-data-text: "@{theme-name}-data-text";
+	@table-header-bg: "@{theme-name}-header-bg";
+	@table-data-bg: "@{theme-name}-data-bg";
+	@table-focus-bg: "@{theme-name}-focus-bg";
+
+
+	tr {
+		th, td {
+			border: 1px solid @@table-border !important;  // @theme-color-gray-12
+		}
+
+		th {
+			background-color: @@table-header-bg !important;   // @theme-color-gray-7
+			color: @@table-header-text !important;   // @theme-black-100
+		}
+
+		td {
+			color: @@table-data-text !important;   // @theme-color-gray-100
+		}
+	}
+}

@@ -1,0 +1,68 @@
+//@btn-type {enum: point, dark}
+//@bg-type {enum: light, dark}
+.mixin-button(@btn-type, @bg-type){
+  @theme-name: "theme-@{bg-type}-button-@{btn-type}";
+  
+  @normal: "@{theme-name}-normal";
+  @normal-line: "@{normal}-line";
+  @normal-text: "@{normal}-text";
+  @normal-bg: "@{normal}-bg";
+
+  @focus: "@{theme-name}-focus";
+  @focus-line: "@{focus}-line";
+  @focus-text: "@{focus}-text";
+  @focus-bg: "@{focus}-bg";
+
+  @press: "@{theme-name}-press";
+  @press-line: "@{press}-line";
+  @press-text: "@{press}-text";
+  @press-bg: "@{press}-bg";
+
+  @disabled: "@{theme-name}-disabled";
+  @disabled-line: "@{disabled}-line";
+  @disabled-text: "@{disabled}-text";
+  @disabled-bg: "@{disabled}-bg";
+
+  border: 1px solid @@normal-line !important;
+  color: @@normal-text !important;
+  background-color: @@normal-bg !important;
+  
+  * {
+    color: inherit !important;
+    background-color: inherit !important;
+  }
+  
+  &:hover,
+  &.hover {
+    border: 1px solid @@focus-line !important;
+    color: @@focus-text !important;
+    background-color: @@focus-bg !important;
+  }
+
+  &.active,
+  &:active {
+    border: 1px solid @@press-line !important;
+    color: @@press-text !important;
+    background-color: @@press-bg !important;
+    box-shadow: none;
+  }
+
+  &[disabled],
+  &[readonly],
+  &.cm-disabled,
+  &.disabled {
+    .disabled(){
+      border: 1px solid @@disabled-line !important;
+      color: @@disabled-text !important;
+      background-color: @@disabled-bg !important;
+    }
+
+    .disabled();
+
+    &:focus,
+    &:active,
+    &:hover {
+      .disabled();
+    }
+  }
+}

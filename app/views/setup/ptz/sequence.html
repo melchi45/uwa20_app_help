@@ -1,0 +1,395 @@
+<div id="sequencepage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">              
+    <wn5-setup-main-title
+        data-title="lang_menu_ptzsequence">
+    </wn5-setup-main-title>
+
+    <div class="form-group setup-border-box-padding">
+        <div align="center">
+            <sketchbook videoinfo='videoinfo'></sketchbook>
+        </div>
+    </div>
+
+    <div class="form-group"></div>
+
+    <!-- PTZ Control -->
+    <div class="ptz-control_box ptz-control_ptz-menu-width">
+        <ptz-control ptzinfo='ptzinfo'></ptz-control>
+    </div>
+    <!-- //PTZ Control End -->
+
+    <form name="sequenceForm" method="get" class="form-horizontal" novalidate>
+        <uib-tabset class="wn5-setup-tab no-bottom">
+            <uib-tab ng-repeat="tab in tabs" heading={{getTranslatedOption(tab)}}>                                    
+                <div ng-if="tab === 'Swing'">                                                 
+                    <div class="wn5-setup-section-article">
+                        <div class="form-group">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                            <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="SwingMode.SelectedIndex" ng-options="SwingModes.indexOf(Option) as getTranslatedOption(Option) for Option in SwingModes"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_speed' | translate }}</div>                                            
+                            <div class="wn5-setup-section-article-content">
+                                <input type="text" class="form-control" ng-model="Swings[SwingMode.SelectedIndex].Speed" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"/>
+                                <label class="col-lg-1 control-label" style="text-align:left">({{PresetMinSpeed}}~{{PresetMaxSpeed}})</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_dwt' | translate }}</div>                                                
+                            <div class="wn5-setup-section-article-content">
+                                <input type="text" class="form-control" ng-model="Swings[SwingMode.SelectedIndex].DwellTime" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}"/>
+                                <label class="col-lg-2 control-label" style="text-align:left">({{DwellMinTime}}~{{DwellMaxTime}} {{ 'lang_sec' | translate }})</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_presetList' | translate }}</div>
+                            <div class="wn5-setup-section-article-content">
+                                <div class="form-group">
+                                    <table class="table cm-table-field table-editor wn5-setup-table">
+                                        <thead>
+                                            <th width="50%" height="40" style="text-align:center">{{ 'lang_from' | translate }} {{ 'lang_presetNo' | translate }}</th>
+                                            <th width="50%" height="40" style="text-align:center">{{ 'lang_to' | translate }} {{ 'lang_presetNo' | translate }}</th>
+                                        </thead>                                                    
+                                        <tbody>
+                                            <tr>                                                                 
+                                                <td width="50%">
+                                                    <input type="text" class="form-control preset-input swingsFromPreset" value="{{getTranslatedOption(getPresetNameWidthPresetNo(Swings[SwingMode.SelectedIndex].FromPreset))}}" readonly ng-mouseover="openPresetNoSelect('SwingsFromPreset',0,true)" ng-keyup="openPresetNoSelect('SwingsFromPreset',0,true)">
+                                                    <input type="hidden" ng-model="Swings[SwingMode.SelectedIndex].FromPreset">
+                                                </td>
+                                                <td width="50%">
+                                                    <input type="text" class="form-control preset-input swingsToPreset" value="{{getTranslatedOption(getPresetNameWidthPresetNo(Swings[SwingMode.SelectedIndex].ToPreset))}}" readonly ng-mouseover="openPresetNoSelect('SwingsToPreset',0,true)" ng-keyup="openPresetNoSelect('SwingsToPreset',0,true)">
+                                                    <input type="hidden" ng-model="Swings[SwingMode.SelectedIndex].ToPreset">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary cm-btn-dark" ng-click="startStopSwing(0)">
+                                        {{ 'lang_start' | translate }}
+                                    </button>
+                                    <button type="button" class="btn btn-primary cm-btn-dark btn-margin-both" ng-click="startStopSwing(1)">
+                                        {{ 'lang_stop' | translate }}
+                                    </button>
+                                    <button type="button" class="btn btn-primary cm-btn-dark" ng-click="setSwing()">
+                                        {{ 'lang_set' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="tab === 'Group'">
+                    <div class="wn5-setup-section-article">                                        
+                        <div class="form-group">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_groupNo' | translate }}</div>
+                            <div class="wn5-setup-section-article-content"><select class="form-control" ng-model="Group.SelectedIndex" ng-options="GroupOptions.indexOf(Option) as Option for Option in GroupOptions"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_presetList' | translate }}</div>
+                            <div class="wn5-setup-section-article-content">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary cm-btn-dark" ng-click="removeGroups()">
+                                        {{ 'lang_remove' | translate }}
+                                    </button>
+                                </div>
+                                <div class="table-wrapper form-group">
+                                    <table 
+                                        cellspacing="0" 
+                                        cellpadding="0" 
+                                        border="0" 
+                                        width="600px" 
+                                        style="text-align:center">
+                                        <tr>
+                                            <td>
+                                                <table class="cm-table-field wn5-setup-table" cellspacing="0" cellpadding="1" border="1" width="600px">
+                                                    <thead bgcolor="#F5F5F5">
+                                                    <th width="10%" height="40" style="text-align:center">{{ 'lang_num' | translate }}</th>
+                                                    <th width="40%" height="40" style="text-align:center">{{ 'lang_presetNo' | translate }}</th>
+                                                    <th width="25%" height="40" style="text-align:center">{{ 'lang_speed' | translate }} ({{PresetMinSpeed}}~{{PresetMaxSpeed}})</th>
+                                                    <th width="25%" height="40" style="text-align:center">{{ 'lang_dwt' | translate }} ({{DwellMinTime}}~{{DwellMaxTime}}{{ 'lang_sec' | translate }})</th>
+                                                    </thead>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div style="overflow:scroll;height:auto;max-height:352px;width:630px;overflow:auto">
+                                                    <table class="cm-table-field wn5-setup-table" cellspacing="0" cellpadding="1" border="1" width="600px" style="text-align:center">
+                                                        <tr ng-repeat="Preset in PTZPresetArray"> 
+                                                            <td width="10%"><span style="text-align:center">{{$index + 1}}</span></td>
+                                                            <td width="40%">
+                                                                <input type="text" class="form-control preset-input groupPresetInput" value="{{getTranslatedOption(getPresetNameWidthPresetNo(Groups[Group.SelectedIndex].PresetList[Preset].SelectedPresetIndex))}}" readonly ng-mouseover="openPresetNoSelect('GroupPreset',Preset,true)" ng-keyup="openPresetNoSelect('GroupPreset',Preset,true)" ng-click="openPresetNoSelect('GroupPreset',Preset,true)">
+                                                                <input type="hidden" ng-model="Groups[Group.SelectedIndex].PresetList[Preset].SelectedPresetIndex">
+                                                            </td>
+                                                            <td width="25%"><input type="text" class="form-control" style="text-align:center" ng-model="Groups[Group.SelectedIndex].PresetList[Preset].Speed" ng-disabled="!Groups[Group.SelectedIndex].PresetList[Preset].SelectedPresetIndex" maxlength="2"  required ng-pattern-restrict="{{OnlyNumStr}}"/></td>
+                                                            <td width="25%"><input type="text" class="form-control" style="text-align:center" ng-model="Groups[Group.SelectedIndex].PresetList[Preset].DwellTime" ng-disabled="!Groups[Group.SelectedIndex].PresetList[Preset].SelectedPresetIndex" maxlength="3"  required ng-pattern-restrict="{{OnlyNumStr}}"/></td>
+                                                        </tr>   
+                                                    </table>  
+                                                </div>                                                        
+                                            </td>
+                                        </tr> 
+                                    </table>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary cm-btn-dark" ng-click="startStopGroup(0)">{{ 'lang_start' | translate }}</button>
+                                    <button type="button" class="btn btn-primary cm-btn-dark btn-margin-both" ng-click="startStopGroup(1)">{{ 'lang_stop' | translate }}</button>
+                                    <button type="button" class="btn btn-primary cm-btn-dark" ng-click="setGroup()">{{ 'lang_set' | translate }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="tab === 'Tour'">                                                 
+                    <div class="wn5-setup-section-article">
+                        <div class="form-group">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_groupList' | translate }}</div>
+                            <div class="wn5-setup-section-article-content">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary cm-btn-dark" ng-click="removeTours()">{{ 'lang_remove' | translate }}</button>
+                                </div>
+                                <div class="form-group">
+                                    <table class="table cm-table-field table-editor wn5-setup-table">
+                                        <thead>
+                                            <th width="50%" height="40" style="text-align:center">{{ 'lang_groupNo' | translate }}</th>
+                                            <th width="50%" height="40" style="text-align:center">{{ 'lang_dwt' | translate }} ({{DwellMinTime}}~{{DwellMaxTime}}{{ 'lang_sec' | translate }})</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="SeqIndex in PTZGroupArray">
+                                                <td width="50%"><select class="form-control" style="text-align:center"  ng-model="GroupSequences[SeqIndex].SelectedTourGroup" ng-options="Option as getTranslatedOption(Option) for Option in TourGroupOptions"></select></td>
+                                                <td width="50%"><input type="text" class="form-control" style="text-align:center" ng-model="GroupSequences[SeqIndex].DwellTime" ng-disabled="!GroupSequences[SeqIndex].SelectedTourGroup" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}"/></td>
+                                            </tr>   
+                                        </tbody>
+                                    </table> 
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary cm-btn-dark" ng-click="startStopTour(0)">{{ 'lang_start' | translate }}</button>
+                                    <button type="button" class="btn btn-primary cm-btn-dark btn-margin-both" ng-click="startStopTour(1)">{{ 'lang_stop' | translate }}</button>
+                                    <button type="button" class="btn btn-primary cm-btn-dark" ng-click="setTour()">{{ 'lang_set' | translate }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="tab === 'Trace'">
+                    <div class="wn5-setup-section-article">
+                        <div class="wn5-setup-section-article-heading">
+                            {{ 'lang_traceNo' | translate }}
+                        </div>
+                        <div class="wn5-setup-section-article-content">
+                            <select class="form-control" ng-model="Trace.SelectedIndex" ng-options="TraceOptions.indexOf(Option) as Option for Option in TraceOptions">
+                            </select>
+                            <button type="button" class="btn btn-primary cm-btn-dark btn-margin-left" ng-click="startStopTrace(1)">{{ 'lang_start' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark btn-margin-both" ng-click="startStopTrace(0)">{{ 'lang_stop' | translate }}</button>
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="setTrace()">{{ 'lang_set' | translate }}</button>
+                        </div>
+                    </div>                           
+                </div>
+
+                <div ng-if="tab === 'AutoRun'"> 
+                    <div class="wn5-setup-section-article">
+                        <div class="form-group">                                                                               
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_mode' | translate }}</div>
+                            <div class="wn5-setup-section-article-content">
+                                <select class="form-control" ng-model="AutoRun.Mode" ng-options="Mode as getTranslatedOption(Mode) for Mode in AutoRunModes"></select>
+                                <button type="button" class="btn btn-primary cm-btn-dark" ng-click="setAutoRun()">{{ 'lang_set' | translate }}</button>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Home'">
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                                <div class="wn5-setup-section-article-content">
+                                    <select class="form-control" ng-model="AutoRun.ModeHome.ActivationTime" ng-options="Time as getTranslatedOption(Time) for Time in AutoRunActiveTimeOptions"></select>
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Preset'">
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                                <div class="wn5-setup-section-article-content">
+                                    <select class="form-control" ng-model="AutoRun.ModePreset.ActivationTime" ng-options="Time as getTranslatedOption(Time) for Time in AutoRunActiveTimeOptions"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_number' | translate }}</div>
+                                <div class="wn5-setup-section-article-content"><input type="text"  class="form-control" ng-model="AutoRun.ModePreset.Preset" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
+                                <label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxPreset}})</label>
+                            </div>    
+                        </div>
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Swing'">
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                                <div class="wn5-setup-section-article-content">
+                                    <select class="form-control" ng-model="AutoRun.ModeSwing.ActivationTime" ng-options="Time as getTranslatedOption(Time) for Time in AutoRunActiveTimeOptions"></select>
+                                </div>
+                            </div>    
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_swingMode' | translate }}</div>
+                                <div class="wn5-setup-section-article-content">
+                                    <select class="form-control" ng-model="AutoRun.ModeSwing.SwingMode" ng-options="Mode as getTranslatedOption(Mode) for Mode in SwingModes"></select>
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Group'">
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                                <div class="wn5-setup-section-article-content">
+                                    <select class="form-control" ng-model="AutoRun.ModeGroup.ActivationTime" ng-options="Time as getTranslatedOption(Time) for Time in AutoRunActiveTimeOptions"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_number' | translate }}</div>
+                                <div class="wn5-setup-section-article-content"><input type="text"  class="form-control" ng-model="AutoRun.ModeGroup.Group" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
+                                <label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxGroupCount}})</label>
+                            </div>
+                        </div>   
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Tour'">
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                                <div class="wn5-setup-section-article-content">
+                                    <select class="form-control" ng-model="AutoRun.ModeTour.ActivationTime" ng-options="Time as getTranslatedOption(Time) for Time in AutoRunActiveTimeOptions"></select>
+                                </div>
+                            </div>    
+                        </div>    
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Trace'">
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                                <div class="wn5-setup-section-article-content">
+                                    <select class="form-control" ng-model="AutoRun.ModeTrace.ActivationTime" ng-options="Time as getTranslatedOption(Time) for Time in AutoRunActiveTimeOptions"></select>
+                                </div>
+                            </div>    
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_number' | translate }}</div>
+                                <div class="wn5-setup-section-article-content"><input type="text"  class="form-control" ng-model="AutoRun.ModeTrace.Trace" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
+                                <label class="col-lg-1 control-label" style="text-align:left">({{1}}~{{MaxTraceCount}})</label>
+                            </div>    
+                        </div>
+                        <div class="form-group" ng-if="AutoRun.Mode == 'AutoPan'">
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                                <div class="wn5-setup-section-article-content">
+                                    <select class="form-control" ng-model="AutoRun.ModeAutoPan.ActivationTime" ng-options="Time as getTranslatedOption(Time) for Time in AutoRunActiveTimeOptions"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">                                            
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_speed' | translate }}</div>
+                                <div class="wn5-setup-section-article-content"><input type="text"  class="form-control" ng-model="AutoRun.ModeAutoPan.AutoPanSpeed" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
+                                <label class="col-lg-1 control-label" style="text-align:left">({{AutoPanMinSpeed}}~{{AutoPanMaxSpeed}})</label>
+                            </div>    
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_tiltAngle' | translate }}</div>                                                                                        
+                                <div class="wn5-setup-section-article-content"><input type="text"  class="form-control" ng-model="AutoRun.ModeAutoPan.AutoPanTiltAngle" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
+                                <label class="col-lg-1 control-label" style="text-align:left">({{AutoPanTiltMinAngle}}~{{AutoPanTiltMaxAngle}})</label>
+                            </div>
+                        </div>    
+                        <div class="form-group" ng-if="AutoRun.Mode == 'Schedule'">
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                                <div class="wn5-setup-section-article-content">
+                                    <select class="form-control" ng-model="AutoRun.ModeSchedule.ActivationTime" ng-options="Time as getTranslatedOption(Time) for Time in AutoRunActiveTimeOptions"></select>
+                                </div>
+                            </div>
+                            <table border='1' width='100%' style="text-align:center">
+                                <div align="right">                                    
+                                    <button type="button" class="btn btn-primary cm-btn-dark" ng-click="clearSchedule()">{{ 'lang_clear' | translate }}</button>                                
+                                </div>                            
+                                <thead>
+                                    <tr height='35' bgcolor="#e6e6e6">
+                                        <th width="100"></th>
+                                        <th width="50" ng-repeat="n in getHourArray" style="text-align:center">{{n}}</th>                           
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    <tr height ="40" ng-repeat="Day in WeekDays">
+                                        <th bgcolor="#e6e6e6" style="text-align:center">{{getTranslatedOption(Day)}}</th>
+                                        <td style="cursor: pointer;" ng-repeat="n in getHourArray" ng-style="setColor(Day, n)" ng-click="open(Day, n)" ng-mouseover="mouseOver(Day, n)" ng-mouseleave="mouseLeave()" data-placement="bottom" title={{getTooltipMessage()}}></td>                                  
+                                    </tr>                                
+                                </tbody>                               
+                            </table>
+                            <div class="labelMinutesHour" style="float:right; margin-top:5px;">
+                                <table cellspacing="0" cellpadding="0" border="0" width="100%" style="text-align:center">
+                                    <tbody>
+                                        <tr>
+                                            <td> <a class="cm-legend-sky-blue schedule-color-info"></a><span style="color:black;font-size:12px">{{getTranslatedOption('Home')}}</span> </td>
+                                            <td> <a class="cm-legend-orange schedule-color-info"></a><span style="color:black;font-size:12px">{{getTranslatedOption('Preset')}}</span> </td>
+                                            <td> <a class="cm-legend-green schedule-color-info"></a><span style="color:black;font-size:12px">{{getTranslatedOption('Swing')}}</span> </td>
+                                            <td> <a class="cm-legend-purple schedule-color-info"></a><span style="color:black;font-size:12px">{{getTranslatedOption('Group')}}</span><br/> </td>
+                                            <td> <a class="cm-legend-pink schedule-color-info"></a><span style="color:black;font-size:12px">{{getTranslatedOption('Tour')}}</span> </td>
+                                            <td> <a class="cm-legend-yellow schedule-color-info"></a><span style="color:black;font-size:12px">{{getTranslatedOption('Trace')}}</span> </td>
+                                            <td> <a class="cm-legend-blue schedule-color-info"></a><span style="color:black;font-size:12px">{{getTranslatedOption('AutoPan')}}</span>  </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>    
+                    </div>                    
+                    <!--<div class="confirm-button-area">
+                        <button type="button" class="btn cm-btn-dark" ng-click="cancelAutoRun()">{{ 'lang_cancel' | translate }}</button>
+                        <button type="button" class="btn btn-primary cm-btn-dark" ng-click="setAutoRun()">{{ 'lang_apply' | translate }}</button>
+                    </div>-->
+                </div>   
+            </uib-tab>                             
+        </uib-tabset>
+    </form>
+</div>
+<script type="text/ng-template" id="autorunModal.html">
+    <form name="scheduleForm" method="get" class="form-horizontal" novalidate>
+    <div class="modal-header modal-setup">
+        <h3>{{ 'lang_setup' | translate}}</h3>
+    </div>    
+   <div class="modal-body modal-setup">
+        <label class="col-lg-3 control-label">{{ 'lang_mode' | translate }}</label>
+        <div class="col-sm-6">
+            <select class="form-control" ng-model="SelectedSchedule.Mode" ng-options="Mode as getTranslatedOption(Mode) for Mode in AutoRunScheduleModes"></select>
+        </div>
+    </div>
+    <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Preset'">
+        <label class="col-lg-3 control-label">{{ 'lang_number' | translate }}</label>                                                                                        
+        <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Preset" maxlength="3" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
+        <label class="col-lg-1 control-label">({{1}}~{{MaxPreset}})</label>        
+    </div>    
+    <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Swing'">
+        <label class="col-lg-3 control-label">{{ 'lang_swingMode' | translate }}</label>
+        <div class="col-sm-6"><select class="form-control" ng-model="SelectedSchedule.SwingMode" ng-options="Mode as getTranslatedOption(Mode) for Mode in SwingModes"></select></div>
+    </div>
+    <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Group'">
+        <label class="col-lg-3 control-label">{{ 'lang_number' | translate }}</label>
+        <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Group" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
+        <label class="col-lg-1 control-label">({{1}}~{{MaxGroupCount}})</label>        
+    </div>
+    <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'Trace'">
+        <label class="col-lg-3 control-label">{{ 'lang_number' | translate }}</label>
+        <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.Trace" maxlength="1" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
+        <label class="col-lg-1 control-label">({{1}}~{{MaxTraceCount}})</label>        
+    </div>
+    <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'AutoPan'">                                            
+        <label class="col-lg-3 control-label">{{ 'lang_speed' | translate }}</label>
+        <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.AutoPanSpeed" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
+        <label class="col-lg-1 control-label">({{AutoPanMinSpeed}}~{{AutoPanMaxSpeed}})</label>        
+    </div>
+    <div class="modal-body modal-setup" ng-if="SelectedSchedule.Mode == 'AutoPan'">
+        <label class="col-lg-3 control-label">{{ 'lang_tiltAngle' | translate }}</label>
+        <div class="col-sm-3"><input type="text"  class="form-control" ng-model="SelectedSchedule.AutoPanTiltAngle" maxlength="2" required ng-pattern-restrict="{{OnlyNumStr}}"></div>
+        <label class="col-lg-1 control-label">({{AutoPanTiltMinAngle}}~{{AutoPanTiltMaxAngle}})</label>                                                   
+    </div>
+    <div class="modal-body modal-setup">
+        <label class="col-lg-3 control-label">{{ 'lang_from' | translate }}</label>
+        <div class="col-sm-3"><select class="form-control" ng-model="FromDay" ng-disabled="true" ng-options="Day as getTranslatedOption(Day) for Day in WeekDays"></select></div>
+        <div class="col-sm-3"><select class="form-control" ng-model="FromTime" ng-options="Option for Option in FromOptions track by Option" ng-disabled="true"></select></div>                                
+    </div> 
+    <div class="modal-body modal-setup">
+        <label class="col-lg-3 control-label">{{ 'lang_to' | translate }}</label>
+        <div class="col-sm-3"><select class="form-control" ng-model="ToDay" ng-options="Day as getTranslatedOption(Day) for Day in WeekDays"></select></div>
+        <div class="col-sm-3"><select class="form-control" ng-model="ToTime" ng-options="Option for Option in ToOptions track by Option"></select></div>                                
+    </div> 
+    <div class="modal-body modal-setup"></div>         
+    <div class="modal-footer modal-setup" style="text-align:center">
+        <button type="button" class="btn cm-btn-point" type="button" ng-click="apply()">{{ 'lang_ok' | translate }}</button>
+        <button type="button" class="btn cm-btn-dark" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>
+    </div>
+    </form>
+</script>

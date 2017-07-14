@@ -1,0 +1,119 @@
+﻿<h1 class="wn5-setup-main-title">Detecci&oacute;n de manipulaci&oacute;n</h1>
+
+<div class="wn5-setup-section">
+    <p>Un evento de detecci&oacute;n de manipulaci&oacute;n puede ser creado cuando la pantalla est&aacute; bloqueada o se cambia la posici&oacute;n de la c&aacute;mara. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste del evento de detecci&oacute;n de manipulaci&oacute;n se aplica a <strong class="UI">[Detecci&oacute;n de manipulaci&oacute;n]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Detecci&oacute;n de manipulaci&oacute;n</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>Activar detecci&oacute;n de manipulaci&oacute;n</h3>
+            <p>Para utilizar el evento de detecci&oacute;n de manipulaci&oacute;n, seleccione <strong class="UI">[Activar detecci&oacute;n de manipulaci&oacute;n]</strong>. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Nivel de detecci&oacute;n </h3>
+            <p>Esto establece el nivel est&aacute;ndar de detecci&oacute;n de manipulaci&oacute;n. Un evento de detecci&oacute;n de manipulaci&oacute;n se crea cuando se detecta un sabotaje del nivel establecido. </p>
+            <p>Adem&aacute;s, cuando se detecta un sabotaje, un gr&aacute;fico que muestra el nivel de sabotaje aparecer&aacute;, y cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n, el color del gr&aacute;fico cambiar&aacute;. </p>
+        </div>
+		
+		<div class="wn5-setup-section-article-content">
+            <h3>Sensibilidad</h3>
+            <p>Una mayor sensibilidad da como resultado una respuesta m&aacute;s sensible del gr&aacute;fico de nivel de detecci&oacute;n.</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>Duraci&oacute;n m&iacute;nima (s)    </h3>
+            <p>Esto establece el tiempo m&iacute;nimo para detectar un sabotaje y crear un evento. Un evento de detecci&oacute;n de manipulaci&oacute;n se crea s&oacute;lo un sabotaje persiste durante la duraci&oacute;n m&iacute;nima.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Excepto im&aacute;genes oscuras  </h3>
+            <p>Para excluir una disminuci&oacute;n repentina en el brillo de la pantalla, tal como una s&uacute;bita ausencia de luz desde el evento detecci&oacute;n de manipulaci&oacute;n, seleccione <strong class="UI">[Activar]</strong>. </p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>El rendimiento de detecci&oacute;n puede reducirse en un fondo uniforme, de noche o condiciones de poca luminosidad.</li>
+                <li>Puede llevar hasta 5 segundos para un evento de detecci&oacute;n de manipulaci&oacute;n para que se cree despu&eacute;s de que ocurra un sabotaje indebido.</li>
+                <li>Cuando se detecta un sabotaje de la c&aacute;mara, la funci&oacute;n se reiniciar&aacute; despu&eacute;s de la estabilizaci&oacute;n durante aproximadamente 5 segundos, y no se detectar&aacute; ning&uacute;n sabotaje durante el proceso de estabilizaci&oacute;n.</li>
+                <li>Cuando se est&eacute; creando repetidamente un evento incorrecto, los errores se pueden minimizar mediante la reducci&oacute;n gradual del nivel. </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Conf. de acciones de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>FTP</h3>
+            <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>Para enviar una imagen por e-mail cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Grabar</h3>
+            <p>Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Salida de alarma</h3>
+            <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de manipulaci&oacute;n. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de manipulaci&oacute;n. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Configuración de preajustes]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuración de preajustes]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de manipulaci&oacute;n. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Tiempo de activaci&oacute;n de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Esto establece la acci&oacute;n del evento desde <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_tamperDetection?#action">Conf. de acciones de evento</a>]</strong> para funcionar siempre o s&oacute;lo a una hora determinada cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>Siempre</h3>
+            <p>Los valores de acciones evento siempre se ejecutan cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>S&oacute;lo tiempo programado</h3>
+            <p>Las configuraciones de la acci&oacute;n del evento s&oacute;lo se ejecutan cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n durante el tiempo establecido. La fecha de domingo a s&aacute;bado, a partir de la hora actual de la c&aacute;mara, se muestra en la tabla de tiempos que aparece cuando <strong class="UI">[S&oacute;lo tiempo programado]</strong> se selecciona. Puede establecer el tiempo de configuraci&oacute;n de las acciones de eventos haciendo clic o arrastrando en la tabla de tiempos con el rat&oacute;n. El tiempo de activaci&oacute;n de evento configurado se ejecuta varias veces durante el d&iacute;a de la semana y la hora correspondiente.</p>
+			<p>Puede cambiar la unidad de vista de tiempo haciendo clic en el bot&oacute;n de <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, consulte <strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

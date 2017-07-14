@@ -1,0 +1,110 @@
+<div id="wn5-setup-8021x" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <form name="IEEE8021xForm" method="get" class="form-horizontal">
+        <wn5-setup-main-title
+            data-title="lang_menu_8021x">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_8021xSetup' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div ng-show="DeviceType === 'NVR'">
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_Interface' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <select class="form-control" ng-model="SelectedInterface" ng-options="IEEE802Dot1xInterfaceOptions.indexOf(SelectedInterface) as SelectedInterface for SelectedInterface in IEEE802Dot1xInterfaceOptions"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">IEEE 802.1x</div>
+                    <div class="wn5-setup-section-article-content" style="text-align:left">
+                        <input type="checkbox" ng-model="IEEE802Dot1x[SelectedInterface].Enable"> <label>{{ 'lang_enable' | translate }}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_EAPType' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-model="IEEE802Dot1x[SelectedInterface].EAPOLType" ng-disabled="DeviceType === 'NVR'" ng-options="EAPOLType for EAPOLType in EAPOLTypeOptions track by EAPOLType"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_eapolVer' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-model="IEEE802Dot1x[SelectedInterface].EAPOLVersion" ng-options="EAPOLVersion for EAPOLVersion in EAPOLVersionOptions track by EAPOLVersion"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_userID' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" ng-disabled="false" name="EAPOLId" ng-model="IEEE802Dot1x[SelectedInterface].EAPOLId" maxlength="{{EAPOLIDRange}}" ng-pattern-restrict="{{idPasswordPattern}}" >
+                    </div>                      
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_password' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="password" id="8021x_eapolpw" class="form-control" ng-disabled="false" name="EAPOLPassword" ng-model="IEEE802Dot1x[SelectedInterface].EAPOLPassword" maxlength="{{EAPOLPasswordRange}}" ng-click="DoPWInit()" ng-keypress="DoPWInit()" ng-keydown="DoPWInit()" ng-pattern-restrict="{{idPasswordPattern}}" >
+                    </div>                                                      
+                </div>
+            </div>
+        </div>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_certificate' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_ca_cert' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div class="wn5-setup-preview-table-col-6 file-browser-field">
+                            <input type="text" class="form-control" name ="cerName" ng-model="CACertificateFile" ng-disabled="true"> 
+                            <label for="certfileid"> <span class="btn btn-primary cm-btn-dark" ng-disabled="IEEE802Dot1x[SelectedInterface].CACertificateInstalled">...</span></label>
+                            <input style="visibility: hidden; position: relative; display:none" id="certfileid" class="form-control" type="file" name="certfileid" ng-disabled="IEEE802Dot1x[SelectedInterface].CACertificateInstalled" ng-model-instant accept=".crt"  onchange="angular.element(this).scope().setCACertificateFile(this)">
+                        </div>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-left" ng-disabled="IEEE802Dot1x[SelectedInterface].CACertificateInstalled" ng-click="OnCertInstall(0)">{{ 'lang_install' | translate }}</button>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-both" ng-disabled="!IEEE802Dot1x[SelectedInterface].CACertificateInstalled" ng-click="OnCertDelete(0)">{{ 'lang_delete' | translate }}</button>
+                        <label ng-if="!IEEE802Dot1x[SelectedInterface].CACertificateInstalled" style="color:red">{{ 'lang_nolang_available' | translate }}</label>
+                        <label ng-if="IEEE802Dot1x[SelectedInterface].CACertificateInstalled" style="color:green">{{ 'lang_installed' | translate }}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_clienlang_cert' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div class="wn5-setup-preview-table-col-6 file-browser-field">
+                            <input type="text" class="form-control" name ="clientcerName" ng-model="ClientCertificateFile" ng-disabled="true"> 
+                            <label for="clientcertfileid"> <span class="btn btn-primary cm-btn-dark" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled">...</span></label>
+                            <input style="visibility: hidden; position: relative; display:none" id="clientcertfileid" class="form-control" type="file" name="clientcertfileid" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" ng-model-instant accept=".crt" onchange="angular.element(this).scope().setClientCertificateFile(this)">
+                        </div>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-left" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" ng-click="OnCertInstall(1)">{{ 'lang_install' | translate }}</button>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-both" ng-disabled="!IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" ng-click="OnCertDelete(1)">{{ 'lang_delete' | translate }}</button>
+                        <label ng-if="!IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" style="color:red">{{ 'lang_nolang_available' | translate }}</label>
+                        <label ng-if="IEEE802Dot1x[SelectedInterface].ClientCertificateInstalled" style="color:green">{{ 'lang_installed' | translate }}</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading" style="text-align:left">{{ 'lang_clienlang_private_key' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div class="wn5-setup-preview-table-col-6 file-browser-field">
+                            <input type="text" class="form-control" name ="keyName" ng-model="ClietKeyFile" ng-disabled="true"> 
+                            <label for="keyfileid"> <span class="btn btn-primary cm-btn-dark" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled">...</span></label>
+                            <input style="visibility: hidden; position: relative; display:none" id="keyfileid" class="form-control" type="file" name="keyfileid" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" ng-model-instant accept=".pem"  onchange="angular.element(this).scope().setClientKeyFile(this)">
+                        </div>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-left" ng-disabled="IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" ng-click="OnCertInstall(2)">{{ 'lang_install' | translate }}</button>
+                        <button class="btn btn-primary cm-btn-dark btn-margin-both" ng-disabled="!IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" ng-click="OnCertDelete(2)">{{ 'lang_delete' | translate }}</button>
+                        <label ng-if="!IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" style="color:red">{{ 'lang_nolang_available' | translate }}</label>
+                        <label ng-if="IEEE802Dot1x[SelectedInterface].ClientPrivateKeyInstalled" style="color:green">{{ 'lang_installed' | translate }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="wn5-setup-hr">
+
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>

@@ -1,0 +1,169 @@
+@import "reset";
+@import "variable";
+@import "default";
+@import "loading-bar";
+@import "components/components";
+
+html, 
+body {
+    width: 100%;
+    min-height: 0 !important;
+    height: 100%;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-track-color: #ccc;
+    scrollbar-face-color: #666;
+    scrollbar-arrow-color: #999;
+}
+
+body {
+  font-family: "NotoSans";
+  overflow: hidden;
+  font-size: 12px;
+  min-width: 400px;
+  color: @theme-light-normal-color;
+  -ms-overflow-style: scrollbar;
+
+  /* It is added in wrapper.js, when page of "/uni/channel" is loaded. */
+  /* 68(Video Top Margin) + 35(Toggle Playback) + 85(Playback) + 10(Bottom Margin)= 198px */
+  &.wisenet-desktop-body {
+    overflow-y: auto;
+    /* 56.25vw is video size, 188px is margin. */
+    /* ~"" is escape. ref. http://lesscss.org/functions/#string-functions-escape */
+    min-height: calc(~"56.25vw + 198px");
+
+    @media(min-width: 1001px){
+       /* 198px + 1100 * 56.25(Video Radio) */
+      min-height: 816px;
+    }
+
+    @media(min-width: 1601px){
+       /* 198px + 1300 * 56.25(Video Radio) */
+      min-height: 929px;
+    }
+  }
+
+  &.kind-responsive-live {
+    min-width: @kind-responsive-live-min-width;
+  }
+
+  &.kind-responsive-playback {
+    min-width: @kind-responsive-playback-min-width;
+  }
+  
+  &.kind-responsive-setup {
+    min-width: @kind-responsive-setup-min-width;
+  }
+}
+
+.nav-toggle {
+  position: absolute;
+  top: 11px;
+  left: 12px;
+  
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 20px;
+  padding: 0;
+
+  z-index: @zindex-top;
+  &.is-loading {
+    z-index: @zindex-top * 1000 !important;
+  }
+}
+
+.main {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  &>div {
+    height: 100%;
+    overflow: hidden;
+  }
+  #block-main {
+    background-color: #000;
+    &.visible {
+      .transition(all linear @animation-time-side-nav);
+      opacity: 0.2;
+    }
+  }
+}
+.transparent {
+  background-color: rgba(0,0,0,0) !important;
+}
+.none {
+  display: none !important;
+}
+channel_player.channel-content.none {
+  display: none !important;
+}
+channel_player.full-screen object,
+channel_player.full-screen img{
+  display: block;
+}
+.separate-line {
+  margin: 15px 0;
+  content: " ";
+  width: auto;
+  height: 1px;
+  background-color: #d8dde8;
+  display: block;
+}
+
+channels-wrapper canvas {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  cursor: default;
+}
+.live-slider-width{
+  display: inline-block;
+  width: 200px; 
+}
+.tampering-slider .live-slider-width{
+  width: 400px; 
+}
+.video-display-none{
+  display: none !important; 
+}
+
+.fc-time-grid-event.fc-short .fc-time span {
+    display: inline;
+}
+
+.fc-time-grid-event.fc-short .fc-time:before {
+    content: normal;
+}  
+
+.fc-time-grid-event.fc-short .fc-time:after {
+    content: normal;
+}
+
+.form-horizontal .control-label{
+  text-align:left !important;
+  position: relative;
+}
+
+/** Show disabled drop down box items in grey color */
+
+/*css style for IE*/
+option[disabled='disabled']::-ms-value {
+    background-color: lightGray;
+    opacity:1;
+}
+/*Specific to chrome and firefox*/
+option[disabled='disabled'] {
+    background-color: lightGray;
+    opacity:1;
+}
+
+select option:disabled {
+     background-color: lightGray;
+    opacity:1;
+}

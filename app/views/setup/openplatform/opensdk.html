@@ -1,0 +1,194 @@
+<style>
+.loadingTableCover {
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: 0.2;
+    filter: alpha(opacity=60);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.loadingTableCover img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+</style>
+<div id="taskmanager2" class="wrapper wrapper-content" style="display:none">
+    <div id="contents">
+        <form name="opensdkForm" method="get" class="form-horizontal">
+            <wn5-setup-main-title
+                data-title="lang_left_openplatform">
+            </wn5-setup-main-title>
+            <hr class="wn5-setup-hr">
+            <div class="form-group">
+                <div id="f1_upload_process" style="display: none"></div>
+
+                <div id="f1_upload_form" class="form-group">
+                    <div class="wn5-setup-preview-table-col-4 file-browser-field">
+                        <input type="text" class="form-control" name="cerName" id="certificateFile" ng-model="CertificateFile" ng-disabled="true">
+                        <label for="opensdkfileupload"> <span class="btn btn-primary cm-btn-dark" ng-disabled="IsCerticateInstalled()">...</span></label>
+                        <input style="visibility: hidden; position: relative; display:none" id="opensdkfileupload" class="form-control" type="file" name="opensdkfileupload" ng-disabled="IsCerticateInstalled()"  ng-model-instant accept=".cap"  onchange="angular.element(this).scope().setOpenSDKFile(this)">
+                    </div>
+                    <div class="wn5-setup-preview-table-col-2">
+                        <button type="button" class="btn btn-primary cm-btn-dark btn-margin-left" style="float:left" ng-click="OnOpenSDKInstall()" ng-disabled="!CertificateFile">{{ 'lang_install' | translate }}</button>
+                    </div>
+                    <div class="wn5-setup-preview-table-col-6 text-right">
+                        {{'lang_version' | translate }} : {{DeviceInfo.OpenSDKVersion}}
+                    </div>
+                </div>
+
+                <div class="form-group text-right">
+                    <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="false" ng-click="OnOpenSDKTaskManager()">{{ 'lang_taskmanager' | translate }}</button>
+                </div>
+                <div class="form-group">
+                    <table class="table cm-table-field wn5-setup-table">
+                        <thead>
+                            <tr class="form-inline">
+                                <th style="text-align:center" width="10%">
+                                    <div class="order-wrapper" ng-click="openSDKOrder('No')">
+                                        {{ 'lang_num' | translate}}
+                                        <div class="order-btn">
+                                            <i class="tui tui-top" ng-class="openSDKOrderClass('No','')"></i>
+                                            <i class="tui tui-down" ng-class="openSDKOrderClass('No','-')"></i>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th style="text-align:center" width="40%">
+                                    <div class="order-wrapper" ng-click="openSDKOrder('AppID')">
+                                        {{ 'lang_appName' | translate}}
+                                        <div class="order-btn">
+                                            <i class="tui tui-top" ng-class="openSDKOrderClass('AppID','')"></i>
+                                            <i class="tui tui-down" ng-class="openSDKOrderClass('AppID','-')"></i>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th style="text-align:center" width="20%">
+                                    <div class="order-wrapper" ng-click="openSDKOrder('Status')">
+                                        {{ 'lang_status' | translate}}
+                                        <div class="order-btn">
+                                            <i class="tui tui-top" ng-class="openSDKOrderClass('Status','')"></i>
+                                            <i class="tui tui-down" ng-class="openSDKOrderClass('Status','-')"></i>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th style="text-align:center" width="30%">
+                                    <div class="order-wrapper" ng-click="openSDKOrder('PriorityOrder')">
+                                        {{ 'lang_setup' | translate}}
+                                        <div class="order-btn">
+                                            <i class="tui tui-top" ng-class="openSDKOrderClass('PriorityOrder','')"></i>
+                                            <i class="tui tui-down" ng-class="openSDKOrderClass('PriorityOrder','-')"></i>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="App in OpenSDK.Apps | orderBy:appOrder.property">
+                                <td style="text-align:center">
+                                    {{App.No}}
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div ng-class="TableElementClass" style="word-break: break-all;">
+                                            {{App.AppID}}
+                                        </div>
+                                        <div ng-class="TableElementClass">
+                                            {{ 'lang_installedDate' | translate}} : {{App.InstalledDate}}
+                                        </div>
+                                        <div ng-class="TableElementClass">
+                                            {{ 'lang_version' | translate}} : {{App.Version}}
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn btn-primary cm-btn-dark btn-margin-right" ng-disabled="false" ng-click="OnOpenSDKAppUninstall(App.AppID)">{{ 'lang_uninstall' | translate }}</button>
+                                            
+                                            <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="false" ng-click="OnOpenSDKGoApp(App.AppID)">{{ 'lang_goApp' | translate }}</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div ng-class="TableElementClass">
+                                            {{getTranslatedOption(App.Status)}}
+                                        </div>
+                                        
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-primary cm-btn-dark" 
+                                            ng-disabled="false" 
+                                            ng-click="OnOpenSDKAppStart(App.AppID)"
+                                            ng-if="App.Status === 'Stopped' || App.Status === 'Installed'">
+                                            {{ 'lang_start' | translate }}
+                                        </button>
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-primary cm-btn-dark" 
+                                            ng-if="App.Status === 'Running'" 
+                                            ng-disabled="false" 
+                                            ng-click="OnOpenSDKAppStop(App.AppID)">
+                                            {{ 'lang_stop' | translate }}
+                                        </button>
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-primary cm-btn-dark btn-margin-left" 
+                                            ng-disabled="!IsOpenSDKAppRunning(App.Status)" 
+                                            ng-click="OnOpenSDKAppHealth(App.AppID)">
+                                            {{ 'lang_health' | translate }}
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        {{ 'lang_priority' | translate }}
+                                    </div>
+                                    <div class="form-group">
+                                        <div ng-class="RadioClassLg" ng-repeat="Priority in OpenSDKPriorityOptions" style="line-height: 34px;">
+                                            <input type="radio" class="radio" ng-model="App.Priority" ng-value="Priority" style="float: none; vertical-align: middle;">
+                                            {{getTranslatedOption(Priority)}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {{ 'lang_autostart' | translate }}
+                                    </div>
+                                    <div class="form-group">
+                                        <div ng-class="FieldClass">
+                                            <input type="checkbox" ng-model="App.AutoStart">
+                                                <label>{{ 'lang_enable' | translate }}</label>
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary cm-btn-dark" ng-disabled="false" ng-click="OnOpenSDKAppApply(App.AppID)">{{ 'lang_apply' | translate }}</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-left">
+                                    <label>{{ 'lang_total' | translate }}: {{OpenSDK.InstalledApps}}</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<script type="text/ng-template" id="detailInfoMessage.html">
+    <form name="scheduleForm" method="get" class="form-horizontal" novalidate>
+    <div class="modal-header modal-setup">
+    <h3>{{ 'lang_Confirm' | translate }}</h3>
+    </div>
+    <div class="modal-body modal-setup" style="text-align:center">
+    <h5><div ng-bind-html="confirmMessage"></div></h5>
+    </div>
+    <div class="modal-footer modal-setup" style="text-align:center">
+    <button type="button" class="btn cm-btn-point" type="button" ng-click="ok()">{{ 'lang_ok' | translate }}</button>
+    <button type="button" class="btn cm-btn-dark" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>
+    </div>
+    </form>
+</script>

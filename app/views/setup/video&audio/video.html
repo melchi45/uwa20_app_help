@@ -1,0 +1,495 @@
+<div id="videosetuppage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <form name="videoForm" method="get" class="form-horizontal" novalidate>
+        <wn5-setup-main-title data-title="lang_menu_videosrc">
+        </wn5-setup-main-title>
+        <div ng-show = "MaxPrivacyMask !== undefined && MaxPrivacyMask > 0" class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <setup-channel-selector use-info="true" ng-if="isMultiChannel === true" use-confirm="true"></setup-channel-selector>
+            <div class="wn5-gui-body-large">
+                <input type="checkbox" name="Enable" ng-model="PrivacyMask[SelectedChannel].Enable" ng-change="setVideoSetupEnable()">
+                <label>{{ 'lang_enable_feature_privacy_area' | translate }}</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="wn5-setup-section-article-content wn5-gui-text-orange-100" style="padding-left: 0;" ng-show="PTZModel || ZoomOnlyModel">
+                <i class="tui tui-wn5-toolbar-status" style="margin-right: 5px; transform: scale(1.3);"></i>
+                <span>{{ getMessagePrivacyZoom() | translate }}</span>
+            </div>
+            <div class="wn5-setup-section-article-content wn5-gui-text-orange-100" style="padding-left: 0;">
+                <i class="tui tui-wn5-toolbar-status" style="margin-right: 5px; transform: scale(1.3);"></i>
+                <span ng-if="privacyMaskDrawType == 1">{{ getDrawDots('drawDots', 4) }}</span>
+                <span ng-if="privacyMaskDrawType == 0">{{ 'lang_msg_take_draw_area' | translate }}</span>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section">
+            <sketchbook  ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'"
+                sketchinfo='sketchinfo' 
+                videoinfo='videoinfo' 
+                coordinates='coordinates'>
+            </sketchbook>
+
+            <!-- PTZ Control -->
+            <div class="ptz-control_box">
+                <ptz-control ptzinfo='ptzinfo'></ptz-control>
+            </div>
+            <!-- //PTZ Control End -->
+            
+            <div class="wn5-setup-preview">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_pattern' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select 
+                            class="form-control video-pattern" 
+                            ng-model="PrivacyMask[SelectedChannel].MaskPattern"
+                            style="max-width:150px">
+                            <option 
+                                ng-selected="PrivacyMask[SelectedChannel].MaskPattern == Pattern" 
+                                value={{Pattern}}
+                                ng-repeat="Pattern in MaskPatternArray">
+                                {{ getTranslatedOption(Pattern) }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                    <div class="form-group">
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-content">
+                            <button 
+                                type="button" 
+                                class="btn btn-primary cm-btn-dark ng-binding" 
+                                ng-click="deletePrivacy()"
+                                ng-disabled="deletingPrivacy===true">
+                                {{ 'lang_delete' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group table-wrapper only-left-padding">
+                        <table class="table cm-table-field wn5-setup-table video-setup-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>{{ 'lang_num' | translate }}</th>
+                                    <th>{{ 'lang_name' | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr 
+                                    ng-repeat="Mask in PrivacyMask[SelectedChannel].Masks"
+                                    ng-class="{'wn5-setup-table-active': PrivacyMaskSelected === Mask.MaskIndex }">
+                                    <td>
+                                        <input 
+                                            type="radio" 
+                                            name="privacyButton" 
+                                            ng-model="$parent.PrivacyMaskSelected" 
+                                            ng-value="Mask.MaskIndex">
+                                        </input>
+                                    </td>
+                                    <td>
+                                        {{$index+1}}
+                                    </td>
+                                    <td>
+                                        {{Mask.MaskName+' ['+Mask.MaskIndex+']'+ '  ' +Mask.ZoomThresholdEnable}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="PrivacyMasGlobalColor">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_color' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select 
+                            class="form-control" 
+                            ng-model="PrivacyMask[SelectedChannel].CommonMaskColor" 
+                            ng-disabled="PrivacyMask[SelectedChannel].Enable === false">
+                            <option 
+                                ng-selected="PrivacyMask[SelectedChannel].CommonMaskColor == Color" 
+                                value={{Color}} 
+                                ng-repeat="Color in ColorOptions">
+                                {{getTranslatedOption(Color)}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!--
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <sketchbook 
+                            sketchinfo='sketchinfo' 
+                            videoinfo='videoinfo' 
+                            coordinates='coordinates'>
+                        </sketchbook>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-show="PTZModel">
+                    <label 
+                        ng-if ="MaxZoom === 32" 
+                        class="wn5-setup-section-article-content">
+                        {{ 'lang_msg_privacy_Zoom_32x' | translate }}
+                    </label>
+                </div>
+                <div class="ptz-control_box ptz-control_ptz-menu-width" style="margin-left: 15px;">
+                    <ptz-control ptzinfo='ptzinfo'></ptz-control>
+                    <div 
+                        class="ptz-control_video-setup-select" 
+                        ng-show="PrivacyMaskListCheck&&PTZModel&&showPTZControlVideoSetup">
+                        <button 
+                            type="button" 
+                            class="btn btn-primary cm-btn-dark ng-binding"
+                            ng-click="deletePrivacy()">
+                            Delete
+                        </button>
+                        <select 
+                            size="2"
+                            class="form-control ptz-control_video-setup-selectbox" 
+                            ng-model="PrivacyMaskSelected" 
+                            ng-options="Mask.MaskIndex as PrivacyMask[SelectedChannel].Masks.indexOf(Mask)+' : '+Mask.MaskName+' ['+Mask.MaskIndex+']'+ '  ' +Mask.ZoomThresholdEnable for Mask in PrivacyMask[SelectedChannel].Masks">
+                            <option value="" ng-if="false"></option>
+                        </select>
+                    </div>
+                </div>
+                -->
+
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_videosrc' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group" ng-show="PTZModel || PTRZModel">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_filpMirror' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div ng-class="RadioClassSm" ng-repeat="Enable in EnableOptions">{{getTranslatedOption(Enable)}}
+                            <input 
+                                type="radio" 
+                                class="radio" 
+                                name="FlipMirrorEnable" 
+                                ng-model="$parent.Flip[SelectedChannel].VerticalFlipEnable" 
+                                ng-value="Enable">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="!PTZModel && !PTRZModel">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_flip' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div ng-class="RadioClassSm" ng-repeat="Enable in EnableOptions">
+                            <!-- <label class="cm-radio-hidden"> -->
+                                {{getTranslatedOption(Enable)}}
+                                <input 
+                                    type="radio" 
+                                    class="radio" 
+                                    name="FlipEnable" 
+                                    ng-model="$parent.Flip[SelectedChannel].VerticalFlipEnable" 
+                                    ng-value="Enable">
+                                <!-- <i 
+                                    class="tui" 
+                                    ng-class="Enable === true? 'tui-wn5-flip-left' : 'tui-wn5-flip-right'"></i> -->
+                            <!-- </label> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="!PTZModel && !PTRZModel">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_mirror' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div ng-class="RadioClassSm" ng-repeat="Enable in EnableOptions">
+                            <!-- <label class="cm-radio-hidden"> -->
+                                {{getTranslatedOption(Enable)}}
+                                <input 
+                                    type="radio" 
+                                    class="radio" 
+                                    name="MirrorEnable" 
+                                    ng-model="$parent.Flip[SelectedChannel].HorizontalFlipEnable" 
+                                    ng-value="Enable">
+                                <!-- <i 
+                                    class="tui" 
+                                    ng-class="Enable === true? 'tui-wn5-mirror-top' : 'tui-wn5-mirror-bot'"></i> -->
+                            <!-- </label> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="PTZModel && showAutoFlip">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_digitalFlip' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <div ng-class="RadioClassSm" ng-repeat="Enable in EnableOptions">{{getTranslatedOption(Enable)}}
+                            <input 
+                                type="radio" 
+                                class="radio" 
+                                name="DigitalFlip" 
+                                ng-model="$parent.PTZSettings[SelectedChannel].AutoFlipEnable" 
+                                ng-value="Enable">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="cameraPositionList !== undefined">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_cameraMountingMode' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-model="viewModes.CameraPosition" ng-change="onMountModeChange(viewModes.CameraPosition)"
+                        ng-options="option as getTranslatedOption(option) for option in cameraPositionList">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="RotateOptions !== undefined" style="margin-top: 10px;">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_hallwayView' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select class="form-control" ng-model="Flip[SelectedChannel].Rotate">
+                            <option 
+                                ng-selected="Flip[SelectedChannel].Rotate == option" 
+                                value={{option}} 
+                                ng-repeat="option in RotateOptions"> 
+                                {{option}} {{ 'lang_degree' | translate }} ({{ 'lang_clockwise' | translate }})
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show = "VideoTypeOptions !== undefined">
+            <div class="wn5-setup-section">
+                <hr class="wn5-setup-hr">
+                <div class="wn5-setup-section-heading">
+                    <h3>{{ 'lang_analog_video' | translate }}</h3>
+                </div>
+                <div class="wn5-setup-section-article">
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-heading">
+                            {{ 'lang_videoOutput' | translate }}
+                        </div>
+                        <div class="wn5-setup-section-article-content">
+                            <input 
+                                type="checkbox" 
+                                name="Enable" 
+                                ng-model="VideoOutputs[SelectedChannel].Enable">
+                            {{ 'lang_enable' | translate }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-heading">
+                            {{ 'lang_videoType' | translate }}
+                        </div>
+                        <div class="wn5-setup-section-article-content">
+                            <select 
+                                class="form-control" 
+                                ng-model="VideoOutputs[SelectedChannel].Type">
+                                <option 
+                                    ng-selected="VideoOutputs[SelectedChannel].Type == VideoType" 
+                                    value={{VideoType}}
+                                    ng-repeat="VideoType in VideoTypeOptions">{{VideoType}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 
+        <div ng-show="PTZModel" class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_sensor' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">
+                            {{ 'lang_mode' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <div ng-class="RadioClassSm">
+                            <select 
+                                class="form-control" 
+                                ng-model="VideoSources[SelectedChannel].SensorCaptureFrameRate">
+                                <option 
+                                    ng-selected="VideoSources[SelectedChannel].SensorCaptureFrameRate === SensorMode" 
+                                    value={{SensorMode}} 
+                                    ng-repeat="SensorMode in SensorModeOptions">
+                                    {{SensorMode}} fps
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label 
+                        class="wn5-setup-section-article-content" 
+                        style="text-align:left">
+                        {{ 'lang_msg_sensorchange' | translate }}
+                    </label>
+                </div>
+            </div>
+        </div>
+        -->
+        
+        <hr class="wn5-setup-hr">
+
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>
+
+<script type="text/ng-template" id="privacyPopup.html">
+    <div id="privacy-popup-1">
+        <div class="modal-header modal-setup">
+            <h3>{{ 'lang_privacy' | translate }}</h3>
+        </div>
+        <div class="modal-body modal-setup">
+            <label class="col-xs-4 control-label">
+                {{ 'lang_name' | translate }}
+            </label>
+            <div class="col-xs-6">
+                <input 
+                    class="form-control privacy-name-input" 
+                    style="float:left" 
+                    type="text" 
+                    ng-model="appear" 
+                    maxlength="{{PrivacyAreaMaxLen}}" 
+                    pattern="{{PrivacyAreaPattern}}"
+                    ng-pattern-restrict/>
+            </div>
+        </div>
+        <div class="modal-body modal-setup">
+            <label class="col-xs-4 control-label">
+                {{ 'lang_color' | translate }}
+            </label>
+            <div class="col-xs-6">
+                <select 
+                    class="form-control" 
+                    ng-model="modalValue.MaskColor" 
+                    ng-show="!PrivacyMasGlobalColor"
+                    ng-disabled="PrivacyMask[SelectedChannel].MaskPattern === 'Solid'">
+                    <option 
+                        ng-selected="MaskColor == Color" 
+                        value={{Color}} 
+                        ng-repeat="Color in ColorOptions">
+                        {{getTranslatedOption(Color)}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-body modal-setup" ng-show="IsPTZ || IsZoomOnly">
+            <label class="col-xs-4 control-label">
+                {{ 'lang_zoomThreshold' | translate }}
+            </label>
+            <div 
+                class="col-xs-3 field-radio-wrapper control-label" 
+                ng-repeat="Enable in OnOFF">
+                {{ Enable.lang | translate }}
+                <input 
+                    type="radio" 
+                    class="radio" 
+                    name="ThresholdEnable" 
+                    ng-model="modalValue.ThresholdEnable" 
+                    ng-value="Enable.value">
+            </div>
+        </div>
+        <div class="modal-body modal-setup" ng-show="IsPTZ" style="padding-bottom:0;">
+            <label class="col-xs-4 control-label"></label>
+            <div id="ptz-control_box-wrap">
+                <div id="ptz-control_box-popup">
+                    <div id="ptz-control_box-hline-popup"></div>
+                    <div id="ptz-control_box-vline-popup"></div>
+
+                    <div id="ptz-control_move-btn-popup">
+                        <i class="tui tui-wn5-ptz-handle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer modal-setup" 
+            style="text-align:center; margin-top: 30px;">
+            <button 
+                type="button" 
+                class="btn cm-btn-point" 
+                type="button" 
+                ng-click="ok()">
+                {{ "lang_ok" | translate }}
+            </button>
+            <button 
+                type="button" 
+                class="btn cm-btn-dark" 
+                type="button" 
+                ng-click="cancel()">
+                {{ "lang_cancel" | translate }}
+            </button>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="privacyPopup2.html">
+    <div id="privacy-popup-2">
+        <div class="modal-header modal-setup">
+            <h3>{{ 'lang_setZoomThreshold' | translate }}</h3>
+        </div>
+        <div class="modal-body modal-setup">
+          <div class="row">
+            <label class="col-xs-4 control-label">
+                {{ 'lang_zoom' | translate }}
+            </label>
+            <div class="slider-fields live-slider-field col-xs-3 ptz-control_horizontal-wrap">
+                <div class="ptz-control_horizontal wn5-setup-wrapper">
+                    <button class="cm-icon-button-s ptz-control_horizontal-item slider-button left-btn" title="{{'lang_zoomOut' | translate}}" ng-mousedown="ptzControlZoom(-50);" ng-mouseup="ptzControlZoom('Stop')" ng-mouseleave="ptzControlZoom('Stop')">
+                        <i class="tui tui-wn5-ptz-minus" ></i>
+                    </button>
+                    <div class="ptz-control_horizontal-item ptz-control_horizontal-slider" id="ptz-privacy-zoom-slider"></div>
+                    <button class="cm-icon-button-s ptz-control_horizontal-item slider-button right-btn" title="{{'lang_zoomIn' | translate}}" ng-mousedown="ptzControlZoom(50);" ng-mouseup="ptzControlZoom('Stop')" ng-mouseleave="ptzControlZoom('Stop')">
+                        <i class="tui tui-wn5-ptz-plus"></i>
+                    </button>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 wn5-gui-text-orange-100">
+                <i class="tui tui-wn5-toolbar-status" style="margin-right: 5px; transform: scale(1.3);"></i>
+                <span>{{ 'lang_msg_zoomThreshold' | translate }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer modal-setup" style="text-align:center">
+            <button 
+                type="button" 
+                class="btn cm-btn-point" 
+                type="button" 
+                ng-click="ok()">
+                {{ "lang_ok" | translate }}
+            </button>
+            <button 
+                type="button" 
+                class="btn cm-btn-dark" 
+                type="button" 
+                ng-click="cancel()">
+                {{ "lang_cancel" | translate }}
+            </button>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="privacyPopup3.html">
+    <div id="privacy-popup-3">
+        <div class="modal-header modal-setup">
+            <h3>{{ 'lang_privacy' | translate }}</h3>
+        </div>
+
+        <div class="modal-body modal-setup">
+            <div class="col-xs-12">
+                {{ message | translate}}
+            </div>
+        </div>
+
+        <div class="modal-footer modal-setup" style="text-align:center">
+            <button 
+                type="button" 
+                class="btn cm-btn-point" 
+                type="button" 
+                ng-click="ok()">
+                {{ "lang_ok" | translate }}
+            </button>
+        </div>
+    </div>
+</script>

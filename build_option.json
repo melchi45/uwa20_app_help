@@ -1,0 +1,8 @@
+{
+    "cameraOption": [
+        "b2b",
+        "b2c"
+    ],
+    "jsFilePath": "app/base/scripts/config/camera_option.js",
+    "cordovaPluginPath": "cordova_plugins"
+}

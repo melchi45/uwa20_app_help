@@ -1,0 +1,233 @@
+<div class="wrapper wrapper-content ng-hide" ng-show="pageLoaded">
+    <wn5-setup-main-title
+        data-title="lang_setup">
+    </wn5-setup-main-title>
+
+    <div class="wn5-setup-section">
+        <hr class="wn5-setup-hr">
+        <div class="wn5-gui-body-large">
+            <input type="checkbox" name="Enable" ng-model="countingRuleSection.peopleCountingEnable" ng-change="submitEnable()">
+            <label>{{ 'lang_enable_feature_people_counting' | translate }}</label>
+        </div>
+    </div>
+    
+    <div class="wn5-setup-tab cm-tabs-field">
+        <ul class="wn5-setup-tab-list cm-tabs-list">
+            <li class="wn5-setup-tab-item">
+                <button 
+                    ng-class="{'active': currentTapStatus[0] === true }"
+                    ng-click="changeTabStatus(0)" 
+                    type="button">
+                    {{'lang_configuration' | translate}}
+                </button>
+            </li>
+            <li class="wn5-setup-tab-item">
+                <button 
+                    ng-class="{'active': currentTapStatus[1] === true }"
+                    ng-click="changeTabStatus(1)" 
+                    type="button">
+                    {{'lang_excluded_area' | translate}}
+                </button>
+            </li>
+            <li class="wn5-setup-tab-item">
+                <button 
+                    ng-class="{'active': currentTapStatus[2] === true }"
+                    ng-click="changeTabStatus(2)" 
+                    type="button">
+                    {{'lang_calibration' | translate}}
+                </button>
+            </li>
+        </ul>
+        <div class="wn5-setup-tab-content cm-tabs-content wn5-setup-tab-content-use-padding">
+            <sketchbook 
+                class="wn5-setup-preview-video"
+                coordinates="coordinates" 
+                sketchinfo="sketchinfo" 
+                videoinfo="videoinfo">
+            </sketchbook>
+
+            <div class="wn5-setup-preview-table">
+                <div ng-if="currentTapStatus[0] === true">
+                    <section class="form-group">
+                        <div class="wn5-setup-preview-heading">
+                            <label>{{ lang.ruleSetup.countingRule.title | translate }}</label>
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <table class="pc-n-hm-table cm-table-field text-center wn5-setup-table">
+                                <colgroup>
+                                    <col class="pc-n-hm-per-10">
+                                    <col class="pc-n-hm-per-10">
+                                    <col class="pc-n-hm-per-80">
+                                </colgroup>
+                                <thead>
+                                    <tr class="active">
+                                        <th class="text-center">
+                                            <input type="checkbox"
+                                                ng-change="countingRuleSection.enableStatusAll()"
+                                                ng-model="countingRuleSection.allEnableStatus">
+                                        </th>
+                                        <th class="text-center">{{ lang.ruleSetup.countingRule.no | translate }}</th>
+                                        <th class="text-center">{{ 'lang_name' | translate }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="num in [0,1]">
+                                        <td>
+                                            <input type="checkbox"
+                                                ng-change="countingRuleSection.changeUseState(num, true)"
+                                                ng-model="countingRuleSection.data[num].use">
+                                        </td>
+                                        <td>{{num + 1}}</td>
+                                        <td>
+                                            <input 
+                                                type="text" 
+                                                class="form-control" 
+                                                maxlength="15" 
+                                                ng-model="countingRuleSection.data[num].name"
+                                                ng-pattern-restrict="{{countingRuleSection.regExp}}"
+                                                ng-disabled="countingRuleSection.data[num].use !== true">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+                <div ng-if="currentTapStatus[1] === true">
+                    <section class="form-group">
+                        <div class="wn5-setup-preview-heading">
+                            {{'lang_area'|translate}}
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <button 
+                                type="button"
+                                ng-click="excludeAreaSection.select($index)"
+                                ng-class="{'hover': excludeArea.isEnable === true, 'active': excludeArea.isSelected === true && excludeArea.isEnable === true}"
+                                ng-disabled="excludeArea.points.length === 0"
+                                class="btn cm-btn-dark wn5-btn btn-margin-right wn5-btn-small-square"
+                                ng-repeat="excludeArea in excludeAreaSection.data track by $index">
+                                {{$index + 1}}
+                            </button>
+                        </div>
+                    </section>
+                </div>
+                <div ng-if="currentTapStatus[2] === true">
+                    <section class="form-group" ng-if="support.isFisheyeLens">
+                        <div class="wn5-setup-preview-heading">
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    name="calibration_type"
+                                    ng-change="calibrationSection.changeCalibrationMode()"
+                                    ng-model="calibrationSection.calibrationMode"
+                                    ng-value="calibrationSection.calibrationModeOptions[0]">
+                                {{ 'lang_cameraHeight' | translate }}
+                            </label>
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <div class="wn5-setup-section-article-content slider-fields">
+                                <div id="hm-setup-camera-height-slider">
+                                    <live_slider
+                                        live-slider-property="calibrationSection.cameraHeightOptions"
+                                        live-slider-model="calibrationSection.cameraHeight">
+                                    </live_slider>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="form-group">
+                        <div class="wn5-setup-preview-heading">
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    name="calibration_type"
+                                    ng-if="support.isFisheyeLens"
+                                    ng-change="calibrationSection.changeCalibrationMode()"
+                                    ng-model="calibrationSection.calibrationMode"
+                                    ng-value="calibrationSection.calibrationModeOptions[1]">
+                                {{ 'lang_size' | translate }}
+                            </label>
+                        </div>
+                        <div class="wn5-setup-preview-content">
+                            <div class="wn5-setup-section-article-content">
+                                <p ng-bind-html="lang.calibration.usage"></p>
+                            </div>
+                            <div class="wn5-setup-section-article-content">
+                                <figure id="pc-setup-collapse-calibration-icon"></figure>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <section class="wn5-setup-section">
+                <article class="pc-statistics-dialog">
+                    <div class="pc-statistics-dialog-title">
+                        <p>
+                            <span class="tui tui-wn5-toolbar-status"
+                                ng-if="countingSection.isDisabledAllRule || countingSection.isPeopleCountDisabled">
+                            </span>
+                            <span ng-if="countingSection.isDisabledAllRule">
+                                {{lang.realTime.undefinedMsg.title | translate}}
+                            </span>
+                            <span ng-if="countingSection.isPeopleCountDisabled">
+                                {{lang.realTime.peopleCountDisalbed | translate}}
+                            </span>
+                        </p>
+                    </div>
+                </article>
+                <div class="pc-setup-counting-table pc-n-hm-per-50">
+                    <table 
+                        class="table cm-table-field wn5-setup-table"
+                        ng-hide="countingSection.isDisabledAllRule"
+                        ng-if="!countingSection.isPeopleCountDisabled">
+                        <colgroup>
+                            <col class="pc-n-hm-per-10">
+                            <col class="pc-n-hm-per-50">
+                            <col class="pc-n-hm-per-20">
+                            <col class="pc-n-hm-per-20">
+                        </colgroup>
+                        <thead>
+                            <tr class="active">
+                                <th class="text-center">{{ lang.realTime.counting.no | translate }}</th>
+                                <th class="text-center">{{ lang.realTime.counting.ruleName | translate }}</th>
+                                <th class="text-center">{{ lang.realTime.counting.in | translate }}</th>
+                                <th class="text-center">{{ lang.realTime.counting.out | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in countingSection.todayRuleData track by $index">
+                                <td class="text-center">{{item.index}}</td>
+                                <td class="text-center">{{item.name}}</td>
+                                <td class="text-center">{{item.in}}</td>
+                                <td class="text-center">{{item.out}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <hr class="wn5-setup-hr">
+
+    <pc-setup-report page-type="pc"></pc-setup-report>
+
+    <hr class="wn5-setup-hr">
+
+    <div class="pc-n-hm-delete-data">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+        <!-- 
+        pcCameraManagement Directive uses its parent scope.
+        scope.pcCameraManagement of pcCameraManagement Directive is used in parent Controller.
+        -->
+        <pc-camera-management 
+            page-type="pc"
+            ng-hide="currentTapStatus[2]">
+        </pc-camera-management>
+    </div>
+</div>

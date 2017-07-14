@@ -1,0 +1,319 @@
+<div class="wrapper wrapper-content ng-hide" ng-show="pageLoaded">
+    <wn5-setup-main-title
+        data-title="{{lang.searchTitle}}">
+    </wn5-setup-main-title>
+    <hr class="wn5-setup-hr">
+    <form method="get" class="form-horizontal">
+        <section id="pc-realtime" class="pc-n-hm-section">
+            <section id="pc-realtime-live">
+                <div class="qm-realtime-video">
+                    <sketchbook 
+                        class="wn5-setup-preview-video"
+                        coordinates="coordinates" 
+                        sketchinfo="sketchinfo" 
+                        videoinfo="videoinfo">
+                    </sketchbook>
+                    <div class="wn5-setup-preview-table" ng-show="queueData.Enable">
+                        <div class="form-group">
+                            <div class="wn5-setup-preview-heading no-margin-bottom">{{ lang.realTime.occupancy | translate }}</div>
+                            <div class="wn5-setup-section-article-content">
+                                <div 
+                                    class="form-group" 
+                                    ng-repeat="data in queueData.Queues track by $index"
+                                    ng-show="data.Enable">
+                                    <div class="wn5-setup-preview-heading"><span><strong ng-style="areaColor[$index]">{{ ($index + 1) }}:</strong> {{data.Name}}</span></div>
+                                    <div class="wn5-setup-section-article-content">
+                                        <div class="qm-bar-wrap" id="qm-bar-{{$index}}">
+                                            <div class="qm-bar-radius">
+                                                <div class="qm-bar-mask-image"></div>
+                                                <div class="qm-bar-mask"></div>
+                                                <div class="qm-bar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="wn5-gui-body-large" style="width: 100%; float: left;">
+                    {{ lang.realTime.rotationMessage | translate }} {{ lang.realTime.message | translate }}
+                </p>
+            </section>
+        </section>
+
+        <article class="pc-statistics-dialog"
+            ng-hide="queueData.Enable">
+            <div class="pc-statistics-dialog-title">
+                <p>
+                    <span class="tui tui-wn5-toolbar-status"></span>
+                    {{ lang.queueUndefined.disable | translate }}
+                </p>
+                <div class="text-center">
+                    <button 
+                        class="btn btn-primary cm-btn-dark" 
+                        type="button"
+                        ng-click="previewSection.goToSetup()"
+                        >{{ lang.realTime.button | translate }}</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="pc-statistics-dialog"
+            ng-show="queueData.Enable && queueData.Queues[0].Enable === false && queueData.Queues[1].Enable === false && queueData.Queues[2].Enable === false">
+            <div class="pc-statistics-dialog-title">
+                <p>
+                    <span class="tui tui-wn5-toolbar-status"></span>
+                    {{ lang.queueUndefined.noRule | translate }}
+                </p>
+                <div class="text-center">
+                    <button 
+                        class="btn btn-primary cm-btn-dark" 
+                        type="button"
+                        ng-click="previewSection.goToSetup()"
+                        >{{ lang.realTime.button | translate }}</button>
+                </div>
+            </div>
+        </article>
+
+        <hr class="wn5-setup-hr">
+
+        <section 
+            id="qm-realtime-graph-1"
+            class="pc-graph-fix-tooltip"
+            ng-show="queueData.Enable">
+            
+            <h2 class="pc-n-hm-heading-lv2">
+                {{ lang.graph.today | translate }}
+            </h2>
+
+            <figure class="pc-realtime-graph-today">
+                <figcaption class="pc-n-hm-heading-lv3">
+                    {{ lang.graph.averagePeople | translate }}
+                </figcaption>
+                <nvd3 
+                    options="graphSection.average.today.options" 
+                    data="graphSection.average.today.data" 
+                    api="graphSection.average.today.options.chart.api" 
+                    config="graphSection.chartConfig"
+                    ng-if="pageLoaded && queueData.Enable"></nvd3>
+            </figure>
+
+            <figure class="pc-realtime-graph-week">
+                <figcaption class="pc-n-hm-heading-lv3">
+                    {{ lang.graph.cumulative | translate }}
+                </figcaption>
+                <nvd3 
+                    options="graphSection.cumulative.today.options" 
+                    data="graphSection.cumulative.today.data" 
+                    api="graphSection.cumulative.today.options.chart.api" 
+                    config="graphSection.chartConfig"
+                    ng-if="pageLoaded && queueData.Enable"></nvd3>
+            </figure>
+        </section>  
+
+        <hr class="wn5-setup-hr" ng-show="queueData.Enable">
+
+        <section 
+            id="qm-realtime-graph-2"
+            class="pc-graph-fix-tooltip"
+            ng-show="queueData.Enable">
+            
+            <h2 class="pc-n-hm-heading-lv2">
+                {{ lang.graph.weekly | translate }}
+            </h2>
+
+            <figure class="pc-realtime-graph-today">
+                <figcaption class="pc-n-hm-heading-lv3">
+                    {{ lang.graph.averagePeople | translate }}
+                </figcaption>
+                <nvd3 
+                    options="graphSection.average.weekly.options" 
+                    data="graphSection.average.weekly.data" 
+                    api="graphSection.average.weekly.options.chart.api" 
+                    config="graphSection.chartConfig"
+                    ng-if="pageLoaded && queueData.Enable"></nvd3>
+            </figure>
+
+            <figure class="pc-realtime-graph-week">
+                <figcaption class="pc-n-hm-heading-lv3">
+                    {{ lang.graph.cumulative | translate }}
+                </figcaption>
+                <nvd3 
+                    options="graphSection.cumulative.weekly.options" 
+                    data="graphSection.cumulative.weekly.data" 
+                    api="graphSection.cumulative.weekly.options.chart.api" 
+                    config="graphSection.chartConfig"
+                    ng-if="pageLoaded && queueData.Enable"></nvd3>
+            </figure>
+        </section>  
+
+        <hr class="wn5-setup-hr" ng-show="queueData.Enable">
+
+        <div class="pc-n-hm-section" id="hm_conditions" style="padding-bottom: 36px; margin-bottom: 0;">
+            <div class="wn5-setup-section form-group">
+                <div class="wn5-setup-section-heading" style="width: 100%; margin-bottom: 20px;">
+                    <h3>{{ lang.search.title | translate }}</h3>
+                </div>
+                <div class="wn5-setup-section-article" style="width: 100%">
+                    <pc-conditions-date-form></pc-conditions-date-form>
+                    <div class="form-group" id="pc-search-rule">
+                        <div class="wn5-setup-section-article-heading">
+                            {{ lang.search.area.title | translate }}
+                        </div>
+                        <div class="wn5-setup-section-article-content">
+                            <table class="pc-n-hm-table cm-table-field wn5-setup-table">
+                                <colgroup>
+                                    <col class="pc-n-hm-per-40">
+                                    <col class="pc-n-hm-per-20">
+                                    <col class="pc-n-hm-per-20">
+                                    <col class="pc-n-hm-per-20">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th style="text-align:center; line-height:20px;">{{ lang.search.area.averageTitle | translate }}<br>({{ lang.search.area.peopleTitle | translate }})</th>
+                                        <th style="text-align:center; line-height:20px;">{{ lang.search.area.totalTitle | translate }}<br>({{ lang.search.area.mediumTitle | translate }})</th>
+                                        <th style="text-align:center; line-height:20px;">{{ lang.search.area.totalTitle | translate }}<br>({{ lang.search.area.highTitle | translate }})</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-if="queueData.Enable">
+                                    <tr ng-repeat="data in queueData.Queues track by $index">
+                                        <td class="text-center">
+                                            {{ data.Name }}
+                                        </td>
+                                        <td align="center">
+                                            <label>
+                                                <input 
+                                                    type="checkbox"
+                                                    id="qm-search-average-{{$index}}"
+                                                    data-index="{{$index}}"
+                                                    checked>
+                                                <!--{{ lang.search.area.average | translate }}-->
+                                            </label>
+                                        </td>
+                                        <td align="center">
+                                            <label>
+                                                <input 
+                                                    type="checkbox"
+                                                    id="qm-search-medium-{{$index}}"
+                                                    data-index="{{$index}}"
+                                                    checked>
+                                                <!--{{ lang.search.area.cumulative | translate }}-->
+                                            </label>
+                                        </td>
+                                        <td align="center">
+                                            <label>
+                                                <input 
+                                                    type="checkbox"
+                                                    id="qm-search-high-{{$index}}"
+                                                    data-index="{{$index}}"
+                                                    checked>
+                                                <!--{{ lang.search.area.cumulative | translate }}-->
+                                            </label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center pc-conditions-buttons wn5-setup-common-button">
+                    <button 
+                        class="btn cm-btn-dark" 
+                        type="button"
+                        ng-disabled="!queueData.Enable" 
+                        ng-click="searchSection.start()">
+                        {{ lang.search.button | translate }}
+                    </button>
+                </div>
+                <div
+                    ng-class="{'pc-n-hm-hr-hm-calender-active': pcConditionsDateForm.showFromCalender || pcConditionsDateForm.showToCalender}"
+                    ng-hide="resultSection.view">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+
+        <section id="pc-results"
+            ng-show="resultSection.view">
+            <h3 class="applyColor">{{ lang.results.title | translate }}</h3>
+            <hr class="wn5-setup-hr">
+
+            <article 
+                class="pc-statistics-dialog"
+                ng-show="resultSection.noResults">
+                <p 
+                    class="pc-statistics-dialog-title">
+                    {{lang.results.noResults | translate}}
+                </p>
+            </article>
+
+            <div id="qm-realtime-graph-3" ng-hide="resultSection.noResults" class="pc-graph-fix-tooltip">
+                <figure 
+                    ng-class="resultSection.viewGraph.cumulative&&resultSection.viewGraph.average? 'pc-realtime-graph-today' : 'pc-results-graph'"
+                    ng-show="resultSection.viewGraph.average && !resultSection.noResults">
+                    <figcaption class="pc-n-hm-heading-lv3">
+                        {{ lang.graph.averagePeople | translate }}
+                    </figcaption>
+                    <nvd3 
+                        options="graphSection.average.search.options" 
+                        data="graphSection.average.search.data" 
+                        api="graphSection.average.search.options.chart.api" 
+                        config="graphSection.chartConfig"
+                        ng-if="resultSection.view"></nvd3>
+                </figure>
+
+                <figure 
+                    ng-class="resultSection.viewGraph.cumulative&&resultSection.viewGraph.average? 'pc-realtime-graph-week' : 'pc-results-graph'"
+                    ng-show="resultSection.viewGraph.cumulative && !resultSection.noResults">
+                    <figcaption class="pc-n-hm-heading-lv3">
+                        {{ lang.graph.cumulative | translate }}
+                    </figcaption>
+                    <nvd3 
+                        options="graphSection.cumulative.search.options" 
+                        data="graphSection.cumulative.search.data" 
+                        api="graphSection.cumulative.search.options.chart.api" 
+                        config="graphSection.chartConfig"
+                        ng-if="resultSection.view"></nvd3>
+                </figure>
+            </div>
+
+            <div 
+                class="table-wrapper"
+                style="width: 100%; padding-top: 30px;"
+                ng-hide="resultSection.noResults">
+                <table class="pc-n-hm-table cm-table-field text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center pc-results-table-rule">{{ lang.results.table.queue | translate }}</th>
+                            <th 
+                                ng-repeat="timeData in resultSection.tableData.timeTable track by $index"
+                                class="text-center">
+                                {{timeData}}
+                            </th>
+                            <th class="text-center">{{ lang.results.table.sum | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ruleData in resultSection.tableData.rules track by $index">
+                            <td ng-repeat="rule in ruleData track by $index">{{rule}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center pc-conditions-buttons wn5-setup-common-button">
+                <button 
+                    class="btn cm-btn-dark" 
+                    type="button" 
+                    ng-disabled="!resultSection.view || resultSection.noResults || !(resultSection.viewGraph.average || resultSection.viewGraph.cumulative)"
+                    ng-click="resultSection.getReport()">
+                    {{ lang.results.button | translate }}
+                </button>
+            </div>
+        </section>
+
+    </form>
+</div>

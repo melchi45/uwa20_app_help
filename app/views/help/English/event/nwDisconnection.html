@@ -1,0 +1,83 @@
+﻿<h1 class="wn5-setup-main-title">Network disconnection</h1>
+
+<div class="wn5-setup-section">
+    <p>When network connection is terminated, an event can be created. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the network disconnection event applies to <strong class="UI">[Network disconnection]</strong> in <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Network disconnection</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>To use the network disconnection event, select <strong class="UI">[Enable]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Event action settings</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>Record</h3>
+            <p>To save an image on an SD card or NAS when a network disconnection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Alarm output</h3>
+            <p>You can set the alarm output at a specific alarm number when a network disconnection event is created. After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output the alarm. You can set a continuous alarm output, until the user stops the alarm, by selecting <strong class="UI">[Always]</strong> or set the alarm output for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html"  ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+            <h3>Goto preset</h3>
+                    <p>You can set the position of camera view to move to a preset number when a network disconnection event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>Goto preset</h3>
+                <p>You can set the position of camera view to move to a preset position when a network disconnection event is created. The camera preset can be set in <strong class="UI">[Preset setup]</strong> section of &nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Preset setup]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Goto preset</h3>
+                <p>You can set the position of camera to move to a preset position when a network disconnection event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
+        </div>
+
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Event activation time</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Sets the event action settings in <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/event_nwDisconnection?#action">Event action settings</a>]</strong> to always operate, or only at the set time when a network disconnection event is created. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>Always</h3>
+            <p>The event action settings are always executed when a network disconnection event is created.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Only scheduled time</h3>
+            <p>The event action settings are executed only when a network disconnection event is created during the set time. The date from Sunday to Saturday, based on the current camera time, is displayed on the time table shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time for event action settings by clicking or dragging on the time table with the mouse. The set event activation time is executed repeatedly on the relevant weekday and time.</p>
+			<p>You can change the time view unit by clicking the <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> or <strong class="UI">[1 h]</strong> button. When you click the <strong class="UI">[Reset]</strong> button, all set event activation times will be deleted. To confirm or change the camera time, refer to <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date &amp; Time]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

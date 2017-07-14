@@ -1,0 +1,161 @@
+﻿<h1 class="wn5-setup-main-title">Auto tracking</h1>
+<div class="wn5-setup-section">
+    <p>The Auto tracking function is used to recognize and track an object through video analytics. You can set the details for using auto tracking.</p>
+    <p>When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
+</div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+    <ul>
+        <li>The method of using camera auto tracking is as follows.</li>
+        <ul>
+            <li><span class="tui tui-ch-live-ptz-tracking-auto-on"></span> Click the Auto tracking icon. Analyze, select, and track a tracking object from the entire area.</li>
+            <li>When you click the right mouse button on the video screen at the <a class="wn5-online-help-link" href="../Monitoring.html" ng-href="#/help/uni/channel">Live</a> page, the motion will be analyzed based on the clicked area and auto tracking will begin.</li>
+            <li>When ‘Tracking’ is selected in <strong class="UI">[After action]</strong> when <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html#preset" ng-href="#/help/ptz_ptzInfoSetup?#preset">setting preset </a>, the camera will move to the relevant preset and the auto tracking function will be executed automatically.</li>
+        </ul>
+    </ul>
+        </div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Exclude area</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+
+
+        <div class="wn5-setup-section-article-content">
+            <p>The list of excluded areas from detecting a tracking object is displayed. Up to 8 areas can be set.</p>
+			</div>
+        <div class="wn5-online-help-action">
+            <h4><span class="tui tui-wn5-help-warning"></span><a name="exclude"></a>Setting an excluded area</h4>
+            <ol>
+                <li>Set an excluded area by dragging the mouse on the camera image screen.</li>
+                <li>Enter the name of exclude area on the <strong class="UI">[Auto tracking]</strong> dialog box and click the <strong class="UI">[OK] </strong>button.</li>
+            </ol>
+        </div>
+            <div class="wn5-online-help-action">
+                <h4><span class="tui tui-wn5-help-warning"></span>Deleting an excluded area</h4>
+                <ol>
+                    <li>Select a number you wish to delete from the list of excluded areas.</li>
+                    <li>Click the <strong class="UI">[Delete]</strong> button.</li>
+                </ol>
+            </div>
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>The auto tracking exclude function operates only when <strong class="UI">[Auto tracking setup]</strong> &gt; <strong class="UI">[Area activation]</strong> is selected.</li>
+                <li>An auto tracking excluded area means that it is excluded from the initial object detection areas. If an object under tracking is in an excluded area, it will be tracked continuously.</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Configuration</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><!-- ??? ????? <li>???</li> ??? ????? --></p>
+            <h3>Camera height</h3>
+            <p>Sets the camera height. The auto tracking function operates more precisely if you enter a height closer to the actual installation height of the camera.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Zoom</h3>
+            <p>Selects whether or not to use the zoom operation for auto tracking. &nbsp;</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>Maintain object size</h3>
+            <p>When the use of zoom is selected, the size of the auto-tracking object is adjusted in comparison to the size of the overall image screen, and auto tracking is carried out while maintaining the size of the tracking object.</p>
+            <p>It operates only when <strong class="UI">[Enable]</strong> is selected from <strong class="UI">[Zoom]</strong>.</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>Display indicator</h3>
+            <p>Selects whether or not to use an indicator that indicates a tracking object on the image screen.</p>
+            <p>When <strong class="UI">[Enable]</strong> is selected for the indicator display, the indicator is also displayed on the recorded image.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Exclude area</h3>
+            <p>An object detected from the set area is excluded from auto tracking. For how to set an excluded area, refer to &amp;apos;<a class="wn5-online-help-link" href="autoTrackEvent#exclude" ng-href="#/help/analytics_autoTrackEvent?#exclude">Setting an auto tracking excluded area</a>&amp;apos;.</p>
+            <p>If <strong class="UI">[Enable]</strong> is selected, all set excluded areas will be used.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Auto release</h3>
+            <p>Sets whether or not to terminate the auto tracking function automatically. When <strong class="UI">[Enable]</strong> is selected, the auto tracking function will be terminated automatically, meaning the tracking operation will no longer be maintained when a tracking object is not detected for a certain period of time (60 seconds). When <strong class="UI">[Enable]</strong>&nbsp;is not selected, the auto tracking operation can be maintained throughout the search for a tracking object.</p>
+        </div>
+
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Event action</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>To send an image by e-mail when an auto tracking event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Record</h3>
+            <p>To save an image on an SD card or NAS when an auto tracking event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Alarm output</h3>
+            <p>It is possible to set the alarm output number for a specific alarm when an auto-tracking event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you do not wish to use the alarm. If you wish to use the alarm, select the output time. You can set the alarm to sound continuously until turned off by the user by selecting <strong class="UI">[Always]</strong> or you can set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+        </div>
+		
+       <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+            <h3>Goto preset</h3>
+                    <p>You can set the position of camera view to move to a preset number when an auto-tracking event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>Goto preset</h3>
+                <p>You can set the position of camera view to move to a preset position when an auto-tracking event is created. The camera preset can be set in <strong class="UI">[Preset setup]</strong> section of &nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Preset setup]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Goto preset</h3>
+                <p>You can set the position of camera to move to a preset position when an auto-tracking event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
+        </div>
+
+		
+		<div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
+            <h3>Simple Focus</h3>
+            <p>Simple focus is used to adjust the focus automatically when an auto-tracking event is created. Simple focus is executed only once when an event is created.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Event activation time</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>This sets the event action settings in <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_defocusDetection?#action">Event action settings</a>]</strong> to either operate at all times or the set time when an auto tracking event is created.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- ??? ????? <li>???</li> ??? ????? --></p>
+            </ul>
+            <h3>Always</h3>
+            <p>The event action settings are always used when an auto-tracking event is created.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Only scheduled time</h3>
+            <p>The event action settings are used when an auto-tracking event is created during the set time. The date from Sunday to Saturday, based on the current camera time, is displayed on the timetable shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time for event action settings by clicking or dragging on the timetable with the mouse. The set event activation time is executed repeatedly on the relevant weekday and time.</p>
+			<p>You can change the time view unit by clicking the <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> or <strong class="UI">[1 h]</strong> button. When you click the <strong class="UI">[Reset]</strong> button, all set event activation times will be deleted. To confirm or change the camera time, refer to <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date &amp; Time]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

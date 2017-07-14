@@ -1,0 +1,101 @@
+﻿<h1 class="wn5-setup-main-title">IP 过滤</h1>
+<div class="wn5-setup-section">
+	<p>可以制定一个 IP 地址列表，列出允许或拒绝连接的具体 IP。IPv4 和 IPv6 的 IP 地址分开管理。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>过滤类型</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+	    	<p><strong class="UI">[拒绝注册的 IP]</strong>和<strong class="UI">[允许注册的 IP]</strong>过滤条件适合所有注册的 IP 地址。</p>
+		    <ul>
+		        <li><strong class="UI">拒绝注册的 IP</strong>：拒绝某注册 IP 的访问。   </li>
+		        <li><strong class="UI">允许注册的 IP</strong>：允许某注册 IP 的访问。</li>
+		    </ul>
+		</div>
+
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+			<ul>
+				<li>注册一个授权访问的 IP时，也应注册当前连接至摄像机的 IP。特别是，但在<strong class="UI">[基本设置]</strong>&gt;<strong class="UI">[IP 与端口]</strong>&gt;<a class="wn5-online-help-link" href="../basic/ipPort.html#IPv6" ng-href="#/help/basic_ipPort?#IPv6"><strong class="UI">[IPv6 设置]</strong></a>选择<strong class="UI">[启用]</strong>时，应添加当前连接的 IP 地址的所有 IPv4 和 IPv6 地址。 </li>
+		        <li>当前连接的 IP 地址不能注册为<strong class="UI">[拒绝注册 IP 地址]</strong>。</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv4</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>这是一个针对 IPv4 类型的地址列表；可以添加或移除 IP 地址。可输入多达 10 个 IP 地址。 </p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>添加 IPv4 地址</h4>
+			<ol>
+				<li>单击<strong class="UI">[添加]</strong>按钮。将创建一个字段，可在该字段中输入 IPv4 地址。</li>
+				<li>输入 IP 和前缀信息。将显示所输入信息的过滤范围。 </li>
+				<li>仅当勾选<strong class="UI">[使用]</strong>复选框时，才能过滤相关范围。 </li>
+				<li>在页面底部单击<strong class="UI">[应用]</strong>按钮，可保存列表中所添加的所有信息。</li>
+			</ol>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>移除 IPv4 地址</h4>
+			<ol>
+				<li>选择希望移除的 IPv4 地址。</li>
+				<li>单击<strong class="UI">[移除]</strong>按钮。</li>
+				<li>单击删除确认窗口中的<strong class="UI">[确认]</strong>按钮。IPv4 地址将被移除。</li>
+			</ol>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+			<ul>
+				<li>无法提供多播所用的 224.0.0.0 至 239.255.255.254 地址。</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv6</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>这是一个针对 IPv6 类型的地址列表；可以添加或删除 IP 地址。可输入多达 10 个 IP 地址。</p>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>添加 IPv6 地址</h4>
+			<ol>
+			<li>单击<strong class="UI">[添加]</strong>按钮。将创建一个字段，可在该字段中输入 IPv6 地址。</li>
+			<li>输入 IP 和前缀信息。将显示所输入信息的过滤范围。 </li>
+			<li>仅当勾选<strong class="UI">[使用]</strong>复选框时，才能过滤相关范围。 </li>
+			<li>在页面底部单击<strong class="UI">[应用]</strong>按钮，可保存列表中所添加的所有信息。</li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>移除 IPv6 地址</h4>
+			<ol>
+			<li>选择希望移除的 IPv6 地址。</li>
+			<li>单击<strong class="UI">[移除]</strong>按钮。</li>
+			<li>单击删除确认窗口中的<strong class="UI">[确认]</strong>按钮。IPv6 地址将被移除。</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+
+
+<hr class="wn5-setup-hr">

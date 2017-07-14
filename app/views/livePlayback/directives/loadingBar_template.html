@@ -1,0 +1,9 @@
+<div class="tui-loading-wrapper" ng-if="isLoading">
+	<div class="tui-loading" ng-class="{'tui-loading-animate': isLoading}">
+		<div
+		 	ng-if="isLoading" 
+		 	ng-repeat="n in [0,1,2,3,4]"
+			class="tui-loading-rect">
+		</div>
+	</div>
+</div>

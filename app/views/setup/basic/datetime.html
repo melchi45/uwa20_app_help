@@ -1,0 +1,213 @@
+<div id="datetimepage" class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <form name="datetimeForm" method="get" class="form-horizontal">
+        <wn5-setup-main-title
+            data-title="lang_menu_datetime">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_currentSystemTime' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article wn5-setup-section-article-ratio-3-7">
+                <div class="wn5-setup-section-article-heading">{{ 'lang_datetime' | translate }}</div>
+                <div class="wn5-setup-section-article-content">
+                    <input type="text" class="form-control" ng-model="cameratime" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_timezone' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article wn5-setup-section-article-ratio-3-7">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_timezone' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <select type="text" class="form-control wn5-setup-section-article-content-unit-big" id="timezoneid" ng-model="CurrentTimeZone" ng-options="Obj.TimeZone for Obj in TimeZoneList track by Obj.TimeZoneIndex">
+                        </select>
+                    </div>
+                </div>
+                <div ng-show="CurrentTimeZone.StartTime !== undefined"
+                    class="form-group">
+                    <div class="wn5-setup-section-article-heading">
+                        {{ 'lang_dstUse' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <div class="form-group">
+                            <input 
+                                type="checkbox" 
+                                ng-model="DateTime.DSTEnable" 
+                                value="UseDayLightTimeId" 
+                                id="inlineCheckbox1">
+                            <label>{{ 'lang_enable' | translate }}</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_startTime' | translate}}</div>
+                            <div class="wn5-setup-section-article-content">
+                                <input type="text" class="form-control wn5-setup-section-article-content-unit-middle" name="StartTime" ng-model="CurrentTimeZone.StartTime" ng-disabled="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="wn5-setup-section-article-heading">{{ 'lang_endTime' | translate}}</div>
+                            <div class="wn5-setup-section-article-content">
+                                <input type="text" class="form-control wn5-setup-section-article-content-unit-middle" name="EndTime" ng-model="CurrentTimeZone.EndTime" ng-disabled="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <wn5-setup-common-button
+            class="use-margin-top"
+            data-submit-click="ApplyTimezone()"
+            data-cancel-click="CancelTimezone()">
+        </wn5-setup-common-button>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_timeConf' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article wn5-setup-section-article-ratio-3-7">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <input type="radio" value="Manual" ng-model="DateTime.SyncType">
+                        <strong>
+                            {{ 'lang_timeManual' | translate }}
+                        </strong>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <div class="wn5-setup-section">
+                            <div class="form-group">
+                                <div class="wn5-setup-date-time-selector-wrapper">
+                                    <strong class="wn5-setup-date-time-selector">
+                                        <span>{{'lang_year' | translate}}</span>
+                                        <span>-</span>
+                                        <span>{{'lang_month' | translate}}</span>
+                                        <span>-</span>
+                                        <span>{{'lang_day' | translate}}</span>
+                                    </strong>
+                                    <div 
+                                        class="wn5-setup-date-time-selector wn5-setup-date-time-selector-input"
+                                        ng-class="{'wn5-setup-date-time-selector-input-disabled': IsManualDisabled()}">
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-big"
+                                            ng-model="ManualDateTime.ManualYear" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.year}}"
+                                            ng-blur="timeValidation.blur($event, 'Year')"
+                                            ng-focus="timeValidation.focus($event, 4)"
+                                            ng-disabled="IsManualDisabled()">
+                                        <span>-</span>
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-small"
+                                            ng-model="ManualDateTime.ManualMonth" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.month}}"
+                                            ng-blur="timeValidation.blur($event, 'Month')"
+                                            ng-focus="timeValidation.focus($event, 2)"
+                                            ng-disabled="IsManualDisabled()">
+                                        <span>-</span>
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-small"
+                                            ng-model="ManualDateTime.ManualDay" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.day}}"
+                                            ng-blur="timeValidation.blur($event, 'Day')"
+                                            ng-focus="timeValidation.focus($event, 2)"
+                                            ng-disabled="IsManualDisabled()">
+                                    </div>
+                                </div>
+                                <div class="wn5-setup-date-time-selector-wrapper">
+                                    <strong class="wn5-setup-date-time-selector">
+                                        <span>{{'lang_hour' | translate}}</span>
+                                        <span>:</span>
+                                        <span>{{'lang_lower_minute' | translate}}</span>
+                                        <span>:</span>
+                                        <span>{{'lang_sec' | translate}}</span>
+                                    </strong>
+                                    <div 
+                                        class="wn5-setup-date-time-selector wn5-setup-date-time-selector-input"
+                                        ng-class="{'wn5-setup-date-time-selector-input-disabled': IsManualDisabled()}">
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-small"
+                                            ng-model="ManualDateTime.ManualHour" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.hour}}"
+                                            ng-blur="timeValidation.blur($event, 'Hour')"
+                                            ng-focus="timeValidation.focus($event, 2)"
+                                            ng-disabled="IsManualDisabled()">
+                                        <span>:</span>
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-small"
+                                            ng-model="ManualDateTime.ManualMinute" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.minuteSecond}}"
+                                            ng-blur="timeValidation.blur($event, 'Minute')"
+                                            ng-focus="timeValidation.focus($event, 2)"
+                                            ng-disabled="IsManualDisabled()">
+                                        <span>:</span>
+                                        <input 
+                                            type="text" 
+                                            class="form-control wn5-setup-date-time-selector-small"
+                                            ng-model="ManualDateTime.ManualSecond" 
+                                            ng-pattern-restrict="{{timeValidation.pattern.minuteSecond}}"
+                                            ng-blur="timeValidation.blur($event, 'Second')"
+                                            ng-focus="timeValidation.focus($event, 2)"
+                                            ng-disabled="IsManualDisabled()">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-content">
+                                    <input type="checkbox" ng-model="SyncPc" id="checkBoxAuth" ng-disabled="DateTime.SyncType != 'Manual'">
+                                    <strong>
+                                    {{ 'lang_timeSyncPC' | translate }}
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="wn5-setup-section-article-content">
+                                    <div class="wn5-setup-section" id="wn5-setup-date-time-sync-pc">
+                                        <div class="wn5-setup-section-article-content">
+                                            <input type="text" class="form-control" name="pctime" ng-model="pctimeformat" ng-disabled="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        <input type="radio" value="NTP" ng-model="DateTime.SyncType">
+                        <strong>{{ 'lang_timeServer' | translate }}</strong>
+                    </div>
+                </div>
+                <div class="form-group" ng-repeat="NTPURL in DateTime.NTPURLList track by $index">
+                    <div class="wn5-setup-section">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_timeSyncAddress' | translate }} {{$index + 1}}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input type="text" class="form-control" name="ntpurl" ng-model="DateTime.NTPURLList[$index]" ng-disabled="DateTime.SyncType != 'NTP'" ng-pattern-restrict="{{URLSet}}">
+                        </div>
+                    </div>
+                    <!--div ng-messages="datetimeForm.ntpurl.$error" role="alert">
+                            <div ng-messages="maxlength" class="alert alert-danger" ng-show="datetimeForm.ntpurl.$error.maxlength">
+                                Too long!</div>
+
+                        </div-->
+                </div>
+            </div>
+        </div>
+
+        <wn5-setup-common-button
+            class="use-margin-top"
+            data-submit-click="submit_systemtime()"
+            data-cancel-click="get()">
+        </wn5-setup-common-button>
+        <hr class="wn5-setup-hr">
+    </form>
+</div>

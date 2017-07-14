@@ -1,0 +1,180 @@
+#wisenet-multi_imager-image_align {
+	width: 100%;
+	max-width: 640px;
+	overflow: hidden;
+	margin: 20px auto;
+	padding: 20px;
+	border: solid 1px #ddd;
+
+	@media(min-width: 480px) {
+		padding-left: 0;
+	}
+}
+
+@pannel-size: 220px;
+@pannel-margin: 10px;
+@button-width: 30px;
+@button-margin: 5px;
+
+#wisenet-multi_imager-image_align-item {
+	width: 100%;
+
+	@media(min-width: 480px) {
+		&:first-child {
+			width: @pannel-size + 20px;
+		}
+
+		&:last-child {
+			width: calc(~"100% - @{pannel-size} - 20px");
+		}
+
+		padding-left: 20px;
+		float: left;
+	}
+
+	.btn-group {
+		width: 100%;
+		margin: 20px 0;
+
+		@media(min-width: 480px){
+			margin-top: 0;
+		}
+
+		button {
+			width: 25%;
+			height: 40px;
+			opacity: .4;
+
+			&.selected-sensor {
+				opacity: 1;
+			}
+		}
+	}
+
+	button {
+		margin: 0;
+	}
+}
+
+.pannel-button-icon() {
+	font-weight: bold;
+	line-height: @button-width - 1;
+	top: 0;
+}
+
+#wisenet-multi_imager-image_align-pannel {
+	position: relative;
+	width: @pannel-size;
+	height: @pannel-size;
+
+	border: solid 1px #ddd;
+
+	.glyphicon-chevron-left, 
+	.glyphicon-chevron-right,
+	.glyphicon-chevron-up,
+	.glyphicon-chevron-down {
+		font-size: 14px;
+		.pannel-button-icon()
+	}
+
+	.tui-ch-playback-reset {
+		font-size: 20px;
+		.pannel-button-icon()
+	}
+
+	.pannel-xaxis-fast-top,
+	.pannel-xaxis-fast-down {
+		.glyphicon {
+			width: 100%;
+			display: block;
+			line-height: 12px;
+		}
+	}
+}
+
+.pannel-button() {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+}
+
+#wisenet-multi_imager-image_align-pannel-xaxis {
+	position: absolute;
+	z-index: 1;
+	width: @pannel-size - (@pannel-margin * 2);
+	height: @button-width;
+	left: @pannel-margin - 1;
+	top: 50%;
+	transform: translateY(-50%);
+
+	.pannel-button-wrapper {
+		width: @button-width;
+		height: @button-width;
+		float: left;
+
+		&:nth-of-type(n+3) {
+			float: right;
+		}
+
+		&:nth-of-type(1), 
+		&:nth-of-type(3) {
+			width: @button-width * 1.5;
+		}
+
+		&:nth-of-type(2), 
+		&:nth-of-type(3) {
+			margin-left: @button-margin;
+		}
+
+		button {
+			.pannel-button();
+		}
+	}
+}
+
+#wisenet-multi_imager-image_align-pannel-yaxis {
+	position: absolute;
+	z-index: 2;
+	width: @button-width;
+	height: @pannel-size - (@pannel-margin * 2);
+	left: 50%;
+	top: @pannel-margin - 1;
+	transform: translateX(-50%);
+
+	.pannel-button-wrapper {
+		width: @button-width;
+		height: @button-width;
+		overflow: hidden;
+
+		&:nth-of-type(1), 
+		&:nth-of-type(5) {
+			height: @button-width * 1.5;
+		}
+
+		&:nth-of-type(n+2) {
+			margin-top: @button-margin;
+		}
+
+		button {
+			.pannel-button();
+		}
+	}
+}
+
+#wisenet-multi_imager-image_align-resetall {
+	width: 100%;
+	overflow: hidden;
+
+	button {
+		position: relative;
+		padding-left: 29px;
+
+		span {
+			position: absolute;
+			top: 7px;
+			left: 8px;
+			font-size:17px;
+			font-weight: bold;
+		}
+	}
+}

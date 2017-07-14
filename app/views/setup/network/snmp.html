@@ -1,0 +1,126 @@
+<div id="snmppage"  class="wrapper wrapper-content" ng-show='pageLoaded' style="display:none">
+    <form name="snmpForm" method="get" class="form-horizontal">
+        <wn5-setup-main-title
+            data-title="lang_menu_snmp">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>SNMP v1/v2c</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">SNMP v1</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="snmp.Version1">
+                        <label>{{ 'lang_enable' | translate }}</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">SNMP v2c</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="snmp.Version2">
+                        <label>{{ 'lang_enable' | translate }}</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_readCommunity' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="readComm" ng-model="snmp.ReadCommunity" ng-disabled="!snmp.Version2" required minlength={{RCommMinLength}} maxlength={{RCommMaxLength}} ng-pattern-restrict="{{ AlphaNumericStr }}" ng-trim="true">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_writeCommunity' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="writeComm" ng-model="snmp.WriteCommunity" ng-disabled="!snmp.Version2" required minlength={{WCommMinLength}} maxlength={{WCommMaxLength}} ng-pattern-restrict="{{ AlphaNumericStr }}" ng-trim="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>SNMP v3</h3>
+                
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-content">
+                        {{ 'lang_msg_snmpv3_ssl_no_bracket' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-heading">SNMP v3</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="snmp.Version3" ng-disabled="SSL.Policy === 'HTTP'">
+                        <label>{{ 'lang_enable' | translate }}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_v3Pass' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="password" class="form-control" name="userPassword" ng-model="snmp.UserPassword" ng-disabled="!snmp.Version3" minlength={{PwdMinLength}} maxlength={{PwdMaxLength}} ng-pattern-restrict="{{AlphaNumericStr}}" autocomplete="new-password">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>{{ 'lang_snmp_trap' | translate }}</h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_snmp_trap' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="checkbox" ng-model="snmpTrap.Enable"> <label>{{ 'lang_enable' | translate }}</label>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="DeviceType == 'NWC'">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_community' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="trapComm" ng-model="snmpTrap.TrapConf.Community" ng-disabled="!snmpTrap.Enable"  required minlength={{TCommMinLength}} maxlength={{TCommMaxLength}} ng-pattern-restrict="{{ AlphaNumericStr }}" ng-trim="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">{{ 'lang_IPAddress' | translate }}</div>
+                    <div class="wn5-setup-section-article-content">
+                        <input type="text" class="form-control" name="trapAddress" ng-model="snmpTrap.TrapConf.Address" ng-disabled="!snmpTrap.Enable" required maxlength={{MaxIPV4Len}} ng-pattern="IPv4Pattern" ng-trim="true" ng-pattern-restrict="{{IPv4PatternStr}}">
+                    </div>
+                </div>
+                <div class="form-group" ng-if="DeviceType == 'NWC'">
+                    <div class="wn5-setup-section-article-content wn5-setup-section-article-heading-offset">
+                        <div ng-show="TrapAuthFailSupport">
+                            <label><input type="checkbox" ng-model="snmpTrap.TrapConf.AuthenticationFailure" id="checkBoxAuth" ng-disabled="!snmpTrap.Enable"><label>{{ 'lang_authfail' | translate }}</label></label>
+                        </div>
+                        <div ng-show="TrapLinkUpSupport">
+                            <label><input type="checkbox" ng-model="snmpTrap.TrapConf.LinkUp" id="checkBoxLinkUp" ng-disabled="!snmpTrap.Enable"><label>{{ 'lang_linkup' | translate }}</label></label>
+                        </div>
+                        <div ng-show="TrapAlarmInputSupport">
+                            <div ng-repeat="ai in getAlarmInArray">
+                                <label><input type="checkbox" ng-model="snmpTrap.TrapConf.AlarmInputArray[ai]" ng-disabled="!snmpTrap.Enable"><label>{{ 'lang_alarmInput' | translate }}{{' '}}{{ai + 1}}</label></label>
+                            </div>
+                        </div>
+                        <div ng-show="TrapAlarmOutputSupport">
+                            <div ng-repeat="ao in getAlarmOutArray">
+                                <label><input type="checkbox" ng-model="snmpTrap.TrapConf.AlarmOutputArray[ao]" ng-disabled="!snmpTrap.Enable"><label>{{ 'lang_alarmOutput' | translate }}{{' '}}{{ao + 1}}</label></label>
+                            </div>
+                        </div>
+                        <div ng-show="TrapTDSupport">
+                            <label><input type="checkbox" ng-model="snmpTrap.TrapConf.TamperingDetection" ng-disabled="!snmpTrap.Enable"><label>{{'lang_tampering'| translate }}</label></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="wn5-setup-hr">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view()">
+        </wn5-setup-common-button>
+    </form>
+</div>

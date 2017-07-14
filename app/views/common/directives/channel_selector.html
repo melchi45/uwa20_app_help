@@ -1,0 +1,13 @@
+<ul class="channel-selector">
+	<li>
+		<h6 class="channel-selector-title">CH</h6>
+	</li>
+	<li ng-repeat="num in [1,2,3,4]">
+		<button 
+			type="button"
+			class="cm-btn-dark" 
+			ng-click="channelSelector.selectChannel(num - 1)">
+			{{num}}
+		</button>
+	</li>
+</ul>

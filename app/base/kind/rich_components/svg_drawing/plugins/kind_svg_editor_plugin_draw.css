@@ -1,0 +1,24 @@
+/**
+ * When svg editor is draged, the text must be selected.
+ * So, a class 'kind-svg-editor-drawing' is added during the dragging.
+ *
+ * If you want to cancel the text selection during the dragging,
+ * Use class '.kind-svg-editor-drawing' in the your Stylesheet.
+ */
+
+body.kind-svg-editor-drawing h1,
+body.kind-svg-editor-drawing h2,
+body.kind-svg-editor-drawing h3,
+body.kind-svg-editor-drawing h4,
+body.kind-svg-editor-drawing h5,
+body.kind-svg-editor-drawing h6,
+body.kind-svg-editor-drawing li,
+body.kind-svg-editor-drawing p,
+body.kind-svg-editor-drawing pre,
+body.kind-svg-editor-drawing button,
+body.kind-svg-editor-drawing input {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}

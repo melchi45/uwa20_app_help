@@ -1,0 +1,128 @@
+﻿<h1 class="wn5-setup-main-title">Detecci&oacute;n de niebla</h1>
+
+<div class="wn5-setup-section">
+    <p>Puede corregir la imagen mediante la creaci&oacute;n de un evento de detecci&oacute;n de niebla y la ejecuci&oacute;n de filtro antineblina en condiciones de niebla cuando sea dif&iacute;cil distinguir la imagen. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste de eventos de detecci&oacute;n de niebla se aplica a <strong class="UI">[Detecci&oacute;n de niebla]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Detecci&oacute;n de niebla</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>Activar Detecci&oacute;n de niebla</h3>
+            <p>Para utilizar la detecci&oacute;n de niebla, seleccione <strong class="UI">[Activar Detecci&oacute;n de niebla]</strong>. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Nivel de detecci&oacute;n  </h3>
+            <p>El nivel de niebla actual aparecer&aacute; en el gr&aacute;fico de nivel. Una alarma se produce cuando el nivel actual es mayor que el nivel de detecci&oacute;n configurado. Un menor nivel de detecci&oacute;n permite la detecci&oacute;n de una imagen, incluso si es borrosa minuciosamente por la niebla.</p>
+        </div>
+		
+		<div class="wn5-setup-section-article-content">
+            <h3>Sensibilidad</h3>
+            <p>Una mayor sensibilidad da como resultado una respuesta m&aacute;s sensible del gr&aacute;fico de nivel de detecci&oacute;n.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Duraci&oacute;n m&iacute;nima (s)    </h3>
+            <p>Esto establece el tiempo m&iacute;nimo entre la detecci&oacute;n de niebla y la creaci&oacute;n de un evento. Una alarma se produce cuando el estado de nivel por encima del nivel de detecci&oacute;n persiste durante la duraci&oacute;n m&iacute;nima establecida.</p>
+        </div>
+			
+		<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Con el fin de recibir una alarma que indica la detecci&oacute;n de niebla despu&eacute;s de que se haya producido anteriormente, el estado debe volver al estado estable al menos una vez. La mejora de la imagen debido al filtro antineblina no se reconoce como un estado estable. A continuaci&oacute;n se presentan ejemplos de regreso al estado estable.</li>
+				<ul>
+				<li>Cuando <strong class="UI">[Activar Detecci&oacute;n de niebla]</strong> se deselecciona</li>
+				<li>Cuando niebla o humo han aparecido hasta el punto de que la imagen pueda distinguirse </li>
+				</ul>
+				
+                <li> En cualquier de los siguientes casos, el rendimiento de la detecci&oacute;n de niebla podr&iacute;a deteriorarse, o se podr&iacute;a producir un fallo de funcionamiento.</li>
+                <ul>
+				<li>Monitorear un entorno con un fondo mon&oacute;tono, de noche, y/o en condiciones de baja iluminaci&oacute;n</li>
+				<li>Cambio s&uacute;bito en la iluminaci&oacute;n (e.j. una luz interior que se apaga)</li>
+				<li>Lente bloqueada o aparici&oacute;n de un objeto grande que cubre la mayor parte de la pantalla</li>
+				<li>El objeto de enfoque cambia debido a un cambio en la posici&oacute;n de la c&aacute;mara</li>
+				</ul>
+            </ul>
+        </div>
+		
+
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Conf. de acciones de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>FTP</h3>
+            <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de detecci&oacute;n de niebla, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>Para enviar una imagen por e-mail cuando se crea un evento de detecci&oacute;n de niebla, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Grabar</h3>
+            <p>Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento de detecci&oacute;n de niebla, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Salida de alarma</h3>
+            <p>Es posible establecer una direcci&oacute;n de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de detecci&oacute;n de niebla.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
+        </div>
+		
+     <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de niebla. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de niebla. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Configuración de preajustes]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuración de preajustes]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de niebla. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
+        </div>
+		
+		<div class="wn5-setup-section-article-content">
+            <h3>Ejecutar antiniebla  </h3>
+            <p>Para ejecutar el filtro antineblina cuando se crea un evento de detecci&oacute;n de niebla, seleccione <strong class="UI">[Activar]</strong>. </p>
+        </div>
+		
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Tiempo de activaci&oacute;n de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Esto establece la acci&oacute;n del evento desde <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_fogDetection?#action">Conf. de acciones de evento</a>]</strong> para funcionar siempre o s&oacute;lo a una hora determinada cuando se crea un evento de detecci&oacute;n de niebla.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>Siempre</h3>
+            <p>La configuraci&oacute;n de acciones de eventos establecidos se ejecutan siempre cuando se crea un evento de detecci&oacute;n de niebla.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>S&oacute;lo tiempo programado</h3>
+            <p>La configuraci&oacute;n de acciones de eventos establecidos se ejecutan cuando se crea un evento de detecci&oacute;n de niebla durante el tiempo establecido. La fecha de domingo a s&aacute;bado, a partir de la hora actual de la c&aacute;mara, se muestra en la tabla de tiempos que aparece cuando <strong class="UI">[S&oacute;lo tiempo programado]</strong> se selecciona. Puede establecer el tiempo de configuraci&oacute;n de las acciones de eventos haciendo clic o arrastrando en la tabla de tiempos con el rat&oacute;n. El tiempo de activaci&oacute;n de evento configurado se ejecuta varias veces durante el d&iacute;a de la semana y la hora correspondiente.</p>
+			<p>Puede cambiar la unidad de vista de tiempo haciendo clic en el bot&oacute;n de <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, consulte <strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr">

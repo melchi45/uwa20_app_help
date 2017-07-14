@@ -1,0 +1,680 @@
+﻿<h1 class="wn5-setup-main-title">摄像机设置</h1>
+
+<div class="wn5-setup-section">
+    <p>可以更改摄像机设置，在安装有摄像机的环境中捕捉最佳的图像。默认提供适合多种环境的图像预设；用户还可直接对摄像机进行设置。可以在摄像机预览中查看摄像机图像是如何根据设置显示的。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。如果在更改设置后，在超时时间（240 秒）内没有单击<strong class="UI">[启用]</strong>按钮，则会恢复之前的设置。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>类型</h2>
+	</div>	
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>如需设置所有预设的移动探测，选择<strong class="UI">[全局]</strong>。如需设置各 PTZ 预设的不同移动探测，选择 <strong class="UI">[预设]</strong>。只有当通过<a class="wn5-online-help-link" href="../../Korean/ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">预设位设置</a>页面设置预设时，才会激活<strong class="UI">[预设]</strong>选项。</p>
+        </div>
+</div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>图像预设模式</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>可提供适合不同场合的不同图像预设。根据摄像机的使用环境选择相应的图像预设。</p>
+
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">定义焦点</strong>：这是摄像机的出厂默认模式。</li>
+            <li><strong class="UI">移动焦点</strong>：这种模式主要用来清晰地捕捉移动目标。当有很多移动目标时，例如在马路上或是博物馆里，将选择移动焦点模式。在低光环境中，噪点可能会增加，而灵敏度会下降。</li>
+            <li><strong class="UI">降噪</strong>：这种模式在捕捉图像时产生的噪音较少，也用于低光环境。</li>
+            <li><strong class="UI">调亮视频</strong>：这种模式用于为整个场景捕捉明亮的图像，可以提高昏暗区域的可见度。这种模式可能会降低图像对比度。</li>
+            <li><strong class="UI">移动焦点及降噪</strong>：当低光环境中存在很多移动目标，且需要形成低噪点的图像时，可使用这种模式。</li>
+            <li><strong class="UI">移动焦点及调亮视频</strong>：存在很多移动目标，且昏暗区域需要在整个图像中以更高亮度显示时，可使用这种模式。</li>
+            <li><strong class="UI">Vivid（多媒体异步传输模式）视频</strong>：用于以一种更明亮和生动的方式将整个图像显示出来。这可能会降低画面对比度及色阶。</li>
+            <li><strong class="UI">用户预设</strong>：这种模式用于根据用户的设定显示图像。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>每个图像预设的默认值</h3>
+            <p>选择一个已经提供的图像预设时，相应图像的默认预设值会发生改变。默认值如下且不能修改（每一个图像预设的可修改项目会根据情况发生改变）：</p>
+            <table class="table table-bordered wn5-setup-table">
+                <thead><!-- 표 머리행의 열을 추가하려면 <td>텍스트 입력</td> 형태로 입력하세요. --><tr>
+                        <td>图像预设</td>
+                        <td>最小快门</td>
+                        <td>最大快门</td>
+                        <td>自动增益</td>
+                        <td>SSDR</td>
+                        <td>SSNR</td>
+                        <td>颜色</td>
+                    </tr>
+                </thead>
+                <tbody><!-- 표 행을 추가하려면 <tr><td>텍스트</td></tr>형태로 추가하세요. --><tr><!-- 표 행을 추가하려면 <td>텍스트</td>형태로 추가하세요. --><td>质量</td>
+                        <td>1/5</td>
+                        <td>1/12000</td>
+                        <td>高</td>
+                        <td>12</td>
+                        <td>12</td>
+                        <td>50</td>
+
+                    </tr>
+                    <tr>
+                        <td>移动焦点</td>
+                        <td>1/30</td>
+                        <td>1/12000</td>
+                        <td>高</td>
+                        <td>12</td>
+                        <td>4</td>
+                        <td>50</td>
+                    </tr>
+                            <tr>
+                        <td>降噪</td>
+                        <td>1/15</td>
+                        <td>1/12000</td>
+                        <td>中</td>
+                        <td>12</td>
+                        <td>12</td>
+                        <td>50</td>
+                    </tr>
+                    
+                            <tr>
+                        <td>调亮视频</td>
+                        <td>1/5</td>
+                        <td>1/12000</td>
+                        <td>高</td>
+                        <td>18</td>
+                        <td>12</td>
+                        <td>50</td>
+                    </tr>
+                    
+                            <tr>
+                        <td>移动焦点及降噪</td>
+                        <td>1/30</td>
+                        <td>1/12000</td>
+                        <td>中</td>
+                        <td>12</td>
+                        <td>4</td>
+                        <td>50</td>
+                    </tr>
+                        <tr>
+                        <td>移动及调亮视频</td>
+                        <td>1/30</td>
+                        <td>1/12000</td>
+                        <td>高</td>
+                        <td>18</td>
+                        <td>4</td>
+                        <td>50</td>
+                    </tr>
+                        <tr>
+                        <td>Vivid（多媒体异步传输模式）视频</td>
+                        <td>1/5</td>
+                        <td>1/12000</td>
+                        <td>高</td>
+                        <td>18</td>
+                        <td>12</td>
+                        <td>90</td>
+                    </tr>
+                    <tr>
+                        <td>用户预设</td>
+                        <td>手动</td>
+                        <td>手动</td>
+                        <td>手动</td>
+                        <td>手动</td>
+                        <td>手动</td>
+                        <td>手动</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="sensor"></a>传感器</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>设置摄像机 CMOS 传感器每秒捕捉的帧数（在<strong class="UI">[基础]</strong>&gt;<strong class="UI">[视频配置文件]</strong>&gt;<strong class="UI">[帧率]</strong>中设置的传感器帧数最大值）。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>帧模式</h3>
+            <p>设置所需的帧率。无法为每个图像预设设置不同的帧率。同一帧率应用于所有图像预设。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>SSDR</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>当明亮区域和昏暗区域存在明显区别时，SSDR 为昏暗区域增加亮度以展现整个环境的图像。摄像机中所提供的每种图像预设的级别值都是自动设定的，且无法更改。如果不想使用此功能，或想更改级别值，请使用用户预设。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>SSDR</h3>
+            <p>如需使用 SSDR，请选择<strong class="UI">[启用]</strong>。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>级别</h3>
+            <p>调整动态范围的级别。级别越高，昏暗区域越明亮。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>D-范围</h3>
+            <p>选择动态范围的振幅区域。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>白平衡</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>可以进行校正，在任何光照环境下显示正常的白色及其他颜色。这项设置与图像预设无关。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>模式</h3>
+            <p>根据摄像机的使用环境选择相应的白平衡模式。</p>
+            <ul>
+                <li><strong class="UI">手动</strong>：可以手动调整红增益和蓝增益。显示的红色越多，红增益越低，显示的蓝色越多，蓝增益越低。如果显示的绿色较多，可同时提高红色和蓝色的增益值。</li>
+                <li><strong class="UI">自动追踪白平衡</strong>：自动校正摄像机色彩。</li>
+                <li><strong class="UI">室外</strong>：将摄像机色彩校正为适合室外环境的颜色。</li>
+                <li><strong class="UI">室内</strong>：将摄像机色彩校正为适合室内环境的颜色。</li>
+                <li><strong class="UI">自动白平衡</strong>：屏幕校正用于在当前光线环境下对色彩进行优化。将摄像机对准一张白纸，然后按下<strong class="UI">[设置]</strong>按钮，调整红增益和蓝增益，并将其应用于图像。如果环境发生改变，则需要再次进行调整。</li>
+                <li ng-if="PTZModel"><strong class="UI">水银</strong>：校正用于在水银光线环境下对色彩进行优化。</li>
+                <li ng-if="PTZModel"><strong class="UI">钠</strong>：校正用于在钠光线环境下对色彩进行优化。</li>
+            </ul>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>红增益</h3>
+            <p>调整红增益。如果红增益很高，屏幕上将显示出更多红色。如果显示的红色过多，可调低红增益。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>蓝增益</h3>
+            <p>调整蓝增益。如果蓝增益很高，屏幕上将显示出更多蓝色。如果显示的蓝色过多，可调低蓝增益。</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>如果发生以下情况，白平衡可能无法正常工作。在这种情况下，可在<strong class="UI">[自动白平衡]</strong>模式中调整白平衡：</li>
+                <ul>
+                    <li>如果周围环境超出色温校正范围，例如晴朗的天空或日落时分</li>
+                    <li>如果周围环境很暗</li>
+                    <li>如果摄像机正对荧光或存在明亮照明变化。</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>背光</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>可以对背光捕捉到的图像进行校正。在<strong class="UI">[模式]</strong>中选择关 (Off)、背光补偿 (BLC)、强光抑制 (HLC) 或宽动态 (WDR)，并根据所选的背光模式更改设置。</p>
+
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><a class="wn5-online-help-link" name="BLC"></a>背光补偿</h3>
+            <p>背光补偿 (BLC) 模式可以选择在背光捕捉的昏暗图像中对特定区域进行校正，使位于选定区域中的目标更清晰。通过控制上下左右键调整区域的大小。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>背光补偿级别</h3>
+            <p>可以选择低中高三级。级别越高，设置区域越明亮。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>区域设置</h3>
+            <ul>
+                <li><strong class="UI">顶部</strong>：设置上边缘距离屏幕顶部的距离。</li>
+                <li><strong class="UI">底部</strong>：设置下边缘距离屏幕底部的距离。</li>
+                <li><strong class="UI">左</strong>：设置左侧边缘距离屏幕左端的距离。</li>
+                <li><strong class="UI">右</strong>：设置右侧边缘距离屏幕右端的距离。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><a class="wn5-online-help-link" name="HLC"></a>强光抑制</h3>
+            <p>强光抑制 (HLC) 模式用于屏蔽强光，比如路灯或车头灯，以免目标无法辨认。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>HLC 级别</h3>
+            <p>可以选择低中高三级。级别越高，校正效果越好。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>遮挡</h3>
+            <p>选择是否应用遮挡。如需整天使用遮挡功能，请选择<strong class="UI">[整日]</strong>，如需仅在夜间使用遮挡功能，可选择<strong class="UI">[仅夜间]</strong>。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>遮挡颜色</h3>
+            <p>设置遮挡颜色。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>色调</h3>
+            <p>设置遮挡色调。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>调光</h3>
+            <p>图像的亮度根据周围环境进行自动调整。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>区域设置</h3>
+            <ul>
+                <li><strong class="UI">顶部</strong>：设置上边缘距离屏幕顶部的距离。</li>
+                <li><strong class="UI">底部</strong>：设置下边缘距离屏幕底部的距离。</li>
+                <li><strong class="UI">左</strong>：设置左侧边缘距离屏幕左端的距离。</li>
+                <li><strong class="UI">右</strong>：设置右侧边缘距离屏幕右端的距离。</li>
+            </ul>   
+        </div>
+        <div class="wn5-setup-section-article-content"> 
+            <h3><a class="wn5-online-help-link" name="WDR"></a>宽动态</h3>
+            <p>宽动态（宽度动态范围）模式可显示背光环境中清晰显示昏暗区域和明亮区域。此模式使用摄像机的双快门，先用高速快门进行一次图像捕捉，清晰显示明亮区域，再使用慢速快门，清晰显示昏暗区域，然后将两个图像中清晰的部分合并成一张图像。如果使用宽动态模式，明亮区域和昏暗区域之间可能会存在噪点。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>宽动态级别</h3>
+            <p>可以选择低中高三级。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>自动</h3>
+            <p>如果选择<strong class="UI">[启用]</strong>，则在需要进行背光校正时，图像会被分析，宽动态模式将自动激活。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>低光关闭</h3>
+            <p>如果选择<strong class="UI">[启用]</strong>，则在低光环境下，宽动态模式将自动关闭。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>红外关闭</h3>
+            <p>如果选择<strong class="UI">[启用]</strong>，则在运行 B/W 模式时，宽动态模式将自动关闭。</p><!--<ul>
+                <li><strong class="UI">Auto 1</strong>: This function corrects the phenomenon where the center of the image turns white due to LED light from auto exposure.</li>
+                <li><strong class="UI">Auto 2</strong>: This function corrects the phenomenon where the whole screen turns white due to LED light.</li>
+            </ul> --></div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>选择宽动态模式时，快门值将被重置。屏幕将会先变亮再变暗。</li>
+                <li>手动使用 P-光圈镜头或使用防闪烁快门时，宽动态模式的作用将受限。</li>
+                <li>使用宽动态模式时，帧率将减半。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>曝光</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>根据摄像机所在环境更改曝光。如果背景比物体暗，只有减少曝光，物体才能正常显示。相反，如果背景比物体亮，只有增加曝光，物体才能正常显示。每个图像预设都有独立的默认值，且这些默认值无法更改。但任何图像预设的亮度都可以更改。</p> 
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>亮度</h3>
+            <p>可以调整屏幕亮度。数字越高，屏幕越亮。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>最小快门</h3>
+            <p>快门可根据环境自动设置传感器的曝光量；电子快门在最小快门和最大快门之间工作。最小快门表示曝光时间允许范围内的最小值，可设置较长的曝光时间。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>最大快门</h3>
+            <p>最大快门表示曝光时间允许范围内的最大值，可设置较短的曝光时间。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>推荐快门</h3>
+            <p>用户的推荐快门，可当白天快门速度很低时，避免出现模糊的情况。设置推荐快门。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>防闪烁</h3>
+            <p>当拍摄环境中存在光线不稳定的情况时防止屏幕发生闪烁。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>SSNR</h3>
+            <p>移除图像上的噪点。</p>
+            <ul>
+                <li><strong class="UI">开/关</strong>：设置是否使用 SSNR 功能。选择<strong class="UI">[开]</strong>时，可对 SSNR 级别进行调整。</li>
+                <li><strong class="UI">智慧 NR</strong>：当图像中存在移动物体时，将自动调整降噪级别，以提高物体的可辨度。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>SSNR 2D 级别</h3>
+            <p>SSNR 2D 级别使用一个帧内的相邻像素来降低噪点。设置 SSNR 2D 级别当<strong class="UI">[SSNR]</strong>为<strong class="UI">[开]</strong>或<strong class="UI">[智慧 NR]</strong>状态时，可设置级别。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>SSNR 3D 级别</h3>
+            <p>SSNR 3D 级别使用不同帧的像素来降低噪点。设置 SSNR 3D 级别当<strong class="UI">[SSNR]</strong>为<strong class="UI">[开]</strong>或<strong class="UI">[智慧 NR]</strong>状态时，可设置级别。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions">
+            <h3>光圈</h3>
+            <p>从 DC（自动）、手动、P-光圈中选择。</p>
+            <ul>
+                <li><strong class="UI">DC（自动）</strong>：根据确定的进光量调整光圈。</li>
+                <li><strong class="UI">手动</strong>：手动调整光圈。</li>
+                <li ng-if="!PTZModel"><strong class="UI">P-光圈</strong>：通过步进马达调整光圈。可确保较大的景深，以便同时对处于不同距离的多个物体进行对焦。</li>
+            </ul>
+        </div>
+		
+		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions">
+            <h3>光圈 F-数字</h3>
+            <p><strong class="UI">[光圈]</strong>模式为<strong class="UI">[手动]</strong>时，该项会被激活，可设置光圈级数。</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="Lens">
+            <h3>镜头</h3>
+            <p>从 DC（自动）、手动和可用 P-光圈中选择。</p>
+            <ul>
+                <li><strong class="UI">DC（自动）</strong>：根据确定的进光量调整光圈。</li>
+                <li><strong class="UI">手动</strong>：手动调整光圈。</li>
+                <li><strong class="UI">P-光圈</strong>：通过步进马达调整光圈。可确保较大的景深，以便同时对处于不同距离的多个物体进行对焦。在从提供的光圈类型中进行选择。</li>
+            </ul>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PIrisModeOptions">
+            <h3>P-光圈</h3>
+            <p>从 <strong class="UI">[镜头]</strong>中选择 P-光圈时，该项会被激活。选择<strong class="UI">[自动]</strong>模式时，光圈会根据亮度自动调整。选择<strong class="UI">[手动]</strong>模式时，用户可直接设置光圈位置。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="PIrisPosition">
+            <h3>P-光圈位置</h3>
+            <p>当<strong class="UI">[P-光圈]</strong>设为<strong class="UI">[手动]</strong>模式时，该项会被激活。P-光圈位置可调。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>自动增益</h3>
+            <p>在昏暗光线下捕捉物体时，AGC（自动增益控制）功能可通过控制图像增益的灵敏度调节亮度。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>日/夜</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>根据摄像机所在环境将图像更改为彩色或黑白。设置好等待时间后，图像可根据偏好更改为彩色或黑白。切换至日/夜模式后，将无法检测到移动探测事件或图像分析事件。</p> 
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>模式</h3>
+            <p>选择可将摄像机切换至彩色或黑白的模式。</p>
+            <ul>
+                <li><strong class="UI">彩色</strong>：输出的是彩色图像。</li>
+                <li><strong class="UI">黑白</strong>：输出的是黑白图像。</li>
+                <li><strong class="UI">自动</strong>：白天时切换为彩色模式，夜间或昏暗光线下切换为黑白模式。如果<strong class="UI">[曝光]</strong>的<strong class="UI">[自动增益]</strong>设置为<strong class="UI">[关]</strong>，则无法设置日/夜模式。</li>
+                <li ng-if="!PTZModel"><strong class="UI">外部</strong>：将警报输入终端连接至外部设备时，可控制彩色和黑白模式。</li>
+                <li ng-if="!PTZModel"><strong class="UI">计划</strong>：日/夜模式可按照<strong class="UI">[激活时间（彩色）]</strong>中所设置的计划进行更改。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>等待时间</h3>
+            <p>日/夜模式被设置为<strong class="UI">[自动]</strong>，且在设置的等待时间内满足亮度条件时，可更改至彩色或黑白模式。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>持续时间</h3>
+            <p>设置切换至彩色或黑白模式所需的时间间隔。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+            <h3>警报输入</h3>
+            <p>根据警报传感器的开闭状态将设置彩色或黑白图像。<strong class="UI">[日/夜]</strong><strong class="UI">[模式]</strong>被设置为<strong class="UI">[外部]</strong>时，<strong class="UI">[事件]</strong>&gt;<strong class="UI">[警报输入]</strong>功能将停用，并且不会出现设置页面。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
+            <h3>D/N 后简单对焦</h3>
+            <p>切换至日/夜模式后，为图像进行调焦。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>激活时间（彩色）</h3>
+            <p>在彩色模式中设置运行计划。选择<strong class="UI">[每天]</strong>，且设置好时间后，将在每天的相关时间内，启动彩色模式，而在此外的其它时间内启动黑白模式。如果不想在每天的同一时间启动彩色模式，可取消选择<strong class="UI">[每天]</strong>，然后将相应的激活时间设置为星期一、星期二、星期三、星期四、星期五、星期六或星期日。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>特殊菜单</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>可对图像进行锐利度、对比度、色彩级别及除霜调整。</p> 
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>数字稳定</h3>
+            <p>检测到图像抖动时，DIS（数字稳定）功能将自动校正并稳定屏幕。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>锐利度</h3>
+            <p>调整图像的整体锐利度。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>锐利度级别</h3>
+            <p>调整图像的整体锐利度。将<strong class="UI">[锐利度]</strong>设置为<strong class="UI">[开]</strong>，然后设置锐利度级别。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>伽玛值</h3>
+            <p>调整图像的对比度。这是指图像最亮部分和最暗部分之间的距离，伽玛值越高，表明亮度差异更明显。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>对比度</h3>
+            <p>调整图像的阴影对比度。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>色调级别</h3>
+            <p>调整图像的色彩强度。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>透雾</h3>
+            <p>当图像模糊不清时进行校正。设置为<strong class="UI">[自动]</strong>时，将自动检测周围环境，并自动校正图像。设置为<strong class="UI">[手动]</strong>时，用户可查看周围环境，并直接设置校正级别。如想在雾量发生变化时执行透雾功能，请设置为<strong class="UI">[手动]</strong>。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>透雾级别</h3>
+            <p>将透雾功能设置为<strong class="UI">[手动]</strong>时激活，此项将被激活，可调整透雾级别。透雾级别越高，图像显示越清晰。如果雾量较少，而设置的透雾级别很高，整个屏幕看上去可能会较暗。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+            <h3>畸变矫正 (LDC)</h3>
+            <p>畸变矫正 (LDC) 功能可对广角镜头边缘处的变形进行图像校正。</p>
+			 <ul>
+                <li><strong class="UI">关</strong>：不能使用图像畸变校正功能。</li>
+                <li><strong class="UI">手动</strong>：手动进行图像畸变校正。</li>
+                <li ng-if="LDCAuto"><strong class="UI">自动</strong>：自动进行图像畸变调整。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+            <h3>LDC 级别</h3>
+            <p>调整畸变矫正功能的级别。当<strong class="UI">[畸变矫正 (LDC)]</strong>设置为<strong class="UI">[手动]</strong>时，此项会被激活。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>OSD</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>显示摄像机名称或日期和时间，并可设置文字的位置、大小、颜色和透明度。</p> 
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>摄像机名称</h3>
+            <p>设置是否显示摄像机名称。选择<strong class="UI">[启用]</strong>时，<strong class="UI">[添加]</strong>/<strong class="UI">[删除]</strong>按钮将被激活。</p>
+            <p>单击 <strong class="UI">[添加]</strong>按钮时，将在列表中添加一个字段，可在该字段中输入摄像机名称。输入摄像机名称，移动 X 和 Y 坐标设置位置。最多可添加 5 个摄像机名称，但屏幕上只能显示 1 个摄像机名称。</p>
+            <p>如需删除摄像机名称，请选择想要删除的名称，然后单击<strong class="UI">[删除]</strong>按钮。如需在输入摄像机名称后，预览屏幕上的显示情况，请输入摄像机名称，然后单击<strong class="UI">[预览]</strong>按钮。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>日期和时间</h3>
+            <p>如需在屏幕上显示日期和时间，请选择<strong class="UI">[启用]</strong>。选择日期的显示方式，然后移动 X 和 Y 坐标设置显示日期和时间的位置。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>大小</h3>
+            <p>调整 OSD 的大小。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>颜色</h3>
+            <p>设置 OSD 的颜色。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>透明度</h3>
+            <p>设置 OSD 的透明度。</p>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>覆盖</h3>
+            <p>选择将在摄像机视频显示器上显示的信息，例如 PTZ 位置或预设名称。</p>
+        </div><!-- <div class="wn5-setup-section-article-content">
+            <h3>Overlay image </h3>
+            <p>The user can display a desired image at the top left of the screen. Upload an image from the <strong class="UI">[Upload image]</strong> menu.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Upload image</h3>
+            <p>Search a file in bitmap format by clicking the <strong class="UI">[…]</strong> button. Upload an image file by clicking the <strong class="UI">[Upload]</strong> button. To delete an image file, click the <strong class="UI">[Delete]</strong> button. The specifications of applicable images include 16-bit or 24-bit bitmap files (RGB565 not supported), 128px (fixed) for the width and length, and a file size of 52 KB or less.</p>
+        </div> --></div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="Focus">
+<div class="wn5-setup-section" ng-if="Focus">
+    <div class="wn5-setup-section-heading">
+        <h2>对焦</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>您可以设置摄像机对焦操作方法、是否使用数字缩放以及重置摄像机。</p>
+        </div>    
+        <div class="wn5-setup-section-article-content">
+            <h3>模式</h3>
+            <p>设置摄像机对焦操作方法。</p>
+            <ul>
+                <li>手动：手动调整摄像机对焦。</li>
+                <li>自动：摄像机自动调整对焦。</li>
+                <li>一次性自动对焦：在发生用户事件（自动对焦或缩放动作）时，焦点会自动地调整一次。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>数字缩放</h3>
+            <p>如需使用数字缩放，请选择<strong class="UI">[启用]</strong>。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>数字缩放限制</h3>
+            <p>设置可用数字缩放的最大范围。您可以通过设置<strong class="UI">[数字缩放]</strong>的<strong class="UI">[使用]</strong>来设置数字缩放的范围。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>缩放模式</h3>
+            <p>设置当缩放功能工作时同步摄像机焦点的方法。</p>
+            <ul>
+                <li>自动：即使缩放倍率发生更改，缩放功能也能工作，并在同时通过持续地评估和修改对焦条件来保持焦点。</li>
+                <li>手动：缩放功能按照设置的对焦轨道进行工作。如果更改缩放倍率，图像可能会模糊不清。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>缩放速度</h3>
+            <p>设置缩放跟踪速度。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>初始化镜头</h3>
+            <p>您可以手动重置镜头一次，或将重置周期设置以自动重置镜头。</p>
+            <p>如需手动重置镜头，请在<strong class="UI">[初始化镜头]</strong>选项中选择<strong class="UI">[手动]</strong>，然后单击<strong class="UI">[设置]</strong>按钮。如需设置自动重置周期，请选择 1 天到 7 天之间的所需时间。镜头将按设置的周期从设置的时间重置。</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>说明<u></u></h4>
+            <ul>
+                <li>由于自动对焦功能会根据屏幕中央的被摄物体调整焦点，因此屏幕外围的被摄物体可能会模糊不清。</li>
+                <li>自动对焦功能在以下条件下可能无法正常工作。</li>
+                <ul>
+                    <li>如果存在明亮的灯光或闪烁的灯光，例如霓虹灯</li>
+                    <li>如果监视区域的亮度较低</li>
+                    <li>如果监视区域的亮度过高</li>
+                    <li>如果摄像机工作时配备的是慢速快门</li>
+                    <li>如果被摄物体本身昏暗</li>
+                    <li>如果不存在色饱和度差异，例如天空与墙壁之间</li>
+                    <li>如果摄像机瞄准的是纤细的水平线</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="Heater">
+<div class="wn5-setup-section" ng-if="Heater">
+    <div class="wn5-setup-section-heading">
+        <h2>加热器</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>一次性活动</h3>
+            <p>如果出现霜时，想要使用加热器除霜，请单击一下<span class="tui tui-ch-playback-reset"></span>。</p>
+        </div>
+    </div>
+</div>
+
+<!-- <hr class="wn5-setup-hr" ng-if="Heater">
+<div class="wn5-setup-section" ng-if="Heater">
+    <div class="wn5-setup-section-heading">
+          <h2>风扇</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>一次操作</h3>
+            <p>如果出现结霜并想要运行风扇除霜，请单击<span class="tui tui-ch-playback-reset"></span>按钮。</p>
+        </div>
+
+    </div>
+</div> -->
+
+<hr class="wn5-setup-hr" ng-if="IR">
+<div class="wn5-setup-section" ng-if="IR">
+    <div class="wn5-setup-section-heading">
+        <h2>IR</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>模式</h3>
+            <p>如不想执行 IR 功能，请选择<strong class="UI">[关]</strong>，如想自动运行，请选择<strong class="UI">[Auto 1]</strong>或<strong class="UI">[Auto 2]</strong>。如想手动操作 IR，请选择<strong class="UI">[手动]</strong>。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>级别</h3>
+            <p>设置 IR 级别</p>
+        </div>
+    </div>
+</div>
+
+
+
+<hr class="wn5-setup-hr" ng-if="!PTZModel">
+<div class="wn5-setup-section" ng-if="!PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>激活时间</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>摄像机始终按预设时间工作。在要求的时间内设置并使用所需的图像预设。如未选择特定的图像预设，将默认激活所选的顶部图像预设。激活时间的颜色随所选图像预设而改变。</p> 
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            <h3>关</h3>
+            <p>摄像机在图像预设中所选时间内工作。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>仅预约时间</h3>
+            <p>可设置允许用户在特定时间内执行图像预设。<span class="tui tui-wn5-top-setup"></span>单击<span class="tui tui-wn5-top-setup"></span>（设置）按钮，选择图像预设，设置开始时间和结束时间。一天最多可设置 5 个预设。根据摄像机的使用情况为每小时设置图像预设。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

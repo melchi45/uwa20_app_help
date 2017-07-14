@@ -1,0 +1,115 @@
+/* Channel Selector Directive Commom */
+.channel-selector {
+  float: left;
+
+  li {
+    float: left;
+
+    &:first-child {
+      margin-right: 10px;
+      .channel-selector-title {
+        float: left;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .cm-btn-dark {
+      padding: 0;
+    }
+  }
+}
+
+.cm-channel-selector-quad-btn-wrapper {
+  width: 27px;
+  float: left;
+  margin-left: 4px;
+}
+
+.cm-channel-selector-quad-btn {
+  position: relative;
+  width: 100%;
+  float: left;
+  padding: 0;
+
+  border: solid 1px @theme-light-button-dark-normal-line;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+
+  > div {
+    position: absolute;
+    float: left;
+    width: 12px;
+    height: 9px;
+
+    border-right: 0;
+    border-bottom: 0;
+    background-color: @theme-light-button-dark-normal-bg;
+    border-left: solid 1px @theme-light-button-dark-normal-line;
+    border-top: solid 1px @theme-light-button-dark-normal-line;
+    
+    &:nth-of-type(1){
+      left: 0;
+      top: 0;
+    }
+    &:nth-of-type(2){
+      left: 12px;
+      top: 0;
+    }
+    &:nth-of-type(3){
+      left: 0;
+      top: 9px;
+    }
+    &:nth-of-type(4){
+      left: 12px;
+      top: 9px;
+    }
+  }
+
+  &:hover {
+    border-color: @theme-light-button-dark-focus-line;
+
+    > div {
+      background-color: @theme-light-button-dark-focus-bg;
+      border-color: @theme-light-button-dark-focus-line;
+    }
+  }
+
+  &:active {
+    border-color: @theme-light-button-dark-press-text;
+
+    > div {
+      background-color: @theme-light-button-dark-press-bg;
+      border-color: @theme-light-button-dark-press-text;
+    }
+  }
+}
+
+.cm-full-menu {
+  .cm-channel-selector-quad-btn {
+    border-color: @theme-dark-button-dark-normal-line;
+
+    > div {
+      background-color: @theme-dark-button-dark-normal-bg;
+      border-color: @theme-dark-button-dark-normal-line;
+    }
+
+    &:hover {
+      border-color: @theme-dark-button-dark-focus-text;
+
+      > div {
+        background-color: @theme-dark-button-dark-focus-bg;
+        border-color: @theme-dark-button-dark-focus-text;
+      }
+    }
+
+    &:active {
+      border-color: @theme-dark-button-dark-press-text;
+
+      > div {
+        background-color: @theme-dark-button-dark-press-bg;
+        border-color: @theme-dark-button-dark-press-text;
+      }
+    }
+  }
+}

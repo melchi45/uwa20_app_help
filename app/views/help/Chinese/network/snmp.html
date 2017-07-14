@@ -1,0 +1,97 @@
+﻿
+<h1 class="wn5-setup-main-title">SNMP</h1>
+<div class="wn5-setup-section">
+	<p>SNMP（简单网络管理协议）是一种可以从网络上的设备收集信息并管理网络的网络管理协议。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>SNMP v1/v2c</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        	<p>SNMP v1 协议未加密，且几乎没有安全功能。此外，因为占用的宽带较多，如果网络中存在较多设备，则很难对网络进行管理。SNMP v2c 协议为确保数据安全和验证安全，加入了一种运算法，在 SNMP v1 基础上增加了宽带利用率。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMP v1  </h3>
+            <p>如需使用 SNMP v1，请选择<strong class="UI">[启用]</strong>。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMP v2c  </h3>
+            <p>如需使用 SNMP v2c，请选择<strong class="UI">[启用]</strong>。选择<strong class="UI">[SNMP v2c]</strong>时，将启用读取社区和写入社区。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><span class="onlineHelp-padding">读取社区</span></h3>
+            <p><span class="onlineHelp-padding"> 输入只读社区的名称，访问 SNMP 信息。默认值为&ldquo;公共&rdquo;。</span></p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><span class="onlineHelp-padding">写入社区 </span></h3>
+            <p><span class="onlineHelp-padding">输入只写社区的名称，访问 SNMP 信息。默认值为&ldquo;写入&rdquo;。</span></p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>SNMP v3</h2><small>（仅在 SSL/TLS 经过验证后操作）。</small></div>
+
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>SNMP v3 验证比 v1 和 v2c 更安全，无需数据转换即可进行传输。此外，数据包进行了加密，防止未授权用户访问数据。仅当安全连接系统为 HTTPS 模式时，才可以设置 SNMP v3。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMP v3  </h3>
+            <p>如需使用 SNMP v3，请选择<strong class="UI">[启用]</strong>。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>密码</h3>
+            <p>为 SNMP v3 设置用户密码。密码必须为 8-16 个字符。默认密码的安全性较低，因此强烈建议在安装产品后，立即更改密码。用户自行负责密码的安全以及因继续使用默认密码而引发的其它问题。</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+        	<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
+            <ul>
+                <li>不使用 SNMP v3 可导致安全问题。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>SNMP 陷阱</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+    	   <p>SNMP 陷阱功能可将网络中设备的具体事件发送给管理系统。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMP 陷阱  </h3>
+            <p>如需使用 SNMP 陷阱，请选择<strong class="UI">[启用]</strong>。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>社区  </h3>
+            <p>输入接收消息的陷阱社区的名称。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>IP 地址</h3>
+            <p>输入消息发送用户的 IP 地址。</p>
+            <ul>
+                <li><span class="onlineHelp-padding"><strong class="UI">认证失败通知</strong>：设置是否当社区信息不正确时向管理系统发送一个事件。</span></li>
+                <li><span class="onlineHelp-padding"><strong class="UI">网络连接通知</strong>：设置是否重新连接已断开网络时向管理系统发送一个事件。</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

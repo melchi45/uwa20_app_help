@@ -1,0 +1,92 @@
+<div id="presetzoompage" class="wrapper wrapper-content"  ng-show='pageLoaded' style="display:none">
+    <wn5-setup-main-title
+        data-title="lang_presetSetup">
+    </wn5-setup-main-title>
+    <fieldset class="preset-setup-fieldset">
+        <div class="wn5-setup-section" style="margin-top: 10px;">
+            <sketchbook ng-class="PTZModel || ZoomOnlyModel ? 'ptz-control-viewer' : 'wn5-setup-preview-video'" videoinfo='videoinfo' style="margin-bottom: 10px;"></sketchbook>
+            
+            <!-- PTZ Control -->
+            <div class="ptz-control_box ptz-preset-zoom">
+                <ptz-control ptzinfo='ptzinfo'></ptz-control>
+            </div>
+            <!-- //PTZ Control End -->            
+        </div>    
+    </fieldset>
+    <div>
+        <form name="ptzForm" method="get" class="form-horizontal" novalidate>
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section">
+                <div class="wn5-setup-section-heading">
+                    <h3>{{ 'lang_presetSetup' | translate }}</h3> 
+                </div>
+                <div class="wn5-setup-section-article">
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-content">
+                            <button type="button" class="btn btn-primary cm-btn-dark" ng-click="remove()">{{ 'lang_remove' | translate }}</button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper form-group">
+                        <table class="table cm-table-field table-editor wn5-setup-table">
+                            <thead>
+                                <tr>
+                                    <th width="7%" height="40" class="text-center"><input type="checkbox" ng-model="PTZPreset.checkAll" ng-click="checkAll()"></th>
+                                    <th width="8%" height="40" class="text-center">{{ 'lang_num' | translate }}</th>
+                                    <th width="65%" height="40" class="text-center">{{ 'lang_name' | translate }}</th>
+                                    <th width="20%" height="40" class="text-center">{{ 'lang_go' | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               <tr ng-repeat="Preset in PTZPresetPage.presetList[PTZPresetPage.currentPage-1]"> 
+                                    <td width="7%" class="text-center"><input type="checkbox" ng-model="Preset.SelectedPreset" ng-click="presetCheckbox()"></td>
+                                    <td width="8%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Preset}}</a></td>
+                                    <td width="65%" class="text-center"><a ng-href ng-click="presetSelected(Preset.Preset)">{{Preset.Name}}</a></td>
+                                    <td width="20%" class="text-center"><button type="button" class="btn btn-primary cm-btn-dark" ng-click="presetSelected(Preset.Preset)" title="{{ 'lang_go' | translate }}" style="height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-show="getPageCount() > 1" class="text-center form-group page-controller">
+                        <a ng-click="getFirstPage()"><i class="tui tui-left"></i><i class="tui tui-left"></i></a>
+                        <a ng-click="getPrevPage()"><i class="tui tui-left"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" class="text" ng-model="PTZPresetPage.pageIndex" style="width:40px; height:25px; font-weight:bold; margin-top:-1px; text-align:center;
+                        border: solid 1px #ddd;" ondrop="return false;" onpaste="return false;" ng-pattern-restrict="{{OnlyNumStr}}"/>
+                        <label class="control-label" style="margin-bottom : 0px">/ {{getPageCount()}}</label>
+                        <button type="button" class="btn btn-primary cm-btn-dark" ng-click="jumpToPage()" title="{{ 'lang_go' | translate }}" style="margin-left: 5px; height: 25px; padding: 0 10px; line-height: 23px;">{{ 'lang_go' | translate }}</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a ng-click="getNextPage()"><i class="tui tui-right"></i></a>
+                        <a ng-click="getLastPage()"><i class="tui tui-right"></i><i class="tui tui-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section" ng-if="LastPositionAttr.RememberLastPosition !== undefined">
+                <div class="wn5-setup-section-heading">
+                    <h3>{{ 'lang_lastPosition' | translate }}</h3> 
+                </div>
+                <div class="wn5-setup-section-article">
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_msg_last_position_save' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input type="checkbox" ng-model="LastPosition.RememberLastPosition" />
+                            {{'lang_enable' | translate}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="wn5-setup-section-article-heading">{{ 'lang_time' | translate }}</div>
+                        <div class="wn5-setup-section-article-content">
+                            <input type="text" class="form-control wp25" ng-model="LastPosition.RememberLastPositionDuration" maxlength="{{LastPositionAttr.DurLen}}" required ng-pattern-restrict="{{OnlyNumStr}}"/>
+                            <label class="col-lg-2 control-label" style="text-align:left">({{LastPositionAttr.RememberLastPositionDuration.minValue}}~{{LastPositionAttr.RememberLastPositionDuration.maxValue}} {{ 'lang_sec' | translate }})</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr calss="wn5-setup-hr">
+            <wn5-setup-common-button
+                data-submit-click="submit()"
+                data-cancel-click="view()">
+            </wn5-setup-common-button>
+        </form>
+    </div>
+</div>

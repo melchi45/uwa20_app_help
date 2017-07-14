@@ -1,0 +1,90 @@
+﻿
+<h1 class="wn5-setup-main-title">오디오 설정</h1>
+
+<div class="wn5-setup-section">
+	<p>네트워크 카메라에 마이크와 스피커를 연결하여 원격에서 카메라가 설치된 곳의 소리를 듣거나 카메라에서 오디오를 출력할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>오디오 입력</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>카메라에 연결된 마이크를 통해 영상에 오디오를 입력할 수 있습니다. 사용 환경에 맞는 소스를 선택하여 오디오를 입력합니다. </p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
+		<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+			<h3>소스</h3>
+			<p>오디오 입력 방식을 선택합니다.</p>
+			<ul>
+				<li ng-if="InternalMic"><strong class="UI">내장 마이크</strong>: 카메라에 포함된 내장 마이크입니다.</li>
+				<li><strong class="UI">외부 마이크</strong>: 카메라에 외부 마이크를 연결하여 사용합니다. <strong class="UI">[외부 마이크 전원 활성화]</strong>를 선택하면 외부 마이크의 전원이 공급되지 않을 경우에 카메라에서 외부 마이크에 전원을 공급합니다.</li>
+				<li><strong class="UI">라인</strong>: 케이블을 통해 음향기기와 연결합니다. 예를 들어 MP3 플레이어 같은 음향 기기와 카메라를 케이블을 통해 연결한 뒤 MP3 플레이어에 녹음된 오디오를 카메라에 입력할 때 선택합니다.</li>
+			</ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>코덱</h3>
+			<p>오디오 코덱을 선택합니다.</p>
+			<ul>
+				<li><strong class="UI">G.711</strong>: ITU-T의 표준 음성 코덱으로 주로 전화 통신에서 사용하며 오디오 품질이 낮습니다. 음성 주파수의 펄스 부호 변조(PCM)라고도 하며 PSTN에서나 PBX를 통해 음성 파형을 디지털로 전달할 수 있습니다.</li>
+				<li><strong class="UI">G.726</strong>: ITU-T의 표준 음성 코덱으로 주로 전화 통신에서 사용하며 오디오 품질이 낮습니다. 적응 차분 펄스 부호 변조(ADPCM)를 통해 64 Kbps의 PCM을 16 Kbps, 24 Kbps, 32 Kbps, 40 Kbps 등으로 변경하여 압축할 수 있습니다. </li>
+				<li><strong class="UI">AAC</strong>: AAC (Advanced Audio Coding)는 MP3의 뒤를 잇는 국제 표준입니다. MP3보다 효율적이면서 CD의 원본과 비슷한 음질을 가집니다. 기존의 G.711, G.726 코덱을 사용할 때 보다 더 높은 샘플링 레이트의 오디오를 사용할 수 있습니다.
+				</li>
+			</ul>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+			<ul>
+				<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+				<li>오디오 설정 페이지에서 원하는 코덱을 설정했더라도, Firefox나 Edge로 영상을 스트림하는 경우에는 AAC 코덱이 지원되지 않습니다.</li>
+			</ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>샘플링 레이트</h3>
+			<p>아날로그 음원을 디지털화 할 때 초당 샘플링 횟수를 의미하며, 이 값이 높을수록 음질이 향상됩니다. 샘플링 레이트는 오디오 코덱 별로 값이 정해져 있어 사용자가 변경할 수 없습니다. G.711 코덱과 G.726 코덱의 샘플링 레이트는 8 KHz이며, AAC 코덱의 샘플링 레이트는 16 KHz입니다.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>비트 레이트</h3>
+			<p>G.711 코덱은 64 Kbps이며 변경할 수 없습니다. G.726 코덱은 16 Kbps, 24 Kbps, 32 Kbps, 40 Kbps로 압축률을 변경할 수 있습니다. AAC 코덱은 48 Kbps만 선택할 수 있습니다.</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
+			<h3><a class="wn5-online-help-link" name="gain"></a>게인</h3>
+			<p>오디오 입력의 증폭값을 설정합니다. 입력되는 소리가 작을 경우 게인값을 높여 입력된 오디오 신호를 증폭시킬 수 있습니다. 게인값의 범위는 1~10이며, 값이 클수록 증폭값이 커집니다. </p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>오디오 출력</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>내장된 스피커를 통해 오디오를 출력할 수 있습니다. </p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>오디오 출력</h3>
+			<p>오디오 출력을 사용하려면 <strong class="UI">[사용]</strong>을 선택합니다.  </p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>게인</h3>
+			<p>오디오 출력의 증폭값을 설정합니다. 출력하는 소리가 작을 경우 게인값을 높여 출력하는 오디오 신호를 증폭시킬 수 있습니다. 게인값의 범위는 1~10이며, 값이 클수록 오디오 출력이 커집니다. 오디오 출력을 <strong class="UI">[사용]</strong>으로 선택해야 게인이 활성화 됩니다.</p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+			<ul>
+				<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+				<li>음원의 소리 크기나 게인값을 과도하게 설정할 경우 음질 저하 또는 하울링 문제가 발생할 수 있습니다. </li>
+			</ul>
+		</div>
+	</div>
+</div>
+`
+<hr class="wn5-setup-hr">

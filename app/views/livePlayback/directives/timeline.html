@@ -1,0 +1,84 @@
+<div class="cm-row" id="timeline-setting" ng-show="timelineControl.currentTimelineMode === 'playback'">
+  <div class="cm-col">
+    <button 
+      type="button"
+      ng-click="checkCurrentStatus()"
+      class="cm-btn-dark"
+      title="{{selectedEvent| translate}}">
+      <i class="tui tui-wn5-toolbar-filter cm-icon-x15"></i>
+      <span class="cm-pc">&nbsp;{{selectedEvent| translate}}</span>
+    </button>
+  </div>
+
+  <date-control 
+    control="timelineControl"
+    playback-backup="playbackBackup" 
+    disable-backup-icon="disableBackupIcon">
+  </date-control>
+</div>
+
+<div class="cm-row" id="backup-setting" ng-show="timelineControl.currentTimelineMode === 'backup'">
+  <playback-backup
+    get-backup-date="timelineControl.getBackupDate"
+    control="timelineControl"
+    visibility="visibility.backup">
+  </playback-backup>
+</div>
+
+<div class="cm-row cm-p010">
+  <div 
+    ng-show="timelineControl.currentTimelineMode === 'playback' || timelineControl.currentTimelineMode === 'backup'"
+    class="timeline-container" 
+    kind-touch-tap="onClick" 
+    kind-touch-pan="swipeTimelie" 
+    kind-touch-pinch="zoomTimeline">
+  </div>
+</div>
+
+<div 
+  ng-show="timelineControl.currentTimelineMode === 'playback'"
+  class="pb-duplicate-items">
+  <div 
+    ng-repeat="item in duplicateItems" 
+    ng-click="selectOneEvent(item)" 
+    ng-class="{'selected' : item.selected}">
+    <div class="event-type">
+      {{item.eventType |translate}}
+    </div>
+    <div class="event-time">
+      {{item.start | date : 'HH:mm:ss'}} ~ {{item.end | date : 'HH:mm:ss' }}
+    </div>
+  </div>
+</div>
+
+<playback-event
+  set-overlap-event="timelineControl.setOverlapEvent"
+  get-overlap-event="timelineControl.getOverlapEvent"
+  ng-show="timelineControl.currentTimelineMode === 'eventsorting'">
+</playback-event>
+
+<playback-datepicker
+  control="timelineControl"
+  get-selected-date="timelineControl.getSelectedDate"
+  ng-show="timelineControl.currentTimelineMode === 'datepicker'"
+  show-menu="timelineControl.showMenu">
+</playback-datepicker>
+
+<div 
+  ng-show="timelineControl.currentTimelineMode !== 'playback' && timelineControl.currentTimelineMode !== 'datepicker'"
+  class="cm-row timeline-button" 
+  ng-class="{'pb-backup-button' : timelineControl.currentTimelineMode === 'backup'}">
+  <button 
+    ng-click="timelineControl.submit()"
+    title="{{'lang_apply' | translate}}"
+    class="cm-submit-button cm-btn-point"
+    style="margin-right: 5px;">
+    {{'lang_apply' | translate}}
+  </button>
+  <button 
+    ng-click="timelineControl.cancel()"
+    title="{{'lang_cancel' | translate}}"
+    class="cm-btn-dark cm-cancel-button">
+    {{'lang_cancel' | translate}}
+  </button>
+</div>

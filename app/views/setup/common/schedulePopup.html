@@ -1,0 +1,22 @@
+<form name="confirmForm" method="get" class="form-horizontal" novalidate>
+    <div class="modal-header modal-setup">
+        <h3>{{ SelectedDay | translate}}</h3>
+    </div>
+
+    <div class="modal-body modal-setup" style="text-align:center">
+        <div class="form-group">
+            <label ng-class="ModalLabelClass">{{ 'lang_from' | translate }}</label>
+            <div ng-class="ModalDropDown"><select class="form-control" ng-model="SelectedHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-disabled="true"></select></div>
+            <div ng-class="ModalDropDown"><select class="form-control" id="SelectedFromMinuteId" ng-model="SelectedFromMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" ng-change="OnFromMinuteChange()"></select></div>                                
+            <label ng-class="ModalLabelClass">{{ 'lang_to' | translate }}</label>
+            <div ng-class="ModalDropDown"><select class="form-control" ng-model="SelectedHour" ng-options="Hour for Hour in HourOptions track by Hour" ng-disabled="true" ></select></div>
+            <div ng-class="ModalDropDown"><select class="form-control" id="SelectedToMinuteId" ng-model="SelectedToMinute" ng-options="Minute for Minute in MinuteOptions track by Minute" ng-change="OnToMinuteChange()"></select></div>                                    
+        </div>
+    </div>
+
+    <div class="modal-footer modal-setup" style="text-align:center">
+        <button type="button" class="btn cm-btn-point" type="button" ng-click="ok()">{{ 'lang_ok' | translate }}</button>
+        <button type="button" class="btn cm-btn-dark" type="button" ng-click="cancel()">{{ 'lang_cancel' | translate }}</button>
+        <button type="button" class="btn btn-warning" type="button" ng-click="delete()">{{ 'lang_delete' | translate }}</button>
+    </div>
+</form>

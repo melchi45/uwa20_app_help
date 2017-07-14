@@ -1,0 +1,83 @@
+<div class="wrapper wrapper-content" ng-if="pageLoaded">
+    <form class="form-horizontal" method="get" name="alarmInputForm" novalidate="">
+        <wn5-setup-main-title
+            data-title="lang_menu_alarminput">
+        </wn5-setup-main-title>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>
+                    {{ 'lang_menu_alarminput' | translate }}{{' '}}{{'lang_num'| translate}}
+                </h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <select 
+                        class="form-control header-summary wn5-setup-section-article-content-unit-small" 
+                        id="SelectedAlarmIndex" 
+                        ng-disabled="AlarmInputOptions < 2" 
+                        ng-model="AlarmData.SelectedAlarm" 
+                        ng-options="AlarmInputOptions.indexOf(selectAlarm) as selectAlarm for selectAlarm in AlarmInputOptions"
+                        style="width: 70px;">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>
+                    {{ 'lang_inputDeviceSetup' | translate }}
+                </h3>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">
+                        {{ 'lang_inputDeviceSetup' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <input name="Enable" ng-model="$parent.AlarmInputs[AlarmData.SelectedAlarm].Enable" type="checkbox"/>
+                        <label>{{ 'lang_enable' | translate }}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="wn5-setup-section-article-heading">
+                        {{ 'lang_alarm_input_type' | translate }}
+                    </div>
+                    <div class="wn5-setup-section-article-content">
+                        <div ng-repeat="State in AlarmInputStateOptions" class="col-sm-5 col-xs-12 field-radio-wrapper control-label">
+                            <input name="State" ng-model="$parent.AlarmInputs[AlarmData.SelectedAlarm].State" ng-value="State" type="radio"/>
+                            <label>{{getTranslatedOption(State)}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <event-action-setup></event-action-setup>
+
+        <div class="wn5-setup-section">
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section-heading">
+                <h3>
+                    {{ 'lang_activation_time' | translate }}
+                </h3>
+            </div>
+            <div class="wn5-setup-section-article form-group">
+                <div class="wn5-setup-section-article-content">
+                    <div ng-class="RadioClassLg" ng-repeat="Activate in ActivateOptions">
+                        {{getTranslatedOption(Activate)}}
+                        <input class="radio" name="Activate" ng-model="$parent.EventRules[AlarmData.SelectedAlarm].ScheduleType" ng-value="Activate" type="radio"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <scheduler></scheduler>
+        <hr class="wn5-setup-hr">
+        <wn5-setup-common-button
+            data-submit-click="submit()"
+            data-cancel-click="view(0)">
+        </wn5-setup-common-button>
+    </form>
+</div>

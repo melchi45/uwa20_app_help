@@ -1,0 +1,52 @@
+#simplefocuspage {
+	.form-group {
+		.simple-focus-icon {
+			font-size: 20px;
+		}
+
+		&.btn-list{
+			@icon-size: 30px;
+
+			position: relative;
+			padding-left: @icon-size;
+			padding-right: @icon-size;
+
+			.btn {
+				float: left;
+				width: 16.66666667%;
+				padding-left: 0;
+				padding-right: 0;
+
+				+.btn {
+					margin-left: -1px;
+					padding-left: 1px;
+				}
+			}
+
+			.simple-focus-icon {
+				position: absolute;
+				top: 0;
+
+				width: @icon-size;
+				height: @icon-size;
+
+				&:first-child {
+					text-align: left;
+					left: 0;
+				}
+
+				&:last-child {
+					text-align: right;
+					right: 0;
+				}
+			}
+		}
+
+		.btn-simple-focus {
+			font-size: 30px;
+			.tui {
+				cursor: pointer;
+			}
+		}
+	}
+}

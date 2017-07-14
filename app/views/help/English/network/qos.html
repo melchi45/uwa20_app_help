@@ -1,0 +1,82 @@
+﻿<h1 class="wn5-setup-main-title">QoS</h1>
+<div class="wn5-setup-section">
+	<p>QoS (Quality of Service) is the function that sets the priority of data transmission and secures the data transmission quality according to set priorities when overload (simultaneous traffic increase, network failure, etc.) occurs on the network. A QoS IP address can be entered in IPv4 or IPv6. When you finish the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. </p>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv4</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>A QoS IP address can be added or deleted in IPv4. The default values are 32 for Prefix and 63 for DSCP. </p>
+			<ul>
+				<li><strong class="UI">Prefix</strong>: This value can set the IP range, and a value from 1 to 32 can be set in IPv4. </li>
+				<li><strong class="UI">DSCP</strong>: The QoS priority is DSCP (Differentiated Services Code Point). A value of 0 to 63 can be set for the DSCP value; as the value gets closer to 0, the priority becomes lower.</li>
+			</ul>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+			<ul>
+				<li>Addresses from 224.0.0.0 to 239.255.255.254, which are used for multicast, are not available. </li>
+			</ul>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Adding an IPv4 address</h4>
+			<ol>
+			<li>Click the <strong class="UI">[Add]</strong> button. A field where an IPv4 address can be entered will be created.</li>
+			<li>Enter the IP, Prefix and DSCP information.</li>
+			<li>QoS can be applied to the relevant IPv4 address only after the <strong class="UI">[Use]</strong> check box is selected.</li>
+			<li>Clicking the <strong class="UI">[Apply]</strong> button at the bottom of the page will save all information added to the list.</li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Deleting an IPv4 address</h4>
+			<ol>
+			<li>Select an IPv4 address you wish to delete.</li>
+			<li>Click the <strong class="UI">[Delete]</strong> button.</li>
+			<li>Click the <strong class="UI">[OK]</strong> button on the delete confirm window. The IPv4 address will be deleted.</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv6</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>A QoS IP address can be added or deleted in IPv6. The default values are 128 for Prefix and 63 for DSCP.</p>
+			<ul>
+				<li><strong class="UI">Prefix</strong>: This value can set the IP range; a value from 1 to 128 can be set in IPv6.</li>
+				<li><strong class="UI">DSCP</strong>: The priority for QoS is DSCP (Differentiated Services Code Point). A value of 0 to 63 can be set for the DSCP value; as the value gets closer to 0, the priority becomes lower. </li>
+			</ul>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Adding an IPv6 address</h4>
+			<ol>
+				<li>Click the <strong class="UI">[Add]</strong> button. A field where an IPv6 address can be entered will be created.</li>
+				<li>Enter the IP, Prefix and DSCP information. </li>
+				<li>QoS can be applied to the relevant IPv6 address only after the <strong class="UI">[Use]</strong> check box is selected.</li>
+				<li>Clicking the <strong class="UI">[Apply]</strong> button at the bottom of the page will save all information added to the list.</li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>Deleting an IPv6 address</h4>
+			<ol>
+				<li>Select an IPv6 address you wish to delete.</li>
+				<li>Click the <strong class="UI">[Delete]</strong> button.</li>
+				<li>Click the <strong class="UI">[OK]</strong> button on the delete confirm window. The IPv6 address will be deleted.</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
