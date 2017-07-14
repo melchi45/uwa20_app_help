@@ -1,0 +1,101 @@
+﻿<h1 class="wn5-setup-main-title">IP 필터링</h1>
+<div class="wn5-setup-section">
+	<p>특정 IP에 대해서 접속을 허가하거나 거부하도록 IP 주소 목록을 작성할 수 있습니다. IPv4와 IPv6를 구분하여 IP 주소를 관리합니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>필터링 형식</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+	    	<p><strong class="UI">[등록된 IP 접근 제한]</strong>과 <strong class="UI">[등록된 IP 접근 허용]</strong> 필터링 조건은 등록된 모든 IP 주소에 적용됩니다.</p>
+		    <ul>
+		        <li><strong class="UI">등록된 IP 접근 제한</strong>: 등록된 IP의 접근을 제한합니다.  </li>
+		        <li><strong class="UI">등록된 IP 접근 허용</strong>: 등록된 IP만 접근을 허용합니다.</li>
+		    </ul>
+		</div>
+
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+			<ul>
+				<li>접근 허용 IP를 등록할 때는 현재 카메라에 접속 중인 IP를 반드시 등록해야 합니다. 특히, <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[IP 및 포트]</strong>&gt;<a class="wn5-online-help-link" href="../basic/ipPort.html#IPv6" ng-href="#/help/basic_ipPort?#IPv6"><strong class="UI">[IPv6 설정]</strong></a>을 <strong class="UI">[사용]</strong>으로 선택한 경우에는 현재 카메라에 접속 중인 IP 주소의 IPv4와 IPv6 주소를 모두 추가해야 합니다. </li>
+		        <li>현재 접속 중인 IP 주소는 <strong class="UI">[등록된 IP 접근 제한]</strong>으로 등록할 수 없습니다.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv4</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>IPv4 타입의 주소 목록이며 IP 주소를 추가하거나 삭제할 수 있습니다. IP 주소는 최대 10개까지 저장할 수 있습니다. </p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>IPv4 주소 추가하기</h4>
+			<ol>
+				<li><strong class="UI">[추가]</strong> 버튼을 클릭합니다. IPv4 주소를 입력할 수 있는 필드가 생성됩니다.</li>
+				<li>IP와 Prefix 정보를 입력합니다. 입력한 정보에 대해 필터링 범위가 나타납니다. </li>
+				<li><strong class="UI">[사용]</strong> 체크박스를 체크해야 해당 필터링 범위에 대해 필터링이 가능합니다. </li>
+				<li>정보를 다 입력한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하면 입력한 정보가 목록에 저장됩니다.</li>
+			</ol>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>IPv4 주소 삭제하기</h4>
+			<ol>
+				<li>삭제할 IPv4 주소를 선택합니다.</li>
+				<li><strong class="UI">[삭제]</strong> 버튼을 클릭합니다.</li>
+				<li>삭제 확인 창에서 <strong class="UI">[확인]</strong> 버튼을 클릭합니다. IPv4 주소가 삭제됩니다.</li>
+			</ol>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+			<ul>
+				<li>멀티캐스트로 사용되는 224.0.0.0 ~ 239.255.255.254의 주소는 사용할 수 없습니다.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv6</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>IPv6 타입의 주소 목록이며 IP 주소를 추가하거나 삭제할 수 있습니다. IP 주소는 최대 10개까지 입력할 수 있습니다.</p>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>IPv6 주소 추가하기</h4>
+			<ol>
+			<li><strong class="UI">[추가]</strong> 버튼을 클릭합니다. IPv6 주소를 입력할 수 있는 필드가 생성됩니다.</li>
+			<li>IP와 Prefix 정보를 입력합니다. 입력한 정보에 대해 필터링 범위가 나타납니다. </li>
+			<li><strong class="UI">[사용]</strong> 체크박스를 체크해야 해당 필터링 범위에 대해 필터링이 가능합니다. </li>
+			<li>정보를 다 입력한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하면 입력한 정보가 목록에 저장됩니다.</li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4><span class="tui tui-wn5-help-warning"></span>IPv6 주소 삭제하기</h4>
+			<ol>
+			<li>삭제할 IPv6 주소를 선택합니다.</li>
+			<li><strong class="UI">[삭제]</strong> 버튼을 클릭합니다.</li>
+			<li>삭제 확인 창에서 <strong class="UI">[확인]</strong> 버튼을 클릭합니다. IPv6 주소가 삭제됩니다.</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+
+
+<hr class="wn5-setup-hr">

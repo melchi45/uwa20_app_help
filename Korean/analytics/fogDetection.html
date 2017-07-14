@@ -1,0 +1,129 @@
+﻿
+
+<h1 class="wn5-setup-main-title">안개 감지</h1>
+
+<div class="wn5-setup-section">
+    <p>안개가 껴서 영상 식별이 어려운 날씨에 안개 감지 이벤트를 발생시키고 설정에 따라 안개 제거 기능를 실행하여 영상을 보정할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 안개 감지 이벤트에 대한 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[이벤트 설정]</strong></a> 페이지의 <strong class="UI">[안개 감지]</strong>에 동일하게 적용됩니다.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>안개 감지</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul>
+            <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+            </ul>
+            <h3>안개 감지 사용</h3>
+            <p>안개 감지 이벤트를 사용하려면 <strong class="UI">[안개 감지 사용]</strong>을 선택합니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>감지 레벨  </h3>
+            <p>현재 안개 수준이 레벨 그래프에 나타납니다. 현재 레벨이 설정된 감지 레벨 보다 높을 때 알람이 발생합니다. 감지 레벨 값이 작을수록 영상이 안개에 의해 미세하게 흐려지더라도 감지할 수 있습니다. </p>
+        </div>
+		
+		<div class="wn5-setup-section-article-content">
+            <h3>민감도</h3>
+            <p>민감도를 높게 설정할수록 감지 레벨의 그래프가 민감하게 반응합니다.</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>최소 관찰 시간 (초)   </h3>
+            <p>안개를 감지하고 이를 이벤트로 발생시키기까지 최소한의 시간을 설정합니다. 감지 레벨 이상의 레벨 상태가 설정된 ‘최소 관찰 시간’ 동안 연속으로 지속되면 알람이 발생합니다.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+                <li>안개 감지에 대한 알람 발생 후 다시 안개 감지에 대한 알람을 받기 위해서는 최소 한번 안정 상태로 돌아가야 합니다. 안개 제거 동작으로 인해 영상 개선은 안정 상태로 인식되지 않습니다. 안정 상태로 돌아가는 경우는 다음과 같을 수 있습니다.</li>
+				<ul>
+				<li><strong class="UI">[안개 감지 사용]</strong>을 체크 해제한 경우</li>
+				<li>안개 또는 연기가 사라져 영상 식별이 가능한 수준이 된 경우</li></ul>
+                
+				<li>다음과 같은 경우 안개 감지 성능이 저하되거나 오동작이 발생할 수 있습니다.</li>
+					<ul>
+					<li>배경이 단조로운 감시 환경과 야간, 저조도 환경</li>
+					<li>급격한 조명 변화 (예시: 실내 전등 소등)</li>
+					<li>렌즈 가려짐 또는 화면의 대부분을 차지하는 큰 물체 등장</li>
+					<li>카메라 위치 변경 등으로 인한 포커스 대상 변경</li></ul>
+				
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>이벤트 동작</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            
+            <h3>FTP</h3>
+            <p>안개 감지 이벤트가 발생했을 때 영상 이미지를 FTP 서버에 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. FTP에 대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/이메일]</strong></a>에서 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>이메일</h3>
+            <p>안개 감지 이벤트가 발생했을 때 영상 이미지를 이메일로 전송하려면 <strong class="UI">[사용]</strong>을 선택합니다. 이메일에 대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/이메일]</strong></a>에서 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>저장</h3>
+            <p>안개 감지 이벤트가 발생했을 때 SD 카드 또는 NAS에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>알람 출력</h3>
+            <p>안개 감지 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다.&nbsp;알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다.</p>
+        </div>
+
+         <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+            <h3>프리셋 이동</h3>
+                    <p>안개 감지 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 프리셋 번호로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[디지털 PTZ]</strong></a>나 <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[외부 PTZ]</a></strong>의 <strong class="UI">[프리셋]</strong>에서 설정할 수 있습니다.</p>
+        </div>
+        
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>프리셋 이동</h3>
+                    <p>안개 감지 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 위치로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[프리셋 설정]</strong></a>의 <strong class="UI">[프리셋 설정]</strong> 영역에서 설정할 수 있습니다.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>프리셋 이동</h3>
+                    <p>안개 감지 이벤트가 발생했을 때 카메라 위치를 미리 설정해 둔 위치로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ 설정]</strong></a>의 <strong class="UI">[프리셋] </strong>탭에서 설정할 수 있습니다.</p>
+        </div>
+        
+
+		<div class="wn5-setup-section-article-content">
+            <h3>안개 제거</h3>
+            <p>안개 감지 이벤트가 발생했을 때 안개 제거를 실행하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>이벤트 동작 스케줄</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>안개 감지 이벤트가 발생했을 때 <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_fogDetection?#action">이벤트 동작</a>]</strong>에서 설정한 이벤트 동작이&nbsp;항상 동작하도록 하거나 설정한 시간에만 동작하도록 설정합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>항상 동작</h3>
+            <p>안개 감지 이벤트가 발생했을 때 설정한 이벤트 동작을 항상 실행합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>설정한 시간에만 동작</h3>
+            <p>설정한 시간에 안개 감지 이벤트가 발생했을 때 설정한 이벤트 동작을 실행합니다. <strong class="UI">[설정한 시간에만 동작]</strong>을 선택하여 나타나는 시간표에는 현재 카메라 시간을 기준으로 한 일요일부터 토요일까지의 날짜가 표시됩니다. 시간표에서 마우스를 클릭하거나 드래그하여 이벤트 동작 시간을 설정할 수 있습니다. 설정된 이벤트 동작 스케줄은 해당 요일과 시간에 반복적으로 실행됩니다.</p>
+			<p><strong class="UI">[1분]</strong>, <strong class="UI">[30분]</strong>, <strong class="UI">[1시]</strong> 버튼을 클릭하여 시간 보기 단위를 변경할 수 있습니다. <strong class="UI">[초기화]</strong> 버튼을 클릭하면 설정된 이벤트 동작 스케줄이 모두 삭제됩니다. 카메라 시간을 확인하거나 변경하려면 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[날짜 및 시간]</strong>을 참고하십시오.</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr">
