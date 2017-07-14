@@ -186,9 +186,10 @@ kindFramework.controller(
             //Check Browser
             if (BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.FIREFOX ||
               BrowserService.BrowserDetect === BrowserService.BROWSER_TYPES.EDGE) {
+              var optimizedMsg = $translate.instant('lang_msg_nonplugin_optimized_chrome');
               ModalManagerService.open(
                 'message', {
-                  'message': "Optimized for Chrome Browser",
+                  'message': optimizedMsg,
                   'buttonCount': 0,
                 }
               );
