@@ -26,10 +26,6 @@ kindFramework.controller('PCSetupCtrl',
 
     var mAttr = Attributes.get();
 
-    $scope.support = {
-      isFisheyeLens: mAttr.FisheyeLens
-    };
-
     var pcSetupModel = new PcSetupModel();
     $scope.lang = pcSetupModel.getStLang();
 
@@ -786,6 +782,10 @@ kindFramework.controller('PCSetupCtrl',
     function view() {
       var failCallback = function() {
         $scope.pageLoaded = true;
+      };
+      
+      $scope.support = {
+        isFisheyeLens: mAttr.FisheyeLens
       };
 
       showVideo().then(function() {
