@@ -1,10 +1,10 @@
 <div class="cm-row cm-live-icon-list" id="live-icon-list">
   <live-playback-channel-selector class="live-channel-selector" ng-if="isMultiChannel === true" use-quad-view="true"></live-playback-channel-selector>
   
-  <div id="live-select-box" ng-if="LensModelOptions !== undefined">
+  <div id="live-select-box" ng-show="LensModelOptions !== undefined">
     <select 
       class="cm-selectbox"
-      ng-model="$parent.CameraLensModel" 
+      ng-model="CameraLensModel" 
       ng-change="changeCameraLensModel()" 
       ng-options="lensModel as lensModel for lensModel in LensModelOptions">
     </select>

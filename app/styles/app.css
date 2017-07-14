@@ -565,6 +565,9 @@ kind_stream {
   position: relative;
   overflow: hidden;
 }
+#cm-video.cm-visibility-hidden {
+  visibility: hidden;
+}
 #cm-video.smaller {
   height: calc(100% - 100px);
 }
@@ -4754,7 +4757,6 @@ fieldset .ui-slider .ui-state-default {
   width: 12px !important;
   height: 12px !important;
   background: #797979;
-  left: -4px;
 }
 .wn5-setup-wrapper .ui-slider .ui-state-default.ui-state-hover,
 fieldset .ui-slider .ui-state-default.ui-state-hover {
@@ -8377,7 +8379,7 @@ i.tui-ch-playback-stop {
   width: 60%;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status {
-  max-width: 1200px;
+  max-width: 1400px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col {
   width: calc(50% - 10px);
@@ -8395,23 +8397,23 @@ i.tui-ch-playback-stop {
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-first th:nth-child(1),
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-first td:nth-child(1) {
-  width: 120px;
+  width: 110px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-first th:nth-child(2),
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-first td:nth-child(2) {
-  width: 160px;
+  width: 120px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-first th:nth-child(3),
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-first td:nth-child(3) {
-  width: 150px;
+  width: 160px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-first th:nth-child(4),
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-first td:nth-child(4) {
-  width: 70px;
+  width: 65px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-first th:nth-child(5),
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-first td:nth-child(5) {
-  width: 100px;
+  width: 225px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-second th,
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-second td {
@@ -8426,11 +8428,11 @@ i.tui-ch-playback-stop {
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-second th:nth-child(3),
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-second td:nth-child(3) {
-  width: 135px;
+  width: 215px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-second th:nth-child(4),
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table#cm-status-second td:nth-child(4) {
-  width: 130px;
+  width: 150px;
 }
 .kind-responsive-live #cm-bottom-menu #cm-menu-content #live-status .live-status-col .live-status-table tbody {
   width: 100%;

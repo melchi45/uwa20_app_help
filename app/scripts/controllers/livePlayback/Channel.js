@@ -333,22 +333,42 @@ kindFramework.
         setData.LensModel = $scope.CameraLensModel;
         return SunapiClient.get('/stw-cgi/image.cgi?msubmenu=camera&action=set', setData,
           function(response) {
+            showVideo(true);
             restart();
           },
           function(errorData) {
             console.log(errorData);
+            showVideo(true);
             restart();
           }, '', true);
       }
 
+      function showVideo(show) {
+        if(UniversialManagerService.getStreamingMode() !== CAMERA_STATUS.STREAMING_MODE.PLUGIN_MODE) {
+          return;
+        }
+
+        if (show) {
+          $("#cm-video").removeClass('cm-visibility-hidden');
+        } else {
+          $("#cm-video").addClass('cm-visibility-hidden');
+        }
+      }
+
       function reboot(msg) {
+        showVideo(false);
         COMMONUtils.ShowConfirmation(
           setCameraLensModel, 
           msg,
           'md',
-        function() {
-        });
-      };
+          function() {
+            showVideo(true);
+            $timeout(function() {
+              $scope.CameraLensModel = pageData.CameraLensModel;
+            });
+          }
+        );
+      }
 
       function restart() {
         var getData = {};
