@@ -35,13 +35,35 @@
         <div class="wn5-setup-section-article-content">
             <h3>Enfoque simple</h3>
             <p>El enfoque se ajusta autom&aacute;ticamente, basado en la ubicaci&oacute;n designada por el usuario. Cuando se establece la posici&oacute;n del enfoque haciendo clic y arrastra en la pantalla con el rat&oacute;n y luego hace clic en el bot&oacute;n de <strong class="UI">[Enfoque simple]</strong>, N (Cerca) y<->F (Lejos) se muestran en la pantalla y el enfoque se controla autom&aacute;ticamente, basado en la ubicaci&oacute;n designada por el usuario.</p>
-            <p>&nbsp;</p>
         </div>
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>La funci&oacute;n de enfoque simple no puede funcionar correctamente si hay un cambio repentino (movimiento repentino, desaparici&oacute;n) en el tema, si hay un cambio repentino de brillo, si la imagen es de bajo contraste o si hay una fuente de luz potente en la proximidad.</li>
+            </ul>
+        </div>
+                 <div class="wn5-setup-section-article-content" ng-if="ICS">
+            <h3>Corrección de IR</h3>
+            <p>Corrige automáticamente los errores de enfoque de la luz visible y la luz IR cuando se utiliza la fuente de luz IR en modo nocturno. </p>
+        </div>
+                <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+                <li>La función de corrección de IR sólo se puede ajustar cuando se selecciona el objetivo "ICS" en <strong class="UI">[Vídeo y Audio]</strong>> <strong class="UI">[Configuración de cámara]</strong>> <strong class="UI">[Exposición]</strong>> <strong class="UI">[Lente]</strong>.
+</li>
 
+            </ul>
+        </div>
+ <div class="wn5-setup-section-article-content" ng-if="ICS">
+            <h3>Compensación de temperatura</h3>
+            <p>Esta función es útil en áreas donde hay una amplia diferencia de temperatura entre el día y la noche, como un desierto. Compensa los errores de enfoque automáticamente detectando la contracción y la expansión de la lente debido a la diferencia de temperatura.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+                              <li>La función de compensación de temperatura sólo se puede ajustar cuando se selecciona el objetivo "ICS" en <strong class="UI">[Vídeo y Audio]</strong>> <strong class="UI">[Configuración de cámara]</strong>> <strong class="UI">[Exposición]</strong>> <strong class="UI">[Lente]</strong>.</li>
 
             </ul>
         </div>

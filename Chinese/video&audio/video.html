@@ -57,13 +57,25 @@
 		<div class="wn5-setup-section-article-content">
 			<p>安装完摄像机后，如果屏幕显示为上下颠倒，可通过翻转模式和镜像模式功能进行修正。过道视图功能可显示屏幕的长立面视图，让用户有效地掌控检视区域。</p>
 		</div>
-		<div class="wn5-setup-section-article-content"><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><h3>翻转模式</h3>
+		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel"><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><h3>翻转模式</h3>
 			<p>可将摄像机图像上下翻转。 <span class="tui tui-wn5-mirror-top"></span> 如需翻转摄像机图像，请选择<strong class="UI">[启用]</strong>。</p>
 		</div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
 			<h3>镜像模式</h3>
             <p>可对摄像机的图像进行镜像显示。如需对摄像机图像进行镜像处理，请选择<strong class="UI">[启用]</strong>。<span class="tui tui-wn5-flip-left"></span> </p>
         </div>
+
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
+			<h3>翻转/镜像</h3>
+			<p>对摄像机的视频进行上下左右翻转时，选择 [使用]。</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
+			<h3>数字翻转</h3>
+            <p>用PTZ功能更改摄像机位置时，摄像机视频画面可能会上下或左右翻转。 此时，要将视频画面自动翻转变正常，选择 [使用]。</p>
+		</div>
+
+        
 		<div class="wn5-setup-section-article-content" ng-if="HallwayView">
 			<h3>过道视图</h3>
 			<p>在普通摄像机难以监控到的环境中，例如狭窄的过道或小巷中，可旋转摄像机图像，并放大监控区域的顶部和底部。可将图像顺时针旋转 90 度或 270 度；设置为 0 度时，图像恢复原始状态。</p>

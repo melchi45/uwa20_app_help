@@ -56,12 +56,22 @@
 		<div class="wn5-setup-section-article-content">
 			<p>Si la pantalla se muestra al rev&eacute;s despu&eacute;s de instalar la c&aacute;mara, puede corregir esto a trav&eacute;s de las funciones del modo de volteo y el modo de espejo. La funci&oacute;n de vista de pasillo proporciona un larga vista vertical de la pantalla que permite al usuario controlar el &aacute;rea de vigilancia eficientemente.</p>
 		</div>
-		<div class="wn5-setup-section-article-content"><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><h3>Modo de volteo</h3>
+		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel"><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><h3>Modo de volteo</h3>
 			<p>Para dar la vuelta a la imagen de la c&aacute;mara, seleccione <strong class="UI">[Act]</strong>.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
 			<h3>Modo de espejo</h3>
 			<p>Para reflejar la imagen de la c&aacute;mara, seleccione <strong class="UI">[Act]</strong>.</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
+			<h3>Volteo/Espejo</h3>
+			<p>Seleccione <strong class="UI">[Uso]</strong> para invertir la salida de la cámara horizontal o verticalmente.</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
+			<h3>Volteo digital</h3>
+            <p>Al cambiar la posición de la cámara usando la función PTZ, la salida de la cámara puede ser volteada boca abajo o de un lado a otro. En este momento, haga clic en <strong class="UI">[Uso]</strong> si desea que la pantalla de vídeo se invierta automáticamente y se muestre normalmente.</p>
 		</div>
 
 		<div class="wn5-setup-section-article-content" ng-if="HallwayView">
