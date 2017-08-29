@@ -23,7 +23,8 @@
     <div class="wn5-setup-section-article">
     <div class="wn5-setup-section-article-content">
         <p>프로파일 속성이 변경됐을 때 기존 프로파일로 계속 영상을 출력할지 혹은 변경된 프로파일로 영상을 출력할지를 설정할 수 있습니다. </p>
-        <p><strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하면, 프로파일 속성을 변경하더라도 기존 프로파일 속성대로 영상을 출력하고, 다시 웹뷰어에 접속했을 때 변경된 프로파일로 영상을 출력합니다. 프로파일의 속성을 변경하고 다시 웹뷰어에 접속하기 전까지는 <strong class="UI">[라이브]</strong> 화면에 주황색 테두리가 나타납니다. <strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하지 않으면, 프로파일 속성을 변경했을 때 바로 변경된 프로파일로 영상이 출력됩니다. </p>
+        <p><strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하면, 프로파일 속성을 변경하더라도 기존 프로파일 속성대로 영상을 출력하고, 다시 웹뷰어에 접속했을 때 변경된 프로파일로 영상을 출력합니다. 프로파일의 속성을 변경하고 다시 웹뷰어에 접속하기 전까지는 <strong class="UI">[라이브]</strong> 화면에 주황색 테두리가 나타납니다. <strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하지 않으면, 프로파일 속성을 변경했을 때 바로 변경된 프로파일로 영상이
+출력됩니다. </p>
     </div>
     </div>
 </div>
@@ -266,13 +267,15 @@
         <div class="wn5-setup-section-article-content">
             <h3>인코딩 우선순위</h3>
             <p>영상 데이터 양이 목표 비트 레이트의 값을 넘을 때, 프레임 레이트와 화질 중 어느 것을 우선순위로 두고 인코딩할 지 설정합니다. </p>
-			<p>프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[프레임 레이트]</strong>와 <strong class="UI">[압축]</strong> 중 선택할 수 있습니다. <strong class="UI">[프레임 레이트]</strong>를 우선순위로 설정하면 프레임 레이트를 최대한 보장하지만 화질은 떨어질 수 있습니다. 반면 <strong class="UI">[압축]</strong>을 우선순위로 설정하면 화질은 보장하지만 누락되는 프레임이 발생해 영상이 끊기거나 부자연스러울 수 있습니다. 프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[인코딩 우선순위]</strong>는 <strong class="UI">[비트 레이트 제어 방식]</strong>을 <strong class="UI">[CBR]</strong>로 설정한 경우에만 활성화됩니다.</p>
+			<p>프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[프레임 레이트]</strong>와 <strong class="UI">[압축]</strong> 중 선택할 수 있습니다. <strong class="UI">[프레임 레이트]</strong>를 우선순위로 설정하면 프레임 레이트를 최대한 보장하지만 화질은 떨어질 수 있습니다. 반면 <strong class="UI">[압축]</strong>을 우선순위로 설정하면 화질은 보장하지만 누락되는 프레임이 발생해 영상이 끊기거나 부자연스러울
+수 있습니다. 프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[인코딩 우선순위]</strong>는 <strong class="UI">[비트 레이트 제어 방식]</strong>을 <strong class="UI">[CBR]</strong>로 설정한 경우에만 활성화됩니다.</p>
 			
 			<p>프로파일의 <strong class="UI">[코덱]</strong>이 <strong class="UI">[MJPEG]</strong>인 경우 <strong class="UI">[프레임 레이트]</strong>와 <strong class="UI">[비트 레이트]</strong> 중에 선택할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">    
             <h3><a class="wn5-online-help-link" name="GOV"></a>GOV 길이  </h3>
-            <p>GOV(Group of Video)는 <strong class="UI">[H.264]</strong>/<strong class="UI">[H.265]</strong> 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임까지의 프레임 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있습니다. P-프레임은 I-프레임을 기준으로 변경된 부분의 정보만 가지고 있습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상의 크기가 작고, GOV 길이가 짧을수록 I-프레임이 많아지므로 영상의 크기는 큽니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다. </p>
+            <p>GOV(Group of Video)는 <strong class="UI">[H.264]</strong>/<strong class="UI">[H.265]</strong> 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임까지의 프레임 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있습니다. P-프레임은 I-프레임을 기준으로 변경된 부분의 정보만 가지고 있습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상의 크기가 작고, GOV 길이가 짧을수록
+I-프레임이 많아지므로 영상의 크기는 큽니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다. </p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -296,7 +299,8 @@
             
         <div class="wn5-setup-section-article-content">
             <h3>다이나믹 GOV</h3>
-                <p>다이나믹 GOV 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. 다이나믹 GOV는 영상 상황에 따라 GOV 길이가 자동으로 변경되는 기능입니다. 즉 움직임이 거의 없는 영상에서는 <strong class="UI">[다이나믹 GOV]</strong>에서 사용자가 설정한 GOV 길이가 최대로 늘어 나고, 움직임을 감지하면 <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[GOV 길이]</strong></a>에서 설정한 GOV 길이로 줄여 영상을 출력합니다. 다이나믹 GOV는 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다.</p>
+                <p>다이나믹 GOV 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. 다이나믹 GOV는 영상 상황에 따라 GOV 길이가 자동으로 변경되는 기능입니다. 즉 움직임이 거의 없는 영상에서는 <strong class="UI">[다이나믹 GOV]</strong>에서 사용자가 설정한 GOV 길이가 최대로 늘어 나고, 움직임을 감지하면 <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[GOV 길이]</strong></a>에서 설정한 GOV 길이로 줄여 영상을 출력합니다.
+다이나믹 GOV는 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다.</p>
           
             <ul>
                 <li>영상에 움직임이 없을 때 적용할 최대 GOV 길이값을 입력합니다. 입력값의 범위는 <strong class="UI">[GOV 길이]</strong> 옆에 표시됩니다. <strong class="UI">[GOV 길이]</strong>에 입력한 값이 최솟값이 되고, 최댓값은 480으로 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다.</li>
@@ -305,9 +309,13 @@
 		    
 			<div class="wn5-setup-section-article-content">
             <h3>다이나믹 FPS</h3>
-            <p>H.264/H.265 코덱 중 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때 FPS 값이 최대 다이나믹 FPS의 설정값까지 자동으로 변하도록 설정합니다.</p>
-          
-          
+            <p>H.264/H.265 코덱 중 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때 FPS 값이 최대 다이나믹 FPS의 설정값까지 자동으로 변하도록 설정합니다.</p>         
+        </div>	
+		
+		<div class="wn5-setup-section-article-content">
+            <h3><font color="blue">최소 FPS</font></h3>
+            <p><font color="blue">최소 초당 프레임 수(frames per second)를 설정합니다. 설정한 값에 따라 원하는 최소 fps를 확보할 수 있습니다. </font></p>
+            <p><font color="blue">최소 FPS는 <strong class="ui">[다이내믹 FPS]</strong>를&nbsp;<strong class="ui">[사용]</strong>으로&nbsp;선택할 때만 활성화됩니다.</font></p>
         </div>	
 	</div>
 </div>
