@@ -30,14 +30,14 @@
             <h3>Sensitivity  </h3>
             <p>This sets the sound sensitivity. A higher sensitivity enables the detection of a quieter sound.</p>
         </div> -->
-		
+
 		<div class="wn5-setup-section-article-content">
             <h3>Level of classification</h3>
             <p>Sets the level of audio energy to classify the sound. The level value of input audio energy is drawn on the area while being renewed periodically from right to left. The sound classification applies only to audio over the set level. In other words, it is classified as the sound source only when the energy of the audio input is higher than the reference line. If the reference line is lowered, there is more target data for the sound classification, and a higher possibility of false detections. If the reference line rises, there are less target data for the sound classification and a higher probability of missing detections. Set it properly according to the surrounding noise level.</p>
-            
+
         </div>
-		
-		
+
+
         <div class="wn5-setup-section-article-content">
             <h3>Categories  </h3>
             <p>This detects the type of sound and creates an event. The type of sound to detect can be selected and can be selected repeatedly.</p>
@@ -48,23 +48,23 @@
                 <li><strong class="UI">Crashing glass</strong>: Detects the sound of breaking glass and creates an event.</li>
             </ul>
         </div>
-		
+
 		<div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
-               
+
 				<li>If <strong class="UI">[Line]</strong> is set for <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[Source]</a></strong> in <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[Audio setup]</strong>&gt;<strong class="UI">[Audio in]</strong>, the sound classification function does not operate.</li>
-				
+
 				<li>It is recommended to set a number between 4 and 6 for <strong class="UI">[Gain]</strong> in <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[Audio setup]</strong>&gt;<strong class="UI">[Audio in]</strong>.</li>
-				
+
 				<li>If <strong class="UI">[External microphone]</strong> is set for <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[Source]</a></strong> in <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[Audio setup]</strong>&gt;<strong class="UI">[Audio in]</strong>, the recommended specifications of the microphone are as follows. </li>
 				<ul>
 					<li>Frequency range: 40 ~ 16,000Hz</li>
 					<li>Impedance: 1,500 Ω</li>
 					<li>Sensitivity:  -40±3 dB (7.1~14.1 mV) </li>
 				</ul>
-                
+
 				<li>In any of the following cases, the sound classification performance may deteriorate or a malfunction may occur. </li>
 				<ul>
 					<li>When repeated gunshots occur, such as the sound of machine gun, only one time gunshot is included in the category for the gunshot </li>
@@ -73,9 +73,9 @@
 					<li>When the object of focus has changed due to camera position change</li>
 					</ul>
             </ul>
-        </div>	
+        </div>
 
-		
+
     </div>
 </div>
 
@@ -102,7 +102,7 @@
             <h3>Alarm output</h3>
             <p>It is possible to set the alarm output number for a specific alarm when a sound classification event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
-		
+
       <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>Goto preset</h3>
                     <p>You can set the position of camera view to move to a preset number when a sound classification event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
@@ -118,9 +118,20 @@
                 <p>You can set the position of camera to move to a preset position when a sound classification event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
         </div>
 
-		
+
     </div>
 </div>
+<hr class="wn5-setup-hr">
+            <div class="wn5-setup-section">
+                <div class="wn5-setup-section-heading">
+                    <h2>Handover</font></h2>
+                </div>
+                <div class="wn5-setup-section-article">
+                    <div class="wn5-setup-section-article-content">
+                        <h3>Handover</font></h3>
+                        <p>Select a handover receiver camera number. Select <strong class="UI">[Disable]</strong> if you don't want to use the handover function.</font></p>
+                        <p>Handover is a function that the receiver camera moves to the PTZ preset position when an audio source classification event occurs. The handover receiving camera can be set in the <strong class="UI">[Event]</strong> &gt; <strong class="UI">[Handover]</strong> menu. </font></p>
+                    </div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">

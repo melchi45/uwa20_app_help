@@ -24,7 +24,7 @@
         <h2>Area</h2>
     </div>
 
-    <div class="wn5-setup-section-article">   
+    <div class="wn5-setup-section-article">
             <div class="wn5-online-help-action">
 			<h4>Setting an area</h4>
             <p>Of the whole screen, a area selected by the user can be set as the area. The minimum face detection size is displayed as a circle in the detection area. Any face which is larger than the circle is detected in the detection area.</p>
@@ -33,13 +33,26 @@
             <h4>Changing an area</h4>
             <p>You can change the size of the detection area by clicking the bottom right corner of the set area and dragging the relevant area with the mouse. </p>
             </div>
-        <div class="wn5-setup-section-article-content"> 
+        <div class="wn5-setup-section-article-content">
             <h3>Sensitivity</h3>
-            <p>This sets the sensitivity of the face detection event. The higher the sensitivity, the more detailed the face detection that is possible.</p>            
+            <p>This sets the sensitivity of the face detection event. The higher the sensitivity, the more detailed the face detection that is possible.</p>
         </div>
     </div>
 </div>
-
+<div class="wn5-setup-section-article-content">
+            <h3>Motion-based ROI area movement</h3>
+            <p>Select </font><strong class="UI">[Enable]</font></strong> if you want the face detection area to be automatically changed according to the motion analysis.If </font><strong class="UI">[Enable]</font></strong> is not selected, faces will be detected only in the set ROI area. </font></p>
+            <p>If the ROI area is set, the face will be detected only within the set area, and the detection efficiency of the small face at a long distance may be deteriorated. If 'Motion-based ROI area movement' function is used, when motion is detected on the whole screen, area for face detection is automatically changed, &nbsp;and thus the face detection efficiency is improved.</font></p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</font></h4>
+            <ul>
+                <li>When the motion-based ROI movement function is used, only the area where motion occurs is designated as the face detection area. </font></li>
+                <li>Continuous face detection is impossible because the detection area is actively changed to detect faces in various areas. </font></li>
+              </ul>
+          </div>
+      </div>
+  </div>
 <div class="wn5-setup-section">
 
     <div class="wn5-setup-section-heading">
@@ -48,7 +61,7 @@
 
     <div class="wn5-setup-section-article">
 
-        <div class="wn5-online-help-action">   
+        <div class="wn5-online-help-action">
 			<h4>Setting an exclude area</h4>
             <p>Of the whole screen, a area selected by the user can be set as the exclude area. When you select 4 corners of the image with the mouse, the area is set as the exclude area and the color of the number buttons on <strong class="UI">[Area]</strong> changes. Up to 8 exclude areas can be set.</p>
         </div>
@@ -104,7 +117,7 @@
             <h3>Alarm output</h3>
             <p>It is possible to set an alarm output number for a specific alarm when a face detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
-		
+
       <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>Goto preset</h3>
                     <p>You can set the position of camera view to move to a preset number when a face detection event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
@@ -119,7 +132,7 @@
             <h3>Goto preset</h3>
                 <p>You can set the position of camera to move to a preset position when a face detection event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
         </div>
-		
+
     </div>
 </div>
 

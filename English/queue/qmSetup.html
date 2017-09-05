@@ -37,7 +37,7 @@ ng-href="#/help/queue_search">[Search]</a></strong>.</p>
             </div>
            </div>
 		 </div>
-		 
+
 		 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Queue&nbsp;events</h2>
@@ -66,8 +66,8 @@ ng-href="#/help/queue_search">[Search]</a></strong>.</p>
         <h2>Calibration</h2>
     </div>
         <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">	
-            <p>Set the camera height or the human size to count in order to improve the accuracy of analyzing the number of queuing people in the queue management function. You can only select and apply either the camera height or human size.</div>			
+        <div class="wn5-setup-section-article-content">
+            <p>Set the camera height or the human size to count in order to improve the accuracy of analyzing the number of queuing people in the queue management function. You can only select and apply either the camera height or human size.</div>
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>Camera height</h3>
             <p>Specify the actual height where the camera is installed. You can change the value by clicking + or -, or enter a numeric value for the camera height. A value can be entered between a minimum of 2.5m and a maximum of 4.5m. When the camera installation height is set, the body size of the people to be analyzed as the number of queuing people for each location will be automatically assumed based on the camera installation height. </p>
@@ -129,7 +129,7 @@ ng-href="#/help/queue_search">[Search]</a></strong>.</p>
             <p>It is possible to set the alarm output number for a specific alarm when a queue management event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you do not wish to use the alarm. If you wish to use the alarm, select the output time. You can set the alarm to sound continuously until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
- 
+
 
 
          <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
@@ -155,7 +155,7 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a
 
 <hr class="wn5-setup-hr">
 
-<div class="wn5-setup-section">        
+<div class="wn5-setup-section">
 		<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>Delete all data</h3>
@@ -163,12 +163,15 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a
                 <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
 
-                    <ul>
-                        <li>If you change the setup of <strong class="UI">[Flip]</strong> or <strong class="UI">[Mirror]</strong> in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong>, all rules set in Queue management will be initialized automatically. To recollect data according to the new rule, delete the existing data by clicking <strong class="UI">[Delete all data]</strong>.  </li>
-                    </ul>
-		</div>
-        </div>
-		</div>
+      <ul>
+            <li>In the following cases, you should reset the rules to match the changed video screen and click <strong class="UI">[Delete All Data] </strong>to delete the old data used for the Queue Management search.  </font></li>
+            <ul>
+                <li>If you have changed the settings in <strong class="UI">[Video & Audio]</font></strong> &gt; <strong class="UI">[Video Setup]</strong> &gt; <strong class="UI">[Video Rotation]</strong></font></li>
+                <li>If you change the settings in <strong class="UI">[Video & Audio]</font></strong> &gt; <strong class="UI">[Camera Setup]</strong> &gt; <strong class="UI">[Special] </strong>&gt; <strong class="UI">[DIS]</strong></font></li>
+            </ul>
+        </ul>
+    </div>
+</div>
 </div>
 
 <hr class="wn5-setup-hr">

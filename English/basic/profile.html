@@ -10,7 +10,7 @@
             </div>
             <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-content">
-                    
+
 					<p>When <strong class="UI">[External PTZ]</strong> is selected, the user can control the camera PTZ through the receiver connected to the RS-485 or RS-422 terminal. The <strong class="UI">[PTZ]</strong>><strong class="UI">[External PTZ]</strong> menu is created on the left menu tree of the web viewer.</p>
 					<p>When <strong class="UI">[Digital PTZ]</strong> is selected, the camera PTZ will be controlled digitally. The <strong class="UI">[PTZ]</strong>><strong class="UI">[Digital PTZ]</strong> menu is created on the left menu tree of the web viewer.</p>
                 </div>
@@ -26,7 +26,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>After profile properties have been changed, you can set whether to output an image with the previous profile or with the changed profile. </p>
-            <p>When <strong class="UI">[Keep connection 
+            <p>When <strong class="UI">[Keep connection
 			when Profile properties are changed]</strong> is selected, the image is outputted according to the previous profile properties even if the profile properties have been changed; when the web viewer is reconnected, the image is outputted with the changed profile. <strong class="UI">[Keep connection when Profile properties are changed]</strong> is not selected, the image is outputted with the changed profile immediately when the profile properties are changed. Orange boarders will appear on the edge of the live view of the monitoring screen until you connect to the web viewer again after changing the profile properties.</p>
         </div>
     </div>
@@ -134,7 +134,7 @@
                 <li><strong class="UI">E-mail/FTP profile</strong>: This video profile is used for sending the captured screen of an image when an event is created. &lsquo;Event&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The E-mail/FTP profile option will appear only when MJPEG is set for the codec.</li>
                 <li><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card or NAS. &lsquo;Record&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li ng-if="!PTZModel"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
-                
+
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -153,7 +153,7 @@
                 <li><strong class="UI">Enable &ndash; Event (MD)</strong>: This mode can be used when <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2">Motion detection event</a> is set. When a motion detection event is created and the network bandwidth changes, you can adjust the amount of data by changing the frame rate. When no motion is detected, reduce bandwidth use by outputting the minimum frames.</li>
             </ul>
         </div>
-            
+
         <div class="wn5-setup-section-article-content">
             <h3>Sensitivity</h3>
             <p>Adjust the reflection speed of network bandwidth changes. The reflection speed is fastest when the ATC sensitivity is very high, while the reflection speed is the slowest when it is very low. </p>
@@ -166,9 +166,9 @@
             <p>ATC limit is activated only when <strong class="UI">[Enable - Control frame rate]</strong> or <strong class="UI">[Enable - Control compression]</strong> is selected for <strong class="UI">[ATC mode]</strong>.</p>
         </div>
     </div>
-</div>  
+</div>
 
-            
+
 <hr class="wn5-setup-hr" ng-if="Crop">
 
 <div class="wn5-setup-section" ng-if="Crop">
@@ -207,7 +207,7 @@
             <h3>Resolution</h3>
             <p>Set the resolution of the camera image.</p>
         </div>
-		
+
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
 
@@ -216,13 +216,13 @@
 				<li>High resolution is not supported by Chrome, Edge or Firefox web browsers. High resolution images can be streamed in Internet Explorer and Safari after installation of a plugin. To install the plugin, click the <span class="tui tui-wn5-download"></span> button on the top right of the <strong class="UI">[Monitoring]</strong> screen or the <strong class="UI">[Playback]</strong> screen. </li>
 			</ul>
 		</div>
-		
-            
+
+
         <div class="wn5-setup-section-article-content">
             <h3>Frame rate </h3>
             <p>Set the number of frames per second. The range of frame rates available varies according to the frame rate value selected from <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Camera setup]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
         </div>
-        
+
 		<div class="wn5-setup-section-article-content">
             <h3>Maximum bitrate </h3>
             <p>Set the maximum bitrate of the image when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[VBR]</strong>. If the amount of image data to be sent does not exceed the set maximum bitrate, the original image will be sent.</p>
@@ -232,7 +232,7 @@
             <h3>Target bitrate </h3>
             <p>Fix the amount of image data to be sent if <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[CBR]</strong>.</p>
         </div>
-    </div>  
+    </div>
 </div>
 
 <hr class="wn5-setup-hr">
@@ -257,10 +257,10 @@
             <h3>Encoding priority</h3>
             <p>Set the priority between frame rate and image quality if the amount of image data exceeds the target bitrate. </p>
 			<p>If either <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> is selected for <strong class="UI">[Codec]</strong> of the profile, the user can select between <strong class="UI">[Frame rate]</strong> and <strong class="UI">[Compress]</strong>. If <strong class="UI">[Frame rate]</strong> is set as the high priority, the maximum frame rate is secured, but the image quality may be lowered. On the other hand, when <strong class="UI">[Compression]</strong> is set as the high priority, the image quality is secured, but some frames my be omitted, so that the image may be disconnected or seem unnatural. If either <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> is selected for <strong class="UI">[Codec]</strong> of the profile, <strong class="UI">[Encoding priority]</strong> is activated only when <strong class="UI">[CBR]</strong> is set for <strong class="UI">[Bitrate control]</strong>.</p>
-			
+
 			<p>If <strong class="UI">[Codec]</strong> of the profile is <strong class="UI">[MJPEG]</strong>, you can select between <strong class="UI">[Frame rate]</strong> and <strong class="UI">[Bitrate]</strong>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">    
+        <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="GOV"></a>GOV length  </h3>
             <p>GOV (Group of Video) is a group of image frames for H.264/H.265 video compression; it means the group of frames from one I-frame to the next I-frame. GOV contains both I-frame and P-frame. I-frame is the frame which becomes the basis of compression (also called the key frame); it has data for one complete image. P-frame has information of the changed area only, based on the front frame. For this reason, the number of I-frames is fewer as the GOV length is longer, making the image size small, while the number of I-frames is more as the GOV length becomes shorter, making for a larger image size. The maximum value of the GOV length varies according to the <strong class="UI">[Frame rate]</strong> in <strong class="UI">[Profile properties]</strong>. </p>
         </div>
@@ -280,26 +280,46 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="smartcodec"></a>Smart codec </h3>
             <p>Set whether or not to use smart codec. Smart codec is a unique technology of Hanwha Techwin that reduces the compression rate for an area of interest to the user (to output in high quality), while it increases the compression rate for other areas, (to output in normal quality), thereby reducing the data size of the image as a whole. Smart codec is activated only when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[CBR]</strong>.</p>
-          
+
             <p>The area for smart codec can be set from <strong class="UI">[Video &amp; Audio]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[Smart codec]</strong></a>. </p>
         </div>
-            
+
         <div class="wn5-setup-section-article-content">
             <h3>Dynamic GOV</h3>
                 <p>To apply the Dynamic GOV function to the current profile, select <strong class="UI">[Enable]</strong>. Dynamic GOV is the function whereby the GOV length is changed automatically according to the image situation. In other words, in an image with almost no motion, the GOV length set by the user in <strong class="UI">[Dynamic GOV]</strong> increases to the maximum, and when motion is detected, it is reduced to the length set in <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[GOV length]</strong></a> to output the image. Dynamic GOV is activated only when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[VBR]</strong>.</p>
-          
+
             <ul>
                 <li>Enter the maximum GOV length to apply when there is no motion in the image. The range of input value is displayed next to <strong class="UI">[GOV length]</strong>. The input value in <strong class="UI">[GOV length]</strong> becomes the minimum value, while the maximum value is 480; it varies according to the <strong class="UI">[Frame rate]</strong> in <strong class="UI">[Profile properties]</strong>.</li>
             </ul>
+          </div>
+
+          <div class="wn5-online-help-info">
+          			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+
+                      <ul>
+                          <li>When the WiseStream function is used, if the dynamic GOV and dynamic FPS functions are used, the WiseStream performance is optimized. The WiseStream can be set in the <strong class="UI">[Video & Audio]</strong> > <strong class="UI">[WiseStream]</strong> menu.</li>
+                      </font></ul>
+          		</div>
+
         </div>
 		<div class="wn5-setup-section-article-content">
             <h3>Dynamic FPS</h3>
-            <p>Sets the FPS value to change automatically to the set value of maximum dynamic FPS when <strong class="UI">[Bitrate control]</strong> among dynamic FPS H.264/H.265 codec is <strong class="UI">[VBR]</strong>.</p>
-            
+            <p>Select <strong class="UI">[Enable]</strong> to apply the Dynamic FPS function to the profile currently being set. Dynamic FPS is a function that automatically changes the frames per second according to the video situation. Dynamic FPS is enabled only when <strong class="UI">[Codec]</strong> is set to <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> and <strong class="UI">[Bitrate Control Method]</strong> is set to <strong class="UI">[VBR]</strong>.</p>
+            <ul>
+                <li>Enter the minimum FPS value to be applied when Dynamic FPS is enabled.  </li>
+            </ul></font>
+
         </div>
+<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+
+            <ul>
+                <li>When the WiseStream function is used, if the dynamic GOV and dynamic FPS functions are used, the WiseStream performance is optimized. The WiseStream can be set in the <strong class="UI">[Video & Audio]</strong> > <strong class="UI">[WiseStream]</strong> menu.</li>
+            </font></ul>
+		        </div>
     </div>
 </div>
-            
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">

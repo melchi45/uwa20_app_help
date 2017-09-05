@@ -19,8 +19,8 @@
             <h3>&Aacute;rea</h3>
 			<h5>Configuraci&oacute;n de un &aacute;rea</h5>
             <p>De toda la pantalla, un &aacute;rea seleccionada por el usuario puede ser definida como el &aacute;rea. El tama&ntilde;o m&iacute;nimo de detecci&oacute;n facial se muestra como un c&iacute;rculo en el &aacute;rea de detecci&oacute;n. Cualquier cara que sea mayor que el c&iacute;rculo que se detecta en el &aacute;rea de detecci&oacute;n.</p>
-			
-			
+
+
 			<h5>Cambio de un &aacute;rea</h5>
             <p>Se puede cambiar el tama&ntilde;o del &aacute;rea de detecci&oacute;n haciendo clic en la esquina inferior derecha del &aacute;rea de juego y arrastrando el &aacute;rea relevante con el rat&oacute;n. </p>
 
@@ -28,19 +28,36 @@
         <div class="wn5-setup-section-article-content">
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
             <h5>Sensibilidad</h5>
-            <p>Esto ajusta la sensibilidad del evento de detecci&oacute;n facial. Cuanto mayor sea la sensibilidad, m&aacute;s detallada ser&aacute; la detecci&oacute;n facial posible.</p>            
+            <p>Esto ajusta la sensibilidad del evento de detecci&oacute;n facial. Cuanto mayor sea la sensibilidad, m&aacute;s detallada ser&aacute; la detecci&oacute;n facial posible.</p>
+          </div>
+      </div>
+  </div>
+  <div class="wn5-setup-section-article-content">
+              <h3>Movimiento del área de ROI basado en movimiento</h3>
+              <p>Seleccione </font><strong class="UI">[Activar]</font></strong> si desea que el área de detección de rostros cambie automáticamente, de acuerdo con el análisis de movimiento.Si no se selecciona activar </font><strong class="UI">[Activar]</font></strong>, las caras solo se detectarán en el área ROI establecida. </font></p>
+              <p>Si se establece el área de ROI, la cara se detectará solo dentro del área establecida, y la eficiencia de detección de la cara pequeña a una larga distancia puede deteriorarse. Si se utiliza la función "Movimiento de área ROI basada en movimiento ", cuando se detecta movimiento en toda la pantalla, el área para la detección de rostros cambia automáticamente &nbsp;y, por lo tanto, se mejora la eficacia de detección de rostros.</font></p>
+          </div>
+          <div class="wn5-online-help-info">
+              <h4><span class="tui tui-wn5-help-warning"></span>Nota</font></h4>
+              <ul>
+                  <li>Cuando se utiliza la función de movimiento ROI basada en movimiento, solo el área donde ocurre el movimiento se designa como el área de detección de rostros. </font></li>
+                  <li>La detección continua de rostros es imposible porque el área de detección se cambia activamente para detectar caras en diversas áreas. </font></li>
+                </ul>
+            </div>
         </div>
+    </div>
+  <div class="wn5-setup-section">
 
-        <div class="wn5-online-help-action">
+      <div class="wn5-setup-section-heading">
             <h3>&Aacute;rea excluida</h3>
-			
+
 			<h5>Configuraci&oacute;n de un &aacute;rea excluida</h5>
             <p>De toda la pantalla, un &aacute;rea seleccionada por el usuario puede ser definida como el &aacute;rea excluida. Cuando selecciona 4 esquinas de la imagen con el rat&oacute;n, el &aacute;rea se establece como el &aacute;rea excluida y el color de los botones num&eacute;ricos <strong class="UI">[&Aacute;rea]</strong> cambia. Se pueden configurar hasta 8 &aacute;reas excluidas.</p>
-			
-			
+
+
 			<h5>Cambio de un &aacute;rea excluida</h5>
             <p>Se puede cambiar el tama&ntilde;o del &aacute;rea excluida haciendo clic en la esquina del &aacute;rea excluida y arrastrando el &aacute;rea relevante con el rat&oacute;n. </p>
-			
+
 			<h5>Eliminaci&oacute;n de un &aacute;rea excluida</h5>
 			<p>Para borrar un &aacute;rea excluida, haga clic en el bot&oacute;n derecho del rat&oacute;n en el &aacute;rea correspondiente de la pantalla y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong> de la ventana de confirmaci&oacute;n de eliminaci&oacute;n.</p>
         </div>
@@ -85,7 +102,7 @@
             <h3>Salida de alarma</h3>
             <p>Es posible establecer una direcci&oacute;n de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de detecci&oacute;n facial.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
         </div>
-		
+
       <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>Ir a predefinido.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n facial. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
@@ -100,7 +117,7 @@
             <h3>Ir a predefinido.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n facial. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
         </div>
-		
+
     </div>
 </div>
 

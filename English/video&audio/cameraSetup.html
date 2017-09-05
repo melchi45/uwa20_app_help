@@ -10,7 +10,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>Type</h2>
-	</div>	
+	</div>
 	    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>To set the same motion detection for all presets, select <strong class="UI">[Global]</strong>. To set a different motion detection for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Preset setup</a> page.</p>
@@ -77,7 +77,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
                         <td>12</td>
                         <td>50</td>
                     </tr>
-                    
+
                             <tr>
                         <td>Bright video</td>
                         <td>1/5</td>
@@ -87,7 +87,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
                         <td>12</td>
                         <td>50</td>
                     </tr>
-                    
+
                             <tr>
                         <td>Motion &amp; Noise reduction</td>
                         <td>1/30</td>
@@ -278,9 +278,9 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
                 <li><strong class="UI">Bottom</strong>: Set how far the bottom surface is away from the bottom of the screen. </li>
                 <li><strong class="UI">Left</strong>: Set how far the left surface is away from the left side of the screen. </li>
                 <li><strong class="UI">Right</strong>: Set how far the right surface is away from the right side of the screen. </li>
-            </ul>   
+            </ul>
         </div>
-        <div class="wn5-setup-section-article-content"> 
+        <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="WDR"></a>WDR</h3>
             <p>The WDR (Wide Dynamic Range) mode shows both a dark area and a bright area clearly in a backlight environment. This method captures once with a fast shutter to show a bright area clearly and again with a slow shutter to show a dark area clearly, using the dual shutters of the camera, and then combines only the parts shown clearly from the two images into one image. If the WDR mode is used, noise may occur between the bright area and the dark area. </p>
         </div>
@@ -322,7 +322,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Change the exposure according to the environment of the camera. If the background is darker than the subject, the subject will be shown normally only when the exposure is decreased. Conversely, if the background is brighter than the subject, the subject will be shown normally only when the exposure is increased. There is a default value set separately for each image preset; it cannot be changed. However, the brightness can be changed for any image preset.  </p> 
+            <p>Change the exposure according to the environment of the camera. If the background is darker than the subject, the subject will be shown normally only when the exposure is decreased. Conversely, if the background is brighter than the subject, the subject will be shown normally only when the exposure is increased. There is a default value set separately for each image preset; it cannot be changed. However, the brightness can be changed for any image preset.  </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
@@ -370,12 +370,12 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
                 <li ng-if="!PTZModel"><strong class="UI">P-Iris</strong>: Adjusts the iris through the step motor. A large depth of field can be secured so that a number of objects at various distances can be brought into focus at the same time.</li>
             </ul>
         </div>
-		
+
 		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions">
             <h3>Iris F-No </h3>
             <p>Activated when <strong class="UI">[Iris]</strong> mode is <strong class="UI">[Manual]</strong> and sets the iris f-number.</p>
         </div>
-		
+
         <div class="wn5-setup-section-article-content" ng-if="Lens">
             <h3>Lens</h3>
             <p>Select from DC (Auto), manual, and available P-Iris.</p>
@@ -408,7 +408,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Change the image to color or b/w according to the camera’s environment. When the dwell time is set, the image can be changed to color or b/w according to preference. When switching to Day/Night, a motion detection event or image analysis event cannot be detected. </p> 
+            <p>Change the image to color or b/w according to the camera’s environment. When the dwell time is set, the image can be changed to color or b/w according to preference. When switching to Day/Night, a motion detection event or image analysis event cannot be detected. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
@@ -452,12 +452,26 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>You can adjust an image for sharpness, contrast, color level and defog.</p> 
+            <p>You can adjust an image for sharpness, contrast, color level and defog.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DIS">
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
             <h3>DIS </h3>
             <p>When image shaking is detected, DIS (Digital Image Stabilization) corrects it automatically and stabilizes the screen. </p>
+        </div>
+        <div class="wn5-online-help-info" ng-if="Statistics">
+        			<h4><span class="tui tui-wn5-help-warning"></span>Note</font></h4>
+                            <ul>
+                                <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics and statistics settings so that you can analyze the video or accumulate the statistical data according to the changed video. These settings can be changed in the  <strong class="UI">[Analytics]</strong> menu and <strong class="UI">[Statistics]</strong> menu. </font> </li>
+                            </ul>
+                </div>
+        						<div class="wn5-online-help-info">
+        			<h4><span class="tui tui-wn5-help-warning"></span>Note</font></h4>
+                    <ul>
+                        <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics setting in the <strong class="UI">[Analytics]</strong> menu so that the video can be analyzed according to the changed video.  </font>  </li>
+                    </ul>
+                </div>
+
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Sharpness</h3>
@@ -510,7 +524,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Display the camera title or the date and time, and set the location, size, color and transparency of the characters.</p> 
+            <p>Display the camera title or the date and time, and set the location, size, color and transparency of the characters.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -560,7 +574,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>You can set the camera focus operation method, whether or not to use digital zoom, and reset the camera.</p>
-        </div>    
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>Mode</h3>
             <p>Set the camera focus operation method.</p>
@@ -641,7 +655,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         </div>
 
     </div>
-</div> 
+</div>
 
 <hr class="wn5-setup-hr" ng-if="IR">
 <div class="wn5-setup-section" ng-if="IR">
@@ -651,11 +665,13 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>Mode</h3>
-            <p>Select <strong class="UI">[Off]</strong> if you wish to not use the IR function; select either <strong class="UI">[Auto 1]</strong> or <strong class="UI">[Auto 2]</strong> if you wish to operate it automatically. Select <strong class="UI">[Manual]</strong> if you wish to operate IR manually. </p>
+            <p>Select <strong class="UI">[Off]</strong> if you wish to not use the IR function. Select </font><strong class="UI">[Auto 1]</font></strong>  to compensate for auto exposure by saturation of the center area due to IR LED, or  </font><strong class="UI">[Auto 2]</font></strong> to suppress saturation for the entire screen and compensate for auto exposure. Select <strong class="UI">[Manual]</strong> if you wish to operate IR manually. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Level</h3>
             <p>Set the IR level.</p>
+   <p>The IR level is enabled when <strong class="UI">[Manual]</strong> is selected in <strong class="UI">[Mode]</strong>.</font></p>
+
         </div>
     </div>
 </div>
@@ -669,7 +685,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>The camera always operates at a specific preset time. Set and use a desired image preset at the desired time. If a specific image preset is not selected, the image preset selected at the top is activated by default. The color of the activation time changes along with the image preset selected. </p> 
+            <p>The camera always operates at a specific preset time. Set and use a desired image preset at the desired time. If a specific image preset is not selected, the image preset selected at the top is activated by default. The color of the activation time changes along with the image preset selected. </p>
         </div>
 
         <div class="wn5-setup-section-article-content">

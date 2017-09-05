@@ -36,17 +36,17 @@
             <p>You can set the alarm output at a specific alarm number when a network disconnection event is created. After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output the alarm. You can set a continuous alarm output, until the user stops the alarm, by selecting <strong class="UI">[Always]</strong> or set the alarm output for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html"  ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
             <h3>Goto preset</h3>
                     <p>You can set the position of camera view to move to a preset number when a network disconnection event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+        <div class="wn5-setup-section-article-content" ng-if="(PresetSetupPage) && PresetSupport">
             <h3>Goto preset</h3>
                 <p>You can set the position of camera view to move to a preset position when a network disconnection event is created. The camera preset can be set in <strong class="UI">[Preset setup]</strong> section of &nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Preset setup]</strong></a>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+        <div class="wn5-setup-section-article-content" ng-if="(PTZSetupPage) && PresetSupport">
             <h3>Goto preset</h3>
                 <p>You can set the position of camera to move to a preset position when a network disconnection event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
         </div>

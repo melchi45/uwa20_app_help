@@ -21,12 +21,12 @@
             <p>Esto establece el nivel est&aacute;ndar de detecci&oacute;n de manipulaci&oacute;n. Un evento de detecci&oacute;n de manipulaci&oacute;n se crea cuando se detecta un sabotaje del nivel establecido. </p>
             <p>Adem&aacute;s, cuando se detecta un sabotaje, un gr&aacute;fico que muestra el nivel de sabotaje aparecer&aacute;, y cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n, el color del gr&aacute;fico cambiar&aacute;. </p>
         </div>
-		
+
 		<div class="wn5-setup-section-article-content">
             <h3>Sensibilidad</h3>
             <p>Una mayor sensibilidad da como resultado una respuesta m&aacute;s sensible del gr&aacute;fico de nivel de detecci&oacute;n.</p>
         </div>
-		
+
         <div class="wn5-setup-section-article-content">
             <h3>Duraci&oacute;n m&iacute;nima (s)    </h3>
             <p>Esto establece el tiempo m&iacute;nimo para detectar un sabotaje y crear un evento. Un evento de detecci&oacute;n de manipulaci&oacute;n se crea s&oacute;lo un sabotaje persiste durante la duraci&oacute;n m&iacute;nima.</p>
@@ -42,16 +42,28 @@
                 <li>Puede llevar hasta 5 segundos para un evento de detecci&oacute;n de manipulaci&oacute;n para que se cree despu&eacute;s de que ocurra un sabotaje indebido.</li>
                 <li>Cuando se detecta un sabotaje de la c&aacute;mara, la funci&oacute;n se reiniciar&aacute; despu&eacute;s de la estabilizaci&oacute;n durante aproximadamente 5 segundos, y no se detectar&aacute; ning&uacute;n sabotaje durante el proceso de estabilizaci&oacute;n.</li>
                 <li>Cuando se est&eacute; creando repetidamente un evento incorrecto, los errores se pueden minimizar mediante la reducci&oacute;n gradual del nivel. </li>
-            </ul>
-        </div>
-    </div>
-</div>
+              </ul>
+          </div>
+      </div>
+  </div>
+  </div>
+  <hr class="wn5-setup-hr">
+              <div class="wn5-setup-section">
+                  <div class="wn5-setup-section-heading">
+                      <h2>Traspaso</font></h2>
+                  </div>
+                  <div class="wn5-setup-section-article">
+                      <div class="wn5-setup-section-article-content">
+                          <h3>Traspaso</font></h3>
+                          <p>Seleccione un número de cámara del receptor de traspaso. Seleccione <strong class="UI">[Desactivar]</strong> si no desea utilizar la función de traspaso.</font></p>
+                          <p>Traspaso es una función en que la cámara del receptor se mueve a la posición preajustada PTZ cuando se produce un evento de templado. La cámara receptora de traspaso se puede configurar en el menú <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong>. </font></p>
+                      </div>
 
 
-<hr class="wn5-setup-hr">
+  <hr class="wn5-setup-hr">
 
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
+  <div class="wn5-setup-section">
+      <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="action"></a>Conf. de acciones de evento</h2>
     </div>
     <div class="wn5-setup-section-article">
@@ -74,7 +86,7 @@
             <h3>Salida de alarma</h3>
             <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
         </div>
-		
+
         <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>Ir a predefinido.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de manipulaci&oacute;n. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>

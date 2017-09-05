@@ -25,9 +25,24 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>灵敏度</h5>
-            <p>设置面部探测事件的灵敏度。灵敏度较高，则可探测到更清楚的面部。</p>            
+            <p>设置面部探测事件的灵敏度。灵敏度较高，则可探测到更清楚的面部。</p>
         </div>
-
+      </div>
+    </div>
+    <div class="wn5-setup-section-article-content">
+              <h3>基于动作的关注区域移动</h3>
+              <p>基于动作分析，如要自动修改面部探测区域，则选择</font><strong class="UI">[使用]</font></strong>。 如果不选择</font><strong class="UI">[使用]</font></strong>，则仅在所设置的关注区域中探测面部。 </font></p>
+              <p>如果设置关注区域，则仅在所设置的区域中探测面部，所以有时对远程小脸的探测效率较低。 使用“基于动作的关注区域移动”功能时，在整个画面中自动修改移动探测时的面部探测区域， &nbsp;提升面部探测效率。  </font></p>
+          </div>
+          <div class="wn5-online-help-info">
+              <h4><span class="tui tui-wn5-help-warning"></span>须知</font></h4>
+              <ul>
+                  <li>使用基于动作的关注区域移动功能时，只能将出现动作的区域指定为面部探测区域。 </font></li>
+                  <li>为了在多个区域探测面部，要主动修改探测区域，所以不能持续探测面部。 </font></li>
+                </ul>
+            </div>
+        </div>
+    </div>
         <div class="wn5-online-help-action">
             <h3>除外区域</h3>
 			<h5>设置除外区域</h5>
@@ -77,7 +92,7 @@
             <h3>警报输出</h3>
             <p>创建面部探测事件时，可为某个特定的警报设置警报输出数。选择警报输出编号后，如果不希望输出任何警报，请选择<strong class="UI">[关]</strong>，如果希望输出警报，则选择输出时间。用户关闭警报之前，可以选择<strong class="UI">[始终]</strong>设置连续警报，或将警报时间设置为 5、10 或 15 秒。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a>完成具体的警报输出设置。</p>
         </div>
-            
+
         <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>转至预设位</h3>
                     <p>创建面部探测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a>或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部 PTZ]</a></strong>。</p>

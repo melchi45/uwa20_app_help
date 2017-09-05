@@ -37,7 +37,7 @@ ng-href="#/help/queue_search">[搜索]</a></strong>中。</p>
             </div>
            </div>
 		 </div>
-		 
+
 		 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>队列事件</h2>
@@ -66,8 +66,8 @@ ng-href="#/help/queue_search">[搜索]</a></strong>中。</p>
         <h2>校准</h2>
     </div>
         <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">	
-            <p>设置摄像机的高度或统计人员的体型，以提高队列管理功能中排队人数的分析准确性。您只能选择并应用摄像机高度或人员体型。</div>			
+        <div class="wn5-setup-section-article-content">
+            <p>设置摄像机的高度或统计人员的体型，以提高队列管理功能中排队人数的分析准确性。您只能选择并应用摄像机高度或人员体型。</div>
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>摄像机高度</h3>
             <p>指定安装摄像机的实际高度。您可以通过单击 + 或 - 更改值，或输入摄像机高度的数值。可以在最小 2.5m 和最大 4.5m 之间输入一个值。设置好摄像机安装高度后，每个位置分析为排队人数的体型将根据摄像机的安装高度自动进行设定。 </p>
@@ -151,7 +151,7 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a
 
 <hr class="wn5-setup-hr">
 
-<div class="wn5-setup-section">        
+<div class="wn5-setup-section">
 		<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>删除数据</h3>
@@ -160,11 +160,14 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a
 			<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
 
                     <ul>
-                        <li>如果您在<strong class="UI">[视频及音频]</strong> &gt; <strong class="UI">[视频设置]</strong> &gt; <strong class="UI">[视频旋转]</strong>中更改<strong class="UI">[翻转模式]</strong>或<strong class="UI">[镜像模式]</strong>，则在&ldquo;队列管理&rdquo;中设置的全部规则都将自动初始化。要根据新规则再次收集数据，请通过单击<strong class="UI">[删除数据]</strong>删除现有数据。  </li>
-                    </ul>
-		</div>
-        </div>
-		</div>
-</div>
+                      <li>如果出现以下情况，应根据所修改的视频画面重新设置规则后，点击<strong class="UI">[删除所有数据] </strong>，删除用于搜索队列管理的之前数据。</font></li>
+                      <ul>
+                          <li>在<strong class="UI">[视频及音频]</font></strong> &gt; <strong class="UI">[视频设置]</strong> &gt; <strong class="UI">[视频旋转]</strong></font>中更改设置值时 </li>
+                          <li>在<strong class="UI">[视频及音频]</font></strong> &gt; <strong class="UI">[摄像机设置]</strong> &gt; <strong class="UI">[附加菜单] </strong>&gt; <strong class="UI">[DIS]</strong></font>中更改设置值时 </li>
+                      </ul>
+                  </ul>
+              </div>
+          </div>
+          </div>
 
 <hr class="wn5-setup-hr">

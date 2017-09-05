@@ -483,7 +483,7 @@
         <div class="wn5-setup-section-article-content">
             <p>영상의 윤곽을 조절하거나 대비, 색조절, 안개 제거 등을 할 수 있습니다.</p> 
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DIS">
             <ul>
             <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
             </ul>
@@ -491,15 +491,15 @@
             <p>DIS (Digital Image Stabilization)는 영상의 흔들림을 감지했을 때 이를 자동으로 보정하여 안정적으로 화면을 출력합니다. </p>
         </div>
 		<div class="wn5-online-help-info" ng-if="Statistics">
-			<h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                     <ul>
-                        <li><font color="blue">DIS 설정을 변경하면 영상 화면이 축소되거나 확대될 수 있습니다. 변경된 영상에 맞춰 영상을 분석하거나 통계 데이터를 축척할 수 있도록 분석과 통계 설정을 변경해 주십시오. 해당 설정은 <strong class="UI">[분석]</strong> 메뉴와 <strong class="UI">[통계]</strong> 메뉴에서 변경할 수 있습니다. </font> </li>
+                        <li>DIS 설정을 변경하면 영상 화면이 축소되거나 확대될 수 있습니다. 변경된 영상에 맞춰 영상을 분석하거나 통계 데이터를 축척할 수 있도록 분석과 통계 설정을 변경해 주십시오. 해당 설정은 <strong class="UI">[분석]</strong> 메뉴와 <strong class="UI">[통계]</strong> 메뉴에서 변경할 수 있습니다.  </li>
                     </ul>
         </div>
 						<div class="wn5-online-help-info">
-			<h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
-                <li><font color="blue">DIS 설정을 변경하면 영상 화면이 축소되거나 확대될 수 있습니다. 변경된 영상에 맞춰 영상을 분석할 수 있도록 <strong class="UI">[분석]</strong> 메뉴에서 분석 설정을 변경해 주십시오. </font>  </li>
+                <li>DIS 설정을 변경하면 영상 화면이 축소되거나 확대될 수 있습니다. 변경된 영상에 맞춰 영상을 분석할 수 있도록 <strong class="UI">[분석]</strong> 메뉴에서 분석 설정을 변경해 주십시오.   </li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -695,12 +695,12 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>모드</h3>
-            <p>IR 기능을 사용하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택합니다. <font color="blue">IR LED의 영향으로 중심 영역이 포화되는 것을 자동 노출로 보정하려면 </font><strong class="UI"><font color="blue">[자동 1]</font></strong><font color="blue">을 선택하고, 화면 전 영역에 대해 포화를 억제하고&nbsp;자동 노출로 보정하려면 </font><strong class="UI"><font color="blue">[자동 2]</font></strong><font color="blue">를 선택합니다. </font>수동으로 IR 레벨을 설정하려면 <strong class="UI">[수동]</strong>을 선택합니다. </p>
+            <p>IR 기능을 사용하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택합니다. IR LED의 영향으로 중심 영역이 포화되는 것을 자동 노출로 보정하려면 <strong class="UI">[자동 1]</strong>을 선택하고, 화면 전 영역에 대해 포화를 억제하고&nbsp;자동 노출로 보정하려면 <strong class="UI">[자동 2]</strong>를 선택합니다. 수동으로 IR 레벨을 설정하려면 <strong class="UI">[수동]</strong>을 선택합니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>레벨</h3>
             <p>IR 레벨을 설정합니다.</p>
-            <p><font color="blue">IR 레벨은 <strong class="UI">[모드]</strong>에서 <strong class="UI">[수동]</strong>을 선택하면 활성화됩니다.</font></p>
+            <p>IR 레벨은 <strong class="UI">[모드]</strong>에서 <strong class="UI">[수동]</strong>을 선택하면 활성화됩니다.</p>
         </div>
     </div>
 </div>
