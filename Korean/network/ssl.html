@@ -24,6 +24,12 @@
 		    <h3>HTTPS (공인 인증서 사용)</h3>
 		    <p>공인 인증서를 사용하여 보안 접속을 합니다. 공인 인증서를 먼저 설치한 후 선택할 수 있습니다. <strong class="UI">[HTTPS(공인 인증서 사용)]</strong>을 선택한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하면 HTTPS 모드로 보안 접속됩니다.</p>
 		</div>
+			<div class="wn5-online-help-info">
+		<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+                <ul>
+                    <li>HTTPS 모드를 사용해 카메라에 접속하려면 카메라의 IP 주소를 https://&lt;카메라 IP 주소&gt;로 입력해야 합니다.</li>
+                </ul>
+	</div>
 	</div>
 </div>
 
@@ -34,37 +40,38 @@
 	<h2>공인 인증서 설치</h2>
 </div>
 <div class="wn5-setup-section-article">
-	<div class="wn5-setup-section-article-content">
-		<p><strong class="UI">[HTTP(보안 접속 사용 안 함)]</strong>이나 <strong class="UI">[HTTPS(자체 인증서 사용)]</strong>을 선택한 경우 활성화되며 인증서를 등록하거나 삭제할 수 있습니다.</p>
-		<ul>
-			<li><strong class="UI">인증서 이름</strong>: 설치할 인증서의 이름을 입력합니다.</li>
-			<li><strong class="UI">인증서 파일</strong>: 설치할 인증서의 경로를 선택합니다. </li>
-			<li><strong class="UI">키 파일</strong>: 설치할 키 파일의 경로를 선택합니다. </li>
-			</ul>
-
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[보안 접속 방식]</strong>에서 <strong class="UI">[HTTPS(공인 인증서 사용)]</strong>을 선택하려면, 공인 인증서를 먼저 설치해야 합니다.</p>
+            <ul>
+                <li><strong class="UI">인증서 이름</strong>: 설치할 인증서의 이름을 입력합니다.</li>
+                <li><strong class="UI">인증서 파일</strong>: 설치할 인증서의 경로를 선택합니다.    </li>
+                <li><strong class="UI">키 파일</strong>: 설치할 키 파일의 경로를 선택합니다.    </li>
+            </ul>
+			
+				<div class="wn5-online-help-info">
+		<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+                <ul>
+                    <li><strong class="UI">[HTTPS(공인 인증서 사용)]</strong> 모드가 적용된 상태에서는 공인 인증서를 설치하거나 삭제할 수 없습니다. 반드시 <strong class="UI">[HTTP(보안 접속 사용 안 함)]</strong>이나 <strong class="UI">[HTTPS(자체 인증서 사용)]</strong> 모드로 변경한 후 인증서를 설치하거나 삭제하십시오.</li>
+                </ul>
+	</div>
+			
 	<div class="wn5-online-help-action">
 		<h4><span class="tui tui-wn5-help-warning"></span>공인 인증서 설치하기</h4>
-		<ol>
-			<li><strong class="UI">[HTTP(보안 접속 사용 안 함)]</strong>이나 <strong class="UI">[HTTPS(자체 인증서 사용)]</strong>을 선택합니다.</li>
-			<li><strong class="UI">[인증서 이름]</strong>에 설치할 인증서의 이름을 입력합니다. </li>
-			<li><strong class="UI">[인증서 파일]</strong>에서 <strong class="UI">[...]</strong> 버튼을 클릭한 후 열기 창에서 인증서 파일을 선택한 뒤 <strong class="UI">[열기]</strong> 버튼을 클릭합니다.</li>
-			<li>키 파일에서 <strong class="UI">[...]</strong> 버튼을 클릭한 후 열기 창에서 키 파일을 선택한 뒤 <strong class="UI">[열기]</strong> 버튼을 클릭합니다.</li>
-			<li><strong class="UI">[설치]</strong> 버튼을 클릭합니다. 인증서의 설치가 완료됩니다.</li>
-		</ol>
+                <ol>
+                    <li><strong class="UI">[인증서 이름]</strong>에 설치할 인증서의 이름을 입력합니다.  </li>
+                    <li><strong class="UI">[인증서 파일]</strong>에서 <strong class="UI">[...]</strong> 버튼을 클릭한 후 열기 창에서 인증서 파일을 선택한 뒤 <strong class="UI">[열기]</strong> 버튼을 클릭합니다.</li>
+                    <li>키 파일에서 <strong class="UI">[...]</strong> 버튼을 클릭한 후 열기 창에서 키 파일을 선택한 뒤 <strong class="UI">[열기]</strong> 버튼을 클릭합니다.</li>
+                    <li><strong class="UI">[설치]</strong> 버튼을 클릭합니다. 인증서의 설치가 완료됩니다.</li>
+                </ol>
 	</div>
 
 	<div class="wn5-online-help-action">
 		<h4><span class="tui tui-wn5-help-warning"></span>공인 인증서 삭제하기</h4>
-		<p>http://&lt;카메라 IP 주소&gt;로 카메라에 접속한 후 <strong class="UI">[삭제]</strong> 버튼을 클릭합니다. </p>
+                <p><strong class="UI">[공인 인증서 설치] </strong>하단에 <strong class="UI">[삭제]</strong> 버튼을 클릭합니다.</p>
+                <!-- <p>'HTTPS (공인 인증서 사용)' 모드가 적용된 상태라면 <strong class="UI">[삭제]</strong> 버튼이 비활성화되어 나타납니다.&nbsp;<strong class="UI">[보안 접속 방식]</strong>에서 <strong class="UI">[HTTP(보안 접속 사용 안 함)]</strong>이나 <strong class="UI">[HTTPS(자체 인증서 사용)]</strong>을&nbsp;선택하여 보안 접속
+방식 옵션을 변경하면, <strong class="UI">[공인 인증서 설치] </strong>하단에 <strong class="UI">[삭제]</strong> 버튼이 활성화됩니다. </p> -->
 	</div>
 
-	<div class="wn5-online-help-info">
-		<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
-		<ul>
-			<li>HTTPS 모드를 사용해 카메라에 접속하려면 카메라의 IP 주소를 https://&lt;카메라 IP 주소&gt;로 입력해야 합니다.</li>
-			<li>HTTPS 모드에서는 공인 인증서를 삭제할 수 없습니다.</li>
-		</ul>
-	</div>
-</div>
 
+        </div>
 <hr class="wn5-setup-hr">
