@@ -47,7 +47,7 @@
             <p>默认提供配置文件列表，所有用户添加的配置文件也将被显示出来。 </p>
 
             <p>安装摄像机时默认提供的配置文件如下（默认配置文件的名称和编解码器不能更改；其它设置可以根据用户需求进行更改）：</p>
-            <table class="table table-bordered wn5-setup-table">
+            <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens" >
                 <thead>
                 <tr>
                     <td>配置文件名称</td>
