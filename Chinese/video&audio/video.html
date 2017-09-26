@@ -41,7 +41,7 @@
 		<div class="wn5-online-help-action">
 			<h4><span class="tui tui-wn5-help-warning"></span>删除隐私区域</h4>
 			<ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>从隐私区域列表中选择一个想要删除的隐私区域。选定区域将出现在摄像机图像屏幕上。 </li>
-				<li>单击<strong class="UI">[移除]</strong>按钮。选定区域将被删除。</li>
+				<li>单击<strong class="UI">[删除]</strong>按钮。选定区域将被删除。</li>
 			</ol>
 		</div>
 	</div>
@@ -57,15 +57,15 @@
 		<div class="wn5-setup-section-article-content">
 			<p>安装完摄像机后，如果屏幕显示为上下颠倒，可通过翻转模式和镜像模式功能进行修正。过道视图功能可显示屏幕的长立面视图，让用户有效地掌控检视区域。</p>
 		</div>
-		<h4><span class="tui tui-wn5-help-warning"></span>须知</font></h4>
+		<h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
 									<ul>
-											<li>如果更改视频旋转设置，视频画面会上下左右翻转或颠倒。请修改分析和统计设置，以根据所修改的视频分析视频或累计统计数据。本设置可在<strong class="UI">[分析]</strong>菜单和<strong class="UI">[统计]</strong>菜单中进行更改。 </font> </li>
+											<li>如果更改视频旋转设置，视频画面会上下左右翻转或颠倒。请修改分析和统计设置，以根据所修改的视频分析视频或累计统计数据。本设置可在<strong class="UI">[分析]</strong>菜单和<strong class="UI">[统计]</strong>菜单中进行更改。  </li>
 									</ul>
 			</div>
 					<div class="wn5-online-help-info">
-		<h4><span class="tui tui-wn5-help-warning"></span>须知</font></h4>
+		<h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
 					<ul>
-							<li>如果更改视频旋转设置， 视频画面会上下左右翻转或颠倒。请在<strong class="UI">[分析]</strong>菜单中更改分析设置，以根据所修改的视频分析视频。</font>  </li>
+							<li>如果更改视频旋转设置， 视频画面会上下左右翻转或颠倒。请在<strong class="UI">[分析]</strong>菜单中更改分析设置，以根据所修改的视频分析视频。  </li>
 					</ul>
 			</div>
 		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel"><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><h3>翻转模式</h3>
@@ -101,8 +101,18 @@
 		</div>
 	</div>
 </div>
-
-
+<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+<h3>摄像机安装模式</h3>
+<p>选择摄像机安装模式。要将摄像机安装在墙上时，选择<strong class="UI">[墙壁]</strong>，要将摄像机安装在天花板上时，选择<strong class="UI">[天花板]</strong>。</p>
+</div>
+<div class="wn5-online-help-info" ng-if="FisheyeLens">
+<h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
+<ul>
+		<li>更改摄像机安装模式时，在<strong class="UI">[视频配置文件]</strong>中设置的所有配置文件设置变成初始化，并重启摄像机。而且，应根据所修改的画面更改视频分析及统计设置。相应设置可在<strong class="UI">[分析]</strong>和<strong class="UI">[统计]</strong>菜单中进行修改。</li>
+</ul>
+</div>
+</div>
+</div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">

@@ -29,7 +29,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>更改配置文件属性后，可以选择使用之前的配置文件或更改后的配置文件进行图像输出。 </p>
-            <p>选中<strong class="UI">[在更改配置文件设置时保持连接]</strong>后，图像按照之前的配置文件属性输出，即使配置文件属性已经做出了更改；当重新连接网络查看器后，图像将按照更改后的配置文件进行输出。未选择<strong class="UI">[在更改配置文件设置时保持连接]</strong>时，配置文件属性更改后，图像将立刻按照更改后的配置文件进行输出。当配置文件已经更改后，在[实时]页面的实时视图边缘将变为橙色。</p>
+            <p>选中<strong class="UI">[在更改配置文件设置时保持连接]</strong>后，图像按照之前的配置文件属性输出，即使配置文件属性已经做出了更改；当重新连接网络查看器后，图像将按照更改后的配置文件进行输出。未选择<strong class="UI">[在更改配置文件设置时保持连接]</strong>时，配置文件属性更改后，图像将立刻按照更改后的配置文件进行输出。当配置文件已经更改后，在[正在监视]页面的实时视图边缘将变为橙色。</p>
 
 <hr class="wn5-setup-hr">
 
@@ -80,6 +80,37 @@
             </table>
         </div>
 
+
+        <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
+      <thead>
+      <tr>
+          <td>配置文件名称</td>
+          <td>编解码器 </td>
+          <td>说明</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+          <td>MJPEG</td>
+          <td>MJPEG</td>
+          <td>
+              <p>用于适合MJPEG编解码器的配置文件、事件配置文件及录制配置文件</p>
+          </td>
+      </tr>
+      <tr>
+          <td>Fisheyeview</td>
+          <td>H.264</td>
+          <td>直接显示不进行去翘曲的鱼眼摄像机视频之配置文件，用于默认配置文件</td>
+      </tr>
+          <td>MOBILE</td>
+          <td>MJPEG</td>
+          <td>适合移动的配置文件</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+
+
         <div class="wn5-online-help-action">
             <h4><span class="tui tui-wn5-help-warning"></span>添加视频配置文件</h4>
             <div>
@@ -107,7 +138,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>删除视频配置文件</h4>
             <div>
                 <ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>从配置文件列表中选择一个想要删除的配置文件。 </li>
-                    <li>单击<strong class="UI">[移除]</strong>按钮。</li>
+                    <li>单击<strong class="UI">[删除]</strong>按钮。</li>
                     <li>弹出确认窗口时，单击<strong class="UI">[确认]</strong>按钮。所选定的配置文件将被删除。</li>
                 </ol>
             </div>
@@ -122,6 +153,34 @@
             <p>选择一个想要应用于配置文件的编解码器。配置文件属性可能会因所选编解码器的类型而异。</p>
         </div>
 
+
+
+                        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                            <h3>鱼眼视图类型</h3>
+                            <p>选择显示在配置文件中的鱼眼摄像机之视频类型。</p>
+                            <ul>
+                                <li>鱼眼视图: 不进行修改，直接显示鱼眼摄像机的视频。 </li>
+                                <li>去翘曲视图: 对用鱼眼摄像机拍摄的360° 视频进行修改后再显示。视频修改类型可在选择'去翘曲视图'时出现的<strong class="UI">[视图]</strong>选项中进行选择。</li>
+                            </ul>
+                        </div>
+                        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                            <h3>视图</h3>
+                            <p>选择去翘曲视频类型。</p>
+                            <p>在<strong class="UI">[鱼眼视图类型]</strong>中选择<strong class="UI">[去翘曲视图]</strong>时才会激活。</p>
+                            <ul>
+                                <li>单全景: 将鱼眼摄像机 360˚视频显示为一个视频。</li>
+                                <li>四元视图: 同时显示4个视频画面。</li>
+                                <li>双全景: 将单全景的视图分成两个区域显示。在<strong class="UI">[视频及音频]</strong><strong class="UI">[视频设置]</strong> > <strong class="UI">[视频旋转]</strong> > <strong class="UI">[摄像机安装模式]</strong> 中选择 <strong class="UI">[天花板]</strong>时，才会出现双全景选项。
+
+                              </li>
+                                <li>Q1: 显示四元视图左上方的视图  </li>
+                                <li>Q2: 显示四元视图右上方的视图</li>
+                                <li>Q3: 显示四元视图左下方的视图</li>
+                                <li>Q4: 显示四元视图右下方的视图</li>
+                            </ul>
+                        </div>
+
+
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>配置文件类型</h3>
             <p>选择一个要应用的配置文件类型。选中的配置文件类型将被显示在配置文件列表的<strong class="UI">[类型]</strong>栏中。设置项目可能会因所选编解码器的类型而异。</p>
@@ -131,6 +190,10 @@
                 <li><strong class="UI">电子邮件/FTP 配置文件</strong>：创建一个事件时，此视频配置文件用于发送已捕获的屏幕图像。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;事件&rsquo;。只有在编解码器设置为 MJPEG 时才会出现电子邮件/FTP 配置文件选项。</li>
                 <li><strong class="UI">录制配置文件</strong>：这种配置文件用于在 SD 卡或 NAS 上录制图像。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;录制&rsquo;。</li>
                 <li ng-if="!PTZModel"><strong>数字 PTZ</strong><strong class="UI"> 配置文件</strong>：这种配置文件用于控制 PTZ 移动。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;DPTZ&rsquo;。只有在编解码器设置为 H.264 或 H.265 时才会出现 数字 PTZ&nbsp;配置文件选项。 </li>
+                <li ng-if="FisheyeLens" style="list-style-image:url('');">在鱼眼摄像机中添加新配置文件时，在<strong class="UI">[鱼眼视图类型]</strong>中选择<strong class="UI">[去翘曲视图]</strong>后，在<strong class="UI">[视图]</strong>中选择<strong class="UI">[四元视图]</strong>，自动将相应配置文件注册成数字PTZ 配置文件。
+                               </li
+
+
 
             </ul>
         </div>
@@ -154,13 +217,13 @@
         <div class="wn5-setup-section-article-content">
             <h3>灵敏度</h3>
             <p>调整网络带宽变化的反应速度。当 ATC 灵敏度非常高时，反应速度最快，当灵敏度非常低时，反应速度最慢。 </p>
-            <p>只有在<strong class="UI">[ATC 模式]</strong>中选择了<strong class="UI">[启用 - 控制帧速率]</strong>或<strong class="UI">[启用 - 控制压缩率]</strong>后，ATC 灵敏度才会被激活。</p>
+            <p>只有在<strong class="UI">[ATC 模式]</strong>中选择了<strong class="UI">[启用 - 控制帧速率]</strong>或<strong class="UI">[启用 - 控制压缩]</strong>后，ATC 灵敏度才会被激活。</p>
         </div>
 
                     <div class="wn5-setup-section-article-content">
                         <h3>限制</h3>
                         <p>根据网络带宽变化更改图像属性时，将 ATC 模式限制设置为更改属性所需的特定度。假设不使用 ATC 模式时为 100%，该值可设置为 10~50%，在此设置之下的属性将不会发生改变。 </p>
-                        <p>只有在<strong class="UI">[ATC 模式]</strong>中选择了<strong class="UI">[启用 - 控制帧速率]</strong>或<strong class="UI">[启用 - 控制压缩率]</strong>后，ATC 限制才会被激活。</p>
+                        <p>只有在<strong class="UI">[ATC 模式]</strong>中选择了<strong class="UI">[启用 - 控制帧速率]</strong>或<strong class="UI">[启用 - 控制压缩]</strong>后，ATC 限制才会被激活。</p>
                     </div>
     </div>
 </div>
@@ -210,7 +273,7 @@
 
                         <ul>
                             <li>为了获得顺畅的高分辨率图像流，建议使用 Google Chrome 连接至 web 查看器。</li>
-                            <li>Chrome、Edge 或 Firefox 网页浏览器不支持高分辨率。安装插件后，可以在 IE 浏览器和 Safari 浏览器中进行高分辨率图像的流式传输。如需安装插件，请单击位于<strong class="UI">[实时]</strong>页面或<strong class="UI">[播放]</strong>页面右上角的{图标}按钮。  </li>
+                            <li>Chrome、Edge 或 Firefox 网页浏览器不支持高分辨率。安装插件后，可以在 IE 浏览器和 Safari 浏览器中进行高分辨率图像的流式传输。如需安装插件，请单击位于<strong class="UI">[正在监视]</strong>页面或<strong class="UI">[播放]</strong>页面右上角的{图标}按钮。  </li>
                         </ul>
 		</div>
 
@@ -252,8 +315,9 @@
         </div>
                     <div class="wn5-setup-section-article-content">
                         <h3>编码优先级</h3>
-                                                <p>如果将配置文件的<strong class="UI">[编解码器]</strong>设置为<strong class="UI">[H.264]</strong>或<strong class="UI">[H.265]</strong>，将显示全部的高级设置项。如果选择<strong class="UI">[MJPEG]</strong>作为配置文件的<strong class="UI">[编解码器]</strong>，将只显示<strong class="UI">[编码优先权]</strong>项。如果选择<strong class="UI">[H.264]</strong>或<strong class="UI">[H.265]</strong>作为配置文件的<strong class="UI">[编解码器]</strong>，用户可在<strong class="UI">[帧速率]</strong>和<strong class="UI">[压缩]</strong>之间进行选择。如果选择<strong class="UI">[H.264]</strong>或<strong class="UI">[H.265]</strong>作为配置文件的<strong class="UI">[编解码器]</strong>，仅当<strong class="UI">[比特率控制法]</strong>设置为<strong class="UI">[CBR]</strong>时，<strong class="UI">[编码优先权]</strong>才能被激活。</p>
-                        <p>如果配置文件的<strong class="UI">[编解码器]</strong>为<strong class="UI">[MJPEG]</strong>，可以在<strong class="UI">[帧速率]</strong>和<strong class="UI">[比特率]</strong>之间进行选择。</p>择。</div>
+                        <p>如图像数据大小超过目标比特率，则要设置帧速率和图像质量的优先权。 </p>
+    			<p>如果选择<strong class="UI">[H.264]</strong>或<strong class="UI">[H.265]</strong>作为配置文件的<strong class="UI">[编解码器]</strong>，用户可在<strong class="UI">[帧速率]</strong>和<strong class="UI">[压缩]</strong>之间进行选择。如果<strong class="UI">[帧速率]</strong>设置为高优先级，可保证最大帧速率，但图像质量会有所下降。而将<strong class="UI">[压缩]</strong>设置为高优先级时，可保证图像质量，但可能省略某些帧，可导致图像不连续或不自然。如果选择<strong class="UI">[H.264]</strong>或<strong class="UI">[H.265]</strong>作为配置文件的<strong class="UI">[编解码器]</strong>，仅当<strong class="UI">[比特率控制]</strong>设置为<strong class="UI">[CBR]</strong>时，<strong class="UI">[编码优先权]</strong>才能被激活。</p>
+                  <p>如果配置文件的<strong class="UI">[编解码器]</strong>为<strong class="UI">[MJPEG]</strong>，可以在<strong class="UI">[帧速率]</strong>和<strong class="UI">[比特率]</strong>之间进行选</p>择。</div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="GOV"></a>视频组长度  </h3>
             <p>GOV（视频组）是一组用于 H.264/H.265 视频压缩的图像帧，表示一个图像帧与下一个图像帧之间的帧组。GOV 包含图像帧和 P 帧。图像帧是压缩的基础（也被称为关键帧）；包含一张完整图像的数据。P 帧只包含在图像帧的基础上已更改过的区域的信息。因此，视频组越长，图像帧的数量越少，图像越小，而视频组越短，图像帧的数量越多，图像越大。视频组长度的最大值因<strong class="UI">[配置文件属性]</strong>下的<strong class="UI">[帧速率]</strong>而不同。 </p>
@@ -291,16 +355,16 @@
 
                                   <ul>
                                       <li>使用WiseStream功能时， 如果使用动态 GOV和动态 FPS功能， 可使WiseStream性能得到优化。WiseStream可在<strong class="UI">[视频及音频]</strong> > <strong class="UI">[WiseStream]</strong>菜单中进行设置。</li>
-                                  </font></ul>
+                                  </ul>
                           </div>
 
                     </div>
                 <div class="wn5-setup-section-article-content">
                         <h3>动态 FPS</h3>
-                        <p>如果要将动态FPS功能应用到目前正在设置的配置文件中，则选择<strong class="UI">[使用]</strong>动态FPS是根据视频情况自动修改每秒帧数(frames per second)的功能。动态FPS只有在将<strong class="UI">[编解码器]</strong>选为<strong class="UI">[H.264]</strong>或<strong class="UI">[H.265]</strong>，<strong class="UI">[比特率控制]</strong>为<strong class="UI">[VBR]</strong>时才可激活。</p>
+                        <p>如果要将动态FPS功能应用到目前正在设置的配置文件中，则选择<strong class="UI">[启用]</strong>动态FPS是根据视频情况自动修改每秒帧数(frames per second)的功能。动态FPS只有在将<strong class="UI">[编解码器]</strong>选为<strong class="UI">[H.264]</strong>或<strong class="UI">[H.265]</strong>，<strong class="UI">[比特率控制]</strong>为<strong class="UI">[VBR]</strong>时才可激活。</p>
                         <ul>
                             <li>请输入动态 FPS运行时应用的最小FPS值。 </li>
-                        </ul></font>
+                        </ul>
 
                     </div>
                 <div class="wn5-online-help-info">
@@ -308,7 +372,7 @@
 
                         <ul>
                             <li>使用WiseStream功能时， 如果使用动态 GOV和动态 FPS功能， 可使WiseStream性能得到优化。WiseStream可在<strong class="UI">[视频及音频]</strong> > <strong class="UI">[WiseStream]</strong>菜单中进行设置。</li>
-                        </font></ul>
+                        </ul>
                         </div>
                       </div>
                   </div>

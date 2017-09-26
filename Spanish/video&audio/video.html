@@ -56,15 +56,15 @@
 		<div class="wn5-setup-section-article-content">
 			<p>Si la pantalla se muestra al rev&eacute;s despu&eacute;s de instalar la c&aacute;mara, puede corregir esto a trav&eacute;s de las funciones del modo de volteo y el modo de espejo. La funci&oacute;n de vista de pasillo proporciona un larga vista vertical de la pantalla que permite al usuario controlar el &aacute;rea de vigilancia eficientemente.</p>
 		</div>
-			<h4><span class="tui tui-wn5-help-warning"></span>Nota</font></h4>
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
 										<ul>
-												<li>Si cambia el ajuste de rotación de vídeo, la pantalla de vídeo se moverá verticalmente u horizontalmente o cambiará. Cambie la configuración de análisis y estadísticas para que pueda analizar el vídeo o acumular los datos estadísticos de acuerdo con el vídeo cambiado. Estos ajustes se pueden cambiar en el menú  <strong class="UI">[Análisis]</strong> y en el menú <strong class="UI">[Estadísticas]</strong>. </font> </li>
+												<li>Si cambia el ajuste de rotación de vídeo, la pantalla de vídeo se moverá verticalmente u horizontalmente o cambiará. Cambie la configuración de análisis y estadísticas para que pueda analizar el vídeo o acumular los datos estadísticos de acuerdo con el vídeo cambiado. Estos ajustes se pueden cambiar en el menú  <strong class="UI">[Análisis]</strong> y en el menú <strong class="UI">[Estadísticas]</strong>.  </li>
 										</ul>
 				</div>
 						<div class="wn5-online-help-info">
-			<h4><span class="tui tui-wn5-help-warning"></span>Nota</font></h4>
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
 						<ul>
-								<li>Si cambia el ajuste de rotación de vídeo, la pantalla de vídeo se moverá verticalmente u horizontalmente o cambiará. Cambie la configuración de análisis en el menú <strong class="UI">[Análisis]</strong> para que el vídeo pueda ser analizado de acuerdo con el vídeo cambiado.  </font>  </li>
+								<li>Si cambia el ajuste de rotación de vídeo, la pantalla de vídeo se moverá verticalmente u horizontalmente o cambiará. Cambie la configuración de análisis en el menú <strong class="UI">[Análisis]</strong> para que el vídeo pueda ser analizado de acuerdo con el vídeo cambiado.    </li>
 						</ul>
 				</div>
 			<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel"><!-- ??ぉ??異붽??섎젮硫?<li>?띿뒪??/li> ?뺥깭濡??낅젰?섏꽭??--><h3>Flip</h3>
@@ -95,19 +95,25 @@
 				<ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Con el fin de establecer la vista de pasillo, es necesario configurar la c&aacute;mara instalada en 0 grados, o girar hasta 90 grados hacia la derecha o hacia la derecha 270 grados, y seleccionar el mismo &aacute;ngulo en <strong class="UI">[Vista de pasillo]</strong>. </li>
 					<li>Cuando se establece <strong class="UI">[Vista de pasillo]</strong>, el navegador web se cerrar&aacute; autom&aacute;ticamente. Tendr&aacute; que volver a conectarse al visor web.</li>
 				</ul>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
-
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
-	<div class="wn5-setup-section-heading">
-		<h2>V&iacute;deo anal&oacute;gico</h2>
+	<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+	<h3>Modo de montaje de la cámara</h3>
+	<p>Selecciona el modo de montaje de la cámara. Seleccione <strong class="UI">[Tipo de pared]</strong> cuando la cámara esté instalada en una pared o <strong class="UI">[Tipo de techo]</strong> cuando esté instalada en un techo.</p>
 	</div>
-	<div class="wn5-setup-section-article">
-		<div class="wn5-setup-section-article-content">
+	<div class="wn5-online-help-info" ng-if="FisheyeLens">
+	<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+	<ul>
+			<li>Cuando cambia el modo de montaje de la cámara, se restablecen todos los ajustes de perfil establecidos en <strong class="UI">[Perfil de vídeo]</strong> y la cámara se reinicia. También tendrá que cambiar la configuración de estadísticas y análisis de vídeo para que se ajuste a la pantalla que cambia. Estos ajustes se pueden cambiar utilizando los menús <strong class="UI">[Análisis]</strong> y <strong class="UI">[Estadísticas]</strong>.</li>
+	</ul>
+	</div>
+	</div>
+	</div>
+	<hr class="wn5-setup-hr">
+	<div class="wn5-setup-section">
+		<div class="wn5-setup-section-heading">
 			<h3>Salida de v&iacute;deo</h3>
 			<p>Puede establecer si desea o no la salida de v&iacute;deo anal&oacute;gico. La salida de v&iacute;deo anal&oacute;gico es &uacute;til, ya que se puede establecer durante la comprobaci&oacute;n de la ubicaci&oacute;n de la lente o el enfoque cuando se instala la c&aacute;mara.</p>
 		</div>

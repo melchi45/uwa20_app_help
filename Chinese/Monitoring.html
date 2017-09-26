@@ -17,7 +17,7 @@
             <li>通过 Chrome 连接至 web 查看器时，可安全使用录制播放屏幕功能。</li>
             <li>通过 Internet Explorer 或 Safari 连接至 web 查看器时，使用捕捉<span class="tui tui-wn5-toolbar-capture"></span>、录制<span class="tui tui-wn5-toolbar-record"></span>、像素统计<span class="tui tui-wn5-toolbar-pixel"></span>或麦克风<span class="tui tui-wn5-toolbar-mic"></span>功能前，需安装插件。如需安装插件，请单击右上角的<span class="tui tui-wn5-download"></span>按钮。</li>
         </ul>
-    
+
         </div>
 </div>
 <hr class="wn5-setup-hr">
@@ -56,11 +56,19 @@
                     <td width="235">
                         <p ng-if="PTZMode">可控制摄像机的平移/倾斜/缩放。仅当当前实时屏幕所用的视频配置文件支持数字 PTZ 时，才能运行 PTZ。如需更改数字 PTZ 控制配置文件，请在<STRONG class="UI">[设置]</STRONG>&gt;<STRONG class="UI">[基本设置]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[配置文件类型]</STRONG>中选择<STRONG class="UI">[数字 PTZ 配置文件]</STRONG>。</p>
 
-                        
+
                         <p ng-if="PTZModel">您可控制摄像机的平移/倾斜/缩放。您可转到在<strong class="UI">[设置]</strong>&gt、<strong class="UI">[PTZ]</strong>&gt、<strong class="UI">[PTZ 设置]</strong>页面中设置的预设或开始/停止摆动、分组巡航、巡航和跟踪功能。</p>
 
                     </td>
                 </tr>
+              </td>
+              </tr>
+                <tr ng-if="FisheyeLens">
+                          <td width="235"><a class="wn5-online-help-link" href="#fisheyeview" ng-href="#/help/monitoring?#fisheyeview">鱼眼视图</a></td>
+                          <td width="235">
+                              <p>能以多种视图模式确认鱼眼摄像机的视频。</p>
+                              <p>将插件安装在Internet Explorer后， 在[视频设置]Tap中选择'FisheyeView' 配置文件时才能显示。</p>
+              <p>&nbsp;</p>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-status"></span></p>
@@ -177,41 +185,15 @@
             <h3>配置文件</h3>
             <p>将显示当前监视屏幕所用视频配置文件的名称和详细信息。按下 <strong class="UI">[配置文件]</strong>下拉菜单时，将出现一个可供当前 web 查看器使用的视频配置文件列表，您可从中选择所需的视频配置文件，并马上应用至当前监视屏幕中。可查看所选视频配置文件的分辨率、编解码器、帧率以及目标比特率。</p>
         </div>
+
+        <p ng-if="FisheyeLens">通过Internet Explorer连接web查看器时，安装插件后才能显示配置文件的视频，但MJPEG编解码器除外。安装插件时，请点击右上方的插件。</p>
+
         <div class="wn5-setup-section-article-content">
             <h3>显示 </h3>
             <p>设置监视屏幕的对比度、亮度、锐利度以及色彩级别；输入设置时，该设置将立刻应用至监控屏幕中。</p>
         </div>
     </div>
 </div>
-
-
-
-<hr class="wn5-setup-hr" ng-if="Zoom">
-<div class="wn5-setup-section" ng-if="Zoom">
-    <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>您可以调整摄像机缩放和对焦。</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>调整缩放</h3>
-            <p>单击缩放区域中的<strong class="UI">[+]</strong>按钮时，屏幕将放大。单击<strong class="UI">[-]</strong>按钮时，屏幕将缩小。</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>调整对焦</h3>
-            <p><span class="tui tui-wn5-ptz-near"></span>单击按钮或<span class="tui tui-wn5-ptz-far"></span>按钮即可调整摄像机对焦。</p>
-            <p>如需自动调整摄像机对焦一次，请单击<span class="tui tui-wn5-simple-focus"></span>按钮。</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>移动预设</h3>
-            <p>从预设列表中选择所需预设后，单击<strong class="UI">[跳转]</strong>按钮，将自动移动到想要的预设位置。</p>
-            <p>如需添加预设，请单击<strong class="UI">[设置]</strong>按钮，输入预设名称，设置编号，然后单击<strong class="UI">[应用]</strong>按钮。预设可通过<strong class="UI">[设置]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[预设位设置]</strong>选项卡进行添加或更改。</p>
-        </div>
-    </div>
-</div>
-
 
 <!-- <hr class="wn5-setup-hr" >
 <div class="wn5-setup-section" >
@@ -241,13 +223,12 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>自动跟踪</h3>
-                     
+
             <p>可在实时屏幕上自动跟踪移动的物体或人员。单击（自动跟踪）按钮后，将执行自动跟踪功能。再次单击<span class="tui tui-ch-live-ptz-tracking-auto-on"></span>（自动跟踪）按钮后，跟踪功能将停止。如在使用自动跟踪功能时执行 PTZ 功能，则自动跟踪功能将停止。</p>
         </div>
         </div>
     </div>
 -->
-
 
 <hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
@@ -271,22 +252,22 @@
                         <h3>调整对焦</h3>
             <p>单击<span class="tui tui-wn5-ptz-near"></span>按钮或<span class="tui tui-wn5-ptz-far"></span>按钮即可调整摄像机对焦。</p>
             <p>如需自动调整摄像机对焦一次，&nbsp;请单击<span class="tui tui-wn5-simple-focus"></span>按钮。
-        </div> 
+        </div>
   <div class="wn5-setup-section-article-content">
             <h3>自动跟踪</h3>
-                     
+
             <p>在实时视图中能够自动跟踪正在移动的物体或人。单击自动跟踪按钮后<span class="tui tui-ch-live-ptz-tracking-auto-off"></span>,&nbsp;将执行自动跟踪功能。再次单击自动跟踪按钮后<span class="tui tui-ch-live-ptz-tracking-auto-on"></span>，跟踪功能将停止。</p>
             <p>此外，当您在图像屏幕单击鼠标右键时，将在移动焦点基础上对选中的区域进行分析，然后开始自动跟踪。</p>
-        </div>    
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>使用 PTZ 功能</h3>
             <p>您可将摄像机转到一个预设位置或开始和停止摆动、分组巡航、巡航和跟踪功能。若要了解相关设置，请参见<strong class="UI">[设置]</strong>&gt、<strong class="UI">[PTZ]</strong>&gt、<strong class="UI">[PTZ 设置]</strong>页面。</p>
   </div>
-        
-          
+
+
         <div class="wn5-setup-section-article-content">
             <h3>区域缩放</h3>
-                     
+
             <p>区域缩放使您能够放大并查看特定区域。</p>
             <p>当您在摄像机图像屏幕上单击鼠标按钮<span class="tui tui-chi-live-ptz-areazoom"></span>、拖拽鼠标并选中一个区域时，缩放功能将对选定区域生效，摄像机位置将转至选定区域。&nbsp;您可通过单击按钮<span class="tui tui-chi-live-ptz-areazoom-back"></span>，转到之前选定的区域和配置。转到之前选定的区域和配置后，如果您想要返回之前的区域和配置，单击按钮<span class="tui tui-chi-live-ptz-areazoom-pre"></span>。单击该按钮后<span class="tui tui-chi-live-ptz-areazoom-1x"></span>，
 放大倍数将更改为 1x，摄像机将回到初始位置。  </p>
@@ -295,6 +276,118 @@
         </div>
     </div>
 </div>
+
+
+<hr class="wn5-setup-hr" ng-if="Zoom">
+<div class="wn5-setup-section" ng-if="Zoom">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>您可以调整摄像机缩放和对焦。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>调整缩放</h3>
+            <p>单击缩放区域中的<strong class="UI">[+]</strong>按钮时，屏幕将放大。单击<strong class="UI">[-]</strong>按钮时，屏幕将缩小。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>调整对焦</h3>
+            <p><span class="tui tui-wn5-ptz-near"></span>单击按钮或<span class="tui tui-wn5-ptz-far"></span>按钮即可调整摄像机对焦。</p>
+            <p>如需自动调整摄像机对焦一次，请单击<span class="tui tui-wn5-simple-focus"></span>按钮。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>移动预设</h3>
+            <p>从预设列表中选择所需预设后，单击<strong class="UI">[跳转]</strong>按钮，将自动移动到想要的预设位置。</p>
+            <p>如需添加预设，请单击<strong class="UI">[设置]</strong>按钮，输入预设名称，设置编号，然后单击<strong class="UI">[应用]</strong>按钮。预设可通过<strong class="UI">[设置]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[预设位设置]</strong>选项卡进行添加或更改。</p>
+        </div>
+    </div>
+</div>
+
+
+
+<hr class="wn5-setup-hr" ng-if="FisheyeLens">
+<div class="wn5-setup-section" ng-if="FisheyeLens">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>控制摄像机的平移/倾斜/缩放动作或移动至预先设定的PTZ 预设位置，也可控制组动作。</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
+            <ul>
+                <li>在<strong class="UI">[设置]</strong><strong class="UI">[基本设置]</strong> > <strong class="UI">[视频配置文件]</strong> > <strong class="UI">[配置文件类型]</strong>中选择<strong class="UI">[数字PTZ配置文件]</strong>时，才能使用PTZ功能。</li>
+            </ul>
+
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>选择分屏</h3>
+            <p>在四元视图中选择个别视频的编号。 1是四元视图的左上方, 2是右上方, 3是左下方, 4是右下方的视频视图。 </p>
+            <p><span class="tui tui-wn5-ptz-handle"></span>
+点击并拖动按钮，调整摄像机视频视图。在缩放栏中点击 <strong class="UI">[+]</strong> 按钮，画面会放大，点击 <strong class="UI">[-]</strong> 按钮，画面会缩小。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>预设</h3>
+            <p>选择预设编号后，点击 <strong class="UI">[移动]</strong>按钮，将摄像机视图移动至相应PTZ 预设位置。</p>
+            <p>在预设列表中选择想要的预设编号后，点击 <strong class="UI">[移动]</strong> 按钮，移动到相应预设位置。预设列表可在 <strong class="UI">[设置]</strong> > <strong class="UI">[数字 PTZ]</strong> > <strong class="UI">[预设]</strong>Tap中进行添加或修改。</p>
+        </div>
+		          <div class="wn5-setup-section-article-content">
+                        <h3>组</h3>
+            <p>在组列表中选择所需的组编号后，点击<strong class="UI">[启动]</strong> 按钮，进行设定的组动作。要停止组动作， 点击<strong class="UI">[停止]</strong>按钮。组列表可在 <strong class="UI">[设置]</strong> > <strong class="UI">[数字 PTZ]</strong> > <strong class="UI">[组]</strong>Tap中进行添加或修改。</p>
+        </div>
+
+<hr class="wn5-setup-hr" ng-if="FisheyeLens">
+<div class="wn5-setup-section" ng-if="FisheyeLens">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="fisheyeview"></a>鱼眼视图</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+            <h3>天花板/墙壁</h3>
+                    <p>显示摄像机安装模式。根据安装模式不同，视图类型也会不同。</p>
+                    <p>安装模式可在<strong class="UI">[视频及音频]</strong> > <strong class="UI">[视频设置]</strong> > <strong class="UI">[视频旋转]</strong> > <strong class="UI">[摄像机安装模式]</strong>中进行设置。选择<strong class="UI">[天花板]</strong>时，才会显示 '双全景' 视图类型，对于其他视图类型，'天花板'和'墙壁都相同。
+</p>
+                    <p>选择所需的视图类型图标后，在实时视频画面中，用鼠标拖动修改摄像机的视图。 </p>
+                </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>初始化/全部初始化</h3>
+                    <p>在当前选择的视图类型之视频画面中，要将用鼠标拖动修改的视图改为初始视图，点击<strong class="UI">[初始化]</strong>按钮。要将所有视图类型的视频画面改为初始视图，点击<strong class="UI">[全部初始化]</strong>按钮。</p>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -313,7 +406,7 @@
             <h3>当前用户  </h3>
             <p>可查看每个用户使用的配置文件、比特率 (kbps)、网络连接状态以及所有当前连接到摄像机的用户的 IP 地址。</p>
         </div>
-        
+
     </div>
 </div>
 

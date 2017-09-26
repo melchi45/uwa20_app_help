@@ -7,8 +7,8 @@
     <p>La Gesti&oacute;n de colas es una funci&oacute;n que se utiliza para supervisar el n&uacute;mero medio de personas que permanecen en un &aacute;rea especificada y el tiempo total de permanencia a trav&eacute;s de un an&aacute;lisis de las im&aacute;genes de las c&aacute;maras. Se puede buscar y ver el n&uacute;mero de personas haciendo cola y los datos estad&iacute;sticos de tiempo de cola desde la p&aacute;gina de &apos;Buscar&apos; de Gesti&oacute;n de colas.  </p>
     <div class="wn5-online-help-info">
         <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-        <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Para usar la funci&oacute;n de b&uacute;squeda en Gesti&oacute;n de colas, debe seleccionar <strong class="UI">[Habilitar de gesti&oacute;n de colas]</strong> desde <strong class="UI">[Estad&iacute;sticas]</strong>&gt;<strong class="UI">[Gesti&oacute;n de colas]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Configuraci&oacute;n]</a></strong> y configurar la regla de gesti&oacute;n de colas.</li>
-            <li>Si no se ha activado la funci&oacute;n de gesti&oacute;n de colas o la regla de gesti&oacute;n de colas no se ha definido, se mostrar&aacute; el bot&oacute;n <strong class="UI">[Configuraci&oacute;n]</strong>. Si hace clic en el bot&oacute;n de <strong class="UI">[Configuraci&oacute;n]</strong>, pasar&aacute; a la p&aacute;gina de configuraci&oacute;n de gesti&oacute;n de colas.</li>
+        <ul><li>Para usar la funci&oacute;n de b&uacute;squeda en Gesti&oacute;n de colas, debe seleccionar <strong class="UI">[Habilitar de gesti&oacute;n de colas]</strong> desde <strong class="UI">[Estad&iacute;sticas]</strong>&gt;<strong class="UI">[Gesti&oacute;n de colas]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Configuraci&oacute;n]</a></strong> y configurar la regla de gesti&oacute;n de colas.</li>
+
         </ul>
     </div>
 </div>
@@ -17,9 +17,12 @@
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Buscar</h2>
-	</div>
-	<div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
+      </div>
+  	<div class="wn5-setup-section-article">
+          <div class="wn5-setup-section-article-content">
+              <p>Las reglas de cola establecidas en <strong class="UI">[Estadísticas]</strong>&gt;<strong class="UI">[Gestión de colas]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Configuración]</a></strong> aparecen en la pantalla. &nbsp;</p>
+          </div>
+          <div class="wn5-setup-section-article-content">
             <p>El &aacute;rea de cola definida desde <strong class="UI">[Estad&iacute;sticas]</strong>&gt;<strong class="UI">[Gesti&oacute;n de colas]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Configuraci&oacute;n]</a></strong> se muestra en la pantalla. &nbsp;</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -56,8 +59,13 @@
                 <h3>Fecha</h3>
                 <p>Cuando se selecciona [Reciente], puede buscar por d&iacute;a, semana o mes en funci&oacute;n de la hora actual. </p>
                 <p>Cuando se selecciona [Periodo], puede especificar un per&iacute;odo por d&iacute;a, mes o a&ntilde;o y buscar seg&uacute;n estos par&aacute;metros. Seleccione el icono de calendario para cambiar la fecha. </p>
-            </div>
+              </div>
             <div class="wn5-setup-section-article-content">
+                <h3>Regla</h3>
+            <p>Puede seleccionar una combinación de reglas de cola y condiciones de análisis (número medio de personas, nivel de detección alto o medio).</p>
+                <p>Las reglas se pueden establecer en <strong class="UI">[Estadísticas]</strong>&gt;<strong class="UI">[Gestión de colas]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Configuración]</a></strong>. </p>
+			</div>
+            <div class="wn5-online-help-action">
                 <h3>&Aacute;rea</h3>
             <p>Seleccione las condiciones para la b&uacute;squeda. El &aacute;rea de cola y las condiciones de an&aacute;lisis (n&uacute;mero promedio de personas, alto o medio para el nivel de detecci&oacute;n) pueden seleccionarse de manera combinada. Por ejemplo, cuando usted selecciona la casilla de verificaci&oacute;n en la que &apos;Cola 1&apos; y &apos;Promedio&apos; coinciden, se busca el n&uacute;mero promedio de personas en la &apos;Cola 1&apos;.  Cuando selecciona la casilla de verificaci&oacute;n en la que &apos;Cola 1&apos; y &apos;Alto&apos; coinciden, se busca el tiempo total para el n&uacute;mero de personas correspondiente a &apos;Alto&apos; para el nivel de detecci&oacute;n de la &apos;Cola 1&apos;. Tambi&eacute;n puede seleccionar &apos;Promedio&apos; y &apos;Alto&apos; para que coincidan con &apos;Cola 1&apos; al hacer la b&uacute;squeda. </p>
                 <p>La regla puede definirse en <strong class="UI">[Estad&iacute;sticas]</strong>&gt;<strong class="UI">[Gesti&oacute;n de colas]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Configuraci&oacute;n]</a></strong>. </p>
@@ -72,13 +80,13 @@
 			</div>
         </div>
 </div>
-<hr class="wn5-setup-hr">           
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Resultados</h2>
 	</div>
 	   <div class="wn5-setup-section-article">
-             <div class="wn5-setup-section-article-content">					
+             <div class="wn5-setup-section-article-content">
                 <p>Si busca datos de gesti&oacute;n de colas, los resultados se muestran en un gr&aacute;fico y una tabla.</p>
                 <p>Si busca &apos;un d&iacute;a reciente&apos;, se mostrar&aacute;n los datos por hora desde las 00:00 hasta las 24:00 del d&iacute;a de hoy. Si busca &apos;una semana reciente&apos;, se mostrar&aacute;n los datos de la fecha a partir de los 7 d&iacute;as inmediatamente anteriores al d&iacute;a de hoy. Si busca &apos;un mes reciente&apos;, se mostrar&aacute;n los datos de fecha para los 30 d&iacute;as inmediatamente anteriores al d&iacute;a de hoy.</p>
                 <p>Si selecciona &apos;Per&iacute;odo&apos; y designa un d&iacute;a, mes y a&ntilde;o espec&iacute;ficos, se mostrar&aacute;n los datos por hora desde las 00:00 hasta las 24:00 de la fecha y datos designados por fecha para el mes y el a&ntilde;o designados. </p>

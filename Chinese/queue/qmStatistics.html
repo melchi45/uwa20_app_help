@@ -7,8 +7,8 @@
     <p>队列管理是一种功能，用于通过对摄像机图像进行分析来监视停留在指定区域的平均人数和总停留时间。排队人数和排队时间的统计数据可以从队列管理的&ldquo;搜索&rdquo;页面进行搜索和查看。 </p>
     <div class="wn5-online-help-info">
         <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
-        <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>要在队列管理中使用搜索功能，您必须从<strong class="UI">[统计]</strong>&gt;<strong class="UI">[队列管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[设置]</a></strong>中选择<strong class="UI">[启用队列管理]</strong>，并且设置队列管理区域。</li>
-            <li>如果未启用队列管理功能或尚未设置队列管理区域，则将显示<strong class="UI">[设置]</strong>按钮。如果您单击<strong class="UI">[设置]</strong>按钮，则将转到队列管理设置页面。</li>
+        <ul><li>要在队列管理中使用搜索功能，您必须从<strong class="UI">[统计]</strong>&gt;<strong class="UI">[队列管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[设置]</a></strong>中选择<strong class="UI">[启用队列管理]</strong>，并且设置队列管理区域。</li>
+
         </ul>
     </div>
 </div>
@@ -20,21 +20,21 @@
 	</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>屏幕上显示从<strong class="UI">[统计]</strong>&gt;<strong class="UI">[队列管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[设置]</a></strong>处设置的队列区域。 &nbsp;</p>
+          <p>屏幕上显示从<strong class="UI">[统计]</strong>&gt;<strong class="UI">[队列管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[设置]</a></strong>处设置的队列规则。&nbsp;</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>占用</h3>
-            <p>显示每个队列区域的实时分析数据。 </p>
+            <p> 显示每个队列规则的实时分析数据。</p>
             <hr class="wn5-setup-hr">
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>今天</h3>
             <h4>平均人数</h4>
-            <p>从 00:00 到 24:00 每个队列区域的人数按小时显示在图表中。 </p>
-            <p>当您选择位于图表右上方的队列区域名称时，只有相关的图表以青色显示。如果将鼠标放在图表的顶部，则会出现一个气球，显示所选时间的人数。 </p>
+            <p>从 00:00 到 24:00 每个队列规则的人数按小时显示在图表中。</p>
+            <p>当您选择位于图表右上方的队列规则名称时，只有相关的图表以青色显示。如果将鼠标放在图表的顶部，则会出现一个气球，显示所选时间的人数。</p>
             <h4>总时间  </h4>
-            <p>通过检测级别（高、中）分析队列区域中的总排队时间，并以图表显示。</p>
-            <p>检测级别在<strong class="UI">[设置]</strong>页面的<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html#level" ng-href="#/help/queue_setup">[检测级别]</a></strong>中指定，排队级别根据队列中的人数分为&ldquo;高&rdquo;和&ldquo;中&rdquo;。 </p>
+            <p>通过每个队列规则、检测级别（高、中）分析总排队时间，并以图表显示。</p>
+            <p>检测级别在<strong class="UI">[设置]</strong>页面的<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html#level" ng-href="#/help/queue_setup">[探测级别]</a></strong>中指定，排队级别根据队列中的人数分为&ldquo;高&rdquo;和&ldquo;中&rdquo;。 </p>
             <p>例如，&ldquo;队列 1-高&rdquo;表示&ldquo;队列 1&rdquo;总时间中&ldquo;高&rdquo;检测级别有大量排队人员，&ldquo;队列 1-中&rdquo;表示&ldquo;队列 1&rdquo;总时间中&ldquo;中&rdquo;检测级别有大量排队人员。 </p>
         </div>
 		 <div class="wn5-setup-section-article-content">
@@ -58,27 +58,27 @@
                 <p>选择[时段]时，可以按照日、月或年指定时段相应进行搜索。选择日历图标以更改日期。 </p>
             </div>
             <div class="wn5-setup-section-article-content">
-                <h3>区域</h3>
-            <p>选择搜索条件。可以组合选择队列区域和分析条件（平均人数、高或中检测级别）。例如，选择&ldquo;队列 1&rdquo;和&ldquo;平均&rdquo;交叉处的复选框时，则将搜索&ldquo;队列 1&rdquo;队列中的平均人数。选择&ldquo;队列 1&rdquo;和&ldquo;高&rdquo;交叉处的复选框时，则搜索与&ldquo;队列 1&rdquo;中排队的&ldquo;高&rdquo;检测级别对应人数的总时间。您还可以选择与&ldquo;队列 1&rdquo;相匹配的&ldquo;平均&rdquo;和&ldquo;高&rdquo;进行搜索。 </p>
-                <p>区域可以在<strong class="UI">[统计]</strong>&gt;<strong class="UI">[队列管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[设置]</a></strong>中进行设置。 </p>
+                <h3>规则</h3>
+            <p>选择搜索条件。可以组合选择队列规则和分析条件（平均人数、高或中检测级别）。例如，选择&ldquo;队列 1&rdquo;和&ldquo;平均&rdquo;交叉处的复选框时，则将搜索&ldquo;队列 1&rdquo;队列中的平均人数。选择&ldquo;队列 1&rdquo;和&ldquo;高&rdquo;交叉处的复选框时，则搜索与&ldquo;队列 1&rdquo;中排队的&ldquo;高&rdquo;检测级别对应人数的总时间。您还可以选择与&ldquo;队列 1&rdquo;相匹配的&ldquo;平均&rdquo;和&ldquo;高&rdquo;进行搜索。 </p>
+                <p>规则可以在<strong class="UI">[统计]</strong>&gt;<strong class="UI">[队列管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[设置]</a></strong>中进行设置。 </p>
 			</div>
             <div class="wn5-online-help-action">
                 <h5><a name="search"></a>搜索队列数据</h5>
                 <ol>
                     <li>在<strong class="UI">[搜索]</strong>的<strong class="UI">[日期]</strong>中选择您希望搜索的日期。  </li>
-                    <li>在<strong class="UI">[区域]</strong>中选择要搜索的队列和分析选项。例如，如果要搜索在&ldquo;队列 1&rdquo;中排队的平均人数和&ldquo;队列 1&rdquo;中&ldquo;高&rdquo;检测级别对应排队人员的总时间，请选中&ldquo;队列 1&rdquo;和&ldquo;平均&rdquo;、&ldquo;队列 1&rdquo;和&ldquo;高&rdquo;交叉处的复选框。</li>
+                    <li>在<strong class="UI">[规则]</strong>中选择要搜索的队列和分析选项。例如，如果要搜索在&ldquo;队列 1&rdquo;中排队的平均人数和&ldquo;队列 1&rdquo;中&ldquo;高&rdquo;检测级别对应排队人员的总时间，请选中&ldquo;队列 1&rdquo;和&ldquo;平均&rdquo;、&ldquo;队列 1&rdquo;和&ldquo;高&rdquo;交叉处的复选框。</li>
                     <li>单击<strong class="UI">[搜索]</strong>按钮。搜索结果将显示在<strong class="UI">[结果]</strong>中。  </li>
                 </ol>
 			</div>
         </div>
 </div>
-<hr class="wn5-setup-hr">           
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>结果</h2>
 	</div>
 	   <div class="wn5-setup-section-article">
-             <div class="wn5-setup-section-article-content">					
+             <div class="wn5-setup-section-article-content">
                 <p>如果您搜索队列数据，结果将显示在图表和表格中。</p>
                 <p>如果您搜索&ldquo;最近一天&rdquo;，将显示当天从 00:00 到 24:00 的小时数据。如果您搜索&ldquo;最近一周&rdquo;，将显示当天之前的 7 日数据。如果您搜索&ldquo;最近一月&rdquo;，将显示当天之前的 30 日数据。</p>
                 <p>如果您选择&ldquo;时段&rdquo;并指定特定的日、月和年，则将显示指定日期的 00:00 至 24:00 之间的数据，以及指定月份和年份的日期数据。 </p>

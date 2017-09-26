@@ -7,8 +7,8 @@
     <p>Queue&nbsp;management is a function used to monitor the average number of people staying in a specified area and the total time of stay through an analysis of camera images. The number of queuing people and statistical data of queuing time can be searched and viewed from the &lsquo;Search&rsquo; page of Queue&nbsp;management. </p>
     <div class="wn5-online-help-info">
         <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-        <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>In order to use the search function in queue management, you must select <strong class="UI">[Enable&nbsp;Queue&nbsp;management]</strong> from <strong class="UI">[Statistics]</strong>&gt;<strong class="UI">[Queue&nbsp;management]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Setup]</a></strong> and set the queue management area.</li>
-            <li>If the queue management function is not enabled, or the queue management area has not been set, the <strong class="UI">[Setup]</strong>&nbsp;button will be shown. If you click the <strong class="UI">[Setup]</strong>&nbsp;button, you will move to the queue management setup page.</li>
+        <ul><li>In order to use the search function in queue management, you must select <strong class="UI">[Enable&nbsp;Queue&nbsp;management]</strong> from <strong class="UI">[Statistics]</strong>&gt;<strong class="UI">[Queue&nbsp;management]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Setup]</a></strong> and set the queue management area.</li>
+
         </ul>
     </div>
 </div>
@@ -20,20 +20,20 @@
 	</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>The queue area set from <strong class="UI">[Statistics]</strong>&gt;<strong class="UI">[Queue management]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Setup]</a></strong> is displayed on the screen. &nbsp;</p>
+            <p>The queue rule set from <strong class="UI">[Statistics]</strong>&gt;<strong class="UI">[Queue management]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Setup]</a></strong> is displayed on the screen. &nbsp;</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Occupancy</h3>
-            <p>Real-time analysis data for each queue area is shown. </p>
+            <p>Real-time analysis data for each queue rule is shown. </p>
             <hr class="wn5-setup-hr">
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Today</h3>
             <h4>Average&nbsp;number&nbsp;of&nbsp;people</h4>
-            <p>The number of people counted in each queue area from 00:00 to 24:00 is shown in a graph displayed by hour. </p>
-            <p>When you select the name of a queue area located at top right side of the graph, only the relevant graph will be shown in cyan. If you place the mouse on top of the graph, a balloon showing the number of people at the selected time will appear. </p>
+            <p>The number of people counted in each queue rule from 00:00 to 24:00 is shown in a graph displayed by hour. </p>
+            <p>When you select the name of a queue rule located at top right side of the graph, only the relevant graph will be shown in cyan. If you place the mouse on top of the graph, a balloon showing the number of people at the selected time will appear. </p>
             <h4>Total&nbsp;time  </h4>
-            <p>Total queuing time in the queue area is analyzed by the level of detection (high, medium) and is shown in a graph.</p>
+            <p>The accumulated total queuing time is analyzed by the queue rules and the detection level (high, middle), and it is shown in the graph.</p>
             <p>The level of detection is specified in&nbsp;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html#level" ng-href="#/help/queue_setup">[Level of detection]</a></strong> on the <strong class="UI">[Setup]</strong> page, and the level of queuing is classified into &apos;High&rsquo; and &lsquo;Medium&rsquo;, according to the number of people in the queue. </p>
             <p>For example, &apos;Queue 1- High&rsquo; indicates the total time during which there is a large number of queuing people in &apos;Queue 1&rsquo; as the &lsquo;High&rsquo; level of detection, and &lsquo;Queue 1- Medium&rsquo; indicates the total time during which there is a large number of queuing people in &apos;Queue 1&rsquo; as the &lsquo;Medium&rsquo; level of detection. </p>
         </div>
@@ -58,27 +58,27 @@
                 <p>When you select [Period], you can specify a period by day, month, or year and search accordingly. Select the calendar icon to change the date. </p>
             </div>
             <div class="wn5-setup-section-article-content">
-                <h3>Area</h3>
-            <p>Select the conditions for the search. The queue area and the analysis conditions (average number of people, high or medium for the level of detection) can be selected in combination. For example, when you select the checkbox where &lsquo;Queue 1&rsquo; and &lsquo;Average&rsquo; meet, the average number of people in the &apos;Queue 1&apos; Queue is searched. When you select the checkbox where &apos;Queue 1&rsquo; and &apos;High&rsquo; meet, the total time for the number of people corresponding to &lsquo;High&rsquo; for the level of detection queuing in &apos;Queue 1&apos; is searched. You can also select both &lsquo;Average&rsquo; and &lsquo;High&rsquo; that meet with &apos;Queue 1&apos; for searching. </p>
-                <p>The area can be set in <strong class="UI">[Statistics]</strong>&gt;<strong class="UI">[Queue management]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Setup]</a></strong>. </p>
+                <h3>Rule</h3>
+            <p>Select the conditions for the search. The queue rule and the analysis conditions (average number of people, high or medium for the level of detection) can be selected in combination. For example, when you select the checkbox where &lsquo;Queue 1&rsquo; and &lsquo;Average&rsquo; meet, the average number of people in the &apos;Queue 1&apos; Queue is searched. When you select the checkbox where &apos;Queue 1&rsquo; and &apos;High&rsquo; meet, the total time for the number of people corresponding to &lsquo;High&rsquo; for the level of detection queuing in &apos;Queue 1&apos; is searched. You can also select both &lsquo;Average&rsquo; and &lsquo;High&rsquo; that meet with &apos;Queue 1&apos; for searching. </p>
+                <p>The rule can be set in <strong class="UI">[Statistics]</strong>&gt;<strong class="UI">[Queue management]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[Setup]</a></strong>. </p>
 			</div>
             <div class="wn5-online-help-action">
                 <h5><a name="search"></a>Search queue data</h5>
                 <ol>
                     <li>Select the date you wish to search in <strong class="UI">[Date]</strong> of <strong class="UI">[Search]</strong>.  </li>
-                    <li>Select the queue you wish to search and the analysis option in <strong class="UI">[Area]</strong>. For example, if you wish to search the average number of people queuing in &apos;Queue 1&rsquo; and the total time for the number of people corresponding to &lsquo;High&rsquo; for the level of detection queuing in &apos;Queue 1&apos;, select the checkbox where &lsquo;Queue 1&rsquo; and &lsquo;Average&rsquo; meet and the checkbox where &lsquo;Queue 1&rsquo; and &lsquo;High&rsquo; meet.</li>
+                    <li>Select the queue you wish to search and the analysis option in <strong class="UI">[Rule]</strong>. For example, if you wish to search the average number of people queuing in &apos;Queue 1&rsquo; and the total time for the number of people corresponding to &lsquo;High&rsquo; for the level of detection queuing in &apos;Queue 1&apos;, select the checkbox where &lsquo;Queue 1&rsquo; and &lsquo;Average&rsquo; meet and the checkbox where &lsquo;Queue 1&rsquo; and &lsquo;High&rsquo; meet.</li>
                     <li>Click the <strong class="UI">[Search]</strong> button. The search results will be displayed in <strong class="UI">[Results]</strong>.  </li>
                 </ol>
 			</div>
         </div>
 </div>
-<hr class="wn5-setup-hr">           
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Results</h2>
 	</div>
 	   <div class="wn5-setup-section-article">
-             <div class="wn5-setup-section-article-content">					
+             <div class="wn5-setup-section-article-content">
                 <p>If you search queue data, the results will be shown in a graph and table.</p>
                 <p>If you search &apos;one recent day&rsquo;, data by hour from 00:00 to 24:00 on the current day will be shown. If you search &apos;one recent week&apos;, data by date from the 7 days immediately prior to the current day will be shown. If you search &apos;one recent month&apos;, data by date for the 30 days immediately prior to the current day will be shown.</p>
                 <p>If you select &apos;Period&apos; and designate a specific day, month, and year, data by hour from 00:00 to 24:00 for the designated date and data by date for the designated month and year will be shown. </p>

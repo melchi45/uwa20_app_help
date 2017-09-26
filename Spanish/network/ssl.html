@@ -10,8 +10,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>El sistema de conexi&oacute;n segura se selecciona de acuerdo con el entorno de servicio teniendo en cuenta el nivel de seguridad. HTTPS (Protocolo de Transferencia de Hipertexto sobre Secure Socket Layer) intercambia bit de datos a trav&eacute;s de la encriptaci&oacute;n y desencriptaci&oacute;n de la solicitud de p&aacute;gina del usuario en la capa sub SSL por debajo de la capa de protocolo de transferencia de hipertexto. Por lo tanto, se considera que es m&aacute;s seguro que el modo HTTP.
-Puede seleccionar si un certificado &uacute;nico o p&uacute;blico se utiliza para la conexi&oacute;n segura en el modo HTTPS.</p>
+			<p>El sistema de conexi&oacute;n segura se selecciona de acuerdo con el entorno de servicio teniendo en cuenta el nivel de seguridad. HTTPS (Protocolo de Transferencia de Hipertexto sobre Secure Socket Layer) intercambia bit de datos a trav&eacute;s de la encriptaci&oacute;n y desencriptaci&oacute;n de la solicitud de p&aacute;gina del usuario en la capa sub SSL por debajo de la capa de protocolo de transferencia de hipertexto. Por lo tanto, se considera que es m&aacute;s seguro que el modo HTTP. Puede seleccionar si un certificado &uacute;nico o p&uacute;blico se utiliza para la conexi&oacute;n segura en el modo HTTPS.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>HTTP (No utilizar conexi&oacute;n segura)  </h3>
@@ -35,35 +34,33 @@ Puede seleccionar si un certificado &uacute;nico o p&uacute;blico se utiliza par
 	<h2>Instalar un archivo de clave</h2>
 </div>
 <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>Se activa cuando se selecciona <strong class="UI">[HTTP (No utilizar conexi&oacute;n segura)]</strong> o <strong class="UI">[HTTPS (Modo de conexi&oacute;n segura con certificado &uacute;nico)]</strong>; se puede registrar o eliminar un certificado. </p>
-            <ul>
-                <li><strong class="UI">Nombre de certificado</strong>: Introduzca el nombre de certificado a instalar.</li>
-                <li><strong class="UI">Archivo de certificado</strong>: Seleccione la ruta del certificado a instalar.  </li>
-                <li><strong class="UI">Archivo de clave</strong>: Seleccione la ruta del archivo de clave a instalar.</li>
-				</div>
-                <div class="wn5-online-help-info">
-                    <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-                    <ul>
-																			
-                <li>No puede instalar o eliminar un certificado p&uacute;blico cuando el modo <strong class="UI">[HTTPS (Modo de conexion segura con archivo de clave)]</strong> est&aacute; en vigor. Despu&eacute;s de cambiar al modo <strong class="UI">[HTTP (No utilizar conexi&oacute;n segura)]</strong> o <strong class="UI">[HTTPS (Modo de conexi&oacute;n segura con certificado &uacute;nico)]</strong>, aseg&uacute;rese de instalar o eliminar el certificado.</li>
-        </div>
-    <div class="wn5-online-help-action">
-        <h4><span class="tui tui-wn5-help-warning"></span>Instalaci&oacute;n de un archivo de clave</h4>
-        <ol>
-            <li>Introduzca el nombre de certificado a instalar en <strong class="UI">[Nombre de certificado]</strong>.  </li>
-            <li>Haga clic en el bot&oacute;n <strong class="UI">[...]</strong> en <strong class="UI">[Archivo de certificado]</strong>, seleccione un archivo de certificado de la ventana abierta y haga clic en el bot&oacute;n <strong class="UI">[Abrir]</strong>.</li>
-            <li>Haga clic en el bot&oacute;n <strong class="UI">[...]</strong> en el Archivo de clave, seleccione un archivo de certificado de la ventana abierta y haga clic en el bot&oacute;n <strong class="UI">[Abrir]</strong>.</li>
-            <li>Haga clic en el bot&oacute;n <strong class="UI">[Instalar]</strong>. La instalaci&oacute;n del certificado ha finalizado.</li>
-        </ol>
-    </div>
+	<div class="wn5-setup-section-article-content">
+		<p>Para seleccionar <strong class="UI">[HTTPS (Certificado público en uso)]</strong> en <strong class="UI">[Sistema de conexión segura]</strong>, necesita instalar un certificado público primero. </p></strong><ul>
+			<li><strong class="UI">Nombre de certificado</strong>: Introduzca el nombre de certificado a instalar.</li>
+			<li><strong class="UI">Archivo de certificado</strong>: Seleccione la ruta del certificado a instalar. </li>
+			<li><strong class="UI">Archivo de clave</strong>: Seleccione la ruta del archivo de clave a instalar.</li>
+   </ul>
+					<div class="wn5-online-help-info">
+									<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+									            <ul>
+		                								<li>No puede instalar o eliminar un certificado público cuando el modo <strong class="UI">[HTTPS (Certificado público en uso)]</strong> está en vigor. Después de cambiar al modo <strong class="UI">[HTTP (Acceso seguro no utilizado)]</strong> o <strong class="UI">[HTTPS (certificado privado en uso)]</strong>, asegúrese de instalar o eliminar el certificado.</li>
+		                		</ul>
+			</div>
+
+
+      				<div class="wn5-online-help-action">
+		<h4><span class="tui tui-wn5-help-warning"></span>Instalaci&oacute;n de un archivo de clave</h4>
+		<ol>
+			<li>Introduzca el nombre de certificado a instalar en <strong class="UI">[Nombre de certificado]</strong>. </li>
+			<li>Haga clic en el bot&oacute;n <strong class="UI">[...]</strong> en <strong class="UI">[Archivo de certificado]</strong>, seleccione un archivo de certificado de la ventana abierta y haga clic en el bot&oacute;n <strong class="UI">[Abrir]</strong>.</li>
+			<li>Haga clic en el bot&oacute;n <strong class="UI">[...]</strong> en el Archivo de clave, seleccione un archivo de certificado de la ventana abierta y haga clic en el bot&oacute;n <strong class="UI">[Abrir]</strong>.</li>
+			<li>Haga clic en el bot&oacute;n <strong class="UI">[Instalar]</strong>. La instalaci&oacute;n del certificado ha finalizado.</li>
+		</ol>
+			</div>
+
 			<div class="wn5-online-help-action">
-				<h4><span class="tui tui-wn5-help-warning"></span>Eliminar un certificado p&uacute;blico</h4>
-        <p>Haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong> en la parte inferior de <strong class="UI">[Instalar un archivo de clave]</strong>. </p>
+				<h4><span class="tui tui-wn5-help-warning"></span>Eliminar un certificado público</h4>
+				<p>Haga clic en el botón <strong class="UI">[Eliminar]</strong> en la parte inferior de <strong class="UI">[Instalar un Certificado Público]</strong>. </p>
 			</div>
 	<div class="wn5-online-help-action">
 			</div>
-
-</div>
-
-<hr class="wn5-setup-hr">

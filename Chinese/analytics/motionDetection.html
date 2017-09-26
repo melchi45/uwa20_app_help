@@ -82,7 +82,7 @@
         <div class="wn5-online-help-action">
             <h5>添加接收器摄像机</h5>
             <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>在预览屏幕上选择一个与接收器摄像机相关的移动探测区域。</li>
-                <li>在<strong class="UI">[交出]</strong>中选择<strong class="UI">[启用]</strong>。</li>
+                <li>在<strong class="UI">[切换]</strong>中选择<strong class="UI">[启用]</strong>。</li>
                 <li>单击<strong class="UI">[接收器摄像机]</strong>列表上方的<strong class="UI">[添加]</strong>按钮。</li>
                 <li>在<strong class="UI">[添加摄像机]</strong>窗口输入接收器摄像机信息和预设编号，并单击<strong class="UI">[应用]</strong>按钮。</li>
             </ol>
@@ -137,13 +137,19 @@
 
               <div class="wn5-setup-section">
                   <div class="wn5-setup-section-heading">
-                      <h2>切换</font></h2>
+                      <h2>切换</h2>
                   </div>
                   <div class="wn5-setup-section-article">
                       <div class="wn5-setup-section-article-content">
-                          <h3>切换</font></h3>
-                          <p>请选择切换接收摄像机编号。如果不打算使用切换功能，则选择<strong class="UI">[不使用]</strong>。</font></p>
-                          <p>切换是出现移动探测事件时，将接收摄像机移动至预先设置好的PTZ 预设位之功能。 切换接收摄像机可在<strong class="UI">[事件]</strong> &gt; <strong class="UI">[切换]</strong>菜单中进行设置。</font></p>
+                          <h3>切换</h3>
+                          <p>请选择切换接收摄像机编号。如果不打算使用切换功能，则选择<strong class="UI">[禁用]</strong>。</p>
+                          <p>切换是出现移动探测事件时，将接收摄像机移动至预先设置好的PTZ 预设位之功能。 切换接收摄像机可在<strong class="UI">[事件]</strong> &gt; <strong class="UI">[切换]</strong>菜单中进行设置。</p>
+
+                          <h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
+                                                  <ul>
+
+                                                      <li>可按区域设置交接接收器摄像机，先设置区域后才能使用交接功能。</li>
+
                       </div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -173,18 +179,18 @@ class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/ev
 
          <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>转至预设位</h3>
-                    <p>创建移动探测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a>或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部 PTZ]</a></strong>。</p>
+                    <p>创建移动探测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a>或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部 PTZ]</a></strong>的<strong class="UI">[预设]</strong>。</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
             <h3>转至预设位</h3>
-                    <p>创建移动探测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[预设位设置]</strong></a>。</p>
+                    <p>创建移动探测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[预设位设置]</strong></a>的<strong class="UI">[预设位设置]</strong>部分。</p>
         </div>
 
 
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>转至预设位</h3>
-                    <p>创建移动探测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ设置]</strong></a>。</p>
+                    <p>创建移动探测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ设置]</strong></a>的<strong class="UI">[预设]</strong>选项卡下。</p>
         </div>
 
 

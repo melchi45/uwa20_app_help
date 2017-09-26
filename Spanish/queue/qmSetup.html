@@ -2,7 +2,7 @@
 
 <h1 class="wn5-setup-main-title">Configuraci&oacute;n</h1>
 <div class="wn5-setup-section">
-    <p>La Gesti&oacute;n de colas es una funci&oacute;n que se utiliza para supervisar el n&uacute;mero medio de personas que permanecen en un &aacute;rea especificada y el tiempo total de permanencia a trav&eacute;s de un an&aacute;lisis de las im&aacute;genes de las c&aacute;maras. Defina el &aacute;rea de cola que desea analizar y los elementos detallados para mejor la precisi&oacute;n del an&aacute;lisis en la p&aacute;gina de &apos;Configuraci&oacute;n&apos; de gesti&oacute;n de colas. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. </p>
+    <p>La Gesti&oacute;n de colas es una funci&oacute;n que se utiliza para supervisar el n&uacute;mero medio de personas que permanecen en un &aacute;rea especificada y el tiempo total de permanencia a trav&eacute;s de un an&aacute;lisis de las im&aacute;genes de las c&aacute;maras. Defina el regla de cola que desea analizar y los elementos detallados para mejor la precisi&oacute;n del an&aacute;lisis en la p&aacute;gina de &apos;Configuraci&oacute;n&apos; de gesti&oacute;n de colas. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. </p>
 </div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -13,12 +13,31 @@
         <div class="wn5-setup-section-article-content">
             <h3>Habilitar la gesti&oacute;n de colas</h3>
             <p>Para utilizar la funci&oacute;n de gesti&oacute;n de colas, seleccione <strong class="UI">[Habilitar la gesti&oacute;n de colas]</strong>. </p>
-        </div>
-	</div>
-</div>
+          </div>
+  	</div>
+  </div>
 
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
+  <div class="wn5-setup-section">
+      <div class="wn5-setup-section-heading">
+          <h3>Regla</h3>
+      </div>
+      <div class="wn5-setup-section-article">
+          <div class="wn5-setup-section-article-content">
+              <p>Establece las reglas de cola para analizar la gente en la cola o el tiempo de cola. Puede configurar hasta tres reglas de cola. </p>
+          </div>
+          <div class="wn5-online-help-action">
+              <h4>Configurar la regla&nbsp;de gestión de colas</h4>
+              <p>Para establecer la regla de gestión de colas, marque la casilla de verificación delante de la columna <strong class="UI">[N.o] </strong>Cuando aparezca la regla de gestión de colas en la pantalla de vídeo, haga clic y arrastre un vértice del área para ajustar el tamaño y la forma del área de gestión de colas. En el campo <strong class="UI">[Nombre]</strong> escriba un nombre para el área. El nombre de la regla puede tener hasta 15 caracteres alfanuméricos. El nombre de regla que escribió aparece en <strong class="UI">[Estadísticas]</strong>&gt;<strong class="UI">[Gestión de colas]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmStatistics.html"
+  ng-href="#/help/queue_search">[Buscar]</a></strong>.</p>
+          </div>
+  		            <div class="wn5-online-help-action">
+                  <h4>Activar/desactivar el análisis de gestión de la cola mediante una regla</h4>
+              </div>
+             </div>
+  		 </div>
+
+  		 <div class="wn5-setup-section">
+      <div class="wn5-setup-section-heading">
         <h3>&Aacute;rea</h3>
     </div>
     <div class="wn5-setup-section-article">
@@ -54,13 +73,13 @@ ng-href="#/help/queue_search">[Buscar]</a></strong>.</p>
 		<div class="wn5-setup-section-article-content">
             <h3>Duraci&oacute;n m&iacute;nima</h3>
             <p>Se puede definir el tiempo de cola m&iacute;nimo para crear un evento de Cola seg&uacute;n el nivel de detecci&oacute;n. Se crea un evento de cola cuando el n&uacute;mero de personas correspondientes a &lsquo;Alto&rsquo; de <strong class="UI">[Nivel de detecci&oacute;n]</strong> de colas es mayor que el tiempo introducido en <strong class="UI">[Alto]</strong> de <strong class="UI">[Duraci&oacute;n m&iacute;nima]</strong>. &nbsp;</p>
-            <p>En otras palabras, cuando &lsquo;18&rsquo; se define para &lsquo;Alto&rsquo; de <strong class="UI">[Nivel de detecci&oacute;n]</strong> y &apos;90 segundos&rsquo; se define para &lsquo;Alto&apos; de <strong class="UI">[Duraci&oacute;n m&iacute;nima]</strong>, se crea un evento de cola si 18 o m&aacute;s personas est&aacute;n haciendo cola en el &aacute;rea de cola durante 90 segundos o m&aacute;s. </p>
+            <p>En otras palabras, cuando &lsquo;18&rsquo; se define para &lsquo;Alto&rsquo; de <strong class="UI">[Nivel de detecci&oacute;n]</strong> y &apos;60 segundos&rsquo; se define para &lsquo;Alto&apos; de <strong class="UI">[Duraci&oacute;n m&iacute;nima]</strong>, se crea un evento de cola si 18 o m&aacute;s personas est&aacute;n haciendo cola en el &aacute;rea de cola durante 60 segundos o m&aacute;s. </p>
 		</div>
         </div>
 </div>
 
 
-
+<!--
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Calibraci&oacute;n</h2>
@@ -84,7 +103,7 @@ ng-href="#/help/queue_search">[Buscar]</a></strong>.</p>
 		</div>
         </div>
 </div>
-
+-->
 
 <hr class="wn5-setup-hr">
 
@@ -126,14 +145,14 @@ ng-href="#/help/queue_search">[Buscar]</a></strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Salida de alarma</h3>
-            <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de gesti&oacute;n de colas.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salida de alarma, seleccione <strong class="UI">[Des]</strong> si no desea utilizar la alarma. Si no desea utilizar la alarma, seleccione el tiempo de salida. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+            <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de gesti&oacute;n de colas.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salida de alarma, seleccione <strong class="UI">[Desactivar]</strong> si no desea utilizar la alarma. Si no desea utilizar la alarma, seleccione el tiempo de salida. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
         </div>
 
 
         <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>Ir a predefinido.</h3>
-                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de gesti&oacute;n de colas. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de gesti&oacute;n de colas. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
@@ -143,7 +162,7 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong
 
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Ir a predefinido.</h3>
-                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de gesti&oacute;n de colas. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de gesti&oacute;n de colas. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
         </div>
 
 
@@ -161,10 +180,10 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
 
             <ul>
-                  <li>En los siguientes casos, debe restablecer las reglas para que coincidan con la pantalla de vídeo cambiada y haga clic en <strong class="UI">[Eliminar todos los datos] </strong>para eliminar los datos antiguos utilizados para la búsqueda de Gestión de colas.  </font></li>
+                  <li>En los siguientes casos, debe restablecer las reglas para que coincidan con la pantalla de vídeo cambiada y haga clic en <strong class="UI">[Eliminar todos los datos] </strong>para eliminar los datos antiguos utilizados para la búsqueda de Gestión de colas.  </li>
                   <ul>
-                      <li>Si ha cambiado la configuración en <strong class="UI">[Vídeo y audio]</font></strong> &gt; <strong class="UI">[Configuración de vídeo]</strong> &gt; <strong class="UI">[Rotación de vídeo]</strong></font></li>
-                      <li>Si cambia los ajustes en <strong class="UI">[Vídeo y audio]</font></strong> &gt; <strong class="UI">[Configuración de la cámara]</strong> &gt; <strong class="UI">[Especial] </strong>&gt; <strong class="UI">[DIS]</strong></font></li>
+                      <li>Si ha cambiado la configuración en <strong class="UI">[Vídeo y audio]</strong> &gt; <strong class="UI">[Configuración de vídeo]</strong> &gt; <strong class="UI">[Rotación de vídeo]</strong></li>
+                      <li>Si cambia los ajustes en <strong class="UI">[Vídeo y audio]</strong> &gt; <strong class="UI">[Configuración de la cámara]</strong> &gt; <strong class="UI">[Especial] </strong>&gt; <strong class="UI">[DIS]</strong></li>
                   </ul>
               </ul>
           </div>

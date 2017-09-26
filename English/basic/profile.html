@@ -27,7 +27,7 @@
         <div class="wn5-setup-section-article-content">
             <p>After profile properties have been changed, you can set whether to output an image with the previous profile or with the changed profile. </p>
             <p>When <strong class="UI">[Keep connection
-			when Profile properties are changed]</strong> is selected, the image is outputted according to the previous profile properties even if the profile properties have been changed; when the web viewer is reconnected, the image is outputted with the changed profile. <strong class="UI">[Keep connection when Profile properties are changed]</strong> is not selected, the image is outputted with the changed profile immediately when the profile properties are changed. Orange boarders will appear on the edge of the live view of the monitoring screen until you connect to the web viewer again after changing the profile properties.</p>
+			when Profile properties are changed]</strong> is selected, the image is outputted according to the previous profile properties even if the profile properties have been changed; when the web viewer is reconnected, the image is outputted with the changed profile. <strong class="UI">[Keep connection when Profile properties are changed]</strong> is not selected, the image is outputted with the changed profile immediately when the profile properties are changed. Orange boarders will appear on the edge of the live view of the [Monitoring] screen until you connect to the web viewer again after changing the profile properties.</p>
         </div>
     </div>
 </div>
@@ -83,6 +83,37 @@
             </table>
         </div>
 
+
+        <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
+      <thead>
+      <tr>
+          <td>Profile name</td>
+          <td>Codec </td>
+          <td>Description</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+          <td>MJPEG</td>
+          <td>MJPEG</td>
+          <td>
+              <p>A profile suitable for MJPEG codec. Used as event profile and recording profile</p>
+          </td>
+      </tr>
+      <tr>
+          <td>Fisheyeview</td>
+          <td>H.264</td>
+          <td>A profile that shows the fisheye camera video without distortion correction. Used as default profile</td>
+      </tr>
+          <td>MOBILE</td>
+          <td>MJPEG</td>
+          <td>A profile suitable for mobile </td>
+      </tr>
+      </tbody>
+  </table>
+</div>
+
+
         <div class="wn5-online-help-action">
             <h4><span class="tui tui-wn5-help-warning"></span>Adding a video profile</h4>
             <div>
@@ -125,6 +156,34 @@
             <p>Select the codec which you wish to apply to the profile. The profile properties may vary according to the selected codec type.</p>
         </div>
 
+
+
+                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                    <h3>Fisheye view type</h3>
+                    <p>Selects a video type of the fisheye camera to be displayed in the profile.</p>
+                    <ul>
+                        <li>Fisheye view: Displays the fisheye camera video without correction.</li>
+                        <li>Distortion correction view: Corrects the 360° video captured by the fisheye camera to fit the view. The correction video type can be selected from the <strong class="UI">[View]</strong>. </li>
+                    </ul>
+                </div>
+                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                    <h3>View</h3>
+                    <p>Selects the distortion correction video type.</p>
+                    <p>It is activated when <strong class="UI">[Distortion Correction View]</strong> is selected in <strong class="UI">[Fisheye View Type]</strong>.</p>
+                    <ul>
+                        <li>Single panorama: Displays 360° video from the fisheye camera in a single video. </li>
+                        <li>4-split view: Displays 4 videos at the same time.</li>
+                        <li>Double panorama: A single panorama view is displayed on two divided areas. The Double Panorama option only appears when <strong class="UI">[Ceiling]</strong> is selected in <strong class="UI">[Video & Audio]</strong> > <strong class="UI">[Video Setup]</strong> > <strong class="UI">[Video Rotation]</strong> > <strong class="UI">[Camera Mounting Mode]</strong>.
+
+                      </li>
+                        <li>Q1: Shows the upper left view among the 4-split view.   </li>
+                        <li>Q2: Shows the top right view among 4-split view. </li>
+                        <li>Q3: Shows the lower left view among the 4-split view.</li>
+                        <li>Q4: Shows the lower right view among the 4-split view. </li>
+                    </ul>
+                </div>
+
+
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>Profile type</h3>
             <p>Select a profile type to apply. The selected profile type will be displayed in the <strong class="UI">[Type]</strong> column of the profile list. The setup items may vary according to the selected codec type.</p>
@@ -134,6 +193,10 @@
                 <li><strong class="UI">E-mail/FTP profile</strong>: This video profile is used for sending the captured screen of an image when an event is created. &lsquo;Event&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The E-mail/FTP profile option will appear only when MJPEG is set for the codec.</li>
                 <li><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card or NAS. &lsquo;Record&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li ng-if="!PTZModel"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
+                <li ng-if="FisheyeLens" style="list-style-image:url('');">For the fisheye camera, when adding a new profile, select <strong class="UI">[Distortion Correction View]</strong> in <strong class="UI">[Fisheye View Type]</strong> and select <strong class="UI">[4-Split View]</strong> in <strong class="UI">[View]</strong> to automatically register the profile as a digital PTZ profile.
+                               </li
+
+
 
             </ul>
         </div>
@@ -298,7 +361,7 @@
 
                       <ul>
                           <li>When the WiseStream function is used, if the dynamic GOV and dynamic FPS functions are used, the WiseStream performance is optimized. The WiseStream can be set in the <strong class="UI">[Video & Audio]</strong> > <strong class="UI">[WiseStream]</strong> menu.</li>
-                      </font></ul>
+                      </ul>
           		</div>
 
         </div>
@@ -307,7 +370,7 @@
             <p>Select <strong class="UI">[Enable]</strong> to apply the Dynamic FPS function to the profile currently being set. Dynamic FPS is a function that automatically changes the frames per second according to the video situation. Dynamic FPS is enabled only when <strong class="UI">[Codec]</strong> is set to <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> and <strong class="UI">[Bitrate Control Method]</strong> is set to <strong class="UI">[VBR]</strong>.</p>
             <ul>
                 <li>Enter the minimum FPS value to be applied when Dynamic FPS is enabled.  </li>
-            </ul></font>
+            </ul>
 
         </div>
 <div class="wn5-online-help-info">
@@ -315,7 +378,7 @@
 
             <ul>
                 <li>When the WiseStream function is used, if the dynamic GOV and dynamic FPS functions are used, the WiseStream performance is optimized. The WiseStream can be set in the <strong class="UI">[Video & Audio]</strong> > <strong class="UI">[WiseStream]</strong> menu.</li>
-            </font></ul>
+            </ul>
 		        </div>
     </div>
 </div>

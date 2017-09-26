@@ -80,12 +80,44 @@
                     <td>M&Oacute;VIL</td>
                     <td>MJPEG</td>
                     <td>Perfil adecuado para m&oacute;viles</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+                  </tr>
+                  </tbody>
+              </table>
+          </div>
 
-        <div class="wn5-online-help-action">
+
+          <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
+        <thead>
+        <tr>
+            <td>Nombre de perfil</td>
+            <td>Códec </td>
+            <td>Descripción</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>MJPEG</td>
+            <td>MJPEG</td>
+            <td>
+                <p>Usado como el perfil adecuado para el códec MJPEG, perfil de eventos, y perfil de grabación</p>
+            </td>
+        </tr>
+        <tr>
+            <td>Ojo de pez</td>
+            <td>H.264</td>
+            <td>Un perfil que muestra el vídeo de cámara de ojo de pez sin corrección de distorsión. Usado como perfil predeterminado</td>
+        </tr>
+            <td>MÓVIL</td>
+            <td>MJPEG</td>
+            <td>Un perfil adecuado para móvil </td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+
+
+          <div class="wn5-online-help-action">
+
             <h4><span class="tui tui-wn5-help-warning"></span>Adici&oacute;n de un perfil de v&iacute;deo</h4>
             <div>
                 <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>. Un nuevo elemento se a&ntilde;adir&aacute; a la lista de perfiles.</li>
@@ -125,9 +157,53 @@
         <div class="wn5-setup-section-article-content">
             <h3>C&oacute;dec</h3>
             <p>Seleccione el c&oacute;dec que desea aplicar al perfil. Las propiedades del perfil podr&iacute;an variar de acuerdo con el tipo de c&oacute;dec seleccionado.</p>
-        </div>
+          </div>
 
-        <div class="wn5-setup-section-article-content">
+
+
+                  <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                      <h3>Tipo de vista de ojo de pez</h3>
+                      <p>Selecciona el tipo de vídeo de la cámara ojo de pez que se mostrará en el perfil.</p>
+                      <ul>
+                          <li>Vista de ojo de pez: Muestra el vídeo de cámara de ojo de pez sin corrección.</li>
+                          <li>Vista de corrección de distorsión: Corrige el vídeo de 360​​° capturado por la cámara ojo de pez para ajustarse a la vista. El tipo de vídeo de corrección se puede seleccionar desde la opción <strong class="UI">[Vista]</strong> mostrada cuando se selecciona 'Vista de corrección de distorsión'. </li>
+                      </ul>
+                  </div>
+                  <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                      <h3>Vista</h3>
+                      <p>Selecciona el tipo de vídeo de corrección de distorsión.</p>
+                      <p>Esto se activa cuando se selecciona <strong class="UI">[Vista de corrección de distorsión]</strong> en <strong class="UI">[Tipo de vista ojo de pez]</strong>.</p>
+                      <ul>
+                          <li>Solo panorama: Muestra el vídeo de 360​​° de la cámara de ojo de pez en un solo vídeo. </li>
+                          <li>Vista dividida en 4: Muestra 4 vídeos al mismo tiempo.</li>
+                          <li>Doble panorama: Se visualiza una sola vista panorámica en dos áreas divididas. La opción Panorama doble solo aparece cuando se selecciona <strong class="UI">[Techo]</strong> en <strong class="UI">[Vídeo y audio]</strong> > <strong class="UI">[Configuración de vídeo]</strong> > <strong class="UI">[Rotación de vídeo]</strong> > <strong class="UI">[Modo de montaje de la cámara]</strong>.
+
+                        </li>
+                          <li>Q1: Muestra la vista superior izquierda de la división en 4.   </li>
+                          <li>Q2: Muestra la vista superior derecha de la división en 4. </li>
+                          <li>Q3: Muestra la vista inferior izquierda de la división en 4.</li>
+                          <li>Q4: Muestra la vista inferior derecha de la división en 4. </li>
+                      </ul>
+                  </div>
+
+
+          <div class="wn5-setup-section-article-content">
+              <h3><a class="wn5-online-help-link" name="profiletype"></a>Tipo de perfil</h3>
+              <p>Seleccione un tipo de perfil para aplicar. El tipo de perfil seleccionado se mostrará en la columna <strong class="UI">[Tipo]</strong> de la lista de perfiles. Los elementos de configuración pueden variar según el tipo de códec seleccionado.</p>
+
+              <ul>
+                  <li><strong class="UI">Perfil predeterminado</strong>: Este es el perfil predeterminado aplicado para retransmitir por streaming una imagen de cámara en vivo. &lsquo;Default&rsquo; se muestra en <strong class="UI">[Tipo]</strong> en la lista de perfiles.</li>
+                  <li><strong class="UI">Perfil de E-mail/FTP</strong>: Este perfil de vídeo se utiliza para enviar la pantalla capturada de una imagen cuando se crea un evento. &lsquo;Event&rsquo; se muestra en <strong class="UI">[Tipo]</strong> en la lista de perfiles. La opción de perfil de E-mail/FTP aparecerá solo cuando se establezca el MJPEG para el códec.</li>
+                  <li><strong class="UI">Perfil de registro</strong>: This profile is applied for recording an image on an SD card or NAS. &lsquo;Record&rsquo; is displayed in <strong class="UI">[Tipo]</strong> en la lista de perfiles.</li>
+                  <li ng-if="!PTZModel"><strong class="UI">Perfil PTZ digital</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Tipo]</strong> en la lista de perfiles. La opción de perfil PTZ digital aparecerá solo cuando se establezca H.264 o H.265 para el códec.</li>
+                  <li ng-if="FisheyeLens" style="list-style-image:url('');">Para la cámara de ojo de pez, cuando añada un nuevo perfil, seleccione <strong class="UI">[Vista de corrección de distorsión]</strong> en <strong class="UI">[Tipo de vista de ojo de pez]</strong> y seleccione <strong class="UI">[Vista de división en 4]</strong> en <strong class="UI">[Vista]</strong> para registrar automáticamente el perfil como un perfil PTZ digital.
+                                 </li
+
+
+
+              </ul>
+          </div>
+          <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>Tipo de perfil</h3>
             <p>Seleccione un tipo de perfil para aplicar. El tipo de perfil seleccionado se muestra en la columna <strong class="UI">[Tipo]</strong> de la lista de perfiles. Los elementos de ajuste pueden variar seg&uacute;n el tipo de c&oacute;dec seleccionado.</p>
 
@@ -136,9 +212,12 @@
                 <li><strong class="UI">Perfil de E-mail/FTP</strong>: Este perfil de v&iacute;deo se utiliza para el env&iacute;o de la pantalla capturada de una imagen cuando se crea un evento. &apos;Evento&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil E-mail/FTP aparecer&aacute; s&oacute;lo cuando MJPEG se establezca para el c&oacute;dec.</li>
                 <li><strong class="UI">Perfil de grabaci&oacute;n</strong>: Este perfil se aplica para la grabaci&oacute;n de una imagen en una tarjeta SD o NAS. &apos;Grabar&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
                 <li ng-if="!PTZModel"><strong class="UI">Perfil PTZ digital</strong>: Este perfil se utiliza para controlar los movimientos PTZ. &apos;DPTZ&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil PTZ digital aparecer&aacute; s&oacute;lo cuando H.264 o H.265 se establezca para el c&oacute;dec.</li>
+                <li ng-if="FisheyeLens" style="list-style-image:url('');">Para la cámara de ojo de pez, al agregar un nuevo perfil, seleccione <strong class="UI">[Vista de corrección de distorsión]</strong> en <strong class="UI">[Tipo de vista de ojo de pez]</strong> y seleccione <strong class="UI">[Vista de división en 4]</strong> en <strong class="UI">[Vista]</strong> para registrar automáticamente el perfil como un perfil PTZ digital.
+                               </li
 
-            </ul>
-        </div>
+
+
+            </ul>        </div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="audioin"></a>Entrada de audio </h3>
             <p>Cuando la c&aacute;mara tiene un micr&oacute;fono interno o un micr&oacute;fono externo est&aacute; conectado, puede configurar los sonidos externos para ser introducidos en la imagen.</p>
@@ -270,7 +349,7 @@
 
         <div class="wn5-setup-section-article-content">
             <h3>Perfil</h3>
-            <p>Este men&uacute; se activa s&oacute;lo cuando el c&oacute;dec del perfil es H.264. El perfil puede ser considerado como un conjunto de diferentes tecnolog&iacute;as de compresi&oacute;n. Los perfiles soportados en las c&aacute;maras Hanwha Techwin incluyen <strong class="UI">[Baseline]</strong>, <strong class="UI">[Main]</strong> y <strong class="UI">[High]</strong>. El funcionamiento de la compresi&oacute;n se hace m&aacute;s alto y la calidad mejora a medida que se pasa de Base a Alto, pero una gran cantidad de recursos del sistema se utilizan para comprimir y descomprimir, y podr&iacute;a crear una tensi&oacute;n en el equipo de reproducci&oacute;n.</p>
+            <p>Este men&uacute; se activa s&oacute;lo cuando el c&oacute;dec del perfil es H.264. El perfil puede ser considerado como un conjunto de diferentes tecnolog&iacute;as de compresi&oacute;n. Los perfiles soportados en las c&aacute;maras Hanwha Techwin incluyen <strong class="UI">[Línea de base]</strong>, <strong class="UI">[Principal]</strong> y <strong class="UI">[Alto]</strong>. El funcionamiento de la compresi&oacute;n se hace m&aacute;s alto y la calidad mejora a medida que se pasa de Base a Alto, pero una gran cantidad de recursos del sistema se utilizan para comprimir y descomprimir, y podr&iacute;a crear una tensi&oacute;n en el equipo de reproducci&oacute;n.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Codif. Entropia</h3>
@@ -289,7 +368,7 @@
 
         <div class="wn5-setup-section-article-content">
             <h3>GOV Din&aacute;mica</h3>
-                <p>Para aplicar la funci&oacute;n GOV Din&aacute;mica al perfil actual, seleccione <strong class="UI">[Activar]</strong>. GOV Din&aacute;mica es la funci&oacute;n por la que la longitud GOV cambia autom&aacute;ticamente de acuerdo con la situaci&oacute;n de la imagen. En otras palabras, en una imagen casi sin movimiento, la longitud GOV establecida por el usuario en <strong class="UI">[GOV Din&aacute;mica]</strong> aumenta al m&aacute;ximo, y cuando se detecta movimiento, se reduce a la longitud establecida en <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[Longitud de GOV]</strong></a> para generar la imagen. GOV Din&aacute;mica se activa s&oacute;lo cuando <strong class="UI">[Control de vel. bits]</strong> es <strong class="UI">[VBR]</strong>.</p>
+                <p>Para aplicar la funci&oacute;n GOV Din&aacute;mica al perfil actual, seleccione <strong class="UI">[Activar]</strong>. GOV Din&aacute;mica es la funci&oacute;n por la que la longitud GOV cambia autom&aacute;ticamente de acuerdo con la situaci&oacute;n de la imagen. En otras palabras, en una imagen casi sin movimiento, la longitud GOV establecida por el usuario en <strong class="UI">[GOV Din&aacute;mico]</strong> aumenta al m&aacute;ximo, y cuando se detecta movimiento, se reduce a la longitud establecida en <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[Longitud de GOV]</strong></a> para generar la imagen. GOV Din&aacute;mica se activa s&oacute;lo cuando <strong class="UI">[Control de vel. bits]</strong> es <strong class="UI">[VBR]</strong>.</p>
 
             <ul>
                 <li>Introduzca la longitud m&aacute;xima GOV a aplicar cuando no haya movimiento en la imagen. El rango de valor de entrada se muestra junto a <strong class="UI">[Longitud de GOV]</strong>. El valor de entrada en <strong class="UI">[Longitud de GOV]</strong> se convierte en el valor m&iacute;nimo, mientras que el valor m&aacute;ximo es de 480; que var&iacute;a de acuerdo con la <strong class="UI">[Velocidad de cuadro]</strong> en <strong class="UI">[Propiedades de perfil]</strong>.</li>
@@ -301,7 +380,7 @@
 
                           <ul>
                               <li>Cuando se utiliza la función WiseStream, si se utilizan las funciones dinámicas GOV y FPS dinámicas, se optimiza el rendimiento de WiseStream. El WiseStream se puede configurar en el menú <strong class="UI">[Vídeo y Audio]</strong> > <strong class="UI">[WiseStream]</strong> menu.</li>
-                          </font></ul>
+                          </ul>
               		</div>
 
             </div>
@@ -310,7 +389,7 @@
                 <p>Seleccione <strong class="UI">[Activar]</strong> para aplicar la función FPS dinámico al perfil que se está configurando actualmente. FPS dinámico es una función que cambia automáticamente los fotogramas por segundo de acuerdo con la situación del vídeo. FPS dinámico sólo se habilita cuando <strong class="UI">[Códec]</strong> está ajustado en <strong class="UI">[H.264]</strong> o <strong class="UI">[H.265]</strong> and <strong class="UI">[Método de control de velocidad de bits]</strong> está ajustado en <strong class="UI">[VBR]</strong>.</p>
                 <ul>
                     <li>Introduzca el valor FPS mínimo que se aplicará cuando FPS dinámico esté habilitado.  </li>
-                </ul></font>
+                </ul>
 
             </div>
     <div class="wn5-online-help-info">
@@ -318,7 +397,7 @@
 
                 <ul>
                     <li>Cuando se utiliza la función WiseStream, si se utilizan las funciones dinámicas GOV y FPS dinámicas, se optimiza el rendimiento de WiseStream. El WiseStream se puede configurar en el menú <strong class="UI">[Vídeo y Audio]</strong> > <strong class="UI">[WiseStream]</strong>.</li>
-                </font></ul>
+                </ul>
     		        </div>
         </div>
     </div>

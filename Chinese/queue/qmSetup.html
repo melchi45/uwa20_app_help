@@ -2,7 +2,7 @@
 
 <h1 class="wn5-setup-main-title">设置</h1>
 <div class="wn5-setup-section">
-    <p>队列管理是一种功能，用于通过对摄像机图像进行分析来监视停留在指定区域的平均人数和总停留时间。在队列管理的&ldquo;设置&rdquo;页面中设置要分析的队列区域和提高分析精度的详细项目。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。 </p>
+    <p>队列管理是一种功能，用于通过对摄像机图像进行分析来监视停留在指定区域的平均人数和总停留时间。在队列管理的&ldquo;设置&rdquo;页面中设置要分析的队列规则和提高分析精度的详细项目。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。 </p>
 </div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -19,21 +19,21 @@
 
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h3>区域</h3>
+        <h3>规则</h3>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>设置要分析的排队人数或排队时间的队列区域。可设置多达 3 个队列区域。 </p>
+            <p>设置要分析的排队人数或排队时间的队列规则。可设置多达 3 个队列规则。</p>
         </div>
         <div class="wn5-online-help-action">
-            <h4>设置队列管理区域</h4>
-            <p>要设置队列管理区域，请在<strong class="UI">[编号]</strong>列前面的复选框中打勾。队列管理区域显示在图像屏幕上时，可以使用鼠标拖动区域一角来调整队列管理区域的大小和形状。在<strong class="UI">[名称]</strong>字段输入区域的名称。最多可以为区域名称输入 15 个字符，包括字母和数字。输入的名称显示于<strong class="UI">[统计]</strong>&gt;<strong class="UI">[队列管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmStatistics.html"
+            <h4>设置队列&nbsp;管理规则</h4>
+            <p>要设置队列管理规则，请在<strong class="UI">[编号] </strong>列前面的复选框中打勾。队列管理规则显示在图像屏幕上时，可以使用鼠标拖动区域一角来调整队列管理区域的大小和形状。在<strong class="UI">[名称]</strong>字段输入区域的名称。最多可以为规则名称输入 15 个字符，包括字母和数字。输入的名称显示于<strong class="UI">[统计]</strong>&gt;<strong class="UI">[队列管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmStatistics.html"
 ng-href="#/help/queue_search">[搜索]</a></strong>中。</p>
         </div>
 		            <div class="wn5-online-help-action">
-                <h4>激活和停用每个区域的队列管理分析</h4>
+                <h4>激活和停用每个规则的队列管理分析</h4>
                 <p>要激活队列管理分析，请选中相关<strong class="UI">[编号]</strong>列前面的复选框。</p>
-                  <p>要停用队列管理分析，请取消选中相关<strong class="UI">[编号]</strong>列前面的复选框。每个区域的队列管理分析设置保持不变，这意味着如果再次选中该复选框，队列管理分析功能将在同一设置中激活。 </p>
+                  <p>要停用队列管理分析，请取消选中相关<strong class="UI">[编号]</strong>列前面的复选框。每个规则的队列管理分析设置保持不变，这意味着如果再次选中该复选框，队列管理分析功能将在同一设置中激活。</p>
             </div>
            </div>
 		 </div>
@@ -42,25 +42,25 @@ ng-href="#/help/queue_search">[搜索]</a></strong>中。</p>
     <div class="wn5-setup-section-heading">
         <h2>队列事件</h2>
         <p>设置条件以创建队列事件。 </p>
-        <p>可以为<strong class="UI">[区域]</strong>中的每个队列设置不同的队列事件。</p>
+        <p>可以为<strong class="UI">[规则]</strong>中的每个队列设置不同的队列事件。</p>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3><a name="level"></a>检测级别</h3>
-            <p>根据给定队列中的人数，检测级别分为&ldquo;高&rdquo;和&ldquo;中&rdquo;。人数设置为[最大大小]和[高]时，将自动设置&ldquo;中&rdquo;值。 </p>
+            <p>根据给定队列规则中的人数，检测级别分为&lsquo;高&rsquo;和&lsquo;中&rsquo;。人数设置为[最大大小]和[高]时，将自动设置&ldquo;中&rdquo;值。 </p>
             <p>&ldquo;高&rdquo;级别是指检测到超过&ldquo;高&rdquo;值且小于&ldquo;最大大小&rdquo;值的人数状态。&ldquo;中&rdquo;级别是指检测到超过&ldquo;中&rdquo;值且小于&ldquo;高&rdquo;值的人数状态。 </p>
             <p>例如，如果[最大大小]值设置为 20，[高]值设置为 18，则为&ldquo;中&rdquo;值自动设置为 9。如果在相关队列中排队的人数超过 18 人，并且少于 20 人，则检测级别为&ldquo;高&rdquo;。如果在相关队列中排队的人数超过 9 人，并且少于 18 人，则检测级别为&ldquo;中&rdquo;。</p>
         </div>
 		<div class="wn5-setup-section-article-content">
             <h3>最短持续时间</h3>
-            <p>可以设置通过检测级别创建队列事件的最短排队时间。当<strong class="UI">[检测级别]</strong>&ldquo;高&rdquo;队列对应的人数比<strong class="UI">[最短持续时间]</strong>的<strong class="UI">[高]</strong>上输入的时间长时，会创建队列事件。 &nbsp;</p>
-            <p>也就是说，<strong class="UI">[检测级别]</strong>的&ldquo;高&rdquo;设置为&ldquo;18&rdquo;，而<strong class="UI">[最短持续时间]</strong>的&ldquo;高&rdquo;设置为&ldquo;90 秒&rdquo;时，如果有 18 个或以上人员在队列区域排队 90 秒或以上，则创建队列事件。 </p>
+            <p>可以设置通过检测级别创建队列事件的最短排队时间。当<strong class="UI">[探测级别]</strong>&ldquo;高&rdquo;队列对应的人数比<strong class="UI">[最短持续时间]</strong>的<strong class="UI">[高]</strong>上输入的时间长时，会创建队列事件。 &nbsp;</p>
+            <p>也就是说，<strong class="UI">[探测级别]</strong>的&ldquo;高&rdquo;设置为&ldquo;18&rdquo;，而<strong class="UI">[最短持续时间]</strong>的&ldquo;高&rdquo;设置为&ldquo;60 秒&rdquo;时，如果有 18 个或以上人员在队列区域排队 60 秒或以上，则创建队列事件。 </p>
 		</div>
         </div>
 </div>
 
 
-
+<!--
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>校准</h2>
@@ -84,7 +84,7 @@ ng-href="#/help/queue_search">[搜索]</a></strong>中。</p>
 		</div>
         </div>
 </div>
-
+-->
 
 <hr class="wn5-setup-hr">
 
@@ -132,17 +132,17 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a
 
          <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>转至预设位</h3>
-                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a>或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部 PTZ]</a></strong>。</p>
+                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a>或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部 PTZ]</a></strong>的<strong class="UI">[预设]</strong>。</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
             <h3>转至预设位</h3>
-                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[预设位设置]</strong></a>。</p>
+                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[预设位设置]</strong></a>的<strong class="UI">[预设位设置]</strong>部分。</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>转至预设位</h3>
-                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ设置]</strong></a>。</p>
+                    <p>创建队列管理事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ设置]</strong></a>的<strong class="UI">[预设]</strong>选项卡下。</p>
         </div>
 
 
@@ -154,16 +154,16 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a
 <div class="wn5-setup-section">
 		<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <h3>删除数据</h3>
-                <p>要删除所有队列分析数据，请单击<strong class="UI">[删除数据]</strong>。 </p>
+            <h3>删除所有数据</h3>
+                <p>要删除所有队列分析数据，请单击<strong class="UI">[删除所有数据]</strong>。 </p>
                 <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
 
                     <ul>
-                      <li>如果出现以下情况，应根据所修改的视频画面重新设置规则后，点击<strong class="UI">[删除所有数据] </strong>，删除用于搜索队列管理的之前数据。</font></li>
+                      <li>如果出现以下情况，建议根据所修改的视频画面重新设置规则后，点击<strong class="UI">[删除所有数据] </strong> ，删除用于搜索队列管理的之前数据。</li>
                       <ul>
-                          <li>在<strong class="UI">[视频及音频]</font></strong> &gt; <strong class="UI">[视频设置]</strong> &gt; <strong class="UI">[视频旋转]</strong></font>中更改设置值时 </li>
-                          <li>在<strong class="UI">[视频及音频]</font></strong> &gt; <strong class="UI">[摄像机设置]</strong> &gt; <strong class="UI">[附加菜单] </strong>&gt; <strong class="UI">[DIS]</strong></font>中更改设置值时 </li>
+                          <li>在<strong class="UI">[视频及音频]</strong> &gt; <strong class="UI">[视频设置]</strong> &gt; <strong class="UI">[视频旋转]</strong>中更改设置值时 </li>
+                          <li>在<strong class="UI">[视频及音频]</strong> &gt; <strong class="UI">[摄像机设置]</strong> &gt; <strong class="UI">[附加菜单] </strong>&gt; <strong class="UI">[DIS]</strong>中更改设置值时 </li>
                       </ul>
                   </ul>
               </div>
