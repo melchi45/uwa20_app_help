@@ -189,7 +189,7 @@
                 <li><strong class="UI">默认配置文件</strong>：这是应用于串流实时摄像机图像的默认配置文件。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;默认&rsquo;。</li>
                 <li><strong class="UI">电子邮件/FTP 配置文件</strong>：创建一个事件时，此视频配置文件用于发送已捕获的屏幕图像。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;事件&rsquo;。只有在编解码器设置为 MJPEG 时才会出现电子邮件/FTP 配置文件选项。</li>
                 <li><strong class="UI">录制配置文件</strong>：这种配置文件用于在 SD 卡或 NAS 上录制图像。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;录制&rsquo;。</li>
-                <li ng-if="!PTZModel"><strong>数字 PTZ</strong><strong class="UI"> 配置文件</strong>：这种配置文件用于控制 PTZ 移动。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;DPTZ&rsquo;。只有在编解码器设置为 H.264 或 H.265 时才会出现 数字 PTZ&nbsp;配置文件选项。 </li>
+                <li ng-if="DPTZSetupPage"><strong>数字 PTZ</strong><strong class="UI"> 配置文件</strong>：这种配置文件用于控制 PTZ 移动。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;DPTZ&rsquo;。只有在编解码器设置为 H.264 或 H.265 时才会出现 数字 PTZ&nbsp;配置文件选项。 </li>
                 <li ng-if="FisheyeLens" style="list-style-image:url('');">在鱼眼摄像机中添加新配置文件时，在<strong class="UI">[鱼眼视图类型]</strong>中选择<strong class="UI">[去翘曲视图]</strong>后，在<strong class="UI">[视图]</strong>中选择<strong class="UI">[四元视图]</strong>，自动将相应配置文件注册成数字PTZ 配置文件。
                                </li
 

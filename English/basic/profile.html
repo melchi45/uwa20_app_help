@@ -97,13 +97,13 @@
           <td>MJPEG</td>
           <td>MJPEG</td>
           <td>
-              <p>A profile suitable for MJPEG codec. Used as event profile and recording profile</p>
+              <p>A profile suitable for MJPEG codec. Used as event profile and record profile</p>
           </td>
       </tr>
       <tr>
-          <td>Fisheyeview</td>
+          <td>Fisheye view</td>
           <td>H.264</td>
-          <td>A profile that shows the fisheye camera video without distortion correction. Used as default profile</td>
+          <td>A profile that shows the fisheye camera video without dewarping. Used as default profile</td>
       </tr>
           <td>MOBILE</td>
           <td>MJPEG</td>
@@ -163,23 +163,23 @@
                     <p>Selects a video type of the fisheye camera to be displayed in the profile.</p>
                     <ul>
                         <li>Fisheye view: Displays the fisheye camera video without correction.</li>
-                        <li>Distortion correction view: Corrects the 360° video captured by the fisheye camera to fit the view. The correction video type can be selected from the <strong class="UI">[View]</strong>. </li>
+                        <li>Dewarping view: Corrects the 360° video captured by the fisheye camera to fit the view. The dewarping video type can be selected from the <strong class="UI">[View]</strong>. </li>
                     </ul>
                 </div>
                 <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
                     <h3>View</h3>
-                    <p>Selects the distortion correction video type.</p>
-                    <p>It is activated when <strong class="UI">[Distortion Correction View]</strong> is selected in <strong class="UI">[Fisheye View Type]</strong>.</p>
+                    <p>Selects the dewarping video type.</p>
+                    <p>It is activated when <strong class="UI">[Dewarping view]</strong> is selected in <strong class="UI">[Fisheye view type]</strong>.</p>
                     <ul>
                         <li>Single panorama: Displays 360° video from the fisheye camera in a single video. </li>
-                        <li>4-split view: Displays 4 videos at the same time.</li>
-                        <li>Double panorama: A single panorama view is displayed on two divided areas. The Double Panorama option only appears when <strong class="UI">[Ceiling]</strong> is selected in <strong class="UI">[Video & Audio]</strong> > <strong class="UI">[Video Setup]</strong> > <strong class="UI">[Video Rotation]</strong> > <strong class="UI">[Camera Mounting Mode]</strong>.
+                        <li>Quad view: Displays 4 videos at the same time.</li>
+                        <li>Double panorama: A single panorama view is displayed on two divided areas. The Double panorama option only appears when <strong class="UI">[Ceiling]</strong> is selected in <strong class="UI">[Video & Audio]</strong> > <strong class="UI">[Video setup]</strong> > <strong class="UI">[Video rotation]</strong> > <strong class="UI">[Camera mounting mode]</strong>.
 
                       </li>
-                        <li>Q1: Shows the upper left view among the 4-split view.   </li>
-                        <li>Q2: Shows the top right view among 4-split view. </li>
-                        <li>Q3: Shows the lower left view among the 4-split view.</li>
-                        <li>Q4: Shows the lower right view among the 4-split view. </li>
+                        <li>Q1: Shows the upper left view among the quad view.   </li>
+                        <li>Q2: Shows the top right view among quad view. </li>
+                        <li>Q3: Shows the lower left view among the quad view.</li>
+                        <li>Q4: Shows the lower right view among the quad view. </li>
                     </ul>
                 </div>
 
@@ -192,8 +192,8 @@
                 <li><strong class="UI">Default profile</strong>: This is the default profile applied for streaming a live camera image. &lsquo;Default&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>: This video profile is used for sending the captured screen of an image when an event is created. &lsquo;Event&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The E-mail/FTP profile option will appear only when MJPEG is set for the codec.</li>
                 <li><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card or NAS. &lsquo;Record&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
-                <li ng-if="!PTZModel"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
-                <li ng-if="FisheyeLens" style="list-style-image:url('');">For the fisheye camera, when adding a new profile, select <strong class="UI">[Distortion Correction View]</strong> in <strong class="UI">[Fisheye View Type]</strong> and select <strong class="UI">[4-Split View]</strong> in <strong class="UI">[View]</strong> to automatically register the profile as a digital PTZ profile.
+                <li ng-if="DPTZSetupPage"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
+                <li ng-if="FisheyeLens" style="list-style-image:url('');">For the fisheye camera, when adding a new profile, select <strong class="UI">[Dewarping view]</strong> in <strong class="UI">[Fisheye view type]</strong> and select <strong class="UI">[Quad view]</strong> in <strong class="UI">[View]</strong> to automatically register the profile as a digital PTZ profile.
                                </li
 
 

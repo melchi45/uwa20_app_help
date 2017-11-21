@@ -5,7 +5,7 @@
 전으로 돌아갑니다.</p>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>타입</h2>
@@ -16,8 +16,8 @@
         </div>
 </div>
 </div>
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
+<div class="wn5-setup-section" ng-if="ImagePresetMode">
+    <div class="wn5-setup-section-heading" ng-if="ImagePresetMode">
         <h2>이미지 프리셋 모드</h2>
     </div>
     <div class="wn5-setup-section-article">
@@ -138,8 +138,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="Sensor">
+<div class="wn5-setup-section" ng-if="Sensor">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="sensor"></a>센서</h2>
     </div>
@@ -186,8 +186,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="WhiteBalance">
+<div class="wn5-setup-section" ng-if="WhiteBalance">
     <div class="wn5-setup-section-heading">
         <h2>화이트 밸런스</h2>
     </div>
@@ -242,8 +242,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="BackLight">
+<div class="wn5-setup-section" ng-if="BackLight">
     <div class="wn5-setup-section-heading">
         <h2>역광 보정</h2>
     </div>
@@ -352,23 +352,23 @@
             <h3>밝기  </h3>
             <p>화면의 밝기를 조절할 수 있습니다. 숫자가 클수록 화면이 밝아집니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MinShutterOptions">
             <h3>최소 셔터  </h3>
             <p>셔터는 환경에 따라 센서의 노출을 자동으로 설정할 수 있으며, 최소 셔터~최대 셔터 범위까지 전자 셔터가 작동합니다. 최소 셔터는 저속 노출 시간 가능 범위의 최솟값을 말하며 긴 노출 시간의 한계를 설정합니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxShutterOptions">
             <h3>최대 셔터  </h3>
             <p>최대 셔터는 고속 노출 시간 가능 범위의 최댓값을 말하며 짧은 노출 시간의 한계를 설정합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PreferShutterOptions">
             <h3>사용자 선호 셔터  </h3>
             <p>셔터가 저속일 때 주간에 블러링 현상이 발생하는 것을 줄이기 위해서 사용자가 선호하는 셔터를 지정합니다. 사용자 선호 셔터를 설정합니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="AFLKModeOptions">
             <h3>플리커 방지  </h3>
             <p>촬영 환경에 있는 조명과 주파수 불일치로 발생하는 화면의 떨림 현상을 방지합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
             <h3>SSNR</h3>
             <p>영상의 노이즈를 제거합니다.</p>
             <ul>
@@ -377,11 +377,11 @@
                 <li><strong class="UI">지능형 NR</strong>: 영상 내에 움직이는 물체가 있으면 자동으로 노이즈 감쇄 레벨을 조절하여 물체의 식별력을 향상시킵니다.  </li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
             <h3>SSNR 2D 레벨 </h3>
             <p>SSNR 2D는 한 프레임에서 인접한 픽셀을 사용하여 영상의 노이즈를 줄입니다. SSNR 2D 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>이나 <strong class="UI">[지능형 NR]</strong>로 선택한 경우 설정할 수 있습니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
             <h3>SSNR 3D 레벨 </h3>
             <p>SSNR 3D는 여러 프레임의 픽셀을 이용하여 후 영상의 노이즈를 줄입니다. SSNR 3D 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>이나 <strong class="UI">[지능형 NR]</strong>로 선택한 경우 설정할 수 있습니다.</p>
         </div>
@@ -416,15 +416,15 @@
             <h3>P-조리개 위치 </h3>
             <p><strong class="UI">[P-조리개]</strong>를 <strong class="UI">[수동]</strong>으로 선택하면 활성화됩니다. P-조리개의 위치를 조절할 수 있습니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
             <h3>AGC</h3>
             <p>AGC (Auto Gain Control)는 어두운 조명에서 피사체를 촬영할 때 영상 게인의 감도를 조절하여 밝기를 조절할 수 있습니다. </p>
         </div>
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="DayNight">
+<div class="wn5-setup-section" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
         <h2>주야간 모드</h2>
     </div>
@@ -502,35 +502,35 @@
                 <li>DIS 설정을 변경하면 영상 화면이 축소되거나 확대될 수 있습니다. 변경된 영상에 맞춰 영상을 분석할 수 있도록 <strong class="UI">[분석]</strong> 메뉴에서 분석 설정을 변경해 주십시오.   </li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>윤곽 조정</h3>
             <p>영상의 전반적인 윤곽을 조절합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>윤곽 레벨</h3>
             <p>영상의 전반적인 윤곽을 조절합니다. <strong class="UI">[윤곽 조정]</strong>을 <strong class="UI">[사용함]</strong>으로 설정하면 윤곽 레벨을 설정할 수 있습니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Gamma">
             <h3>감마</h3>
             <p>영상의 대비를 조절합니다. 영상에서 가장 밝은 부분과 가장 어두운 부분의 격차를 말하며, 감마의 숫자가 높을수록 밝기의 차이가 확실히 드러납니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Contrast">
             <h3>대비 </h3>
             <p>영상의 음영 대비를 조절합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Saturation">
             <h3>컬러 레벨 </h3>
             <p>영상에서 색의 강약을 조절합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
             <h3>안개 제거</h3>
             <p>안개가 끼거나 날씨가 흐릴 때 영상을 보정합니다. <strong class="UI">[자동]</strong>으로 설정하면 주변 환경을 감지하여 자동으로 영상을 보정합니다. <strong class="UI">[수동]</strong>으로 설정하면 사용자가 주변 환경을 보고 직접 보정량을 설정할 수 있습니다. 안개량이 감소하여도 설정한 안개 제거 레벨만큼 기능을 실행하려면 <strong class="UI">[수동]</strong>으로 설정합니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
             <h3>안개 제거 레벨</h3>
             <p>안개 제거가 <strong class="UI">[수동]</strong>인 경우 활성화되며 안개 제거 레벨을 조절합니다. 안개 제거 레벨이 높으면 영상이 더 선명하게 보입니다. 안개가 낀 정도가 약하면서 안개 제거 레벨이 높으면 화면이 어두워 보일 수 있습니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC</h3>
             <p> LDC (Lens Distortion Correction)는 광각 렌즈의 모서리 부분의 영상 왜곡 현상을 보정해줍니다. </p>
             <ul>
@@ -539,7 +539,7 @@
                 <li ng-if="LDCAuto"><strong class="UI">자동</strong>: 자동으로 영상 왜곡을 조절합니다.  </li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC 레벨</h3>
             <p>LDC 기능의 레벨을 조절합니다. <strong class="UI">[LDC]</strong>를 <strong class="UI">[수동]</strong>으로 설정하면 활성화됩니다. </p>
         </div>
@@ -562,7 +562,7 @@
             </ul>
             <h3>카메라 타이틀</h3>
             <p>카메라 타이틀의 표시 여부를 설정합니다. <strong class="UI">[사용]</strong>을 선택하면<strong class="UI">[추가]</strong>/<strong class="UI">[삭제]</strong> 버튼이 활성화됩니다. </p>
-            <p><strong class="UI">[추가]</strong> 버튼을 클릭하면 목록에 카메라 명칭을 입력할 수 있는 필드가 추가됩니다. 카메라의 타이틀을 입력하고 X 좌표와 Y 좌표를 움직여 위치를 설정합니다. 카메라 타이틀은 5개까지 추가할 수 있지만 화면에는 1개만 표시할 수 있습니다. </p>
+            <p><strong class="UI">[추가]</strong> 버튼을 클릭하면 목록에 카메라 명칭을 입력할 수 있는 필드가 추가됩니다. 카메라의 타이틀을 입력하고 X 좌표와 Y 좌표를 움직여 위치를 설정합니다. 카메라 타이틀은 5개까지 추가할 수 있습니다. </p>
             <p>카메라 타이틀을 삭제하려면 삭제할 이름을 선택한 후 <strong class="UI">[삭제]</strong> 버튼을 클릭합니다. 카메라 타이틀을 입력한 후 화면상에 어떻게 보이는지 미리 확인하려면 이름을 입력한 후 <strong class="UI">[미리보기]</strong> 버튼을 클릭합니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -597,8 +597,36 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="Focus">
-<div class="wn5-setup-section" ng-if="Focus">
+<hr class="wn5-setup-hr" ng-if="ColorPalette">
+<div class="wn5-setup-section" ng-if="ColorPalette">
+    <div class="wn5-setup-section-heading">
+        <h2>컬러 팔레트</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>열화상 카메라 영상을 시각적으로 분석하기 쉽도록, 사용자가 원하는 컬러 팔레트를 선택할 수 있습니다. </p>
+
+        </div>
+        <div class="wn5-setup-section-article-content">
+           
+            <h3>컬러 팔레트</h3>
+            <p>옵션 항목에서 원하는 컬러 팔레트를 선택합니다. 선택한 옵션은 <strong class="UI">[라이브]</strong> 페이지에도 동일하게 적용됩니다. </p>
+            <p>각 컬러 팔레트 옵션별 색깔 표현&nbsp;방식은 다음과 같습니다. </p>
+            <ul>
+                <li><strong class="UI">White hot</strong>: 고온에서 저온을 흰색에서에서 검은색으로 표현합니다.</li>
+                <li><strong class="UI">Black hot</strong>: 고온에서 저온을 검은색에서 흰색으로 표현합니다.</li>
+                <li><strong class="UI">Rainbow</strong>: 고온에서 저온을 빨강, 주황, 노랑, 초록, 파랑, 남색, 보라로 표현합니다.</li>
+                <li><strong class="UI">Wisenet</strong>: 고온에서 저온을 주황색에서 검정색으로 표현합니다.</li>
+                <li><strong class="UI">Sepia</strong>: 고온에서 저온을 노란색에서 검정색으로 표현합니다.</li>
+                <li><strong class="UI">Red</strong>: 고온에서 저온을 검정색에서 빨간색으로 표현합니다.</li>
+                <li><strong class="UI">Iron</strong>: 고온에서 저온을 노란색에서 보라색으로 표현합니다.  </li>
+            </ul>
+        </div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="FocusModeOptions">
+<div class="wn5-setup-section" ng-if="FocusModeOptions">
     <div class="wn5-setup-section-heading">
         <h2>포커스</h2>
     </div>
@@ -681,7 +709,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>한 번만 동작</h3>
-            <p>성애가 발생한 경우 팬을 작동시켜 성애를 제거하려면 동작 버튼<span class="tui tui-ch-playback-reset"></span>을 한 번 클릭합니다.</p>
+            <p>팬을 작동시키려면 동작 버튼<span class="tui tui-ch-playback-reset"></span>을 한 번 클릭합니다.</p>
         </div>
     </div>
 </div>  
@@ -707,8 +735,8 @@
 
 
 
-<hr class="wn5-setup-hr" ng-if="!PTZModel">
-<div class="wn5-setup-section" ng-if="!PTZModel">
+<hr class="wn5-setup-hr" ng-if="ActivationTime">
+<div class="wn5-setup-section" ng-if="ActivationTime">
     <div class="wn5-setup-section-heading">
         <h2>이벤트 동작 스케줄</h2>
     </div>
