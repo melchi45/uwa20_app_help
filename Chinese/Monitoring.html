@@ -54,17 +54,22 @@
                             <p>&nbsp;</p>
 </td>
                     <td width="235">
-                        <p ng-if="PTZMode">可控制摄像机的平移/倾斜/缩放。仅当当前实时屏幕所用的视频配置文件支持数字 PTZ 时，才能运行 PTZ。如需更改数字 PTZ 控制配置文件，请在<STRONG class="UI">[设置]</STRONG>&gt;<STRONG class="UI">[基本设置]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[配置文件类型]</STRONG>中选择<STRONG class="UI">[数字 PTZ 配置文件]</STRONG>。</p>
+                        <p ng-if="DPTZSetupPage">可控制摄像机的平移/倾斜/缩放。仅当当前实时屏幕所用的视频配置文件支持数字 PTZ 时，才能运行 PTZ。如需更改数字 PTZ 控制配置文件，请在<STRONG class="UI">[设置]</STRONG>&gt;<STRONG class="UI">[基本设置]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[配置文件类型]</STRONG>中选择<STRONG class="UI">[数字 PTZ 配置文件]</STRONG>。</p>
 
 
-                        <p ng-if="PTZModel">您可控制摄像机的平移/倾斜/缩放。您可转到在<strong class="UI">[设置]</strong>&gt、<strong class="UI">[PTZ]</strong>&gt、<strong class="UI">[PTZ 设置]</strong>页面中设置的预设或开始/停止摆动、分组巡航、巡航和跟踪功能。</p>
+                        <p ng-if="PTZSetupPage">您可控制摄像机的平移/倾斜/缩放。您可转到在<strong class="UI">[设置]</strong>&gt、<strong class="UI">[PTZ]</strong>&gt、<strong class="UI">[PTZ 设置]</strong>页面中设置的预设或开始/停止摆动、分组巡航、巡航和跟踪功能。</p>
 
                     </td>
                 </tr>
               </td>
               </tr>
                 <tr ng-if="FisheyeLens">
-                          <td width="235"><a class="wn5-online-help-link" href="#fisheyeview" ng-href="#/help/monitoring?#fisheyeview">鱼眼视图</a></td>
+
+                    <td width="235">
+                        <p><span class="tui tui-wn5-toolbar-fisheye"></span></p>
+                        <p><a class="wn5-online-help-link" href="#fisheyeview" ng-href="#/help/monitoring?#fisheyeview">鱼眼视图</a></p>
+                    </td>
+
                           <td width="235">
                               <p>能以多种视图模式确认鱼眼摄像机的视频。</p>
                               <p>将插件安装在Internet Explorer后， 在[视频设置]Tap中选择'FisheyeView' 配置文件时才能显示。</p>
