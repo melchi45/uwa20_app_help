@@ -464,7 +464,7 @@
             						<div class="wn5-online-help-info">
             			<h4><span class="tui tui-wn5-help-warning"></span>须知</font></h4>
                         <ul>
-                            <li>如果更改DIS设置，则视频画面会缩小或放大。 请在<strong class="UI">[分析]</strong> 菜单中更改分析设置，以根据所修改的视频分析视频。</font>  </li>
+                            <li>如果更改DIS设置，则视频画面会缩小或放大。请在<strong class="UI">[分析]</strong> 菜单中更改分析设置，以根据所修改的视频分析视频。</font>  </li>
                         </ul>
                     </div>
 
@@ -558,6 +558,36 @@
             <p>Search a file in bitmap format by clicking the <strong class="UI">[…]</strong> button. Upload an image file by clicking the <strong class="UI">[Upload]</strong> button. To delete an image file, click the <strong class="UI">[Delete]</strong> button. The specifications of applicable images include 16-bit or 24-bit bitmap files (RGB565 not supported), 128px (fixed) for the width and length, and a file size of 52 KB or less.</p>
         </div> --></div>
 </div>
+
+
+
+        <hr class="wn5-setup-hr" ng-if="ColorPalette">
+        <div class="wn5-setup-section" ng-if="ColorPalette">
+            <div class="wn5-setup-section-heading">
+                <h2>调色板</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <p>用户选择所需的调色板后，可更容易对热成像摄像机视频进行视觉分析。 </p>
+
+                </div>
+                <div class="wn5-setup-section-article-content">
+
+                    <h3>调色板</h3>
+                    <p>在选项中选择所需的调色板。所选择的选项将同样适用于 <strong class="UI">[实时]</strong> 页面。</p>
+                    <p>每个调色板的各选项的颜色显示方式如下。 </p>
+                    <ul>
+                        <li><strong class="UI">White hot</strong>：高温~低温，从白色到黒色渐变显示。</li>
+                        <li><strong class="UI">Black hot</strong>：高温~低温，从黒色到白色渐变显示。</li>
+                        <li><strong class="UI">Rainbow</strong>：高温~低温，显示为红色、橘色、黄色、绿色、蓝色、紫色。</li>
+                        <li><strong class="UI">Wisenet</strong>：高温~低温，从橘色到黒色渐变显示。</li>
+                        <li><strong class="UI">Sepia</strong>：高温~低温，从黄色刀黒色渐变显示。</li>
+                        <li><strong class="UI">Red</strong>：高温~低温，从黒色到红色渐变显示。</li>
+                        <li><strong class="UI">Iron</strong>：高温~低温，从黄色到紫色渐变显示。 </li>
+                    </ul>
+                </div>
+        	</div>
+        </div>
 
 
 <hr class="wn5-setup-hr" ng-if="Focus">

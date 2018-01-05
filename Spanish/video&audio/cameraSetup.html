@@ -458,13 +458,13 @@
           <div class="wn5-online-help-info" ng-if="Statistics">
           			<h4><span class="tui tui-wn5-help-warning"></span>Nota</font></h4>
                               <ul>
-                                  <li>Si cambia la configuración de DIS, la pantalla de vídeo puede verse reducida o ampliada. Cambie la configuración de análisis y estadísticas para que pueda analizar el vídeo o acumular los datos estadísticos de acuerdo con el vídeo cambiado. Estos ajustes se pueden cambiar en el menú <strong class="UI">[Análisis]</strong> y en el menú <strong class="UI">[Estadísticas]</strong>. </font> </li>
+                                  <li>Si cambia la configuraci&oacute;n de DIS, la pantalla de v&iacute;deo puede verse reducida o ampliada. Cambie la configuraci&oacute;n de an&aacute;lisis y estad&iacute;sticas para que pueda analizar el v&iacute;deo o acumular los datos estad&iacute;sticos de acuerdo con el v&iacute;deo cambiado. Estos ajustes se pueden cambiar en el men&uacute; <strong class="UI">[An&aacute;lisis]</strong> y en el men&uacute; <strong class="UI">[Estad&iacute;sticas]</strong>. </font> </li>
                               </ul>
                   </div>
           						<div class="wn5-online-help-info">
           			<h4><span class="tui tui-wn5-help-warning"></span>Nota</font></h4>
                       <ul>
-                          <li>Si cambia la configuración de DIS, la pantalla de vídeo puede verse reducida o ampliada. Cambie la configuración de análisis en el menú  <strong class="UI">[Análisis]</strong> para que el vídeo pueda ser analizado de acuerdo con el vídeo cambiado.  </font>  </li>
+                          <li>Si cambia la configuraci&oacute;n de DIS, la pantalla de v&iacute;deo puede verse reducida o ampliada. Cambie la configuraci&oacute;n de an&aacute;lisis en el men&uacute;  <strong class="UI">[An&aacute;lisis]</strong> para que el v&iacute;deo pueda ser analizado de acuerdo con el v&iacute;deo cambiado.  </font>  </li>
                       </ul>
                   </div>
 
@@ -556,13 +556,41 @@
         <div class="wn5-setup-section-article-content">
             <h3>Upload image</h3>
             <p>Search a file in bitmap format by clicking the <strong class="UI">[…]</strong> button. Upload an image file by clicking the <strong class="UI">[Upload]</strong> button. To delete an image file, click the <strong class="UI">[Delete]</strong> button. The specifications of applicable images include 16-bit or 24-bit bitmap files (RGB565 not supported), 128px (fixed) for the width and length, and a file size of 52 KB or less.</p>
-        </div> --></div>
+        </div>
 </div>
+
+  </div> --><hr class="wn5-setup-hr" ng-if="ColorPalette">
+  <div class="wn5-setup-section" ng-if="ColorPalette">
+      <div class="wn5-setup-section-heading">
+          <h2>Paleta de colores</h2>
+      </div>
+      <div class="wn5-setup-section-article">
+          <div class="wn5-setup-section-article-content">
+              <p>El usuario puede elegir la paleta de colores que desee, para poder analizar visualmente las im&aacute;genes de la c&aacute;mara t&eacute;rmica.</p>
+
+          </div>
+          <div class="wn5-setup-section-article-content">
+
+              <h3>Paleta de colores</h3>
+              <p>Seleccione la paleta de colores que desee de las opciones. Las opciones que seleccione tambi&eacute;n se aplican a la <B>[P&aacute;gina en vivo]</B>.</p>
+              <p>El esquema de representaci&oacute;n de color de cada opci&oacute;n de paleta de colores es el siguiente.</p>
+              <ul>
+                  <li><strong class="UI">Blanco caliente</strong>: A alta temperatura, las bajas temperaturas se expresan de blanco a negro.</li>
+                  <li><strong class="UI">Negro caliente</strong>: A alta temperatura, las bajas temperaturas se expresan de negro a blanco.</li>
+                  <li><strong class="UI">Arco iris</strong>: A alta temperatura, las bajas temperaturas se expresan de rojo, naranja, amarillo, verde, azul, &iacute;ndigo y violeta.</li>
+                  <li><strong class="UI">Wisenet</strong>: A alta temperatura, las bajas temperaturas se expresan de naranja a negro.</li>
+                  <li><strong class="UI">Sepia</strong>: A alta temperatura, las bajas temperaturas se expresan de amarillo a negro.</li>
+                  <li><strong class="UI">Rojo</strong>: A alta temperatura, las bajas temperaturas se expresan de negro a rojo.</li>
+                  <li><strong class="UI">Hierro</strong>: A alta temperatura, las bajas temperaturas se expresan de amarillo a morado.</li>
+              </ul>
+          </div>
+    </div>
+  </div>
 
 
 <hr class="wn5-setup-hr" ng-if="Focus">
 <div class="wn5-setup-section" ng-if="Focus">
-    <div class="wn5-setup-section-heading">
+<div class="wn5-setup-section-heading">
         <h2>Enfoque</h2>
     </div>
     <div class="wn5-setup-section-article">
@@ -590,7 +618,7 @@
             <h3>Modo de zoom</h3>
             <p>Defina el m&eacute;todo para sincronizar el enfoque de la c&aacute;mara cuando el zoom est&eacute; en funcionamiento.</p>
             <ul>
-                <li>Automático: Incluso si la magnificaci&oacute;n del zoom ha cambiado, el zoom funciona mientras se mantenga el enfoque evaluando y modificando continuamente la condici&oacute;n del enfoque.</li>
+                <li>Autom&aacute;tico: Incluso si la magnificaci&oacute;n del zoom ha cambiado, el zoom funciona mientras se mantenga el enfoque evaluando y modificando continuamente la condici&oacute;n del enfoque.</li>
                 <li>Manual: El zoom funciona de acuerdo con el trazo de enfoque definido. La imagen podr&iacute;a estar fuera de enfoque si la magnificaci&oacute;n del zoom cambia.</li>
             </ul>
         </div>
@@ -644,8 +672,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <h3>Acto único</h3>
-            <p>Si desea operar el ventilador, haga clic una vez en el botón <span class="tui tui-ch-playback-reset"></span>.</p>
+            <h3>Acto &uacute;nico</h3>
+            <p>Si desea operar el ventilador, haga clic una vez en el bot&oacute;n <span class="tui tui-ch-playback-reset"></span>.</p>
         </div>
 
     </div>
@@ -659,7 +687,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>Modo</h3>
-            <p>Seleccione <strong class="UI">[Des]</strong> si desea no utilizar la funci&oacute;n de IR. Select </font><strong class="UI">[Automático 1]</font></strong>  para compensar la exposición automática por saturación del área central debido al LED IR o  </font><strong class="UI">[Automático 2]</font></strong> para suprimir la saturación de toda la pantalla y compensar la exposición automática. Seleccione <strong class="UI">[Manual]</strong> si desea manejar el IR manualmente.</p>
+            <p>Seleccione <strong class="UI">[Des]</strong> si desea no utilizar la funci&oacute;n de IR. Select </font><strong class="UI">[Autom&aacute;tico 1]</font></strong>  para compensar la exposici&oacute;n autom&aacute;tica por saturaci&oacute;n del &aacute;rea central debido al LED IR o  </font><strong class="UI">[Autom&aacute;tico 2]</font></strong> para suprimir la saturaci&oacute;n de toda la pantalla y compensar la exposici&oacute;n autom&aacute;tica. Seleccione <strong class="UI">[Manual]</strong> si desea manejar el IR manualmente.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Nivel</h3>

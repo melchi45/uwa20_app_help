@@ -57,7 +57,12 @@
                         <p ng-if="DPTZSetupPage">可控制摄像机的平移/倾斜/缩放。仅当当前实时屏幕所用的视频配置文件支持数字 PTZ 时，才能运行 PTZ。如需更改数字 PTZ 控制配置文件，请在<STRONG class="UI">[设置]</STRONG>&gt;<STRONG class="UI">[基本设置]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[视频配置文件]</STRONG>&gt;<STRONG class="UI">[配置文件类型]</STRONG>中选择<STRONG class="UI">[数字 PTZ 配置文件]</STRONG>。</p>
 
 
-                        <p ng-if="PTZSetupPage">您可控制摄像机的平移/倾斜/缩放。您可转到在<strong class="UI">[设置]</strong>&gt、<strong class="UI">[PTZ]</strong>&gt、<strong class="UI">[PTZ 设置]</strong>页面中设置的预设或开始/停止摆动、分组巡航、巡航和跟踪功能。</p>
+                                                 <p ng-if="ExternalPTZPage">通过连接摄相机 RS-485或RS-422 插口的平移/倾斜接收器可控制摄相机的平移/倾斜/缩放动作。按照在<strong class="UI">[设置]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部 PTZ]</strong> 页面设置的预设位置移动，也可以开启或终止摆动、组、浏览、跟踪功能。 </p>
+
+
+
+
+                        <p ng-if="PTZSetupPage">您可控制摄像机的平移/倾斜/缩放。您可转到在<strong class="UI">[设置]</strong>&gt;、<strong class="UI">[PTZ]</strong>&gt;、<strong class="UI">[PTZ 设置]</strong>页面中设置的预设或开始/停止摆动、分组巡航、巡航和跟踪功能。</p>
 
                     </td>
                 </tr>
@@ -180,6 +185,21 @@
 </div>
 
 
+<hr class="wn5-setup-hr" ng-if="ColorPalette">
+<div class="wn5-setup-section" ng-if="ColorPalette">
+    <div class="wn5-setup-section-heading">
+        <h2>调色板</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>提供调色板，以便更容易对摄相机视频进行视觉分析。选择调色板后，摄相机视频画面上将适用所选择的调色板。 </p>
+            <p>每个调色板的各选项特征请参考 <strong class="UI">[设置]</strong> &gt; <strong class="UI">[视频及音频]</strong> &gt; <strong class="UI">[摄像机设置]</strong> &gt; <strong class="UI">[调色板]</strong>。</p>
+        </div>
+    </div>
+</div>
+
+
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -266,7 +286,7 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>使用 PTZ 功能</h3>
-            <p>您可将摄像机转到一个预设位置或开始和停止摆动、分组巡航、巡航和跟踪功能。若要了解相关设置，请参见<strong class="UI">[设置]</strong>&gt、<strong class="UI">[PTZ]</strong>&gt、<strong class="UI">[PTZ 设置]</strong>页面。</p>
+            <p>您可将摄像机转到一个预设位置或开始和停止摆动、分组巡航、巡航和跟踪功能。若要了解相关设置，请参见<strong class="UI">[设置]</strong>&gt;、<strong class="UI">[PTZ]</strong>&gt;、<strong class="UI">[PTZ 设置]</strong>页面。</p>
   </div>
 
 
@@ -274,8 +294,7 @@
             <h3>区域缩放</h3>
 
             <p>区域缩放使您能够放大并查看特定区域。</p>
-            <p>当您在摄像机图像屏幕上单击鼠标按钮<span class="tui tui-chi-live-ptz-areazoom"></span>、拖拽鼠标并选中一个区域时，缩放功能将对选定区域生效，摄像机位置将转至选定区域。&nbsp;您可通过单击按钮<span class="tui tui-chi-live-ptz-areazoom-back"></span>，转到之前选定的区域和配置。转到之前选定的区域和配置后，如果您想要返回之前的区域和配置，单击按钮<span class="tui tui-chi-live-ptz-areazoom-pre"></span>。单击该按钮后<span class="tui tui-chi-live-ptz-areazoom-1x"></span>，
-放大倍数将更改为 1x，摄像机将回到初始位置。  </p>
+            <p>当您在摄像机图像屏幕上单击鼠标按钮<span class="tui tui-chi-live-ptz-areazoom"></span>、拖拽鼠标并选中一个区域时，缩放功能将对选定区域生效，摄像机位置将转至选定区域。您可通过单击按钮<span class="tui tui-chi-live-ptz-areazoom-back"></span>，转到之前选定的区域和配置。转到之前选定的区域和配置后，如果您想要返回之前的区域和配置，单击按钮<span class="tui tui-chi-live-ptz-areazoom-pre"></span>。单击该按钮后<span class="tui tui-chi-live-ptz-areazoom-1x"></span>， 放大倍数将更改为 1x，摄像机将回到初始位置。  </p>
             <p>  </p>
             <p> 若要终止区域缩放设置，再次单击按钮<span class="tui tui-chi-live-ptz-areazoom"></span>。将保持当前设置区域放大状态并终止区域缩放设置功能。</p>
         </div>
@@ -323,24 +342,23 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
             <ul>
-                <li>在<strong class="UI">[设置]</strong><strong class="UI">[基本设置]</strong> > <strong class="UI">[视频配置文件]</strong> > <strong class="UI">[配置文件类型]</strong>中选择<strong class="UI">[数字 PTZ 配置文件]</strong>时，才能使用PTZ功能。</li>
+                <li>在<strong class="UI">[设置]</strong><strong class="UI">[基本设置]</strong> &gt; <strong class="UI">[视频配置文件]</strong> &gt; <strong class="UI">[配置文件类型]</strong>中选择<strong class="UI">[数字 PTZ 配置文件]</strong>时，才能使用PTZ功能。</li>
             </ul>
 
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>选择分屏</h3>
-            <p>在四元视图中选择个别视频的编号。 1是四元视图的左上方, 2是右上方, 3是左下方, 4是右下方的视频视图。 </p>
-            <p><span class="tui tui-wn5-ptz-handle"></span>
-点击并拖动按钮，调整摄像机视频视图。在缩放栏中点击 <strong class="UI">[+]</strong> 按钮，画面会放大，点击 <strong class="UI">[-]</strong> 按钮，画面会缩小。</p>
+            <p>在四元视图中选择个别视频的编号。1是四元视图的左上方, 2是右上方, 3是左下方, 4是右下方的视频视图。 </p>
+            <p><span class="tui tui-wn5-ptz-handle"></span> 点击并拖动按钮，调整摄像机视频视图。在缩放栏中点击 <strong class="UI">[+]</strong> 按钮，画面会放大，点击 <strong class="UI">[-]</strong> 按钮，画面会缩小。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>预设</h3>
             <p>选择预设编号后，点击 <strong class="UI">[前往]</strong>按钮，将摄像机视图移动至相应PTZ 预设位置。</p>
-            <p>在预设列表中选择想要的预设编号后，点击 <strong class="UI">[前往]</strong> 按钮，移动到相应预设位置。预设列表可在 <strong class="UI">[设置]</strong> > <strong class="UI">[数字 PTZ]</strong> > <strong class="UI">[预设]</strong>Tap中进行添加或修改。</p>
+            <p>在预设列表中选择想要的预设编号后，点击 <strong class="UI">[前往]</strong> 按钮，移动到相应预设位置。预设列表可在 <strong class="UI">[设置]</strong> &gt; <strong class="UI">[数字 PTZ]</strong> &gt; <strong class="UI">[预设]</strong>Tap中进行添加或修改。</p>
         </div>
 		          <div class="wn5-setup-section-article-content">
                         <h3>组</h3>
-            <p>在组列表中选择所需的组编号后，点击<strong class="UI">[启动]</strong> 按钮，进行设定的组动作。要停止组动作， 点击<strong class="UI">[停止]</strong>按钮。组列表可在 <strong class="UI">[设置]</strong> > <strong class="UI">[数字 PTZ]</strong> > <strong class="UI">[组]</strong>Tap中进行添加或修改。</p>
+            <p>在组列表中选择所需的组编号后，点击<strong class="UI">[启动]</strong> 按钮，进行设定的组动作。要停止组动作， 点击<strong class="UI">[停止]</strong>按钮。组列表可在 <strong class="UI">[设置]</strong> &gt; <strong class="UI">[数字 PTZ]</strong> &gt; <strong class="UI">[组]</strong>Tap中进行添加或修改。</p>
         </div>
 
 <hr class="wn5-setup-hr" ng-if="FisheyeLens">
@@ -352,7 +370,7 @@
                 <div class="wn5-setup-section-article-content">
             <h3>天花板/墙壁</h3>
                     <p>显示摄像机安装模式。根据安装模式不同，视图类型也会不同。</p>
-                    <p>安装模式可在<strong class="UI">[视频及音频]</strong> > <strong class="UI">[视频设置]</strong> > <strong class="UI">[视频旋转]</strong> > <strong class="UI">[摄像机安装模式]</strong>中进行设置。选择<strong class="UI">[天花板]</strong>时，才会显示 '双全景' 视图类型，对于其他视图类型，'天花板'和'墙壁都相同。
+                    <p>安装模式可在<strong class="UI">[视频及音频]</strong> &gt; <strong class="UI">[视频设置]</strong> &gt; <strong class="UI">[视频旋转]</strong> &gt; <strong class="UI">[摄像机安装模式]</strong>中进行设置。选择<strong class="UI">[天花板]</strong>时，才会显示 '双全景' 视图类型，对于其他视图类型，'天花板'和'墙壁都相同。
 </p>
                     <p>选择所需的视图类型图标后，在实时视频画面中，用鼠标拖动修改摄像机的视图。 </p>
                 </div>

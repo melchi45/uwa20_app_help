@@ -64,6 +64,11 @@
 </p>
 
 
+
+
+<p ng-if="ExternalPTZPage">You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera’s RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group,   tour, and tracking functions. </p>
+
+
                             <p ng-if="PTZSetupPage">You can control the pen/tilt/zoom motions of the camera. You can move to the preset location set on the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ setup]</strong> page or start/stop the swing, group, tour, and tracking functions. </p>
                         </td>
                     </tr>
@@ -183,6 +188,20 @@
     </div>
 </div>
 
+
+
+<hr class="wn5-setup-hr" ng-if="ColorPalette">
+<div class="wn5-setup-section" ng-if="ColorPalette">
+    <div class="wn5-setup-section-heading">
+        <h2>Color Palette</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Provides a color palette for easy visual analysis of camera videos. When you select the desired color palette, the selected color palette appears on the camera video screen.</p>
+            <p>For features of each color palette option, refer to <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Videio & Audio]</strong> &gt; <strong class="UI">[Camera Setup]</strong> &gt; <strong class="UI">[Color Palette]</strong>.</p>
+        </div>
+    </div>
+</div>
 
 
 
