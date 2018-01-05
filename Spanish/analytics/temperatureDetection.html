@@ -1,0 +1,116 @@
+﻿
+<h1 class="wn5-setup-main-title">Detecci&oacute;n de temperatura</font></h1>
+
+<div class="wn5-setup-section">
+    <p>Se puede activar un evento de detecci&oacute;n de temperatura si se produce un cambio brusco de temperatura en el &aacute;rea de inter&eacute;s especificada por el usuario. Cuando haya completado la configuraci&oacute;n, haga clic en el bot&oacute;n [Aplicar] en la parte inferior de la p&aacute;gina. Los ajustes para los eventos de detecci&oacute;n de temperatura son los mismos para <B>[Detecci&oacute;n de temperatura]</B> en la p&aacute;gina <B>[Evento]</B>&gt; <B>[Configuraci&oacute;n de evento]</B>.</font><a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI"></font></strong></a> </font></p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Detecci&oacute;n de temperatura</font></h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Activar detecci&oacute;n de cambio de temperatura</font></h3>
+            <p>Para activar los eventos de detecci&oacute;n de cambio de temperatura, seleccione [Activar detecci&oacute;n de cambio de temperatura].</font></p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>&Aacute;rea</font></h3>
+            <p>Establezca el &aacute;rea para detectar el cambio de temperatura. Puede cambiar el tama&ntilde;o del &aacute;rea de inter&eacute;s moviendo la esquina inferior derecha del &aacute;rea que configur&oacute;. Para mover el &aacute;rea, haga clic y arrastre el &aacute;rea con su rat&oacute;n. Para eliminar un &aacute;rea, haga clic con el bot&oacute;n derecho en el &aacute;rea de la pantalla y haga clic en el bot&oacute;n [Aceptar] en la ventana de confirmaci&oacute;n Eliminar.</font></p>
+            <p>Se pueden configurar hasta tres &aacute;reas, y las reglas de detecci&oacute;n de cambio de temperatura se pueden establecer para cada &aacute;rea.</font></p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Detecci&oacute;n de cambio de temperatura</font></h3>
+            <p>En <STRONG class="UI">[&Aacute;rea]</font></strong>, seleccione el &aacute;rea para detectar el cambio de temperatura y configure las siguientes opciones.</font></p>
+            <ul>
+                <li><strong class="UI">Diferencia de temperatura</font></strong>: cuando ocurre un cambio de temperatura de un grado o m&aacute;s, seleccione el cambio de temperatura umbral. El valor umbral o superior se detecta como un cambio de temperatura.&nbsp;Puede seleccionar el tipo de temperatura entre Celsius y Fahrenheit, que incluye la disminuci&oacute;n y el aumento de la temperatura.&nbsp;Por ejemplo, si ha seleccionado &quot;20 grados Celsius&quot;, cuando el cambio de temperatura ocurre a m&aacute;s de 20 grados Celsius, la c&aacute;mara detecta el cambio de temperatura.<br>
+                <li><strong class="UI">Tipo de temperatura</font></strong>: Puede existir un rango de temperaturas en el &aacute;rea configurada en <strong class="UI">[&Aacute;rea]</font></strong>. Seleccione la temperatura que ser&aacute; el est&aacute;ndar cuando observe el cambio de temperatura entre el &apos;m&aacute;s bajo&apos;, &apos;promedio&apos; y &apos;m&aacute;s alto&apos;. Por ejemplo, si selecciona &apos;3&apos; en <STRONG class="UI">[&Aacute;rea ]</STRONG>, selecciona &apos;20°C<STRONG class="UI">&apos;</STRONG> en<B> [Diferencia de temperatura]</B> y &apos;m&aacute;s bajo<STRONG
+class="UI">&apos;</STRONG> en <B>[Tipo de temperatura]</B>, cuando se detecte un cambio de temperatura de m&aacute;s de 20°C en funci&oacute;n de la temperatura m&aacute;s baja observada en el &Aacute;rea 3, la c&aacute;mara lo detectar&aacute; como un cambio de temperatura.</font>  </li>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Tiempo m&iacute;nimo de observaci&oacute;n (segundos)</font>    </h3>
+            <p>Establece el tiempo m&iacute;nimo para detectar un cambio de temperatura y generarlo como un evento. Solo si el cambio de temperatura dura el tiempo m&iacute;nimo de observaci&oacute;n, se produce un evento de detecci&oacute;n de temperatura. Puede ingresar un valor entre 1 y 60 segundos.</font></p>
+        </div>
+
+
+        <div class="wn5-online-help-info">
+            <ul>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+  <hr class="wn5-setup-hr">
+
+  <div class="wn5-setup-section">
+      <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Conf. de acciones de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>FTP</h3>
+            <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de detecci&oacute;n de temperatura, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>Para enviar una imagen por e-mail cuando se crea un evento de detecci&oacute;n de temperatura, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Grabar</h3>
+            <p>Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento de detecci&oacute;n de temperatura, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Salida de alarma</h3>
+            <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de detecci&oacute;n de temperatura.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de temperatura. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de temperatura. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Configuración de preajustes]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuración de preajustes]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de temperatura. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Tiempo de activaci&oacute;n de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Esto establece la acci&oacute;n del evento desde <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_tamperDetection?#action">Conf. de acciones de evento</a>]</strong> para funcionar siempre o s&oacute;lo a una hora determinada cuando se crea un evento de detecci&oacute;n de temperatura.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>Siempre</h3>
+            <p>Los valores de acciones evento siempre se ejecutan cuando se crea un evento de detecci&oacute;n de temperatura.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>S&oacute;lo tiempo programado</h3>
+            <p>Las configuraciones de la acci&oacute;n del evento s&oacute;lo se ejecutan cuando se crea un evento de detecci&oacute;n de temperatura durante el tiempo establecido. La fecha de domingo a s&aacute;bado, a partir de la hora actual de la c&aacute;mara, se muestra en la tabla de tiempos que aparece cuando <strong class="UI">[S&oacute;lo tiempo programado]</strong> se selecciona. Puede establecer el tiempo de configuraci&oacute;n de las acciones de eventos haciendo clic o arrastrando en la tabla de tiempos con el rat&oacute;n. El tiempo de activaci&oacute;n de evento configurado se ejecuta varias veces durante el d&iacute;a de la semana y la hora correspondiente.</p>
+			<p>Puede cambiar la unidad de vista de tiempo haciendo clic en el bot&oacute;n de <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, consulte <strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

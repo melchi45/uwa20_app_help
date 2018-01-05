@@ -1,0 +1,119 @@
+﻿
+<h1 class="wn5-setup-main-title">Temperature Detection</font></h1>
+
+<div class="wn5-setup-section">
+    <p>If a sudden temperature change occurs in the user-specified area of interest, a temperature detection event can be triggered. When you have completed the settings, click the [Apply] button at the bottom of the page. The settings for temperature detection events are the same for <strong class="UI">[Temperature Detection]</strong> on the <strong class="UI">[Event]</strong>&gt; [Event Setup] page.</font><a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI"></font></strong></a> </font></p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Temperature Detection</font></h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Enable Temperature Change Detection</font></h3>
+            <p>To enable temperature change detection events, select <STRONG class="UI">[Enable Temperature Change Detection]</font></strong>.</font></p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Area</font></h3>
+            <p>Set the area to detect the temperature change. You can change the size of the area of interest by moving the lower right corner of the area you set. To move the area, click and drag the area with your mouse. To delete an area, right-click the area on the screen and click the <strong class="UI">[OK]</font></strong> button in the Delete confirmation window.</font></p>
+            <p>Up to three areas can be set, and temperature change detection rules can be set for each area.</font></p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Temperature Change Detection</font></h3>
+            <p>In <STRONG class="UI">[Area]</font></strong>, select the area to detect the temperature change and set the following options.</font></p>
+            <ul>
+                <li><strong class="UI">Temperature difference:</font></strong>When a temperature change of some degree or more occurs, select the threshold temperature change. The threshold value or higher is detected as a temperature change.&nbsp;You can select the temperature type between Celsius and Fahrenheit, including both temperature decrease and increase.&nbsp;For example, if you select &quot;20 degrees Celsius&quot;, if the temperature change occurs more than 20 degrees Celsius, the camera detects the temperature change.<br> <!-- 해당 영역에서 최근 1분 동안의 통계적 데이터로부터 온도차이를 판단합니다. 즉 1분 동안 수집된 평균 온도를 기준으로 온도가 급격히 상승하거나 감소하면 카메라가 온도 변화로 감지합니다. --></font></li>
+                <li><strong class="UI">Temperature type</font></strong>: A range of temperatures may exist in the area set in <strong class="UI">[Area]</font></strong>. Select the temperature that will be the standard when you observe the temperature change among &apos;lowest&apos;, &apos;average&apos;, and &apos;highest&apos;. For example, if you select &apos;3&apos; in <STRONG class="UI">[Area]</STRONG>, select &apos;20°C&apos; in <STRONG class="UI">[</STRONG><strong class="UI">Temperature difference</strong><STRONG class="UI">]</STRONG>, and &apos;Lowest&apos; in <STRONG class="UI">[Temperature type]</STRONG>, when a temperature change of more than 20°C is detected based on the lowest temperature observed in Area 3, the camera will detect it as a temperature change.</font>
+                 </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Minimum Observation Time (seconds)</font>    </h3>
+            <p>Sets the minimum time to detect a temperature change and generate it as an event Only if the temperature change should last for the minimum observation time, a temperature detection event occurs . You can enter a value between 1 and 60 seconds.</font></p>
+        </div>
+
+
+        <div class="wn5-online-help-info">
+            <ul>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Event action settings</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>FTP</h3>
+            <p>To save an image on an FTP server when a temperature detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>To send an image by e-mail when a temperature detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Record</h3>
+            <p>To save an image on an SD card or NAS when a temperature detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Alarm output</h3>
+            <p>It is possible to set the alarm output number for a specific alarm when a temperature detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+            <h3>Goto preset</h3>
+                    <p>You can set the position of camera view to move to a preset number when a tampering detection event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
+        </div>
+
+
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>Goto preset</h3>
+                <p>You can set the position of camera view to move to a preset position when a tampering detection event is created. The camera preset can be set in <strong class="UI">[Preset setup]</strong> section of &nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Preset setup]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Goto preset</h3>
+                <p>You can set the position of camera to move to a preset position when a queue management event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
+        </div>
+
+
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Event activation time</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>This sets the event action from <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_tamperDetection?#action">Event action settings</a>]</strong> to always operate, or only at the set time when a temperature detection event is created.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+            </ul>
+            <h3>Always</h3>
+            <p>The event action settings are always executed when a temperature detection event is created.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Only scheduled time</h3>
+            <p>The event action settings are only executed when a temperature detection event is created during the set time. The date from Sunday to Saturday, based on the current camera time, is displayed on the time table shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time for event action settings by clicking or dragging on the time table with the mouse. The set event activation time is executed repeatedly on the relevant weekday and time.</p>
+			<p>You can change the time view unit by clicking the <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> or <strong class="UI">[1 h]</strong> button. When you click the <strong class="UI">[Reset]</strong> button, all set event activation times will be deleted. To confirm or change the camera time, refer to <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date &amp; Time]</strong>.</p>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
