@@ -1,44 +1,38 @@
 ﻿
-<h1 class="wn5-setup-main-title">Temperature Detection</font></h1>
+<h1 class="wn5-setup-main-title">Temperature Detection</h1>
 
 <div class="wn5-setup-section">
-    <p>If a sudden temperature change occurs in the user-specified area of interest, a temperature detection event can be triggered. When you have completed the settings, click the [Apply] button at the bottom of the page. The settings for temperature detection events are the same for <strong class="UI">[Temperature Detection]</strong> on the <strong class="UI">[Event]</strong>&gt; [Event Setup] page.</font><a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI"></font></strong></a> </font></p>
+    <p>If a sudden temperature change occurs in the user-specified area of interest, a temperature detection event can be triggered. When you have completed the settings, click the [Apply] button at the bottom of the page. The settings for temperature detection events are the same for <strong class="UI">[Temperature Detection]</strong> on the <strong class="UI">[Event]</strong>&gt; [Event Setup] page.<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI"></strong></a> </p>
 </div>
 
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Temperature Detection</font></h2>
+        <h2>Temperature Detection</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <h3>Enable Temperature Change Detection</font></h3>
-            <p>To enable temperature change detection events, select <STRONG class="UI">[Enable Temperature Change Detection]</font></strong>.</font></p>
+            <h3>Enable Temperature Change Detection</h3>
+            <p>To enable temperature change detection events, select <STRONG class="UI">[Enable Temperature Change Detection]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Area</font></h3>
-            <p>Set the area to detect the temperature change. You can change the size of the area of interest by moving the lower right corner of the area you set. To move the area, click and drag the area with your mouse. To delete an area, right-click the area on the screen and click the <strong class="UI">[OK]</font></strong> button in the Delete confirmation window.</font></p>
-            <p>Up to three areas can be set, and temperature change detection rules can be set for each area.</font></p>
+            <h3>Area</h3>
+            <p>Set the area to detect the temperature change. You can change the size of the area of interest by moving the lower right corner of the area you set. To move the area, click and drag the area with your mouse. To delete an area, right-click the area on the screen and click the <strong class="UI">[OK]</strong> button in the Delete confirmation window.</p>
+            <p>Up to three areas can be set, and temperature change detection rules can be set for each area.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <h3>Temperature Change Detection</font></h3>
-            <p>In <STRONG class="UI">[Area]</font></strong>, select the area to detect the temperature change and set the following options.</font></p>
+            <h3>Temperature Change Detection</h3>
+            <p>In <STRONG class="UI">[Area]</strong>, select the area to detect the temperature change and set the following options.</p>
             <ul>
-                <li><strong class="UI">Temperature difference:</font></strong>When a temperature change of some degree or more occurs, select the threshold temperature change. The threshold value or higher is detected as a temperature change.&nbsp;You can select the temperature type between Celsius and Fahrenheit, including both temperature decrease and increase.&nbsp;For example, if you select &quot;20 degrees Celsius&quot;, if the temperature change occurs more than 20 degrees Celsius, the camera detects the temperature change.<br> <!-- 해당 영역에서 최근 1분 동안의 통계적 데이터로부터 온도차이를 판단합니다. 즉 1분 동안 수집된 평균 온도를 기준으로 온도가 급격히 상승하거나 감소하면 카메라가 온도 변화로 감지합니다. --></font></li>
-                <li><strong class="UI">Temperature type</font></strong>: A range of temperatures may exist in the area set in <strong class="UI">[Area]</font></strong>. Select the temperature that will be the standard when you observe the temperature change among &apos;lowest&apos;, &apos;average&apos;, and &apos;highest&apos;. For example, if you select &apos;3&apos; in <STRONG class="UI">[Area]</STRONG>, select &apos;20°C&apos; in <STRONG class="UI">[</STRONG><strong class="UI">Temperature difference</strong><STRONG class="UI">]</STRONG>, and &apos;Lowest&apos; in <STRONG class="UI">[Temperature type]</STRONG>, when a temperature change of more than 20°C is detected based on the lowest temperature observed in Area 3, the camera will detect it as a temperature change.</font>
+                <li><strong class="UI">Temperature difference:</strong>When a temperature change of some degree or more occurs, select the threshold temperature change. The threshold value or higher is detected as a temperature change.&nbsp;You can select the temperature type between Celsius and Fahrenheit, including both temperature decrease and increase.&nbsp;For example, if you select &quot;20 degrees Celsius&quot;, if the temperature change occurs more than 20 degrees Celsius, the camera detects the temperature change.<br> <!-- 해당 영역에서 최근 1분 동안의 통계적 데이터로부터 온도차이를 판단합니다. 즉 1분 동안 수집된 평균 온도를 기준으로 온도가 급격히 상승하거나 감소하면 카메라가 온도 변화로 감지합니다. --></li>
+                <li><strong class="UI">Temperature type</strong>: A range of temperatures may exist in the area set in <strong class="UI">[Area]</strong>. Select the temperature that will be the standard when you observe the temperature change among &apos;lowest&apos;, &apos;average&apos;, and &apos;highest&apos;. For example, if you select &apos;3&apos; in <STRONG class="UI">[Area]</STRONG>, select &apos;20°C&apos; in <STRONG class="UI">[</STRONG><strong class="UI">Temperature difference</strong><STRONG class="UI">]</STRONG>, and &apos;Lowest&apos; in <STRONG class="UI">[Temperature type]</STRONG>, when a temperature change of more than 20°C is detected based on the lowest temperature observed in Area 3, the camera will detect it as a temperature change.
                  </div>
 
         <div class="wn5-setup-section-article-content">
-            <h3>Minimum Observation Time (seconds)</font>    </h3>
-            <p>Sets the minimum time to detect a temperature change and generate it as an event Only if the temperature change should last for the minimum observation time, a temperature detection event occurs . You can enter a value between 1 and 60 seconds.</font></p>
-        </div>
-
-
-        <div class="wn5-online-help-info">
-            <ul>
-            </ul>
+            <h3>Minimum duration (s) </h3>
+            <p>Sets the minimum time to detect a temperature change and generate it as an event Only if the temperature change should last for the minimum observation time, a temperature detection event occurs. You can enter a value between 1 and 60 seconds.</p>
         </div>
 
     </div>
