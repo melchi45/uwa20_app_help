@@ -22,9 +22,13 @@
         <h2>Configuraci&oacute;n</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!AudioInNoiseReduction">
             <h3>Reducci&oacute;n de ruido  </h3>
-            <p>Para utilizar el filtro de eliminaci&oacute;n de ruido, seleccione <strong class="UI">[Activar]</strong>. Si el ruido de los ambientes circundantes es superior a 55 dB~65dB, utilice [Reducci&oacute;n de ruido]. Usar la funci&oacute;n de reducci&oacute;n de ruido de acuerdo con los ambientes reduce el sonido original, de modo que el rendimiento de clasificaci&oacute;n de sonidos podr&iacute;a deteriorarse, o podr&iacute;a producirse un fallo de funcionamiento. Si el filtro de reducci&oacute;n de ruido se utiliza en un entorno tranquilo, el rendimiento de la clasificaci&oacute;n de sonidos se puede deteriorar.</p>
+            <p>Para utilizar el filtro de eliminaci&oacute;n de ruido, seleccione <strong class="UI">[Activar]</strong>. Si el ruido de los ambientes circundantes es superior a 55 dB~65dB, utilice <strong class="UI">[Reducci&oacute;n de ruido]</strong>. Usar la funci&oacute;n de reducci&oacute;n de ruido de acuerdo con los ambientes reduce el sonido original, de modo que el rendimiento de clasificaci&oacute;n de sonidos podr&iacute;a deteriorarse, o podr&iacute;a producirse un fallo de funcionamiento. Si el filtro de reducci&oacute;n de ruido se utiliza en un entorno tranquilo, el rendimiento de la clasificaci&oacute;n de sonidos se puede deteriorar.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
+            <h3>Filtro de ruido </h3>
+            <p>Para utilizar el filtro de eliminaci&oacute;n de ruido, seleccione <strong class="UI">[Activar]</strong>. Si el ruido de los ambientes circundantes es superior a 55 dB~65dB, utilice <strong class="UI">[Filtro de ruido]</strong>. Usar la funci&oacute;n de reducci&oacute;n de ruido de acuerdo con los ambientes reduce el sonido original, de modo que el rendimiento de clasificaci&oacute;n de sonidos podr&iacute;a deteriorarse, o podr&iacute;a producirse un fallo de funcionamiento. Si el filtro de reducci&oacute;n de ruido se utiliza en un entorno tranquilo, el rendimiento de la clasificaci&oacute;n de sonidos se puede deteriorar.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Nivel de clasificaci&oacute;n</h3>

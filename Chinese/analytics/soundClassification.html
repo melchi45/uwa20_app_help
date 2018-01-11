@@ -23,9 +23,13 @@
         <h2>设置</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!AudioInNoiseReduction">
             <h3>降噪  </h3>
             <p>如需执行噪音消除过滤器，请选择<strong class="UI">[启用]</strong>。如果周围环境的噪音高于 55dB~65dB，请使用<strong class="UI">[降噪]</strong>功能。根据环境使用降噪功能，降低原声，会有损声音分类效果，或出现故障。如果在安静的环境中使用降噪，声音分类效果可能会欠佳。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
+            <h3>噪声滤波器  </h3>
+            <p>如需执行噪音消除过滤器，请选择<strong class="UI">[启用]</strong>。如果周围环境的噪音高于 55dB~65dB，请使用<strong class="UI">[噪声滤波器]</strong>功能。根据环境使用降噪功能，降低原声，会有损声音分类效果，或出现故障。如果在安静的环境中使用降噪，声音分类效果可能会欠佳。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>分类级别</h3>

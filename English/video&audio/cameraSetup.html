@@ -17,8 +17,8 @@
 </div>
 </div>
 
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
+<div class="wn5-setup-section" ng-if="ImagePresetMode">
+    <div class="wn5-setup-section-heading" ng-if="ImagePresetMode">
         <h2>Image preset mode</h2>
     </div>
     <div class="wn5-setup-section-article">
@@ -129,8 +129,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="Sensor">
+<div class="wn5-setup-section" ng-if="Sensor">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="sensor"></a>Sensor</h2>
     </div>
@@ -172,8 +172,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="WhiteBalance">
+<div class="wn5-setup-section" ng-if="WhiteBalance">
     <div class="wn5-setup-section-heading">
         <h2>White balance</h2>
     </div>
@@ -218,8 +218,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="BackLight">
+<div class="wn5-setup-section" ng-if="BackLight">
     <div class="wn5-setup-section-heading">
         <h2>Backlight</h2>
     </div>
@@ -325,23 +325,27 @@
             <h3>Brightness</h3>
             <p>The brightness of the screen can be adjusted. The higher the number, the brighter the screen.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MinShutterOptions">
             <h3>Minimum shutter</h3>
             <p>The shutter can set the sensor exposure automatically according to the environment; the electronic shutter operates at a range of between minimum shutter and maximum shutter. Minimum shutter means the minimum value of the possible range for exposure time and sets a long exposure time.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxShutterOptions">
             <h3>Maximum shutter</h3>
             <p>Maximum shutter means the maximum value of the possible range for exposure time and sets a short exposure time.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PreferShutterOptions">
             <h3>Prefer shutter</h3>
             <p>Designate the shutter preferred by the user for reducing the occurrence of blurring in daytime in case the shutter is in low speed. Set the prefer shutter.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="AFLKModeOptions">
             <h3>Anti flicker</h3>
             <p>Prevents screen flickering that occurs due to inconsistency in the lighting in the capturing environment.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ExposureControlSpeed">
+            <h3>Control speed</h3>
+            <p>Select <strong class="UI">[High]</strong> to quickly apply screen exposure when the level of illumination changes rapidly, such as when entering or exiting a tunnel.  It is recommended to set it to <strong class="UI">[Normal]</strong> when the screen brightness changes continuously, as it reacts highly sensitively to the change in illumination.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel"> 
             <h3>SSNR</h3>
             <p>Remove noise from the image.</p>
             <ul>
@@ -349,11 +353,11 @@
                 <li><strong class="UI">Wise NR</strong>: When a moving object is in the image, the noise reduction level is adjusted automatically to improve object discrimination.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content"  ng-if="SSNR2DLevel">
             <h3>SSNR 2D Level</h3>
             <p>SSNR 2D reduces noise on the image using adjacent pixels in one frame. Set the SSNR 2D level. The level can be set when <strong class="UI">[On]</strong> or <strong class="UI">[Wise NR]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
             <h3>SSNR 3D Level</h3>
             <p>SSNR 3D reduces noise on the image using the pixels of various frames. Set the SSNR 3D level. The level can be set when <strong class="UI">[On]</strong> or <strong class="UI">[Wise NR]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
         </div>
@@ -390,15 +394,15 @@
             <h3>P-Iris position</h3>
             <p>It is activated when <strong class="UI">[Manual]</strong> is selected for <strong class="UI">[P-Iris]</strong>. The P-Iris position can be adjusted.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
             <h3>AGC</h3>
             <p>AGC (Auto Gain Control) adjusts the brightness by controlling the sensitivity of image gain when capturing an object in dim light.</p>
         </div>
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="DayNight">
+<div class="wn5-setup-section" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
         <h2>Day/Night</h2>
     </div>
@@ -469,35 +473,35 @@
                 </div>
 
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>Sharpness</h3>
             <p>Adjust the overall sharpness of the image.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>Sharpness level</h3>
             <p>Adjust the overall sharpness of the image. You can set the sharpness level by setting <strong class="UI">[On]</strong> for <strong class="UI">[Sharpness]</strong>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Gamma">
             <h3>Gamma</h3>
             <p>Adjust the contrast of the image. This means the gap between the brightest part and the darkest part in an image; a higher gamma value means a clearer display of the difference in brightness.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Contrast">
             <h3>Contrast</h3>
             <p>Adjust the shade contrast of the image.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Saturation">
             <h3>Color level</h3>
             <p>Adjust the intensity of color in the image.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
             <h3>Defog</h3>
             <p>Correct the image when it is foggy or cloudy. When <strong class="UI">[Auto]</strong> is set, the surrounding environment is detected and the image is corrected automatically. When <strong class="UI">[Manual]</strong> is set, the user can see the surrounding environment and set the correction level directly. Set <strong class="UI">[Manual]</strong> if you wish to execute the defog function if the amount of fog changes.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
             <h3>Defog level</h3>
             <p>Activated when <strong class="UI">[Manual]</strong> is set for Defog; it adjusts the defog level. A higher defog level displays the image more clearly. If the fog level is low and a high defog level is set, the screen may look darker.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC</h3>
             <p>LDC (Lens Distortion Correction) corrects image distortion at the edge of a wide angle lens.</p>
 			 <ul>
@@ -506,7 +510,7 @@
                 <li ng-if="LDCAuto"><strong class="UI">Auto</strong>: Adjusts the image distortion automatically.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC Level</h3>
             <p>Adjust the level of the LDC function. Activated when <strong class="UI">[Manual]</strong> is set for <strong class="UI">[LDC]</strong>.</p>
         </div>
@@ -585,8 +589,8 @@
         </div>
 
 
-<hr class="wn5-setup-hr" ng-if="Focus">
-<div class="wn5-setup-section" ng-if="Focus">
+<hr class="wn5-setup-hr" ng-if="FocusModeOptions">
+<div class="wn5-setup-section" ng-if="FocusModeOptions">
     <div class="wn5-setup-section-heading">
         <h2>Focus</h2>
     </div>
@@ -697,8 +701,8 @@
 
 
 
-<hr class="wn5-setup-hr" ng-if="!PTZModel">
-<div class="wn5-setup-section" ng-if="!PTZModel">
+<hr class="wn5-setup-hr" ng-if="ActivationTime">
+<div class="wn5-setup-section" ng-if="ActivationTime">
     <div class="wn5-setup-section-heading">
         <h2>Activation time</h2>
     </div>

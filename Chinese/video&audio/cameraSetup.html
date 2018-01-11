@@ -17,8 +17,8 @@
 </div>
 </div>
 
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
+<div class="wn5-setup-section" ng-if="ImagePresetMode">
+    <div class="wn5-setup-section-heading" ng-if="ImagePresetMode">
         <h2>图像预设模式</h2>
     </div>
     <div class="wn5-setup-section-article">
@@ -129,8 +129,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="Sensor">
+<div class="wn5-setup-section" ng-if="Sensor">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="sensor"></a>传感器</h2>
     </div>
@@ -172,8 +172,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="WhiteBalance">
+<div class="wn5-setup-section" ng-if="WhiteBalance">
     <div class="wn5-setup-section-heading">
         <h2>白平衡</h2>
     </div>
@@ -218,8 +218,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="BackLight"> 
+<div class="wn5-setup-section" ng-if="BackLight">
     <div class="wn5-setup-section-heading">
         <h2>背光</h2>
     </div>
@@ -325,23 +325,27 @@
             <h3>亮度</h3>
             <p>可以调整屏幕亮度。数字越高，屏幕越亮。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MinShutterOptions">
             <h3>最小快门</h3>
             <p>快门可根据环境自动设置传感器的曝光量；电子快门在最小快门和最大快门之间工作。最小快门表示曝光时间允许范围内的最小值，可设置较长的曝光时间。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content"  ng-if="MaxShutterOptions">
             <h3>最大快门</h3>
             <p>最大快门表示曝光时间允许范围内的最大值，可设置较短的曝光时间。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PreferShutterOptions">
             <h3>推荐快门</h3>
             <p>用户的推荐快门，可当白天快门速度很低时，避免出现模糊的情况。设置推荐快门。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="AFLKModeOptions">
             <h3>防闪烁</h3>
             <p>当拍摄环境中存在光线不稳定的情况时防止屏幕发生闪烁。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ExposureControlSpeed">
+            <h3>控制速度</h3>
+            <p>选择<strong class="UI">[高]</strong>，可在进入或离开隧道等照明亮度快速变化时迅速应用画面曝光。由于对照明变化的反应过于灵敏，因此屏幕亮度持续变化时，建议设置为<strong class="UI">[正常]</strong>。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
             <h3>SSNR</h3>
             <p>移除图像上的噪点。</p>
             <ul>
@@ -349,11 +353,11 @@
                 <li><strong class="UI">智慧 NR</strong>：当图像中存在移动物体时，将自动调整降噪级别，以提高物体的可辨度。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content"  ng-if="SSNR2DLevel">
             <h3>SSNR 2D 级别</h3>
             <p>SSNR 2D 级别使用一个帧内的相邻像素来降低噪点。设置 SSNR 2D 级别当<strong class="UI">[SSNR]</strong>为<strong class="UI">[开]</strong>或<strong class="UI">[智慧 NR]</strong>状态时，可设置级别。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
             <h3>SSNR 3D 级别</h3>
             <p>SSNR 3D 级别使用不同帧的像素来降低噪点。设置 SSNR 3D 级别当<strong class="UI">[SSNR]</strong>为<strong class="UI">[开]</strong>或<strong class="UI">[智慧 NR]</strong>状态时，可设置级别。</p>
         </div>
@@ -390,15 +394,15 @@
             <h3>P-光圈位置</h3>
             <p>当<strong class="UI">[P-光圈]</strong>设为<strong class="UI">[手动]</strong>模式时，该项会被激活。P-光圈位置可调。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
             <h3>自动增益</h3>
             <p>在昏暗光线下捕捉物体时，AGC（自动增益控制）功能可通过控制图像增益的灵敏度调节亮度。</p>
         </div>
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="DayNight">
+<div class="wn5-setup-section" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
         <h2>日/夜</h2>
     </div>
@@ -469,35 +473,35 @@
                     </div>
 
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>锐利度</h3>
             <p>调整图像的整体锐利度。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>锐利度级别</h3>
             <p>调整图像的整体锐利度。将<strong class="UI">[锐利度]</strong>设置为<strong class="UI">[开]</strong>，然后设置锐利度级别。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Gamma">
             <h3>伽玛值</h3>
             <p>调整图像的对比度。这是指图像最亮部分和最暗部分之间的距离，伽玛值越高，表明亮度差异更明显。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Contrast">
             <h3>对比度</h3>
             <p>调整图像的阴影对比度。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Saturation">
             <h3>色调级别</h3>
             <p>调整图像的色彩强度。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
             <h3>透雾</h3>
             <p>当图像模糊不清时进行校正。设置为<strong class="UI">[自动]</strong>时，将自动检测周围环境，并自动校正图像。设置为<strong class="UI">[手动]</strong>时，用户可查看周围环境，并直接设置校正级别。如想在雾量发生变化时执行透雾功能，请设置为<strong class="UI">[手动]</strong>。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
             <h3>透雾级别</h3>
             <p>将透雾功能设置为<strong class="UI">[手动]</strong>时激活，此项将被激活，可调整透雾级别。透雾级别越高，图像显示越清晰。如果雾量较少，而设置的透雾级别很高，整个屏幕看上去可能会较暗。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>畸变矫正 (LDC)</h3>
             <p>畸变矫正 (LDC) 功能可对广角镜头边缘处的变形进行图像校正。</p>
 			 <ul>
@@ -506,7 +510,7 @@
                 <li ng-if="LDCAuto"><strong class="UI">自动</strong>：自动进行图像畸变调整。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC 级别</h3>
             <p>调整畸变矫正功能的级别。当<strong class="UI">[畸变矫正 (LDC)]</strong>设置为<strong class="UI">[手动]</strong>时，此项会被激活。</p>
         </div>
@@ -590,8 +594,8 @@
         </div>
 
 
-<hr class="wn5-setup-hr" ng-if="Focus">
-<div class="wn5-setup-section" ng-if="Focus">
+<hr class="wn5-setup-hr" ng-if="FocusModeOptions">
+<div class="wn5-setup-section" ng-if="FocusModeOptions">
     <div class="wn5-setup-section-heading">
         <h2>对焦</h2>
     </div>
@@ -701,8 +705,8 @@
 
 
 
-<hr class="wn5-setup-hr" ng-if="!PTZModel">
-<div class="wn5-setup-section" ng-if="!PTZModel">
+<hr class="wn5-setup-hr" ng-if="ActivationTime">
+<div class="wn5-setup-section" ng-if="ActivationTime">
     <div class="wn5-setup-section-heading">
         <h2>激活时间</h2>
     </div>

@@ -23,10 +23,15 @@
         <h2>설정</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!AudioInNoiseReduction">
             <h3>노이즈 감쇄  </h3>
             <p>노이즈 제거 필터를 사용하려면 <strong class="UI">[사용]</strong>을 선택합니다. 주변 환경의 잡음이 55 dB~65 dB 이상으로 심할 경우, <strong class="UI">[노이즈 감쇄]</strong>를 사용합니다. 환경에 따라 노이즈 감쇄기능을 사용함으로써 원래 음원이 감쇄되어 음원 분류 성능이 저하되거나 오동작이 발생할 수 있습니다. 조용한 환경에서 노이즈 감쇄 필터를 사용하면 음원 분류 성능이 저하될 수 있습니다.</p>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
+            <h3>잡음 필터 </h3>
+            <p>잡음 제거 필터를 사용하려면 <strong class="UI">[사용]</strong>을 선택합니다. 주변 환경의 잡음이 55 dB~65 dB 이상으로 심할 경우, <strong class="UI">[잡음 필터]</strong>를 사용합니다. 환경에 따라 잡음 감쇄 기능을 사용함으로써 원래 음원이 감쇄되어 음원 분류 성능이 저하되거나 오동작이 발생할 수 있습니다. 조용한 환경에서 잡음 감쇄 필터를 사용하면 음원 분류 성능이 저하될 수 있습니다.</p>
+        </div>
+
 		<div class="wn5-setup-section-article-content">
             <h3>분류 레벨  </h3>
             <p>음원 분류할 오디오 에너지의 레벨을 설정합니다. 입력 오디오에 대한 에너지의 레벨값이 오른쪽에서 왼쪽으로 주기적으로 갱신되면서 영역에 그려집니다. 설정한 레벨 이상의 오디오에 대해서만 음원 분류를 적용합니다. 즉, 입력되는 오디오의 에너지가 기준선보다 높을 경우에만 음원으로 분류합니다. 기준선이 낮아지면 음원 분류 대상의 데이터가 많아지게 되며 오탐이 많아질 확률이 높아집니다. 기준선이 높아지면 음원 분류 대상의 데이터가 적어지게 되며 미탐이 많아질 확률이 높아집니다. 주변 소음 수준에 따라 적합하게 설정하십시오.</p>

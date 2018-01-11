@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Audio setup</h1>
+﻿<h1 class="wn5-setup-main-title">Audio setup</h1>
 
 <div class="wn5-setup-section">
 	<p>You can connect a microphone and speaker to a network camera and listen to the sound at a remote location where the camera is installed, or output audio from the camera to the location. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
@@ -50,6 +50,13 @@
 		<div class="wn5-setup-section-article-content">
 			<h3><a class="wn5-online-help-link" name="gain"></a>Gain</h3>
 			<p>Sets the amplification value of audio in. If the input sound is too low, you can increase the gain value to amplify the input audio signal. The range of gain value is from 1 to 10; a larger value means higher amplification. </p>
+		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
+			<h3>Noise reduction</h3>
+            <p>Select Noise Reduction if the surrounding noise is too strong to hear the sound of interest.</p>
+            <p>You can set the noise reduction sensitivity based on the level of ambient noise.</p>
+            <p>Noise reduction may not work properly if noise is indistinguishable from the surrounding voice sound, or if the sound pressure is high.</p>
 		</div>
 	</div>
 </div>

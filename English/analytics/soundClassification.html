@@ -22,9 +22,14 @@
         <h2>Configuration</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!AudioInNoiseReduction">
             <h3>Noise reduction  </h3>
             <p>To use the noise removal filter, select <strong class="UI">[Enable]</strong>. If the noise from the surrounding environments is higher than 55dB~65dB, use <strong class="UI">[Noise reduction]</strong>. Using the noise reduction function according to environments reduces original sound so that the sound classification performance may deteriorate, or a malfunction may occur. If the noise reduction filter is used in a quiet environment, the sound classification performance may deteriorate.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
+            <h3>Noise filter  </h3>
+            <p>To use the noise removal filter, select <strong class="UI">[Enable]</strong>. If the noise from the surrounding environments is higher than 55dB~65dB, use <strong class="UI">[Noise filter]</strong>. Using the noise reduction function according to environments reduces original sound so that the sound classification performance may deteriorate, or a malfunction may occur. If the noise reduction filter is used in a quiet environment, the sound classification performance may deteriorate.</p>
         </div>
         <!--<div class="wn5-setup-section-article-content">
             <h3>Sensitivity  </h3>
