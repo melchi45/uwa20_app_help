@@ -41,9 +41,10 @@
 
         <div class="wn5-setup-section-article-content">
             <h3>프로파일 목록</h3>
-            <p>기본으로 제공되는 프로파일의 목록과 사용자가 추가한 프로파일의 목록이 같이 표시됩니다. </p>
+            <p>기본으로 제공되는 프로파일의 목록과 사용자가 추가한 프로파일의 목록이 같이 표시됩니다.</p>
 
-            <p>카메라를 설치하면 기본으로 제공되는 프로파일은 다음과 같습니다. 기본으로 제공하는 프로파일 이름과 코덱은 변경할 수 없으며 그 외 설정은 사용자가 원하는 대로 변경할 수 있습니다.</p>
+            <p ng-if="!FixedProfileCodecChange"><font color="lime">카메라를 설치하면 기본으로 제공되는 프로파일은 다음과 같습니다. 기본으로 제공하는 프로파일 이름과 코덱은 변경할 수 없으며 그 외 설정은 사용자가 원하는 대로 변경할 수 있습니다.</font></p>
+            <p ng-if="FixedProfileCodecChange"><FONT color="blue">카메라를 설치하면 기본으로 제공되는 프로파일은 다음과 같습니다. </FONT></p>
             <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens">
                 <thead>
                 <tr>
@@ -280,8 +281,8 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
 
             <ul>
-                <li>고해상도 영상을 문제없이 스트림하려면, Chrome을 이용하여 웹뷰어에 접속하는 것을 권장합니다.</li>
-                <li>고해상도는 Edge, Firefox  웹브라우저에서 지원되지 않습니다. Internet Explorer와 Safari에서는 플러그인을 설치하면 고해상도 영상도 스트림할 수 있습니다. 플러그인을 설치하려면 <strong class="UI">[라이브]</strong> 화면이나 <strong class="UI">[재생]</strong> 화면에서 오른쪽 상단의 플러그인<span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li>
+                <li><font color="red">고해상도 영상을 문제없이 스트림하려면, Chrome을 이용하여 웹뷰어에 접속하는 것을 권장합니다.</font></li>
+                <li ng-if="!FixedProfileCodecChange"><font color="lime">고해상도는 Edge, Firefox  웹브라우저에서 지원되지 않습니다. Internet Explorer와 Safari에서는 플러그인을 설치하면 고해상도 영상도 스트림할 수 있습니다. 플러그인을 설치하려면 <strong class="UI">[라이브]</strong> 화면이나 <strong class="UI">[재생]</strong> 화면에서 오른쪽 상단의 플러그인<span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</font></li>
             </ul>
 		</div>
 		

@@ -15,10 +15,10 @@
     </div>
 
 		<div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기<font color="red"></font></h4>
             <ul>
-				<li>Chrome으로 웹뷰어에 접속하면 재생 화면의 기능을 가장 안정적으로 사용할 수 있습니다.</li>
-				<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li>
+				<li><font color="red">Chrome으로 웹뷰어에 접속하면 재생 화면의 기능을 가장 안정적으로 사용할 수 있습니다.</font></li>
+				<li ng-if="!FixedProfileCodecChange"><font color="lime">Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</font></li>
 			</ul>
     
         </div>
@@ -210,8 +210,8 @@
         <div class="wn5-setup-section-article-content">
             <h3>프로파일</h3>
             <p>현재 라이브 화면에 적용된 비디오 프로파일 이름과 상세 정보가 표시됩니다. <strong class="UI">[프로파일]</strong> 드롭다운 버튼을 누르면 현재 웹뷰어에서 사용할 수 있는 비디오 프로파일 목록이 나타나며 원하는 비디오 프로파일을 선택하면 라이브 화면에 바로 적용됩니다. 선택한 비디오 프로파일의 해상도, 코덱, 프레임 레이트, 목표 비트 레이트를 확인할 수 있습니다.</p>
-            <p ng-if="FisheyeLens">Internet Explorer로 웹뷰어에 접속한 경우, MJPEG 코덱을 제외한 다른 프로파일의 영상은 플러그인을 설치해야 영상을 볼 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인을 클릭하십시오.</p>
-            <p ng-if="FisheyeLens">또한 플러그인을 설치한 경우, 균등성을 보장하려면 <strong class="UI">[플러그인 균등성]</strong>을 선택합니다. </p>
+            <p ng-if="FisheyeLens && !FixedProfileCodecChange"><font color="lime">Internet Explorer로 웹뷰어에 접속한 경우, MJPEG 코덱을 제외한 다른 프로파일의 영상은 플러그인을 설치해야 영상을 볼 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인을 클릭하십시오.</font></p>
+            <p ng-if="FisheyeLens && !FixedProfileCodecChange"><font color="lime">또한 플러그인을 설치한 경우, 균등성을 보장하려면 <strong class="UI">[플러그인 균등성]</strong>을 선택합니다. </font></p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>표시  </h3>
