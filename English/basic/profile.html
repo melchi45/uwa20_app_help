@@ -47,7 +47,8 @@
             <h3>Profile list</h3>
             <p>The profile list is provided by default; all profiles added by the user are also displayed. </p>
 
-            <p>The default profiles provided when the camera is installed are as follows (the name and codec of the default profiles provided cannot be changed; other settings can be changed by the user as he/she desires):</p>
+            <p ng-if="!FixedProfileCodecChange">The default profiles provided when the camera is installed are as follows (the name and codec of the default profiles provided cannot be changed; other settings can be changed by the user as he/she desires):</p>
+            <p ng-if="FixedProfileCodecChange">The default profiles provided when the camera is installed are as follows:</p>            
             <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens" >
                 <thead>
                 <tr>
@@ -81,7 +82,6 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
 
 
         <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
@@ -115,7 +115,7 @@
 
 
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>Adding a video profile</h4>
+            <h4>Adding a video profile</h4>
             <div>
                 <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Click the <strong class="UI">[Add]</strong> button. A new item will be added to the profile list.</li>
                     <li>Enter the name of profile in the <strong class="UI">[Name]</strong> field. The entered name will appear in the profile list.</li>
@@ -127,7 +127,7 @@
         </div>
 
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>Changing a video profile property</h4>
+            <h4>Changing a video profile property</h4>
             <div>
                 <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Select the profile which you wish to change from the profile list.</li>
                     <li>Change the relative settings, including <strong class="UI">[Codec]</strong>, <strong class="UI">[Profile type]</strong> and <strong class="UI">[Resolution]</strong>.</li>
@@ -138,7 +138,7 @@
         </div>
 
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>Deleting a video profile</h4>
+            <h4>Deleting a video profile</h4>
             <div>
                 <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Select the profile which you wish to delete from the profile list. </li>
                     <li>Click the <strong class="UI">[Delete]</strong> button.</li>
@@ -276,7 +276,7 @@
 
 			<ul>
 				<li>In order to stream a high-resolution image smoothly, it is recommended to connect to the web viewer using Google Chrome.</li>
-				<li>High resolution is not supported by Chrome, Edge or Firefox web browsers. High resolution images can be streamed in Internet Explorer and Safari after installation of a plugin. To install the plugin, click the <span class="tui tui-wn5-download"></span> button on the top right of the <strong class="UI">[Monitoring]</strong> screen or the <strong class="UI">[Playback]</strong> screen. </li>
+				<!-- <li>High resolution is not supported by Chrome, Edge or Firefox web browsers. High resolution images can be streamed in Internet Explorer and Safari after installation of a plugin. To install the plugin, click the <span class="tui tui-wn5-download"></span> button on the top right of the <strong class="UI">[Monitoring]</strong> screen or the <strong class="UI">[Playback]</strong> screen. </li> -->
 			</ul>
 		</div>
 
@@ -364,7 +364,6 @@
                       </ul>
           		</div>
 
-        </div>
 		<div class="wn5-setup-section-article-content">
             <h3>Dynamic FPS</h3>
             <p>Select <strong class="UI">[Enable]</strong> to apply the Dynamic FPS function to the profile currently being set. Dynamic FPS is a function that automatically changes the frames per second according to the video situation. Dynamic FPS is enabled only when <strong class="UI">[Codec]</strong> is set to <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> and <strong class="UI">[Bitrate Control Method]</strong> is set to <strong class="UI">[VBR]</strong>.</p>

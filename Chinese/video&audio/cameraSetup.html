@@ -218,7 +218,7 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="BackLight"> 
+<hr class="wn5-setup-hr" ng-if="BackLight">
 <div class="wn5-setup-section" ng-if="BackLight">
     <div class="wn5-setup-section-heading">
         <h2>背光</h2>
@@ -419,7 +419,9 @@
                 <li><strong class="UI">黑白</strong>：输出的是黑白图像。</li>
                 <li><strong class="UI">自动</strong>：白天时切换为彩色模式，夜间或昏暗光线下切换为黑白模式。如果<strong class="UI">[曝光]</strong>的<strong class="UI">[自动增益]</strong>设置为<strong class="UI">[关]</strong>，则无法设置日/夜模式。</li>
                 <li ng-if="!PTZModel"><strong class="UI">外部</strong>：将警报输入终端连接至外部设备时，可控制彩色和黑白模式。</li>
-                <li ng-if="!PTZModel"><strong class="UI">计划</strong>：日/夜模式可按照<strong class="UI">[激活时间（彩色）]</strong>中所设置的计划进行更改。</li>
+                <li ng-if="!PTZModel && !DayNightSchedule"><strong class="UI">计划</strong>：日/夜模式可按照<strong class="UI">[激活时间（彩色）]</strong>中所设置的计划进行更改。</li>
+                <li ng-if="DayNightSchedule"><strong class="UI">定时（彩色）</strong>：按照<strong class="UI">[激活时间]</strong>中设置的定时以彩色显示摄像机图像。</li>
+                <li ng-if="DayNightSchedule"><strong class="UI">定时（黑白）</strong>：按照<strong class="UI">[激活时间]</strong>中设置的定时以黑白色显示摄像机图像。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -438,10 +440,17 @@
             <h3>D/N 后简单对焦</h3>
             <p>切换至日/夜模式后，为图像进行调焦。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!DayNightSchedule">
             <h3>激活时间（彩色）</h3>
             <p>在彩色模式中设置运行计划。选择<strong class="UI">[每天]</strong>，且设置好时间后，将在每天的相关时间内，启动彩色模式，而在此外的其它时间内启动黑白模式。如果不想在每天的同一时间启动彩色模式，可取消选择<strong class="UI">[每天]</strong>，然后将相应的激活时间设置为星期一、星期二、星期三、星期四、星期五、星期六或星期日。</p>
         </div>
+
+                   <div class="wn5-setup-section-article-content" ng-if="DayNightSchedule">
+                    <h3>激活时间</h3>
+                            <p>设置定时以彩色或黑白色显示摄像机图像。选择<strong class="UI">[模式]</strong>中的<strong class="UI">[定时（彩色）]</strong>或<strong class="UI">[定时（黑白）]</strong>以激活操作定时选项。 </font></p>
+                            <p>例，如选择<strong class="UI">[模式]</strong>中的<strong class="UI">[定时（彩色）]</strong>，选择<strong class="UI">[每日]</strong>并设置了时间，将在每天同一时间激活彩色模式，而其余时间将在黑白模式下运行。也可以取消选择<strong class="UI">[每日]</strong>并将彩色模式的激活时间分别设置为周一、周二、周三、周四、周五、周六或周日。</font></p>
+
+
     </div>
 </div>
 
@@ -472,7 +481,6 @@
                         </ul>
                     </div>
 
-        </div>
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>锐利度</h3>
             <p>调整图像的整体锐利度。</p>
@@ -560,11 +568,9 @@
         <div class="wn5-setup-section-article-content">
             <h3>Upload image</h3>
             <p>Search a file in bitmap format by clicking the <strong class="UI">[…]</strong> button. Upload an image file by clicking the <strong class="UI">[Upload]</strong> button. To delete an image file, click the <strong class="UI">[Delete]</strong> button. The specifications of applicable images include 16-bit or 24-bit bitmap files (RGB565 not supported), 128px (fixed) for the width and length, and a file size of 52 KB or less.</p>
-        </div> --></div>
+        </div> -->
+    </div>
 </div>
-
-
-
         <hr class="wn5-setup-hr" ng-if="ColorPalette">
         <div class="wn5-setup-section" ng-if="ColorPalette">
             <div class="wn5-setup-section-heading">

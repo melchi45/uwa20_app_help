@@ -30,7 +30,9 @@
         <div class="wn5-setup-section-article-content">
             <p>更改配置文件属性后，可以选择使用之前的配置文件或更改后的配置文件进行图像输出。 </p>
             <p>选中<strong class="UI">[在更改配置文件设置时保持连接]</strong>后，图像按照之前的配置文件属性输出，即使配置文件属性已经做出了更改；当重新连接网络查看器后，图像将按照更改后的配置文件进行输出。未选择<strong class="UI">[在更改配置文件设置时保持连接]</strong>时，配置文件属性更改后，图像将立刻按照更改后的配置文件进行输出。当配置文件已经更改后，在[正在监视]页面的实时视图边缘将变为橙色。</p>
-
+    </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -46,7 +48,8 @@
             <h3>配置文件列表</h3>
             <p>默认提供配置文件列表，所有用户添加的配置文件也将被显示出来。 </p>
 
-            <p>安装摄像机时默认提供的配置文件如下（默认配置文件的名称和编解码器不能更改；其它设置可以根据用户需求进行更改）：</p>
+            <p ng-if="!FixedProfileCodecChange">安装摄像机时默认提供的配置文件如下（默认配置文件的名称和编解码器不能更改；其它设置可以根据用户需求进行更改）：</p>
+            <p ng-if="FixedProfileCodecChange">安装摄像机时默认提供的配置文件如下 ：</p>
             <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens" >
                 <thead>
                 <tr>
@@ -78,7 +81,6 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
 
 
         <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
@@ -112,7 +114,7 @@
 
 
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>添加视频配置文件</h4>
+            <h4>添加视频配置文件</h4>
             <div>
                 <ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>单击<strong class="UI">[添加]</strong>按钮。将一个新项目添加至配置文件列表中。</li>
                     <li>在<strong class="UI">[名称]</strong>字段输入配置文件名称。所输入的名称将出现在配置文件列表中。</li>
@@ -124,7 +126,7 @@
         </div>
 
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>更改视频配置文件属性</h4>
+            <h4>更改视频配置文件属性</h4>
             <div>
                 <ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>从配置文件列表中选择想要更改的配置文件。</li>
                     <li>更改相应设置，包括<strong class="UI">[编解码器]</strong>、<strong class="UI">[配置文件类型]</strong>和<strong class="UI">[分辨率]</strong>。</li>
@@ -135,7 +137,7 @@
         </div>
 
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>删除视频配置文件</h4>
+            <h4>删除视频配置文件</h4>
             <div>
                 <ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>从配置文件列表中选择一个想要删除的配置文件。 </li>
                     <li>单击<strong class="UI">[删除]</strong>按钮。</li>
@@ -273,7 +275,7 @@
 
                         <ul>
                             <li>为了获得顺畅的高分辨率图像流，建议使用 Google Chrome 连接至 web 查看器。</li>
-                            <li>Chrome、Edge 或 Firefox 网页浏览器不支持高分辨率。安装插件后，可以在 IE 浏览器和 Safari 浏览器中进行高分辨率图像的流式传输。如需安装插件，请单击位于<strong class="UI">[正在监视]</strong>页面或<strong class="UI">[播放]</strong>页面右上角的{图标}按钮。  </li>
+                           <!-- <li>Chrome、Edge 或 Firefox 网页浏览器不支持高分辨率。安装插件后，可以在 IE 浏览器和 Safari 浏览器中进行高分辨率图像的流式传输。如需安装插件，请单击位于<strong class="UI">[正在监视]</strong>页面或<strong class="UI">[播放]</strong>页面右上角的{图标}按钮。  </li>  -->
                         </ul>
 		</div>
 
@@ -358,7 +360,6 @@
                                   </ul>
                           </div>
 
-                    </div>
                 <div class="wn5-setup-section-article-content">
                         <h3>动态 FPS</h3>
                         <p>如果要将动态FPS功能应用到目前正在设置的配置文件中，则选择<strong class="UI">[启用]</strong>动态FPS是根据视频情况自动修改每秒帧数(frames per second)的功能。动态FPS只有在将<strong class="UI">[编解码器]</strong>选为<strong class="UI">[H.264]</strong>或<strong class="UI">[H.265]</strong>，<strong class="UI">[比特率控制]</strong>为<strong class="UI">[VBR]</strong>时才可激活。</p>

@@ -23,7 +23,7 @@
             <p>选择想要用于隐私区域的马赛克图案。如果设置为[不透明]，将采用从隐私区域窗口设置的颜色。选好图案后，该图案会均匀地覆盖到所有隐私区域上。</p>
 		</div>
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>设置隐私区域</h4>
+            <h4>设置隐私区域</h4>
             <ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>选择<strong class="UI">[启用隐私区域]</strong>复选框，然后单击页面底部的<strong class="UI">[应用]</strong>按钮。</li>
                 <li>用鼠标单击摄像机图像屏幕的 4 边。这时，会出现隐私区域窗口。</li>
                 <li>在<strong class="UI">[名称]</strong>栏输入隐私区域的名称，在<strong class="UI">[颜色]</strong>中选择覆盖图案的颜色，然后单击<strong class="UI">[确认]</strong>按钮。  </li>
@@ -39,7 +39,7 @@
 
 
 		<div class="wn5-online-help-action">
-			<h4><span class="tui tui-wn5-help-warning"></span>删除隐私区域</h4>
+			<h4>删除隐私区域</h4>
 			<ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>从隐私区域列表中选择一个想要删除的隐私区域。选定区域将出现在摄像机图像屏幕上。 </li>
 				<li>单击<strong class="UI">[删除]</strong>按钮。选定区域将被删除。</li>
 			</ol>
@@ -57,23 +57,24 @@
 		<div class="wn5-setup-section-article-content">
 			<p>安装完摄像机后，如果屏幕显示为上下颠倒，可通过翻转模式和镜像模式功能进行修正。过道视图功能可显示屏幕的长立面视图，让用户有效地掌控检视区域。</p>
 		</div>
+        		<div class="wn5-online-help-info" ng-if="Statistics">
 		<h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
 									<ul>
 											<li>如果更改视频旋转设置，视频画面会上下左右翻转或颠倒。请修改分析和统计设置，以根据所修改的视频分析视频或累计统计数据。本设置可在<strong class="UI">[分析]</strong>菜单和<strong class="UI">[统计]</strong>菜单中进行更改。  </li>
 									</ul>
 			</div>
 					<div class="wn5-online-help-info">
-		<h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
+		<h4>须知</h4>
 					<ul>
 							<li>如果更改视频旋转设置， 视频画面会上下左右翻转或颠倒。请在<strong class="UI">[分析]</strong>菜单中更改分析设置，以根据所修改的视频分析视频。  </li>
 					</ul>
 			</div>
 		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel"><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><h3>翻转模式</h3>
-			<p>可将摄像机图像上下翻转。 <span class="tui tui-wn5-mirror-top"></span> 如需翻转摄像机图像，请选择<strong class="UI">[启用]</strong>。</p>
+			<p>可将摄像机图像上下翻转。如需翻转摄像机图像，请选择<strong class="UI">[启用]</strong>。</p>
 		</div>
         <div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
 			<h3>镜像模式</h3>
-            <p>可对摄像机的图像进行镜像显示。如需对摄像机图像进行镜像处理，请选择<strong class="UI">[启用]</strong>。<span class="tui tui-wn5-flip-left"></span> </p>
+            <p>可对摄像机的图像进行镜像显示。如需对摄像机图像进行镜像处理，请选择<strong class="UI">[启用]</strong>。 </p>
         </div>
 
 		<div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">

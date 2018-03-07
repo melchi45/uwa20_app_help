@@ -8,8 +8,8 @@
         
 		<li>Se debe seleccionar <strong class="UI">[Perfil PTZ Digital]</strong> desde <strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Tipo de perfil]</strong></a> con el fin de establecer PTZ digital. </li>
 		
-        <li>Si est&aacute; conectado al visor web a trav&eacute;s de Internet Explorer, la funci&oacute;n PTZ digital, s&oacute;lo se puede utilizar despu&eacute;s de la instalaci&oacute;n de un plugin. Para instalar el plugin, haga clic en el bot&oacute;n de plugin en la parte superior derecha de la pantalla <strong class="UI">[En vivo]</strong> o en la pantalla <strong class="UI">[Grabar reproducci&oacute;n]</strong>. </li>
-		<li>Despu&eacute;s de la instalaci&oacute;n del plugin, se puede utilizar la funci&oacute;n PTZ digital sin restricci&oacute;n s&oacute;lo cuando la resoluci&oacute;n del navegador web sea 1024 o superior.</li>
+       <!--  <li ng-if="FixedProfileCodecChange">Si est&aacute; conectado al visor web a trav&eacute;s de Internet Explorer, la funci&oacute;n PTZ digital, s&oacute;lo se puede utilizar despu&eacute;s de la instalaci&oacute;n de un plugin. Para instalar el plugin, haga clic en el bot&oacute;n de plugin en la parte superior derecha de la pantalla <strong class="UI">[En vivo]</strong> o en la pantalla <strong class="UI">[Grabar reproducci&oacute;n]</strong>. </li>
+		<li ng-if="FixedProfileCodecChange">Despu&eacute;s de la instalaci&oacute;n del plugin, se puede utilizar la funci&oacute;n PTZ digital sin restricci&oacute;n s&oacute;lo cuando la resoluci&oacute;n del navegador web sea 1024 o superior.</li> -->
     </ul>
 	
 </div>
@@ -25,7 +25,7 @@
             <p>Preajuste hace referencia al ajuste de las vistas de c&aacute;mara. Se pueden ajustar 128 memorias. Si utiliza Internet Explorer como navegador, puede utilizar la funci&oacute;n DPTZ s&oacute;lo despu&eacute;s de instalar un plug-in de c&aacute;mara.</p>
         </div>
         <div class="wn5-online-help-action">
-    	   <h4><span class="tui tui-wn5-help-warning"></span>Configuraci&oacute;n de un preajuste</h4>
+    	   <h4>Configuraci&oacute;n de un preajuste</h4>
     		<ol>
     			<li>Ampl&iacute;e la imagen de la c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ, y ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
     			<li>Seleccione un n&uacute;mero de preajuste de <strong class="UI">[N&uacute;mero]</strong>.</li>
@@ -34,14 +34,14 @@
     		</ol>
     	</div>
         <div class="wn5-online-help-action">
-    	   <h4><span class="tui tui-wn5-help-warning"></span>Ir a un predefinido</h4>
+    	   <h4>Ir a un predefinido</h4>
     		<ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Seleccione un n&uacute;mero de preajuste de <strong class="UI">[N&uacute;mero]</strong>.</li>
     			<li>Al hacer clic en el bot&oacute;n <strong class="UI">[Ir]</strong>, las vistas de c&aacute;mara se mover&aacute;n a la ubicaci&oacute;n configurada.</li>
     			
     		</ol>
     	</div>
         <div class="wn5-online-help-action">
-    	   <h4><span class="tui tui-wn5-help-warning"></span>Eliminaci&oacute;n de un preajuste</h4>
+    	   <h4>Eliminaci&oacute;n de un preajuste</h4>
     		<ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Seleccione el n&uacute;mero de preajuste que desea borrar de <strong class="UI">[N&uacute;mero]</strong>.</li>
                 <li>Al hacer clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>, se borrar&aacute; el preajuste.</li>
     		</ol>
@@ -60,7 +60,7 @@
             <p>Puede agrupar un n&uacute;mero de predefinidos y acceder a predefinidos colocados en un grupo secuencialmente.</p>
         </div>
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>Ajustando un grupo</h4>
+            <h4>Ajustando un grupo</h4>
             <ol>
                 <li>Seleccione un n&uacute;mero de grupo de <strong class="UI">[N&deg; de grupo.]</strong>.</li>
                 <li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong> en <strong class="UI">[Lista de preajustes]</strong>. Cuando se muestre la lista de predefinidos, seleccione un <strong class="UI">[N&deg; de predef.]</strong> e introduzca la cantidad de tiempo (en segundos) para permanecer en el preajuste relevante en <strong class="UI">[Tiempo de permanencia]</strong>.</li>
@@ -69,7 +69,7 @@
             </ol>
         </div>
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>Ejecutando un grupo</h4>
+            <h4>Ejecutando un grupo</h4>
             <ol>
                 <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
                 <li>Seleccione el grupo que desee ejecutar desde <strong class="UI">[N&deg; de grupo]</strong>.</li>
@@ -78,7 +78,7 @@
             </ol>
         </div>
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>Eliminaci&oacute;n de un grupo</h4>
+            <h4>Eliminaci&oacute;n de un grupo</h4>
             <ol>
                 <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
                 <li>Seleccione el grupo que desee eliminar desde <strong class="UI">[N&deg; de grupo]</strong>.</li>

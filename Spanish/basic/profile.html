@@ -49,7 +49,9 @@
             <h3>Lista de perfiles</h3>
             <p>La lista de perfiles se proporciona de forma predeterminada; tambi&eacute;n se muestran todos los perfiles a&ntilde;adidos por el usuario. </p>
 
-            <p>Los perfiles predeterminados que se proporcionan cuando se instala la c&aacute;mara son los siguientes (el nombre y el c&oacute;dec de los perfiles predeterminados proporcionados no puede ser cambiado; otros ajustes pueden ser cambiados por el usuario cuando se desee):</p>
+            <p ng-if="!FixedProfileCodecChange">Los perfiles predeterminados que se proporcionan cuando se instala la c&aacute;mara son los siguientes (el nombre y el c&oacute;dec de los perfiles predeterminados proporcionados no puede ser cambiado; otros ajustes pueden ser cambiados por el usuario cuando se desee):</p>
+            <p ng-if="FixedProfileCodecChange">Los perfiles predeterminados que se proporcionan cuando se instala la c&aacute;mara son los siguientes :</p>
+            
             <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens" >
                 <thead>
                 <tr>
@@ -83,7 +85,6 @@
                   </tr>
                   </tbody>
               </table>
-          </div>
 
 
           <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
@@ -118,7 +119,7 @@
 
           <div class="wn5-online-help-action">
 
-            <h4><span class="tui tui-wn5-help-warning"></span>Adici&oacute;n de un perfil de v&iacute;deo</h4>
+            <h4>Adici&oacute;n de un perfil de v&iacute;deo</h4>
             <div>
                 <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>. Un nuevo elemento se a&ntilde;adir&aacute; a la lista de perfiles.</li>
                     <li>Introduzca el nombre del perfil en el campo <strong class="UI">[Nombre]</strong>. El nombre introducido aparecer&aacute; en la lista de perfiles.</li>
@@ -130,7 +131,7 @@
         </div>
 
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>Cambiar una propiedad del perfil de v&iacute;deo</h4>
+            <h4>Cambiar una propiedad del perfil de v&iacute;deo</h4>
             <div>
                 <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Seleccione el perfil que desea cambiar de la lista de perfiles.</li>
                     <li>Cambie los elementos del perfil, incluyendo <strong class="UI">[C&oacute;dec]</strong>, <strong class="UI">[Tipo de perfil]</strong> y <strong class="UI">[Resoluci&oacute;n]</strong>.</li>
@@ -141,7 +142,7 @@
         </div>
 
         <div class="wn5-online-help-action">
-            <h4><span class="tui tui-wn5-help-warning"></span>Eliminaci&oacute;n de un perfil de v&iacute;deo</h4>
+            <h4>Eliminaci&oacute;n de un perfil de v&iacute;deo</h4>
             <div>
                 <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Seleccione el perfil que desea eliminar de la lista de perfiles. </li>
                     <li>Haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>.</li>
@@ -294,7 +295,7 @@
 
 			<ul>
 				<li>Con el fin de transmitir una imagen de alta resoluci&oacute;n sin problemas, se recomienda conectar con el visor web a trav&eacute;s de Google Chrome.</li>
-				<li>Los navegadores web Chrome, Edge o Firefox no son compatibles con la alta resoluci&oacute;n. Im&aacute;genes de alta resoluci&oacute;n pueden ser transmitidas en Internet Explorer y Safari despu&eacute;s de la instalaci&oacute;n de un plugin. Para instalar el plug-in, haga clic en el bot&oacute;n {Icono} de la parte superior derecha de la p&aacute;gina <strong class="UI">[Monitoreo]</strong> o la p&aacute;gina <strong class="UI">[Reproducci&oacute;n]</strong>. </li>
+				<!-- <li>Los navegadores web Chrome, Edge o Firefox no son compatibles con la alta resoluci&oacute;n. Im&aacute;genes de alta resoluci&oacute;n pueden ser transmitidas en Internet Explorer y Safari despu&eacute;s de la instalaci&oacute;n de un plugin. Para instalar el plug-in, haga clic en el bot&oacute;n {Icono} de la parte superior derecha de la p&aacute;gina <strong class="UI">[Monitoreo]</strong> o la p&aacute;gina <strong class="UI">[Reproducci&oacute;n]</strong>. </li> -->
 			</ul>
 		</div>
 
@@ -383,7 +384,6 @@
                           </ul>
               		</div>
 
-            </div>
     		<div class="wn5-setup-section-article-content">
                 <h3>FPS dinámico</h3>
                 <p>Seleccione <strong class="UI">[Activar]</strong> para aplicar la función FPS dinámico al perfil que se está configurando actualmente. FPS dinámico es una función que cambia automáticamente los fotogramas por segundo de acuerdo con la situación del vídeo. FPS dinámico sólo se habilita cuando <strong class="UI">[Códec]</strong> está ajustado en <strong class="UI">[H.264]</strong> o <strong class="UI">[H.265]</strong> and <strong class="UI">[Método de control de velocidad de bits]</strong> está ajustado en <strong class="UI">[VBR]</strong>.</p>

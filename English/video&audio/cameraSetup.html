@@ -345,7 +345,7 @@
             <h3>Control speed</h3>
             <p>Select <strong class="UI">[High]</strong> to quickly apply screen exposure when the level of illumination changes rapidly, such as when entering or exiting a tunnel.  It is recommended to set it to <strong class="UI">[Normal]</strong> when the screen brightness changes continuously, as it reacts highly sensitively to the change in illumination.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel"> 
+        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
             <h3>SSNR</h3>
             <p>Remove noise from the image.</p>
             <ul>
@@ -419,7 +419,10 @@
                 <li><strong class="UI">B/W</strong>: Outputs an image in b/w.</li>
                 <li><strong class="UI">Auto</strong>: Switch to color mode during the daytime and b/w at night or in low light. If <strong class="UI">[Off]</strong> is set for <strong class="UI">[AGC]</strong> of <strong class="UI">[Exposure]</strong>, Day/Night cannot be set automatically.</li>
                 <li ng-if="!PTZModel"><strong class="UI">External</strong>: When an alarm input terminal is linked with external equipment, color and b/w can be controlled.</li>
-                <li ng-if="!PTZModel"><strong class="UI">Schedule</strong>: Day/Night is changed to the schedule set from <strong class="UI">[Activation time (Color)]</strong>.</li>
+                <li ng-if="!PTZModel && !DayNightSchedule"><strong class="UI">Schedule</strong>: Day/Night is changed to the schedule set from <strong class="UI">[Activation time (Color)]</strong>.</li>
+                <li ng-if="DayNightSchedule"><strong class="UI">Schedule (Color)</strong>: Displays the camera image in color according to the schedule set from <strong class="UI">[Activation time]</strong>.</li>
+                <li ng-if="DayNightSchedule"><strong class="UI">Schedule (B/W)</strong>: Displays the camera image in black and white according to the schedule set from <strong class="UI">[Activation time]</strong>.</li>
+
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -438,9 +441,17 @@
             <h3>Simple focus after D/N</h3>
             <p>Adjusts the focus of the image automatically after a Day/Night switch.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!DayNightSchedule">
             <h3>Activation time (Color)</h3>
             <p>Sets the schedule for operation in color mode. When <strong class="UI">[Everyday]</strong> is selected and the time is set, color mode is activated at the relevant time every day, and b/w mode is activated at all other times. If you wish to not have color mode set for the same time every day, you can deselect <strong class="UI">[Everyday]</strong> and set the activation time to Mon., Tue., Wed., Thu., Fri., Sat. or Sun., respectively.</p>
+          </div>
+          <div class="wn5-setup-section-article-content" ng-if="DayNightSchedule">
+              <h3>Activation time</h3>
+                      <p>Operation scheduleSet the schedule to display the camera image in color or black and white. Select <strong class="UI">[Schedule (Color)]</strong> or <strong class="UI">[Schedule (B/W)]</strong> in <strong class="UI">[Mode]</strong> to activate the activation time option.</font></p>
+                      <p>For example, if you select <strong class="UI">[Schedule (Color)]</strong> in <strong class="UI">[Mode]</strong>, select <strong class="UI">[Everyday]</strong>, and set the time, the color mode will be activated every day at that time, and it will operate in black and white mode for the rest of the time. You can deselect <strong class="UI">[Everyday]</strong> and set the activation time of the color mode to Mon., Tue., Wed., Thu., Fri., Sat. or Sun., respectively.  </font></p>
+                  </div>
+              </div>
+
         </div>
     </div>
 </div>
@@ -472,7 +483,6 @@
                     </ul>
                 </div>
 
-        </div>
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>Sharpness</h3>
             <p>Adjust the overall sharpness of the image.</p>
@@ -560,7 +570,10 @@
         <div class="wn5-setup-section-article-content">
             <h3>Upload image</h3>
             <p>Search a file in bitmap format by clicking the <strong class="UI">[…]</strong> button. Upload an image file by clicking the <strong class="UI">[Upload]</strong> button. To delete an image file, click the <strong class="UI">[Delete]</strong> button. The specifications of applicable images include 16-bit or 24-bit bitmap files (RGB565 not supported), 128px (fixed) for the width and length, and a file size of 52 KB or less.</p>
-        </div> --><hr class="wn5-setup-hr" ng-if="ColorPalette">
+        </div> -->
+     </div>
+</div>
+        <hr class="wn5-setup-hr" ng-if="ColorPalette">
         <div class="wn5-setup-section" ng-if="ColorPalette">
             <div class="wn5-setup-section-heading">
                 <h2>Color Palette</h2>
