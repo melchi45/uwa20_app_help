@@ -419,9 +419,9 @@
                 <li><strong class="UI">B/W</strong>: Outputs an image in b/w.</li>
                 <li><strong class="UI">Auto</strong>: Switch to color mode during the daytime and b/w at night or in low light. If <strong class="UI">[Off]</strong> is set for <strong class="UI">[AGC]</strong> of <strong class="UI">[Exposure]</strong>, Day/Night cannot be set automatically.</li>
                 <li ng-if="!PTZModel"><strong class="UI">External</strong>: When an alarm input terminal is linked with external equipment, color and b/w can be controlled.</li>
-                <li ng-if="!PTZModel && !DayNightSchedule"><strong class="UI">Schedule</strong>: Day/Night is changed to the schedule set from <strong class="UI">[Activation time (Color)]</strong>.</li>
-                <li ng-if="DayNightSchedule"><strong class="UI">Schedule (Color)</strong>: Displays the camera image in color according to the schedule set from <strong class="UI">[Activation time]</strong>.</li>
-                <li ng-if="DayNightSchedule"><strong class="UI">Schedule (B/W)</strong>: Displays the camera image in black and white according to the schedule set from <strong class="UI">[Activation time]</strong>.</li>
+                <li ng-if="!PTZModel"><strong class="UI">Schedule</strong>: Day/Night is changed to the schedule set from <strong class="UI">[Activation time (Color)]</strong>.</li>
+          <!--  <li ng-if="DayNightSchedule"><strong class="UI">Schedule (Color)</strong>: Displays the camera image in color according to the schedule set from <strong class="UI">[Activation time]</strong>.</li>
+                <li ng-if="DayNightSchedule"><strong class="UI">Schedule (B/W)</strong>: Displays the camera image in black and white according to the schedule set from <strong class="UI">[Activation time]</strong>.</li>  --> 
 
             </ul>
         </div>
@@ -441,18 +441,16 @@
             <h3>Simple focus after D/N</h3>
             <p>Adjusts the focus of the image automatically after a Day/Night switch.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!DayNightSchedule">
+        <div class="wn5-setup-section-article-content">
             <h3>Activation time (Color)</h3>
             <p>Sets the schedule for operation in color mode. When <strong class="UI">[Everyday]</strong> is selected and the time is set, color mode is activated at the relevant time every day, and b/w mode is activated at all other times. If you wish to not have color mode set for the same time every day, you can deselect <strong class="UI">[Everyday]</strong> and set the activation time to Mon., Tue., Wed., Thu., Fri., Sat. or Sun., respectively.</p>
           </div>
-          <div class="wn5-setup-section-article-content" ng-if="DayNightSchedule">
+          <!-- <div class="wn5-setup-section-article-content" ng-if="DayNightSchedule">
               <h3>Activation time</h3>
-                      <p>Operation scheduleSet the schedule to display the camera image in color or black and white. Select <strong class="UI">[Schedule (Color)]</strong> or <strong class="UI">[Schedule (B/W)]</strong> in <strong class="UI">[Mode]</strong> to activate the activation time option.</font></p>
-                      <p>For example, if you select <strong class="UI">[Schedule (Color)]</strong> in <strong class="UI">[Mode]</strong>, select <strong class="UI">[Everyday]</strong>, and set the time, the color mode will be activated every day at that time, and it will operate in black and white mode for the rest of the time. You can deselect <strong class="UI">[Everyday]</strong> and set the activation time of the color mode to Mon., Tue., Wed., Thu., Fri., Sat. or Sun., respectively.  </font></p>
-                  </div>
-              </div>
+                      <p>Operation scheduleSet the schedule to display the camera image in color or black and white. Select <strong class="UI">[Schedule (Color)]</strong> or <strong class="UI">[Schedule (B/W)]</strong> in <strong class="UI">[Mode]</strong> to activate the activation time option.</p>
+                      <p>For example, if you select <strong class="UI">[Schedule (Color)]</strong> in <strong class="UI">[Mode]</strong>, select <strong class="UI">[Everyday]</strong>, and set the time, the color mode will be activated every day at that time, and it will operate in black and white mode for the rest of the time. You can deselect <strong class="UI">[Everyday]</strong> and set the activation time of the color mode to Mon., Tue., Wed., Thu., Fri., Sat. or Sun., respectively.  </p>
+                  </div> -->
 
-        </div>
     </div>
 </div>
 
@@ -471,15 +469,15 @@
             <p>When image shaking is detected, DIS (Digital Image Stabilization) corrects it automatically and stabilizes the screen.</p>
         </div>
         <div class="wn5-online-help-info" ng-if="Statistics">
-        			<h4><span class="tui tui-wn5-help-warning"></span>Note</font></h4>
+        			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                             <ul>
-                                <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics and statistics settings so that you can analyze the video or accumulate the statistical data according to the changed video. These settings can be changed in the <strong class="UI">[Analytics]</strong> menu and <strong class="UI">[Statistics]</strong> menu.</font> </li>
+                                <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics and statistics settings so that you can analyze the video or accumulate the statistical data according to the changed video. These settings can be changed in the <strong class="UI">[Analytics]</strong> menu and <strong class="UI">[Statistics]</strong> menu. </li>
                             </ul>
                 </div>
         						<div class="wn5-online-help-info">
-        			<h4><span class="tui tui-wn5-help-warning"></span>Note</font></h4>
+        			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                     <ul>
-                        <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics setting in the <strong class="UI">[Analytics]</strong> menu so that the video can be analyzed according to the changed video.</font>  </li>
+                        <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics setting in the <strong class="UI">[Analytics]</strong> menu so that the video can be analyzed according to the changed video.  </li>
                     </ul>
                 </div>
 
@@ -701,12 +699,12 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>Mode</h3>
-            <p>Select <strong class="UI">[Off]</strong> if you wish to not use the IR function. Select</font><strong class="UI">[Auto 1]</font></strong> to compensate for auto exposure by saturation of the center area due to IR LED, or</font><strong class="UI">[Auto 2]</font></strong> to suppress saturation for the entire screen and compensate for auto exposure. Select <strong class="UI">[Manual]</strong> if you wish to operate IR manually.</p>
+            <p>Select <strong class="UI">[Off]</strong> if you wish to not use the IR function. Select<strong class="UI">[Auto 1]</strong> to compensate for auto exposure by saturation of the center area due to IR LED, or<strong class="UI">[Auto 2]</strong> to suppress saturation for the entire screen and compensate for auto exposure. Select <strong class="UI">[Manual]</strong> if you wish to operate IR manually.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Level</h3>
             <p>Set the IR level.</p>
-   <p>The IR level is enabled when <strong class="UI">[Manual]</strong> is selected in <strong class="UI">[Mode]</strong>.</font></p>
+   <p>The IR level is enabled when <strong class="UI">[Manual]</strong> is selected in <strong class="UI">[Mode]</strong>.</p>
 
         </div>
     </div>
