@@ -5,7 +5,8 @@
 전으로 돌아갑니다.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="PTZModel">
+<hr class="wn5-setup-hr">
+
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>타입</h2>
@@ -16,8 +17,10 @@
         </div>
 </div>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="ImagePresetMode">
 <div class="wn5-setup-section" ng-if="ImagePresetMode">
-    <div class="wn5-setup-section-heading" ng-if="ImagePresetMode">
+    <div class="wn5-setup-section-heading">
         <h2>이미지 프리셋 모드</h2>
     </div>
     <div class="wn5-setup-section-article">

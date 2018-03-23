@@ -1,5 +1,4 @@
-﻿
-<h1 class="wn5-setup-main-title">비디오 프로파일</h1>
+﻿<h1 class="wn5-setup-main-title">비디오 프로파일</h1>
 <div class="wn5-setup-section">
     <p>비디오 프로파일을 추가하거나 삭제하고, 프로파일 속성을 변경할 수 있습니다. 비디오 해상도, 프레임 레이트, 코덱 등을 '비디오 프로파일'로 미리 설정한 후 환경과 상황에 따라 사용자가 원하는 프로파일로 변경하여 영상을 스트림하거나 재생할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하여 설정을 적용하십시오.</p>
 </div>
@@ -29,7 +28,6 @@
     </div>
 </div>
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>비디오 프로파일</h2>
@@ -235,11 +233,7 @@
             <p>ATC 제한은 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 - 프레임 레이트 조정]</strong>, <strong class="UI">[사용 - 압축 조정]</strong>으로 선택할 때만 활성화됩니다.</p>
         </div>
     </div>
-</div>  
-
-            
-<hr class="wn5-setup-hr" ng-if="Crop">
-
+</div>  <hr class="wn5-setup-hr" ng-if="Crop">
 <div class="wn5-setup-section" ng-if="Crop">
     <div class="wn5-setup-section-heading">
         <h2>크롭 인코딩</h2>
@@ -261,9 +255,7 @@
         </div>
     </div>
 </div>
-
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>프로파일 속성</h2>
@@ -303,9 +295,7 @@
         </div>
     </div>  
 </div>
-
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>고급</h2>
@@ -377,10 +367,13 @@ GOV는 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong c
 		    
 			<div class="wn5-setup-section-article-content">
             <h3>다이내믹 FPS</h3>
-            <p>다이내믹 FPS 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. 다이내믹 FPS는 영상 상황에 따라 초당 프레임 수(frames per second)가 자동으로 변경되는 기능입니다. 다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다.</p>         
-            <ul>
-                <li>다이내믹 FPS가 작동할 때 적용할 최소 FPS 값을 입력합니다. </li>
-            </ul>
+            <p>다이내믹 FPS 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. 다이내믹 FPS는 영상 상황에 따라 초당 프레임 수(frames per second)가 자동으로 변경되는 기능입니다. 다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다.</p>
+			</div>
+			         
+			<div class="wn5-setup-section-article-content">
+            <h3>최소 FPS</h3>
+                <p>다이내믹 FPS가 작동할 때 적용할 최소 FPS 값을 입력합니다. </p>
+           </div>
 
         </div>	
 <div class="wn5-online-help-info">
