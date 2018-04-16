@@ -13,7 +13,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --></ul>
+            
             <h3>对焦初始化</h3>
             <p>如需对焦点进行初始化，请单击<strong class="UI">[对焦初始化]</strong> 按钮。焦点将调到默认位置。</p>
         </div>
@@ -40,7 +40,7 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
-            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>如果目标突然发生变化（突然移动、消失），亮度突然发生变化，图像的对比度较低，或附近存在强光源，无法正常执行简单对焦功能。</li>
+            <ul>><li>如果目标突然发生变化（突然移动、消失），亮度突然发生变化，图像的对比度较低，或附近存在强光源，无法正常执行简单对焦功能。</li>
 
             </ul>
         </div>
@@ -48,10 +48,10 @@
             <h3>红外校正</h3>
             <p>在夜间模式中使用IR光源时， 自动补正可见光和红外的对焦误差。 </p>
         </div>
-                <div class="wn5-online-help-info">
+                <div class="wn5-online-help-info" ng-if="ICS">
             <h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
             <ul>
-<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+
                 <li><strong class="UI">[视频及音频] </strong> &gt; <strong class="UI">[摄像机设置] </strong> &gt; <strong class="UI"> [曝光]</strong> &gt; <strong class="UI">[镜头]</strong>中"ICS" 镜头时，才能设置红外校正功能。</li>
 
             </ul>
@@ -60,10 +60,10 @@
             <h3>温度补偿</h3>
             <p>是在沙漠般昼夜温差大的地区很实用的功能，检测到按温差收缩及膨胀的镜头，自动补正对焦误差。 </p>
         </div>
-        <div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="ICS">
             <h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
             <ul>
-<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+
                               <li><strong class="UI">[视频及音频] > </strong> &gt; <strong class="UI"> [摄像机设置]</strong> &gt; <strong class="UI"> [曝光]</strong> &gt; <strong class="UI">[镜头]</strong>中选择 "ICS" 镜头时，才能设置温度补偿功能。</li>
 
             </ul>
