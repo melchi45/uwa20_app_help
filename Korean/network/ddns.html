@@ -1,11 +1,26 @@
 ﻿<h1 class="wn5-setup-main-title">DDNS</h1>
 <div class="wn5-setup-section">
-	<p>
+	<p ng-if="!CamSpecialModel">
 		DDNS(Dynamic Domain Name Service)를 이용하면 카메라 IP 주소를 사용자가 기억하기 쉬운 일반적인 호스트 명으로 변경되도록 설정할 수 있습니다. 카메라 IP 주소가 198.160.0.100인 경우 IP 주소 대신 http://ddns.hanwha-security.com/camera1과 같은 호스트 명을 입력하여 카메라에 접속할 수 있습니다. 카메라 IP 주소가 변경되더라도 DDNS 주소로 카메라에 접속할 수 있기 때문에 편리합니다. 
 		</p>
-		<p>DDNS에서는 한화테크윈 전용 와이즈넷 DDNS를 사용하거나 공개 DDNS를 사용할 수 있습니다. 원하는 DDNS 정보를 입력한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 선택한 DDNS에 연결되면 ‘성공’ 메시지가 표시되며, 연결되지 않으면 ‘실패’ 메시지가 표시됩니다. 
+	
+    <p ng-if="CamSpecialModel">
+		DDNS(Dynamic Domain Name Service)를 이용하면 카메라 IP 주소를 사용자가 기억하기 쉬운 일반적인 호스트 명으로 변경되도록 설정할 수 있습니다. 카메라 IP 주소가 198.160.0.100인 경우 IP 주소 대신 http://ddns.s1.co.kr/camera1과 같은 호스트 명을 입력하여 카메라에 접속할 수 있습니다. 카메라 IP 주소가 변경되더라도 DDNS 주소로 카메라에 접속할 수 있기 때문에 편리합니다.		</p>
+		
+    <p ng-if="!CamSpecialModel">DDNS에서는 한화테크윈 전용 와이즈넷 DDNS를 사용하거나 공개 DDNS를 사용할 수 있습니다. 원하는 DDNS 정보를 입력한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 선택한 DDNS에 연결되면 ‘성공’ 메시지가 표시되며, 연결되지 않으면 ‘실패’ 메시지가 표시됩니다. 
+	</p>
+	
+				<p ng-if="CamSpecialModel">DDNS에서는 에스원 DDNS를 사용하거나 공개 DDNS를 사용할 수 있습니다. 원하는 DDNS 정보를 입력한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 선택한 DDNS에 연결되면 ‘성공’ 메시지가 표시되며, 연결되지 않으면 ‘실패’ 메시지가 표시됩니다. 
 	</p>
 </div>
+
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
+    <ul>
+        <li><font color="blue">DDNS와 공유기의 포트 포워딩을 같이 설정해야 DDNS 서비스를 사용할 수 있습니다.</font></li>
+        <li><font color="blue">공유기의 포트 포워딩 설정 방법은 제품에 포함되어 있는 사용 설명서를 참고하십시오.</font></li>
+    </ul>
+		</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -17,9 +32,10 @@
 		    <h3>사용 안 함 </h3>
 		    <p>DDNS를 사용하지 않는 경우에 선택합니다.</p>
 	    </div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="!CamSpecialModel">
 		    <h3>와이즈넷 DDNS  </h3>
-		    <p>한화테크윈에서 제공하는 DDNS 서버를 사용할 경우에 선택합니다. 와이즈넷 DDNS를 사용하려면 와이즈넷 DDNS 홈페이지(<a class="wn5-online-help-link" href="http://ddns.hanwha-security.com" target="new">http://ddns.hanwha-security.com</a>)에서 회원가입을 한 후, <strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[제품등록]</strong>에서 제품을 등록합니다.</p>
+            <p>한화테크윈에서 제공하는 DDNS 서버를 사용할 경우에 선택합니다. </p>
+            <p>와이즈넷 DDNS를 사용하려면 와이즈넷 DDNS 홈페이지(<a class="wn5-online-help-link" href="http://ddns.hanwha-security.com" target="new">http://ddns.hanwha-security.com</a>)에서 회원가입을 한 후, <strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[제품등록]</strong>에서 <font color="red"><strike>제품을 등록합니다. </strike></font><font color="blue">제품을 먼저&nbsp;등록해야 합니다.</font> </p>
 		    <ul>
 		        <li>
 		        	<span class="onlineHelp-padding">
@@ -32,6 +48,23 @@
 		        </li>
 		    </ul>
 	    </div>
+
+
+		<div class="wn5-setup-section-article-content" ng-if="CamSpecialModel">
+		    <h3>에스원 DDNS  </h3>
+		    <p>에스원에서 제공하는 DDNS 서버를 사용할 경우에 선택합니다. 에스원&nbsp;DDNS를 사용하려면 에스원&nbsp;DDNS 홈페이지(<a class="wn5-online-help-link" href="http://ddns.s1.co.kr" target="new">http://ddns.s1.co.kr</a>)에서 회원가입을 한 후, <strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[제품등록]</strong>에서 제품을 등록합니다.</p>
+		    <ul>
+		        <li>
+		        	<span class="onlineHelp-padding">
+						<strong class="UI">서버</strong>: 사용할 DDNS 서버 이름을 입력합니다.
+					</span>				</li>
+		        <li>
+		        	<span class="onlineHelp-padding"><strong class="UI">제품 ID</strong>: 에스원&nbsp;DDNS 서버에 등록된 제품의 ID를 입력합니다. UPnP(Universal plug and play) 기능을 지원하는 공유기를 사용할 때 <strong class="UI">[퀵 커넥트]</strong>를 선택하면 외부 접속 시 자동으로 포트를 열어주도록 지원합니다. 
+					</span>
+		        </li>
+		    </ul>
+	    </div>
+
 		
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
@@ -39,6 +72,19 @@
 				<li>공유기가 UPnP 기능을 지원하지 않거나 <strong class="UI">[퀵 커넥트]</strong>를 사용하지 않고 DDNS 서버를 사용하려면 공유기의 포트 포워딩을 수동으로 설정하십시오. 공유기의 포트 포워딩 설정 방법은 제품에 포함되어 있는 사용 설명서를 참고하십시오.</li>
 			</ul>
 		</div>
+        <div class="wn5-online-help-action">
+            <h4><font color="blue">와이즈넷 DDNS에 제품 등록하기</font></h4>
+            <p><font color="blue">와이즈넷 DDNS를 사용하려면 와이즈넷 DDNS에 제품을 먼저 등록해야 합니다.</font></p>
+                <ol>
+<font color="blue">                    <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+</font>                <li><font color="blue">와이즈넷 DDNS 홈페이지(http://ddns.hanwha-security.com)에서 회원가입을 합니다.</font></li>
+                <li><font color="blue">홈페이지 상단의 메뉴에서 <strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[제품등록]</strong>을 선택합니다.</font></li>
+                <li><font color="blue">제품 아이디를 입력합니다.</font></li>
+                <li><strong class="UI"><font color="blue">[구분]</font></strong><font color="blue">, <strong class="UI">[모델명]</strong>을 선택합니다.</font></li>
+                <li><font color="blue">필요할 경우 위치와 설명을 입력합니다.</font></li>
+                <li><strong class="UI"><font color="blue">[제품등록]</font></strong><font color="blue"> 버튼을 클릭합니다. 등록된 제품 정보를 리스트에서 확인할 수 있습니다.</font></li>
+                </ol>
+        </div>
 		
 		<div class="wn5-setup-section-article-content">
 		    <h3>공개 DDNS</h3>

@@ -4,6 +4,19 @@
 <div class="wn5-setup-section">
     <p>화면이 가려지거나 카메라의 위치가 변경될 경우에 탬퍼링 감지 이벤트를 발생시킬 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 탬퍼링 감지 이벤트에 대한 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[이벤트 설정]</strong></a> 페이지의 <strong class="UI">[탬퍼링 감지]</strong>에 동일하게 적용됩니다.</p>
 </div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><font color="blue">채널 선택</font></h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><font color="blue">카메라 채널을 선택한 후 채널별로 탬퍼링 감지 세부 항목을 설정할 수 있습니다. </font></p>
+        </div>
+
+    </div>
+</div>	
+
 
 <hr class="wn5-setup-hr">
 
@@ -34,6 +47,7 @@
         <div class="wn5-setup-section-article-content" ng-if="DarknessDetection">
             <h3>어두운 영상 제외  </h3>
             <p>갑자기 조명이 꺼지는 등 화면이 밝기가 급격히 감소하는 것을 탬퍼링 감지 이벤트에서 제외하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
+            <p><font color="blue">빛이 가려져서 어두워진 것을 조명이 꺼져서 어두워진 것으로 감지하여 화면 밝기 변화에 대해 알림을 제외할 수 있습니다. </font></p>
         </div>
 
         <div class="wn5-online-help-info">
@@ -41,9 +55,11 @@
             <ul>
                 <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
                 <li>배경이 단조로운 환경과 야간 및 저조도 환경에서는 감지 성능이 낮아질 수 있습니다.</li>
+                <li><font color="blue">카메라 흔들림이 심하거나 급격한 조명 변화가 있는 경우 탬퍼링 감지 기능이 오작동할 수 있습니다.</font> </li>
                 <li>탬퍼링이 발생한 직후로부터 탬퍼링 감지 이벤트가 발생하기까지 일정 시간(최대 5초)이 소요될 수 있습니다.</li>
                 <li>카메라 탬퍼링이 감지되면 일정 시간(약 5초)동안 안정화한 후 기능이 재시작되며, 안정화가 진행되는 동안에는 탬퍼링을 감지하지 않습니다.</li>
-                <li>이벤트가 지속적으로 잘못 발생할 경우에 단계적으로 레벨값을 낮추어 오류를 최소화할 수 있습니다. </li>
+                <li>이벤트가 지속적으로 잘못 발생할 경우에 단계적으로 레벨값을 낮추어 오류를 최소화할 수 있습니다.</li>
+                <li><font color="blue">낮은 감지 레벨을 사용하면 화면의 매우 작은 변화에도 알람을 얻을 수 있지만, 이동체나 밝기 변화에 의한 오감지가 발생할 수 있습니다.</font></li>
             </ul>
         </div>				
     </div>
@@ -84,7 +100,7 @@
             <h3>이메일</h3>
             <p>탬퍼링 감지 이벤트가 발생했을 때 영상 이미지를 이메일로 전송하려면 <strong class="UI">[사용]</strong>을 선택합니다. 이메일에 대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/이메일]</strong></a>에서 할 수 있습니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>저장</h3>
             <p>탬퍼링 감지 이벤트가 발생했을 때 SD 카드 또는 NAS에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
         </div>
@@ -93,7 +109,7 @@
             <p>탬퍼링 감지 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다.&nbsp;알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다.</p>
         </div>
-          <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+          <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
             <h3>프리셋 이동</h3>
                     <p>템퍼링 감지 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 프리셋 번호로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[디지털 PTZ]</strong></a>나 <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[외부 PTZ]</a></strong>의 <strong class="UI">[프리셋]</strong>에서
 설정할 수 있습니다.</p>

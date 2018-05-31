@@ -1,5 +1,4 @@
 ﻿
-
 <h1 class="wn5-setup-main-title">설정</h1>
 <div class="wn5-setup-section">
     <p>피플 카운팅은 카메라 영상 분석을 통해&nbsp;가상의 라인을&nbsp;지나가는 사람의 수를 카운트하는 것입니다. 피플 카운팅의 '설정'에서는 사람의 수를 카운트하는 조건과 피플 카운팅 정확도를 높이기 위한 세부 사항을 설정합니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. </p>
@@ -31,6 +30,12 @@
                 <p>카운팅 룰을 설정하려면 <strong class="UI">[룰]</strong>에서 체크박스를 선택한 후 <strong class="UI">[이름]</strong> 필드에 룰 이름을 입력합니다. 룰 이름은 영문자와 숫자만 15자까지 입력할 수 있습니다. 입력한 이름은 <strong class="UI">[통계]</strong>&gt;<strong class="UI">[피플 카운팅]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="pcStatisticsSetup.html"
 ng-href="#/help/peoplecounting_search">[검색]</a></strong>에 나타납니다.</p>
 			</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
+            <ul>
+                <li><font color="blue">룰 이름을 변경하면, 기존 룰에 대한 카운팅 통계 데이터는 초기화되고, 다시 카운트가 시작됩니다.</font> </li>
+            </ul>
+		</div>			
             <div class="wn5-online-help-action">
                 <h4><a name="type"></a>카운트 방식 설정하기  </h4>
                 <p>피플 카운팅에서 인원을 카운트 하는&nbsp;방식에는 IN 카운트와 OUT 카운트가 있습니다.</p>
@@ -39,7 +44,8 @@ ng-href="#/help/peoplecounting_search">[검색]</a></strong>에 나타납니다.
             </div>
             <div class="wn5-online-help-action">
                 <h4>룰 라인 설정하기 </h4>
-                <p>피플 카운팅 기능은&nbsp;룰 라인을 지나가는 사람을 카운트합니다. 룰 라인의 위치를 변경하려면 영상에 표시된 룰 라인을 클릭한 후 마우스로 드래그합니다. 룰 라인 양쪽 끝에 위치한 꼭지점을 마우스로 드래그하여 라인의 길이를 조절할 수 있습니다. </p>
+            <p>피플 카운팅 기능은&nbsp;룰 라인을 지나가는 사람을 카운트합니다. 룰 라인의 위치를 변경하려면 영상에 표시된 룰 라인을 클릭한 후 마우스로 드래그합니다. 룰 라인 양쪽 끝에 위치한 꼭지점을 마우스로 드래그하여 라인의 길이를 조절할 수 있습니다. </p>
+            <p><font color="blue">룰을 선택하여 활성화되면 영상 하단에 실시간 카운팅 데이터가 나타납니다. 실시간 카운팅은 매일00시 기준으로 초기화됩니다.</font></p>
             </div>
             <div class="wn5-online-help-action">
                 <h4>피플 카운팅 룰 활성화 및 비활성화하기</h4>
@@ -82,9 +88,9 @@ ng-href="#/help/peoplecounting_search">[검색]</a></strong>에 나타납니다.
         <h2>캘리브레이션</h2>
     </div>
         <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">	
-            <p>피플 카운팅 정확도를 향상시키기 위해 카메라 높이나 카운트할 사람의 크기를 설정합니다. 카메라 높이나 사람의 크기 중 하나만 선택하여 적용할 수 있습니다. 
-        </div>			
+        <div class="wn5-setup-section-article-content">
+            <p>피플 카운팅 정확도를 향상시키기 위해 카메라 높이나 카운트할 사람의 크기를 설정합니다. 카메라 높이나 사람의 크기 중 하나만 선택하여 적용할 수 있습니다. </p>
+        </div>
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>카메라 높이</h3>
             <p>실제 카메라가 설치된 높이를 지정합니다. + 나 - 표시를 클릭하여 값을 변경하거나 카메라 높이를 수치로 입력할 수 있습니다. 입력할 수 있는 값은 최소 2.5m, 최대 4.5m입니다. 카메라 설치 높이를 설정하면, 설치 높이를 기반으로 위치별로 카운트할 사람의 크기를 자동으로 추정합니다. </p>
@@ -96,7 +102,8 @@ ng-href="#/help/peoplecounting_search">[검색]</a></strong>에 나타납니다.
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
-            <li><strong class="UI">[피플 카운팅]</strong> &gt; <strong class="UI">[캘리브레이션]</strong>에서 설정한 값은 <strong class="UI">[피플 카운팅]</strong>과 <strong class="UI">[히트맵]</strong> 기능에 동일하게 적용됩니다.</li>
+                <li><strong class="UI">[피플 카운팅]</strong> &gt; <strong class="UI">[캘리브레이션]</strong>에서 설정한 값은 <strong class="UI">[피플 카운팅]</strong>과 <strong class="UI">[히트맵]</strong> 기능에 동일하게 적용됩니다.</li>
+                <li><font color="blue">캘리브레이션은 피플 카운팅 정확도 향상에 필요합니다. 부정확한 캘리브레이션 정보는 피플 카운팅 정확도에 영향을 미칠 수 있습니다.</font></li>
             </ul>
 		</div>
         </div>
@@ -159,4 +166,36 @@ ng-href="#/help/peoplecounting_search">[검색]</a></strong>에 나타납니다.
         </div>
 </div>
 
+<hr class="wn5-setup-hr">
+<div class="wn5-online-help-info">
+    <h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
+    <ul>
+        <li><font color="blue">피플 카운팅 기능은 실시간 정확도가 아닌 통계적 데이터 제공을 목적으로 하고 있으며, 이동하는 사물이나 동물도 측정 인원수에 포함될 수 있습니다.</font></li>
+        <li><font color="blue">카메라 설치 직후 안정화되는 동안에는 오동작할 수 있습니다. 안정화 시간은 최대 50~60분까지 걸릴 수 있습니다.</font></li>
+        <li><font color="blue">피플 카운팅을 구동하기 위한 카메라는 렌즈를 지면에 직하방식으로 설치해야 합니다.(그림1 참고)</font></li>
+        <li><font color="blue">다음과 같은 경우에는 측정된 데이터의 오차가 커질 수 있습니다.</font></li>
+        <ul>
+            <li><font color="blue">시야가 충분히 확보되지 않는 공간에 설치한 경우</font></li>
+            <li><font color="blue">야간 및 저조도 환경(그림2 참고)</font></li>
+            <li><font color="blue">급격한 조명 변화가 발생하는 환경이나 직사광선, 일몰, 일출, 직접 조명 등과 같이&nbsp;강한 빛에 영향을 받는 경우(그림3 참고)</font></li>
+            <li><font color="blue">출입문 주변과 같이 고정된 위치에 지속적으로&nbsp;움직임이 나타나는 경우(그림4 참고)</font></li>
+            <li><font color="blue">여러 명의 사람이 모여서 이동하는 경우</font></li>
+            <li><font color="blue">이동체가 설정한 룰 주변에 머무르는 경우</font></li>
+            <li><font color="blue">피쉬아이 카메라의 경우, 영상 외곽 부분에 룰을 설정한 경우(그림5 참고)</font></li>
+        </ul>
+        <li><font color="blue">캘리브레이션에서 물체 크기를 실제 크기보다 크게 지정할 경우 실제 인원수 보다 적게 측정될 수 있습니다. 반대로 실제 크기보다 작게 지정할 경우 실제 인원수 보다 많이 측정될 수 있습니다.</font></li>
+    </ul>
+    <p><font color="blue">그림 1</font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_1.png" border="0"></font></p>
+    <p><font color="blue">그림 2</font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_2.png" border="0"> </font></p>
+	<p><font color="blue">그림 3</font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_3.png" border="0"> </font></p>
+	<p><font color="blue">그림 4</font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_4-1.png" border="0"> </font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_4-2.png" border="0"> </font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_4-3.png" border="0"> </font></p>
+    <p><font color="blue">그림 5</font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_5.png" border="0"> </font></p>	
+</div>
 <hr class="wn5-setup-hr">

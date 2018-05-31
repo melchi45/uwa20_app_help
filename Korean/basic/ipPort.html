@@ -50,7 +50,7 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>호스트 이름</h3>
-            <p><strong class="UI">[IP 타입]</strong>을 <strong class="UI">[수동]</strong>으로 설정했을 때 표시됩니다. 호스트 이름을 불러오기 위한 ONVIF GetHostname 명령에 사용되는 이름입니다. 첫 문자는 알파벳이어야 하며 알파벳과 숫자만 입력할 수 있습니다. 또한 최대 16자까지 입력할 수 있습니다. 카메라 장비 이름이 기본값으로 입력돼 있으며, 필수 입력 값이 아니므로 값을 설정하지 않아도 됩니다.</p>
+            <p>호스트 이름을 불러오기 위한 ONVIF GetHostname 명령에 사용되는 이름입니다. 첫 문자는 알파벳이어야 하며 알파벳과 숫자만 입력할 수 있습니다. 또한 최대 32자까지 입력할 수 있습니다. 카메라 장비 이름이 기본값으로 입력돼 있으며, 필수 입력 값이 아니므로 값을 설정하지 않아도 됩니다.</p>
 		</div>		
 		
 		<div class="wn5-setup-section-article-content">		
@@ -77,11 +77,19 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>IP 타입</h3>
-			<p>IP 연결 방식을 선택합니다. 초깃값은 <strong class="UI">[DHCP]</strong> 입니다. 이때 DHCP를 발견하지 못하면, 자동으로 이전 설정값으로 변경됩니다.</p>
+			<p>IP 연결 방식을 선택합니다. 초깃값은 <strong class="UI">[기본]</strong> 입니다. 이때 DHCP를 발견하지 못하면, 자동으로 이전 설정값으로 변경됩니다.</p>
             <ul>
                 <li><strong class="UI">DHCP</strong>: DHCP를 통해 부여된 IPv6 주소가 표시됩니다.</li>
                 <li><strong class="UI">수동</strong>: 사용자가 임의로 설정한 IPv6 주소를 입력할 수 있습니다.</li>
                 <li><strong class="UI">기본</strong>: 기본으로 설정되어 있는 IPv6 주소가 표시됩니다.</li>
+            </ul>
+		</div>
+		
+				<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
+
+            <ul>
+                <li><font color="blue">설정을 변경하고 <strong class="UI">[적용]</strong> 버튼을 클릭하면 웹 브라우저 창이 닫힙니다. 잠시 후 변경한 IP로 다시 접속하십시오.</font> </li>
             </ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -109,7 +117,13 @@
 		<div class="wn5-setup-section-article-content">
 			<p>포트는 시스템에서 데이터를 보내고 받는 데 사용하는 위치를 말합니다. <strong class="UI">[포트]</strong> 탭을 클릭하여 해당 항목들을 설정한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 영상 보안 강화를 위해 HTTPS, RTSP 사용을 권장합니다.</p>
 		</div>
+				<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
 
+            <ul>
+                <li><font color="blue">포트 설정 시 0~1023 또는 3702는 사용할 수 없습니다.</font> </li>
+            </ul>
+		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>HTTP</h3>
 			<p>웹 브라우저를 이용하여 카메라에 접속할 때 사용되는 HTTP 포트입니다. 초깃값은 80(TCP)입니다. 보안 정책상 Safari 및 Google Chrome 브라우저에서는 HTTP 포트를 65535로 설정하여 접속할 수 없습니다. HTTP 포트 변경 시 웹 브라우저 창이 닫힙니다. 재접속 시에는 새로 설정한 HTTP 포트를 IP 주소 뒤에 입력하여 접속하십시오. HTTP 포트가 80일때는 포트 번호를 생략할 수 있습니다. (예: 카메라 IP 주소: 192.168.1.100, HTTP 포트: 8080인 경우 -&gt; http://192.168.1.100:8080)</p>

@@ -51,6 +51,7 @@ ng-href="#/help/queue_search">[검색]</a></strong>에 나타납니다.</p>
 
         <div class="wn5-setup-section-article-content">
             <h3><a name="level"></a>감지 레벨</h3>
+            <p><font color="blue">감지 레벨(대기 수준)은 설정된 룰내 체류한 사람 수를 표시합니다. 현재 레벨이 설정된 감지 레벨보다 높을 때 알람이 발생합니다. </font></p>
             <p>감지 레벨은&nbsp;대기열 룰에 체류 중인 인원에 따라&nbsp;'높음'과 '중간'으로 분류됩니다. [최대]와 [높음] 인원수를 설정하면 '중간' 값은 자동으로 설정됩니다. </p>
             <p>감지 레벨 '높음'은 '높음' 값 이상 '최대' 값 이하의 인원이&nbsp;감지된 상태입니다. 감지 레벨 '중간'은 '중간' 값 이상 '높음' 값 미만의 인원이 감지된 상태입니다. </p>
             <p>예를 들어[최대] 값을 20으로 [높음] 값을 18로 설정한 경우, '중간' 값은 9로 자동으로 설정됩니다. 해당 대기열 영역에 18명 이상 20이하의 인원이 대기 중이면&nbsp;감지 레벨은&nbsp;'높음'으로 분석됩니다. 9명 이상 18명 미만의 인원이 대기 중이면 감지 레벨은 '중간'으로 분석됩니다.</p>
@@ -182,4 +183,36 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></
 
 </div>
 
+<hr class="wn5-setup-hr">
+<div class="wn5-online-help-info">
+    <h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
+    <ul>
+        <li><font color="blue">대기열 관리&nbsp;기능은 실시간 정확도가 아닌 통계적 데이터 제공을 목적으로 하고 있으며, 이동하는 사물이나 동물도 측정 인원수에 포함될 수 있습니다.</font></li>
+        <li><font color="blue">카메라 설치 직후 안정화되는 동안에는 오동작할 수 있습니다. 안정화 시간은 최대 50~60분까지 걸릴 수 있습니다.</font></li>
+        <li><font color="blue">실제 대기 시간이 짧은 환경에서 대기열 기능을 사용하실 경우, 이벤트가 과도하게 발생할 수 있습니다.</font></li>
+        <li><font color="blue">대기열 관리 기능을 구동하기 위한 카메라는 렌즈를 지면에 직하방식으로 설치해야 합니다.(그림1 참고)</font></li>
+        <li><font color="blue">다음과 같은 경우에는 측정된 데이터의 오차가 커질 수 있습니다.</font></li>
+        <ul>
+            <li><font color="blue">시야가 충분히 확보되지 않는 공간에 설치한 경우</font></li>
+            <li><font color="blue">야간 및 저조도 환경(그림2 참고)</font></li>
+            <li><font color="blue">급격한 조명 변화가 발생하는 환경이나 직사광선, 일몰, 일출, 직접 조명 등과 같이&nbsp;강한 빛에 영향을 받는 경우(그림3 참고)</font></li>
+            <li><font color="blue">출입문 주변과 같이 고정된 위치에 지속적으로&nbsp;움직임이 나타나는 경우(그림4 참고)</font></li>
+            <li><font color="blue">여러 명의 사람이 모여서 이동하는 경우</font></li>
+            <li><font color="blue">이동체가 설정한 룰 주변에 머무르는 경우</font></li>
+            <li><font color="blue">피쉬아이 카메라의 경우, 영상 외곽 부분에 룰을 설정한 경우(그림5 참고)</font></li>
+        </ul>
+    </ul>
+    <p><font color="blue">그림 1</font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_1.png" border="0"></font></p>
+    <p><font color="blue">그림 2</font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_2.png" border="0"> </font></p>
+	<p><font color="blue">그림 3</font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_3.png" border="0"> </font></p>
+	<p><font color="blue">그림 4</font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_4-1.png" border="0"> </font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_4-2.png" border="0"> </font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_4-3.png" border="0"> </font></p>
+    <p><font color="blue">그림 5</font></p>
+    <p><font color="blue"><img src="../../image/pcSetup_5.png" border="0"> </font></p>	
+</div>
 <hr class="wn5-setup-hr">

@@ -1,7 +1,8 @@
 ﻿
 <h1 class="wn5-setup-main-title">라이브 화면 </h1>
 <div class="wn5-setup-section">
-    <p>카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처, 알람 출력, 마이크 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
+    <p ng-if="MaxAudioInput==0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처, 알람 출력, 마이크 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
+	    <p ng-if="MaxAudioInput!=0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처, 알람 출력 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
 </div>
 <div class="wn5-setup-section">
     <div class="wn5-online-help-list">
@@ -9,19 +10,25 @@
         <ul>
             <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
             <li><span class="tui tui-wn5-top-live"></span>(라이브): 카메라가 촬영 중인 라이브 화면을 확인하고 다양한 카메라 기능을 제어할 수 있습니다.</li>
-            <li><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드 또는 NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.  </li>
+            <li ng-if="Recording"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드 또는 NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.  </li>
             <li><span class="tui tui-wn5-top-setup"></span>(설정): 카메라의 상세 설정을 변경할 수 있습니다.  </li>
         </ul>
     </div>
 
-		<div class="wn5-online-help-info">
+    <div class="wn5-online-help-info" ng-if=!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+        <ul>
+            <li>Chrome으로 웹뷰어에 접속하면 재생 화면의 기능을 가장 안정적으로 사용할 수 있습니다.</li>
+            <li><font color="blue">라이브 페이지에서 영상을 재생할 때 아래와 같은 조건에서 화면에 잔상이 표시될 수 있습니다.</font></li>
             <ul>
-				<li>Chrome으로 웹뷰어에 접속하면 재생 화면의 기능을 가장 안정적으로 사용할 수 있습니다.</li>
-			<!-- 	<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li> -->
-			</ul>
+                <li><font color="blue">프로파일 변경 시 해상도가 달라지는 경우</font></li>
+                <li><font color="blue">프로파일 변경 시 네트워크 지연 발생으로 데이터 수신이 늦어지는 경우</font></li>
+                <li><font color="blue">웹 브라우저 창의 크기 변경 및 위치 이동 시</font></li>
+            </ul>
+<!-- 	<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li> -->
+        </ul>
     
-        </div>
+    </div>
 </div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -31,6 +38,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>라이브 화면 하단의 아이콘은 다음과 같은 기능을 합니다. </p>
+            <p><font color="blue">특정 브라우저 또는 코덱에서는 일부 기능이 동작하지 않을 수도 있습니다.</font></p>
         </div>
         <div class="wn5-setup-section-article-content">
             <table class="table table-bordered wn5-setup-table">
@@ -42,6 +50,13 @@
                 </thead>
                 <tbody>
 
+                <tr>
+                    <td width="235"><font color="blue">채널 변경</font></td>
+                    <td width="235">
+                        <p><font color="blue">카메라 채널 번호가 나타납니다.채널 번호를 선택하면 해당 영상이 라이브 화면에 보여집니다. 4분할 화면 아이콘을 선택하면 4개 채널의 영상이 한 번에 보여집니다. </font></p>
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
@@ -128,7 +143,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-if="!CamSpecialModel">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
                             <p>저장</p>
@@ -149,7 +164,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-if="MaxAudioInput==0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>마이크</p>
@@ -171,7 +186,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-if="MaxAudioOutput">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>스피커</p>
@@ -184,6 +199,65 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="wn5-online-help-action">
+            <h4><font color="blue">채널을 변경하려면</font></h4>
+                <ul>
+                    <li><font color="blue">원하는 채널 버호를 선택합니다. 해당 채널의 영상이 뷰어에 나타납니다.</font></li>
+                    <li><font color="blue">4분할 화면을 보려면 4분할 화면 아이콘을 클릭합니다.</font></li>
+                    <li><font color="blue">단일 화면으로 돌아오려면 채널 번호를 클릭합니다. </font></li>
+                </ul>
+            </div>
+            <div class="wn5-online-help-action">
+            <h4><font color="blue">영상을 캡처하려면</font></h4>
+                <ul>
+                    <li><font color="blue">캡처할 장면에서 <span class="tui tui-wn5-toolbar-capture"></span> 캡처 아이콘을 클릭합니다.</font></li>
+                    <li><font color="blue">캡처가 저장되면 알림 메시지가 나타납니다. 각 브라우저의 저장 경로에 캡처 이미지가 저장됩니다.</font>  </li>
+                </ul>
+                <p><font color="blue">Windows 7 이상에서 Internet Explorer&nbsp;브라우저로 캡쳐가 안 되는 경우, &nbsp;Internet Explorer&nbsp;브라우저를 관리자 권한으로 실행하십시오. </font></p>
+            </div>
+            <div class="wn5-online-help-action">
+            <h4><font color="blue"><a name="record"></a>영상을 녹화하려면</font></h4>
+                <ul>
+                    <li><span class="tui tui-wn5-toolbar-record"></span> <font color="blue">저장 아이콘을 클릭합니다.</font></li>
+                    <li><font color="blue">수동 녹화를 종료하려면 <span class="tui tui-wn5-toolbar-record"></span> 저장 버튼을 한 번 더 클릭합니다.</font></li>
+               </ul>
+                <p><font color="blue">사용자 PC에 수동 녹화를 .avi 파일로 저장할 수 있습니다. 경로를 지정하고 영상을 저장하십시오. </font></p>
+                <p><font color="blue">피쉬아이 뷰 모드에서 녹화를 하면 사용자가 보고 있는 왜곡보정된 뷰가 아닌 원본 이미지로 저장됩니다.</font></p>
+            </div>
+			
+            <div class="wn5-online-help-action">
+                <h4><font color="blue">전체 화면으로 전환하려면</font></h4>
+                <ul>
+                    <li><span class="tui tui-wn5-toolbar-fullscreen"></span> <font color="blue">전체 화면 아이콘을 선택합니다. 뷰어 화면이 전체 화면으로 변경됩니다. </font></li>
+                    <li><font color="blue">전체 화면 모드를 종료하려면 <span class="tui tui-wn5-toolbar-fullscreen"></span> 전체 화면 아이콘을 한 번 더 클릭하거나 키보드의 [Esc] 키를 클릭합니다. </font></li>
+                </ul>
+            </div>
+            <div class="wn5-online-help-action">
+            <h4><font color="blue">오디오를 사용하려면</font></h4>
+                <ul>
+                    <li><span class="tui tui-wn5-toolbar-mic"></span> <font color="blue">오디오 아이콘을 클릭합니다.</font></li>
+                    <li><font color="blue">음량 조절 바를 이용하여 오디오 음량을 조절합니다.</font></li>
+                </ul>
+                <p><font color="blue">오디오 동작 중 PC의 오디오 잭을 연결하거나 분리할 때 소리가 나오지 않는 경우, <span class="tui tui-wn5-toolbar-mic"></span> 오디오 아이콘을 클릭하여 활성화하십시오.</font></p>
+            </div>
+			
+            <div class="wn5-online-help-action">
+                <h4><font color="blue">스피커를 사용하려면</font></h4>
+                <ul>
+                    <li><span class="tui tui-wn5-toolbar-sound"></span> <font color="blue">스피커 아이콘을 클릭합니다.</font></li>
+                  
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-action">
+            <h4><font color="blue">픽셀 수를 카운트하려면</font></h4>
+                <ul>
+                    <li><span class="tui tui-wn5-toolbar-pixel"></span> <font color="blue">픽셀 카운트 아이콘을 클릭합니다.</font></li>
+                    <li><font color="blue">영상 위에 마우스를 드래그하여 영역을 설정합니다. 해당 영역의 픽셀 수가 화면에 표시됩니다.</font></li>
+                   
+                </ul>
+            </div>															
+			
         </div>
     </div>
 </div>
@@ -213,6 +287,8 @@
            <!--  <p ng-if="FisheyeLens">Internet Explorer로 웹뷰어에 접속한 경우, MJPEG 코덱을 제외한 다른 프로파일의 영상은 플러그인을 설치해야 영상을 볼 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인을 클릭하십시오.</p>
             <p ng-if="FisheyeLens">또한 플러그인을 설치한 경우, 균등성을 보장하려면 <strong class="UI">[플러그인 균등성]</strong>을 선택합니다. </p> -->
         </div>
+		
+
         <div class="wn5-setup-section-article-content">
             <h3>표시  </h3>
             <p>라이브 화면의 대비, 밝기, 윤곽, 컬러 레벨을 설정할 수 있으며, 설정값을 입력하면 라이브 화면에 바로 적용됩니다.</p>
@@ -290,9 +366,13 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>카메라의 팬/틸트/줌 동작을 제어하거나 자동 추적 기능을 사용할 수 있습니다.  </p>
+            <p>카메라의 팬/틸트/줌 동작을 제어하거나 자동 추적 기능을 사용할 수 있습니다.</p>
+            <ul>
+                <li><font color="blue">줌 확대: UI 우측의 바를 위로 끌어올리거나 <strong class="UI">[+]</strong> 버튼을 누르면 화면의 배율을 확대합니다. 바 위치가 중앙에서 멀수록 줌 확대 속도가 빨라집니다.</font></li>
+                <li><font color="blue">줌 축소: UI 우측의 바를 아래로 끌어내리거나 <strong class="UI">[-]</strong> 버튼을 누르면 화면의 배율을 축소합니다. 바 위치가 중앙에서 멀수록 줌 축소 속도가 빨라집니다.</font></li>
+                <li><font color="blue">화면 이동: 커서가 있는 방향으로 이동합니다.</font></li>
+            </ul>
         </div>
-
         <div class="wn5-setup-section-article-content">
             <h3>줌 동작 제어하기</h3>
             <p>줌&nbsp;막대에서 <strong class="UI">[+]</strong> 버튼을 클릭하면 화면이 확대되고 <strong class="UI">[-]</strong> 버튼을 클릭하면 화면이 축소됩니다.</p>
@@ -314,7 +394,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         </div>    
         <div class="wn5-setup-section-article-content">
             <h3>PTZ 기능 사용하기</h3>
-            <p>미리 설정한 위치로 카메라가 이동하도록 하거나, 스윙, 그룹, 투어, 추적 기능 시작하고 중지할 수 있습니다. 관련 설정은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ 설정</a>]</strong> 페이지를 참고 하십시오.</p>
+            <p>미리 설정한 위치로 카메라가 이동하도록 하거나, 스윙, 그룹, 투어, 추적 기능 시작하고 중지할 수 있습니다. 관련 설정은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ 설정]</strong> 페이지를 참고 하십시오.</p>
 		</div>
         
 		        
@@ -330,6 +410,35 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     </div>
 </div>
 
+
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<div class="wn5-setup-section-heading">
+    <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+</div>
+<div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>카메라의 팬/틸트/줌 동작을 제어하거나&nbsp;미리 설정해 둔 PTZ 프리셋 위치로 이동이 가능하며&nbsp;그룹 동작을 제어할 수 있습니다.</p>
+    </div>
+    <div class="wn5-online-help-info">
+        <h4>알아두기</h4>
+            <ul>
+                <li><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>
+                <li><strong class="UI"><font color="blue">[비디오 및 오디오]</font></strong><font color="blue"> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong> &gt; <strong class="UI">[카메라 마운팅 모드]</strong>에서 <strong class="UI">[천장형]</strong>을 선택한 경우에만 팬 기능을 사용할 수 있습니다.</font></li>
+            </ul>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>프리셋</h3>
+        <p> 프리셋 번호를 선택하고 <strong class="UI">[이동]</strong> 버튼을 클릭하면 해당 PTZ 프리셋 위치로 카메라 뷰가 이동합니다.</p>
+        <p>프리셋 목록에서 원하는 프리셋 번호를&nbsp;선택한 후 <strong class="UI">[이동]</strong> 버튼을 클릭하면 원하는 프리셋 위치로 이동합니다. 프리셋 목록은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[디지털 PTZ]</strong>&gt;<strong class="UI">[프리셋]</strong> 탭에서 추가하거나 변경할 수 있습니다.</p>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>그룹</h3>
+            <p>그룹 목록에서 원하는 그룹 번호를&nbsp;선택한 후 <strong class="UI">[시작]</strong> 버튼을 클릭하면 설정한 그룹 동작이 작동합니다. 그룹 동작을 중지하려면&nbsp;<strong class="UI">[중지]</strong> 버튼을 클릭합니다.&nbsp;그룹 목록은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong>&gt;<strong class="UI">[그룹]</strong> 탭에서 추가하거나 변경할 수 있습니다.</p>
+    </div>
+</div>
+</div>
 
 <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">
@@ -361,6 +470,13 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
                         <h3>그룹</h3>
             <p>그룹 목록에서 원하는 그룹 번호를&nbsp;선택한 후 <strong class="UI">[시작]</strong> 버튼을 클릭하면 설정한 그룹 동작이 작동합니다. 그룹 동작을 중지하려면&nbsp;<strong class="UI">[중지]</strong> 버튼을 클릭합니다.&nbsp;그룹 목록은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong>&gt;<strong class="UI">[그룹]</strong> 탭에서 추가하거나 변경할 수 있습니다.</p>
         </div> 
+    </div>
+</div>
+
+
+
+
+
 
 <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">
@@ -368,15 +484,30 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         <h2><a name="fisheyeview"></a>피쉬아이 뷰</h2>
     </div>
     <div class="wn5-setup-section-article">
-                <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content">
             <h3>천장형/벽면형</h3>
                     <p>카메라 마운팅 모드를 표시해 줍니다. 마운팅 모드에 따라 뷰 타입이 다릅니다. </p>
                     <p>마운팅 모드는 <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong> &gt; <strong class="UI">[카메라 마운팅 모드]</strong>에서 설정할 수 있습니다. <strong class="UI">[천장형]</strong>을 선택한 경우에만 '더블 파노라마' 뷰 타입이 나타나며 그 외 뷰 타입은 '천장형'과 '벽면형'에 모두 동일합니다.</p>
-                    <p>원하는 뷰 타입 아이콘을&nbsp;선택한 후, 라이브 영상 화면에서&nbsp;마우스를 드래그하여 카메라의 뷰를 변경할 수 있습니다. </p>
-                </div>
+            <p>원하는 뷰 타입 아이콘을&nbsp;선택한 후, 라이브 영상 화면에서&nbsp;마우스를 드래그하여 카메라의 뷰를 변경할 수 있습니다. </p>
+            <ul>
+                <li><font color="blue">피쉬아이 ( ): 왜곡보정하지 않은 원본 어안 영상으로 나타냅니다.</font></li>
+                <li><font color="blue">Single Panorama ( &nbsp;): 원본영상을 왜곡보정하여 파노라마 형식으로 나타냅니다.</font></li>
+                <li><font color="blue">Double Panorama ( ): 원본영상을 왜곡보정하여 파노라마 형식의 상하 분할 화면으로 나타냅니다.</font></li>
+                <li><font color="blue">피쉬아이 + 3PTZ ( &nbsp;): 피쉬아이 영상과 3개의 관심 영역을 왜곡보정하여 분할 화면으로 나타냅니다.</font></li>
+                <li><font color="blue">Quad View ( &nbsp;): 피쉬아이 영상과 4개의 관심 영역을 왜곡보정하여 분할 화면으로 나타냅니다.</font></li>
+                <li><font color="blue">Panorama + 2PTZ ( &nbsp;): 파노라마 영상과 2개의 관심 영역을 왜곡보정하여 분할 화면으로 나타냅니다.</font></li>
+                <li><font color="blue">피쉬아이 + 8PTZ ( &nbsp;): 피쉬아이 영상과 8개의 관심 영역을 왜곡보정하여 분할 화면으로 나타냅니다. 벽면에 설치된 경우에만 지원하는 뷰입니다.</font></li>
+                <li><font color="blue">Single Panorama ( &nbsp;): 원본영상을 왜곡보정하여 벽면형 파노라마 형식으로 나타냅니다.</font></li>
+                <li><font color="blue">피쉬아이 + 3PTZ ( &nbsp;): 벽면형 파노라마 영상과 3개의 관심 영역을 왜곡보정하여 분할 화면으로 나타냅니다.</font></li>
+                <li><font color="blue">Quad View ( &nbsp;): 피쉬아이 영상과 4개의 관심 영역을 왜곡보정하여 분할 화면으로 나타냅니다.</font></li>
+                <li><font color="blue">Panorama + 2PTZ ( &nbsp;): 파노라마 영상과 2개의 관심 영역을 왜곡보정하여 분할 화면으로 나타냅니다.</font></li>
+                <li><font color="blue">피쉬아이 + 8PTZ ( ): 벽면형 파노라마 영상과 8개의 관심 영역을 왜곡보정하여 분할 화면으로 나타냅니다.</font></li>
+            </ul>
+            <p><font color="blue"><strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong> &gt; <strong class="UI">[카메라 마운팅 모드]</strong>에서 카메라 마운팅 모드를 변경하면 라이브 모드에서 피쉬아이 뷰 모드 설치 방향도 같이 변경됩니다.</font></p>
+        </div>
         <div class="wn5-setup-section-article-content">
-            <h3>초기화/전체 초기화  </h3>
-                    <p>현재 선택한 뷰 타입의 영상 화면에서 마우스를 드래그하여 변경한 뷰를 초기 뷰로 변경하려면 [초기화] 버튼을 클릭합니다. 모든 뷰 타입의 영상 화면을 초기 뷰로 변경하려면 [전체 초기화] 버튼을 클릭합니다. </p>
+            <h3>초기화/전체 초기화    </h3>
+            <p>현재 선택한 뷰 타입의 영상 화면에서 마우스를 드래그하여 변경한 뷰를 초기 뷰로 변경하려면 [초기화] 버튼을 클릭합니다. 모든 뷰 타입의 영상 화면을 초기 뷰로 변경하려면 [전체 초기화] 버튼을 클릭합니다. </p>
         </div>
         
     </div>

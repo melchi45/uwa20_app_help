@@ -2,9 +2,7 @@
 <div class="wn5-setup-section">
     <p>카메라 영상을 저장할 장치를 선택하고 저장&nbsp;조건을 설정할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
 </div>
-
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>저장 동작 설정</h2>
@@ -19,14 +17,74 @@
                 <li><strong class="UI">NAS</strong>: NAS (Network Attached Storage)의 사용 여부를 설정할 수 있습니다. NAS에 연결되면 사용 가능 용량, 전체 용량, 상태가 표시됩니다. NAS 설정 상의 기본 폴더를 포맷하려면 <strong class="UI">[포맷]</strong> 버튼을 클릭합니다. </li>
             </ul>
         </div>
+       <div class="wn5-setup-section-article-content">
+            <h3>덮어쓰기</h3>
+            <p>SD 카드 또는 NAS의 덮어쓰기 기능 사용 여부를 설정합니다. 장치의 용량이 가득 찼을 때 가장 오래된 데이터를 지우고 새로운 데이터를 저장합니다. 장치의 용량이 가득 차면 장치 목록의 <strong class="UI">[상태]</strong>에 ‘가득 참’이라는 메시지가 표시됩니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>자동 삭제</h3>
+            <p>자동 삭제 기능의 사용 여부를 설정합니다. 현재 시간을 기준으로 자동 삭제일 수로 설정한 날만큼의 데이터를 남기고 지난 데이터는 자동으로 삭제합니다. 자동삭제 일은 최소 1일부터 최대 180일까지 설정할 수 있습니다. <strong class="UI">[자동 삭제]</strong> 기능은 <strong class="UI">[덮어쓰기]</strong>를 <strong class="UI">[사용]</strong>으로 설정할 때만 활성화됩니다. </p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
+            <ul>
+               
+                <li><font color="blue">삭제된 데이터는 복구할 수 없습니다.</font></li>
+                <li><font color="blue">NAS를 사용하는 경우 NAS의 용량이 권장사양 이상인 경우에만 자동 삭제가 가능합니다.</font></li>
+            </ul>
+        </div>
+	</div>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>SD 파일 시스템</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>본 메뉴는 <strong class="UI">[저장 동작 설정]</strong>의 <strong class="UI">[장치]</strong> 컬럼에서 <strong class="UI">[SD]</strong>를 선택해야 나타나며, SD 카드의 파일 시스템을 선택할 수 있습니다. SD 카드는 VFAT와 EXT4의 파일 시스템을 지원하므로, 사용하는 카메라의 SD 카드에 맞게 파일 시스템을 선택하십시오. SD 카드의 파일 시스템이 EXT4인 경우 별도의 애플리케이션이 있어야 윈도우 OS가 인식할 수 있습니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+           
+            <h3>형식</h3>
+            <p>SD 카드의 파일 시스템을 VFAT 또는 EXT4 중 선택합니다. 설정 변경 시 기존 데이터는 포맷되므로 설정 변경 전에는 반드시 데이터를 백업합니다. </p>
+        </div>
+		
+		<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+                <li>SD 카드는 High Endurance SD Card 사용을 권장합니다. 상세한 정보는 한화테크윈 웹사이트를 참고해 주십시오.</li>
+                <li>EXT4 파일 시스템으로 SD 카드 포맷시&nbsp;최대 10분 가량 소요될 수 있습니다.</li>
+            </ul>
+        </div>
+    </div>
+</div>		
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><font color="blue">채널 선택</font></h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><font color="blue">카메라 채널을 선택한 후 채널별로 <strong class="UI">[저장 설정]</strong>의 세부 항목을 설정할 수 있습니다. </font></p>
+        </div>
+
+    </div>
+</div>		
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>저장 설정</h2>
+    </div>
+    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>저장 프로파일</h3>
             <p>저장 시 사용될 비디오 프로파일의 이름이 나타납니다. <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[프로파일 타입]</strong></a>에서 ‘저장 프로파일’로 설정한 프로파일이 표시됩니다. </p>
         </div>
-
         <div class="wn5-setup-section-article-content">
             <h3>일반 저장</h3>
-			<p>이벤트가 없는 일반적인 상황을 저장하는 방식을 설정합니다.</p>
+            <p>이벤트가 없는 일반적인 상황<font color="blue">에서 항상 일정한 프레임 레이트로 영상</font>을 저장하는 방식을 설정합니다.</p>
             <ul>
         
                     <li><strong class="UI">없음</strong>: 카메라 영상을 저장하지 않습니다.
@@ -36,7 +94,6 @@
                     <li><strong class="UI">전체 프레임</strong>: 일반 저장 시 전체 프레임을 저장합니다.</li>
                 </ul>
         </div>
-
         <div class="wn5-setup-section-article-content">
             <h3>이벤트 저장</h3>
             <p>이벤트가 발생했을 때 저장하는 방식을 설정합니다. </p>
@@ -63,53 +120,21 @@
                 <li><strong class="UI">AVI</strong>: 일반 AVI 파일 형식입니다.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>덮어쓰기</h3>
-            <p>SD 카드 또는 NAS의 덮어쓰기 기능 사용 여부를 설정합니다. 장치의 용량이 가득 찼을 때 가장 오래된 데이터를 지우고 새로운 데이터를 저장합니다. 장치의 용량이 가득 차면 장치 목록의 <strong class="UI">[상태]</strong>에 ‘가득 참’이라는 메시지가 표시됩니다. </p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>자동 삭제</h3>
-            <p>자동 삭제 기능의 사용 여부를 설정합니다. 현재 시간을 기준으로 자동 삭제일 수로 설정한 날만큼의 데이터를 남기고 지난 데이터는 자동으로 삭제합니다. 자동삭제 일은 최소 1일부터 최대 180일까지 설정할 수 있습니다. <strong class="UI">[자동 삭제]</strong> 기능은 <strong class="UI">[덮어쓰기]</strong>를 <strong class="UI">[사용]</strong>으로 설정할 때만 활성화됩니다. </p>
-        </div>
-
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
                 <li>장치 목록에서 <strong class="UI">[상태]</strong>가 ‘에러’라고 표시되면 저장 장치가 바르게 연결되었는지, 저장 장치의 파일 시스템이 손상되지 않았는지, 저장 장치가 물리적으로 손상되지 않았는지 확인합니다. 저장 장치를 확인했음에도 ‘에러’ 메시지가 지속적으로 표시되면 장치를 포맷하거나 교체합니다.</li>
                 <li>NAS 사용 시 일시적인 네트워크 끊어짐으로 인해 영상 데이터가 저장되지 않을 수 있으므로 SD 카드를 함께 사용하는 것을 권장합니다.</li>
-                <li>고해상도, 높은 비트 레이트, 높은 프레임 레이트 등을 설정하면 영상 데이터의 양이 증가합니다 데이터의 양이 증가하면 전체 프레임으로 설정해도 프레임 스킵이 발생할 수 있습니다. 프레임 스킵이 발생하면 최소 초당 1장 이상의 영상으로 저장합니다. </li>
+                <li>고해상도, 높은 비트 레이트, 높은 프레임 레이트 등을 설정하면 영상 데이터의 양이 증가합니다 데이터의 양이 증가하면 전체 프레임으로 설정해도 프레임 스킵이 발생할 수 있습니다. 프레임 스킵이 발생하면 최소 초당 1장 이상의 영상으로 저장합니다.  </li>
+                <li><font color="blue">Micro SD 카드를 제거할 때는 <strong class="UI">[사용 안 함]</strong>으로 변경 후 카드를 제거해 주십시오. <strong class="UI">[사용 안 함]</strong>으로 변경하지 않고 임의로 제거하거나 불안정한 전원에 카메라를 연결하면 Micro SD 카드가 손상될 수 있습니다. </font></li>
+                <li><font color="blue">권장 속도 이하의 Micro SD 메모리 카드를 사용할 경우 프레임 스킵 이 발생할 수 있습니다. &nbsp;용량이 큰 Micro SD 메모리 카드를 사용할 경우 포맷 속도가 느려질 수 있습니다.</font></li>
             </ul>
         </div>
-    </div>
+</div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
-        <h2>SD 파일 시스템</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>본 메뉴는 <strong class="UI">[저장 동작 설정]</strong>의 <strong class="UI">[장치]</strong> 컬럼에서 <strong class="UI">[SD]</strong>를 선택해야 나타나며, SD 카드의 파일 시스템을 선택할 수 있습니다. SD 카드는 VFAT와 EXT4의 파일 시스템을 지원하므로, 사용하는 카메라의 SD 카드에 맞게 파일 시스템을 선택하십시오. SD 카드의 파일 시스템이 EXT4인 경우 별도의 애플리케이션이 있어야 윈도우 OS가 인식할 수 있습니다. </p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <ul>
-            <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
 
-            </ul>
-            <h3>형식</h3>
-            <p>SD 카드의 파일 시스템을 VFAT 또는 EXT4 중 선택합니다. 설정 변경 시 기존 데이터는 포맷되므로 설정 변경 전에는 반드시 데이터를 백업합니다. </p>
-        </div>
-		<div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
-            <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
-                <li>SD 카드는 High Endurance SD Card 사용을 권장합니다. 상세한 정보는 한화테크윈 웹사이트를 참고해 주십시오.</li>
-            </ul>
-        </div>
-    </div>
-</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -161,6 +186,8 @@
                 <li>NAS에 데이터를 저장 중인 경우에 다른 카메라에서 사용한 SD 카드를 삽입하면 저장 영상이 저장되지 않을 수 있습니다.</li>
                 <li>NAS에 데이터를 저장하는 중에는 NAS 설정을 변경해도 바로 반영되지 않습니다.</li>
                 <li>NAS에 데이터를 저장하는 중에 NAS 장비를 임의로 제거하거나 네트워크가 끊어지면 NAS 저장 동작은 비정상적으로 종료될 수 있습니다.</li>
+                <li><font color="blue">고해상도, 높은 비트 레이트, 높은 프레임 레이트 등을 설정하면 영상 데이터의 양이 증가합니다 데이터의 양이 증가하면 전체 프레임으로 설정해도 프레임 스킵이 발생할 수 있습니다. 프레임 스킵이 발생하면 최소 초당 1장 이상의 영상으로 저장합니다. </font> </li>
+                <li><font color="blue">이미 저장 중이거나 사용했던 기본 폴더를 포맷하지 않고 다른 사용자로 접속하려고 하는지 확인하십시오. </font> </li>
             </ul>
         </div>
     </div>
@@ -186,7 +213,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>설정한 시간에만 저장 </h3>
             <p>설정한 시간에만 영상을 저장합니다. <strong class="UI">[설정한 시간에만 동작]</strong>을 선택하여 나타나는 시간표에는 현재 카메라 시간을 기준으로 한 일요일부터 토요일까지의 날짜가 표시됩니다. 시간표에서 마우스를 클릭하거나 드래그하여 이벤트 동작 시간을 설정할 수 있습니다. 설정된 이벤트 동작 스케줄은 해당 요일과 시간에 반복적으로 실행됩니다.</p>
-			<p><strong class="UI">[1분]</strong>, <strong class="UI">[30분]</strong>, <strong class="UI">[1시]</strong> 버튼을 클릭하여 시간 보기 단위를 변경할 수 있습니다. <strong class="UI">[초기화]</strong> 버튼을 클릭하면 설정된 이벤트 동작 스케줄이 모두 삭제됩니다. 카메라 시간을 확인하거나 변경하려면 <strong class="UI">[Basic]</strong>><strong class="UI">[날짜 및 시간]</strong>을 참고하십시오.</p>
+			<p><strong class="UI">[1분]</strong>, <strong class="UI">[30분]</strong>, <strong class="UI">[1시]</strong> 버튼을 클릭하여 시간 보기 단위를 변경할 수 있습니다. <strong class="UI">[초기화]</strong> 버튼을 클릭하면 설정된 이벤트 동작 스케줄이 모두 삭제됩니다. 카메라 시간을 확인하거나 변경하려면 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[날짜 및 시간]</strong>을 참고하십시오.</p>
         </div>
 
     </div>

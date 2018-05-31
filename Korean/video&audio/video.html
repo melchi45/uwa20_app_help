@@ -4,7 +4,17 @@
 <div class="wn5-setup-section">
 	<p>카메라 영상에 프라이버시 영역을 설정하거나 영상 화면을 상하좌우로 반전시킬 수 있습니다. 또한 영상을 아날로그로 출력하도록 설정하거나 비디오 출력 타입을 변경할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
 </div>
-
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><font color="blue">채널 선택</font></h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><font color="blue">카메라 채널을 선택한 후 채널별로 비디오&nbsp;관련 세부 항목을 설정할 수 있습니다. </font></p>
+        </div>
+	</div>
+</div> 
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -27,7 +37,7 @@
 			<ol>
 				<!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
 				<li><strong class="UI">[프라이버시 영역 사용]</strong>을 선택한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭합니다. </li>
-				<li>카메라 영상 화면에서 마우스로 꼭지점 4개를 클릭합니다. 프라이버시 영역 창이 나타납니다.</li>
+				<li>카메라 영상 화면에서 마우스로 꼭지점 4개를 클릭<font color="red"><strike>합니다.</strike></font>&nbsp;<font color="blue">하거나&nbsp;마우스를&nbsp;드래그합니다. </font>라이버시 영역 창이 나타납니다.</li>
 				<li><strong class="UI">[이름]</strong>에 프라이버시 영역의 이름을 입력하고 <strong class="UI">[컬러]</strong>에서 영상을 가릴 색상을 선택한 후 <strong class="UI">[확인]</strong> 버튼을 클릭합니다. </li>
 				<li>추가한 프라이버시 영역이 프라이버시 영역 목록에 추가됩니다. 카메라 영상 화면에는 설정한 컬러로 프라이버시 영역이 표시됩니다.</li>
 			</ol>
@@ -115,7 +125,9 @@
         <div class="wn5-online-help-info" ng-if="FisheyeLens">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
-                <li>카메라 마운팅 모드를 변경하면&nbsp;<strong class="UI">[비디오 프로파일]</strong>에서 설정한 모든 프로파일 설정이 초기화되고 카메라가 재부팅됩니다. 또한 변경되는 화면에 맞추어 영상 분석 및 통계 설정을 변경해야 합니다. 해당 설정은 <strong class="UI">[분석]</strong>과 <strong class="UI">[통계] </strong>메뉴에서 변경할 수 있습니다. </li>
+                <li>카메라 마운팅 모드를 변경하면&nbsp;<strong class="UI">[비디오 프로파일]</strong>에서 설정한 모든 프로파일 설정이 초기화되고 카메라가 재부팅됩니다. 또한 변경되는 화면에 맞추어 영상 분석 및 통계 설정을 변경해야 합니다. 해당 설정은 <strong class="UI">[분석]</strong>과 <strong class="UI">[통계] </strong>메뉴에서 변경할 수 있습니다.    </li>
+                <li><font color="blue">카메라 마운팅 모드를 </font><strong class="UI"><font color="blue">[벽면형]</font></strong><font color="blue">을 선택한 경우에만 </font><strong class="UI"><font color="blue">[라이브]</font></strong><font color="blue"> 모드에서 DPTZ 중 팬 기능을 사용할 수 있습니다.</font></li>
+                <li><font color="blue">카메라 마운팅 모드를 변경하면&nbsp;</font><strong class="UI"><font color="blue">[라이브]</font></strong><font color="blue"> 모드에서&nbsp;피쉬아이 뷰 모드 방향도 같이 변경됩니다.</font></li>
             </ul>
         </div>
 	</div>
@@ -146,6 +158,12 @@
 				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) 방식은 독일에서 제안되었고 NTSC 방식과 비슷하지만 색 신호를 취급하는 방법에 차이가 있습니다. 주로 유럽에서 사용하는 방식입니다. NTSC에 비해 초당 프레임 수는 적지만 수평 주사선이 625로 더 많아 해상도가 높고, 색 변형이 적으며 방송 설비에 고도의 규격이 필요하지 않습니다. </li>
 			</ul>
 		</div>
+		       <div class="wn5-online-help-info" ng-if="FisheyeLens">
+            <h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
+            <ul>
+                <li><font color="blue">카메라 성능 저하를 막기 위해 카메라를 설치한 후에는 '아날로그 비디오' 기능을 꺼주십시오.</font></li>
+            </ul>
+        </div>
 	</div>
 
 </div>

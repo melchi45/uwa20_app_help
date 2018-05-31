@@ -26,12 +26,68 @@
 
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
-			<ul>
-				<li>동일한 ID로 여러 군데에서 접속하거나 여러 개의 인터넷 브라우저를 열어 놓은 상태에서 비밀번호를 변경하면 인터넷 브라우저가 오작동 할 수 있습니다. 비밀번호를 변경할 때에는 한 군데에서만 접속하거나 하나의 인터넷 브라우저만 사용하여 변경하는 것을 권장합니다.</li>
-			</ul>
+            <ul>
+                <li><font color="blue">보안 강화를 위하여 특수문자, 숫자, 영문 대문자, 소문자를 조합하여 비밀번호를 설정하는 것을 권장합니다.</font></li>
+                <li><font color="blue">비밀번호는 3개월 주기로 변경하는 것을&nbsp;권장합니다.</font></li>
+                <li><font color="blue">비밀번호 길이 및 제한은 다음과 같습니다.</font></li>
+                <ul>
+                    <li><font color="blue">8자리 이상 9자리 이하 비밀번호의 경우 영어 대문자, 소문자, 숫자, 특수 문자 중 3종류 이상을 조합하여 사용합니다.</font></li>
+                    <li><font color="blue">10자리 이상 15자리 이하 비밀번호의 경우 영어 대문자, 소문자, 숫자, 특수 문자 중 2종류 이상을 조합하여 사용합니다.</font></li>
+                    <li><font color="blue">ID와 동일하지 않아야 합니다.</font></li>
+                    <li><font color="blue">연속된 문자를 4개 이상 사용할 수 없습니다.(예: 1234, abcd)</font></li>
+                    <li><font color="blue">같은 문자를 4번 이상 반복해서 사용할 수 없습니다.(예: !!!!, 1111, aaaa)</font></li>
+                    <li><font color="blue">특수문자는 ~`!@#$%^*()_-+=|{}[].?/만 사용할 수 있습니다.</font></li>
+                    <li><font color="blue">공장 초기화 후 관리자 및 사용자 비밀번호가 모두 초기화되므로 비밀번호를 다시 설정해야 합니다.</font></li>
+                    <li><font color="blue">카메라 웹뷰어에 처음으로 접속하거나 초기화 후 접속하는 경우 비밀번호 설정 메뉴로 이동합니다.</font></li>
+                    <li><font color="blue">비밀번호 변경 메뉴에서 새 비밀번호를 설정하고, 변경된 비밀번호로 웹뷰어에 다시 로그인해야 웹뷰어 메뉴를 사용할 수 있습니다.</font></li>
+                    <li><font color="blue">관리자 비밀번호 변경 시 기존 비밀번호가 일치하지 않으면 비밀번호를 변경할 수 없습니다.</font></li>
+                    <li><font color="blue">비밀번호 변경 후, CMS나 NVR 같은 클라이언트에 연결된 카메라가 있다면 변경된 비밀번호로 다시 등록한 후 사용해야 합니다. 기존 연결을 유지하게 되면 클라이언트에서 이전 비밀번호를 이용해 인증하게 되므로 해당 계정의 잠금이 발생할 수 있습니다.</font></li>
+                </ul>
+                <li><font color="blue">웹뷰어 로그인 시 비밀번호 인증 실패를 5회 초과하면 30초 동안 잠금이 설정되어 웹뷰어에 접속할 수 없습니다. </font></li>
+                <li>동일한 ID로 여러 군데에서 접속하거나&nbsp;여러 개의 인터넷 브라우저를 열어 놓은 상태에서 비밀번호를 변경하면 인터넷 브라우저가 오작동 할 수 있습니다. 비밀번호를 변경할 때에는 한 군데에서만 접속하거나 하나의 인터넷 브라우저만 사용하여 변경하는 것을 권장합니다.</li>
+            </ul>
 		</div>
 	</div>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="AdminFilterSupport">
+<div class="wn5-setup-section" ng-if="AdminFilterSupport">
+	<h2 class="wn5-setup-section-heading">관리자 로그인 허용 IP</h2>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>등록된 IP에서만 관리자 계정으로 카메라 웹뷰어에&nbsp;접속할 수 있도록 설정할 수 있습니다. </p>
+            <div class="wn5-online-help-action">
+                <h4>관리자 계정으로 접속할 수 있는 IP 주소 추가하기</h4>
+                <ol>
+                    <li><strong class="UI">[추가]</strong> 버튼을 클릭합니다. IP 타입과 IP 주소를 입력할 수 있는 필드가 생성됩니다.</li>
+                    <li><strong class="UI">[IP 타입]</strong> 컬럼에서 IPv4와 IPv6 중 IP 타입을 선택합니다.  </li>
+                    <li><strong class="UI">[IP 타입]</strong> 컬럼에서 관리자 계정으로 접속을 허용할 IP 주소를 입력합니다.</li>
+                </ol>
+                <p><strong class="UI">[사용]</strong> 체크박스를 체크해야 해당 IP에서 관리자 계정으로 카메라 웹뷰어에 접속할 수 있습니다. </p>
+            </div>
+            <div class="wn5-online-help-action">
+                <h4>IPv4 주소 삭제하기</h4>
+                <ol>
+                    <li>삭제할 IP 주소를 선택합니다.</li>
+                    <li><strong class="UI">[삭제]</strong> 버튼을 클릭합니다.</li>
+                    <li>삭제 확인 창에서 <strong class="UI">[확인]</strong> 버튼을 클릭합니다. IPv4 주소가 삭제됩니다.</li>
+                </ol>
+            
+            </div>
+        </div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="AdminTimeout">
+<div class="wn5-setup-section" ng-if="AdminTimeout">
+	<h2 class="wn5-setup-section-heading">관리자 로그인 자동 해제</h2>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>관리자 계정으로 카메라 웹뷰어에 접속한 후 일정한 시간동안&nbsp;활동이 없는 경우, 웹뷰어 로그인이 해제됩니다. 관리자가 미활동시 로그인을 자동으로 해제하기 하기 위한 시간을&nbsp;입력합니다. </p>
+        </div>
+	</div>
+</div>
+
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -43,14 +99,64 @@
 	</div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+    <h2 class="wn5-setup-section-heading">RTSP 설정</h2>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[암호화 없이 RTSP 연결 허용]</strong>을 선택하면&nbsp; 에스원 영상 암호화 프로토콜을 지원하지 않는 프로그램에서도 RTSP 방식으로 영상을 볼 수 있습니다.</p>
+        </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
-	<h2 class="wn5-setup-section-heading">인증설정</h2>
+	<h2 class="wn5-setup-section-heading">인증 설정</h2>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p><strong class="UI">[인증 없이 RTSP 연결 허용]</strong>을 선택하면 RTSP (Real Time Streaming Protocol)를 이용하여 카메라 영상에 접속할 때 로그인 인증 없이 접속할 수 있습니다.</p>
 		</div>
+	</div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="OnvifTTADigestOptions">
+
+<div class="wn5-setup-section" ng-if="OnvifTTADigestOptions">
+	<h2 class="wn5-setup-section-heading">다이제스트 인증</h2>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>다이제스트 인증을 위한 알고리즘 옵션을 선택합니다. </p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+    <h2 class="wn5-setup-section-heading">TTA 설정 </h2>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[ONVIF TTA 인증 사용]</strong>을 선택하면 ONVIF TTA 인증시 암호화되지 않는 평문(plain text) 인증 방식이 아닌 메시지 다이제스트 인증 방식을 사용합니다. </p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+	<h2 class="wn5-setup-section-heading">비밀번호 찾기</h2>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[비밀번호 찾기 사용]</strong>을 선택하면 로그인 페이지에서 설정한 이메일을 통해 비밀번호를 찾을 수 있습니다. </p>
+        </div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+	<h2 class="wn5-setup-section-heading">비밀번호 변경 주기</h2>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>관리자 비밀번호 변경을 유도하기 위한 메시지 노출 주기를 설정합니다. 설정한 기간이 지나면 비밀번호 변경을 권장하는 메시지가 노출됩니다. </p>
+        </div>
 	</div>
 </div>
 
@@ -62,6 +168,12 @@
 		<div class="wn5-setup-section-article-content">
 			<p>관리자 외의 사용자 계정의 접속 정보를 설정하고 오디오 입력, 오디오 출력, 알람 출력, 프로파일 등의 사용 권한을 설정할 수 있습니다. 등록한 사용자가 로그인했을 때 사용자마다 설정된 기능만 활성화됩니다. 기본적으로 10개의 현재 사용자 계정이 설정되어 있고, 계정을 추가하거나 삭제할 수 있습니다. 현재 사용자 계정은 최대 10개까지 사용할 수 있습니다.</p>
 		</div>
+				<div class="wn5-online-help-info">
+	        <h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
+                <ul>
+                    <li><font color="blue">설정된 사용자 중 ONVIF를 사용하기 위한 계정으로 설정을 원하는 경우 설정된 권한에 따라 기능 사용이 제한됩니다.</font></li>
+                </ul>
+		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>이름</h3>
 			<p>아이디를 입력합니다.</p>
@@ -70,11 +182,11 @@
 			<h3>비밀번호</h3>
 			<p>비밀번호를 입력합니다. 비밀번호 설정 규칙은 관리자 비밀번호 설정 규칙과 동일합니다.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
 			<h3>오디오 입력</h3>
 			<p>입력된 오디오에 접근할 수 있는 권한을 설정합니다. 오디오 입력을 선택하면 해당 계정으로 접속한 사용자는 영상에서 화면과 오디오를 함께 들을 수 있고 오디오 입력을 선택하지 않으면 영상의 화면만 확인할 수 있습니다.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput">
 			<h3>오디오 출력</h3>
 			<p>오디오 출력 권한을 설정합니다. 오디오 출력을 선택하면 해당 계정으로 접속한 사용자는 마이크 등을 통해 오디오를 내보낼 수 있습니다.</p>
 		</div>
@@ -82,7 +194,7 @@
 			<h3>알람 출력</h3>
 			<p>알람 출력 권한을 설정합니다. 알람이 설정된 경우, 해당 계정으로 접속한 사용자는 알람을 내보낼 수 있습니다.</p>
 		</div>
-				<div class="wn5-setup-section-article-content" ng-if="ContinousZoom" >
+				<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 			<h3>PTZ</h3>
             <p><strong class="UI">[라이브] </strong>모드에서 PTZ를 제어할 수 있는 권한을 설정합니다.&nbsp;</p>
 		</div>
