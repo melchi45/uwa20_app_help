@@ -1,18 +1,19 @@
 ﻿<h1 class="wn5-setup-main-title">Live screen</h1>
 <div class="wn5-setup-section">
-    <p>You can check the live screen to view what is being captured by the camera and control screen capture, alarm output and microphone and other features. When you click the <span class="tui tui-wn5-top-live"></span> button on the screen, the live screen will appear. </p>
+    <p ng-if="MaxAudioInput==0">You can check the live screen to view what is being captured by the camera and control screen capture, alarm output and microphone and other features. When you click the <span class="tui tui-wn5-top-live"></span> button on the screen, the live screen will appear. </p>
+	<p ng-if="MaxAudioInput!=0">You can check the live screen to view what is being captured by the camera and control screen capture, alarm output and other features. When you click the <span class="tui tui-wn5-top-live"></span> button on the screen, the live screen will appear. </p>
 </div>
 
 <div class="wn5-setup-section">
     <div class="wn5-online-help-list">
     <p>You can move to the live screen, playback screen or setup screen by clicking the buttons at the top.</p>
         <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><span class="tui tui-wn5-top-live"></span>(Live): Check the live screen to view what is being captured by the camera and control a variety of camera features.</li>
-            <li><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card or NAS.  </li>
+            <li ng-if="Recording"><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card or NAS.  </li>
             <li><span class="tui tui-wn5-top-setup"></span>(Setup): Change the camera settings.  </li>
         </ul>
     </div>
 
-		<div class="wn5-online-help-info">
+		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
 				<li>Connecting to the web viewer via Chrome, the record playback screen feature can be securely used.</li>
@@ -53,27 +54,41 @@
                         </td>
                     </tr>
 
-					<tr>
+					<tr ng-if="DPTZSetupPage">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p ng-if="DPTZSetupPage">You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the Video profile applied to the current live screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>.
-</p>
+                            <p >You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the Video profile applied to the current live screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>.
+                        </p> 
+                        </td>                    
+                    </tr>
 
-
-
-
-<p ng-if="ExternalPTZPage">You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera’s RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group,   tour, and tracking functions. </p>
-
-
-                            <p ng-if="PTZSetupPage">You can control the pen/tilt/zoom motions of the camera. You can move to the preset location set on the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ setup]</strong> page or start/stop the swing, group, tour, and tracking functions. </p>
+                    <tr ng-if="ExternalPTZPage">
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p >You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera’s RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group,   tour, and tracking functions. </p>
                         </td>
                     </tr>
-                  </td>
-                  </tr>
+
+
+                    <tr ng-if="PTZSetupPage">
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                           <p >You can control the pen/tilt/zoom motions of the camera. You can move to the preset location set on the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ setup]</strong> page or start/stop the swing, group, tour, and tracking functions. </p>
+                        </td>
+                    </tr>
+
         <tr ng-if="FisheyeLens">
                     <td width="235">
                         <p><span class="tui tui-wn5-toolbar-fisheye"></span></p>
@@ -128,7 +143,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-if="!CamSpecialModel">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
                             <p>Record</p>
@@ -149,7 +164,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-if="MaxAudioInput==0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>Microphone</p>
@@ -171,7 +186,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-if="MaxAudioOutput">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>Speaker</p>
@@ -198,7 +213,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Provides a color palette for easy visual analysis of camera videos. When you select the desired color palette, the selected color palette appears on the camera video screen.</p>
-            <p>For features of each color palette option, refer to <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Videio & Audio]</strong> &gt; <strong class="UI">[Camera Setup]</strong> &gt; <strong class="UI">[Color Palette]</strong>.</p>
+            <p>For features of each color palette option, refer to <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Videio &amp; Audio]</strong> &gt; <strong class="UI">[Camera Setup]</strong> &gt; <strong class="UI">[Color Palette]</strong>.</p>
         </div>
     </div>
 </div>
@@ -337,7 +352,33 @@ class="tui tui-chi-live-ptz-areazoom-pre"></span>button if you wish to move back
     </div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can control Pan/Tilt/Zoom operation of the camera or move to a preset PTZ position and control group motion.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li>
+            </ul>
 
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Preset</h3>
+            <p> Select a preset number and click the <strong class="UI">[Go]</strong> button to move the camera view to the PTZ preset position.</p>
+            <p>Select a desired preset number from the preset list and click the <strong class="UI">[Go]</strong> button to move to the desired preset position. You can add or modify the preset list from <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt;<strong class="UI">[Digital PTZ]</strong> &gt; <strong class="UI">[Preset]</strong> tab.</p>
+        </div>
+		          <div class="wn5-setup-section-article-content">
+                        <h3>Group</h3>
+            <p>Select a desired group number from the group list and click the <strong class="UI">[Start]</strong> button to activate the group operation. To stop the group operation, click the <strong class="UI">[Stop]</strong> button. The group list can be added or modified in the <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Digital PTZ]</strong> &gt; <strong class="UI">[Group]</strong> tab.</p>
+        </div>
+	</div>
+</div>
 
 <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">
@@ -369,6 +410,8 @@ class="tui tui-chi-live-ptz-areazoom-pre"></span>button if you wish to move back
                         <h3>Group</h3>
             <p>Select a desired group number from the group list and click the <strong class="UI">[Start]</strong> button to activate the group operation. To stop the group operation, click the <strong class="UI">[Stop]</strong> button. The group list can be added or modified in the <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Digital PTZ]</strong> &gt; <strong class="UI">[Group]</strong> tab.</p>
         </div>
+	</div>
+</div>
 
 <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">

@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">User</h1>
+﻿<h1 class="wn5-setup-main-title">User</h1>
 <div class="wn5-setup-section">
 	<p>Manages the user accounts connecting to the camera. Changing of the administrator password and guest settings, authentication setup and setting of current users are all available. When you finish the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
@@ -42,7 +42,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>When you select <strong class="UI">[Allow guest access]</strong>, a guest can connect to a web viewer screen. When you connect with a guest account, you can see only the live screen on the web viewer. Guest ID and password are &apos;guest/guest&apos; and these cannot be changed. </p>
+			<p>When you select <strong class="UI">[Allow guest access]</strong>, a guest can connect to a web viewer screen. When you connect with a guest account, you can see only the live screen on the web viewer. Guest ID and password are &amp;apos;guest/guest&amp;apos; and these cannot be changed. </p>
 		</div>
 	</div>
 </div>
@@ -78,11 +78,11 @@
 			<h3>Password</h3>
 			<p>Enter the password. The password setting rule is same as the administrator password setting rule.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
 			<h3>Audio in</h3>
 			<p>Set the permission for accessing the inputted audio. If audio in is selected, a user who connects to the relevant account can watch the screen and listen to audio at the same time; if audio in is not selected, the user can watch only the image screen.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput">
 			<h3>Audio out</h3>
 			<p>Set audio out permissions. When audio out is selected, a user who connects to a relevant account can send audio through the microphone.</p>
 		</div>
@@ -90,7 +90,7 @@
 			<h3>Alarm output</h3>
 			<p>Set alarm output permissions. When an alarm has been set, a user who connects to a relevant account can output the alarm.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="ContinousZoom" >
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 
 						<h3>PTZ</h3>
 			            <p>Sets the permission to control the PTZ in <strong class="UI">[Live]</strong> mode. </p>

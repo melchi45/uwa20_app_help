@@ -44,11 +44,12 @@
             <h3>카테고리  </h3>
             <p>소리 종류를 감지하여 이벤트로 발생시킵니다. 감지할 소리 종류를 선택할 수 있으며 중복해서 선택할 수 있습니다.</p>
             <ul>
-                <li><strong class="UI">비명</strong>: 성인 남자/여자 및 아이의 비명 및 고함 소리 등 갑자기 사람이 큰 소리를 내는 소리를 감지하여 이벤트로 발생시킵니다.
+                <li><strong class="UI">비명</strong>: 성인 남자/여자, 아이 비명 및 고함 소리 등 갑자기 사람이 큰 소리를 내는 소리를 감지하여 이벤트로 발생시킵니다.
                 </li>
                 <li><strong class="UI">총소리</strong>: 연속적으로 나지 않는 총소리를 감지하여 이벤트로 발생시킵니다.
                 </li>
-                <li><strong class="UI">폭발</strong>: <font color="blue">파괴작용으로 갑작스럽게 터지는 소리를</font> <strike><font color="red">폭발음을</font></strike> 감지하여 이벤트로 발생시킵니다. </li>
+                <li><strong class="UI">폭발</strong>: 폭발음을 감지하여 이벤트로 발생시킵니다.
+                </li>
                 <li><strong class="UI">유리 깨짐</strong>: 유리 파손음을 감지하여 이벤트로 발생시킵니다.  </li>
             </ul>
         </div>
@@ -59,7 +60,7 @@
                 <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
                 <li><strong class="UI">[오디오 및 비디오]</strong>&gt;<strong class="UI">[오디오 설정]</strong>&gt;<strong class="UI">[오디오 입력]</strong>에서 <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[소스]</a></strong> 옵션을 <strong class="UI">[라인]</strong>으로 설정한 경우 음원 분류 기능이 작동하지 않습니다.</li>
 				<li><strong class="UI">[오디오&amp;비디오]</strong>&gt;<strong class="UI">[오디오 설정]</strong>&gt;<strong class="UI">[오디오 입력]</strong>에서 <strong class="UI">[게인]</strong>을 4~6 사이 설정을 권장합니다. </li>
-				<li><strong class="UI">[오디오&amp;비디오]</strong>&gt;<strong class="UI">[오디오 설정]</strong>&gt;<strong class="UI">[오디오 입력]</strong>에서 <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[소스]</a></strong> 옵션을 <strong class="UI">[외부 마이크]</strong>로 설정하였을 경우 마이크 권장 사양은 다음과 같습니다. <font color="blue">마이크 사양이 맞지 맞지 않는 경우 음원 분류 기능이 저하될 수 있습니다.</font></li>
+				<li><strong class="UI">[오디오&amp;비디오]</strong>&gt;<strong class="UI">[오디오 설정]</strong>&gt;<strong class="UI">[오디오 입력]</strong>에서 <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[소스]</a></strong> 옵션을 <strong class="UI">[외부 마이크]</strong>로 설정하였을 경우 마이크 권장 사양은 다음과 같습니다.</li>
 				<ul>
 					<li>주파수 범위 : 40 ~ 16,000Hz</li>
 					<li>임피던스 : 1,500 Ω</li>
@@ -71,10 +72,7 @@
 					<li>총소리에는 단발성 총 소리만 범주에 포함시키므로 기관총 소리처럼 연속으로 나는 경우</li>
 					<li>잡음과 목표 음원이 구분이 안될 정도로 큰 경우</li>
 					<li>2개 이상 다른 음원이 동시에 입력으로 들어오는 경우 </li>
-                    <li>카메라 위치 변경 등으로 인한 포커스 대상 변경</li>
-                    <li><font color="blue">조용한 환경에서 노이즈 제거 기능을 사용하고 음원 분류를 적용하는 경우</font></li>
-                    <li><font color="blue">카메라 가까이에 (1미터이내) 박수소리, 비명소리 등이 있는 경우</font></li>
-                    <li><font color="blue">비행기 소리, 싸이렌 소리 등 음원 분류 카테고리가 아닌 음원이 갑자기 크게 발생하는 경우</font></li>
+					<li>카메라 위치 변경 등으로 인한 포커스 대상 변경</li>
 					</ul>
             </ul>
         </div>	

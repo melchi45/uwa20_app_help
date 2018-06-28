@@ -3,14 +3,14 @@
 <div class="wn5-setup-section">
     <p>와이즈스트림은 영상의 복잡도를 분석하여 화질은 유지하면서 데이터의 크기는 효과적으로 줄일 수 있는 기능입니다. 카메라가 촬영 중인 영상에 움직임이 많이 발생하지 않으면 압축율을 높여서 영상의 크기를 줄이고 대역폭을 절약합니다. 움직임이 다시 발생하면 원래의 상태로 복귀시켜 영상 정보가 손실되지 않도록 합니다. 움직임이 많은 환경에서는 사용하기 부적합하며 화면이 깨질 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
 </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><font color="blue">채널 선택</font></h2>
+        <h2>채널 선택</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p><font color="blue">카메라 채널을 선택한 후 채널별로 와이즈스트림&nbsp;관련 세부 항목을 설정할 수 있습니다. </font></p>
+            <p>카메라 채널을 선택한 후 채널별로 와이즈스트림&nbsp;관련 세부 항목을 설정할 수 있습니다. </p>
         </div>
 	</div>
 </div> 
@@ -31,22 +31,16 @@
             <ul>
                 <li><strong class="UI">사용 안 함</strong>: 와이즈스트림 기능을 사용하지 않습니다.
                 </li>
-                <li><strong class="UI"><font color="red"><strike>낮음</strike></font></strong><font color="red"><strike>: 영상의 압축률을 ‘낮음’으로 설정합니다. 비트 레이트가 원래 영상 대비 15% 정도 감소되고 데이터의 크기도 감소됩니다.</strike></font></li>
-                <li><strong class="UI"><font color="red"><strike>중간</strike></font></strong><font color="red"><strike>: 영상의 압축률을 ‘중간’으로 설정합니다. 비트 레이트가 원래 영상 대비 30% 정도 감소되고 데이터의 크기도 감소됩니다.</strike></font>
+                <li><strong class="UI">낮음</strong>: 영상의 압축률을 ‘낮음’으로 설정합니다. 비트 레이트가 원래 영상 대비 15% 정도 감소되고 데이터의 크기도 감소됩니다.</li>
+                <li><strong class="UI">중간</strong>: 영상의 압축률을 ‘중간’으로 설정합니다. 비트 레이트가 원래 영상 대비 30% 정도 감소되고 데이터의 크기도 감소됩니다.
                 </li>
-                <li><strong class="UI"><font color="red"><strike>높음</strike></font></strong><font color="red"><strike>: 영상의 압축률을 ‘높음’으로 설정합니다. 비트 레이트가 원래 영상 대비 최대 50% 정도 감소되고 데이터의 크기도 감소됩니다.</strike></font></li>
-                <li><strong class="UI"><font color="blue">낮음~높음</font></strong><font color="blue">: 와이즈스트림을 사용하여 적용할&nbsp;비트레이트&nbsp;감소 정도를 선택합니다.</font></li>
+                <li><strong class="UI">높음</strong>: 영상의 압축률을 ‘높음’으로 설정합니다. 비트 레이트가 원래 영상 대비 최대 50% 정도 감소되고 데이터의 크기도 감소됩니다.  </li>
             </ul>
         </div>
-        <div class="wn5-online-help-info">
+		 <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>와이즈스트림 성능을 최적화하려면, <strong class="UI">[Basic]</strong> &gt;&nbsp;<strong class="UI">[비디오 프로파일]</strong> 메뉴에서 <strong class="UI">[다이내믹 GOV]</strong>와 <strong class="UI">[다이내믹 FPS]</strong>을 <strong class="UI">[사용]</strong>으로 설정하십시오. <strong class="UI">[다이내믹 GOV]</strong>와 <strong class="UI">[다이내믹 FPS]</strong> 기능을 사용하면 영상 화질과 초당 프레임 수를 같이 확보할 수 있습니다.</li>
-                <li><font color="blue">다음과 같은 경우 와이즈 스트림 기능이 제대로 작동하지 않을 수 있습니다.</font></li>
-                <ul>
-                    <li><font color="blue">급격한 화면 전환 시 화면이 깨질 수 있습니다.</font></li>
-                    <li><font color="blue">화면 상 변화가 많은 환경에서는 와이즈 스트림 기능을 사용하기 부적절합니다.</font></li>
-                </ul>
             </ul>
         </div>
     </div>

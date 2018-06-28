@@ -51,8 +51,11 @@
 		<div class="wn5-setup-section-article-content">
 			<p>Resets the system configuration to what it was at the time of product purchase. When you click the <strong class="UI">[Reset]</strong> button and then click the <strong class="UI">[OK]</strong> button in the confirm window, the factory default reset will be carried out.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="!CamSpecialModel">
 			<p>If you wish to reset the system configuration (except for the network configuration and installed open platform configuration) to factory default, select <strong class="UI">[Except network parameter &amp; Open Platform]</strong>. When a factory default is carried out, the connection with the camera will be terminated. When you reconnect to the web viewer for the first time, you will need to enter the password again. </p>
+		</div>
+				<div class="wn5-setup-section-article-content" ng-if="CamSpecialModel">
+			<p>If you wish to reset the system configuration except for the network configuration to factory default, select <strong class="UI">[Except network parameter]</strong>. When a factory default is carried out, the connection with the camera will be terminated. When you reconnect to the web viewer for the first time, you will need to enter the password again. </p>
 		</div>
 	</div>
 </div>
@@ -68,7 +71,7 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Backup</h3>
-		    <p>When you click the <strong class="UI">[Backup]</strong> button, a backup file of &apos;model name Config.bin&rsquo; will be created.</p>
+		    <p>When you click the <strong class="UI">[Backup]</strong> button, a backup file of &amp;apos;model name Config.bin’ will be created.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>Restore</h3>
@@ -78,7 +81,7 @@
 	   		<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
    			<ul>
 				<li>When you connect to a web viewer with Safari, you cannot use the configuration backup &amp; restore function.</li>
-				<li>When you backup or restore the configuration, the connection with the camera will be terminated automatically and you will need to reconnect to the web viewer. </li>
+				<li>When you&nbsp;restore the configuration, the connection with the camera will be terminated automatically and you will need to reconnect to the web viewer. </li>
 				<li>If you use an imported backup file for a different model than the product you are currently using, the product may malfunction. Do not use a backup file for a different model or change the configuration manually.</li>
 
 			</ul>

@@ -26,26 +26,9 @@
 
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
-            <ul>
-                <li><font color="blue">보안 강화를 위하여 특수문자, 숫자, 영문 대문자, 소문자를 조합하여 비밀번호를 설정하는 것을 권장합니다.</font></li>
-                <li><font color="blue">비밀번호는 3개월 주기로 변경하는 것을&nbsp;권장합니다.</font></li>
-                <li><font color="blue">비밀번호 길이 및 제한은 다음과 같습니다.</font></li>
-                <ul>
-                    <li><font color="blue">8자리 이상 9자리 이하 비밀번호의 경우 영어 대문자, 소문자, 숫자, 특수 문자 중 3종류 이상을 조합하여 사용합니다.</font></li>
-                    <li><font color="blue">10자리 이상 15자리 이하 비밀번호의 경우 영어 대문자, 소문자, 숫자, 특수 문자 중 2종류 이상을 조합하여 사용합니다.</font></li>
-                    <li><font color="blue">ID와 동일하지 않아야 합니다.</font></li>
-                    <li><font color="blue">연속된 문자를 4개 이상 사용할 수 없습니다.(예: 1234, abcd)</font></li>
-                    <li><font color="blue">같은 문자를 4번 이상 반복해서 사용할 수 없습니다.(예: !!!!, 1111, aaaa)</font></li>
-                    <li><font color="blue">특수문자는 ~`!@#$%^*()_-+=|{}[].?/만 사용할 수 있습니다.</font></li>
-                    <li><font color="blue">공장 초기화 후 관리자 및 사용자 비밀번호가 모두 초기화되므로 비밀번호를 다시 설정해야 합니다.</font></li>
-                    <li><font color="blue">카메라 웹뷰어에 처음으로 접속하거나 초기화 후 접속하는 경우 비밀번호 설정 메뉴로 이동합니다.</font></li>
-                    <li><font color="blue">비밀번호 변경 메뉴에서 새 비밀번호를 설정하고, 변경된 비밀번호로 웹뷰어에 다시 로그인해야 웹뷰어 메뉴를 사용할 수 있습니다.</font></li>
-                    <li><font color="blue">관리자 비밀번호 변경 시 기존 비밀번호가 일치하지 않으면 비밀번호를 변경할 수 없습니다.</font></li>
-                    <li><font color="blue">비밀번호 변경 후, CMS나 NVR 같은 클라이언트에 연결된 카메라가 있다면 변경된 비밀번호로 다시 등록한 후 사용해야 합니다. 기존 연결을 유지하게 되면 클라이언트에서 이전 비밀번호를 이용해 인증하게 되므로 해당 계정의 잠금이 발생할 수 있습니다.</font></li>
-                </ul>
-                <li><font color="blue">웹뷰어 로그인 시 비밀번호 인증 실패를 5회 초과하면 30초 동안 잠금이 설정되어 웹뷰어에 접속할 수 없습니다. </font></li>
-                <li>동일한 ID로 여러 군데에서 접속하거나&nbsp;여러 개의 인터넷 브라우저를 열어 놓은 상태에서 비밀번호를 변경하면 인터넷 브라우저가 오작동 할 수 있습니다. 비밀번호를 변경할 때에는 한 군데에서만 접속하거나 하나의 인터넷 브라우저만 사용하여 변경하는 것을 권장합니다.</li>
-            </ul>
+			<ul>
+				<li>동일한 ID로 여러 군데에서 접속하거나 여러 개의 인터넷 브라우저를 열어 놓은 상태에서 비밀번호를 변경하면 인터넷 브라우저가 오작동 할 수 있습니다. 비밀번호를 변경할 때에는 한 군데에서만 접속하거나 하나의 인터넷 브라우저만 사용하여 변경하는 것을 권장합니다.</li>
+			</ul>
 		</div>
 	</div>
 </div>
@@ -55,7 +38,8 @@
 	<h2 class="wn5-setup-section-heading">관리자 로그인 허용 IP</h2>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>등록된 IP에서만 관리자 계정으로 카메라 웹뷰어에&nbsp;접속할 수 있도록 설정할 수 있습니다. </p>
+			<p>등록된 IP에서만 관리자 계정으로 카메라 웹뷰어에&nbsp;접속할 수 있도록 설정할 수 있습니다. </p>
+		</div>
             <div class="wn5-online-help-action">
                 <h4>관리자 계정으로 접속할 수 있는 IP 주소 추가하기</h4>
                 <ol>
@@ -118,7 +102,17 @@
 		</div>
 	</div>
 </div>
+<hr class="wn5-setup-hr" ng-if="IPInstallerSettingEnable">
 
+<div class="wn5-setup-section" ng-if="IPInstallerSettingEnable">
+	<h2 class="wn5-setup-section-heading">디바이스 매니저</h2>
+	<div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>한화테크윈에서 제공하는 'Wisenet 디바이스 매니저'에서 카메라를 제어하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
+                <p>기본값은 <strong class="UI">[사용]</strong> 옵션 선택 해제 상태입니다. 보안상 안전을 위해 기본값 유지를 권장합니다.</p>
+            </div>
+	</div>
+</div>
 
 <hr class="wn5-setup-hr" ng-if="OnvifTTADigestOptions">
 
@@ -168,12 +162,6 @@
 		<div class="wn5-setup-section-article-content">
 			<p>관리자 외의 사용자 계정의 접속 정보를 설정하고 오디오 입력, 오디오 출력, 알람 출력, 프로파일 등의 사용 권한을 설정할 수 있습니다. 등록한 사용자가 로그인했을 때 사용자마다 설정된 기능만 활성화됩니다. 기본적으로 10개의 현재 사용자 계정이 설정되어 있고, 계정을 추가하거나 삭제할 수 있습니다. 현재 사용자 계정은 최대 10개까지 사용할 수 있습니다.</p>
 		</div>
-				<div class="wn5-online-help-info">
-	        <h4><span class="tui tui-wn5-help-warning"></span><font color="blue">알아두기</font></h4>
-                <ul>
-                    <li><font color="blue">설정된 사용자 중 ONVIF를 사용하기 위한 계정으로 설정을 원하는 경우 설정된 권한에 따라 기능 사용이 제한됩니다.</font></li>
-                </ul>
-		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>이름</h3>
 			<p>아이디를 입력합니다.</p>
@@ -190,7 +178,7 @@
 			<h3>오디오 출력</h3>
 			<p>오디오 출력 권한을 설정합니다. 오디오 출력을 선택하면 해당 계정으로 접속한 사용자는 마이크 등을 통해 오디오를 내보낼 수 있습니다.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
 			<h3>알람 출력</h3>
 			<p>알람 출력 권한을 설정합니다. 알람이 설정된 경우, 해당 계정으로 접속한 사용자는 알람을 내보낼 수 있습니다.</p>
 		</div>
@@ -209,7 +197,8 @@
 				<li>사용할 현재 사용자 계정의 라디오 버튼을 선택합니다. 현재 사용자 계정이 입력할 수 있는 상태로 변경됩니다.</li>
 				<li><strong class="UI">[사용]</strong> 컬럼에서 체크박스를 체크합니다.</li>
 				<li><strong class="UI">[이름]</strong>과 <strong class="UI">[비밀번호]</strong> 컬럼에 ID와 비밀번호를 입력합니다.</li>
-				<li><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
+				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
+				<li ng-if="MaxAudioInput !== 0 && MaxAudioOutput !== 0 && MaxAlarmOutput !== 0"><strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
 				<li>현재 사용자 계정의 입력이 완료되면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</li>
 				<li>확인 창이 나타나면 <strong class="UI">[확인]</strong> 버튼을 클릭합니다.</li>
 			</ol>
