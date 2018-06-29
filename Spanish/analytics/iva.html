@@ -3,6 +3,18 @@
     <p>Un evento IVA puede ser creado cuando se establece la regla para la anal&iacute;tica de v&iacute;deo y se detecta un movimiento que satisface la condici&oacute;n de regla del evento. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte de abajo de la p&aacute;gina. El ajuste del evento IVA se aplica a <strong class="UI">[IVA]</strong> en el <strong class="UI">[Evento]</strong>&gt; y la p&aacute;gina de <a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Después de seleccionar su canal de cámara, puede definir los detalles de IVA para cada canal. </p>
+        </div>
+    </div>
+</div>	
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -10,7 +22,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>Activar IVA</h3>
             <p>Para utilizar el evento IVA, seleccione <strong class="UI">[Activar IVA]</strong>.</p>
  </div>
@@ -136,7 +148,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>&Aacute;rea</h3>
             <p>Cuando se a&ntilde;ade un &aacute;rea excluida, el color de los botones num&eacute;ricos en <strong class="UI">[&Aacute;rea]</strong> cambiar&aacute;. Cuando se desactiva un &aacute;rea excluida haciendo clic en los botones num&eacute;ricos, la zona virtual relevante no se mostrar&aacute; en la pantalla de vista previa. Al hacer clic en el bot&oacute;n num&eacute;rico otra vez, el &aacute;rea no detecci&oacute;n volver&aacute; a aparecer.</p>
         </div>
@@ -206,7 +218,7 @@
             <h3>E-mail</h3>
             <p>Para enviar una imagen por e-mail cuando se produce un evento IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>Grabar</h3>
             <p>Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
         </div>
@@ -216,7 +228,7 @@
 class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
         </div>
 
-    <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+    <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
             <h3>Ir a predefinido.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento IVA. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
         </div>

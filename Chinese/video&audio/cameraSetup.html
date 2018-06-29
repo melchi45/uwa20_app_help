@@ -3,7 +3,17 @@
 <div class="wn5-setup-section">
     <p>可以更改摄像机设置，在安装有摄像机的环境中捕捉最佳的图像。默认提供适合多种环境的图像预设；用户还可直接对摄像机进行设置。可以在摄像机预览中查看摄像机图像是如何根据设置显示的。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。如果在更改设置后，在超时时间（240 秒）内没有单击<strong class="UI">[启用]</strong>按钮，则会恢复之前的设置。</p>
 </div>
-
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>选择频道</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>选择频道后可以分频道设置细项。</p>
+        </div>
+	</div>
+</div> 
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section" ng-if="PTZModel">
@@ -25,7 +35,7 @@
         <div class="wn5-setup-section-article-content">
             <p>可提供适合不同场合的不同图像预设。根据摄像机的使用环境选择相应的图像预设。</p>
 
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">定义焦点</strong>：这是摄像机的出厂默认模式。</li>
+            <ul><li><strong class="UI">定义焦点</strong>：这是摄像机的出厂默认模式。</li>
             <li><strong class="UI">移动焦点</strong>：这种模式主要用来清晰地捕捉移动目标。当有很多移动目标时，例如在马路上或是博物馆里，将选择移动焦点模式。在低光环境中，噪点可能会增加，而灵敏度会下降。</li>
             <li><strong class="UI">降噪</strong>：这种模式在捕捉图像时产生的噪音较少，也用于低光环境。</li>
             <li><strong class="UI">调亮视频</strong>：这种模式用于为整个场景捕捉明亮的图像，可以提高昏暗区域的可见度。这种模式可能会降低图像对比度。</li>
@@ -140,7 +150,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>帧模式</h3>
             <p>设置所需的帧率。无法为每个图像预设设置不同的帧率。同一帧率应用于所有图像预设。</p>
         </div>
@@ -157,7 +167,7 @@
             <p>当明亮区域和昏暗区域存在明显区别时，SSDR 为昏暗区域增加亮度以展现整个环境的图像。摄像机中所提供的每种图像预设的级别值都是自动设定的，且无法更改。如果不想使用此功能，或想更改级别值，请使用用户预设。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>SSDR</h3>
             <p>如需使用 SSDR，请选择<strong class="UI">[启用]</strong>。</p>
         </div>
@@ -182,7 +192,7 @@
             <p>可以进行校正，在任何光照环境下显示正常的白色及其他颜色。这项设置与图像预设无关。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>模式</h3>
             <p>根据摄像机的使用环境选择相应的白平衡模式。</p>
             <ul>
@@ -206,7 +216,7 @@
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>如果发生以下情况，白平衡可能无法正常工作。在这种情况下，可在<strong class="UI">[自动白平衡]</strong>模式中调整白平衡：</li>
+            <ul><li>如果发生以下情况，白平衡可能无法正常工作。在这种情况下，可在<strong class="UI">[自动白平衡]</strong>模式中调整白平衡：</li>
                 <ul>
                     <li>如果周围环境超出色温校正范围，例如晴朗的天空或日落时分</li>
                     <li>如果周围环境很暗</li>
@@ -303,7 +313,7 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
 
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>选择宽动态模式时，快门值将被重置。屏幕将会先变亮再变暗。</li>
+            <ul><li>选择宽动态模式时，快门值将被重置。屏幕将会先变亮再变暗。</li>
                 <li>手动使用 P-光圈镜头或使用防闪烁快门时，宽动态模式的作用将受限。</li>
                 <li>使用宽动态模式时，帧率将减半。</li>
             </ul>
@@ -321,7 +331,7 @@
             <p>根据摄像机所在环境更改曝光。如果背景比物体暗，只有减少曝光，物体才能正常显示。相反，如果背景比物体亮，只有增加曝光，物体才能正常显示。每个图像预设都有独立的默认值，且这些默认值无法更改。但任何图像预设的亮度都可以更改。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>亮度</h3>
             <p>可以调整屏幕亮度。数字越高，屏幕越亮。</p>
         </div>
@@ -411,7 +421,7 @@
             <p>根据摄像机所在环境将图像更改为彩色或黑白。设置好等待时间后，图像可根据偏好更改为彩色或黑白。切换至日/夜模式后，将无法检测到移动探测事件或图像分析事件。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>模式</h3>
             <p>选择可将摄像机切换至彩色或黑白的模式。</p>
             <ul>
@@ -464,7 +474,7 @@
             <p>可对图像进行锐利度、对比度、色彩级别及除霜调整。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DIS">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>数字稳定</h3>
             <p>检测到图像抖动时，DIS（数字稳定）功能将自动校正并稳定屏幕。</p>
           </div>
@@ -536,7 +546,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>摄像机名称</h3>
             <p>设置是否显示摄像机名称。选择<strong class="UI">[启用]</strong>时，<strong class="UI">[添加]</strong>/<strong class="UI">[删除]</strong>按钮将被激活。</p>
             <p>单击 <strong class="UI">[添加]</strong>按钮时，将在列表中添加一个字段，可在该字段中输入摄像机名称。输入摄像机名称，移动 X 和 Y 坐标设置位置。最多可添加 5 个摄像机名称。</p>
@@ -722,7 +732,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>关</h3>
             <p>摄像机在图像预设中所选时间内工作。</p>
         </div>

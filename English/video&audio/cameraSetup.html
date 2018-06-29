@@ -3,7 +3,17 @@
 <div class="wn5-setup-section">
     <p>You can change the camera settings to capture the best image in the environment where the camera is installed. Image presets suitable for various environments are provided by default; the user can also specify camera settings directly. You can check on the camera preview screen how the camera image is displayed according to the settings. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. If the time-out time (240 seconds) has passed without clicking the <strong class="UI">[Apply]</strong> button after changing the setting, the previous setting will be restored.</p>
 </div>
-
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>After selecting your camera channel, you can set the details for each channel. </p>
+        </div>
+	</div>
+</div> 
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section" ng-if="PTZModel">
@@ -25,7 +35,7 @@
         <div class="wn5-setup-section-article-content">
             <p>Various image presets are provided for specific purposes. Select an image preset according to the environment where the camera will be used.</p>
 
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">High definition</strong>: This is the default mode when the camera is shipped from the factory.</li>
+            <ul><li><strong class="UI">High definition</strong>: This is the default mode when the camera is shipped from the factory.</li>
             <li><strong class="UI">Motion</strong>: This is mainly used for capturing a moving subject clearly. Motion is selected when there are many moving objects, such as by a road or in a museum. Noise may increase and sensitivity may decrease in a low-light environment.</li>
             <li><strong class="UI">Noise reduction</strong>: This is mainly used for capturing an image with less noise, and also in a low-light environment.</li>
             <li><strong class="UI">Bright video</strong>: This is used for capturing a bright image of the whole scene in order to make a dark area clearly visible. This may reduce image contrast.</li>
@@ -140,7 +150,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Frame mode</h3>
             <p>Set a desired frame rate. A different frame rate cannot be set for each image preset. The frame rate applies to all image presets equally.</p>
         </div>
@@ -157,7 +167,7 @@
             <p>SSDR increases the brightness of a dark area to reveal an image in an environment where there is a significant difference between a dark area and a bright area. The level value is set automatically for each image preset provided in the camera and cannot be changed. If you do not use the function or if you wish to change the level value, use the user preset.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>SSDR</h3>
             <p>To use SSDR, select <strong class="UI">[Enable]</strong>.</p>
         </div>
@@ -182,7 +192,7 @@
             <p>You can make corrections to show the color white correctly and other colors normally, in any lighting environment. This can be set regardless of the image preset.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Mode</h3>
             <p>Select the white balance mode according to the environment where the camera is being used.</p>
             <ul>
@@ -206,7 +216,7 @@
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>In any of the following cases, white balance may not operate normally. In such case, adjust the white balance through the <strong class="UI">[AWC]</strong> mode:</li>
+            <ul><li>In any of the following cases, white balance may not operate normally. In such case, adjust the white balance through the <strong class="UI">[AWC]</strong> mode:</li>
                 <ul>
                     <li>If the surrounding environment exceeds the color temperature correction range, such as a clear sky or sunset</li>
                     <li>If the surrounding environment is dark</li>
@@ -303,7 +313,7 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
 
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>When WDR mode is selected, the shutter value will be reset. The screen will become bright and then become dark.</li>
+            <ul><li>When WDR mode is selected, the shutter value will be reset. The screen will become bright and then become dark.</li>
                 <li>When the P-Iris lens is used manually or the anti flicker shutter is used, the performance of WDR mode becomes limited.</li>
                 <li>When WDR mode is used, the frame rate is reduced by half.</li>
             </ul>
@@ -321,7 +331,7 @@
             <p>Change the exposure according to the environment of the camera. If the background is darker than the subject, the subject will be shown normally only when the exposure is decreased. Conversely, if the background is brighter than the subject, the subject will be shown normally only when the exposure is increased. There is a default value set separately for each image preset; it cannot be changed. However, the brightness can be changed for any image preset.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Brightness</h3>
             <p>The brightness of the screen can be adjusted. The higher the number, the brighter the screen.</p>
         </div>
@@ -411,7 +421,7 @@
             <p>Change the image to color or b/w according to the camera&rsquo;s environment. When the dwell time is set, the image can be changed to color or b/w according to preference. When switching to Day/Night, a motion detection event or image analysis event cannot be detected.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Mode</h3>
             <p>Selects the mode which changes the camera to color or b/w.</p>
             <ul>
@@ -464,7 +474,7 @@
             <p>You can adjust an image for sharpness, contrast, color level and defog.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DIS">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>DIS</h3>
             <p>When image shaking is detected, DIS (Digital Image Stabilization) corrects it automatically and stabilizes the screen.</p>
         </div>
@@ -536,7 +546,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Camera title</h3>
             <p>Sets whether or not to display the camera title. When <strong class="UI">[Enable]</strong> is selected, the <strong class="UI">[Add]</strong>/<strong class="UI">[Delete]</strong> buttons will be activated.</p>
             <p>When you click the <strong class="UI">[Add]</strong> button, a field where a camera title can be entered will be added to the list. Enter the camera title and set the location by moving the X and Y coordinates. Up to 5 camera titles can be added.</p>
@@ -723,7 +733,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Off</h3>
             <p>The camera operates at the time selected in the image preset.</p>
         </div>

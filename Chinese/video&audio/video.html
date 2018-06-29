@@ -4,7 +4,17 @@
 <div class="wn5-setup-section">
 	<p>可在摄像机图像上设置隐私区域，或将图像屏幕进行上下左右倒置。还可设置模拟图像输出或更改视频类型。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。</p>
 </div>
-
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>选择频道</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>选择频道后可以分频道设置有关视频的细项。</p>
+        </div>
+	</div>
+</div> 
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -24,7 +34,7 @@
 		</div>
         <div class="wn5-online-help-action">
             <h4>设置隐私区域</h4>
-            <ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>选择<strong class="UI">[启用隐私区域]</strong>复选框，然后单击页面底部的<strong class="UI">[应用]</strong>按钮。</li>
+            <ol><li>选择<strong class="UI">[启用隐私区域]</strong>复选框，然后单击页面底部的<strong class="UI">[应用]</strong>按钮。</li>
                 <li>用鼠标单击摄像机图像屏幕的 4 边。这时，会出现隐私区域窗口。</li>
                 <li>在<strong class="UI">[名称]</strong>栏输入隐私区域的名称，在<strong class="UI">[颜色]</strong>中选择覆盖图案的颜色，然后单击<strong class="UI">[确认]</strong>按钮。  </li>
                 <li>新的隐私区域将被添加至隐私区域列表中。隐私区域将在摄像机图像屏幕中以设定的颜色显示。</li>
@@ -32,7 +42,7 @@
         </div>
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
-			<ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>只能输入英文字母、数字、破折号 (-) 以及句号 （.）作为隐私区域的名称。 </li>
+			<ul><li>只能输入英文字母、数字、破折号 (-) 以及句号 （.）作为隐私区域的名称。 </li>
 
 			</ul>
 		</div>
@@ -40,7 +50,7 @@
 
 		<div class="wn5-online-help-action">
 			<h4>删除隐私区域</h4>
-			<ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>从隐私区域列表中选择一个想要删除的隐私区域。选定区域将出现在摄像机图像屏幕上。 </li>
+			<ol><li>从隐私区域列表中选择一个想要删除的隐私区域。选定区域将出现在摄像机图像屏幕上。 </li>
 				<li>单击<strong class="UI">[删除]</strong>按钮。选定区域将被删除。</li>
 			</ol>
 		</div>
@@ -55,7 +65,8 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>安装完摄像机后，如果屏幕显示为上下颠倒，可通过翻转模式和镜像模式功能进行修正。过道视图功能可显示屏幕的长立面视图，让用户有效地掌控检视区域。</p>
+			<p>安装完摄像机后，如果屏幕显示为上下颠倒，可通过翻转模式和镜像模式功能进行修正。</p>
+			<p ng-if="HallwayView">过道视图功能可显示屏幕的长立面视图，让用户有效地掌控检视区域。</p>
 		</div>
         		<div class="wn5-online-help-info" ng-if="Statistics">
 		<h4><span class="tui tui-wn5-help-warning"></span>须知</h4>
@@ -69,7 +80,8 @@
 							<li>如果更改视频旋转设置， 视频画面会上下左右翻转或颠倒。请在<strong class="UI">[分析]</strong>菜单中更改分析设置，以根据所修改的视频分析视频。  </li>
 					</ul>
 			</div>
-		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel"><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><h3>翻转模式</h3>
+		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
+			<h3>翻转模式</h3>
 			<p>可将摄像机图像上下翻转。如需翻转摄像机图像，请选择<strong class="UI">[启用]</strong>。</p>
 		</div>
         <div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
@@ -95,7 +107,7 @@
 		<div class="wn5-online-help-info" ng-if="HallwayView">
 			<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
 			<div>
-				<ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>如需设置过道视图，应将安装好的摄像机设置为 0 度，或顺时针旋转 90 度，或顺时针旋转 270 度，然后在<strong class="UI">[过道视图]</strong>中选择同样的角度。 </li>
+				<ul><li>如需设置过道视图，应将安装好的摄像机设置为 0 度，或顺时针旋转 90 度，或顺时针旋转 270 度，然后在<strong class="UI">[过道视图]</strong>中选择同样的角度。 </li>
 					<li>设置<strong class="UI">[过道视图]</strong>时，网页浏览器会自动关闭。这时，需要重新连接至 web 查看器。</li>
 				</ul>
 			</div>
@@ -136,7 +148,7 @@
 	    	<p>选择模拟视频类型。可选择<strong class="UI">[NTSC]</strong>制式或<strong class="UI">[PAL]</strong>制式作为视频类型。</p>
 	    </div>
 		<div class="wn5-setup-section-article-content">
-			<ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li><strong class="UI">NTSC</strong>：NTSC 制式是美国国家电视系统委员会制定的一种彩色电视标准。它的运行速度为每秒 30 帧，且具有 525 条水平扫描线。每秒输出的帧数很多，因此屏幕显示很自然。美国、日本和加拿大常用这种类型。</li>
+			<ul><li><strong class="UI">NTSC</strong>：NTSC 制式是美国国家电视系统委员会制定的一种彩色电视标准。它的运行速度为每秒 30 帧，且具有 525 条水平扫描线。每秒输出的帧数很多，因此屏幕显示很自然。美国、日本和加拿大常用这种类型。</li>
 				<li><strong class="UI">PAL</strong>：PAL（逐行倒相）制式由德国创建，与 NTSC 类似，但具有不同的彩色信号处理原理。欧洲常用这种类型。尽管这种制式在每秒帧数上少于 NTSC，但它有更多的水平扫描线（625 条），因此色差小，且不需要配置很高的播放设备。 </li>
 			</ul>
 		</div>

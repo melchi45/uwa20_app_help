@@ -4,6 +4,18 @@
     <p>The setting on the motion detection event applies to <strong class="UI">[Motion detection]</strong> on the <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>After selecting your camera channel, you can set the details of Motion detection for each channel.</p>
+        </div>
+    </div>
+</div>	
+
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -12,7 +24,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Enable Motion detection</h3>
             <p>To use the motion detection event, select <strong class="UI">[Enable Motion detection]</strong>.</p>
 			</div>
@@ -63,7 +75,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Area</h3>
             <p>When a motion detection area is added, the color of the number buttons in [Area] will change. When you click the number button, the relevant area will disappear from the preview screen. When you click the number button again, the motion detection area will reappear.</p>
         </div>
@@ -135,7 +147,7 @@
 			<p>To delete an exclude area, click the right mouse button at the relevant area on the screen and click the <strong class="UI">[OK]</strong> button on the delete confirm window.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Area</h3>
             <p>When an exclude area is added, the color of number buttons in <strong class="UI">[Area]</strong> will change. When you click the number button, the relevant exclude area will disappear from the preview screen. When you click the number button again, the exclude area will reappear.</p>
         </div>
@@ -153,16 +165,15 @@
                           <h3>Handover</h3>
                           <p>Select a handover receiver camera number. Select <strong class="UI">[Disable]</strong> if you don't want to use the handover function.</p>
                           <p>Handover is a function that the receiver camera moves to the PTZ preset position when an audio source classification event occurs. The handover receiving camera can be set in the <strong class="UI">[Event]</strong> &gt; <strong class="UI">[Handover]</strong> menu. </p>
-</div>
+            </div>
  			<div class="wn5-online-help-info">
                           <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-                                                  <ul>
-
-                                                      <li>You can set the handover receiver camera for each ROI area. The handover function can be used after setting the ROI area first.</li>
- </ul>
-                      </div>
-</div>
-</div> 
+                            <ul>
+                            <li>You can set the handover receiver camera for each ROI area. The handover function can be used after setting the ROI area first.</li>
+                            </ul>
+             </div>
+        </div>
+    </div> 
   <hr class="wn5-setup-hr">
   <div class="wn5-setup-section">
 
@@ -171,7 +182,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>FTP</h3>
             <p>To save an image on an FTP server when a motion event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
@@ -185,14 +196,12 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Alarm output</h3>
-            <p>It is possible to set the alarm output number for a specific alarm when a motion detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a
-class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+            <p>It is possible to set the alarm output number for a specific alarm when a motion detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
 
       <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
             <h3>Goto preset</h3>
-                    <p>You can set the position of camera view to move to a preset number when a motion detection event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External
-PTZ]</a></strong>.</p>
+                    <p>You can set the position of camera view to move to a preset number when a motion detection event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
@@ -204,9 +213,6 @@ PTZ]</a></strong>.</p>
             <h3>Goto preset</h3>
                 <p>You can set the position of camera to move to a preset position when a motion detection event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
         </div>
-
-
-
     </div>
 </div>
 

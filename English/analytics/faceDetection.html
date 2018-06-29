@@ -1,8 +1,20 @@
 ﻿<h1 class="wn5-setup-main-title">Face detection</h1>
 <div class="wn5-setup-section">
-    <p>A face detection event can be created when a face is detected within the area designated by the user while the camera is capturing an image. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on face detection events applies to <strong class="UI">[Face detection]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event
-setup]</strong></a> page equally.</p>
+    <p>A face detection event can be created when a face is detected within the area designated by the user while the camera is capturing an image. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on face detection events applies to <strong class="UI">[Face detection]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> page equally.</p>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>After selecting your camera channel, you can set the details of Face detection for each channel.</p>
+        </div>
+    </div>
+</div>	
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -10,7 +22,6 @@ setup]</strong></a> page equally.</p>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
             <h3>Enable Face detection</h3>
             <p>To use the face detection event, select <strong class="UI">[Enable Face detection]</strong>.</p>
         </div>
@@ -35,9 +46,8 @@ setup]</strong></a> page equally.</p>
             <h3>Sensitivity</h3>
             <p>This sets the sensitivity of the face detection event. The higher the sensitivity, the more detailed the face detection that is possible.</p>
         </div>
-    </div>
-</div>
-<div class="wn5-setup-section-article-content">
+
+        <div class="wn5-setup-section-article-content">
             <h3>Motion-based ROI area movement</h3>
             <p>Select <strong class="UI">[Enable]</strong> if you want the face detection area to be automatically changed according to the motion analysis.If <strong class="UI">[Enable]</strong> is not selected, faces will be detected only in the set ROI area. </p>
             <p>If the ROI area is set, the face will be detected only within the set area, and the detection efficiency of the small face at a long distance may be deteriorated. If 'Motion-based ROI area movement' function is used, when motion is detected on the whole screen, area for face detection is automatically changed, &nbsp;and thus the face detection efficiency is improved.</p>
@@ -48,8 +58,8 @@ setup]</strong></a> page equally.</p>
                 <li>When the motion-based ROI movement function is used, only the area where motion occurs is designated as the face detection area. </li>
                 <li>Continuous face detection is impossible because the detection area is actively changed to detect faces in various areas. </li>
               </ul>
-          </div>
-</div>
+        </div>
+    </div>
 </div>
 <div class="wn5-setup-section">
 
@@ -72,7 +82,7 @@ setup]</strong></a> page equally.</p>
 			<p>To delete an exclude area, click the right mouse button at the relevant area on the screen and click the <strong class="UI">[OK]</strong> button on the delete confirm window.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Area  </h3>
             <p>When an exclude area is added, the color of the number button will also change. When you click the number button, the relevant exclude area will disappear from the preview screen. When you click the number button again, the exclude area will reappear.</p>
         </div>
@@ -84,7 +94,7 @@ setup]</strong></a> page equally.</p>
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>If the detection area and the exclude area are identical or overlap, the exclude area has priority.</li>
+            <ul><li>If the detection area and the exclude area are identical or overlap, the exclude area has priority.</li>
             </ul>
         </div>
     </div>
@@ -97,9 +107,7 @@ setup]</strong></a> page equally.</p>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
-            </ul>
+
             <h3>FTP</h3>
             <p>To save an image on an FTP server when a face detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
@@ -113,8 +121,7 @@ setup]</strong></a> page equally.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Alarm output</h3>
-            <p>It is possible to set an alarm output number for a specific alarm when a face detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a
-class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+            <p>It is possible to set an alarm output number for a specific alarm when a face detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
 
       <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
@@ -146,9 +153,7 @@ PTZ]</a></strong>.</p>
             <p>This sets the operation time of the face detection event action settings. Set the event action settings from <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_faceDetection?#action">Event action settings</a>]</strong> to always operate, or only at the set time.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
-            </ul>
+
             <h3>Always</h3>
             <p>The set event action settings are always executed when a face detection event is created.</p>
         </div>

@@ -4,7 +4,17 @@
 <div class="wn5-setup-section">
 	<p>智能编码技术可通过将用户指定区域设定为特定质量区域，同时将其他区域设为一般质量区域，来降低图像数据的大小。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。</p>
 </div>
-
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>选择频道</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>选择频道后可以分频道设置有关智能编码的细项。 </p>
+        </div>
+	</div>
+</div>
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -18,7 +28,7 @@
 
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
-			<ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>可为每一个视频配置文件设置智能编码。在<strong class="UI">[基本设置]</strong>&gt;<strong class="UI">[视频配置文件]</strong>中，将<a class="wn5-online-help-link" href="../basic/profile.html#bitrate" ng-href="#/help/basic_videoProfile?#bitrate"><strong class="UI">[比特率控制]</strong></a>设置为<strong class="UI">[CBR]</strong>，并设置是否在<a class="wn5-online-help-link" href="../basic/profile.html#smartcodec" ng-href="#/help/basic_videoProfile?#smartcodec"><strong class="UI">[智能编码]</strong></a>中使用此功能。</li>
+			<ul><li>可为每一个视频配置文件设置智能编码。在<strong class="UI">[基本设置]</strong>&gt;<strong class="UI">[视频配置文件]</strong>中，将<a class="wn5-online-help-link" href="../basic/profile.html#bitrate" ng-href="#/help/basic_videoProfile?#bitrate"><strong class="UI">[比特率控制]</strong></a>设置为<strong class="UI">[CBR]</strong>，并设置是否在<a class="wn5-online-help-link" href="../basic/profile.html#smartcodec" ng-href="#/help/basic_videoProfile?#smartcodec"><strong class="UI">[智能编码]</strong></a>中使用此功能。</li>
 			</ul>
 		</div>
 	</div>

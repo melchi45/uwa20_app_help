@@ -12,7 +12,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li><strong class="UI">使用</strong>：选中<strong class="UI">[使用]</strong>栏中的复选框时，只会执行所选事件。</li>
+            <ul><li><strong class="UI">使用</strong>：选中<strong class="UI">[使用]</strong>栏中的复选框时，只会执行所选事件。</li>
                 <li><strong class="UI">类型</strong>：选择<strong class="UI">[类型]</strong>栏中的事件名称，可进入对应事件的具体设置页面。</li>
                 <li><strong class="UI">事件操作设置</strong>：决定创建事件时摄像机执行的事件操作设置。</li>
                         <ul>
@@ -25,8 +25,22 @@
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
-            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>取决于摄像机所支持的警报数，警报输出栏的显示稍有不同。比如，如果警报输出数设置为 2，则会显示&ldquo;警报输出 1&rdquo; 栏和&ldquo;警报输出 2&rdquo;栏，且可设置每个事件的警报输出数。  </li>
+            <ul><li>取决于摄像机所支持的警报数，警报输出栏的显示稍有不同。比如，如果警报输出数设置为 2，则会显示&ldquo;警报输出 1&rdquo; 栏和&ldquo;警报输出 2&rdquo;栏，且可设置每个事件的警报输出数。  </li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>选择频道</h2> 
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+                
+            <p>选择频道后可以在<strong class="UI">[频道事件列表]</strong>分频道管理及设置事件操作设置。</p>
+            <p>在<strong class="UI">[共用事件列表]</strong>所设置的内容将适用于所有频道。</p>
         </div>
     </div>
 </div>

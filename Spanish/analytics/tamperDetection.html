@@ -3,6 +3,17 @@
 <div class="wn5-setup-section">
     <p>Un evento de detecci&oacute;n de manipulaci&oacute;n puede ser creado cuando la pantalla est&aacute; bloqueada o se cambia la posici&oacute;n de la c&aacute;mara. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste del evento de detecci&oacute;n de manipulaci&oacute;n se aplica a <strong class="UI">[Detecci&oacute;n de manipulaci&oacute;n]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
 </div>
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Después de seleccionar su canal de cámara, puede establecer los detalles de Detección de manipulación para cada canal.</p>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr">
 
@@ -12,7 +23,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>Activar detecci&oacute;n de manipulaci&oacute;n</h3>
             <p>Para utilizar el evento de detecci&oacute;n de manipulaci&oacute;n, seleccione <strong class="UI">[Activar detecci&oacute;n de manipulaci&oacute;n]</strong>. </p>
         </div>
@@ -38,7 +49,7 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>El rendimiento de detecci&oacute;n puede reducirse en un fondo uniforme, de noche o condiciones de poca luminosidad.</li>
+            <ul><li>El rendimiento de detecci&oacute;n puede reducirse en un fondo uniforme, de noche o condiciones de poca luminosidad.</li>
                 <li>Puede llevar hasta 5 segundos para un evento de detecci&oacute;n de manipulaci&oacute;n para que se cree despu&eacute;s de que ocurra un sabotaje indebido.</li>
                 <li>Cuando se detecta un sabotaje de la c&aacute;mara, la funci&oacute;n se reiniciar&aacute; despu&eacute;s de la estabilizaci&oacute;n durante aproximadamente 5 segundos, y no se detectar&aacute; ning&uacute;n sabotaje durante el proceso de estabilizaci&oacute;n.</li>
                 <li>Cuando se est&eacute; creando repetidamente un evento incorrecto, los errores se pueden minimizar mediante la reducci&oacute;n gradual del nivel. </li>
@@ -70,9 +81,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
-            </ul>
+
             <h3>FTP</h3>
             <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
@@ -117,9 +126,7 @@
             <p>Esto establece la acci&oacute;n del evento desde <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_tamperDetection?#action">Conf. de acciones de evento</a>]</strong> para funcionar siempre o s&oacute;lo a una hora determinada cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
-            </ul>
+
             <h3>Siempre</h3>
             <p>Los valores de acciones evento siempre se ejecutan cuando se crea un evento de detecci&oacute;n de manipulaci&oacute;n.</p>
         </div>

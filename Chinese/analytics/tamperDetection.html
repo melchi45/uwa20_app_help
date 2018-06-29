@@ -5,6 +5,18 @@
     <p>当屏幕受阻或摄像机机位置发生变动时，会创建一个篡改检测事件。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。篡改检测事件的设置同样可在<strong class="UI">[事件]</strong>中的<strong class="UI">[篡改检测]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[事件设置]</strong></a>页面中完成。</p>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>选择频道</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>选择频道后可以分频道设置篡改检测细项。</p>
+        </div>
+    </div>
+</div>	
+
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -13,7 +25,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --></ul>
+            
             <h3>启用篡改探测</h3>
             <p>如需执行篡改检测事件，请选择<strong class="UI">[启用篡改探测]</strong>。 </p>
         </div>
@@ -35,7 +47,7 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
-            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>在均匀背景中或夜间低光环境中，检测效果可能欠佳。</li>
+            <ul><li>在均匀背景中或夜间低光环境中，检测效果可能欠佳。</li>
                 <li>出现篡改后，可能需要 5 秒钟才能创建一个篡改检测事件。</li>
                 <li>检测出摄像机篡改时，经过大约 5 秒种的稳定后，将重新进行篡改检测，稳定过程中，将无法检测出任何篡改。</li>
                 <li>重复创建一个错误事件时，逐渐降低等级，可将错误降至最低水平。 </li>
@@ -66,9 +78,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --></p>
-            </ul>
+          
             <h3>FTP</h3>
             <p>创建篡改检测事件时，如需将图像保存至 FTP 服务器中，请选择<strong class="UI">[使用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/电子邮件]</strong></a>完成具体的 FTP 设置。</p>
         </div>
@@ -114,9 +124,7 @@
             <p>从<strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_tamperDetection?#action">事件操作设置</a>]</strong>中将事件操作状态设置为始终，或仅在设定的创建篡改检测事件的时间进行操作。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --></p>
-            </ul>
+
             <h3>始终</h3>
             <p>创建篡改检测事件时，始终执行事件操作设置。</p>
         </div>

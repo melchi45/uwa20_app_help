@@ -2,6 +2,18 @@
 <div class="wn5-setup-section">
     <p>A defocus detection event can be created when defocus of the camera lens is detected. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the defocus detection event applies to <strong class="UI">[Defocus detection]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> page equally.</p>
 </div>
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>After selecting your camera channel, you can set the details of Defocus detection for each channel. </p>
+        </div>
+
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -9,7 +21,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+
             <h3>Enable Defocus detection </h3>
             <p>To use the defocus detection event, select <strong class="UI">[Enable Defocus detection]</strong>. </p>
         </div>
@@ -33,7 +45,6 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
  
             <ul>
-                <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
                 <li>In order to receive an alarm indicating defocus detection after it has occurred previously, the status must return to the stable status at least once. Instances of returning to the stable status are as follows.
 					<ul>
 					<li>When <strong class="UI">[Enable Defocus detection]</strong> is deselected</li>
@@ -44,14 +55,11 @@
 					<li>Monitoring an environment with a monotonous background, at night time, and/or in a low light environment</li>
 					<li>Sudden illumination change (e.g. an indoor light is turned off)</li>
 					<li>Blocked lens or appearance of a large object which covers the most of the screen </li>
-					<li>The object of focus is changed due a change of the camera position</li></ul>
-				</li>
-            </ul>
+                        <li>The object of focus is changed due a change of the camera position</li>
+</ul>
         </div>
-            </ul>
         </div>
     </div>
-</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -60,9 +68,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
-            </ul>
+
             <h3>FTP</h3>
             <p>To save an image on an FTP server when a defocus detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
@@ -114,9 +120,7 @@ PTZ]</a></strong>.</p>
             <p>This sets the event action settings from <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_defocusDetection?#action">Event action settings</a>]</strong> to always operate, or only at the set time for which a defocus detection event is created.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
-            </ul>
+
             <h3>Always</h3>
             <p>The set event action settings are always executed when a defocus detection event is created.</p>
         </div>

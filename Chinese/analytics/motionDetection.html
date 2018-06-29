@@ -4,6 +4,18 @@
     <p>移动探测事件的设置同样可在<strong class="UI">[事件]</strong>中的<strong class="UI">[移动探测]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[事件设置]</strong></a>页面中完成。</p>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>选择频道</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>选择频道后可以分频道设置移动探测细项。</p>
+        </div>
+    </div>
+</div>	
+
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -12,7 +24,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>启用移动探测</h3>
             <p>如需使用移动探测事件，请选择<strong class="UI">[启用移动探测]</strong>。</p>
 			</div>
@@ -55,7 +67,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>区域</h3>
             <p>添加移动探测区域时，[区域]内的数字键会发生颜色改变。单击数字键时，相应的区域会从预览屏幕消失。再次单击数字键时，该移动探测区域将重现。</p>
         </div>
@@ -126,7 +138,7 @@
 			<p>如需删除非测试区域，在屏幕上的相应区域单击鼠标右键，并在删除确认窗口单击<strong class="UI">[确认]</strong>按钮。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>区域</h3>
             <p>添加非测试区域时，<strong class="UI">[区域]</strong>内的数字键会发生颜色改变。单击数字键时，相应的非测试区域会从预览屏幕消失。再次单击数字键时，该非测试区域将重现。</p>
         </div>
@@ -163,7 +175,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>FTP</h3>
             <p>创建移动事件时，如需将图像保存至 FTP 服务器中，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/电子邮件]</strong></a>完成具体的 FTP 设置。</p>
         </div>
@@ -171,7 +183,7 @@
             <h3>电子邮件</h3>
             <p>创建移动探测事件时，如需通过电子邮件发送图像，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/电子邮件]</strong></a>完成具体的电子邮件设置。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>录制</h3>
             <p>创建移动探测事件时，如需将图像保存至 SD 卡或 NAS，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
         </div>
@@ -181,7 +193,7 @@
 class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[警报输出]</strong></a>完成具体的警报输出设置。</p>
         </div>
 
-         <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+         <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
             <h3>转至预设位</h3>
                     <p>创建移动探测事件时，可以将摄像机视图的位置设置为移动到预设编号。摄像机的预置位可设置在<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[数字 PTZ]</strong></a>或<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部 PTZ]</a></strong>的<strong class="UI">[预设]</strong>。</p>
         </div>

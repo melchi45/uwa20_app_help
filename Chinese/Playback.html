@@ -6,7 +6,8 @@
 <div class="wn5-setup-section">
     <div class="wn5-online-help-list">
         <p>单击顶部的按钮，可在实时屏幕、播放屏幕或设置屏幕之间进行切换。</p>
-        <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” -->            <li><span class="tui tui-wn5-top-live"></span>（实时）：查看摄像机捕捉的实时图像，并控制摄像机的各种功能。</li>
+        <ul>
+            <li><span class="tui tui-wn5-top-live"></span>（实时）：查看摄像机捕捉的实时图像，并控制摄像机的各种功能。</li>
             <li><span class="tui tui-wn5-top-playback"></span>（播放）：搜索并播放 SD 卡或 NAS 录制的图像。    </li>
             <li><span class="tui tui-wn5-top-setup"></span>（设置）：更改摄像机设置。</li>
         </ul>
@@ -14,8 +15,9 @@
 <div class="wn5-setup-section">
     <div class="wn5-online-help-info">
         <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
-        <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” -->                <li>如果为连接至 SD 卡或 NAS，则无法使用播放功能。  </li>
-                <li>通过 Chrome 连接至 web 查看器时，可安全使用录制播放屏幕功能。</li>
+        <ul>
+            <li>如果为连接至 SD 卡或 NAS，则无法使用播放功能。  </li>
+            <li>通过 Chrome 连接至 web 查看器时，可安全使用录制播放屏幕功能。</li>
 			<!-- <li>当通过 Internet Explorer 或 Safari 连接至网络浏览器时，只有安装好插件后才能使用备份功能。如需安装插件，请单击右上角的<span class="tui tui-wn5-download"></span>按钮。 </li>   -->
         </ul>
     </div>
@@ -38,6 +40,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr ng-if="MaxChannel > 1">
+                                <td width="235">选择频道</td>
+                                <td width="235">选择频道后可以搜查或播放各频道所录制的视频。</td>
+                    </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span>全屏</p>
@@ -145,7 +151,7 @@
         <div class="wn5-setup-section-article-content">
             <p>可按照事件类型搜索录制的图像。</p>
 
-            <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li><strong class="UI">事件</strong>：单击<strong class="UI">[全部]</strong>按钮时，会出现事件的种类。选择一种事件，然后单击<strong class="UI">[应用]</strong>按钮，时间轴上只会显示为该事件录制的图像。</li>
+            <ul><li><strong class="UI">事件</strong>：单击<strong class="UI">[全部]</strong>按钮时，会出现事件的种类。选择一种事件，然后单击<strong class="UI">[应用]</strong>按钮，时间轴上只会显示为该事件录制的图像。</li>
             <li><strong class="UI">重复覆盖区域</strong>：调整摄像机时间后，将创建一个重叠时间。如需在重叠时间中搜索录制的图像，请选择一个重复覆盖区域。 </li>
             </ul>
         </div>

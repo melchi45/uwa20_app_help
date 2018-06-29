@@ -11,7 +11,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">Uso</strong>: Cuando se seleccionan las casillas de verificaci&oacute;n en la columna <strong class="UI">[Uso]</strong>, s&oacute;lo el evento (s) seleccionado funcionar&aacute;.</li>
+            <ul><li><strong class="UI">Uso</strong>: Cuando se seleccionan las casillas de verificaci&oacute;n en la columna <strong class="UI">[Uso]</strong>, s&oacute;lo el evento (s) seleccionado funcionar&aacute;.</li>
                 <li><strong class="UI">Tipo</strong>: Seleccionar un nombre de evento en la columna <strong class="UI">[Tipo]</strong> le llevar&aacute; a la p&aacute;gina de configuraci&oacute;n detallada para el evento en cuesti&oacute;n.</li>
                 <li><strong class="UI">Conf. de acciones de evento</strong>: Determina qu&eacute; configuraciones de acciones de evento ser&aacute;n llevadas a cabo por la c&aacute;mara cuando se cree un evento.</li>
                         <ul>
@@ -24,8 +24,21 @@
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>La columna de salida de alarma se muestra de forma diferente de acuerdo con el n&uacute;mero de alarmas con el apoyo de la c&aacute;mara. Por ejemplo, si el n&uacute;mero de alarmas para emitir es 2, las columnas de &apos;salida de alarma 1&apos; y &apos;salida de alarma 2&apos; se muestran y la salida de alarma para cada evento puede ajustarse.  </li>
+            <ul><li>La columna de salida de alarma se muestra de forma diferente de acuerdo con el n&uacute;mero de alarmas con el apoyo de la c&aacute;mara. Por ejemplo, si el n&uacute;mero de alarmas para emitir es 2, las columnas de &apos;salida de alarma 1&apos; y &apos;salida de alarma 2&apos; se muestran y la salida de alarma para cada evento puede ajustarse.  </li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Seleccionar canal</h2> 
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">                
+            <p>Después de seleccionar su canal de cámara, puede gestionar y definir la Configuración de acciones de evento para cada canal en <strong class="UI">[Lista de eventos del canal]</strong>.</p>
+            <p>Los ajustes definidos en <strong class="UI">[Lista de eventos comunes]</strong> se aplicará a todos los demás canales.</p>
         </div>
     </div>
 </div>

@@ -71,11 +71,11 @@
 			<h3>密码</h3>
 			<p>输入密码。密码设置规则与管理员密码设置规则相同。</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
 			<h3>音频输入</h3>
 			<p>为输入的音频设置访问许可。选择音频输入时，连接到相应账号的用户不仅可以观看屏幕图像，还可以听到声音，如果没有选择音频输入，则用户只能观看屏幕上的图像。</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput">
 			<h3>音频输出</h3>
 			<p>设置音频输出许可。选择音频输出，连接到相应账号的用户可以通过麦克风发送音频。</p>
 		</div>
@@ -83,11 +83,11 @@
 			<h3>警报输出</h3>
 			<p>设置警报输出许可。设置好警报后，连接到相应账号的用户可以输出警报。</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="ContinousZoom" >
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 
-									<h3>PTZ</h3>
-						            <p>在<strong class="UI">[实时]</strong>模式中设置控制PTZ的权限。</p>
-								</div>
+			<h3>PTZ</h3>
+			<p>在<strong class="UI">[实时]</strong>模式中设置控制PTZ的权限。</p>
+		</div>
 
 
 

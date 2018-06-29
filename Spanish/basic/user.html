@@ -70,11 +70,11 @@
 			<h3>Contrase&ntilde;a</h3>
 			<p>Introduzca la contrase&ntilde;a. La regla de ajuste de la contrase&ntilde;a es la misma que la regla de ajuste de la contrase&ntilde;a de administrador.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
 			<h3>Entrada de audio</h3>
 			<p>Establezca el permiso para acceder al audio introducido. Si se selecciona en audio, un usuario que se conecta con la cuenta principal puede ver la pantalla y escuchar el audio al mismo tiempo; si la entrada de audio no est&aacute; seleccionada, el usuario podr&aacute; ver solamente la pantalla de imagen.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput">
 			<h3>Salida de audio</h3>
 			<p>Establezca los permisos de salida de audio. Cuando se selecciona la salida de audio, un usuario que se conecta a una cuenta correspondiente puede enviar audio a trav&eacute;s del micr&oacute;fono.</p>
 		</div>
@@ -82,11 +82,11 @@
 			<h3>Salida de alarma</h3>
 			<p>Establecimiento de permisos de salida de alarma. Cuando una alarma se ha fijado, un usuario que se conecta a una cuenta relevante puede emitir la alarma.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="ContinousZoom" >
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 
-						<h3>PTZ</h3>
-			            <p>Establece el permiso para controlar la PTZ en el modo <strong class="UI">[En vivo]</strong>. </p>
-					</div>
+			<h3>PTZ</h3>
+			<p>Establece el permiso para controlar la PTZ en el modo <strong class="UI">[En vivo]</strong>. </p>
+		</div>
 
 
 

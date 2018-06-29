@@ -3,7 +3,17 @@
 <div class="wn5-setup-section">
     <p>Un evento de detecci&oacute;n facial puede ser creado cuando se detecta una cara dentro del &aacute;rea designada por el usuario, mientras que la c&aacute;mara est&aacute; capturando una imagen. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste en el caso de detecci&oacute;n facial se aplica a <strong class="UI">[Detecci&oacute;n facial]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
 </div>
-
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Después de seleccionar su canal de cámara, puede configurar los detalles de Detección facial para cada canal. </p>
+        </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -11,7 +21,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>Activar la detecci&oacute;n facial</h3>
             <p>Para utilizar el evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar la detecci&oacute;n facial]</strong>.</p>
         </div>
@@ -26,13 +36,11 @@
 
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h5>Sensibilidad</h5>
             <p>Esto ajusta la sensibilidad del evento de detecci&oacute;n facial. Cuanto mayor sea la sensibilidad, m&aacute;s detallada ser&aacute; la detecci&oacute;n facial posible.</p>
           </div>
-      </div>
-  </div>
-  <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content">
               <h3>Movimiento del área de ROI basado en movimiento</h3>
               <p>Seleccione <strong class="UI">[Activar]</strong> si desea que el área de detección de rostros cambie automáticamente, de acuerdo con el análisis de movimiento.Si no se selecciona activar <strong class="UI">[Activar]</strong>, las caras solo se detectarán en el área ROI establecida. </p>
               <p>Si se establece el área de ROI, la cara se detectará solo dentro del área establecida, y la eficiencia de detección de la cara pequeña a una larga distancia puede deteriorarse. Si se utiliza la función "Movimiento de área ROI basada en movimiento ", cuando se detecta movimiento en toda la pantalla, el área para la detección de rostros cambia automáticamente &nbsp;y, por lo tanto, se mejora la eficacia de detección de rostros.</p>
@@ -87,9 +95,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
-            </ul>
+
             <h3>FTP</h3>
             <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
@@ -97,7 +103,7 @@
             <h3>E-mail</h3>
             <p>Para enviar una imagen por e-mail cuando se crea un evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>Grabar</h3>
             <p>Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
         </div>
@@ -106,7 +112,7 @@
             <p>Es posible establecer una direcci&oacute;n de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de detecci&oacute;n facial.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
         </div>
 
-      <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+      <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
             <h3>Ir a predefinido.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n facial. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
         </div>
@@ -134,9 +140,7 @@
             <p>Esto establece el tiempo de funcionamiento de la configuraci&oacute;n de acciones de eventos de detecci&oacute;n facial. Establezca la configuraci&oacute;n de acciones de eventos desde <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_faceDetection?#action">Conf. de acciones de evento</a>]</strong> para funcionar siempre o s&oacute;lo a la hora programada.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
-            </ul>
+
             <h3>Siempre</h3>
             <p>La configuraci&oacute;n de acciones de eventos se ejecutan siempre cuando se crea un evento de detecci&oacute;n facial.</p>
         </div>

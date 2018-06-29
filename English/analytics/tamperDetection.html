@@ -2,6 +2,19 @@
 <div class="wn5-setup-section">
     <p>A tamper detection event can be created when the screen is blocked or the camera position is changed. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the tamper detection event applies to <strong class="UI">[Tamper detection]</strong>in <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>After selecting your camera channel, you can set the details of Tampering detection for each channel. </p>
+        </div>
+    </div>
+</div>	
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -9,7 +22,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+
             <h3>Enable Tampering detection </h3>
             <p>To use the tamper detection event, select <strong class="UI">[Enable Tampering detection]</strong>. </p>
         </div>
@@ -81,14 +94,12 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Alarm output</h3>
-            <p>It is possible to set the alarm output number for a specific alarm when a tamper detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a
-class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+            <p>It is possible to set the alarm output number for a specific alarm when a tamper detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
             <h3>Goto preset</h3>
-                    <p>You can set the position of camera view to move to a preset number when a tampering detection event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External
-PTZ]</a></strong>.</p>
+                    <p>You can set the position of camera view to move to a preset number when a tampering detection event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
         </div>
 
 
@@ -127,7 +138,7 @@ PTZ]</a></strong>.</p>
             <h3>Only scheduled time</h3>
             <p>The event action settings are only executed when a tamper detection event is created during the set time. The date from Sunday to Saturday, based on the current camera time, is displayed on the time table shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time for event action settings by clicking or dragging on the time table with the mouse. The set event activation time is executed repeatedly on the relevant weekday and time.</p>
 			<p>You can change the time view unit by clicking the <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> or <strong class="UI">[1 h]</strong> button. When you click the <strong class="UI">[Reset]</strong> button, all set event activation times will be deleted. To confirm or change the camera time, refer to <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date &amp; Time]</strong>.</p>
+        </div>
     </div>
-</div>
 </div>
 <hr class="wn5-setup-hr">

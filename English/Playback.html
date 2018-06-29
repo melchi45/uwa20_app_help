@@ -5,7 +5,7 @@
 <div class="wn5-setup-section">
     <div class="wn5-online-help-list">
     <p>You can move to the live screen, playback screen or setup screen by clicking the buttons at the top.</p>
-        <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><span class="tui tui-wn5-top-live"></span>(Live): Check the live image being captured by the camera and control various camera functions.</li>
+        <ul><li><span class="tui tui-wn5-top-live"></span>(Live): Check the live image being captured by the camera and control various camera functions.</li>
             <li><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card or NAS.  </li>
             <li><span class="tui tui-wn5-top-setup"></span>(Setup): Change the camera settings.  </li>
         </ul>
@@ -14,7 +14,7 @@
 <div class="wn5-setup-section">
     <div class="wn5-online-help-info">
         <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-        <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>If there is no connection to an SD card or NAS, the playback function cannot be used. </li>
+        <ul><li>If there is no connection to an SD card or NAS, the playback function cannot be used. </li>
 			<li>Connecting to the web viewer via Chrome, the record playback screen feature can be securely used.</li>
 			<!-- <li>When you connect to a web viewer through Internet Explorer or Safari, the backup function can be used only after a plugin has been installed. To install the plugin, click the <span class="tui tui-wn5-download"></span> button at the top right. </li>  -->
         </ul>
@@ -38,6 +38,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr ng-if="MaxChannel > 1">
+                        <td width="235">Select channel</td>
+                        <td width="235">After selecting your channel, you can search or play recorded videos for each channel.</td>
+                    </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
@@ -146,7 +150,7 @@
         <div class="wn5-setup-section-article-content">
             <p>You can search for a recorded image by event type.</p>
 
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">Event</strong>: When you click the <strong class="UI">[All]</strong> button, the event types will appear. Selecting an event and clicking the <strong class="UI">[Apply]</strong> button, only recorded images for that event will appear on the time bar.</li>
+            <ul><li><strong class="UI">Event</strong>: When you click the <strong class="UI">[All]</strong> button, the event types will appear. Selecting an event and clicking the <strong class="UI">[Apply]</strong> button, only recorded images for that event will appear on the time bar.</li>
             <li><strong class="UI">Overlapped section</strong>: When the camera time is adjusted, an overlapped time will be created. To search for recorded images during the overlapped time, select an overlapped section. </li>
             </ul>
         </div>

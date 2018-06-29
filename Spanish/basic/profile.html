@@ -3,6 +3,18 @@
     <p>El usuario puede a&ntilde;adir o eliminar un perfil de v&iacute;deo, y cambiar las propiedades del perfil. Establecer el perfil de v&iacute;deo, velocidad de fotogramas y el c&oacute;dec como &apos;Perfil de v&iacute;deo&apos; anticipadamente y luego cambiar el perfil de v&iacute;deo para transmitir o reproducir una imagen. Cuando haya finalizado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>Seleccionar canal</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <p>Después de seleccionar su canal de cámara, puede establecer los detalles de Perfil de vídeo para cada canal. </p>
+                </div>
+            </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="PTZMode">
 <div class="wn5-setup-section" ng-if="PTZMode">
             <div class="wn5-setup-section-heading">
@@ -121,7 +133,7 @@
 
             <h4>Adici&oacute;n de un perfil de v&iacute;deo</h4>
             <div>
-                <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>. Un nuevo elemento se a&ntilde;adir&aacute; a la lista de perfiles.</li>
+                <ol><li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>. Un nuevo elemento se a&ntilde;adir&aacute; a la lista de perfiles.</li>
                     <li>Introduzca el nombre del perfil en el campo <strong class="UI">[Nombre]</strong>. El nombre introducido aparecer&aacute; en la lista de perfiles.</li>
                     <li>Establecer los elementos del perfil, incluyendo <strong class="UI">[C&oacute;dec]</strong>, <strong class="UI">[Tipo de perfil]</strong> y <strong class="UI">[Resoluci&oacute;n]</strong>. </li>
                     <li>Haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
@@ -133,7 +145,7 @@
         <div class="wn5-online-help-action">
             <h4>Cambiar una propiedad del perfil de v&iacute;deo</h4>
             <div>
-                <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Seleccione el perfil que desea cambiar de la lista de perfiles.</li>
+                <ol><li>Seleccione el perfil que desea cambiar de la lista de perfiles.</li>
                     <li>Cambie los elementos del perfil, incluyendo <strong class="UI">[C&oacute;dec]</strong>, <strong class="UI">[Tipo de perfil]</strong> y <strong class="UI">[Resoluci&oacute;n]</strong>.</li>
                     <li>Haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
                     <li>Cuando aparezca la ventana de confirmaci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong>. Los ajustes del perfil seleccionado cambiar&aacute;n.</li>
@@ -144,7 +156,7 @@
         <div class="wn5-online-help-action">
             <h4>Eliminaci&oacute;n de un perfil de v&iacute;deo</h4>
             <div>
-                <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Seleccione el perfil que desea eliminar de la lista de perfiles. </li>
+                <ol><li>Seleccione el perfil que desea eliminar de la lista de perfiles. </li>
                     <li>Haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>.</li>
                     <li>Cuando aparezca la ventana de confirmaci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong>. Se eliminar&aacute; el perfil seleccionado.</li>
                 </ol>
@@ -219,7 +231,7 @@
 
 
             </ul>        </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
             <h3><a class="wn5-online-help-link" name="audioin"></a>Entrada de audio </h3>
             <p>Cuando la c&aacute;mara tiene un micr&oacute;fono interno o un micr&oacute;fono externo est&aacute; conectado, puede configurar los sonidos externos para ser introducidos en la imagen.</p>
             <p>Para utilizar las funciones de Micr&oacute;fono y Altavoz en la p&aacute;gina de monitoreo, <strong class="UI">[Activar]</strong> debe estar seleccionado para <strong class="UI">[Entrada de audio]</strong>.</p>

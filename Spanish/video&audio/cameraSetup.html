@@ -3,6 +3,17 @@
 <div class="wn5-setup-section">
     <p>Puede cambiar los ajustes de la c&aacute;mara para capturar la mejor imagen posible en el ambiente donde est&eacute; instalada la c&aacute;mara. Los predefinidos de imagen adecuados para diversos entornos se proporcionan de forma predeterminada; el usuario tambi&eacute;n puede especificar la configuraci&oacute;n de la c&aacute;mara directamente. Se puede comprobar en la pantalla de vista previa de la c&aacute;mara c&oacute;mo se muestra la imagen de la c&aacute;mara de acuerdo con la configuraci&oacute;n. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte de abajo de la p&aacute;gina. Si el tiempo de tiempo de espera (240 segundos) ha sido sobrepasado sin hacer clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> despu&eacute;s de cambiar el ajuste, se restaurar&aacute; la configuraci&oacute;n anterior.</p>
 </div>
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Después de seleccionar su canal de cámara, puede definir los detalles para cada canal.</p>
+        </div>
+	</div>
+</div> 
 
 <hr class="wn5-setup-hr">
 
@@ -25,7 +36,7 @@
         <div class="wn5-setup-section-article-content">
             <p>Varios predefinidos de imagen se proporcionan para los prop&oacute;sitos espec&iacute;ficos. Seleccione un predefinido de imagen de acuerdo con el entorno en el que se utiliza la c&aacute;mara.</p>
 
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">Enfoque de definici&oacute;n</strong>: Este es el modo por defecto cuando la c&aacute;mara se env&iacute;a desde la f&aacute;brica.</li>
+            <ul><li><strong class="UI">Enfoque de definici&oacute;n</strong>: Este es el modo por defecto cuando la c&aacute;mara se env&iacute;a desde la f&aacute;brica.</li>
             <li><strong class="UI">Movimiento</strong>: Esto se utiliza principalmente para la captura definida de una persona en movimiento. El movimiento se selecciona cuando hay muchos objetos en movimiento, como por una carretera o en un museo. El ruido puede aumentar la sensibilidad y puede disminuir en un ambiente con poca luz.</li>
             <li><strong class="UI">Ruido reducido</strong>: Esto se utiliza principalmente para la captura de una imagen con menos ruido, y tambi&eacute;n en un ambiente con poca luz.</li>
             <li><strong class="UI">V&iacute;deo brillante</strong>: Esto se utiliza para la captura de una imagen brillante de toda la escena con el fin de hacer una zona oscura claramente visible. Esto puede reducir el contraste de la imagen.</li>
@@ -140,7 +151,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>Modo Fotograma</h3>
             <p>Establezca una velocidad de fotograma. Una velocidad de fotogramas diferente, no se puede establecer para cada predefinido de imagen. La velocidad de fotogramas se aplica a todas las memorias de imagen por igual.</p>
         </div>
@@ -157,7 +168,7 @@
             <p>SSDR aumenta el brillo de una zona oscura para revelar una imagen en un entorno donde hay una diferencia significativa entre una zona oscura y una zona brillante. El valor del nivel se ajusta autom&aacute;ticamente para cada predefinido de imagen proporcionada en la c&aacute;mara y no se puede cambiar. Si no se utiliza la funci&oacute;n o si desea cambiar el valor de nivel, utiliza el usuario predeterminado.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>SSDR</h3>
             <p>Para utilizar SSDR, seleccione <strong class="UI">[Activar]</strong>.</p>
         </div>
@@ -182,7 +193,7 @@
             <p>Puede hacer correcciones para mostrar el color blanco y otros colores correctamente, normalmente, en cualquier entorno de iluminaci&oacute;n. Esto se puede ajustar independientemente del ajuste preestablecido de imagen.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>Modo</h3>
             <p>Seleccione el modo de balance de blancos de acuerdo con el entorno en el que se est&aacute; utilizando la c&aacute;mara.</p>
             <ul>
@@ -206,7 +217,7 @@
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>En cualquiera de los casos siguientes, el balance de blancos podr&iacute;a no funcionar normalmente. En tal caso, ajuste el balance de blancos a trav&eacute;s del modo <strong class="UI">[AWC]</strong>:</li>
+            <ul><li>En cualquiera de los casos siguientes, el balance de blancos podr&iacute;a no funcionar normalmente. En tal caso, ajuste el balance de blancos a trav&eacute;s del modo <strong class="UI">[AWC]</strong>:</li>
                 <ul>
                     <li>Si el ambiente circundante excede el rango de correcci&oacute;n de temperatura de color, como un cielo despejado o la puesta del sol</li>
                     <li>Si el entorno que lo rodea es oscuro</li>
@@ -303,7 +314,7 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
 
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Cuando se selecciona el modo WDR, el valor del obturador se restablecer&aacute;. La pantalla se pone brillante y luego se vuelve oscura.</li>
+            <ul><li>Cuando se selecciona el modo WDR, el valor del obturador se restablecer&aacute;. La pantalla se pone brillante y luego se vuelve oscura.</li>
                 <li>Cuando la lente Iris P se utiliza de forma manual o se utiliza el obturador antiparpadeo, el rendimiento de modo WDR se ve limitado.</li>
                 <li>Cuando se utiliza el modo WDR, la velocidad de fotogramas se reduce a la mitad.</li>
             </ul>
@@ -321,7 +332,7 @@
             <p>Cambie la exposici&oacute;n de acuerdo con el entorno de la c&aacute;mara. Si el fondo es m&aacute;s oscuro que el sujeto, el sujeto se mostrar&aacute; normalmente s&oacute;lo cuando se disminuya la exposici&oacute;n. De manera complementaria, si el fondo es m&aacute;s brillante que el sujeto, el sujeto se mostrar&aacute; normalmente s&oacute;lo cuando se aumenta la exposici&oacute;n. Hay un valor predeterminado establecido por separado para cada predefinido de imagen; no se puede cambiar. Sin embargo, el brillo se puede cambiar por cualquier preestablecido imagen.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>Brillo</h3>
             <p>El brillo de la pantalla se puede ajustar. Cuanto mayor sea el n&uacute;mero, m&aacute;s brillante ser&aacute; la pantalla.</p>
         </div>
@@ -411,7 +422,7 @@
             <p>Cambie la imagen a color o B/N seg&uacute;n el ambiente de la c&aacute;mara. Cuando el tiempo de permanencia se establece, la imagen se puede cambiar a color o B/N seg&uacute;n la preferencia. Cuando se cambia a D&iacute;a/Noche, un evento de detecci&oacute;n de movimiento o de an&aacute;lisis de im&aacute;genes no podr&aacute; ser detectado.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>Modo</h3>
             <p>Permite seleccionar el modo que cambia la c&aacute;mara a color o b/n.</p>
             <ul>
@@ -469,7 +480,7 @@
             <p>Puede ajustar la nitidez, contraste, color y nivel de filtro contra neblina de una imagen.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DIS">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>DIS</h3>
             <p>Cuando se detecta temblor en imagen, el DIS (Estabilizaci&oacute;n Digital de Imagen) lo corrige autom&aacute;ticamente y estabiliza la pantalla.</p>
           </div>
@@ -541,7 +552,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>T&iacute;tulo de c&aacute;mara</h3>
             <p>Establece si se muestra o no el t&iacute;tulo de la c&aacute;mara. Cuando <strong class="UI">[Activar]</strong> est&aacute; seleccionado, los botones <strong class="UI">[Agregar]</strong>/<strong class="UI">[Eliminar]</strong> se activar&aacute;n.</p>
             <p>Al hacer clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>, un campo en el que un t&iacute;tulo de c&aacute;mara se puede introducir ser&aacute; a&ntilde;adido a la lista. Introduzca el t&iacute;tulo de la c&aacute;mara y establezca la ubicaci&oacute;n moviendo las coordenadas X e Y. Hasta 5 t&iacute;tulos de la c&aacute;mara se pueden agregar.</p>
@@ -728,7 +739,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>Des</h3>
             <p>La c&aacute;mara funciona a la hora seleccionada en el predefinido de imagen.</p>
         </div>

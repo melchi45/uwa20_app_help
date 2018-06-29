@@ -3,6 +3,18 @@
     <p>The user can add or delete a video profile, and change the profile properties. Set the video profile, frame rate and codec as ‘Video profile’ in advance and later change the video profile to stream or play back an image. When you finish the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>Select channel</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <p>After selecting your camera channel, you can set the details of Video profile for each channel.</p>
+                </div>
+            </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="PTZMode">
 <div class="wn5-setup-section" ng-if="PTZMode">
             <div class="wn5-setup-section-heading">
@@ -27,8 +39,7 @@
         <div class="wn5-setup-section-article-content">
             <p>After profile properties have been changed, you can set whether to output an image with the previous profile or with the changed profile. </p>
             <p>When <strong class="UI">[Keep connection
-			when Profile properties are changed]</strong> is selected, the image is outputted according to the previous profile properties even if the profile properties have been changed; when the web viewer is reconnected, the image is outputted with the changed profile. <strong class="UI">[Keep connection when Profile properties are changed]</strong> is not selected, the image is outputted with the changed profile immediately when the profile properties are changed. Orange boarders will appear on the edge
-of the live view of the [Monitoring] screen until you connect to the web viewer again after changing the profile properties.</p>
+			when Profile properties are changed]</strong> is selected, the image is outputted according to the previous profile properties even if the profile properties have been changed; when the web viewer is reconnected, the image is outputted with the changed profile. <strong class="UI">[Keep connection when Profile properties are changed]</strong> is not selected, the image is outputted with the changed profile immediately when the profile properties are changed. Orange boarders will appear on the edge of the live view of the [Monitoring] screen until you connect to the web viewer again after changing the profile properties.</p>
         </div>
     </div>
 </div>
@@ -117,7 +128,7 @@ of the live view of the [Monitoring] screen until you connect to the web viewer 
         <div class="wn5-online-help-action">
             <h4>Adding a video profile</h4>
             <div>
-                <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Click the <strong class="UI">[Add]</strong> button. A new item will be added to the profile list.</li>
+                <ol><li>Click the <strong class="UI">[Add]</strong> button. A new item will be added to the profile list.</li>
                     <li>Enter the name of profile in the <strong class="UI">[Name]</strong> field. The entered name will appear in the profile list.</li>
                     <li>Set the profile items, including <strong class="UI">[Codec]</strong>, <strong class="UI">[Profile type]</strong> and <strong class="UI">[Resolution]</strong>. </li>
                     <li>Click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</li>
@@ -129,7 +140,7 @@ of the live view of the [Monitoring] screen until you connect to the web viewer 
         <div class="wn5-online-help-action">
             <h4>Changing a video profile property</h4>
             <div>
-                <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Select the profile which you wish to change from the profile list.</li>
+                <ol><li>Select the profile which you wish to change from the profile list.</li>
                     <li>Change the relative settings, including <strong class="UI">[Codec]</strong>, <strong class="UI">[Profile type]</strong> and <strong class="UI">[Resolution]</strong>.</li>
                     <li>Click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</li>
                     <li>When the confirm window appears, click the <strong class="UI">[OK]</strong> button. The settings of the selected profile will change.</li>
@@ -140,7 +151,7 @@ of the live view of the [Monitoring] screen until you connect to the web viewer 
         <div class="wn5-online-help-action">
             <h4>Deleting a video profile</h4>
             <div>
-                <ol><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Select the profile which you wish to delete from the profile list. </li>
+                <ol><li>Select the profile which you wish to delete from the profile list. </li>
                     <li>Click the <strong class="UI">[Delete]</strong> button.</li>
                     <li>When the confirm window appears, click the <strong class="UI">[OK]</strong> button. The selected profile will be deleted.</li>
                 </ol>
@@ -315,21 +326,18 @@ of the live view of the [Monitoring] screen until you connect to the web viewer 
         <div class="wn5-setup-section-article-content">
             <h3>Encoding priority</h3>
             <p>Set the priority between frame rate and image quality if the amount of image data exceeds the target bitrate. </p>
-			<p>If either <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> is selected for <strong class="UI">[Codec]</strong> of the profile, the user can select between <strong class="UI">[Frame rate]</strong> and <strong class="UI">[Compress]</strong>. If <strong class="UI">[Frame rate]</strong> is set as the high priority, the maximum frame rate is secured, but the image quality may be lowered. On the other hand, when <strong class="UI">[Compression]</strong> is set as the high priority,
-the image quality is secured, but some frames my be omitted, so that the image may be disconnected or seem unnatural. If either <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> is selected for <strong class="UI">[Codec]</strong> of the profile, <strong class="UI">[Encoding priority]</strong> is activated only when <strong class="UI">[CBR]</strong> is set for <strong class="UI">[Bitrate control]</strong>.</p>
+			<p>If either <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> is selected for <strong class="UI">[Codec]</strong> of the profile, the user can select between <strong class="UI">[Frame rate]</strong> and <strong class="UI">[Compress]</strong>. If <strong class="UI">[Frame rate]</strong> is set as the high priority, the maximum frame rate is secured, but the image quality may be lowered. On the other hand, when <strong class="UI">[Compression]</strong> is set as the high priority, the image quality is secured, but some frames my be omitted, so that the image may be disconnected or seem unnatural. If either <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> is selected for <strong class="UI">[Codec]</strong> of the profile, <strong class="UI">[Encoding priority]</strong> is activated only when <strong class="UI">[CBR]</strong> is set for <strong class="UI">[Bitrate control]</strong>.</p>
 
 			<p>If <strong class="UI">[Codec]</strong> of the profile is <strong class="UI">[MJPEG]</strong>, you can select between <strong class="UI">[Frame rate]</strong> and <strong class="UI">[Bitrate]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="GOV"></a>GOV length  </h3>
-            <p>GOV (Group of Video) is a group of image frames for H.264/H.265 video compression; it means the group of frames from one I-frame to the next I-frame. GOV contains both I-frame and P-frame. I-frame is the frame which becomes the basis of compression (also called the key frame); it has data for one complete image. P-frame has information of the changed area only, based on the front frame. For this reason, the number of I-frames is fewer as the GOV length is longer, making the image size small, while
-the number of I-frames is more as the GOV length becomes shorter, making for a larger image size. The maximum value of the GOV length varies according to the <strong class="UI">[Frame rate]</strong> in <strong class="UI">[Profile properties]</strong>. </p>
+            <p>GOV (Group of Video) is a group of image frames for H.264/H.265 video compression; it means the group of frames from one I-frame to the next I-frame. GOV contains both I-frame and P-frame. I-frame is the frame which becomes the basis of compression (also called the key frame); it has data for one complete image. P-frame has information of the changed area only, based on the front frame. For this reason, the number of I-frames is fewer as the GOV length is longer, making the image size small, while the number of I-frames is more as the GOV length becomes shorter, making for a larger image size. The maximum value of the GOV length varies according to the <strong class="UI">[Frame rate]</strong> in <strong class="UI">[Profile properties]</strong>. </p>
         </div>
 
         <div class="wn5-setup-section-article-content">
             <h3>Profile</h3>
-            <p>This menu becomes active only when the codec of the profile is H.264. The profile can be considered as a bundle of various compression technologies. The profiles supported in the Hanwha Techwin cameras include <strong class="UI">[Baseline]</strong>, <strong class="UI">[Main]</strong> and <strong class="UI">[High]</strong>. The compression performance becomes higher and the quality becomes better as you move from Baseline to High, but a lot of system resources are used for compressing and decompressing
-and may create a strain on the playback equipment.</p>
+            <p>This menu becomes active only when the codec of the profile is H.264. The profile can be considered as a bundle of various compression technologies. The profiles supported in the Hanwha Techwin cameras include <strong class="UI">[Baseline]</strong>, <strong class="UI">[Main]</strong> and <strong class="UI">[High]</strong>. The compression performance becomes higher and the quality becomes better as you move from Baseline to High, but a lot of system resources are used for compressing and decompressing and may create a strain on the playback equipment.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Entropy coding</h3>
@@ -348,8 +356,7 @@ and may create a strain on the playback equipment.</p>
 
         <div class="wn5-setup-section-article-content">
             <h3>Dynamic GOV</h3>
-                <p>To apply the Dynamic GOV function to the current profile, select <strong class="UI">[Enable]</strong>. Dynamic GOV is the function whereby the GOV length is changed automatically according to the image situation. In other words, in an image with almost no motion, the GOV length set by the user in <strong class="UI">[Dynamic GOV]</strong> increases to the maximum, and when motion is detected, it is reduced to the length set in <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong
-class="UI">[GOV length]</strong></a> to output the image. Dynamic GOV is activated only when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[VBR]</strong>.</p>
+                <p>To apply the Dynamic GOV function to the current profile, select <strong class="UI">[Enable]</strong>. Dynamic GOV is the function whereby the GOV length is changed automatically according to the image situation. In other words, in an image with almost no motion, the GOV length set by the user in <strong class="UI">[Dynamic GOV]</strong> increases to the maximum, and when motion is detected, it is reduced to the length set in <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[GOV length]</strong></a> to output the image. Dynamic GOV is activated only when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[VBR]</strong>.</p>
 
             <ul>
                 <li>Enter the maximum GOV length to apply when there is no motion in the image. The range of input value is displayed next to <strong class="UI">[GOV length]</strong>. The input value in <strong class="UI">[GOV length]</strong> becomes the minimum value, while the maximum value is 480; it varies according to the <strong class="UI">[Frame rate]</strong> in <strong class="UI">[Profile properties]</strong>.</li>
@@ -401,7 +408,7 @@ class="UI">[GOV length]</strong></a> to output the image. Dynamic GOV is activat
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Port</h3>
-            <p>Set the port that controls sending of the image. The range of multicast RTSP ports is from 1024 to 65535, and only even numbers are allowed.&nbsp;(The 3702 port however, cannot be used.)</p>
+            <p>Set the port that controls sending of the image. The range of multicast RTSP ports is from 1024 to 65535, and only even numbers are allowed. (The 3702 port however, cannot be used.)</p>
         </div>
 
         <div class="wn5-setup-section-article-content">

@@ -11,23 +11,36 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">Use</strong>: When check boxes in the <strong class="UI">[Use]</strong> column are selected, only the selected event(s) will operate.</li>
+            <ul><li><strong class="UI">Use</strong>: When check boxes in the <strong class="UI">[Use]</strong> column are selected, only the selected event(s) will operate.</li>
                 <li><strong class="UI">Type</strong>: Selecting an event name in the <strong class="UI">[Type]</strong> column will take you to the detailed setup page for the relevant event.</li>
                 <li><strong class="UI">Event action settings</strong>: Determines which event action settings will be carried out by the camera when an event is created.</li>
                         <ul>
                             <li><strong class="UI">FTP</strong>: To capture and send an image screen to an FTP server, select the check box in the <strong class="UI">[FTP]</strong> column. &nbsp;Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>. </li>
                             <li><strong class="UI">E-mail</strong>: To capture and send an image screen by e-mail, select the check box in the <strong class="UI">[E-mail]</strong> column. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.            </li>
                             <li ng-if="Recording"><strong class="UI">Record</strong>: To record an image, select the check box in the <strong class="UI">[Record]</strong> column. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.            </li>
-                            <li><strong class="UI">Alarm output</strong>: Select <strong class="UI">[Off]</strong> if you wish no alarm when an event is created; select the appropriate time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html"
-ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>. </li>
+                            <li><strong class="UI">Alarm output</strong>: Select <strong class="UI">[Off]</strong> if you wish no alarm when an event is created; select the appropriate time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>. </li>
                    
                 <li ng-if="PresetAction"><strong class="UI">Goto preset</strong>: Moves to the PTZ preset location designated by the camera.</li>
             </ul>
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>The alarm output column is displayed differently according to the number of alarms supported by the camera. For example, if the number of alarms to be outputted is 2, the ‘Alarm output 1’ and ‘Alarm output 2’ columns are displayed and the alarm output for each event can be set.  </li>
+            <ul><li>The alarm output column is displayed differently according to the number of alarms supported by the camera. For example, if the number of alarms to be outputted is 2, the ‘Alarm output 1’ and ‘Alarm output 2’ columns are displayed and the alarm output for each event can be set.  </li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>Select channel</h2> 
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+                
+            <p>After selecting your camera channel, you can manage and set the Event action settings for each channel in <strong class="UI">[Channel event list]</strong>.</p>
+            <p>What you have set in <strong class="UI">[Common event list]</strong> will be applied to all other channels.</p>
         </div>
     </div>
 </div>

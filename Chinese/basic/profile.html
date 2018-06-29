@@ -4,6 +4,18 @@
     <p>用户可以添加或删除视频配置文件，并更改配置文件属性。首先在&ldquo;视频配置文件&rdquo;中设置视频配置文件、帧速率以及编解码器，然后将视频配置文件改为串流图像或播放图像。完成设置后，单击页面底部的<strong class="UI">[应用]</strong>按钮。</p>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>选择频道</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <p>选择频道后可以分频道设置视频配置文件细项。 </p>
+                </div>
+            </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="PTZMode">
 <div class="wn5-setup-section" ng-if="PTZMode">
             <div class="wn5-setup-section-heading">
@@ -116,7 +128,7 @@
         <div class="wn5-online-help-action">
             <h4>添加视频配置文件</h4>
             <div>
-                <ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>单击<strong class="UI">[添加]</strong>按钮。将一个新项目添加至配置文件列表中。</li>
+                <ol><li>单击<strong class="UI">[添加]</strong>按钮。将一个新项目添加至配置文件列表中。</li>
                     <li>在<strong class="UI">[名称]</strong>字段输入配置文件名称。所输入的名称将出现在配置文件列表中。</li>
                     <li>设置配置文件项目，包括<strong class="UI">[编解码器]</strong>、<strong class="UI">[配置文件类型]</strong>和<strong class="UI">[分辨率]</strong>。 </li>
                     <li>单击页面底部的<strong class="UI">[应用]</strong>按钮。</li>
@@ -128,7 +140,7 @@
         <div class="wn5-online-help-action">
             <h4>更改视频配置文件属性</h4>
             <div>
-                <ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>从配置文件列表中选择想要更改的配置文件。</li>
+                <ol><li>从配置文件列表中选择想要更改的配置文件。</li>
                     <li>更改相应设置，包括<strong class="UI">[编解码器]</strong>、<strong class="UI">[配置文件类型]</strong>和<strong class="UI">[分辨率]</strong>。</li>
                     <li>单击页面底部的<strong class="UI">[应用]</strong>按钮。</li>
                     <li>弹出确认窗口时，单击<strong class="UI">[确认]</strong>按钮。所选的配置文件属性将被更改。</li>
@@ -139,7 +151,7 @@
         <div class="wn5-online-help-action">
             <h4>删除视频配置文件</h4>
             <div>
-                <ol><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>从配置文件列表中选择一个想要删除的配置文件。 </li>
+                <ol><li>从配置文件列表中选择一个想要删除的配置文件。 </li>
                     <li>单击<strong class="UI">[删除]</strong>按钮。</li>
                     <li>弹出确认窗口时，单击<strong class="UI">[确认]</strong>按钮。所选定的配置文件将被删除。</li>
                 </ol>
@@ -199,7 +211,7 @@
 
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
             <h3><a class="wn5-online-help-link" name="audioin"></a>音频输入 </h3>
             <p>当摄像机配备了内置麦克风或是连接有外部麦克风时，可以在图像中设置外部声音输入。</p>
             <p>如果要使用监视页面中的麦克风和扬声器功能，应将<strong class="UI">[音频输入]</strong>设置为<strong class="UI">[启用]</strong>。</p>
