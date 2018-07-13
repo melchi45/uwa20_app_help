@@ -1,10 +1,10 @@
-﻿<h1 class="wn5-setup-main-title">切换</h1>
-<div class="wn5-setup-section">
+﻿<h1 class="wn5-setup-main-title" ng-if="!HandoverCalibration">切换</h1>
+<div class="wn5-setup-section" ng-if="!HandoverCalibration">
     <p>切换是出现事件时，将PTZ摄像机移动至预先设置好的PTZ 预设位之功能。在本页中可设置移动至预设位的摄像机和预设位。设置完成后，点击页面下方的<strong class="UI">[应用]</strong>按钮。</p>
 </div>
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="!HandoverCalibration">
     <div class="wn5-setup-section-heading">
         <h2>接收摄像机</h2>
 	</div>
@@ -43,4 +43,52 @@
     </div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="HandoverCalibration">
+<h1 class="wn5-setup-main-title" ng-if="HandoverCalibration">移焦</h1>
+<div class="wn5-setup-section" ng-if="HandoverCalibration">
+    <p>您可以设置移焦编号以便当固定摄像机发生事件时将PTZ摄像机移动至预设位置。</p>
+    <p>&ldquo;预设&rdquo;为提前设置PTZ摄像机的平移、倾斜位置和变焦倍率。您可以在<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ设置]</strong>&gt;<strong class="UI">[预设]</strong>页签&gt;<strong class="UI">[预设设置]</strong>菜单中设置PTZ预设。</p>
+    <p>设置后请点击页面底部的<strong class="UI">[适用]</strong>按钮。</p>
+		<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>备注</h4>
+        <ul>
+            <li>此页面上设置的移焦编号会显示在&ldquo;移焦编号&rdquo;列表中。移焦编号列表可以在<strong class="UI">[分析]</strong>页签子菜单<strong class="UI">[动作检测]</strong>、<strong class="UI">[IVA]</strong>和<strong class="UI">[篡改]</strong>中确认。</li>
+
+        </ul>
+    
+        </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="HandoverCalibration">
+
+<div class="wn5-setup-section" ng-if="HandoverCalibration">
+    <div class="wn5-setup-section-heading">
+        <h2>移焦编号设置</h2>
+	</div>
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>您可以添加移焦编号并为每个编号设置预设信息。</p>
+        </div>
+		
+			        <div class="wn5-online-help-action">
+            <h4>添加移焦编号</h4>
+            <ol>
+                <li>点击<strong class="UI">[添加]</strong>按钮。</li>
+                <li>在<strong class="UI">[添加]</strong>界面设置以下项目。</li>
+                <ul>
+                    <li><strong class="UI">编号</strong>：选择移焦编号。在&ldquo;编号&rdquo;项目中指定的编号会出现在<strong class="UI">[分析]</strong>页签子菜单<strong class="UI">[动作检测]</strong>、<strong class="UI">[IVA]</strong>和<strong class="UI">[篡改检测]</strong>页面中的<strong class="UI">[移焦]</strong>&gt;<strong class="UI">[移焦编号]</strong>列表中。</li>
+                    <li><strong class="UI">CH</strong>：PTZ摄像机的频道编号自动显示，无法修改。</li>
+                    <li><strong class="UI">预设编号</strong>：输入预设编号。预设编号应在<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ 设置]</strong>&gt;<strong class="UI">[预设]</strong>页签&gt;<strong class="UI">[预设位设置]</strong>提前设置。</li>
+                </ul>
+                <li>点击<strong class="UI">[适用]</strong>。</li>
+            </ol>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h4>删除移焦编号</h4>
+            <ol><!-- ??? ????? <li>???</li> ??? ????? --><li>在移焦编号列表中点击复选框选择要删除的条目。</li>
+                <li>点击<strong class="UI">[删除]</strong>按钮，弹出确认框后点击<strong class="UI">[确认]</strong>。</li>
+            </ol>
+        </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">

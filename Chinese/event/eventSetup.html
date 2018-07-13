@@ -23,7 +23,7 @@
                         <li ng-if="PresetAction"><strong class="UI">转至预设位</strong>：转到摄像机制定的 PTZ 预设位置。</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput">
             <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
             <ul><li>取决于摄像机所支持的警报数，警报输出栏的显示稍有不同。比如，如果警报输出数设置为 2，则会显示&ldquo;警报输出 1&rdquo; 栏和&ldquo;警报输出 2&rdquo;栏，且可设置每个事件的警报输出数。  </li>
             </ul>

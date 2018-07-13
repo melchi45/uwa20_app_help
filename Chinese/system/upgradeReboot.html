@@ -19,10 +19,18 @@
 			<h3>软件  </h3>
 		    <p>显示正在使用的产品的软件版本。无法更改软件版本。 </p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration">
 		    <h3>当前 ISP 版本  </h3>
 		    <p>显示正在使用的产品的当前 ISP 版本。无法更改当前 ISP 版本。</p>
 			</div>
+			<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+				<h3>固定频道 ISP 版本</h3>
+				<p>它是已配备的固定摄像机的ISP版本。ISP版本只能确认，不能更改。</p>
+			   </div>
+			<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+				<h3>PTZ频道 ISP 版本</h3>
+				<p>它是已配备的PTZ摄像机的ISP版本。ISP版本只能确认，不能更改。</p>
+			   </div>
 				<div class="wn5-setup-section-article-content">
 		<h3>UWA 版本 </h3>
 	 <p>是在使用的摄像机之web查看器版本。</p>

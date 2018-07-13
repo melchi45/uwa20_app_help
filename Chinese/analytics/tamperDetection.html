@@ -45,6 +45,16 @@
             <p>为了防止屏幕亮度突然变暗，比如因篡改检测事件而突然出现息屏，请选择<strong class="UI">[启用]</strong>。 </p>
         </div>
 
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>移焦</h3>
+            <p>移焦是在固定摄像机中发生篡改事件时PTZ摄像机移动至预设位置的功能。</p>
+            <ul>
+                <li><strong class="UI">不使用</strong>：不使用移焦功能。</li>
+                <li><strong class="UI">移焦编号</strong>：选择移焦编号。您必须在<strong class="UI">[事件]</strong>&gt;<strong class="UI">[移焦]</strong>菜单中预设移焦编号。&nbsp;</li>
+            </ul>
+        </div>
+
+        
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
             <ul><li>在均匀背景中或夜间低光环境中，检测效果可能欠佳。</li>
@@ -55,8 +65,8 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr">
-            <div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
+            <div class="wn5-setup-section" ng-if="!HandoverCalibration">
                 <div class="wn5-setup-section-heading">
                     <h2>切换</h2>
                 </div>

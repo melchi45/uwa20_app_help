@@ -45,7 +45,14 @@
             <h3>Except dark images  </h3>
             <p>To exclude a sudden decrease in brightness on the screen, such as a sudden extinction of light from the tamper detection event, select <strong class="UI">[Enable]</strong>. </p>
         </div>
-
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>Handover</h3>
+            <p>Handover is a function that moves the focus of the PTZ camera to the preset area when a tampering event occurs in the fixed camera.</p>
+            <ul>
+                <li><strong class="UI">Disable</strong>: Disables the handover function.</li>
+                <li><strong class="UI">Handover no.</strong>: Select a handover no. Handover numbers must be set in advance in the <strong class="UI">[Event]</strong> &gt; <strong class="UI">[Handover]</strong> menu.&nbsp;</li>
+            </ul>
+        </div>       
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>The detection performance may deteriorate on a uniform background, or in a night-time, low-light environment.</li>
@@ -56,8 +63,8 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr">
-            <div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
+            <div class="wn5-setup-section" ng-if="!HandoverCalibration">
                 <div class="wn5-setup-section-heading">
                     <h2>Handover</h2>
                 </div>

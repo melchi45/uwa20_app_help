@@ -18,9 +18,18 @@
 			<h3>Software</h3>
 		    <p>The software version of the product you are using is displayed. Changes cannot be made to the software version. </p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration">
 		    <h3>ISP version  </h3>
 		    <p>The ISP version of the product you are using is displayed. Changes cannot be made to the ISP version.</p>
+		   </div>
+		   
+		   <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+		    <h3>Fixed channel ISP version</h3>
+		    <p>The ISP version of the mounted fixed camera. The ISP version can be read only, that is no modification is allowed.</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+		    <h3>PTZ channel ISP version</h3>
+		    <p>The ISP version of the mounted PTZ camera. The ISP version can be read only, that is no modification is allowed.</p>
 	   	</div>
 	   			<div class="wn5-setup-section-article-content">
 		    <h3>SUNAPI version </h3>

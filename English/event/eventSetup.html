@@ -23,7 +23,7 @@
                 <li ng-if="PresetAction"><strong class="UI">Goto preset</strong>: Moves to the PTZ preset location designated by the camera.</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul><li>The alarm output column is displayed differently according to the number of alarms supported by the camera. For example, if the number of alarms to be outputted is 2, the ‘Alarm output 1’ and ‘Alarm output 2’ columns are displayed and the alarm output for each event can be set.  </li>
             </ul>

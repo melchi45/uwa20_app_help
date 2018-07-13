@@ -1,10 +1,10 @@
-﻿<h1 class="wn5-setup-main-title">핸드 오버</h1>
-<div class="wn5-setup-section">
+﻿<h1 class="wn5-setup-main-title" ng-if="!HandoverCalibration">핸드 오버</h1>
+<div class="wn5-setup-section" ng-if="!HandoverCalibration">
     <p>핸드 오버는 이벤트가 발생했을 때 PTZ 카메라에 설정해 둔 PTZ 프리셋 위치로 이동하는 기능입니다. 이 페이지에서는 프리셋 위치로 이동할 카메라와 프리셋 위치를&nbsp;설정할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
 </div>
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="!HandoverCalibration">
     <div class="wn5-setup-section-heading">
         <h2>수신 카메라</h2>
 	</div>
@@ -37,6 +37,57 @@
             <ol>
                 <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
                 <li>수신 카메라 목록에서 체크박스를 클릭하여 삭제할 카메라를 선택합니다.  </li>
+                <li><strong class="UI">[삭제]</strong> 버튼을 클릭한 후 확인 창이 나타나면 <strong class="UI">[확인]</strong>을 클릭합니다.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="HandoverCalibration">
+<h1 class="wn5-setup-main-title" ng-if="HandoverCalibration">핸드오버</h1>
+<div class="wn5-setup-section" ng-if="HandoverCalibration">
+    <p>고정 카메라에 이벤트가 발생하면 PTZ 카메라가 미리 설정해 둔 프리셋 위치로 이동하도록 핸드오버 번호를 설정할 수 있습니다. </p>
+    <p>프리셋은 PTZ 카메라의 팬, 틸트 위치와 줌 배율을 미리 설정해 두는 것으로, PTZ 프리셋은 <strong class="UI">[PTZ] </strong>&gt; <strong class="UI">[PTZ 설정]</strong> &gt; <strong class="UI">[프리셋] </strong>탭 &gt; <strong class="UI">[프리셋 설정]</strong> 메뉴에서 설정할 수 있습니다. </p>
+    <p>설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
+		<div class="wn5-online-help-info" ng-if=!CamSpecialModel">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+        <ul>
+            <li>이 페이지에서 설정한 핸드오버 번호는 '핸드오버 번호' 목록으로 나타납니다. 핸드오버 번호 목록은&nbsp;<strong class="UI">[분석]&nbsp;</strong>하위 메뉴의&nbsp;<strong class="UI">[움직임 감지]</strong>, <strong class="UI">[IVA]</strong>, 및&nbsp;<strong class="UI">[탬퍼링]</strong> 각 페이지에서 확인할 수 있습니다. </li>
+
+        </ul>
+    
+        </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="HandoverCalibration">
+
+<div class="wn5-setup-section" ng-if="HandoverCalibration">
+    <div class="wn5-setup-section-heading">
+        <h2>핸드오버 번호 설정</h2>
+	</div>
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>핸드오버&nbsp;번호를 추가하고, 각&nbsp;번호별로 프리셋 정보를 설정할 수 있습니다.</p>
+        </div>
+		
+			        <div class="wn5-online-help-action">
+            <h4>핸드오버 번호 추가하기</h4>
+            <ol>
+                <li><strong class="UI">[추가]</strong> 버튼을 클릭합니다.</li>
+                <li><strong class="UI">[추가]</strong> 창에서 다음 항목을&nbsp;설정합니다.</li>
+                <ul>
+                    <li><strong class="UI">번호</strong>:&nbsp;핸드오버 번호를 선택합니다. '번호' 항목에서&nbsp;지정한 번호는&nbsp;<strong class="UI">[분석]&nbsp;</strong>하위 메뉴의 <strong class="UI">[움직임 감지]</strong>, <strong class="UI">[IVA]</strong>, <strong class="UI">[탬퍼링 감지]</strong>&nbsp;각 페이지에서 <strong class="UI">[핸드오버]&nbsp;</strong>&gt; <strong class="UI">[핸드오버 번호]</strong> 목록으로 나타납니다. </li>
+                    <li><strong class="UI">CH</strong>: PTZ 카메라의 채널 번호는 자동으로 표기되며, 수정할 수 없습니다.</li>
+                    <li><strong class="UI">프리셋 번호</strong>: 프리셋 번호를 입력합니다. 프리셋 번호는 <strong class="UI">[PTZ] </strong>&gt; <strong class="UI">[PTZ 설정]</strong> &gt; <strong class="UI">[프리셋] </strong>탭 &gt; <strong class="UI">[프리셋 설정]</strong>에서 미리 설정해 두어야 합니다.   </li>
+                </ul>
+                <li><strong class="UI">[적용]</strong>을 클릭합니다.</li>
+            </ol>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h4>핸드오버 번호 삭제하기</h4>
+            <ol>
+                <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
+                <li>핸드오버 번호 목록에서 체크박스를 클릭하여 삭제 항목을 선택합니다.  </li>
                 <li><strong class="UI">[삭제]</strong> 버튼을 클릭한 후 확인 창이 나타나면 <strong class="UI">[확인]</strong>을 클릭합니다.</li>
             </ol>
         </div>

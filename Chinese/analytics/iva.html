@@ -69,6 +69,23 @@
                 <li><strong class="UI">方向</strong>：设置物体经过虚拟线的方向。</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>移焦</h3>
+            <p>移焦是根据固定摄像机中的虚拟线上检测到移动物体时将PTZ摄像机移动至预设位置的功能。</p>
+            <ul>
+                <li><strong class="UI">不使用</strong>：不使用移焦功能。</li>
+                <li><strong class="UI">智能变焦</strong>：当检测到有物体通过虚拟线时，PTZ摄像机将放大显示以虚拟线为中心的图像。为链接固定摄像机和PTZ摄像机，必须预先设置图像坐标，并可以在<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[校准]</strong>菜单中进行设置。</li>
+                <li><strong class="UI">移焦编号</strong>：当检测到有物体通过虚拟线时，PTZ摄像机会移动至预设位置。从列表中选择包含预设信息的移焦编号。您可以从<strong class="UI">[事件]</strong>&gt;<strong class="UI">[移焦]</strong>菜单中添加或更改列表。</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+            <h4><span class="tui tui-wn5-help-warning"></span>备注</h4>
+            <ul>
+                
+                <li>您可以为每个虚拟线设置移焦功能。可以在首先设置虚拟线后使用移焦功能。</li>
+                <li><strong class="UI"><a href="#channel">[选择频道]</a></strong>只有在菜单中选择固定摄像机频道时，才会显示&ldquo;移焦&rdquo;菜单。 选择PTZ频道时，不显示相应的菜单。</li>
+            </ul>
+        </div>
     </div>
 </div>
 <div class="wn5-setup-section">
@@ -121,6 +138,23 @@
                 <li>与其它 IVA 事件检测一同使用时，滞留检测效果可能不及单独使用时的效果。</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>移焦</h3>
+            <p>移焦是在固定摄像机中发生IVA事件时PTZ摄像机移动至相应画面区域或预设位置的功能。</p>
+            <ul>
+                <li><strong class="UI">不使用</strong>：不使用移焦功能。</li>
+                <li><strong class="UI">智能变焦</strong>：当在关注区域中发生IVA事件时，PTZ摄像机移动到关注区域并放大显示以关注区域为中心的图像。为链接固定摄像机和PTZ摄像机，必须预先设置图像位置坐标，并可以在<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[校准]</strong>菜单中进行设置。</li>
+                <li><strong class="UI">移焦编号</strong>：当关注区域发生IVA事件时，PTZ摄像机会移动至预设位置。从列表中选择包含预设信息的移焦编号。您可以从<strong class="UI">[事件]</strong>&gt;<strong class="UI">[移焦]</strong>菜单中添加或更改列表。</li>
+            </ul>
+        </div>
+                <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+                    <h4><span class="tui tui-wn5-help-warning"></span>备注</h4>
+                    <ul>
+                        
+                        <li>您可以为每个关注区域设置移焦功能。可以在首先设置关注区域后使用移焦功能。</li>
+                        <li><strong class="UI"><a href="#channel">[选择频道]</a></strong>只有在菜单中选择固定摄像机频道时，才会显示&ldquo;移焦&rdquo;菜单。 选择PTZ频道时，不显示相应的菜单。</li>
+                    </ul>
+                </div>
 	</div>
 </div>
 
@@ -183,8 +217,8 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr">
-            <div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
+            <div class="wn5-setup-section" ng-if="!HandoverCalibration">
                 <div class="wn5-setup-section-heading">
                     <h2>切换</h2>
                 </div>

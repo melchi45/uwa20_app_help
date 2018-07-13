@@ -1,10 +1,10 @@
-﻿<h1 class="wn5-setup-main-title">Handover</h1>
-<div class="wn5-setup-section">
+﻿<h1 class="wn5-setup-main-title" ng-if="!HandoverCalibration">Handover</h1>
+<div class="wn5-setup-section" ng-if="!HandoverCalibration">
     <p>Handover is a function that the receiver camera moves to the PTZ preset position when an event occurs. On this page, you can set the camera and preset position to move to the preset position. When you have completed the settings, click th <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="!HandoverCalibration">
     <div class="wn5-setup-section-heading">
         <h2>Receiver camera</h2>
 	</div>
@@ -42,5 +42,55 @@
         </div>
     </div>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="HandoverCalibration">
+<h1 class="wn5-setup-main-title" ng-if="HandoverCalibration">Handover</h1>
+<div class="wn5-setup-section" ng-if="HandoverCalibration">
+    <p>You can set a handover no. so that the focus of the PTZ camera can be moved to the preset area when an event occurs in the fixed camera.</p>
+    <p>Preset is a predetermined set of values of pan, tilt, and zoom magnification. Go to <strong class="UI">[PTZ] </strong>&gt; <strong class="UI">[PTZ setup]</strong> &gt; <strong class="UI">[Preset] </strong>tab &gt; <strong class="UI">[Preset setup]</strong> to set the PTZ preset.</p>
+    <p>When you have completed the settings, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
+		<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+        <ul>
+            <li>The handover no. set in this page is shown in the list of handover no. You can see the list of handover no. in each page of <strong class="UI">[Motion detection]</strong>, <strong class="UI">[IVA]</strong>, and <strong class="UI">[Tampering]</strong> under the <strong class="UI">[Analytics] </strong>submenu.</li>
+
+        </ul>
+    
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="HandoverCalibration">
+
+<div class="wn5-setup-section" ng-if="HandoverCalibration">
+    <div class="wn5-setup-section-heading">
+        <h2>Set handover no.</h2>
+	</div>
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Handover no. can be added, and preset data can be set for each number.</p>
+        </div>
+		
+			        <div class="wn5-online-help-action">
+            <h4>Adding handover no.</h4>
+            <ol>
+                <li>Click the <strong class="UI">[Add]</strong> button.</li>
+                <li>In the <strong class="UI">[Add]</strong> window, set the following:</li>
+                <ul>
+                    <li><strong class="UI">No.</strong>: Select a handover no. You can see the numbers specified by Handover no. as a list if you go to <strong class="UI">[Handover] </strong>&gt; <strong class="UI">[Handover no.]</strong> in each page of <strong class="UI">[Motion detection]</strong>, <strong class="UI">[IVA]</strong>, and <strong class="UI">[Tampering detection]</strong> under the <strong class="UI">[Analytics] </strong>submenu.</li>
+                    <li><strong class="UI">CH</strong>: The channel number of the PTZ camera is automatically displayed and cannot be modified.</li>
+                    <li><strong class="UI">Preset no.</strong>: Enter a preset no. Preset numbers must set in advance in <strong class="UI">[PTZ] </strong>&gt; <strong class="UI">[PTZ setup]</strong> &gt; <strong class="UI">[Preset] </strong>tab &gt; <strong class="UI">[Preset setup]</strong>.</li>
+                </ul>
+                <li>Click <strong class="UI">[Apply]</strong>.</li>
+            </ol>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h4>Deleting handover no.</h4>
+            <ol><!-- ??? ????? <li>???</li> ??? ????? --><li>Click a check box in the list of handover no., and select the numbers to delete.</li>
+                <li>Click the <strong class="UI">[Delete]</strong> button, and when the confirmation window appears, click <strong class="UI">[OK]</strong>.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
 
 <hr class="wn5-setup-hr">

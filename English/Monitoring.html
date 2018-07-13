@@ -443,38 +443,6 @@ class="tui tui-chi-live-ptz-areazoom-pre"></span>button if you wish to move back
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -490,6 +458,31 @@ class="tui tui-chi-live-ptz-areazoom-pre"></span>button if you wish to move back
             <p>You can check the applied profile for each user, bitrate (kbps), network connection status and IP address of all users currently connected to the camera.</p>
         </div>
 
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && HandoverCalibration">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && HandoverCalibration">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Select channel</h3>
+            <p>Select the Channel Number button to see the fixed camera video. Click the <strong class="UI">[PTZ]</strong> button to see the PTZ camera video on a single screen. Click the Quadrant screen to see the fixed camera video on the left and the PTZ video on the right simultaneously. To go to a single screen, click the Channel Number button or the PTZ button.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Link fixed camera with PTZ camera</h3>
+            <p>In the Quadrant view, hover your mouse over the screen of the fixed camera, and then the mouse cursor will change to the shape of a magnifier. If you click a certain point on the video screen of the fixed camera, the clicked point will appear at the + mark of the PTZ screen.</p>
+            <p>If you set an area by dragging your mouse on the video screen of the fixed camera, the target area will be zoomed in on the PTZ video screen.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>&amp;apos;Link fixed camera with PTZ camera’ only works when the screen area coordinates of the fixed camera and the PTZ camera are set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Calibration]</strong>.</li>
+            </ul>
+    
+        </div>
     </div>
 </div>
 

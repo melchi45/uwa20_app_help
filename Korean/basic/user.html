@@ -40,25 +40,25 @@
         <div class="wn5-setup-section-article-content">
 			<p>등록된 IP에서만 관리자 계정으로 카메라 웹뷰어에&nbsp;접속할 수 있도록 설정할 수 있습니다. </p>
 		</div>
-            <div class="wn5-online-help-action">
-                <h4>관리자 계정으로 접속할 수 있는 IP 주소 추가하기</h4>
-                <ol>
-                    <li><strong class="UI">[추가]</strong> 버튼을 클릭합니다. IP 타입과 IP 주소를 입력할 수 있는 필드가 생성됩니다.</li>
-                    <li><strong class="UI">[IP 타입]</strong> 컬럼에서 IPv4와 IPv6 중 IP 타입을 선택합니다.  </li>
-                    <li><strong class="UI">[IP 타입]</strong> 컬럼에서 관리자 계정으로 접속을 허용할 IP 주소를 입력합니다.</li>
-                </ol>
-                <p><strong class="UI">[사용]</strong> 체크박스를 체크해야 해당 IP에서 관리자 계정으로 카메라 웹뷰어에 접속할 수 있습니다. </p>
-            </div>
-            <div class="wn5-online-help-action">
-                <h4>IPv4 주소 삭제하기</h4>
-                <ol>
-                    <li>삭제할 IP 주소를 선택합니다.</li>
-                    <li><strong class="UI">[삭제]</strong> 버튼을 클릭합니다.</li>
-                    <li>삭제 확인 창에서 <strong class="UI">[확인]</strong> 버튼을 클릭합니다. IPv4 주소가 삭제됩니다.</li>
-                </ol>
-            
-            </div>
-        </div>
+		<div class="wn5-online-help-action">
+			<h4>관리자 계정으로 접속할 수 있는 IP 주소 추가하기</h4>
+			<ol>
+				<li><strong class="UI">[추가]</strong> 버튼을 클릭합니다. IP 타입과 IP 주소를 입력할 수 있는 필드가 생성됩니다.</li>
+				<li><strong class="UI">[IP 타입]</strong> 컬럼에서 IPv4와 IPv6 중 IP 타입을 선택합니다.  </li>
+				<li><strong class="UI">[IP 타입]</strong> 컬럼에서 관리자 계정으로 접속을 허용할 IP 주소를 입력합니다.</li>
+			</ol>
+			<p><strong class="UI">[사용]</strong> 체크박스를 체크해야 해당 IP에서 관리자 계정으로 카메라 웹뷰어에 접속할 수 있습니다. </p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>IPv4 주소 삭제하기</h4>
+			<ol>
+				<li>삭제할 IP 주소를 선택합니다.</li>
+				<li><strong class="UI">[삭제]</strong> 버튼을 클릭합니다.</li>
+				<li>삭제 확인 창에서 <strong class="UI">[확인]</strong> 버튼을 클릭합니다. IPv4 주소가 삭제됩니다.</li>
+			</ol>
+		
+		</div>
+    </div>
 </div>
 
 
@@ -182,7 +182,7 @@
 			<h3>알람 출력</h3>
 			<p>알람 출력 권한을 설정합니다. 알람이 설정된 경우, 해당 계정으로 접속한 사용자는 알람을 내보낼 수 있습니다.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
+				<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 			<h3>PTZ</h3>
             <p><strong class="UI">[라이브] </strong>모드에서 PTZ를 제어할 수 있는 권한을 설정합니다.&nbsp;</p>
 		</div>
@@ -197,9 +197,9 @@
 				<li>사용할 현재 사용자 계정의 라디오 버튼을 선택합니다. 현재 사용자 계정이 입력할 수 있는 상태로 변경됩니다.</li>
 				<li><strong class="UI">[사용]</strong> 컬럼에서 체크박스를 체크합니다.</li>
 				<li><strong class="UI">[이름]</strong>과 <strong class="UI">[비밀번호]</strong> 컬럼에 ID와 비밀번호를 입력합니다.</li>
-				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
-				<li ng-if="MaxAudioInput !== 0 && MaxAudioOutput !== 0 && MaxAlarmOutput !== 0"><strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
-				<li>현재 사용자 계정의 입력이 완료되면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</li>
+                    <li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
+                    <li ng-if="MaxAudioInput !== 0 && MaxAudioOutput !== 0 && MaxAlarmOutput !== 0"><strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
+                    <li>현재 사용자 계정의 입력이 완료되면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</li>
 				<li>확인 창이 나타나면 <strong class="UI">[확인]</strong> 버튼을 클릭합니다.</li>
 			</ol>
 		</div>

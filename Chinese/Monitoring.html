@@ -407,38 +407,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -456,5 +424,32 @@
 
     </div>
 </div>
+
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && HandoverCalibration">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && HandoverCalibration">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>选择频道</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>选择频道</h3>
+            <p>选择频道编号按钮可查看固定摄像机的图像。点击<strong class="UI">[PTZ]</strong>按钮可在单个屏幕上查看PTZ摄像机的图像。点击分屏按钮时，固定摄像机图像会显示在左侧屏幕上，PTZ图像同时显示在右侧屏幕上。点击频道编号按钮或PTZ按钮可转到单个屏幕。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>固定摄像机和PTZ摄像机的联动</h3>
+            <p>如果将鼠标放在分屏中固定摄像机的屏幕上，鼠标光标将显示为放大镜。点击固定摄像机图像屏幕上的特定点时，点击点将显示在右侧PTZ屏幕的中心+标记处。</p>
+            <p>在显示固定摄像机图像的屏幕上拖动鼠标来设置区域时，在PTZ图像屏幕上会放大显示相应的区域。</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>备注</h4>
+            <ul>
+                <li>&ldquo;固定摄像机和PTZ摄像机的联动&rdquo;仅在<strong class="UI">[设置]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[校准]</strong>中设置固定摄像机和PTZ摄像机图像位置坐标时有效。</li>
+            </ul>
+    
+        </div>
+    </div>
+</div>
+
 
 <hr class="wn5-setup-hr">

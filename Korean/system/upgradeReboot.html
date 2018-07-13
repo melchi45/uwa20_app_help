@@ -18,9 +18,17 @@
 			<h3>소프트웨어</h3>
 		    <p>사용하고 있는 제품의 소프트웨어 버전입니다. 소프트웨어 버전은 확인만 가능하고 변경할 수 없습니다. </p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration">
 		    <h3>ISP 버전  </h3>
 		    <p>사용하고 있는 제품의 ISP 버전입니다. ISP 버전은 확인만 가능하고 변경할 수 없습니다.</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+		    <h3>고정 채널 ISP 버전  </h3>
+		    <p>장착된 고정 카메라의&nbsp;ISP 버전입니다. ISP 버전은 확인만 가능하고 변경할 수 없습니다.</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+		    <h3>PTZ 채널 ISP 버전  </h3>
+		    <p>장착된 PTZ 카메라의 ISP 버전입니다. ISP 버전은 확인만 가능하고 변경할 수 없습니다.</p>
 	   	</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>SUNAPI 버전  </h3>

@@ -25,7 +25,8 @@
 							저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.            </li>
                             <li ng-if="MaxAlarmOutput"><strong class="UI">알람 출력</strong>: 이벤트가 발생했을 때 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong
 class="UI">[알람 출력]</strong></a>에서 할 수 있습니다. </li>
-                <li ng-if="PresetAction"><strong class="UI">프리셋 이동</strong>: 카메라가 지정한 PTZ 프리셋 위치로 이동합니다.</li>
+                    <li ng-if="PresetAction"> <strong class="UI">프리셋 이동</strong>: 카메라가 지정한 PTZ 프리셋 위치로 이동합니다.
+                    </li>
             </ul>
         </div>
         <div class="wn5-online-help-info" ng-if="MaxAlarmOutput">
@@ -48,6 +49,8 @@ class="UI">[알람 출력]</strong></a>에서 할 수 있습니다. </li>
                 
             <p>카메라 채널을 선택한 후 <strong class="UI">[채널 이벤트 목록]</strong>에서 채널별로 이벤트 동작을 관리하고 설정할 수 있습니다.</p>
             <p><strong class="UI">[공통 이벤트 목록]</strong>에서 설정한 내용은 전 채널에 동일하게 적용됩니다.</p>
+            <p>라이브 페이지나 재생 페이지에서 가장 최근에 선택한&nbsp;채널 번호가 자동으로 선택되어 있습니다. <strong class="UI">[상세정보]</strong> 버튼을 클릭하면 채널 전체 상태를 채널별로&nbsp;요약하여 보여줍니다. </p>
+            <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p>
         </div>
     </div>
 </div>

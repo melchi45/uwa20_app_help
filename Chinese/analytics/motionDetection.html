@@ -82,8 +82,26 @@
             <h3>灵敏度</h3>
             <p>为每个区域设置移动探测灵敏度。为物体和背景截然不同的环境设置较低的灵敏度，为物体和背景相差不大的环境设置较高的灵敏度。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
-        <!--    <h3>交出</h3>
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>移焦</h3>
+            <p>移焦是在固定摄像机中发生动作检测事件时PTZ摄像机移动至相应画面区域或预设位置的功能。</p>
+            <ul>
+                <li><strong class="UI">不使用</strong>：不使用移焦功能。</li>
+                <li><strong class="UI">智能变焦</strong>：当在关注区域中发生动作检测事件时，PTZ摄像机移动到关注区域并放大显示以关注区域为中心的图像。为链接固定摄像机和PTZ摄像机，必须预先设置图像画面坐标，并可以在<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[校准]</strong>菜单中进行设置。</li>
+                <li><strong class="UI">移焦编号</strong>：当关注区域发生动作检测事件时，PTZ摄像机会移动至预设位置。从列表中选择包含预设信息的移焦编号。您可以从<strong class="UI">[事件]</strong>&gt;<strong class="UI">[移焦]</strong>菜单中添加或更改列表。</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>备注</h4>
+            <ul>
+                
+                <li>您可以为每个关注区域设置移焦功能。可以在首先设置关注区域后使用移焦功能。</li>
+                <li><strong class="UI"><a href="#channel">[选择频道]</a></strong>只有在菜单中选择固定摄像机频道时，才会显示&ldquo;移焦&rdquo;菜单。 选择PTZ频道时，不显示相应的菜单。</li>
+            </ul>
+        </div>
+
+       <!-- <div class="wn5-setup-section-article-content">
+            <h3>交出</h3>
             <p>如需执行交出，请选择<strong class="UI">[启用]</strong>。使用交出功能时，可以设置一个具体的摄像机，当在设置区域检测出移动时，移动至具体的 PTZ 预设位置。为每个区域分配一台摄像机。</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -145,9 +163,9 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
 
-              <div class="wn5-setup-section">
+              <div class="wn5-setup-section" ng-if="!HandoverCalibration">
                   <div class="wn5-setup-section-heading">
                       <h2>切换</h2>
                   </div>

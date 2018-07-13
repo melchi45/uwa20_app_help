@@ -71,6 +71,23 @@ can be set.</p>
                 <li><strong class="UI">Direction</strong>: This sets the direction for an object to pass the virtual line.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>Handover</h3>
+            <p>Handover is a function that moves the focus of the PTZ camera to the preset area when a moving object has been detected crossing a virtual line in the fixed camera.</p>
+            <ul>
+                <li><strong class="UI">Disable</strong>: Disables the handover function.</li>
+                <li><strong class="UI">Smart Zoom</strong>: When an object is detected crossing a virtual line, the focus of the PTZ camera is zoomed in with its center fixed at the center of the virtual line. Screen coordinates should be set in advance so that the fixed camera and the PTZ camera can be connected. Go to <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Calibration]</strong> to set the coordinates.</li>
+                <li><strong class="UI">Handover no.</strong>: When an object is detected crossing a virtual line, the focus of the PTZ camera is moved to the preset area. Select a handover no. that contains a preset data from the list. Go to <strong class="UI">[Event]</strong> &gt; <strong class="UI">[Hanover]</strong> to add or change the list.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                
+                <li>You can set handover for each virtual line. The handover function can be used after setting the virtual line first.</li>
+                <li>The ‘Handover’ menu appears only when the fixed camera channel has been selected in the <strong class="UI"><a href="#channel">[Select channel]</a></strong> menu. The menu won’t appear if the PTZ channel is selected.</li>
+            </ul>
+        </div>
     </div>
 </div>
 <div class="wn5-setup-section">
@@ -121,6 +138,24 @@ can be set.</p>
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>When loitering detection is used together with other IVA event detection, the performance may deteriorate to a certain degree in comparison with separate use of loitering detection.</li>
+            </ul>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+    <h3>Handover</h3>
+    <p>Handover is a function that moves the focus of the PTZ camera to the designated area on the screen or a preset area when an IVA event occurs in the fixed camera.</p>
+    <ul>
+        <li><strong class="UI">Disable</strong>: Disables the handover function.</li>
+        <li><strong class="UI">Smart Zoom</strong>: When an IVA event occurs in the ROI area, the focus of the PTZ camera is moved to the ROI area and zoomed in with its center fixed at the center of the ROI area. Screen area coordinates should be set in advance so that the fixed camera and the PTZ camera can be connected. Go to <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Calibration]</strong> to set the coordinates.</li>
+        <li><strong class="UI">Handover no.</strong>: When an IVA event occurs in the ROI area, the focus of the PTZ camera is moved to the preset area. Select a handover no. that contains a preset data from the list. Go to <strong class="UI">[Event]</strong> &gt; <strong class="UI">[Hanover]</strong> to add or change the list.</li>
+    </ul>
+</div>
+        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                
+                <li>You can set handover for each ROI area. The handover function can be used after setting the ROI area first.</li>
+                <li>The ‘Handover’ menu appears only when the fixed camera channel has been selected in the <strong class="UI"><a href="#channel">[Select channel]</a></strong> menu. The menu won’t appear if the PTZ channel is selected.</li>
             </ul>
         </div>
 	</div>
@@ -186,8 +221,8 @@ can be set.</p>
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr">
-            <div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
+            <div class="wn5-setup-section" ng-if="!HandoverCalibration">
                 <div class="wn5-setup-section-heading">
                     <h2>Handover</h2>
                 </div>
