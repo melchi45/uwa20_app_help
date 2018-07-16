@@ -24,7 +24,6 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
             <h3>Activar detecci&oacute;n de movimiento</h3>
             <p>Para utilizar el evento de detecci&oacute;n de movimiento, seleccione <strong class="UI">[Activar detecci&oacute;n de movimiento]</strong>.</p>
 			</div>
@@ -35,7 +34,7 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>El &aacute;rea de detecci&oacute;n de movimiento y el &aacute;rea de no detecci&oacute;n se fijan y se utilizan de acuerdo con el rango de tama&ntilde;o del movimiento.</li>
+            <ul><li>El &aacute;rea de detecci&oacute;n de movimiento y el &aacute;rea de no detecci&oacute;n se fijan y se utilizan de acuerdo con el rango de tama&ntilde;o del movimiento.</li>
                 <li>En cualquiera de los casos siguientes, el rendimiento del evento de detecci&oacute;n de movimiento se puede reducir y un mal funcionamiento podr&iacute;a ocurrir: <br>- Si un objeto es similar en brillo o color al fondo en la pantalla <br>- Si se produce un peque&ntilde;o movimiento cerca del borde de la pantalla <br>- Si un cambio general en la pantalla se produce continuamente al azar debido a factores tales como cambios de escena y cambios de iluminaci&oacute;n repentinos <br>- Si un objeto en movimiento se acerca demasiado a la c&aacute;mara <br>- Cuando un objeto esconde otro objeto <br>- Cuando el movimiento de un objeto es demasiado r&aacute;pido <br>- Cuando se producen reflexi&oacute;n, visi&oacute;n borrosa o sombreado debido a una luz potente como la luz solar directa, iluminaci&oacute;n alta o faros de un veh&iacute;culo <br>- En casos de fuertes tormentas de nieve, lluvia o viento, o al atardecer o amanecer.</li>
             </ul>
         </div>
@@ -67,7 +66,6 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
             <h3>&Aacute;rea</h3>
             <p>Cuando se a&ntilde;ade un &aacute;rea de detecci&oacute;n de movimiento, el color de los botones num&eacute;ricos en [&Aacute;rea] cambiar&aacute;. Al hacer clic en el bot&oacute;n num&eacute;rico, el &aacute;rea correspondiente desaparecer&aacute; de la pantalla de vista previa. Al hacer clic en el bot&oacute;n num&eacute;rico otra vez, el &aacute;rea de detecci&oacute;n de movimiento volver&aacute; a aparecer.</p>
         </div>
@@ -82,6 +80,25 @@
             <h3>Sensibilidad</h3>
             <p>Esto ajusta la sensibilidad de detecci&oacute;n de movimiento para cada &aacute;rea. Establezca una sensibilidad m&aacute;s baja para un entorno donde el fondo y un objeto sean claramente distinguibles y una sensibilidad mayor en un entorno donde el fondo y un objeto no sean claramente distinguibles.</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>Traspaso</h3>
+            <p>Traspaso es una funci&oacute;n que mueve el enfoque de la c&aacute;mara PTZ hacia el &aacute;rea designada en la pantalla o hacia un &aacute;rea predefinida cuando se produce un evento de detecci&oacute;n de movimiento en la c&aacute;mara fija.</p>
+            <ul>
+                <li><strong class="UI">Desactivar</strong>: Desactiva la funci&oacute;n de traspaso.</li>
+                <li><strong class="UI">Zoom inteligente</strong>: Cuando se produce un evento de detecci&oacute;n de movimiento el &aacute;rea de ROI, el enfoque de la c&aacute;mara PTZ se mueve hacia el &aacute;rea ROI y se ampl&iacute;a con su centro fijo en el centro del &aacute;rea ROI. Las coordenadas del &aacute;rea de la pantalla deben definirse de antemano para que se puedan conectar la c&aacute;mara fija y la c&aacute;mara PTZ. Vaya a <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Calibraci&oacute;n]</strong> para definir las coordenadas.</li>
+                <li><strong class="UI">Nº de traspaso</strong>: Cuando se produce un evento de detecci&oacute;n de movimiento el &aacute;rea ROI, el enfoque de la c&aacute;mara PTZ se mueve hacia el &aacute;rea predefinida. Seleccione un Nº de traspaso que contenga datos predefinidos de la lista. Vaya a <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong> para a&ntilde;adir o modificar a lista.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                
+                <li>Puede definir el traspaso para cada &aacute;rea ROI. La funci&oacute;n de Traspaso se puede utilizar despu&eacute;s de definir el &aacute;rea ROI.</li>
+                <li>El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
+            </ul>
+        </div>
+
      <!--    <div class="wn5-setup-section-article-content">
             <h3>Entregar</h3>
             <p>Para utilizar la funci&oacute;n entregar, seleccione <strong class="UI">[Activar]</strong>. Cuando se utiliza la funci&oacute;n entregar, es posible configurar una c&aacute;mara espec&iacute;fica para moverse a una posici&oacute;n espec&iacute;fica PTZ preestablecida cuando se detecta un movimiento en el &aacute;rea establecida. Asigna una c&aacute;mara para cada &aacute;rea.</p>
@@ -138,16 +155,15 @@
 			<p>Para borrar un &aacute;rea de no detecci&oacute;n, haga clic en el bot&oacute;n derecho del rat&oacute;n en el &aacute;rea correspondiente de la pantalla y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong> de la ventana de confirmaci&oacute;n de eliminaci&oacute;n.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
             <h3>&Aacute;rea</h3>
             <p>Cuando se a&ntilde;ade un &aacute;rea de no detecci&oacute;n, el color de botones num&eacute;ricos en <strong class="UI">[&Aacute;rea]</strong> cambiar&aacute;. Al hacer clic en el bot&oacute;n num&eacute;rico, el &aacute;rea de no detecci&oacute;n correspondiente desaparecer&aacute; de la pantalla de vista previa. Al hacer clic en el bot&oacute;n num&eacute;rico otra vez, el &aacute;rea no detecci&oacute;n volver&aacute; a aparecer.</p>
           </div>
       </div>
   </div>
 
-  <hr class="wn5-setup-hr">
+  <hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
 
-                <div class="wn5-setup-section">
+                <div class="wn5-setup-section" ng-if="!HandoverCalibration">
                     <div class="wn5-setup-section-heading">
                         <h2>Traspaso</h2>
                     </div>
@@ -172,7 +188,6 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
             <h3>FTP:</h3>
             <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de movimiento, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
@@ -220,9 +235,6 @@ class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/ev
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
-            </ul>
             <h3>Siempre</h3>
             <p>Las configuraciones de acci&oacute;n conjunto de eventos se ejecutan siempre cuando se crea un evento de detecci&oacute;n de movimiento.</p>
         </div>

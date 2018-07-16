@@ -69,6 +69,23 @@
                 <li><strong class="UI">Direcciones</strong>: Esto establece la direcci&oacute;n de un objeto para pasar la l&iacute;nea virtual.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>Traspaso</h3>
+            <p>Traspaso es una funci&oacute;n que mueve el enfoque de la c&aacute;mara PTZ hacia el &aacute;rea predefinida cuando un objeto es detectado cruzando una l&iacute;nea virtual en la c&aacute;mara fija.</p>
+            <ul>
+                <li><strong class="UI">Desactivar</strong>: Desactiva la funci&oacute;n de traspaso.</li>
+                <li><strong class="UI">Zoom inteligente</strong>: Cuando un objeto es detectado al cruzar una l&iacute;nea virtual, el enfoque de la c&aacute;mara PTZ se ampl&iacute;a con su centro fijado en el centro de la l&iacute;nea virtual. Las coordenadas de la pantalla deben definirse de antemano para que se puedan conectar la c&aacute;mara fija y la c&aacute;mara PTZ. Vaya a <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Calibraci&oacute;n]</strong> para definir las coordenadas.</li>
+                <li><strong class="UI">Nº de traspaso</strong>: cuando un objeto es detectado cruzando una l&iacute;nea virtual, el enfoque de la c&aacute;mara PTZ se mueve hacia el &aacute;rea predefinida. Seleccione un Nº de traspaso que contenga datos predefinidos de la lista. Vaya a <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong> para a&ntilde;adir o modificar a lista.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                
+                <li>Puede definir el traspaso para cada l&iacute;nea virtual. La funci&oacute;n de Traspaso se puede utilizar despu&eacute;s de definir la l&iacute;nea virtual.</li>
+                <li>El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
+            </ul>
+        </div>
     </div>
 </div>
 <div class="wn5-setup-section">
@@ -121,6 +138,24 @@
                 <li>Cuando se utiliza la detecci&oacute;n de merodeo junto con otra detecci&oacute;n de eventos IVA, el rendimiento puede deteriorarse hasta cierto grado, en comparaci&oacute;n con la utilizaci&oacute;n por separado de la detecci&oacute;n de merodeo.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>Traspaso</h3>
+            <p>Traspaso es una funci&oacute;n que mueve el enfoque de la c&aacute;mara PTZ hacia el &aacute;rea designada en la pantalla o hacia un &aacute;rea predefinida cuando ocurre un evento de IVA en la c&aacute;mara fija.</p>
+            <ul>
+                <li><strong class="UI">Desactivar</strong>: Desactiva la funci&oacute;n de traspaso.</li>
+                <li><strong class="UI">Zoom inteligente</strong>: Cuando se produce un evento IVA en el &aacute;rea de ROI, el enfoque de la c&aacute;mara PTZ se mueve hacia el &aacute;rea ROI y se ampl&iacute;a con su centro fijo en el centro del &aacute;rea ROI. Las coordenadas del &aacute;rea de la pantalla deben definirse de antemano para que se puedan conectar la c&aacute;mara fija y la c&aacute;mara PTZ. Vaya a <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Calibraci&oacute;n]</strong> para definir las coordenadas.</li>
+                <li><strong class="UI">Nº de traspaso</strong>: Cuando se produce un evento IVA en el &aacute;rea ROI, el enfoque de la c&aacute;mara PTZ se mueve hacia el &aacute;rea predefinida. Seleccione un Nº de traspaso que contenga datos predefinidos de la lista. Vaya a <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong> para a&ntilde;adir o modificar la lista.</li>
+            </ul>
+        </div>
+                <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+                    <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                    <ul>
+                        
+                        <li>Puede definir el traspaso para cada &aacute;rea ROI. La funci&oacute;n de Traspaso se puede utilizar despu&eacute;s de definir el &aacute;rea ROI.</li>
+                        <li>El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
+                    </ul>
+                </div>
+        
 	</div>
 </div>
 
@@ -183,8 +218,8 @@
           </div>
       </div>
   </div>
-  <hr class="wn5-setup-hr">
-              <div class="wn5-setup-section">
+  <hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
+              <div class="wn5-setup-section" ng-if="!HandoverCalibration">
                   <div class="wn5-setup-section-heading">
                       <h2>Handover</h2>
                   </div>

@@ -47,6 +47,16 @@
             <p>Para excluir una disminuci&oacute;n repentina en el brillo de la pantalla, tal como una s&uacute;bita ausencia de luz desde el evento detecci&oacute;n de manipulaci&oacute;n, seleccione <strong class="UI">[Activar]</strong>. </p>
         </div>
 
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>Traspaso</h3>
+            <p>Traspaso es una funci&oacute;n que mueve el enfoque de la c&aacute;mara PTZ hacia el &aacute;rea predefinida cuando ocurre un evento de alteraci&oacute;n en la c&aacute;mara fija.</p>
+            <ul>
+                <li><strong class="UI">Desactivar</strong>: Desactiva la funci&oacute;n de traspaso.</li>
+                <li><strong class="UI">Nº de traspaso</strong>: Seleccione un Nº de traspaso. Los n&uacute;meros de traspaso se deben definir de antemano en el men&uacute; <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong>.&nbsp;</li>
+            </ul>
+        </div>
+
+
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul><li>El rendimiento de detecci&oacute;n puede reducirse en un fondo uniforme, de noche o condiciones de poca luminosidad.</li>
@@ -58,8 +68,8 @@
       </div>
   </div>
 
-  <hr class="wn5-setup-hr">
-              <div class="wn5-setup-section">
+  <hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
+              <div class="wn5-setup-section" ng-if="!HandoverCalibration">
                   <div class="wn5-setup-section-heading">
                       <h2>Traspaso</h2>
                   </div>

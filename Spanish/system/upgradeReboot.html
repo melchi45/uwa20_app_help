@@ -18,14 +18,25 @@
 			<h3>Software  </h3>
 		    <p>Se muestra la versi&oacute;n de software del producto que se est&aacute; utilizando. No se pueden hacer cambios en la versi&oacute;n del software. </p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration">
 		    <h3>Versi&oacute;n de ISP actual  </h3>
 		    <p>Se muestra la versi&oacute;n de ISP actual del producto que est&aacute; utilizando. No se pueden hacer cambios en la versi&oacute;n de ISP actual.</p>
-			</div>
-	   			<div class="wn5-setup-section-article-content">
+		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+		    <h3>Versi&oacute;n de ISP del canal fijo</h3>
+		    <p>La versi&oacute;n de ISP de la c&aacute;mara fija montada. La versi&oacute;n de ISP solo es de lectura, no se permite ninguna modificaci&oacute;n.</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+		    <h3>Versi&oacute;n de ISP del canal PTZ</h3>
+		    <p>La versi&oacute;n de ISP de la c&aacute;mara PTZ montada. La versi&oacute;n de ISP solo es de lectura, no se permite ninguna modificaci&oacute;n.</p>
+	   	</div>
+
+	   	<div class="wn5-setup-section-article-content">
 			<h3>Versión UWA </h3>
 	 	 <p>Versión del visor web de la cámara en uso.</p>
-	  </div>
+	   </div>
+	  
 	   	<div class="wn5-setup-section-article-content">
 		    <h3>Software Actualizar</h3>
 		    <p>Puede actualizar el software del producto que est&aacute; utilizando. Para actualizar el software, haga clic en el bot&oacute;n <strong class="UI">[...]</strong>. Seleccione un archivo de actualizaci&oacute;n y haga clic en el bot&oacute;n <strong class="UI">[Abrir]</strong> Al hacer clic en el bot&oacute;n <strong class="UI">[Actualizar]</strong>, la actualizaci&oacute;n comenzar&aacute;. Puede ver el progreso de la actualizaci&oacute;n en %. Cuando la actualizaci&oacute;n haya finalizado, la c&aacute;mara se reiniciar&aacute; y la conexi&oacute;n se terminar&aacute; autom&aacute;ticamente. Tendr&aacute; que volver a conectarse al visor web. </p>

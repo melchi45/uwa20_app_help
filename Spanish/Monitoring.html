@@ -411,38 +411,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -458,6 +426,32 @@
             <p>Puede comprobar el perfil aplicado para cada usuario, velocidad de bits (kbps), el estado de conexi&oacute;n de red y la direcci&oacute;n IP de todos los usuarios que est&eacute;n conectados a la c&aacute;mara.</p>
         </div>
 
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && HandoverCalibration">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && HandoverCalibration">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Seleccionar canal</h3>
+            <p>Seleccione el bot&oacute;n N&uacute;mero de Canal para ver el video fijo de la c&aacute;mara. Haga clic en el bot&oacute;n <strong class="UI">[PTZ]</strong> para ver el video de la c&aacute;mara PTZ en una &uacute;nica pantalla. Haga clic en la pantalla Cuadrante para ver simult&aacute;neamente el video de la c&aacute;mara fijo a la izquierda y el video de la c&aacute;mara PTZ a la derecha. Para ir a una pantalla &uacute;nica, haga clic en el bot&oacute;n N&uacute;mero de Canal o en el bot&oacute;n PTZ.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Enlace de la c&aacute;mara fija con la c&aacute;mara PTZ</h3>
+            <p>En la vista Cuadrante, pase el cursor sobre la pantalla de la c&aacute;mara fija, &eacute;ste cambiar&aacute; a la forma de una lupa. Si hace clic en cierto punto en la pantalla de video de la c&aacute;mara fija, el punto clicado aparecer&aacute; en la marca + de la pantalla PTZ.</p>
+            <p>Si define un &aacute;rea arrastrando el cursor sobre la pantalla de video de la c&aacute;mara fija, el &aacute;rea deseada se ampliar&aacute; en la pantalla de video PTZ.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>El &apos;Enlace de la c&aacute;mara fija con la c&aacute;mara PTZ&apos; solo funciona cuando las coordenadas del &aacute;rea de la pantalla de la c&aacute;mara fija y de la c&aacute;mara PTZ est&aacute;n definidas en <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Calibraci&oacute;n]</strong>.</li>
+            </ul>
+    
+        </div>
     </div>
 </div>
 

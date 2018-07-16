@@ -8,12 +8,35 @@
     <ul>
         <li>The method of using camera auto tracking is as follows.</li>
         <ul>
-            <li><span class="tui tui-ch-live-ptz-tracking-auto-on"></span> Click the Auto tracking icon. Analyze, select, and track a tracking object from the entire area.</li>
+            <li>Click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>. Analyze, select, and track a tracking object from the entire area.</li>
             <li>When you click the right mouse button on the video screen at the <a class="wn5-online-help-link" href="../Monitoring.html" ng-href="#/help/uni/channel">Live</a> page, the motion will be analyzed based on the clicked area and auto tracking will begin.</li>
             <li>When ‘Tracking’ is selected in <strong class="UI">[After action]</strong> when <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html#preset" ng-href="#/help/ptz_ptzInfoSetup?#preset">setting preset </a>, the camera will move to the relevant preset and the auto tracking function will be executed automatically.</li>
         </ul>
     </ul>
         </div>
+		
+		<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Adjusting the PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can adjust the pan, tile, and zoom actions of the camera.</p>
+        </div>
+			
+        <div class="wn5-online-help-action">
+    	   <h4>Adjusting the PTZ</h4>
+            <ul>
+                <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span> icon with the mouse, the camera moves to the pan and tilt.</li>
+                <li>Select an image magnification by clicking the <span class="tui tui-wn5-ptz-near"></span> icno to zoom the screen in or clicking the <span class="tui tui-wn5-ptz-far"></span> icon to zoom the screen out from the zoom bar.</li>
+                <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+                <li>Click <span class="tui tui-ch-live-ptz-tracking-auto-on"></span> icon to start the auto tracing function. When you click the <span class="tui tui-ch-live-ptz-tracking-auto-on"></span> icon one more time, auto tracking stops. </li>
+                <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
+            </ul>
+    	</div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -107,13 +130,15 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Alarm output</h3>
-            <p>It is possible to set the alarm output number for a specific alarm when an auto-tracking event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you do not wish to use the alarm. If you wish to use the alarm, select the output time. You can set the alarm to sound continuously until turned off by the user by selecting <strong class="UI">[Always]</strong> or you can set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+            <p>It is possible to set the alarm output number for a specific alarm when an auto-tracking event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you do not wish to use the alarm. If you wish to use the alarm, select the output time. You can set the alarm to sound continuously until turned off by the user by selecting <strong class="UI">[Always]</strong> or you can set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be
+done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
 		
        <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
             <h3>Goto preset</h3>
-                    <p>You can set the position of camera view to move to a preset number when an auto-tracking event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
+                    <p>You can set the position of camera view to move to a preset number when an auto-tracking event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External
+PTZ]</a></strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
