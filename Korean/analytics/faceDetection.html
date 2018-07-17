@@ -8,7 +8,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2>채널 선택</h2>
+        <h2><a name="channel"></a>채널 선택</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -47,6 +47,16 @@
 			<h4>관심 영역 변경하기</h4>
             <p>설정한 관심 영역의 오른쪽 아래 꼭지점을 움직여 관심 영역의 크기를 변경할 수 있으며, 관심 영역을 이동하려면 마우스로 해당 영역을 클릭하여 드래그합니다. </p>
             </div>
+			<div class="wn5-online-help-action">
+            <h4>PTZ 조정하기</h4>
+            <p><strong class="UI"><a href="#channel">[채널 선택]</a></strong> 메뉴에서 <strong class="UI">[PTZ]</strong> 채널을 선택하면 PTZ 조그 패널이 나타납니다.</p>
+            <ul>
+                <li><span class="tui tui-wn5-ptz-handle"></span>아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.    </li>
+                <li>줌 막대에서 <strong class="UI">[+]</strong> 버튼을 클릭하여 화면을 확대하거나 <strong class="UI">[-]</strong> 버튼을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
+                <li><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
+                <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>버튼을 클릭합니다.</li>
+            </ul>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>민감도</h3>
             <p>얼굴 감지 이벤트의 민감도를 설정합니다. 민감도가 높을수록 세밀한 얼굴 감지가 가능합니다.</p>            

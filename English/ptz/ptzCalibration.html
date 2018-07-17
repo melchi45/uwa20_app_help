@@ -1,0 +1,80 @@
+﻿
+<h1 class="wn5-setup-main-title">Calibration</h1>
+
+<div class="wn5-setup-section">
+    <p>Map the fixed camera video and the position of the PTZ camera to link the screen of the fixed camera screen and the location of PTZ camera.</p>
+    <p>Once you&apos;ve matched the screen coordinate of each channel of the fixed camera with the pan/tilt position of the PTZ camera, if you select an area for monitoring, the focus of the PTZ camera will easily move to the area. Also, if an event occurs outside the ROI area of the fixed camera, you can set the screen of the PTZ camera to automatically shift to the ROI area.</p>
+</div>
+		<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>Select channel</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can perform coordinates calibration in order to link each channel with the PTZ camera, after selecting channels of the fixed camera.</p>
+            <p>For each channel, you should specify four points. Any calibrated channel will be marked with a green tick above its channel number. Any channel not calibrated will be marked with a orange dot above its channel number.</p>
+        </div>
+            </div>
+</div>
+		
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Calibration point</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>The video preview screen of the fixed camera appears in the <strong class="UI">[Fixed view] </strong>window, while the video preview screen of the PTZ camera appears in the <strong class="UI">[PTZ] </strong>window.</p>
+            <p>You should set four points to match the view of the fixed camera with that of the PTZ camera for each channel.</p>
+        </div>
+        <div class="wn5-online-help-action">
+    	   <h4>Setting calibration point</h4>
+            <ol>
+                <li>Select a channel you want in <strong class="UI">[Select channel]</strong>.</li>
+                <li>Click a position you want in the <strong class="UI">[Fixed view] </strong>window.</li>
+                <li><a href="#ptzcontrol">Adjust PTZ</a> so that the same point selected in the <strong class="UI">[Fixed view] </strong>window is placed over the + mark in the <strong class="UI">[PTZ</strong><strong class="UI">] </strong>window.</li>
+                <li>Click the <strong class="UI">[Save calibration point] </strong>button. You will now see a tick in the circle below <strong class="UI">[Calibration point]</strong>.</li>
+                <li>Repeat Steps 2 to 4. Once you set four points, a green tick will appear above the selected channel number.</li>
+            </ol>
+    	</div>
+				
+        <div class="wn5-online-help-action">
+            <h4>Resetting calibration</h4>
+            <ul>
+                <li>If you click the <strong class="UI">[Reset] </strong>button, all the calibration points you set in the channel will be deleted.</li>
+            </ul>
+            <div class="wn5-online-help-action">
+                <h4><a name="ptzcontrol"></a>Adjusting the PTZ</h4>
+                <ul>
+                    <li>In the <strong class="UI">[PTZ</strong><strong class="UI">] </strong>window</li>
+                    <ul>
+                        <li>Drag your mouse to adjust the pan/tilt of the camera.</li>
+                        <li>Use the mouse wheel to zoom in and out.</li>
+                    </ul>
+                    <li>In the PTZ jog panel</li>
+                    <ul>
+                        <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span>icon with the mouse, the camera moves to the pan and tilt.</li>
+                        <li>Select an image magnification by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
+                        <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+                        <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
+                    </ul>
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                <ul>
+				
+                    <li>The calibration works fine in the following conditions:</li>
+                    <ul>
+                        <li>Camera set must be mounted horizontally.</li>
+                        <li>The screens of all cameras must be perfectly leveled.</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+</div>
+
+<hr class="wn5-setup-hr">

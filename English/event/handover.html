@@ -57,7 +57,7 @@
     
     </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="HandoverCalibration">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
 
 <div class="wn5-setup-section" ng-if="HandoverCalibration">
     <div class="wn5-setup-section-heading">
@@ -75,7 +75,7 @@
                 <li>In the <strong class="UI">[Add]</strong> window, set the following:</li>
                 <ul>
                     <li><strong class="UI">No.</strong>: Select a handover no. You can see the numbers specified by Handover no. as a list if you go to <strong class="UI">[Handover] </strong>&gt; <strong class="UI">[Handover no.]</strong> in each page of <strong class="UI">[Motion detection]</strong>, <strong class="UI">[IVA]</strong>, and <strong class="UI">[Tampering detection]</strong> under the <strong class="UI">[Analytics] </strong>submenu.</li>
-                    <li><strong class="UI">CH</strong>: The channel number of the PTZ camera is automatically displayed and cannot be modified.</li>
+                    <li><strong class="UI">Channel</strong>: The channel number of the PTZ camera is automatically displayed and cannot be modified.</li>
                     <li><strong class="UI">Preset no.</strong>: Enter a preset no. Preset numbers must set in advance in <strong class="UI">[PTZ] </strong>&gt; <strong class="UI">[PTZ setup]</strong> &gt; <strong class="UI">[Preset] </strong>tab &gt; <strong class="UI">[Preset setup]</strong>.</li>
                 </ul>
                 <li>Click <strong class="UI">[Apply]</strong>.</li>
@@ -84,8 +84,10 @@
 
         <div class="wn5-online-help-action">
             <h4>Deleting handover no.</h4>
-            <ol><!-- ??? ????? <li>???</li> ??? ????? --><li>Click a check box in the list of handover no., and select the numbers to delete.</li>
+            <ol>
+                <li>Click a check box in the list of handover no., and select the numbers to delete.</li>
                 <li>Click the <strong class="UI">[Delete]</strong> button, and when the confirmation window appears, click <strong class="UI">[OK]</strong>.</li>
+                <li>Click <strong class="UI">[Apply]</strong>.</li>
             </ol>
         </div>
     </div>

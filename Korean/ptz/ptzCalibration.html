@@ -1,0 +1,81 @@
+﻿
+<h1 class="wn5-setup-main-title">캘리브레이션</h1>
+
+<div class="wn5-setup-section">
+    <p>고정 카메라의 화면과 PTZ 카메라의 좌표계가 연동하도록, 고정 카메라&nbsp;영상과 PTZ 카메라의 위치를 맵핑합니다. </p>
+    <p>고정 카메라 채널별로 화면의 좌표를 PTZ 카메라의 팬, 틸트 위치를 맞춰 놓으면, 고정 카메라의 감시 영역을 선택할 때&nbsp;PTZ 카메라가 해당 영역으로 쉽게 이동하게 됩니다. 또한 고정 카메라 관심 영역에서 이벤트가 발생한 경우, 자동으로 PTZ 카메라의 화면이 해당 관심 영역으로 이동하도록 응용할 수 있습니다. 
+ </p>
+</div>
+		<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>채널 선택</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>고정 카메라의 채널을 선택한 후 각 채널별로 PTZ 카메라와 연동할 수 있도록 좌표 캘리브레이션을 수행할 수 있습니다.</p>
+            <p>각 채널별로 4곳의 위치를 지정해야 하며, 캘리브레이션을 완료한 채널은 채널 번호 위에 초록색 체크 표시가 나타납니다. 캘리브레이션을 수행하지 않은 채널은 채널 번호 위에 주황색 점이 표시됩니다.   </p>
+        </div>
+            </div>
+</div>
+		
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>캘리브레이션 포인트</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[고정 뷰] </strong>창에는 고정 카메라 영상 미리보기 화면이 나타나며, <strong class="UI">[PTZ] </strong>창에는 PTZ 카메라 영상 미리보기 화면이 나타납니다. </p>
+            <p>각 채널별로 고정 카메라의 뷰와&nbsp;PTZ 카메라의 뷰가&nbsp;매칭되도록&nbsp;4곳의 포인트를 지정해야 합니다. </p>
+        </div>
+        <div class="wn5-online-help-action">
+    	   <h4>캘리브레이션 포인트 설정하기</h4>
+            <ol>
+                <li><strong class="UI">[채널 선택]</strong>에서 원하는 채널을 선택합니다. </li>
+                <li><strong class="UI">[고정 뷰] </strong>창에서 원하는 위치를 클릭합니다.</li>
+                <li><strong class="UI">[고정 뷰] </strong>창에서 선택한 동일 지점이 <strong class="UI">[PTZ</strong><strong class="UI">] </strong>창의 + 표시에 위치하도록&nbsp;<a href="#ptzcontrol">PTZ를 조정</a>합니다.</li>
+                <li><strong class="UI">[캘리브레이션 포인트 저장] </strong>버튼을 클릭합니다. <strong class="UI">[캘리브레이션 포인트] </strong>아래 동그라미에 체크 표시가 나타납니다.</li>
+                <li>2~4번 단계를 반복합니다. 총 4곳의 위치 설정이 완료되면 선택한 채널 번호 위에 초록색 체크 표시가 나타납니다.</li>
+            </ol>
+    	</div>
+				
+        <div class="wn5-online-help-action">
+            <h4>캘리브레이션&nbsp;초기화하기</h4>
+            <ul>
+                <li><strong class="UI">[초기화] </strong>버튼을 클릭하면 해당 채널에서 설정한 캘리브레이션 포인트가 모두 제거됩니다.</li>
+            </ul>
+            <div class="wn5-online-help-action">
+                <h4><a name="ptzcontrol"></a>PTZ 조정하기</h4>
+                <ul>
+                    <li><strong class="UI">[PTZ</strong><strong class="UI">] </strong>창에서</li>
+                    <ul>
+                        <li>마우스를 드래그하여 카메라의 팬과 틸트를 조정합니다.</li>
+                        <li>마우스 휠을 이용하여 화면을 확대하거나 축소합니다.</li>
+                    </ul>
+                    <li>PTZ 조그 패널에서</li>
+                    <ul>
+                        <li><span class="tui tui-wn5-ptz-handle"></span>아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.</li>
+                        <li>줌 막대에서 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
+                        <li><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
+                        <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>버튼을 클릭합니다.</li>
+                    </ul>
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기 </h4>
+                <ul>
+				
+                    <li>다음과 같은 조건에서 캘리브레이션이 정상적으로 수행됩니다.</li>
+                    <ul>
+                        <li>카메라 세트는 수평으로 마운트되어야 합니다.</li>
+                        <li>    모든 카메라의 화면이 상하좌우 수평 상태이어야 합니다.    </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+</div>
+
+<hr class="wn5-setup-hr">

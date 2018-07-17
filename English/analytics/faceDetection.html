@@ -1,12 +1,13 @@
 ﻿<h1 class="wn5-setup-main-title">Face detection</h1>
 <div class="wn5-setup-section">
-    <p>A face detection event can be created when a face is detected within the area designated by the user while the camera is capturing an image. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on face detection events applies to <strong class="UI">[Face detection]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> page equally.</p>
+    <p>A face detection event can be created when a face is detected within the area designated by the user while the camera is capturing an image. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on face detection events applies to <strong class="UI">[Face detection]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event
+setup]</strong></a> page equally.</p>
 </div>
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2>Select channel</h2>
+        <h2><a name="channel"></a>Select channel</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -42,6 +43,16 @@
             <h4>Changing an area</h4>
             <p>You can change the size of the detection area by clicking the bottom right corner of the set area and dragging the relevant area with the mouse. </p>
             </div>
+			        <div class="wn5-online-help-action">
+            <h4>Adjusting the PTZ</h4>
+            <p>When you click <strong class="UI">[PTZ]</strong> in the <a href="#channel">Select channel</a> menu, the PTZ jog panel displays for camera PTZ adjustment.</p>
+            <ul>
+                <li><span class="tui tui-wn5-ptz-handle"></span>When you drag the icon with the mouse, the camera moves to the pan and tilt.</li>
+                <li>Select an image magnification by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
+                <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+                <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
+            </ul>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>Sensitivity</h3>
             <p>This sets the sensitivity of the face detection event. The higher the sensitivity, the more detailed the face detection that is possible.</p>
@@ -121,7 +132,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Alarm output</h3>
-            <p>It is possible to set an alarm output number for a specific alarm when a face detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+            <p>It is possible to set an alarm output number for a specific alarm when a face detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a
+class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
 
       <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">

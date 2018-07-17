@@ -1,0 +1,80 @@
+﻿
+<h1 class="wn5-setup-main-title">Calibraci&oacute;n</h1>
+
+<div class="wn5-setup-section">
+    <p>Mapee el video de la c&aacute;mara fija y la posici&oacute;n de la c&aacute;mara PTZ para vincular la pantalla de la c&aacute;mara fija y la ubicaci&oacute;n de la c&aacute;mara PTZ.</p>
+    <p>Una vez que haya hecho coincidir la coordenada de la pantalla de cada canal de la c&aacute;mara fija con la posici&oacute;n panor&aacute;mica/inclinada de la c&aacute;mara PTZ, si usted selecciona un &aacute;rea para el monitoreo, el enfoque de la c&aacute;mara PTZ se mover&aacute; f&aacute;cilmente hacia esa &aacute;rea. Adem&aacute;s, si ocurre un evento fuera del &aacute;rea ROI de la c&aacute;mara fija, podr&aacute; configurar la pantalla de la c&aacute;mara PTZ para que se desplace autom&aacute;ticamente hacia el &aacute;rea ROI.</p>
+</div>
+		<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>Seleccionar canal</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Puede realizar la calibraci&oacute;n de coordenadas para vincular cada canal con la c&aacute;mara PTZ, tras la selecci&oacute;n de los canales de la c&aacute;mara fija.</p>
+            <p>Para cada canal, deber&aacute; especificar cuatro puntos. Cualquier canal calibrado se marcar&aacute; con un tic verde sobre su n&uacute;mero de canal. Cualquier canal no calibrado se marcar&aacute; con un punto naranja sobre su n&uacute;mero de canal.</p>
+        </div>
+            </div>
+</div>
+		
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Punto de calibraci&oacute;n</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>La pantalla de vista previa de v&iacute;deo de la c&aacute;mara fija aparece en la ventana <strong class="UI">[Vista fija]</strong>, mientras que la pantalla de vista previa de video de la c&aacute;mara PTZ aparece en la ventana <strong class="UI">[PTZ]</strong>.</p>
+            <p>Usted deber&aacute; definir cuatro puntos para que coincida la vista de la c&aacute;mara fija con la de la c&aacute;mara PTZ para cada canal.</p>
+        </div>
+        <div class="wn5-online-help-action">
+    	   <h4>Asignaci&oacute;n del punto de calibraci&oacute;n</h4>
+            <ol>
+                <li>Seleccione el canal que desee en <strong class="UI">[Seleccionar canal]</strong>.</li>
+                <li>Haga clic en la posici&oacute;n que desee en la ventana <strong class="UI">[Vista fija]</strong>.</li>
+                <li><a href="ptzCalibration.html#ptzcontrol">Ajuste PTZ</a> para que el mismo punto seleccionado en la ventana <strong class="UI">[Vista fija]</strong> se ubique sobre la marca + en la ventana <strong class="UI">[PTZ</strong><strong class="UI">]</strong>.</li>
+                <li>Haga clic en el bot&oacute;n <strong class="UI">[Guardar punto de calibraci&oacute;n]</strong>. Con esto podr&aacute; ver un tic en el c&iacute;rculo debajo del <strong class="UI">[Punto de calibraci&oacute;n]</strong>.</li>
+                <li>Repita los pasos 2 a 4. Una vez que haya definido los cuatro puntos, aparecer&aacute; un tic verde sobre el n&uacute;mero del canal seleccionado.</li>
+            </ol>
+    	</div>
+				
+        <div class="wn5-online-help-action">
+            <h4>Restablecimiento de la calibraci&oacute;n</h4>
+            <ul>
+                <li>Si hace clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los puntos de calibraci&oacute;n que haya definido en el canal.</li>
+            </ul>
+            <div class="wn5-online-help-action">
+                <h4><a name="ptzcontrol"></a>Ajuste de la PTZ</h4>
+                <ul>
+                    <li>En la ventana <strong class="UI">[PTZ</strong><strong class="UI">]</strong></li>
+                    <ul>
+                        <li>Arrastre el rat&oacute;n para ajustar la vista panor&aacute;mica/inclinada de la c&aacute;mara.</li>
+                        <li>Use la rueda del rat&oacute;n para acercar y alejar.</li>
+                    </ul>
+                    <li>En el panel de desplazamiento de la c&aacute;mara PTZ</li>
+                    <ul>
+                        <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el rat&oacute;n, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
+                        <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
+                        <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco lejano haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
+                        <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono <span class="tui tui-wn5-simple-focus"></span>.</li>
+                    </ul>
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                <ul>
+				
+                    <li>La calibraci&oacute;n funciona bien en las siguientes condiciones:</li>
+                    <ul>
+                        <li>El kit de la c&aacute;mara debe estar montado horizontalmente.</li>
+                        <li>Las pantallas de todas las c&aacute;maras deben estar perfectamente niveladas.</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+</div>
+
+<hr class="wn5-setup-hr">

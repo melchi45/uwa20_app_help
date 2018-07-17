@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="HandoverCalibration">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
 <h1 class="wn5-setup-main-title" ng-if="HandoverCalibration">핸드오버</h1>
 <div class="wn5-setup-section" ng-if="HandoverCalibration">
     <p>고정 카메라에 이벤트가 발생하면 PTZ 카메라가 미리 설정해 둔 프리셋 위치로 이동하도록 핸드오버 번호를 설정할 수 있습니다. </p>
@@ -58,7 +58,7 @@
     
         </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="HandoverCalibration">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
 
 <div class="wn5-setup-section" ng-if="HandoverCalibration">
     <div class="wn5-setup-section-heading">
@@ -76,7 +76,7 @@
                 <li><strong class="UI">[추가]</strong> 창에서 다음 항목을&nbsp;설정합니다.</li>
                 <ul>
                     <li><strong class="UI">번호</strong>:&nbsp;핸드오버 번호를 선택합니다. '번호' 항목에서&nbsp;지정한 번호는&nbsp;<strong class="UI">[분석]&nbsp;</strong>하위 메뉴의 <strong class="UI">[움직임 감지]</strong>, <strong class="UI">[IVA]</strong>, <strong class="UI">[탬퍼링 감지]</strong>&nbsp;각 페이지에서 <strong class="UI">[핸드오버]&nbsp;</strong>&gt; <strong class="UI">[핸드오버 번호]</strong> 목록으로 나타납니다. </li>
-                    <li><strong class="UI">CH</strong>: PTZ 카메라의 채널 번호는 자동으로 표기되며, 수정할 수 없습니다.</li>
+                    <li><strong class="UI">채널</strong>: PTZ 카메라의 채널 번호는 자동으로 표기되며, 수정할 수 없습니다.</li>
                     <li><strong class="UI">프리셋 번호</strong>: 프리셋 번호를 입력합니다. 프리셋 번호는 <strong class="UI">[PTZ] </strong>&gt; <strong class="UI">[PTZ 설정]</strong> &gt; <strong class="UI">[프리셋] </strong>탭 &gt; <strong class="UI">[프리셋 설정]</strong>에서 미리 설정해 두어야 합니다.   </li>
                 </ul>
                 <li><strong class="UI">[적용]</strong>을 클릭합니다.</li>
@@ -86,9 +86,9 @@
         <div class="wn5-online-help-action">
             <h4>핸드오버 번호 삭제하기</h4>
             <ol>
-                <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
                 <li>핸드오버 번호 목록에서 체크박스를 클릭하여 삭제 항목을 선택합니다.  </li>
                 <li><strong class="UI">[삭제]</strong> 버튼을 클릭한 후 확인 창이 나타나면 <strong class="UI">[확인]</strong>을 클릭합니다.</li>
+                <li><strong class="UI">[적용]</strong>을 클릭합니다.</li>
             </ol>
         </div>
     </div>

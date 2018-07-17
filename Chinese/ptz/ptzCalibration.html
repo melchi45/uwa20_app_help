@@ -1,0 +1,80 @@
+﻿
+<h1 class="wn5-setup-main-title">校准</h1>
+
+<div class="wn5-setup-section">
+    <p>映射固定摄像机图像和PTZ摄像机的位置，使固定摄像机的屏幕和PTZ摄像机的坐标系统同步工作。</p>
+    <p>如果根据固定摄像机频道设置PTZ摄像机的平移、倾斜位置，则在选择固定摄像机的监视区域时，PTZ摄像机将轻松移动至该区域。另外，如果在固定摄像机的关注区域内发生事件，则PTZ摄像机可以自动移动至关注区域。</p>
+</div>
+		<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>选择频道</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>选择固定摄像机的频道后，可以执行坐标校准，以便让每个频道链接至PTZ摄像机。</p>
+            <p>您必须为每个频道指定四个位置，并且已校准的频道将在频道编号上方显示绿色标记。未校准的频道在频道编号上方会显示橙色小点。</p>
+        </div>
+            </div>
+</div>
+		
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>校准点</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[固定视图]</strong>窗口中会显示固定摄像机图像预览，<strong class="UI">[PTZ]</strong>窗口中会显示PTZ摄像机图像预览。</p>
+            <p>对于每个频道，必须指定四个点以匹配固定摄像机的视图和PTZ摄像机的视图。</p>
+        </div>
+        <div class="wn5-online-help-action">
+    	   <h4>校准点设置</h4>
+            <ol>
+                <li>在<strong class="UI">[选择频道]</strong>中选择所需的频道。</li>
+                <li>在<strong class="UI">[固定视图]</strong>中点击所需的位置。</li>
+                <li><a href="#ptzcontrol">调整PTZ</a>，使<strong class="UI">[固定视图]</strong>中选择的相同点位于<strong class="UI">[PTZ</strong><strong class="UI">] </strong>窗口的+标记处。</li>
+                <li>点击<strong class="UI">[保存校准点]</strong>按钮。勾选标记会显示在<strong class="UI">[校准点]</strong>下方的圆圈中。</li>
+                <li>重复步骤2到4。完成所有四个位置的定位后，所选频道编号上方会显示绿色勾选标记。</li>
+            </ol>
+    	</div>
+				
+        <div class="wn5-online-help-action">
+            <h4>校准初始化</h4>
+            <ul>
+                <li>点击<strong class="UI">[初始化]</strong>按钮将删除相应频道中所设置的所有校准点。</li>
+            </ul>
+            <div class="wn5-online-help-action">
+                <h4><a name="ptzcontrol"></a>调整PTZ</h4>
+                <ul>
+                    <li>在<strong class="UI">[PTZ</strong><strong class="UI">]</strong>中</li>
+                    <ul>
+                        <li>拖动鼠标以调整摄像机的平移和倾斜。</li>
+                        <li>使用鼠标滚轮放大或缩小。</li>
+                    </ul>
+                    <li>在PTZ点动面板中</li>
+                    <ul>
+                        <li>使用鼠标拖动图标时，摄像机会移动到平移和倾斜。</li>
+                        <li>点击缩放条上的<STRONG class="UI">[+]</STRONG>按钮放大屏幕，或点击<STRONG class="UI">[-]</STRONG>按钮缩小屏幕来选择图像缩放比例。</li>
+                        <li><span class="tui tui-wn5-ptz-near"></span>点击图标可将焦点移近（近处）<span class="tui tui-wn5-ptz-far"></span>或点击图标可将焦点移远（远）。</li>
+                        <li>点击<span class="tui tui-wn5-simple-focus"></span>按钮可自动对焦摄像机一次。</li>
+                    </ul>
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>备注</h4>
+                <ul>
+				
+                    <li>校准正常进行需要满足以下条件。</li>
+                    <ul>
+                        <li>相机组必须水平安装。</li>
+                        <li>所有摄像机的画面必须保持上下左右水平状态。</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+</div>
+
+<hr class="wn5-setup-hr">
