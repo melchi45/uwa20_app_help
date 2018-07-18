@@ -10,7 +10,7 @@
         <ul>
             <li><span class="tui tui-wn5-top-live"></span>(Live): Check the live screen to view what is being captured by the camera and control a variety of camera features.</li>
             <li ng-if="Recording"><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card or NAS.  </li>
-            <li><span class="tui tui-wn5-top-setup"></span>(Setup): Change the camera settings.  </li>
+            <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(Setup): Change the camera settings.  </li>
         </ul>
     </div>
 
@@ -243,7 +243,7 @@
           <!--   <p ng-if="FisheyeLens">If you access the web viewer with Internet Explorer, the videos of profiles other than the MJPEG codec can be viewed only after installing the plugin. To install the plugin, click the plugin in the upper right corner.</p>  -->
 
                           </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="IsAdmin">
             <h3>Display </h3>
             <p>Set the contrast, brightness, sharpness and color level of the live screen; when you enter the setting, it will be applied to the live screen immediately.</p>
         </div>

@@ -9,7 +9,7 @@
     <p>Puede pasar a la pantalla en vivo, pantalla de reproducci&oacute;n o pantalla de configuraci&oacute;n haciendo clic en los botones de la parte superior.</p>
         <ul><li><span class="tui tui-wn5-top-live"></span>(En vivo): Compruebe la pantalla en vivo para ver lo que est&aacute; siendo capturado por la c&aacute;mara y controlar una variedad de funciones de la c&aacute;mara.</li>
             <li ng-if="Recording"><span class="tui tui-wn5-top-playback"></span>(Reproducci&oacute;n): Busque y reproduzca una imagen grabada desde una tarjeta SD o NAS.  </li>
-            <li><span class="tui tui-wn5-top-setup"></span>(Configuraci&oacute;n): Cambiar los ajustes de la c&aacute;mara.</li>
+            <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(Configuraci&oacute;n): Cambiar los ajustes de la c&aacute;mara.</li>
         </ul>
     </div>
 
@@ -239,7 +239,7 @@
                       <!--   <p ng-if="FisheyeLens">Si accede al visor web mediante Internet Explorer, los v&iacute;deos de perfiles distintos del c&oacute;dec MJPEG solo se pueden ver despu&eacute;s de instalar el complemento. Para instalar el complemento, haga clic en el complemento en la esquina superior derecha.</p> -->
 
                                       </div>
-                    <div class="wn5-setup-section-article-content">
+                    <div class="wn5-setup-section-article-content" ng-if="IsAdmin">
             <h3>Todo</h3>
             <p>Ajuste el contraste, el brillo, la nitidez y el nivel de color de la pantalla en vivo; cuando entre en el ajuste, se aplicar&aacute; a la pantalla en vivo inmediatamente.</p>
         </div>
