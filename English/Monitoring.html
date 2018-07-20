@@ -62,7 +62,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p >You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the Video profile applied to the current live screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>.
+                            <p>You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the Video profile applied to the current live screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>.
                         </p> 
                         </td>                    
                     </tr>
@@ -74,7 +74,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p >You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera’s RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group,   tour, and tracking functions. </p>
+                            <p>You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera’s RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group,   tour, and tracking functions. </p>
                         </td>
                     </tr>
 
@@ -86,7 +86,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                           <p >You can control the pen/tilt/zoom motions of the camera. You can move to the preset location set on the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ setup]</strong> page or start/stop the swing, group, tour, and tracking functions. </p>
+                           <p>You can control the pen/tilt/zoom motions of the camera. You can move to the preset location set on the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ setup]</strong> page or start/stop the swing, group, tour, and tracking functions. </p>
                         </td>
                     </tr>
 
@@ -110,9 +110,13 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
+					<tr ng-if="MaxChannel > 1">
+                    <td width="235">lens model</td>
+                    <td width="235">The name of&nbsp;len model used in each camera&nbsp;is displayed. </td>
+                    </tr>
+                    <tr ng-if="MaxChannel > 1">
                         <td width="235">
-                            <p>Select channel</p>
+                            <p><a href="#channel">Select channel</a></p>
                         </td>
                         <td width="235">
                             
@@ -314,7 +318,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content">
             <h3>Auto tracking</h3>
 
-            <p>A moving object or person can automatically be tracked in the live view. When you click the Auto tracking button <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, &nbsp;the auto tracking function will be executed. When you click the Auto tracking button <span class="tui tui-ch-live-ptz-tracking-auto-on"></span> again, the tracking function will stop. </p>
+            <p>A moving object or person can automatically be tracked in the live view. When you click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, the auto tracking function will be executed. When you click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-on"></span> again, the tracking function will stop. </p>
             <p>In addition, when you click the right mouse button on the image screen, the motion based clicked area will be analyzed, and then auto tracking will begin.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -409,7 +413,7 @@ class="tui tui-chi-live-ptz-areazoom-pre"></span>button if you wish to move back
         <div class="wn5-setup-section-article-content">
             <h3>How to select a split screen</h3>
             <p>Select a number for an individual video in the 4-split view. 1 is the top left of the 4-split view, 2 is the top right, 3 is the bottom left, and 4 is the bottom right view.</p>
-            <p><span class="tui tui-wn5-ptz-handle"></span> Click and drag the button to adjust the camera view. Click the <strong class="UI">[+]</strong> button on the zoom bar to zoom in the screen, and the <strong class="UI">[-]</strong> button to zoom out.</p>
+            <p>Click and drag the <span class="tui tui-wn5-ptz-handle"></span> icon to adjust the camera view. Click the <span class="tui tui-wn5-ptz-plus"></span> icon on the zoom bar to zoom in the screen, and the <span class="tui tui-wn5-ptz-minus"></span> icon to zoom out.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Preset</h3>

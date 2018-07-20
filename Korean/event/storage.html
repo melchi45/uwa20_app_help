@@ -16,7 +16,7 @@
             <ul>
                 <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
                 <li><strong class="UI">SD 카드</strong>: SD 카드의 사용 여부를 설정할 수 있습니다. SD 카드가 인식되면 사용 가능 용량, 전체 용량, 상태가 표시됩니다. SD 카드를 포맷하려면 <strong class="UI">[포맷]</strong> 버튼을 클릭합니다. </li>
-                <li><strong class="UI">NAS</strong>: NAS (Network Attached Storage)의 사용 여부를 설정할 수 있습니다. NAS에 연결되면 사용 가능 용량, 전체 용량, 상태가 표시됩니다. NAS 설정 상의 기본 폴더를 포맷하려면 <strong class="UI">[포맷]</strong> 버튼을 클릭합니다. </li>
+                <li ng-if="!NAS"><strong class="UI">NAS</strong>: NAS (Network Attached Storage)의 사용 여부를 설정할 수 있습니다. NAS에 연결되면 사용 가능 용량, 전체 용량, 상태가 표시됩니다. NAS 설정 상의 기본 폴더를 포맷하려면 <strong class="UI">[포맷]</strong> 버튼을 클릭합니다. </li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -65,7 +65,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>덮어쓰기</h3>
-            <p>SD 카드 또는 NAS의 덮어쓰기 기능 사용 여부를 설정합니다. 장치의 용량이 가득 찼을 때 가장 오래된 데이터를 지우고 새로운 데이터를 저장합니다. 장치의 용량이 가득 차면 장치 목록의 <strong class="UI">[상태]</strong>에 ‘가득 참’이라는 메시지가 표시됩니다. </p>
+            <p ng-if="!NAS">SD 카드 또는 NAS의 덮어쓰기 기능 사용 여부를 설정합니다. 장치의 용량이 가득 찼을 때 가장 오래된 데이터를 지우고 새로운 데이터를 저장합니다. 장치의 용량이 가득 차면 장치 목록의 <strong class="UI">[상태]</strong>에 ‘가득 참’이라는 메시지가 표시됩니다. </p>
+			            <p ng-if="NAS">SD 카드 덮어쓰기 기능 사용 여부를 설정합니다. 장치의 용량이 가득 찼을 때 가장 오래된 데이터를 지우고 새로운 데이터를 저장합니다. 장치의 용량이 가득 차면 장치 목록의 <strong class="UI">[상태]</strong>에 ‘가득 참’이라는 메시지가 표시됩니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>자동 삭제</h3>
@@ -109,8 +110,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!NAS">
+<div class="wn5-setup-section" ng-if="!NAS">
     <div class="wn5-setup-section-heading">
         <h2>NAS 연결 설정</h2>
     </div>

@@ -11,7 +11,8 @@
         <ul>
             <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
             <li><span class="tui tui-wn5-top-live"></span>(라이브): 카메라가 촬영 중인 라이브 화면을 확인하고 다양한 카메라 기능을 제어할 수 있습니다.</li>
-            <li ng-if="Recording"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드 또는 NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.  </li>
+            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드 또는&nbsp;NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
+            <li ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
             <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(설정): 카메라의 상세 설정을 변경할 수 있습니다.  </li>
         </ul>
     </div>
@@ -107,6 +108,13 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+                    <tr>
+                    <td width="235">렌즈 모델명</td>
+                    <td width="235">
+                        <p>카메라에 장착된 렌즈 모델 이름이 표시됩니다. <a href="#channel">채널 선택</a>에서 채널을 선택하면 채널별로 장착된 렌즈 이름을 확인할 수 있습니다. </p>
+                        <p>&nbsp;</p>
+                    </td>
+                    </tr>
                     <tr ng-if="MaxChannel > 1">
                     <td width="235">
                         <p><a href="#channel">채널 선택</a></p>
@@ -183,8 +191,7 @@
                     <tr ng-if="MaxAlarmOutput">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
-                            <p>알람 출력</p>
-                            <p>&nbsp;</p>
+                        <p>알람 출력</p>
                         </td>
                         <td width="235">
                             <p>원하는 알람 출력 번호를 클릭하면 이미 설정한 대로 알람을 출력합니다. 알람은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[이벤트]</strong>&gt;<strong class="UI">[알람 출력]</strong> 페이지에서 설정할 수 있습니다. 알람 출력 개수는 카메라마다 다릅니다.</p>
@@ -310,26 +317,25 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>카메라의 팬/틸트/줌 동작을 제어하거나 자동 추적 기능을 사용할 수 있습니다.  </p>
+            <p>카메라의 팬/틸트/줌 동작을 제어하거나 자동 추적 기능을 사용할 수 있습니다.</p>          
         </div>
-
         <div class="wn5-setup-section-article-content">
             <h3>줌 동작 제어하기</h3>
             <p>줌&nbsp;막대에서 <strong class="UI">[+]</strong> 버튼을 클릭하면 화면이 확대되고 <strong class="UI">[-]</strong> 버튼을 클릭하면 화면이 축소됩니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>팬/틸트 동작 제어하기</h3>
-            <p> 팬/틸트 영역에서 <span class="tui tui-wn5-ptz-handle"></span> 버튼을 클릭하여 카메라의 방향을 이동합니다. </p>
+            <p> 팬/틸트 영역에서 <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하여 카메라의 방향을 이동합니다. </p>
         </div>
 		          <div class="wn5-setup-section-article-content">
                         <h3>초점 조절하기</h3>
-            <p><span class="tui tui-wn5-ptz-near"></span>버튼이나 <span class="tui tui-wn5-ptz-far"></span>버튼을 클릭하여 카메라의 초점을 조절합니다.</p>
-            <p> 카메라 초점을 자동으로 한 번&nbsp;맞추려면 <span class="tui tui-wn5-simple-focus"></span>버튼을 클릭합니다.</p>
+            <p><span class="tui tui-wn5-ptz-near"></span>아이콘이나 <span class="tui tui-wn5-ptz-far"></span>아이콘을 클릭하여 카메라의 초점을 조절합니다.</p>
+            <p> 카메라 초점을 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>아이콘을 클릭합니다.</p>
         </div> 
 		<div class="wn5-setup-section-article-content">
             <h3>자동 추적</h3>
                      
-            <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>자동 추적 버튼을 클릭하면&nbsp;자동 추적 기능이 실행됩니다. 다시 한번 더 <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>자동 추적 버튼을 클릭하면 추적 기능이 중지됩니다. </p>
+            <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>자동 추적 아이콘을 클릭하면 자동 추적 기능이 실행되며 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>로 변경됩니다. 자동 추적 아이콘을 한 번 더 클릭하면 추적 기능이 중지됩니다. </p>
             <p>또한 영상 화면에서 마우스 오른쪽 버튼을 클릭하면 클릭한 영역을 중심으로 움직임을 분석한 후 자동 추적을 시작합니다.</p>
         </div>    
         <div class="wn5-setup-section-article-content">
@@ -347,9 +353,12 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <p>  </p>
             <p> 영역 줌 설정을 종료하려면 <span class="tui tui-chi-live-ptz-areazoom"></span>버튼을 한 번 더 클릭합니다. 현재 설정한 영역 줌은 그대로 유지되고 영역 줌 설정 기능은 종료됩니다.</p>
         </div>
+		        <div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1 && HandoverCalibration">
+		 <p><a href="#channel">채널 선택</a>에서 PTZ 채널을 선택한 경우에만 PTZ 탭이 활성화됩니다.</p>
+		  </div>
     </div>
 </div>
-
+	
 
 
 <hr class="wn5-setup-hr" ng-if="CamSpecialModel">
@@ -398,7 +407,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         <div class="wn5-setup-section-article-content">
             <h3>분할 화면 선택</h3>
             <p>4분할 뷰에서 개별 영상의 번호를 선택합니다. 1은 4분할 뷰의 왼쪽 상단, 2는 오른쪽 상단, 3은 왼쪽 하단, 4는 오른쪽 하단의 영상 뷰입니다. &nbsp;</p>
-            <p><span class="tui tui-wn5-ptz-handle"></span> 버튼을 클릭하고 드래그하여 카메라 영상&nbsp;뷰를 조정합니다. 줌&nbsp;막대에서 <strong class="UI">[+]</strong> 버튼을 클릭하면 화면이 확대되고 <strong class="UI">[-]</strong> 버튼을 클릭하면 화면이 축소됩니다.</p>
+            <p> 버튼을 클릭하고 드래그하여 카메라 영상&nbsp;뷰를 조정합니다. 줌&nbsp;막대에서 <strong class="UI">[+]</strong> 버튼을 클릭하면 화면이 확대되고 <strong class="UI">[-]</strong> 버튼을 클릭하면 화면이 축소됩니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>프리셋</h3>

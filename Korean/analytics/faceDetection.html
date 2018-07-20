@@ -49,10 +49,10 @@
             </div>
 			<div class="wn5-online-help-action">
             <h4>PTZ 조정하기</h4>
-            <p><strong class="UI"><a href="#channel">[채널 선택]</a></strong> 메뉴에서 <strong class="UI">[PTZ]</strong> 채널을 선택하면 PTZ 조그 패널이 나타납니다.</p>
+            <p><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택하면 PTZ 조그 패널이 나타납니다.</p>
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span>아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.    </li>
-                <li>줌 막대에서 <strong class="UI">[+]</strong> 버튼을 클릭하여 화면을 확대하거나 <strong class="UI">[-]</strong> 버튼을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
+                <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
                 <li><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
                 <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>버튼을 클릭합니다.</li>
             </ul>
@@ -127,7 +127,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>저장</h3>
-            <p>얼굴 감지 이벤트가 발생했을 때 SD 카드 또는 NAS에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
+            <p ng-if="!NAS">얼굴 감지 이벤트가 발생했을 때 SD 카드 또는 NAS에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
+            <p ng-if="NAS">얼굴 감지 이벤트가 발생했을 때 SD 카드에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>알람 출력</h3>
@@ -148,6 +149,7 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>프리셋 이동</h3>
                     <p>얼굴 감지 이벤트가 발생했을 때 카메라 위치를 미리 설정해 둔 위치로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ 설정]</strong></a>의 <strong class="UI">[프리셋] </strong>탭에서 설정할 수 있습니다.</p>
+                    <p><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 '프리셋 이동' 옵션이 나타납니다.</p>
         </div>
     </div>
 </div>

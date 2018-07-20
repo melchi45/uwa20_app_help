@@ -1,21 +1,18 @@
 ﻿<h1 class="wn5-setup-main-title">Video setup</h1>
-
 <div class="wn5-setup-section">
 	<p>You can set a privacy area on the camera image or mirror the image screen up, down, left or right. You can also set an analog image output or change the video output type. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2>Select channel</h2>
+        <h2><a name="channel"></a>Select channel</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>After selecting your camera channel, you can set the details of Video for each channel. </p>
         </div>
 	</div>
-</div> 
-<hr class="wn5-setup-hr">
-
+</div> <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>Privacy area</h2>
@@ -32,7 +29,7 @@
 			<p>Select the mosaic pattern which you prefer to apply to the privacy area. If <strong class="UI">[Solid]</strong> is set, the color set from the privacy area window will apply. When you select a pattern, it applies to all privacy areas equally.</p>
 		</div>
 		<div class="wn5-online-help-action">
-			<h4>Setting a privacy area</h4>
+			<h4>Setting a privacy area (for fixed channel)</h4>
 			<ol>
 			<li>Select <strong class="UI">[Enable Privacy area]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page. </li>
 				<li>Click the 4 edges of the camera image screen with the mouse. The privacy area window will appear.</li>
@@ -40,13 +37,25 @@
 				<li>The new privacy area will be added to the privacy area list. The privacy area is displayed in the set color on the camera image screen.</li>
 			</ol>
 		</div>
-		<div class="wn5-online-help-info">
-			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-			<ul><li>Only English letters, numbers, dash (-) and period (.) can be entered for the name of a privacy area. </li>
-
-			</ul>
-		</div>
-
+		
+        <div class="wn5-online-help-action">
+			<h4>Setting a privacy area (for PTZ channel)</h4>
+            <ol>
+                <li>Select <strong class="UI">[Enable Privacy area]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page.  </li>
+                <li>Drag the&nbsp;mouse to set the privacy area on the camera image screen. The privacy area window will appear.</li>
+                <li>Adjust the privacy area by dragging the <span class="tui tui-wn5-ptz-handle"></span> icon with the mouse&nbsp;if desired.      </li>
+                <li>Enter the name of the privacy area in <strong class="UI">[Name]</strong>, select the color to cover the image in <strong class="UI">[Color]</strong>.    </li>
+                <li>Select the option for&nbsp;<strong class="UI">[Zoom threshold]</strong> and&nbsp;click the <strong class="UI">[OK]</strong> button. The privacy area will appear only when you zoom in more than you set in the [Set zoom threshold] window.  </li>
+                <li>If 'Zoom threshold' is set to 'On' in step 5, <strong class="UI">[Set zoom threshold]</strong> window will appear. Ajust the zoom to the desired magnification and click the <strong class="UI">[OK]</strong> button. The privacy area will appear only when you zoom in more than you set in the [Set zoom threshold] window.  </li>
+                <li>The new privacy area&nbsp;name will be added to the privacy area&nbsp;list. Privacy area&nbsp;that apply 'zoom threshold function' is&nbsp;shown with [ZOOM] following the name.The privacy area is displayed in the set color on the camera image screen.</li>
+            </ol>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>Only English letters, numbers, dash (-) and period (.) can be entered for the name of a privacy area.  </li>
+            </ul>
+        </div>
 
 		<div class="wn5-online-help-action">
 			<h4>Deleting a privacy area</h4>
@@ -54,11 +63,20 @@
 				<li>Click the <strong class="UI">[Delete]</strong> button. The selected area will be deleted.</li>
 			</ol>
 		</div>
+		        <div class="wn5-online-help-action">
+            <h4>Adjusting the PTZ</h4>
+            <p>You can adjust the pan, tile, and zoom actions of the camera. When you click <strong class="UI">[PTZ]</strong> in the <a href="#channel">Select channel</a> menu, the PTZ jog panel displays for camera PTZ adjustment.</p>
+            <ul>
+                <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span> icon with the mouse, the camera moves to the pan and tilt.</li>
+                <li>Select an image magnification by adjusting the zoom slide bar, or by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out.</li>
+                <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+                <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
+                <li>After pointing the center of the camera view to the north and clicking the <span class="tui tui-wn5-north"></span> (Set North) button, the corresponding orientation will be saved as north.</li>
+            </ul>
+        </div>
 	</div>
 </div>
-
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>Video rotation</h2>

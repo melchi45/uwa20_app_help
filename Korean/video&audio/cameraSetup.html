@@ -7,7 +7,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2>채널 선택</h2>
+        <h2><a name="channel"></a>채널 선택</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -28,14 +28,15 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다. </p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만&nbsp;PTZ 조그 패널이 나타납니다.</p>
         </div>
 			
         <div class="wn5-online-help-action">
     	   <h4>PTZ 조정하기</h4>
             <ul>
-                <li><span class="tui tui-wn5-ptz-handle"></span>아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.  </li>
-                <li>줌 막대에서 <span class="tui tui-wn5-ptz-plus"></span>  아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
-                <li><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
+                <li><span class="tui tui-wn5-ptz-handle"></span> 아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.  </li>
+                <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
+                <li><span class="tui tui-wn5-ptz-near"></span> 아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
                 <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>아이콘을 클릭합니다.</li>
                 <li>북쪽으로 설정하려는 방향에 화면 중앙을 위치시킨 후 <span class="tui tui-wn5-north"></span> (북쪽 설정)버튼을 클릭하면, 해당 위치를 북쪽으로 변경합니다.</li>
             </ul>
@@ -49,7 +50,9 @@
 	</div>	
 	    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>모든 프리셋에 동일한 IVA(지능형 영상 분석)을 설정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 IVA(지능형 영상 분석)을 설정하려면 <strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다.</p>
+            <p>모든 프리셋에 동일한 카메라 설정을 지정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 다르게&nbsp;설정하려면 <strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 카메라 설정을 지정하는 경우, 세부 카메라
+설정 항목 중 일부 기능은&nbsp;설정할 수 없습니다.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 &nbsp;<strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만&nbsp;'타입' 기능을 설정할 수 있습니다.</p>
         </div>
 </div>
 </div>

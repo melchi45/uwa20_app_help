@@ -9,7 +9,7 @@
         <p>单击顶部的按钮，可在实时屏幕、播放屏幕或设置屏幕之间进行切换</p>
         <ul>           <li><span class="tui tui-wn5-top-live"></span>（实时）：查看摄像机捕捉的实时图像，并控制摄像机的各种功能。</li>
             <li ng-if="Recording"><span class="tui tui-wn5-top-playback"></span>（播放）：搜索并播放 SD 卡或 NAS 录制的图像。    </li>
-            <li><span class="tui tui-wn5-top-setup"></span>（设置）：更改摄像机设置。</li>
+            <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>（设置）：更改摄像机设置。</li>
         </ul>
     </div>
 		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
@@ -235,7 +235,7 @@
 
        <!--  <p ng-if="FisheyeLens">通过Internet Explorer连接web查看器时，安装插件后才能显示配置文件的视频，但MJPEG编解码器除外。安装插件时，请点击右上方的插件。</p> -->
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="IsAdmin">
             <h3>显示 </h3>
             <p>设置监视屏幕的对比度、亮度、锐利度以及色彩级别；输入设置时，该设置将立刻应用至监控屏幕中。</p>
         </div>
