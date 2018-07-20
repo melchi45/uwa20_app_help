@@ -221,7 +221,7 @@
             <p><strong class="UI">[라이브]</strong> 화면의 마이크와 스피커 기능을 사용하려면 <strong class="UI">[오디오 입력]</strong>을 <strong class="UI">[사용]</strong>으로 선택해야 합니다.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>ATC 모드</h3>
             <p>ATC(Auto Transmit Control) 모드는 네트워크 대역폭 변화량에 따라 영상의 속성을 변경하여 전송량을 조절합니다. 전송량의 조절 방법은 ATC 모드에 따라 다릅니다.
             </p>
@@ -235,13 +235,13 @@
             </ul>
         </div>
             
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>민감도</h3>
             <p>네트워크 대역폭 변화량의 반영 속도를 조절합니다. ATC 민감도가 매우 높음일 때 반영 속도가 가장 빠르며, 매우 낮음일 때 반영 속도가 가장 느립니다. </p>
             <p>ATC 민감도는 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 - 프레임 레이트 조정]</strong>, <strong class="UI">[사용 - 압축 조정]</strong>으로 선택할 때만 활성화됩니다.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>제한</h3>
             <p>네트워크 대역폭 변화량에 따라 영상의 속성을 변경할 때, 어느 정도까지만 속성을 변경할 지 ATC 모드 한계값을 설정합니다. ATC 모드를 사용하지 않았을 때를 100%로 가정할 때, 10~50%으로 값을 설정할 수 있으며, 설정된 값 이하로는 속성이 변경되지 않습니다. </p>
             <p>ATC 제한은 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 - 프레임 레이트 조정]</strong>, <strong class="UI">[사용 - 압축 조정]</strong>으로 선택할 때만 활성화됩니다.</p>
