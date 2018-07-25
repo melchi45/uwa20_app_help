@@ -34,8 +34,8 @@
             <h4>Tipo  </h4>
             <p>Seleccione el tipo de entrada de alarma.</p>
             <ul>
-                <li><strong class="UI">Normal abierto</strong>: El sensor de entrada de alarma est&aacute; abierto de forma predeterminada; cuando est&aacute; cerrado, se crea un evento de entrada de alarma.</li>
-                <li><strong class="UI">Normal cerrado</strong>: El sensor de entrada de alarma est&aacute; cerrado de forma predeterminada y cuando est&aacute; abierto, se crea un evento de entrada de alarma.</li>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">Normal abierto</strong>: El sensor de entrada de alarma est&aacute; abierto de forma predeterminada; cuando est&aacute; cerrado, se crea un evento de entrada de alarma.</li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">Normal cerrado</strong>: El sensor de entrada de alarma est&aacute; cerrado de forma predeterminada y cuando est&aacute; abierto, se crea un evento de entrada de alarma.</li>
             </ul>
         </div>
     </div>
@@ -62,7 +62,8 @@
         </div>
         <div class="wn5-setup-section-article-content"  ng-if="Recording">
             <h4>Grabar</h4>
-            <p>Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento de entrada de alarma, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+            <p ng-if="!NAS">Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento de entrada de alarma, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+            <p ng-if="NAS"> Para guardar una imagen en una tarjeta SD cuando se crea un evento de entrada de alarma, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h4>Salida de alarma</h4>

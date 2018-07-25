@@ -34,8 +34,7 @@
 		
         <div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>타입</h3>
-            <p>모든 프리셋에 동일한 움직임 감지를 설정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 움직임 감지를 설정하려면<strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 움직임 감지 설정을 지정하는 경우, 세부
-설정 항목 중 일부 기능은&nbsp;설정할 수 없습니다. </p>
+            <p>모든 프리셋에 동일한 움직임 감지를 설정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 움직임 감지를 설정하려면<strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 움직임 감지 설정을 지정하는 경우, 세부 설정 항목 중 일부 기능은&nbsp;설정할 수 없습니다. </p>
             <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만&nbsp;'타입' 기능을 설정할 수 있습니다.</p>
         </div>
 
@@ -80,7 +79,7 @@
             <h4>관심 영역 삭제하기</h4>
 			<p>관심 영역을 삭제하려면 화면에서 해당 영역에 마우스 오른쪽 버튼을 클릭한 후 삭제 확인 창에서 <strong class="UI">[확인]</strong> 버튼을 클릭합니다.</p>
         </div>
-        <div class="wn5-online-help-action">
+        <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>PTZ 조정하기</h4>
             <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택하면 PTZ 조그 패널이 나타납니다.</p>
             <ul>
@@ -114,8 +113,8 @@
             <p>핸드오버는 고정 카메라에서 움직임 감지&nbsp;이벤트가 발생하면 PTZ 카메라가 해당 화면 영역이나&nbsp;미리 설정한 프리셋 위치로 이동하는 기능입니다</p>
             <ul>
                 <li><strong class="UI">사용 안 함</strong>: 핸드오버 기능을 사용하지 않습니다.</li>
-                <li><strong class="UI">스마트줌</strong>: 관심 영역에서 움직임 감지 이벤트가 발생하면, PTZ 카메라가 관심 영역으로 이동하여 관심 영역 중앙 위치를 중심으로 영상을 확대하여 보여줍니다.&nbsp;고정 카메라와 PTZ 카메라가 연동할 수 있도록 영상 화면 좌표값은 미리 설정해 두어야 하며, <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[캘리브레이션]</strong> 메뉴에서 설정할 수 있습니다.</li>
-                <li><strong class="UI">핸드오버 번호</strong>: 관심 영역에서 움직임 감지 이벤트가 발생하면, PTZ 카메라가 프리셋 위치로 이동합니다. 프리셋 정보를 가진 핸드오버&nbsp;번호를 리스트 목록에서 선택합니다. 리스트 목록은&nbsp;<strong class="UI">[이벤트]</strong> &gt; <strong class="UI">[핸드오버]</strong> 메뉴에서 추가하거나 변경할 수 있습니다. </li>
+                <li><strong class="UI">스마트줌</strong>: 관심 영역에서 움직임 감지 이벤트가 발생하면, PTZ 카메라가 관심 영역으로 이동하여 관심 영역 중앙 위치를 중심으로 영상을 확대하여 보여줍니다. 고정 카메라와 PTZ 카메라가 연동할 수 있도록 영상 화면 좌표값은 미리 설정해 두어야 하며, <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[캘리브레이션]</strong> 메뉴에서 설정할 수 있습니다.</li>
+                <li><strong class="UI">핸드오버 번호</strong>: 관심 영역에서 움직임 감지 이벤트가 발생하면, PTZ 카메라가 프리셋 위치로 이동합니다. 프리셋 정보를 가진 핸드오버 번호를 리스트 목록에서 선택합니다. 리스트 목록은&nbsp;<strong class="UI">[이벤트]</strong> &gt; <strong class="UI">[핸드오버]</strong> 메뉴에서 추가하거나 변경할 수 있습니다. </li>
             </ul>
         </div>
         <div class="wn5-online-help-info" ng-if="HandoverCalibration">
@@ -123,7 +122,7 @@
             <ul>
                 
                 <li>관심 영역 별로 핸드오버 기능을 설정할 수 있으며, 핸드오버 기능은 관심 영역을 먼저 설정한 후 사용할 수 있습니다.</li>
-                <li><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 고정 카메라 채널을 선택한 경우에만 '핸드오버' 메뉴가 나타납니다. PTZ 채널을 선택하면 해당 메뉴가 보이지 않습니다.</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 고정 카메라 채널을 선택한 경우에만 '핸드오버' 메뉴가 나타납니다. PTZ 채널을 선택하면 해당 메뉴가 보이지 않습니다.</li>
             </ul>
         </div>
 		
@@ -239,13 +238,11 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>알람 출력</h3>
-            <p>움직임 감지 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다.&nbsp;알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
-ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다.</p>
+            <p>움직임 감지 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다.&nbsp;알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다.</p>
         </div>
          <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
             <h3>프리셋 이동</h3>
-                    <p>움직임 감지 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 프리셋 번호로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[디지털 PTZ]</strong></a>나 <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[외부 PTZ]</a></strong>의 <strong class="UI">[프리셋]</strong>에서
-설정할 수 있습니다. </p>
+                    <p>움직임 감지 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 프리셋 번호로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[디지털 PTZ]</strong></a>나 <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[외부 PTZ]</a></strong>의 <strong class="UI">[프리셋]</strong>에서 설정할 수 있습니다. </p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">

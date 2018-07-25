@@ -11,13 +11,13 @@
         <ul>
             <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
             <li><span class="tui tui-wn5-top-live"></span>(라이브): 카메라가 촬영 중인 라이브 화면을 확인하고 다양한 카메라 기능을 제어할 수 있습니다.</li>
-            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드 또는&nbsp;NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
+            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드 또는 NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
             <li ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
             <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(설정): 카메라의 상세 설정을 변경할 수 있습니다.  </li>
         </ul>
     </div>
 
-		<div class="wn5-online-help-info" ng-if=!CamSpecialModel">
+		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
 				<li>Chrome으로 웹뷰어에 접속하면 재생 화면의 기능을 가장 안정적으로 사용할 수 있습니다.</li>
@@ -108,7 +108,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-if="LensModelViewOptions">
                     <td width="235">렌즈 모델명</td>
                     <td width="235">
                         <p>카메라에 장착된 렌즈 모델 이름이 표시됩니다. <a href="#channel">채널 선택</a>에서 채널을 선택하면 채널별로 장착된 렌즈 이름을 확인할 수 있습니다. </p>
@@ -317,8 +317,9 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>카메라의 팬/틸트/줌 동작을 제어하거나 자동 추적 기능을 사용할 수 있습니다.</p>          
-        </div>
+            <p>카메라의 팬/틸트/줌 동작을 제어하거나 자동 추적 기능을 사용할 수 있습니다.</p>     
+		     <p ng-if="MaxChannel > 1 && HandoverCalibration"><a href="#channel">채널 선택</a>에서 PTZ 채널을 선택한 경우에만 PTZ 탭이 활성화됩니다.</p>
+		  </div>
         <div class="wn5-setup-section-article-content">
             <h3>줌 동작 제어하기</h3>
             <p>줌&nbsp;막대에서 <strong class="UI">[+]</strong> 버튼을 클릭하면 화면이 확대되고 <strong class="UI">[-]</strong> 버튼을 클릭하면 화면이 축소됩니다.</p>
@@ -353,9 +354,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <p>  </p>
             <p> 영역 줌 설정을 종료하려면 <span class="tui tui-chi-live-ptz-areazoom"></span>버튼을 한 번 더 클릭합니다. 현재 설정한 영역 줌은 그대로 유지되고 영역 줌 설정 기능은 종료됩니다.</p>
         </div>
-		        <div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1 && HandoverCalibration">
-		 <p><a href="#channel">채널 선택</a>에서 PTZ 채널을 선택한 경우에만 PTZ 탭이 활성화됩니다.</p>
-		  </div>
+
     </div>
 </div>
 	

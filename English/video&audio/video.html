@@ -63,7 +63,7 @@
 				<li>Click the <strong class="UI">[Delete]</strong> button. The selected area will be deleted.</li>
 			</ol>
 		</div>
-		        <div class="wn5-online-help-action">
+		        <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>Adjusting the PTZ</h4>
             <p>You can adjust the pan, tile, and zoom actions of the camera. When you click <strong class="UI">[PTZ]</strong> in the <a href="#channel">Select channel</a> menu, the PTZ jog panel displays for camera PTZ adjustment.</p>
             <ul>
@@ -71,7 +71,6 @@
                 <li>Select an image magnification by adjusting the zoom slide bar, or by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out.</li>
                 <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
                 <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
-                <li>After pointing the center of the camera view to the north and clicking the <span class="tui tui-wn5-north"></span> (Set North) button, the corresponding orientation will be saved as north.</li>
             </ul>
         </div>
 	</div>
@@ -155,11 +154,11 @@
 			<h3>Video output type</h3>
 			<p>Select the analog video output type. You can select either <strong class="UI">[NTSC]</strong> or <strong class="UI">[PAL]</strong> as the video output type.</p>
 
-					<div class="wn5-setup-section-article-content">
+				
 			<ul><li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) is the standard for color television in the U.S. It operates at 30 frames per second with 525 horizontal scanning lines. The number of frames per second is large so that the screen can display naturally. This type is mainly used in the U.S., Japan and Canada.</li>
 				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) originated in Germany, and while it is similar to NTSC, there is a difference in the method it uses to handle color signals. This type is used mainly in Europe. Although this type has a smaller number of frames per second in comparison to NTSC, it has a larger number of horizontal scanning lines (625) and less color deformation; it does not require advanced specifications for broadcasting equipment. </li>
 			</ul>
-		</div>
+
 		</div>
 
 	</div>

@@ -202,7 +202,8 @@
             <ul>
                 <li><strong class="UI">Default profile</strong>: This is the default profile applied for streaming a live camera image. ‘Default’ is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>: This video profile is used for sending the captured screen of an image when an event is created. ‘Event’ is displayed in <strong class="UI">[Type]</strong> in the profile list. The E-mail/FTP profile option will appear only when MJPEG is set for the codec.</li>
-                <li ng-if="Recording"><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card or NAS. ‘Record’ is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card or NAS. ‘Record’ is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
+                <li ng-if="Recording && NAS"><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card. ‘Record’ is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li ng-if="DPTZSetupPage"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. ‘DPTZ’ is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
                 <li ng-if="FisheyeLens" style="list-style-image:url('');">For the fisheye camera, when adding a new profile, select <strong class="UI">[Dewarping view]</strong> in <strong class="UI">[Fisheye view type]</strong> and select <strong class="UI">[Quad view]</strong> in <strong class="UI">[View]</strong> to automatically register the profile as a digital PTZ profile.
                                </li></ul>
@@ -213,7 +214,7 @@
             <p>To use the Microphone and Speaker functions on the monitoring page, <strong class="UI">[Enable]</strong> should be selected for <strong class="UI">[Audio in]</strong>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>ATC mode</h3>
             <p>The ATC (Auto Transmit Control) mode adjusts the amount of data sent, by changing the properties of the image according to network bandwidth changes. The adjustment method for the sent amount varies according to the ATC mode.</p>
             <ul>
@@ -224,13 +225,13 @@
             </ul>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>Sensitivity</h3>
             <p>Adjust the reflection speed of network bandwidth changes. The reflection speed is fastest when the ATC sensitivity is very high, while the reflection speed is the slowest when it is very low. </p>
             <p>ATC sensitivity is activated only when <strong class="UI">[Enable - Control frame rate]</strong> or <strong class="UI">[Enable - Control compression]</strong> is selected for <strong class="UI">[ATC mode]</strong>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>Limit</h3>
             <p>When changing the properties of the image according to network bandwidth changes, set the ATC mode limit to a particular degree for changing the properties. Assuming 100% as the situation when not using ATC mode, the value can be set between 10~50%; the properties will not change below this setting. </p>
             <p>ATC limit is activated only when <strong class="UI">[Enable - Control frame rate]</strong> or <strong class="UI">[Enable - Control compression]</strong> is selected for <strong class="UI">[ATC mode]</strong>.</p>

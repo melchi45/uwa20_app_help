@@ -21,7 +21,7 @@
 
 <hr class="wn5-setup-hr">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>PTZ 조정하기</h2>
     </div>
@@ -31,7 +31,7 @@
             <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만&nbsp;PTZ 조그 패널이 나타납니다.</p>
         </div>
 			
-        <div class="wn5-online-help-action">
+        <div class="wn5-online-help-action" >
     	   <h4>PTZ 조정하기</h4>
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span> 아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.  </li>

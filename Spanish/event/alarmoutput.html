@@ -29,8 +29,8 @@
             <h3>Tipo  </h3>
             <p>Selecciona el tipo de salida de alarma. </p>
             <ul>
-                <li><strong class="UI">Normal abierto</strong>: El sensor de salida de alarma est&aacute; abierto por defecto y cuando est&aacute; cerrado, se emite una alarma.  </li>
-                <li><strong class="UI">Normal cerrado</strong>: El sensor de salida de alarma est&aacute; cerrado de forma predeterminada y cuando est&aacute; abierto, se emite una alarma.</li>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">Normal abierto</strong>: El sensor de salida de alarma est&aacute; abierto por defecto y cuando est&aacute; cerrado, se emite una alarma.  </li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">Normal cerrado</strong>: El sensor de salida de alarma est&aacute; cerrado de forma predeterminada y cuando est&aacute; abierto, se emite una alarma.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">

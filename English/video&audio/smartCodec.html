@@ -27,7 +27,7 @@
 		<div class="wn5-setup-section-article-content">
 			<p>The user can set the area on the camera image screen. When you click and drag on the screen with the mouse, a square-shaped area will be created. 5 areas can be set, but overlapping is not allowed. When you click the <strong class="UI">[Clear]</strong> button, all set areas will be deleted.</p>
 		</div>
-        <div class="wn5-online-help-action">
+        <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>Adjusting the PTZ</h4>
             <p>You can adjust the pan, tile, and zoom actions of the camera. When you click <strong class="UI">[PTZ]</strong> in the <a href="#channel">Select channel</a> menu, the PTZ jog panel displays for camera PTZ adjustment.</p>
             <ul>
@@ -35,7 +35,6 @@
                 <li>Select an image magnification by adjusting the zoom slide bar, or by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out.</li>
                 <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
                 <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
-                <li>After pointing the center of the camera view to the north and clicking the <span class="tui tui-wn5-north"></span> (Set North) button, the corresponding orientation will be saved as north.</li>
             </ul>
         </div>
 		<div class="wn5-online-help-info">

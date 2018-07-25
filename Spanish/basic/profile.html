@@ -237,7 +237,7 @@
             <p>Para utilizar las funciones de Micr&oacute;fono y Altavoz en la p&aacute;gina de monitoreo, <strong class="UI">[Activar]</strong> debe estar seleccionado para <strong class="UI">[Entrada de audio]</strong>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>Modo ATC</h3>
             <p>El modo ATC (Control autom&aacute;tico de Transmisi&oacute;n) ajusta la cantidad de bit de datos enviados, mediante el cambio de las propiedades de la imagen de acuerdo a los cambios de ancho de banda de la red. El m&eacute;todo de ajuste para la cantidad enviada var&iacute;a seg&uacute;n el modo ATC.</p>
             <ul>
@@ -248,13 +248,13 @@
             </ul>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>Sensibilidad</h3>
             <p>Ajuste la velocidad de reflejo de los cambios de ancho de banda de red. La velocidad de la reflexi&oacute;n es m&aacute;s r&aacute;pida cuando la sensibilidad ATC es muy alta, mientras que la velocidad de reflexi&oacute;n es m&aacute;s lenta cuando es muy baja. </p>
             <p>Sensibilidad ATC se activa s&oacute;lo cuando <strong class="UI">[Act. - Controlar velocidad de cuadro]</strong> o <strong class="UI">[Act. - Controlar compresi&oacute;n]</strong> se selecciona para <strong class="UI">[Modo ATC]</strong>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>L&iacute;mite</h3>
             <p>Al cambiar las propiedades de la imagen de acuerdo a los cambios de ancho de banda de red, configure el l&iacute;mite del modo ATC hasta un grado particular para cambiar las propiedades. Asumiendo el 100% como la situaci&oacute;n cuando no se usa el modo ATC, el valor se puede ajustar entre 10~50%; las propiedades no cambiar&aacute;n por debajo de este valor. </p>
             <p>El l&iacute;mite ATC se activa s&oacute;lo cuando <strong class="UI">[Act. - Controlar velocidad de cuadro]</strong> o <strong class="UI">[Act. - Controlar compresi&oacute;n]</strong> se selecciona para <strong class="UI">[Modo ATC]</strong>.</p>

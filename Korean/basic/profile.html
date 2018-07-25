@@ -205,12 +205,10 @@
             <p>적용할 프로파일 타입을 선택합니다. 선택한 프로파일 타입은 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 표시됩니다. 선택한 코덱 타입에 따라 표시되는 설정 항목이 다를 수 있습니다.</p>
 
             <ul>
-                <li><strong class="UI">기본 프로파일</strong>: 카메라의 영상을 라이브로 스트림할 때 적용되는 기본 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong>에 ‘Default’로 표시됩니다.    
-                                        </li>
-                <li><strong class="UI">이메일/FTP 프로파일</strong>: 이벤트가 발생하면 영상의 캡처 화면을 이메일과 FTP 서버로 전송하는데 이 때 사용하는 비디오 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Event’로 표시됩니다. 코덱을 MJPEG으로 설정한 경우에만 이메일/FTP 프로파일 옵션이 나타납니다.                 
-                                        </li>
-                <li ng-if="Recording"><strong class="UI">저장 프로파일</strong>: SD 카드나&nbsp;NAS와 같은&nbsp;저장 장치에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.
-                                        </li>
+                <li><strong class="UI">기본 프로파일</strong>: 카메라의 영상을 라이브로 스트림할 때 적용되는 기본 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong>에 ‘Default’로 표시됩니다.</li>
+                <li><strong class="UI">이메일/FTP 프로파일</strong>: 이벤트가 발생하면 영상의 캡처 화면을 이메일과 FTP 서버로 전송하는데 이 때 사용하는 비디오 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Event’로 표시됩니다. 코덱을 MJPEG으로 설정한 경우에만 이메일/FTP 프로파일 옵션이 나타납니다.</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">저장 프로파일</strong>: SD 카드나 NAS에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
+                <li ng-if="Recording && NAS"><strong class="UI">저장 프로파일</strong>: SD 카드에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
                 <li ng-if="DPTZSetupPage"><strong class="UI">디지털 PTZ 프로파일</strong>: PTZ 움직임을 디지털로 제어할 때 사용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘DPTZ’로 표시됩니다. 코덱을 H.264 혹은 H.265로 설정한 경우에만 디지털 PTZ 프로파일 옵션이 나타납니다.</li>
                 <li ng-if="FisheyeLens" style="list-style-image:url('');">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다. 
                 </li>

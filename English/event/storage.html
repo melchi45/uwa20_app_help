@@ -13,8 +13,9 @@
         <div class="wn5-setup-section-article-content">
             <p>Selecting a recording device and selecting <strong class="UI">[On]</strong> allows you to change the setting for the relevant device.</p>
             <p>If data is being recorded on the device, &lsquo;Recording&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. When &lsquo;Error&rsquo; is displayed in <strong class="UI">[Status]</strong>, check if the recording device is connected properly. When <strong class="UI">[On]</strong> is set for an SD card and NAS at the same time, NAS is processed by priority.</p>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">SD</strong>: You can set whether or not to use an SD card. When an SD card is recognized, the free space, total capacity and status are displayed. To format the SD card, click the <strong class="UI">[Format]</strong> button. </li>
-                <li><strong class="UI">NAS</strong>: You can set whether or not to use NAS (Network Attached Storage). When a connection to NAS is established, the free space, total capacity and status are displayed. To format the default folder on NAS, click the <strong class="UI">[Format]</strong> button. </li>
+            <ul>
+                <li><strong class="UI">SD</strong>: You can set whether or not to use an SD card. When an SD card is recognized, the free space, total capacity and status are displayed. To format the SD card, click the <strong class="UI">[Format]</strong> button. </li>
+                <li ng-if="NAS"><strong class="UI">NAS</strong>: You can set whether or not to use NAS (Network Attached Storage). When a connection to NAS is established, the free space, total capacity and status are displayed. To format the default folder on NAS, click the <strong class="UI">[Format]</strong> button. </li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -59,7 +60,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Overwrite</h3>
-            <p>Sets whether or not to use the overwrite function of an SD card or NAS. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying &lsquo;Full&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
+            <p ng-if="!NAS">Sets whether or not to use the overwrite function of an SD card or NAS. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying &lsquo;Full&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
+            <p> ng-if="NAS"Sets whether or not to use the overwrite function of an SD card. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying &lsquo;Full&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Auto delete</h3>
@@ -69,7 +71,7 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>When &lsquo;Error&rsquo; is displayed in <strong class="UI"> [Status]</strong> in the device list, check whether the recording device is connected properly, whether the file system of the recording device is damaged or not, and whether the recording device is physically damaged. If the &lsquo;Error&rsquo; message persists after checking the recording device, format or replace the device.</li>
-                <li>Recording may not be possible due to temporary network disconnection when NAS is used, so it is recommended to use an SD card also.</li>
+                <li ng-if="NAS">Recording may not be possible due to temporary network disconnection when NAS is used, so it is recommended to use an SD card also.</li>
                 <li>When resolution, bit rate and frame rate are set at high, the amount of image data also increases. If the amount of data increases, a frame skip may occur even if set to full frame. When a frame skip occurs, an image is recorded at a minimum rate of one image per second. </li>
             </ul>
         </div>
@@ -100,9 +102,9 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
+<hr class="wn5-setup-hr" ng-if="NAS">
+<div class="wn5-setup-section" ng-if="NAS">
+    <div class="wn5-setup-section-heading" >
         <h2>NAS connection setup</h2>
     </div>
     <div class="wn5-setup-section-article">
