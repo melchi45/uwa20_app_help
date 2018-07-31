@@ -12,7 +12,8 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Selecting a recording device and selecting <strong class="UI">[On]</strong> allows you to change the setting for the relevant device.</p>
-            <p>If data is being recorded on the device, &lsquo;Recording&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. When &lsquo;Error&rsquo; is displayed in <strong class="UI">[Status]</strong>, check if the recording device is connected properly. When <strong class="UI">[On]</strong> is set for an SD card and NAS at the same time, NAS is processed by priority.</p>
+            <p>If data is being recorded on the device, &lsquo;Recording&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. When &lsquo;Error&rsquo; is displayed in <strong class="UI">[Status]</strong>, check if the recording device is connected properly. </p> 
+            <p ng-if="NAS">When <strong class="UI">[On]</strong> is set for an SD card and NAS at the same time, NAS is processed by priority.</p>
             <ul>
                 <li><strong class="UI">SD</strong>: You can set whether or not to use an SD card. When an SD card is recognized, the free space, total capacity and status are displayed. To format the SD card, click the <strong class="UI">[Format]</strong> button. </li>
                 <li ng-if="NAS"><strong class="UI">NAS</strong>: You can set whether or not to use NAS (Network Attached Storage). When a connection to NAS is established, the free space, total capacity and status are displayed. To format the default folder on NAS, click the <strong class="UI">[Format]</strong> button. </li>
@@ -60,8 +61,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Overwrite</h3>
-            <p ng-if="!NAS">Sets whether or not to use the overwrite function of an SD card or NAS. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying &lsquo;Full&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
-            <p> ng-if="NAS"Sets whether or not to use the overwrite function of an SD card. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying &lsquo;Full&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
+            <p ng-if="NAS">Sets whether or not to use the overwrite function of an SD card or NAS. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying &lsquo;Full&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
+            <p ng-if="!NAS">Sets whether or not to use the overwrite function of an SD card. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying &lsquo;Full&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Auto delete</h3>
@@ -125,7 +126,7 @@
             <h3>Password</h3>
             <p>Enter the password for the account registered on NAS. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content">        
             <h3>Default folder</h3>
             <p>Designate the default folder where NAS will record image data. </p>
         </div>

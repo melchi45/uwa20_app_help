@@ -9,7 +9,8 @@
     <p>You can move to the live screen, playback screen or setup screen by clicking the buttons at the top.</p>
         <ul>
             <li><span class="tui tui-wn5-top-live"></span>(Live): Check the live screen to view what is being captured by the camera and control a variety of camera features.</li>
-            <li ng-if="Recording"><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card or NAS.  </li>
+            <li ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card or NAS.  </li>
+            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card.  </li>
             <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(Setup): Change the camera settings.  </li>
         </ul>
     </div>
@@ -85,9 +86,10 @@
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
                             <p>&nbsp;</p>
                         </td>
-                        <td width="235">
-                           <p>You can control the pen/tilt/zoom motions of the camera. You can move to the preset location set on the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ setup]</strong> page or start/stop the swing, group, tour, and tracking functions. </p>
-                        </td>
+                    <td width="235">
+                        <p>You can control the pen/tilt/zoom motions of the camera. You can move to the preset location set on the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ setup]</strong> page or start/stop the swing, group, tour, and tracking functions. </p>
+                        <p ng-if="MaxChannel > 1 && HandoverCalibration">PTZ icon is displayed only when you select [PTZ] in the <a href="#channel">Select channel</a> section.</p>
+                    </td>
                     </tr>
 
         <tr ng-if="FisheyeLens">
@@ -300,6 +302,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>You can control the Pan/Tilt/Zoom motions of the camera or use the auto tracking function.  </p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">PTZ function is activated only when you select [PTZ] in the <a href="#channel">Select channel</a> section.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">

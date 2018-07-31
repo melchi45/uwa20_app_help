@@ -12,9 +12,10 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Seleccionar un dispositivo de grabaci&oacute;n y seleccionar <strong class="UI">[Act]</strong> le permite cambiar la configuraci&oacute;n para el dispositivo correspondiente.</p>
-            <p>Si se est&aacute;n grabando bit de datos en el dispositivo, &apos;Grabando&apos; se muestra en <strong class="UI">[Estado]</strong> en la lista de dispositivos. Cuando se muestra &apos;Error&apos; en <strong class="UI">[Estado]</strong>, verifique si el dispositivo de grabaci&oacute;n est&aacute; conectado correctamente. Cuando <strong class="UI">[Act]</strong> est&aacute; configurado para una tarjeta SD y NAS, al mismo tiempo, NAS es procesada por prioridad.</p>
+            <p>Si se est&aacute;n grabando bit de datos en el dispositivo, &apos;Grabando&apos; se muestra en <strong class="UI">[Estado]</strong> en la lista de dispositivos. Cuando se muestra &apos;Error&apos; en <strong class="UI">[Estado]</strong>, verifique si el dispositivo de grabaci&oacute;n est&aacute; conectado correctamente.</p>
+            <p ng-if="NAS">Cuando <strong class="UI">[Act]</strong> est&aacute; configurado para una tarjeta SD y NAS, al mismo tiempo, NAS es procesada por prioridad.</p>
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">SD Card</strong>: Se puede configurar si desea o no utilizar una tarjeta SD. Cuando se reconoce una tarjeta SD, se muestra el espacio libre, la capacidad total y el estado. Para formatear la tarjeta SD, haga clic en el bot&oacute;n <strong class="UI">[Formatear]</strong>. </li>
-                <li><strong class="UI">NAS</strong>: Puede configurar si desea utilizar o no NAS (Network Attached Storage). Cuando se establece una conexi&oacute;n a NAS, se muestran el espacio libre, la capacidad total y el estado. Para dar formato a la carpeta predeterminada del NAS, haga clic en el bot&oacute;n <strong class="UI">[Formatear]</strong>. </li>
+                <li ng-if="NAS"><strong class="UI">NAS</strong>: Puede configurar si desea utilizar o no NAS (Network Attached Storage). Cuando se establece una conexi&oacute;n a NAS, se muestran el espacio libre, la capacidad total y el estado. Para dar formato a la carpeta predeterminada del NAS, haga clic en el bot&oacute;n <strong class="UI">[Formatear]</strong>. </li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -59,7 +60,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Sobrescribir</h3>
-            <p>Establece si se utiliza o no la funci&oacute;n de sobreescritura de una tarjeta SD o NAS. Cuando se ha alcanzado la capacidad del dispositivo, los nuevos bit de datos se grabar&aacute;n encima de los bit de datos m&aacute;s antiguos. Cuando se ha alcanzado la capacidad del dispositivo, un mensaje que dice &apos;Completo&apos; se muestra en <strong class="UI">[Estado]</strong> de la lista de dispositivos. </p>
+            <p ng-if="NAS">Establece si se utiliza o no la funci&oacute;n de sobreescritura de una tarjeta SD o NAS. Cuando se ha alcanzado la capacidad del dispositivo, los nuevos bit de datos se grabar&aacute;n encima de los bit de datos m&aacute;s antiguos. Cuando se ha alcanzado la capacidad del dispositivo, un mensaje que dice &apos;Completo&apos; se muestra en <strong class="UI">[Estado]</strong> de la lista de dispositivos. </p>
+            <p ng-if="!NAS">Establece si se utiliza o no la funci&oacute;n de sobreescritura de una tarjeta SD. Cuando se ha alcanzado la capacidad del dispositivo, los nuevos bit de datos se grabar&aacute;n encima de los bit de datos m&aacute;s antiguos. Cuando se ha alcanzado la capacidad del dispositivo, un mensaje que dice &apos;Completo&apos; se muestra en <strong class="UI">[Estado]</strong> de la lista de dispositivos. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Borrado autom&aacute;tico</h3>
@@ -69,7 +71,7 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>Cuando &apos;Error&apos; se muestra en <strong class="UI">[Estado]</strong> de la lista de dispositivos, compruebe si el dispositivo de grabaci&oacute;n est&aacute; correctamente conectado, si el sistema de archivos del dispositivo de grabaci&oacute;n est&aacute; da&ntilde;ado o no, y si el dispositivo de grabaci&oacute;n est&aacute; da&ntilde;ado f&iacute;sicamente. Si el mensaje &apos;Error&apos; persiste despu&eacute;s de comprobar el dispositivo de grabaci&oacute;n, formatee o reemplace el dispositivo.</li>
-                <li>La grabaci&oacute;n puede no ser posible debido a la desconexi&oacute;n temporal de la red cuando se utiliza NAS, por lo que se recomienda utilizar una tarjeta SD tambi&eacute;n.</li>
+                <li ng-if="NAS">La grabaci&oacute;n puede no ser posible debido a la desconexi&oacute;n temporal de la red cuando se utiliza NAS, por lo que se recomienda utilizar una tarjeta SD tambi&eacute;n.</li>
                 <li>Cuando la resoluci&oacute;n, tasa de bits y velocidad de fotogramas se fijan a alta, la cantidad de bit de datos de imagen tambi&eacute;n se incrementa. Si la cantidad de bit de datos aumenta, un salto de fotogramas puede ocurrir incluso si se pone en pantalla completa. Cuando se produce un salto de fotograma, una imagen se graba a una velocidad m&iacute;nima de una imagen por segundo. </li>
             </ul>
         </div>
@@ -100,8 +102,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="NAS">
+<div class="wn5-setup-section" ng-if="NAS">
     <div class="wn5-setup-section-heading">
         <h2>Configuraci&oacute;n de conexi&oacute;n NAS</h2>
     </div>

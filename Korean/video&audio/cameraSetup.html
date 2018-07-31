@@ -11,8 +11,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>카메라 채널을 선택한 후 채널별로 세부 항목을 설정할 수 있습니다. </p>
-            <p>라이브 페이지나 재생 페이지에서 가장 최근에 선택한&nbsp;채널 번호가 자동으로 선택되어 있습니다. <strong class="UI">[상세정보]</strong> 버튼을 클릭하면 채널 전체 상태를 채널별로&nbsp;요약하여 보여줍니다. </p>
+            <p>카메라 채널을 선택한 후 채널별로 세부 항목을 설정할 수 있습니다. 라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
+            <p ng-if="HandoverCalibration">고정 카메라의 채널 번호를 선택하거나, PTZ 카메라 채널을 선택하려면 [PTZ]를 클릭합니다.</p>
             <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p>
         </div>
 	</div>
@@ -50,9 +50,8 @@
 	</div>	
 	    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>모든 프리셋에 동일한 카메라 설정을 지정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 다르게&nbsp;설정하려면 <strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 카메라 설정을 지정하는 경우, 세부 카메라
-설정 항목 중 일부 기능은&nbsp;설정할 수 없습니다.</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 &nbsp;<strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만&nbsp;'타입' 기능을 설정할 수 있습니다.</p>
+            <p>모든 프리셋에 동일한 카메라 설정을 지정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 다르게&nbsp;설정하려면 <strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 카메라 설정을 지정하는 경우, 세부 카메라 설정 항목 중 일부 항목은 설정할 수 없습니다.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 '타입' 기능을 설정할 수 있습니다.</p>
         </div>
 </div>
 </div>

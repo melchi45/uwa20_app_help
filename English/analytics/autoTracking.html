@@ -122,31 +122,17 @@
             <h3>E-mail</h3>
             <p>To send an image by e-mail when an auto tracking event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>Record</h3>
-            <p ng-if="!NAS">To save an image on an SD card or NAS when an auto tracking event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
-            <p ng-if="NAS">To save an image on an SD card when an auto tracking event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p ng-if="NAS">To save an image on an SD card or NAS when an auto tracking event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p ng-if="!NAS">To save an image on an SD card when an auto tracking event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>Alarm output</h3>
             <p>It is possible to set the alarm output number for a specific alarm when an auto-tracking event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you do not wish to use the alarm. If you wish to use the alarm, select the output time. You can set the alarm to sound continuously until turned off by the user by selecting <strong class="UI">[Always]</strong> or you can set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
 		
-       <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
-            <h3>Goto preset</h3>
-                    <p>You can set the position of camera view to move to a preset number when an auto-tracking event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
-        </div>
-
-        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
-            <h3>Goto preset</h3>
-                <p>You can set the position of camera view to move to a preset position when an auto-tracking event is created. The camera preset can be set in <strong class="UI">[Preset setup]</strong> section of &nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Preset setup]</strong></a>.</p>
-        </div>
-
-        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
-            <h3>Goto preset</h3>
-                <p>You can set the position of camera to move to a preset position when an auto-tracking event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
-        </div>
-
+ 
 		
 		<div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
             <h3>Simple Focus</h3>

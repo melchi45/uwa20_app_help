@@ -11,8 +11,8 @@
         <ul>
             <!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
             <li><span class="tui tui-wn5-top-live"></span>(라이브): 카메라가 촬영 중인 라이브 화면을 확인하고 다양한 카메라 기능을 제어할 수 있습니다.</li>
-            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드 또는 NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
-            <li ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
+            <li ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드 또는 NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
+            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(재생): SD 카드에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
             <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(설정): 카메라의 상세 설정을 변경할 수 있습니다.  </li>
         </ul>
     </div>
@@ -36,7 +36,7 @@
             <p>라이브 화면 하단의 아이콘은 다음과 같은 기능을 합니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <table class="table table-bordered wn5-setup-table">
+            <table class="table table-bordered wn5-setup-table" height="2882">
                 <thead>
                     <tr>
                         <th width="235">아이콘</th>
@@ -74,9 +74,9 @@
                     </td>
                     </tr>
 					<tr ng-if="ExternalPTZPage">
-                    <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                    <td width="235" height="145"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
-                    <td width="235">  
+                    <td width="235" height="145">
                         <p>카메라 RS-485나 RS-422 단자에 연결된 팬/틸트 리시버를 통해 카메라의 팬/틸트/줌 동작을 제어할 수 있습니다. <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong> 페이지에서 설정한 프리셋 위치로 이동하거나, 스윙, 그룹, 투어, 추적 기능을 시작하고 중지할 수 있습니다. </p>
                         <p>&nbsp;</p>
                     </td>
@@ -84,7 +84,10 @@
 					<tr ng-if="PTZSetupPage">
                     <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
-                    <td width="235"><p>카메라의 팬/틸트/줌 동작을 제어할 수 있습니다. <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ 설정]</strong> 페이지에서 설정한 프리셋 위치로 이동하거나, 스윙, 그룹, 투어, 추적 기능을 시작하고 중지할 수 있습니다. </p></td>
+                    <td width="235">
+                        <p>카메라의 팬/틸트/줌 동작을 제어할 수 있습니다. <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ 설정]</strong> 페이지에서 설정한 프리셋 위치로 이동하거나, 스윙, 그룹, 투어, 추적 기능을 시작하고 중지할 수 있습니다. </p>
+                        <p ng-if="MaxChannel > 1 && HandoverCalibration"><a href="#channel">채널 선택</a>에서 [PTZ] 채널을 선택한 경우에만 'PTZ' 아이콘이 보입니다.</p>
+                    </td>
                     </tr>
 					<tr ng-if="FisheyeLens">
                     <td width="235">
@@ -115,15 +118,16 @@
                         <p>&nbsp;</p>
                     </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1">
+                <tr ng-if="MaxChannel > 1">
                     <td width="235">
                         <p><a href="#channel">채널 선택</a></p>
                     </td>
                     <td width="235">
                         <p>카메라 채널 번호가 표시됩니다.</p>
-                        <p>채널 번호를 선택하면 해당 채널의 영상이 뷰어에 나타납니다. 4분할 화면 아이콘을 선택하면 4개 채널의 영상이 한 번에 보여집니다. 단일 화면으로 돌아오려면 채널 번호를 클릭합니다.</p>
+                        <p ng-if="!HandoverCalibration">채널 번호를 선택하면 해당 채널의 영상이 뷰어에 나타납니다. 4분할 화면 아이콘을 선택하면 4개 채널의 영상이 한 번에 보여집니다. 단일 화면으로 돌아오려면 채널 번호를 클릭합니다.</p>
+                        <p ng-if="HandoverCalibration">고정형 카메라의 채널 번호를 선택하면 해당 영상이 뷰어에 나타납니다. [PTZ]를 선택하면 PTZ 단일 채널 영상이 뷰어에 나타납니다. 멀티 채널 아이콘을 선택하면 고정형 카메라와 PTZ 카메라이 영상이 한 번에 나타납니다. 단일 화면으로 돌아오려면 채널 번호나 [PTZ]를 &nbsp;클릭합니다.</p>
                     </td>
-                    </tr>
+                </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
@@ -318,7 +322,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라의 팬/틸트/줌 동작을 제어하거나 자동 추적 기능을 사용할 수 있습니다.</p>     
-		     <p ng-if="MaxChannel > 1 && HandoverCalibration"><a href="#channel">채널 선택</a>에서 PTZ 채널을 선택한 경우에만 PTZ 탭이 활성화됩니다.</p>
+		    <p ng-if="MaxChannel > 1 && HandoverCalibration"><a href="#channel">채널 선택</a>에서 PTZ 채널을 선택한 경우에만 PTZ 기능이 활성화됩니다.</p>
 		  </div>
         <div class="wn5-setup-section-article-content">
             <h3>줌 동작 제어하기</h3>

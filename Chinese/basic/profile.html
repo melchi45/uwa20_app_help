@@ -117,7 +117,7 @@
           <td>直接显示不进行去翘曲的鱼眼摄像机视频之配置文件，用于默认配置文件</td>
       </tr>
           <td>MOBILE</td>
-          <td>H.264</td>
+          <td>MJPEG/H.264</td>
           <td>适合移动的配置文件</td>
       </tr>
       </tbody>
@@ -217,7 +217,7 @@
             <p>如果要使用监视页面中的麦克风和扬声器功能，应将<strong class="UI">[音频输入]</strong>设置为<strong class="UI">[启用]</strong>。</p>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>ATC 模式</h3>
             <p>ATC（自动传输控制）模式将根据网络带宽的变化更改图像的属性，从而调整发送的数据量。发送量调整的原理因 ATC 模式而异。</p>
             <ul>
@@ -228,13 +228,13 @@
             </ul>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>灵敏度</h3>
             <p>调整网络带宽变化的反应速度。当 ATC 灵敏度非常高时，反应速度最快，当灵敏度非常低时，反应速度最慢。 </p>
             <p>只有在<strong class="UI">[ATC 模式]</strong>中选择了<strong class="UI">[启用 - 控制帧速率]</strong>或<strong class="UI">[启用 - 控制压缩]</strong>后，ATC 灵敏度才会被激活。</p>
         </div>
 
-                    <div class="wn5-setup-section-article-content">
+                    <div class="wn5-setup-section-article-content" ng-if="ATCModes">
                         <h3>限制</h3>
                         <p>根据网络带宽变化更改图像属性时，将 ATC 模式限制设置为更改属性所需的特定度。假设不使用 ATC 模式时为 100%，该值可设置为 10~50%，在此设置之下的属性将不会发生改变。 </p>
                         <p>只有在<strong class="UI">[ATC 模式]</strong>中选择了<strong class="UI">[启用 - 控制帧速率]</strong>或<strong class="UI">[启用 - 控制压缩]</strong>后，ATC 限制才会被激活。</p>
