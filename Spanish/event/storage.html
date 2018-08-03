@@ -11,7 +11,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Seleccionar un dispositivo de grabaci&oacute;n y seleccionar <strong class="UI">[Act]</strong> le permite cambiar la configuraci&oacute;n para el dispositivo correspondiente.</p>
+            <p ng-if="NAS">Seleccionar un dispositivo de grabaci&oacute;n y seleccionar <strong class="UI">[Act]</strong> le permite cambiar la configuraci&oacute;n para el dispositivo correspondiente.</p>
             <p>Si se est&aacute;n grabando bit de datos en el dispositivo, &apos;Grabando&apos; se muestra en <strong class="UI">[Estado]</strong> en la lista de dispositivos. Cuando se muestra &apos;Error&apos; en <strong class="UI">[Estado]</strong>, verifique si el dispositivo de grabaci&oacute;n est&aacute; conectado correctamente.</p>
             <p ng-if="NAS">Cuando <strong class="UI">[Act]</strong> est&aacute; configurado para una tarjeta SD y NAS, al mismo tiempo, NAS es procesada por prioridad.</p>
             <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">SD Card</strong>: Se puede configurar si desea o no utilizar una tarjeta SD. Cuando se reconoce una tarjeta SD, se muestra el espacio libre, la capacidad total y el estado. Para formatear la tarjeta SD, haga clic en el bot&oacute;n <strong class="UI">[Formatear]</strong>. </li>

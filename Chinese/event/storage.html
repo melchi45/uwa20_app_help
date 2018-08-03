@@ -13,10 +13,11 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>选择录制设备，并选择<strong class="UI">[开]</strong>，以便更改相关设备的设置。</p>
-            <p>如果将数据录制在该设备上，设备列表中的<strong class="UI">[状态]</strong>会显示为&ldquo;录制&rdquo;。当<strong class="UI">[状态]</strong>显示为&ldquo;错误&rdquo;时，检查录制设备是否连接良好。同时将 SD 卡和 NAS 设置为<strong class="UI">[开]</strong>时，将根据优先级对 NAS 进行处理。</p>
+            <p ng-if="NAS">选择录制设备，并选择<strong class="UI">[开]</strong>，以便更改相关设备的设置。</p>
+            <p>如果将数据录制在该设备上，设备列表中的<strong class="UI">[状态]</strong>会显示为&ldquo;录制&rdquo;。当<strong class="UI">[状态]</strong>显示为&ldquo;错误&rdquo;时，检查录制设备是否连接良好。</p>
+            <p ng-if="NAS">同时将 SD 卡和 NAS 设置为<strong class="UI">[开]</strong>时，将根据优先级对 NAS 进行处理。</p>
             <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li><strong class="UI">SD</strong>：可以设置是否使用 SD 卡。识别出 SD 卡时，将显示可用空间、总容量和状态。如需对 SD 卡进行格式化，请单击 <strong class="UI">[格式化]</strong>按钮。 </li>
-                <li><strong class="UI">NAS</strong>：可以设置是否使用 NAS（网络存储器）。建立网络连接存储连接时，将显示可用空间、总容量和状态。如需对 NAS 上的默认文件夹进行格式化，请单击 <strong class="UI">[正在格式化]</strong>按钮。 </li>
+                <li ng-if="NAS"><strong class="UI">NAS</strong>：可以设置是否使用 NAS（网络存储器）。建立网络连接存储连接时，将显示可用空间、总容量和状态。如需对 NAS 上的默认文件夹进行格式化，请单击 <strong class="UI">[正在格式化]</strong>按钮。 </li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -61,7 +62,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>覆盖</h3>
-            <p>设置是否使用 SD 卡或 NAS 的覆盖功能。设备容量已满时，新数据将覆盖最老的数据。设备容量已满时，设备列表中的<strong class="UI">[状态]</strong>将显示一条&ldquo;已满&rdquo;信息。  </p>
+            <p ng-if="NAS">设置是否使用 SD 卡或 NAS 的覆盖功能。设备容量已满时，新数据将覆盖最老的数据。设备容量已满时，设备列表中的<strong class="UI">[状态]</strong>将显示一条&ldquo;已满&rdquo;信息。  </p>
+            <p ng-if="!NAS">设置是否使用 SD 卡 的覆盖功能。设备容量已满时，新数据将覆盖最老的数据。设备容量已满时，设备列表中的<strong class="UI">[状态]</strong>将显示一条&ldquo;已满&rdquo;信息。  </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>自动删除</h3>
@@ -71,7 +73,7 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
             <ul><!-- í?-?a?ì?? ì?”ê°í????¤??′ <li>í…?ì?¤í??</li> í??í????? ì?…??￥í??ì??ì?” --><li>当设备列表中的<strong class="UI">[状态]</strong>显示为&ldquo;错误&rdquo;时，请检查录制设备是否连接良好、录制设备的文件系统是否受损以及录制设备是否存在物理受损情况。如果检查完录制设备或对设备进行格式化或更换后，&ldquo;错误&rdquo;信息仍然存在，</li>
-                <li>因为使用 NAS 时网络暂时无法连接，可能会导致无法进行录制，因此，建议同时使用 SD 卡。</li>
+                <li ng-if="NAS">因为使用 NAS 时网络暂时无法连接，可能会导致无法进行录制，因此，建议同时使用 SD 卡。</li>
                 <li>将分辨率、比特率和帧率设置为较高值时，图像数据量也会增加。如果数据量增加，即使设置为完全帧，可能还是会出现跳帧现象。出现跳帧现象时，将以每秒一个图像的最低速度录制图像。 </li>
             </ul>
         </div>
@@ -102,8 +104,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="NAS">
+<div class="wn5-setup-section" ng-if="NAS">
     <div class="wn5-setup-section-heading">
         <h2>NAS 连接设置</h2>
     </div>

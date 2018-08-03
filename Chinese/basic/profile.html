@@ -52,10 +52,12 @@
         <h2>视频配置文件</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content"  ng-if="ATCModes">
             <p>用户可根据服务环境和产品使用场合选择视频配置文件。除默认的配置文件之外，用户还可以添加新的配置文件或删除已有的配置文件。您可以为每一个配置文件设置编解码器、配置文件类型、音频输入、ATC 模式、ATC 灵敏度、ATC 限制、分辨率、帧速率、最大比特率、目标比特率、比特率控制以及多播。</p>
         </div>
-
+        <div class="wn5-setup-section-article-content"  ng-if="!ATCModes">
+            <p>用户可根据服务环境和产品使用场合选择视频配置文件。除默认的配置文件之外，用户还可以添加新的配置文件或删除已有的配置文件。您可以为每一个配置文件设置编解码器、配置文件类型、音频输入、分辨率、帧速率、最大比特率、目标比特率、比特率控制以及多播。</p>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>配置文件列表</h3>
             <p>默认提供配置文件列表，所有用户添加的配置文件也将被显示出来。 </p>
@@ -88,7 +90,7 @@
                 </tr>
                 <tr>
                     <td>手机</td>
-                    <td>H.264</td>
+                    <td>MJPEG/H.264</td>
                     <td>适用于手机的配置文件</td>
                 </tr>
                 </tbody>
@@ -117,7 +119,7 @@
           <td>直接显示不进行去翘曲的鱼眼摄像机视频之配置文件，用于默认配置文件</td>
       </tr>
           <td>MOBILE</td>
-          <td>MJPEG/H.264</td>
+          <td>H.264</td>
           <td>适合移动的配置文件</td>
       </tr>
       </tbody>
@@ -202,7 +204,8 @@
             <ul>
                 <li><strong class="UI">默认配置文件</strong>：这是应用于串流实时摄像机图像的默认配置文件。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;默认&rsquo;。</li>
                 <li><strong class="UI">电子邮件/FTP 配置文件</strong>：创建一个事件时，此视频配置文件用于发送已捕获的屏幕图像。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;事件&rsquo;。只有在编解码器设置为 MJPEG 时才会出现电子邮件/FTP 配置文件选项。</li>
-                <li><strong class="UI">录制配置文件</strong>：这种配置文件用于在 SD 卡或 NAS 上录制图像。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;录制&rsquo;。</li>
+                <li ng-if="Recording && NAS"><strong class="UI">录制配置文件</strong>：这种配置文件用于在 SD 卡或 NAS 上录制图像。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;录制&rsquo;。</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">录制配置文件</strong>：这种配置文件用于在 SD 卡 上录制图像。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;录制&rsquo;。</li>
                 <li ng-if="DPTZSetupPage"><strong>数字 PTZ</strong><strong class="UI"> 配置文件</strong>：这种配置文件用于控制 PTZ 移动。在配置文件列表的<strong class="UI">[类型]</strong>中显示为&lsquo;DPTZ&rsquo;。只有在编解码器设置为 H.264 或 H.265 时才会出现 数字 PTZ&nbsp;配置文件选项。 </li>
                 <li ng-if="FisheyeLens" style="list-style-image:url('');">在鱼眼摄像机中添加新配置文件时，在<strong class="UI">[鱼眼视图类型]</strong>中选择<strong class="UI">[去翘曲视图]</strong>后，在<strong class="UI">[视图]</strong>中选择<strong class="UI">[四元视图]</strong>，自动将相应配置文件注册成数字PTZ 配置文件。
                                </li

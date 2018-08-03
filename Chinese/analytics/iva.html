@@ -255,7 +255,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>录制</h3>
-            <p>创建 IVA 事件时，如需将图像保存至 SD 卡或 NAS，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
+            <p ng-if="NAS">创建 IVA 事件时，如需将图像保存至 SD 卡或 NAS，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
+            <p ng-if="!NAS">创建 IVA 事件时，如需将图像保存至 SD 卡，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>警报输出</h3>

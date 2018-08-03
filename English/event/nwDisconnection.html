@@ -29,7 +29,8 @@
                 <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
             </ul>
             <h3>Record</h3>
-            <p>To save an image on an SD card or NAS when a network disconnection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p ng-if="NAS">To save an image on an SD card or NAS when a network disconnection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p ng-if="!NAS">To save an image on an SD card when a network disconnection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Alarm output</h3>

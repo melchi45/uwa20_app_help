@@ -35,8 +35,8 @@
             <h4>类型  </h4>
             <p>选择警报输入类型。</p>
             <ul>
-                <li><strong class="UI">常开</strong>：警报输入传感器默认为打开状态，关闭时，会创建一个警报输入事件。</li>
-                <li><strong class="UI">常闭</strong>：警报输入传感器默认为关闭状态，打开时，会创建一个警报输入事件。</li>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">常开</strong>：警报输入传感器默认为打开状态，关闭时，会创建一个警报输入事件。</li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">常闭</strong>：警报输入传感器默认为关闭状态，打开时，会创建一个警报输入事件。</li>
             </ul>
         </div>
     </div>
@@ -63,7 +63,8 @@
         </div>
         <div class="wn5-setup-section-article-content"  ng-if="Recording">
             <h4>正在录制</h4>
-            <p>创建警报输入事件时，如需将图像保存至 SD 卡或 NAS 中，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
+            <p ng-if="NAS">创建警报输入事件时，如需将图像保存至 SD 卡或 NAS 中，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
+            <p ng-if="!NAS">创建警报输入事件时，如需将图像保存至 SD 卡 中，请选择<strong class="UI">[启用]</strong>。可从<strong class="UI">[事件]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[存储器]</strong></a>完成具体的存储器设置。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h4>警报输出</h4>

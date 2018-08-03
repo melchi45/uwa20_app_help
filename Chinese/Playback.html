@@ -1,14 +1,17 @@
 ﻿
 <h1 class="wn5-setup-main-title">播放屏幕</h1>
 <div class="wn5-setup-section">
-    <p>可输入并播放 SD 卡或 NAS 录制的图像。单击屏幕上的<span class="tui tui-wn5-top-playback"></span>按钮时，将出现已录制的屏幕。在播放屏幕底部会出现一个时间轴，同时，时间轴上会显示根据设定计划或特殊事件录制的图像。可通过事件类型或日期搜索已录制的图像，并将它们捕捉或保存至电脑中。</p>
+    <p ng-if="NAS">可输入并播放 SD 卡或 NAS 录制的图像。</p>
+    <p ng-if="!NAS">可输入并播放 SD 卡 录制的图像。</p>
+    </p>单击屏幕上的<span class="tui tui-wn5-top-playback"></span>按钮时，将出现已录制的屏幕。在播放屏幕底部会出现一个时间轴，同时，时间轴上会显示根据设定计划或特殊事件录制的图像。可通过事件类型或日期搜索已录制的图像，并将它们捕捉或保存至电脑中。</p>
 </div>
 <div class="wn5-setup-section">
     <div class="wn5-online-help-list">
         <p>单击顶部的按钮，可在实时屏幕、播放屏幕或设置屏幕之间进行切换。</p>
         <ul>
             <li><span class="tui tui-wn5-top-live"></span>（实时）：查看摄像机捕捉的实时图像，并控制摄像机的各种功能。</li>
-            <li><span class="tui tui-wn5-top-playback"></span>（播放）：搜索并播放 SD 卡或 NAS 录制的图像。    </li>
+            <li ng-if="NAS"><span class="tui tui-wn5-top-playback"></span>（播放）：搜索并播放 SD 卡或 NAS 录制的图像。    </li>
+            <li ng-if="!NAS"><span class="tui tui-wn5-top-playback"></span>（播放）：搜索并播放 SD 卡 录制的图像。    </li>
             <li><span class="tui tui-wn5-top-setup"></span>（设置）：更改摄像机设置。</li>
         </ul>
     </div>
@@ -16,7 +19,8 @@
     <div class="wn5-online-help-info">
         <h4><span class="tui tui-wn5-help-warning"></span>说明</h4>
         <ul>
-            <li>如果为连接至 SD 卡或 NAS，则无法使用播放功能。  </li>
+            <li ng-if="NAS">如果为连接至 SD 卡或 NAS，则无法使用播放功能。  </li>
+            <li ng-if="!NAS">如果为连接至 SD 卡，则无法使用播放功能。  </li>
             <li>通过 Chrome 连接至 web 查看器时，可安全使用录制播放屏幕功能。</li>
 			<!-- <li>当通过 Internet Explorer 或 Safari 连接至网络浏览器时，只有安装好插件后才能使用备份功能。如需安装插件，请单击右上角的<span class="tui tui-wn5-download"></span>按钮。 </li>   -->
         </ul>

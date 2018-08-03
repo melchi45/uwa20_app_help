@@ -8,7 +8,8 @@
     <div class="wn5-online-help-list">
         <p>单击顶部的按钮，可在实时屏幕、播放屏幕或设置屏幕之间进行切换</p>
         <ul>           <li><span class="tui tui-wn5-top-live"></span>（实时）：查看摄像机捕捉的实时图像，并控制摄像机的各种功能。</li>
-            <li ng-if="Recording"><span class="tui tui-wn5-top-playback"></span>（播放）：搜索并播放 SD 卡或 NAS 录制的图像。    </li>
+            <li ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>（播放）：搜索并播放 SD 卡或 NAS 录制的图像。    </li>
+            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>（播放）：搜索并播放 SD 卡 录制的图像。    </li>
             <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>（设置）：更改摄像机设置。</li>
         </ul>
     </div>

@@ -30,8 +30,8 @@
             <h3>类型  </h3>
             <p>选择警报输出类型。 </p>
             <ul>
-                <li><strong class="UI">常开</strong>：警报输出传感器默认为打开状态，关闭时，会输出警报。  </li>
-                <li><strong class="UI">常闭</strong>：警报输出传感器默认为关闭状态，打开时，会输出警报。</li>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">常开</strong>：警报输出传感器默认为打开状态，关闭时，会输出警报。  </li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">常闭</strong>：警报输出传感器默认为关闭状态，打开时，会输出警报。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">

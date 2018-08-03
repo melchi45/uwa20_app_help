@@ -51,8 +51,11 @@
         <h2>Video profile</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <p>The user can select a video profile according to the service environment and circumstances of product use. In addition to the profiles provided by default, the user can add a new profile or delete an existing one. You can set the codec, profile type, audio in, ATC mode, ATC sensitivity, ATC limit, resolution, frame rate, maximum bitrate, target bitrate, bitrate control and multicast for each profile.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="!ATCModes">
+            <p>The user can select a video profile according to the service environment and circumstances of product use. In addition to the profiles provided by default, the user can add a new profile or delete an existing one. You can set the codec, profile type, audio in, resolution, frame rate, maximum bitrate, target bitrate, bitrate control and multicast for each profile.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -89,7 +92,7 @@
                 </tr>
                 <tr>
                     <td>MOBILE</td>
-                    <td>H.264</td>
+                    <td>MJPEG/H.264</td>
                     <td>Profile suitable for mobile</td>
                 </tr>
                 </tbody>
