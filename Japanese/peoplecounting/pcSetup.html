@@ -1,0 +1,201 @@
+﻿
+<h1 class="wn5-setup-main-title">設定</h1>
+<div class="wn5-setup-section">
+    <p>人数カウントは、カメラのビデオ映像分析でバーチャルラインを通過する人の数をカウントすることです。人数カウントの「設定」では、人の数をカウントする条件と人数カウントの正確度を上げるための詳細を設定します。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>人物カウント有効</h3>
+            <p>人数カウント機能を有効にするには、<strong class="UI">[人物カウント有効]</strong>を選択します。</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">			
+            <p>人数をカウントするルールを設定します。人数カウントのルールは最大2つまで設定することができます。</p>
+        </div>
+            <div class="wn5-online-help-action"> 
+			<h4>ルール設定</h4>
+                <p>カウントルールを設定するには、<strong class="UI">[ルール]</strong>でチェックボックスを選択した後、<strong class="UI">[ルール名]</strong>フィールドにルール名を入力します。ルール名は、ローマ字と数字のみで15文字まで入力することができます。入力した名前は、<strong class="UI">[統計]</strong>&gt;<strong class="UI">[人数カウント]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="pcStatisticsSetup.html"
+ng-href="#/help/peoplecounting_search">[検索]</a></strong>で表示されます。</p>
+			</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>ルール名を変更すると、既存ルールに対するカウント統計データは初期化され再度カウントを開始します。 </li>
+            </ul>
+		</div>			
+            <div class="wn5-online-help-action">
+                <h4><a name="type"></a>カウントタイプ設定</h4>
+                <p>人数カウントで人数をカウントするタイプには、INカウントとOUTカウントがあります。</p>
+                <p><strong class="UI">[ルール]</strong>でチェックボックスを選択すると、映像にルールラインが表示されます。ラインの矢印方向に動く人数はINカウント、矢印の逆方向に動く人数はOUTカウントとなります。ルールラインの矢印をクリックすると、矢印方向を変更することができます。</p>
+                <p><img src="../../base/images/setup/popup_counting.png"></p>
+            </div>
+            <div class="wn5-online-help-action">
+                <h4>ルールライン設定</h4>
+            <p>人数カウント機能はルールラインを通過する人をカウントします。ルールラインの位置を変更するには、映像に表示されたルールラインをクリックした後、マウスでドラッグします。ルールラインの両方の端に位置した頂点をマウスでドラッグして、ラインの長さを調整することができます。</p>
+            <p>ルールを選択して有効になると、映像の下にリアルタイムカウントデータが表示されます。リアルタイムカウントは、毎日00時を基準に初期化されます。</p>
+            </div>
+            <div class="wn5-online-help-action">
+                <h4>人数カウントのルール有効&amp;無効</h4>
+                <p>カウントルールを有効にするには、<strong class="UI">[ルール]</strong>でお望みのルールのチェックボックスを選択します。</p>
+                  <p>カウントルールを無効にするには、<strong class="UI">[ルール]</strong>でお望みのルールのチェックボックスを選択解除します。人数カウントのルール設定はそのまま残っているため、再度チェックボックスを選択すると同じ設定にルール機能が有効になります。</p>
+            </div>
+        </div>
+</div>
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>除外エリア</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>ユーザーが指定したエリアでは、出入りする人の数をカウントしないように設定します。</p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>除外エリア設定</h4>
+			<p>映像の上にマウスで頂点4つを選択すると、除外エリアが設定され<strong class="UI">[エリア]</strong>の数字ボタン色が変更されます。除外エリアは最大4まで設定することができます。</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>除外エリア変更</h4>
+			<p>除外エリアの頂点や線をクリックした後、動かして除外エリアのサイズを調整することができます。除外エリアを移動するには、マウスで該当エリアをクリックしてドラッグします。</p>
+        </div>
+         <div class="wn5-online-help-action">
+            <h4>除外エリア削除</h4>
+			<p>除外エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
+        </div>
+            <div class="wn5-setup-section-article-content">
+            <h3>エリア</h3>
+            <p><strong class="UI">[エリア]</strong>の数字ボタン色をクリックすると、該当エリアが映像から選択されます。選択されたエリアは、白色の太枠に表示されます。</p>
+            </div>  
+    </div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>校正</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>人数カウントの正確度を向上させるためにカメラ高やカウントする人のサイズを設定します。カメラ高や人のサイズ中、一つだけ選択して適用することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+            <h3>カメラ高</h3>
+            <p>実際にカメラが設置された高さを指定します。+か-表示をクリックして値を変更したり、カメラ高を数値で入力することができます。入力できる値は最小2.5m、最大4.5mです。カメラ設置高を設定すると、設置高をベースで位置別にカウントする人のサイズを自動に推定します。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+            <h3>サイズ</h3>
+            <p>カウントする人のサイズを直接指定します。映像画面に表示されたボックスの右下の角をマウスでドラッグしてサイズを調整することができます。</p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li><strong class="UI">[人数カウント]</strong> &gt; <strong class="UI">[校正]</strong>で設定した値は、<strong class="UI">[人数カウント]</strong>と<strong class="UI">[ヒートマップ]</strong>機能に同じく適用されます。</li>
+                <li>校正は、人数カウントの正確度向上に必要です。不正確な校正情報は、人数カウントの正確度に影響が出る場合があります。</li>
+            </ul>
+		</div>
+        </div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+            <h2>人数カウントのリアルタイムデータ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>設定したルールと各ルールのカウントタイプによってリアルタイムでカウントした人数の合計が表に表示されます。</p>
+    </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>レポート</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>使用</h3>
+            <p>周期的に人数カウントデータをE-mailとFTPに受信するには、<strong class="UI">[有効]</strong>を選択します。</p>
+            <p>FTPとE-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../event/ftpemail.html" ng-href="#/help/event_ftpemail">[FTP/E-mail]</a></strong>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>スケジュール</h3>
+            <p>毎日同じ時間に人数カウントデータを受信するには、<strong class="UI">[日次]</strong>を選択してから時間を選択します。</p>
+            <p>毎週同じ曜日と時間に人数カウントデータを受信するには、<strong class="UI">[週次]</strong>を選択してから曜日と時間を選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ファイル名</h3>
+            <p>FTPサーバーやE-mailで人数カウントデータを送るファイル名を入力してファイルタイプを選択します。ファイル名はローマ字と数字を含み、最大64文字まで入力することができます。</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section"> 
+        <div class="wn5-setup-section-heading">
+            <h2>すべてのデータを削除</h2>
+    </div>
+		<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>人数カウントデータをすべて削除するには、<strong class="UI">[すべてのデータを削除]</strong>をクリックします。</p> </div>
+                <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+
+                <ul>
+                    <li>下記の場合、変更された映像画面に合わせて再びルールを設定して<strong class="UI">[すべてのデータを削除]</strong>をクリックして人数カウント検索に使用される過去のデータを削除することをお勧めします。</li>
+                    <ul>
+                        <li><strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong>で設定値を変更した場合</li>
+                        <li><strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[カメラ設定]</strong> &gt; <strong class="UI">[特別設定] </strong>&gt; <strong class="UI">[DIS]</strong>で設置値を変更した場合</li>
+                    </ul>
+                </ul>
+		</div>
+        </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-online-help-info">
+    <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+    <ul>
+        <li>人数カウント機能は、リアルタイムの正確度ではなく統計的なデータ提供を目的とし、移動する物事や動物も測定人数に含まれます。</li>
+        <li>カメラを設置した直後に安定化される間には、誤動作する場合があります。安定化時間は、最大50～60分までかかることがあります。</li>
+        <li>人数カウントを駆動するためのカメラは、レンズを地面に直下式で設置する必要があります。(図1参照)</li>
+        <li>下記の場合には、測定されたデータの誤差が大きくなることがあります。</li>
+        <ul>
+            <li>十分に視野が確保されないスペースに設置した場合</li>
+            <li>夜間&amp;低照度環境(図2参照)</li>
+            <li>急激な照明変更が発生する環境や直射光線、日の入り、日の出、直接照明などのように強い光に影響される場合(図3参照)</li>
+            <li>出入口周囲のように固定された位置で持続的なモーションがある場合(図4参照)</li>
+            <li>複数の人が集まって移動する場合</li>
+            <li>移動体が設定したルール周囲にとどまる場合</li>
+            <li>魚眼カメラの場合、映像外郭部分にルールを設定した場合(図5参照)</li>
+        </ul>
+        <li>校正で対象物のサイズを実際のサイズより大きく指定する場合、実際の人数より少なく測定されることがあります。逆に実際のサイズより小さく指定する場合、実際の人数より多く測定されることがあります。</li>
+    </ul>
+    <p>図1</p>
+    <p><img src="../../base/images/pcSetup_1.png" ></p>
+    <p>図2</p>
+    <p><img src="../../base/images/pcSetup_2.png" ></p>
+	<p>図3</p>
+    <p><img src="../../base/images/pcSetup_3.png" ></p>
+	<p>図4</p>
+    <p><img src="../../base/images/pcSetup_4-1.png" ></p>
+    <p><img src="../../base/images/pcSetup_4-2.png" ></p>
+    <p><img src="../../base/images/pcSetup_4-3.png" ></p>
+    <p>図5</p>
+    <p><img src="../../base/images/pcSetup_5.png" ></p>	
+</div>
+<hr class="wn5-setup-hr">

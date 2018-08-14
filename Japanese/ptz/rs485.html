@@ -1,0 +1,478 @@
+﻿
+<h1 class="wn5-setup-main-title">RS-485</h1>
+<div class="wn5-setup-section">
+    <p>カメラのRS-485ポートに接続されたコントローラーでカメラのPTZを制御するようにコントローラーとの接続値を設定します。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="group"></a>RS-485設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>コントローラーとPTZカメラとの接続値を設定します。</p>
+        </div>
+		
+			<div class="wn5-setup-section-article-content">
+			<h3>プロトコル</h3>
+			<p>コントローラーとPTZカメラが通信するプロトコルを選択します。</p>
+		    </div>
+ 
+            <div class="wn5-setup-section-article-content">
+                <h3>カメラID</h3>
+                <p>カメラIDを選択します。</p>
+            </div>
+ 
+            <div class="wn5-setup-section-article-content">
+                <h3>ボーレート</h3>
+                <p>RS-485の通信速度を設定します。</p>
+            </div>
+			
+
+
+            <div class="wn5-setup-section-article-content">
+        <h3>終了</h3>
+                <p>コントローラーとPTZカメラ通信信号の削減を防止するために、コントローラーとカメラ間の通信ループで最も遠いパスにあるカメラの中止有無を設定することができます。</p>
+            </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                    <li>本操作のためには、ネットワークカメラとコントローラーが正しく接続されていなければなりません。またコントローラーはカメラを制御できるようにシリアルポートを設定する必要があります。</li>
+                <li>コントローラーまたはプロトコルの仕様によって未対応の機能があります。詳細は下記の表を参照してください。</li>
+            </ul>
+            <table class="table table-bordered wn5-setup-table" width="813">
+                <tr>
+                    <td width="95">プロトコル</td>
+                    <td width="64">P制御</td>
+                    <td width="89">P移動速度</td>
+                    <td width="52">T制御</td>
+                    <td width="85">T移動速度</td>
+                    <td width="62">ズーム制御</td>
+                    <td width="94">ズーム移動速度</td>
+                    <td width="70">フォーカス制御</td>
+                    <td width="108">フォーカス制御速度</td>
+                    <td width="52">プリセット</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>SAMSUNG-T</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+                    </td>
+                    <td width="89">
+                        <p>O (1~6)</p>
+                    </td>
+                    <td width="52">                        <p>O</p>
+                    </td>
+                    <td width="85">                        <p>O (1~6)</p>
+                    </td>
+                    <td width="62">                        <p>O</p>
+                    </td>
+                    <td width="94">
+                        <p>O (1~4)</p>
+                    </td>
+                    <td width="70">                        <p>O</p>
+                    </td>
+                    <td width="108">
+                        <p>O (1~4)</p>
+                    </td>
+                    <td width="52">                        <p>O</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>SAMSUNG-E</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+                    </td>
+                    <td width="89">
+                        <p>O (1~6)</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O (1~6)</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>O (1~4)</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>PELCO-D</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+                    </td>
+                    <td width="89">
+                        <p>O (1~6)</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O (1~6)</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>X</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>PELCO-P</p>
+                    </td>
+                    <td width="64">                        <p>O</p>
+</td>
+                    <td width="89">
+                        <p>O (1~6)</p>
+                    </td>
+                    <td width="52">                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O (1~6)</p>
+</td>
+                    <td width="62">                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>X</p>
+                    </td>
+                    <td width="70">                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">                        <p>O</p>
+</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>PANASONIC</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+</td>
+                    <td width="89">
+                        <p>O (1~6)</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O (1~6)</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>O (1~4)</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>O (1~4)</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>HONEYWELL</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+</td>
+                    <td width="89">
+                        <p>O (1~6)</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O (1~6)</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>X</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>AD</p>
+                    </td>
+                    <td width="64">                        <p>O</p>
+</td>
+                    <td width="89">
+                        <p>O (1~6)</p>
+                    </td>
+                    <td width="52">                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O (1~6)</p>
+</td>
+                    <td width="62">                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>X</p>
+                    </td>
+                    <td width="70">                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">                        <p>O</p>
+</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>VICON</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+</td>
+                    <td width="89">
+                        <p>O (1~6)</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O (1~6)</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>X</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>GE</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+                    </td>
+                    <td width="89">
+                        <p>O (1~6)</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O (1~6)</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>O (1~4)</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>BOSCH</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+                    </td>
+                    <td width="89">
+                        <p>O (1~6)</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O (1~6)</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>O (1~4)</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                </tr>
+            </table>
+            <p>&nbsp;</p>
+            <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens">
+                <tr>
+                    <td>
+                        <p>Company</p>
+                    </td>
+                    <td>
+                        <p>Protocol Name</p>
+                    </td>
+                    <td>
+                        <p>Version</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>AD</p>
+                    </td>
+                    <td>
+                        <p>RS-422/RS-485 Communications</p>
+                    </td>
+                    <td>
+                        <p>REV.B</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>BOSCH</p>
+                    </td>
+                    <td>
+                        <p>AutoDome Protocol</p>
+                    </td>
+                    <td>
+                        <p>5/30/11</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>GE</p>
+                    </td>
+                    <td>
+                        <p>Calibur ImpacNet(RS485 Protocol)</p>
+                    </td>
+                    <td>
+                        <p>REV.4.01(05/21/2004)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>HONEYWELL</p>
+                    </td>
+                    <td>
+                        <p>ScanDomeII Protocol</p>
+                    </td>
+                    <td>
+                        <p>V1.05(02/11/2004)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>PANASONIC</p>
+                    </td>
+                    <td>
+                        <p>WV-CS950 Protocol</p>
+                    </td>
+                    <td>
+                        <p>VER,4.0</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>PELCO-D</p>
+                    </td>
+                    <td>
+                        <p>&ldquo;D&rdquo; Protocol</p>
+                    </td>
+                    <td>
+                        <p>Ver.4, Rev.1(4/7/2004)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>PELCO-P</p>
+                    </td>
+                    <td>
+                        <p>&ldquo;P&rdquo; Protocol</p>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>SAMSUNG-E</p>
+                    </td>
+                    <td>
+                        <p>Samsung Protocol</p>
+                    </td>
+                    <td>
+                        <p>Ver.2.3(2006/09)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>VICON</p>
+                    </td>
+                    <td>
+                        <p>RS-422 Receiver Communications Protocol</p>
+                    </td>
+                    <td>
+                        <p>Rev 404(4/08/04)</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </div>		
+		
+		</div>
+<hr class="wn5-setup-hr">

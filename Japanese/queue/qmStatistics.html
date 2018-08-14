@@ -1,0 +1,100 @@
+﻿
+
+
+<h1 class="wn5-setup-main-title">検索</h1>
+
+<div class="wn5-setup-section">
+    <p>キュー管理は、カメラのビデオ映像分析で指定したエリアに滞留した平均人数と合計滞留時間をMonitoringできる機能です。キュー管理の「検索」ページでは、待機中の人数&amp;待機時間の統計データを検索して確認することができます。</p>
+    <div class="wn5-online-help-info">
+        <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+        <ul><li>キュー管理の検索機能を使用するには、まず<strong class="UI">[統計]</strong>&gt;<strong class="UI">[キュー管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[設定]</a></strong>で<strong class="UI">[キュー管理を有効にする]</strong>を選択してキュー管理エリアを設定する必要があります。</li>
+        </ul>
+    </div>
+</div>
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>検索</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>画面に<strong class="UI">[統計]</strong>&gt;<strong class="UI">[キュー管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[設定]</a></strong>で設定したキュールールが表示されます。 &nbsp;</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>占有率</h3>
+            <p>キュールール別にリアルタイム分析データを表示します。</p>
+            <hr class="wn5-setup-hr">
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>本日</h3>
+            <h4>平均人数</h4>
+            <p>本日の0時から24時まで各キュールールの平均人数を時間別のグラフに表示します。</p>
+            <p>グラフ右上にあるキュールール名を選択すると、該当グラフだけシアンに表示されます。グラフ上にマウスをあげると、選択した時間の人数情報を正確な数値でみせる吹き出しヘルプが表示されます。</p>
+            <h4>合計時間</h4>
+            <p>待機した合計待機時間をキュールール別、検知レベル別(高、中)にそれぞれ分析してグラフに表示します。</p>
+            <p>検知レベルは<strong class="UI">[設定]</strong>ページの<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html#level" ng-href="#/help/queue_setup">[検知レベル]</a></strong>で指定したことで、キューの人数によって「高」と「中」で待機レベルを分類します。</p>
+            <p>例えば「Queue 1-高」は「Queue 1」キューに検知レベル「高」レベルで待機人数が多かった時の合計時間を表示し、「Queue 1-中」は「Queue 1」キューに検知レベル「中」レベルで待機人数が多かった時の合計時間を表示します。</p>
+            <hr class="wn5-setup-hr">
+        </div>
+		 <div class="wn5-setup-section-article-content">
+            <h3>週次</h3>
+            <p>本日を基準に過去7日間日付別、キュー別の平均人数推移をグラフに表示します。</p>
+            <p>グラフ上にマウスをあげると、選択した日付の人数情報を正確な数値でみせる吹き出しヘルプが表示されます。 &nbsp;</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>検索</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <h3>日付</h3>
+                <p>[直近]を選択すると、現在時間を基準として直近一日、一週、一カ月単位で検索することができます。</p>
+                <p>[期間]を選択すると、日次、月次、年次単位で期間を指定して検索することができます。カレンダーアイコンを選択した後、日付を変更することができます。</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>ルール</h3>
+            <p>検索する条件を選択します。キュールールと分析条件(平均人数、高や中の検知レベル)を組み合わせて選択することができます。例えば「Queue 1」と「平均」があうチェックボックスを選択すると、「Queue 1」キューの平均人数を検索します。「Queue 1」と「高」があうチェックボックスを選択すると、「Queue 1」キューで「高」レベルの人数が待機した合計時間を検索します。「Queue 1」とあう「平均」「高」をすべて選択して検索することもできます。</p>
+                <p>ルールは<strong class="UI">[統計]</strong>&gt;<strong class="UI">[キュー管理]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[設定]</a></strong>で設定することができます。</p>
+			</div>
+            <div class="wn5-online-help-action">
+                <h5><a name="search"></a>キューデータ検索</h5>
+                <ol>
+                    <li><strong class="UI">[検索]</strong>の<strong class="UI">[日付]</strong>で検索する日付を選択します。</li>
+                    <li><strong class="UI">[ルール]</strong>で検索するキューと分析オプションを選択します。例えば「Queue 1」キューの平均待機人数と「高」レベルの人数が待機した合計時間を検索するには、「Queue 1」と「平均」があうチェックボックスと「Queue 1」と「高」があうチェックボックスを選択します。</li>
+                    <li><strong class="UI">[検索]</strong>ボタンをクリックします。<strong class="UI">[結果]</strong>に検索結果が表示されます。</li>
+                </ol>
+			</div>
+        </div>
+</div>
+<hr class="wn5-setup-hr">           
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>結果</h2>
+	</div>
+	   <div class="wn5-setup-section-article">
+             <div class="wn5-setup-section-article-content">					
+                <p>キューデータを検索した場合、結果がグラフと表で表示されます。</p>
+                <p>「直近1日」を検索した場合、本日の0時から24時まで時間別にデータを表示します。「直近1週」を検索した場合、本日を基準に過去7日間のデータを日付別に表示します。「直近1カ月」を検索した場合、本日を基準に過去30日間のデータを日付別に表示します。</p>
+                <p>「期間」を選択してから特定の日、月、年を指定した場合、指定した日の0時から24時まで時間別のデータを表示し、指定した月と年の日付別データを表示します。</p>
+            <p>キューデータは、キュー名と分析タイプ(平均人数、待機レベル高、待機レベル中)の組み合わせで「キュー名-平均」、「キュー名-高」、「キュー名-中」に分類して表示されます。グラフでオプションを選択すると、該当グラフだけシアンに表示されます。 &nbsp;またグラフ上にマウスをあげると、選択した時点のデータを正確な数値でみせる吹き出しヘルプが表示されます。 &nbsp;</p>
+            </div>
+				<div class="wn5-online-help-info">
+        <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>検索されるデータは、15分ごとに更新されます。本検索結果は、<strong class="UI"><a class="wn5-online-help-link" href="qmSetup.html" ng-href="#/help/queue_setup">[設定]</a></strong>ページで表示されるリアルタイム結果と異なる場合があります。</li>
+            </ul>
+    </div>
+        <div class="wn5-setup-section-article-content">
+                <h3>ダウンロード</h3>
+            <p>検索実行後、<strong class="UI">[ダウンロード]</strong>ボタンをクリックすると、検索結果をダウンロードすることができます。xlsxとtxtファイルタイプでダウンロードすることができます。ダウンロードしたファイルは各ブラウザの基本保存パスに保存されます。ファイル名はローマ字と数字を含み、最大64文字まで入力することができます。</p>
+        </div>
+        </div>
+
+</div>
+<hr class="wn5-setup-hr">

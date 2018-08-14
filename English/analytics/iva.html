@@ -113,11 +113,13 @@ can be set.</p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>Setting a virtual area  </h4>
-			<p>When you select 4 corners of an image with the mouse, it is set as the virtual area and the color of the number buttons in <strong class="UI">[Area]</strong> changes. Up to 8 virtual areas can be set and an image analysis rule can be set for each area. </p>
+			<p>On the preview screen, use your mouse to select 4 corners or drag to draw a quadrilateral shape which will then be your ROI area. Up to 8 virtual areas can be set and an image analysis rule can be set for each area. </p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>Changing a virtual area </h4>
-            <p>You can change the size of the virtual area by moving a corner of the set virtual area. To move the set virtual area, click and drag the relevant area with the mouse. When a corner is created after clicking a line, you can set a polygonal virtual area by moving the corner.</p>
+            <p>You can change the size of the virtual area by moving a corner of the set virtual area.</p>
+            <p>To create a polygon (N-gon), first select and create a quadrilateral. When a + sign appears, click it to add another point. You can add up to 4 additional points to create a polygon of your choice. </p>
+            <p>To move the set virtual area, click and drag the relevant area with the mouse. When a corner is created after clicking a line, you can set a polygonal virtual area by moving the corner.</p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>Deleting a virtual area  </h4>
@@ -132,6 +134,9 @@ can be set.</p>
             <p>You can set the rule to apply for each virtual area.</p>
             <ul>
                 <li><strong class="UI">Intrusion</strong>: When an object moves inside the set area, an event will be created.</li>
+                <ul>
+                        <li><strong class="UI">Minimum duration (s)</strong>: Sets the minimum amount of time to trigger an event after detection. When the movement lasts longer than the set period of time, the event is triggered..</li>
+                    </ul>
                 <li><strong class="UI">Enter</strong>: When an object enters the area set by the user, an event will be created.</li>
                 <li><strong class="UI">Exit</strong>: When a moving object exits the area set by the user, an event will be created.</li>
                 <li><strong class="UI">Appear (Disappear)</strong>: When an object which does not exist inside the area designated by the user appears inside the area without passing the area line and remains for a certain period of time, or if an object which exists inside the area disappears, an event will be created.</li>
@@ -185,11 +190,13 @@ can be set.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Setting an exclude area  </h4>
-            <p>When you select 4 corners of an image with the mouse, it is set as the exclude area, and the color of the number buttons in <strong class="UI">[Area]</strong> changes. Up to 8 exclude areas can be set.</p>
+            <p>On the preview screen, use your mouse to select 4 corners or drag to draw a quadrilateral shape which will then be your Exclude area. Up to 8 exclude areas can be set.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Changing an exclude area  </h4>
-            <p>You can change the size of an exclude area by moving a corner of the set exclude area, and you can move the position of an exclude area by selecting and dragging the exclude area with the mouse. </p>
+            <p>You can change the size of an exclude area by moving a corner of the set exclude area. </p>
+            <p>To create a polygon (N-gon), first select and create a quadrilateral. When a + sign appears, click it to add another point. You can add up to 4 additional points to create a polygon of your choice.</p> 
+            <p>You can move the position of an exclude area by selecting and dragging the exclude area with the mouse. </p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>Deleting an exclude area  </h4>
@@ -199,7 +206,7 @@ can be set.</p>
         <div class="wn5-setup-section-article-content">
 
             <h3>Area</h3>
-            <p>When an exclude area is added, the color of the number buttons in <strong class="UI">[Area]</strong> will change. When you disable an exclude area by clicking the number buttons, the relevant virtual area will not be displayed on the preview screen. When you click the number button again, the exclude area will reappear.</p>
+            <p>When an Exclude area is added, the color of the number buttons in <strong class="UI">[Area]</strong> will change one by one. If you click the number buttons to deactivate them, then the Exclude area will be selected on the preview screen.</p>
         </div>
     </div>
 </div>
@@ -213,6 +220,7 @@ can be set.</p>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>This sets the sensitivity and the minimum and maximum size of an object to be detected that will be applied to both the virtual line and the virtual area.</p>
+            <p>This is a setting you can apply to raise the detection accuracy and minimize the occurrence of false detection depending on your environment.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -228,6 +236,7 @@ can be set.</p>
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>If the detection area and the exclude area are identical or overlap, the exclude area has priority.</li>
+                <li>Any movement smaller than the specified minimum size or larger than the specified maximum size will not be detected. please determine the best values for the minimum/maximum detection sizes that are appropriate for the installation environment in order to avoid any false detection arising out of small and/or large noises. Remember that the same movement in the same spot does not always result in the same detection size. Therefore, it is recommended to allow small/big enough rooms for your minimum/maximum size limits in consideration of the deviation in detected sizes.</li>
             </ul>
         </div>
     </div>
@@ -253,6 +262,19 @@ can be set.</p>
                     </div>
 					</div>
 					</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Overlay</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Click <strong class="UI">[Enable]</strong> to overlay the detected area on the video screen.</p>
+        </div>       
+    </div>
+</div>
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">

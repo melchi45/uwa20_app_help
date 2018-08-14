@@ -1,0 +1,71 @@
+﻿<h1 class="wn5-setup-main-title">Configuration de la mise au point</h1>
+
+<div class="wn5-setup-section">
+    <p>L&apos;utilisateur peut d&eacute;finir la mise au point de l&apos;&eacute;cran manuellement ou automatiquement via Mise au point simple. La mise au point peut &eacute;galement &ecirc;tre r&eacute;initialis&eacute;e &agrave; la valeur par d&eacute;faut via [Initialiser mise au point].</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Configuration de la mise au point</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            
+            <h3>Initialisation de la mise au point</h3>
+            <p>Pour initialiser la mise au point, cliquez sur le bouton <strong class="UI">[Initialiser la mise au point]</strong>. La mise au point sera ajust&eacute;e &agrave; l&apos;emplacement par d&eacute;faut.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="FastAutoFocusDefined">
+            <h3>Mode de mise au point rapide</h3>
+            <p>La mise au point est ajust&eacute;e rapidement dans la plage disponible. Pour r&eacute;gler le <strong class="UI">[Mode de mise au point rapide]</strong>, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+        </div> 
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Mise au point</h3>
+            <p>Cliquez sur le bouton Mise au point sur l&apos;&eacute;cran et r&eacute;glez la mise au point manuellement. Si le contr&ocirc;le automatique de la mise au point n&apos;est pas possible avec une mise au point simple, contr&ocirc;lez la mise au point manuellement. La valeur affich&eacute;e sur le bouton fait r&eacute;f&eacute;rence &agrave; l&apos;intervalle de d&eacute;placement de la mise au point. «&nbsp;1&nbsp;» signifie d&eacute;placer la mise au point d&apos;un facteur 1, tandis que «&nbsp;10&nbsp;» signifie d&eacute;placer la mise au point d&apos;un facteur 10. «&nbsp;100&nbsp;» signifie d&eacute;placer la mise au point d&apos;un facteur 100. «&nbsp;-&nbsp;» rapproche la zone de mise au point et «&nbsp;+&nbsp;» &eacute;loigne la zone de mise au point.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="Zoom">
+            <h3>Zoom</h3>
+            <p>Ajuste manuellement l&apos;agrandissement du zoom. La valeur affich&eacute;e sur le bouton fait r&eacute;f&eacute;rence &agrave; l&apos;intervalle de d&eacute;placement du zoom. «&nbsp;1&nbsp;» signifie d&eacute;placer le zoom d&apos;un facteur 1,&nbsp; «&nbsp;10&nbsp;» signifie d&eacute;placer le zoom d&apos;un facteur 10 et «&nbsp;100&nbsp;» signifie d&eacute;placer le zoom d&apos;un facteur 100. «&nbsp;-&nbsp;» signifie zoom arri&egrave;re (plus large) et «&nbsp;+&nbsp;» signifie zoom avant (plus proche).</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Mise au point simple</h3>
+            <p>La mise au point est ajust&eacute;e automatiquement, en fonction de l&apos;emplacement d&eacute;sign&eacute; par l&apos;utilisateur. Lorsque vous d&eacute;finissez l&apos;emplacement de mise au point en cliquant et en faisant glisser sur l&apos;&eacute;cran avec la souris, puis cliquez sur le bouton <strong class="UI">[Mise au point simple]</strong>, N (Proche) et<->F (Loin) sont affich&eacute;s sur l&apos;&eacute;cran et la mise au point est contr&ocirc;l&eacute;e automatiquement, en fonction de l&apos;emplacement d&eacute;sign&eacute; par l&apos;utilisateur.</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul><li>La fonction de mise au point simple peut ne pas fonctionner correctement en cas de changement soudain (mouvement brusque, disparition) du sujet, en cas de brusque changement de luminosit&eacute;, si l&apos;image est faiblement contrast&eacute;e ou si la source de lumi&egrave;re est forte dans les environs.</li>
+
+            </ul>
+        </div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="ICS">
+            <h3>IR corrig&eacute;</h3>
+            <p>Corrige automatiquement les erreurs de mise au point de la lumi&egrave;re visible et de la lumi&egrave;re IR lors de l&apos;utilisation de la source de lumi&egrave;re IR en mode nuit.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>La fonction de correction IR peut uniquement &ecirc;tre r&eacute;gl&eacute;e lorsque l&apos;objectif «&nbsp;ICS&nbsp;» est s&eacute;lectionn&eacute; dans <strong class="UI">[Vid&eacute;o et audio]</strong> &gt; <strong class="UI">[Configuration de la cam&eacute;ra]</strong> &gt; <strong class="UI">[Exposition]</strong> &gt; <strong class="UI">[Objectif]</strong>.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="ICS">
+            <h3>Compensation de temp&eacute;rature</h3>
+            <p>Cette fonction est utile dans les zones o&ugrave; il existe une grande diff&eacute;rence de temp&eacute;rature entre le jour et la nuit, comme le d&eacute;sert. Elle compense automatiquement les erreurs de mise au point en d&eacute;tectant la contraction et l&apos;expansion de l&apos;objectif en raison de la diff&eacute;rence de temp&eacute;rature.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>La fonction de compensation de temp&eacute;rature ne peut &ecirc;tre r&eacute;gl&eacute;e que lorsque l&apos;objectif «&nbsp;ICS&nbsp;» est s&eacute;lectionn&eacute; dans <strong class="UI">[Vid&eacute;o et audio]</strong> &gt; <strong class="UI">[Configuration de la cam&eacute;ra]</strong> &gt; <strong class="UI">[Exposition]</strong> &gt; <strong class="UI">[Objectif]</strong>.</li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

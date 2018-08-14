@@ -1,0 +1,72 @@
+﻿<h1 class="wn5-setup-main-title">PTRZ設定</h1>
+<div class="wn5-setup-section">
+    <p>PTRZはPTZ機能をもつカメラではない場合にもカメラを上下左右に動かしたり、映像をズームイン・ズームアウトすることができます。またカメラを回転させる機能です。特に天井、壁、角にカメラを設置する場合、カメラ位置を上下左右に調整して最適のビューを確保するために有用な機能です。</p>
+    <p>「PTRZ設定」ページでは、PTRZ機能を用いてカメラの位置を調整してフォーカスを設定することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+<div class="wn5-online-help-info">
+    <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+    <ul><li>PTRZ機能はカメラを設置した後、初期設定する時に好む視野を合わせたり映像画面を水平に整列するために使用することをお勧めします。</li>
+    </ul>
+</div>
+<hr class="wn5-setup-hr">
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>PTRZ設定</h2>
+    </div>
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラビューを調整するには、<span class="tui tui-wn5-ptz-handle"></span>ボタンをマウスでクリックしてから上下左右にドラッグします。カメラの位置がパンとチルトに移動します。</p>
+            <p>またカメラを時計回りに回転させるためには、<i class="tui tui-wn5-return"></i>ボタンをクリックします。ボタンクリックを解除するまでカメラが時計回りに回転し続けます。カメラを反時計回りに回転させるためには、<i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i>ボタンをクリックします。ボタンクリックを解除するまで反時計回りに回転し続けます。</p>
+            <p>画面移動パッドのカーソルをクリックして動かし、カメラを監視方向に移動することができます。</p>
+            <ul>
+                <li>画面移動：カーソルがある方向に移動します。</li>
+                <li>画面移動速度制御：カーソルが中央から遠いほど画面の移動速度が早くなります。</li>
+            </ul>
+            <p>角度表示の下にある<i class="tui tui-wn5-return"></i>ボタンや<i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i>ボタンをクリックしてカメラ回転角度を設定することができます。</p>
+            <div class="wn5-setup-section-article-content">
+                <h3>オートロール</h3>
+                <p>映像画面を自動で水平に合わせるには、<strong class="UI">[オートロール]</strong>ボタンをクリックします。</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>ズームとフォーカス設定</h3>
+                <p>カメラのズームとフォーカスを調整して設定することができます。</p>
+                <p>フォーカスを初期化するには、<strong class="UI">[初期化]</strong>ボタンをクリックします。フォーカスが初期値位置(x1)に調整されます。</p>
+            </div>
+			
+           
+        <div class="wn5-setup-section-article-content">
+            <h3>フォーカス</h3>
+            <p>画面に表示されたフォーカスボタンを押して手動にフォーカスを調整します。ボタンに表示された値は、フォーカス移動間隔を意味します。1はフォーカスを一度に1だけ移動、10はフォーカスを10だけ移動、100はフォーカスを100だけ移動させます。「-」値はフォーカスを近く(near)移動し、「+」値は遠く(far)移動します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="Zoom">
+            <h3>ズーム</h3>
+            <p>ズーム倍率を手動に調整します。ボタンに表示された値は、ズーム移動間隔を意味します。1はズームを一度に1だけ移動、10はズームを10だけ移動、100はズームを100だけ移動させます。「-」値はズームアウト(Zoom out、wide)して「+」値はズームイン(Zoom in、tele)します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>単一フォーカス</h3>
+            <p>画面上にユーザーが指定した位置を基準にフォーカスを自動に調整します。画面上にマウスでクリックしてからドラッグしてフォーカスを合わせる位置を設定した後、<strong class="UI">[単一フォーカス]</strong>ボタンをクリックすると画面にN(Near)<->F(Far)が表示され、ユーザーが指定した位置を基準にフォーカスを自動に調整します。</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                <ul>
+                    <li>下記の場合には、単一フォーカス機能が正しく動作しないことがあります。</li>
+                    <ul>
+                        <li>フォーカス調整中、被写体に急激な変化(急激なモーション、消滅)がある場合</li>
+                        <li>フォーカス調整中に急激な輝度の変化がある場合</li>
+                        <li>映像のコントラストが低い場合</li>
+                        <li>強い光源が周囲にある場合</li>
+                    </ul>                    <li>上記の場合の他に単一フォーカス動作後フォーカスがよく合わない場合、ズームボタン(-100、-10、-1、1、10、100)を用いて手動でフォーカスを調整してください。</li>
+                    <li>単一フォーカス動作が進まない環境では、手動にフォーカスを調整することをお勧めします。</li>
+                </ul>
+        </div>
+		 
+		
+        </div>
+</div>
+
+<hr class="wn5-setup-hr">

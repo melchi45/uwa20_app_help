@@ -1,0 +1,100 @@
+﻿<h1 class="wn5-setup-main-title">SNMP</h1>
+<div class="wn5-setup-section">
+	<p>SNMP (Simple Network Management Protocol)は、ネットワーク管理プロトコルでネットワーク上のデバイスから情報を収集してネットワークを管理することができます。設定を完了した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>SNMP v1/v2c</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        	<p>SNMP v1プロトコルは、暗号化されていないため保安機能がほとんどありません。また、帯域幅を非常に多く使用するためデバイスが多い場合にはネットワーク管理できないことがあります。SNMP v2cプロトコルは、データと認証保安のためにアルゴリズムが追加され、SNMP v1より効率的に帯域幅を使用するようになりました。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMP v1</h3>
+            <p>SNMP v1を有効にするためには、<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMP v2c</h3>
+            <p>SNMP v2cを有効にするためには、<strong class="UI">[有効]</strong>を選択します。<strong class="UI">[SNMP v2c]</strong>を選択すると、リードコミュニティとライトコミュニティが有効になります。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><span class="onlineHelp-padding">リードコミュニティ</span></h3>
+            <p><span class="onlineHelp-padding">SNMP情報にアクセスするためのリード専用のコミュニティ名を入力します。初期値はpublicです。</span></p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><span class="onlineHelp-padding">ライトコミュニティ</span></h3>
+            <p><span class="onlineHelp-padding">SNMP情報にアクセスするためのライト専用のコミュニティ名を入力します。初期値はwriteです。</span></p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>SNMP v3</h2>
+    
+    </div>
+
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>SNMP v3は認証タイプが変更されv1、v2cより保安が強化されてデータ変形なしに伝送することができます。また、承認されてないユーザーがデータにアクセスできないようにパケットを暗号化しました。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMP v3</h3>
+            <p>SNMP v3を有効にするためには、<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Password</h3>
+            <p>SNMP v3のユーザーパスワードを設定します。パスワードは8文字以上16文字まで使用することができます。初期設定されたパスワードは保安に弱いため、製品をインストールしてからすぐ新しいパスワードに変更することをお勧めします。初期設定されたパスワードによる保安&amp;その他の問題に関する責任はユーザーにあるのでご注意ください。</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+        	<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+        		
+                <li>SNMP v3を有効にするには、「保安接続方式」を「HTTPS」モードに設定する必要があります。<strong class="UI">[ネットワーク] </strong>&gt;&nbsp;<strong class="UI"><a href="ssl.html">[HTTPS]</a> </strong>&gt; <strong class="UI">[保安接続方式]</strong>で<strong class="UI">[HTTPS(自体認証保安接続モード)]</strong>や<strong class="UI">[HTTPS(公認保安接続モード)]</strong>を選択してください。 </li>
+                <li>SNMP v3を無効にする場合、保安に問題が発生することがあります。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>SNMPトラップ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+    	   <p>SNMPトラップは、ネットワーク上にあるデバイスに特定なイベントが発生した時、管理システムにイベントを知らせる機能です。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMPトラップ</h3>
+            <p>SNMPトラップを有効にするためには、<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>コミュニティ</h3>
+            <p>メッセージを受けるトラップコミュニティ名を入力します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>IPアドレス</h3>
+            <p>メッセージを送るIPアドレスを入力します。</p>
+            <ul>
+                <li><span class="onlineHelp-padding"><strong class="UI">認証失敗通知</strong>：コミュニティ情報が正しくない場合、管理システムにあるイベント伝達有無を設定します。</span></li>
+                <li><span class="onlineHelp-padding"><strong class="UI">ネットワーク接続通知</strong>：切断されたネットワークに再接続された場合、管理システムにあるイベント伝達有無を設定します。</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

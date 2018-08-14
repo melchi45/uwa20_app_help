@@ -1,0 +1,493 @@
+﻿<h1 class="wn5-setup-main-title">外部PTZ</h1>
+<div class="wn5-setup-section">
+    <p>カメラRS-485かRS-422ポートに接続されたパン/チルトレシーバーでPTZを制御するように設定することができます。プリセットを設定したり、カメラとアクセスされたパン/チルトレシーバーとの通信モードを設定することができます。</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="preset"></a>プリセット</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>プリセットはカメラのビューを設定しておくことを意味します。128つのプリセットを設定することができます。</p>
+        </div>
+        <div class="wn5-online-help-action">
+    	   <h4>プリセット設定</h4>
+    		<ol>
+    			<li>PTZ制御画面で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックしてカメラの映像をズームインしたり、<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
+    			<li><strong class="UI">[No.]</strong>で設定したいプリセットNo.を選択します。</li>
+    			<li><strong class="UI">[名前]</strong>に該当プリセット名を入力します。</li>
+                <li><strong class="UI">[追加]</strong>ボタンをクリックします。</li>
+    		</ol>
+    	</div>
+        <div class="wn5-online-help-action">
+    	   <h4>プリセットに移動</h4>
+    		<ol><li><strong class="UI">[No.]</strong>で設定したいプリセットNo.を選択します。</li>
+    			<li><strong class="UI">[移動]</strong>ボタンをクリックすると、設定しておいた位置にカメラのビューが移動します。</li>
+    			
+    		</ol>
+    	</div>
+        <div class="wn5-online-help-action">
+    	   <h4>プリセット削除</h4>
+    		<ol><li><strong class="UI">[No.]</strong>で削除するプリセットNo.を選択します。</li>
+                <li><strong class="UI">[削除]</strong>ボタンをクリックすると、プリセットを削除します。</li>
+    		</ol>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="group"></a>シリアルポート設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>外部のパン/チルトレシーバーとのアクセス値を設定します。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+        </div>
+		
+			<div class="wn5-setup-section-article-content">
+			<h3>プロトコル</h3>
+			<p>レシーバーとカメラが通信するプロトコルを選択します。</p>
+		    </div>
+ 
+            <div class="wn5-setup-section-article-content">
+                <h3>カメラID</h3>
+                <p>カメラIDが表示されます。固定値に変更できません。</p>
+            </div>
+ 
+            <div class="wn5-setup-section-article-content">
+                <h3>ボーレート</h3>
+                <p>RS-485の通信速度を設定します。</p>
+            </div>
+			
+            <div class="wn5-setup-section-article-content">
+                <h3>データビット</h3>
+                <p>データビットを設定します。</p>
+            </div>
+			
+            <div class="wn5-setup-section-article-content">
+                <h3>パリティビット</h3>
+                <p>データ伝送処理エラーを確認するためのパリティビットを設定します。</p>
+            </div>
+			
+            <div class="wn5-setup-section-article-content">
+                <h3>ストップビット</h3>
+            <p>使用されるストップビットを設定します。</p>
+				</div>
+<div class="wn5-setup-section-article-content">
+                <h3>ONVIFフォーカス移動</h3>
+            <p>外部カメラフォーカスをONVIFプロトコルに調整するように設定するには、<strong class="UI">[有効]</strong>を選択します。</p>
+            </div>
+        <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+
+            <ul>
+                <li>本操作のためには、ネットワークカメラとパン/チルトレシーバーが正しく接続されていなければなりません。またパン/チルトレシーバーを駆動できるようにシリアルポートを設定する必要があります。</li>
+                <li>レシーバーとアクセスする時、レシーバーに対応する機能を確認してください。レシーバーまたはプロトコルの仕様によって未対応の機能があります。詳細は下記の表を参照してください。</li>
+            </ul>
+            <table class="table table-bordered wn5-setup-table" width="813">
+                <tr>
+                    <td width="95">プロトコル</td>
+                    <td width="64">P制御</td>
+                    <td width="89">P移動速度</td>
+                    <td width="52">T制御</td>
+                    <td width="85">T移動速度</td>
+                    <td width="62">ズーム制御</td>
+                    <td width="94">ズーム移動速度</td>
+                    <td width="70">フォーカス制御</td>
+                    <td width="108">フォーカス制御速度</td>
+                    <td width="52">プリセット保存</td>
+                    <td width="52">プリセット移動</td>
+                    <td width="52">備考</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>SAMSUNG-T</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+                    </td>
+                    <td width="89">
+                        <p>O</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="85">
+                        <p>O</p>
+                    </td>
+                    <td width="62">
+                        <p>O</p>
+                    </td>
+                    <td width="94">
+                        <p>O</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+                    </td>
+                    <td width="108">
+                        <p>X</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="52">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>SAMSUNG-E</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+                    </td>
+                    <td width="89">
+                        <p>O</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="85">
+                        <p>O</p>
+                    </td>
+                    <td width="62">
+                        <p>O</p>
+                    </td>
+                    <td width="94">
+                        <p>O</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+                    </td>
+                    <td width="108">
+                        <p>X</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="52">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>PELCO-D</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+                    </td>
+                    <td width="89">
+                        <p>O</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="85">
+                        <p>O</p>
+                    </td>
+                    <td width="62">
+                        <p>O</p>
+                    </td>
+                    <td width="94">
+                        <p>O</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+                    </td>
+                    <td width="108">
+                        <p>X</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="52">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>PELCO-P</p>
+                    </td>
+                    <td width="64">
+                        <p>O</p>
+                    </td>
+                    <td width="89">
+                        <p>O</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="85">
+                        <p>O</p>
+                    </td>
+                    <td width="62">
+                        <p>O</p>
+                    </td>
+                    <td width="94">
+                        <p>O</p>
+                    </td>
+                    <td width="70">
+                        <p>O</p>
+                    </td>
+                    <td width="108">
+                        <p>X</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="52">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="95">SUNGJIN</td>
+                    <td width="64">
+                        <p>O</p>
+                    </td>
+                    <td width="89">
+                        <p>X</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="85">
+                        <p>X</p>
+                    </td>
+                    <td width="62">
+                        <p>X</p>
+                    </td>
+                    <td width="94">
+                        <p>X</p>
+                    </td>
+                    <td width="70">
+                        <p>X</p>
+                    </td>
+                    <td width="108">
+                        <p>X</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+                    </td>
+                    <td width="52">
+                        <p>X</p>
+                    </td>
+                    <td width="52">PT方向<br>(上、下、左、右)</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>PANASONIC</p>
+</td>
+                    <td width="64">
+                        <p>O</p>
+</td>
+                    <td width="89">
+                        <p>O</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>O</p>
+</td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+                    </td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="52">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>HONEYWELL</p>
+</td>
+                    <td width="64">
+                        <p>O</p>
+</td>
+                    <td width="89">
+                        <p>O</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>X</p>
+</td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="52">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>AD</p>
+</td>
+                    <td width="64">                        <p>O</p>
+</td>
+                    <td width="89">                        <p>O</p>
+</td>
+                    <td width="52">                        <p>O</p>
+</td>
+                    <td width="85">                        <p>O</p>
+</td>
+                    <td width="62">                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>X</p>
+</td>
+                    <td width="70">                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">                        <p>O</p>
+</td>
+                    <td width="52">                        <p>O</p>
+</td>
+                    <td width="52">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>VICON</p>
+</td>
+                    <td width="64">
+                        <p>O</p>
+</td>
+                    <td width="89">
+                        <p>O</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>X</p>
+</td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="52">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>GE</p>
+</td>
+                    <td width="64">
+                        <p>O</p>
+</td>
+                    <td width="89">
+                        <p>O</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>O</p>
+</td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="52">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="95">
+                        <p>BOSCH</p>
+</td>
+                    <td width="64">
+                        <p>O</p>
+</td>
+                    <td width="89">
+                        <p>O</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="85">
+                        <p>O</p>
+</td>
+                    <td width="62">
+                        <p>O</p>
+</td>
+                    <td width="94">
+                        <p>O</p>
+</td>
+                    <td width="70">
+                        <p>O</p>
+</td>
+                    <td width="108">
+                        <p>X</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="52">
+                        <p>O</p>
+</td>
+                    <td width="52">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+</div>
+</div>
+<hr class="wn5-setup-hr">

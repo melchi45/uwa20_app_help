@@ -1,0 +1,99 @@
+﻿<h1 class="wn5-setup-main-title">SNMP</h1>
+<div class="wn5-setup-section">
+	<p>SNMP (protocole de gestion de r&eacute;seau simple) est un protocole de gestion de r&eacute;seau qui peut collecter des informations &agrave; partir de l&apos;&eacute;quipement sur le r&eacute;seau et g&eacute;rer le r&eacute;seau. Lorsque vous avez termin&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>SNMP v1 / v2c</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        	<p>Le protocole SNMP v1 n&apos;est pas crypt&eacute; et n&apos;a pratiquement aucune fonction de s&eacute;curit&eacute;. Il a &eacute;galement tendance &agrave; utiliser une bande passante excessive, donc s&apos;il y a beaucoup d&apos;&eacute;quipement, il pourrait &ecirc;tre difficile de g&eacute;rer le r&eacute;seau. Un algorithme a &eacute;t&eacute; ajout&eacute; au protocole SNMP v2c pour la s&eacute;curit&eacute; des donn&eacute;es et de l&apos;authentification, permettant une bande passante plus efficace qu&apos;avec SNMP v1.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMP v1</h3>
+            <p>Pour utiliser SNMP v1, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMP v2c</h3>
+            <p>Pour utiliser SNMP v2c, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Lorsque <strong class="UI">[SNMP v2c]</strong> est s&eacute;lectionn&eacute;, les Communaut&eacute;s de lecture et d&rsquo;&eacute;criture sont activ&eacute;es.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><span class="onlineHelp-padding">Communaut&eacute; de lecture</span></h3>
+            <p><span class="onlineHelp-padding">Saisissez le nom de la communaut&eacute; de lecture seule pour acc&eacute;der aux informations SNMP. La valeur par d&eacute;faut est public.</span></p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><span class="onlineHelp-padding">Communaut&eacute; d&rsquo;&eacute;criture</span></h3>
+            <p><span class="onlineHelp-padding">Saisissez le nom de la communaut&eacute; d&rsquo;&eacute;criture seule pour acc&eacute;der aux informations SNMP. La valeur par d&eacute;faut est &eacute;criture.</span></p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>SNMP v3</h2>
+		</div>
+
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        	<p>L&apos;authentification SNMP v3 a une s&eacute;curit&eacute; renforc&eacute;e par rapport &agrave; v1 et v2c. La transmission sans transformation de donn&eacute;es est possible. Le paquet est &eacute;galement chiffr&eacute; pour emp&ecirc;cher les utilisateurs non autoris&eacute;s d&apos;acc&eacute;der aux donn&eacute;es. <strong class="UI">[HTTPS]</strong> doit &ecirc;tre d&eacute;fini pour <a class="wn5-online-help-link" href="ssl.html" ng-href="#/help/network_ssl"><strong class="UI">[Syst&egrave;me de connexion s&eacute;curis&eacute;e]</strong></a> afin d&apos;utiliser SNMP v3.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>SNMP v3</h3>
+            <p>Pour utiliser SNMP v3, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Mot de passe</h3>
+            <p>D&eacute;finissez le mot de passe de l&apos;utilisateur pour SNMP v3. Les mots de passe doivent comporter entre 8 et 16 caract&egrave;res. La s&eacute;curit&eacute; du mot de passe par d&eacute;faut est faible, il est donc fortement recommand&eacute; de le changer pour un nouveau mot de passe imm&eacute;diatement apr&egrave;s installation du produit. Les utilisateurs sont responsables de la s&eacute;curit&eacute; et autres probl&egrave;mes li&eacute;s &agrave; l&apos;utilisation continue du mot de passe par d&eacute;faut.</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+        	<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+        	<ul>
+        		
+        		<li>L&apos;&eacute;chec de l&apos;utilisation de SNMP v3 peut entra&icirc;ner des probl&egrave;mes de s&eacute;curit&eacute;.</li>
+        	</ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Pi&egrave;ges SNMP</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+    	   <p>Un pi&egrave;ge SNMP est une fonction qui d&eacute;livre des &eacute;v&eacute;nements sp&eacute;cifiques dans l&apos;&eacute;quipement sur le r&eacute;seau au syst&egrave;me de gestion.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Pi&egrave;ges SNMP</h3>
+            <p>Pour utiliser le pi&egrave;ge SNMP, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Communaut&eacute;</h3>
+            <p>Saisissez le nom de la communaut&eacute; de pi&egrave;ge qui re&ccedil;oit le message.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Adresse IP</h3>
+            <p>Saisissez l&apos;adresse IP de l&apos;utilisateur qui envoie le message.</p>
+            <ul>
+                <li><span class="onlineHelp-padding"><strong class="UI">Alerte d&apos;&eacute;chec d&apos;authentification</strong>&nbsp;: Indiquez si vous souhaitez ou non envoyer un &eacute;v&eacute;nement au syst&egrave;me de gestion lorsque les informations de la communaut&eacute; sont incorrectes.</span></li>
+                <li><span class="onlineHelp-padding"><strong class="UI">Alerte de connexion r&eacute;seau</strong>&nbsp;: D&eacute;finissez si vous souhaitez ou non envoyer un &eacute;v&eacute;nement au syst&egrave;me de gestion lorsque le r&eacute;seau d&eacute;connect&eacute; est reconnect&eacute;.</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

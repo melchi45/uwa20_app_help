@@ -1,0 +1,226 @@
+﻿<h1 class="wn5-setup-main-title">D&eacute;tection de mouvement</h1>
+<div class="wn5-setup-section">
+    <p>Un &eacute;v&eacute;nement de d&eacute;tection de mouvement peut &ecirc;tre cr&eacute;&eacute; lorsqu&apos;une zone de d&eacute;tection de mouvement et la zone exclue sont d&eacute;finies et qu&apos;un mouvement est d&eacute;tect&eacute; &agrave; l&apos;int&eacute;rieur de la zone d&eacute;finie par l&apos;utilisateur. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
+    <p>La configuration de l&apos;&eacute;v&eacute;nement de d&eacute;tection de mouvement s&apos;applique &agrave; <strong class="UI">[D&eacute;tection de mouvement]</strong> sur les pages <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuration de l&apos;&eacute;v&eacute;nement]</strong></a> de la m&ecirc;me mani&egrave;re.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>D&eacute;tection de mouvement</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            
+            <h3>Activer la d&eacute;tection de mouvement</h3>
+            <p>Pour utiliser l&apos;&eacute;v&eacute;nement de d&eacute;tection de mouvement, s&eacute;lectionnez <strong class="UI">[Activer la d&eacute;tection de mouvement]</strong>.</p>
+			</div>
+			<div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>Type</h3>
+            <p>Pour appliquer la m&ecirc;me d&eacute;tection de mouvement &agrave; tous les pr&eacute;r&eacute;glages, s&eacute;lectionnez <strong class="UI">[Global]</strong>. Pour d&eacute;finir une d&eacute;tection de mouvement diff&eacute;rente pour chaque PTZ pr&eacute;r&eacute;gl&eacute;e, s&eacute;lectionnez <strong class="UI">[Pr&eacute;r&eacute;glage]</strong>. L&apos;option <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> ne sera activ&eacute;e que lorsqu&apos;un pr&eacute;r&eacute;glage est d&eacute;fini &agrave; partir de la page <a class="wn5-online-help-link" href="../../Korean/ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Configuration pr&eacute;r&eacute;gl&eacute;e</a>.</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>La zone de d&eacute;tection de mouvement et la zone exclue sont d&eacute;finies et utilis&eacute;es en fonction de la taille de la plage du mouvement.</li>
+                <li>Dans les cas suivants, les performances de l&apos;&eacute;v&eacute;nement de d&eacute;tection de mouvement peuvent se d&eacute;t&eacute;riorer et un dysfonctionnement peut se produire&nbsp;: <br>- Si un objet a la m&ecirc;me luminosit&eacute; ou la m&ecirc;me couleur que l&apos;arri&egrave;re-plan sur l&apos;&eacute;cran <br>- Si un petit mouvement se produit pr&egrave;s du bord de l&apos;&eacute;cran <br>- Si un changement global se produit sur l&apos;&eacute;cran de mani&egrave;re continue, al&eacute;atoirement, &agrave; cause de facteurs tels que les changements de sc&egrave;ne et les changements d&apos;&eacute;clairage soudains <br>- Si un objet en mouvement s&apos;approche trop pr&egrave;s de la cam&eacute;ra <br>- Lorsqu&rsquo;un objet cache un autre objet <br>- Lorsque le mouvement d&apos;un objet est trop rapide <br>- Lorsqu&rsquo;une lumi&egrave;re vive, telle que la lumi&egrave;re directe du soleil, un &eacute;clairage fort ou les phares d&apos;un v&eacute;hicule, cr&eacute;e des reflets, flou ou des ombres <br>- En cas de forte neige, de pluie abondante ou de vents violents, ou de coucher ou lever de soleil.</li>
+            </ul>
+        </div>
+
+</div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>Zone</h2>
+    </div>
+
+    <div class="wn5-setup-section-article">
+
+        <div class="wn5-setup-section-article-content">
+            <p>La zone d&eacute;sign&eacute;e par l&apos;utilisateur est d&eacute;finie comme la zone de d&eacute;tection de mouvement.</p>
+        </div>
+            <div class="wn5-online-help-action">
+            <h4>D&eacute;finir une zone</h4>
+            <p>Lorsque vous s&eacute;lectionnez 4&nbsp;coins d&apos;une image avec la souris, cela est d&eacute;fini comme la zone de d&eacute;tection de mouvement et la couleur des boutons num&eacute;riques change dans <strong class="UI">[Zone]</strong>. Il est possible de r&eacute;gler jusqu&apos;&agrave; 8&nbsp;zones et le niveau et la sensibilit&eacute; peuvent &ecirc;tre r&eacute;gl&eacute;s s&eacute;par&eacute;ment pour chaque zone de d&eacute;tection de mouvement.</p>
+        </div>
+            <div class="wn5-online-help-action">
+            <h4>Modifier une zone</h4>
+			<p>Vous pouvez modifier la taille d&apos;une zone de d&eacute;tection de mouvement en d&eacute;pla&ccedil;ant un coin de la zone de d&eacute;tection de mouvement. Pour d&eacute;placer une zone de d&eacute;tection de mouvement, cliquez sur la zone correspondante avec la souris et faites la glisser.</p>
+			        </div>
+            <div class="wn5-online-help-action">
+            <h4>Supprimer une zone</h4>
+			<p>Pour supprimer une zone de d&eacute;tection de mouvement, cliquez sur le bouton droit de la souris dans la zone de l&apos;&eacute;cran correspondante et cliquez sur le bouton <strong class="UI">[OK]</strong> dans la fen&ecirc;tre confirmer la suppression.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            
+            <h3>Zone</h3>
+            <p>Lorsqu&apos;une zone de d&eacute;tection de mouvement est ajout&eacute;e, la couleur des boutons num&eacute;riques change dans [Zone]. Lorsque vous cliquez sur le bouton num&eacute;rique, la zone correspondante dispara&icirc;t de l&apos;&eacute;cran d&apos;aper&ccedil;u. Lorsque vous cliquez &agrave; nouveau sur le bouton num&eacute;rique, la zone de d&eacute;tection de mouvement r&eacute;appara&icirc;t.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Niveau de d&eacute;tection</h3>
+            <p>Ceci d&eacute;finit le niveau standard de d&eacute;tection de mouvement. Vous pouvez &eacute;tablir le niveau de chaque zone de d&eacute;tection de mouvement dans <strong class="UI">[Zone]</strong>, et lorsqu&apos;un mouvement d&eacute;passe le niveau d&eacute;fini, un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;.</p>
+            <p>De plus, alors qu&apos;un mouvement est d&eacute;tect&eacute; dans chaque zone, un graphique de mouvement appara&icirc;t, et lorsqu&apos;un &eacute;v&eacute;nement de mouvement est cr&eacute;&eacute;, la couleur du graphique change.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Sensibilit&eacute;</h3>
+            <p>Cette fonction d&eacute;finit la sensibilit&eacute; de la d&eacute;tection de mouvement pour chaque zone. &Eacute;tablissez une sensibilit&eacute; plus faible pour un environnement o&ugrave; l&apos;arri&egrave;re-plan et un objet sont clairement visibles et une sensibilit&eacute; plus &eacute;lev&eacute;e pour un environnement o&ugrave; l&apos;arri&egrave;re-plan et un objet ne sont pas clairement visibles.</p>
+        </div><!-- <div class="wn5-setup-section-article-content">
+            <h3>Hand over</h3>
+            <p>To use the hand over, select <strong class="UI">[Enable]</strong>. When the hand over function is used, it is possible to set a specific camera to move to a specific PTZ preset position when a motion is detected in the set area. Assigns a camera for each area.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Receiver camera</h3>
+            <p>A receiver camera can be linked with the area.</p>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h5>Adding a receiver camera</h5>
+            <ol><li>Select a motion detection area to be linked with the receiver camera on the preview screen.</li>
+                <li>Select <strong class="UI">[Enable]</strong> in <strong class="UI">[Hand over]</strong>.</li>
+                <li>Click the <strong class="UI">[Add]</strong> button on top of the <strong class="UI">[Receiver camera]</strong> list.</li>
+                <li>Enter the receiver camera information and the preset no. in the <strong class="UI">[Add Camera]</strong> window and click the <strong class="UI">[Apply]</strong> button. </li>
+            </ol>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h5>Deleting a receiver camera</h5>
+            <ol><li>Select a motion detection area linked with the receiver camera to be deleted from the preview screen.</li>
+                <li>Click the check box on the camera list. </li>
+                <li>Click the <strong class="UI">[Delete]</strong> button on top of the <strong class="UI">[Receiver camera]</strong> list.</li>
+                <li>When the confirm window appears, click <strong class="UI">[OK]</strong>.</li>
+            </ol>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>The hand over can be used after first setting the motion detection area. </li>
+            </ul>
+        </div> --></div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>Zone exclue</h2>
+	</div>
+
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>La zone d&eacute;sign&eacute;e par l&apos;utilisateur est d&eacute;finie comme zone exclue.</div>
+        <div class="wn5-online-help-action">
+			<h4>D&eacute;finir une zone exclue</h4>
+			<p>Lorsque vous s&eacute;lectionnez 4&nbsp;coins d&apos;une image avec la souris, cela est d&eacute;fini comme zone exclue et la couleur des boutons num&eacute;riques change dans <strong class="UI">[Zone]</strong>. Il est possible de d&eacute;finir jusqu&apos;&agrave; 8&nbsp;zones exclues.</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Modifier une zone exclue</h4>
+			<p>Vous pouvez modifier la taille d&apos;une zone exclue en d&eacute;pla&ccedil;ant un coin de la zone exclue. Pour d&eacute;placer une zone exclue, cliquez sur la zone correspondante avec la souris et faites la glisser.</p>
+        </div>
+        <div class="wn5-online-help-action">
+			<h4>Supprimer une zone exclue</h4>
+			<p>Pour supprimer une zone exclue, cliquez sur le bouton droit de la souris dans la zone de l&apos;&eacute;cran correspondante et cliquez sur le bouton <strong class="UI">[OK]</strong> dans la fen&ecirc;tre confirmer la suppression.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            
+            <h3>Zone</h3>
+            <p>Lorsqu&apos;une zone exclue est ajout&eacute;e, la couleur des boutons num&eacute;riques change dans <strong class="UI">[Zone]</strong>. Lorsque vous cliquez sur le bouton num&eacute;rique, la zone exclue correspondante dispara&icirc;tra de l&apos;&eacute;cran d&apos;aper&ccedil;u. Lorsque vous cliquez &agrave; nouveau sur le bouton num&eacute;rique, la zone exclue r&eacute;appara&icirc;tra.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+              <div class="wn5-setup-section">
+                  <div class="wn5-setup-section-heading">
+                      <h2>Relais</h2>
+                  </div>
+                  <div class="wn5-setup-section-article">
+                      <div class="wn5-setup-section-article-content">
+                          <h3>Relais</h3>
+                          <p>S&eacute;lectionnez un num&eacute;ro de cam&eacute;ra r&eacute;cepteur de relais. S&eacute;lectionnez <strong class="UI">[D&eacute;sactiver]</strong> si vous ne souhaitez pas utiliser la fonction de relais.</p>
+                          <p>Le relais est une fonction permettant &agrave; la cam&eacute;ra r&eacute;cepteur de passer &agrave; la position PTZ pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de classification de sources audio se produit. La cam&eacute;ra recevant le relais peut &ecirc;tre d&eacute;finie dans le menu <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt; <strong class="UI">[Relais]</strong>.</p>
+</div>
+ 			<div class="wn5-online-help-info">
+                          <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                                                  <ul>
+
+                                                      <li>Vous pouvez d&eacute;finir la cam&eacute;ra r&eacute;cepteur de relais pour chaque zone d&rsquo;int&eacute;r&ecirc;t. La fonction de relais peut &ecirc;tre utilis&eacute;e apr&egrave;s avoir d&rsquo;abord d&eacute;fini la zone d&rsquo;int&eacute;r&ecirc;t.</li>
+ </ul>
+                      </div>
+</div>
+</div> 
+  <hr class="wn5-setup-hr">
+  <div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Configuration des actions de l&apos;&eacute;v&eacute;nement</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            
+            <h3>FTP</h3>
+            <p>Pour enregistrer une image sur un serveur FTP lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le FTP peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>Pour envoyer une image par e-mail lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour l&apos;e-mail peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Enregistrer</h3>
+            <p>Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>&Eacute;mission d&apos;alerte</h3>
+            <p>Il est possible de d&eacute;finir le num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte pour une alarme pr&eacute;cise lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;.&nbsp;Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&apos;alerte, s&eacute;lectionnez <strong class="UI">[D&eacute;sactiv&eacute;]</strong> si vous ne souhaitez pas d&apos;alerte, ou s&eacute;lectionnez l&apos;heure d&rsquo;&eacute;mission si vous souhaitez &eacute;mettre une alarme. Vous pouvez d&eacute;finir une alarme continue jusqu&apos;&agrave; ce qu&apos;elle soit d&eacute;sactiv&eacute;e par l&apos;utilisateur en s&eacute;lectionnant <strong class="UI">[Toujours]</strong>, ou r&eacute;gler l&apos;alarme pour 5, 10 ou 15&nbsp;secondes. Les r&eacute;glages d&eacute;taill&eacute;s pour l&rsquo;&eacute;mission d&apos;alerte peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a
+class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[&Eacute;mission d&apos;alerte]</strong></a>.</p>
+        </div>
+
+      <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+            <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
+                    <p>Vous pouvez r&eacute;gler la position de vue de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; un nombre pr&eacute;d&eacute;fini lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ num&eacute;rique]</strong></a> ou <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
+                <p>Vous pouvez r&eacute;gler la position de vue de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la section <strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong></a>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
+                <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuration PTZ]</strong></a>.</p>
+        </div>
+
+
+
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Temps d&apos;activation d&apos;&eacute;v&egrave;nement</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Ceci d&eacute;finit la configuration des actions de <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_motionDetection/v2?#action">Configuration des actions de l&apos;&eacute;v&eacute;nement</a>]</strong> pour qu&rsquo;elles fonctionnent toujours, ou seulement &agrave; une heure d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+
+            <h3>Toujours</h3>
+            <p>La configuration des actions de l&apos;&eacute;v&eacute;nement d&eacute;finie est toujours ex&eacute;cut&eacute;e lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Heure programm&eacute;e uniquement</h3>
+            <p>La configuration des actions de l&apos;&eacute;v&eacute;nement est ex&eacute;cut&eacute;e lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute; pendant l&rsquo;heure d&eacute;finie. La date, allant du dimanche au samedi en fonction de l&apos;horaire actuel de la cam&eacute;ra, est affich&eacute;e sur le calendrier visible lorsque l&rsquo;option <strong class="UI">[Heure programm&eacute;e uniquement]</strong> est s&eacute;lectionn&eacute;e. Vous pouvez d&eacute;finir l&apos;heure de configuration des actions de l&apos;&eacute;v&eacute;nement en cliquant ou en faisant glisser la souris sur le calendrier. L&apos;heure d&apos;activation de l&apos;&eacute;v&eacute;nement d&eacute;finie est r&eacute;alis&eacute;e plusieurs fois le jour de la semaine et &agrave; l&apos;heure concern&eacute;s.</p>
+			<p>Vous pouvez changer l&apos;unit&eacute; d&apos;affichage de l&apos;heure en cliquant sur les boutons <strong class="UI">[1&nbsp;min]</strong>, <strong class="UI">[30&nbsp;min]</strong> ou <strong class="UI">[1&nbsp;h]</strong>. Lorsque vous cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>, toutes les heures d&apos;activation des &eacute;v&eacute;nements d&eacute;finies seront supprim&eacute;es. Pour confirmer ou modifier l&apos;heure de la cam&eacute;ra, reportez-vous &agrave; la section <strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

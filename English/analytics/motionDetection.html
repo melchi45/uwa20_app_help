@@ -101,6 +101,10 @@
             <h3>Sensitivity</h3>
             <p>This sets the motion detection sensitivity for each area. Set a lower sensitivity for an environment where the background and an object are clearly distinguishable and a higher sensitivity for an environment where the background and an object are not clearly distinguishable.</p>
         </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Minimum duration</h3>
+            <p>Minimum duration (s): Sets the minimum amount of time to trigger an event after detection. When the movement lasts longer than the set period of time, the event is triggered.</p>
+        </div>
     <!-- <div class="wn5-setup-section-article-content">
             <h3>Hand over</h3>
             <p>To use the hand over, select <strong class="UI">[Enable]</strong>. When the hand over function is used, it is possible to set a specific camera to move to a specific PTZ preset position when a motion is detected in the set area. Assigns a camera for each area.</p>
@@ -183,26 +187,63 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
+<div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+                <h2>Common</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>Sets the min and max sizes of an object to detect. </p>
+            </div>
+           
+            <div class="wn5-setup-section-article-content">
+                <h3>Size</h3>
+                <p>Click the bottom right corner and drag the mouse to change the size. Changing the size also changes the <strong class="UI">[Minimum]</strong> and <strong class="UI">[Maximum]</strong> values under <strong class="UI">[Size]</strong>.</p>
+            </div>
+    
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                <ul>
+                    <li>If the ROI and Exclude areas are identical or overlap each other, the Exclude area has priority over the other.</li>
+                    <li>Any movement smaller than the specified minimum size or larger than the specified maximum size will not be detected. please determine the best values for the minimum/maximum detection sizes that are appropriate for the installation environment in order to avoid any false detection arising out of small and/or large noises. Remember that the same movement in the same spot does not always result in the same detection size. Therefore, it is recommended to allow small/big enough rooms for your minimum/maximum size limits in consideration of the deviation in detected sizes. </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-              <div class="wn5-setup-section" ng-if="!HandoverCalibration">
-                  <div class="wn5-setup-section-heading">
-                      <h2>Handover</h2>
-                  </div>
-                  <div class="wn5-setup-section-article">
-                      <div class="wn5-setup-section-article-content">
-                          <h3>Handover</h3>
-                          <p>Select a handover receiver camera number. Select <strong class="UI">[Disable]</strong> if you don't want to use the handover function.</p>
-                          <p>Handover is a function that the receiver camera moves to the PTZ preset position when an audio source classification event occurs. The handover receiving camera can be set in the <strong class="UI">[Event]</strong> &gt; <strong class="UI">[Handover]</strong> menu. </p>
+
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
+    <div class="wn5-setup-section" ng-if="!HandoverCalibration">
+        <div class="wn5-setup-section-heading">
+            <h2>Handover</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <h3>Handover</h3>
+                <p>Select a handover receiver camera number. Select <strong class="UI">[Disable]</strong> if you don't want to use the handover function.</p>
+                <p>Handover is a function that the receiver camera moves to the PTZ preset position when an audio source classification event occurs. The handover receiving camera can be set in the <strong class="UI">[Event]</strong> &gt; <strong class="UI">[Handover]</strong> menu. </p>
             </div>
  			<div class="wn5-online-help-info">
-                          <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-                            <ul>
-                            <li>You can set the handover receiver camera for each ROI area. The handover function can be used after setting the ROI area first.</li>
-                            </ul>
+                <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                    <ul>
+                        <li>You can set the handover receiver camera for each ROI area. The handover function can be used after setting the ROI area first.</li>
+                    </ul>
              </div>
         </div>
     </div> 
+
+    <hr class="wn5-setup-hr">
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h2>Overlay</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>Click <strong class="UI">[Enable]</strong> to overlay the detected area on the video screen.</p>
+            </div>       
+        </div>
+    </div>
+
   <hr class="wn5-setup-hr">
   <div class="wn5-setup-section">
 

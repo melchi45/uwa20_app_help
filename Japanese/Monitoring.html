@@ -1,0 +1,522 @@
+﻿
+<h1 class="wn5-setup-main-title">ライブ画面</h1>
+<div class="wn5-setup-section">
+    <p ng-if="MaxAudioInput==0">カメラで撮影しているライブ映像を確認したり、画面キャプチャー、アラーム出力、マイク等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p>
+	    <p ng-if="MaxAudioInput!=0">カメラで撮影しているライブ映像を確認したり、画面キャプチャー、アラーム出力等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p>
+</div>
+<div class="wn5-setup-section">
+    <div class="wn5-online-help-list">
+    <p>上のボタンをクリックすると、ライブ画面や再生画面、設定画面に移動することができます。</p>
+        <ul><li><span class="tui tui-wn5-top-live"></span>(ライブ)：カメラで撮影中のライブ画面を確認して、様々なカメラ機能を制御することができます。</li>
+            <li ng-if="Recording"><span class="tui tui-wn5-top-playback"></span>(再生)：SDカードまたはNASに録画しておいた映像を検索して再生することができます。</li>
+            <li><span class="tui tui-wn5-top-setup"></span>(設定)：カメラの詳細設定を変更することができます。</li>
+        </ul>
+    </div>
+
+    <div class="wn5-online-help-info" ng-if=!CamSpecialModel">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+        <ul>
+            <li>Chromeでウェブビューアに接続すると、再生画面の機能を最も安定した状態で使用することができます。</li>
+            <li>ライブページで映像を再生する場合、下記の条件で画面に残像が表示されることがあります。</li>
+            <ul>
+                <li>Profileを変更するときに解像度が変わる場合</li>
+                <li>Profileを変更するときにネットワーク遅延発生でデータ受信が遅れる場合</li>
+                <li>ウェブブラウザのサイズ変更&amp;位置を移動する場合</li>
+            </ul><!-- 	<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li> --></ul>
+    
+    </div>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>アイコン</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>ライブ画面の下にあるアイコンは下記の機能をします。</p>
+            <p>特定ブラウザまたはCodecでは一部の機能が動作しない場合があります。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <table class="table table-bordered wn5-setup-table">
+                <thead>
+                    <tr>
+                        <th width="235">アイコン</th>
+                        <th width="235">機能説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td width="235">チャンネル変更</td>
+                    <td width="235">
+                        <p>カメラチャンネルNo.が表示されます。チャンネルNo.を選択すると、該当の映像がライブ画面に表示されます。4分割画面のアイコンを選択すると、4つのチャンネル映像を一気に表示します。</p>
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>
+                    <tr>
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-setup"></span></p>
+                            <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">ビデオ設定</a></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p>現在のライブ画面に適用されたProfileを確認したり、Profileを変更することができます。また、ライブ画面のディスプレイ設定を変更することができます。</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+					<tr>
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
+                            <p>&nbsp;</p>
+                        </td>
+                    <td width="235">
+                        <p ng-if="DPTZSetupPage">カメラのパン/チルト/ズーム動作をデジタルに制御することができます。現在のライブ画面に適用されたビデオprofileがデジタルPTZに対応する場合のみ動作します。デジタルPTZ制御Profileに変更するには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[Profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択します。</p>
+
+ 
+                         <p ng-if="ExternalPTZPage">カメラRS-485かRS-422ポートに接続されたパン/チルトレシーバーでカメラのパン/チルト/ズーム動作を制御することができます。<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>ページで設定したプリセットの位置に移動するか、スウィング、グループ、ツアー、トラッキングを開始して中止することができます。</p>
+                            
+                        
+                        <p ng-if="PTZSetupPage">カメラのパン/チルト/ズーム動作を制御することができます。<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ設定]</strong>ページで設定したプリセットの位置に移動するか、スウィング、グループ、ツアー、トラッキングを開始して中止することができます。</p>
+						<p>&nbsp;</p>
+                           
+                    </td>
+                    </tr>
+					<tr ng-if="FisheyeLens">
+                    <td width="235">
+                        <p><span class="tui tui-wn5-toolbar-fisheye"></span></p>
+                        <p><a class="wn5-online-help-link" href="#fisheyeview" ng-href="#/help/monitoring?#fisheyeview">魚眼ビュー</a></p>
+                    </td>
+                    <td width="235">
+                        <p>魚眼カメラの映像を様々なビューモードで確認することができます。</p>
+                        <p>Internet Explorerでプラグインをインストールして、[ビデオ設定]タブで「FisheyeView」Profileを選択した場合のみ表示されます。</p>
+						<p>&nbsp;</p>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-status"></span></p>
+                            <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">状況</a></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p>Profileごとに接続情報や現在カメラに接続したユーザーの情報を確認することができます。</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
+                            <p>全画面</p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p>ライブ画面を全画面に表示することができます。元のウェブブラウザのサイズに戻るためには、全画面モードで<span class="tui tui-wn5-toolbar-fullscreen"></span>ボタンをもう一度クリックするかキーボードの<strong class="UI">[ESC]</strong>キーを押します。</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="235">サイズオプション</td>
+                        <td width="235">
+                            <p>一度クリックするたびに、下記のモードに変更されます。</p>
+                            <ul>
+                                <li><span class="tui tui-ch-live-view-fit"></span>(適合)：カメラ映像をウェブブラウザのサイズに合わせて表示します。</li>
+                                <li><span class="tui tui-ch-live-view-originalratio"></span>(オリジナルサイズ)：カメラ映像の実際解像度サイズに表示します。</li>
+                                <li><span class="tui tui-ch-live-view-originalsize"></span>(アスペクト比)：カメラ映像解像度の縦横比を維持したままライブ画面をズームインまたはズームアウトしてウェブブラウザのサイズに表示します。</li>
+                            </ul>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-capture"></span></p>
+                            <p>キャプチャー</p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p>ライブ画面をキャプチャーしてPNG画像ファイルに保存することができます。キャプチャーした画像ファイルは、各ブラウザのデフォルト保存パスに保存されます。</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr ng-if="!CamSpecialModel">
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-record"></span></p>
+                            <p>保存</p>
+                        </td>
+                        <td width="235">
+                            <p>ライブ画面を手動で録画してPCに保存することができます。保存ボタンをクリックして録画を開始し、もう一度クリックすると録画を止めます。録画ファイルは.aviタイプで保存することができます。ブラウザによってブラウザのデフォルト保存パスに保存されるか別名で保存からファイルパスを設定することができます。</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-pixel"></span></p>
+                            <p>ピクセル数</p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p>ライブ画面からマウスで選択したエリアの映像ピクセル数を確認することができます。ピクセル数ボタンをクリックした後、エリアをマウスでクリックしてドラッグします。選択したエリアが表示され、映像のピクセル数が表示されます。ピクセル数ボタンをもう一度クリックすると、ピクセル数機能を終了します。</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr ng-if="MaxAudioInput==0">
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-mic"></span></p>
+                            <p><a class="wn5-online-help-link" name="mic"></a>マイク</p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p>マイク機能を使用することができます。マイク機能を使用するためには、該当のProfileに<strong class="UI">[音声入力]</strong>機能を有効にする必要があります。ビデオ入力機能を有効にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[音声入力]</strong>で<strong class="UI">[On]</strong>を選択します。</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
+                            <p>アラーム出力</p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p>選択したいアラーム出力No.をクリックすると、設定した情報でアラームを出力します。アラームは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム出力]</strong>ページで設定することができます。アラーム出力数は、カメラごとに異なります。</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr ng-if="MaxAudioOutput">
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-sound"></span></p>
+                            <p><a class="wn5-online-help-link" name="speaker"></a>スピーカー</p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="235">
+                            <p>ライブ画面のオーディオ音量を調整することができます。 <span class="tui tui-wn5-toolbar-sound"></span> ボタンをクリックしてオーディオを有効に設定してから、音量を調整することができます。</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="wn5-online-help-action">
+            <h4>チャンネルを変更するには、</h4>
+                <ul>
+                    <li>チャンネルNo.を選択します。該当チャンネルの映像がビューアに表示されます。</li>
+                    <li>クワドビュー画面に表示するには、クワドビューのアイコンをクリックします。</li>
+                    <li>シングル画面に戻すには、チャンネルNo.をクリックします。</li>
+                </ul>
+            </div>
+            <div class="wn5-online-help-action">
+            <h4>映像をキャプチャーするには、</h4>
+                <ul>
+                    <li>キャプチャーするシーンで<span class="tui tui-wn5-toolbar-capture"></span>キャプチャーアイコンをクリックします。</li>
+                    <li>キャプチャーを保存すると、通知メッセージが表示されます。各ブラウザの保存パスにキャプチャー画像を保存します。  </li>
+                </ul>
+                <p>Windows 7以上のInternet Explorerブラウザでキャプチャーできない場合、Internet Explorerブラウザを管理者権限で実行してください。</p>
+            </div>
+            <div class="wn5-online-help-action">
+            <h4><a name="record"></a>映像を録画するには、</h4>
+                <ul>
+                    <li><span class="tui tui-wn5-toolbar-record"></span>保存アイコンをクリックします。</li>
+                    <li>手動録画を終了するには、<span class="tui tui-wn5-toolbar-record"></span>もう一度保存ボタンをクリックします。</li>
+               </ul>
+                <p>ユーザーPCに手動録画を.aviファイルで保存することができます。パスを指定して映像を保存してください。</p>
+                <p>魚眼ビューモードで録画すると、ユーザーが見ている歪み補正ビューではなくオリジナル画像で保存されます。</p>
+            </div>
+			
+            <div class="wn5-online-help-action">
+                <h4>全画面に切換するには、</h4>
+                <ul>
+                    <li><span class="tui tui-wn5-toolbar-fullscreen"></span>全画面アイコンを選択します。ビューア画面が全画面に変更されます。</li>
+                    <li>全画面モードを終了するには、<span class="tui tui-wn5-toolbar-fullscreen"></span>もう一度全画面アイコンをクリックするかキーボードの[Esc]キーをクリックします。</li>
+                </ul>
+            </div>
+            <div class="wn5-online-help-action">
+            <h4>オーディオを使用するには、</h4>
+                <ul>
+                    <li><span class="tui tui-wn5-toolbar-mic"></span>オーディオアイコンをクリックします。</li>
+                    <li>音量調整バーでオーディオ音量を調整します。</li>
+                </ul>
+                <p>オーディオ動作中、PCのオーディオジャックを接続・分離するときに音が出ない場合、<span class="tui tui-wn5-toolbar-mic"></span>オーディオアイコンをクリックして有効にしてください。</p>
+            </div>
+			
+            <div class="wn5-online-help-action">
+                <h4>スピーカーを使用するには、</h4>
+                <ul>
+                    <li><span class="tui tui-wn5-toolbar-sound"></span>スピーカーアイコンをクリックします。</li>
+                  
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-action">
+            <h4>ピクセル数をカウントするには、</h4>
+                <ul>
+                    <li><span class="tui tui-wn5-toolbar-pixel"></span>ピクセル数アイコンをクリックします。</li>
+                    <li>映像の上にマウスをドラッグしてエリアを設定します。そのエリアのピクセル数が画面に表示されます。</li>
+                   
+                </ul>
+            </div>															
+			
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="ColorPalette">
+<div class="wn5-setup-section" ng-if="ColorPalette">
+    <div class="wn5-setup-section-heading">
+        <h2>カラーパレット</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラ映像を視覚的に分析しやすいようにカラーパレットを提供します。カラーパレットを選択すると、カメラ映像画面に選択したカラーパレットが適用されます。</p>
+            <p>各カラーパレットのオプション別特徴は、<strong class="UI">[設定]</strong> &gt; <strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[カメラ設定]</strong> &gt; <strong class="UI">[カラーパレット]</strong>を参照してください。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="settings"></a>ビデオ設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Profile</h3>
+            <p>現在のライブ画面に適用されたビデオprofile名とインフォメーションが表示されます。<strong class="UI">[Profile]</strong>ドロップダウンボタンを押すと、現在のWebviewerで使用できるビデオprofileリストが表示され、適用したいビデオprofileを選択すると、ライブ画面にすぐ適用されます。選択したビデオprofileの解像度、Codec、フレームレート、ターゲットビットレートを確認することができます。</p><!--  <p ng-if="FisheyeLens">Internet Explorer로 웹뷰어에 접속한 경우, MJPEG 코덱을 제외한 다른 프로파일의 영상은 플러그인을 설치해야 영상을 볼 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인을 클릭하십시오.</p>
+            <p ng-if="FisheyeLens">또한 플러그인을 설치한 경우, 균등성을 보장하려면 <strong class="UI">[플러그인 균등성]</strong>을 선택합니다. </p> --></div>
+		
+
+        <div class="wn5-setup-section-article-content">
+            <h3>ディスプレイ</h3>
+            <p>ライブ画面のコントラスト、明るさ、シャープ、カラーレベルを設定することができます。設定値を入力すると、ライブ画面にすぐ適用されます。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="Zoom">
+<div class="wn5-setup-section" ng-if="Zoom">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラのズームやフォーカスを調整することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ズーム調整</h3>
+            <p>ズームエリアで<strong class="UI">[+]</strong>ボタンをクリックすると画面がズームイン、<strong class="UI">[-]</strong>ボタンをクリックするとズームアウトされます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>フォーカス調整</h3>
+            <p><span class="tui tui-wn5-ptz-near"></span>ボタンか<span class="tui tui-wn5-ptz-far"></span>ボタンをクリックしてカメラのフォーカスを調整します。</p>
+            <p>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>プリセットに移動</h3>
+            <p>プリセットリストでプリセットを選択した後、<strong class="UI">[進む]</strong>ボタンをクリックすると、お望みのプリセット位置に移動します。</p>
+            <p>プリセットを追加するには、<strong class="UI">[設定]</strong>ボタンをクリックした後、プリセット名を入力して番号を設定してから<strong class="UI">[適用]</strong>ボタンをクリックします。また<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[プリセット設定]</strong>タブでプリセットを追加したり変更することができます。</p>
+        </div>
+    </div>
+</div><!-- <hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>카메라의 팬/틸트/줌 동작을 제어하거나 디지털 자동 추적 기능을 사용할 수 있습니다. 메인 화면의 하단에 있는 <span class="tui tui-wn5-toolbar-ptz"></span> 버튼을 클릭하면 하단에 팬/틸트/줌을 변경할 수 있는 화면이 나타납니다. PTZ를 사용하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택해야 합니다. 디지털 PTZ 프로파일은
+H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습니다.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>줌 동작 제어하기</h3>
+            <p>줌 영역에서 <strong class="UI">[+]</strong> 버튼을 클릭하면 화면이 확대되고 <strong class="UI">[-]</strong> 버튼을 클릭하면 화면이 축소됩니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>팬/틸트 동작 제어하기</h3>
+            <p> 팬/틸트 영역에서 <span class="tui tui-wn5-ptz-handle"></span> 버튼을 클릭하여 카메라의 방향을 이동하고 초점을 조절합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>프리셋 이동하기</h3>
+            <p>프리셋 목록에서 원하는 프리셋을 선택한 후 <strong class="UI">[재생]</strong> 버튼을 클릭하면 원하는 프리셋 위치로 이동합니다. 프리셋 목록은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[프리셋]</strong> 탭에서 추가하거나 변경할 수 있습니다.</p>
+		</div>
+        <div class="wn5-setup-section-article-content">
+            <h3>그룹 동작하기</h3>
+            <p><strong class="UI">[그룹]</strong>에서 원하는 그룹을 선택한 후 <strong class="UI">[재생]</strong> 버튼을 클릭하면 설정한 그룹 동작이 작동합니다. 그룹 목록은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[그룹]</strong> 탭에서 추가하거나 변경할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>디지털 자동 추적</h3>
+                     
+            <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>(자동 추적) 버튼을 클릭하면 디지털 자동 추적 기능이 실행됩니다. 다시 한번 더 <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(자동 추적) 버튼을 클릭하면 추적 기능이 중지됩니다. 디지털 자동 추적 기능을 사용하는 중에 PTZ 기능을 조작하면 추적 기능은 자동으로 중지됩니다.</p>
+        </div>
+    </div>
+</div>
+--><hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラのパン/チルト/ズーム動作を制御したりオートトラッキング機能を使用することができます。</p>
+            <ul>
+                <li>ズームイン：UI右側のバーを上に上げるか<strong class="UI">[+]</strong>ボタンを押すと、画面の倍率を拡大します。バーの位置が中央から遠いほど、ズームイン速度が早くなります。</li>
+                <li>ズームアウト：UI右側のバーを下に下げるか<strong class="UI">[-]</strong>ボタンを押すと、画面の倍率を縮小します。バーの位置が中央から遠いほど、ズームアウト速度が早くなります。</li>
+                <li>画面移動：カーソルがある方向に移動します。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ズーム動作制御</h3>
+            <p>ズームバーで<strong class="UI">[+]</strong>ボタンをクリックすると画面がズームイン、<strong class="UI">[-]</strong>ボタンをクリックするとズームアウトされます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>パン/チルト動作制御</h3>
+            <p>パン/チルトエリアで<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてカメラの方向を移動します。</p>
+        </div>
+		          <div class="wn5-setup-section-article-content">
+                        <h3>フォーカス調整</h3>
+            <p><span class="tui tui-wn5-ptz-near"></span>ボタンか<span class="tui tui-wn5-ptz-far"></span>ボタンをクリックしてカメラのフォーカスを調整します。</p>
+            <p>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</p>
+        </div> 
+		<div class="wn5-setup-section-article-content">
+            <h3>オートトラッキング</h3>
+                     
+            <p>ライブ画面で動く物事や人を自動でトラッキングすることができます。<span class="tui tui-ch-live-ptz-tracking-auto-off"></span>オートトラッキングボタンをクリックすると、オートトラッキング機能が実行されます。もう一度<span class="tui tui-ch-live-ptz-tracking-auto-on"></span>オートトラッキングボタンをクリックすると、オートトラッキング機能が中止されます。</p>
+            <p>また映像画面でマウス右側ボタンをクリックすると、クリックしたエリアを中心でモーションを分析してオートトラッキングを開始します。</p>
+        </div>    
+        <div class="wn5-setup-section-article-content">
+            <h3>PTZ機能使用</h3>
+            <p>すでに設定した位置にカメラを移動させるかスウィング、グループ、ツアー、トラッキング機能を開始して中止することができます。関連の設定は、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ設定]</strong>ページを参照してください。</p>
+		</div>
+        
+		        
+        <div class="wn5-setup-section-article-content">
+            <h3>領域ズーム</h3>
+                     
+            <p>領域ズームは、特定エリアのみズームインして表示できる機能です。</p>
+            <p><span class="tui tui-chi-live-ptz-areazoom"></span>ボタンをクリックした後、カメラ映像画面でマウスをドラッグしてエリアを選択すると、選択エリアを基準にズーム機能が動作してカメラ位置も選択エリアに移動します。<span class="tui tui-chi-live-ptz-areazoom-back"></span>ボタンをクリックして前の選択エリアと設定に移動することができます。前のエリアに移動した場合、移動する前のエリアと設定に再び移動するためには、<span class="tui tui-chi-live-ptz-areazoom-pre"></span>ボタンをクリックします。<span class="tui tui-chi-live-ptz-areazoom-1x"></span>ボタンをクリックすると、ズーム倍率が1倍に変更され、カメラ位置も元の位置に移動します。</p>
+            <p>  </p>
+            <p>領域ズーム設定を終了するには、<span class="tui tui-chi-live-ptz-areazoom"></span>ボタンをもう一度クリックします。現在、設定した領域ズームはそのまま維持され、領域ズーム設定機能は終了されます。</p>
+        </div>
+    </div>
+</div>
+
+
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<div class="wn5-setup-section-heading">
+    <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+</div>
+<div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>カメラのパン/チルト/ズーム動作を制御したり、すでに設定したPTZプリセット位置に移動することができ、グループ動作を制御することができます。</p>
+    </div>
+    <div class="wn5-online-help-info">
+        <h4>参考事項</h4>
+            <ul>
+                <li><strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択した場合のみ、PTZ機能を使用することができます。</li>
+                <li><strong class="UI">[映像&amp;音声]</strong>&gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong> &gt; <strong class="UI">[カメラ据付けモード]</strong>で<strong class="UI">[天井]</strong>を選択した場合のみ、パン機能を使用することができます。</li>
+            </ul>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>プリセット</h3>
+        <p>プリセットNo.を選択して<strong class="UI">[進む]</strong>ボタンをクリックすると、選択したPTZプリセット位置にカメラビューが移動します。</p>
+        <p>プリセットリストでプリセットNo.を選択した後、<strong class="UI">[進む]</strong>ボタンをクリックすると、お望みのプリセット位置に移動します。プリセットリストは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[プリセット]</strong>タブで追加したり変更することができます。</p>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>グループ</h3>
+            <p>グループリストでグループNo.を選択した後、<strong class="UI">[開始]</strong>ボタンをクリックすると、設定したグループ動作を行います。グループ動作を中止するには、<strong class="UI">[中止]</strong>ボタンをクリックします。グループリストは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[グループ]</strong>タブで追加したり変更することができます。</p>
+    </div>
+</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="FisheyeLens">
+<div class="wn5-setup-section" ng-if="FisheyeLens">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラのパン/チルト/ズーム動作を制御したり、すでに設定したPTZプリセット位置に移動することができ、グループ動作を制御することができます。</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li><strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択した場合のみ、PTZ機能を使用することができます。</li>
+            </ul>
+    
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>分割選択</h3>
+            <p>クワドビューで個別映像の番号を選択します。1はクワドビューの左上、2は右上、3は左下、4は右下の映像ビューです。 &nbsp;</p>
+            <p><span class="tui tui-wn5-ptz-handle"></span> ボタンをクリックしてドラッグし、カメラの映像ビューを調整します。ズームバーで<strong class="UI">[+]</strong>ボタンをクリックすると画面がズームイン、<strong class="UI">[-]</strong>ボタンをクリックするとズームアウトされます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>プリセット</h3>
+            <p>プリセットNo.を選択して<strong class="UI">[進む]</strong>ボタンをクリックすると、選択したPTZプリセット位置にカメラビューが移動します。</p>
+            <p>プリセットリストでプリセットNo.を選択した後、<strong class="UI">[進む]</strong>ボタンをクリックすると、お望みのプリセット位置に移動します。プリセットリストは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[プリセット]</strong>タブで追加したり変更することができます。</p>
+        </div>
+		          <div class="wn5-setup-section-article-content">
+                        <h3>グループ</h3>
+            <p>グループリストでグループNo.を選択した後、<strong class="UI">[開始]</strong>ボタンをクリックすると、設定したグループ動作を行います。グループ動作を中止するには、<strong class="UI">[中止]</strong>ボタンをクリックします。グループリストは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[グループ]</strong>タブで追加したり変更することができます。</p>
+        </div> 
+    </div>
+</div>
+
+
+
+
+
+
+<hr class="wn5-setup-hr" ng-if="FisheyeLens">
+<div class="wn5-setup-section" ng-if="FisheyeLens">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="fisheyeview"></a>魚眼ビュー</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>天井/壁</h3>
+                    <p>カメラ据付けモードを表示します。据付けモードによってビュータイプが異なります。</p>
+                    <p>据付けモードは、<strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong> &gt; <strong class="UI">[カメラ据付けモード]</strong>で設定することができます。<strong class="UI">[天井]</strong>を選択した場合のみ、「ダブルパノラマ」ビュータイプが表示され、その他のビュータイプは「天井」と「壁」両方とも同一です。</p>
+            <p>お望みのビュータイプアイコンを選択してから、ライブ映像画面でマウスをドラッグしてカメラのビューを変更することができます。</p>
+            <ul>
+                <li>魚眼( )：歪み補正していないオリジナル魚眼映像で表示します。</li>
+                <li>Single Panorama( &nbsp;)：オリジナル映像を歪み補正してパノラマタイプで表示します。</li>
+                <li>Double Panorama( &nbsp;)：オリジナル映像を歪み補正してパノラマタイプの上下分割画面で表示します。</li>
+                <li>魚眼 + 3PTZ( &nbsp;)：魚眼映像と3つのROI領域を歪み補正して分割画面で表示します。</li>
+                <li>Quad View( &nbsp;)：魚眼映像と4つのROI領域を歪み補正して分割画面で表示します。</li>
+                <li>Panorama + 2PTZ( &nbsp;)：パノラマ映像と2つのROI領域を歪み補正して分割画面で表示します。</li>
+                <li>魚眼 + 8PTZ( &nbsp;)：魚眼映像と8つのROI領域を歪み補正して分割画面で表示します。壁に設置された場合のみ、対応するビューです。</li>
+                <li>Single Panorama( &nbsp;)：オリジナル映像を歪み補正して壁パノラマタイプで表示します。</li>
+                <li>魚眼 + 3PTZ( &nbsp;)：壁パノラマ映像と3つのROI領域を歪み補正して分割画面で表示します。</li>
+                <li>Quad View( &nbsp;)：魚眼映像と4つのROI領域を歪み補正して分割画面で表示します。</li>
+                <li>Panorama + 2PTZ( &nbsp;)：パノラマ映像と2つのROI領域を歪み補正して分割画面で表示します。</li>
+                <li>魚眼 + 8PTZ( )：壁パノラマ映像と8つのROI領域を歪み補正して分割画面で表示します。</li>
+            </ul>
+            <p><strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong> &gt; <strong class="UI">[カメラ据付けモード]</strong>でカメラ据付けモードを変更すると、ライブモードで魚眼ビューモード設置方向も一緒に変更されます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>初期化/すべて初期化</h3>
+            <p>現在、選択したビュータイプの映像画面でマウスをドラッグして変更したビューを初期ビューに変更するためには[初期化]ボタンをクリックします。すべてのビュータイプの映像画面を初期ビューに変更するためには[すべて初期化]ボタンをクリックします。</p>
+        </div>
+        
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="status"></a>状況</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>profileへのアクセス</h3>
+            <p>現在、設定されたすべてのProfileのアクセス状況を確認したり、アクセス中の現在ユーザーの状況を確認することができます。<strong class="UI">[profileへのアクセス]</strong>では、設定されたすべてのProfile名、Profile別の実際ビットレート(kbps)と適用されたビットレート(kbps)、Profile別の実際フレームレート(fps)と適用フレームレート(fps)、Profile別のATC(%)、Profile別のユーザー数を確認することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>現在のユーザー</h3>
+            <p>現在、カメラにアクセスしたすべてのユーザーのユーザー別に適用したProfile、ビットレート(kbps)、ネットワーク接続ステータス、IPアドレスを確認することができます。</p>
+        </div>
+        
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

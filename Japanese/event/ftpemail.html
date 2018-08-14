@@ -1,0 +1,97 @@
+﻿<h1 class="wn5-setup-main-title">FTP/E-mail</h1>
+
+<div class="wn5-setup-section">
+    <p>カメラが映像を撮影している間、イベントが発生する場合にはカメラが撮影した画像をFTPサーバーまたはE-mailに伝送することができます。この時に使用されるFTPサーバーとE-mail設定情報を入力します。</p>
+    <p>FTPサーバーまたはE-mailサーバー情報を入力してページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、FTPサーバー接続テストまたはテストE-mail送信を実行します。正しくないFTPサーバーまたはE-mailサーバーアドレスを入力した場合、「失敗」というメッセージが表示されます。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="ftp"></a>FTP設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+
+            <h3>サーバーアドレス</h3>
+            <p>イベント発生時点の画像を伝送するFTPサーバーのIPアドレスを入力します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ID</h3>
+            <p>FTPサーバーにログインするアカウントのIDを入力します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Password</h3>
+            <p>FTPサーバーにログインするアカウントのパスワードを入力します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>アップロードディレクトリ</h3>
+            <p>イベント発生時、撮影された画像を保存するFTPサーバーのパスを入力します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>ポート</h3>
+            <p>FTPサーバーのポート値を入力します。FTPサーバーのポート初期値は21で、FTPサーバーの設定によってポートを変更することができます。ポートは1024～65535番の範囲内で変更することができます。</p>
+        </div>    
+        <div class="wn5-setup-section-article-content">
+            <h3>パッシブモード</h3>
+            <p>ファイアウォールやFTPサーバー設定によってパッシブモードで接続する必要がある場合、<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="email"></a>E-mail設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+
+            <h3>サーバーアドレス</h3>
+            <p>イベント発生時点の画像をE-mailに送るためにE-mailのSMTPサーバーアドレスを入力します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>認証</h3>
+            <p>メールを送るたびにIDとパスワードを入力して認証するかしないかを選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>TLS</h3>
+            <p>TLSの使用有無を設定します。保安が必要なE-mailサーバーの場合、<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ID</h3>
+            <p>E-mailのSMTPサーバーにログインするアカウントのIDを入力します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Password</h3>
+            <p>E-mailのSMTPサーバーにログインするアカウントのパスワードを入力します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ポート</h3>
+            <p>E-mailのSMTPサーバーのポート値を入力します。E-mailサーバーのポート初期値は25で、TLSを使用する場合のポート値は465です。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>受信者</h3>
+            <p>E-mail受信者のE-mailアドレスを入力します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>発信者</h3>
+            <p>E-mail発信者のE-mailアドレスを入力します。発信者のアドレスが正しくない場合、E-mailサーバーがメールを伝送しないことがあります。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>題名</h3>
+            <p>イベント発生時に送るE-mailの題名を入力します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>メッセージ</h3>
+            <p>イベント発生時に送るE-mailのメッセージを入力します。イベントが発生すると、撮影された画像はE-mailの添付ファイルに伝送されます。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

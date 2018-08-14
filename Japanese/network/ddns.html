@@ -1,0 +1,84 @@
+﻿<h1 class="wn5-setup-main-title">DDNS</h1>
+<div class="wn5-setup-section">
+	<p ng-if="!CamSpecialModel">DDNS(Dynamic Domain Name Service)を利用すると、カメラのIPアドレスをユーザーが覚えやすい一般的なホスト名に変更されるように設定することができます。カメラのIPアドレスが198.160.0.100の場合、IPアドレスの代わりにhttp://ddns.hanwha-security.com/camera1のようなホスト名を入力してカメラにアクセスすることができます。カメラのIPアドレスが変更されてもDDNSアドレスでカメラにアクセスできるため便利です。</p>
+	
+    <p ng-if="CamSpecialModel">DDNS(Dynamic Domain Name Service)を利用すると、カメラのIPアドレスをユーザーが覚えやすい一般的なホスト名に変更されるように設定することができます。カメラのIPアドレスが198.160.0.100の場合、IPアドレスの代わりにhttp://ddns.s1.co.kr/camera1のようなホスト名を入力してカメラにアクセスすることができます。カメラのIPアドレスが変更されてもDDNSアドレスでカメラにアクセスできるため便利です。</p>
+		
+    <p ng-if="!CamSpecialModel">DDNSでは、ハンファテックウィン専用のWisenet DDNSを使用したりPublic DDNSを使用することができます。お望みのDDNS情報を入力した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。選択したDDNSに接続すると「成功」メッセージが表示され、接続されない場合「失敗」メッセージが表示されます。</p>
+	
+				<p ng-if="CamSpecialModel">DDNSでは、S1 DDNSを使用したりPublic DDNSを使用することができます。お望みのDDNS情報を入力した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。選択したDDNSに接続すると「成功」メッセージが表示され、接続されない場合「失敗」メッセージが表示されます。</p>
+</div>
+
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+    <ul>
+        <li>DDNSとルーターのポートフォーワーディングを共に設定すると、DDNSサービスを使用することができます。</li>
+        <li>ルーターのポートフォーワーディング設定方法は、製品に含まれている取扱説明書を参照してください。</li>
+    </ul>
+		</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>DDNS</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+		    <h3>無効</h3>
+		    <p>DDNSを使用しない場合に選択します。</p>
+	    </div>
+		<div class="wn5-setup-section-article-content" ng-if="!CamSpecialModel">
+		    <h3>Wisenet DDNS</h3>
+            <p>ハンファテックウィンから提供するDDNSサーバーを使用する場合に選択します。</p>
+            <p>Wisenet DDNSを有効にするためには、Wisenet DDNSのウェブサイト(<a class="wn5-online-help-link" href="http://ddns.hanwha-security.com" target="new">http://ddns.hanwha-security.com</a>)で会員登録した後、<strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[製品登録]</strong>で先に製品を登録する必要があります。 </p>
+		    <ul>
+		        <li><span class="onlineHelp-padding"><strong class="UI">サーバー名</strong>：有効にするDDNSサーバー名を入力します。</span></li>
+		        <li><span class="onlineHelp-padding"><strong class="UI">製品ID</strong>：Wisenet DDNSサーバーに登録された製品のIDを入力します。UPnP(Universal plug and play)機能に対応するルーターを使用する時、<strong class="UI">[クイック接続]</strong>を選択すると外部からアクセスする時、自動にポートを開くように対応します。</span></li>
+		    </ul>
+	    </div>
+
+
+		<div class="wn5-setup-section-article-content" ng-if="CamSpecialModel">
+		    <h3>S1 DDNS</h3>
+		    <p>S1から提供するDDNSサーバーを使用する場合に選択します。S1 DDNSを有効にするためには、S1 DDNSのウェブサイト(<a class="wn5-online-help-link" href="http://ddns.s1.co.kr" target="new">http://ddns.s1.co.kr</a>)で会員登録した後、<strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[製品登録]</strong>で製品を登録します。</p>
+		    <ul>
+		        <li><span class="onlineHelp-padding"><strong class="UI">サーバー名</strong>：有効にするDDNSサーバー名を入力します。</span></li>
+		        <li><span class="onlineHelp-padding"><strong class="UI">製品ID</strong>：S1 DDNSサーバーに登録された製品のIDを入力します。UPnP(Universal plug and play)機能に対応するルーターを使用する時、<strong class="UI">[クイック接続]</strong>を選択すると外部からアクセスする時、自動にポートを開くように対応します。</span></li>
+		    </ul>
+	    </div>
+
+		
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+			<ul>
+				<li>ルーターがUPnP機能に対応しないか、<strong class="UI">[クイック接続]</strong>を使用せずにDDNSサーバーを使用するためにはルーターのポートフォーワーディングを手動で設定してください。ルーターのポートフォーワーディング設定方法は、製品に含まれている取扱説明書を参照してください。</li>
+			</ul>
+		</div>
+        <div class="wn5-online-help-action">
+            <h4>Wisenet DDNSに製品登録</h4>
+            <p>Wisenet DDNSを使用するためには、まずWisenet DDNSに製品を登録する必要があります。</p>
+                <ol>
+                <li>Wisenet DDNSのウェブサイト(http://ddns.hanwha-security.com)で会員登録します。</li>
+                <li>ウェブサイトのトップメニューで<strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[製品登録]</strong>を選択します。</li>
+                <li>製品IDを入力します。</li>
+                <li><strong class="UI">[区分]</strong>、<strong class="UI">[型名]</strong>を選択します。</li>
+                <li>必要な場合、位置と詳細情報を入力します。</li>
+                <li><strong class="UI">[製品登録]</strong>ボタンをクリックします。登録された製品Infoをリストで確認することができます。</li>
+                </ol>
+        </div>
+		
+		<div class="wn5-setup-section-article-content">
+		    <h3>Public DDNS</h3>
+		    <p>公開サイトから提供するDDNSサーバーを使用する場合に選択します。該当サイトでサービスに加入してから使用します。</p>
+		    <ul>
+		        <li><span class="onlineHelp-padding"><strong class="UI">サーバー名</strong>：有効にするPublic DDNSサーバーを選択します。</span></li>
+		        <li><span class="onlineHelp-padding"><strong class="UI">ホスト名</strong>：DDNSサーバーに登録されたホスト名を入力します。</span></li>
+		        <li><span class="onlineHelp-padding"><strong class="UI">ユーザー名</strong>：DDNSサーバー用のユーザー名を入力します。</span></li>
+		        <li><span class="onlineHelp-padding"><strong class="UI">パスワード</strong>：DDNSサーバー用のパスワードを入力します。</span></li>
+		    </ul>
+		</div>
+
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">

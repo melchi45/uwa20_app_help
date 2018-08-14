@@ -1,0 +1,191 @@
+﻿<h1 class="wn5-setup-main-title">オートトラッキング</h1>
+<div class="wn5-setup-section">
+    <p>オートトラッキング機能は、ビデオ映像を分析して動く物体を認知してトラッキングする機能です。オートトラッキングを使用するための詳細を設定することができます。</p>
+    <p>設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+    <ul>
+        <li>カメラのオートトラッキングを行うことができる方法は、下記のどおりです。</li>
+        <ul>
+            <li><span class="tui tui-ch-live-ptz-tracking-auto-on"></span> オートトラッキングボタンをクリックします。すべてのエリアでトラッキング対象を分析&amp;選定してトラッキングします。</li>
+            <li><a class="wn5-online-help-link" href="../Monitoring.html" ng-href="#/help/uni/channel">ライブ</a>ページの映像画面でマウス右側ボタンをクリックすると、クリックしたエリアを中心でモーションを分析してオートトラッキングを開始します。</li>
+            <li><a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html#preset" ng-href="#/help/ptz_ptzInfoSetup?#preset">プリセット設定</a>時、<strong class="UI">[アクション後]</strong>で「トラッキング」を選択すると、該当プリセットにカメラが移動し、オートトラッキングが自動に実行されます。</li>
+        </ul>
+    </ul>
+        </div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>除外エリア</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+
+
+        <div class="wn5-setup-section-article-content">
+            <p>トラッキング対象検知の除外エリアリストが表示されます。エリアは最大8つまで設定することができます。</p>
+			</div>
+        <div class="wn5-online-help-action">
+            <h4><a name="exclude"></a>除外エリア設定</h4>
+            <ol>
+                <li>カメラ映像画面にマウスをドラッグして除外エリアを設定します。</li>
+                <li><strong class="UI">[オートトラッキング]</strong> ダイアログボックスで除外エリア名を入力して<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
+            </ol>
+        </div>
+            <div class="wn5-online-help-action">
+                <h4>除外エリア削除</h4>
+                <ol>
+                    <li>除外エリアリストで削除するNo.を選択します。</li>
+                    <li><strong class="UI">[削除]</strong>ボタンをクリックします。</li>
+                </ol>
+            </div>
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>オートトラッキング除外機能は、<strong class="UI">[オートトラッキング設定]</strong> &gt; <strong class="UI">[除外エリア]</strong>を選択した時のみ動作します。</li>
+                <li>オートトラッキングの除外エリアは初期対象検知エリアから除外されるという意味でトラッキング中の対象が除外エリアに入る場合、トラッキングし続きます。つまり、設定したエリアはトラッキング中の対象がエリア内部にアクセスする時にトラッキングを止めさせる役割ではありません。 </li>
+            </ul>
+            </div>
+        </div>
+    </div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+
+            <h3>カメラ高</h3>
+            <p>カメラ高を設定します。カメラが設置された実際の高さに合わせて入力できるようにオートトラッキング機能がもっと正確に動作します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ズーム</h3>
+            <p>オートトラッキング時、ズーム動作の使用有無を選択します。 &nbsp;</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>物体サイズ維持</h3>
+            <p>ズーム有効を選択した場合トラッキング対象に対して画面内に維持させたいサイズを指定します。全体の映像画面サイズに比べてオートトラッキング対象のサイズを調整し、トラッキング対象のサイズを維持しながらオートトラッキングを実行します。</p>
+            <p><strong class="UI">[ズーム]</strong>で<strong class="UI">[有効]</strong>を選択した場合のみ動作します。</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>インジケーター表示</h3>
+            <p>映像画面にトラッキングしている対象を表示するインジケーターの使用有無を選択します。</p>
+            <p>インジケーター表示を<strong class="UI">[有効]</strong>に選択した場合、録画映像にもインジケーターが表示されます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>除外エリア</h3>
+            <p>設定したエリアで検知した対象物は、オートトラッキングから除外します。除外エリアを設定する方法は、「<a class="wn5-online-help-link" href="autoTrackEvent#exclude" ng-href="#/help/analytics_autoTrackEvent?#exclude">オートトラッキングの除外エリア設定</a>」を参照してください。</p>
+            <p><strong class="UI">[有効]</strong>を選択した場合、設定したすべての除外エリアが有効になります。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>オートリリース</h3>
+            <p>オートトラッキング機能のオートリリス有無を設定します。<strong class="UI">[有効]</strong>を選択すると、一定期間(60秒)トラッキング対象が検知されない場合、終了となってオートトラッキング動作をこれ以上維持しません。<strong class="UI">[有効]</strong>を選択しないと、トラッキング対象探索でオートトラッキングを維持し続けます。</p>
+            <p>指定したエリアでは、モーションを検知してもオートトラッキングが開始されません。</p>
+        </div>	
+        <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>オートトラッキング機能が正常的に動作するための条件は下記のどおりです。</li>
+                <ul>
+                    <li>設置高さ：最小2.5m以上、最大30m以下</li>
+                    <li>設置タイプ：傾くことなく水平が維持された屋内または屋外の天井</li>
+                    <li>トラッキング対象：地平面の上で移動する直立歩行中の人(高さ、およそ170cm)</li>
+                </ul>
+                <li style="list-style-image:url('');"><img src="../../base/images/autoTracking_ko.png" border="0"></li>
+            </ul>
+            <ul>
+                <li>次の状況では、対象をトラッキングできなかったり誤動作が発生することがあります。</li>
+                <ul>
+                    <li>撮影エリアに多数の移動体が存在する場合</li>
+                    <li>他の移動体や施設で隠されたり重なる場合</li>
+                    <li>移動体と背景とのコントラスト差がほとんどない場合</li>
+                    <li>小さすぎるか大きすぎる対象物</li>
+                    <li>モーションが早すぎるか遅すぎる場合</li>
+                    <li>移動体が設置されたカメラの真下を通過する場合</li>
+                    <li>移動体の移動経路が設置高さを基準とする地面ではない場合</li>
+                    <li>強い風、雪、雨のような悪天候環境</li>
+                    <li>撮影エリアが暗い場合</li>
+                    <li>急激な照明変更がある場合</li>
+                    <li>撮影エリアまたはカメラに向けて光の点滅がある場合</li>
+                    <li>光の反射またはライトなど、カメラに向けて光がある場合</li>
+                    <li>カメラの揺れなどの理由で映像が揺れる場合</li>
+                    <li>レンズカバー&amp;調光器カバーが汚れているか濡れた場合</li>
+                    <li>カメラレンズの軸に変化がある場合</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+      
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>イベントアクション</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>オートトラッキングイベントが発生した時、映像の画像をE-mailに伝送するには<strong class="UI">[有効]</strong>を選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>保存</h3>
+            <p>オートトラッキングイベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[保存]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>アラーム出力</h3>
+            <p>オートトラッキングイベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[無効]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>
+        </div>
+		
+         <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+            <h3>プリセットに移動</h3>
+                    <p>オートトラッキングイベントが発生した時、カメラビュー位置をすでに設定しておいたプリセットNo.に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[デジタルPTZ]</strong></a>や<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[外部PTZ]</a></strong>の<strong class="UI">[プリセット]</strong>で設定することができます。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>プリセットに移動</h3>
+                    <p>オートトラッキングイベントが発生した時、カメラビュー位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[プリセット設定]</strong></a>の<strong class="UI">[プリセット設定]</strong>エリアで設定することができます。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>プリセットに移動</h3>
+                    <p>オートトラッキングイベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
+        </div>
+		
+		<div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
+            <h3>単一フォーカス</h3>
+            <p>オートトラッキングイベントが発生した時、単一フォーカスを実行させてフォーカスを自動に合わせます。イベント発生時、単一フォーカスは一回のみ実行されます。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>イベントアクションスケジュール</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>オートトラッキングイベントが発生した時、<strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_defocusDetection?#action">イベントアクション</a>]</strong>で設定したイベントアクションが常時動作するように設定したり、スケジュール動作するように設定します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>常時動作</h3>
+            <p>オートトラッキングイベントが発生した時、設定したイベントアクションを常に実行します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>スケジュール動作</h3>
+            <p>設定した時間にオートトラッキングイベントが発生した時、設定したイベントアクションを実行します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベントアクションスケジュールは、該当曜日と時間に繰り返して実行されます。</p>
+			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベントアクションスケジュールがすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

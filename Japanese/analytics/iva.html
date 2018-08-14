@@ -1,0 +1,266 @@
+﻿<h1 class="wn5-setup-main-title">IVA</h1>
+<div class="wn5-setup-section">
+    <p>ビデオ映像分析に対する規則を設定して、イベント規則条件を満足するモーションを検知すると、IVA(Intelligent Video Analytics、インテリジェントビデオ解析)イベントを発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。IVAイベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[IVA]</strong>に同じく適用されます。</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>チャンネル選択</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラチャンネルを選択した後、チャンネル別にIVAの詳細を設定することができます。</p>
+        </div>
+
+    </div>
+</div>	
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>IVA(インテリジェントビデオ解析)</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+
+            <h3>IVAを有効にする</h3>
+            <p>IVAイベントを有効にするためには、<strong class="UI">[IVAを有効にする]</strong>を選択します。</p>
+        </div>
+		        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+            <h3>タイプ</h3>
+            <p>すべてのプリセットに同じIVA(インテリジェントビデオ解析)を設定するには、<strong class="UI">[グローバル]</strong>を選択します。PTZプリセット別にそれぞれのIVA(インテリジェントビデオ解析)を設定するには、<strong class="UI">[プリセット]</strong>を選択します。<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">プリセット設定</a>ページでプリセットを設定した場合のみ、<strong class="UI">[プリセット]</strong>オプションが有効になります。</p>
+        </div>
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>バーチャルライン</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>ユーザーが設定したバーチャルラインと方向を基準に対象物が通過することを検知します。</p>
+        </div>
+        <div class="wn5-online-help-action">  
+            <h4>バーチャルライン設定</h4>
+			<p>カメラ映像画面の設定したい位置でラインの開始点と端点をクリックすると、バーチャルラインが設定され<strong class="UI">[ライン]</strong>の数字ボタン色が変更されます。バーチャルラインの真ん中にある矢印をクリックすると、方向をAからB、BからA、両方向に変更したり<strong class="UI">[カテゴリー]</strong>の<strong class="UI">[方向]</strong>でお望みの方向を選択することもできます。バーチャルラインは最大8つまで設定することができます。</p>
+        </div>
+        <div class="wn5-online-help-action">  
+            <h4>バーチャルライン変更</h4>
+			<p>設定したバーチャルラインの頂点を動かしてバーチャルラインのサイズを変更することができます。バーチャルラインをマウスにクリック、ドラッグしてバーチャルラインの位置を変更することができます。</p>
+        </div>
+        <div class="wn5-online-help-action">  
+            <h4>バーチャルライン削除</h4>
+			<p>バーチャルラインを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ライン</h3>
+            <p>バーチャルラインが追加されると、順番に<strong class="UI">[ライン]</strong>の数字ボタン色が変更されます。数字ボタンをクリックして無効にすると、該当のバーチャルラインはプレビュー画面に表示されません。もう一度、数字ボタンをクリックするとバーチャルラインが再度表示されます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>カテゴリー</h3>
+            <ul>
+                <li><strong class="UI">通過</strong>：設定した規則によってバーチャルラインを通過する対象物を検知した時、イベントを発生させるためにはチェックボックスを選択する必要があります。</li>
+                <li><strong class="UI">方向</strong>：対象物がバーチャルラインを通過する方向を設定します。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>バーチャルエリア</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>ユーザーがバーチャルエリアを設定して該当のエリアに侵入、進入、出る、出現(消滅)、うろつくの映像規則を適用して、対象物のモーションを検知します。</p>
+        </div>
+        <div class="wn5-online-help-action"> 
+            <h4>バーチャルエリア設定</h4>
+            <p>プレビュー画面からマウスで頂点4つを選択するか、マウスでドラッグして四角を描くとROI領域が設定されます。</p>
+            <p>バーチャルエリアは最大8つまで設定することができ、エリア別にビデオ映像分析の規則を設定することができます。</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>バーチャルエリア変更</h4>
+            <p>設定したバーチャルエリアの頂点を動かしてバーチャルエリアのサイズを変更することができます。</p>
+            <p>多角形を作るには、作られた四角の線を選択した後、表示されるプラス(+)記号をクリックして頂点を追加します。最大4つの点を追加して多角形を作ることができます。</p>
+            <p>設定したバーチャルエリアを移動するには、マウスで該当エリアをクリックしてドラッグします。線をクリックした後、表示された頂点を移動して多角形のバーチャルエリアを設定することができます。</p>
+        </div>
+        <div class="wn5-online-help-action"> 
+            <h4>バーチャルエリア削除</h4>
+			<p>バーチャルエリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>エリア</h3>
+            <p>バーチャルエリアが追加されると、順番に<strong class="UI">[エリア]</strong>の数字ボタン色が変更されます。数字ボタンをクリックして無効にすると、該当のバーチャルエリアはプレビュー画面に表示されません。もう一度、数字ボタンをクリックするとバーチャルエリアが再度表示されます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>カテゴリー</h3>
+            <p>バーチャルエリア別に適用する規則を設定することができます。</p>
+            <ul>
+                <li><strong class="UI">侵入</strong>：設定したエリア内部に動く対象物を検知すると、イベントを発生させます。</li>
+                <li><strong class="UI">進入</strong>：動く対象物がユーザーの指定したエリアの外部から内部に入る時、イベントを発生させます。</li>
+                <li><strong class="UI">出る</strong>：動く対象物がユーザーの指定したエリアの内部から外部に出る時、イベントを発生させます。</li>
+                <li><strong class="UI">出現(消滅)</strong>：ユーザーが指定したエリア内部に存在しなかった対象物がエリアラインを通過せずにエリア内部に現れ一定時間とどまったり、エリア内部に存在してた対象物が消えるとイベントを発生させます。</li>
+                <ul>
+                    <li><strong class="UI">最短時間(秒)</strong>：出現(消滅)を検知するための対象物の最短持続時間を設定します。検知エリアで実行時間の間、存在してた対象物が消えると消滅に検知し、実行時間の間に存在しなかった対象物が現れると出現と検知します。</li>
+                </ul>
+                <li><strong class="UI">うろつく</strong>：設定した検知エリア内でうろつくモーションを検知すると、イベントを発生させます。</li>
+                <ul>
+                    <li><strong class="UI">最短時間(秒)</strong>：うろつく対象物を検知してイベントを発生させるための最短時間を設定します。設定した時間より長くうろつく対象物を検知すると、イベントを発生させます。</li>
+                </ul>
+            </ul>
+        </div>
+		<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>うろつく検知は他のIVAイベント検知と共に使用する場合、単独で使用することより多少性能が低下することがあります。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>除外エリア</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+            <p>バーチャルラインとバーチャルエリアで分析規則を適用する時、モーションを検知しない位置に除外エリアを設定します。</div>
+			 <div class="wn5-online-help-action"> 
+            <h4>除外エリア設定</h4>
+            <p>プレビュー画面からマウスで頂点4つを選択するか、マウスでドラッグして四角を描くと除外エリアが設定されます。</p>
+            <p>除外エリアは最大8つまで設定することができます。</p>
+			
+            </div>
+            <div class="wn5-online-help-action"> 
+            <h4>除外エリア変更</h4>
+            <p>設定した除外エリアの頂点を動かして除外エリアのサイズを変更することができます。</p>
+            <p>多角形を作るには、作られた四角の線を選択した後、表示されるプラス(+)記号をクリックすると頂点が追加されます。最大4つの点を追加して多角形を作ることができます。</p>
+            <p>除外エリアを選択してマウスをドラッグすると、除外エリアの位置を移動することができます。</p>
+			</div>
+            <div class="wn5-online-help-action"> 
+            <h4>除外エリア削除</h4>
+			<p>除外エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
+            </div>
+
+        <div class="wn5-setup-section-article-content">
+
+            <h3>エリア</h3>
+            <p>除外エリアが追加されると、順番に<strong class="UI">[エリア]</strong>の数字ボタン色が変更されます。数字ボタンをクリックして無効にすると、該当の除外エリアはプレビュー画面に選択されます。</p>
+ </div>
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>一般</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>バーチャルラインとバーチャルエリアに共通に適用される感度と検知する対象物の最小、最大サイズを設定します。</p>
+            <p>使用環境によって検知の正確度を上げ、誤検知を最小化するために適用することができる設定です。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>感度</h3>
+            <p>バーチャルラインとバーチャルエリアに対するモーション検知の感度を設定します。背景と対象物の区分が明確な環境では感度を低く設定し、暗くて背景と対象物の区分が明確ではない環境では感度を高く設定します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>サイズ</h3>
+            <p>バーチャルラインとバーチャルエリアでモーションを検知する対象物の最小、最大サイズを設定します。頂点をクリックした後、マウスをドラッグしてサイズを変更することができます。サイズを変更すると、<strong class="UI">[サイズ]</strong>の<strong class="UI">[最小]</strong>値と<strong class="UI">[最大]</strong>値も変更されます。</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>ROI領域と除外エリアが同一か重なる場合、除外エリアの方が優先されます。</li>
+                <li>ユーザーが指定した最小サイズより小さいモーションと最大サイズより大きいモーションは検知しません。大小のノイズによる誤検知を避けるために設置環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。 </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+            <hr class="wn5-setup-hr">
+            <div class="wn5-setup-section">
+                <div class="wn5-setup-section-heading">
+                    <h2>ハンドオーバー</h2>
+                </div>
+                <div class="wn5-setup-section-article">
+                    <div class="wn5-setup-section-article-content">
+                        <h3>ハンドオーバー</h3>
+                        <p>ハンドオーバー・レシーバカメラNo.を選択します。ハンドオーバー機能を使用したくない場合、<strong class="UI">[無効]</strong>を選択します。</p>
+                        <p>ハンドオーバーは、IVAイベントが発生すると、レシーバカメラがすでに設定しておいたPTZプリセット位置に移動する機能です。ハンドオーバー・レシーバカメラは、<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバー]</strong>メニューで設定することができます。</p>
+                    </div>
+					       <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                        <ul>
+                
+                            <li>バーチャルラインとROI領域別にハンドオーバー・レシーバカメラを設定することができます。ハンドオーバー機能は、バーチャルラインやROI領域を先に設定してから使用することができます。</li>
+                        </ul>
+        </div>	
+       </div>
+	</div>			
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>イベントアクション</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>IVAイベントが発生した時、映像の画像をFTPサーバーに保存するには<strong class="UI">[有効]</strong>を選択します。FTPに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>IVAイベントが発生した時、映像の画像をE-mailに伝送するには<strong class="UI">[有効]</strong>を選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
+            <h3>保存</h3>
+            <p>IVAイベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[保存]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>アラーム出力</h3>
+            <p>IVAイベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[無効]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>
+           </div>
+          <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
+            <h3>プリセットに移動</h3>
+                    <p>IVAイベントが発生した時、カメラビュー位置をすでに設定しておいたプリセットNo.に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[デジタルPTZ]</strong></a>や<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>の<strong class="UI">[プリセット]</strong>で設定することができます。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>プリセットに移動</h3>
+                    <p>IVAイベントが発生した時、カメラビュー位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[プリセット設定]</strong></a>の<strong class="UI">[プリセット設定]</strong>エリアで設定することができます。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>プリセットに移動</h3>
+                    <p>IVAイベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
+        </div>
+        
+
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>イベントアクションスケジュール</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>IVAイベントアクションの動作時間を設定します。<strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_iva?#action">イベントアクション</a>]</strong>で設定したイベントアクションが常時動作するように設定したり、スケジュール動作するように設定します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>常時動作</h3>
+            <p>IVAイベントが発生した時、設定したイベントアクションを常に実行します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>スケジュール動作</h3>
+            <p>設定した時間にIVAイベントが発生した時、設定したイベントアクションを実行します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベントアクションスケジュールは、該当曜日と時間に繰り返して実行されます。</p>
+			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベントアクションスケジュールがすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

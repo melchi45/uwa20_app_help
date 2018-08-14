@@ -1,0 +1,94 @@
+﻿
+<h1 class="wn5-setup-main-title">フォーカス設定</h1>
+
+<div class="wn5-setup-section">
+    <p>画面のフォーカスをユーザーが直接設定したり、単一フォーカスで自動に調整することができます。また、フォーカス初期化でフォーカスを初期値位置に調整することができます。</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>チャンネル選択</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラチャンネルを選択した後、チャンネル別にフォーカス関連の詳細を設定することができます。</p>
+        </div>
+
+    </div>
+</div>	
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>フォーカス設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>フォーカス初期化</h3>
+            <p>フォーカスを初期化するには、<strong class="UI">[フォーカス初期化]</strong>ボタンをクリックします。フォーカスが初期値位置に調整されます。</p>
+            <p>カメラを初回使用する時、フォーカス初期化実行をお勧めします。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="FastAutoFocusDefined">
+            <h3>クィックフォーカス設定</h3>
+            <p>フォーカスが位置する可能範囲内でフォーカスを素早く調整します。<strong class="UI">[クィックフォーカス設定]</strong>を設定するには、<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>フォーカス</h3>
+            <p>画面に表示されたフォーカスボタンを押して手動にフォーカスを調整します。単一フォーカスでオートフォーカス調整が進まない場合、手動にフォーカスを調整します。ボタンに表示された値は、フォーカス移動間隔を意味します。1はフォーカスを一度に1だけ移動、10はフォーカスを10だけ移動、100はフォーカスを100だけ移動させます。「-」値はフォーカスを近く(near)移動し、「+」値は遠く(far)移動します。</p>
+            <p>カメラレンズによってフォーカス設定方法が異なることがあります。</p>
+            <p>i-CSレンズを使用する時、ズームボタン(-100、-10、-1、1、10、100)をクリックしてお望みの倍率に調整します。i-CSレンズの他のレンズを使用する時、レンズのフォーカス(Near、Far)を手動に修正します。</p>
+          
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="Zoom">
+            <h3>ズーム</h3>
+            <p>ズーム倍率を手動に調整します。ボタンに表示された値は、ズーム移動間隔を意味します。1はズームを一度に1だけ移動、10はズームを10だけ移動、100はズームを100だけ移動させます。「-」値はズームアウト(Zoom out、wide)して「+」値はズームイン(Zoom in、tele)します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>単一フォーカス</h3>
+            <p>画面上にユーザーが指定した位置を基準にフォーカスを自動に調整します。画面上にマウスでクリックしてからドラッグしてフォーカスを合わせる位置を設定した後、<strong class="UI">[単一フォーカス]</strong>ボタンをクリックすると画面にN(Near)<->F(Far)が表示され、ユーザーが指定した位置を基準にフォーカスを自動に調整します。</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>下記の場合には、単一フォーカス機能が正しく動作しないことがあります。</li>
+                <ul>
+                    <li>フォーカス調整中、被写体に急激な変化(急激なモーション、消滅)がある場合</li>
+                    <li>フォーカス調整中に急激な輝度の変化がある場合</li>
+                    <li>映像のコントラストが低い場合</li>
+                    <li>強い光源が周囲にある場合</li>
+                    <li>フォーカス初期化を実行しない場合</li>
+                </ul>                <li>上記の場合の他に単一フォーカス動作後フォーカスがよく合わない場合、ズームボタン(-100、-10、-1、1、10、100)を用いて手動でフォーカスを調整してください。</li>
+                <li>単一フォーカス動作が進まない環境では、手動にフォーカスを調整することをお勧めします。</li>
+            </ul>
+        </div>
+		 <div class="wn5-setup-section-article-content" ng-if="ICS">
+            <h3>IR補正</h3>
+            <p>ナイトモードでIR光源を使用する時、可視光とIR光のフォーカス誤差を自動に補正します。</p>
+        </div>
+		        <div class="wn5-online-help-info" ng-if="ICS">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li><strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[カメラ設定]</strong> &gt; <strong class="UI">[露出補正]</strong> &gt; <strong class="UI">[レンズ]</strong>で「ICS」レンズを選択した場合のみ、IR補正機能を設定することができます。</li>
+            </ul>
+        </div>
+ <div class="wn5-setup-section-article-content" ng-if="ICS">
+            <h3>温度補正</h3>
+            <p>砂漠のように昼と夜の温度差が激しい地域で有用な機能で、温度差によるレンズの収縮と膨張を検知してフォーカス誤差を自動に補正します。</p>
+        </div>
+        <div class="wn5-online-help-info" ng-if="ICS">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                              <li><strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[カメラ設定]</strong> &gt; <strong class="UI">[露出補正]</strong> &gt; <strong class="UI">[レンズ]</strong>で「ICS」レンズを選択した場合のみ、温度補正機能を設定することができます。</li>
+
+            </ul>
+        </div>
+		
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

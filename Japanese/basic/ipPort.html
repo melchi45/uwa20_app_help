@@ -1,0 +1,150 @@
+﻿<h1 class="wn5-setup-main-title">IP&amp;ポート</h1>
+
+<div class="wn5-setup-section">
+	<p>IPアドレスとポート値を入力します。<strong class="UI">[IPアドレス]</strong>タブでは、IPv4とIPv6を設定することができます。<strong class="UI">[ポート]</strong>タブでは、各プロトコルのポート値を設定することができます。設定を完了した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。<strong class="UI">[適用]</strong>ボタンをクリックすると、カメラ・ウェブビューアーに再度アクセスする必要があります。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv4 設定</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>IPv4タイプを使用してネットワーク通信を有効にした場合に使用する属性のIPタイプ、MACアドレス、IPアドレス、Subnet Mask、GATEWAY、DNS情報を確認したり変更することができます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>IPタイプ</h3>
+			<p>IP接続タイプを選択します。IPアドレスを固定的に使用する場合には、<strong class="UI">[手動]</strong>に設定してすべての情報を入力します。動的IPを使用する場合、<strong class="UI">[DHCP]</strong>に設定してDNSアドレスのみ入力します。<!-- <strong class="UI">[PPPoE]</strong>タイプを使用する場合、DNSアドレスとID、パスワードのみ入力します。--> </p>
+			<ul>
+			<li><strong class="UI">手動</strong>：IPアドレス、Subnet Mask、GATEWAY、DNS1、DNS2を直接入力して設定します。</li>
+			<li><strong class="UI">DHCP</strong>：DNS1、DNS2を設定します。</li>
+		<!-- 	<li><strong class="UI">PPPoE</strong>：DNS1、DNS2、ID、パスワードを設定します。</li> --> 
+			</ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>MACアドレス</h3>
+			<p>カメラのMACアドレスが表示されます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>IPアドレス</h3>
+			<p>現在、設定されたIPv4のアドレスが表示されます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Subnet Mask</h3>
+			<p>設定されたIPアドレスのSubnet Maskが表示されます。<strong class="UI">[IPタイプ]</strong>を<strong class="UI">[手動]</strong>に設定すると、Subnet Maskを変更することができます。</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="PTZMode">
+			<h3>GATEWAY</h3>
+            <p>設定されたIPアドレスのGATEWAYが表示されます。<strong class="UI">[IPタイプ]</strong>を<strong class="UI">[手動]</strong>に設定すると、GATEWAYを変更することができます。</p>
+			</div>
+		<div class="wn5-setup-section-article-content">	
+            <h3>DNS設定(DHCP)</h3>
+            <p><strong class="UI">[IPタイプ]</strong>を<strong class="UI">[DHCP]</strong>に設定した時に表示されます。<strong class="UI">[有効]</strong>を選択した場合、DNSアドレスが自動に割り当てられます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>DNS1/DNS2</h3>
+			<p>DNS (Domain Name Service)サーバーのアドレスが表示されます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>ホスト名</h3>
+            <p>ホスト名を読み込むためのONVIF GetHostname操作に使用される名です。初文字は必ず英語のアルファベットで、英数字のみ入力することができます。また、最大63文字まで入力できます。カメラのデバイス名が初期値に入力されており、必須入力値ではないため値を設定する必要はありません。</p>
+		</div>		
+		
+	<!-- 	<div class="wn5-setup-section-article-content">	
+			<h3>ID</h3>
+			<p><strong class="UI">[IPタイプ]</strong>を<strong class="UI">[PPPoE]</strong>に設定した時に表示されます。アクセスするIDを入力します。</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
+			<h3>Password</h3>
+			<p><strong class="UI">[IPタイプ]</strong>を<strong class="UI">[PPPoE]</strong>に設定した時に表示されます。アクセスするIDのパスワードを入力します。</p> --> 
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2><a class="wn5-online-help-link" name="IPv6"></a>IPv6 設定</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>IPv6はIPv4よりデータの処理速度、同時データ処理容量、インタネットアドレスのシステムなどを拡張した次世代インタネットアドレスのシステムです。IPv6を有効にするためには、<strong class="UI">[有効]</strong>を選択します。IPタイプ、IPアドレス、Prefix、GATEWAYを設定することができます。IPインストーラーでカメラ型名を選択すると、IPv4やIPv6アドレスの中で選択することができ、ウェブブラウザにIPv6アドレスを入力してアクセスすることができます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>IPタイプ</h3>
+			<p>IP接続タイプを選択します。初期値は<strong class="UI">[初期値]</strong>です。この時にDHCPが見つからないと、自動に前の設定値に変更されます。</p>
+            <ul>
+                <li><strong class="UI">DHCP</strong>：DHCPで与えられたIPv6アドレスが表示されます。</li>
+                <li><strong class="UI">手動</strong>：ユーザーが任意に設定したIPv6アドレスを入力することができます。</li>
+                <li><strong class="UI">初期値</strong>：初期値に設定されているIPv6アドレスが表示されます。</li>
+            </ul>
+		</div>
+		
+				<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+
+            <ul>
+                <li>設定を変更して<strong class="UI">[適用]</strong>ボタンをクリックすると、ウェブブラウザが閉じられます。後ほど、変更したIPに再度アクセスしてください。 </li>
+            </ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>IPアドレス</h3>
+			<p>IPv6アドレスを入力します。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Prefix</h3>
+			<p>IPの範囲を設定することができる値です。<strong class="UI">[IPタイプ]</strong>が<strong class="UI">[初期値]</strong>の場合、<strong class="UI">[Prefix]</strong>値は64です。<strong class="UI">[手動]</strong>の場合には、<strong class="UI">[Prefix]</strong>値を変更することができます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>GATEWAY</h3>
+			<p><strong class="UI">[IPタイプ]</strong>を<strong class="UI">[手動]</strong>に設定した時に表示されます。ユーザーが直接にGATEWAYアドレスを入力します。</p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>ポート</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>ポートは、システムでデータを送受信する時に使用する位置を意味します。<strong class="UI">[ポート]</strong>タブをクリックして該当項目を設定した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。映像の保安強化のためにHTTPS、RTSP使用をお勧めします。</p>
+		</div>
+				<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+
+            <ul>
+                <li>ポート設定時、0～1023または3702は使用できません。 </li>
+            </ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>HTTP</h3>
+			<p>ウェブブラウザを用いてカメラにアクセスする時に使用されるHTTPポートです。初期値は80(TCP)です。保安ポリシー上、Safari&amp;Google ChromeブラウザではHTTPポートを65535に設定してアクセスすることができません。HTTPポートを変更する時、ウェブブラウザが閉じられます。再アクセスする時には、新たに設定したHTTPポートをIPアドレスの後に入力してアクセスしてください。HTTPポートが80の場合には、ポートNo.をスキップすることができます。(例：カメラIPアドレス：192.168.1.100、HTTPポート：8080の場合 -&gt; http://192.168.1.100:8080)</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
+			<h3>HTTPS</h3>
+			<p>HTTPより保安が強化されたバージョンです。SSLでHTTPSモードを設定する時に使用することができます。初期値は443(TCP)です。設定可能な範囲は1024～65535です。保安ポリシー上、Safari&amp;Google Chromeブラウザでは HTTPSポートを65535に設定してアクセスすることができません。</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
+			<h3>RTSP</h3>
+			<p>RTSP (Real Time Streaming Protocol)タイプで映像を伝送するためのポートで、初期値は554です。</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
+			<h3>Time out</h3>
+			<p>Time outを有効にするためには、<strong class="UI">[有効]</strong>を選択します。RTSPタイプに接続した時、一定時間反応がない場合にはポート接続を再設定します。</p>
+		</div>
+
+
+	</div>
+</div>
+<hr class="wn5-setup-hr">

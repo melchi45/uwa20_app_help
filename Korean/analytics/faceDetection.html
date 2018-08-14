@@ -41,7 +41,7 @@
 
             <div class="wn5-online-help-action">
 			<h4>관심 영역 설정하기</h4>
-            <p>전체 화면 중 사용자가 지정하는 영역을 관심 영역으로 설정합니다. 관심 영역에는 최소 얼굴 감지 크기가 동그라미로 표시됩니다. 즉 관심 영역에서 동그라미보다 큰 얼굴만 감지합니다.</p>
+            <p>전체 화면 중 사용자가 지정하는 영역을 관심 영역으로 설정합니다. 관심 영역에는 최소 얼굴 감지 크기가 얼굴 아이콘으로 표시됩니다. 즉 관심 영역에서 동그라미보다 큰 얼굴만 감지합니다.</p>
             </div>
             <div class="wn5-online-help-action">
 			<h4>관심 영역 변경하기</h4>
@@ -64,12 +64,12 @@
 		 <div class="wn5-setup-section-article-content">
             <h3>움직임 기반 관심 영역 이동</h3>
             <p>움직임 분석에 따라 얼굴 검출 영역이 자동으로 변경되도록 하려면 <strong class="UI">[사용]</strong>을 선택합니다. <strong class="UI">[사용]</strong>을 선택하지 않으면 설정한 관심 영역에서만 얼굴을 검출합니다. </p>
-            <p>관심 영역을 설정하면 설정한 영역 내에서만 얼굴이 검출되어, 원거리의 작은 얼굴은 검출 효율이 떨어지는 경우가 있습니다. '움직임 기반 관심 영역 이동' 기능을 사용하면, 화면 전체에서 움직임 감지 시&nbsp;얼굴 검출을 위한 영역이 자동으로 변경되어 얼굴 검출 효율이 향상됩니다.</p>
+            <p>관심 영역을 설정하면 설정한 영역 내에서만 얼굴이 검출되어, 원거리의 작은 얼굴은 검출 효율이 떨어지는 경우가 있습니다. '움직임 기반 관심 영역 이동' 기능을 사용하면, 화면 전체에서 움직임 감지 시 얼굴 검출을 위한 영역이 자동으로 변경되어 얼굴 검출 효율이 향상됩니다.</p>
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
-                <li>움직임 기반 관심 영역 이동 기능 사용 시&nbsp;움직임이 발생하는 영역에 대해서만 얼굴 검출 영역으로 지정됩니다. </li>
+                <li>움직임 기반 관심 영역 이동 기능 사용 시 움직임이 발생하는 영역에 대해서만 얼굴 검출 영역으로 지정됩니다. </li>
                 <li>여러 영역에서 얼굴을 검출하기 위해 검출 영역이 능동적으로 변경되기 때문에 지속적인 얼굴 검출은 불가능합니다. </li>
             </ul>
         </div>
@@ -113,6 +113,19 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
+        <h2>오버레이</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[사용]</strong>을 클릭하면, 감지된 위치를 영상에 오버레이하여 표시합니다.<u> </u></p>
+        </div>       
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="action"></a>이벤트 동작</h2>
     </div>
     <div class="wn5-setup-section-article">
@@ -127,12 +140,12 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>저장</h3>
-            <p ng-if="NAS">얼굴 감지 이벤트가 발생했을 때 SD 카드 또는 NAS에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
-            <p ng-if="!NAS">얼굴 감지 이벤트가 발생했을 때 SD 카드에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
+            <p ng-if="NAS">얼굴 감지 이벤트가 발생했을 때 (micro)SD 카드 또는 NAS에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
+            <p ng-if="!NAS">얼굴 감지 이벤트가 발생했을 때 (micro)SD 카드에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>알람 출력</h3>
-            <p>얼굴 감지 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다.&nbsp;알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+            <p>얼굴 감지 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다. 알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
@@ -161,7 +174,7 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>얼굴 감지 이벤트 동작의 작동 시간을 설정합니다. <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_faceDetection?#action">이벤트 동작</a>]</strong>에서 설정한 이벤트 동작이&nbsp;항상 동작하도록 하거나 설정한 시간에만 동작하도록 설정합니다.</p>
+            <p>얼굴 감지 이벤트 동작의 작동 시간을 설정합니다. <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_faceDetection?#action">이벤트 동작</a>]</strong>에서 설정한 이벤트 동작이 항상 동작하도록 하거나 설정한 시간에만 동작하도록 설정합니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
  

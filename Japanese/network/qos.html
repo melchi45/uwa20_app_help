@@ -1,0 +1,82 @@
+﻿<h1 class="wn5-setup-main-title">QoS</h1>
+<div class="wn5-setup-section">
+	<p>QoS(Quality of Service)は、ネットワーク網に過負荷(同時アクセス量増加、ネットワーク障害発生など)が発生した時にデータ伝送の優先順位を決めて設定された優先順位にデータ伝送品質を保障する機能です。QoSを適用するIPアドレスをIPv4またはIPv6タイプに入力することができます。設定を完了した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv4</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>QoSを適用するIPアドレスをIPv4タイプに追加したり削除することができます。初期値でPrefixは32、DSCPは63に設定されています。</p>
+			<ul>
+				<li><strong class="UI">Prefix</strong>：IPの範囲を設定できる値で、IPv4の場合には1～32まで設定することができます。</li>
+				<li><strong class="UI">DSCP</strong>：DSCP (Differentiated Services Code Point)は、QoSの優先順位を意味します。DSCP値は、0から63まで設定することができます。値が0に近いほど優先順位が低くなります。</li>
+			</ul>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+			<ul>
+				<li>マルチキャストに使用される224.0.0.0～239.255.255.254アドレスは使用できません。</li>
+			</ul>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4>IPv4アドレス追加</h4>
+			<ol>
+			<li><strong class="UI">[追加]</strong>ボタンをクリックします。IPv4アドレスを入力できるフィールドが生成されます。</li>
+			<li>IP、Prefix、DSCP情報を入力します。</li>
+			<li><strong class="UI">[有効]</strong>のチェックボックスにチェックすると、該当IPv4アドレスにQoSを適用することができます。</li>
+			<li>すべての情報を入力した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、入力した情報がリストに保存されます。</li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4>IPv4アドレス削除</h4>
+			<ol>
+			<li>削除するIPv4アドレスを選択します。</li>
+			<li><strong class="UI">[削除]</strong>ボタンをクリックします。</li>
+			<li>削除確認ポップアップで<strong class="UI">[OK]</strong>ボタンをクリックします。IPv4アドレスが削除されます。</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>IPv6</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>QoSを適用するIPアドレスをIPv6タイプに追加したり削除することができます。初期値でPrefixは128、DSCPは63に設定されています。</p>
+			<ul>
+				<li><strong class="UI">Prefix</strong>：IPの範囲を設定できる値で、IPv6の場合には1～128まで設定することができます。</li>
+				<li><strong class="UI">DSCP</strong>：DSCP(Differentiated Services Code Point)は、QoSの優先順位を意味します。DSCP値は、0から63まで設定することができます。値が0に近いほど優先順位が低くなります。</li>
+			</ul>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4>IPv6アドレス追加</h4>
+			<ol>
+				<li><strong class="UI">[追加]</strong>ボタンをクリックします。IPv6アドレスを入力できるフィールドが生成されます。</li>
+				<li>IP、Prefix、DSCP情報を入力します。</li>
+				<li><strong class="UI">[有効]</strong>のチェックボックスにチェックすると、該当IPv6アドレスにQoSを適用することができます。</li>
+				<li>すべての情報を入力した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、入力した情報がリストに保存されます。</li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4>IPv6アドレス削除</h4>
+			<ol>
+				<li>削除するIPv6アドレスを選択します。</li>
+				<li><strong class="UI">[削除]</strong>ボタンをクリックします。</li>
+				<li>削除確認ポップアップで<strong class="UI">[OK]</strong>ボタンをクリックします。IPv6アドレスが削除されます。</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">

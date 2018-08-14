@@ -81,7 +81,7 @@
             <ul>
                 <li><strong class="UI">사용 안 함</strong>: 핸드오버 기능을 사용하지 않습니다.</li>
                 <li><strong class="UI">스마트줌</strong>: 가상선을 지나가는 물체를 감지하면, PTZ 카메라가 가상선의 중앙 위치를 중심으로 영상을 확대하여 보여줍니다. 고정 카메라와 PTZ 카메라가 연동할 수 있도록 영상 좌표값은 미리 설정해 두어야 하며, <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[캘리브레이션]</strong> 메뉴에서 설정할 수 있습니다.</li>
-                <li><strong class="UI">핸드오버 번호</strong>: 가상선을 지나가는 물체를 감지하면, PTZ 카메라가 프리셋 위치로 이동합니다. 프리셋 정보를 가진 핸드오버 번호를 리스트 목록에서 선택합니다. 리스트 목록은&nbsp;<strong class="UI">[이벤트]</strong> &gt; <strong class="UI">[핸드오버]</strong>에서 추가하거나 변경할 수 있습니다. </li>
+                <li><strong class="UI">핸드오버 번호</strong>: 가상선을 지나가는 물체를 감지하면, PTZ 카메라가 프리셋 위치로 이동합니다. 프리셋 정보를 가진 핸드오버 번호를 리스트 목록에서 선택합니다. 리스트 목록은 <strong class="UI">[이벤트]</strong> &gt; <strong class="UI">[핸드오버]</strong>에서 추가하거나 변경할 수 있습니다. </li>
             </ul>
         </div>
         <div class="wn5-online-help-info" ng-if="HandoverCalibration">
@@ -105,11 +105,13 @@
         </div>
         <div class="wn5-online-help-action"> 
             <h4>가상 영역 설정하기  </h4>
-			<p>영상 위에 마우스로 꼭지점 4개를 선택하면 가상 영역이 설정되며 <strong class="UI">[영역]</strong>의 숫자 버튼 색상이 변경됩니다. 가상 영역은 최대 8개까지 설정할 수 있으며, 영역별로 영상 분석 규칙을 설정할 수 있습니다. </p>
+            <p>미리보기 화면에서 마우스로 꼭지점 4개를 선택하거나 마우스로 드래그하여 사각형을 그리면  관심 영역이 설정됩니다. 가상 영역은 최대 8개까지 설정할 수 있으며, 영역별로 영상 분석 규칙을 설정할 수 있습니다. </p>
         </div>
         <div class="wn5-online-help-action"> 
             <h4>가상 영역 변경하기  </h4>
-            <p>설정한 가상 영역의 꼭지점을 움직여 가상 영역의 크기를 변경할 수 있습니다. 설정한 가상 영역을 이동하려면 마우스로 해당 영역을 클릭하여 드래그합니다. 선을 클릭한 후 꼭지점이 생기면 꼭지점을 이동하여 다각형 가상 영역을 설정할 수 있습니다.</p>
+            <p>설정한 가상 영역의 꼭지점을 움직여 가상 영역의 크기를 변경할 수 있습니다. </p>
+            <p>다각형을 만들려면 만들어진 사각형의 선을 선택한 후 + 기호가 나타나면 +기호를 클릭하여 꼭지점을 추가합니다. 최대 4개의 점을 추가하여 원하는 다각형을 만들 수 있습니다. </p>
+            <p>설정한 가상 영역을 이동하려면 마우스로 해당 영역을 클릭하여 드래그합니다. 선을 클릭한 후 꼭지점이 생기면 꼭지점을 이동하여 다각형 가상 영역을 설정할 수 있습니다.</p>
 		</div>
         <div class="wn5-online-help-action"> 
             <h4>가상 영역 삭제하기  </h4>
@@ -123,20 +125,22 @@
             <h3>카테고리  </h3>
             <p>가상 영역별로 적용할 규칙을 설정할 수 있습니다.</p>
             <ul>
-                <li><strong class="UI">침입</strong>: 설정한 영역 내부에 움직이는 물체를 감지하면 이벤트를 발생시킵니다. 
-                </li>
+                <li><strong class="UI">침입</strong>: 설정한 영역 내부에 움직이는 물체를 감지하면 이벤트를 발생시킵니다.  </li>
+                <ul>
+                    <li><strong class="UI">최소 관찰 시간(초)</strong>: 감지 후 이벤트를 발생하기 위한 최소시간을 설정합니다. 설정한 시간보다 더 오래 움직임이 지속될 때 이벤트를 발생시킵니다.  </li>
+                </ul>
                 <li><strong class="UI">들어감</strong>: 움직이는 물체가 사용자가 지정한 영역의 외부에서 내부로 들어올 때 이벤트를 발생시킵니다.
-                </li>
+                                </li>
                 <li><strong class="UI">나감</strong>: 움직이는 물체가 사용자가 지정한 영역의 내부에서 외부로 나갈 때 이벤트를 발생시킵니다.
-                </li>
+                                </li>
                 <li><strong class="UI">나타남(사라짐)</strong>: 사용자가 지정한 영역 내부에 존재하지 않았던 물체가 영역 라인을 통과하지 않고 영역 내부에 나타나 일정시간 머무르거나, 영역 내부에 존재하던 물체가 사라지면 이벤트를 발생시킵니다. 
-                </li>
+                                </li>
                 <ul>
                     <li><strong class="UI">최소 관찰 시간(초)</strong>: 나타남(사라짐)을 감지하기 위한 물체의 최소 지속 시간을 설정합니다. 감지 영역에서 실행 시간동안 존재하던 물체가 사라지면 이를 사라짐으로 감지하고, 실행 시간 동안 존재하지 않던 물체가 나타나면 나타남으로 감지합니다.
-                    </li>
+                                        </li>
                 </ul>
                 <li><strong class="UI">배회</strong>: 설정한 감지 영역 내에서 배회하는 움직임을 감지하면 이벤트를 발생시킵니다.
-                </li>
+                                </li>
                 <ul>
                     <li><strong class="UI">최소 관찰 시간(초)</strong>: 배회하는 물체를 감지하고 이벤트를 발생하기 위한 최소시간을 설정합니다. 설정한 시간보다 더 오래 배회하는 물체를 감지하면 이벤트를 발생시킵니다.</li>
                 </ul>
@@ -153,8 +157,8 @@
             <p>핸드오버는 고정 카메라에서 IVA 이벤트가 발생하면 PTZ 카메라가 해당 화면 영역이나 미리 설정한 프리셋 위치로 이동하는 기능입니다</p>
             <ul>
                 <li><strong class="UI">사용 안 함</strong>: 핸드오버 기능을 사용하지 않습니다.</li>
-                <li><strong class="UI">스마트줌</strong>: 관심 영역에서 IVA 이벤트가 발생하면, PTZ 카메라가 관심 영역으로 이동하여 관심 영역 중앙 위치를 중심으로 영상을 확대하여 보여줍니다.&nbsp;고정 카메라와 PTZ 카메라가 연동할 수 있도록 영상 위치&nbsp;좌표값은 미리 설정해 두어야 하며, <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[캘리브레이션]</strong> 메뉴에서 설정할 수 있습니다.</li>
-                <li><strong class="UI">핸드오버 번호</strong>: 관심 영역에서 IVA 이벤트가 발생하면, PTZ 카메라가 프리셋 위치로 이동합니다. 프리셋 정보를 가진 핸드오버&nbsp;번호를 리스트 목록에서 선택합니다. 리스트 목록은&nbsp;<strong class="UI">[이벤트]</strong> &gt; <strong class="UI">[핸드오버]</strong> 메뉴에서 추가하거나 변경할 수 있습니다. </li>
+                <li><strong class="UI">스마트줌</strong>: 관심 영역에서 IVA 이벤트가 발생하면, PTZ 카메라가 관심 영역으로 이동하여 관심 영역 중앙 위치를 중심으로 영상을 확대하여 보여줍니다. 고정 카메라와 PTZ 카메라가 연동할 수 있도록 영상 위치 좌표값은 미리 설정해 두어야 하며, <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[캘리브레이션]</strong> 메뉴에서 설정할 수 있습니다.</li>
+                <li><strong class="UI">핸드오버 번호</strong>: 관심 영역에서 IVA 이벤트가 발생하면, PTZ 카메라가 프리셋 위치로 이동합니다. 프리셋 정보를 가진 핸드오버 번호를 리스트 목록에서 선택합니다. 리스트 목록은 <strong class="UI">[이벤트]</strong> &gt; <strong class="UI">[핸드오버]</strong> 메뉴에서 추가하거나 변경할 수 있습니다. </li>
             </ul>
         </div>
         <div class="wn5-online-help-info" ng-if="HandoverCalibration">
@@ -178,11 +182,14 @@
             </div>
 			 <div class="wn5-online-help-action"> 
             <h4>제외 영역 설정하기  </h4>
-			영상 위에 마우스로 꼭지점 4개를 선택하면 제외 영역이 설정되며 <strong class="UI">[영역]</strong>의 숫자 버튼 색상이 변경됩니다. 제외 영역은 최대 8개까지 설정할 수 있습니다.			
+            <p>미리보기 화면에서 마우스로 꼭지점 4개를 선택하거나 마우스로 드래그하여 사각형을 그리면  제외 영역이 설정됩니다. 제외 영역은 최대 8개까지 설정할 수 있습니다.</p>
+			
             </div>
             <div class="wn5-online-help-action"> 
             <h4>제외 영역 변경하기  </h4>
-            <p>설정한 제외 영역의 꼭지점을 움직여 제외 영역의 크기를 변경할 수 있으며, 제외 영역을 선택하고 마우스로 드래그하면 제외 영역의 위치를 이동할 수 있습니다. </p>
+            <p>설정한 제외 영역의 꼭지점을 움직여 제외 영역의 크기를 변경할 수 있습니다. </p>
+            <p>다각형을 만들려면 만들어진 사각형의 선을 선택한 후 + 기호가 나타나면 +기호를 클릭하면 꼭지점이 추가됩니다. 최대 4개의 점을 추가하여 원하는 다각형을 만들 수 있습니다. </p>
+            <p>제외 영역을 선택하고 마우스로 드래그하면 제외 영역의 위치를 이동할 수 있습니다. </p>
 			</div>
             <div class="wn5-online-help-action"> 
             <h4>제외 영역 삭제하기  </h4>
@@ -193,7 +200,7 @@
         <div class="wn5-setup-section-article-content">
 
             <h3>영역</h3>
-            <p>제외 영역이 추가되면 순서대로 <strong class="UI">[영역]</strong>의 숫자 버튼 색상이 변경됩니다. 숫자 버튼을 클릭하여 비활성화 시키면 해당 제외 영역이 미리보기 화면에서 보이지 않습니다. 숫자 버튼을 한 번 더 클릭하면 제외 영역이 다시 보입니다.</p>
+            <p>제외 영역이 추가되면 순서대로 <strong class="UI">[영역]</strong>의 숫자 버튼 색상이 변경됩니다. 숫자 버튼을 클릭하여 비활성화 시키면 해당 제외 영역이 미리보기 화면에서 선택됩니다. </p>
  </div>
     </div>
 </div>
@@ -203,23 +210,24 @@
             <h2>공통 설정</h2>
     </div>
     <div class="wn5-setup-section-article">
-    <div class="wn5-setup-section-article-content">    
+        <div class="wn5-setup-section-article-content">
             <p>가상선과 가상 영역에 공통으로 적용될 민감도와 감지할 물체의 최소, 최대 크기를 설정합니다.</p>
-    </div>
-
+            <p>사용 환경에 따라 감지 정확도를 높이고 오감지를 최소화 하기 위해 적용할 수 있는 설정입니다.</p>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>민감도 </h3>
             <p>가상선과 가상 영역에 대한 움직임 감지 민감도를 설정합니다. 배경과 물체의 구분이 명확한 환경에서는 민감도를 낮게 설정하고, 어두워서 배경과 물체의 구분이 명확하지 않은 환경에서는 민감도를 높게 설정합니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>크기</h3>
-            <p>가상선과 가상 영역에서 움직임을 감지할 물체의 최소 크기와 최대 크기를 설정합니다. 꼭지점을 클릭한 후 마우스를 드래그하여 크기를 변경할 수 있습니다. 크기를 변경하면 <strong class="UI">[크기]</strong>에서 <strong class="UI">[최소]</strong> 값과 <strong class="UI">[최대]</strong> 값도 변경됩니다. </p>
+            <p>가상선과 가상 영역에서 움직임을 감지할 물체의 최소 크기와 최대 크기를 설정합니다. 오른쪽 하단의 꼭지점을 클릭한 후 마우스를 드래그하여 크기를 변경할 수 있습니다. 크기를 변경하면 <strong class="UI">[크기]</strong>에서 <strong class="UI">[최소]</strong> 값과 <strong class="UI">[최대]</strong> 값도 변경됩니다. </p>
         </div>
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>관심 영역과 제외 영역이 동일하거나 겹치는 경우, 제외 영역이 우선합니다.</li>
+                <li>사용자가 지정한 최소 크기보다 작은 움직임과 최대 크기보다 큰 움직임은 감지하지 않습니다. 크고 작은 노이즈에 의한 오감지를 피하기 위하여 설치 환경에 적합한 최소/최대 감지 크기를 설정하십시오. 단, 동일한 위치에서의 동일한 움직임이라도 감지되는 크기는 다소 차이가 있을 수 있기 때문에 편차를 고려하여 여유를 포함하여 최소/최대 크기 제한을 설정하십시오. </li>
             </ul>
         </div>
     </div>
@@ -234,7 +242,7 @@
                     <div class="wn5-setup-section-article-content">
                         <h3>핸드 오버</h3>
                         <p>핸드 오버 수신 카메라 번호를 선택합니다. 핸드 오버 기능을 사용하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택합니다.</p>
-                        <p>핸드 오버는 IVA 이벤트가 발생하면, 수신 카메라가 미리 설정해 둔&nbsp;PTZ 프리셋 위치로 이동하는 기능입니다. 핸드 오버 수신 카메라는 <strong class="UI">[이벤트]</strong> &gt; <strong class="UI">[핸드 오버]</strong> 메뉴에서 설정할 수 있습니다. </p>
+                        <p>핸드 오버는 IVA 이벤트가 발생하면, 수신 카메라가 미리 설정해 둔 PTZ 프리셋 위치로 이동하는 기능입니다. 핸드 오버 수신 카메라는 <strong class="UI">[이벤트]</strong> &gt; <strong class="UI">[핸드 오버]</strong> 메뉴에서 설정할 수 있습니다. </p>
                     </div>
 					       <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
@@ -244,7 +252,21 @@
                         </ul>
         </div>	
        </div>
-	</div>			
+	</div>	
+	
+	
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>오버레이</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[사용]</strong>을 클릭하면, 감지된 위치를 영상에 오버레이하여 표시합니다. </p>
+        </div>       
+    </div>
+</div>
+		
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -261,12 +283,12 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>저장</h3>
-            <p ng-if="NAS">IVA 이벤트가 발생했을 때 SD 카드 또는 NAS에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
-            <p ng-if="!NAS">IVA 이벤트가 발생했을 때 SD 카드에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
+            <p ng-if="NAS">IVA 이벤트가 발생했을 때 (micro)SD 카드 또는 NAS에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
+            <p ng-if="!NAS">IVA 이벤트가 발생했을 때 (micro)SD 카드에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>알람 출력</h3>
-            <p>IVA 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다.&nbsp;알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+            <p>IVA 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다. 알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다.</p>
            </div>
           <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
@@ -297,7 +319,7 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>IVA 이벤트 동작의 작동 시간을 설정합니다. <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_iva?#action">이벤트 동작</a>]</strong>에서 설정한 이벤트 동작이&nbsp;항상 동작하도록 하거나 설정한 시간에만 동작하도록 설정합니다.</p>
+            <p>IVA 이벤트 동작의 작동 시간을 설정합니다. <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_iva?#action">이벤트 동작</a>]</strong>에서 설정한 이벤트 동작이 항상 동작하도록 하거나 설정한 시간에만 동작하도록 설정합니다.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">

@@ -1,0 +1,437 @@
+﻿<h1 class="wn5-setup-main-title">ビデオprofile</h1>
+<div class="wn5-setup-section">
+    <p>ビデオprofileを追加したり削除してProfile設定を変更することができます。ビデオ解像度、フレームレート、Codecなどを「ビデオprofile」にすでに設定した後、環境と状況によってユーザーが望むProfileに変更して映像をストリームしたり再生することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックして設定を適用してください。</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+            <div class="wn5-setup-section-heading">
+                <h2>チャンネル選択</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <p>カメラチャンネルを選択した後、チャンネル別にビデオprofileの詳細を設定することができます。</p>
+                </div>
+            </div>
+        </div>
+<hr class="wn5-setup-hr" ng-if="PTZMode">
+<div class="wn5-setup-section" ng-if="PTZMode">
+            <div class="wn5-setup-section-heading">
+                <h2>PTZモードの選択</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <p><strong class="UI">[外部PTZ]</strong>を選択すると、RS-485やRS-422ポートに接続されたレシーバーでカメラPTZを制御することができます。ウェブビューアーの左側にあるメニューツリーに<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>メニューが生成されます。</p>
+                    <p><strong class="UI">[デジタルPTZ]</strong>を選択すると、カメラPTZをデジタルで制御することになります。ウェブビューアーの左側にあるメニューツリーに<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[デジタルPTZ]</strong>メニューが生成されます。「デジタルPTZ Profile」が適用された場合のみデジタルPTZモードが動作され、この時に解像度とビットレートが制限されます。</p>
+                </div>
+            </div>
+        </div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h2>ビデオprofile接続ポリシー</h2>
+        </div>    
+    <div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>Profile設定が変更された時、既存のProfileに映像を出力し続けるか変更されたProfileに映像を出力し続けるかを設定することができます。</p>
+        <p><strong class="UI">[Profileの設定変更後も、接続を維持する]</strong>を選択すると、Profile設定を変更しても既存のProfile設定に映像を出力し、再度ウェブビューアーにアクセスした時、変更されたProfileに映像を出力します。Profile設定を変更して再度ウェブビューアーにアクセスするまでは、<strong class="UI">[ライブ]</strong>画面にオレンジ色の枠が表示されます。<strong class="UI">[Profileの設定変更後も、接続を維持する]</strong>を選択しないと、Profile設定を変更した時にすぐ変更されたProfileに映像が出力されます。</p>
+    </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>ビデオprofile</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+   <!--      <div class="wn5-setup-section-article-content">
+            <p>製品の使用環境と状況によってビデオのProfileを選択することができます。初期値に提供されるProfileの他に新しいProfileを追加したり削除することができます。Profile別にCodec、Profileタイプ、音声入力、ATCモード、ATC感度、ATC上限、解像度、フレームレート、最大ビットレート、ターゲットビットレート、ビットレート制御、マルチキャストなどを設定することができます。</p>
+        </div>   --> 
+        <div class="wn5-setup-section-article-content">
+        <p>製品の使用環境と状況によってビデオのProfileを選択することができます。初期値に提供されるProfileの他に新しいProfileを追加したり削除することができます。Profile別にCodec、Profileタイプ、解像度、フレームレート、最大ビットレート、目標ビットレート、ビットレート制御、マルチキャストなどを設定することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Profileリスト</h3>
+            <p>初期値に提供されるProfileのリストとユーザーが追加したProfileのリスト両方とも表示されます。</p>
+
+            <p ng-if="!FixedProfileCodecChange">カメラを設置すると、初期値に提供されるProfileは下記のどおりです。初期値に提供するProfile名とCodecは変更することができません。その他の設定はユーザーが変更することができます。</p>
+            <p ng-if="FixedProfileCodecChange">カメラを設置すると、初期値に提供されるProfileは下記のどおりです。</p>
+            <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens">
+                <thead>
+                <tr>
+                    <td>Profile名</td>
+                    <td>Codec</td>
+                    <td>詳細情報</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>MJPEG</td>
+                    <td>MJPEG</td>
+                    <td>
+                        <p>MJPEG Codecに適するProfile、イベントProfileと録画Profileに使用される</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>H.264</td>
+                    <td>H.264</td>
+                    <td>H.264 Codecに適するProfile、ライブ映像ストリームの基本Profileに使用される</td>
+                </tr>
+                <tr>
+                    <td>H.265</td>
+                    <td>H.265</td>
+                    <td>H.265 Codecに適するProfile</td>
+                </tr>
+                <tr>
+                    <td>MOBILE</td>
+                    <td>H.264</td>
+                    <td>モバイルに適するProfile</td>
+                </tr>
+                </tbody>
+            </table><!-- <p ng-if="FisheyeLens">피쉬아이 카메라의 경우 기본 프로파일은 다음과 같습니다.</p> --><table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
+                <thead>
+                <tr>
+                    <td>Profile名</td>
+                    <td>Codec</td>
+                    <td>詳細情報</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>MJPEG</td>
+                    <td>MJPEG</td>
+                    <td>
+                        <p>MJPEG Codecに適するProfile、イベントProfileと録画Profileに使用される</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fisheyeview</td>
+                    <td>H.264</td>
+                    <td>歪み補正をしない魚眼カメラの映像をそのまま見せるProfile基本Profileに使用される</td>
+                </tr><!--  <tr>
+                    <td>Dewarp1</td>
+                    <td>H.264</td>
+                    <td>피쉬아이 카메라의 왜곡을 보정하여 왜곡 보정 영상을 보여주는 프로파일</td>
+                </tr> --><tr>
+                    <td>MOBILE</td>
+                    <td>H.264</td>
+                    <td>モバイルに適するProfile</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h4>ビデオprofile追加</h4>
+            <div>
+                <ol><li><strong class="UI">[追加]</strong>ボタンをクリックします。Profileリストで新しい項目が追加されます。</li>
+                    <li><strong class="UI">[名前]</strong>フィールドにProfile名を入力します。Profileリストに入力した名前が表示されます。</li>
+                    <li><strong class="UI">[Codec]</strong>、<strong class="UI">[Profileタイプ]</strong>、<strong class="UI">[解像度]</strong>など、Profileの詳細を設定します。</li>
+                    <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
+                    <li>確認ポップアップが表示されたら、<strong class="UI">[OK]</strong>ボタンをクリックします。新しいProfileが追加されます。</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h4>ビデオprofileの設定変更</h4>
+            <div>
+                <ol><li>Profileリストで詳細設定を変更するProfileを選択します。</li>
+                    <li><strong class="UI">[Codec]</strong>、<strong class="UI">[Profileタイプ]</strong>、<strong class="UI">[解像度]</strong>など、Profileの詳細設定を変更します。</li>
+                    <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
+                    <li>確認ポップアップが表示されたら、<strong class="UI">[OK]</strong>ボタンをクリックします。選択したProfileの設定が変更されます。</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h4>ビデオprofile削除</h4>
+            <div>
+                <ol><li>Profileリストで削除するProfileを選択します。</li>
+                    <li><strong class="UI">[削除]</strong>ボタンをクリックします。</li>
+                    <li>確認ポップアップが表示されたら、<strong class="UI">[OK]</strong>ボタンをクリックします。選択したProfileが削除されます。</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>名前</h3>
+            <p>Profileリストで選択したProfile名が表示されます。新規でProfileを生成する時、Profile名を入力することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Codec</h3>
+            <p>Profileに適用するCodecを選択します。選択したCodecタイプによって、Profile設定の詳細が異なります。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+            <h3>魚眼ビュータイプ</h3>
+            <p>Profileで表示される魚眼カメラの映像タイプを選択します。</p>
+            <ul>
+                <li>魚眼ビュー：魚眼カメラの映像をそのまま補正なしで見せます。</li>
+                <li>歪み補正ビュー：魚眼カメラで撮影した360&deg;映像を適合なタイプに補正して見せます。補正映像タイプは、「歪み補正ビュー」を選択すると表示される<strong class="UI">[ビュー]</strong>オプションで選択することができます。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+            <h3>ビュー</h3>
+            <p>歪み補正の映像タイプを選択します。</p>
+            <p><strong class="UI">[魚眼ビュータイプ]</strong>で<strong class="UI">[歪み補正ビュー]</strong>を選択した場合、有効となります。</p>
+            <ul>
+                <li>シングルパノラマ：360˚エリアを撮影した映像を歪み補正して壁パノラマタイプに見せます。</li>
+                <li>クワドビュー：人の視野に適するように歪み補正した特定画面4つを同時に表示します。分割画面を選択してビューを上下左右に移動したり、ズーム機能を使用することができます。</li>
+                <li>ダブルパノラマ：360˚エリアを撮影した映像を歪み補正してパノラマタイプの上下分割画面に見せます。<strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong> &gt; <strong class="UI">[カメラ据付けモード]</strong>で<strong class="UI">[天井]</strong>を選択した場合のみ、ダブルパノラマオプションが表示されます。</li>
+                <li>Q1：クワドビューの左上のビューを表示します。</li>
+                <li>Q2：クワドビューの右上のビューを表示します。</li>
+                <li>Q3：クワドビューの左下のビューを表示します。</li>
+                <li>Q4：クワドビューの右下のビューを表示します。</li>
+            </ul>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3><a class="wn5-online-help-link" name="profiletype"></a>Profileタイプ</h3>
+            <p>適用するProfileタイプを選択します。選択したProfileタイプは、Profileリストの<strong class="UI">[タイプ]</strong>カラムに表示されます。選択したCodecタイプによって表示される設定項目が異なります。</p>
+
+            <ul>
+                <li><strong class="UI">基本Profile</strong>：カメラの映像をライブにストリームする時、適用される基本Profileです。Profileリストの<strong class="UI">[タイプ]</strong>に「Default」と表示されます。</li>
+                <li><strong class="UI">E-mail/FTP profile</strong>：イベントが発生すると、キャプチャー画面をE-mailとFTPサーバーに伝送する時に使用するビデオProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「Event」と表示されます。 <strong class="UI">[Codec]</strong>を「MJPEG」に設定した場合のみ、E-mail/FTP profileオプションが表示されます。</li>
+                <li ng-if="Recording"><strong class="UI">録画Profile</strong>：SDカードまたはNASに映像を録画する時、適用するProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「Record」と表示されます。</li>
+                <li ng-if="DPTZSetupPage"><strong class="UI">デジタルPTZ Profile</strong>：PTZモーションをデジタルに制御する時、使用するProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「DPTZ」と表示されます。CodecをH.264もしくはH.265に設定したのみ、デジタルPTZ Profileオプションが表示されます。</li>
+                <li ng-if="FisheyeLens" style="list-style-image:url('');">魚眼カメラの場合、新しいProfileを追加する時に<strong class="UI">[魚眼ビュータイプ]</strong>で<strong class="UI">[歪み補正ビュー]</strong>を選択し、<strong class="UI">[ビュー]</strong>で<strong class="UI">[クワドビュー]</strong>を選択すると、該当Profileが自動でデジタルPTZ Profileに登録されます。</li>
+            </ul>
+
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
+            <h3><a class="wn5-online-help-link" name="audioin"></a>音声入力</h3>
+            <p>カメラが内蔵マイクを持っているか外部マイクを接続した場合、カメラの外部音が映像に入力されるように設定することができます。</p>
+            <p><strong class="UI">[ライブ]</strong>画面のマイクとスピーカー機能を有効にするには、<strong class="UI">[音声入力]</strong>を<strong class="UI">[有効]</strong>に選択する必要があります。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
+            <h3>ATCモード</h3>
+            <p>ATC(Auto Transmit Control)モードは、ネットワーク帯域幅の変化量によって映像の属性を変更して伝送量を調整します。伝送量の調整方法は、ATCモードによって異なります。</p>
+            <ul>
+                <li><strong class="UI">無効</strong>：ネットワーク帯域幅が変化してもビデオ伝送量を一定維持します。</li>
+                <li><strong class="UI">有効－フレームレート制御</strong>：ネットワーク帯域幅が変化される場合、フレームレートを変更して伝送するデータ量を調整します。</li>
+                <li><strong class="UI">有効 - 圧縮制御</strong>：ネットワーク帯域幅が変化される場合、伝送するデータの圧縮率を変更して伝送するデータ量を調整します。圧縮調整する場合、画質が低くなることがあります。 </li>
+                <li><strong class="UI">有効 - イベント(MD)</strong>：<a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2">モーション検知イベント</a>が設定されている場合、使用できるモードです。モーション検知イベントが発生してネットワーク帯域幅が変化する場合、フレームレートを変更してデータ量を調整します。モーションが検知されない場合、最小限のフレームだけを出力して帯域幅使用を節約します。</li>
+            </ul>
+        </div>
+            
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
+            <h3>感度</h3>
+            <p>ネットワーク帯域幅変化量の反映速度を調整します。ATC感度が最高の場合に反映速度が最も早く、最低の場合に反映速度が最も遅いです。</p>
+            <p>ATC感度は、<strong class="UI">[ATCモード]</strong>を<strong class="UI">[有効－フレームレート制御]</strong>、<strong class="UI">[有効 - 圧縮制御]</strong>に選択する時のみ有効になります。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
+            <h3>上限</h3>
+            <p>ネットワーク帯域幅変化量によってビデオ伝送量を変更する時、ある程度まで属性を変更するかATCモードの上限値を設定します。ATCモードを使用しなかった時を100%と仮定すると、10～50%に値を設定することができ、設定された値の以下にはビデオ伝送量は変更されません。</p>
+            <p>この時、伝送量を減らし過ぎると画面が点滅する場合があるため、本設定値を調整して限界設定値を調整します。</p>
+            <p>ATC上限は、<strong class="UI">[ATCモード]</strong>を<strong class="UI">[有効－フレームレート制御]</strong>、<strong class="UI">[有効 - 圧縮制御]</strong>に選択する時のみ有効になります。</p>
+        </div>  
+    <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+
+    <ul>
+        <li ng-if="ATCModes">ATCに対応するカメラで構成された環境でのみ、ATCを有効にすることをお勧めします。</li>
+        <li ng-if="ATCModes">ネットワーク帯域幅の変化量が急激な環境ではATC感度を<strong class="UI">[最低]</strong>に設定してください。</li>
+        <li>ネットワーク環境が不安定の場合、画面が点滅することがあります。</li>
+    </ul>
+    </div>
+    </div>
+</div>  
+<hr class="wn5-setup-hr" ng-if="Crop">
+<div class="wn5-setup-section" ng-if="Crop">
+    <div class="wn5-setup-section-heading">
+        <h2>クロップエンコーディング</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>クロップエンコーディングは、全画面で選択したエリアだけを切って<strong class="UI">[Profile設定]</strong>で設定された解像度に合わせて出力します。クロップエンコーディング設定エリアより小さいサイズの解像度のみ設定することができます。現在、設定中のProfileにクロップエンコーディングを適用するには、<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>トリミング領域設定</h4>
+                     <ol>
+                    <li>クロップエンコーディングを<strong class="UI">[有効]</strong>に設定した後、<strong class="UI">[エリアを設定]</strong>ボタンをクリックします。</li>
+                    <li><strong class="UI">[トリミング設定領域]</strong>のプレビュー画面でマウスをドラッグしてエリアを設定します。エリアを16:9比や4:3比に合わせて設定するには、それぞれ<strong class="UI">[16:9]</strong>、<strong class="UI">[4:3]</strong>を選択し、比率に関係ないエリアを選択するには、<strong class="UI">[手動]</strong>を選択します。</li>
+                    <li>エリア設定を完了したら、<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
+                </ol>
+            </div>
+			
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+
+                <ul>
+                    <li><strong class="UI">[トリミング設定領域]</strong>でユーザーが任意で範囲を指定した場合、ユーザーが指定した範囲で出力解像度と最も近い解像度に出力します。</li>
+                    <li><strong class="UI">[映像&amp;音声]</strong>&gt; <strong class="UI">[特別設定]</strong> &gt; <strong class="UI">[DIS]</strong>設定を変更すると、トリミング設定領域が異なる場合があります。DIS設定を変更する時、クロップエンコーディングのエリアを再設定してください。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Profile設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>現在、設定中のビデオprofileの詳細を設定します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>解像度</h3>
+            <p>カメラ映像の解像度を設定します。</p>
+        </div>
+		
+		<div class="wn5-online-help-info" ng-if="!FixedProfileCodecChange">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+
+            <ul>
+                <li>高解像度の映像を問題なくストリームするためには、Chromeでウェブビューアーにアクセスすることをお勧めします。</li><!-- <li>고해상도는 Edge, Firefox  웹브라우저에서 지원되지 않습니다. Internet Explorer와 Safari에서는 플러그인을 설치하면 고해상도 영상도 스트림할 수 있습니다. 플러그인을 설치하려면 <strong class="UI">[라이브]</strong> 화면이나 <strong class="UI">[재생]</strong> 화면에서 오른쪽 상단의 플러그인<span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li> --></ul>
+		</div>
+		
+            
+        <div class="wn5-setup-section-article-content">
+            <h3>フレームレート</h3>
+            <p>1秒当たりのフレーム数を設定します。<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[カメラ設定]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[センサー]</strong></a>で選択したフレームレート値によって、設定できるフレームレートの範囲が異なります。</p>
+        </div>
+        
+		<div class="wn5-setup-section-article-content">
+            <h3>最大ビットレート</h3>
+            <p><strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[VBR]</strong>の場合、映像の最大ビットレートを設定します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>ターゲットビットレート</h3>
+            <p><strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[CBR]</strong>の場合、伝送する映像データの量を設定したターゲットビットレートに固定して映像を伝送します。</p>
+        </div>
+    </div>  
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>詳細</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Profileの<strong class="UI">[Codec]</strong>を<strong class="UI">[H.264]</strong>や<strong class="UI">[H.265]</strong>に設定した場合には、すべての詳細設定項目が表示されます。Profileの<strong class="UI">[Codec]</strong>を<strong class="UI">[MJPEG]</strong>に選択した場合は、<strong class="UI">[エンコーディング優先順位]</strong>項目のみ表示されます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><a class="wn5-online-help-link" name="bitrate"></a>ビットレート制御</h3>
+            <p>映像データ量をどう調整するか設定することができます。</p>
+            <ul>
+                <li><strong class="UI">CBR</strong>：固定ビットレート(Constant Bitrate)は、フルフレームのデータを一定サイズに固定して伝送するタイプです。CBRを選択すると、ターゲットビットレートを設定して伝送するデータのサイズを設定します。CBRの場合、固定的なデータサイズをもつため、全体的なシステムのデータサイズを予測しやすくて安定的にシステムを運用することができます。</li>
+                <li><strong class="UI">VBR</strong>：可変ビットレート(Variable Bitrate)は、フレームのデータサイズを固定せずに最大ビットレート内で映像を伝送するタイプです。VBRは、画質を維持しながらストレージスペースの容量や帯域幅を効率的に使用することができるが、映像が急に複雑になったり大きいモーションがある場合ネットワークに負担がかかります。</li>
+            </ul>
+        </div>
+		
+<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+
+            <ul>
+                <li>ビットレート制御を「CBR(固定ビットレート)」に設定してから画質優先モードを選択した場合、画面の複雑度によって設定されたビットレートで最大限に画質を保障するために実際伝送されるフレームレートが設定されたフレームレートと異なる場合があります。</li>
+            </ul>
+		</div>		
+
+        <div class="wn5-setup-section-article-content">
+            <h3>エンコーディング優先順位</h3>
+            <p>映像データ量がターゲットビットレートの値を超える時、フレームレートと画質中に何を優先順位としてエンコーディングするか設定します。</p>
+			<p>Profileの<strong class="UI">[Codec]</strong>を<strong class="UI">[H.264]</strong>や<strong class="UI">[H.265]</strong>に選択した場合、<strong class="UI">[フレームレート]</strong>と<strong class="UI">[圧縮]</strong>の中で選択することができます。<strong class="UI">[フレームレート]</strong>を優先順位に設定すると、フレームレートを最大限に保障するが画質は低くなることがあります。逆に<strong class="UI">[圧縮]</strong>を優先順位に設定すると、画質は保障するが抜け落ちるフレームが発生して映像が切れたり不自然になることがあります。Profileの<strong class="UI">[Codec]</strong>を<strong class="UI">[H.264]</strong>や<strong class="UI">[H.265]</strong>に選択した場合、<strong class="UI">[エンコーディング優先順位]</strong>は<strong class="UI">[ビットレート制御]</strong>を<strong class="UI">[CBR]</strong>に設定した場合のみ有効となります。</p>
+			
+			<p>Profileの<strong class="UI">[Codec]</strong>が<strong class="UI">[MJPEG]</strong>の場合、<strong class="UI">[フレームレート]</strong>と<strong class="UI">[ビットレート]</strong>の中で選択することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">    
+            <h3><a class="wn5-online-help-link" name="GOV"></a>GOV長</h3>
+            <p>GOV(Group of Video)はH.264/H.265のビデオ圧縮のための映像フレームの集合でIフレームから次のIフレームまでのフレーム集合を意味します。GOV内には、IフレームとPフレームという2タイプのフレームがあります。Iフレームは圧縮の基本となるフレームでキーフレームとも呼ばれ、完全な一枚の画像データを持つ独立的なフレームです。Pフレームは前のフレームを基準に変更された部分の情報のみを持っているため、映像データ量が少ないです。したがって、GOV長が長いほどIフレーム数は少ないため映像データ量も少なくなるし、GOV長が短いほどIフレームが多くなるため映像データ量も多くなります。GOV長の最大値は<strong class="UI">[Profile設定]</strong>の<strong class="UI">[フレームレート]</strong>によって異なります。</p>
+            <p>H.264 CodecやH.265 Codecで録画ファイルを設定した場合、GOV長はframerate/2になります。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Profile</h3>
+            <p>ProfileのCodecが<strong class="UI">[H.264]</strong>の場合のみ、メニューが有効となります。Profileは圧縮する時に使用する様々な圧縮技術を組み合わせた集合とも言えます。ハンファテックウィンのカメラで対応するProfileは<strong class="UI">[Baseline]</strong>、<strong class="UI">[Main]</strong>、<strong class="UI">[High]</strong>です。BaselineでHighに行くほど圧縮性能が高くなって画質が良くなるが、圧縮する時と圧縮を解凍する時にシステムのリソースが多く使用され再生デバイスに負荷がかかります。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>エントロピー符号化</h3>
+            <p>エントロピー符号化は、シンタックス(Syntax)の統計を用いた可変長コーディングで無損失の圧縮タイプです。CAVLC (Context Adaptive Variable Length Coding)とCABAC (Context Adaptive Binary Arithmetic Coding)の2タイプを提供します。但し、Baseline Profileの場合にはCAVLCタイプのみ使用できます。</p>
+            <ul>
+                <li><strong class="UI">CABAC</strong>：圧縮率が高いが、データの処理過程が複雑でシステムリソースを多く使用します。 </li>
+                <li><strong class="UI">CAVLC</strong>：CABACに比べて圧縮率が低いが、データの処理過程がシンプルでシステムリソースを少なく使用します。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><a class="wn5-online-help-link" name="smartcodec"></a>Smart codec</h3>
+            <p>Smart codecの使用有無を設定します。Smart codecは、映像でユーザーが好むエリアは圧縮率を減らして高画質で出力し、その他の部分は圧縮率を上げて標準画質に出力して全体の映像データサイズを減らすハンファテックウィンの独自技術です。Smart codecは<strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[CBR]</strong>の時のみ有効になります。</p>
+          
+            <p>Smart codecのROI領域は、<strong class="UI">[映像&amp;音声]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[Smart codec]</strong></a>で設定することができます。</p>
+        </div>
+            
+        <div class="wn5-setup-section-article-content">
+            <h3>ダイナミックGOV</h3>
+            <p>ダイナミックGOV機能を現在設定中のProfileに適用するには、<strong class="UI">[有効]</strong>を選択します。</p>
+            <p>ダイナミックGOVは、映像状況によってGOV長が 最小GOV長の設定値から最大ダイナミックGOVの設定値まで自動に変更される機能です。ほとんどモーションがない映像では GOVが <strong class="UI">[ダイナミックGOV]</strong>でユーザーが設定した値に動作して全体映像のビットレートが短縮されます。モーションを検知すると、 その直後にIフレームが出力され、この後モーションがなくなるまでGOVがGOV長の設定値に動作することになります。</p>
+            <p>ダイナミックGOVは<strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[VBR]</strong>の時のみ有効になります。</p>
+          
+            <ul>
+                <li>映像にモーションがない時に適用する最大GOV長値を入力します。入力値の範囲は<strong class="UI">[GOV長]</strong>の横に表示されます。<strong class="UI">[GOV長]</strong>に入力した値が最小値になり、最大値は480で<strong class="UI">[Profile設定]</strong>の<strong class="UI">[フレームレート]</strong>によって異なります。</li>
+            </ul>
+        </div>
+
+<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+
+            <ul>
+                <li>ワイズストリーム機能を使用する場合、ダイナミックGOVとダイナミックFPS機能を使用するとワイズストリームの性能が最適化されます。ワイズストリームは<strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ワイズストリーム]</strong>メニューで設定することができます。</li>
+            </ul>
+		</div>
+		    
+			<div class="wn5-setup-section-article-content">
+            <h3>ダイナミックFPS</h3>
+            <p>ダイナミックFPS機能を現在設定中のProfileに適用するには、<strong class="UI">[有効]</strong>を選択します。</p>
+            <p>ダイナミックFPS(Dynamic FPS)は、映像状況によって最小FPS設定値からフレームレートの設定値まで自動に変更される機能です。ほとんどモーションがない映像では、FPSが最小FPSの設定値に動作することになって全体映像のビットレートが短くなります。モーションを検知すると、FPS値を増加させて動作します。</p>
+            <p>ダイナミックFPSは<strong class="UI">[Codec]</strong>を<strong class="UI">[H.264]</strong>や<strong class="UI">[H.265]</strong>に選択して<strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[VBR]</strong>の時のみ有効になります。</p>
+			</div>
+			         
+        <div class="wn5-setup-section-article-content">
+            <h3>最小FPS</h3>
+            <p>ダイナミックFPSが動作する時、適用する最小FPS値を入力します。</p>
+        </div>
+<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+
+            <ul>
+                <li>ワイズストリーム機能を使用する場合、ダイナミックGOVとダイナミックFPS機能を使用するとワイズストリームの性能が最適化されます。ワイズストリームは<strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ワイズストリーム]</strong>メニューで設定することができます。</li>
+            </ul>
+		</div>
+
+	
+	</div>
+</div>
+            
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>マルチキャスト(RTSP)</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>マルチキャストは、一台のカメラで発生した映像を接続された数台のデバイスに送る時に使用します。現在、設定中のProfileでRTSP (Real Time Streaming Protocol)プロトコルの使用有無を設定して詳細を入力します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>マルチキャスト(RTSP)</h3>
+            <p>RTSPプロトコルを使用して映像を伝送するには、<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>IPアドレス</h3>
+            <p>IPv4網でアクセスできるIPv4アドレスを入力します。マルチキャストアドレスを224.0.0.0～224.0.0.255に設定する場合、特定環境でマルチキャストができなくなる場合があります。問題が発生すると、マルチキャストアドレスを変更して使用してください。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ポート</h3>
+            <p>映像伝送を制御するポートを設定します。マルチキャストRTSPポートの範囲は1024から65535で、範囲の中で偶数にしてください。(但し、3702ポートは使用できません。)</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>TTL</h3>
+            <p>RTSPパケットのTTLを設定することができます。TTL値は0から255までの数のみ入力することができます。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

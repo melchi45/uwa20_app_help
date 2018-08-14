@@ -1,0 +1,133 @@
+﻿
+
+<h1 class="wn5-setup-main-title">霧検知</h1>
+
+<div class="wn5-setup-section">
+    <p>霧がかかって映像識別に困る天気に霧検知イベントを発生させ、設定によって曇り除去機能を実行して映像を補正することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。霧検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[霧検知]</strong>に同じく適用されます。</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>チャンネル選択</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラチャンネルを選択した後、チャンネル別に霧検知の詳細を設定することができます。</p>
+        </div>
+
+    </div>
+</div>	
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>霧検知</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+
+            <h3>霧検知を有効にする</h3>
+            <p>霧検知イベントを有効にするためには、<strong class="UI">[霧検知を有効にする]</strong>を選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>検知レベル</h3>
+            <p>現在、霧のレベルがレベルグラフに表示されます。現在、レベルが設定された検知レベルより高い場合、アラームが発生します。検知レベル値が小さいほど、霧によって映像が微細にぼけても検知することができます。</p>
+        </div>
+		
+		<div class="wn5-setup-section-article-content">
+            <h3>感度</h3>
+            <p>感度を高く設定するほど、同じ映像に対するレベルグラフがより高く描かれます。</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>最短時間(秒)</h3>
+            <p>霧を検知してイベントに発生させるまでの最短時間を設定します。検知レベル以上のレベル状況が設定された「最短時間」の間、連続で持続されるとアラームが発生します。</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul><li>霧検知に対するアラーム発生後、再度霧検知に対するアラームを受けるためには、必ず一度は安定状況に戻る必要があります。曇り除去動作による映像改善は、安定状況として認識されません。安定状況に戻る原因としては、下記の場合があります。</li>
+				<ul>
+				<li><strong class="UI">[霧検知を有効にする]</strong>をチェック解除した場合</li>
+				<li>霧または煙が消えて映像の識別ができるレベルになった場合</li></ul>
+                
+				<li>下記の場合には、霧検知性能が低下されるか誤動作が発生することがあります。</li>
+					<ul>
+					<li>背景がシンプルな監視環境と夜間、低照度環境</li>
+					<li>急激な照明変更(例：屋内の電灯消灯)</li>
+					<li>レンズが隠されることまたは画面のほとんどを占める大きい対象物登場</li>
+					<li>カメラ位置変更などによるフォーカス対象変更</li></ul>
+				
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>イベントアクション</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            
+            <h3>FTP</h3>
+            <p>霧検知イベントが発生した時、映像の画像をFTPサーバーに保存するには<strong class="UI">[有効]</strong>を選択します。FTPに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>霧検知イベントが発生した時、映像の画像をE-mailに伝送するには<strong class="UI">[有効]</strong>を選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
+            <h3>保存</h3>
+            <p>霧検知イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[保存]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>アラーム出力</h3>
+            <p>霧検知イベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[無効]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
+ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>
+        </div>
+
+         <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
+            <h3>プリセットに移動</h3>
+                    <p>霧検知イベントが発生した時、カメラビュー位置をすでに設定しておいたプリセットNo.に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[デジタルPTZ]</strong></a>や<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>の<strong class="UI">[プリセット]</strong>で設定することができます。</p>
+        </div>
+        
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>プリセットに移動</h3>
+                    <p>霧検知イベントが発生した時、カメラビュー位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[プリセット設定]</strong></a>の<strong class="UI">[プリセット設定]</strong>エリアで設定することができます。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>プリセットに移動</h3>
+                    <p>霧検知イベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
+        </div>
+        
+
+		<div class="wn5-setup-section-article-content">
+            <h3>曇り除去</h3>
+            <p>霧検知イベントが発生した時、曇り除去を実行するには<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>イベントアクションスケジュール</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>霧検知イベントが発生した時、<strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_fogDetection?#action">イベントアクション</a>]</strong>で設定したイベントアクションが常時動作するように設定したり、スケジュール動作するように設定します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>常時動作</h3>
+            <p>霧検知イベントが発生した時、設定したイベントアクションを常に実行します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>スケジュール動作</h3>
+            <p>設定した時間に霧検知イベントが発生した時、設定したイベントアクションを実行します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベントアクションスケジュールは、該当曜日と時間に繰り返して実行されます。</p>
+			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベントアクションスケジュールがすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr">

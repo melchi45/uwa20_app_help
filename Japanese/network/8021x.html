@@ -1,0 +1,78 @@
+﻿<h1 class="wn5-setup-main-title">802.1x</h1>
+<div class="wn5-setup-section">
+	<p>ネットワークにアクセスする時、802.1xプロトコルの使用有無を選択して証明書をインストールすることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h3>IEEE 802.1x 設定</h3>
+	</div>
+
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+		    <h3>IEEE 802.1x</h3>
+		    <p>ネットワークにアクセスする時、IEEE 802.1xプロトコルを有効にするには<strong class="UI">[有効]</strong>を選択します。IEEE 802.1xは、IEEE 802.1というネットワークプロトコルグループの一部分でポートベースのネットワークアクセス制御(port-based Network Access Control &ndash; PNAC)に関するIEEEの標準です。主に無線LAN(WIFI)環境で保安を強化するために使用されます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>EAPタイプ</h3>
+		    <p>EAP (Extensible Authentication Protocol)は、無線ネットワークとポイントツーポイントプロトコル
+(Point to Point Protocol)で規定された認証タイプに拡張しやすいように設計されたプロトコルです。LEAPタイプが保安に弱い認証タイプであるため、EAP-TLSを使用できない環境でのみ使用することをお勧めします。</p>
+		    <ul>
+		        <li><strong class="UI">EAP-TLS</strong>：EAP-TLS (Transport Layer Security)は、サーバーとクライアント証明書を必要とする相互認証を行い、アクセスされてからの保安を考えて動的WEPキーを使用します。</li>
+		        <li><strong class="UI">LEAP</strong>：LEAP (Lightweight Extensible Authentication Protocol)は証明書を要求せずに動的WEPキーだけを使用するため、必ず強力なパスワードを使用する必要があります。</li>
+		    </ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>EAPOLのバージョン</h3>
+		    <p>ネットワークスイッチで使用される<strong class="UI">[EAPOL]</strong> (EAP over LANs)のバージョンを<strong class="UI">[1]</strong>または<strong class="UI">[2]</strong>の中で選択します。</p>
+	    </div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>ID</h3>
+		    <p><strong class="UI">[EAP-TLS]</strong>ではクライアント証明書IDを入力し、<strong class="UI">[LEAP]</strong>ではユーザーIDを入力します。</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>Password</h3>
+		    <p><strong class="UI">[EAP-TLS]</strong>ではクライアントのプライベートキーパスワードを入力し、<strong class="UI">[LEAP]</strong>ではユーザーのパスワードを入力します。<strong class="UI">[EAP-TLS]</strong>で暗号化されてないキーファイルを使用する場合、入力する必要はありません。</p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+			<ul>
+				<li>アクセスされたネットワークデバイスが802.1xに対応しない場合、802.1xを<strong class="UI">[有効]</strong>に設定しても正しく動作しない場合があります。</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h3>証明書</h3>
+	</div>
+	<div class="wn5-setup-section-article">
+
+		<div class="wn5-setup-section-article-content">
+			<p>証明書は<strong class="UI">[EAP-TLS]</strong>を有効にする場合のみ必要です。該当する証明書とキーをインストールしたり削除することができます。</p>
+			<ul>
+				<li><strong class="UI">CA証明書</strong>：公開キーが含まれた公認証明書の場合に選択します。</li>
+				<li><strong class="UI">クライアント証明書</strong>：クライアント認証キーが含まれた公認証明書の場合に選択します。</li>
+				<li><strong class="UI">クライアントのプライベートキー</strong>：クライアントのプライベートキーが含まれた公認証明書の場合に選択します。</li>
+			</ul>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>証明書インストール</h4>
+			<ol>
+				<li><strong class="UI">[...]</strong>ボタンをクリックして証明書またはキーを選択した後、<strong class="UI">[開く]</strong>ボタンをクリックします。</li>
+				<li><strong class="UI">[設置]</strong>ボタンをクリックします。証明書をインストールすると、「インストール済み」というメッセージが表示されます。</li>
+			</ol>
+		</div>
+
+		<div class="wn5-online-help-action">
+			<h4>証明書削除</h4>
+			<p>インストールされた証明書またはインストールされたキーの後ろにある<strong class="UI">[削除]</strong>ボタンをクリックします。証明書またはキーが削除されると、「使用不可」というメッセージが表示されます。</p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">

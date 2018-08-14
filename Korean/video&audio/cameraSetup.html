@@ -1,5 +1,4 @@
-﻿
-<h1 class="wn5-setup-main-title">카메라 설정</h1>
+﻿<h1 class="wn5-setup-main-title">카메라 설정</h1>
 <div class="wn5-setup-section">
     <p>카메라가 설치된 환경에서 최적의 영상을 촬영할 수 있도록 카메라의 설정을 변경할 수 있습니다. 다양한 환경에 적합한 이미지 프리셋을 기본적으로 제공하고 있으며, 사용자가 직접 카메라 설정값을 지정할 수도 있습니다. 카메라 미리보기 화면에서 설정한 값에 따라 카메라 영상이 어떻게 나타나는지 확인할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 설정을 변경한 후 <strong class="UI">[적용]</strong> 버튼을 클릭하지 않고 타임아웃 시간(240초)이 경과하면 설정값이 변경
 전으로 돌아갑니다.</p>
@@ -16,11 +15,7 @@
             <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p>
         </div>
 	</div>
-</div> 
-
-
-<hr class="wn5-setup-hr">
-
+</div> <hr class="wn5-setup-hr">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>PTZ 조정하기</h2>
@@ -28,10 +23,10 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다. </p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만&nbsp;PTZ 조그 패널이 나타납니다.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 PTZ 조그 패널이 나타납니다.</p>
         </div>
 			
-        <div class="wn5-online-help-action" >
+        <div class="wn5-online-help-action">
     	   <h4>PTZ 조정하기</h4>
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span> 아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.  </li>
@@ -50,7 +45,8 @@
 	</div>	
 	    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>모든 프리셋에 동일한 카메라 설정을 지정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 다르게&nbsp;설정하려면 <strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 카메라 설정을 지정하는 경우, 세부 카메라 설정 항목 중 일부 항목은 설정할 수 없습니다.</p>
+            <p>모든 프리셋에 동일한 카메라 설정을 지정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 다르게 설정하려면 <strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 카메라 설정을 지정하는 경우, 세부 카메라
+설정 항목 중 일부 항목은 설정할 수 없습니다.</p>
             <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 '타입' 기능을 설정할 수 있습니다.</p>
         </div>
 </div>
@@ -63,122 +59,27 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>이미지 프리셋이 목적 별로 다양하게 제공됩니다. 카메라를 사용하는 환경에 맞춰 이미지 프리셋을 선택합니다. 
-            </p>
-
+            <p>이미지 프리셋이 목적 별로 다양하게 제공됩니다. 카메라를 사용하는 환경에 맞춰 이미지 프리셋을 선택합니다.</p>
             <ul>
-            
-
-            <li><strong class="UI">화질</strong>: 카메라 출하 시 기본 모드입니다. </li>
-            <li><strong class="UI">움직임</strong>: 움직이는 피사체를 선명하게 촬영하고자 할 때 주로 사용합니다. 도로, 박물관과 같이 움직이는 피사체가 많을 경우에 선택합니다. 저조도 환경일 때는 노이즈가 증가할 수 있고, 감도가 낮아질 수 있습니다.</li>
-            <li><strong class="UI">노이즈 감쇄</strong>: 저조도 환경에서도 노이즈가 적도록 촬영하고자 할 때 주로 사용합니다. </li>
-            <li><strong class="UI">밝은 영상</strong>: 영상에서 어두운 영역이 잘 보이도록 영상 전체를 밝게 보이도록 촬영할때 사용합니다. 대신 영상의 대비 효과가 낮아질 수 있습니다.</li>
-            <li><strong class="UI">움직임 및 노이즈 감쇄</strong>: 도로, 박물관과 같이 움직이는 피사체가 많고, 저조도 환경에서도 노이즈가 적은 영상이 필요할 때 사용합니다.</li>
-            <li><strong class="UI">움직임 및 밝은 영상</strong>: 도로, 박물관과 같이 움직이는 피사체가 많고, 전체 영상에서 어두운 영역을 밝게 보이게 할 때 사용합니다.  </li>
-            <li><strong class="UI">선명한 색상</strong>: 전체 영상을 밝고 선명하게 보이도록 할 때 사용합니다. 영상의 대비 효과가 낮아지고 색 재현성이 낮아질 수 있습니다.</li>
-            <li><strong class="UI">사용자 프리셋</strong>: 사용자가 설정한 대로 영상이 보이도록 할 때 사용합니다.</li>
+                <li><strong class="UI">사용자 지정 프리셋 1</strong>: 사용자가 설정한 대로 영상이 보이도록 할 때 사용합니다. </li>
+                <li><strong class="UI">사용자 지정 프리셋 2</strong>: 사용자가 설정한 대로 영상이 보이도록 할 때 사용합니다. </li>
+                <li><strong class="UI">실외 주간</strong>: 실외, 주간 상황에서 선명하고 끌림 없는 영상이 보이도록 할 때 사용합니다.</li>
+                <li><strong class="UI">실외 야간</strong>: 실외, 야간, 저조도 상황에서 노이즈를 줄이고 어두운 영역이 잘 보이도록 할때 사용합니다.</li>
+                <li><strong class="UI">실내 역광</strong>: 실내 역광상황에서 실내외 모두 식별 가능한 영상이 보이도록 할 때 사용합니다.</li>
+                <li><strong class="UI">실내 밝은 조명</strong>: 실내 조명 상황에서 선명한 화질 및 플리커 저감을 위해 사용합니다.</li>
+                <li><strong class="UI">자동차 번호판</strong>: 주/야간 자동차 번호판 식별력을 높이기 위해 사용합니다.</li>
+                <li><strong class="UI">선명한 색상</strong>:  색상과 선예도를 높이기 위해 사용합니다.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>이미지 프리셋별 기본값</h3>
-            <p>제공되는 이미지 프리셋을 선택하면 해당 이미지 프리셋의 초깃값으로 변경됩니다, 초깃값은 다음과 같으며 이 초깃값은 수정할 수 없습니다. 이미지 프리셋 별 상세 항목들 중 수정할 수 있는 항목들은 상황에 맞게 변경할 수 있습니다. </p>
-            <table class="table table-bordered wn5-setup-table">
-                <thead>
-            <!-- 표 머리행의 열을 추가하려면 <td>텍스트 입력</td> 형태로 입력하세요. -->
-                    <tr>
-                        <td>이미지 프리셋</td>
-                        <td>셔터 최소</td>
-                        <td>셔터 최대</td>
-                        <td>AGC</td>
-                        <td>SSDR</td>
-                        <td>SSNR</td>
-                        <td>COLOR</td>
-                    </tr>
-                </thead>
-                <tbody>
-                <!-- 표 행을 추가하려면 <tr><td>텍스트</td></tr>형태로 추가하세요. -->
-                    <tr>
-            <!-- 표 행을 추가하려면 <td>텍스트</td>형태로 추가하세요. -->
-                        <td>화질</td>
-                        <td>1/5</td>
-                        <td>1/12000</td>
-                        <td>높음</td>
-                        <td>12</td>
-                        <td>12</td>
-                        <td>50</td>
-
-                    </tr>
-                    <tr>
-                        <td>움직임</td>
-                        <td>1/30</td>
-                        <td>1/12000</td>
-                        <td>높음</td>
-                        <td>12</td>
-                        <td>4</td>
-                        <td>50</td>
-                    </tr>
-                            <tr>
-                        <td>노이즈 감쇄</td>
-                        <td>1/15</td>
-                        <td>1/12000</td>
-                        <td>중간</td>
-                        <td>12</td>
-                        <td>12</td>
-                        <td>50</td>
-                    </tr>
-                    
-                            <tr>
-                        <td>밝은 영상</td>
-                        <td>1/5</td>
-                        <td>1/12000</td>
-                        <td>높음</td>
-                        <td>18</td>
-                        <td>12</td>
-                        <td>50</td>
-                    </tr>
-                    
-                            <tr>
-                        <td>움직임 및 노이즈 감쇄</td>
-                        <td>1/30</td>
-                        <td>1/12000</td>
-                        <td>중간</td>
-                        <td>12</td>
-                        <td>4</td>
-                        <td>50</td>
-                    </tr>
-                        <tr>
-                        <td>움직임 및 밝은 영상</td>
-                        <td>1/30</td>
-                        <td>1/12000</td>
-                        <td>높음</td>
-                        <td>18</td>
-                        <td>4</td>
-                        <td>50</td>
-                    </tr>
-                        <tr>
-                        <td>선명한 색상</td>
-                        <td>1/5</td>
-                        <td>1/12000</td>
-                        <td>높음</td>
-                        <td>18</td>
-                        <td>12</td>
-                        <td>90</td>
-                    </tr>
-                    <tr>
-                        <td>사용자 프리셋</td>
-                        <td>수동</td>
-                        <td>수동</td>
-                        <td>수동</td>
-                        <td>수동</td>
-                        <td>수동</td>
-                        <td>수동</td>
-                    </tr>
-                </tbody>
-            </table>
+        
+        <div class="wn5-online-help-info">
+            <h4>알아두기</h4>
+            <ul>
+                <li>이미지 프리셋 모드를 선택한 후 화이트밸런스, 주야간모드 등과 같은 카메라 이미지 세부 설정을 변경하고 <strong class="UI">[적용]</strong>을 클릭하면, 변경한 값이 해당 이미지 프리셋 값으로 저장됩니다. 초깃값으로 되돌리려면 <strong class="UI">[초기화]</strong> 버튼을 클릭합니다. </li>
+            </ul>
         </div>
     </div>
 </div>
-
 <hr class="wn5-setup-hr" ng-if="Sensor">
 <div class="wn5-setup-section" ng-if="Sensor">
     <div class="wn5-setup-section-heading">
@@ -191,7 +92,6 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-
             <h3>모드 </h3>
             <p>원하는 프레임 레이트를 설정합니다. 프레임 레이트는 이미지 프리셋 별로 각각 다르게 설정할 수 없습니다. 프레임 레이트는 모든 이미지 프리셋에 동일하게 적용됩니다.</p>
         </div>
@@ -232,7 +132,6 @@
             <p>어떠한 조명 환경에서도 흰색이 정확하게 흰색으로 나오도록 흰색을 기준으로 다른 색상이 정상적으로 보이도록 보정할 수 있습니다. 이미지 프리셋과 상관없이 설정할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-
             <h3>모드 </h3>
             <p>카메라를 사용하는 환경에 따라 화이트 밸런스 모드를 선택합니다.</p>
             <ul>
@@ -243,9 +142,9 @@
                 </li>
                 <li><strong class="UI">실내</strong>: 카메라의 색상을 실내 환경에 최적화되도록 보정합니다. 
                 </li>
-                <li><strong class="UI">AWC</strong>: 카메라의 색상을 현재 조명 환경에 최적화 되도록 화면을 보정합니다. 카메라에 흰 종이를 비추고 <strong class="UI">[설정]</strong> 버튼을 누르면 적색/청색 게인값이 조절되어 영상에 적용됩니다. 환경이 바뀌면 다시 조정해야 합니다.</li>
+                <li><strong class="UI">AWC</strong>: 카메라의 색상을 현재 조명 환경에 최적화 되도록 화면을 보정합니다. 카메라에 흰 종이를 비추고 <strong class="UI">[설정]</strong> 버튼을 누르면 적색/청색 게인값이 조절되어 영상에 적용됩니다. 현재 보이는 영상의 화이트 밸런스 값이 계속 영상에 적용되며, 환경이 바뀌면 다시 조정해야 합니다. </li>
                 <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: 카메라 색상을 수은등 조명 환경에 최적화되도록 자동 보정합니다.</li>
-                <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: 카메라 색상을 나트룸등&nbsp;조명 환경에 최적화되도록 자동 보정합니다.</li>
+                <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: 카메라 색상을 나트룸등 조명 환경에 최적화되도록 자동 보정합니다.</li>
             </ul>
         </div>
 
@@ -260,8 +159,7 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
-        
-                <li>다음과 같은 경우 화이트 밸런스가 제대로 작동하지 않을 수 있습니다. 그럴 경우 <strong class="UI">[AWC]</strong> 모드를 통해 화이트 밸런스를 조정합니다.
+                <li>다음과 같은 경우 화이트 밸런스가 제대로 작동하지 않을 수 있습니다. 그럴 경우 <strong class="UI">[AWC]</strong> 모드를 통해 화이트 밸런스를 조정하십시오.
                 </li>
                 <ul>
                     <li>맑은 하늘, 해질녘처럼 피사체의 주위 환경이 색온도 보정 범위를 벗어날 경우
@@ -303,47 +201,74 @@
                 <li><strong class="UI">우</strong>: 화면의 왼쪽에서부터 오른쪽면이 얼마나 떨어져 있는지 설정합니다. </li>
             </ul>
         </div>
+		        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>BLC 설정 시 밝기 조정에 가중치를 두는 영역을 표시하는 녹색 박스가 15초 정도 표시되었다가 사라집니다. </li>
+                <li>BLC 설정 시 오작동 방지를 위해 BLC 영역의 상하간격은 최대 60, 최소 40으로, 좌우간격은 최대 60, 최소 30으로 제한됩니다.  </li>
+            </ul>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
-            <p>HLC (High Light Compensation) 모드는 가로등이나 자동차 헤드라이트와 같은 강한 조명을 효과적으로 차단하여, 강한 조명으로 인해 피사체가 인식되지 않는 상황을 방지합니다. 
-            </p>
+            <p>HLC (High Light Compensation) 모드는 가로등이나 자동차 헤드라이트와 같은 강한 조명을 효과적으로 차단하여,<strike> </strike>강한 조명의 포화로 인해 차량 번호판 등의 주변 사물이 식별이 안 되는 것을 방지합니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>HLC 레벨 </h5>
-            <p>낮음, 중간, 높음 중에 선택할 수 있습니다. 레벨이 높을수록 보정이 뛰어납니다.</p>
+            <p>노출 정도를 설정하여 하이라이트 영역을 조정합니다. </p>
+            <p>낮음, 중간, 높음 중에 선택할 수 있습니다. 레벨이 높을수록 보정이 뛰어나고 하이라이트 영역을 차단하는 영역에 차이가 납니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>마스크</h5>
-            <p>마스크를 적용할 지 여부를 선택합니다. 마스크를 하루 종일 적용하려면 <strong class="UI">[종일]</strong>을 야간에만 적용하려면 <strong class="UI">[야간]</strong>을 선택합니다.</p>
+            <p>마스크를 적용할 지 여부를 선택합니다.</p>
+            <ul>
+                <li> <strong class="UI">사용 안 함</strong>: 차단 영역이 생기지 않습니다.</li>
+                <li> <strong class="UI">사용함</strong>: 일정 밝기 이상의 영역은 항상 차단됩니다.</li>
+                <li> <strong class="UI">종일</strong>: 매우 밝을 때와 매우 어두울 때를 제외하고 차단 영역이 생깁니다.</li>
+                <li> <strong class="UI">야간</strong>: 매우 어두워지기 전까지 차단 영역이 생깁니다.</li>
+            </ul>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h5>마스크 컬러  </h5>
-            <p>마스크 색상을 설정합니다. </p>
+            <h5>마스크 컬러    </h5>
+            <p>차단 영역 색상을 설정합니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>마스크 톤 </h5>
-            <p>마스크 톤을 설정합니다. </p>
+            <p>차단 영역 톤을 설정합니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>디밍 </h5>
-            <p>주위 환경에 따라 영상 밝기를 자동으로 조절합니다. </p>
+            <p>화면의 강한 빛 영역을 감지하여 밝기를 조절하면서 포화 영역을 감소시켜줍니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>영역 설정</h5>
+            <p>차단 영역의 크기 및 위치를 설정합니다. </p>
             <ul>
-                <li><strong class="UI">상</strong>: 화면의 위쪽에서부터 윗면이 얼마나 떨어져 있는지 설정합니다. </li>
-                <li><strong class="UI">하</strong>: 화면의 위쪽에서부터 아랫면이 얼마나 떨어져 있는지 설정합니다. </li>
-                <li><strong class="UI">좌</strong>: 화면의 왼쪽에서부터 왼쪽면이 얼마나 떨어져 있는지 설정합니다. </li>
-                <li><strong class="UI">우</strong>: 화면의 왼쪽에서부터 오른쪽면이 얼마나 떨어져 있는지 설정합니다. </li>
-            </ul>   
+                <li><strong class="UI">상</strong>: 화면의 위쪽에서부터 윗면이 얼마나 떨어져 있는지 설정합니다.  </li>
+                <li><strong class="UI">하</strong>: 화면의 위쪽에서부터 아랫면이 얼마나 떨어져 있는지 설정합니다.  </li>
+                <li><strong class="UI">좌</strong>: 화면의 왼쪽에서부터 왼쪽면이 얼마나 떨어져 있는지 설정합니다.  </li>
+                <li><strong class="UI">우</strong>: 화면의 왼쪽에서부터 오른쪽면이 얼마나 떨어져 있는지 설정합니다.  </li>
+            </ul>
         </div>
-        <div class="wn5-setup-section-article-content"> 
-            <h3><a class="wn5-online-help-link" name="WDR"></a>WDR</h3>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>야간 작동시에는 어두운 환경에서 일정 면적 이상 하이라이트가 입사될 경우에만 작동합니다.</li>
+                <li>야간 작동 시 전체적으로 밝은 조건이나 너무 어두운 조건에서는 HLC가 작동되지 않습니다. 주간 작동 시 너무 어두운 조건에서는 HLC가 작동되지 않습니다.</li>
+                <li>HLC 초기 설정 시 밝기 조정에 가중치를 두는 영역을 표시하는 녹색 박스가 15초 정도 표시되었다가 사라집니다.  </li>
+                <li>HLC 설정 시 오작동 방지를 위해 HLC 영역의 상하간격은 최대 60,최소 40으로, 좌우간격은 최대 60, 최소 30으로 제한됩니다. </li>
+            </ul>
+        </div>
+			
+            <div class="wn5-setup-section-article-content">
+                <h3><a class="wn5-online-help-link" name="WDR"></a>WDR</h3>
             <p>WDR (Wide Dynamic Range) 모드는 역광 환경에서 어두운 부분과 밝은 부분을 모두 잘보이도록 하는 방법입니다. 카메라의 듀얼 셔터를 이용하여 한번은 밝은 부분이 잘 보이게 짧은 셔터로, 또 한번은 어두운 부분이 잘 보이게 긴 셔터로 찍어 두 영상의 잘 보이는 부분만 하나로 합쳐 보이게 하는 방법입니다. WDR 모드 사용 시 밝은 영역과 어두운 영역 사이에 노이즈가 발생할 수 있습니다. </p>
-        </div>
+            <p><img src=" ../../base/images/cameraSetup_WDR_1.png" width="230" height="186"  >  <img src=" ../../base/images/cameraSetup_WDR_2.png" width="230" height="186"  ><br>
+WDR 모드 끔                            WDR 모드 켬</p>
+            </div>
+					    
         <div class="wn5-setup-section-article-content">
             <h5>WDR 레벨</h5>
-            <p>낮음, 중간, 높음 중에 선택할 수 있습니다.</p>
+            <p>역광 보정의 세기를 조절합니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>자동</h5>
@@ -361,10 +286,20 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
 
             <ul>
-                
-                <li>WDR 모드를 선택하면 셔터값이 초기화됩니다. 따라서 화면이 밝아졌다 어두워집니다. </li>
-                <li>P-조리개 렌즈를 수동으로 사용하거나 플리커 방지 셔터를 사용하면 WDR 모드의 성능이 일부 제한됩니다. </li>
-                <li>WDR 모드 사용 시 프레임 레이트는 절반으로 줄어듭니다. </li>
+                <li>WDR 모드를 선택하면 셔터값이 초기화됩니다. 따라서 화면이 밝아졌다 어두워집니다.  </li>
+                <li>P-조리개 렌즈를 수동으로 사용하거나 플리커 방지 셔터를 사용하면 WDR 모드의 성능이 일부 제한됩니다.  </li>
+                <li>WDR 모드 사용 시 프레임 레이트는 절반으로 줄어듭니다.  </li>
+                <li>WDR 모드는 카메라가 실내에 설치돼 있고 강한 역광이 있는 환경에서 사용하는 것을 권장합니다.</li>
+                <li>WDR 모드 시 밝은 부분과 어두운 부분 사이에 노이즈가 발생할 수 있습니다.</li>
+                <li>WDR 모드 시 움직임 영역에서 노이즈가 발생할 수 있습니다. </li>
+                <li>WDR 모드 시 조명 조건에 따라 다음의 현상이 나타날 수 있으므로 WDR 모드를 꺼주십시오. </li>
+                <ul>
+                    <li>색의 부자연스러운 변화, 화면의 부자연스러운 현상이 생기는 경우</li>
+                    <li>화면의 밝은 부분에 노이즈가 생기는 경우</li>
+                </ul>
+                <li> 화면내에 밝은 부분의 면적에 따라서 WDR 성능 차이가 있을 수 있으므로 최적의 WDR 성능 구현을 위하여 설치 각도를 조절하십시오.</li>
+                <li>WDR 레벨을 높게 설정하면 화면에 부자연스러운 현상이 나타날 수 있습니다.</li>
+                <li> 최적의 WDR 성능을 위해서 노출 보정의 조리개를 <strong class="UI">[자동]</strong>으로 설정하는 것을 권장합니다.</li>
             </ul>
         </div>
     </div>
@@ -377,16 +312,16 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>카메라의 촬영 환경에 맞추어 노출을 변화시킬 수 있습니다. 피사체보다 배경이 어두울 경우 노출을 낮게 해야&nbsp;피사체가 정상적으로 보입니다. 반대로 피사체보다 배경이 밝은 경우 노출을 많이 해야 피사체가 정상적으로 보입니다. 이미지 프리셋 별로 각각 설정된 기본값이 있으며 변경할 수 없습니다. 단, 밝기는 어느 이미지 프리셋이라도 변경할 수 있습니다.  </p> 
+            <p>카메라의 촬영 환경에 맞추어 노출을 변화시킬 수 있습니다. 피사체보다 배경이 어두울 경우 노출을 낮게 해야 피사체가 정상적으로 보입니다. 반대로 피사체보다 배경이 밝은 경우 노출을 많이 해야 피사체가 정상적으로 보입니다. 이미지 프리셋 별로 각각 설정된 기본값이 있으며 변경할 수 없습니다. 단, 밝기는 어느 이미지 프리셋이라도 변경할 수 있습니다.  </p> 
         </div>
         <div class="wn5-setup-section-article-content">
-
             <h3>밝기  </h3>
             <p>화면의 밝기를 조절할 수 있습니다. 숫자가 클수록 화면이 밝아집니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MinShutterOptions">
             <h3>최소 셔터  </h3>
             <p>셔터는 환경에 따라 센서의 노출을 자동으로 설정할 수 있으며, 최소 셔터~최대 셔터 범위까지 전자 셔터가 작동합니다. 최소 셔터는 저속 노출 시간 가능 범위의 최솟값을 말하며 긴 노출 시간의 한계를 설정합니다.</p>
+            <p>선택한 최소 셔터 값이 <strong class="UI"><a href="#sensor">[센서]</a></strong> 모드의 fps값보다 작은 경우를 어두운 상황에서 프레임레이트가 감소할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxShutterOptions">
             <h3>최대 셔터  </h3>
@@ -394,7 +329,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PreferShutterOptions">
             <h3>사용자 선호 셔터  </h3>
-            <p>셔터가 저속일 때 주간에 블러링 현상이 발생하는 것을 줄이기 위해서 사용자가 선호하는 셔터를 지정합니다. 사용자 선호 셔터를 설정합니다.</p>
+            <p>노출시간 범위 내에서 우선적으로 동작하는 적정 노출 시간을 설정합니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AFLKModeOptions">
             <h3>플리커 방지  </h3>
@@ -417,23 +352,25 @@
         <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
             <h3>SSNR 2D 레벨 </h3>
             <p>SSNR 2D는 한 프레임에서 인접한 픽셀을 사용하여 영상의 노이즈를 줄입니다. SSNR 2D 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>이나 <strong class="UI">[지능형 NR]</strong>로 선택한 경우 설정할 수 있습니다.</p>
+            <p>레벨을 높일수록 노이즈가 저감되나 영상이 흐려질 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
             <h3>SSNR 3D 레벨 </h3>
-            <p>SSNR 3D는 여러 프레임의 픽셀을 이용하여 후 영상의 노이즈를 줄입니다. SSNR 3D 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>이나 <strong class="UI">[지능형 NR]</strong>로 선택한 경우 설정할 수 있습니다.</p>
+            <p>SSNR 3D는 여러 프레임의 픽셀을 이용하여 영상의 노이즈를 줄입니다. SSNR 3D 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>이나 <strong class="UI">[지능형 NR]</strong>로 선택한 경우 설정할 수 있습니다.</p>
+            <p>레벨을 높일수록 노이즈가 저감되나 영상 끌림이 발생될 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions">
             <h3>조리개</h3>
             <p>DC(자동), 수동, P-조리개 중에 선택할 수 있습니다.</p>
             <ul>
-                <li><strong class="UI">DC(자동)</strong>: 들어오는 빛의 양을 판단하여 조리개를 조절합니다. </li>
-                <li><strong class="UI">수동</strong>: 조리개를 수동으로 조절합니다.</li>
-                <li ng-if="!PTZModel"><strong class="UI">P-조리개</strong>:  스텝 모터를 통해 조리개를 조절합니다. 다양한 거리에 있는 여러 물체를 동시에 포커스를 맞출 수 있어 깊은 심도를 가질 수 있습니다. </li>
+                <li><strong class="UI">DC(자동)</strong>: 주변 환경의 광량에 따라 조리개를 자동으로 조절합니다.</li>
+                <li><strong class="UI">수동</strong>: 조리개 F 값을 수동으로 조절합니다.</li>
+                <li ng-if="!PTZModel"><strong class="UI">P-조리개</strong>:  스텝 모터를 통해 조리개를 조절합니다. 다양한 거리에 있는 여러 물체를 동시에 포커스를 맞출 수 있어 깊은 심도를 가질 수 있습니다.  </li>
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions">
             <h3>조리개 F-No </h3>
-            <p><strong class="UI">[조리개]</strong> 모드가<strong class="UI">[수동]</strong>일 때 활성화되며, 조리개 F 숫자를 설정합니다.</p>
+            <p><strong class="UI">[조리개]</strong> 모드가<strong class="UI">[수동]</strong>일 때 활성화되며, 조리개 F 값을 설정합니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Lens">
             <h3>렌즈</h3>
@@ -457,6 +394,17 @@
             <h3>AGC</h3>
             <p>AGC (Auto Gain Control)는 어두운 조명에서 피사체를 촬영할 때 영상 게인의 감도를 조절하여 밝기를 조절할 수 있습니다. </p>
         </div>
+		
+						        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>최소 셔터, 최대 셔터의 설정 범위에 따라 화면이 노출 포화할 수 있습니다.</li>
+                <li>지능형 NR 모드(SSNR 2D 및 SSNR 3D) 설정 후 효과가 적용/해제 될때까지는 일정 시간이 걸릴 수 있습니다.</li>
+                <li>지능형 NR 모드(SSNR 2D 및 SSNR 3D) 적용시 영상의 식별력이 향상되는 대신 노이즈가 증가할 수 있습니다.</li>
+                <li>노이즈가 적은 밝은 환경에서는 지능형 NR(SSNR 2D 및 SSNR 3D)의 효과가 크지 않을 수 있습니다.</li>
+                <li>지능형 NR 설정(SSNR 2D 및 SSNR 3D) 시 영상의 움직임 감지는 내부적으로 움직임 감지 기능을 사용하므로 움직임 감지 이벤트의 작동 조건을 따릅니다. 움직임 감지 세부 설정은 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 확인할 수 있습니다. </li>
+            </ul>
+			</div> 
     </div>
 </div>
 
@@ -470,7 +418,6 @@
             <p>카메라를 사용하는 환경에 맞게 영상을 컬러나 흑백으로 변경할 수 있습니다. 또한 전환시간을 설정하면 사용자가 원하는 시간에 맞추어 영상을 컬러나 흑백으로 변경할 수 있습니다. 주야간 모드 전환 시에는 움직임 감지 이벤트나 영상 분석 이벤트를 감지할 수 없습니다. </p> 
         </div>
         <div class="wn5-setup-section-article-content">
-
             <h3>모드 </h3>
             <p>카메라가 컬러나 흑백으로 변경되는 방식을 선택합니다.</p>
             <ul>
@@ -497,7 +444,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
             <h3>알람 입력</h3>
-            <p>알람 센서의 열림/닫힘 상태에 따라 영상을 컬러나 흑백으로 설정할 수 있습니다. <strong class="UI">[주야간 모드]</strong>의 <strong class="UI">[모드]</strong>를&nbsp;<strong class="UI">[외부 입력]</strong>으로 설정하면 <strong class="UI">[이벤트]</strong>&gt;<strong class="UI">[알람 입력]</strong> 기능이 비활성화되고 설정 페이지가 나타나지 않습니다. </p>
+            <p>알람 센서의 열림/닫힘 상태에 따라 영상을 컬러나 흑백으로 설정할 수 있습니다. <strong class="UI">[주야간 모드]</strong>의 <strong class="UI">[모드]</strong>를 <strong class="UI">[외부 입력]</strong>으로 설정하면 <strong class="UI">[이벤트]</strong>&gt;<strong class="UI">[알람 입력]</strong> 기능이 비활성화되고 설정 페이지가 나타나지 않습니다. </p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
             <h3>주야간 모드 전환 후 심플 포커스</h3>
@@ -510,8 +457,15 @@
   <!--  <div class="wn5-setup-section-article-content" ng-if="DayNightSchedule">
             <h3>동작 스케줄</h3>
             <p>카메라 영상을 컬러나 흑백으로 출력하는 스케줄을 설정합니다. <strong class="UI">[모드]</strong>에서 <strong class="UI">[스케줄(컬러)]</strong>나 <strong class="UI">[스케줄(흑백)]</strong>를 선택하면 동작 스케줄 옵션이 활성화됩니다. </p>
-            <p>예를 들어 <strong class="UI">[모드]</strong>에서&nbsp;<strong class="UI">[스케줄(컬러)]</strong>를 선택한 후, <strong class="UI">[매일]</strong>을 선택하고 시간을 설정하면 매일 해당 시간에 컬러 모드로 작동이 되고 해당 시간을 제외한 나머지 시간은 흑백 모드로 작동됩니다. <strong class="UI">[매일]</strong>을 선택 해제하고 월, 화, 수, 목, 금, 토, 일요일에 각각 컬러 모드의 작동 시간을 설정할 수 있습니다. </p>
+            <p>예를 들어 <strong class="UI">[모드]</strong>에서 <strong class="UI">[스케줄(컬러)]</strong>를 선택한 후, <strong class="UI">[매일]</strong>을 선택하고 시간을 설정하면 매일 해당 시간에 컬러 모드로 작동이 되고 해당 시간을 제외한 나머지 시간은 흑백 모드로 작동됩니다. <strong class="UI">[매일]</strong>을 선택 해제하고 월, 화, 수, 목, 금, 토, 일요일에 각각 컬러 모드의 작동 시간을 설정할 수 있습니다. </p>
         </div>  --> 
+		 <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>주야간모드 전환 시 움직임 감지 이벤트는 동작하지 않습니다. 즉 움직임 감지 이벤트를 ‘사용’으로 설정했어도 주야간모드전환 시에는 감지가 안 된다는 의미입니다. 움직임 감지 이벤트 사용 여부는 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 설정할 수 있습니다.  </li>
+            </ul>
+			</div> 
+		
     </div>
 </div>
 
@@ -525,9 +479,8 @@
             <p>영상의 윤곽을 조절하거나 대비, 색조절, 안개 제거 등을 할 수 있습니다.</p> 
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DIS">
-
             <h3>DIS </h3>
-            <p>DIS (Digital Image Stabilization)는 영상의 흔들림을 감지했을 때 이를 자동으로 보정하여 안정적으로 화면을 출력합니다. </p>
+            <p>DIS (Digital Image Stabilization)는 바람과 같은 외부적인 요인으로 카메라에 진동이 발생하는 경우 영상을 자동으로 보정하여 안정적으로 화면을 출력합니다. </p>
         </div>
 		<div class="wn5-online-help-info" ng-if="Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
@@ -547,7 +500,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>윤곽 레벨</h3>
-            <p>영상의 전반적인 윤곽을 조절합니다. <strong class="UI">[윤곽 조정]</strong>을 <strong class="UI">[사용함]</strong>으로 설정하면 윤곽 레벨을 설정할 수 있습니다.</p>
+            <p>영상의 전반적인 윤곽을 조절합니다. <strong class="UI">[윤곽 조정]</strong>을 <strong class="UI">[사용함]</strong>으로 설정하면 윤곽 레벨을 설정할 수 있습니다. </p>
+            <p>윤곽레벨이 높을수록 영상의 윤곽이 강하고 뚜렷해집니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Gamma">
             <h3>감마</h3>
@@ -563,11 +517,20 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
             <h3>안개 제거</h3>
-            <p>안개가 끼거나 날씨가 흐릴 때 영상을 보정합니다. <strong class="UI">[자동]</strong>으로 설정하면 주변 환경을 감지하여 자동으로 영상을 보정합니다. <strong class="UI">[수동]</strong>으로 설정하면 사용자가 주변 환경을 보고 직접 보정량을 설정할 수 있습니다. 안개량이 감소하여도 설정한 안개 제거 레벨만큼 기능을 실행하려면 <strong class="UI">[수동]</strong>으로 설정합니다.</p>
+            <p>안개가 끼거나 날씨가 흐릴 때 영상을 보정합니다. <strong class="UI">[자동]</strong>으로 설정하면 주변 환경을 감지하여 자동으로 영상을 보정합니다. <strong class="UI">[수동]</strong>으로 설정하면 사용자가 주변 환경을 보고 직접 보정량을 설정할 수 있습니다. </p>
+            <p>초깃값은 <strong class="UI">[사용 안 함]</strong>으로 설정되어 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
             <h3>안개 제거 레벨</h3>
             <p>안개 제거가 <strong class="UI">[수동]</strong>인 경우 활성화되며 안개 제거 레벨을 조절합니다. 안개 제거 레벨이 높으면 영상이 더 선명하게 보입니다. 안개가 낀 정도가 약하면서 안개 제거 레벨이 높으면 화면이 어두워 보일 수 있습니다. </p>
+        </div>
+		
+								<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>안개 제거 모드를 <strong class="UI">[자동]</strong>으로 설정한 경우 안개량이 감소하면 안개 제거 기능도 같이 감소합니다. 안개량이 감소하여도 설정한 레벨만큼 기능을 실행하려면 안개제거 모드를 <strong class="UI">[수동]</strong>으로 설정하십시오.  </li>
+                <li>안개 낀 정도가 약하면서 수동 안개 레벨이 높은 경우 화면이 컴컴해 보일 수 있습니다.</li>
+            </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC</h3>
@@ -580,7 +543,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC 레벨</h3>
-            <p>LDC 기능의 레벨을 조절합니다. <strong class="UI">[LDC]</strong>를 <strong class="UI">[수동]</strong>으로 설정하면 활성화됩니다. </p>
+            <p>왜곡 보정률 레벨을 조절합니다. <strong class="UI">[LDC]</strong>를 <strong class="UI">[수동]</strong>으로 설정하면 활성화됩니다. </p>
         </div>
     </div>
 </div>
@@ -606,6 +569,10 @@
             <h3>날짜 및 시간 </h3>
             <p>날짜와 시간을 화면에 표시하려면 <strong class="UI">[사용]</strong>을 선택합니다. 날짜 표기 방식을 선택한 후 X 좌표와 Y 좌표를 움직여 날짜와 시간 표시 위치를 설정합니다.</p>
         </div>
+		        <div class="wn5-setup-section-article-content">
+            <h3>요일 표시</h3>
+            <p>OSD의 크기를 조절합니다.</p>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>크기 </h3>
             <p>OSD의 크기를 조절합니다.</p>
@@ -618,9 +585,15 @@
             <h3>OSD 텍스트 투명도</h3>
             <p>OSD의 투명도를 설정합니다.</p>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>오버레이</h3>
-            <p>PTZ 좌표나 프리셋 이름 등 카메라 영상 화면에 나타낼 데이터를 선택합니다.</p>
+            <p>PTZ 좌표나 프리셋 이름을 등 카메라 영상 화면에 나타낼 데이터를 선택합니다.</p>
+            <ul>
+                <li><strong class="UI">PTZ 좌표</strong>: 화면에 PTZ 위치 표시 여부를 설정합니다.</li>
+                <li><strong class="UI">프리셋 이름</strong>: 화면에 프리셋 이름 표시 여부를 설정합니다.</li>
+                <li><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li>
+                <li><strong class="UI">방위각</strong>: 현재 화면 상으로 보고있는 영역의 방위각을 표시하는 기능입니다. 기능 설정 시 E(동)/W(서)/S(남)/N(북)/NE(북동)/NW(북서)/SE(남동)/SW(남서)의 8방향으로 표시하며, 화면 우측 하단에 나타나게 됩니다.</li>
+            </ul>
         </div>
 		
         <!--<div class="wn5-setup-section-article-content">
@@ -631,6 +604,16 @@
             <h3>이미지 업로드</h3>
             <p><strong class="UI">[…]</strong> 버튼을 클릭하여 비트맵 형식의 파일을 검색합니다. <strong class="UI">[업로드]</strong> 버튼을 클릭하여 이미지 파일을 업로드합니다. 화면에 적용한 이미지 파일을 삭제하려면 <strong class="UI">[삭제]</strong> 버튼을 클릭합니다. 적용 가능한 이미지의 사양은 16 bit (RGB565 지원 안 함) 또는 24 bit 비트맵 파일, 가로/세로 128 PX(고정), 파일 크기 52 KB 이하여야 합니다.</p>
         </div> -->
+		
+		
+								<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>위치 조정이 가능한 항목(카메라 타이틀, 날짜 및 시간)의 경우, 고정된 다른 OSD 항목과 겹칠 경우 정상적으로 화면에 표시되지 않을 수 있습니다.</li>
+                <li>'오버레이'의 '카메라 ID'는 화면 좌측 상단, 'PTZ 좌표'는 화면 좌측 하단에 표시되며 위치를 변경할 수 없습니다.</li>
+                <li>한글, 영어, 숫자, 기호만 사용할 수 있습니다. </li>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -648,7 +631,7 @@
            
             <h3>컬러 팔레트</h3>
             <p>옵션 항목에서 원하는 컬러 팔레트를 선택합니다. 선택한 옵션은 <strong class="UI">[라이브]</strong> 페이지에도 동일하게 적용됩니다. </p>
-            <p>각 컬러 팔레트 옵션별 색깔 표현&nbsp;방식은 다음과 같습니다. </p>
+            <p>각 컬러 팔레트 옵션별 색깔 표현 방식은 다음과 같습니다. </p>
             <ul>
                 <li><strong class="UI">White hot</strong>: 고온에서 저온을 흰색에서에서 검은색으로 표현합니다.</li>
                 <li><strong class="UI">Black hot</strong>: 고온에서 저온을 검은색에서 흰색으로 표현합니다.</li>
@@ -677,22 +660,22 @@
             <ul>
                 <li>수동: 카메라 초점을 수동으로 조정합니다.</li>
                 <li>자동: 카메라 초점이 자동으로 조정됩니다.</li>
-                <li>포커스 조정: 사용자 이벤트(자동 포커스 혹은 줌 동작) 발생 시&nbsp;&nbsp;자동으로 초점이 한 번 조정됩니다.</li>
+                <li>포커스 조정: 사용자 이벤트(자동 포커스 혹은 줌 동작) 발생 시 자동으로 초점이 한 번 조정됩니다.</li>
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content">
             <h3>디지털 줌</h3>
-            <p>디지털 줌을 사용하려면 &nbsp;<strong class="UI">[사용함]</strong>을 선택합니다.</p>
+            <p>디지털 줌을 사용하려면  <strong class="UI">[사용함]</strong>을 선택합니다.</p>
         </div>
 		<div class="wn5-setup-section-article-content">
             <h3>디지털 줌 범위</h3>
-            <p>사용할 수 있는&nbsp;디지털 줌의 최대 범위를 설정합니다. <strong class="UI">[디지털 줌]</strong>을 <strong class="UI">[사용함]</strong>으로 설정하면 디지털 줌&nbsp;범위를 설정할 수 있습니다.</p>
+            <p>사용할 수 있는 디지털 줌의 최대 범위를 설정합니다. <strong class="UI">[디지털 줌]</strong>을 <strong class="UI">[사용함]</strong>으로 설정하면 디지털 줌 범위를 설정할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>줌 모드</h3>
             <p>줌 동작 시 카메라 초점이 연동되는 방식을 설정합니다.</p>
             <ul>
-                <li>자동: 줌 배율이 변경되더라도 초점이 맞는 상태를 계속적으로 판단하고 수정하여,&nbsp;초점을 유지하면서 줌이 동작합니다.   </li>
+                <li>자동: 줌 배율이 변경되더라도 초점이 맞는 상태를 계속적으로 판단하고 수정하여, 초점을 유지하면서 줌이 동작합니다.   </li>
                 <li>수동: 설정되어 있는 초점 트랙을 따라 줌이 동작합니다. 줌 배율이 변경되면 초점이 맞지 않을 수 있습니다.</li>
             </ul>
         </div>
@@ -718,6 +701,7 @@
                     <li>피사체가 어두운 경우</li>
                     <li>하늘 및 벽과 같이 명암 차가 없는 경우</li>
                     <li>가느다란 수평 라인을 응시하는 경우</li>
+                    <li>감시영역 내에 원거리 사물과 근거리 사물이 같이 있는 경우</li>
                 </ul>
             </ul>
         </div>
@@ -735,6 +719,13 @@
             <h3>한 번만 동작</h3>
             <p>성애가 발생한 경우 히터를 작동시켜 성애를 제거하려면 동작 버튼<span class="tui tui-ch-playback-reset"></span>을 한 번 클릭합니다.</p>
         </div>
+		
+	<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>성애가 발생하는 저온 구간에서 히터는 항상 켜져 있으며, 제품에 영향을 미칠 수 있는 고온 구간에서는 사용자 설정 요구사항에 따라 실행을 시켜도 동작하지 않습니다.</li>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -746,7 +737,15 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>한 번만 동작</h3>
+            <p>외부의 급격한 온도 변화로 인해 내부의 습기가 발생하였을 때 팬을 작동시켜 제거할 수 있습니다.</p>
             <p>팬을 작동시키려면 동작 버튼<span class="tui tui-ch-playback-reset"></span>을 한 번 클릭합니다.</p>
+        </div>
+		
+	<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>저온 및 고온 구간에서는 팬은 항상 켜져 있는 상태이며, 사용자 설정 요구사항에 따라 끌 수 없습니다.</li>
+            </ul>
         </div>
     </div>
 </div>  
@@ -760,7 +759,13 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>모드</h3>
-            <p>IR 기능을 사용하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택합니다. IR LED의 영향으로 중심 영역이 포화되는 것을 자동 노출로 보정하려면 <strong class="UI">[자동 1]</strong>을 선택하고, 화면 전 영역에 대해 포화를 억제하고&nbsp;자동 노출로 보정하려면 <strong class="UI">[자동 2]</strong>를 선택합니다. 수동으로 IR 레벨을 설정하려면 <strong class="UI">[수동]</strong>을 선택합니다. </p>
+            <p>흑백 시 IR LED가 켜지면 화면 중앙의 포화를 방지하여 근거리에서도 피사체의 식별이 가능합니다.</p>
+            <ul>
+                <li><strong class="UI">사용 안 함</strong>: IR 모드를 사용하지 않습니다.</li>
+                <li><strong class="UI">자동 1</strong>: 화면 중심부에 있는 피사체의 밝기에 따라 자동으로 IR의 밝기를 조절합니다.</li>
+                <li><strong class="UI">자동 2</strong>: 화면 중심부 및 주변부에 있는 피사체의 밝기에 따라 자동으로 IR의 밝기를 조절합니다.</li>
+                <li><strong class="UI">수동</strong>: 수동으로 IR의 밝기를 조절합니다.</li>
+            </ul>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>레벨</h3>
@@ -783,7 +788,6 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-
             <h3>사용 안 함 </h3>
             <p>카메라가 상단에서 선택한 이미지 프리셋으로 작동합니다.</p>
         </div>

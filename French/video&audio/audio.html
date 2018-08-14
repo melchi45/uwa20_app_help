@@ -1,0 +1,89 @@
+﻿<h1 class="wn5-setup-main-title">Configuration audio</h1>
+
+<div class="wn5-setup-section">
+	<p>Vous pouvez connecter un microphone et un haut-parleur &agrave; une cam&eacute;ra r&eacute;seau et &eacute;couter les sons &agrave; un emplacement &eacute;loign&eacute; du lieu o&ugrave; la cam&eacute;ra est install&eacute;e, ou bien &eacute;mettre le son depuis la cam&eacute;ra vers l&apos;emplacement. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>Entr&eacute;e audio</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>Vous pouvez int&eacute;grer de l&apos;audio dans une image gr&acirc;ce &agrave; un microphone connect&eacute; &agrave; la cam&eacute;ra. Int&eacute;grez l&apos;audio en s&eacute;lectionnant une source adapt&eacute;e &agrave; l&apos;environnement d&apos;utilisation.</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content"><h3>Source</h3>
+			<p>S&eacute;lectionnez un type d&apos;entr&eacute;e d&apos;alerte.</p>
+			<ul>
+				<li ng-if="InternalMic"><strong class="UI">Microphone interne</strong>&nbsp;: Il s&rsquo;agit du microphone interne inclus avec la cam&eacute;ra.</li>
+				<li><strong class="UI">Microphone externe</strong>&nbsp;: Un microphone externe peut &ecirc;tre connect&eacute; &agrave; la cam&eacute;ra et utilis&eacute; &agrave; la place du microphone interne. Lorsque vous s&eacute;lectionnez <strong class="UI">[Appliquer l&apos;alimentation au microphone externe]</strong>, la cam&eacute;ra alimente un microphone externe.</li>
+				<li><strong class="UI">Ligne</strong>&nbsp;: Connectez-vous &agrave; l&apos;&eacute;quipement de son gr&acirc;ce &agrave; un c&acirc;ble. Par exemple, connectez un &eacute;quipement audio tel qu&apos;un lecteur MP3 et une cam&eacute;ra &agrave; l&apos;aide d&apos;un c&acirc;ble, puis s&eacute;lectionnez le lecteur MP3 lorsque vous ins&eacute;rez du son enregistr&eacute; dans la cam&eacute;ra.</li>
+			</ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Codec</h3>
+			<p>S&eacute;lectionnez un codec audio.</p>
+			<ul>
+				<li><strong class="UI">G.711</strong>&nbsp;: Il s&rsquo;agit du codec audio standard pour l&apos;UIT-T. Il est principalement utilis&eacute; dans les communications t&eacute;l&eacute;phoniques&nbsp;; la qualit&eacute; audio est basse. On l&apos;appelle aussi la modulation par impulsions cod&eacute;es de la fr&eacute;quence sonore&nbsp;; les ondes sonores peuvent &ecirc;tre transmises num&eacute;riquement dans RTCP ou par PBX.</li>
+				<li><strong class="UI">G.726</strong>&nbsp;: Il s&rsquo;agit du codec audio standard pour l&apos;UIT-T. Il est principalement utilis&eacute; dans les communications t&eacute;l&eacute;phoniques&nbsp;; la qualit&eacute; audio est basse. Il est possible de changer et de compresser de 64&nbsp;Kbps de MIC en 16, 24, 32 ou 40&nbsp;Kbps par l&apos;interm&eacute;diaire de la MICDA (modulation par impulsions et codage diff&eacute;rentiel adaptatif).</li>
+				<li><strong class="UI">AAC</strong>: AAC (Advanced Audio Coding) est la norme internationale qui succ&egrave;de au format MP3. Il est plus efficace que le MP3 et poss&egrave;de une qualit&eacute; sonore similaire &agrave; une copie originale d&apos;un CD. AAC permet l&apos;utilisation d&apos;audio avec un d&eacute;bit d&apos;&eacute;chantillonnage plus &eacute;lev&eacute; que dans le cas des codecs G.711 et G.726 pr&eacute;c&eacute;dents.</li>
+			</ul>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+			<ul>
+				<li>Lorsqu&apos;une image est diffus&eacute;e via Firefox ou Edge, le codec AAC n&apos;est pas pris en charge m&ecirc;me si le codec souhait&eacute; a &eacute;t&eacute; d&eacute;fini dans la page de configuration audio.</li>
+			</ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>D&eacute;bit d&apos;&eacute;chantillonnage</h3>
+			<p>Cela fait r&eacute;f&eacute;rence au nombre d&apos;&eacute;chantillonnages par seconde lorsqu&apos;une source sonore analogique est convertie en une source sonore num&eacute;rique ; comme cette valeur est sup&eacute;rieure, le son est de meilleure qualit&eacute;. Le d&eacute;bit d&apos;&eacute;chantillonnage est fix&eacute; pour chaque codec audio et ne peut &ecirc;tre modifi&eacute; par l&apos;utilisateur. Le d&eacute;bit d&apos;&eacute;chantillonnage des codecs G.711 et G.726 est de 8&nbsp;kHz, tandis que le d&eacute;bit d&apos;&eacute;chantillonnage du codec AAC est de 16&nbsp;kHz.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>D&eacute;bit Binaire</h3>
+			<p>Le d&eacute;bit binaire du codec G.711 est de 64&nbsp;Kbps et ne peut pas &ecirc;tre modifi&eacute;. Le d&eacute;bit binaire du codec G.726 est de 16, 24, 32 et 40&nbsp;Kbps ; le taux de compression peut &ecirc;tre modifi&eacute;. Seulement 48&nbsp;Kbps peuvent &ecirc;tre s&eacute;lectionn&eacute;s pour le codec AAC.</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
+			<h3><a class="wn5-online-help-link" name="gain"></a>Gain</h3>
+			<p>D&eacute;finit la valeur d&apos;amplification de l&apos;entr&eacute;e audio. Si le son d&apos;entr&eacute;e est trop faible, vous pouvez augmenter la valeur de gain pour amplifier le signal audio d&apos;entr&eacute;e. La plage de valeur de gain va de 1 &agrave; 10, plus la valeur est grande, plus l&rsquo;amplification est &eacute;lev&eacute;e.</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
+			<h3>R&eacute;duction de bruit</h3>
+            <p>S&eacute;lectionnez R&eacute;duction de bruit si le bruit environnant est trop fort pour entendre le son pr&eacute;sentant un int&eacute;r&ecirc;t.</p>
+            <p>Vous pouvez d&eacute;finir la sensibilit&eacute; de r&eacute;duction de bruit en fonction du niveau de bruit ambiant.</p>
+            <p>Il est possible que la r&eacute;duction de bruit ne fonctionne pas correctement si le bruit est impossible &agrave; distinguer des voix p&eacute;riph&eacute;riques, ou si la pression acoustique est &eacute;lev&eacute;e.</p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>Sortie audio</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>Il est possible d&rsquo;&eacute;mettre du son via le haut-parleur int&eacute;gr&eacute;.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Sortie audio</h3>
+			<p>Pour utiliser la sortie audio, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Gain</h3>
+			<p>D&eacute;finit la valeur d&apos;amplification de la sortie audio. Si le son de sortie est trop faible, vous pouvez augmenter la valeur de gain afin d&rsquo;amplifier le signal audio de sortie. La plage de valeur de gain va de 1 &agrave; 10, plus la valeur est grande, plus la sortie audio est forte. Le gain est activ&eacute; uniquement lorsque l&rsquo;option <strong class="UI">[Activer]</strong> est s&eacute;lectionn&eacute;e pour la sortie audio.</p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+			<ul>
+				<li>Si un niveau audio ou une valeur de gain excessif est d&eacute;fini, la qualit&eacute; du son peut se d&eacute;t&eacute;riorer ou un sifflement peut appara&icirc;tre.</li>
+			</ul>
+		</div>
+	</div>
+</div>`<hr class="wn5-setup-hr">

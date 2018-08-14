@@ -1,0 +1,110 @@
+﻿<h1 class="wn5-setup-main-title">アップグレード/再起動</h1>
+
+<div class="wn5-setup-section">
+	<p>使用する製品のソフトウェアをアップグレードしたり出荷条件初期化することができます。また設定をバックアップしてリストアしたりリスタートすることができます。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>アップグレード</h2>
+	</div>
+
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>新しいバージョンのファームウェアが配布されたら現在使用している製品のソフトウェアをアップグレードすることができます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>ソフトウェア</h3>
+		    <p>使用している製品のソフトウェアバージョンです。ソフトウェアバージョンは確認だけ可能で変更することはできません。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>ISPバージョン</h3>
+		    <p>使用している製品のISPバージョンです。ISPバージョンは確認だけ可能で変更することはできません。</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>SUNAPIバージョン</h3>
+		    <p>使用している製品に対応するSUNAPIバージョンです。SUNAPIは、ハンファテックウィン独自のAPIです。</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>UWAバージョン</h3>
+		    <p>使用しているカメラのウェブビューアーバージョンです。</p>
+	   	</div>
+				<div class="wn5-setup-section-article-content" ng-if="OpenSSLVersion">
+		    <h3>OpenSSLバージョン</h3>
+            <p>保安が強化された通信のために使用しているOpenSSLバージョンです。</p>
+	   	</div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ソフトウェア・アップグレード</h3>
+            <p>使用している製品のソフトウェアをアップグレードすることができます。ソフトウェアをアップグレードするには、<strong class="UI">[...]</strong>ボタンをクリックします。アップグレードファイルを選択した後、<strong class="UI">[開く]</strong>ボタンをクリックします。<strong class="UI">[アップグレード]</strong>ボタンをクリックすると、アップグレードを開始します。アップグレードの進行状況を%で確認することができます。アップグレードが完了すると、カメラが再起動されて自動にアクセスが切断されます。ウェブビューアーに再アクセスする必要があります。</p>
+        </div>
+	   	<div class="wn5-online-help-info">
+	   		<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>アップグレードは最大10分ぐらいかかります。アップグレードをしている間には、強制にプログラムを終了しないでください。正しくアップグレードされない場合があります。</li>
+                <li>ソフトウェアをアップグレードした後、再アクセスする時にブラウザのキャッシュをすべて削除しないとウェブビューアー機能が正しく動作しないことがあります。</li>
+                <li>最新のソフトウェアバージョンは、ハンファテックウィンのウェブサイト(http://www.hanwha-security.com)でダウンロードすることができます。</li>
+            </ul>
+	   	</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>出荷条件初期化</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>システム設定を製品を購入した当時の設定に初期化することができます。<strong class="UI">[初期化]</strong>ボタンをクリックいした後、確認ポップアップで<strong class="UI">[OK]</strong>ボタンをクリックすると出荷条件初期化を行います。</p>
+		</div>
+        <div class="wn5-setup-section-article-content" ng-if="!CamSpecialModel">
+            <p>出荷条件初期化を行うとき、ネットワーク設定&amp;設置されたオープンプラットフォームを除外して他の設定だけを出荷条件初期化するためには、<strong class="UI">[ネットワーク設定&amp;オープンプラットフォーム設定維持]</strong>を選択します。出荷条件初期化を進行すると、カメラとのアクセスが切断されます。ウェブビューアーに初回アクセスする時にパスワードを再設定する必要があります。</p>
+            <p><strong class="UI">[ネットワーク設定&amp;オープンプラットフォーム設定維持]</strong>を選択せずにカメラを出荷条件初期化すると、IP接続タイプがDHCPに設定されます。この時、DHCPサーバーを見つけないとカメラのIPアドレスは192.168.1.100に自動変更されます。</p>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="CamSpecialModel">
+			<p>出荷条件初期化を行うとき、ネットワーク設定を除外して他の設定だけを出荷条件初期化するためには、<strong class="UI">[ネットワーク設定維持]</strong>を選択します。出荷条件初期化を進行すると、カメラとのアクセスが切断されます。ウェブビューアーに初回アクセスする時にパスワードを再設定する必要があります。</p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>設定バックアップ＆リストア</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>現在、カメラ設定をバックアップして保存した後にお望みの設定にリストアすることができます。お望みの設定のバックアップファイルを複数生成した後、製品の使用用途または環境によってお望みの設定にリストアして使用することができます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>バックアップ</h3>
+		    <p><strong class="UI">[バックアップ]</strong>ボタンをクリックすると、「型名Config.bin」ファイルタイプにバックアップファイルが生成されます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>リストア</h3>
+		    <p><strong class="UI">[リストア]</strong>ボタンをクリックすると、リストアするバックアップファイルを選択するポップアップが表示されます。バックアップファイルを選択して<strong class="UI">[開く]</strong>ボタンを押すと、該当リストアファイルを基準に設定がリストアされます。</p>
+	   	</div>
+		<div class="wn5-online-help-info">
+	   		<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+   			<ul>
+				<li>Safariでウェブビューアーにアクセスした場合、設定バックアップ＆リストア機能は使用できません。</li>
+				<li>設定をリストアすると、カメラとのアクセスが自動に切断されウェブビューアーに再アクセスする必要があります。</li>
+				<li>使用している製品と同じ型名ではない違う型名のバックアップファイルを読み込んでリストアに使用する場合、機能差で製品が誤動作することがあります。他型名のバックアップファイルをリストアに使用せずに手動で設定を変更します。</li>
+	
+			</ul>
+	   	</div>
+	</div>	
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>リスタート</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>カメラのシステムをリスタートすることができます。<strong class="UI">[リスタート]</strong>ボタンをクリックした後、確認ポップアップが表示されたら<strong class="UI">[確認]</strong>ボタンをクリックします。カメラがリスタートされ、ウェブビューアーが閉じられます。ウェブビューアーに再アクセスする必要があります。</p>
+		</div>
+	</div>
+</div>

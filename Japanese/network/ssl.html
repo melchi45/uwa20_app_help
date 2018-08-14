@@ -1,0 +1,155 @@
+﻿<h1 class="wn5-setup-main-title">HTTPS</h1>
+<div class="wn5-setup-section">
+	<p>保安接続方式を選択したり、公認証明書をインストールすることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+<hr class="wn5-setup-hr" ng-if="!SSLOff">
+<div class="wn5-setup-section" ng-if="!SSLOff">
+	<div class="wn5-setup-section-heading">
+		<h2>保安接続方式</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>保安レベルを考えて使用環境に合う保安接続方式を選択します。HTTPS (HyperText Transfer Protocol over Secure Socket Layer)は、ハイパーテキスト伝送規約階層の下にあるSSLサブ階層でユーザーのページリクエストを暗号化、復号化する過程でデータを送受信します。したがって、保安上HTTPモードより安全だと考えられます。HTTPSモードに保安接続する時、自体証明書を使用するか公認証明書を使用するかを選択できます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>HTTP(保安接続未使用)</h3>
+		    <p>暗号化せずにデータを伝送する時に選択します。</p>
+	    </div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>HTTPS(自体認証保安接続モード)</h3>
+		    <p>カメラが提供する自体証明書を使用して保安接続します。<strong class="UI">[HTTPS(自体認証保安接続モード)]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、HTTPSモードに保安接続します。</p>
+	   	</div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>HTTPS(公認保安接続モード)</h3>
+		    <p>公認証明書を使用して保安接続します。先に公認証明書をインストールした後、選択することができます。<strong class="UI">[HTTPS(公認保安接続モード)]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、HTTPSモードに保安接続します。</p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="!SSLOff">
+<div class="wn5-setup-section" ng-if="!SSLOff">
+<div class="wn5-setup-section-heading">
+	<h2>公認証設定</h2>
+</div>
+<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[保安接続方式]</strong>で<strong class="UI">[HTTPS(公認保安接続モード)]</strong>を選択するためには、まず公認証明書をインストールする必要があります。</p>
+            <ul>
+                <li><strong class="UI">証明書名</strong>：インストールする証明書名を入力します。</li>
+                <li><strong class="UI">証明書ファイル</strong>：インストールする証明書のパスを選択します。</li>
+                <li><strong class="UI">キーファイル</strong>：インストールするキーファイルのパスを選択します。</li>
+            </ul>
+        </div>
+				<div class="wn5-online-help-info">
+		<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                <ul>
+                    <li><strong class="UI">[HTTPS(公認保安接続モード)]</strong>モードが適用された状況では、公認証明書をインストールしたり削除できません。必ず<strong class="UI">[HTTP(保安接続未使用)]</strong>か<strong class="UI">[HTTPS(自体認証保安接続モード)]</strong>モードに変更した後、証明書をインストールしたり削除してください。</li>
+                </ul>
+	</div>
+			
+	<div class="wn5-online-help-action">
+		<h4>公認証設定</h4>
+                <ol>
+                    <li><strong class="UI">[証明書名]</strong>にインストールする証明書名を入力します。</li>
+                    <li><strong class="UI">[証明書ファイル]</strong>で<strong class="UI">[...]</strong>ボタンをクリックした後、開くポップアップで証明書ファイルを選択してから<strong class="UI">[開く]</strong>ボタンをクリックします。</li>
+                    <li>キーファイルで<strong class="UI">[...]</strong>ボタンをクリックした後、開くポップアップでキーファイルを選択してから<strong class="UI">[開く]</strong>ボタンをクリックします。</li>
+                    <li><strong class="UI">[設置]</strong>ボタンをクリックします。証明書のインストールが完了されます。</li>
+                </ol>
+	</div>
+
+	<div class="wn5-online-help-action">
+		<h4>公認証削除</h4>
+                <p><strong class="UI">[公認証設定]</strong>の下にある<strong class="UI">[削除]</strong>ボタンをクリックします。</p><!-- <p>'HTTPS(공인 인증서 사용)' 모드가 적용된 상태라면 <strong class="UI">[삭제]</strong> 버튼이 비활성화되어 나타납니다.&nbsp;<strong class="UI">[보안 접속 방식]</strong>에서 <strong class="UI">[HTTP(보안 접속 사용 안 함)]</strong>이나 <strong class="UI">[HTTPS(자체 인증서 사용)]</strong>을&nbsp;선택하여 보안 접속
+방식 옵션을 변경하면, <strong class="UI">[공인 인증서 설치] </strong>하단에 <strong class="UI">[삭제]</strong> 버튼이 활성화됩니다. </p>  --></div>
+</div>
+</div>
+<hr class="wn5-setup-hr" ng-if="SSLOff">
+<div class="wn5-setup-section" ng-if="SSLOff">
+	<div class="wn5-setup-section-heading">
+		<h2>保安接続方式</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>保安レベルを考えて使用環境に合う保安接続方式を選択します。HTTPS (HyperText Transfer Protocol over Secure Socket Layer)は、ハイパーテキスト伝送規約階層の下にあるSSLサブ階層でユーザーのページリクエストを暗号化、復号化する過程でデータを送受信します。したがって、保安上HTTPモードより安全だと考えられます。HTTPSモードに保安接続する時、自体証明書を使用するか公認証明書を使用するかを選択できます。</p>
+		</div>
+        <div class="wn5-setup-section-article-content">
+		    <h3>HTTPS使用/HTTP使用</h3>
+            <p>HTTPSモードやHTTPモードでカメラ・ウェブビューアーにアクセスすることができます。カメラのIPアドレスをhttps://&lt;カメラのIPアドレス&gt;やhttp://&lt;カメラのIPアドレス&gt;の中でお望みのタイプで入力することができます。<strong class="UI">[証明書タイプ]</strong>で保安モードの時に使用する証明書タイプを選択することができます。</p>
+        </div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>HTTPS使用/HTTP未使用</h3>
+            <p>HTTPS保安モードでのみカメラ・ウェブビューアーにアクセスすることができます。<strong class="UI">[証明書タイプ]</strong>で保安モードの時に使用する証明書タイプを選択することができます。</p>
+	   	</div>
+        <div class="wn5-setup-section-article-content">
+            <h3>HTTPS未使用/HTTP使用</h3>
+            <p>HTTPモードでのみカメラ・ウェブビューアーにアクセスすることができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>HTTPS未使用/HTTP未使用</h3>
+            <p>HTTPSやHTTPモードの中でどんなモードでもカメラにアクセスすることができません。</p>
+        </div>
+			<div class="wn5-online-help-info">
+		<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li><strong class="UI">[HTTPS未使用/HTTP未使用]</strong>を選択すると、ウェブブラウザを使用してカメラ・ウェブビューアーにアクセスできないためご注意ください。</li>
+            </ul>
+	</div>		
+	
+
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="SSLOff">
+<div class="wn5-setup-section" ng-if="SSLOff">
+    <div class="wn5-setup-section-heading">
+        <h2>証明書タイプ</h2>
+        <p>保安モードの時に使用する証明書タイプを選択します。</p>
+        <p>本オプションは<strong class="UI">[保安接続方式]</strong>で<strong class="UI">[HTTPS使用/HTTP使用]</strong>や<strong class="UI">[HTTPS使用/HTTP未使用]</strong>を選択した場合のみ表示されます。</p>
+    </div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+		    <h3>自体証明書</h3>
+            <p>ハンファテックウィンから提供する自体証明書を使用します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>公認証明書</h3>
+            <p><strong class="UI">[公認証設定]</strong>ですでにインストールしておいた公認証明書を使用します。</p>
+        </div>
+	</div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="SSLOff">
+<div class="wn5-setup-section" ng-if="SSLOff">
+<div class="wn5-setup-section-heading">
+	<h2>公認証設定</h2>
+</div>
+<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[証明書タイプ]</strong>で<strong class="UI">[公認証明書]</strong>を選択するためには、まず公認証明書をインストールする必要があります。</p>
+            <ul>
+                <li><strong class="UI">証明書名</strong>：インストールする証明書名を入力します。</li>
+                <li><strong class="UI">証明書ファイル</strong>：インストールする証明書のパスを選択します。</li>
+                <li><strong class="UI">キーファイル</strong>：インストールするキーファイルのパスを選択します。</li>
+            </ul>
+        </div>
+
+			
+	<div class="wn5-online-help-action">
+		<h4>公認証設定</h4>
+                <ol>
+                    <li><strong class="UI">[証明書名]</strong>にインストールする証明書名を入力します。</li>
+                    <li><strong class="UI">[証明書ファイル]</strong>で<strong class="UI">[...]</strong>ボタンをクリックした後、開くポップアップで証明書ファイルを選択してから<strong class="UI">[開く]</strong>ボタンをクリックします。</li>
+                    <li>キーファイルで<strong class="UI">[...]</strong>ボタンをクリックした後、開くポップアップでキーファイルを選択してから<strong class="UI">[開く]</strong>ボタンをクリックします。</li>
+                    <li><strong class="UI">[設置]</strong>ボタンをクリックします。証明書のインストールが完了されます。</li>
+                </ol>
+	</div>
+
+	<div class="wn5-online-help-action">
+		<h4>公認証削除</h4>
+                <p><strong class="UI">[公認証設定]</strong>の下にある<strong class="UI">[削除]</strong>ボタンをクリックします。</p>
+
+		</div>
+	</div>
+</div>
+<hr class="wn5-setup-hr">

@@ -71,7 +71,7 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>When &lsquo;Error&rsquo; is displayed in <strong class="UI"> [Status]</strong> in the device list, check whether the recording device is connected properly, whether the file system of the recording device is damaged or not, and whether the recording device is physically damaged. If the &lsquo;Error&rsquo; message persists after checking the recording device, format or replace the device.</li>
+            <ul><li>When &lsquo;Error&rsquo; is displayed in <strong class="UI"> [Status]</strong> in the device list, check whether the recording device is connected properly, whether the file system of the recording device is damaged or not, and whether the recording device is physically damaged. If the &lsquo;Error&rsquo; message persists after checking the recording device, format or replace the device.</li>
                 <li ng-if="NAS">Recording may not be possible due to temporary network disconnection when NAS is used, so it is recommended to use an SD card also.</li>
                 <li>When resolution, bit rate and frame rate are set at high, the amount of image data also increases. If the amount of data increases, a frame skip may occur even if set to full frame. When a frame skip occurs, an image is recorded at a minimum rate of one image per second. </li>
             </ul>
@@ -89,14 +89,14 @@
             <p>This menu is displayed only when <strong class="UI">[SD card]</strong> is selected in the<strong class="UI">[Device]</strong> column of <strong class="UI">[Storage action setup]</strong>, allowing you to select the file system on the SD card. SD cards support VFAT and EXT4 file systems, so select the file system according to the SD card of the camera you are using. If the file system of the SD card is EXT4, Windows OS can recognize it only when a separate application is installed. </p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>Type</h3>
             <p>Select either VFAT or EXT4 for the file system of the SD card. When the setting is changed, all existing data will be formatted. Be sure to back up data before changing the setting. </p>
         </div>
 		<div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
+                
                 <li>High Endurance SD Cards are recommended. For detailed information, refer to the Hanwha Techwin website.</li>
             </ul>
         </div>
@@ -114,7 +114,7 @@
         </div>
     
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>IP address</h3>
             <p>Enter the NAS IP address. </p>
         </div>
@@ -133,7 +133,7 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li>If a failure message is displayed when you test after entering NAS information, check the following items:</li>
+            <ul><li>If a failure message is displayed when you test after entering NAS information, check the following items:</li>
                 <ul>
                     <li>Check if the IP address, ID, password, and default NAS folder are entered correctly.</li>
                     <li>Check if the IP address type of NAS and the IP address type of the camera are identical. (e.g.: The default value of NAS and the camera is 255.255.255.0. If the IP address is 192.168.20.32, the NAS IP address should be between 192.168.20.1 and 192.168.20.255.)</li>
@@ -141,7 +141,7 @@
                     <li>Check if the device is recommended NAS equipment. Refer to &lsquo;Recommended NAS specifications&rsquo; in the user&apos;s manual.</li>
                 </ul>
                
-				<li>If <strong class="UI">[Overwrite]</strong> in the storage setup for NAS is not used and the free space for NAS is less than 1%, images will be recorded on the SD card.</li>
+				<li>If <strong class="UI">[Overwrite]</strong> in the storage setup for NAS is not used and the free space for NAS is less than 20%, images will be recorded on the SD card.</li>
                 <li>If an SD card which was used in another camera is inserted while data is being recorded on NAS, images may not be recorded.</li>
                 <li>If the NAS setup is changed while data is being recorded on NAS, the change will not apply immediately.</li>
                 <li>If NAS equipment is removed or the network connection is terminated while data is being recorded on NAS, the NAS recording action may be terminated.</li>
@@ -161,7 +161,7 @@
             <p>You can set the time to record an image on the recording device.  </p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></ul>
+            
             <h3>Always</h3>
             <p>Always records an image on the recording device.</p>
         </div>

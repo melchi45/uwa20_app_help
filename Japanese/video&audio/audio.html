@@ -1,0 +1,89 @@
+﻿
+<h1 class="wn5-setup-main-title">音声設定</h1>
+
+<div class="wn5-setup-section">
+	<p>ネットワークカメラに接続させてリモートからカメラが設置された所の音を聞いたり、カメラで音声を出力することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>音声入力</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>カメラに接続されたマイクで映像に音声を入力することができます。使用環境に合うソースを選択して音声を入力します。</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content"><h3>入力ソース</h3>
+			<p>音声入力タイプを選択します。</p>
+			<ul>
+				<li ng-if="InternalMic"><strong class="UI">内蔵マイク</strong>：カメラに含まれた内蔵マイクです。</li>
+				<li><strong class="UI">外部マイク</strong>：カメラに外部マイクを接続させて使用します。<strong class="UI">[外部マイク電源を有効にする]</strong>を選択すると、外部マイクの電源が供給されない場合にカメラから外部マイクに電源を供給します。</li>
+				<li><strong class="UI">ライン入力</strong>：ケーブルで音響機器と接続させます。例えば、MP3プレーヤーのような音響機器とカメラをケーブルで接続させた後、MP3プレーヤーに録音された音声をカメラに入力する時に選択します。</li>
+			</ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Codec</h3>
+			<p>音声Codecを選択します。</p>
+            <ul>
+                <li><strong class="UI">G.711</strong>：64Kbpsパルス符号変調(PCM)の音声符号化を使用する音声Codecを標準としてPSTNやPBXでデジタル音声を伝えられるフォーマットでITU標準音声Codecです。</li>
+                <li><strong class="UI">G.726</strong>：64Kbpsパルス符号変調(PCM)を40/32/24/16Kbpsなどに可変して圧縮するために適応差分パルス符号変調(ADPCM)の音声符号化技法を使用するITU音声Codecです。</li>
+                <li><strong class="UI">AAC</strong>：Advanced Audio Codingの略字でMP3の後を継ぐ国際標準です。既存のG.711、G.726 Codecを使用する時より高いサンプリングレートの音声を使用することができます。</li>
+            </ul>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+			<ul><li>音声設定ページで好むCodecを設定したとしても、FirefoxやEdgeで映像をストリームする場合にはAAC Codecに対応しません。</li>
+			</ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>サンプリングレート</h3>
+			<p>アナログサウンドをデジタル化する時の1秒当たりのサンプリング回数を意味し、この値が高いほど音質が向上されます。サンプリングレートは音声Codec別に値が決められているため、ユーザーが変更できません。G.711 CodecとG.726 Codecのサンプリングレートは8 KHz、AAC Codecのサンプリングレートは16 KHzです。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>ビットレート</h3>
+			<p>G.711 Codecは64 Kbpsで変更できません。G.726 Codecは16 Kbps、24 Kbps、32 Kbps、40 Kbpsで圧縮率を変更することができます。AAC Codecは48 Kbpsのみ選択することができます。</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
+			<h3><a class="wn5-online-help-link" name="gain"></a>Gain</h3>
+			<p>音声入力の増幅値を設定します。入力される音が小さい場合、Gain値を上げて入力された音声信号を増幅させることができます。Gain値の範囲は1～10で、値が大きいほど増幅値が大きくなります。</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
+			<h3>ノイズリダクション</h3>
+            <p>周囲にノイズがひどくて音声がよく聞こえない場合、ノイズリダクション機能を選択します。</p>
+            <p>周囲のノイズレベルによってノイズリダクションの感度を選択することができます。</p>
+            <p>ノイズが周囲の音声と区別されなかったり音圧が高い場合、ノイズリダクション機能が正しく動作しないことがあります。</p>
+		</div>
+		
+	</div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>音声出力</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>内蔵されたスピーカーで音声を出力することができます。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>音声出力</h3>
+			<p>音声出力を有効にするためには、<strong class="UI">[有効]</strong>を選択します。</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Gain</h3>
+			<p>音声出力の増幅値を設定します。出力する音が小さい場合、Gain値を上げて出力する音声信号を増幅させることができます。Gain値の範囲は1～10で、値が大きいほど音声出力が大きくなります。音声出力を<strong class="UI">[有効]</strong>に選択すると、Gainが有効になります。</p>
+		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+			<ul><li>サウンドの音量やGain値を過度に設定する場合、音質低下またはハウリング問題が発生することがあります。</li>
+			</ul>
+		</div>
+	</div>
+</div>`<hr class="wn5-setup-hr">

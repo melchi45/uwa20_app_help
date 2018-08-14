@@ -13,6 +13,13 @@
 				<p ng-if="CamSpecialModel">DDNS에서는 에스원 DDNS를 사용하거나 공개 DDNS를 사용할 수 있습니다. 원하는 DDNS 정보를 입력한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 선택한 DDNS에 연결되면 ‘성공’ 메시지가 표시되며, 연결되지 않으면 ‘실패’ 메시지가 표시됩니다. 
 	</p>
 </div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+    <ul>
+        <li>DDNS와 공유기의 포트 포워딩을 같이 설정해야 DDNS 서비스를 사용할 수 있습니다.</li>
+        <li>공유기의 포트 포워딩 설정 방법은 제품에 포함되어 있는 사용 설명서를 참고하십시오.</li>
+    </ul>
+		</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -26,7 +33,7 @@
 	    </div>
 		<div class="wn5-setup-section-article-content" ng-if="!CamSpecialModel">
 		    <h3>와이즈넷 DDNS  </h3>
-		    <p>한화테크윈에서 제공하는 DDNS 서버를 사용할 경우에 선택합니다. 와이즈넷 DDNS를 사용하려면 와이즈넷 DDNS 홈페이지(<a class="wn5-online-help-link" href="http://ddns.hanwha-security.com" target="new">http://ddns.hanwha-security.com</a>)에서 회원가입을 한 후, <strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[제품등록]</strong>에서 제품을 등록합니다.</p>
+            <p>한화테크윈에서 제공하는 DDNS 서버를 사용할 경우에 선택합니다. 와이즈넷 DDNS를 사용하려면 와이즈넷 DDNS 홈페이지(<a class="wn5-online-help-link" href="http://ddns.hanwha-security.com" target="new">http://ddns.hanwha-security.com</a>)에서 회원가입을 한 후, <strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[제품등록]</strong>에서 제품을 먼저 등록해야 합니다. </p>
 		    <ul>
 		        <li>
 		        	<span class="onlineHelp-padding">
@@ -43,14 +50,14 @@
 
 		<div class="wn5-setup-section-article-content" ng-if="CamSpecialModel">
 		    <h3>에스원 DDNS  </h3>
-		    <p>에스원에서 제공하는 DDNS 서버를 사용할 경우에 선택합니다. 에스원&nbsp;DDNS를 사용하려면 에스원&nbsp;DDNS 홈페이지(<a class="wn5-online-help-link" href="http://ddns.s1.co.kr" target="new">http://ddns.s1.co.kr</a>)에서 회원가입을 한 후, <strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[제품등록]</strong>에서 제품을 등록합니다.</p>
+		    <p>에스원에서 제공하는 DDNS 서버를 사용할 경우에 선택합니다. 에스원 DDNS를 사용하려면 에스원 DDNS 홈페이지(<a class="wn5-online-help-link" href="http://ddns.s1.co.kr" target="new">http://ddns.s1.co.kr</a>)에서 회원가입을 한 후, <strong class="UI">[My DDNS]</strong>&gt;<strong class="UI">[제품등록]</strong>에서 제품을 등록합니다.</p>
 		    <ul>
 		        <li>
 		        	<span class="onlineHelp-padding">
 						<strong class="UI">서버</strong>: 사용할 DDNS 서버 이름을 입력합니다.
 					</span>				</li>
 		        <li>
-		        	<span class="onlineHelp-padding"><strong class="UI">제품 ID</strong>: 에스원&nbsp;DDNS 서버에 등록된 제품의 ID를 입력합니다. UPnP(Universal plug and play) 기능을 지원하는 공유기를 사용할 때 <strong class="UI">[퀵 커넥트]</strong>를 선택하면 외부 접속 시 자동으로 포트를 열어주도록 지원합니다. 
+		        	<span class="onlineHelp-padding"><strong class="UI">제품 ID</strong>: 에스원 DDNS 서버에 등록된 제품의 ID를 입력합니다. UPnP(Universal plug and play) 기능을 지원하는 공유기를 사용할 때 <strong class="UI">[퀵 커넥트]</strong>를 선택하면 외부 접속 시 자동으로 포트를 열어주도록 지원합니다. 
 					</span>
 		        </li>
 		    </ul>

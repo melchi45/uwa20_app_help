@@ -24,7 +24,7 @@
             <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-content">
                     <p><strong class="UI">[외부 PTZ]</strong>를 선택하면 RS-485나 RS-422 단자에 연결된 리시버를 통해 카메라 PTZ를 제어할 수 있습니다. 웹뷰어 왼쪽 메뉴 트리에 <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong> 메뉴가 생성됩니다.</p>
-                    <p><strong class="UI">[디지털 PTZ]</strong>를 선택하면 카메라 PTZ를 디지털로 제어하게 됩니다. 웹뷰어 왼쪽 메뉴 트리에 <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong> 메뉴가 생성됩니다.</p>
+            <p><strong class="UI">[디지털 PTZ]</strong>를 선택하면 카메라 PTZ를 디지털로 제어하게 됩니다. 웹뷰어 왼쪽 메뉴 트리에 <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong> 메뉴가 생성됩니다. '디지털 PTZ 프로파일'이 적용된 경우에만 디지털 PTZ 모드가 동작되며, 이 때 해상도와 비트 레이트가 제한됩니다.</p>
                 </div>
             </div>
         </div>
@@ -36,8 +36,7 @@
     <div class="wn5-setup-section-article">
     <div class="wn5-setup-section-article-content">
         <p>프로파일 속성이 변경됐을 때 기존 프로파일로 계속 영상을 출력할지 혹은 변경된 프로파일로 영상을 출력할지를 설정할 수 있습니다. </p>
-        <p><strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하면, 프로파일 속성을 변경하더라도 기존 프로파일 속성대로 영상을 출력하고, 다시 웹뷰어에 접속했을 때 변경된 프로파일로 영상을 출력합니다. 프로파일의 속성을 변경하고 다시 웹뷰어에 접속하기 전까지는 <strong class="UI">[라이브]</strong> 화면에 주황색 테두리가 나타납니다. <strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하지 않으면, 프로파일 속성을 변경했을 때 바로 변경된 프로파일로 영상이
-출력됩니다. </p>
+        <p><strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하면, 프로파일 속성을 변경하더라도 기존 프로파일 속성대로 영상을 출력하고, 다시 웹뷰어에 접속했을 때 변경된 프로파일로 영상을 출력합니다. 프로파일의 속성을 변경하고 다시 웹뷰어에 접속하기 전까지는 <strong class="UI">[라이브]</strong> 화면에 주황색 테두리가 나타납니다. <strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하지 않으면, 프로파일 속성을 변경했을 때 바로 변경된 프로파일로 영상이 출력됩니다. </p>
     </div>
     </div>
 </div>
@@ -47,10 +46,10 @@
         <h2>비디오 프로파일</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content" ng-if="ATCModes">
+        <!-- <div class="wn5-setup-section-article-content">
             <p>제품의 사용 환경과 상황에 따라 비디오의 프로파일을 선택할 수 있습니다. 기본으로 제공되는 프로파일 외에 새로운 프로파일을 추가하거나 삭제할 수 있습니다. 프로파일 별로 코덱, 프로파일 타입, 오디오 입력, ATC 모드, ATC 민감도, ATC 제한, 해상도, 프레임 레이트, 최대 비트 레이트, 목표 비트 레이트, 비트 레이트 제어, 멀티캐스트 등을 설정할 수 있습니다.</p> 
-        </div>
-        <div class="wn5-setup-section-article-content" ng-if="!ATCModes">
+        </div>  --> 
+        <div class="wn5-setup-section-article-content">
             <p>제품의 사용 환경과 상황에 따라 비디오의 프로파일을 선택할 수 있습니다. 기본으로 제공되는 프로파일 외에 새로운 프로파일을 추가하거나 삭제할 수 있습니다. 프로파일 별로 코덱, 프로파일 타입, 해상도, 프레임 레이트, 멀티캐스트 등 다양한 옵션을 설정할 수 있습니다.</p>
         </div>
 
@@ -181,10 +180,10 @@
 
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>피쉬아이 뷰 타입</h3>
-            <p>프로파일에서 보여질&nbsp;피쉬아이 카메라의 영상 타입을 선택합니다.</p>
+            <p>프로파일에서 보여질 피쉬아이 카메라의 영상 타입을 선택합니다.</p>
             <ul>
                 <li>피쉬아이 뷰: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
-                <li>왜곡 보정 뷰: 피쉬아이 카메라로 촬영한 360&deg; 영상을 보기 적합한 형태로 보정하여 보여줍니다. 보정&nbsp;영상 타입은 '왜곡 보정 뷰'를 선택하면 보여지는 <strong class="UI">[뷰]</strong>옵션에서 선택할 수 있습니다. </li>
+                <li>왜곡 보정 뷰: 피쉬아이 카메라로 촬영한 360&deg; 영상을 보기 적합한 형태로 보정하여 보여줍니다. 보정 영상 타입은 '왜곡 보정 뷰'를 선택하면 보여지는 <strong class="UI">[뷰]</strong>옵션에서 선택할 수 있습니다. </li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
@@ -192,11 +191,10 @@
             <p>왜곡 보정 영상 타입을 선택합니다. </p>
             <p><strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택한 경우에 활성화됩니다.</p>
             <ul>
-                <li>싱글 파노라마: 피쉬아이 카메라 360˚ 영상을 하나의 영상으로 펼쳐보여 줍니다. </li>
-                <li>4분할 뷰: 4개의 영상 화면을 동시에 보여줍니다. </li>
-                <li>더블 파노라마: 싱글 파노라파마의 뷰를 두 영역으로 나누어 보여줍니다. <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong> &gt; <strong class="UI">[카메라 마운팅 모드]</strong>에서 <strong class="UI">[천장형]</strong>을 선택한 경우에만 더블 파노라마 옵션이 나타납니다.                                                   
-              </li>
-                <li>Q1: 4분할 뷰의 왼쪽 상단의 뷰를 보여줍니다.   </li>
+                <li>싱글 파노라마: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 벽면형 파노라마 형식으로 보여줍니다.  </li>
+                <li>4분할 뷰: 사람의 시야에 적합하도록 왜곡 보정한 특정 화면 4개를 동시에 보여줍니다. 분할 화면을 선택하여 뷰를 상하좌우로 이동하거나 줌 기능을 사용할 수 있습니다.  </li>
+                <li>더블 파노라마: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 파노라마 형식의 상하 분할 화면으로 보여줍니다. <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong> &gt; <strong class="UI">[카메라 마운팅 모드]</strong>에서 <strong class="UI">[천장형]</strong>을 선택한 경우에만 더블 파노라마 옵션이 나타납니다. </li>
+                <li>Q1: 4분할 뷰의 왼쪽 상단의 뷰를 보여줍니다. </li>
                 <li>Q2: 4분할 뷰의 오른쪽 상단의 뷰를 보여줍니다. </li>
                 <li>Q3: 4분할 뷰의 왼쪽 하단의 뷰를 보여줍니다. </li>
                 <li>Q4: 4분할 뷰의 오른쪽 하단의 뷰를 보여줍니다. </li>
@@ -209,12 +207,12 @@
 
             <ul>
                 <li><strong class="UI">기본 프로파일</strong>: 카메라의 영상을 라이브로 스트림할 때 적용되는 기본 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong>에 ‘Default’로 표시됩니다.</li>
-                <li><strong class="UI">이메일/FTP 프로파일</strong>: 이벤트가 발생하면 영상의 캡처 화면을 이메일과 FTP 서버로 전송하는데 이 때 사용하는 비디오 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Event’로 표시됩니다. 코덱을 MJPEG으로 설정한 경우에만 이메일/FTP 프로파일 옵션이 나타납니다.</li>
-                <li ng-if="Recording && NAS"><strong class="UI">저장 프로파일</strong>: SD 카드나 NAS에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
-                <li ng-if="Recording && !NAS"><strong class="UI">저장 프로파일</strong>: SD 카드에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
-                <li ng-if="DPTZSetupPage"><strong class="UI">디지털 PTZ 프로파일</strong>: PTZ 움직임을 디지털로 제어할 때 사용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘DPTZ’로 표시됩니다. 코덱을 H.264 혹은 H.265로 설정한 경우에만 디지털 PTZ 프로파일 옵션이 나타납니다.</li>
-                <li ng-if="FisheyeLens" style="list-style-image:url('');">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다. 
-                </li>
+                <li><strong class="UI">이메일/FTP 프로파일</strong>: 이벤트가 발생하면 영상의 캡처 화면을 이메일과 FTP 서버로 전송하는데 이 때 사용하는 비디오 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Event’로 표시됩니다. <strong class="UI">[코덱]</strong>을 [MJPEG]으로 설정한 경우에만 이메일/FTP 프로파일 옵션이 나타납니다. </li>
+                <li ng-if="Recording && NAS"><strong class="UI">저장 프로파일</strong>: (micro)SD 카드나 NAS에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">저장 프로파일</strong>: (micro)SD 카드에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
+                <li ng-if="DPTZSetupPage"><strong class="UI">디지털 PTZ 프로파일</strong>: PTZ 움직임을 디지털로 제어할 때 사용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘DPTZ’로 표시됩니다. <strong class="UI">[코덱]</strong>을 [H.264] 혹은 [H.265]로 설정한 경우에만 디지털 PTZ 프로파일 옵션이 나타납니다. </li>
+                <li ng-if="FisheyeLens" style="list-style-image:url('');">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다.  </li>
+                <li><strong class="UI">프레임 레이트 고정 프로파일</strong>: 영상의 프레임 레이트를 일정 수준으로 보장하려고 할 때 적용하는 프로파일입니다. <strong class="UI">[코덱]</strong>을 [H.264] 혹은 [H.265]로 설정한 경우에만 '프레임 레이트 고정 프로파일' 옵션이 나타납니다.</li>
             </ul>
 
         </div>
@@ -231,7 +229,7 @@
             <ul>
                 <li><strong class="UI">사용 안 함</strong>: 네트워크 대역폭이 변화하더라도 비디오 전송량을 일정하게 유지합니다.</li>
                 <li><strong class="UI">사용 - 프레임 레이트 조정</strong>: 네트워크 대역폭이 변화될 경우, 프레임 레이트를 변경하여 전송하는 데이터양을 조절합니다. </li>
-                <li><strong class="UI">사용 - 압축 조정</strong>: 네트워크 대역폭이 변화될 경우, 전송하는 데이터 압축률을 변경하여 전송하는 데이터양을 조절합니다.</li>
+                <li><strong class="UI">사용 - 압축 조정</strong>: 네트워크 대역폭이 변화될 경우, 전송하는 데이터 압축률을 변경하여 전송하는 데이터양을 조절합니다. 압축 조정을 할 경우 화질이 떨어질 수 있습니다.  </li>
                 <li><strong class="UI">사용 - 이벤트(MD)</strong>: <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2">움직임 감지 이벤트</a>가 설정되어 있는 경우에 사용할 수 있는 모드입니다. 움직임 감지 이벤트가 발생하여 네트워크 대역폭이 변화될 경우에 프레임 레이트를 변경하여 데이터양을 조절합니다. 움직임이 감지되지 않으면 최소한의 프레임만을 출력하여 대역폭 사용을 절약합니다.
                     
                 </li>
@@ -246,9 +244,20 @@
 
         <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>제한</h3>
-            <p>네트워크 대역폭 변화량에 따라 영상의 속성을 변경할 때, 어느 정도까지만 속성을 변경할 지 ATC 모드 한계값을 설정합니다. ATC 모드를 사용하지 않았을 때를 100%로 가정할 때, 10~50%으로 값을 설정할 수 있으며, 설정된 값 이하로는 속성이 변경되지 않습니다. </p>
+            <p>네트워크 대역폭 변화량에 따라 비디오 전송량을 변경할 때, 어느 정도까지만 속성을 변경할 지 ATC 모드 한계값을 설정합니다. ATC 모드를 사용하지 않았을 때를 100%로 가정할 때, 10~50%으로 값을 설정할 수 있으며, 설정된 값 이하로는 비디오 전송량이 변경되지 않습니다. </p>
+            <p>이때 전송량을 너무 많이 떨어뜨리면 화면이 깜박일 수 있기 때문에 본 설정값을 조절하여 한계 설정값을 조절합니다. </p>
             <p>ATC 제한은 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 - 프레임 레이트 조정]</strong>, <strong class="UI">[사용 - 압축 조정]</strong>으로 선택할 때만 활성화됩니다.</p>
         </div>
+		
+	<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+
+    <ul>
+        <li>ATC를 지원하는 카메라로 구성된 환경에서만 ATC 사용을 권장합니다.</li>
+        <li>네트워크 대역폭의 변화량이 급격한 환경에서는 ATC 민감도를 <strong class="UI">[매우 낮음]</strong>으로 설정하십시오.</li>
+        <li>네트워크 환경이 불안정하면, 화면이 깜박일 수 있습니다.</li>
+    </ul>
+		</div>
     </div>
 </div>  <hr class="wn5-setup-hr" ng-if="Crop">
 <div class="wn5-setup-section" ng-if="Crop">
@@ -257,9 +266,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>크롭 인코딩은 원하는 특정 영역만 선택하여 스트림하는 기능으로 프로파일마다 다른 영역을 선택하여 보거나 스트림할 수 있습니다. 현재 설정 중인 프로파일에 크롭 인코딩을 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다.</p>
+            <p>크롭 인코딩은 전체 화면에서 선택한 영역만 잘라 <strong class="UI">[프로파일 설정]</strong>에서 설정된 해상도에 맞게 출력합니다. 크롭 인코딩 설정 영역보다 작은 크기의 해상도만 설정할 수 있습니다. 현재 설정 중인 프로파일에 크롭 인코딩을 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다.</p>
         </div>
-
         <div class="wn5-online-help-action">
             <h4>크롭 영역 설정하기</h4>
             <div>
@@ -270,6 +278,14 @@
                 </ol>
             </div>
         </div>
+<div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+
+                <ul>
+                    <li><strong class="UI">[크롭 영역 설정]</strong>에서 사용자가 원하는 범위를 임의로 지정한 경우, 사용자가 지정한 범위에서 출력 해상도와 가장 유사한 해상도로 출력합니다. </li>
+                    <li><strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[스페셜]</strong> &gt; <strong class="UI">[DIS]</strong> 설정을 변경하면 크롭 영역 설정이 달라질 수 있습니다. DIS 설정 변경 시 크롭 인코딩 영역을 다시 설정하십시오.</li>
+                </ul>
+            </div>
     </div>
 </div>
 <hr class="wn5-setup-hr">
@@ -298,12 +314,12 @@
             
         <div class="wn5-setup-section-article-content">
             <h3>프레임 레이트 </h3>
-            <p>1초당 프레임 수를 설정합니다. <strong class="UI">[비디오 및&nbsp;오디오]</strong>&gt;<strong class="UI">[카메라 설정]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[센서]</strong></a>에서 선택한 프레임 레이트의 값에 따라 설정할 수 있는 프레임 레이트 범위가 다르게 나타납니다.</p>
+            <p>1초당 프레임 수를 설정합니다. <strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[카메라 설정]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[센서]</strong></a>에서 선택한 프레임 레이트의 값에 따라 설정할 수 있는 프레임 레이트 범위가 다르게 나타납니다.</p>
         </div>
         
 		<div class="wn5-setup-section-article-content">
             <h3>최대 비트 레이트 </h3>
-            <p><strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때, 영상의 최대 비트 레이트를 설정합니다. 전송하는 영상 데이터의 양이 설정한 최대 비트 레이트를 넘지 않으면 원래 영상 그대로 전송합니다.</p>
+            <p><strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때, 영상의 최대 비트 레이트를 설정합니다.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -327,22 +343,27 @@
             <ul>
                 <li><strong class="UI">CBR</strong>: 고정 비트 레이트(Constant Bitrate)는 전체 프레임의 데이터를 일정한 크기로 고정하여 전송하는 방식입니다. CBR을 선택하면 목표 비트 레이트를 설정하여 전송할 데이터의 크기를 설정합니다. CBR의 경우 고정적인 데이터 크기를 가지므로 전체적인 시스템의 데이터 크기를 예측하기 쉬워 안정적으로 시스템을 운영할 수 있습니다.
                                                                             </li>
-                <li><strong class="UI">VBR</strong>: 가변 비트 레이트(Variable Bitrate)는 프레임의 데이터 크기를 고정하지 않고 최대 비트 레이트 내에서 사용자가 설정한 비디오 속성을 그대로 유지하면서 영상을 전송하는 방식입니다. VBR은 화질을 유지하면서 저장 공간의 용량이나 대역폭을 효율적으로 사용할 수 있지만 영상이 갑자기 복잡해지는 경우 네트워크에 부담을 줄 수 있습니다.                   
-                            </li>
+                <li><strong class="UI">VBR</strong>: 가변 비트 레이트(Variable Bitrate)는 프레임의 데이터 크기를 고정하지 않고 최대 비트 레이트 내에서 영상을 전송하는 방식입니다. VBR은 화질을 유지하면서 저장 공간의 용량이나 대역폭을 효율적으로 사용할 수 있지만 영상이 갑자기 복잡해지는 경우 네트워크에 부담을 줄 수 있습니다. </li>
             </ul>
         </div>
+	<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>비트 레이트 제어 방식을 'CBR(고정 비트 레이트)로 설정한 후 화질 우선 모드를 선택했을 경우 화면의 복잡도에 따라서 설정된 비트 레이트에서 최대한 화질을 보장하기 위해 실제 전송되는 프레임 레이트가 설정된 프레임 레이트와 다를 수 있습니다.</li>
+            </ul>
+		</div>		
         <div class="wn5-setup-section-article-content">
             <h3>인코딩 우선순위</h3>
             <p>영상 데이터 양이 목표 비트 레이트의 값을 넘을 때, 프레임 레이트와 화질 중 어느 것을 우선순위로 두고 인코딩할 지 설정합니다. </p>
-			<p>프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[프레임 레이트]</strong>와 <strong class="UI">[압축]</strong> 중 선택할 수 있습니다. <strong class="UI">[프레임 레이트]</strong>를 우선순위로 설정하면 프레임 레이트를 최대한 보장하지만 화질은 떨어질 수 있습니다. 반면 <strong class="UI">[압축]</strong>을 우선순위로 설정하면 화질은 보장하지만 누락되는 프레임이 발생해 영상이 끊기거나 부자연스러울
-수 있습니다. 프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[인코딩 우선순위]</strong>는 <strong class="UI">[비트 레이트 제어 방식]</strong>을 <strong class="UI">[CBR]</strong>로 설정한 경우에만 활성화됩니다.</p>
+			<p>프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[프레임 레이트]</strong>와 <strong class="UI">[압축]</strong> 중 선택할 수 있습니다. <strong class="UI">[프레임 레이트]</strong>를 우선순위로 설정하면 프레임 레이트를 최대한 보장하지만 화질은 떨어질 수 있습니다. 반면 <strong class="UI">[압축]</strong>을 우선순위로 설정하면 화질은 보장하지만 누락되는 프레임이 발생해 영상이 끊기거나 부자연스러울 수 있습니다. 프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[인코딩 우선순위]</strong>는 <strong class="UI">[비트 레이트 제어 방식]</strong>을 <strong class="UI">[CBR]</strong>로 설정한 경우에만 활성화됩니다.</p>
 			
 			<p>프로파일의 <strong class="UI">[코덱]</strong>이 <strong class="UI">[MJPEG]</strong>인 경우 <strong class="UI">[프레임 레이트]</strong>와 <strong class="UI">[비트 레이트]</strong> 중에 선택할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">    
             <h3><a class="wn5-online-help-link" name="GOV"></a>GOV 길이  </h3>
-            <p>GOV(Group of Video)는 <strong class="UI">[H.264]</strong>/<strong class="UI">[H.265]</strong> 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임까지의 프레임 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있습니다. P-프레임은 I-프레임을 기준으로 변경된 부분의 정보만 가지고 있습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상의 크기가 작고, GOV 길이가 짧을수록
-I-프레임이 많아지므로 영상의 크기는 큽니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다. </p>
+          <!--    <p>GOV(Group of Video)는 <strong class="UI">[H.264]</strong>/<strong class="UI">[H.265]</strong> 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임까지의 프레임 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있습니다. P-프레임은 I-프레임을 기준으로 변경된 부분의 정보만 가지고 있습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상의 크기가 작고, GOV 길이가 짧을수록 I-프레임이 많아지므로 영상의 크기는 큽니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다. </p> -->
+            <p>GOV(Group of Video)는 H.264/H.265 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임 전까지의 프레임들의 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이라는 2종류의 프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키 프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있는 독립적인 프레임입니다. P-프레임은 이전 프레임들을 기준으로 변경된 부분의 정보만 가지고 있어서 영상 데이터의 양이 적습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상 데이터의 양이 적고, GOV 길이가 짧을수록 I-프레임이 많아지므로 영상 데이터의 양은 많아집니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다.</p>
+            <p>H.264 코덱이나 H.265 코덱으로 녹화파일을 설정한 경우 GOV 길이는 framerate/2가 됩니다.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -351,24 +372,23 @@ I-프레임이 많아지므로 영상의 크기는 큽니다. GOV 길이의 최�
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>엔트로피 코딩</h3>
-            <p>압축 손실을 줄이는 방식을 설정합니다. CAVLC (Context Adaptive Variable Length Coding)와 CABAC (Context Adaptive Binary Arithmetic Coding)의 두 가지 엔트로피 코딩 방식을 제공하고 있습니다.</p>
+            <p>엔트로피 코딩은 신택스(Syntax)의 통계를 이용한 가변 길이 코딩으로 무손실 압축방식입니다. CAVLC(Context Adaptive Variable Length Coding)와 CABAC(Context Adaptive Binary Arithmetic Coding)의 두 가지 방식을 제공합니다. 단, Baseline 프로파일 일 때는 CAVLC 방식만 사용가능 합니다.</p>
             <ul>
-                <li><strong class="UI">CABAC</strong>: 데이터 처리과정이 복잡하여 시스템 리소스를 많이 사용하지만 압축률이 높습니다.</li>
-                <li><strong class="UI">CAVLC</strong>: 데이터 처리과정이 CABAC에 비해 단순하여 시스템 리소스를 적게 사용하지만 압축률이 상대적으로 낮습니다.</li>
+                <li><strong class="UI">CABAC</strong>: <!-- 데이터 처리과정이 복잡하여 시스템 리소스를 많이 사용하지만 압축률이 높습니다. -->압축률이 높지만 데이터 처리과정이 복잡하여 시스템 리소스를 많이 사용합니다.</li>
+                <li><strong class="UI">CAVLC</strong>: <!-- 데이터 처리과정이 CABAC에 비해 단순하여 시스템 리소스를 적게 사용하지만 압축률이 상대적으로 낮습니다. -->CABAC에 비해 압축률이 낮지만, 데이터 처리과정이 단순하여 시스템 리소스를 적게 사용합니다.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="smartcodec"></a>스마트 코덱 </h3>
             <p>스마트 코덱 사용 여부를 설정합니다. 스마트 코덱은 영상에서 사용자가 관심 있는 영역은 압축율을 낮춰 고화질로 출력하고 그 외 부분은 압축율을 높여 일반 화질로 출력하여, 전체 영상 데이터 크기를 줄이는 한화테크윈의 고유 기술입니다. 스마트 코덱은 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[CBR]</strong>일 때만 활성화됩니다.</p>
           
-            <p>스마트 코덱 관심 영역은 <strong class="UI">[비디오 및&nbsp;오디오]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[스마트 코덱]</strong></a>에서 설정할 수 있습니다. </p>
+            <p>스마트 코덱 관심 영역은 <strong class="UI">[비디오 및 오디오]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[스마트 코덱]</strong></a>에서 설정할 수 있습니다. </p>
         </div>
             
         <div class="wn5-setup-section-article-content">
             <h3>다이내믹 GOV</h3>
-                <p>다이내믹 GOV 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. 다이내믹 GOV는 영상 상황에 따라 GOV 길이가 자동으로 변경되는 기능입니다. 즉 움직임이 거의 없는 영상에서는 <strong class="UI">[다이내믹 GOV]</strong>에서 사용자가 설정한 GOV 길이가 최대로 늘어 나고, 움직임을 감지하면 <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[GOV 길이]</strong></a>에서 설정한 GOV 길이로 줄여 영상을 출력합니다.다이내믹
-GOV는 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다.</p>
-          
+            <p>다이내믹 GOV 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
+            <p>다이내믹 GOV는 영상 상황에 따라 GOV 길이가 최소 GOV 길이의 설정값에서부터 최대 다이내믹 GOV 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 GOV가 <strong class="UI">[다이내믹 GOV]</strong>에서 사용자가 설정한 값으로 동작하여 전체 영상의 비트레이트가 줄어듭니다. 움직임을 감지하면 그 직후 I프레임이 출력되며 이 후 움직임이 사라질 때까지 GOV가 GOV 길이의 설정값으로 동작하게 됩니다.</p>
             <ul>
                 <li>영상에 움직임이 없을 때 적용할 최대 GOV 길이값을 입력합니다. 입력값의 범위는 <strong class="UI">[GOV 길이]</strong> 옆에 표시됩니다. <strong class="UI">[GOV 길이]</strong>에 입력한 값이 최솟값이 되고, 최댓값은 480으로 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다.</li>
             </ul>
@@ -384,7 +404,9 @@ GOV는 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong c
 		    
 			<div class="wn5-setup-section-article-content">
             <h3>다이내믹 FPS</h3>
-            <p>다이내믹 FPS 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. 다이내믹 FPS는 영상 상황에 따라 초당 프레임 수(frames per second)가 자동으로 변경되는 기능입니다. 다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다.</p>
+            <p>다이내믹 FPS 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
+            <p>다이내믹 FPS(Dynamic FPS)는 영상 상황에 따라 최소 FPS 설정값부터 프레임 레이트 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 FPS가 최소 FPS의 설정값으로 동작하게 되어 전체 영상의 비트레이트가 줄어들게 됩니다. 움직임을 감지하게 되면 FPS 값을 증가시켜서 동작합니다.</p>
+            <p>다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다.</p>
 			</div>
 			         
 			<div class="wn5-setup-section-article-content">
