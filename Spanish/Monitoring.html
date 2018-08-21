@@ -1,7 +1,6 @@
 ﻿<h1 class="wn5-setup-main-title">Pantalla en vivo</h1>
 <div class="wn5-setup-section">
-    <p ng-if="MaxAudioInput==0">Puede comprobar la pantalla en vivo para ver lo que est&aacute; siendo capturado por la c&aacute;mara y el control de captura de pantalla, salida de alarma y micr&oacute;fono y otras funciones. Al hacer clic en el bot&oacute;n <span class="tui tui-wn5-top-live"></span> de la pantalla, aparecer&aacute; la pantalla grabada. </p>
-    <p ng-if="MaxAudioInput!=0">Puede comprobar la pantalla en vivo para ver lo que est&aacute; siendo capturado por la c&aacute;mara y el control de captura de pantalla, salida de alarma y otras funciones. Al hacer clic en el bot&oacute;n <span class="tui tui-wn5-top-live"></span> de la pantalla, aparecer&aacute; la pantalla grabada. </p>
+    <p>Puede comprobar la pantalla en vivo para ver lo que est&aacute; siendo capturado por la c&aacute;mara y el control de captura de pantalla y otras funciones. Al hacer clic en el bot&oacute;n <span class="tui tui-wn5-top-live"></span> de la pantalla, aparecer&aacute; la pantalla grabada. </p>
 </div>
 
 <div class="wn5-setup-section">
@@ -17,8 +16,13 @@
 		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
-				<li>Si se conecta al visor web a trav&eacute;s de Chrome, la funci&oacute;n de pantalla de grabar reproducci&oacute;n puede ser utilizada con seguridad.</li>
-			<!-- 	<li>Cuando se conecta a un visor web a trav&eacute;s de Internet Explorer o Safari, se requiere un plugin para poder utilizar las funciones de captura <span class="tui tui-wn5-toolbar-capture"></span>, grabaci&oacute;n<span class="tui tui-wn5-toolbar-record"></span>, recuento de p&iacute;xeles<span class="tui tui-wn5-toolbar-pixel"></span> o micr&oacute;fono<span class="tui tui-wn5-toolbar-mic"></span>. Para instalar el plug-in, haga clic en el bot&oacute;n <span class="tui tui-wn5-download"></span> de la parte superior derecha.</li> -->
+                <li>Si se conecta al visor web a trav&eacute;s de Chrome, la funci&oacute;n de pantalla de grabar reproducci&oacute;n puede ser utilizada con seguridad.</li>
+                <li>Cuando se reproduce un video en la p&aacute;gina en vivo, es posible que se produzca un efecto fantasma en uno de los siguientes casos:</li>
+                <ul>
+                    <li>Cuando cambi&oacute; la resoluci&oacute;n despu&eacute;s de cambiar el perfil</li>
+                    <li>Cuando se retrasa la transmisi&oacute;n de datos debido a retrasos en la red despu&eacute;s de cambiar el perfil</li>
+                    <li>Cuando el tama&ntilde;o o la ubicaci&oacute;n del navegador web cambia</li>
+                </ul>
 			</ul>
 
         </div>
@@ -31,7 +35,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Los iconos en la parte inferior de la pantalla en vivo proporcionan las siguientes funciones: </p>
+            <p>Los iconos en la parte inferior de la pantalla en vivo proporcionan las siguientes funciones (Puede ser que algunas funciones no sean compatibles con ciertos navegadores o codecs.): </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <table class="table table-bordered wn5-setup-table">
@@ -185,8 +189,8 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
-                        <td width="235">
+                    <tr ng-if="MaxAlarmOutput">
+                        <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
                             <p>Salida de alarma</p>
                             <p>&nbsp;</p>
@@ -195,8 +199,8 @@
                             <p>Al hacer clic en un n&uacute;mero de salida de alarma deseado, la alarma se emite seg&uacute;n lo establecido anteriormente. La alarma puede configurarse desde la p&aacute;gina <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Evento]</strong>&gt;<strong class="UI">[Salida de alarma]</strong>. El n&uacute;mero de salidas de alarma var&iacute;a en funci&oacute;n de la c&aacute;mara.</p>
                             <p>&nbsp;</p>
                         </td>
-                    </tr>
-                    <tr ng-if="MaxAudioOutput">
+                    </tr ng-if="MaxAudioOutput">
+                    <tr >
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>Altavoz</p>
@@ -210,6 +214,64 @@
                 </tbody>
             </table>
         </div>
+        <div class="wn5-online-help-action" ng-if="MaxChannel > 1">
+            <h4>Para cambiar el canal</h4>
+                <ul>
+                    <li>Seleccione el n&uacute;mero del canal que desea. El video del canal aparecer&aacute; en el visor.</li>
+                    <li>Para la vista quad, haga clic en el icono de la visa Quad.</li>
+                    <li>Para volver a la vista &uacute;nica, haga clic en el n&uacute;mero del canal. </li>
+                </ul>
+            </div>
+            <div class="wn5-online-help-action">
+            <h4>Para capturar una imagen</h4>
+                <ul>
+                    <li>En la escena que desea capturar, haga clic en el icono captura <span class="tui tui-wn5-toolbar-capture"></span>.</li>
+                    <li>Cuan do se guarda la imagen capturada, aparecer&aacute; un mensaje de notificaci&oacute;n. La imagen capturada se guarda en la ruta especificada en cada navegador.  </li>
+                </ul>
+                <p>Si la captura de imagen no funciona en Windows 7 o posteriores con el navegador Internet Explorer, ejecute el buscador como administrador. </p>
+            </div>
+            <div class="wn5-online-help-action"  ng-if="!CamSpecialModel">
+            <h4><a name="record"></a>Para graba video</h4>
+                <ul>
+                    <li>Haga clic en el icono Guardar <span class="tui tui-wn5-toolbar-record"></span> .</li>
+                    <li>Para finalizar la grabaci&oacute;n manual, vuelva a hacer clic en el bot&oacute;n <span class="tui tui-wn5-toolbar-record"></span>Guardar.</li>
+               </ul>
+                <p>La grabaci&oacute;n manual se puede guardar como un archivo .avi en su PC. Especifique la ruta y guarde el video. </p>
+                <p>Si graba el video en el modo de vista Ojo de pez, se guardar&aacute;n las im&aacute;genes originales en lugar de las im&aacute;genes de la vista desformada que se muestra actualmente.</p>
+            </div>
+			
+            <div class="wn5-online-help-action">
+                <h4>Para cambiar a pantalla completa</h4>
+                <ul>
+                    <li>Seleccione el icono <span class="tui tui-wn5-toolbar-fullscreen"></span> de Pantalla completa para cambiar el modo de visualizaci&oacute;n a pantalla completa. </li>
+                    <li>Para salir del modo pantalla completa, vuelva a hacer clic en el icono <span class="tui tui-wn5-toolbar-fullscreen"></span>Pantalla completa o pulse la tecla [Esc]. </li>
+                </ul>
+            </div>
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput==0">
+            <h4>Para utilizar audio</h4>
+                <ul>
+                    <li>Haga clic en el icono de Audio <span class="tui tui-wn5-toolbar-mic"></span> .</li>
+                    <li>Ajuste el volumen de audio utilizando la barra de control de Volumen.</li>
+                </ul>
+                <p>Si no se escucha ning&uacute;n sonido al conectar o desconectar el enchufe de audio de la PC mientras se reproduce el audio, haga clic en el icono Audio <span class="tui tui-wn5-toolbar-mic"></span> y habil&iacute;telo.</p>
+            </div>
+			
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput">
+                <h4>Para utilizar el parlante</h4>
+                <ul>
+                    <li>Haga clic en el icono del parlante <span class="tui tui-wn5-toolbar-sound"></span> .</li>
+                  
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-action">
+            <h4>Para contar el n&uacute;mero de p&iacute;xeles</h4>
+                <ul>
+                    <li>Haga clic en el icono de conteo de p&iacute;xeles <span class="tui tui-wn5-toolbar-pixel"></span> .</li>
+                    <li>Arrastra el rat&oacute;n sobre el video para establecer un &aacute;rea. Desde esta &aacute;rea, se contar&aacute; y se mostrar&aacute; el n&uacute;mero de p&iacute;xeles en la pantalla.</li>
+                   
+                </ul>
+            </div>		
     </div>
 </div>
 
@@ -247,32 +309,6 @@
     </div>
 </div>
 
-
-<hr class="wn5-setup-hr" ng-if="Zoom">
-<div class="wn5-setup-section" ng-if="Zoom">
-    <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>Puede ajustar el zoom o enfoque de la c&aacute;mara.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Ajuste del zoom</h3>
-            <p>Al hacer clic en el bot&oacute;n <strong class="UI">[+]</strong> en el &aacute;rea incluida de zoom, la pantalla acerca el zoom. Cuando se hace clic en el bot&oacute;n <strong class="UI">[-]</strong>, la pantalla aleja el zoom.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Ajuste del enfoque</h3>
-            <p><span class="tui tui-wn5-ptz-near"></span>Ajuste el enfoque de la c&aacute;mara haciendo clic en un bot&oacute;n o el bot&oacute;n <span class="tui tui-wn5-ptz-far"></span>.</p>
-            <p>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente de una vez, haga clic en el bot&oacute;n <span class="tui tui-wn5-simple-focus"></span>.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Mover un preajuste</h3>
-            <p>Cuando selecciona un preajuste que desee desde la lista de preajustes y hace clic en el bot&oacute;n <strong class="UI">[Ir]</strong>, se mover&aacute; hasta la ubicaci&oacute;n de preajuste deseada.</p>
-            <p>Para agregar un preajuste, haga clic en el bot&oacute;n <strong class="UI">[Configuraci&oacute;n] </strong>, introduzca el nombre de preajuste, defina un n&uacute;mero, y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. Un preajuste puede ser a&ntilde;adido o cambiado desde la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de preajustes]</strong>.</p>
-        </div>
-    </div>
-</div>
 
 
 <!-- <hr class="wn5-setup-hr" >
@@ -357,6 +393,32 @@
 </div>
 
 
+<hr class="wn5-setup-hr" ng-if="Zoom">
+<div class="wn5-setup-section" ng-if="Zoom">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Puede ajustar el zoom o enfoque de la c&aacute;mara.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Ajuste del zoom</h3>
+            <p>Al hacer clic en el bot&oacute;n <strong class="UI">[+]</strong> en el &aacute;rea incluida de zoom, la pantalla acerca el zoom. Cuando se hace clic en el bot&oacute;n <strong class="UI">[-]</strong>, la pantalla aleja el zoom.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Ajuste del enfoque</h3>
+            <p><span class="tui tui-wn5-ptz-near"></span>Ajuste el enfoque de la c&aacute;mara haciendo clic en un bot&oacute;n o el bot&oacute;n <span class="tui tui-wn5-ptz-far"></span>.</p>
+            <p>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente de una vez, haga clic en el bot&oacute;n <span class="tui tui-wn5-simple-focus"></span>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Mover un preajuste</h3>
+            <p>Cuando selecciona un preajuste que desee desde la lista de preajustes y hace clic en el bot&oacute;n <strong class="UI">[Ir]</strong>, se mover&aacute; hasta la ubicaci&oacute;n de preajuste deseada.</p>
+            <p>Para agregar un preajuste, haga clic en el bot&oacute;n <strong class="UI">[Configuraci&oacute;n] </strong>, introduzca el nombre de preajuste, defina un n&uacute;mero, y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. Un preajuste puede ser a&ntilde;adido o cambiado desde la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de preajustes]</strong>.</p>
+        </div>
+    </div>
+</div>
+
 
 <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">
@@ -402,6 +464,16 @@
                     <p>Muestra el modo de montaje de la c&aacute;mara. El tipo de vista difiere dependiendo del modo de montaje. </p>
                     <p>El modo de montaje se puede ajustar en <strong class="UI">[V&iacute;deo y audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de v&iacute;deo]</strong> &gt; <strong class="UI">[Rotaci&oacute;n de v&iacute;deo]</strong> &gt; <strong class="UI">[Modo de montaje de c&aacute;mara]</strong>.El tipo de vista 'Panorama doble' solo aparece cuando se selecciona <strong class="UI">[Techo]</strong>. Los otros tipos de vista son los mismos para 'Tipo techo' y 'Tipo pared'.</p>
                     <p>Despu&eacute;s de seleccionar el icono de tipo de vista deseado, puede cambiar la vista de la c&aacute;mara haciendo clic y arrastrando la pantalla de v&iacute;deo en vivo.</p>
+                    <ul>
+                        <li>Ojo de pez (<span class="tui tui-wn5-fisheye"></span>): Muestra la vista de ojo de pez original que no est&aacute; deformada.</li>
+                        <li>Panorama simple (<span class="tui tui-wn5-single-panorama"></span>): Deforma un video original y lo muestra como un panorama de pared.</li>
+                        <li>Panorama doble (<span class="tui tui-wn5-double-panorama"></span>): Deforma un video original y lo muestra como un panorama dividido arriba y abajo.</li>
+                        <li>Ojo de pez + 3PTZ (<span class="tui tui-wn5-fisheye-3ptz"></span>): Deforma un panorama de pared y 3 &aacute;reas de ROI y los muestra en la pantalla dividida.</li>
+                        <li>Vista Quad (<span class="tui tui-wn5-quad-view"></span>): Deforma un video de ojo de pez y 4 &aacute;reas de ROI y las muestra en la pantalla dividida.</li>
+                        <li>Panorama + 2PTZ (<span class="tui tui-wn5-panorama-2ptz"></span>): Deforma un panorama y 2 &aacute;reas de ROI y los muestra en la pantalla dividida.</li>
+                        <li>Ojo de pez + 8PTZ (<span class="tui tui-wn5-fisheye-8ptz"></span>): Deforma un panorama de pared y 8 &aacute;reas de ROI y los muestra en la pantalla dividida. Esta vista solo se admite cuando est&aacute; montada en la pared.</li>
+                    </ul>
+                    <p>Si el modo de montaje de la c&aacute;mara se cambia en <strong class="UI">[Video y audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de video]</strong> &gt; <strong class="UI">[Rotaci&oacute;n de video]</strong> &gt; <strong class="UI">[Modo de montaje de c&aacute;mara]</strong>, la direcci&oacute;n de instalaci&oacute;n del modo de vista de ojo de pez tambi&eacute;n cambiar&aacute; en el modo En vivo.</p>
                 </div>
         <div class="wn5-setup-section-article-content">
             <h3>Restablecer/Restablecer todo  </h3>

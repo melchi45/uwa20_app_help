@@ -28,16 +28,23 @@
 			<h4>D&eacute;finir la r&egrave;gle de comptage</h4>
                 <p>Pour d&eacute;finir une r&egrave;gle de comptage, cochez la case dans <strong class="UI">[R&egrave;gle]</strong> et entrez le nom de la r&egrave;gle dans le champ <strong class="UI">[Nom]</strong>. Vous pouvez saisir jusqu&apos;&agrave; 15&nbsp;caract&egrave;res, y compris des lettres et des chiffres, pour le nom de la r&egrave;gle. Le nom entr&eacute; est affich&eacute; dans <strong class="UI">[Statistiques]</strong>&gt;<strong class="UI">[Comptage de personnes]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="pcStatisticsSetup.html"
 ng-href="#/help/peoplecounting_search">[Rechercher]</a></strong>.</p>
-			</div>
+            </div>
+            <div class="wn5-online-help-info">
+                    <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                    <ul>
+                        <li>Si vous modifiez le nom de la r&egrave;gle, les donn&eacute;es statistiques de comptage de la r&egrave;gle existante sont r&eacute;initialis&eacute;es et le comptage recommence. </li>
+                    </ul>
+                </div>	
             <div class="wn5-online-help-action">
                 <h4><a name="type"></a>D&eacute;finir le type de comptage</h4>
                 <p>Les types de comptage du nombre de personnes dans Comptage de personnes sont le comptage IN et le comptage OUT.</p>
                 <p>Lorsque vous cochez la case dans <strong class="UI">[R&egrave;gle]</strong>, la ligne de la r&egrave;gle appara&icirc;t dans l&apos;image. Le comptage IN s&apos;applique aux personnes qui se d&eacute;placent dans le sens de la fl&egrave;che se trouvant sur la ligne et le comptage OUT s&apos;applique aux personnes qui se d&eacute;placent dans la direction oppos&eacute;e. Cliquer sur la fl&egrave;che se trouvant sur la ligne de la r&egrave;gle change sa direction.</p>
-                <p><img src="../../base/images/setup/popup_counting.png"></p>
+                <p><img src="../../../../base/images/setup/setup/popup_counting.png"></p>
             </div>
             <div class="wn5-online-help-action">
                 <h4>D&eacute;finir la ligne de la r&egrave;gle</h4>
                 <p>La fonction de comptage de personnes permet de compter le nombre de personnes qui passent la ligne de la r&egrave;gle. Pour modifier la position de la ligne de la r&egrave;gle, cliquez sur la ligne de la r&egrave;gle affich&eacute;e dans l&apos;image et faites-la glisser &agrave; l&apos;aide de la souris. Vous pouvez ajuster la longueur de la ligne en faisant glisser un des coins situ&eacute;s &agrave; chaque extr&eacute;mit&eacute; de la ligne de la r&egrave;gle.</p>
+                <p>Si vous s&eacute;lectionnez et activez la r&egrave;gle, le d&eacute;compte en temps r&eacute;el est affich&eacute; en bas de la vid&eacute;o. Le comptage en temps r&eacute;el se r&eacute;initialise tous les 00:00:00.</p>
             </div>
             <div class="wn5-online-help-action">
                 <h4>Activer et d&eacute;sactiver la r&egrave;gle de comptage de personnes</h4>
@@ -96,6 +103,7 @@ ng-href="#/help/peoplecounting_search">[Rechercher]</a></strong>.</p>
 
     <ul>
         <li>La valeur d&eacute;finie dans <strong class="UI">[Comptage de personnes]</strong> &gt; <strong class="UI">[&Eacute;talonnage]</strong> s&apos;applique aux fonctions <strong class="UI">[Comptage de personnes]</strong> et <strong class="UI">[Carte thermique]</strong> de la m&ecirc;me mani&egrave;re.</li>
+        <li>L&rsquo;&eacute;talonnage est n&eacute;cessaire pour am&eacute;liorer la pr&eacute;cision du comptage des personnes. Des informations d&rsquo;&eacute;talonnage inexactes peuvent avoir un impact n&eacute;gatif sur la pr&eacute;cision du comptage de personnes.</li>
     </ul>
 		</div>
 </div>
@@ -160,5 +168,37 @@ ng-href="#/help/peoplecounting_search">[Rechercher]</a></strong>.</p>
           </div>
   </div>
   </div>
-
+  <hr class="wn5-setup-hr">
+  <div class="wn5-online-help-info">
+        <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+        <ul>
+            <li>La fonction Comptage de personnes vise &agrave; fournir des donn&eacute;es statistiques, et non des donn&eacute;es en temps r&eacute;el, et peut inclure des objets en mouvement ou des animaux dans le nombre total d&rsquo;unit&eacute;s mesur&eacute;es.</li>
+            <li>Apr&egrave;s l&rsquo;installation de la cam&eacute;ra, il se peut qu&rsquo;elle continue &agrave; ne pas fonctionner correctement jusqu&rsquo;&agrave; ce qu&rsquo;elle soit stabilis&eacute;e. Le temps de stabilisation peut prendre de 50 &agrave; 60 minutes.</li>
+            <li>Une cam&eacute;ra pour effectuer le comptage de personnes n&eacute;cessite que l&rsquo;objectif soit install&eacute; au sol en prise directe. (Figure 1)</li>
+            <li>Dans les cas suivants, les erreurs dans les donn&eacute;es mesur&eacute;es sont susceptibles d&rsquo;augmenter&nbsp;:</li>
+            <ul>
+                <li>Si elle est install&eacute;e dans un espace dont le champ de vision est insuffisant</li>
+                <li>Heures de nuit ou faible luminosit&eacute; (Figure 2)</li>
+                <li>Dans un environnement dont la lumi&egrave;re change soudainement, ou en cas d&rsquo;exposition &agrave; une lumi&egrave;re forte, comme la lumi&egrave;re directe du soleil, le coucher ou le lever du soleil, l&rsquo;&eacute;clairage direct, etc (Figure 3)</li>
+                <li>En cas de mouvements incessants &agrave; l&rsquo;emplacement fixe, par exemple &agrave; proximit&eacute; de la porte (Figure 4)</li>
+                <li>Si plusieurs personnes se d&eacute;placent dans un groupe</li>
+                <li>Si un objet en mouvement est proche de la r&egrave;gle d&eacute;finie,</li>
+                <li>Si la r&egrave;gle est d&eacute;finie sur le bord ext&eacute;rieur de l&rsquo;image pour une cam&eacute;ra Fisheye (Figure 5)</li>
+            </ul>
+            <li>Si vous r&eacute;glez la taille de l&rsquo;objet &agrave; une valeur sup&eacute;rieure &agrave; la taille r&eacute;elle dans l&rsquo;&eacute;talonnage, les r&eacute;sultats de la mesure peuvent donner un nombre de personnes inf&eacute;rieur au nombre r&eacute;el&nbsp;; au contraire, si vous le r&eacute;glez &agrave; un nombre inf&eacute;rieur, il peut donner un nombre de personnes sup&eacute;rieur au nombre r&eacute;el.</li>
+        </ul>
+        <p>Figure 1</p>
+        <p><img src="../../../../base/images/setup/pcSetup_1.png"></p>
+        <p>Figure 2</p>
+        <p><img src="../../../../base/images/setup/pcSetup_2.png"></p>
+        <p>Figure 3</p>
+        <p><img src="../../../../base/images/setup/pcSetup_3.png"></p>
+        <p>Figure 4</p>
+        <p><img src="../../../../base/images/setup/pcSetup_4-1.png"></p>
+        <p><img src="../../../../base/images/setup/pcSetup_4-2.png"></p>
+        <p><img src="../../../../base/images/setup/pcSetup_4-3.png"></p>
+        <p>Figure 5</p>
+        <p><img src="../../../../base/images/setup/pcSetup_5.png"></p>	
+    </div>
+    <hr class="wn5-setup-hr">
   <hr class="wn5-setup-hr">

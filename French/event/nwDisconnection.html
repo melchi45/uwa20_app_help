@@ -24,11 +24,11 @@
         <h2><a class="wn5-online-help-link" name="action"></a>Configuration des actions de l&apos;&eacute;v&eacute;nement</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>Enregistrer</h3>
             <p>Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;connexion r&eacute;seau est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>&Eacute;mission d&apos;alerte</h3>
             <p>Vous pouvez r&eacute;gler l&rsquo;&eacute;mission d&rsquo;alerte &agrave; un nombre d&apos;alarme sp&eacute;cifique lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;connexion r&eacute;seau est cr&eacute;&eacute;. Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&apos;alerte, s&eacute;lectionnez <strong class="UI">[D&eacute;sactiv&eacute;]</strong> si vous ne souhaitez pas d&apos;alerte, ou s&eacute;lectionnez l&apos;heure d&rsquo;&eacute;mission si vous souhaitez &eacute;mettre l&rsquo;alarme. Vous pouvez d&eacute;finir une &eacute;mission d&apos;alarme continue, jusqu&apos;&agrave; ce que l&apos;utilisateur arr&ecirc;te l&apos;alarme, en s&eacute;lectionnant <strong class="UI">[Toujours]</strong>, ou r&eacute;gler l&rsquo;&eacute;mission de l&apos;alarme pour 5, 10 ou 15&nbsp;secondes. Les r&eacute;glages d&eacute;taill&eacute;s pour l&rsquo;&eacute;mission d&apos;alerte peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html"  ng-href="#/help/event_alarmoutput"><strong class="UI">[&Eacute;mission d&apos;alerte]</strong></a>.</p>
         </div>
@@ -38,12 +38,12 @@
                     <p>Vous pouvez r&eacute;gler la position de l&apos;affichage de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; un nombre pr&eacute;d&eacute;fini lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;connexion r&eacute;seau est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ num&eacute;rique]</strong></a> ou <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="(PresetSetupPage) && PresetSupport">
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
             <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
                 <p>Vous pouvez r&eacute;gler la position de l&apos;affichage de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;connexion r&eacute;seau est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la section <strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong></a>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="(PTZSetupPage) && PresetSupport">
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
                 <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;connexion r&eacute;seau est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuration PTZ]</strong></a>.</p>
         </div>

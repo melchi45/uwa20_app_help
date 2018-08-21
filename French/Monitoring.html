@@ -1,6 +1,6 @@
 ﻿<h1 class="wn5-setup-main-title">&Eacute;cran de direct</h1>
 <div class="wn5-setup-section">
-    <p>Vous pouvez v&eacute;rifier l&apos;&eacute;cran de direct afin de voir ce qui est film&eacute; par la cam&eacute;ra et de contr&ocirc;ler la capture de l&apos;&eacute;cran, l&rsquo;&eacute;mission d&apos;alarme, le microphone et d&apos;autres fonctions. Lorsque vous cliquez sur le bouton <span class="tui tui-wn5-top-live"></span> sur l&apos;&eacute;cran, l&apos;&eacute;cran de direct appara&icirc;tra.</p>
+    <p>Vous pouvez v&eacute;rifier l&apos;&eacute;cran de direct afin de voir ce qui est film&eacute; par la cam&eacute;ra et de contr&ocirc;ler la capture de l&apos;&eacute;cran, et d&apos;autres fonctions. Lorsque vous cliquez sur le bouton <span class="tui tui-wn5-top-live"></span> sur l&apos;&eacute;cran, l&apos;&eacute;cran de direct appara&icirc;tra.</p>
 </div>
 
 <div class="wn5-setup-section">
@@ -8,15 +8,23 @@
     <p>Vous pouvez passer &agrave; l&apos;&eacute;cran de direct, &agrave; l&apos;&eacute;cran de lecture ou &agrave; l&apos;&eacute;cran de configuration en cliquant sur les boutons situ&eacute;s en haut.</p>
         <ul>
             <li><span class="tui tui-wn5-top-live"></span>(Direct)&nbsp;: v&eacute;rifiez l&apos;&eacute;cran de direct pour voir ce qui est film&eacute; par la cam&eacute;ra et contr&ocirc;ler les diverses fonctions de la cam&eacute;ra.</li>
-            <li><span class="tui tui-wn5-top-playback"></span>(Lecture)&nbsp;: recherchez et lisez une image enregistr&eacute;e &agrave; partir d&apos;une carte SD ou d&rsquo;un NAS.</li>
-            <li><span class="tui tui-wn5-top-setup"></span>(Configuration)&nbsp;: changez les r&eacute;glages de la cam&eacute;ra</li>
+            <li  ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(Lecture)&nbsp;: recherchez et lisez une image enregistr&eacute;e &agrave; partir d&apos;une carte SD ou d&rsquo;un NAS.</li>
+            <li  ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(Lecture)&nbsp;: recherchez et lisez une image enregistr&eacute;e &agrave; partir d&apos;une carte SD.</li>
+            <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(Configuration)&nbsp;: changez les r&eacute;glages de la cam&eacute;ra</li>
         </ul>
     </div>
 
-		<div class="wn5-online-help-info">
+		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-				<li>En vous connectant &agrave; la visionneuse web via Chrome, la fonction d&apos;&eacute;cran de lecture d&apos;enregistrement peut &ecirc;tre utilis&eacute;e en toute s&eacute;curit&eacute;.</li><!-- 		<li>When you connect to a web viewer through Internet Explorer or Safari, a plugin is required before you can use the capture<span class="tui tui-wn5-toolbar-capture"></span>, record<span class="tui tui-wn5-toolbar-record"></span>, pixel count<span class="tui tui-wn5-toolbar-pixel"></span> or microphone <span class="tui tui-wn5-toolbar-mic"></span>functions. To install the plugin, click the <span class="tui tui-wn5-download"></span> button at the top right.</li>  --></ul>
+                <li>En vous connectant &agrave; la visionneuse web via Chrome, la fonction d&apos;&eacute;cran de lecture d&apos;enregistrement peut &ecirc;tre utilis&eacute;e en toute s&eacute;curit&eacute;.</li>
+                <li>Lors de la lecture d’une vidéo sur la page en direct, un fantôme peut se produire dans l’un des cas suivants :</li>
+                <ul>
+                    <li>Lorsque la résolution a changé après avoir modifié le profil</li>
+                    <li>Lorsque le transfert de données est retardé en raison du retard du réseau après un changement de profil</li>
+                    <li>Lorsque la taille ou l’emplacement de la fenêtre du navigateur Web a changé</li>
+                </ul>
+            </ul>
 
         </div>
 </div>
@@ -28,7 +36,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Les ic&ocirc;nes situ&eacute;es en bas de l&apos;&eacute;cran de direct assurent les fonctions suivantes&nbsp;:</p>
+            <p>Les ic&ocirc;nes situ&eacute;es en bas de l&apos;&eacute;cran de direct assurent les fonctions suivantes&nbsp; (Certaines fonctions peuvent ne pas fonctionner avec certains navigateurs ou codecs.):</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <table class="table table-bordered wn5-setup-table">
@@ -60,13 +68,7 @@
                         </td>
                         <td width="235">
                             <p ng-if="DPTZSetupPage">Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
-
-
-
-
-<p ng-if="ExternalPTZPage">Vous pouvez contr&ocirc;ler le fonctionnement panoramique/inclinaison/zoom de la cam&eacute;ra via un r&eacute;cepteur panoramique/inclinaison connect&eacute; au terminal RS-485 ou RS-422 de la cam&eacute;ra. Vous pouvez passer &agrave; la position pr&eacute;d&eacute;finie &eacute;tablie dans la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong>, ou d&eacute;marrer et arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi.</p>
-
-
+                            <p ng-if="ExternalPTZPage">Vous pouvez contr&ocirc;ler le fonctionnement panoramique/inclinaison/zoom de la cam&eacute;ra via un r&eacute;cepteur panoramique/inclinaison connect&eacute; au terminal RS-485 ou RS-422 de la cam&eacute;ra. Vous pouvez passer &agrave; la position pr&eacute;d&eacute;finie &eacute;tablie dans la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong>, ou d&eacute;marrer et arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi.</p>
                             <p ng-if="PTZSetupPage">Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. Vous pouvez passer &agrave; l&apos;emplacement pr&eacute;d&eacute;fini &eacute;tabli &agrave; la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuration PTZ]</strong> ou d&eacute;marrer/arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi.</p>
                         </td>
                     </tr>
@@ -158,8 +160,8 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
-                        <td width="235">
+                    <tr ng-if="MaxAlarmOutput">
+                        <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
                             <p>&Eacute;mission d&apos;alerte</p>
                             <p>&nbsp;</p>
@@ -169,8 +171,8 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
-                        <td width="235">
+                    <tr ng-if="MaxAudioOutput">
+                        <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>Haut-parleur</p>
                             <p>&nbsp;</p>
@@ -183,6 +185,64 @@
                 </tbody>
             </table>
         </div>
+        <div class="wn5-online-help-action" ng-if="MaxChannel > 1">
+            <h4>Pour changer de canal</h4>
+                <ul>
+                    <li>S&eacute;lectionnez le num&eacute;ro de canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
+                    <li>Pour la vue quadravision, cliquez sur l&rsquo;ic&ocirc;ne Vue Quadravision.</li>
+                    <li>Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</li>
+                </ul>
+            </div>
+            <div class="wn5-online-help-action">
+            <h4>Pour saisir une image</h4>
+                <ul>
+                    <li>Dans la sc&egrave;ne &agrave; capturer, cliquez sur l&rsquo;ic&ocirc;ne de saisie <span class="tui tui-wn5-toolbar-capture"></span>.</li>
+                    <li>Lorsque l&rsquo;image prise est enregistr&eacute;e, un message de notification s&rsquo;affiche. L&rsquo;image prise est enregistr&eacute;e dans le chemin d&rsquo;acc&egrave;s sp&eacute;cifi&eacute; dans chaque navigateur.</li>
+                </ul>
+                <p>Si la saisie d&rsquo;image ne fonctionne pas sous Windows 7 ou ult&eacute;rieur, avec le navigateur Internet Explorer, ex&eacute;cutez le navigateur Internet Explorer en tant qu&rsquo;administrateur.</p>
+            </div>
+            <div class="wn5-online-help-action"  ng-if="!CamSpecialModel">
+            <h4><a name="record"></a>Pour enregistrer une vid&eacute;o</h4>
+                <ul>
+                    <li>Cliquez sur le bouton Enregistrer <span class="tui tui-wn5-toolbar-record"></span> .</li>
+                    <li>Pour terminer l&rsquo;enregistrement manuel, cliquez &agrave; nouveau sur le bouton enregistrer <span class="tui tui-wn5-toolbar-record"></span>.</li>
+               </ul>
+                <p>L&rsquo;enregistrement manuel peut &ecirc;tre sauvegard&eacute; sous forme de fichier.avi sur votre PC. Sp&eacute;cifiez le chemin d&rsquo;acc&egrave;s et enregistrez la vid&eacute;o.</p>
+                <p>Si vous enregistrez la vid&eacute;o en mode d&rsquo;affichage Fisheye, les images originales seront sauvegard&eacute;es &agrave; la place des images de la vue en cours d&rsquo;affichage.</p>
+            </div>
+			
+            <div class="wn5-online-help-action">
+                <h4>Pour passer en plein &eacute;cran</h4>
+                <ul>
+                    <li>S&eacute;lectionnez l&rsquo;ic&ocirc;ne Plein &eacute;cran<span class="tui tui-wn5-toolbar-fullscreen"></span> pour passer en mode plein &eacute;cran.</li>
+                    <li>Pour quitter le mode Plein &eacute;cran, cliquez &agrave; nouveau sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-toolbar-fullscreen"></span> Plein &eacute;cran ou appuyez sur le touche [Esc] du clavier.</li>
+                </ul>
+            </div>
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput==0">
+            <h4>Pour utiliser l&rsquo;audio</h4>
+                <ul>
+                    <li>Cliquez sur l&rsquo;ic&ocirc;ne Audio <span class="tui tui-wn5-toolbar-mic"></span> .</li>
+                    <li>R&eacute;glez le volume audio &agrave; l&rsquo;aide de la barre de contr&ocirc;le du volume.</li>
+                </ul>
+                <p>Si aucun son n&rsquo;est &eacute;mis lors de la connexion ou de la d&eacute;connexion de la prise audio du PC pendant la lecture audio, cliquez sur l&rsquo;ic&ocirc;ne Audio <span class="tui tui-wn5-toolbar-mic"></span> et activez-le.</p>
+            </div>
+			
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput">
+                <h4>Pour utiliser le haut-parleur</h4>
+                <ul>
+                    <li>Cliquez sur l&rsquo;ic&ocirc;ne Haut-parleur <span class="tui tui-wn5-toolbar-sound"></span> .</li>
+                  
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-action">
+            <h4>Pour compter le nombre de pixels</h4>
+                <ul>
+                    <li>Cliquez sur l&rsquo;ic&ocirc;ne Comptage de pixel <span class="tui tui-wn5-toolbar-pixel"></span> .</li>
+                    <li>Faites glisser la souris sur la vid&eacute;o pour d&eacute;finir une zone. A partir de cette zone, le nombre de pixels sera compt&eacute; et affich&eacute; &agrave; l&rsquo;&eacute;cran.</li>
+                   
+                </ul>
+            </div>						
     </div>
 </div>
 
@@ -212,7 +272,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>Profil</h3>
             <p>Le nom et les informations d&eacute;taill&eacute;es du profil vid&eacute;o appliqu&eacute; &agrave; l&apos;actuel &eacute;cran de direct seront affich&eacute;s. Lorsque vous appuyez sur le bouton d&eacute;roulant <strong class="UI">[Profil]</strong>, une liste de profils vid&eacute;o pouvant &ecirc;tre utilis&eacute;s dans la visionneuse web actuelle s&apos;affiche. Lorsque vous s&eacute;lectionnez le profil vid&eacute;o souhait&eacute;, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct. Vous pouvez v&eacute;rifier la r&eacute;solution, le codec, la vitesse d&apos;enregistrement et le d&eacute;bit binaire cible du profil vid&eacute;o s&eacute;lectionn&eacute;.</p><!--   <p ng-if="FisheyeLens">If you access the web viewer with Internet Explorer, the videos of profiles other than the MJPEG codec can be viewed only after installing the plugin. To install the plugin, click the plugin in the upper right corner.</p>  --></div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content"  ng-if="IsAdmin">
             <h3>Affichage</h3>
             <p>R&eacute;glez le contraste, la luminosit&eacute;, la nettet&eacute; et le niveau des couleurs de l&apos;&eacute;cran de direct. Lorsque vous validez le r&eacute;glage, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct.</p>
         </div>
@@ -290,8 +350,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <h3>Zoom localis&eacute;</h3>
 
             <p>Le zoom localis&eacute; permet d&rsquo;effectuer un zoom avant et de voir une zone sp&eacute;cifi&eacute;e.</p>
-            <p>Lorsque vous s&eacute;lectionnez une zone en faisant glisser la souris sur l&apos;&eacute;cran de visualisation de la cam&eacute;ra apr&egrave;s avoir cliqu&eacute; sur le bouton <span class="tui tui-chi-live-ptz-areazoom"></span>, la fonction de zoom fonctionnera en fonction de la zone s&eacute;lectionn&eacute;e et la position de la cam&eacute;ra passera &agrave; la zone s&eacute;lectionn&eacute;e. Vous pouvez passer &agrave; la zone et &agrave; la configuration pr&eacute;c&eacute;demment s&eacute;lectionn&eacute;es en cliquant sur le bouton <span class="tui tui-chi-live-ptz-areazoom-back"></span>. Si vous &ecirc;tes pass&eacute; &agrave; la zone et &agrave; la configuration pr&eacute;c&eacute;demment s&eacute;lectionn&eacute;es, cliquez sur le bouton <span
-class="tui tui-chi-live-ptz-areazoom-pre"></span> si vous souhaitez revenir &agrave; nouveau &agrave; la zone et &agrave; la configuration pr&eacute;c&eacute;dentes. Lorsque vous cliquez sur le bouton <span class="tui tui-chi-live-ptz-areazoom-1x"></span>, le zoom grossissant passera &agrave; 1x et la cam&eacute;ra reviendra &agrave; sa position d&apos;origine.</p>
+            <p>Lorsque vous s&eacute;lectionnez une zone en faisant glisser la souris sur l&apos;&eacute;cran de visualisation de la cam&eacute;ra apr&egrave;s avoir cliqu&eacute; sur le bouton <span class="tui tui-chi-live-ptz-areazoom"></span>, la fonction de zoom fonctionnera en fonction de la zone s&eacute;lectionn&eacute;e et la position de la cam&eacute;ra passera &agrave; la zone s&eacute;lectionn&eacute;e. Vous pouvez passer &agrave; la zone et &agrave; la configuration pr&eacute;c&eacute;demment s&eacute;lectionn&eacute;es en cliquant sur le bouton <span class="tui tui-chi-live-ptz-areazoom-back"></span>. Si vous &ecirc;tes pass&eacute; &agrave; la zone et &agrave; la configuration pr&eacute;c&eacute;demment s&eacute;lectionn&eacute;es, cliquez sur le bouton <span class="tui tui-chi-live-ptz-areazoom-pre"></span> si vous souhaitez revenir &agrave; nouveau &agrave; la zone et &agrave; la configuration pr&eacute;c&eacute;dentes. Lorsque vous cliquez sur le bouton <span class="tui tui-chi-live-ptz-areazoom-1x"></span>, le zoom grossissant passera &agrave; 1x et la cam&eacute;ra reviendra &agrave; sa position d&apos;origine.</p>
             <p>  </p>
             <p>Pour terminer la configuration du zoom localis&eacute;, cliquez &agrave; nouveau sur le bouton <span class="tui tui-chi-live-ptz-areazoom"></span>. Le zoom localis&eacute; actuellement d&eacute;fini sera maintenu et la fonction de configuration du zoom localis&eacute; prendra fin.</p>
         </div>
@@ -369,6 +428,16 @@ class="tui tui-chi-live-ptz-areazoom-pre"></span> si vous souhaitez revenir &agr
                     <p>Affiche le mode de montage de la cam&eacute;ra. Le type de vue diff&egrave;re en fonction du mode de montage.</p>
                     <p>Le mode de montage peut &ecirc;tre r&eacute;gl&eacute; dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<strong class="UI">[Configuration vid&eacute;o]</strong>&gt;<strong class="UI">[Rotation vid&eacute;o]</strong>&gt;<strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>. Le type de vue «&nbsp;Double panorama&nbsp;» appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute;. Les autres types vues sont les m&ecirc;mes pour «&nbsp;Plafond&nbsp;» et «&nbsp;Mur&nbsp;».</p>
                     <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; l&rsquo;ic&ocirc;ne de type de vue souhait&eacute;, vous pouvez changer l&rsquo;affichage de la cam&eacute;ra en faisant glisser la souris sur l&apos;&eacute;cran vid&eacute;o en direct.</p>
+                    <ul>
+                        <li>Fisheye (<span class="tui tui-wn5-fisheye"></span>)&nbsp;: Affiche la vue fisheye originale qui n&rsquo;est pas liss&eacute;e.</li>
+                        <li>Panorama simple (<span class="tui tui-wn5-single-panorama"></span>)&nbsp;: Lisse une vid&eacute;o originale et l&rsquo;affiche sous forme de panorama mural.</li>
+                        <li>Panorama double (<span class="tui tui-wn5-double-panorama"></span>)&nbsp;: Lisse une vid&eacute;o originale et l&rsquo;affiche sous forme de panorama partag&eacute; en haut et en bas.</li>
+                        <li>Fisheye + 3PTZ (<span class="tui tui-wn5-fisheye-3ptz"></span>)&nbsp;: Lisse un panorama mural et 3 zones d&rsquo;int&eacute;r&ecirc;t et les affiche sur un &eacute;cran partag&eacute;.</li>
+                        <li>Vue Quad (<span class="tui tui-wn5-quad-view"></span>)&nbsp;: Lisse une vid&eacute;o Fisheye et 4 zones d&rsquo;int&eacute;r&ecirc;t et les affiche sur un &eacute;cran partag&eacute;.</li>
+                        <li>Panorama + 2PTZ (<span class="tui tui-wn5-panorama-2ptz"></span>)&nbsp;: Lisse un panorama et 2 zones d&rsquo;int&eacute;r&ecirc;t et les affiche sur un &eacute;cran partag&eacute;.</li>
+                        <li>Fisheye + 8PTZ (<span class="tui tui-wn5-fisheye-8ptz"></span>)&nbsp;: Lisse un panorama mural et 8 zones d&rsquo;int&eacute;r&ecirc;t et les affiche sur un &eacute;cran partag&eacute;. Cette vue est prise en charge uniquement en cas de montage mural.</li>
+                    </ul>
+                    <p>Si le mode de montage de la cam&eacute;ra est modifi&eacute; dans <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Vid&eacute;o configuration]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong> &gt; <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>, le sens d&rsquo;installation de la vue Fisheye est &eacute;galement modifi&eacute; en mode direct.</p>
                 </div>
         <div class="wn5-setup-section-article-content">
             <h3>R&eacute;initialiser/tout r&eacute;initialiser</h3>

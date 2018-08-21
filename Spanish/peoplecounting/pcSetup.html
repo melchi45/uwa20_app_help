@@ -28,16 +28,24 @@
 			<h4>Configuraci&oacute;n de la regla de conteo</h4>
                 <p>Para establecer la regla de conteo, seleccione la casilla de verificaci&oacute;n de <strong class="UI">[Regla de conteo]</strong> y escriba el nombre de la regla en el campo <strong class="UI">[Nombre]</strong>. Hasta 15 caracteres, incluyendo letras y n&uacute;meros, se pueden introducir para el nombre de la regla. El nombre introducido se muestra en <strong class="UI">[Estad&iacute;sticas]</strong>&gt;<strong class="UI">[Recuento de personas]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="pcStatisticsSetup.html"
 ng-href="#/help/peoplecounting_search">[Buscar]</a></strong>.</p>
-			</div>
+            </div>
+            <div class="wn5-online-help-info">
+                    <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                    <ul>
+                        <li>Si cambia el nombre de la regla, los datos estad&iacute;sticos de conteo de la regla existente se restablecen y comienzan a contar nuevamente. </li>
+                    </ul>
+            </div>
             <div class="wn5-online-help-action">
                 <h4><a name="type"></a>Ajuste del tipo de recuento  </h4>
                 <p>Los tipos para recontar el n&uacute;mero de personas en Recuento de personas son recuento DENTRO y recuento FUERA.</p>
                 <p>Cuando se selecciona la casilla de verificaci&oacute;n en <strong class="UI">[Regla de conteo]</strong>, la l&iacute;nea de estado aparecer&aacute; en la imagen. El recuento DENTRO se aplica a las personas que se mueven en la direcci&oacute;n de la flecha en la l&iacute;nea y recuento FUERA se aplica a las personas que se mueven en la direcci&oacute;n opuesta. Al hacer clic en la flecha de la l&iacute;nea de la regla se cambia su direcci&oacute;n. </p>
-                <p><img src="../../base/images/setup/popup_counting.png"></p>
+                <p><img src="../../../../base/images/setup/setup/popup_counting.png"></p>
             </div>
+
             <div class="wn5-online-help-action">
                 <h4>Configuraci&oacute;n de la l&iacute;nea de la regla </h4>
                 <p>La funci&oacute;n de Recuento de personas recuenta el n&uacute;mero de personas que pasan por la l&iacute;nea de la regla. Para cambiar la posici&oacute;n de la l&iacute;nea de la regla, haga clic en la l&iacute;nea de estado que se muestra en la imagen y arr&aacute;strela con el rat&oacute;n. Se puede ajustar la longitud de la l&iacute;nea arrastrando una esquina situada en cada extremo de la l&iacute;nea de la regla. </p>
+                <p>Si selecciona y activa la regla, el conteo en tiempo real se muestra en la parte inferior del video. El conteo en tiempo real se restablece en cada 00:00.</p>
             </div>
             <div class="wn5-online-help-action">
                 <h4>Activaci&oacute;n y desactivaci&oacute;n de la regla de Recuento de personas</h4>
@@ -96,6 +104,7 @@ ng-href="#/help/peoplecounting_search">[Buscar]</a></strong>.</p>
 
     <ul>
         <li>El valor definido en <strong class="UI">[Recuento de personas]</strong>&nbsp;&gt; <strong class="UI">[Calibraci&oacute;n]</strong>&nbsp;se aplica de igual modo a las funciones <strong class="UI">[Recuento de personas]</strong>&nbsp;y <strong class="UI">[Mapa de calor]</strong>.</li>
+        <li>Se necesita de calibraci&oacute;n para mejorar la precisi&oacute;n del conteo de personas. La informaci&oacute;n de calibraci&oacute;n inexacta puede tener un impacto negativo en la precisi&oacute;n del conteo de personas.</li>
     </ul>
 		</div>
 </div>
@@ -163,3 +172,35 @@ ng-href="#/help/peoplecounting_search">[Buscar]</a></strong>.</p>
               </div>
 
               <hr class="wn5-setup-hr">
+<div class="wn5-online-help-info">
+    <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+    <ul>
+        <li>La funci&oacute;n Conteo de personas tiene como objetivo proporcionar datos estad&iacute;sticos, pero no datos con precisi&oacute;n en tiempo real y puede incluir objetos en movimiento o animales en el n&uacute;mero total de unidades medidas.</li>
+        <li>Despu&eacute;s de instalar la c&aacute;mara, puede continuar funcionando mal hasta que se estabilice. El tiempo de estabilizaci&oacute;n puede tomar de 50 a 60 minutos.</li>
+        <li>Una c&aacute;mara para realizar el conteo de personas requiere que la lente se instale en el suelo en una ca&iacute;da directa. (Figura 1)</li>
+        <li>En cualquiera de los siguientes casos, es probable que aumenten los errores en los datos medidos:</li>
+        <ul>
+            <li>Si est&aacute; instalada en un espacio sin suficiente visi&oacute;n</li>
+            <li>Noche o bajo brillo (Figura 2)</li>
+            <li>En un entorno con un cambio de luz repentino o en caso de exposici&oacute;n a una luz fuerte, como luz solar directa, puesta de sol, salida del sol, iluminaci&oacute;n directa, etc. (Figura 3)</li>
+            <li>Si hay un movimiento constante en la ubicaci&oacute;n fija, tales como cerca de la puerta (Figura 4)</li>
+            <li>Si muchas personas se mueven en grupo</li>
+            <li>Si el objeto en movimiento est&aacute; cerca de la regla establecida,</li>
+            <li>Si la regla se establece en el extremo exterior de la imagen para lograr una c&aacute;mara ojo de pez (Figura 5)</li>
+        </ul>
+        <li>Si configura el tama&ntilde;o del objeto a un valor mayor que el tama&ntilde;o real en la calibraci&oacute;n de tama&ntilde;o, los resultados de la medici&oacute;n pueden producir un n&uacute;mero de personas menor que el real. Por el contrario, si lo configura en un n&uacute;mero menor, puede producir un mayor n&uacute;mero de personas que las reales.</li>
+    </ul>
+    <p>Figura 1</p>
+    <p><img src="../../../../base/images/setup/pcSetup_1.png"></p>
+    <p>Figura 2</p>
+    <p><img src="../../../../base/images/setup/pcSetup_2.png"></p>
+	<p>Figura 3</p>
+    <p><img src="../../../../base/images/setup/pcSetup_3.png"></p>
+	<p>Figura 4</p>
+    <p><img src="../../../../base/images/setup/pcSetup_4-1.png"></p>
+    <p><img src="../../../../base/images/setup/pcSetup_4-2.png"></p>
+    <p><img src="../../../../base/images/setup/pcSetup_4-3.png"></p>
+    <p>Figura 5</p>
+    <p><img src="../../../../base/images/setup/pcSetup_5.png"></p>	
+</div>
+<hr class="wn5-setup-hr">

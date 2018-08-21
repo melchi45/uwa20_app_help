@@ -18,6 +18,7 @@
     <div class="wn5-online-help-info">
         <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
         <ul>
+            <li>Primero, se debe grabar un video en la p&aacute;gina <strong class="UI">[En vivo]</strong> antes de poder reproducirlo.&nbsp; </li>
             <li ng-if="NAS">Si no hay conexi&oacute;n a una tarjeta SD o NAS, la funci&oacute;n de reproducci&oacute;n no se puede utilizar. </li>
             <li ng-if="!NAS">Si no hay conexi&oacute;n a una tarjeta SD, la funci&oacute;n de reproducci&oacute;n no se puede utilizar. </li>
 			<li>Si se conecta al visor web a trav&eacute;s de Chrome, la funci&oacute;n de pantalla de grabar reproducci&oacute;n puede ser utilizada con seguridad.</li>
@@ -154,10 +155,18 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Puede buscar una imagen grabada por tipo de evento.</p>
-
-            <ul><li><strong class="UI">Evento</strong>: Al hacer clic en el bot&oacute;n <strong class="UI">[Todo]</strong>, aparecer&aacute;n los tipos de eventos. Al seleccionar un evento y hacer clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>, s&oacute;lo aparecer&aacute;n im&aacute;genes grabadas para ese evento en la barra de tiempo.</li>
-            <li><strong class="UI">Secci&oacute;n superpuesta</strong>: Cuando se ajusta el tiempo de la c&aacute;mara, se crear&aacute; un tiempo solapado. Para buscar las im&aacute;genes grabadas durante el tiempo superpuesto, seleccione una secci&oacute;n solapada. </li>
-            </ul>
+            <p>Adem&aacute;s, si el tiempo en el sistema de la c&aacute;mara se ajust&oacute; y, por lo tanto, result&oacute; en tiempos superpuestos, se puede buscar el video grabado durante ese tiempo superpuesto. </p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Para buscar por evento y reproducir </h4>
+            <ol>
+                <li>Haga clic en el bot&oacute;n Mostrar en la pantalla Reproducci&oacute;n. Si hay alg&uacute;n video tomado el d&iacute;a de la b&uacute;squeda, se mostrar&aacute; en la barra de tiempo.</li>
+                <li>Para buscar por tipo de evento, haga clic en el bot&oacute;n <strong class="UI">[Todos]</strong> en la parte superior de la barra de tiempo y seleccione el evento que desee.</li>
+                <li>Para buscar im&aacute;genes grabadas durante el tiempo superpuesto, seleccione una secci&oacute;n superpuesta. </li>
+                <li>Haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> para mostrar los eventos buscados en la barra de tiempo.</li>
+                <li>Haga clic en el bot&oacute;n Reproducir.</li>
+                <li>Para detener la reproducci&oacute;n, haga clic en el bot&oacute;n Pausa. &nbsp;</li>
+            </ol>
         </div>
     </div>
 </div>
@@ -170,8 +179,27 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Busque una imagen grabada mediante la selecci&oacute;n de una fecha y hora en el calendario. Al hacer clic en la fecha de la parte superior de la barra de tiempo, aparecer&aacute; la hora de inicio y hora de fin. Seleccione la fecha deseada en el calendario y la hora de inicio y la hora de finalizaci&oacute;n. Cuando se selecciona <strong class="UI">[Todo el tiempo]</strong>, las horas de inicio y finalizaci&oacute;n se ajustar&aacute;n autom&aacute;ticamente de 00:00:00 a 23:59:59. Cuando se completa el ajuste y hace clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> s&oacute;lo las im&aacute;genes grabadas en el momento pertinente van a aparecer en la barra de tiempo. </p>
-			<p>Al hacer clic en el bot&oacute;n <strong class="UI">[Hoy]</strong> de la barra de tiempo, se buscar&aacute;n s&oacute;lo las im&aacute;genes grabadas hoy.</div>
+            <p>Busque una imagen grabada mediante la selecci&oacute;n de una fecha y hora en el calendario. </p>
+            <p>Al hacer clic en el bot&oacute;n <strong class="UI">[Hoy]</strong> de la barra de tiempo, se buscar&aacute;n s&oacute;lo las im&aacute;genes grabadas hoy.
+        </div>
+        <h4>Para buscar por tiempo y reproducir </h4>
+        <ol>
+            <li>Haga clic en el bot&oacute;n Mostrar en la pantalla Reproducci&oacute;n. Si hay alg&uacute;n video tomado el d&iacute;a de la b&uacute;squeda, se mostrar&aacute; en la barra de tiempo.</li>
+            <li>Haga clic sobre una fecha en la barra de tiempo, seleccione la fecha que desea en el calendario y establezca la hora de inicio y fin.</li>
+            <ul>
+                <li>Cuando selecciona <strong class="UI">[Todo el tiempo]</strong>, las horas de inicio y fin se ajustar&aacute;n autom&aacute;ticamente de 00:00:00 a 23:59:59.</li>
+            </ul>
+            <li>Haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. </li>
+            <li>Haga clic en el bot&oacute;n Reproducir. El video del tiempo seleccionado se reproducir&aacute;. </li>
+            <ul>
+                <li>Si el video se est&aacute; reproduciendo, se mostrar&aacute; el tiempo de grabaci&oacute;n del video actual.</li>
+                <li>Puede retroceder o avanzar el video y cambiar la velocidad de reproducci&oacute;n seg&uacute;n sea necesario.</li>
+                <li>Haga clic en el bot&oacute;n de la flecha izquierda para volver un 1 cuadro. Haga clic en el bot&oacute;n de la flecha derecha para avanzar 1 cuadro. &nbsp;</li>
+                <li>Haga clic en el bot&oacute;n de la velocidad de reproducci&oacute;n para cambian la velocidad a 1x, 2x, 4x, 8x, -1x, -2x, -4x, o -8x. A medida que cambia la velocidad, puede establecer la velocidad de reproducci&oacute;n que desee.</li>
+                <li>Mueva el bot&oacute;n a lo largo de la barra de tiempo para reproducir el video de la hora deseada. </li>
+            </ul>
+        </ol>
+    </div>
     </div>
 </div>
 
@@ -184,7 +212,18 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Para hacer una copia de seguridad de una imagen grabada, seleccione una imagen grabada y haga clic en el bot&oacute;n <strong class="UI">[Copia seguridad]</strong>. Puede establecer la hora de inicio y la hora de finalizaci&oacute;n de la copia de seguridad a continuaci&oacute;n. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. Cuando selecciona una ruta para guardar y hace clic en el bot&oacute;n <strong class="UI">[Guardar]</strong> despu&eacute;s de que la ventana de guardar aparece, se har&aacute; una copia de seguridad de la imagen en la ruta correspondiente.</p>
+            <p>Para hacer una copia de seguridad de una imagen grabada, seleccione una imagen grabada y haga clic en el bot&oacute;n <strong class="UI">[Copia seguridad]</strong>.</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Para respaldar un video buscado</h4>
+            <ol>
+                <li>Haga clic en el bot&oacute;n <strong class="UI">[Copia de seguridad]</strong> en la escena durante la reproducci&oacute;n. </li>
+                <li>Establezca la hora de inicio y fin de la copia de seguridad.</li>
+                <li>Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. </li>
+                <li>Cuando aparezca la ventana para guardar, seleccione una ruta para guardar la copia de seguridad y haga clic en el bot&oacute;n <strong class="UI">[Guardar]</strong>. </li>
+                <li>Se crear&aacute;n los datos de copia de seguridad del rango de tiempo seleccionado.</li>
+                <li>Haga clic en el bot&oacute;n [Aplicar].</li>
+            </ol>
         </div>
     </div>
 </div>

@@ -28,7 +28,24 @@
 
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-			<ul>
+            <ul>
+				<li>Pour plus de s&eacute;curit&eacute;, il est recommand&eacute; de cr&eacute;er un mot de passe qui combine des caract&egrave;res sp&eacute;ciaux, des chiffres, des majuscules et des minuscules.</li>
+				<li>Il est recommand&eacute; de changer le mot de passe tous les trois mois.</li>
+				<li>La longueur du mot de passe et les restrictions sont les suivantes&nbsp;:</li>
+				<ul>
+					<li>Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+					<li>Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+					<li>Il doit &ecirc;tre diff&eacute;rent de votre identifiant (ID).</li>
+					<li>Vous ne pouvez pas utiliser quatre lettres cons&eacute;cutives d&rsquo;un m&ecirc;me type. (Ex&nbsp;: 1234, abcd)</li>
+					<li>Vous ne pouvez pas r&eacute;p&eacute;ter la m&ecirc;me lettre quatre fois ou plus d&rsquo;affil&eacute;e. (Ex&nbsp;: ! !!!!, 1111, aaaaaa)</li>
+					<li>Seuls ~`!@#$#$%^*()_-++=|{}[]?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
+					<li>Apr&egrave;s la r&eacute;initialisation d&rsquo;usine, les mots de passe administrateur et utilisateur seront r&eacute;initialis&eacute;s et vous devrez les cr&eacute;er &agrave; nouveau.</li>
+					<li>Lorsque vous acc&eacute;dez au Web Viewer de la cam&eacute;ra pour la premi&egrave;re fois, ou lorsque vous y acc&eacute;dez apr&egrave;s l&rsquo;initialisation, vous acc&eacute;dez au menu. Param&egrave;tres du mot de passe.</li>
+					<li>Pour utiliser le menu Web Viewer, vous devez d&eacute;finir le nouveau mot de passe dans le menu Changer MDP et vous connecter &agrave; nouveau &agrave; Web Viewer avec le mot de passe modifi&eacute;.</li>
+					<li>Lorsque vous modifiez le mot de passe de l&rsquo;admin, si le mot de passe actuel ne correspond pas, vous ne pouvez alors pas d&eacute;finir un nouveau mot de passe.</li>
+					<li>Apr&egrave;s avoir modifi&eacute; le mot de passe, si une cam&eacute;ra est connect&eacute;e &agrave; un client, tel que CMS ou NVR, vous devez alors enregistrer le mot de passe modifi&eacute; avant toute utilisation. Si vous conservez la m&ecirc;me connexion, le client utilisera le mot de passe pr&eacute;c&eacute;dent pour l&rsquo;authentification, de sorte que le compte peut &ecirc;tre verrouill&eacute;.</li>
+				</ul>
+				<li>Lors de la connexion &agrave; Web Viewer, si vous avez saisi un mot de passe incorrect plus de cinq fois, la connexion est bloqu&eacute;e pendant 30 secondes et il sera impossible d&rsquo;acc&eacute;der &agrave; Web Viewer.</li>
 				<li>Si la connexion est &eacute;tablie depuis plusieurs endroits avec le m&ecirc;me identificateur ou si le mot de passe est modifi&eacute; alors que plusieurs navigateurs Internet sont ouverts, les navigateurs Internet peuvent ne pas fonctionner correctement. Il est recommand&eacute; de modifier un mot de passe uniquement depuis un seul emplacement ou via un seul navigateur Internet.</li>
 			</ul>
 		</div>
@@ -70,6 +87,12 @@
 		<div class="wn5-setup-section-article-content">
 			<p>Vous pouvez d&eacute;finir les informations de connexion pour les comptes des utilisateurs autres que l&apos;administrateur et d&eacute;finir les autorisations d&apos;utilisation, y compris l&apos;entr&eacute;e audio, la sortie audio, l&rsquo;&eacute;mission d&apos;alerte et le profil. Lorsqu&apos;un utilisateur enregistr&eacute; se connecte, seules les fonctions d&eacute;finies pour cet utilisateur sont activ&eacute;es. 10&nbsp;comptes utilisateurs actuels sont d&eacute;finis par d&eacute;faut. Vous pouvez ajouter ou supprimer un compte. Il est possible d&apos;utiliser jusqu&apos;&agrave; 10&nbsp;comptes d&apos;utilisateur IP actuels.</p>
 		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+			<ul>
+			<li>Si vous souhaitez s&eacute;lectionner l&rsquo;utilisateur configur&eacute; qui peut utiliser ONVIF, l&rsquo;utilisation de la fonction peut &ecirc;tre restreinte, en fonction du niveau de permission d&eacute;fini.</li>
+			</ul>
+		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Nom</h3>
 			<p>Entrez l&apos;identifiant</p>
@@ -78,19 +101,19 @@
 			<h3>Mot de passe</h3>
 			<p>Entrez le mot de passe. La r&egrave;gle de d&eacute;finition du mot de passe est la m&ecirc;me que pour le mot de passe administrateur.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
 			<h3>Entr&eacute;e audio</h3>
 			<p>R&eacute;glez l&apos;autorisation d&apos;acc&egrave;s &agrave; l&apos;audio entr&eacute;. Si l&apos;entr&eacute;e audio est s&eacute;lectionn&eacute;e, un utilisateur qui se connecte au compte appropri&eacute; peut regarder l&apos;&eacute;cran et &eacute;couter de l&apos;audio en m&ecirc;me temps. Si l&apos;entr&eacute;e audio n&apos;est pas s&eacute;lectionn&eacute;e, l&apos;utilisateur peut uniquement regarder l&apos;image.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput">
 			<h3>Sortie audio</h3>
 			<p>R&eacute;glez les autorisations de sortie audio. Lorsque la sortie audio est s&eacute;lectionn&eacute;e, un utilisateur qui se connecte &agrave; un compte appropri&eacute; peut envoyer de l&apos;audio via le microphone.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
 			<h3>&Eacute;mission d&apos;alerte</h3>
 			<p>R&eacute;glez les autorisations d&rsquo;&eacute;mission d&apos;alarme. Lorsqu&apos;une alarme a &eacute;t&eacute; r&eacute;gl&eacute;e, un utilisateur qui se connecte &agrave; un compte appropri&eacute; peut &eacute;mettre l&apos;alarme.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="ContinousZoom" >
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 
 						<h3>PTZ</h3>
 			            <p>R&egrave;gle l&apos;autorisation de contr&ocirc;ler le PTZ en mode <strong class="UI">[Direct]</strong> .</p>

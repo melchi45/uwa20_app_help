@@ -50,6 +50,7 @@ ng-href="#/help/queue_search">[Rechercher]</a></strong>.</p>
 
         <div class="wn5-setup-section-article-content">
             <h3><a name="level"></a>Niveau de d&eacute;tection</h3>
+            <p>Le niveau de d&eacute;tection (niveau de file d&rsquo;attente) affiche le nombre de personnes restant dans la r&egrave;gle d&eacute;finie. Une alarme est g&eacute;n&eacute;r&eacute;e si le niveau actuel est sup&eacute;rieur au niveau de d&eacute;tection cible.</p>
             <p>Le niveau de d&eacute;tection est class&eacute; en «&nbsp;&Eacute;lev&eacute;&nbsp;» et «&nbsp;Moyen&nbsp;», en fonction du nombre de personnes dans une r&egrave;gle de file d&apos;attente donn&eacute;e. Lorsque [Maximum] et [&Eacute;lev&eacute;] sont d&eacute;finis pour le nombre de personnes, la valeur «&nbsp;Moyen&nbsp;» est automatiquement d&eacute;finie.</p>
             <p>«&nbsp;&Eacute;lev&eacute;&nbsp;» pour le niveau de d&eacute;tection fait r&eacute;f&eacute;rence &agrave; l&apos;&eacute;tat dans lequel le nombre de personnes d&eacute;passant la valeur «&nbsp;&Eacute;lev&eacute;&nbsp;» et inf&eacute;rieure &agrave; la valeur «&nbsp;Maximum&nbsp;» est d&eacute;tect&eacute;. «&nbsp;Moyen&nbsp;» pour le niveau de d&eacute;tection fait r&eacute;f&eacute;rence &agrave; l&apos;&eacute;tat dans lequel le nombre de personnes d&eacute;passant la valeur «&nbsp;Moyen&nbsp;» et inf&eacute;rieure &agrave; la valeur «&nbsp;&Eacute;lev&eacute;&nbsp;» est d&eacute;tect&eacute;.</p>
             <p>Par exemple, si 20 est d&eacute;fini pour la valeur [Maximum] et 18 est d&eacute;fini pour la valeur [&Eacute;lev&eacute;], 9 sera automatiquement d&eacute;fini pour la valeur «&nbsp;Moyen&nbsp;». Si le nombre de personnes faisant la queue dans la zone de file d&apos;attente concern&eacute;e est sup&eacute;rieur &agrave; 18 et inf&eacute;rieur &agrave; 20, le niveau de d&eacute;tection sera «&nbsp;&Eacute;lev&eacute;&nbsp;». Si le nombre de personnes faisant la queue dans la zone de file d&apos;attente concern&eacute;e est sup&eacute;rieur &agrave; 9 et inf&eacute;rieur &agrave; 18, le niveau de d&eacute;tection sera «&nbsp;Moyen&nbsp;».</p>
@@ -122,7 +123,7 @@ ng-href="#/help/queue_search">[Rechercher]</a></strong>.</p>
             <h3>E-mail</h3>
             <p>Pour envoyer une image par e-mail lorsqu&apos;un &eacute;v&eacute;nement de gestion de file d&apos;attente est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour l&apos;e-mail peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>&Eacute;mission d&apos;alerte</h3>
             <p>Il est possible de d&eacute;finir le num&eacute;ro d&rsquo;&eacute;mission d&apos;alerte pour une alarme sp&eacute;cifique lorsqu&apos;un &eacute;v&eacute;nement de gestion de file d&apos;attente est cr&eacute;&eacute;.&nbsp;Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&apos;alerte, s&eacute;lectionnez <strong class="UI">[D&eacute;sactiver]</strong> si vous ne souhaitez pas utiliser l&apos;alarme. Si vous souhaitez utiliser l&apos;alarme, s&eacute;lectionnez l&apos;heure d&rsquo;&eacute;mission. Vous pouvez r&eacute;gler l&apos;alarme pour qu&apos;elle sonne continuellement jusqu&apos;&agrave; ce qu&apos;elle soit d&eacute;sactiv&eacute;e par l&apos;utilisateur en s&eacute;lectionnant <strong class="UI">[Toujours]</strong> ou r&eacute;gler l&apos;alarme sur 5, 10 ou 15 secondes. Les r&eacute;glages d&eacute;taill&eacute;s pour l&rsquo;&eacute;mission d&apos;alerte peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[&Eacute;mission d&apos;alerte]</strong></a>.</p>
@@ -130,7 +131,7 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[&Eacute;mission d&apos;al
 
 
 
-         <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+         <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
             <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
                     <p>Vous pouvez d&eacute;finir la position de vue de la cam&eacute;ra pour passer &agrave; un num&eacute;ro pr&eacute;d&eacute;fini lorsqu&apos;un &eacute;v&eacute;nement de gestion de file d&apos;attente est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ num&eacute;rique]</strong></a> ou <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>.</p>
         </div>
@@ -177,3 +178,35 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[&Eacute;mission d&apos;al
 </div>
 
 <hr class="wn5-setup-hr">
+<div class="wn5-online-help-info">
+        <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+        <ul>
+            <li>La fonction Gestion des files d&rsquo;attente vise &agrave; fournir des donn&eacute;es statistiques, et non des donn&eacute;es en temps r&eacute;el, et peut inclure des objets en mouvement ou des animaux dans le nombre total d&rsquo;unit&eacute;s mesur&eacute;es.</li>
+            <li>Apr&egrave;s l&rsquo;installation de la cam&eacute;ra, il se peut qu&rsquo;elle continue &agrave; ne pas fonctionner correctement jusqu&rsquo;&agrave; ce qu&rsquo;elle soit stabilis&eacute;e. Le temps de stabilisation peut prendre de 50 &agrave; 60 minutes.</li>
+            <li>Si vous utilisez la fonction Gestion des files d&rsquo;attente dans un environnement avec un temps d&rsquo;attente court, elle peut g&eacute;n&eacute;rer un grand nombre d&rsquo;&eacute;v&eacute;nements.</li>
+            <li>Une cam&eacute;ra pour effectuer la gestion des files d&rsquo;attente n&eacute;cessite que l&rsquo;objectif soit install&eacute; au sol en prise directe. (Figure 1)</li>
+            <li>Dans les cas suivants, les erreurs dans les donn&eacute;es mesur&eacute;es sont susceptibles d&rsquo;augmenter&nbsp;:</li>
+            <ul>
+                <li>Si elle est install&eacute;e dans un espace dont le champ de vision est insuffisant</li>
+                <li>Heures de nuit ou faible luminosit&eacute; (Figure 2)</li>
+                <li>Dans un environnement dont la lumi&egrave;re change soudainement, ou en cas d&rsquo;exposition &agrave; une lumi&egrave;re forte, comme la lumi&egrave;re directe du soleil, le coucher ou le lever du soleil, l&rsquo;&eacute;clairage direct, etc (Figure 3)</li>
+                <li>En cas de mouvements incessants &agrave; l&rsquo;emplacement fixe, par exemple &agrave; proximit&eacute; de la porte (Figure 4)</li>
+                <li>Si plusieurs personnes se d&eacute;placent dans un groupe</li>
+                <li>Si un objet en mouvement est proche de la r&egrave;gle d&eacute;finie,</li>
+                <li>Si la r&egrave;gle est d&eacute;finie sur le bord ext&eacute;rieur de l&rsquo;image pour une cam&eacute;ra Fisheye (Figure 5)</li>
+            </ul>
+        </ul>
+        <p>Figure 1</p>
+        <p><img src="../../../../base/images/setup/pcSetup_1.png"></p>
+        <p>Figure 2</p>
+        <p><img src="../../../../base/images/setup/pcSetup_2.png"></p>
+        <p>Figure 3</p>
+        <p><img src="../../../../base/images/setup/pcSetup_3.png"></p>
+        <p>Figure 4</p>
+        <p><img src="../../../../base/images/setup/pcSetup_4-1.png"></p>
+        <p><img src="../../../../base/images/setup/pcSetup_4-2.png"></p>
+        <p><img src="../../../../base/images/setup/pcSetup_4-3.png"></p>
+        <p>Figure 5</p>
+        <p><img src="../../../../base/images/setup/pcSetup_5.png"></p>	
+    </div>
+    <hr class="wn5-setup-hr">

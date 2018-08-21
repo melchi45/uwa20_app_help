@@ -14,8 +14,8 @@
         </div>
 	</div>
 </div> 
-<hr class="wn5-setup-hr">
 
+<hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>タイプ</h2>
@@ -27,6 +27,24 @@
 </div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="Sensor">
+<div class="wn5-setup-section" ng-if="Sensor">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="sensor"></a>センサーモード</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラのCMOSセンサーが1秒に何フレーム(fps)を撮影するか設定します。センサーで設定したフレーム数によって<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[フレームレート]</strong>の最大値が異なります。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+
+            <h3>センサーモード</h3>
+            <p>フレームレートを設定します。フレームレートは画像プリセット別にそれぞれ設定することができません。フレームレートはすべての画像プリセットに同じく適用されます。</p>
+        </div>
+    </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="ImagePresetMode">
 <div class="wn5-setup-section" ng-if="ImagePresetMode">
     <div class="wn5-setup-section-heading">
@@ -36,163 +54,28 @@
         <div class="wn5-setup-section-article-content">
             <p>画像プリセットが様々な目的別に適用されます。カメラを使用する環境に合わせて画像プリセットを選択します。</p>
 
-            <ul><li><strong class="UI">画質</strong>：カメラ出荷時の初期値モードです。</li>
-            <li><strong class="UI">モーション</strong>：動く被写体を鮮明に撮影しようとする時、主に使用します。道路、博物館のように動く被写体が多い場合に選択します。低照度環境の場合には、ノイズが増加したり感度が低くなることがあります。</li>
-            <li><strong class="UI">ノイズ削減</strong>：低照度環境でもノイズを減らして撮影したい時、主に使用します。</li>
-            <li><strong class="UI">鮮やかな映像</strong>：映像で暗いエリアがよく見えるように映像全体を鮮やかに表示する時に使用します。代わりに映像のコントラスト効果が低くなることがあります。</li>
-            <li><strong class="UI">モーション&amp;ノイズ削減</strong>：道路、博物館のように動く被写体が多くて低照度環境でもノイズが少ない映像が必要な場合に使用します。</li>
-            <li><strong class="UI">モーション&amp;鮮やかな映像</strong>：道路、博物館のように動く被写体が多くて全体の映像で暗いエリアを鮮やかに表示する場合に使用します。</li>
-            <li><strong class="UI">鮮明な動画</strong>：全体の映像を明るくて鮮明に表示したい時に使用します。映像のコントラスト効果が低くなり、カラーの再現性が低くなることがあります。</li>
-            <li><strong class="UI">ユーザープリセット</strong>：ユーザーが設定したどおりに映像を表示する時に使用します。</li>
+            <ul>                    
+                <li><strong class="UI">ユーザー設定プリセット1</strong>：ユーザーが設定したどおりに映像を表示する時に使用します。  </li>
+                <li><strong class="UI">ユーザー設定プリセット2</strong>：ユーザーが設定したどおりに映像を表示する時に使用します。  </li>
+                <li><strong class="UI">屋外昼間</strong>：屋外、昼間状況で引かれなく鮮やかな映像を表示したい時に使用します。</li>
+                <li><strong class="UI">屋外夜間</strong>：屋外、夜間、低照度状況でノイズを減少させて暗いエリアを鮮明に表示したい時に使用します。</li>
+                <li><strong class="UI">屋内バックライト</strong>：屋内のバックライト状況で屋内外が両方職別できる映像に表示したい時、使用します。</li>
+                <li><strong class="UI">屋内の明るい照明</strong>：屋内照明状況で鮮やかな画質&amp;ローフリッカーのために使用します。</li>
+                <li><strong class="UI">車のナンバープレート</strong>：デイ/ナイトに車のナンバープレートをよく職別するために使用します。</li>
+                <li><strong class="UI">鮮明な動画</strong>： &nbsp;カラーと鮮鋭度を上げるために使用します。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>画像プリセット別の初期値</h3>
-            <p>提供される画像プリセットを選択すると、該当画像プリセットの初期値に変更されます。初期値は下記のどおりで、この初期値は修正できません。画像プリセット別の詳細項目の中から修正できる項目は、状況に合わせて変更することができます。</p>
-            <table class="table table-bordered wn5-setup-table" width="731">
-                <thead><!-- 표 머리행의 열을 추가하려면 <td>텍스트 입력</td> 형태로 입력하세요. --><tr>
-                        <td width="89">画像プリセット</td>
-                        <td width="69">シャッター最小</td>
-                        <td width="69">シャッター最大</td>
-                    <td width="143">
-                        <p>シャッター優先</p>
-                    </td>
-                        <td width="63">AGC</td>
-                        <td width="58">SSDR</td>
-                        <td width="64">SSNR 2D</td>
-                    <td width="65">SSNR 3D</td>
-                        <td width="73">COLOR</td>
-                    </tr>
-                </thead>
-                <tbody><!-- 표 행을 추가하려면 <tr><td>텍스트</td></tr>형태로 추가하세요. --><tr><!-- 표 행을 추가하려면 <td>텍스트</td>형태로 추가하세요. --><td width="89">画質</td>
-                        <td width="69">1/5</td>
-                        <td width="69">1/12000</td>
-                    <td width="143">
-                        <p>1/60(1/50)</p>
-                    </td>
-                        <td width="63">高</td>
-                        <td width="58">12</td>
-                        <td width="64">12</td>
-                    <td width="65">12</td>
-                        <td width="73">50</td>
-
-                </tr>
-                <tr>
-                        <td width="89">モーション</td>
-                        <td width="69">1/30</td>
-                        <td width="69">1/12000</td>
-                    <td width="143">1/200</td>
-                        <td width="63">高</td>
-                        <td width="58">12</td>
-                        <td width="64">4</td>
-                    <td width="65">4</td>
-                        <td width="73">50</td>
-                </tr>
-                <tr>
-                        <td width="89">ノイズ削減</td>
-                        <td width="69">1/15</td>
-                        <td width="69">1/12000</td>
-                    <td width="143">
-                        <p>1/60(1/50)</p>
-                    </td>
-                        <td width="63">中</td>
-                        <td width="58">12</td>
-                        <td width="64">12</td>
-                    <td width="65">12</td>
-                        <td width="73">50</td>
-                </tr>
-                    
-                <tr>
-                        <td width="89">鮮やかな映像</td>
-                        <td width="69">1/5</td>
-                        <td width="69">1/12000</td>
-                    <td width="143">
-                        <p>1/60(1/50)</p>
-                    </td>
-                        <td width="63">高</td>
-                        <td width="58">18</td>
-                        <td width="64">12</td>
-                    <td width="65">12</td>
-                        <td width="73">50</td>
-                </tr>
-                    
-                <tr>
-                        <td width="89">モーション&amp;ノイズ削減</td>
-                        <td width="69">1/30</td>
-                        <td width="69">1/12000</td>
-                    <td width="143">1/200</td>
-                        <td width="63">中</td>
-                        <td width="58">12</td>
-                        <td width="64">4</td>
-                    <td width="65">4</td>
-                        <td width="73">50</td>
-                </tr>
-                <tr>
-                        <td width="89">モーション&amp;鮮やかな映像</td>
-                        <td width="69">1/30</td>
-                        <td width="69">1/12000</td>
-                    <td width="143">1/200</td>
-                        <td width="63">高</td>
-                        <td width="58">18</td>
-                        <td width="64">4</td>
-                    <td width="65">4</td>
-                        <td width="73">50</td>
-                </tr>
-                <tr>
-                        <td width="89">鮮明な動画</td>
-                        <td width="69">1/5</td>
-                        <td width="69">1/12000</td>
-                    <td width="143">
-                        <p>1/60(1/50)</p>
-                    </td>
-                        <td width="63">高</td>
-                        <td width="58">18</td>
-                        <td width="64">12</td>
-                    <td width="65">12</td>
-                        <td width="73">90</td>
-                </tr>
-                <tr>
-                        <td width="89">ユーザープリセット</td>
-                        <td width="69">手動</td>
-                        <td width="69">手動</td>
-                    <td width="143">手動</td>
-                        <td width="63">手動</td>
-                        <td width="58">手動</td>
-                        <td width="64">手動</td>
-                    <td width="65">手動</td>
-                        <td width="73">手動</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
+        
        <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-                <li>プリセット設定はユーザーが簡単に設定するように提案する機能です。プリセット機能を使用したく場合、ユーザープリセットを設定した後に使用してください。</li>
-                <li>各プリセットの「カメラ設定」値は変更されません。</li>
+                <li>画像プリセットモードを選択してからホワイトバランス、デイ・ナイトモードなどのようにカメラ画像の詳細設定を変更して<strong class="UI">[適用]</strong>をクリックすると、変更した値が該当の画像プリセット値で保存されます。初期値に戻すためには、<strong class="UI">[初期化]</strong>ボタンをクリックします。  </li>
             </ul>
         </div>
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="Sensor">
-<div class="wn5-setup-section" ng-if="Sensor">
-    <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="sensor"></a>センサー</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>カメラのCMOSセンサーが1秒に何フレーム(fps)を撮影するか設定します。センサーで設定したフレーム数によって<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[フレームレート]</strong>の最大値が異なります。</p>
-        </div>
 
-        <div class="wn5-setup-section-article-content">
-
-            <h3>モード</h3>
-            <p>フレームレートを設定します。フレームレートは画像プリセット別にそれぞれ設定することができません。フレームレートはすべての画像プリセットに同じく適用されます。</p>
-        </div>
-    </div>
-</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -354,7 +237,7 @@
             <div class="wn5-setup-section-article-content">
                 <h3><a class="wn5-online-help-link" name="WDR"></a>WDR</h3>
             <p>WDR (Wide Dynamic Range)モードは逆光環境で暗い部分と明るい部分をすべてよく表示させる方法です。カメラのデュアルシャッターを用いて一度は明るい部分がよく表示されるようにショートシャッターで、もう一度は暗い部分がよく表示されるようにロングシャッターで撮影して二つの映像の中でよく表示される部分だけを一つに合わせて表示させる方法です。WDRモードを使用する時、明るいエリアと暗いエリアの間にノイズが発生することがあります。</p>
-            <p><img src="../../base/images/cameraSetup_WDR_1.png" width="230" height="186" > <img src="../../base/images/cameraSetup_WDR_2.png" width="230" height="186" ><br> WDRモードオフ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WDRモードオン</p>
+            <p><img src="../../../../base/images/setup/cameraSetup_WDR_1.png" width="230" height="186" > <img src="../../../../base/images/setup/cameraSetup_WDR_2.png" width="230" height="186" ><br> WDRモードオフ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WDRモードオン</p>
             </div>
 					    
         <div class="wn5-setup-section-article-content">

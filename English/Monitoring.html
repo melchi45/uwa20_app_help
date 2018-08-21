@@ -1,7 +1,6 @@
 ﻿<h1 class="wn5-setup-main-title">Live screen</h1>
 <div class="wn5-setup-section">
-    <p ng-if="MaxAudioInput==0">You can check the live screen to view what is being captured by the camera and control screen capture, alarm output and microphone and other features. When you click the <span class="tui tui-wn5-top-live"></span> button on the screen, the live screen will appear. </p>
-	<p ng-if="MaxAudioInput!=0">You can check the live screen to view what is being captured by the camera and control screen capture, alarm output and other features. When you click the <span class="tui tui-wn5-top-live"></span> button on the screen, the live screen will appear. </p>
+	<p>You can check the live screen to view what is being captured by the camera and control screen capture, and other features. When you click the <span class="tui tui-wn5-top-live"></span> button on the screen, the live screen will appear. </p>
 </div>
 
 <div class="wn5-setup-section">
@@ -17,11 +16,16 @@
 
 		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+        <ul>
+            <li>Connecting to the web viewer via Chrome, the record playback screen feature can be securely used.</li>
+            <li>When playing a video on the live page, ghosting might occur under one of the following cases:</li>
             <ul>
-				<li>Connecting to the web viewer via Chrome, the record playback screen feature can be securely used.</li>
-		<!-- 		<li>When you connect to a web viewer through Internet Explorer or Safari, a plugin is required before you can use the capture<span class="tui tui-wn5-toolbar-capture"></span>, record<span class="tui tui-wn5-toolbar-record"></span>, pixel count<span class="tui tui-wn5-toolbar-pixel"></span> or microphone <span class="tui tui-wn5-toolbar-mic"></span>functions. To install the plugin, click the <span class="tui tui-wn5-download"></span> button at the top right.</li>  -->
-			</ul>
-
+                <li>When the resolution changed after changing the profile</li>
+                <li>When the data transfer is delayed due to network delay after changing the profile</li>
+                <li>When the size or location of the web browser window changed</li>
+            </ul>
+            <!-- 		<li>When you connect to a web viewer through Internet Explorer or Safari, a plugin is required before you can use the capture<span class="tui tui-wn5-toolbar-capture"></span>, record<span class="tui tui-wn5-toolbar-record"></span>, pixel count<span class="tui tui-wn5-toolbar-pixel"></span> or microphone <span class="tui tui-wn5-toolbar-mic"></span>functions. To install the plugin, click the <span class="tui tui-wn5-download"></span> button at the top right.</li>  -->
+        </ul>
         </div>
 </div>
 <hr class="wn5-setup-hr">
@@ -32,7 +36,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>The icons at the bottom of the live screen provide the following functions: </p>
+            <p>The icons at the bottom of the live screen provide the following functions (Some functions may not work with a certain browsers or codecs.): </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <table class="table table-bordered wn5-setup-table">
@@ -191,8 +195,8 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
-                        <td width="235">
+                    <tr ng-if="MaxAlarmOutput">
+                        <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
                             <p>Alarm output</p>
                             <p>&nbsp;</p>
@@ -216,6 +220,64 @@
                 </tbody>
             </table>
         </div>
+		 <div class="wn5-online-help-action" ng-if="MaxChannel > 1">
+            <h4>To change channel</h4>
+                <ul>
+                    <li>Select the channel number you want. The video of the channel will appear in the viewer.</li>
+                    <li>For the quad view, click the Quad View icon.</li>
+                    <li>To return to the single view, click the channel number. </li>
+                </ul>
+            </div>
+            <div class="wn5-online-help-action">
+            <h4>To capture image</h4>
+                <ul>
+                    <li>In the scene to capture, click the capture icon(<span class="tui tui-wn5-toolbar-capture"></span>).</li>
+                    <li>When the captured image is saved, a notification message will pop up. The capture image is saved to the path specified in each browser.  </li>
+                </ul>
+                <p>If image capture does not work in Windows 7 or later with the Internet Explorer browser, run the Internet Explorer browser as administrator. </p>
+            </div>
+            <div class="wn5-online-help-action" ng-if="!CamSpecialModel">
+            <h4><a name="record"></a>To record video</h4>
+                <ul>
+                    <li>Click the Record icon(<span class="tui tui-wn5-toolbar-record"></span>).</li>
+                    <li>To end the manual recording, click the Record icon(<span class="tui tui-wn5-toolbar-record"></span>) again.</li>
+               </ul>
+                <p>The manual recording can be saved as an .avi file in your PC. Specify the path and save the video. </p>
+                <p>If you record the video in the Fisheye view mode, the original images will be saved instead of images from the dewarped view currently displayed.</p>
+            </div>
+			
+            <div class="wn5-online-help-action">
+                <h4>To switch to full screen</h4>
+                <ul>
+                    <li>Select the Full screen icon(<span class="tui tui-wn5-toolbar-fullscreen"></span>) to change the viewer mode to full screen. </li>
+                    <li>To exit the full screen mode, click the Full screen icon(<span class="tui tui-wn5-toolbar-fullscreen"></span>) again or the [Esc] key on the keyboard. </li>
+                </ul>
+            </div>
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput==0">
+            <h4>To use audio</h4>
+                <ul>
+                    <li>Click the Audio icon(<span class="tui tui-wn5-toolbar-mic"></span>).</li>
+                    <li>Adjust the audio volume using the Volume control bar.</li>
+                </ul>
+                <p>If no sound is heard when connecting or disconnecting the audio jack from the PC while playing the audio, click the Audio icon(<span class="tui tui-wn5-toolbar-mic"></span>) and enable it.</p>
+            </div>
+			
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput">
+                <h4>To use speaker</h4>
+                <ul>
+                    <li> Click the Speaker icon(<span class="tui tui-wn5-toolbar-sound"></span>).</li>
+                  
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-action">
+            <h4>To count the number of pixels</h4>
+                <ul>
+                    <li>Click the Pixel count icon(<span class="tui tui-wn5-toolbar-pixel"></span>).</li>
+                    <li>Drag the mouse over the video to set an area. From this area, the number of pixels will be counted and displayed on the screen.</li>
+                   
+                </ul>
+            </div>	
     </div>
 </div>
 
@@ -382,8 +444,8 @@ class="tui tui-chi-live-ptz-areazoom-pre"></span>button if you wish to move back
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li>
+                <li>The Pan function can be used only when <strong class="UI">[Ceiling]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
             </ul>
-
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Preset</h3>
@@ -436,12 +498,22 @@ class="tui tui-chi-live-ptz-areazoom-pre"></span>button if you wish to move back
         <h2><a name="FisheyeView"></a>Fisheye view</h2>
     </div>
     <div class="wn5-setup-section-article">
-                <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content">
             <h3>Ceiling/Wall</h3>
                     <p>Displays the camera mounting mode. The view type differs depending on the mounting mode. </p>
                     <p>The mounting mode can be set in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>. The 'Double panorama' view type appears only when <strong class="UI">[Ceiling]</strong> is selected. The other view types are the same for both 'Ceiling' and 'Wall'.</p>
-                    <p>After selecting a desired view type icon, you can change the camera view by dragging the mouse on the live video screen.</p>
-                </div>
+            <p>After selecting a desired view type icon, you can change the camera view by dragging the mouse on the live video screen.</p>
+            <ul>
+                <li>Fisheye (<span class="tui tui-wn5-fisheye"></span>): Displays the original fisheye view that is not dewarped.</li>
+                <li>Single panorama (<span class="tui tui-wn5-single-panorama"></span>): Dewarps an original video and displays it as a wall panorama.</li>
+                <li>Double panorama (<span class="tui tui-wn5-double-panorama"></span>): Dewarps an original video and displays it as a panorama split up and down.</li>
+                <li>Fisheye + 3PTZ (<span class="tui tui-wn5-fisheye-3ptz"></span>): Dewarps a wall panorama and 3 ROI areas and displays them on the split screen.</li>
+                <li>Quad view (<span class="tui tui-wn5-quad-view"></span>): Dewarps a fisheye video and 4 ROI areas and displays them on the split screen.</li>
+                <li>Panorama + 2PTZ (<span class="tui tui-wn5-panorama-2ptz"></span>): Dewarps a panorama and 2 ROI areas and displays them on the split screen.</li>
+                <li>Fisheye + 8PTZ (<span class="tui tui-wn5-fisheye-8ptz"></span>): Dewarps a wall panorama and 8 ROI areas and displays them on the split screen. This view is only supported when wall-mounted.</li>
+            </ul>
+            <p>If the Camera mounting mode is changed in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>, then the installed direction of the Fisheye view mode will also change in the Live mode.</p>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>Reset/Reset all  </h3>
                     <p>Click the <strong class="UI">[Reset]</strong> button to switch the changed view to the initial view by dragging the mouse on the video screen of the currently selected view type. To switch the video screen of all view type to the initial view, click the <strong class="UI">[Reset all]</strong> button.  </p>

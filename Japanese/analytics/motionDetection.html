@@ -82,9 +82,6 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <ul>
-            
-            </ul>
             <h3>エリア</h3>
             <p>ROI領域が追加されると、順番にエリア数字ボタン色が変更されます。数字ボタンをクリックすると、該当のROI領域がプレビュー画面で選択されます。</p>
         </div>
@@ -98,7 +95,12 @@
         <div class="wn5-setup-section-article-content">
             <h3>感度</h3>
             <p>エリア別にモーション検知感度を設定します。背景と対象物の区分が明確な環境では感度を低く設定し、暗くて背景と対象物の区分が明確ではない環境では感度を高く設定します。</p>
-        </div><!-- <div class="wn5-setup-section-article-content">
+        </div>
+		<div class="wn5-setup-section-article-content">
+            <h3>最短時間</h3>
+            <p>最短時間(秒)：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます</p>
+        </div>
+        <!-- <div class="wn5-setup-section-article-content">
             <h3>핸드 오버</h3>
             <p>핸드 오버를 사용하려면 <strong class="UI">[사용]</strong>을 선택합니다. 핸드 오버 기능을 사용하면 설정한 관심 영역에서 움직임을 감지하면 특정 카메라가 특정 PTZ 프리셋 위치로 이동하도록 설정할 수 있습니다. 관심 영역별로 카메라를 지정합니다.</p>
         </div>
@@ -168,8 +170,33 @@
 	
     </div>
 </div>  
-            <hr class="wn5-setup-hr">
-            <div class="wn5-setup-section">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+    <h2>一般</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>モーションを検知する対象物の最小、最大サイズを設定します。 </P>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>サイズ</h3>
+            <p>右下の頂点をクリックした後、マウスをドラッグしてサイズを変更することができます。サイズを変更すると、<strong class="UI">[サイズ]</strong>の<strong class="UI">[最小]</strong>値と<strong class="UI">[最大]</strong>値も変更されます。 </P>
+        </div>
+        <div class="wn5-online-help-info">
+        <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+        <ul>
+            <li>ROI領域と除外エリアが同一か重なる場合、除外エリアの方が優先されます。</li>
+            <li>ユーザーが指定した最小サイズより小さいモーションと最大サイズより大きいモーションは検知しません。大小のノイズによる誤検知を避けるために設置環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。 </li>
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+
+            <hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
+            <div class="wn5-setup-section" ng-if="!HandoverCalibration">
                 <div class="wn5-setup-section-heading">
                     <h2>ハンドオーバー</h2>
                 </div>
@@ -187,6 +214,17 @@
                         </ul>
         </div>					
 					
+    </div>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>オーバーレイ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[有効]</strong>をクリックすると、検知された位置を映像にオーバーレイして表示します。</P>
+        </div>       
     </div>
 </div>
 
@@ -209,7 +247,7 @@
             <h3>保存</h3>
             <p>モーション検知イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[保存]</strong></a>で行うことができます。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>アラーム出力</h3>
             <p>モーション検知イベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[無効]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>

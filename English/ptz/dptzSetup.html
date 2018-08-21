@@ -2,8 +2,8 @@
 
 <div class="wn5-setup-section">
 	<p>You can set the camera views to move after digital zoom is executed, rather than having the camera view change by physically moving the camera up and down (tilt) or left and right (pan). You can set a preset or change the camera views by setting a group of presets. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.  </p>
-	
-	<h4>Note</h4>
+    <div class="wn5-online-help-info">
+        <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
     <ul>
         
 		<li><strong class="UI">[Digital PTZ profile]</strong> should be selected from <strong class="UI">[Video profile]</strong>><a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Profile type]</strong></a> in order to set digital PTZ.</li>
@@ -11,7 +11,7 @@
 		<li ng-if="FixedProfileCodecChange">After installing the plugin, you can use the digital PTZ function without restriction only when the resolution of the web browser is 1024 or higher.</li> -->
     </ul>
 </div>
-
+</div>
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -29,7 +29,8 @@
     			<li>Select a preset number from <strong class="UI">[Number]</strong>.</li>
     			<li>Enter the relevant preset name in <strong class="UI">[Name]</strong>.</li>
                 <li>Click the <strong class="UI">[Add]</strong> button.</li>
-    		</ol>
+            </ol>
+            <p ng-if="PTZModel || isDigitalPTZ"> When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically. When you click the button again, auto tracking will stop.</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>Moving to a preset</h4>
@@ -80,10 +81,6 @@
                 <li>Select a group you wish to delete from <strong class="UI">[Group No.]</strong>.</li>
                 <li>When you click the <strong class="UI">[Remove]</strong> button, the group will be deleted.</li>
             </ol>
-        </div>
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel || isDigitalPTZ">
-            <h3>Auto tracking</h3>
-            <p> When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically. When you click the button again, auto tracking will stop.</p>
         </div>
     </div>
 </div>

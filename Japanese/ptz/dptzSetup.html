@@ -3,11 +3,13 @@
 
 <div class="wn5-setup-section">
     <p>カメラが物理的で上下に移動したり(チルト)、左右に移動して(パン)ビューを変更することではなく、デジタルズームを実行してからカメラのビューを移動するように設定することができます。プリセットを設定したり、プリセットをグループに設定してカメラビューを変更することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
-    <h4>参考事項</h4>
+    <div class="wn5-online-help-info"></div>
+    <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
     <ul>
         <li>デジタルPTZを設定するには、<strong class="UI">[ビデオprofile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Profileタイプ]</strong></a>で<strong class="UI">[デジタルPTZ Profile]</strong>を選択する必要があります。</li>
         <li>3M Live view画角はプレビュー画面で合わせた画角より広い画角をみせます。</li><!--   <li>Internet Explorer로 웹뷰어에 접속한 경우, 플러그인을 설치해야 디지털 PTZ 기능을 사용할 수 있습니다. 플러그인을 설치하려면 <strong class="UI">[라이브]</strong> 페이지나 <strong class="UI">[재생]</strong> 페이지에서 오른쪽 상단의 플러그인<span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li>
 		<li>플러그인 설치 후, 웹 브라우저의 해상도가 1024 이상이어야 디지털 PTZ 기능을 정상적으로 사용할 수 있습니다.</li>  --></ul>
+</div>
 </div>
 <hr class="wn5-setup-hr">
 
@@ -26,7 +28,8 @@
     			<li><strong class="UI">[No.]</strong>で設定したいプリセットNo.を選択します。</li>
     			<li><strong class="UI">[名前]</strong>に該当プリセット名を入力します。</li>
                 <li><strong class="UI">[追加]</strong>ボタンをクリックします。</li>
-    		</ol>
+            </ol>
+            <p ng-if="PTZModel || isDigitalPTZ"><span class="tui tui-ch-live-ptz-tracking-auto-on"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>プリセットに移動</h4>
@@ -79,10 +82,6 @@
                 <li><strong class="UI">[グループNo.]</strong>で削除するグループを選択します。</li>
                 <li><strong class="UI">[削除]</strong>ボタンをクリックすると、グループがを削除します。</li>
             </ol>
-        </div>
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
-            <h3>オートトラッキング</h3>
-            <p><span class="tui tui-ch-live-ptz-tracking-auto-on"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</p>
         </div>
     </div>
 </div>

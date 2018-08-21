@@ -83,7 +83,7 @@
             <ul>
                 
                 <li>Puede definir el traspaso para cada l&iacute;nea virtual. La funci&oacute;n de Traspaso se puede utilizar despu&eacute;s de definir la l&iacute;nea virtual.</li>
-                <li>El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration">El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
             </ul>
         </div>
     </div>
@@ -100,11 +100,13 @@
         </div>
         <div class="wn5-online-help-action">
 			<h4>Configuraci&oacute;n de una zona virtual</h4>
-			<p>Cuando selecciona 4 esquinas de una imagen con el rat&oacute;n, se establece como la zona virtual y el color de los botones num&eacute;ricos en <strong class="UI">[&Aacute;rea]</strong> cambia. Hasta 8 zonas virtuales se pueden configurar y una regla de an&aacute;lisis de im&aacute;genes se pueden establecer para cada &aacute;rea.</p>
+			<p>En la pantalla vista previa, use su mouse para seleccionar 4 esquinas y arrastrar para dibujar una forma cuadril&aacute;tera que luego ser&aacute; su &aacute;rea de ROI. Hasta 8 zonas virtuales se pueden configurar y una regla de an&aacute;lisis de im&aacute;genes se pueden establecer para cada &aacute;rea.</p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>Cambio de una zona virtual</h4>
-            <p>Se puede cambiar el tama&ntilde;o de la zona virtual al mover una esquina de la zona virtual creada. Para mover la zona virtual creada, haga clic y arrastre el &aacute;rea relevante con el rat&oacute;n. Cuando se crea una esquina despu&eacute;s de hacer clic en una l&iacute;nea, se puede establecer una zona virtual poligonal moviendo la esquina.</p>
+            <p>Se puede cambiar el tama&ntilde;o de la zona virtual al mover una esquina de la zona virtual creada. </p>
+            <p>para crear un pol&iacute;gono (N-gon), primero seleccione y cree un cuadril&aacute;tero. Cuando el signo + aparezca, h&aacute;gale clic para a&ntilde;adir otro punto. puede a&ntilde;adir hasta 4 puntos adicionales para crear un pol&iacute;gono de su elecci&oacute;n. </p>
+            <p>Para mover la zona virtual creada, haga clic y arrastre el &aacute;rea relevante con el rat&oacute;n. Cuando se crea una esquina despu&eacute;s de hacer clic en una l&iacute;nea, se puede establecer una zona virtual poligonal moviendo la esquina.</p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>Eliminaci&oacute;n de una zona virtual</h4>
@@ -119,6 +121,9 @@
             <p>Puede configurar la regla a aplicar para cada zona virtual.</p>
             <ul>
                 <li><strong class="UI">Allanamiento</strong>: Cuando un objeto se mueve dentro del &aacute;rea establecida, se crear&aacute; un evento.</li>
+                <ul>
+                    <li> <strong class="UI">Duraci&oacute;n m&iacute;nima (s)</strong>: Configure la cantidad m&iacute;nima de tiempo para activar un evento despu&eacute;s de la detecci&oacute;n. Cuando el movimiento dura m&aacute;s que el tiempo configurado, el evento se activa. </li>
+                </ul>
                 <li><strong class="UI">Intro</strong>: Cuando un objeto entra en el &aacute;rea establecida por el usuario, se crear&aacute; un evento.</li>
                 <li><strong class="UI">Salir</strong>: Cuando un objeto en movimiento sale del &aacute;rea establecida por el usuario, se crear&aacute; un evento.</li>
                 <li><strong class="UI">Aparici&oacute;n (desaparici&oacute;n)</strong>: Cuando un objeto que no existe dentro del &aacute;rea designada por el usuario aparece dentro del &aacute;rea sin pasar la l&iacute;nea del &aacute;rea y se mantiene durante un cierto per&iacute;odo de tiempo, o si un objeto que existe dentro del &aacute;rea desaparece, se crear&aacute; un evento.</li>
@@ -171,11 +176,13 @@
             <p>Esto establece el &aacute;rea excluida en la que no se detecta movimiento cuando la regla de anal&iacute;tica se aplica a la l&iacute;nea virtual y la zona virtual.</div>
         <div class="wn5-online-help-action">
             <h4>Configuraci&oacute;n de un &aacute;rea excluida</h4>
-            <p>Cuando selecciona 4 esquinas de una imagen con el rat&oacute;n, se establece como el &aacute;rea de no detecci&oacute;n y el color de los botones num&eacute;ricos en <strong class="UI">[&Aacute;rea]</strong> cambia. Se pueden configurar hasta 8 &aacute;reas de no detecci&oacute;n.</p>
+            <p>En la pantalla vista previa, use su mouse para seleccionar 4 esquinas y arrastrar para dibujar una forma cuadril&aacute;tera que luego ser&aacute; su &aacute;rea excluida. Se pueden configurar hasta 8 &aacute;reas de no detecci&oacute;n.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Cambio de un &aacute;rea de no detecci&oacute;n</h4>
-            <p>Se puede cambiar el tama&ntilde;o de un &aacute;rea excluida moviendo una esquina del &aacute;rea excluida establecida, y se puede mover la posici&oacute;n de un &aacute;rea excluida seleccionando y arrastrando el &aacute;rea excluida con el rat&oacute;n.</p>
+            <p>Se puede cambiar el tama&ntilde;o de un &aacute;rea excluida moviendo una esquina del &aacute;rea excluida establecida.</p>
+            <p>para crear un pol&iacute;gono (N-gon), primero seleccione y cree un cuadril&aacute;tero. Cuando el signo + aparezca, h&aacute;gale clic para a&ntilde;adir otro punto. puede a&ntilde;adir hasta 4 puntos adicionales para crear un pol&iacute;gono de su elecci&oacute;n. </p>
+            <p>y se puede mover la posici&oacute;n de un &aacute;rea excluida seleccionando y arrastrando el &aacute;rea excluida con el rat&oacute;n.</p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>Eliminaci&oacute;n de un &aacute;rea de no detecci&oacute;n</h4>
@@ -185,7 +192,7 @@
         <div class="wn5-setup-section-article-content">
             
             <h3>&Aacute;rea</h3>
-            <p>Cuando se a&ntilde;ade un &aacute;rea excluida, el color de los botones num&eacute;ricos en <strong class="UI">[&Aacute;rea]</strong> cambiar&aacute;. Cuando se desactiva un &aacute;rea excluida haciendo clic en los botones num&eacute;ricos, la zona virtual relevante no se mostrar&aacute; en la pantalla de vista previa. Al hacer clic en el bot&oacute;n num&eacute;rico otra vez, el &aacute;rea no detecci&oacute;n volver&aacute; a aparecer.</p>
+            <p>Cuando se a&ntilde;ade un &aacute;rea excluida, el color de los botones num&eacute;ricos en el <strong class="UI">[&Aacute;rea]</strong> cambiar&aacute;. Si hace clic en los botones num&eacute;ricos para desactivarlos, entonces el &aacute;rea excluida se seleccionar&aacute; en la pantalla de vista previa.</p>
         </div>
     </div>
 </div>
@@ -199,6 +206,8 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Esto ajusta la sensibilidad y el tama&ntilde;o m&iacute;nimo y m&aacute;ximo de un objeto a detectar que se aplicar&aacute; tanto a la l&iacute;nea virtual como a la zona virtual.</p>
+            <p>Esta es una configuraci&oacute;n que puede aplicar para aumentar la precisi&oacute;n de la detecci&oacute;n y minimizar la incidencia de la detecci&oacute;n falsa dependiendo de su entorno.</p>
+<p>&nbsp;</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -214,6 +223,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>Si el &aacute;rea de detecci&oacute;n y el &aacute;rea excluida son id&eacute;nticos o se solapan, el &aacute;rea excluida tiene prioridad.</li>
+                <li>Cualquier movimiento menor que el tama&ntilde;o m&iacute;nimo especificado o mayor que el tama&ntilde;o m&aacute;ximo especificado no se detectar&aacute;. Determine los mejores valores para los tama&ntilde;os de detecci&oacute;n m&aacute;ximos/m&iacute;nimos que sean apropiados para el entorno de instalaci&oacute;n para evitar que cualquier detecci&oacute;n falsa surja de sonidos grandes o peque&ntilde;os. Recuerde que el mismo movimiento en el mismo lugar no siempre genera el mismo tama&ntilde;o de detecci&oacute;n. por lo tanto, se recomienda permitir habitaciones lo suficientemente grandes/peque&ntilde;as para sus l&iacute;mites de tama&ntilde;o m&aacute;ximo/m&iacute;nimo considerando la desviaci&oacute;n en los tama&ntilde;os detectados.</li>
               </ul>
           </div>
       </div>
@@ -221,7 +231,7 @@
   <hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
               <div class="wn5-setup-section" ng-if="!HandoverCalibration">
                   <div class="wn5-setup-section-heading">
-                      <h2>Handover</h2>
+                      <h2>Traspaso</h2>
                   </div>
                   <div class="wn5-setup-section-article">
                       <div class="wn5-setup-section-article-content">
@@ -239,6 +249,18 @@
                       </div>
 </div>
 </div>
+
+<hr class="wn5-setup-hr">
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h2>Superposici&oacute;n</h2>
+       </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+            <p>Haga clic en <strong class="UI">[Activar]</strong> para superponer el &aacute;rea detectada en la pantalla de video. El movimiento detectado de la cabeza de una persona se muestra como una forma cuadril&aacute;tera en la pantalla de video.<U> </U></p>
+            </div>
+        </div>
+    </div>
   <hr class="wn5-setup-hr">
   <div class="wn5-setup-section">
       <div class="wn5-setup-section-heading">

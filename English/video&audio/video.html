@@ -1,6 +1,8 @@
-﻿<h1 class="wn5-setup-main-title">Video setup</h1>
+﻿
+<h1 class="wn5-setup-main-title">Video setup</h1>
+
 <div class="wn5-setup-section">
-	<p>You can set a privacy area on the camera image or mirror the image screen up, down, left or right. You can also set an analog image output or change the video output type. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
+	<p>You can set a privacy area in the camera&apos;s image or flip it in reverse directions (vertically or horizontally). In addition, you can display an analog image or change the video output type, Once you have completed the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
@@ -9,95 +11,139 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>After selecting your camera channel, you can set the details of Video for each channel. </p>
+            <p>After selecting a camera channel, you can set a privacy area for each channel, or set the detailed video settings, such as video rotation, analog output, etc. </p> 
+            <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
+            <p> Click the <strong class="UI">[Detailed Information]</strong> button to view a summary of the channel. </p>
+            <p>If you select another channel without applying the changes in the setting, an alarm message will appear. </p>
         </div>
 	</div>
-</div> <hr class="wn5-setup-hr">
+</div> 
+<hr class="wn5-setup-hr">
+
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>Privacy area</h2>
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-		    <p>You can set a part of the camera image as a hidden privacy area. You can set a privacy area on the screen simply by selecting <strong class="UI">[Enable Privacy area]</strong> and clicking the <strong class="UI">[Apply]</strong> button at the bottom of the page. </p>
+		    <p>To prevent a possibility of privacy invasion in the camera&apos;s image, you can set a privacy area. After selecting <strong class="UI">[Enable Privacy Area]</strong>, click the <strong class="UI">[Apply]</strong> button at the bottom of the page to set a privacy area in the screen. </p>
 		</div>
 		<div class="wn5-setup-section-article-content">
-			<p>If you prefer to not have a privacy area, deselect <strong class="UI">[Enable Privacy area]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page. You can check the camera image with no hidden privacy area. Set privacy areas will not be deleted; you can check such areas in the privacy area list.  </p>
+			<p>To deactivate a privacy area, deselect <strong class="UI">[Enable Privacy Area]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of screen. You can check the full camera&apos;s image without anything hidden due to privacy. The set privacy areas are not deleted and they can be checked in the privacy area list.  </p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Pattern</h3>
-			<p>Select the mosaic pattern which you prefer to apply to the privacy area. If <strong class="UI">[Solid]</strong> is set, the color set from the privacy area window will apply. When you select a pattern, it applies to all privacy areas equally.</p>
+            <p>Select the mosaic pattern to apply to a privacy area. Select <strong class="UI">[</strong><strong>Solid</strong><strong class="UI">]</strong> to apply the color set in the privacy area window. If you select the pattern, it will be applied to all the areas.</p>
 		</div>
-		<div class="wn5-online-help-action">
-			<h4>Setting a privacy area (for fixed channel)</h4>
-			<ol>
-			<li>Select <strong class="UI">[Enable Privacy area]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page. </li>
-				<li>Click the 4 edges of the camera image screen with the mouse. The privacy area window will appear.</li>
-				<li>Enter the name of the privacy area in <strong class="UI">[Name]</strong>, select the color to cover the image in <strong class="UI">[Color]</strong> and click the <strong class="UI">[OK]</strong> button. </li>
-				<li>The new privacy area will be added to the privacy area list. The privacy area is displayed in the set color on the camera image screen.</li>
-			</ol>
+				<div class="wn5-online-help-action">
+			<h4>Setting a privacy area(except for a zoom or PTZ camera)</h4>
+            <ol>
+				
+				<li>Select <strong class="UI">[Enable Privacy area]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page. </li>
+                <li>Click on 4 corners with the mouse on the camera video screen.</li>
+                <li>In the <strong class="UI">[Privacy Area]</strong> window, set the following:</li>
+                <ul>
+                    <li>Enter the name of the privacy area in <strong class="UI">[Name]</strong>, select the color to cover the image in <strong class="UI">[Color]</strong>.</li>
+                </ul>
+                <li> In the <strong class="UI">[Privacy Area] </strong> window, click the <strong class="UI">[OK]</strong> button.</li>
+                <li>A new privacy area is added to the list of privacy areas. The color set in the camera&apos;s image screen is used to display a privacy area.</li>
+            </ol>
 		</div>
+	
+	        <div class="wn5-online-help-action">
+            <h4>Setting a privacy area (PTZ camera)  </h4>
+            <ol>
+				
+                <li>Select <strong class="UI">[Enable Privacy area]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page.  </li>
+                <li>Drag with the mouse on the camera video screen to set the privacy area size.</li>
+                <li>In the <strong class="UI">[Privacy Area]</strong> window, set the following:</li>
+                <ul>
+                    <li> <span class="tui tui-wn5-ptz-handle"></span> Drag the icon to place the desired video screen on a privacy area by adjusting the camera pan/tilt.</li>
+                    <li> Enter the name of the privacy area in <strong class="UI">[Name]</strong>, select the color to cover the image in <strong class="UI">[Color]</strong>.</li>
+                    <li> Select whether to enable <strong class="UI">[Zoom threshold] </strong>. The function ensures that a privacy area is used only if the image is magnified to higher than a zoom ratio set in [Set zoom threshold]. In other words, if the image is reduced below the zoom ratio, the privacy area is deleted from the image. </li>
+                </ul>
+                <li> In the <strong class="UI">[Privacy Area] </strong> window, click the <strong class="UI">[OK]</strong> button.</li>
+                <li> In step 3, if you selected <strong class="UI">[Enable]</strong> for the <strong class="UI">[Zoom threshold]</strong> option, then the <strong class="UI">[Set zoom threshold] </strong>window will appear. After setting the desired zoom ration, click the <strong class="UI">[OK]</strong> button.  </li>
+                <li>A new privacy area is added to the list of privacy areas. The privacy area to which zoom threshold is applied will be marked as &apos;[Zoom]&apos; in the list of privacy areas. The color set in the camera&apos;s image screen is used to display the privacy area.  </li>
+            </ol>
+            <!-- <p>'줌 표시 제한'은 설정한 줌 배율보다 영상 화면을 더 축소하면 영상에서&nbsp;프라이버시 영역이 일시적으로 제거되는 기능입니다. 줌을 확대하면 프라이버시 영역이 영상에 다시 나타납니다. 기준이 되는 줌 배율은 [줌 배율 표시 제한 설정] 창에서 설정할 수 있습니다. &nbsp;</p> -->
+        </div>
 		
         <div class="wn5-online-help-action">
-			<h4>Setting a privacy area (for PTZ channel)</h4>
+            <h4>Setting a privacy area(zoom camera)  </h4>
             <ol>
+				
                 <li>Select <strong class="UI">[Enable Privacy area]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page.  </li>
-                <li>Drag the&nbsp;mouse to set the privacy area on the camera image screen. The privacy area window will appear.</li>
-                <li>Adjust the privacy area by dragging the <span class="tui tui-wn5-ptz-handle"></span> icon with the mouse&nbsp;if desired.      </li>
-                <li>Enter the name of the privacy area in <strong class="UI">[Name]</strong>, select the color to cover the image in <strong class="UI">[Color]</strong>.    </li>
-                <li>Select the option for&nbsp;<strong class="UI">[Zoom threshold]</strong> and&nbsp;click the <strong class="UI">[OK]</strong> button. The privacy area will appear only when you zoom in more than you set in the [Set zoom threshold] window.  </li>
-                <li>If 'Zoom threshold' is set to 'On' in step 5, <strong class="UI">[Set zoom threshold]</strong> window will appear. Ajust the zoom to the desired magnification and click the <strong class="UI">[OK]</strong> button. The privacy area will appear only when you zoom in more than you set in the [Set zoom threshold] window.  </li>
-                <li>The new privacy area&nbsp;name will be added to the privacy area&nbsp;list. Privacy area&nbsp;that apply 'zoom threshold function' is&nbsp;shown with [ZOOM] following the name.The privacy area is displayed in the set color on the camera image screen.</li>
+                <li>Drag with the mouse on the camera video screen to set the privacy area.</li>
+                <li>In the <strong class="UI">[Privacy Area]</strong> window, set the following:</li>
+                <ul>
+                    <li>Enter the name of the privacy area in <strong class="UI">[Name]</strong>, select the color to cover the image in <strong class="UI">[Color]</strong>.</li>
+                    <li>Select whether to enable <strong class="UI">[Zoom threshold] </strong>. The function ensures that a privacy area is used only if the image is magnified to higher than a zoom ratio set in [Set zoom threshold]. In other words, if the image is reduced below the zoom ratio, the privacy area is deleted from the image. </li>
+                </ul>
+                <li> In the <strong class="UI">[Privacy Area] </strong> window, click the <strong class="UI">[OK]</strong> button.</li>
+                <li> In step 3, if you selected <strong class="UI">[Enable]</strong> for the <strong class="UI">[Zoom threshold]</strong> option, then the <strong class="UI">[Set zoom threshold] </strong>window will appear. After setting the desired zoom ration, click the <strong class="UI">[OK]</strong> button.</li>
+                <li>A new privacy area is added to the list of privacy areas. The privacy area to which zoom threshold is applied will be marked as &apos;[Zoom]&apos; in the list of privacy areas. The color set in the camera&apos;s image screen is used to display the privacy area.</li>
             </ol>
         </div>
-        <div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul>
-                <li>Only English letters, numbers, dash (-) and period (.) can be entered for the name of a privacy area.  </li>
-            </ul>
-        </div>
+
+		
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+			<ul>
+				
+				<li>Only English letters, numbers, dash (-) and period (.) can be entered for the name of a privacy area. </li>
+
+			</ul>
+		</div>
+
 
 		<div class="wn5-online-help-action">
 			<h4>Deleting a privacy area</h4>
-			<ol><li>Select the privacy area which you wish to delete from the privacy area list. The selected area will be displayed on the camera image screen. </li>
+			<ol>
+				
+				<li>Select a privacy area to delete from the list of privacy areas. The selected area is displayed on the camera&apos;s image screen. </li>
 				<li>Click the <strong class="UI">[Delete]</strong> button. The selected area will be deleted.</li>
 			</ol>
 		</div>
-		        <div class="wn5-online-help-action" ng-if="PTZModel">
+		       <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>Adjusting the PTZ</h4>
-            <p>You can adjust the pan, tile, and zoom actions of the camera. When you click <strong class="UI">[PTZ]</strong> in the <a href="#channel">Select channel</a> menu, the PTZ jog panel displays for camera PTZ adjustment.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Under <strong class="UI"><a href="#channel">[Select channel]</a></strong>, select the <strong class="UI">[PTZ]</strong> channel. The PTZ jog panel will appear.</p>
+            <p>You can adjust the pan, tilt, and zoom actions of the camera.</p>
             <ul>
-                <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span> icon with the mouse, the camera moves to the pan and tilt.</li>
-                <li>Select an image magnification by adjusting the zoom slide bar, or by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out.</li>
+                <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span>icon with the mouse, the camera will pan and tilt accordingly.</li>
+                <li>By using the zoom bar, you can adjust the video zooming ratio. Or, click the <span class="tui tui-wn5-ptz-plus"></span> icon to magnify the screen or click the <span class="tui tui-wn5-ptz-minus"></span> icon to reduce the screen.</li>
                 <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
                 <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
             </ul>
         </div>
 	</div>
 </div>
+
 <hr class="wn5-setup-hr">
+
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>Video rotation</h2>
 	</div>
 	<div class="wn5-setup-section-article">
-		<div class="wn5-setup-section-article-content">
-			<p>If the screen is displayed upside down after installing the camera, you can correct this through the flip mode and mirror mode functions. </p>
-			<p ng-if="HallwayView">The hallway view feature provides a long vertical view of the screen which allows the user to operate the surveillance area efficiently.</p>
-		</div>
-        		<div class="wn5-online-help-info" ng-if="Statistics">
-		<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-									<ul>
-											<li>If you change the video rotation setting, the video screen will be flipped vertically or horizontally or changed. Change the analytics and statistics settings so that you can analyze the video or accumulate the statistical data according to the changed video. These settings can be changed in the  <strong class="UI">[Analytics]</strong> menu and <strong class="UI">[Statistics]</strong> menu.  </li>
-									</ul>
-			</div>
-					<div class="wn5-online-help-info">
-		<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-					<ul>
-							<li>If you change the video rotation setting, the video screen will be flipped vertically or horizontally or changed. Change the analytics setting in the <strong class="UI">[Analytics]</strong> menu so that the video can be analyzed according to the changed video.    </li>
-					</ul>
-			</div>
+        <div class="wn5-setup-section-article-content">
+            <p>If the screen is displayed upside down after installing the camera, you can correct this through the flip mode and mirror mode functions. </p>
+            <p ng-if="HallwayView">The <strong class="UI">[Hallway View]</strong> feature provides a long vertical view of the screen which allows the user to operate the surveillance area more efficiently in a corridor or alley.</p>
+        </div>
+		<div class="wn5-online-help-info" ng-if="Statistics">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                    <ul>
+                        <li>If you change the video rotation setting, the video will be flipped in four directions or changed. To help you analyzing the changed video and accumulate the statistics, change the analysis and statistics setting. The settings can be changed in the [Analytics] and [Statistics] menus.  </li>
+                    </ul>
+        </div>
+				<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                    <ul>
+                        <li>If you change the video rotation settings, the video screen will be flipped in four directions or changed. To help you analyzing the changed video, change the analysis settings in the [Analytics] menu.  </li>
+                    </ul>
+        </div>
 		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
+			
 			<h3>Flip</h3>
 			<p>You can flip the camera image upside down. To flip the camera image, select <strong class="UI">[Enable]</strong>.</p>
 		</div>
@@ -105,95 +151,83 @@
 			<h3>Mirror</h3>
 			<p>You can mirror the camera image. To mirror the camera image, select <strong class="UI">[Enable]</strong>.</p>
 		</div>
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
-            <h3>Flip/Mirror</h3>
-            <p>Select [Use] to flip the camera output horizontally or vertically.</p>
-        </div>
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
-            <h3>Digital flip</h3>
-            <p>When changing the camera position using the PTZ function, the camera output may be flipped upside down, or from one side to the other. At this time, click <strong class="UI">[Use] </strong>if you want the video screen to be automatically reversed and displayed normally.</p>
-        </div>
-		<div class="wn5-setup-section-article-content" ng-if="HallwayView">
-			<h3>Hallway view</h3>
-			<p>You can rotate the camera image and enlarge the top and bottom monitoring areas in an environment such as a narrow hallway or an alley where it is difficult to monitor with a normal camera. You can rotate the image 90 degrees clockwise and 270 degrees clockwise; when you set to 0 degrees, the image returns to its original state.</p>
+
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
+			<h3>Flip/Mirror</h3>
+			<p>Select <strong class="UI">[Enable]</strong> to flip the camera output horizontally or vertically.</p>
 		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
+			<h3>Digital flip</h3>
+            <p>When you change the camera location by using the PTZ functions, the camera&apos;s image can be flipped in four directions. Now, if you want to reverse the image automatically, so that you can see the natural image, select&nbsp;<strong class="UI">[Enable]</strong>.</p>
+		</div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="HallwayView">
+            <h3>Hallway view</h3>
+            <p>By rotating the camera image in an environment where a general camera cannot properly monitor the narrow aisles or hallways, you can magnify the vertical monitoring areas. You can rotate it 90 deg (Clockwise) or 270 deg (Clockwise) or set it to 0 deg to return to the original image.</p>
+			<p ng-if="MaxChannel > 1 && HandoverCalibration">Only if you select a fixed camera channel in <strong class="UI"><a href="#channel">[Select channel]</a></strong>, you can set the &apos;Hallway View&apos; function.</p>
+        </div>
 		<div class="wn5-online-help-info" ng-if="HallwayView">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-			<div>
-				<ul><li>In order to set the hallway view, you need to set the installed camera to 0 degrees, or rotate to 90 degrees clockwise or 270 degrees clockwise, and select the same angle in <strong class="UI">[Hallway view]</strong>. </li>
+				<ul>
+					
+			        <li>In order to set the hallway view, you need to set the installed camera to 0 degrees, or rotate to 90 degrees clockwise or 270 degrees clockwise, and select the same angle in <strong class="UI">[Hallway view]</strong>. </li>
 					<li>When you set <strong class="UI">[Hallway view]</strong>, the web browser will close automatically. You will need to reconnect to the web viewer.</li>
 				</ul>
-			</div>
 		</div>
+		
+						<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+			<h3>Camera mounting mode</h3>
+            <p>Select the camera mounting mode. Select <strong class="UI">[Wall]</strong> when the camera is installed on the wall, or <strong class="UI">[Ceiling]</strong> when it is installed on the ceiling.</p>
+		</div>
+        <div class="wn5-online-help-info" ng-if="FisheyeLens">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>If you change the camera mounting mode, all the profile settings in&nbsp;<strong class="UI">[Video Profile]</strong> are reset and the camera is rebooted. In addition, as the screen is changed, you need to change the video analysis and statistic settings accordingly. The setting can be changed in <strong class="UI">[Analysis]</strong> and <strong class="UI">[Statistics] </strong>.  </li>
+                <li>Only if you set the camera mounting mode to<span>&nbsp;</span><strong class="UI">[Wall Type]</strong>, you can use the pan function of DPTZ in<span>&nbsp;</span><strong class="UI">[Live]</strong><span>&nbsp;</span>mode.</li>
+                <li>If you change the camera mounting mode, the fisheye view mode&apos;s direction in <strong class="UI">[Live]</strong><span> </span>mode is also changed.</li>
+            </ul>
+        </div>
 	</div>
 </div>
-<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
-<h3>Camera mounting mode</h3>
-<p>Selects the camera mounting mode. Selects <strong class="UI">[Wall]</strong> when the camera is installed on the wall, or <strong class="UI">[Ceiling]</strong> when it is installed on the ceiling.</p>
-</div>
-<div class="wn5-online-help-info" ng-if="FisheyeLens">
-<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-<ul>
-		<li>When you change the camera mounting mode, all the profile settings set in <strong class="UI">[Video profile]</strong> are reset and the camera reboots. You also need to change the video analytics and statistics settings to fit the screen that changes. These settings can be changed in the <strong class="UI">[Analytics]</strong> and <strong class="UI">[Statistics]</strong> menus.</li>
-</ul>
-</div>
-</div>
-</div>
-<!-- <hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
-	<div class="wn5-setup-section-heading">
-		<h2>Analog video</h2>
-	</div>
-	<div class="wn5-setup-section-article">
-		<div class="wn5-setup-section-article-content">
-			<h3>Video output</h3>
-			<p>You can set whether or not to output analog video. Analog video output is useful since you can set it while checking the lens location or focus when installing the camera.</p>
-		</div>
-
-		<div class="wn5-setup-section-article-content">
-			<h3>Video output type</h3>
-			<p>Select the analog video output type. You can select either <strong class="UI">[NTSC]</strong> or <strong class="UI">[PAL]</strong> as the video output type.</p>
-
-				
-			<ul><li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) is the standard for color television in the U.S. It operates at 30 frames per second with 525 horizontal scanning lines. The number of frames per second is large so that the screen can display naturally. This type is mainly used in the U.S., Japan and Canada.</li>
-				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) originated in Germany, and while it is similar to NTSC, there is a difference in the method it uses to handle color signals. This type is used mainly in Europe. Although this type has a smaller number of frames per second in comparison to NTSC, it has a larger number of horizontal scanning lines (625) and less color deformation; it does not require advanced specifications for broadcasting equipment. </li>
-			</ul>
-
-		</div>
-
-	</div>
-</div> -->
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>Video output</h2>
 	</div>
+        <div class="wn5-setup-section-article-content">
+            <p>This determines the output type of the video for an analog video output. Analog video output is useful since you can set it while checking the lens location and camera focus when installing the camera.</p>
+        </div>
 	<div class="wn5-setup-section-article">
-		<div class="wn5-setup-section-article-content">
-			<p>This determines the output type of the video for an analog video output. Analog video output is useful since you can set it while checking the lens location and camera focus when installing the camera.</p>
-		</div>
-		<div class="wn5-setup-section-article-content"></div>		
-			<h3>USB</h3>
-			<p>To display a video from camera using a USB, click <strong class="UI"></strong>[Enable].</strong></p>
-		</div>		
-		<div class="wn5-setup-section-article-content">	
-			<h3>CVBS</h3>
-			<p>To display a video by connecting a cable to the CVBS terminal, click <strong class="UI"></strong>[Enable].</strong></p>
-		</div>
-
-		<div class="wn5-setup-section-article-content">
-			<h3>CVBS type</h3>
-			<p>To use CVBS, select the CVBS video output type.</p>			
+            <div class="wn5-setup-section-article-content">
+                <h3>USB</h3>
+                <p>To display a camera image by using the USB, click <strong class="UI">[Enable]</strong>.</p>
+            </div>
+			<div class="wn5-setup-section-article-content">
+                <h3>CVBS</h3>
+                <p>To display a video by connecting a cable to the CVBS terminal, click <strong class="UI">[Enable]</strong>.</p>
+            </div>
+	
+	        <div class="wn5-setup-section-article-content">
+		        <h3>CVBS type</h3>
+	    	        <p>To use CVBS, select the CVBS video output type.</p>
+	        </div>
+		    <div class="wn5-setup-section-article-content">
 			<ul>
-				<li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) is the standard for color television in the U.S. It operates at 30 frames per second with 525 horizontal scanning lines. The number of frames per second is large so that the screen can display naturally. This type is mainly used in the U.S., Japan and Canada.</li>
-				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) originated in Germany, and while it is similar to NTSC, there is a difference in the method it uses to handle color signals. This type is used mainly in Europe. Although this type has a smaller number of frames per second in comparison to NTSC, it has a larger number of horizontal scanning lines (625) and less color deformation; it does not require advanced specifications for broadcasting equipment. </li>
+				<li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) is the US standard for color TVs. The number of frames per sec is 30 and the number of horizontal projection beam is 525, Since the number of frames per sec is high, the screen looks very natural. It is mostly used in USA, Japan, and Canada.</li>
+				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) method was proposed by Germany and it is similar to NTSC but differs in the way it handles the color signals. It is mostly used in Europe. Compared to NTSC, the number of frames per sec is lower but the number of horizontal beams is higher (625). Thus, the resolution is higher, the color deformation is less, and the broadcasting facility does not require high specifications. </li>
 			</ul>
-
-		</div>
-
+		    </div>
+		    <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                <ul>
+                    <li>To prevent degradation of the camera performance, turn off the analog video function after installing a camera.</li>
+                </ul>
+        </div>
 	</div>
+
 </div>
 
-
 <hr class="wn5-setup-hr">
+

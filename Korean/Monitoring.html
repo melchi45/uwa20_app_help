@@ -1,9 +1,10 @@
 ﻿
 <h1 class="wn5-setup-main-title">라이브 화면 </h1>
 <div class="wn5-setup-section">
-    <p ng-if="MaxAudioInput==0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처, 알람 출력, 마이크 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
-	    <p ng-if="MaxAudioInput!=0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처, 알람 출력 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
-			    <p ng-if="MaxAudioInput==0 && MaxAlarmOutput==0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
+    <!--     <p ng-if="MaxAudioInput==0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처, 알람 출력, 마이크 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
+	<p ng-if="MaxAudioInput!=0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처, 알람 출력 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
+    <p ng-if="MaxAudioInput==0 && MaxAlarmOutput==0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p> --> 
+    <p>카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
 </div>
 <div class="wn5-setup-section">
     <div class="wn5-online-help-list">
@@ -221,6 +222,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
            <div class="wn5-online-help-action" ng-if="MaxChannel > 1">
             <h4>채널을 변경하려면</h4>
                 <ul>
@@ -232,7 +234,7 @@
             <div class="wn5-online-help-action">
             <h4>영상을 캡처하려면</h4>
                 <ul>
-                    <li>캡처할 장면에서 <span class="tui tui-wn5-toolbar-capture"></span> 캡처 아이콘을 클릭합니다.</li>
+                    <li>캡처할 장면에서 캡처 아이콘(<span class="tui tui-wn5-toolbar-capture"></span>)을 클릭합니다.</li>
                     <li>캡처가 저장되면 알림 메시지가 나타납니다. 각 브라우저의 저장 경로에 캡처 이미지가 저장됩니다.  </li>
                 </ul>
                 <p>Windows 7 이상에서 Internet Explorer 브라우저로 캡쳐가 안 되는 경우,  Internet Explorer 브라우저를 관리자 권한으로 실행하십시오. </p>
@@ -240,8 +242,8 @@
             <div class="wn5-online-help-action" ng-if="!CamSpecialModel">
             <h4><a name="record"></a>영상을 녹화하려면</h4>
                 <ul>
-                    <li><span class="tui tui-wn5-toolbar-record"></span> 저장 아이콘을 클릭합니다.</li>
-                    <li>수동 녹화를 종료하려면 <span class="tui tui-wn5-toolbar-record"></span> 저장 버튼을 한 번 더 클릭합니다.</li>
+                    <li>저장 아이콘(<span class="tui tui-wn5-toolbar-record"></span>)을 클릭합니다.</li>
+                    <li>수동 녹화를 종료하려면 저장 아이콘(<span class="tui tui-wn5-toolbar-record"></span>)을 한 번 더 클릭합니다.</li>
                </ul>
                 <p>사용자 PC에 수동 녹화를 .avi 파일로 저장할 수 있습니다. 경로를 지정하고 영상을 저장하십시오. </p>
                 <p>피쉬아이 뷰 모드에서 녹화를 하면 사용자가 보고 있는 왜곡보정된 뷰가 아닌 원본 이미지로 저장됩니다.</p>
@@ -250,23 +252,23 @@
             <div class="wn5-online-help-action">
                 <h4>전체 화면으로 전환하려면</h4>
                 <ul>
-                    <li><span class="tui tui-wn5-toolbar-fullscreen"></span> 전체 화면 아이콘을 선택합니다. 뷰어 화면이 전체 화면으로 변경됩니다. </li>
-                    <li>전체 화면 모드를 종료하려면 <span class="tui tui-wn5-toolbar-fullscreen"></span> 전체 화면 아이콘을 한 번 더 클릭하거나 키보드의 [Esc] 키를 클릭합니다. </li>
+                    <li>전체 화면 아이콘(<span class="tui tui-wn5-toolbar-fullscreen"></span>)을 선택합니다. 뷰어 화면이 전체 화면으로 변경됩니다. </li>
+                    <li>전체 화면 모드를 종료하려면 전체 화면 아이콘(<span class="tui tui-wn5-toolbar-fullscreen"></span>)을 한 번 더 클릭하거나 키보드의 [Esc] 키를 클릭합니다. </li>
                 </ul>
             </div>
             <div class="wn5-online-help-action" ng-if="MaxAudioInput==0">
             <h4>오디오를 사용하려면</h4>
                 <ul>
-                    <li><span class="tui tui-wn5-toolbar-mic"></span> 오디오 아이콘을 클릭합니다.</li>
+                    <li>오디오 아이콘(<span class="tui tui-wn5-toolbar-mic"></span>)을 클릭합니다.</li>
                     <li>음량 조절 바를 이용하여 오디오 음량을 조절합니다.</li>
                 </ul>
-                <p>오디오 동작 중 PC의 오디오 잭을 연결하거나 분리할 때 소리가 나오지 않는 경우, <span class="tui tui-wn5-toolbar-mic"></span> 오디오 아이콘을 클릭하여 활성화하십시오.</p>
+                <p>오디오 동작 중 PC의 오디오 잭을 연결하거나 분리할 때 소리가 나오지 않는 경우, 오디오 아이콘(<span class="tui tui-wn5-toolbar-mic"></span>)을 클릭하여 활성화하십시오.</p>
             </div>
 			
             <div class="wn5-online-help-action" ng-if="MaxAudioOutput">
                 <h4>스피커를 사용하려면</h4>
                 <ul>
-                    <li><span class="tui tui-wn5-toolbar-sound"></span> 스피커 아이콘을 클릭합니다.</li>
+                    <li>스피커 아이콘(<span class="tui tui-wn5-toolbar-sound"></span>)을 클릭합니다.</li>
                   
                 </ul>
             </div>
@@ -274,13 +276,13 @@
             <div class="wn5-online-help-action">
             <h4>픽셀 수를 카운트하려면</h4>
                 <ul>
-                    <li><span class="tui tui-wn5-toolbar-pixel"></span> 픽셀 카운트 아이콘을 클릭합니다.</li>
+                    <li>픽셀 카운트 아이콘(<span class="tui tui-wn5-toolbar-pixel"></span>)을 클릭합니다.</li>
                     <li>영상 위에 마우스를 드래그하여 영역을 설정합니다. 해당 영역의 픽셀 수가 화면에 표시됩니다.</li>
                    
                 </ul>
             </div>															
 			
-        </div>
+
     </div>
 </div>
 

@@ -24,11 +24,11 @@
 
         <div class="wn5-setup-section-article-content">
             <h3>Detecci&oacute;n de cambio de temperatura</h3>
-            <p>En <STRONG class="UI">[&Aacute;rea]</strong>, seleccione el &aacute;rea para detectar el cambio de temperatura y configure las siguientes opciones.</p>
+            <p>En <strong class="UI">[&Aacute;rea]</strong>, seleccione el &aacute;rea para detectar el cambio de temperatura y configure las siguientes opciones.</p>
             <ul>
                 <li><strong class="UI">Diferencia de temperatura</strong>: cuando ocurre un cambio de temperatura de un grado o m&aacute;s, seleccione el cambio de temperatura umbral. El valor umbral o superior se detecta como un cambio de temperatura.&nbsp;Puede seleccionar el tipo de temperatura entre Celsius y Fahrenheit, que incluye la disminuci&oacute;n y el aumento de la temperatura.&nbsp;Por ejemplo, si ha seleccionado &quot;20 grados Celsius&quot;, cuando el cambio de temperatura ocurre a m&aacute;s de 20 grados Celsius, la c&aacute;mara detecta el cambio de temperatura.<br>
-                <li><strong class="UI">Tipo de temperatura</strong>: Puede existir un rango de temperaturas en el &aacute;rea configurada en <strong class="UI">[&Aacute;rea]</strong>. Seleccione la temperatura que ser&aacute; el est&aacute;ndar cuando observe el cambio de temperatura entre el &apos;m&aacute;s bajo&apos;, &apos;promedio&apos; y &apos;m&aacute;s alto&apos;. Por ejemplo, si selecciona &apos;3&apos; en <STRONG class="UI">[&Aacute;rea ]</STRONG>, selecciona &apos;20°C<STRONG class="UI">&apos;</STRONG> en<B> [Diferencia de temperatura]</B> y &apos;m&aacute;s bajo<STRONG
-class="UI">&apos;</STRONG> en <B>[Tipo de temperatura]</B>, cuando se detecte un cambio de temperatura de m&aacute;s de 20°C en funci&oacute;n de la temperatura m&aacute;s baja observada en el &Aacute;rea 3, la c&aacute;mara lo detectar&aacute; como un cambio de temperatura.  </li>
+                <li><strong class="UI">Tipo de temperatura</strong>: Puede existir un rango de temperaturas en el &aacute;rea configurada en <strong class="UI">[&Aacute;rea]</strong>. Seleccione la temperatura que ser&aacute; el est&aacute;ndar cuando observe el cambio de temperatura entre el &apos;m&aacute;s bajo&apos;, &apos;promedio&apos; y &apos;m&aacute;s alto&apos;. Por ejemplo, si selecciona &apos;3&apos; en <strong class="UI">[&Aacute;rea ]</strong>, selecciona &apos;20°C<strong class="UI">&apos;</strong> en<B> [Diferencia de temperatura]</B> y &apos;m&aacute;s bajo<strong
+class="UI">&apos;</strong> en <B>[Tipo de temperatura]</B>, cuando se detecte un cambio de temperatura de m&aacute;s de 20°C en funci&oacute;n de la temperatura m&aacute;s baja observada en el &Aacute;rea 3, la c&aacute;mara lo detectar&aacute; como un cambio de temperatura.  </li>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -58,12 +58,12 @@ class="UI">&apos;</STRONG> en <B>[Tipo de temperatura]</B>, cuando se detecte un
             <h3>Grabar</h3>
             <p>Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento de detecci&oacute;n de temperatura, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>Salida de alarma</h3>
             <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de detecci&oacute;n de temperatura.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="DPTZSetupPage || ExternalPTZPage">
+        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
             <h3>Ir a predefinido.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de temperatura. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
         </div>

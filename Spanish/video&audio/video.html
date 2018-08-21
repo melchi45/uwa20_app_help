@@ -1,19 +1,23 @@
-﻿<h1 class="wn5-setup-main-title">Conf. de v&iacute;deo</h1>
+﻿
+<h1 class="wn5-setup-main-title">Configuraci&oacute;n del v&iacute;deo</h1>
 
 <div class="wn5-setup-section">
-	<p>Se puede establecer una zona de privacidad imagen de la c&aacute;mara o reflejar la imagen de la pantalla hacia arriba, abajo, izquierda o derecha. Tambi&eacute;n puede configurar una salida de imagen anal&oacute;gica o cambiar el tipo de v&iacute;deo. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
+	<p>Puede configurar un &aacute;rea privada en la imagen de la c&aacute;mara o voltearla en las direcciones inversas (verticalmente u horizontalmente). Adem&aacute;s, puede mostrar una imagen anal&oacute;gica o cambiar el tipo de salida del video. Una vez que haya completado la configuraci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
 </div>
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2>Seleccionar canal</h2>
+        <h2><a name="channel"></a>Selecci&oacute;n de canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Después de seleccionar su canal de cámara, puede establecer los detalles de Vídeo para cada canal. </p>
+            <p>Despu&eacute;s de seleccionar un canal de la c&aacute;mara, puede configurar un &aacute;rea privada para cada canal, o configurar los ajustes de video detallados, como la rotaci&oacute;n del video, la salida anal&oacute;gica, etc.</p> 
+            <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como «PTZ».</p>
+            <p>Haga clic en el bot&oacute;n <strong class="UI">[Informaci&oacute;n detallada]</strong> para ver un resumen del canal.</p>
+            <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
         </div>
 	</div>
-</div>
+</div> 
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -22,37 +26,94 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-		    <p>Se puede establecer una parte de la imagen de la c&aacute;mara como una &aacute;rea privada oculta. Se puede establecer una zona de privacidad en la pantalla, basta con seleccionar <strong class="UI">[Activar zona de privacidad]</strong> y hacer clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. </p>
+		    <p>Para evitar una posible invasi&oacute;n de privacidad en la imagen de la c&aacute;mara, puede configurar un &aacute;rea privada. Despu&eacute;s de seleccionar <strong class="UI">[Activar &aacute;rea privada]</strong>, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina para configurar un &aacute;rea privada en la pantalla.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
-			<p>Si prefiere no tener un &aacute;rea privada, anule la selecci&oacute;n de <strong class="UI">[Activar zona de privacidad]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.Puede comprobar la imagen de la c&aacute;mara con ninguna zona oculta de privacidad. No se eliminar&aacute;n las superficies de privacidad; puede comprobar dichas &aacute;reas en la lista de &aacute;reas de privacidad.  </p>
+			<p>Para desactivar un &aacute;rea privada, deseleccione <strong class="UI">[Activar &aacute;rea privada]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la pantalla. Puede verificar la imagen completa de la c&aacute;mara sin nada escondido debido a la privacidad. Las &aacute;reas privadas configuradas no se borran y se pueden verificar en la lista de &aacute;rea privada.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Patr&oacute;n</h3>
-			<p>Seleccione el patr&oacute;n de mosaico que prefiere aplicar al &aacute;rea privada. Si <strong class="UI">[Opaco]</strong> est&aacute; establecido, se aplicar&aacute; el grupo de colores en la ventana del &aacute;rea privada. Cuando se selecciona un patr&oacute;n, se aplica a todas las &aacute;reas privadas por igual.</p>
+            <p>Seleccione el patr&oacute;n de mosaico para aplicar al &aacute;rea privada. Seleccionar <strong class="UI">[</strong><strong>Opaco</strong><strong class="UI">]</strong> para aplicar la configuraci&oacute;n del color en la ventana del &aacute;rea privada. Si selecciona el patr&oacute;n, se aplicar&aacute; a todas las &aacute;reas.</p>
 		</div>
-		<div class="wn5-online-help-action">
-			<h4>Ajuste de un &aacute;rea privada</h4>
-			<ol><li>Seleccione <strong class="UI">[Activar]</strong> para el &aacute;rea privada y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. </li>
-				<li>Haga clic en los 4 bordes de la pantalla de imagen de la c&aacute;mara con el rat&oacute;n. Aparecer&aacute; la ventana del &aacute;rea privada.</li>
-				<li>Introduzca el nombre del &aacute;rea privada en <strong class="UI">[Nombre]</strong>, seleccione el color para cubrir la imagen en <strong class="UI">[Color]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong>. </li>
-				<li>La nueva &aacute;rea privada se a&ntilde;adir&aacute; a la lista de &aacute;reas privada. El &aacute;rea privada se muestra en el color establecido en la pantalla de imagen de la c&aacute;mara.</li>
-			</ol>
+				<div class="wn5-online-help-action">
+			<h4>Configurar un &aacute;rea privada(excepto para el c&aacute;mara PTZ o zoom)</h4>
+            <ol>
+				
+				<li>Seleccione <strong class="UI">[Activar &aacute;rea privada]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
+                <li>Haga clic en las 4 esquinas con el mouse en la pantalla de video de la c&aacute;mara.</li>
+                <li>En la ventana del <strong class="UI">[&Aacute;rea privada]</strong>, configure lo siguiente:</li>
+                <ul>
+                    <li>Introduzca el nombre del &aacute;rea privada en <strong class="UI">[Nombre]</strong>, seleccione el color para cubrir la imagen en <strong class="UI">[Color]</strong>.</li>
+                </ul>
+                <li>En la ventana del <strong class="UI">[&Aacute;rea privada]</strong>, haga clic en el bot&oacute;n <strong class="UI">[OK]</strong>.</li>
+                <li>Se a&ntilde;ade una nueva &aacute;rea privada a la lista de &aacute;reas privadas. La configuraci&oacute;n del color en la pantalla de imagen de la c&aacute;mara se usa para mostrar un &aacute;rea privada.</li>
+            </ol>
 		</div>
+	
+	        <div class="wn5-online-help-action">
+            <h4>Configurar un &aacute;rea privada (c&aacute;mara PTZ)</h4>
+            <ol>
+				
+                <li>Seleccione <strong class="UI">[Activar &aacute;rea privada]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
+                <li>Arrastre el mouse en la pantalla de video de la c&aacute;mara para configurar el tama&ntilde;o del &aacute;rea privada.</li>
+                <li>En la ventana del <strong class="UI">[&Aacute;rea privada]</strong>, configure lo siguiente:</li>
+                <ul>
+                    <li>Arrastre el icono <span class="tui tui-wn5-ptz-handle"></span>  para colocar la pantalla de video deseada en un &aacute;rea privada al ajustar la panor&aacute;mica/inclinaci&oacute;n de la c&aacute;mara.</li>
+                    <li>Introduzca el nombre del &aacute;rea privada en <strong class="UI">[Nombre]</strong>, seleccione el color para cubrir la imagen en <strong class="UI">[Color]</strong>.</li>
+                    <li>Seleccione si desea activar el <strong class="UI">[Umbral del zoom]</strong>. La funci&oacute;n garantiza que un &aacute;rea privada se use solamente si se ampl&iacute;a la imagen a un tama&ntilde;o mayor que un &iacute;ndice de zoom configurado en [Configurar umbral del zoom]. En otras palabras, si la imagen se reduce abajo del &iacute;ndice de zoom, el &aacute;rea privada se borra de la imagen.</li>
+                </ul>
+                <li>En la ventana del <strong class="UI">[&Aacute;rea privada]</strong>, haga clic en el bot&oacute;n <strong class="UI">[OK]</strong>.</li>
+                <li>En el paso 3, si selecciona <strong class="UI">[Activar]</strong> para la opci&oacute;n <strong class="UI">[Umbral del zoom]</strong>, entonces la ventana <strong class="UI">[Configurar el umbral del zoom]</strong> aparecer&aacute;. Despu&eacute;s de configurar el &iacute;ndice de zoom deseado, haga clic en el bot&oacute;n <strong class="UI">[OK]</strong>.</li>
+                <li>Se a&ntilde;ade una nueva &aacute;rea privada a la lista de &aacute;reas privadas. El &aacute;rea privada a la que se aplica el umbral del zoom se marcar&aacute; como «[Zoom]» en la lista de &aacute;reas privadas. La configuraci&oacute;n del color en la pantalla de imagen de la c&aacute;mara se usa para mostrar el &aacute;rea privada.</li>
+            </ol><!-- <p>'줌 표시 제한'은 설정한 줌 배율보다 영상 화면을 더 축소하면 영상에서&nbsp;프라이버시 영역이 일시적으로 제거되는 기능입니다. 줌을 확대하면 프라이버시 영역이 영상에 다시 나타납니다. 기준이 되는 줌 배율은 [줌 배율 표시 제한 설정] 창에서 설정할 수 있습니다. &nbsp;</p> --></div>
+		
+        <div class="wn5-online-help-action">
+            <h4>Configurar un &aacute;rea privada (c&aacute;mara zoom)</h4>
+            <ol>
+				
+                <li>Seleccione <strong class="UI">[Activar &aacute;rea privada]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
+                <li>Arrastre el mouse en la pantalla de video de la c&aacute;mara para configurar el &aacute;rea privada.</li>
+                <li>En la ventana del <strong class="UI">[&Aacute;rea privada]</strong>, configure lo siguiente:</li>
+                <ul>
+                    <li>Introduzca el nombre del &aacute;rea privada en <strong class="UI">[Nombre]</strong>, seleccione el color para cubrir la imagen en <strong class="UI">[Color]</strong>.</li>
+                    <li>Seleccione si desea activar el <strong class="UI">[Umbral del zoom]</strong>. La funci&oacute;n garantiza que un &aacute;rea privada se use solamente si se ampl&iacute;a la imagen a un tama&ntilde;o mayor que un &iacute;ndice de zoom configurado en [Configurar umbral del zoom]. En otras palabras, si la imagen se reduce abajo del &iacute;ndice de zoom, el &aacute;rea privada se borra de la imagen.</li>
+                </ul>
+                <li>En la ventana del <strong class="UI">[&Aacute;rea privada]</strong>, haga clic en el bot&oacute;n <strong class="UI">[OK]</strong>.</li>
+                <li>En el paso 3, si selecciona <strong class="UI">[Activar]</strong> para la opci&oacute;n <strong class="UI">[Umbral del zoom]</strong>, entonces la ventana <strong class="UI">[Configurar el umbral del zoom]</strong> aparecer&aacute;. Despu&eacute;s de configurar el &iacute;ndice de zoom deseado, haga clic en el bot&oacute;n <strong class="UI">[OK]</strong>.</li>
+                <li>Se a&ntilde;ade una nueva &aacute;rea privada a la lista de &aacute;reas privadas. El &aacute;rea privada a la que se aplica el umbral del zoom se marcar&aacute; como «[Zoom]» en la lista de &aacute;reas privadas. La configuraci&oacute;n del color en la pantalla de imagen de la c&aacute;mara se usa para mostrar el &aacute;rea privada.</li>
+            </ol>
+        </div>
+
+		
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-			<ul><li>S&oacute;lo letras, n&uacute;meros, guiones (-) y el punto (.) se pueden introducir para el nombre de un &aacute;rea privada. </li>
+			<ul>
+				
+				<li>S&oacute;lo las letras en ingl&eacute;s, los n&uacute;meros, los guiones (-) y el punto (.) se pueden introducir para el nombre de un &aacute;rea privada.</li>
 
 			</ul>
 		</div>
 
 
 		<div class="wn5-online-help-action">
-			<h4>Eliminaci&oacute;n de un &aacute;rea privada</h4>
-			<ol><li>Seleccione el &aacute;rea privada que desea eliminar de la lista de &aacute;reas de privacidad. El &aacute;rea seleccionada se mostrar&aacute; en la pantalla de imagen de la c&aacute;mara. </li>
-				<li>Haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>. Se eliminar&aacute; el &aacute;rea seleccionada.</li>
+			<h4>Borrar un &aacute;rea privada</h4>
+			<ol>
+				
+				<li>Seleccionar un &aacute;rea privada para borrar de la lista de &aacute;reas privadas. Se muestra el &aacute;rea seleccionada en la pantalla de imagen de la c&aacute;mara.</li>
+				<li>Haga clic en el bot&oacute;n <strong class="UI">[Borrar]</strong>. El &aacute;rea seleccionada se borrar&aacute;.</li>
 			</ol>
 		</div>
+		       <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>Ajuste del PTZ</h4>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">En <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>, seleccione el canal <strong class="UI">[PTZ]</strong>. El panel panor&aacute;mico del PTZ aparecer&aacute;.</p>
+            <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
+            <ul>
+                <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
+                <li>Con la barra de zoom puede ajustar el porcentaje de zoom del v&iacute;deo. Tambi&eacute;n puede hacer clic en el icono <span class="tui tui-wn5-ptz-plus"></span>para ampliar la pantalla o en el icono <span class="tui tui-wn5-ptz-minus"></span>para reducirla.</li>
+                <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span>  o mueva el foco lejano haciendo clic en el icono<span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono<span class="tui tui-wn5-simple-focus"></span>.</li>
+            </ul>
+        </div>
 	</div>
 </div>
 
@@ -60,92 +121,137 @@
 
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
-		<h2>Fuente de v&iacute;deo</h2>
+		<h2>Rotaci&oacute;n del video</h2>
 	</div>
 	<div class="wn5-setup-section-article">
-		<div class="wn5-setup-section-article-content">
-			<p>Si la pantalla se muestra al rev&eacute;s despu&eacute;s de instalar la c&aacute;mara, puede corregir esto a trav&eacute;s de las funciones del modo de volteo y el modo de espejo. </p>
-			<p ng-if="HallwayView">La funci&oacute;n de vista de pasillo proporciona un larga vista vertical de la pantalla que permite al usuario controlar el &aacute;rea de vigilancia eficientemente.</p>
-		</div>
-        		<div class="wn5-online-help-info" ng-if="Statistics">
+        <div class="wn5-setup-section-article-content">
+            <p>Si la pantalla se muestra al rev&eacute;s despu&eacute;s de instalar la c&aacute;mara, puede corregir esto a trav&eacute;s de las funciones del modo de volteo y el modo de espejo.</p>
+            <p ng-if="HallwayView">La funci&oacute;n de <strong class="UI">[Vista de pasillo]</strong> proporciona una larga vista vertical de la pantalla que permite al usuario controlar el &aacute;rea de vigilancia m&aacute;s eficientemente en un pasillo o pasaje.</p>
+        </div>
+		<div class="wn5-online-help-info" ng-if="Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-										<ul>
-												<li>Si cambia el ajuste de rotación de vídeo, la pantalla de vídeo se moverá verticalmente u horizontalmente o cambiará. Cambie la configuración de análisis y estadísticas para que pueda analizar el vídeo o acumular los datos estadísticos de acuerdo con el vídeo cambiado. Estos ajustes se pueden cambiar en el menú  <strong class="UI">[Análisis]</strong> y en el menú <strong class="UI">[Estadísticas]</strong>.  </li>
-										</ul>
-				</div>
-						<div class="wn5-online-help-info">
+                    <ul>
+                        <li>Si cambia la configuraci&oacute;n de rotaci&oacute;n del video, &eacute;ste se voltear&aacute; en cuatro direcciones o se cambiar&aacute;. Para ayudarlo a analizar el video cambiado y acumular la estad&iacute;stica, cambie la configuraci&oacute;n de an&aacute;lisis y estad&iacute;stica. Los ajustes se pueden cambiar en los men&uacute;s de [An&aacute;lisis] y [Estad&iacute;stica].</li>
+                    </ul>
+        </div>
+				<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-						<ul>
-								<li>Si cambia el ajuste de rotación de vídeo, la pantalla de vídeo se moverá verticalmente u horizontalmente o cambiará. Cambie la configuración de análisis en el menú <strong class="UI">[Análisis]</strong> para que el vídeo pueda ser analizado de acuerdo con el vídeo cambiado.    </li>
-						</ul>
-				</div>
-			<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel"><!-- ??ぉ??異붽??섎젮硫?<li>?띿뒪??/li> ?뺥깭濡??낅젰?섏꽭??--><h3>Flip</h3>
-				<p>Para dar la vuelta a la imagen de la c&aacute;mara, seleccione <strong class="UI">[Act]</strong>.</p>
+                    <ul>
+                        <li>Si cambia la configuraci&oacute;n de rotaci&oacute;n del video, la pantalla del video se voltear&aacute; en cuatro direcciones o se cambiar&aacute;. Para ayudarlo a analizar el video cambiado, cambie la configuraci&oacute;n de an&aacute;lisis en el men&uacute; [An&aacute;lisis].</li>
+                    </ul>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
+			
+			<h3>Voltear</h3>
+			<p>Puede voltear la imagen boca abajo. Para voltear la imagen de la c&aacute;mara, seleccione <strong class="UI">[Activar]</strong>.</p>
 		</div>
 		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
-			<h3>Modo de espejo</h3>
-			<p>Para reflejar la imagen de la c&aacute;mara, seleccione <strong class="UI">[Act]</strong>.</p>
+			<h3>Espejo</h3>
+			<p>Puede reflejar la imagen de la c&aacute;mara. Para reflejar la imagen de la c&aacute;mara, seleccione <strong class="UI">[Activar]</strong>.</p>
 		</div>
 
 		<div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
-			<h3>Volteo/Espejo</h3>
-			<p>Seleccione <strong class="UI">[Uso]</strong> para invertir la salida de la cámara horizontal o verticalmente.</p>
+			<h3>Voltear/Espejo</h3>
+			<p>Seleccione <strong class="UI">[Activar]</strong> para voltear la salida de la c&aacute;mara horizontal o verticalmente.</p>
 		</div>
 
 		<div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
 			<h3>Volteo digital</h3>
-            <p>Al cambiar la posición de la cámara usando la función PTZ, la salida de la cámara puede ser volteada boca abajo o de un lado a otro. En este momento, haga clic en <strong class="UI">[Uso]</strong> si desea que la pantalla de vídeo se invierta automáticamente y se muestre normalmente.</p>
+            <p>Cuando cambia la ubicaci&oacute;n de la c&aacute;mara al usar las funciones PTZ, la imagen de la c&aacute;mara se puede voltear en cuatro direcciones. Ahora, si quiere invertir autom&aacute;ticamente la imagen, para que pueda ver la imagen natural, seleccione&nbsp;<strong class="UI">[Activar]</strong>.</p>
 		</div>
-
-		<div class="wn5-setup-section-article-content" ng-if="HallwayView">
-			<h3>Vista de pasillo</h3>
-			<p>Puede girar la imagen de la c&aacute;mara y ampliar las &aacute;reas de vigilancia superior e inferior en un entorno como un pasillo estrecho o un callej&oacute;n donde sea dif&iacute;cil de controlar con una c&aacute;mara normal. Puede girar la imagen 90 grados hacia la derecha y 270 grados hacia la derecha; cuando se establece en 0 grados, la imagen vuelve a su estado original.</p>
-		</div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="HallwayView">
+            <h3>Vista de pasillo</h3>
+            <p>Al rotar la imagen de la c&aacute;mara en un entorno donde una c&aacute;mara general no puede monitorear correctamente los pasillos estrechos o corredores, puede ampliar las &aacute;reas de monitoreo vertical. Puede rotarla 90 grados (hacia la derecha) o 270 grados (hacia la derecha) o configurarla a 0 grados para volver a la imagen original.</p>
+			<p ng-if="MaxChannel > 1 && HandoverCalibration">Solamente si selecciona un canal fijo de la c&aacute;mara en <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>, puede configurar la funci&oacute;n «Vista de pasillo».</p>
+        </div>
 		<div class="wn5-online-help-info" ng-if="HallwayView">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-			<div>
-				<ul><li>Con el fin de establecer la vista de pasillo, es necesario configurar la c&aacute;mara instalada en 0 grados, o girar hasta 90 grados hacia la derecha o hacia la derecha 270 grados, y seleccionar el mismo &aacute;ngulo en <strong class="UI">[Vista de pasillo]</strong>. </li>
-					<li>Cuando se establece <strong class="UI">[Vista de pasillo]</strong>, el navegador web se cerrar&aacute; autom&aacute;ticamente. Tendr&aacute; que volver a conectarse al visor web.</li>
+				<ul>
+					
+			        <li>Con el fin de establecer la vista de pasillo, es necesario configurar la c&aacute;mara instalada en 0 grados, o rotar hasta 90 grados hacia la derecha o 270 grados hacia la derecha, y seleccionar el mismo &aacute;ngulo en <strong class="UI">[Vista de pasillo]</strong>.</li>
+					<li>Cuando configura la <strong class="UI">[Vista de pasillo]</strong>, el navegador web se cerrar&aacute; autom&aacute;ticamente. Necesitar&aacute; volverse a conectar al visor web.</li>
 				</ul>
-				</div>
-			</div>
 		</div>
-	</div>
-	<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
-	<h3>Modo de montaje de la cámara</h3>
-	<p>Selecciona el modo de montaje de la cámara. Seleccione <strong class="UI">[Tipo de pared]</strong> cuando la cámara esté instalada en una pared o <strong class="UI">[Tipo de techo]</strong> cuando esté instalada en un techo.</p>
-	</div>
-	<div class="wn5-online-help-info" ng-if="FisheyeLens">
-	<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-	<ul>
-			<li>Cuando cambia el modo de montaje de la cámara, se restablecen todos los ajustes de perfil establecidos en <strong class="UI">[Perfil de vídeo]</strong> y la cámara se reinicia. También tendrá que cambiar la configuración de estadísticas y análisis de vídeo para que se ajuste a la pantalla que cambia. Estos ajustes se pueden cambiar utilizando los menús <strong class="UI">[Análisis]</strong> y <strong class="UI">[Estadísticas]</strong>.</li>
-	</ul>
-	</div>
-	</div>
-	</div>
-	<hr class="wn5-setup-hr">
-	<div class="wn5-setup-section">
-		<div class="wn5-setup-section-heading">
-			<h2>v&iacute;deo analógico</h2>
-         </div>
-	<div class="wn5-setup-section-article">
-        
-    <div class="wn5-setup-section-article-content">
-		<h3>Salida de v&iacute;deo</h3>    
-			<p>Puede establecer si desea o no la salida de v&iacute;deo anal&oacute;gico. La salida de v&iacute;deo anal&oacute;gico es &uacute;til, ya que se puede establecer durante la comprobaci&oacute;n de la ubicaci&oacute;n de la lente o el enfoque cuando se instala la c&aacute;mara.</p>
+		
+						<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+			<h3>Modo de montaje de la c&aacute;mara</h3>
+            <p>Seleccione el modo de montaje de la c&aacute;mara. Seleccione <strong class="UI">[Pared]</strong> cuando la c&aacute;mara est&eacute; instalada en la pared o <strong class="UI">[Techo]</strong> cuando est&eacute; instalada en el techo.</p>
 		</div>
+        <div class="wn5-online-help-info" ng-if="FisheyeLens">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>Si cambia el modo de montaje de la c&aacute;mara, todos los ajustes de perfil en&nbsp;<strong class="UI">[Perfil de video]</strong> se reinician y la c&aacute;mara se reinicia. Adem&aacute;s, como la pantalla se cambia, necesita cambiar la configuraci&oacute;n de an&aacute;lisis y estad&iacute;stica del video, como corresponde. La configuraci&oacute;n se puede cambiar en <strong class="UI">[An&aacute;lisis]</strong> y <strong class="UI">[Estad&iacute;stica]</strong>.</li>
+                <li>Solamente si configura el modo de montaje de la c&aacute;mara a<span>&nbsp;</span><strong class="UI">[Tipo de pared]</strong>, puede usar la funci&oacute;n panor&aacute;mica de DPTZ en el modo<span>&nbsp;</span><strong class="UI">[En vivo]</strong><span></span>.</li>
+                <li>Si cambia el modo de montaje de la c&aacute;mara, la direcci&oacute;n del modo ojo de pez <strong class="UI">[En vivo]</strong><span></span> tambi&eacute;n se cambia.</li>
+            </ul>
+        </div>
+	</div>
+</div><!--
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>아날로그 비디오</h2>
+    </div>
+	<div class="wn5-setup-section-article">	
+		<div class="wn5-setup-section-article-content">	
+        <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 고정 카메라 채널을 선택한 경우에만 '아날로그 비디오' 기능을 설정할 수 있습니다.</p>
+        </div>
 
-
-		<div class="wn5-setup-section-article-content">
-		<h3>Tipo de v&iacute;deo</h3>
-
-	    	<p>Seleccione el tipo de v&iacute;deo anal&oacute;gico. Puede seleccionar <strong class="UI">[NTSC]</strong> o <strong class="UI">[PAL]</strong> como el tipo de v&iacute;deo.</p>
-
-			<ul><li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) es el est&aacute;ndar para la televisi&oacute;n en color en los EE.UU., opera a 30 fotogramas por segundo con 525 l&iacute;neas de definici&oacute;n horizontal. El n&uacute;mero de fotogramas por segundo es grande, por lo que la pantalla se puede mostrar de forma natural. Este tipo se utiliza principalmente en los EE.UU., Jap&oacute;n y Canad&aacute;.</li>
-				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) se origin&oacute; en Alemania, y mientras que es similar a NTSC, hay una diferencia en el m&eacute;todo que utiliza para manejar las se&ntilde;ales de color. Este tipo se utiliza principalmente en Europa. Aunque este tipo tiene un menor n&uacute;mero de cuadros por segundo en comparaci&oacute;n con NTSC, tiene un mayor n&uacute;mero de l&iacute;neas horizontales de exploraci&oacute;n (625) y una menor deformaci&oacute;n de color; que no requiere especificaciones avanzadas para equipos de transmisi&oacute;n. </li>
+	<div class="wn5-setup-section-article-content">
+			
+			<h3>비디오 출력</h3>
+			<p>아날로그 비디오 출력 여부를 설정할 수 있습니다. 아날로그 비디오 출력은 카메라 설치 시 렌즈 위치나 포커스 등을 확인하면서 설정할 수 있어 유용합니다.</p>
+		</div>
+	
+	<div class="wn5-setup-section-article-content">
+		<h3>비디오 출력 타입</h3>
+		
+	    	<p>아날로그 비디오 출력 타입을 선택합니다. 비디오 출력 타입은 <strong class="UI">[NTSC]</strong>와 <strong class="UI">[PAL]</strong> 중에 선택할 수 있습니다.</p>
+			<ul>
+				
+				<li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) 방식은 미국에서 제정한 컬러 텔레비전의 표준입니다. 초당 프레임 수는 30 프레임이고, 수평 주사선은 525입니다. 초당 프레임 수가 높아 화면이 자연스럽게 표현됩니다. 주로 미국, 일본, 캐나다 등에서 사용하는 방식입니다.</li>
+				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) 방식은 독일에서 제안되었고 NTSC 방식과 비슷하지만 색 신호를 취급하는 방법에 차이가 있습니다. 주로 유럽에서 사용하는 방식입니다. NTSC에 비해 초당 프레임 수는 적지만 수평 주사선이 625로 더 많아 해상도가 높고, 색 변형이 적으며 방송 설비에 고도의 규격이 필요하지 않습니다. </li>
 			</ul>
 		</div>
 	</div>
+</div>   --><hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>Salida de v&iacute;deo</h2>
+	</div>
+        <div class="wn5-setup-section-article-content">
+            <p>Esto determina el tipo de salida del video para una salida de video anal&oacute;gica. La salida de video anal&oacute;gica es &uacute;til ya que puede configurarla mientras verifica la ubicaci&oacute;n de los lentes y el enfoque de la c&aacute;mara mientras instala la c&aacute;mara.</p>
+        </div>
+	<div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <h3>USB</h3>
+                <p>Para mostrar una imagen de la c&aacute;mara al usar el USB, haga clic en <strong class="UI">[Activar]</strong>.</p>
+            </div>
+			            <div class="wn5-setup-section-article-content">
+                <h3>CVBS</h3>
+                <p>Para mostrar un video al conectar un cable a la terminal CVBS, haga clic en <strong class="UI">[Activar]</strong>.</p>
+            </div>
+	
+	<div class="wn5-setup-section-article-content">
+		<h3>Tipo de CVBS</h3>
+		<div class="wn5-setup-section-article-content">
+	    	<p>Para usar CVBS, seleccione el tipo de salida de video CVBS.</p>
+	    </div>
+		<div class="wn5-setup-section-article-content">
+			<ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">NTSC</strong>: NTSC (Comit&eacute; Nacional de Sistema de Televisi&oacute;n) es el est&aacute;ndar para la televisi&oacute;n en color en los EE. UU. El n&uacute;mero de fotogramas por segundo es 30 y el n&uacute;mero de rayo de proyecci&oacute;n horizontal es 525. Dado que el n&uacute;mero de fotogramas por segundo es alto, la pantalla parece muy natural. En su mayor&iacute;a, se usa en los EE. UU., Jap&oacute;n y Canad&aacute;.</li>
+				<li><strong class="UI">PAL</strong>: Al m&eacute;todo PAL (L&iacute;nea de alternancia de fase) lo propuso Alemania y es similar al NTSC pero difiere en la manera en que trata las se&ntilde;ales de color. En su mayor&iacute;a, se usa en Europa. Comparado con el NTSC, el n&uacute;mero de fotogramas por segundo es m&aacute;s bajo pero el n&uacute;mero de rayos horizontales es m&aacute;s alto (625). Por consiguiente, la resoluci&oacute;n es m&aacute;s alta, la deformaci&oacute;n de color es menor, y el centro de radiodifusi&oacute;n no requiere altas especificaciones.</li>
+			</ul>
+		</div>
+		      <div class="wn5-online-help-info" ng-if="FisheyeLens">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                <ul>
+                    <li>Para evitar la degradaci&oacute;n del rendimiento de la c&aacute;mara, apague la funci&oacute;n de video anal&oacute;gico despu&eacute;s de instalar la c&aacute;mara.</li>
+                </ul>
+        </div>
+	</div>
+
 </div>
 
 <hr class="wn5-setup-hr">
+

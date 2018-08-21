@@ -26,9 +26,26 @@
 
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-			<ul>
-				<li>Si la conexi&oacute;n se realiza desde varios lugares con el mismo ID, o se cambia la contrase&ntilde;a mientras que un n&uacute;mero de navegadores de Internet est&aacute;n abiertos, los navegadores de Internet pueden no funcionar correctamente. Se recomienda que una contrase&ntilde;a se cambie s&oacute;lo desde un lugar o s&oacute;lo a trav&eacute;s de un navegador de Internet.</li>
-			</ul>
+            <ul>
+					<li>Para una mayor seguridad, se recomienda crear una contrase&ntilde;a que combine caracteres especiales, n&uacute;meros y letras may&uacute;sculas y min&uacute;sculas.</li>
+					<li>Se recomienda cambiar la contrase&ntilde;a cada tres meses.</li>
+					<li>La longitud y restricciones de la contrase&ntilde;a son las siguientes:</li>
+					<ul>
+						<li>Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+						<li>Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+						<li>Debe ser diferente de su identificaci&oacute;n.</li>
+						<li>No se pueden utilizar cuatro letras consecutivas de un tipo (Por ejemplo: 1234, abcd)</li>
+						<li>No se puede repetir la misma letra cuatro o m&aacute;s veces seguidas. (Por ejemplo: !!!!, 1111, aaaa)</li>
+						<li>Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
+						<li>Despu&eacute;s del restablecimiento de f&aacute;brica, se restablecer&aacute;n las contrase&ntilde;as de administrador y de usuario y deber&aacute; crearlas nuevamente.</li>
+						<li>Cuando acceda al visor web de la c&aacute;mara por primera vez o acceda a &eacute;l despu&eacute;s de la inicializaci&oacute;n, se lo llevar&aacute; al men&uacute; de configuraci&oacute;n de la contrase&ntilde;a.</li>
+						<li>Para utilizar el men&uacute; del visor web, se debe configurar la nueva contrase&ntilde;a en el men&uacute; de cambio de contrase&ntilde;a e iniciar sesi&oacute;n nuevamente en el visor web con la nueva contrase&ntilde;a.</li>
+						<li>Cuando cambie la contrase&ntilde;a del administrador, si la contrase&ntilde;a actual no coincide, no podr&aacute; establecer la nueva contrase&ntilde;a.</li>
+						<li>Despu&eacute;s de cambiar la contrase&ntilde;a, si hay una c&aacute;mara conectada a un cliente, tales como CMS o NVR, debe registrar la nueva contrase&ntilde;a antes de usarla. Si mantiene la misma conexi&oacute;n, el cliente utilizar&aacute; la contrase&ntilde;a anterior para la autenticaci&oacute;n, para que la cuenta se pueda bloquear.</li>
+					</ul>
+					 <li>Cuando inicie sesi&oacute;n en el visor web, si ingres&oacute; la contrase&ntilde;a incorrecta m&aacute;s de cinco veces, se bloquear&aacute; durante 30 segundos y no podr&aacute; acceder al visor web.</li>
+					 <li>Si la conexi&oacute;n se realiza desde varios lugares con el mismo ID, o se cambia la contrase&ntilde;a mientras que un n&uacute;mero de navegadores de Internet est&aacute;n abiertos, los navegadores de Internet pueden no funcionar correctamente. Se recomienda que una contrase&ntilde;a se cambie s&oacute;lo desde un lugar o s&oacute;lo a trav&eacute;s de un navegador de Internet.</li>
+				</ul>
 		</div>
 	</div>
 </div>
@@ -62,6 +79,12 @@
 		<div class="wn5-setup-section-article-content">
 			<p>Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso, incluyendo audio, salida de audio, salida de alarma y el perfil. Cuando un usuario registrado inicie la sesi&oacute;n, s&oacute;lo las funciones establecidas para ese usuario est&aacute;n habilitadas. 10 cuentas de usuario actuales se establecen de forma predeterminada; se puede a&ntilde;adir o eliminar una cuenta. Hasta 10 cuentas de usuario actuales IP se pueden utilizar.</p>
 		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+			<ul>
+			<li>Si desea seleccionar el usuario configurado que puede usar ONVIF, el uso de la funci&oacute;n puede estar restringido seg&uacute;n el nivel de permisos establecidos.</li>
+			</ul>
+		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Nombre</h3>
 			<p>Introduzca el ID</p>
@@ -78,7 +101,7 @@
 			<h3>Salida de audio</h3>
 			<p>Establezca los permisos de salida de audio. Cuando se selecciona la salida de audio, un usuario que se conecta a una cuenta correspondiente puede enviar audio a trav&eacute;s del micr&oacute;fono.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
 			<h3>Salida de alarma</h3>
 			<p>Establecimiento de permisos de salida de alarma. Cuando una alarma se ha fijado, un usuario que se conecta a una cuenta relevante puede emitir la alarma.</p>
 		</div>

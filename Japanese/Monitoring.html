@@ -1,19 +1,21 @@
 ﻿
 <h1 class="wn5-setup-main-title">ライブ画面</h1>
 <div class="wn5-setup-section">
-    <p ng-if="MaxAudioInput==0">カメラで撮影しているライブ映像を確認したり、画面キャプチャー、アラーム出力、マイク等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p>
-	    <p ng-if="MaxAudioInput!=0">カメラで撮影しているライブ映像を確認したり、画面キャプチャー、アラーム出力等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p>
+    <!-- <p ng-if="MaxAudioInput==0">カメラで撮影しているライブ映像を確認したり、画面キャプチャー、アラーム出力、マイク等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p>
+        <p ng-if="MaxAudioInput!=0">カメラで撮影しているライブ映像を確認したり、画面キャプチャー、アラーム出力等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p> --> 
+    <p>カメラで撮影しているライブ映像を確認したり、画面キャプチャー等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p> 
 </div>
 <div class="wn5-setup-section">
     <div class="wn5-online-help-list">
     <p>上のボタンをクリックすると、ライブ画面や再生画面、設定画面に移動することができます。</p>
         <ul><li><span class="tui tui-wn5-top-live"></span>(ライブ)：カメラで撮影中のライブ画面を確認して、様々なカメラ機能を制御することができます。</li>
-            <li ng-if="Recording"><span class="tui tui-wn5-top-playback"></span>(再生)：SDカードまたはNASに録画しておいた映像を検索して再生することができます。</li>
-            <li><span class="tui tui-wn5-top-setup"></span>(設定)：カメラの詳細設定を変更することができます。</li>
+            <li ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(再生)：SDカードまたはNASに録画しておいた映像を検索して再生することができます。</li>
+            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(再生)：SDカードに録画しておいた映像を検索して再生することができます。</li>
+            <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(設定)：カメラの詳細設定を変更することができます。</li>
         </ul>
     </div>
 
-    <div class="wn5-online-help-info" ng-if=!CamSpecialModel">
+    <div class="wn5-online-help-info" ng-if="!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
         <ul>
             <li>Chromeでウェブビューアに接続すると、再生画面の機能を最も安定した状態で使用することができます。</li>
@@ -170,8 +172,8 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
-                        <td width="235">
+                    <tr ng-if="MaxAlarmOutput">
+                        <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
                             <p>アラーム出力</p>
                             <p>&nbsp;</p>
@@ -194,7 +196,8 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="wn5-online-help-action">
+        </div>
+            <div class="wn5-online-help-action" ng-if="MaxChannel > 1">
             <h4>チャンネルを変更するには、</h4>
                 <ul>
                     <li>チャンネルNo.を選択します。該当チャンネルの映像がビューアに表示されます。</li>
@@ -205,16 +208,16 @@
             <div class="wn5-online-help-action">
             <h4>映像をキャプチャーするには、</h4>
                 <ul>
-                    <li>キャプチャーするシーンで<span class="tui tui-wn5-toolbar-capture"></span>キャプチャーアイコンをクリックします。</li>
+                    <li>キャプチャーするシーンでキャプチャーアイコン(<span class="tui tui-wn5-toolbar-capture"></span>)をクリックします。</li>
                     <li>キャプチャーを保存すると、通知メッセージが表示されます。各ブラウザの保存パスにキャプチャー画像を保存します。  </li>
                 </ul>
                 <p>Windows 7以上のInternet Explorerブラウザでキャプチャーできない場合、Internet Explorerブラウザを管理者権限で実行してください。</p>
             </div>
-            <div class="wn5-online-help-action">
+            <div class="wn5-online-help-action" ng-if="!CamSpecialModel">
             <h4><a name="record"></a>映像を録画するには、</h4>
                 <ul>
-                    <li><span class="tui tui-wn5-toolbar-record"></span>保存アイコンをクリックします。</li>
-                    <li>手動録画を終了するには、<span class="tui tui-wn5-toolbar-record"></span>もう一度保存ボタンをクリックします。</li>
+                    <li>保存アイコン(<span class="tui tui-wn5-toolbar-record"></span>)をクリックします。</li>
+                    <li>手動録画を終了するには、もう一保存アイコン(<span class="tui tui-wn5-toolbar-record"></span>)をクリックします。</li>
                </ul>
                 <p>ユーザーPCに手動録画を.aviファイルで保存することができます。パスを指定して映像を保存してください。</p>
                 <p>魚眼ビューモードで録画すると、ユーザーが見ている歪み補正ビューではなくオリジナル画像で保存されます。</p>
@@ -223,23 +226,23 @@
             <div class="wn5-online-help-action">
                 <h4>全画面に切換するには、</h4>
                 <ul>
-                    <li><span class="tui tui-wn5-toolbar-fullscreen"></span>全画面アイコンを選択します。ビューア画面が全画面に変更されます。</li>
-                    <li>全画面モードを終了するには、<span class="tui tui-wn5-toolbar-fullscreen"></span>もう一度全画面アイコンをクリックするかキーボードの[Esc]キーをクリックします。</li>
+                    <li>全画面アイコン(<span class="tui tui-wn5-toolbar-fullscreen"></span>)を選択します。ビューア画面が全画面に変更されます。</li>
+                    <li>全画面モードを終了するには、もう一度全画面アイコン(<span class="tui tui-wn5-toolbar-fullscreen"></span>)をクリックするかキーボードの[Esc]キーをクリックします。</li>
                 </ul>
             </div>
-            <div class="wn5-online-help-action">
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput==0">
             <h4>オーディオを使用するには、</h4>
                 <ul>
-                    <li><span class="tui tui-wn5-toolbar-mic"></span>オーディオアイコンをクリックします。</li>
+                    <li>オーディオアイコン(<span class="tui tui-wn5-toolbar-mic"></span>)をクリックします。</li>
                     <li>音量調整バーでオーディオ音量を調整します。</li>
                 </ul>
-                <p>オーディオ動作中、PCのオーディオジャックを接続・分離するときに音が出ない場合、<span class="tui tui-wn5-toolbar-mic"></span>オーディオアイコンをクリックして有効にしてください。</p>
+                <p>オーディオ動作中、PCのオーディオジャックを接続・分離するときに音が出ない場合、オーディオアイコン(<span class="tui tui-wn5-toolbar-mic"></span>)をクリックして有効にしてください。</p>
             </div>
 			
-            <div class="wn5-online-help-action">
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput">
                 <h4>スピーカーを使用するには、</h4>
                 <ul>
-                    <li><span class="tui tui-wn5-toolbar-sound"></span>スピーカーアイコンをクリックします。</li>
+                    <li>スピーカーアイコン(<span class="tui tui-wn5-toolbar-sound"></span>)をクリックします。</li>
                   
                 </ul>
             </div>
@@ -247,7 +250,7 @@
             <div class="wn5-online-help-action">
             <h4>ピクセル数をカウントするには、</h4>
                 <ul>
-                    <li><span class="tui tui-wn5-toolbar-pixel"></span>ピクセル数アイコンをクリックします。</li>
+                    <li>ピクセル数アイコン(<span class="tui tui-wn5-toolbar-pixel"></span>)をクリックします。</li>
                     <li>映像の上にマウスをドラッグしてエリアを設定します。そのエリアのピクセル数が画面に表示されます。</li>
                    
                 </ul>
@@ -477,18 +480,13 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
                     <p>据付けモードは、<strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong> &gt; <strong class="UI">[カメラ据付けモード]</strong>で設定することができます。<strong class="UI">[天井]</strong>を選択した場合のみ、「ダブルパノラマ」ビュータイプが表示され、その他のビュータイプは「天井」と「壁」両方とも同一です。</p>
             <p>お望みのビュータイプアイコンを選択してから、ライブ映像画面でマウスをドラッグしてカメラのビューを変更することができます。</p>
             <ul>
-                <li>魚眼( )：歪み補正していないオリジナル魚眼映像で表示します。</li>
-                <li>Single Panorama( &nbsp;)：オリジナル映像を歪み補正してパノラマタイプで表示します。</li>
-                <li>Double Panorama( &nbsp;)：オリジナル映像を歪み補正してパノラマタイプの上下分割画面で表示します。</li>
-                <li>魚眼 + 3PTZ( &nbsp;)：魚眼映像と3つのROI領域を歪み補正して分割画面で表示します。</li>
-                <li>Quad View( &nbsp;)：魚眼映像と4つのROI領域を歪み補正して分割画面で表示します。</li>
-                <li>Panorama + 2PTZ( &nbsp;)：パノラマ映像と2つのROI領域を歪み補正して分割画面で表示します。</li>
-                <li>魚眼 + 8PTZ( &nbsp;)：魚眼映像と8つのROI領域を歪み補正して分割画面で表示します。壁に設置された場合のみ、対応するビューです。</li>
-                <li>Single Panorama( &nbsp;)：オリジナル映像を歪み補正して壁パノラマタイプで表示します。</li>
-                <li>魚眼 + 3PTZ( &nbsp;)：壁パノラマ映像と3つのROI領域を歪み補正して分割画面で表示します。</li>
-                <li>Quad View( &nbsp;)：魚眼映像と4つのROI領域を歪み補正して分割画面で表示します。</li>
-                <li>Panorama + 2PTZ( &nbsp;)：パノラマ映像と2つのROI領域を歪み補正して分割画面で表示します。</li>
-                <li>魚眼 + 8PTZ( )：壁パノラマ映像と8つのROI領域を歪み補正して分割画面で表示します。</li>
+                <li>魚眼(<span class="tui tui-wn5-fisheye"></span>)：歪み補正していないオリジナル魚眼映像で表示します。</li>
+                <li>Single Panorama(<span class="tui tui-wn5-single-panorama"></span>)：オリジナル映像を歪み補正してパノラマタイプで表示します。</li>
+                <li>Double Panorama(<span class="tui tui-wn5-double-panorama"></span>)：オリジナル映像を歪み補正してパノラマタイプの上下分割画面で表示します。</li>
+                <li>魚眼 + 3PTZ(<span class="tui tui-wn5-fisheye-3ptz"></span>)：魚眼映像と3つのROI領域を歪み補正して分割画面で表示します。</li>
+                <li>Quad View(<span class="tui tui-wn5-quad-view"></span>)：魚眼映像と4つのROI領域を歪み補正して分割画面で表示します。</li>
+                <li>Panorama + 2PTZ(<span class="tui tui-wn5-panorama-2ptz"></span>)：パノラマ映像と2つのROI領域を歪み補正して分割画面で表示します。</li>
+                <li>魚眼 + 8PTZ(<span class="tui tui-wn5-fisheye-8ptz"></span>)：魚眼映像と8つのROI領域を歪み補正して分割画面で表示します。壁に設置された場合のみ、対応するビューです。</li>
             </ul>
             <p><strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong> &gt; <strong class="UI">[カメラ据付けモード]</strong>でカメラ据付けモードを変更すると、ライブモードで魚眼ビューモード設置方向も一緒に変更されます。</p>
         </div>

@@ -15,7 +15,9 @@
             <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p>
         </div>
 	</div>
-</div> <hr class="wn5-setup-hr">
+</div> 
+
+<hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>PTZ 조정하기</h2>
@@ -52,6 +54,24 @@
 </div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="Sensor">
+<div class="wn5-setup-section" ng-if="Sensor">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="sensor"></a>센서 모드</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>카메라의 CMOS 센서가 1초에 몇 프레임(fps)을 촬영할지 설정합니다. 센서에서 설정한 프레임 수에 따라 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프레임 레이트]</strong>의 최댓값이 달라집니다.
+            </p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>센서 모드 </h3>
+            <p>원하는 프레임 레이트를 설정합니다. 프레임 레이트는 이미지 프리셋 별로 각각 다르게 설정할 수 없습니다. 프레임 레이트는 모든 이미지 프리셋에 동일하게 적용됩니다.</p>
+        </div>
+    </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="ImagePresetMode">
 <div class="wn5-setup-section" ng-if="ImagePresetMode">
     <div class="wn5-setup-section-heading">
@@ -80,23 +100,7 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="Sensor">
-<div class="wn5-setup-section" ng-if="Sensor">
-    <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="sensor"></a>센서</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>카메라의 CMOS 센서가 1초에 몇 프레임(fps)을 촬영할지 설정합니다. 센서에서 설정한 프레임 수에 따라 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프레임 레이트]</strong>의 최댓값이 달라집니다.
-            </p>
-        </div>
 
-        <div class="wn5-setup-section-article-content">
-            <h3>모드 </h3>
-            <p>원하는 프레임 레이트를 설정합니다. 프레임 레이트는 이미지 프리셋 별로 각각 다르게 설정할 수 없습니다. 프레임 레이트는 모든 이미지 프리셋에 동일하게 적용됩니다.</p>
-        </div>
-    </div>
-</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -262,7 +266,7 @@
             <div class="wn5-setup-section-article-content">
                 <h3><a class="wn5-online-help-link" name="WDR"></a>WDR</h3>
             <p>WDR (Wide Dynamic Range) 모드는 역광 환경에서 어두운 부분과 밝은 부분을 모두 잘보이도록 하는 방법입니다. 카메라의 듀얼 셔터를 이용하여 한번은 밝은 부분이 잘 보이게 짧은 셔터로, 또 한번은 어두운 부분이 잘 보이게 긴 셔터로 찍어 두 영상의 잘 보이는 부분만 하나로 합쳐 보이게 하는 방법입니다. WDR 모드 사용 시 밝은 영역과 어두운 영역 사이에 노이즈가 발생할 수 있습니다. </p>
-            <p><img src=" ../../base/images/cameraSetup_WDR_1.png" width="230" height="186"  >  <img src=" ../../base/images/cameraSetup_WDR_2.png" width="230" height="186"  ><br>
+            <p><img src="../../../../base/images/setup/cameraSetup_WDR_1.png" width="230" height="186">  <img src="../../../../base/images/setup/cameraSetup_WDR_2.png" width="230" height="186"><br>
 WDR 모드 끔                            WDR 모드 켬</p>
             </div>
 					    
@@ -793,7 +797,9 @@ WDR 모드 끔                            WDR 모드 켬</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>설정한 시간에만 동작</h3>
-            <p>사용자가 지정한 시간에 원하는 이미지 프리셋을 실행하도록 설정할 수 있습니다. <span class="tui tui-wn5-top-setup"></span>(설정) 버튼을 클릭하여 이미지 프리셋을 선택하고 시작 시간과 종료 시간을 각각 설정합니다. 하루 안에 최대 5개의 이미지 프리셋을 설정할 수 있습니다. 카메라의 사용 환경에 맞게 이미지 프리셋을 시간별로 설정합니다. </p>
+            <p>사용자가 지정한 시간에 원하는 이미지 프리셋을 실행하도록 설정할 수 있습니다. <span class="tui tui-wn5-top-setup"></span>웹뷰어 하단에서 이미지 프리셋을 선택한 후 시작 시간과 종료 시간을 각각 설정합니다.&nbsp;카메라의 사용 환경에 맞게 이미지 프리셋을 시간별로 설정합니다. </p>
+            <p><strong class="UI">[설정한 시간에만 동작]</strong>을 선택하여 나타나는 시간표에는 현재 카메라 시간을 기준으로 한 일요일부터 토요일까지의 날짜가 표시됩니다. 시간표에서 마우스를 클릭하거나 드래그하여 동작 시간을 설정할 수 있습니다. 설정된 동작 스케줄은 해당 요일과 시간에 반복적으로 실행됩니다.</p>
+            <p><strong class="UI">[1분]</strong>, <strong class="UI">[30분]</strong>, <strong class="UI">[1시]</strong> 버튼을 클릭하여 시간 보기 단위를 변경할 수 있습니다. <strong class="UI">[초기화]</strong> 버튼을 클릭하면 설정된 동작 스케줄이 모두 삭제됩니다. 카메라 시간을 확인하거나 변경하려면 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[날짜 및 시간]</strong>을 참고하십시오.</p>
         </div>
     </div>
 </div>

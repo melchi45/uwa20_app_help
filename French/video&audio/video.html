@@ -1,9 +1,23 @@
-﻿<h1 class="wn5-setup-main-title">Configuration vid&eacute;o</h1>
+﻿
+<h1 class="wn5-setup-main-title">Configuration de la vid&eacute;o</h1>
 
 <div class="wn5-setup-section">
-	<p>Vous pouvez d&eacute;finir une zone de confidentialit&eacute; sur l&apos;image de la cam&eacute;ra ou refl&eacute;ter l&apos;image de l&apos;&eacute;cran vers le haut, le bas, la gauche ou la droite. Vous pouvez &eacute;galement d&eacute;finir une sortie d&apos;image analogique ou modifier le type de sortie vid&eacute;o. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
+	<p>Vous pouvez d&eacute;finir une zone de confidentialit&eacute; dans l&rsquo;image de la cam&eacute;ra ou la retourner dans le sens inverse (verticalement ou horizontalement). De plus, vous pouvez afficher une image analogique ou changer le type de sortie vid&eacute;o. Une fois le r&eacute;glage termin&eacute;, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
-
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>S&eacute;lection d&rsquo;un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s, tels que la rotation vid&eacute;o, la sortie analogique, etc.</p> 
+            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme «&nbsp;PTZ&nbsp;».</p>
+            <p>Cliquez sur le bouton <strong class="UI">[Informations d&eacute;taill&eacute;es]</strong> pour afficher un r&eacute;sum&eacute; du canal.</p>
+            <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
+        </div>
+	</div>
+</div> 
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -12,37 +26,94 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-		    <p>Vous pouvez d&eacute;finir une partie de l&apos;image de la cam&eacute;ra comme zone de confidentialit&eacute; masqu&eacute;e. Vous pouvez d&eacute;finir une zone de confidentialit&eacute; sur l&apos;&eacute;cran simplement en s&eacute;lectionnant <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> et en cliquant sur le bouton <strong class="UI">[Appliquer]</strong> au bas de la page.</p>
+		    <p>Pour &eacute;viter toute possibilit&eacute; d&rsquo;atteinte &agrave; la vie priv&eacute;e dans l&rsquo;image de la cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute;. Apr&egrave;s avoir s&eacute;lectionn&eacute; <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong>, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page, afin de d&eacute;finir la zone de confidentialit&eacute; dans l&rsquo;&eacute;cran.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
-			<p>Si vous pr&eacute;f&eacute;rez ne pas avoir de zone de confidentialit&eacute;, d&eacute;s&eacute;lectionnez <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de la page. Vous pouvez v&eacute;rifier l&apos;image de la cam&eacute;ra sans zone de confidentialit&eacute; cach&eacute;e. Les zones de confidentialit&eacute; d&eacute;finies ne seront pas supprim&eacute;es ; vous pouvez v&eacute;rifier ces zones dans la liste des zones de confidentialit&eacute;.</p>
+			<p>Pour d&eacute;sactiver une zone de confidentialit&eacute;, d&eacute;s&eacute;lectionnez <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> puis, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page. Vous pouvez v&eacute;rifier l&rsquo;image compl&egrave;te de la cam&eacute;ra sans rien cacher pour des raisons de confidentialit&eacute;. Les zones de confidentialit&eacute; d&eacute;finies ne sont pas supprim&eacute;es et peuvent &ecirc;tre v&eacute;rifi&eacute;es dans la liste des zones de confidentialit&eacute;.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
-			<h3>Motif</h3>
-			<p>S&eacute;lectionnez le motif de mosa&iuml;que que vous pr&eacute;f&eacute;rez appliquer &agrave; la zone de confidentialit&eacute;. Si <strong class="UI">[Solide]</strong> est d&eacute;fini, le jeu de couleurs de la fen&ecirc;tre de la zone de confidentialit&eacute; s&apos;appliquera. Lorsque vous s&eacute;lectionnez un motif, il s&apos;applique &eacute;galement &agrave; toutes les zones de confidentialit&eacute;.</p>
+			<h3>Mod&egrave;le</h3>
+            <p>S&eacute;lectionnez le mod&egrave;le de mosa&iuml;que &agrave; appliquer &agrave; une zone de confidentialit&eacute;. S&eacute;lectionnez <strong class="UI">[</strong><strong>Solid</strong><strong class="UI">]</strong> pour appliquer le jeu de couleurs dans la fen&ecirc;tre de la zone de confidentialit&eacute;. Si vous s&eacute;lectionnez le mod&egrave;le, il sera appliqu&eacute; &agrave; toutes les zones.</p>
 		</div>
-		<div class="wn5-online-help-action">
-			<h4>D&eacute;finir une zone de confidentialit&eacute;</h4>
-			<ol><!-- ??ぉ??異붽??섎젮硫?<li>?띿뒪??/li> ?뺥깭濡??낅젰?섏꽭??--><li>S&eacute;lectionnez <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</li>
-				<li>Cliquez sur les 4 bords de l&apos;&eacute;cran de l&apos;image de la cam&eacute;ra avec la souris. La fen&ecirc;tre de la zone de confidentialit&eacute; appara&icirc;tra.</li>
-				<li>Saisissez le nom de la zone de confidentialit&eacute; dans <strong class="UI">[Nom]</strong>, s&eacute;lectionnez la couleur pour couvrir l&apos;image dans <strong class="UI">[Couleur]</strong> et cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
-				<li>La nouvelle zone de confidentialit&eacute; sera ajout&eacute;e &agrave; la liste des zones de confidentialit&eacute;. La zone de confidentialit&eacute; est affich&eacute;e dans la couleur d&eacute;finie sur l&apos;&eacute;cran de la cam&eacute;ra.</li>
-			</ol>
+				<div class="wn5-online-help-action">
+			<h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (sauf pour un zoom ou une cam&eacute;ra PTZ)</h4>
+            <ol>
+				
+				<li>S&eacute;lectionnez <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> puis cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</li>
+                <li>Cliquez sur les 4 coins avec la souris sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra.</li>
+                <li>Dans la fen&ecirc;tre <strong class="UI">[Zone de confidentialit&eacute;]</strong>, d&eacute;finissez les &eacute;l&eacute;ments suivants&nbsp;:</li>
+                <ul>
+                    <li>Entrez le nom de la zone de confidentialit&eacute; dans <strong class="UI">[Nom]</strong>, s&eacute;lectionnez la couleur de couverture de l&rsquo;image dans <strong class="UI">[Couleur]</strong>.</li>
+                </ul>
+                <li>Dans la fen&ecirc;tre <strong class="UI">[Zone de confidentialit&eacute;]</strong>, cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
+                <li>Une nouvelle zone de confidentialit&eacute; est ajout&eacute;e &agrave; la liste des zones de confidentialit&eacute;. La couleur d&eacute;finie dans l&rsquo;&eacute;cran d&rsquo;image de la cam&eacute;ra est utilis&eacute;e pour afficher une zone de confidentialit&eacute;.</li>
+            </ol>
 		</div>
+	
+	        <div class="wn5-online-help-action">
+            <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (cam&eacute;ra PTZ)</h4>
+            <ol>
+				
+                <li>S&eacute;lectionnez <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> puis cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</li>
+                <li>Faites glisser la souris sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra pour d&eacute;finir la taille de la zone de confidentialit&eacute;.</li>
+                <li>Dans la fen&ecirc;tre <strong class="UI">[Zone de confidentialit&eacute;]</strong>, d&eacute;finissez les &eacute;l&eacute;ments suivants&nbsp;:</li>
+                <ul>
+                    <li>Faites glisser l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> pour placer l&rsquo;&eacute;cran vid&eacute;o souhait&eacute; sur une zone de confidentialit&eacute;, en ajustant le panoramique/inclinaison de la cam&eacute;ra.</li>
+                    <li>Entrez le nom de la zone de confidentialit&eacute; dans <strong class="UI">[Nom]</strong>, s&eacute;lectionnez la couleur de couverture de l&rsquo;image dans <strong class="UI">[Couleur]</strong>.</li>
+                    <li>S&eacute;lectionnez s&rsquo;il faut activer ou non <strong class="UI">[Seuil de zoom]</strong>. Cette fonction garantit qu&rsquo;une zone de confidentialit&eacute; n&rsquo;est utilis&eacute;e que si l&rsquo;image est agrandie &agrave; un taux de zoom sup&eacute;rieur &agrave; celui d&eacute;fini dans [D&eacute;finir seuil de zoom]. En d&rsquo;autres termes, si l&rsquo;image est r&eacute;duite en dessous du taux de zoom, la zone de confidentialit&eacute; est supprim&eacute;e de l&rsquo;image.</li>
+                </ul>
+                <li>Dans la fen&ecirc;tre <strong class="UI">[Zone de confidentialit&eacute;]</strong>, cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
+                <li>A l&rsquo;&eacute;tape 3, si vous avez s&eacute;lectionn&eacute; <strong class="UI">[Activer]</strong> pour l&rsquo;option <strong class="UI">[Seuil de zoom]</strong>, alors la fen&ecirc;tre <strong class="UI">[D&eacute;finir seuil du zoom]</strong> s&rsquo;affiche. Apr&egrave;s avoir d&eacute;fini le rapport de zoom souhait&eacute;, cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
+                <li>Une nouvelle zone de confidentialit&eacute; est ajout&eacute;e &agrave; la liste des zones de confidentialit&eacute;. La zone de confidentialit&eacute; &agrave; laquelle le seuil de zoom est appliqu&eacute; sera marqu&eacute;e comme «&nbsp;[Zoom]&nbsp;» dans la liste des zones de confidentialit&eacute;. La couleur d&eacute;finie dans l&rsquo;&eacute;cran d&rsquo;image de l&rsquo;appareil photo est utilis&eacute;e pour afficher la zone de confidentialit&eacute;.</li>
+            </ol><!-- <p>'줌 표시 제한'은 설정한 줌 배율보다 영상 화면을 더 축소하면 영상에서&nbsp;프라이버시 영역이 일시적으로 제거되는 기능입니다. 줌을 확대하면 프라이버시 영역이 영상에 다시 나타납니다. 기준이 되는 줌 배율은 [줌 배율 표시 제한 설정] 창에서 설정할 수 있습니다. &nbsp;</p> --></div>
+		
+        <div class="wn5-online-help-action">
+            <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (cam&eacute;ra avec zoom)</h4>
+            <ol>
+				
+                <li>S&eacute;lectionnez <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> puis cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</li>
+                <li>Faites glisser la souris sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra pour d&eacute;finir la taille de la zone de confidentialit&eacute;.</li>
+                <li>Dans la fen&ecirc;tre <strong class="UI">[Zone de confidentialit&eacute;]</strong>, d&eacute;finissez les &eacute;l&eacute;ments suivants&nbsp;:</li>
+                <ul>
+                    <li>Entrez le nom de la zone de confidentialit&eacute; dans <strong class="UI">[Nom]</strong>, s&eacute;lectionnez la couleur de couverture de l&rsquo;image dans <strong class="UI">[Couleur]</strong>.</li>
+                    <li>S&eacute;lectionnez s&rsquo;il faut activer ou non <strong class="UI">[Seuil de zoom]</strong>. Cette fonction garantit qu&rsquo;une zone de confidentialit&eacute; n&rsquo;est utilis&eacute;e que si l&rsquo;image est agrandie &agrave; un taux de zoom sup&eacute;rieur &agrave; celui d&eacute;fini dans [D&eacute;finir seuil de zoom]. En d&rsquo;autres termes, si l&rsquo;image est r&eacute;duite en dessous du taux de zoom, la zone de confidentialit&eacute; est supprim&eacute;e de l&rsquo;image.</li>
+                </ul>
+                <li>Dans la fen&ecirc;tre <strong class="UI">[Zone de confidentialit&eacute;]</strong>, cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
+                <li>A l&rsquo;&eacute;tape 3, si vous avez s&eacute;lectionn&eacute; <strong class="UI">[Activer]</strong> pour l&rsquo;option <strong class="UI">[Seuil de zoom]</strong>, alors la fen&ecirc;tre <strong class="UI">[D&eacute;finir seuil du zoom]</strong> s&rsquo;affiche. Apr&egrave;s avoir d&eacute;fini le rapport de zoom souhait&eacute;, cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
+                <li>Une nouvelle zone de confidentialit&eacute; est ajout&eacute;e &agrave; la liste des zones de confidentialit&eacute;. La zone de confidentialit&eacute; &agrave; laquelle le seuil de zoom est appliqu&eacute; sera marqu&eacute;e comme «&nbsp;[Zoom]&nbsp;» dans la liste des zones de confidentialit&eacute;. La couleur d&eacute;finie dans l&rsquo;&eacute;cran d&rsquo;image de l&rsquo;appareil photo est utilis&eacute;e pour afficher la zone de confidentialit&eacute;.</li>
+            </ol>
+        </div>
+
+		
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-			<ul><!-- ??ぉ??異붽??섎젮硫?<li>?띿뒪??/li> ?뺥깭濡??낅젰?섏꽭??--><li>Seules les lettres anglaises, les chiffres, les tirets (-) et les points (.) peuvent &ecirc;tre saisis comme nom de zone de confidentialit&eacute;.</li>
+			<ul>
+				
+				<li>Seules les lettres anglaises, les chiffres, le tiret (-) et le point (.) peuvent &ecirc;tre saisis pour le nom d&rsquo;une zone de confidentialit&eacute;.</li>
 
 			</ul>
 		</div>
 
 
 		<div class="wn5-online-help-action">
-			<h4>Supprimer une zone de confidentialit&eacute;</h4>
-			<ol><!-- ??ぉ??異붽??섎젮硫?<li>?띿뒪??/li> ?뺥깭濡??낅젰?섏꽭??--><li>S&eacute;lectionnez la zone de confidentialit&eacute; que vous souhaitez supprimer dans la liste des zones de confidentialit&eacute;. La zone s&eacute;lectionn&eacute;e sera affich&eacute;e sur l&apos;&eacute;cran de la cam&eacute;ra.</li>
-				<li>Cliquez sur le bouton <strong class="UI">[Supprimer]</strong>. La zone s&eacute;lectionn&eacute;e sera supprim&eacute;e.</li>
+			<h4>Suppression d&rsquo;une zone de confidentialit&eacute;</h4>
+			<ol>
+				
+				<li>S&eacute;lectionnez une zone de confidentialit&eacute; &agrave; supprimer dans la liste des zones de confidentialit&eacute;. La zone s&eacute;lectionn&eacute;e est affich&eacute;e sur l&rsquo;&eacute;cran d&rsquo;image de la cam&eacute;ra.</li>
+				<li>Cliquez sur le bouton <strong class="UI">[Effacer]</strong>. La zone s&eacute;lectionn&eacute;e est alors effac&eacute;e.</li>
 			</ol>
 		</div>
+		       <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>R&eacute;glage du PTZ</h4>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Dans <strong class="UI"><a href="#channel">[S&eacute;lection d&rsquo;un canal]</a></strong>, s&eacute;lectionnez le canal <strong class="UI">[PTZ]</strong>. Le panneau de secousses du PTZ s&rsquo;affiche alors.</p>
+            <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p>
+            <ul>
+                <li>Lorsque vous faites glisser l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> avec la souris, la cam&eacute;ra effectue un panoramique et s&rsquo;incline en cons&eacute;quence.</li>
+                <li>&Agrave; l&rsquo;aide de la barre de zoom, vous pouvez ajuster le rapport de zoom vid&eacute;o. Ou, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-plus"></span>pour agrandir l&rsquo;&eacute;cran ou sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-minus"></span>pour le r&eacute;duire.</li>
+                <li>Rapprochez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span>  ou &eacute;loignez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Pour ajuster la mise au point de la cam&eacute;ra pour une prise AF, cliquez sur l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-simple-focus"></span>.</li>
+            </ul>
+        </div>
 	</div>
 </div>
 
@@ -50,89 +121,137 @@
 
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
-		<h2>Rotation vid&eacute;o</h2>
+		<h2>Rotation de la vid&eacute;o</h2>
 	</div>
 	<div class="wn5-setup-section-article">
-		<div class="wn5-setup-section-article-content">
-			<p>Si l&apos;&eacute;cran est affich&eacute; &agrave; l&apos;envers apr&egrave;s l&apos;installation de la cam&eacute;ra, vous pouvez le corriger via les fonctions de mode de retournement et de mode miroir. La fonction affichage Hallway fournit une longue vue verticale de l&apos;&eacute;cran qui permet &agrave; l&apos;utilisateur de faire fonctionner la zone de surveillance de mani&egrave;re efficace.</p>
-		</div>
-        		<div class="wn5-online-help-info" ng-if="Statistics">
-		<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-									<ul>
-											<li>Si vous modifiez le param&egrave;tre de rotation de la vid&eacute;o, l&apos;&eacute;cran vid&eacute;o sera invers&eacute; verticalement ou horizontalement ou modifi&eacute;. Modifiez les param&egrave;tres d&apos;analyse et de statistiques afin de pouvoir analyser la vid&eacute;o ou d&rsquo;accumuler les donn&eacute;es statistiques en fonction de la vid&eacute;o modifi&eacute;e. Ces param&egrave;tres peuvent &ecirc;tre modifi&eacute;s dans le menu <strong class="UI">[Analyse]</strong> et le menu <strong class="UI">[Statistiques]</strong>.</li>
-									</ul>
-			</div>
-					<div class="wn5-online-help-info">
-		<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-					<ul>
-							<li>Si vous modifiez le param&egrave;tre de rotation de la vid&eacute;o, l&apos;&eacute;cran vid&eacute;o sera invers&eacute; verticalement ou horizontalement ou modifi&eacute;. Modifiez le param&egrave;tre d&apos;analyse dans le menu <strong class="UI">[Analyse]</strong> afin que la vid&eacute;o puisse &ecirc;tre analys&eacute;e suivant la vid&eacute;o modifi&eacute;e.</li>
-					</ul>
-			</div>
-		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel"><!-- ??ぉ??異붽??섎젮硫?<li>?띿뒪??/li> ?뺥깭濡??낅젰?섏꽭??--><h3>Retourner</h3>
-			<p>Vous pouvez retourner l&apos;image de la cam&eacute;ra. Pour retourner l&apos;image de la cam&eacute;ra, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+        <div class="wn5-setup-section-article-content">
+            <p>Si l&rsquo;&eacute;cran est affich&eacute; &agrave; l&rsquo;envers apr&egrave;s l&rsquo;installation de la cam&eacute;ra, vous pouvez le corriger en utilisant les fonctions du mode flip et du mode miroir.</p>
+            <p ng-if="HallwayView">La fonction <strong class="UI">[Affichage Hallway]</strong> offre une longue vue verticale de l&rsquo;&eacute;cran, ce qui permet &agrave; l&rsquo;utilisateur d&rsquo;utiliser la zone de surveillance plus efficacement dans un couloir ou une ruelle.</p>
+        </div>
+		<div class="wn5-online-help-info" ng-if="Statistics">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                    <ul>
+                        <li>Si vous modifiez le param&egrave;tre de rotation vid&eacute;o, la vid&eacute;o sera retourn&eacute;e dans quatre directions ou chang&eacute;e. Pour vous aider &agrave; analyser la vid&eacute;o modifi&eacute;e et &agrave; collecter les statistiques, modifiez les param&egrave;tres d&rsquo;analyse et de statistiques. Les r&eacute;glages peuvent &ecirc;tre modifi&eacute;s dans les menus [Analytique] et [Statistiques].</li>
+                    </ul>
+        </div>
+				<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                    <ul>
+                        <li>Si vous modifiez les param&egrave;tres de rotation vid&eacute;o, l&rsquo;&eacute;cran vid&eacute;o sera retourn&eacute; dans quatre directions ou modifi&eacute;. Pour vous aider &agrave; analyser la vid&eacute;o modifi&eacute;e, modifiez les param&egrave;tres d&rsquo;analyse dans le menu[Analytics].</li>
+                    </ul>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
+			
+			<h3>Pivoter</h3>
+			<p>Vous pouvez retourner l&rsquo;image de la cam&eacute;ra &agrave; l&rsquo;envers. Pour retourner l&rsquo;image de la cam&eacute;ra, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
 		</div>
 		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
 			<h3>Miroir</h3>
-			<p>Vous pouvez reproduire l&apos;image de la cam&eacute;ra. Pour reproduire l&apos;image de la cam&eacute;ra, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+			<p>Vous pouvez faire un miroir de l&rsquo;image de la cam&eacute;ra. Pour refl&eacute;ter l&rsquo;image de la cam&eacute;ra, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
 		</div>
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
-            <h3>Retourner/Miroir</h3>
-            <p>S&eacute;lectionnez [Utiliser] pour retourner la sortie de la cam&eacute;ra horizontalement ou verticalement.</p>
-        </div>
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
-            <h3>Retournement num&eacute;rique</h3>
-            <p>Lorsque vous changez la position de la cam&eacute;ra &agrave; l&apos;aide de la fonction PTZ, la sortie de la cam&eacute;ra peut &ecirc;tre retourn&eacute;e &agrave; l&apos;envers ou d&apos;un c&ocirc;t&eacute; &agrave; l&apos;autre. &Agrave; ce moment, cliquez sur <strong class="UI">[Utiliser] </strong>si vous voulez que l&apos;&eacute;cran vid&eacute;o soit automatiquement invers&eacute; et affich&eacute; normalement.</p>
-        </div>
-		<div class="wn5-setup-section-article-content" ng-if="HallwayView">
-			<h3>Affichage Hallway</h3>
-			<p>Vous pouvez faire pivoter l&apos;image de la cam&eacute;ra et agrandir les zones de surveillance sup&eacute;rieure et inf&eacute;rieure dans un environnement tel qu&apos;un couloir &eacute;troit ou une all&eacute;e difficile &agrave; surveiller avec une cam&eacute;ra normale. Vous pouvez faire pivoter l&apos;image de 90 degr&eacute;s vers la droite et de 270 degr&eacute;s vers la droite. Lorsque vous r&eacute;glez &agrave; 0 degr&eacute;, l&apos;image revient &agrave; son &eacute;tat d&apos;origine.</p>
+
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
+			<h3>Retourner/Miroir</h3>
+			<p>S&eacute;lectionnez <strong class="UI">[Activer]</strong> pour inverser la sortie de la cam&eacute;ra horizontalement ou verticalement.</p>
 		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
+			<h3>Retournement num&eacute;rique</h3>
+            <p>Lorsque vous changez l&rsquo;emplacement de la cam&eacute;ra en utilisant les fonctions PTZ, l&rsquo;image de la cam&eacute;ra peut &ecirc;tre retourn&eacute;e dans quatre directions. Maintenant, si vous voulez inverser l&rsquo;image automatiquement, de sorte que vous puissiez voir l&rsquo;image naturelle, s&eacute;lectionnez&nbsp;<strong class="UI">[Activer]</strong>.</p>
+		</div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="HallwayView">
+            <h3>Affichage Hallway</h3>
+            <p>En faisant tourner l&rsquo;image de la cam&eacute;ra dans un environnement o&ugrave; une cam&eacute;ra g&eacute;n&eacute;rale ne peut pas surveiller correctement les all&eacute;es &eacute;troites ou les couloirs, vous pouvez agrandir les zones de surveillance verticale. Vous pouvez la faire pivoter de 90 degr&eacute;s (sens horaire) ou 270 degr&eacute;s (sens horaire) ou la r&eacute;gler &agrave; 0 degr&eacute; pour revenir &agrave; l&rsquo;image originale.</p>
+			<p ng-if="MaxChannel > 1 && HandoverCalibration">Seulement si vous s&eacute;lectionnez un canal de cam&eacute;ra fixe dans <strong class="UI"><a href="#channel">[S&eacute;lectionner un canal]</a></strong>, vous pouvez r&eacute;gler la fonction «&nbsp;Affichage Hallway&nbsp;».</p>
+        </div>
 		<div class="wn5-online-help-info" ng-if="HallwayView">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-			<div>
-				<ul><!-- ??ぉ??異붽??섎젮硫?<li>?띿뒪??/li> ?뺥깭濡??낅젰?섏꽭??--><li>Pour d&eacute;finir l&rsquo;affichage Hallway, vous devez r&eacute;gler la cam&eacute;ra install&eacute;e sur 0 degr&eacute; ou la faire pivoter sur 90 degr&eacute;s vers la droite ou 270 degr&eacute;s vers la droite et s&eacute;lectionner le m&ecirc;me angle dans <strong class="UI">[Affichage Hallway]</strong>.</li>
-					<li>Lorsque vous r&eacute;glez <strong class="UI">[Affichage Hallway]</strong>, le navigateur Web se ferme automatiquement. Vous devrez vous reconnecter &agrave; l&rsquo;&eacute;cran Web.</li>
+				<ul>
+					
+			        <li>Pour r&eacute;gler la vue du couloir, vous devez r&eacute;gler la cam&eacute;ra install&eacute;e sur 0 degr&eacute;, ou la tourner de 90 degr&eacute;s dans le sens des aiguilles d&rsquo;une montre ou de 270 degr&eacute;s dans le sens des aiguilles d&rsquo;une montre, et s&eacute;lectionner le m&ecirc;me angle dans la fen&ecirc;tre <strong class="UI">[Affichage Hallway]</strong>.</li>
+					<li>Lorsque vous r&eacute;glez <strong class="UI">[Affichage Hallway]</strong>, le navigateur Web se ferme automatiquement. Vous devrez vous reconnecter au Web Viewer.</li>
 				</ul>
-			</div>
 		</div>
+		
+						<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+			<h3>Mode de montage de la cam&eacute;ra</h3>
+            <p>S&eacute;lectionnez le mode de montage de la cam&eacute;ra. S&eacute;lectionnez <strong class="UI">[Mur]</strong> lorsque la cam&eacute;ra est install&eacute;e au mur, ou <strong class="UI">[Plafond]</strong> lorsqu&rsquo;elle est mont&eacute;e au plafond.</p>
+		</div>
+        <div class="wn5-online-help-info" ng-if="FisheyeLens">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Si vous changez le mode de montage de la cam&eacute;ra, tous les r&eacute;glages du profil dans&nbsp;<strong class="UI">[Vid&eacute;o profil]</strong> sont r&eacute;initialis&eacute;s et la cam&eacute;ra est red&eacute;marr&eacute;e. En outre, lorsque l&rsquo;&eacute;cran est modifi&eacute;, vous devez modifier les param&egrave;tres d&rsquo;analyse vid&eacute;o et de statistiques en cons&eacute;quence. Le r&eacute;glage peut &ecirc;tre modifi&eacute; dans <strong class="UI">[Analyse]</strong> et <strong class="UI">[Statistiques]</strong>.</li>
+                <li>Seulement si vous r&eacute;glez le mode de montage de la cam&eacute;ra sur<span>&nbsp;</span><strong class="UI">[Type de mur]</strong>, vous pouvez utiliser la fonction panoramique de DPTZ en mode<span>&nbsp;</span><strong class="UI">[direct]</strong><span></span>.</li>
+                <li>Si vous changez le mode de montage de la cam&eacute;ra, la direction du mode d&rsquo;affichage Fisheye en mode <strong class="UI">[direct]</strong><span></span> est &eacute;galement modifi&eacute;e.</li>
+            </ul>
+        </div>
 	</div>
-</div>
-<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
-<h3>Mode de montage de la cam&eacute;ra</h3>
-<p>S&eacute;lectionne le mode de montage de la cam&eacute;ra. S&eacute;lectionne <strong class="UI">[Mur]</strong> lorsque la cam&eacute;ra est install&eacute;e sur le mur, ou <strong class="UI">[Plafond]</strong> lorsqu&apos;elle est install&eacute;e au plafond.</p>
-</div>
-<div class="wn5-online-help-info" ng-if="FisheyeLens">
-<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-<ul>
-		<li>Lorsque vous changez le mode de montage de la cam&eacute;ra, tous les param&egrave;tres de profil d&eacute;finis dans <strong class="UI">[Profil vid&eacute;o]</strong> sont r&eacute;initialis&eacute;s et la cam&eacute;ra red&eacute;marre. Vous devez &eacute;galement modifier les param&egrave;tres d&apos;analyse vid&eacute;o et de statistiques pour s&apos;adapter &agrave; l&apos;&eacute;cran qui change. Ces param&egrave;tres peuvent &ecirc;tre modifi&eacute;s dans les menus <strong class="UI">[Analyse]</strong> et <strong class="UI">[Statistiques]</strong> .</li>
-</ul>
-</div>
-</div>
-</div>
+</div><!--
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
-	<div class="wn5-setup-section-heading">
-		<h2>Vid&eacute;o analogique</h2>
-	</div>
-	<div class="wn5-setup-section-article">
-		<div class="wn5-setup-section-article-content">
-			<h3>Sortie vid&eacute;o</h3>
-			<p>Vous pouvez choisir ou non la sortie vid&eacute;o analogique. La sortie vid&eacute;o analogique est utile car vous pouvez la r&eacute;gler en v&eacute;rifiant l&apos;emplacement de l&apos;objectif ou la mise au point lors de l&apos;installation de la cam&eacute;ra.</p>
+    <div class="wn5-setup-section-heading">
+        <h2>아날로그 비디오</h2>
+    </div>
+	<div class="wn5-setup-section-article">	
+		<div class="wn5-setup-section-article-content">	
+        <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 고정 카메라 채널을 선택한 경우에만 '아날로그 비디오' 기능을 설정할 수 있습니다.</p>
+        </div>
+
+	<div class="wn5-setup-section-article-content">
+			
+			<h3>비디오 출력</h3>
+			<p>아날로그 비디오 출력 여부를 설정할 수 있습니다. 아날로그 비디오 출력은 카메라 설치 시 렌즈 위치나 포커스 등을 확인하면서 설정할 수 있어 유용합니다.</p>
 		</div>
-
-		<div class="wn5-setup-section-article-content">
-			<h3>Type de sortie vid&eacute;o</h3>
-			<p>S&eacute;lectionnez le type de sortie vid&eacute;o analogique. Vous pouvez s&eacute;lectionner <strong class="UI">[NTSC]</strong> ou <strong class="UI">[PAL]</strong> comme type de sortie vid&eacute;o.</p>
-
-					<div class="wn5-setup-section-article-content">
-			<ul><!-- ??ぉ??異붽??섎젮硫?<li>?띿뒪??/li> ?뺥깭濡??낅젰?섏꽭??--><li><strong class="UI">NTSC</strong>: NTSC (Comit&eacute; national des syst&egrave;mes de t&eacute;l&eacute;vision) est la norme pour la t&eacute;l&eacute;vision couleur aux &Eacute;tats-Unis. Elle fonctionne &agrave; 30 images par seconde avec 525 lignes de balayage horizontal. Le nombre d&apos;images par seconde est important afin que l&apos;&eacute;cran puisse s&apos;afficher naturellement. Ce type est principalement utilis&eacute; aux &Eacute;tats-Unis, au Japon et au Canada.</li>
-				<li><strong class="UI">PAL</strong>: PAL (ligne d&apos;alternance de phase) est originaire d&apos;Allemagne et bien qu&apos;il soit similaire au NTSC, il existe une diff&eacute;rence dans la m&eacute;thode utilis&eacute;e pour g&eacute;rer les signaux de couleur. Ce type est principalement utilis&eacute; en Europe. Bien que ce type ait un plus petit nombre de trames par seconde compar&eacute; au NTSC, il a un plus grand nombre de lignes de balayage horizontales (625) et moins de d&eacute;formation de couleur. Il ne n&eacute;cessite pas de sp&eacute;cifications avanc&eacute;es pour les &eacute;quipements de diffusion.</li>
+	
+	<div class="wn5-setup-section-article-content">
+		<h3>비디오 출력 타입</h3>
+		
+	    	<p>아날로그 비디오 출력 타입을 선택합니다. 비디오 출력 타입은 <strong class="UI">[NTSC]</strong>와 <strong class="UI">[PAL]</strong> 중에 선택할 수 있습니다.</p>
+			<ul>
+				
+				<li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) 방식은 미국에서 제정한 컬러 텔레비전의 표준입니다. 초당 프레임 수는 30 프레임이고, 수평 주사선은 525입니다. 초당 프레임 수가 높아 화면이 자연스럽게 표현됩니다. 주로 미국, 일본, 캐나다 등에서 사용하는 방식입니다.</li>
+				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) 방식은 독일에서 제안되었고 NTSC 방식과 비슷하지만 색 신호를 취급하는 방법에 차이가 있습니다. 주로 유럽에서 사용하는 방식입니다. NTSC에 비해 초당 프레임 수는 적지만 수평 주사선이 625로 더 많아 해상도가 높고, 색 변형이 적으며 방송 설비에 고도의 규격이 필요하지 않습니다. </li>
 			</ul>
 		</div>
-		</div>
-
 	</div>
+</div>   --><hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+	<div class="wn5-setup-section-heading">
+		<h2>Sortie vid&eacute;o</h2>
+	</div>
+        <div class="wn5-setup-section-article-content">
+            <p>Ceci d&eacute;termine le type de sortie vid&eacute;o pour une sortie vid&eacute;o analogique. La sortie vid&eacute;o analogique est utile car vous pouvez la r&eacute;gler tout en v&eacute;rifiant l&rsquo;emplacement de l&rsquo;objectif et la mise au point de la cam&eacute;ra lors de l&rsquo;installation de la cam&eacute;ra.</p>
+        </div>
+	<div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <h3>USB</h3>
+                <p>Pour afficher une image de cam&eacute;ra &agrave; l&rsquo;aide de l&rsquo;USB, cliquez sur <strong class="UI">[Activer]</strong>.</p>
+            </div>
+			            <div class="wn5-setup-section-article-content">
+                <h3>CVBS</h3>
+                <p>Pour afficher une vid&eacute;o en connectant un c&acirc;ble &agrave; la borne CVBS, cliquez sur <strong class="UI">[Activer]</strong>.</p>
+            </div>
+	
+	<div class="wn5-setup-section-article-content">
+		<h3>Type de CVBS</h3>
+		<div class="wn5-setup-section-article-content">
+	    	<p>Pour utiliser CVBS, s&eacute;lectionnez le type de sortie vid&eacute;o CVBS.</p>
+	    </div>
+		<div class="wn5-setup-section-article-content">
+			<ul><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --><li><strong class="UI">NTSC</strong>&nbsp;: NTSC (Comit&eacute; du syst&egrave;me national de t&eacute;l&eacute;vision) est la norme am&eacute;ricaine pour les t&eacute;l&eacute;viseurs couleur. Le nombre d&rsquo;images par seconde est de 30 et le nombre de faisceaux de projection horizontale est de 525. Comme le nombre d&rsquo;images par seconde est &eacute;lev&eacute;, l&rsquo;&eacute;cran semble tr&egrave;s naturel. Il est surtout utilis&eacute; aux &Eacute;tats-Unis, au Japon et au Canada.</li>
+				<li><strong class="UI">PAL</strong>&nbsp;: La m&eacute;thode PAL (Ligne d&rsquo;alternance de phase) a &eacute;t&eacute; propos&eacute;e par l&rsquo;Allemagne et elle est similaire &agrave; NTSC mais diff&egrave;re par la fa&ccedil;on dont elle traite les signaux de couleur. Il est surtout utilis&eacute; en Europe. Par rapport au NTSC, le nombre d&rsquo;images par seconde est plus faible, mais le nombre de faisceaux horizontaux est plus &eacute;lev&eacute; (625). Ainsi, la r&eacute;solution est plus &eacute;lev&eacute;e, la d&eacute;formation des couleurs est moindre et l&rsquo;installation de diffusion n&rsquo;exige pas de sp&eacute;cifications &eacute;lev&eacute;es.</li>
+			</ul>
+		</div>
+		      <div class="wn5-online-help-info" ng-if="FisheyeLens">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+                    <li>Pour &eacute;viter la d&eacute;gradation des performances de la cam&eacute;ra, d&eacute;sactivez la fonction vid&eacute;o analogique apr&egrave;s l&rsquo;installation d&rsquo;une cam&eacute;ra.</li>
+                </ul>
+        </div>
+	</div>
+
 </div>
 
-
 <hr class="wn5-setup-hr">
+

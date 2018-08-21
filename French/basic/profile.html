@@ -12,7 +12,7 @@
                 <div class="wn5-setup-section-article-content">
 
 					<p>Lorsque <strong class="UI">[PTZ externe]</strong> est s&eacute;lectionn&eacute;, l&apos;utilisateur peut contr&ocirc;ler la cam&eacute;ra PTZ via le r&eacute;cepteur connect&eacute; au terminal RS-485 ou RS-422. Le menu <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong> est cr&eacute;&eacute; dans l&apos;arborescence du menu de gauche de l&rsquo;&eacute;cran Web.</p>
-					<p>Lorsque <strong class="UI">[Digital PTZ]</strong> est s&eacute;lectionn&eacute;, l&apos;appareil photo PTZ sera contr&ocirc;l&eacute; num&eacute;riquement. Le menu <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Digital PTZ]</strong> est cr&eacute;&eacute; dans l&apos;arborescence du menu de gauche de l&rsquo;&eacute;cran Web.</p>
+					<p>Lorsque <strong class="UI">[Digital PTZ]</strong> est s&eacute;lectionn&eacute;, l&apos;appareil photo PTZ sera contr&ocirc;l&eacute; num&eacute;riquement. Le menu <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Digital PTZ]</strong> est cr&eacute;&eacute; dans l&apos;arborescence du menu de gauche de l&rsquo;&eacute;cran Web. Le mode PTZ num&eacute;rique n&rsquo;est activ&eacute; que lorsque le profil PTZ num&eacute;rique est appliqu&eacute;. Lorsque cette option est activ&eacute;e, la r&eacute;solution et le d&eacute;bit binaire sont limit&eacute;s.</p>
                 </div>
             </div>
         </div>
@@ -176,9 +176,9 @@
                     <p>S&eacute;lectionne le type de vid&eacute;o redress&eacute;e.</p>
                     <p>Il est activ&eacute; lorsque <strong class="UI">[Vue redress&eacute;e]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Type d&apos;affichage Fisheye]</strong>.</p>
                     <ul>
-                        <li>Panorama simple&nbsp;: Affiche une vid&eacute;o &agrave; 360° de la cam&eacute;ra fisheye dans une seule vid&eacute;o.</li>
-                        <li>Quadravision&nbsp;: Affiche 4 vid&eacute;os en m&ecirc;me temps.</li>
-                        <li>Double panorama&nbsp;: Une vue panoramique simple est affich&eacute;e sur deux zones divis&eacute;es. L&apos;option Double panorama appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Vid&eacute;o et audio]</strong> &gt; <strong class="UI">[Configuration vid&eacute;o]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong> &gt; <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li>
+                        <li>Panorama simple&nbsp;: lisse une vid&eacute;o &agrave; 360˚ et l&rsquo;affiche sous forme de panorama mural.    </li>
+                        <li>Quadravision&nbsp;:lisse 4 &eacute;crans appropri&eacute;s &agrave; la vue humaine et les affiche simultan&eacute;ment. S&eacute;lectionnez un &eacute;cran pour d&eacute;placer la vue vers le haut, le bas, la gauche, la droite ou le zoom avant/arri&egrave;re.  </li>
+                        <li>Double panorama&nbsp;: lisse une vid&eacute;o &agrave; 360˚  et l&rsquo;affiche sous forme de panorama partag&eacute; en haut/bas. L&apos;option Double panorama appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Vid&eacute;o et audio]</strong> &gt; <strong class="UI">[Configuration vid&eacute;o]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong> &gt; <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li>
                         <li>Q1&nbsp;: Affiche la vue en haut &agrave; gauche dans la quadravision.</li>
                         <li>Q2&nbsp;: Affiche la vue en haut &agrave; droite dans la quadravision.</li>
                         <li>Q3&nbsp;: Affiche la vue en bas &agrave; gauche dans la quadravision.</li>
@@ -196,10 +196,8 @@
                 <li><strong class="UI">Profil E-mail/FTP</strong>&nbsp;: Ce profil vid&eacute;o est utilis&eacute; pour envoyer l&apos;&eacute;cran captur&eacute; d&apos;une image lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. «&nbsp;&Eacute;v&eacute;nement&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil E-mail / FTP appara&icirc;t uniquement lorsque MJPEG est d&eacute;fini pour le Codec.</li>
                 <li><strong class="UI">Profil d&apos;enregistrement</strong>&nbsp;: Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD ou un NAS. «&nbsp;Enregistrement&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
                 <li ng-if="DPTZSetupPage"><strong class="UI">Profil PTZ num&eacute;rique</strong>&nbsp;: Ce profil est utilis&eacute; pour contr&ocirc;ler les mouvements PTZ. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil PTZ num&eacute;rique appara&icirc;t uniquement lorsque H.264 ou H.265 est d&eacute;fini pour le codec.</li>
-                <li ng-if="FisheyeLens" style="list-style-image:url('');">Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Vue redress&eacute;e]</strong> dans <strong class="UI">[Type de vue Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Affichage]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique.</li
-
-
-
+                <li ng-if="FisheyeLens" style="list-style-image:url('');">Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Vue redress&eacute;e]</strong> dans <strong class="UI">[Type de vue Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Affichage]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique.</li>
+                <li><strong class="UI">Profile de vitesse d&rsquo;enregistrement d&rsquo;images fixe&nbsp;:</strong>Il s&rsquo;agit d&rsquo;un profil appliqu&eacute; pour garantir un certain niveau de vitesse d&rsquo;enregistrement vid&eacute;o. Cette option Profil de vitesse d&rsquo;enregistrement fixes&rsquo; n&rsquo;appara&icirc;t que lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur [H.264] ou [H.265].</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -214,7 +212,7 @@
             <ul>
                 <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: Une quantit&eacute; fixe de donn&eacute;es envoy&eacute;es est maintenue m&ecirc;me si la bande passante du r&eacute;seau change.</li>
                 <li><strong class="UI">Activer - Contr&ocirc;le de fr&eacute;quence d&rsquo;image</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant la vitesse d&apos;enregistrement.</li>
-                <li><strong class="UI">Activer - Contr&ocirc;ler la compression</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant le taux de compression des donn&eacute;es.</li>
+                <li><strong class="UI">Activer - Contr&ocirc;ler la compression</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant le taux de compression des donn&eacute;es. Une modification du taux de compression peut d&eacute;grader la qualit&eacute; de l&rsquo;image.</li>
                 <li><strong class="UI">Activer - &Eacute;v&eacute;nement (MD)</strong>&nbsp;: Ce mode peut &ecirc;tre utilis&eacute; lorsqu&rsquo;un <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2">&eacute;v&eacute;nement de d&eacute;tection de mouvement</a> est d&eacute;fini. Lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute; et que la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es en modifiant la vitesse d&apos;enregistrement. Si aucun mouvement n&apos;est d&eacute;tect&eacute;, r&eacute;duisez l&apos;utilisation de la bande passante en produisant les images minimales.</li>
             </ul>
         </div>
@@ -227,9 +225,18 @@
 
         <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>Limite</h3>
-            <p>Lorsque vous modifiez les propri&eacute;t&eacute;s de l&apos;image en fonction des modifications de la bande passante r&eacute;seau, d&eacute;finissez la limite de mode ATC &agrave; un degr&eacute; particulier pour modifier les propri&eacute;t&eacute;s. En supposant que la situation lorsque vous n&apos;utilisez pas le mode ATC soit de 100&nbsp;%, la valeur peut &ecirc;tre d&eacute;finie entre 10 ~ 50&nbsp;%. Les propri&eacute;t&eacute;s ne changeront pas en dessous de ce param&egrave;tre.</p>
+            <p>Lorsque laquantit&eacute; de transfert de donn&eacute;es vid&eacute;ochange en fonction de la quantit&eacute; de changement de bande passante du r&eacute;seau, d&eacute;finissez la limite du mode ATC en fonction de l&rsquo;amplitude de changement que vous autoriserez pour la propri&eacute;t&eacute;. En supposant que le mode ATC n&rsquo;est pas utilis&eacute; &agrave; 100%, cette valeur peut se situer entre de 10 &agrave; 50&nbsp;%&nbsp;; laquantit&eacute; de transfert de donn&eacute;es vid&eacute;one tombera pas en dessous de cette valeur.</p>
+            <p>Dans ce cas, une diminution trop importante de cette valeur peut provoquer le clignotement de l&rsquo;&eacute;cran. Par cons&eacute;quent, vous devez ajuster le r&eacute;glage de la limite en ajustant ce r&eacute;glage.</p>
             <p>La limite ATC est activ&eacute;e uniquement lorsque <strong class="UI">[Activer - Contr&ocirc;le de fr&eacute;quence d&apos;image]</strong> ou <strong class="UI">[Activer - Contr&ocirc;le de la compression]</strong> est s&eacute;lectionn&eacute; pour le <strong class="UI">[mode ATC]</strong>.</p>
         </div>
+        <div class="wn5-online-help-info" ng-if="ATCModes">
+                <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+                    <li>Il est recommand&eacute; de n&rsquo;utiliser le mode ATC que dans un environnement o&ugrave; toutes les cam&eacute;ras prennent en charge le mode ATC.</li>
+                    <li>Dans un environnement o&ugrave; la quantit&eacute; de changement de bande passante du r&eacute;seau est drastique, r&eacute;glez la sensibilit&eacute; ATC sur<strong class="UI">[Tr&egrave;s basse]</strong>.</li>
+                    <li>Un environnement r&eacute;seau instable peut provoquer un scintillement de l&rsquo;&eacute;cran.</li>
+                </ul>
+                </div>
     </div>
 </div>
 
@@ -242,7 +249,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>L&rsquo;encodage recadr&eacute; est la fonction qui s&eacute;lectionne et diffuse uniquement une zone sp&eacute;cifique souhait&eacute;e ; diff&eacute;rentes zones peuvent &ecirc;tre s&eacute;lectionn&eacute;es, regard&eacute;es ou diffus&eacute;es en flux continu depuis chaque profil. Pour appliquer l&rsquo;encodage recadr&eacute; au profil actuel, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+            <p>L&rsquo;encodage recadr&eacute; ne codant qu&rsquo;une partie s&eacute;lectionn&eacute;e du plein &eacute;cran et l&rsquo;affiche selon la r&eacute;solution d&eacute;finie dans le fichier <strong class="UI">[Param&egrave;tres du profil]</strong>. Seule une taille de r&eacute;solution inf&eacute;rieure &agrave; la zone de r&eacute;glage de l&rsquo;encodage recadr&eacute; peut &ecirc;tre d&eacute;finie. Pour appliquer l&rsquo;encodage recadr&eacute; au profil actuel, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
         </div>
 
         <div class="wn5-online-help-action">
@@ -254,6 +261,13 @@
                     <li>Pour terminer le r&eacute;glage de zone, cliquez sur le bouton <strong class="UI">[OK]</strong> .</li>
                 </ol>
             </div>
+            <div class="wn5-online-help-info">
+                    <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                    <ul>
+                        <li>Si <strong class="UI">[Param&egrave;tres de zone d&rsquo;encodage]</strong>est r&eacute;gl&eacute; sur la plage d&eacute;sir&eacute;e, la r&eacute;solution la plus proche de la r&eacute;solution de sortie dans la plage que vous avez d&eacute;finie sera affich&eacute;e.</li>
+                        <li>Si vous modifiez le param&egrave;tre sous <strong class="UI">[Video &amp; Audio]</strong>&gt; <strong class="UI">[Sp&eacute;cial]</strong> &gt; <strong class="UI">[DIS]</strong>, la zone de recadrage peut changer. Si vous avez modifi&eacute; le r&eacute;glage du DIS, r&eacute;glez &agrave; nouveau la zone d&rsquo;encodage recadr&eacute;.</li>
+                    </ul>
+                    </div>
         </div>
     </div>
 </div>
@@ -288,7 +302,7 @@
 
 		<div class="wn5-setup-section-article-content">
             <h3>D&eacute;bit binaire maximal</h3>
-            <p>R&eacute;glez le d&eacute;bit binaire maximal de l&apos;image lorsque <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong> est <strong class="UI">[VBR]</strong>. Si la quantit&eacute; de donn&eacute;es d&apos;image &agrave; envoyer ne d&eacute;passe pas le d&eacute;bit binaire maximal d&eacute;fini, l&apos;image originale sera envoy&eacute;e.</p>
+            <p>R&eacute;glez le d&eacute;bit binaire maximal de l&apos;image lorsque <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong> est <strong class="UI">[VBR]</strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -313,8 +327,14 @@
             <p>D&eacute;finissez comment ajuster la quantit&eacute; de donn&eacute;es d&apos;image.</p>
             <ul>
                 <li><strong class="UI">CBR</strong>: Le d&eacute;bit binaire constant est destin&eacute; &agrave; l&apos;envoi de donn&eacute;es en plein format d&apos;une taille constante. Lorsque CBR est s&eacute;lectionn&eacute;, la taille des donn&eacute;es &agrave; envoyer est d&eacute;finie en r&eacute;glant le d&eacute;bit binaire cible. CBR a une taille de donn&eacute;es constante, facilitant la pr&eacute;diction de la taille des donn&eacute;es pour l&apos;ensemble du syst&egrave;me, ce qui permet au syst&egrave;me d&apos;&ecirc;tre exploit&eacute; de mani&egrave;re stable.</li>
-                <li><strong class="UI">VBR</strong>: Le d&eacute;bit binaire variable permet d&apos;envoyer une image tout en conservant les propri&eacute;t&eacute;s vid&eacute;o d&eacute;finies par l&apos;utilisateur, dans la limite du d&eacute;bit binaire maximal, sans fixer la taille des donn&eacute;es de la trame. VBR peut utiliser efficacement la capacit&eacute; de l&apos;espace de stockage ou la bande passante tout en conservant la qualit&eacute;, mais si une image devient soudainement plus complexe, cela peut provoquer une tension sur le r&eacute;seau.</li>
+                <li><strong class="UI">VBR</strong>: Le d&eacute;bit binaire variable Bitrate permet d&rsquo;envoyer une image en respectant le d&eacute;bit binaire maximal, sans fixer la taille des donn&eacute;es de l&rsquo;image. VBR peut utiliser efficacement la capacit&eacute; de l&apos;espace de stockage ou la bande passante tout en conservant la qualit&eacute;, mais si une image devient soudainement plus complexe, cela peut provoquer une tension sur le r&eacute;seau.</li>
             </ul>
+        </div>
+        <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+                    <li>Lorsque le Contr&ocirc;le de d&eacute;bit binaire est r&eacute;gl&eacute; sur �&nbsp;CBR (D&eacute;bit Binaire fixe)&nbsp;� et que le mode Priorit&eacute; sur la qualit&eacute; d&rsquo;image est s&eacute;lectionn&eacute;, la vitesse d&rsquo;enregistrement effectivement des images transf&eacute;r&eacute;es peut &ecirc;tre diff&eacute;rente de la vitesse d&rsquo;enregistrement des images d&eacute;finie, afin de garantir la meilleure qualit&eacute; d&rsquo;image sous le d&eacute;bit binaire d&eacute;fini, compte tenu de la complexit&eacute; &agrave; l&rsquo;&eacute;cran.</li>
+                </ul>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Priorit&eacute; d&apos;encodage</h3>
@@ -366,7 +386,7 @@
 
 		<div class="wn5-setup-section-article-content">
             <h3>FPS dynamique</h3>
-            <p>S&eacute;lectionnez <strong class="UI">[Activer]</strong> pour appliquer la fonction FPS dynamique au profil en cours de d&eacute;finition. FPS dynamique est une fonction qui change automatiquement les images par seconde en fonction de la situation de la vid&eacute;o. Le FPS dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> et que <strong class="UI">[M&eacute;thode de contr&ocirc;le de d&eacute;bit binaire]</strong> est r&eacute;gl&eacute;e sur <strong class="UI">[VBR]</strong>.</p>
+            <p>S&eacute;lectionnez <strong class="UI">[Activer]</strong> pour appliquer la fonction FPS dynamique au profil en cours de d&eacute;finition. Dynamic FPS est une fonction qui change automatiquement les r&eacute;glages FPS, du r&eacute;glage minimum FPS au r&eacute;glage de la vitesse d&rsquo;enregistrement des images selon la situation de l&rsquo;&eacute;cran. Dans une vid&eacute;o presque immobile, FPS fonctionnera en utilisant le r&eacute;glage FPS minimum, ce qui &agrave; son tour r&eacute;duit le d&eacute;bit binaire global de l&rsquo;&eacute;cran. Lorsqu&rsquo;un mouvement est d&eacute;tect&eacute;, FPS utilisera une valeur FPS augment&eacute;e.</p>
         </div>
         <div class="wn5-setup-section-article-content">           
             <h3>FPS minimale</h3>

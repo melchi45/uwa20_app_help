@@ -192,9 +192,10 @@
             <ul>
                 <li><strong class="UI">基本Profile</strong>：カメラの映像をライブにストリームする時、適用される基本Profileです。Profileリストの<strong class="UI">[タイプ]</strong>に「Default」と表示されます。</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>：イベントが発生すると、キャプチャー画面をE-mailとFTPサーバーに伝送する時に使用するビデオProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「Event」と表示されます。 <strong class="UI">[Codec]</strong>を「MJPEG」に設定した場合のみ、E-mail/FTP profileオプションが表示されます。</li>
-                <li ng-if="Recording"><strong class="UI">録画Profile</strong>：SDカードまたはNASに映像を録画する時、適用するProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「Record」と表示されます。</li>
+                <li li ng-if="Recording && NAS"><strong class="UI">録画Profile</strong>：SDカードまたはNASに映像を録画する時、適用するProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「Record」と表示されます。</li>
                 <li ng-if="DPTZSetupPage"><strong class="UI">デジタルPTZ Profile</strong>：PTZモーションをデジタルに制御する時、使用するProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「DPTZ」と表示されます。CodecをH.264もしくはH.265に設定したのみ、デジタルPTZ Profileオプションが表示されます。</li>
                 <li ng-if="FisheyeLens" style="list-style-image:url('');">魚眼カメラの場合、新しいProfileを追加する時に<strong class="UI">[魚眼ビュータイプ]</strong>で<strong class="UI">[歪み補正ビュー]</strong>を選択し、<strong class="UI">[ビュー]</strong>で<strong class="UI">[クワドビュー]</strong>を選択すると、該当Profileが自動でデジタルPTZ Profileに登録されます。</li>
+                <li><strong class="UI">フレームレートの固定profile</strong>：映像のフレームレートを一定レベルで保障する時、適用するProfileです。<strong class="UI">[Codec]</strong>を[H.264]または[H.265]に設定した場合のみ、「フレームレートの固定profile」オプションが表示されます。</li>
             </ul>
 
         </div>

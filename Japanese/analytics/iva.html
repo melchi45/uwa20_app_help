@@ -98,6 +98,9 @@
             <p>バーチャルエリア別に適用する規則を設定することができます。</p>
             <ul>
                 <li><strong class="UI">侵入</strong>：設定したエリア内部に動く対象物を検知すると、イベントを発生させます。</li>
+                <ul>
+                    <li><strong class="UI">最短時間(秒)</strong>：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます。 </li>
+                </ul>
                 <li><strong class="UI">進入</strong>：動く対象物がユーザーの指定したエリアの外部から内部に入る時、イベントを発生させます。</li>
                 <li><strong class="UI">出る</strong>：動く対象物がユーザーの指定したエリアの内部から外部に出る時、イベントを発生させます。</li>
                 <li><strong class="UI">出現(消滅)</strong>：ユーザーが指定したエリア内部に存在しなかった対象物がエリアラインを通過せずにエリア内部に現れ一定時間とどまったり、エリア内部に存在してた対象物が消えるとイベントを発生させます。</li>
@@ -198,7 +201,20 @@
                         </ul>
         </div>	
        </div>
-	</div>			
+    </div>	
+    
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>オーバーレイ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[有効]</strong>をクリックすると、検知された位置を映像にオーバーレイして表示します。</P>
+        </div>       
+    </div>
+</div>
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -217,7 +233,7 @@
             <h3>保存</h3>
             <p>IVAイベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[保存]</strong></a>で行うことができます。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>アラーム出力</h3>
             <p>IVAイベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[無効]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
 ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>

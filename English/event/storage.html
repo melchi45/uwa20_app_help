@@ -12,7 +12,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p ng-if="NAS">Selecting a recording device and selecting <strong class="UI">[On]</strong> allows you to change the setting for the relevant device.</p>
-            <p>If data is being recorded on the device, &lsquo;Recording&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. When &lsquo;Error&rsquo; is displayed in <strong class="UI">[Status]</strong>, check if the recording device is connected properly. </p> 
+            <p>If data is being recorded on the device, ‘Recording’ is displayed in <strong class="UI">[Status]</strong> in the device list. When ‘Error’ is displayed in <strong class="UI">[Status]</strong>, check if the recording device is connected properly. </p> 
             <p ng-if="NAS">When <strong class="UI">[On]</strong> is set for an SD card and NAS at the same time, NAS is processed by priority.</p>
             <ul>
                 <li><strong class="UI">SD</strong>: You can set whether or not to use an SD card. When an SD card is recognized, the free space, total capacity and status are displayed. To format the SD card, click the <strong class="UI">[Format]</strong> button. </li>
@@ -21,12 +21,12 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Record profile</h3>
-            <p>The name of the video profile which will be used for recording is displayed. The profile set as &lsquo;Record profile&rsquo; from <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profile type]</strong></a> is displayed. </p>
+            <p>The name of the video profile which will be used for recording is displayed. The profile set as ‘Record profile’ from <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profile type]</strong></a> is displayed. </p>
         </div>
 
         <div class="wn5-setup-section-article-content">
             <h3>Normal recording</h3>
-			<p>This sets for normal recording with no event.</p>
+			<p>Sets for normal recording with no event; Video is saved with a fixed frame rate at all times in an ordinary situation without an event.</p>
             <ul>
         
                     <li><strong class="UI">None</strong>: No camera image is recorded.</li>
@@ -61,8 +61,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Overwrite</h3>
-            <p ng-if="NAS">Sets whether or not to use the overwrite function of an SD card or NAS. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying &lsquo;Full&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
-            <p ng-if="!NAS">Sets whether or not to use the overwrite function of an SD card. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying &lsquo;Full&rsquo; is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
+            <p ng-if="NAS">Sets whether or not to use the overwrite function of an SD card or NAS. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying ‘Full’ is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
+            <p ng-if="!NAS">Sets whether or not to use the overwrite function of an SD card. When the device capacity has been reached, new data will be recorded over the oldest data. When the device capacity has been reached, a message saying ‘Full’ is displayed in <strong class="UI">[Status]</strong> in the device list. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Auto delete</h3>
@@ -71,9 +71,13 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul><li>When &lsquo;Error&rsquo; is displayed in <strong class="UI"> [Status]</strong> in the device list, check whether the recording device is connected properly, whether the file system of the recording device is damaged or not, and whether the recording device is physically damaged. If the &lsquo;Error&rsquo; message persists after checking the recording device, format or replace the device.</li>
+            <ul><li>When ‘Error’ is displayed in <strong class="UI"> [Status]</strong> in the device list, check whether the recording device is connected properly, whether the file system of the recording device is damaged or not, and whether the recording device is physically damaged. If the ‘Error’ message persists after checking the recording device, format or replace the device.</li>
                 <li ng-if="NAS">Recording may not be possible due to temporary network disconnection when NAS is used, so it is recommended to use an SD card also.</li>
-                <li>When resolution, bit rate and frame rate are set at high, the amount of image data also increases. If the amount of data increases, a frame skip may occur even if set to full frame. When a frame skip occurs, an image is recorded at a minimum rate of one image per second. </li>
+                <li>When resolution, bit rate and frame rate are set at high, the amount of image data also increases. If the amount of data increases, a frame skip may occur even if set to full frame. When a frame skip occurs, an image is recorded at a minimum rate of one image per second.  </li>
+                <li>Before removing the (Micro) SD card, first switch to <strong class="UI">[Disable]</strong>. If you remove it on your own or power up the camera with a unstable source of electricity without switching to <strong class="UI">[Disable]</strong>, it can damage the (Micro) SD card.</li>
+                <li>If you use the (Micro) SD memory card below the recommended speed, it can cause frame skipping. If you use the (Micro) SD memory card with too large capacity, it can slow down the format speed.</li>
+                <li>If you use NAS, auto deletion is supported only when the NAS capacity is above the recommended specifications.</li>
+                <li>Deleted data cannot be restored.</li>
             </ul>
         </div>
     </div>
@@ -98,6 +102,7 @@
             <ul>
                 
                 <li>High Endurance SD Cards are recommended. For detailed information, refer to the Hanwha Techwin website.</li>
+                <li>It can take up to 10 minutes to format the micro SD card with the EXT4 file system.  </li>
             </ul>
         </div>
     </div>
@@ -105,12 +110,12 @@
 
 <hr class="wn5-setup-hr" ng-if="NAS">
 <div class="wn5-setup-section" ng-if="NAS">
-    <div class="wn5-setup-section-heading" >
+    <div class="wn5-setup-section-heading">
         <h2>NAS connection setup</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>This menu is displayed only when <strong class="UI">[NAS]</strong> is selected in the<strong class="UI">[Device]</strong> column of <strong class="UI">[Storage action setup]</strong> and the NAS access information is entered. Enter NAS information and click the <strong class="UI">[Test]</strong> button to see if the connection to NAS is established. If a connection is made, a &lsquo;Success&rsquo; message is displayed. If a connection is not made, a &lsquo;Failure&rsquo; message is displayed.</p>
+            <p>This menu is displayed only when <strong class="UI">[NAS]</strong> is selected in the<strong class="UI">[Device]</strong> column of <strong class="UI">[Storage action setup]</strong> and the NAS access information is entered. Enter NAS information and click the <strong class="UI">[Test]</strong> button to see if the connection to NAS is established. If a connection is made, a ‘Success’ message is displayed. If a connection is not made, a ‘Failure’ message is displayed.</p>
         </div>
     
         <div class="wn5-setup-section-article-content">
@@ -138,13 +143,15 @@
                     <li>Check if the IP address, ID, password, and default NAS folder are entered correctly.</li>
                     <li>Check if the IP address type of NAS and the IP address type of the camera are identical. (e.g.: The default value of NAS and the camera is 255.255.255.0. If the IP address is 192.168.20.32, the NAS IP address should be between 192.168.20.1 and 192.168.20.255.)</li>
                     <li>For the NAS default folder, only one folder should be used in one camera, with no duplication.</li>
-                    <li>Check if the device is recommended NAS equipment. Refer to &lsquo;Recommended NAS specifications&rsquo; in the user&apos;s manual.</li>
+                    <li>Check if the device is recommended NAS equipment. Refer to ‘Recommended NAS specifications’ in the user&amp;apos;s manual.</li>
                 </ul>
                
 				<li>If <strong class="UI">[Overwrite]</strong> in the storage setup for NAS is not used and the free space for NAS is less than 20%, images will be recorded on the SD card.</li>
                 <li>If an SD card which was used in another camera is inserted while data is being recorded on NAS, images may not be recorded.</li>
                 <li>If the NAS setup is changed while data is being recorded on NAS, the change will not apply immediately.</li>
                 <li>If NAS equipment is removed or the network connection is terminated while data is being recorded on NAS, the NAS recording action may be terminated.</li>
+                <li>When resolution, bitrate and frame rate are set at high, the amount of image data also increases. If the amount of data increases, a frame skipping may occur even if set to full frame rate. If frame skipping occurs, then at least one image is saved per second. </li>
+                <li>Check if you are trying to access as another user without formatting the default folder that is saved or used already.  </li>
             </ul>
         </div>
     </div>

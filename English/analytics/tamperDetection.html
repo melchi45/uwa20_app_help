@@ -53,7 +53,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DarknessDetection">
             <h3>Except dark images  </h3>
-            <p>To exclude a sudden decrease in brightness on the screen, such as a sudden extinction of light from the tamper detection event, select <strong class="UI">[Enable]</strong>. </p>
+            <p>To exclude a sudden decrease in brightness on the screen, as such in the case of a sudden extinction of lights or blocking of lights, from the tampering detection event, select <strong class="UI">[Enable]</strong>. </p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
             <h3>Handover</h3>
@@ -67,9 +67,11 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>The detection performance may deteriorate on a uniform background, or in a night-time, low-light environment.</li>
+				<li>If the camera shakes too much or if there is sudden change in light, the tampering detection may not function properly.</li>
                 <li>It may take up to 5 seconds for a tamper detection event to be created after a tampering occurs.</li>
                 <li>When a camera tampering is detected, the function will restart after stabilizing for approximately 5 seconds, and any tampering will not be detected during the stabilization process.</li>
                 <li>When an incorrect event is repeatedly being created, errors can be minimized by gradually lowering the level. </li>
+				<li>If you set the level of detection too low, then it is possible to trigger an alarm out of quite small changes on the screen, but it can also lead to false detection cause by objects in motion or change in brightness.</li>
             </ul>
         </div>
     </div>
