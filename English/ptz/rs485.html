@@ -39,9 +39,206 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                 <ul>
                     <li>For this operation, the network camera and the controller must be connected normally. The serial port must also be set for the controller to control the camera.</li>
-                    <li>A function that is not supported may exist depending on the specification of the controller or the protocol. Refer to the product manual for details.</li>
+                    <li>A function that is not supported may exist depending on the specification of the controller or the protocol. Refer to the following table for details.</li>
                 </ul>
-</div>
+                <p>Functions supported for each</p>
+                <table class="table table-bordered wn5-setup-table">
+                    <tr>
+                    <thead>
+                        <td>Protocol</td>
+                        <td>P control</td>
+                        <td>P movement speed</td>
+                        <td>T control</td>
+                        <td>T movement speed</td>
+                        <td>Zoom control</td>
+                        <td>Zoom movement speed</td>
+                        <td>Focus control</td>
+                        <td>Focus control speed</td>
+                        <td>Preset</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>SAMSUNG-T</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~4)</td>
+                        <td>O</td>
+                        <td>O (1~4)</td>
+                        <td>O</td>
+                    </tr>
+                    <tr>
+                        <td>SAMSUNG-E</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~4)</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                    </tr>
+                    <tr>
+                        <td>PELCO-D</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                    </tr>
+                    <tr>
+                        <td>PELCO-P</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                    </tr>
+                    <tr>
+                        <td>PANASONIC</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~4)</td>
+                        <td>O</td>
+                        <td>O (1~4)</td>
+                        <td>O</td>
+                    </tr>
+                    <tr>
+                        <td>HONEYWELL</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                    </tr>
+                    <tr>
+                        <td>AD</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                    </tr>
+                    <tr>
+                        <td>VICON</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                    </tr>
+                    <tr>
+                        <td>GE</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~4)</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                    </tr>
+                    <tr>
+                        <td>BOSCH</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~6)</td>
+                        <td>O</td>
+                        <td>O (1~4)</td>
+                        <td>O</td>
+                        <td>X</td>
+                        <td>O</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p> </p>
+                <table class="table table-bordered wn5-setup-table">
+                    <tr>
+                    <thead>
+                        <td>Company </td>
+                        <td>Protocol Name</td>
+                        <td>Version</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>AD </td>
+                        <td>RS-422/RS-485 Communications</td>
+                        <td>REV.B</td>
+                    </tr>
+                    <tr>
+                        <td>BOSCH</td>
+                        <td>AutoDome Protocol</td>
+                        <td>5/30/11</td>
+                    </tr>
+                    <tr>
+                        <td>GE</td>
+                        <td>Calibur ImpacNet(RS485 Protocol)</td>
+                        <td>REV.4.01(05/21/2004)</td>
+                    </tr>
+                    <tr>
+                        <td>HONEYWELL</td>
+                        <td>ScanDomeII Protocol</td>
+                        <td>V1.05(02/11/2004)</td>
+                    </tr>
+                    <tr>
+                        <td>PANASONIC </td>
+                        <td>WV-CS950 Protocol</td>
+                        <td>VER,4.0</td>
+                    </tr>
+                    <tr>
+                        <td>PELCO-D</td>
+                        <td>“D” Protocol</td>
+                        <td>Ver.4, Rev.1(4/7/2004)</td>
+                    </tr>
+                    <tr>
+                        <td>PELCO-P</td>
+                        <td>“P” Protocol</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td>SAMSUNG-E</td>
+                        <td>Samsung Protocol</td>
+                        <td>Ver. 2.3(2006/09)</td>
+                    </tr>
+                    <tr>
+                        <td>VICON</td>
+                        <td>RS-422 Receiver Communications Protocol </td>
+                        <td>Rev 404(4/08/04)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>           
+
         </div>		
 		
 		</div>

@@ -136,7 +136,7 @@
                         <li>If you change the video rotation setting, the video will be flipped in four directions or changed. To help you analyzing the changed video and accumulate the statistics, change the analysis and statistics setting. The settings can be changed in the [Analytics] and [Statistics] menus.  </li>
                     </ul>
         </div>
-				<div class="wn5-online-help-info">
+				<div class="wn5-online-help-info"  ng-if="!Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                     <ul>
                         <li>If you change the video rotation settings, the video screen will be flipped in four directions or changed. To help you analyzing the changed video, change the analysis settings in the [Analytics] menu.  </li>
@@ -195,11 +195,11 @@
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>Video output</h2>
-	</div>
+    </div>
+    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>This determines the output type of the video for an analog video output. Analog video output is useful since you can set it while checking the lens location and camera focus when installing the camera.</p>
         </div>
-	<div class="wn5-setup-section-article">
             <div class="wn5-setup-section-article-content">
                 <h3>USB</h3>
                 <p>To display a camera image by using the USB, click <strong class="UI">[Enable]</strong>.</p>

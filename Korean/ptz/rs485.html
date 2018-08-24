@@ -41,453 +41,202 @@
                     <li>본 조작을 위해서는 네트워크 카메라와 컨트롤러가 정상적으로 연결되어 있어야 합니다. 또한, 컨트롤러는 카메라를 제어할 수 있도록 시리얼 포트가 설정되어 있어야 합니다.</li>
                 <li>컨트롤러 또는 프로토콜 사양에 따라 지원되지 않는 기능이 있을 수 있습니다. 자세한 내용은 아래 표를 참고하십시오.</li>
                 </ul>
-            <table class="table table-bordered wn5-setup-table" width="813">
+            <table class="table table-bordered wn5-setup-table">
                 <tr>
-                    <td width="95">프로토콜</td>
-                    <td width="64">P 제어</td>
-                    <td width="89">P 이동 속도</td>
-                    <td width="52">T 제어</td>
-                    <td width="85">T 이동 속도</td>
-                    <td width="62">줌 제어</td>
-                    <td width="94">줌 이동 속도</td>
-                    <td width="70">초점 제어</td>
-                    <td width="108">초점 제어 속도</td>
-                    <td width="52">프리셋</td>
+				<thead>
+                    <td>프로토콜</td>
+                    <td>P 제어</td>
+                    <td>P 이동 속도</td>
+                    <td>T 제어</td>
+                    <td>T 이동 속도</td>
+                    <td>줌 제어</td>
+                    <td>줌 이동 속도</td>
+                    <td>초점 제어</td>
+                    <td>초점 제어 속도</td>
+                    <td>프리셋</td>
+                </tr>
+				</thead>
+	            <tbody>
+                <tr>
+                    <td>SAMSUNG-T</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~4)</td>
+                    <td>O</td>
+                    <td>O (1~4)</td>
+                    <td>O</td>
                 </tr>
                 <tr>
-                    <td width="95">
-                        <p>SAMSUNG-T</p>
-                    </td>
-                    <td width="64">
-                        <p>O</p>
-                    </td>
-                    <td width="89">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="52">                        
-                        <p>O</p>
-                    </td>
-                    <td width="85">                        
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="62">                        
-                        <p>O</p>
-                    </td>
-                    <td width="94">
-                        <p>O (1~4)</p>
-                    </td>
-                    <td width="70">                        
-                        <p>O</p>
-                    </td>
-                    <td width="108">
-                        <p>O (1~4)</p>
-                    </td>
-                    <td width="52">                        
-                        <p>O</p>
-                    </td>
+                    <td>SAMSUNG-E</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~4)</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
                 </tr>
                 <tr>
-                    <td width="95">
-                        <p>SAMSUNG-E</p>
-                    </td>
-                    <td width="64">
-                        <p>O</p>
-                    </td>
-                    <td width="89">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
-                    <td width="85">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="62">
-                        <p>O</p>
-                    </td>
-                    <td width="94">
-                        <p>O (1~4)</p>
-                    </td>
-                    <td width="70">
-                        <p>O</p>
-                    </td>
-                    <td width="108">
-                        <p>X</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
+                    <td>PELCO-D</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
                 </tr>
                 <tr>
-                    <td width="95">
-                        <p>PELCO-D</p>
-                    </td>
-                    <td width="64">
-                        <p>O</p>
-                    </td>
-                    <td width="89">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
-                    <td width="85">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="62">
-                        <p>O</p>
-                    </td>
-                    <td width="94">
-                        <p>X</p>
-                    </td>
-                    <td width="70">
-                        <p>O</p>
-                    </td>
-                    <td width="108">
-                        <p>X</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
+                    <td>PELCO-P</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
                 </tr>
                 <tr>
-                    <td width="95">
-                        <p>PELCO-P</p>
-                    </td>
-                    <td width="64">                        
-                        <p>O</p>
-                    </td>
-                    <td width="89">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="52">                        
-                        <p>O</p>
-                    </td>
-                    <td width="85">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="62">                        
-                        <p>O</p>
-                    </td>
-                    <td width="94">
-                        <p>X</p>
-                    </td>
-                    <td width="70">                        
-                        <p>O</p>
-                    </td>
-                    <td width="108">
-                        <p>X</p>
-                    </td>
-                    <td width="52">                        
-                        <p>O</p>
-                    </td>
+                    <td>PANASONIC</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~4)</td>
+                    <td>O</td>
+                    <td>O (1~4)</td>
+                    <td>O</td>
                 </tr>
                 <tr>
-                    <td width="95">
-                        <p>PANASONIC</p>
-                    </td>
-                    <td width="64">
-                        <p>O</p>
-                    </td>
-                    <td width="89">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
-                    <td width="85">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="62">
-                        <p>O</p>
-                    </td>
-                    <td width="94">
-                        <p>O (1~4)</p>
-                    </td>
-                    <td width="70">
-                        <p>O</p>
-                    </td>
-                    <td width="108">
-                        <p>O (1~4)</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
+                    <td>HONEYWELL</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
                 </tr>
                 <tr>
-                    <td width="95">
-                        <p>HONEYWELL</p>
-                    </td>
-                    <td width="64">
-                        <p>O</p>
-                    </td>
-                    <td width="89">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
-                    <td width="85">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="62">
-                        <p>O</p>
-                    </td>
-                    <td width="94">
-                        <p>X</p>
-                    </td>
-                    <td width="70">
-                        <p>O</p>
-                    </td>
-                    <td width="108">
-                        <p>X</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
+                    <td>AD</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
                 </tr>
                 <tr>
-                    <td width="95">
-                        <p>AD</p>
-                    </td>
-                    <td width="64">                        
-                        <p>O</p>
-                    </td>
-                    <td width="89">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="52">                        
-                        <p>O</p>
-                    </td>
-                    <td width="85">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="62">                        
-                        <p>O</p>
-                    </td>
-                    <td width="94">
-                        <p>X</p>
-                    </td>
-                    <td width="70">                        
-                        <p>O</p>
-                    </td>
-                    <td width="108">
-                        <p>X</p>
-                    </td>
-                    <td width="52">                        
-                        <p>O</p>
-                    </td>
+                    <td>VICON</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
                 </tr>
                 <tr>
-                    <td width="95">
-                        <p>VICON</p>
-                    </td>
-                    <td width="64">
-                        <p>O</p>
-                    </td>
-                    <td width="89">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
-                    <td width="85">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="62">
-                        <p>O</p>
-                    </td>
-                    <td width="94">
-                        <p>X</p>
-                    </td>
-                    <td width="70">
-                        <p>O</p>
-                    </td>
-                    <td width="108">
-                        <p>X</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
+                    <td>GE</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~4)</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
                 </tr>
                 <tr>
-                    <td width="95">
-                        <p>GE</p>
-                    </td>
-                    <td width="64">
-                        <p>O</p>
-                    </td>
-                    <td width="89">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
-                    <td width="85">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="62">
-                        <p>O</p>
-                    </td>
-                    <td width="94">
-                        <p>O (1~4)</p>
-                    </td>
-                    <td width="70">
-                        <p>O</p>
-                    </td>
-                    <td width="108">
-                        <p>X</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
+                    <td>BOSCH</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~6)</td>
+                    <td>O</td>
+                    <td>O (1~4)</td>
+                    <td>O</td>
+                    <td>X</td>
+                    <td>O</td>
                 </tr>
-                <tr>
-                    <td width="95">
-                        <p>BOSCH</p>
-                    </td>
-                    <td width="64">
-                        <p>O</p>
-                    </td>
-                    <td width="89">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
-                    <td width="85">
-                        <p>O (1~6)</p>
-                    </td>
-                    <td width="62">
-                        <p>O</p>
-                    </td>
-                    <td width="94">
-                        <p>O (1~4)</p>
-                    </td>
-                    <td width="70">
-                        <p>O</p>
-                    </td>
-                    <td width="108">
-                        <p>X</p>
-                    </td>
-                    <td width="52">
-                        <p>O</p>
-                    </td>
-                </tr>
+				</tbody>
             </table>
             <p> </p>
             <table class="table table-bordered wn5-setup-table">
                 <tr>
-                    <td>
-                        <p>회사명 </p>
-                    </td>
-                    <td>
-                        <p>프로토콜명</p>
-                    </td>
-                    <td>
-                        <p>버전</p>
-                    </td>
+				<thead>
+                    <td>회사명 </td>
+                    <td>프로토콜명</td>
+                    <td>버전</td>
+                </tr>
+				</thead>
+	            <tbody>
+                <tr>
+                    <td>AD </td>
+                    <td>RS-422/RS-485 Communications</td>
+                    <td>REV.B</td>
                 </tr>
                 <tr>
-                    <td>
-                        <p>AD </p>
-                    </td>
-                    <td>
-                        <p>RS-422/RS-485 Communications</p>
-                    </td>
-                    <td>
-                        <p>REV.B</p>
-                    </td>
+                    <td>BOSCH</td>
+                    <td>AutoDome Protocol</td>
+                    <td>5/30/11</td>
                 </tr>
                 <tr>
-                    <td>
-                        <p>BOSCH</p>
-                    </td>
-                    <td>
-                        <p>AutoDome Protocol</p>
-                    </td>
-                    <td>
-                        <p>5/30/11</p>
-                    </td>
+                    <td>GE</td>
+                    <td>Calibur ImpacNet(RS485 Protocol)</td>
+                    <td>REV.4.01(05/21/2004)</td>
                 </tr>
                 <tr>
-                    <td>
-                        <p>GE</p>
-                    </td>
-                    <td>
-                        <p>Calibur ImpacNet(RS485 Protocol)</p>
-                    </td>
-                    <td>
-                        <p>REV.4.01(05/21/2004)</p>
-                    </td>
+                    <td>HONEYWELL</td>
+                    <td>ScanDomeII Protocol</td>
+                    <td>V1.05(02/11/2004)</td>
                 </tr>
                 <tr>
-                    <td>
-                        <p>HONEYWELL</p>
-                    </td>
-                    <td>
-                        <p>ScanDomeII Protocol</p>
-                    </td>
-                    <td>
-                        <p>V1.05(02/11/2004)</p>
-                    </td>
+                    <td>PANASONIC </td>
+                    <td>WV-CS950 Protocol</td>
+                    <td>VER,4.0</td>
                 </tr>
                 <tr>
-                    <td>
-                        <p>PANASONIC </p>
-                    </td>
-                    <td>
-                        <p>WV-CS950 Protocol</p>
-                    </td>
-                    <td>
-                        <p>VER,4.0</p>
-                    </td>
+                    <td>PELCO-D</td>
+                    <td>“D” Protocol</td>
+                    <td>Ver.4, Rev.1(4/7/2004)</td>
                 </tr>
                 <tr>
-                    <td>
-                        <p>PELCO-D</p>
-                    </td>
-                    <td>
-                        <p>“D” Protocol</p>
-                    </td>
-                    <td>
-                        <p>Ver.4, Rev.1(4/7/2004)</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>PELCO-P</p>
-                    </td>
-                    <td>
-                        <p>“P” Protocol</p>
-                    </td>
+                    <td>PELCO-P</td>
+                    <td>“P” Protocol</td>
                     <td> </td>
                 </tr>
                 <tr>
-                    <td>
-                        <p>SAMSUNG-E</p>
-                    </td>
-                    <td>
-                        <p>Samsung Protocol</p>
-                    </td>
-                    <td>
-                        <p>Ver. 2.3(2006/09)</p>
-                    </td>
+                    <td>SAMSUNG-E</td>
+                    <td>Samsung Protocol</td>
+                    <td>Ver. 2.3(2006/09)</td>
                 </tr>
                 <tr>
-                    <td>
-                        <p>VICON</p>
-                    </td>
-                    <td>
-                        <p>RS-422 Receiver Communications Protocol </p>
-                    </td>
-                    <td>
-                        <p> Rev 404(4/08/04)</p>
-                    </td>
+                    <td>VICON</td>
+                    <td>RS-422 Receiver Communications Protocol </td>
+                    <td>Rev 404(4/08/04)</td>
                 </tr>
+				</tbody>
             </table>
- </div>
-        </div>		
-		
-		</div>
+        </div>
+    </div>			
+</div>
 <hr class="wn5-setup-hr">
