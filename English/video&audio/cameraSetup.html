@@ -11,7 +11,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>After selecting a camera channel, you can set the details of each channel. The channel number last selected on the live or play page is automatically selected. </p>
-            <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &amp;apos;PTZ&amp;apos;.</p>
+            <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as ‘PTZ’.</p>
             <p>If you select another channel without applying the changes in the setting, an alarm message will appear. </p>
         </div>
 	</div>
@@ -48,7 +48,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
             <p>To apply the same camera setup for every preset, select <strong class="UI">[Global]</strong>. To apply a different setup for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Preset setup</a> page. If you select <strong class="UI">[Preset]</strong> and set the camera setting for each
 preset, then
 you may not set some of the items in the detailed camera settings.</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">Only after you select a <strong class="UI">[PTZ]</strong> channel in <strong class="UI"><a href="#channel">[Select channel]</a></strong>, the &amp;apos;Type&amp;apos; function can be set.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Only after you select a <strong class="UI">[PTZ]</strong> channel in <strong class="UI"><a href="#channel">[Select channel]</a></strong>, the 'Type' function can be set.</p>
         </div>
 </div>
 </div>
@@ -171,18 +171,22 @@ you may not set some of the items in the detailed camera settings.</p>
         </div>
     </div>
 </div> --> 
-<hr class="wn5-setup-hr" ng-if="ImagePresetMode">
+<hr class="wn5-setup-hr" ng-if="Sensor">
 <div class="wn5-setup-section" ng-if="Sensor">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="sensor"></a>Sensor mode</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Set how many frames per second the CMOS sensor of the camera will capture (the maximum value of <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Frame rate]</strong> according to the number of frames set for the sensor).</p>
+            <p>Set how many frames per second the CMOS sensor of the camera will capture.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Sensor mode  </h3>
-            <p>Set a desired frame rate. A different frame rate can be set to each image preset and the frame rate is applied in the same way to every image preset.</p>
+        <div class="wn5-online-help-info">
+            <h4>Note</h4>
+            <ul>
+                <li>Changing the sensor mode will reset the whole camera setting.</li>
+                <li>A different frame rate can not be set to each image preset and the frame rate is applied in the same way to every image preset.</li>
+                <li>The maximum value of <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Frame rate]</strong> varies according to the number of frames set for the sensor mode. </li>
+            </ul>
         </div>
     </div>
 </div>
@@ -195,14 +199,14 @@ you may not set some of the items in the detailed camera settings.</p>
         <div class="wn5-setup-section-article-content">
             <p>Various image presets are provided for specific purposes. Select an image preset according to the environment where the camera will be used.</p>
             <ul>
-                <li><strong class="UI">User defined preset 1</strong>: Used for displaying the image as set by the user.  </li>
-                <li><strong class="UI">User defined preset 2</strong>: Used for displaying the image as set by the user.  </li>
+                <li><strong class="UI">User-defined preset 1</strong>: Used for displaying the image as set by the user.  </li>
+                <li><strong class="UI">User-defined preset 2</strong>: Used for displaying the image as set by the user.  </li>
                 <li><strong class="UI">Outdoor daytime</strong>: Used to display a clear and smooth video taken outdoor in daytime.</li>
-                <li><strong class="UI">Outdoor nighttime</strong>: Used to reduce the level of noises for video taken outdoor at night with low brightness and lighten up dark areas.</li>
+                <li><strong class="UI">Outdoor night time</strong>: Used to reduce the level of noises for video taken outdoor at night with low brightness and lighten up dark areas.</li>
                 <li><strong class="UI">Indoor backlight</strong>: Used to display a video where indoor and outdoor are both identifiable with indoor backlight.</li>
-                <li><strong class="UI">Indoor with bright lighting</strong>: Used to provide clear picture quality and reduce flickering in an illuminated indoor environment.</li>
-                <li><strong class="UI">Car license plate</strong>: Used to improve the ability to identify the license plate of a car in daytime and at night.</li>
-                <li><strong class="UI">Vivid video</strong>: &nbsp;Used to improve color and clarity.</li>
+                <li><strong class="UI">Indoor bright scenes</strong>: Used to provide clear picture quality and reduce flickering in an illuminated indoor environment.</li>
+                <li><strong class="UI">Number plates</strong>: Used to improve the ability to identify the license plate of a car in daytime and at night.</li>
+                <li><strong class="UI">Vivid video</strong>: Used to improve color and clarity.</li>
             </ul>
         </div>
         
@@ -339,10 +343,10 @@ you may not set some of the items in the detailed camera settings.</p>
             <h5>Mask</h5>
             <p>Select whether or not to apply the mask.</p>
             <ul>
-                <li> <strong class="UI">Disable</strong>: Does not create blocked area.</li>
-                <li> <strong class="UI">Enable</strong>: Always blocks areas of brightness above a certain level.</li>
+                <li> <strong class="UI">Off</strong>: Does not create blocked area.</li>
+                <li> <strong class="UI">On</strong>: Always blocks areas of brightness above a certain level.</li>
                 <li> <strong class="UI">All day</strong>: Blocks areas except during very bright or dark time.</li>
-                <li> <strong class="UI">Nighttime</strong>: Blocks areas until it gets really dark.</li>
+                <li> <strong class="UI">Night only</strong>: Blocks areas until it gets really dark.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -482,7 +486,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <p>Select from DC (Auto), manual, P-Iris.</p>
             <ul>
                 <li><strong class="UI">DC (Auto)</strong>: Automatically adjusts the iris depending on the optical intensity of the surroundings.</li>
-                <li><strong class="UI">Manual</strong>: Manually adjusts the iris&amp;apos;s F number.</li>
+                <li><strong class="UI">Manual</strong>: Manually adjusts the iris’s F number.</li>
                 <li ng-if="!PTZModel"><strong class="UI">P-Iris</strong>:  Adjusts the iris through the step motor. A large depth of field can be secured so that a number of objects at various distances can be brought into focus at the same time.  </li>
             </ul>
         </div>
@@ -640,10 +644,10 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
             <h3>Defog level</h3>
-            <p>Activated when <strong class="UI">[Manual]</strong> is set for Defog; it adjusts the defog level. A higher defog level displays the image more clearly. If the fog level is low and a high defog level is set, the screen may look darker. </p>
+            <p>Activated when <strong class="UI">[Manual]</strong> is set for <strong class="UI">[Defog]</strong>; it adjusts the defog level. A higher defog level displays the image more clearly. If the fog level is low and a high defog level is set, the screen may look darker. </p>
         </div>
 		
-								<div class="wn5-online-help-info">
+		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>If you set the Defog mode to <strong class="UI">[Auto]</strong>, as the amount of fog decreases, the level of defog function is also lowered. If you want to maintain the same effect of the function despite a decrease in the fog, then set the Defog mode to <strong class="UI">[Manual]</strong>.  </li>
@@ -705,13 +709,19 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>Overlay</h3>
-            <p>The user can display the camera&amp;apos;s PTZ coordinates, or preset names on the screen.</p>
+            <p>Display the camera’s PTZ coordinates, or preset names on the screen.</p>
             <ul>
                 <li><strong class="UI">PTZ position</strong>: Sets whether to display the PTZ location on the screen or not.</li>
                 <li><strong class="UI">Preset name</strong>: Sets whether to display the preset name on the screen or not.</li>
                 <li><strong class="UI">Camera ID</strong>: Sets whether to display the camera number on the screen or not.</li>
                 <li><strong class="UI">Azimuth</strong>: The function is used to display the azimuth of the area that you are looking at on the screen currently. When the function is enabled, the 8 directions of E(East)/W(West)/S(South)/N(North)/NE(Northeast)/NW(Northwest)/SE(Southeast)/SW(Southwest) are displayed at the bottom right of the screen.</li>
             </ul>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Overlay</h3>
+            <p>Set whether to display the camera's zoom maginification info or preset names on the screen.</p>
+            <!-- <p>The user can display the camera's zoom magnification or preset names on the screen.</p>  -->
         </div>
 		
         <!--<div class="wn5-setup-section-article-content">
@@ -728,7 +738,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>In case of the item with a location that can be adjusted(camera title, date &amp; time), if it overlaps with other fixed OSD items, the screen may fail to display it properly.</li>
-                <li>The camera ID in &amp;apos;Overlay’ is displayed at the left top of screen while the &amp;apos;PTZ position&amp;apos; is displayed at the left bottom of screen, but the locations cannot be changed.</li>
+                <li ng-if="PTZModel">The 'camera ID' in [Overlay] is displayed at the left top of screen while the 'PTZ position' is displayed at the left bottom of screen; The locations cannot be changed.</li>
                 <li>Only Korean, English, numbers, and symbols are allowed. </li>
             </ul>
         </div>
@@ -783,11 +793,11 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
         </div>
 		<div class="wn5-setup-section-article-content">
             <h3>Digital zoom</h3>
-            <p>To use digital zoom, select <strong class="UI">[Enable]</strong>.</p>
+            <p>To use digital zoom, select <strong class="UI">[On]</strong>.</p>
         </div>
 		<div class="wn5-setup-section-article-content">
             <h3>Max digital zoom</h3>
-            <p>Set the maximum range of available digital zoom. You can set the range of digital zoom by setting <strong class="UI">[Enable]</strong> for <strong class="UI">[Digital zoom]</strong>.</p>
+            <p>Set the maximum range of available digital zoom. You can set the range of digital zoom by setting <strong class="UI">[On]</strong> for <strong class="UI">[Digital zoom]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Zoom mode</h3>

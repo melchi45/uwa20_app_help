@@ -6,7 +6,7 @@
         <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
     <ul>
         
-		<li><strong class="UI">[Digital PTZ profile]</strong> should be selected from <strong class="UI">[Video profile]</strong>><a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Profile type]</strong></a> in order to set digital PTZ.</li>
+		<li><strong class="UI">[Digital PTZ profile]</strong> should be selected from <strong class="UI">[Video profile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Profile type]</strong></a> in order to set digital PTZ.</li>
 		<!-- <li ng-if="FixedProfileCodecChange">If connected to the web viewer through Internet Explorer, digital PTZ function can only be used after installing a plugin. To install the plugin, click the plugin <span class="tui tui-wn5-download"></span> button at the top right on the <strong class="UI">[Live]</strong> screen or the <strong class="UI">[Playback]</strong> screen.</li>
 		<li ng-if="FixedProfileCodecChange">After installing the plugin, you can use the digital PTZ function without restriction only when the resolution of the web browser is 1024 or higher.</li> -->
     </ul>
@@ -24,13 +24,18 @@
         </div>
         <div class="wn5-online-help-action">
     	   <h4>Setting a preset</h4>
-    		<ol>
-    			<li>Expand the camera image by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon on the PTZ control screen and adjust the camera views by clicking and dragging the <span class="tui tui-wn5-ptz-handle"></span> icon. </li>
-    			<li>Select a preset number from <strong class="UI">[Number]</strong>.</li>
-    			<li>Enter the relevant preset name in <strong class="UI">[Name]</strong>.</li>
+            <ol>
+                <li>Expand the camera image by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon on the PTZ control screen, and then</li>
+                <ul>
+                    <li>adjust the camera views by clicking and dragging the <span class="tui tui-wn5-ptz-handle"></span> icon.  </li>
+                    <li>select an image magnification by adjusting the zoom bar, or click the<span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or click the<span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out.</li>
+                </ul>
+                <li>Select a preset number from <strong class="UI">[Number]</strong>.</li>
+                <li>Enter the relevant preset name in <strong class="UI">[Name]</strong>.</li>
                 <li>Click the <strong class="UI">[Add]</strong> button.</li>
             </ol>
-            <p ng-if="PTZModel || isDigitalPTZ"> When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically. When you click the button again, auto tracking will stop.</p>
+            <p></p>
+            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens">When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically. When you click the button again, auto tracking will stop.</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>Moving to a preset</h4>
@@ -44,6 +49,29 @@
     		<ol><li>Select the preset number you wish to delete from <strong class="UI">[Number]</strong>.</li>
                 <li>When you click the <strong class="UI">[Remove]</strong> button, the preset will be deleted.</li>
     		</ol>
+        </div>
+        <div class="wn5-online-help-action" ng-if="FisheyeLens">
+            <h4>Setting the home position</h4>
+            <ol>
+                <li>Expand the camera image by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon on the PTZ control screen,</li>
+                <ul>
+                    <li>adjust the camera views by clicking and dragging the <span class="tui tui-wn5-ptz-handle"></span> icon.    </li>
+                    <li>select an image magnification by clicking the<span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the<span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
+                </ul>
+                <li>Click Set home position<span class="tui tui-wn5-top-setup"></span> icon.</li>
+            </ol>
+        </div>
+        <div class="wn5-online-help-action" ng-if="FisheyeLens">
+            <h4>Navigating to the home position</h4>
+            <ol>
+                <li>Click Go home position<span class="tui tui-wn5-ptz-home"></span> icon.</li>
+            </ol>
+        </div>
+        <div class="wn5-online-help-action" ng-if="FisheyeLens">
+            <h4>Selecting a split screen</h4>
+            <ol>
+                <li>Select a number in <strong class="UI">[Guadrant]</strong>. 1 is the top left of the 4-split view, 2 is the top right, 3 is the bottom left, and 4 is the bottom right view.</li>
+            </ol>
         </div>
     </div>
 </div>

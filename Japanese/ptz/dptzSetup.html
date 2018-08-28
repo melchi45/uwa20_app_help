@@ -29,7 +29,7 @@
     			<li><strong class="UI">[名前]</strong>に該当プリセット名を入力します。</li>
                 <li><strong class="UI">[追加]</strong>ボタンをクリックします。</li>
             </ol>
-            <p ng-if="PTZModel || isDigitalPTZ"><span class="tui tui-ch-live-ptz-tracking-auto-on"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</p>
+            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens"><span class="tui tui-ch-live-ptz-tracking-auto-on"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>プリセットに移動</h4>
