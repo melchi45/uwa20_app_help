@@ -2,8 +2,29 @@
 <div class="wn5-setup-section">
     <p>カメラRS-485かRS-422ポートに接続されたパン/チルトレシーバーでPTZを制御するように設定することができます。プリセットを設定したり、カメラとアクセスされたパン/チルトレシーバーとの通信モードを設定することができます。</p>
 </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="ZoomOnlyModel">
+<div class="wn5-setup-section" ng-if="ZoomOnlyModel">
+    <div class="wn5-setup-section-heading">
+        <h2>PTZ調整</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
+        </div>
+			
+        <div class="wn5-online-help-action">
+    	   <h4><a name="ptzcontrol"></a>PTZ調整</h4>
+            <ul>
+                <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
+                <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+                <li><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+                <li>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</li>
+            </ul>
+    	</div>
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="!ZoomOnlyModel">
+<div class="wn5-setup-section" ng-if="!ZoomOnlyModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="preset"></a>プリセット</h2>
     </div>

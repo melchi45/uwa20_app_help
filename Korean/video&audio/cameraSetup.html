@@ -345,7 +345,7 @@ WDR 모드 끔                            WDR 모드 켬</p>
             <p>터널 집입이나 진출 시와 같이 조도가 급격히 변화할 때 화면 노출을 빠르게 적용하려면 <strong class="UI">[빠름]</strong>를 선택합니다. 조도 변화에 너무 민감하게 반응하여 화면 밝기가 지속적으로 변화하는 경우 <strong class="UI">[보통]</strong>으로 설정하는 것을 권장합니다.</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+        <div class="wn5-setup-section-article-content" ng-if="SSNRModeOptions">
             <h3>SSNR</h3>
             <p>영상의 노이즈를 제거합니다.</p>
             <ul>
@@ -600,7 +600,7 @@ WDR 모드 끔                            WDR 모드 켬</p>
                 <li><strong class="UI">방위각</strong>: 현재 화면 상으로 보고있는 영역의 방위각을 표시하는 기능입니다. 기능 설정 시 E(동)/W(서)/S(남)/N(북)/NE(북동)/NW(북서)/SE(남동)/SW(남서)의 8방향으로 표시하며, 화면 우측 하단에 나타나게 됩니다.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ZoomOnlyModel">
             <h3>오버레이</h3>
             <p>줌 배율이나 카메라 이름 등 카메라 영상 화면에 나타낼 데이터를 선택합니다.</p>
         </div>

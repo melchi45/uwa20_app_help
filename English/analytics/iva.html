@@ -1,7 +1,6 @@
 ﻿<h1 class="wn5-setup-main-title">IVA</h1>
 <div class="wn5-setup-section">
-    <p>An IVA event can be created when the rule for video analytics is set and a motion which satisfies the event rule condition is detected. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the IVA event applies to <strong class="UI">[IVA]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a>
-pages equally.</p>
+    <p>An IVA event can be created when the rule for video analytics is set and a motion which satisfies the event rule condition is detected. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the IVA event applies to <strong class="UI">[IVA]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
 </div>
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
@@ -48,8 +47,7 @@ pages equally.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Setting a virtual line  </h4>
-			<p>When you click the start point and the end point of the line at each desired position on the camera image screen, the virtual line will be set and the color of the number button in <strong class="UI">[Line]</strong> will change. You can change the direction from A to B, B to A or both directions by clicking the arrow in the middle of the virtual line, or you can select a desired direction from <strong class="UI">[Direction]</strong> in <strong class="UI">[Categories]</strong>. Up to 8 virtual lines
-can be set.</p>
+			<p>When you click the start point and the end point of the line at each desired position on the camera image screen, the virtual line will be set and the color of the number button in <strong class="UI">[Line]</strong> will change. You can change the direction from A to B, B to A or both directions by clicking the arrow in the middle of the virtual line, or you can select a desired direction from <strong class="UI">[Direction]</strong> in <strong class="UI">[Categories]</strong>. Up to 8 virtual lines can be set.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Changing a virtual line  </h4>
@@ -296,11 +294,10 @@ can be set.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>Alarm output</h3>
-            <p>It is possible to set the alarm output number for a specific alarm when an IVA event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a
-class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+            <p>It is possible to set the alarm output number for a specific alarm when an IVA event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
 
-      <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
+      <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
             <h3>Goto preset</h3>
                     <p>You can set the position of camera view to move to a preset number when an IVA event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
         </div>

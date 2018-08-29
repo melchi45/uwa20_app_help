@@ -3,8 +3,30 @@
 <div class="wn5-setup-section">
     <p>L&apos;utilisateur peut choisir de contr&ocirc;ler le PTZ gr&acirc;ce au r&eacute;cepteur panoramique/inclinaison qui est connect&eacute; au terminal RS-485 ou RS-422. Vous pouvez d&eacute;finir un pr&eacute;r&eacute;glage ou le mode de communication du r&eacute;cepteur panoramique/inclinaison connect&eacute; &agrave; la cam&eacute;ra.</p>
 </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+
+<hr class="wn5-setup-hr" ng-if="ZoomOnlyModel">
+<div class="wn5-setup-section" ng-if="ZoomOnlyModel">
+    <div class="wn5-setup-section-heading">
+        <h2>Ajuster le PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Vous pouvez ajuster les actions de panoramique, de mosa&iuml;que et de zoom de la cam&eacute;ra.</p>
+        </div>
+			
+        <div class="wn5-online-help-action">
+    	   <h4><a name="ptzcontrol"></a>Ajuster le PTZ</h4>
+            <ul>
+                <li>Lorsque vous faites glisser l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span>avec la souris, la cam&eacute;ra se d&eacute;place en panoramique et en inclinaison.</li>
+                <li>S&eacute;lectionnez un grossissement d&apos;image en cliquant sur le bouton <strong class="UI">[+]</strong> pour zoomer dans l&apos;&eacute;cran ou en cliquant sur le bouton <strong class="UI">[-]</strong> pour zoomer dans l&apos;&eacute;cran depuis la barre de zoom.</li>
+                <li>D&eacute;placez le focus en cliquant sur l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez le focus en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Pour ajuster automatiquement la mise au point de la cam&eacute;ra pour prendre un clich&eacute;, cliquez sur le bouton <span class="tui tui-wn5-simple-focus"></span>.</li>
+            </ul>
+    	</div>
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="!ZoomOnlyModel">
+<div class="wn5-setup-section" ng-if="!ZoomOnlyModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="preset"></a>Pr&eacute;r&eacute;glage</h2>
     </div>

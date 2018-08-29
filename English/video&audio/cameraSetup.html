@@ -462,7 +462,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <p>Select <strong class="UI">[High]</strong> to quickly apply screen exposure when the level of illumination changes rapidly, such as when entering or exiting a tunnel. It is recommended to set it to <strong class="UI">[Normal]</strong> when the screen brightness changes continuously, as it reacts highly sensitively to the change in illumination.</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+        <div class="wn5-setup-section-article-content" ng-if="SSNRModeOptions">
             <h3>SSNR</h3>
             <p>Remove noise from the image.</p>
             <ul>
@@ -718,7 +718,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             </ul>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="ZoomOnlyModel">
             <h3>Overlay</h3>
             <p>Set whether to display the camera's zoom maginification info or preset names on the screen.</p>
             <!-- <p>The user can display the camera's zoom magnification or preset names on the screen.</p>  -->

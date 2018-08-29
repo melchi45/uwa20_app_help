@@ -3,8 +3,30 @@
 <div class="wn5-setup-section">
     <p>The user can set to control the PTZ through the pan/tilt receiver which is connected to the RS-485 or RS-422 terminal. You can set a preset or the communication mode of the pan/tilt receiver connected to the camera.</p>
 </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+
+<hr class="wn5-setup-hr" ng-if="ZoomOnlyModel">
+<div class="wn5-setup-section" ng-if="ZoomOnlyModel">
+    <div class="wn5-setup-section-heading">
+        <h2>Adjusting the PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can adjust the pan, tilt, and zoom actions of the camera.</p>
+        </div>
+			
+        <div class="wn5-online-help-action">
+    	   <h4><a name="ptzcontrol"></a>Adjusting the PTZ</h4>
+            <ul>
+                <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span> icon  with the mouse, the camera moves to the pan and tilt.</li>
+                <li>Select an image magnification by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
+                <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+                <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
+            </ul>
+    	</div>
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="!ZoomOnlyModel">
+<div class="wn5-setup-section" ng-if="!ZoomOnlyModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="preset"></a>Preset</h2>
     </div>
@@ -80,7 +102,7 @@
                 <h3>Stop bit</h3>
                 <p>Set the stop bit which shows the end of a character.</p>
                 </div>
-			</div class="wn5-setup-section-article-content">
+			<div class="wn5-setup-section-article-content">
                 <h3>ONVIF focus movement</h3>
                 <p>Select <strong class="UI">[Enable]</strong> if you want to set to adjust the camera focus via an ONVIF protocol.</p>
             </div>

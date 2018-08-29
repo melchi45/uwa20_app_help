@@ -27,9 +27,7 @@
         </div>
         <div class="wn5-online-help-action">
             <h4>Set queue&nbsp;management rule</h4>
-            <p>To set the queue management rule, put a check mark in the checkbox in front of the <strong class="UI">[No.] </strong>column. When the queue management rule is displayed on the image screen, adjust the size and shape of the queue management area by dragging the corner of the area with the mouse. Enter the name of area in the <strong class="UI">[Name]</strong> field. Up to 15 characters, including alphabetic characters and numbers, can be entered for the rule name. The entered rule name is shown
-in <strong class="UI">[Statistics]</strong>&gt;<strong class="UI">[Queue management]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmStatistics.html"
-ng-href="#/help/queue_search">[Search]</a></strong>.</p>
+            <p>To set the queue management rule, put a check mark in the checkbox in front of the <strong class="UI">[No.] </strong>column. When the queue management rule is displayed on the image screen, adjust the size and shape of the queue management area by dragging the corner of the area with the mouse. Enter the name of area in the <strong class="UI">[Name]</strong> field. Up to 15 characters, including alphabetic characters and numbers, can be entered for the rule name. The entered rule name is shown in <strong class="UI">[Statistics]</strong>&gt;<strong class="UI">[Queue management]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="qmStatistics.html" ng-href="#/help/queue_search">[Search]</a></strong>.</p>
         </div>
 		            <div class="wn5-online-help-action">
                 <h4>Activate and deactivate the queue management analysis for each rule</h4>
@@ -131,16 +129,14 @@ ng-href="#/help/queue_search">[Search]</a></strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>Alarm output</h3>
-            <p>It is possible to set the alarm output number for a specific alarm when a queue management event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you do not wish to use the alarm. If you wish to use the alarm, select the output time. You can set the alarm to sound continuously until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from
-<strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+            <p>It is possible to set the alarm output number for a specific alarm when a queue management event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you do not wish to use the alarm. If you wish to use the alarm, select the output time. You can set the alarm to sound continuously until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
         </div>
 
 
 
-         <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport">
+         <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
             <h3>Goto preset</h3>
-                    <p>You can set the position of camera view to move to a preset number when a queue management event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External
-PTZ]</a></strong>.</p>
+                    <p>You can set the position of camera view to move to a preset number when a queue management event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
