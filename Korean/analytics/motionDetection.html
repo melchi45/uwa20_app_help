@@ -1,4 +1,4 @@
-﻿<h1 class="wn5-setup-main-title">움직임 감지</h1>
+﻿<h1 class="wn5-setup-main-title"><a class="wn5-online-help-link" name="top"></a>움직임 감지</h1>
 <div class="wn5-setup-section">
     <p>관심 영역과 제외 영역을 설정한 후에 사용자가 설정한 영역 안에서 움직임을 감지하면 움직임 감지 이벤트를 발생시킬 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. </p>
     <p>움직임 감지 이벤트에 대한 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[이벤트 설정]</strong></a> 페이지의 <strong class="UI">[움직임 감지]</strong>에 동일하게 적용됩니다.</p>
@@ -34,8 +34,7 @@
 		
         <div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>타입</h3>
-            <p>모든 프리셋에 동일한 움직임 감지를 설정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 움직임 감지를 설정하려면<strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 움직임 감지 설정을 지정하는 경우, 세부
-설정 항목 중 일부 기능은 설정할 수 없습니다. </p>
+            <p>모든 프리셋에 동일한 움직임 감지를 설정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 움직임 감지를 설정하려면<strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 움직임 감지 설정을 지정하는 경우, 세부 설정 항목 중 일부 기능은 설정할 수 없습니다. </p>
             <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 '타입' 기능을 설정할 수 있습니다.</p>
         </div>
 
@@ -70,7 +69,7 @@
 		</div>
         <div class="wn5-online-help-action">
             <h4>관심 영역 설정하기</h4>
-            <p>영상 위에 마우스로 꼭지점 4개를 선택하면 관심 영역이 설정되며 <strong class="UI">[영역]</strong>의 숫자 버튼 색상이 변경됩니다. 관심 영역은 최대 8개까지 설정할 수 있으며 영역 별로 레벨과 민감도를 각각 설정할 수 있습니다.</p>
+            <p>영상 위에 마우스로 꼭지점 4개를 선택하면 관심 영역이 설정되며 <strong class="UI">[영역]</strong>의 숫자 버튼 색상이 변경됩니다. 관심 영역은 최대 8개까지 설정할 수 있으며 영역 별로 레벨과 민감도, 최소 관찰 시간을 각각 설정할 수 있습니다.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>관심 영역 변경하기</h4>

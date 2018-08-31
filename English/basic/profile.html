@@ -54,7 +54,7 @@
         <!-- <div class="wn5-setup-section-article-content">
             <p>The user can select a video profile according to the service environment and circumstances of product use. In addition to the profiles provided by default, the user can add a new profile or delete an existing one. You can set the codec, profile type, audio in, ATC mode, ATC sensitivity, ATC limit, resolution, frame rate, maximum bitrate, target bitrate, bitrate control and multicast for each profile.</p>
         </div> --> 
-        <div class="wn5-setup-section-article-content" >
+        <div class="wn5-setup-section-article-content">
             <p>The user can select a video profile according to the service environment and circumstances of product use. In addition to the profiles provided by default, the user can add a new profile or delete an existing one. You can set the codec, profile type, resolution, frame rate, multicast, and other settings for each profile.</p>
         </div>
 
@@ -76,9 +76,7 @@
                 <tr>
                     <td>MJPEG</td>
                     <td>MJPEG</td>
-                    <td>
-                        <p>Used as the suitable profile for MJPEG codec, event profile, and record profile</p>
-                    </td>
+                    <td>Used as the suitable profile for MJPEG codec, event profile, and record profile</td>
                 </tr>
                 <tr>
                     <td>H.264</td>
@@ -89,6 +87,11 @@
                     <td>H.265</td>
                     <td>H.265</td>
                     <td>Profile suitable for H.265 codec</td>
+                </tr>
+                <tr>
+                    <td>WISENET</td>
+                    <td>H.265</td>
+                    <td>Ready-made default profile for ONVIF client. This profile can be modified but cannot be deleted.</td>
                 </tr>
                 <tr>
                     <td>MOBILE</td>
@@ -209,7 +212,7 @@
                 <li ng-if="Recording && !NAS"><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card. ‘Record’ is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li ng-if="DPTZSetupPage"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. ‘DPTZ’ is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
                 <li ng-if="FisheyeLens" style="list-style-image:url('');">For the fisheye camera, when adding a new profile, select <strong class="UI">[Dewarping view]</strong> in <strong class="UI">[Fisheye view type]</strong> and select <strong class="UI">[Quad view]</strong> in <strong class="UI">[View]</strong> to automatically register the profile as a digital PTZ profile.</li>
-                <li><strong class="UI">Fixed frame rate profile</strong>: This is a profile applied to guarantee a certain level of video frame rate. This ‘Fixed frame rate profile’ option appears only when <strong class="UI">[Codec]</strong> is set to [h.264] or [h.265].</li>
+                <li><strong class="UI">Frame Lock</strong>: This is a profile applied to guarantee a certain level of video frame rate. This ‘Frame Lock’ option appears only when <strong class="UI">[Codec]</strong> is set to [h.264] or [h.265].</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
@@ -225,7 +228,7 @@
                 <li><strong class="UI">Disable</strong>: A fixed amount of sent data is maintained even if the network bandwidth changes. </li>
                 <li><strong class="UI">Enable - Control frame rate</strong>: If the network bandwidth changes, you can adjust the amount of data to be sent by changing the frame rate. </li>
                 <li><strong class="UI">Enable - Control compression</strong>: If the network bandwidth changes, you can adjust the amount of data to be sent by changing the data compression rate. Change in compression ratio may degrade the image quality.</li>
-                <li><strong class="UI">Enable &ndash; Event (MD)</strong>: This mode can be used when <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2">Motion detection event</a> is set. When a motion detection event is created and the network bandwidth changes, you can adjust the amount of data by changing the frame rate. When no motion is detected, reduce bandwidth use by outputting the minimum frames.</li>
+                <li><strong class="UI">Enable &ndash; Event (MD)</strong>: This mode can be used when <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?#top">Motion detection event</a> is set. When a motion detection event is created and the network bandwidth changes, you can adjust the amount of data by changing the frame rate. When no motion is detected, reduce bandwidth use by outputting the minimum frames.</li>
             </ul>
         </div>
 
@@ -261,7 +264,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Crop encoding crops only a selected portion from the full screen and displays it according to the resolution set in the <strong class="UI">[profile setting]</strong>. Only a resolution size smaller than the Crop encoding setting area can be set. To apply crop encoding to the current profile, select <strong class="UI">[Enable]</strong>.</p>
+            <p>Crop encoding crops only a selected portion from the full screen and displays it according to the resolution set in the <strong class="UI">[Profile properties]</strong>. Only a resolution size smaller than the Crop encoding setting area can be set. To apply crop encoding to the current profile, select <strong class="UI">[Enable]</strong>.</p>
         </div>
 
         <div class="wn5-online-help-action">
@@ -387,11 +390,11 @@
 
         <div class="wn5-online-help-info">
           	<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-                <ul>
-                    <li>When the WiseStream function is used, if the dynamic GOV and dynamic FPS functions are used, the WiseStream performance is optimized. The WiseStream can be set in the <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong> menu.</li>
-                </ul>
+            <ul>
+                <li>When the WiseStream function is used, if the dynamic GOV and dynamic FPS functions are used, the WiseStream performance is optimized. The WiseStream can be set in the <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong> menu.</li>
+                <li>Dynamic GOV is enabled only when <strong class="UI">[Bitrate Control Method]</strong> is set to <strong class="UI">[VBR] </strong>and <strong class="UI">[ATC mode]</strong>&nbsp;to&nbsp;<strong class="UI">[Disable]</strong>. If <strong class="UI">[Profile type] </strong>is set to&nbsp;<strong class="UI">[Record profile]</strong>, Dynamic GOV is disabled.</li>
+            </ul>
         </div>
-
 		<div class="wn5-setup-section-article-content">
             <h3>Dynamic FPS</h3>
             <p>Select <strong class="UI">[Enable]</strong> to apply the Dynamic FPS function to the profile currently being set.</p> 
@@ -406,8 +409,9 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>When the WiseStream function is used, if the dynamic GOV and dynamic FPS functions are used, the WiseStream performance is optimized. The WiseStream can be set in the <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong> menu.</li>
+                <li>Dynamic FPS is enabled only when <strong class="UI">[Codec]</strong> is set to <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> and <strong class="UI">[Bitrate Control Method]</strong> is set to <strong class="UI">[VBR]</strong>. Dynamic FPS is also enabled&nbsp;when <strong class="UI">[ATC mode]</strong> is set to <strong class="UI">[Disable] </strong>while it is disabled when&nbsp;<strong class="UI">[Profile type] </strong>is set to&nbsp;<strong class="UI">[Record profile]</strong>.</li>
             </ul>
-		</div>
+        </div>
     </div>
 </div>
 

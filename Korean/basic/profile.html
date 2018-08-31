@@ -86,6 +86,11 @@
                     <td>H.265 코덱에 적합한 프로파일</td>
                 </tr>
                 <tr>
+                    <td>Wisenet</td>
+                    <td>H.265</td>
+                    <td>ONVIF 클라이언트용으로 제공되는 기본 프로파일, 설정 값은 수정할 수 있으나 프로파일을 삭제할 수 없음.</td>
+                </tr>
+                <tr>
                     <td>MOBILE</td>
                     <td>
                         <p>MJPEG/H.264</p>
@@ -230,7 +235,7 @@
                 <li><strong class="UI">사용 안 함</strong>: 네트워크 대역폭이 변화하더라도 비디오 전송량을 일정하게 유지합니다.</li>
                 <li><strong class="UI">사용 - 프레임 레이트 조정</strong>: 네트워크 대역폭이 변화될 경우, 프레임 레이트를 변경하여 전송하는 데이터양을 조절합니다. </li>
                 <li><strong class="UI">사용 - 압축 조정</strong>: 네트워크 대역폭이 변화될 경우, 전송하는 데이터 압축률을 변경하여 전송하는 데이터양을 조절합니다. 압축 조정을 할 경우 화질이 떨어질 수 있습니다.  </li>
-                <li><strong class="UI">사용 - 이벤트(MD)</strong>: <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2">움직임 감지 이벤트</a>가 설정되어 있는 경우에 사용할 수 있는 모드입니다. 움직임 감지 이벤트가 발생하여 네트워크 대역폭이 변화될 경우에 프레임 레이트를 변경하여 데이터양을 조절합니다. 움직임이 감지되지 않으면 최소한의 프레임만을 출력하여 대역폭 사용을 절약합니다.
+                <li><strong class="UI">사용 - 이벤트(MD)</strong>: <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?#top">움직임 감지 이벤트</a>가 설정되어 있는 경우에 사용할 수 있는 모드입니다. 움직임 감지 이벤트가 발생하여 네트워크 대역폭이 변화될 경우에 프레임 레이트를 변경하여 데이터양을 조절합니다. 움직임이 감지되지 않으면 최소한의 프레임만을 출력하여 대역폭 사용을 절약합니다.
                     
                 </li>
             </ul>
@@ -266,7 +271,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>크롭 인코딩은 전체 화면에서 선택한 영역만 잘라 <strong class="UI">[프로파일 설정]</strong>에서 설정된 해상도에 맞게 출력합니다. 크롭 인코딩 설정 영역보다 작은 크기의 해상도만 설정할 수 있습니다. 현재 설정 중인 프로파일에 크롭 인코딩을 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다.</p>
+            <p>크롭 인코딩은 전체 화면에서 선택한 영역만 잘라 <strong class="UI">[프로파일 속성]</strong>에서 설정된 해상도에 맞게 출력합니다. 크롭 인코딩 설정 영역보다 작은 크기의 해상도만 설정할 수 있습니다. 현재 설정 중인 프로파일에 크롭 인코딩을 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>크롭 영역 설정하기</h4>
@@ -399,27 +404,27 @@
 
             <ul>
                 <li>와이즈 스트림 기능을 사용하는 경우, 다이내믹 GOV와 다이내믹 FPS 기능을 사용하면 와이즈 스트림 성능이 최적화됩니다. 와이즈 스트림은 <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[와이즈 스트림]</strong> 메뉴에서 설정할 수 있습니다.</li>
+                <li>다이내믹 GOV는 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>이거나 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정한 경우에만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다.</li>
             </ul>
 		</div>
 		    
-			<div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content">
             <h3>다이내믹 FPS</h3>
             <p>다이내믹 FPS 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
             <p>다이내믹 FPS(Dynamic FPS)는 영상 상황에 따라 최소 FPS 설정값부터 프레임 레이트 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 FPS가 최소 FPS의 설정값으로 동작하게 되어 전체 영상의 비트레이트가 줄어들게 됩니다. 움직임을 감지하게 되면 FPS 값을 증가시켜서 동작합니다.</p>
-            <p>다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다.</p>
-			</div>
+        </div>
 			         
-			<div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content">
             <h3>최소 FPS</h3>
-                <p>다이내믹 FPS가 작동할 때 적용할 최소 FPS 값을 입력합니다. </p>
-           </div>
-
+            <p>다이내믹 FPS가 작동할 때 적용할 최소 FPS 값을 입력합니다. </p>
+        </div>
 
 <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
 
             <ul>
                 <li>와이즈 스트림 기능을 사용하는 경우, 다이내믹 GOV와 다이내믹 FPS 기능을 사용하면 와이즈 스트림 성능이 최적화됩니다. 와이즈 스트림은 <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[와이즈 스트림]</strong> 메뉴에서 설정할 수 있습니다.</li>
+                <li>다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다. 또한&nbsp;<strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정한 경우에만 활성화됩니다. &nbsp;<strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다. </li>
             </ul>
 		</div>
 

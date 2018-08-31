@@ -123,8 +123,8 @@
                             <p>一度クリックするたびに、下記のモードに変更されます。</p>
                             <ul>
                                 <li><span class="tui tui-ch-live-view-fit"></span>(適合)：カメラ映像をウェブブラウザのサイズに合わせて表示します。</li>
-                                <li><span class="tui tui-ch-live-view-originalratio"></span>(オリジナルサイズ)：カメラ映像の実際解像度サイズに表示します。</li>
-                                <li><span class="tui tui-ch-live-view-originalsize"></span>(アスペクト比)：カメラ映像解像度の縦横比を維持したままライブ画面をズームインまたはズームアウトしてウェブブラウザのサイズに表示します。</li>
+                                <li><span class="tui tui-ch-live-view-originalsize"></span>(オリジナルサイズ)：カメラ映像の実際解像度サイズに表示します。</li>
+                                <li><span class="tui tui-ch-live-view-originalratio"></span>(アスペクト比)：カメラ映像解像度の縦横比を維持したままライブ画面をズームインまたはズームアウトしてウェブブラウザのサイズに表示します。</li>
                             </ul>
                             <p>&nbsp;</p>
                         </td>
@@ -220,7 +220,7 @@
                     <li>手動録画を終了するには、もう一保存アイコン(<span class="tui tui-wn5-toolbar-record"></span>)をクリックします。</li>
                </ul>
                 <p>ユーザーPCに手動録画を.aviファイルで保存することができます。パスを指定して映像を保存してください。</p>
-                <p>魚眼ビューモードで録画すると、ユーザーが見ている歪み補正ビューではなくオリジナル画像で保存されます。</p>
+                <p ng-if="FisheyeLens">魚眼ビューモードで録画すると、ユーザーが見ている歪み補正ビューではなくオリジナル画像で保存されます。</p>
             </div>
 			
             <div class="wn5-online-help-action">
@@ -346,7 +346,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         <div class="wn5-setup-section-article-content">
             <h3>디지털 자동 추적</h3>
                      
-            <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>(자동 추적) 버튼을 클릭하면 디지털 자동 추적 기능이 실행됩니다. 다시 한번 더 <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(자동 추적) 버튼을 클릭하면 추적 기능이 중지됩니다. 디지털 자동 추적 기능을 사용하는 중에 PTZ 기능을 조작하면 추적 기능은 자동으로 중지됩니다.</p>
+            <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>(자동 추적) 버튼을 클릭하면 디지털 자동 추적 기능이 실행됩니다. 다시 한번 더 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>(자동 추적) 버튼을 클릭하면 추적 기능이 중지됩니다. 디지털 자동 추적 기능을 사용하는 중에 PTZ 기능을 조작하면 추적 기능은 자동으로 중지됩니다.</p>
         </div>
     </div>
 </div>
@@ -380,7 +380,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 		<div class="wn5-setup-section-article-content">
             <h3>オートトラッキング</h3>
                      
-            <p>ライブ画面で動く物事や人を自動でトラッキングすることができます。<span class="tui tui-ch-live-ptz-tracking-auto-off"></span>オートトラッキングボタンをクリックすると、オートトラッキング機能が実行されます。もう一度<span class="tui tui-ch-live-ptz-tracking-auto-on"></span>オートトラッキングボタンをクリックすると、オートトラッキング機能が中止されます。</p>
+            <p>ライブ画面で動く物事や人を自動でトラッキングすることができます。<span class="tui tui-ch-live-ptz-tracking-auto-off"></span>オートトラッキングボタンをクリックすると、オートトラッキング機能が実行されます。もう一度<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>オートトラッキングボタンをクリックすると、オートトラッキング機能が中止されます。</p>
             <p>また映像画面でマウス右側ボタンをクリックすると、クリックしたエリアを中心でモーションを分析してオートトラッキングを開始します。</p>
         </div>    
         <div class="wn5-setup-section-article-content">
@@ -416,7 +416,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <ul>
                 <li><strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択した場合のみ、PTZ機能を使用することができます。</li>
                 <li>PTZ制御画面で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックしてカメラの映像をズームインした後、<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
-                <li><span class="tui tui-ch-live-ptz-tracking-auto-on"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</li>
+                <li><span class="tui tui-ch-live-ptz-tracking-auto-on active"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</li>
             </ul>
     </div>
     <div class="wn5-setup-section-article-content">
@@ -470,7 +470,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 
 
 
-<hr class="wn5-setup-hr" ng-if="FisheyeLens">
+<!-- <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">
     <div class="wn5-setup-section-heading">
         <h2><a name="fisheyeview"></a>魚眼ビュー</h2>
@@ -498,7 +498,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         </div>
         
     </div>
-</div>
+</div> --> 
 
 
 <hr class="wn5-setup-hr">

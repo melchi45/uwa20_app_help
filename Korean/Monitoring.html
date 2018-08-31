@@ -151,9 +151,9 @@
                             <p>한 번씩 클릭할 때마다 다음 모드로 변경됩니다. </p>
                             <ul>
                                 <li><span class="tui tui-ch-live-view-fit"></span>(화면 맞춤): 카메라 영상을 웹 브라우저의 크기에 맞추어 봅니다.  </li>
-                                <li><span class="tui tui-ch-live-view-originalratio"></span>(원본 크기): 카메라 영상의 실제 해상도 크기로 봅니다.
+                                <li><span class="tui tui-ch-live-view-originalsize"></span>(원본 크기): 카메라 영상의 실제 해상도 크기로 봅니다.
                                 </li>
-                                <li><span class="tui tui-ch-live-view-originalsize"></span>(영상 비율 고정): 카메라 영상 해상도의 종횡비를 유지한 채 라이브 화면을 확대 또는 축소하여 웹 브라우저의 크기만큼 봅니다.  </li>
+                                <li><span class="tui tui-ch-live-view-originalratio"></span>(영상 비율 고정): 카메라 영상 해상도의 종횡비를 유지한 채 라이브 화면을 확대 또는 축소하여 웹 브라우저의 크기만큼 봅니다.  </li>
                             </ul>
                             <p> </p>
                         </td>
@@ -246,7 +246,7 @@
                     <li>수동 녹화를 종료하려면 저장 아이콘(<span class="tui tui-wn5-toolbar-record"></span>)을 한 번 더 클릭합니다.</li>
                </ul>
                 <p>사용자 PC에 수동 녹화를 .avi 파일로 저장할 수 있습니다. 경로를 지정하고 영상을 저장하십시오. </p>
-                <p>피쉬아이 뷰 모드에서 녹화를 하면 사용자가 보고 있는 왜곡보정된 뷰가 아닌 원본 이미지로 저장됩니다.</p>
+                <p ng-if="FisheyeLens">피쉬아이 뷰 모드에서 녹화를 하면 사용자가 보고 있는 왜곡보정된 뷰가 아닌 원본 이미지로 저장됩니다.</p>
             </div>
 			
             <div class="wn5-online-help-action">
@@ -314,7 +314,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="IsAdmin">
             <h3>표시  </h3>
-            <p>라이브 화면의 대비, 밝기, 윤곽, 컬러 레벨을 설정할 수 있으며, 설정값을 입력하면 라이브 화면에 바로 적용됩니다.</p>
+            <p>라이브 화면의 대비, 밝기, 윤곽, 컬러 레벨을 설정할 수 있으며, 설정값을 입력하면 라이브 화면에 바로 적용됩니다. <span class="tui tui-wn5-return"></span> 버튼을 클릭하면 설정한 모든 값이 초기화됩니다. </p>
         </div>
     </div>
 </div>
@@ -376,7 +376,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         <div class="wn5-setup-section-article-content">
             <h3>디지털 자동 추적</h3>
                      
-            <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>(자동 추적) 버튼을 클릭하면 디지털 자동 추적 기능이 실행됩니다. 다시 한번 더 <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(자동 추적) 버튼을 클릭하면 추적 기능이 중지됩니다. 디지털 자동 추적 기능을 사용하는 중에 PTZ 기능을 조작하면 추적 기능은 자동으로 중지됩니다.</p>
+            <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>(자동 추적) 버튼을 클릭하면 디지털 자동 추적 기능이 실행됩니다. 다시 한번 더 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>(자동 추적) 버튼을 클릭하면 추적 기능이 중지됩니다. 디지털 자동 추적 기능을 사용하는 중에 PTZ 기능을 조작하면 추적 기능은 자동으로 중지됩니다.</p>
         </div>
     </div>
 </div>
@@ -413,7 +413,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 		<div class="wn5-setup-section-article-content">
             <h3>자동 추적</h3>
                      
-            <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>자동 추적 아이콘을 클릭하면 자동 추적 기능이 실행되며 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>로 변경됩니다. 자동 추적 아이콘을 한 번 더 클릭하면 추적 기능이 중지됩니다. </p>
+            <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>자동 추적 아이콘을 클릭하면 자동 추적 기능이 실행되며 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>로 변경됩니다. 자동 추적 아이콘을 한 번 더 클릭하면 추적 기능이 중지됩니다. </p>
             <p>또한 영상 화면에서 마우스 오른쪽 버튼을 클릭하면 클릭한 영역을 중심으로 움직임을 분석한 후 자동 추적을 시작합니다.</p>
         </div>    
         <div class="wn5-setup-section-article-content">
@@ -504,7 +504,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 
 
 
-<hr class="wn5-setup-hr" ng-if="FisheyeLens">
+<!-- <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">
     <div class="wn5-setup-section-heading">
         <h2><a name="fisheyeview"></a>피쉬아이 뷰</h2>
@@ -532,7 +532,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         </div>
         
     </div>
-</div>
+</div> --> 
 
 
 <hr class="wn5-setup-hr">

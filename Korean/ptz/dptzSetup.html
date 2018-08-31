@@ -34,7 +34,7 @@
                 <li><strong class="UI">[추가]</strong> 버튼을 클릭합니다.</li>
             </ol>
         <p></p>
-        <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적하며, 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>로 변경됩니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</p>
+        <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적하며, 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>로 변경됩니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>프리셋으로 이동하기</h4>
@@ -101,8 +101,6 @@
         <div class="wn5-online-help-action">
             <h4>그룹 작동하기</h4>
             <ol>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 -->
-                </p>
                 <li><strong class="UI">[그룹 번호]</strong>에서 작동할 그룹을 선택합니다.</li>
                 <li><strong class="UI">[시작]</strong> 버튼을 클릭하면 해당 그룹에 설정된 프리셋이 전환 간격에 맞춰 변경됩니다.</li>
 				<li><strong class="UI">[중지]</strong> 버튼을 클릭하면 그룹으로 작동 중인 프리셋이 멈춥니다.</li>
@@ -111,14 +109,13 @@
         <div class="wn5-online-help-action">
             <h4>그룹 삭제하기</h4>
             <ol>
-                <p><!-- 항목을 추가하려면 <li>텍스트</li> 형태로 입력하세요 --></p>
                 <li><strong class="UI">[그룹 번호]</strong>에서 삭제할 그룹을 선택합니다.</li>
                 <li><strong class="UI">[삭제]</strong> 버튼을 클릭하면 그룹이 삭제됩니다.</li>
             </ol>
         </div>
    <!--      <div class="wn5-setup-section-article-content" ng-if="PTZModel || isDigitalPTZ">
             <h3>자동 추적</h3>
-            <p><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적하며, 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>로 변경됩니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</p>   
+            <p><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적하며, 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>로 변경됩니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</p>   
         </div> -->
     </div>
 </div>

@@ -41,8 +41,7 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Sampling rate</h3>
-			<p>This refers to the number of samplings per second when an analog sound source is converted to a digital sound source; as this value is higher, the sound quality is better.
- The sampling rate is fixed for each audio codec, and cannot be changed by the user. The sampling rate of the G.711 and G.726 codecs is 8 KHz, while the sampling rate of the AAC codec is 16 KHz.</p>
+			<p>This refers to the number of samplings per second when an analog sound source is converted to a digital sound source; as this value is higher, the sound quality is better. The sampling rate is fixed for each audio codec, and cannot be changed by the user. The sampling rate of the G.711 and G.726 codecs is 8 KHz, while the sampling rate of the AAC codec is 16 KHz.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Bitrate</h3>
@@ -63,9 +62,9 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="MaxAudioOutput">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="MaxAudioOutput">
 	<div class="wn5-setup-section-heading">
 		<h2>Audio out</h2>
 	</div>

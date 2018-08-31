@@ -111,8 +111,8 @@
                             <p>La taille passe &agrave; la taille suivante chaque fois que vous cliquez dessus.</p>
                             <ul>
                                 <li><span class="tui tui-ch-live-view-fit"></span>(Ajustement)&nbsp;: Ajustez l&apos;image de la cam&eacute;ra &agrave; la taille du navigateur web.</li>
-                                <li><span class="tui tui-ch-live-view-originalratio"></span>(Taille d&apos;origine)&nbsp;: Visualisez l&apos;image de la cam&eacute;ra &agrave; sa v&eacute;ritable r&eacute;solution.</li>
-                                <li><span class="tui tui-ch-live-view-originalsize"></span>(Ratio d&apos;aspect)&nbsp;: Affichez l&apos;&eacute;cran de direct dans le navigateur web en effectuant un zoom avant ou arri&egrave;re, tout en conservant le ratio d&rsquo;aspect de l&apos;image de la cam&eacute;ra.</li>
+                                <li><span class="tui tui-ch-live-view-originalsize"></span>(Taille d&apos;origine)&nbsp;: Visualisez l&apos;image de la cam&eacute;ra &agrave; sa v&eacute;ritable r&eacute;solution.</li>
+                                <li><span class="tui tui-ch-live-view-originalratio"></span>(Ratio d&apos;aspect)&nbsp;: Affichez l&apos;&eacute;cran de direct dans le navigateur web en effectuant un zoom avant ou arri&egrave;re, tout en conservant le ratio d&rsquo;aspect de l&apos;image de la cam&eacute;ra.</li>
                             </ul>
                             <p>&nbsp;</p>
                         </td>
@@ -208,7 +208,7 @@
                     <li>Pour terminer l&rsquo;enregistrement manuel, cliquez &agrave; nouveau sur le bouton enregistrer <span class="tui tui-wn5-toolbar-record"></span>.</li>
                </ul>
                 <p>L&rsquo;enregistrement manuel peut &ecirc;tre sauvegard&eacute; sous forme de fichier.avi sur votre PC. Sp&eacute;cifiez le chemin d&rsquo;acc&egrave;s et enregistrez la vid&eacute;o.</p>
-                <p>Si vous enregistrez la vid&eacute;o en mode d&rsquo;affichage Fisheye, les images originales seront sauvegard&eacute;es &agrave; la place des images de la vue en cours d&rsquo;affichage.</p>
+                <p ng-if="FisheyeLens">Si vous enregistrez la vid&eacute;o en mode d&rsquo;affichage Fisheye, les images originales seront sauvegard&eacute;es &agrave; la place des images de la vue en cours d&rsquo;affichage.</p>
             </div>
 			
             <div class="wn5-online-help-action">
@@ -308,7 +308,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content">
             <h3>Auto tracking</h3>
 
-            <p>A moving object or person can be tracked automatically on the live screen. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>When you click the (Auto tracking) button, the auto tracking function will be executed. When you click the <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(Auto tracking) button again, the tracking function will stop. If you operate the PTZ function while using the auto tracking function, the auto tracking function will stop.</p>
+            <p>A moving object or person can be tracked automatically on the live screen. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>When you click the (Auto tracking) button, the auto tracking function will be executed. When you click the <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>(Auto tracking) button again, the tracking function will stop. If you operate the PTZ function while using the auto tracking function, the auto tracking function will stop.</p>
         </div>
     </div>
 </div>
@@ -337,7 +337,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content">
             <h3>Suivi automatique</h3>
 
-            <p>Un objet ou une personne en mouvement peut &ecirc;tre suivi automatiquement dans l&rsquo;&eacute;cran de direct. Lorsque vous cliquez sur le bouton Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, la fonction de suivi automatique sera ex&eacute;cut&eacute;e. Lorsque vous cliquez &agrave; nouveau sur le bouton Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>, la fonction de suivi s&apos;arr&ecirc;tera.</p>
+            <p>Un objet ou une personne en mouvement peut &ecirc;tre suivi automatiquement dans l&rsquo;&eacute;cran de direct. Lorsque vous cliquez sur le bouton Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, la fonction de suivi automatique sera ex&eacute;cut&eacute;e. Lorsque vous cliquez &agrave; nouveau sur le bouton Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>, la fonction de suivi s&apos;arr&ecirc;tera.</p>
             <p>De plus, lorsque vous cliquez sur l&apos;&eacute;cran d&apos;image avec le bouton droit de la souris, la zone cliqu&eacute;e bas&eacute;e sur le mouvement sera analys&eacute;e, et le suivi automatique commencera.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -433,7 +433,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <ul>
                 <li>La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>
                 <li>Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
-                <li>Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</li>
+                <li>Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</li>
             </ul>
 
         </div>
@@ -450,7 +450,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="FisheyeLens">
+<!-- <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">
     <div class="wn5-setup-section-heading">
         <h2><a name="FisheyeView"></a>Affichage fisheye</h2>
@@ -478,39 +478,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         </div>
 
     </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>  --> 
 
 
 <hr class="wn5-setup-hr">

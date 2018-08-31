@@ -146,8 +146,8 @@
                             <p>The size changes to the next size each time you click it. </p>
                             <ul>
                                 <li><span class="tui tui-ch-live-view-fit"></span>(Fit): Fit the camera image to the size of the web browser.  </li>
-                                <li><span class="tui tui-ch-live-view-originalratio"></span>(Original Size): View the camera image at its actual resolution.</li>
-                                <li><span class="tui tui-ch-live-view-originalsize"></span>(Aspect Ratio): View the live screen in the web browser by zooming in or out, while maintaining the aspect ratio of the camera image.  </li>
+                                <li><span class="tui tui-ch-live-view-originalsize"></span>(Original Size): View the camera image at its actual resolution.</li>
+                                <li><span class="tui tui-ch-live-view-originalratio"></span>(Aspect Ratio): View the live screen in the web browser by zooming in or out, while maintaining the aspect ratio of the camera image.  </li>
                             </ul>
                             <p>&nbsp;</p>
                         </td>
@@ -243,7 +243,7 @@
                     <li>To end the manual recording, click the Record icon(<span class="tui tui-wn5-toolbar-record"></span>) again.</li>
                </ul>
                 <p>The manual recording can be saved as an .avi file in your PC. Specify the path and save the video. </p>
-                <p>If you record the video in the Fisheye view mode, the original images will be saved instead of images from the dewarped view currently displayed.</p>
+                <p ng-if="FisheyeLens">If you record the video in the Fisheye view mode, the original images will be saved instead of images from the dewarped view currently displayed.</p>
             </div>
 			
             <div class="wn5-online-help-action">
@@ -313,7 +313,7 @@
                           </div>
         <div class="wn5-setup-section-article-content" ng-if="IsAdmin">
             <h3>Display </h3>
-            <p>Set the contrast, brightness, sharpness and color level of the live screen; when you enter the setting, it will be applied to the live screen immediately.</p>
+            <p>Set the contrast, brightness, sharpness and color level of the live screen; when you enter the setting, it will be applied to the live screen immediately. Click the <span class="tui tui-wn5-return"></span> button if you want to reset all the display settnigs.</p>
         </div>
     </div>
 </div>
@@ -349,7 +349,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content">
             <h3>Auto tracking</h3>
 
-            <p>A moving object or person can be tracked automatically on the live screen. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>When you click the (Auto tracking) button, the auto tracking function will be executed. When you click the <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>(Auto tracking) button again, the tracking function will stop. If you operate the PTZ function while using the auto tracking function, the auto tracking function will stop.</p>
+            <p>A moving object or person can be tracked automatically on the live screen. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>When you click the (Auto tracking) button, the auto tracking function will be executed. When you click the <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>(Auto tracking) button again, the tracking function will stop. If you operate the PTZ function while using the auto tracking function, the auto tracking function will stop.</p>
         </div>
     </div>
 </div>
@@ -383,7 +383,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content">
             <h3>Auto tracking</h3>
 
-            <p>A moving object or person can automatically be tracked in the live view. When you click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, the auto tracking function will be executed. When you click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-on"></span> again, the tracking function will stop. </p>
+            <p>A moving object or person can automatically be tracked in the live view. When you click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, the auto tracking function will be executed. When you click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span> again, the tracking function will stop. </p>
             <p>In addition, when you click the right mouse button on the image screen, the motion based clicked area will be analyzed, and then auto tracking will begin.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -493,7 +493,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="FisheyeLens">
+<!-- <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">
     <div class="wn5-setup-section-heading">
         <h2><a name="FisheyeView"></a>Fisheye view</h2>
@@ -521,7 +521,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         </div>
 
     </div>
-</div>
+</div>  -->
 
 
 <hr class="wn5-setup-hr">
